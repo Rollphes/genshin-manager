@@ -1,0 +1,12 @@
+/node_modules
+/src
+/cache
+/.vscode
+/.github
+
+.eslintrc.json
+.eslintignore
+.gitignore
+.prettierrc
+.prettierignore
+tsconfig.json
