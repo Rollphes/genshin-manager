@@ -20,7 +20,7 @@ import { ShowAvatarInfo } from '@/models/enka/ShowAvatarInfo'
 import { Material } from '@/models/Material'
 import { MaterialType } from '@/models/Material'
 import { ItemType } from '@/models/Material'
-import { FightPropType } from '@/models/StatProperty'
+import { FightPropType, StatProperty } from '@/models/StatProperty'
 import { Weapon } from '@/models/Weapon'
 import { WeaponType } from '@/models/Weapon'
 import { ClientOption } from '@/types'
@@ -46,9 +46,10 @@ export {
   Material,
   Weapon,
   ClientOption,
-  Element,
+  StatProperty,
 }
 export {
+  Element,
   ArtifactType,
   AssocType,
   ItemType,
