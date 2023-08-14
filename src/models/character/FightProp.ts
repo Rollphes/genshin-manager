@@ -155,7 +155,7 @@ export class FightProp {
     this.speed = this.getStatProperty(2003)
   }
 
-  getStatProperty(id: number, defaultValue = 0): StatProperty {
+  private getStatProperty(id: number, defaultValue = 0): StatProperty {
     return new StatProperty(
       fightProps[id],
       this.APIfightProp[id] ?? defaultValue,
