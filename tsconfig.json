@@ -74,12 +74,12 @@
     "paths": {
       "@/*": ["*"]
     },
-    "resolveJsonModule": true
+    "resolveJsonModule": true,
   },
   "exclude": [
     "node_modules",
     "./scripts/**/*",
     "./dist/**/*",
-    "./test/**/*"
+    "./src/types/**/*",
   ],
 }

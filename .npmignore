@@ -1,6 +1,8 @@
 /node_modules
 /src
 /cache
+/dist/test
+/src/test
 /.vscode
 /.github
 
