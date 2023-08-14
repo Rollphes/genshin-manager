@@ -3,12 +3,12 @@ import { ImageAssets } from '@/models/assets/ImageAssets'
 import { FightPropType, StatProperty } from '@/models/StatProperty'
 import { JsonObject } from '@/utils/JsonParser'
 interface ArtifactAffixAppendProp {
+  id: number
   type: FightPropType
   value: number
 }
 export class Artifact {
   public readonly id: number
-  public readonly appendPropIdList: number[]
   public readonly level: number
   public readonly type: ArtifactType
   public readonly name: string
@@ -29,7 +29,6 @@ export class Artifact {
     appendPropIdList: number[] = [],
   ) {
     this.id = artifactId
-    this.appendPropIdList = appendPropIdList
     this.level = level
     const artifactJson = Client.cachedExcelBinOutputGetter(
       'ReliquaryExcelConfigData',
@@ -79,13 +78,14 @@ export class Artifact {
       artifactMainJson.propType as FightPropType,
       mainValue,
     )
-    this.subStats = this.getSubStatProperties(this.appendPropIdList)
-    this.appendPropList = this.appendPropIdList.map((propId) => {
+    this.subStats = this.getSubStatProperties(appendPropIdList)
+    this.appendPropList = appendPropIdList.map((propId) => {
       const artifactAffixJson = Client.cachedExcelBinOutputGetter(
         'ReliquaryAffixExcelConfigData',
         propId,
       )
       return {
+        id: propId,
         type: artifactAffixJson.propType as FightPropType,
         value: artifactAffixJson.propValue as number,
       }
