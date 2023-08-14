@@ -100,9 +100,14 @@ export class Artifact {
         propId,
       )
       const propType = artifactAffixJson.propType as FightPropType
-      result[propType] =
-        result[propType] ?? 0 + (artifactAffixJson.propValue as number)
+      const propValue = result[propType]
+      if (propValue) {
+        result[propType] = propValue + (artifactAffixJson.propValue as number)
+      } else {
+        result[propType] = artifactAffixJson.propValue as number
+      }
     })
+    console.log(result)
     return Object.keys(result).map((key) => {
       return new StatProperty(
         key as FightPropType,
