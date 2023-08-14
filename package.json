@@ -8,7 +8,8 @@
     "install": "node scripts/install.js",
     "build": "node -e \"if (fs.existsSync('./dist')) fs.rmSync('./dist', {recursive: true});\" && tsc -p tsconfig.json && tsc-alias -p tsconfig.json",
     "build:debug": "node -e \"if (fs.existsSync('./dist')) fs.rmSync('./dist', {recursive: true});\" && tsc --sourceMap -p tsconfig.json && tsc-alias -p tsconfig.json",
-    "prepublishOnly": "npm run build"
+    "prepublishOnly": "npm run build",
+    "test": "ts-node -r tsconfig-paths/register ./src/test/index.ts"
   },
   "engines": {
     "node": ">=16.0.0"
