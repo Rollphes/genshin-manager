@@ -65,7 +65,7 @@ export class Character {
 
     this.talentIds = depotJson.talents as number[]
 
-    this.skillOrder.slice(0, 2).forEach((skillId) => {
+    this.skillOrder.forEach((skillId) => {
       const skillJson = Client.cachedExcelBinOutputGetter(
         'AvatarSkillExcelConfigData',
         skillId,
