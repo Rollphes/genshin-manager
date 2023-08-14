@@ -13,7 +13,6 @@ interface EnkaData {
 }
 export class EnkaManager {
   private readonly enkaUidURL = 'https://enka.network/api/uid/'
-  private readonly cache: Map<number, EnkaData> = new Map()
   private httpStatusMessages: { [statusCode: number]: string } = {
     400: 'Wrong UID format',
     404: 'Player does not exist (MHY server said that)',
@@ -22,6 +21,7 @@ export class EnkaManager {
     500: 'General server error',
     503: 'I screwed up massively',
   }
+  public readonly cache: Map<number, EnkaData> = new Map()
 
   constructor() {}
 
