@@ -53,6 +53,21 @@ export class ImageAssets {
       'Images',
     )
     if (!fs.existsSync(this.imageFolderPath)) fs.mkdirSync(this.imageFolderPath)
+    console.log(path.resolve(__dirname, '..', '..', '..', 'cache'))
+    if (
+      client.option.assetCacheFolderPath ==
+      path.resolve(__dirname, '..', '..', '..', 'cache')
+    ) {
+      ;[
+        'UI_Gacha_AvatarImg_PlayerBoy.png',
+        'UI_Gacha_AvatarImg_PlayerGirl.png',
+      ].forEach((imgName) => {
+        fs.copyFileSync(
+          path.resolve(__dirname, '..', '..', '..', 'img', imgName),
+          path.resolve(__dirname, '..', '..', '..', 'cache', 'Images', imgName),
+        )
+      })
+    }
   }
 
   public async fetchBuffer() {
