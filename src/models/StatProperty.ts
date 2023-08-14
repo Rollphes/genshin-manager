@@ -15,12 +15,12 @@ export class StatProperty {
 
     this.name =
       Client.cachedTextMap.get(
-        manualTextJson.textMapContentTextMapHash as string,
+        String(manualTextJson.textMapContentTextMapHash),
       ) || ''
 
     this.isPercent = percentFightPropType.includes(this.type)
 
-    this.value = this.isPercent ? value / 100 : value
+    this.value = value
   }
 
   public getMultipliedValue(): number {
