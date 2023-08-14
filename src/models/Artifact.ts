@@ -107,7 +107,6 @@ export class Artifact {
         result[propType] = artifactAffixJson.propValue as number
       }
     })
-    console.log(result)
     return Object.keys(result).map((key) => {
       return new StatProperty(
         key as FightPropType,
