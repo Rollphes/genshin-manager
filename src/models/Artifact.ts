@@ -2,20 +2,26 @@ import { Client } from '@/client/Client'
 import { ImageAssets } from '@/models/assets/ImageAssets'
 import { FightPropType, StatProperty } from '@/models/StatProperty'
 import { JsonObject } from '@/utils/JsonParser'
+interface ArtifactAffixAppendProp {
+  type: FightPropType
+  value: number
+}
 export class Artifact {
-  readonly id: number
-  readonly level: number
-  readonly type: ArtifactType
-  readonly name: string
-  readonly description: string
-  readonly setId: number | undefined
-  readonly setName: string | undefined
-  readonly setDescriptionBy2pc: string | undefined
-  readonly setDescriptionBy4pc: string | undefined
-  readonly rarity: number
-  readonly mainStat: StatProperty
-  readonly subStats: StatProperty[]
-  readonly icon: ImageAssets
+  public readonly id: number
+  public readonly appendPropIdList: number[]
+  public readonly level: number
+  public readonly type: ArtifactType
+  public readonly name: string
+  public readonly description: string
+  public readonly setId: number | undefined
+  public readonly setName: string | undefined
+  public readonly setDescriptionBy2pc: string | undefined
+  public readonly setDescriptionBy4pc: string | undefined
+  public readonly rarity: number
+  public readonly mainStat: StatProperty
+  public readonly subStats: StatProperty[]
+  public readonly appendPropList: ArtifactAffixAppendProp[]
+  public readonly icon: ImageAssets
   constructor(
     artifactId: number,
     mainPropId: number,
@@ -23,6 +29,7 @@ export class Artifact {
     appendPropIdList: number[] = [],
   ) {
     this.id = artifactId
+    this.appendPropIdList = appendPropIdList
     this.level = level
     const artifactJson = Client.cachedExcelBinOutputGetter(
       'ReliquaryExcelConfigData',
@@ -72,7 +79,17 @@ export class Artifact {
       artifactMainJson.propType as FightPropType,
       mainValue,
     )
-    this.subStats = this.getSubStatProperties(appendPropIdList)
+    this.subStats = this.getSubStatProperties(this.appendPropIdList)
+    this.appendPropList = this.appendPropIdList.map((propId) => {
+      const artifactAffixJson = Client.cachedExcelBinOutputGetter(
+        'ReliquaryAffixExcelConfigData',
+        propId,
+      )
+      return {
+        type: artifactAffixJson.propType as FightPropType,
+        value: artifactAffixJson.propValue as number,
+      }
+    })
     this.icon = new ImageAssets(artifactJson.icon as string)
   }
   private getSubStatProperties(appendPropIdList: number[]) {
