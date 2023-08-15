@@ -22,6 +22,7 @@ export class Artifact {
   public readonly subStats: StatProperty[]
   public readonly appendPropList: ArtifactAffixAppendProp[]
   public readonly icon: ImageAssets
+  private readonly oneSetBonusIds: number[] = [15009, 15010, 15011, 15013]
   constructor(
     artifactId: number,
     mainPropId: number,
@@ -50,19 +51,21 @@ export class Artifact {
         'EquipAffixExcelConfigData',
         (setJson.EquipAffixId as number) * 10 + 0,
       )
-      const equipAffixJsonBy4pc = Client.cachedExcelBinOutputGetter(
-        'EquipAffixExcelConfigData',
-        (setJson.EquipAffixId as number) * 10 + 1,
-      )
+      const equipAffixJsonBy4pc = this.oneSetBonusIds.includes(this.setId)
+        ? Client.cachedExcelBinOutputGetter(
+            'EquipAffixExcelConfigData',
+            (setJson.EquipAffixId as number) * 10 + 1,
+          )
+        : undefined
       this.setName = Client.cachedTextMap.get(
         String(equipAffixJsonBy2pc.nameTextMapHash),
       )
       this.setDescriptionBy2pc = Client.cachedTextMap.get(
         String(equipAffixJsonBy2pc.descTextMapHash),
       )
-      this.setDescriptionBy4pc = Client.cachedTextMap.get(
-        String(equipAffixJsonBy4pc.descTextMapHash),
-      )
+      this.setDescriptionBy4pc = equipAffixJsonBy4pc
+        ? Client.cachedTextMap.get(String(equipAffixJsonBy4pc.descTextMapHash))
+        : undefined
     }
     const artifactMainJson = Client.cachedExcelBinOutputGetter(
       'ReliquaryMainPropExcelConfigData',
