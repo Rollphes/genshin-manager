@@ -53,7 +53,6 @@ export class ImageAssets {
       'Images',
     )
     if (!fs.existsSync(this.imageFolderPath)) fs.mkdirSync(this.imageFolderPath)
-    console.log(path.resolve(__dirname, '..', '..', '..', 'cache'))
     if (
       client.option.assetCacheFolderPath ==
       path.resolve(__dirname, '..', '..', '..', 'cache')
