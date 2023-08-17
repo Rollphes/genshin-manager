@@ -15,8 +15,7 @@ export class Artifact {
   public readonly description: string
   public readonly setId: number | undefined
   public readonly setName: string | undefined
-  public readonly setDescriptionBy2pc: string | undefined
-  public readonly setDescriptionBy4pc: string | undefined
+  public readonly setDescriptions: { [count: number]: string | undefined } = {}
   public readonly rarity: number
   public readonly mainStat: StatProperty
   public readonly subStats: StatProperty[]
@@ -47,25 +46,41 @@ export class Artifact {
         'ReliquarySetExcelConfigData',
         this.setId,
       )
-      const equipAffixJsonBy2pc = Client.cachedExcelBinOutputGetter(
+      const equipAffixId = (setJson.EquipAffixId as number) * 10 + 0
+      const equipAffixJson = Client.cachedExcelBinOutputGetter(
         'EquipAffixExcelConfigData',
-        (setJson.EquipAffixId as number) * 10 + 0,
+        equipAffixId,
       )
-      const equipAffixJsonBy4pc = this.oneSetBonusIds.includes(this.setId)
-        ? Client.cachedExcelBinOutputGetter(
-            'EquipAffixExcelConfigData',
-            (setJson.EquipAffixId as number) * 10 + 1,
-          )
-        : undefined
+
       this.setName = Client.cachedTextMap.get(
-        String(equipAffixJsonBy2pc.nameTextMapHash),
+        String(equipAffixJson.nameTextMapHash),
       )
-      this.setDescriptionBy2pc = Client.cachedTextMap.get(
-        String(equipAffixJsonBy2pc.descTextMapHash),
-      )
-      this.setDescriptionBy4pc = equipAffixJsonBy4pc
-        ? Client.cachedTextMap.get(String(equipAffixJsonBy4pc.descTextMapHash))
-        : undefined
+
+      if (this.oneSetBonusIds.includes(this.setId)) {
+        this.setDescriptions[1] = equipAffixJson
+          ? Client.cachedTextMap.get(String(equipAffixJson.descTextMapHash))
+          : undefined
+      } else {
+        const equipAffixJsonBy2pc = Client.cachedExcelBinOutputGetter(
+          'EquipAffixExcelConfigData',
+          equipAffixId,
+        )
+        this.setDescriptions[2] = equipAffixJsonBy2pc
+          ? Client.cachedTextMap.get(
+              String(equipAffixJsonBy2pc.descTextMapHash),
+            )
+          : undefined
+
+        const equipAffixJsonBy4pc = Client.cachedExcelBinOutputGetter(
+          'EquipAffixExcelConfigData',
+          equipAffixId + 1,
+        )
+        this.setDescriptions[4] = equipAffixJsonBy4pc
+          ? Client.cachedTextMap.get(
+              String(equipAffixJsonBy4pc.descTextMapHash),
+            )
+          : undefined
+      }
     }
     const artifactMainJson = Client.cachedExcelBinOutputGetter(
       'ReliquaryMainPropExcelConfigData',
