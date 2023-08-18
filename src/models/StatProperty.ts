@@ -20,7 +20,7 @@ export class StatProperty {
 
     this.isPercent = percentFightPropType.includes(this.type)
 
-    this.value = Math.round(value * 100000000) / 100000000
+    this.value = Math.round(value * 100000) / 100000
   }
 
   public getMultipliedValue(): number {
