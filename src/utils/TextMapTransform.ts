@@ -1,12 +1,20 @@
 import { Transform } from 'stream'
 
+import { TextMapFormatError } from '@/errors/TextMapFormatError'
+import { TextMapLanguage } from '@/types'
+
 export class TextMapTransform extends Transform {
+  private language: keyof typeof TextMapLanguage
   private filterList: number[]
   private buffer: string = ''
   private firstFlag: boolean = true
 
-  constructor(filterList: number[] = []) {
+  constructor(
+    language: keyof typeof TextMapLanguage,
+    filterList: number[] = [],
+  ) {
     super()
+    this.language = language
     this.filterList = filterList
   }
 
@@ -38,7 +46,13 @@ export class TextMapTransform extends Transform {
   }
 
   public _flush(callback: () => void) {
-    this.push('\n}')
+    this.push('\n' + this.buffer)
+    callback()
+  }
+
+  public _final(callback: () => void) {
+    if (!this.buffer.endsWith('}')) throw new TextMapFormatError(this.language)
+
     callback()
   }
 }

@@ -4,6 +4,7 @@ import { AssetsNotFoundError } from '@/errors/AssetsNotFoundError'
 import { EnkaManagerError } from '@/errors/EnkaManagerError'
 import { EnkaNetworkError } from '@/errors/EnkaNetWorkError'
 import { ImageNotFoundError } from '@/errors/ImageNotFoundError'
+import { TextMapFormatError } from '@/errors/TextMapFormatError'
 import { Artifact } from '@/models/Artifact'
 import { ArtifactType } from '@/models/Artifact'
 import { ImageAssets } from '@/models/assets/ImageAssets'
@@ -32,6 +33,7 @@ export {
   EnkaManagerError,
   EnkaNetworkError,
   ImageNotFoundError,
+  TextMapFormatError,
   Artifact,
   ImageAssets,
   Character,
