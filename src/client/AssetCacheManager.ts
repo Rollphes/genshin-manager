@@ -4,8 +4,10 @@ import * as fsPromises from 'fs/promises'
 import Module from 'module'
 import fetch from 'node-fetch'
 import * as path from 'path'
+import { pipeline } from 'stream/promises'
 
 import { Client } from '@/client/Client'
+import { TextMapFormatError } from '@/errors/TextMapFormatError'
 import { ExcelBinOutputs, GitLabAPIResponse, TextMapLanguage } from '@/types'
 import { JsonObject, JsonParser } from '@/utils/JsonParser'
 import { ObjectKeyDecoder } from '@/utils/ObjectKeyDecoder'
@@ -22,6 +24,8 @@ export abstract class AssetCacheManager {
   private static assetCacheFolderPath: string
   private static excelBinOutputFolderPath: string
   private static textMapFolderPath: string
+
+  private static defaultLanguage: keyof typeof TextMapLanguage
 
   private static childrenModule: Module[]
   private static excelBinOutputMapUseModel: {
@@ -132,17 +136,19 @@ export abstract class AssetCacheManager {
       'ExcelBinOutput',
     )
     this.textMapFolderPath = path.resolve(this.assetCacheFolderPath, 'TextMap')
-    await this.updateCache(client)
+
+    this.defaultLanguage = client.option.defaultLanguage
+    await this.updateCache()
     if (
       client.option.autoFetchLatestExcelBinOutput &&
       client.option.assetCacheFolderPath ==
         path.resolve(__dirname, '..', '..', 'cache')
     ) {
-      void this.startFetchLatestExcelBinOutputTimeout(client)
+      void this.startFetchLatestExcelBinOutputTimeout()
     }
   }
 
-  private static startFetchLatestExcelBinOutputTimeout(client: Client) {
+  private static startFetchLatestExcelBinOutputTimeout() {
     const now = new Date()
     const currentDay = now.getDate()
     const targetDate = new Date(
@@ -155,12 +161,12 @@ export abstract class AssetCacheManager {
     )
     const timeUntilMidnight = targetDate.getTime() - now.getTime()
     setTimeout(() => {
-      void this.updateCache(client)
-      this.startFetchLatestExcelBinOutputTimeout(client)
+      void this.updateCache()
+      this.startFetchLatestExcelBinOutputTimeout()
     }, timeUntilMidnight)
   }
 
-  public static async updateCache(client: Client) {
+  public static async updateCache() {
     if (await this.checkGitUpdate()) {
       console.log('GenshinManager: New Asset found. Perform updates.')
       this.createExcelBinOutputKeyList()
@@ -177,14 +183,14 @@ export abstract class AssetCacheManager {
       this.createExcelBinOutputKeyList(this.childrenModule)
       await this.setExcelBinOutputToCache()
       this.createTextHashList()
-      await this.setTextMapToCache(client.option.defaultLanguage)
+      await this.setTextMapToCache(this.defaultLanguage)
     } else {
       console.log('GenshinManager: No new Asset found. Set cache.')
       if (this.cachedExcelBinOutput.size != 0) return
       this.createExcelBinOutputKeyList(this.childrenModule)
       await this.setExcelBinOutputToCache()
       this.createTextHashList()
-      await this.setTextMapToCache(client.option.defaultLanguage)
+      await this.setTextMapToCache(this.defaultLanguage)
     }
   }
 
@@ -302,21 +308,28 @@ export abstract class AssetCacheManager {
       `TextMap${language}.json`,
     )
 
-    const stream = fs
-      .createReadStream(selectedTextMapPath, {
-        highWaterMark: 1 * 1024 * 1024,
-      })
-      .pipe(new TextMapTransform([...this.textHashList]))
-      .pipe(new TextMapEmptyWritable())
+    const eventEmitter = new TextMapEmptyWritable()
 
-    stream.on('data', ({ key, value }) =>
+    eventEmitter.on('data', ({ key, value }) =>
       this.cachedTextMap.set(key as string, value as string),
     )
 
-    stream.on('error', (error) => console.error(error))
-
-    await new Promise<void>((resolve) => {
-      stream.on('finish', () => resolve())
+    await pipeline(
+      fs.createReadStream(selectedTextMapPath, {
+        highWaterMark: 1 * 1024 * 1024,
+      }),
+      new TextMapTransform(language, [...this.textHashList]),
+      eventEmitter,
+    ).catch(async (error) => {
+      if (error instanceof TextMapFormatError) {
+        console.log('GenshinManager: TextMap format error. Re downloading...')
+        const textMapFileName = TextMapLanguage[language]
+        this.createExcelBinOutputKeyList()
+        await this.setExcelBinOutputToCache()
+        this.createTextHashList()
+        await this.fetchAssetFolder(this.textMapFolderPath, [textMapFileName])
+        await Client.updateCache()
+      }
     })
   }
 
@@ -350,15 +363,17 @@ export abstract class AssetCacheManager {
     const writeStream = fs.createWriteStream(downloadFilePath, {
       highWaterMark: 1 * 1024 * 1024,
     })
-    const stream =
-      'TextMap' == path.basename(path.dirname(downloadFilePath))
-        ? res.body
-            .pipe(new TextMapTransform([...this.textHashList]))
-            .pipe(writeStream)
-        : res.body.pipe(writeStream)
-    stream.on('error', (error) => console.error(error))
-    await new Promise<void>((resolve) => {
-      stream.on('finish', () => resolve())
-    })
+    const language = path
+      .basename(downloadFilePath)
+      .split('.')[0] as keyof typeof TextMapLanguage
+    if ('TextMap' == path.basename(path.dirname(downloadFilePath))) {
+      await pipeline(
+        res.body,
+        new TextMapTransform(language, [...this.textHashList]),
+        writeStream,
+      )
+    } else {
+      await pipeline(res.body, writeStream)
+    }
   }
 }
