@@ -1,8 +1,14 @@
 {
   "name": "genshin-manager",
   "version": "0.0.18",
+  "homepage": "",
+  "bugs": "https://github.com/Rollphes/GenshinManager/issues",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
+  "directories": {
+    "lib": "src",
+    "docs": "docs"
+  },
   "scripts": {
     "lint": "eslint .",
     "install": "node scripts/install.js",
@@ -14,7 +20,22 @@
   "engines": {
     "node": ">=16.0.0"
   },
-  "keywords": [],
+  "keywords": [
+    "nodejs",
+    "wrapper",
+    "node",
+    "node-js",
+    "nodejs-modules",
+    "wrapper-api",
+    "wrapper-library",
+    "genshin",
+    "genshin-impact",
+    "genshin-api",
+    "genshin-artifacts",
+    "enkanetwork",
+    "enka-network",
+    "enka"
+  ],
   "author": "Rollphes",
   "license": "MIT",
   "dependencies": {
@@ -39,6 +60,8 @@
     "rimraf": "^5.0.1",
     "ts-node": "^10.0.0",
     "tsconfig-paths": "^4.2.0",
-    "typescript": "^5.1.6"
+    "typescript": "^5.1.6",
+    "tsc-alias": "^1.8.7",
+    "typedoc": "^0.25.0"
   }
 }
