@@ -11,9 +11,12 @@
   },
   "scripts": {
     "lint": "eslint .",
+    "create-archive": "git archive --format=zip --output=sourceCode.zip HEAD --worktree-attributes && git archive --format=tar.gz --output=sourceCode.tar.gz HEAD --worktree-attributes",
+    "create-release": "npm run create-archive && gh release create v%npm_package_version% -t v%npm_package_version% -n \"## Bug Fixes\" --draft && gh release upload v%npm_package_version% sourceCode.zip sourceCode.tar.gz",
+    "publish": "npm run build && npm run docs && npm publish  && npm run create-release",
+    "docs": "typedoc --out docs src",
     "install": "node scripts/install.js",
     "build": "node -e \"if (fs.existsSync('./dist')) fs.rmSync('./dist', {recursive: true});\" && tsc -p tsconfig.json && tsc-alias -p tsconfig.json",
-    "build:debug": "node -e \"if (fs.existsSync('./dist')) fs.rmSync('./dist', {recursive: true});\" && tsc --sourceMap -p tsconfig.json && tsc-alias -p tsconfig.json",
     "prepublishOnly": "npm run build",
     "test": "ts-node -r tsconfig-paths/register ./src/test/index.ts"
   },
@@ -57,11 +60,10 @@
     "eslint-plugin-prettier": "^5.0.0",
     "eslint-plugin-simple-import-sort": "^10.0.0",
     "prettier": "^3.0.1",
-    "rimraf": "^5.0.1",
     "ts-node": "^10.0.0",
-    "tsconfig-paths": "^4.2.0",
-    "typescript": "^5.1.6",
     "tsc-alias": "^1.8.7",
-    "typedoc": "^0.25.0"
+    "tsconfig-paths": "^4.2.0",
+    "typedoc": "^0.25.0",
+    "typescript": "^5.1.6"
   }
 }
