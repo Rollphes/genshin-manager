@@ -58,6 +58,13 @@ export class Client extends AssetCacheManager {
         ) as ClientOption)
       : defaultOption
 
+    if (!mergeOption.downloadLanguages.includes(mergeOption.defaultLanguage)) {
+      mergeOption.downloadLanguages = [
+        mergeOption.defaultLanguage,
+        ...mergeOption.downloadLanguages,
+      ]
+    }
+
     if (!module.parent) {
       throw new Error('module.parent is undefined.')
     }

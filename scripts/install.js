@@ -24,9 +24,7 @@ function getBool(value) {
 }
 
 function getLanguage(value) {
-  if (
-    defaultDownloadTextMapLanguage.includes(value)
-  ) {
+  if (defaultDownloadTextMapLanguage.includes(value)) {
     return [value]
   }
   return defaultDownloadTextMapLanguage
@@ -34,10 +32,12 @@ function getLanguage(value) {
 
 async function main() {
   if (!getBool(nocache)) {
-    new Client({
+    const client = new Client({
       downloadLanguages: getLanguage(downloadLanguage),
+      autoFetchLatestAssetsByCron: undefined,
+      defaultLanguage: getLanguage(downloadLanguage)[0],
     })
-    await Client.updateCache()
+    client.deploy()
   }
 }
 void main()
