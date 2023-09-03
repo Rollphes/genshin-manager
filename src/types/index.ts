@@ -1,3 +1,5 @@
+import { RequestInit } from 'node-fetch'
+
 export type ValueOf<T> = T[keyof T]
 
 export interface GitLabAPIResponse {
@@ -13,14 +15,76 @@ export interface GitLabAPIResponse {
 }
 
 export interface ClientOption {
+  /**
+   * Fetch option
+   * @default
+   * ```ts
+   * {
+   *   timeout: 3000,
+   *   'user-agent': 'Mozilla/5.0',
+   * }
+   * ```
+   */
+  fetchOption: RequestInit
+  /**
+   * download languages option
+   * @default
+   * ```ts
+   * ['EN','RU','VI','TH','PT','KR','JP','ID','FR','ES','DE','CHT','CHS']
+   * ```
+   */
+  downloadLanguages: (keyof typeof TextMapLanguage)[]
+  /**
+   * default image base url
+   * @default 'https://api.ambr.top/assets/UI'
+   */
   defaultImageBaseUrl: string
+  /**
+   * image base url by regex
+   * @default
+   * ```ts
+   * {
+   *  'https://enka.network/ui': [
+   *   /^UI_(Costume|NameCardIcon|NameCardPic|RelicIcon|AvatarIcon_Side)_/,
+   *   /^UI_AvatarIcon_(.+)_Card$/,
+   *   /^UI_EquipIcon_(.+)_Awaken$/,
+   * ],
+   * 'https://res.cloudinary.com/genshin/image/upload/sprites': [
+   *   /^Eff_UI_Talent_/,
+   * ],
+   */
   imageBaseUrlByRegex: { [url: string]: RegExp[] }
+  /**
+   * default language
+   * @default 'EN'
+   */
   defaultLanguage: keyof typeof TextMapLanguage
-  showFetchCacheLog: boolean //true
-  autoFetchLatestAssets: boolean //true
+  /**
+   * show fetch cache log
+   * @default true
+   */
+  showFetchCacheLog: boolean
+  /**
+   * auto fetch latest assets
+   * @default true
+   */
+  autoFetchLatestAssets: boolean
+  /**
+   * auto fix textMap
+   * @default true
+   */
+  autoFixTextMap: boolean
   //TODO:更新タイミングを自由に調整できるようにオプションを増やす。
   //TODO:更新開始終了時のFunctionOptionも増やす
-  autoCacheImage: boolean //true
+  /**
+   * auto cache image
+   * @default true
+   */
+  autoCacheImage: boolean
+  /**
+   * asset cache folder path
+   * @default node_modules/genshin-manager/cache
+   */
   assetCacheFolderPath: string
 }
 

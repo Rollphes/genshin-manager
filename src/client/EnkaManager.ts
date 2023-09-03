@@ -1,4 +1,4 @@
-import fetch from 'node-fetch'
+import fetch, { RequestInit } from 'node-fetch'
 
 import { EnkaManagerError } from '@/errors/EnkaManagerError'
 import { EnkaNetworkError } from '@/errors/EnkaNetWorkError'
@@ -34,12 +34,12 @@ export class EnkaManager {
    * const enkaData = await enka.fetch(123456789)
    * ```
    */
-  async fetch(uid: number) {
+  async fetch(uid: number, fetchOption?: RequestInit) {
     if (uid < 100000000 || uid > 999999999)
       throw new EnkaManagerError(`The UID format is not correct(${uid})`)
     const url = this.enkaUidURL + `${uid}`
     const previousData = this.cache.get(uid)
-    const res = await fetch(url)
+    const res = await fetch(url, fetchOption)
     if (!res.ok) {
       throw new EnkaNetworkError(res)
     }

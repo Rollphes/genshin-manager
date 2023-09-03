@@ -1,7 +1,43 @@
 const { Client } = require('../dist/client/Client.js')
-//TODO:テキストマップのダウンロードオプションを増やす(argsで指定できるようにする)
+
+const downloadLanguage = process.env.npm_config_download_language
+const nocache = process.env.npm_config_nocache
+
+const defaultDownloadTextMapLanguage = [
+  'EN',
+  'RU',
+  'VI',
+  'TH',
+  'PT',
+  'KR',
+  'JP',
+  'ID',
+  'FR',
+  'ES',
+  'DE',
+  'CHT',
+  'CHS',
+]
+
+function getBool(value) {
+  return value?.toLowerCase() === 'true' || value === '1'
+}
+
+function getLanguage(value) {
+  if (
+    defaultDownloadTextMapLanguage.includes(value)
+  ) {
+    return [value]
+  }
+  return defaultDownloadTextMapLanguage
+}
+
 async function main() {
-  const client = new Client({ defaultLanguage: 'JP', autoFetchLatestAssets:false })
-  await client.deploy()
+  if (!getBool(nocache)) {
+    new Client({
+      downloadLanguages: getLanguage(downloadLanguage),
+    })
+    await Client.updateCache()
+  }
 }
 void main()

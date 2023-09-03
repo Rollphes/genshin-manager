@@ -1,4 +1,5 @@
 import * as cliProgress from 'cli-progress'
+import EventEmitter from 'events'
 import fs from 'fs'
 import * as fsPromises from 'fs/promises'
 import Module from 'module'
@@ -20,18 +21,16 @@ import { ObjectKeyDecoder } from '@/utils/ObjectKeyDecoder'
 import { TextMapEmptyWritable } from '@/utils/TextMapEmptyWritable'
 import { TextMapTransform } from '@/utils/TextMapTransform'
 
-export abstract class AssetCacheManager {
+export abstract class AssetCacheManager extends EventEmitter {
+  private static option: ClientOption
   private static gitRemoteAPIUrl: string =
     'https://gitlab.com/api/v4/projects/41287973/repository/commits?per_page=1'
   private static gitRemoteRawBaseURL: string =
     'https://gitlab.com/Dimbreath/AnimeGameData/-/raw'
   private static nowCommitId: string
   private static commitFilePath: string
-  private static assetCacheFolderPath: string
   private static excelBinOutputFolderPath: string
   private static textMapFolderPath: string
-
-  private static defaultLanguage: keyof typeof TextMapLanguage
 
   private static childrenModule: Module[]
 
@@ -136,28 +135,27 @@ export abstract class AssetCacheManager {
   > = new Map()
 
   constructor(option: ClientOption, children: Module[]) {
+    super()
+    AssetCacheManager.option = option
     AssetCacheManager.childrenModule = children
-    AssetCacheManager.assetCacheFolderPath = option.assetCacheFolderPath
     AssetCacheManager.commitFilePath = path.resolve(
-      AssetCacheManager.assetCacheFolderPath,
+      AssetCacheManager.option.assetCacheFolderPath,
       'commits.json',
     )
 
     AssetCacheManager.commitFilePath = path.resolve(
-      AssetCacheManager.assetCacheFolderPath,
+      AssetCacheManager.option.assetCacheFolderPath,
       'commits.json',
     )
 
     AssetCacheManager.excelBinOutputFolderPath = path.resolve(
-      AssetCacheManager.assetCacheFolderPath,
+      AssetCacheManager.option.assetCacheFolderPath,
       'ExcelBinOutput',
     )
     AssetCacheManager.textMapFolderPath = path.resolve(
-      AssetCacheManager.assetCacheFolderPath,
+      AssetCacheManager.option.assetCacheFolderPath,
       'TextMap',
     )
-
-    AssetCacheManager.defaultLanguage = option.defaultLanguage
   }
 
   /**
@@ -191,7 +189,8 @@ export abstract class AssetCacheManager {
    */
   public static async updateCache() {
     if (await this.checkGitUpdate()) {
-      console.log('GenshinManager: New Asset found. Perform updates.')
+      if (this.option.showFetchCacheLog)
+        console.log('GenshinManager: New Asset found. Perform updates.')
       this.createExcelBinOutputKeyList()
       await this.fetchAssetFolder(
         this.excelBinOutputFolderPath,
@@ -199,21 +198,22 @@ export abstract class AssetCacheManager {
       )
       await this.setExcelBinOutputToCache()
       this.createTextHashList()
-      await this.fetchAssetFolder(
-        this.textMapFolderPath,
-        Object.values(TextMapLanguage), //TODO:TextMapすべてではなく、指定値のみをダウンロードするようにする
+      const textMapFileNames = this.option.downloadLanguages.map(
+        (key) => TextMapLanguage[key],
       )
+      await this.fetchAssetFolder(this.textMapFolderPath, textMapFileNames)
       this.createExcelBinOutputKeyList(this.childrenModule)
       await this.setExcelBinOutputToCache()
       this.createTextHashList()
-      await this.setTextMapToCache(this.defaultLanguage)
+      await this.setTextMapToCache(this.option.defaultLanguage)
     } else {
-      console.log('GenshinManager: No new Asset found. Set cache.')
+      if (this.option.showFetchCacheLog)
+        console.log('GenshinManager: No new Asset found. Set cache.')
       if (this.cachedExcelBinOutput.size != 0) return
       this.createExcelBinOutputKeyList(this.childrenModule)
       await this.setExcelBinOutputToCache()
       this.createTextHashList()
-      await this.setTextMapToCache(this.defaultLanguage)
+      await this.setTextMapToCache(this.option.defaultLanguage)
     }
   }
 
@@ -224,7 +224,7 @@ export abstract class AssetCacheManager {
   private static async checkGitUpdate() {
     await Promise.all(
       [
-        this.assetCacheFolderPath,
+        this.option.assetCacheFolderPath,
         this.excelBinOutputFolderPath,
         this.textMapFolderPath,
       ].map(async (FolderPath) => {
@@ -348,6 +348,15 @@ export abstract class AssetCacheManager {
       this.textMapFolderPath,
       `TextMap${language}.json`,
     )
+    if (!fs.existsSync(selectedTextMapPath)) {
+      if (this.option.autoFixTextMap) {
+        if (this.option.showFetchCacheLog)
+          console.log('GenshinManager: TextMap not found. Re downloading...')
+        await this.reDownloadTextMap(language)
+      } else {
+        throw new AssetsNotFoundError(language)
+      }
+    }
 
     const eventEmitter = new TextMapEmptyWritable()
 
@@ -363,15 +372,32 @@ export abstract class AssetCacheManager {
       eventEmitter,
     ).catch(async (error) => {
       if (error instanceof TextMapFormatError) {
-        console.log('GenshinManager: TextMap format error. Re downloading...')
-        const textMapFileName = TextMapLanguage[language]
-        this.createExcelBinOutputKeyList()
-        await this.setExcelBinOutputToCache()
-        this.createTextHashList()
-        await this.fetchAssetFolder(this.textMapFolderPath, [textMapFileName])
-        await Client.updateCache()
+        if (this.option.autoFixTextMap) {
+          if (this.option.showFetchCacheLog)
+            console.log(
+              'GenshinManager: TextMap format error. Re downloading...',
+            )
+          await this.reDownloadTextMap(language)
+        } else {
+          throw error
+        }
       }
     })
+  }
+
+  /**
+   * Re download text map.
+   * @param language Country code
+   */
+  private static async reDownloadTextMap(
+    language: keyof typeof TextMapLanguage,
+  ) {
+    const textMapFileName = TextMapLanguage[language]
+    this.createExcelBinOutputKeyList()
+    await this.setExcelBinOutputToCache()
+    this.createTextHashList()
+    await this.fetchAssetFolder(this.textMapFolderPath, [textMapFileName])
+    await Client.updateCache()
   }
 
   /**
@@ -380,14 +406,19 @@ export abstract class AssetCacheManager {
    * @param files
    */
   private static async fetchAssetFolder(FolderPath: string, files: string[]) {
-    const gitFolderName = path.relative(this.assetCacheFolderPath, FolderPath)
+    const gitFolderName = path.relative(
+      this.option.assetCacheFolderPath,
+      FolderPath,
+    )
     const consoleFolderName = gitFolderName.slice(0, 8)
-    const progressBar = new cliProgress.SingleBar({
-      hideCursor: true,
-      format: `GenshinManager: Downloading ${consoleFolderName}...\t [{bar}] {percentage}% |ETA: {eta}s| {value}/{total} files`,
-    })
+    const progressBar = this.option.showFetchCacheLog
+      ? new cliProgress.SingleBar({
+          hideCursor: true,
+          format: `GenshinManager: Downloading ${consoleFolderName}...\t [{bar}] {percentage}% |ETA: {eta}s| {value}/{total} files`,
+        })
+      : undefined
 
-    progressBar.start(files.length, 0)
+    if (progressBar) progressBar.start(files.length, 0)
     await Promise.all(
       files.map(async (fileName) => {
         const url = [
@@ -398,10 +429,10 @@ export abstract class AssetCacheManager {
         ].join('/')
         const filePath = path.join(FolderPath, fileName)
         await this.downloadJsonFile(url, filePath)
-        progressBar.increment()
+        if (progressBar) progressBar.increment()
       }),
     )
-    progressBar.stop()
+    if (progressBar) progressBar.stop()
   }
 
   /**
@@ -410,7 +441,7 @@ export abstract class AssetCacheManager {
    * @param downloadFilePath
    */
   private static async downloadJsonFile(url: string, downloadFilePath: string) {
-    const res = await fetch(url)
+    const res = await fetch(url, this.option.fetchOption)
     const writeStream = fs.createWriteStream(downloadFilePath, {
       highWaterMark: 1 * 1024 * 1024,
     })

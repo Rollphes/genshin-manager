@@ -1,6 +1,6 @@
 import fs from 'fs'
 import * as fsPromises from 'fs/promises'
-import fetch from 'node-fetch'
+import fetch, { RequestInit } from 'node-fetch'
 import path from 'path'
 import { pipeline } from 'stream/promises'
 
@@ -17,6 +17,7 @@ const imageTypes: { [type: string]: RegExp[] } = {
 }
 
 export class ImageAssets {
+  private static fetchOption: RequestInit
   private static imageBaseUrlByRegex: { [url: string]: RegExp[] }
   private static defaultImageBaseUrl: string
   private static autoCacheImage: boolean
@@ -54,6 +55,7 @@ export class ImageAssets {
    * @param option
    */
   public static deploy(option: ClientOption) {
+    this.fetchOption = option.fetchOption
     this.imageBaseUrlByRegex = option.imageBaseUrlByRegex
     this.defaultImageBaseUrl = option.defaultImageBaseUrl
     this.autoCacheImage = option.autoCacheImage
@@ -90,7 +92,7 @@ export class ImageAssets {
     if (fs.existsSync(imageCachePath)) {
       return await fsPromises.readFile(imageCachePath)
     } else {
-      const res = await fetch(this.url)
+      const res = await fetch(this.url, ImageAssets.fetchOption)
       if (!res.ok || !res.body) {
         throw new ImageNotFoundError(this.name, this.url)
       }
@@ -121,7 +123,7 @@ export class ImageAssets {
         highWaterMark: highWaterMark,
       })
     } else {
-      const res = await fetch(this.url)
+      const res = await fetch(this.url, ImageAssets.fetchOption)
       if (!res.ok || !res.body) {
         throw new ImageNotFoundError(this.name, this.url)
       }

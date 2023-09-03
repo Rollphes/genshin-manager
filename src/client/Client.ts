@@ -1,5 +1,5 @@
-import { merge } from 'lodash'
 import path from 'path'
+import merge from 'ts-deepmerge'
 
 import { AssetCacheManager } from '@/client/AssetCacheManager'
 import { ImageAssets } from '@/models/assets/ImageAssets'
@@ -10,11 +10,27 @@ export class Client extends AssetCacheManager {
 
   constructor(option?: Partial<ClientOption>) {
     const defaultOption: ClientOption = {
-      // enkaNetwork: {
-      //   url: 'https://enka.network',
-      //   timeout: 3000,
-      //   userAgent: 'Mozilla/5.0',
-      // },
+      fetchOption: {
+        timeout: 3000,
+        headers: {
+          'user-agent': 'Mozilla/5.0',
+        },
+      },
+      downloadLanguages: [
+        'EN',
+        'RU',
+        'VI',
+        'TH',
+        'PT',
+        'KR',
+        'JP',
+        'ID',
+        'FR',
+        'ES',
+        'DE',
+        'CHT',
+        'CHS',
+      ],
       defaultImageBaseUrl: 'https://api.ambr.top/assets/UI',
       imageBaseUrlByRegex: {
         'https://enka.network/ui': [
@@ -27,13 +43,18 @@ export class Client extends AssetCacheManager {
         ],
       },
       defaultLanguage: 'EN',
-      showFetchCacheLog: true, //TODO:未実装
+      showFetchCacheLog: true,
       autoFetchLatestAssets: true,
       autoCacheImage: true,
+      autoFixTextMap: true,
       assetCacheFolderPath: path.resolve(__dirname, '..', '..', 'cache'), //TODO:別のフォルダーの時を未実装
     }
     const mergeOption = option
-      ? merge<ClientOption, Partial<ClientOption>>(defaultOption, option)
+      ? (merge.withOptions(
+          { mergeArrays: false },
+          defaultOption,
+          option,
+        ) as ClientOption)
       : defaultOption
 
     if (!module.parent) {
@@ -74,7 +95,6 @@ export class Client extends AssetCacheManager {
    * ```
    */
   public static async changeLanguage(language: keyof typeof TextMapLanguage) {
-    //TODO:TextHashListが0の時のエラー処理
     await Client.setTextMapToCache(language)
   }
 }
