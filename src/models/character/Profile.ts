@@ -7,8 +7,10 @@ interface CharacterVoice {
   KR: string
 }
 
+//TODO: If genshin does a major update, I'll update here.
 export type AssocType =
   | 'ASSOC_TYPE_FATUI'
+  | 'ASSOC_TYPE_FONTAINE'
   | 'ASSOC_TYPE_INAZUMA'
   | 'ASSOC_TYPE_LIYUE'
   | 'ASSOC_TYPE_MAINACTOR'
