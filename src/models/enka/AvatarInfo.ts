@@ -12,24 +12,63 @@ import {
   APIReliquaryEquip,
   APIWeaponEquip,
 } from '@/types/EnkaTypes'
+/**
+ * Set bonus that can be activated with artifacts.
+ */
 interface SetBonus {
   1: Artifact[]
   2: Artifact[]
   4: Artifact[]
 }
 
+/**
+ * Class of character's information.
+ */
 export class AvatarInfo extends Character {
+  /**
+   * Costume equipped by the character.
+   */
   public readonly costume: Costume
+  /**
+   * Level of the character.
+   */
   public readonly level: number
+  /**
+   * Experience of the character.
+   */
   public readonly levelXp: number
+  /**
+   * Ascension of the character.
+   */
   public readonly ascension: number
+  /**
+   * List of talents that the character has.
+   */
   public readonly talentList: Talent[]
+  /**
+   * List of skills that the character has.
+   */
   public readonly skills: Skill[]
   public readonly fightPropMap: FightProp
+  /**
+   * FightProp of the character.
+   */
+  /**
+   * Weapon equipped by the character.
+   */
   public readonly weapon: Weapon
+  /**
+   * Artifacts equipped by the character.
+   */
   public readonly artifacts: Artifact[]
+  /**
+   * Friendship level of the character.
+   */
   public readonly friendShipLevel: number
 
+  /**
+   * IDs of set bonuses that can be activated with one artifact.
+   */
   private readonly oneSetBonusIds: number[] = [15009, 15010, 15011, 15013]
 
   constructor(data: APIAvatarInfo) {
@@ -80,6 +119,10 @@ export class AvatarInfo extends Character {
     this.friendShipLevel = data.fetterInfo.expLevel
   }
 
+  /**
+   * Search active set bonus.
+   * @returns {SetBonus} SetBonus
+   */
   public searchActiveSetBonus(): SetBonus {
     const setIds: number[] = this.artifacts
       .map((artifact) => artifact.setId)

@@ -1,15 +1,45 @@
 import { Client } from '@/client/Client'
 import { ElementKeys, ValueOf } from '@/types'
 import { JsonObject } from '@/utils/JsonParser'
+/**
+ * Class that summarizes IDs and other information related to the character.
+ */
 export class Character {
+  /**
+   * Character id
+   */
   public readonly id: number
+  /**
+   * Default costume id
+   */
   public readonly defaultCostumeId: number
+  /**
+   * Character name
+   */
   public readonly name: string
+  /**
+   * Skill depot id
+   */
   public readonly depotId: number
+  /**
+   * Element of the character
+   */
   public readonly element: ValueOf<typeof ElementKeys> | undefined
+  /**
+   * Skill order
+   */
   public readonly skillOrder: number[]
+  /**
+   * Sub skills
+   */
   public readonly subSkills: number[]
+  /**
+   * Talent ids
+   */
   public readonly talentIds: number[]
+  /**
+   * Map of skill id and proud id
+   */
   public readonly proudMap: Map<number, number> = new Map()
 
   constructor(characterId: number, skillDepotId?: number) {

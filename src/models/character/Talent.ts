@@ -1,10 +1,29 @@
 import { Client } from '@/client/Client'
 import { ImageAssets } from '@/models/assets/ImageAssets'
+
+/**
+ * Class of character's talent.
+ */
 export class Talent {
+  /**
+   * Talent id
+   */
   public readonly id: number
+  /**
+   * Talent name
+   */
   public readonly name: string
+  /**
+   * Talent description
+   */
   public readonly description: string
+  /**
+   * Talent icon
+   */
   public readonly icon: ImageAssets
+  /**
+   * Whether the talent is locked
+   */
   public readonly locked: boolean
 
   constructor(talentId: number, locked: boolean = false) {

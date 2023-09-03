@@ -27,6 +27,10 @@ export class ImageAssets {
   public readonly imageType: string | null
   public readonly mihoyoUrl: string
 
+  /**
+   * Classes for handling images
+   * @param name image name
+   */
   constructor(name: string) {
     this.name = name
     this.imageBaseUrl =
@@ -69,6 +73,10 @@ export class ImageAssets {
     }
   }
 
+  /**
+   * Fetch image buffer
+   * @returns
+   */
   public async fetchBuffer() {
     if (!this.url) {
       throw new ImageNotFoundError(this.name, this.url)
@@ -93,6 +101,11 @@ export class ImageAssets {
     }
   }
 
+  /**
+   * Fetch image stream
+   * @param highWaterMark
+   * @returns
+   */
   public async fetchStream(highWaterMark?: number) {
     if (!this.url) {
       throw new ImageNotFoundError(this.name, this.url)

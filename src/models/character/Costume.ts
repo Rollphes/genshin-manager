@@ -1,13 +1,37 @@
 import { Client } from '@/client/Client'
 import { ImageAssets } from '@/models/assets/ImageAssets'
 
+/**
+ * Class of character's costume.
+ */
 export class Costume {
+  /**
+   * Costume id
+   */
   public readonly id: number
+  /**
+   * Costume name
+   */
   public readonly name: string
+  /**
+   * Costume description
+   */
   public readonly description: string
+  /**
+   * Costume rarity
+   */
   public readonly rarity: number
+  /**
+   * Costume side icon
+   */
   public readonly sideIcon: ImageAssets
+  /**
+   * Costume icon
+   */
   public readonly icon: ImageAssets
+  /**
+   * Costume art
+   */
   public readonly art: ImageAssets
 
   constructor(costumeId: number) {

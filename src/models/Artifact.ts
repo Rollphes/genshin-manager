@@ -7,21 +7,67 @@ interface ArtifactAffixAppendProp {
   type: FightPropType
   value: number
 }
+/**
+ * Class of artifact.
+ */
 export class Artifact {
+  /**
+   * Artifact id
+   */
   public readonly id: number
+  /**
+   * Artifact level
+   */
   public readonly level: number
+  /**
+   * Artifact type
+   */
   public readonly type: ArtifactType
+  /**
+   * Artifact name
+   */
   public readonly name: string
+  /**
+   * Artifact description
+   */
   public readonly description: string
+  /**
+   * Artifact set id
+   */
   public readonly setId: number | undefined
+  /**
+   * Artifact set name
+   */
   public readonly setName: string | undefined
+  /**
+   * Artifact set description
+   */
   public readonly setDescriptions: { [count: number]: string | undefined } = {}
+  /**
+   * Artifact rarity
+   */
   public readonly rarity: number
+  /**
+   * Main stat
+   */
   public readonly mainStat: StatProperty
+  /**
+   * Artifact sub stat list
+   */
   public readonly subStats: StatProperty[]
+  /**
+   * Artifact sub stat id list
+   */
   public readonly appendPropList: ArtifactAffixAppendProp[]
+  /**
+   * Artifact icon
+   */
   public readonly icon: ImageAssets
+  /**
+   * IDs of set bonuses that can be activated with one artifact.
+   */
   private readonly oneSetBonusIds: number[] = [15009, 15010, 15011, 15013]
+
   constructor(
     artifactId: number,
     mainPropId: number,
@@ -110,6 +156,12 @@ export class Artifact {
     })
     this.icon = new ImageAssets(artifactJson.icon as string)
   }
+
+  /**
+   * Get sub stat properties from appendPropIdList.
+   * @param appendPropIdList
+   * @returns
+   */
   private getSubStatProperties(appendPropIdList: number[]) {
     const result: Partial<{ [key in FightPropType]: number }> = {}
     appendPropIdList.forEach((propId) => {

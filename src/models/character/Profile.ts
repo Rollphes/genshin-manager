@@ -16,16 +16,49 @@ export type AssocType =
   | 'ASSOC_TYPE_RANGER'
   | 'ASSOC_TYPE_SUMERU'
 
+/**
+ * Class of character's profile.
+ */
 export class Profile {
+  /**
+   * Character id
+   */
   public readonly characterId: number
+  /**
+   * Fetter id
+   */
   public readonly fetterId: number
+  /**
+   * Birth date
+   */
   public readonly birthDate: Date | undefined
+  /**
+   * Affiliation
+   */
   public readonly native: string
+  /**
+   * Character Vision
+   */
   public readonly vision: string
+  /**
+   * Character Constellation
+   */
   public readonly constellation: string
+  /**
+   * Profile Title
+   */
   public readonly title: string
+  /**
+   * Profile Detail
+   */
   public readonly detail: string
+  /**
+   * Association
+   */
   public readonly assocType: AssocType
+  /**
+   * Character Voice
+   */
   public readonly cv: CharacterVoice
 
   constructor(characterId: number) {

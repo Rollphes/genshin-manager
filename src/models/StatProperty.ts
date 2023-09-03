@@ -1,8 +1,20 @@
 import { Client } from '@/client/Client'
 export class StatProperty {
+  /**
+   * Type of the stat.
+   */
   public readonly type: FightPropType
+  /**
+   * Name of the stat.
+   */
   public readonly name: string
+  /**
+   * Whether the stat is a percent value.
+   */
   public readonly isPercent: boolean
+  /**
+   * Value of the stat.
+   */
   public readonly value: number
 
   constructor(type: FightPropType, value: number) {

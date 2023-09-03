@@ -28,6 +28,10 @@ export abstract class AssetCacheManager {
   private static defaultLanguage: keyof typeof TextMapLanguage
 
   private static childrenModule: Module[]
+
+  /**
+   * Map to cache ExcelBinOutput for each class
+   */
   private static excelBinOutputMapUseModel: {
     [className: string]: Array<keyof typeof ExcelBinOutputs>
   } = {
@@ -112,7 +116,14 @@ export abstract class AssetCacheManager {
   private static excelBinOutputKeyList: Set<keyof typeof ExcelBinOutputs> =
     new Set()
 
+  /**
+   * Cached excel bin output.
+   */
   public static cachedTextMap: Map<string, string> = new Map()
+
+  /**
+   * Cached text map.
+   */
   public static cachedExcelBinOutput: Map<
     keyof typeof ExcelBinOutputs,
     JsonParser
@@ -149,6 +160,9 @@ export abstract class AssetCacheManager {
   }
 
   private static startFetchLatestExcelBinOutputTimeout() {
+  /**
+   * Start timeout for fetch latest asset.
+   */
     const now = new Date()
     const currentDay = now.getDate()
     const targetDate = new Date(
@@ -166,6 +180,14 @@ export abstract class AssetCacheManager {
     }, timeUntilMidnight)
   }
 
+  /**
+   * Update cache.
+   * @returns
+   * @example
+   * ```ts
+   * await Client.updateCache()
+   * ```
+   */
   public static async updateCache() {
     if (await this.checkGitUpdate()) {
       console.log('GenshinManager: New Asset found. Perform updates.')
@@ -194,6 +216,10 @@ export abstract class AssetCacheManager {
     }
   }
 
+  /**
+   * Check gitlab for new commits.
+   * @returns
+   */
   private static async checkGitUpdate() {
     await Promise.all(
       [
@@ -228,6 +254,10 @@ export abstract class AssetCacheManager {
     return oldCommits && newCommits[0].id == oldCommits[0].id ? false : true
   }
 
+  /**
+   * Create ExcelBinOutput Key List to cache.
+   * @param children
+   */
   private static createExcelBinOutputKeyList(children?: Module[]) {
     this.excelBinOutputKeyList.clear()
     if (!children) {
@@ -250,6 +280,9 @@ export abstract class AssetCacheManager {
     }
   }
 
+  /**
+   * Set excel bin output to cache.
+   */
   protected static async setExcelBinOutputToCache() {
     this.cachedExcelBinOutput.clear()
     await Promise.all(
@@ -283,6 +316,9 @@ export abstract class AssetCacheManager {
     })
   }
 
+  /**
+   * Create TextHash List to cache.
+   */
   private static createTextHashList() {
     this.textHashList.clear()
     Client.cachedExcelBinOutput.forEach((excelBin) => {
@@ -299,10 +335,14 @@ export abstract class AssetCacheManager {
     })
   }
 
+  /**
+   * Change cached languages.
+   * @param language Country code
+   */
   protected static async setTextMapToCache(
     language: keyof typeof TextMapLanguage,
   ) {
-    //キャッシュに読み込むタイミングは一番最後なので不要なキャッシュは読み込まれない、よってキャッシュのクリアは不要。
+    //Since the timing of loading into the cache is the last, unnecessary cache is not loaded, and therefore clearing the cache is not necessary.
     const selectedTextMapPath = path.join(
       this.textMapFolderPath,
       `TextMap${language}.json`,
@@ -333,6 +373,11 @@ export abstract class AssetCacheManager {
     })
   }
 
+  /**
+   * Fetch asset folder from gitlab.
+   * @param FolderPath
+   * @param files
+   */
   private static async fetchAssetFolder(FolderPath: string, files: string[]) {
     const gitFolderName = path.relative(this.assetCacheFolderPath, FolderPath)
     const consoleFolderName = gitFolderName.slice(0, 8)
@@ -358,6 +403,11 @@ export abstract class AssetCacheManager {
     progressBar.stop()
   }
 
+  /**
+   * download json file from url and write to downloadFilePath.
+   * @param url
+   * @param downloadFilePath
+   */
   private static async downloadJsonFile(url: string, downloadFilePath: string) {
     const res = await fetch(url)
     const writeStream = fs.createWriteStream(downloadFilePath, {
@@ -375,5 +425,27 @@ export abstract class AssetCacheManager {
     } else {
       await pipeline(res.body, writeStream)
     }
+  }
+
+  /**
+   * get cached excel bin output.
+   * @deprecated This method is deprecated because it is used to pass data to each class.
+   * @param key ExcelBinOutput name.
+   * @param id ID of character, etc.
+   * @returns
+   */
+  public static cachedExcelBinOutputGetter(
+    key: keyof typeof ExcelBinOutputs,
+    id: string | number,
+  ) {
+    const excelBinOutput = Client.cachedExcelBinOutput.get(key)
+    if (!excelBinOutput) {
+      throw new AssetsNotFoundError(key)
+    }
+    const json = excelBinOutput.get(String(id)) as JsonObject | undefined
+    if (!json) {
+      throw new AssetsNotFoundError(key, id)
+    }
+    return json
   }
 }

@@ -4,20 +4,63 @@ import { FightPropType, StatProperty } from '@/models/StatProperty'
 import { JsonObject } from '@/utils/JsonParser'
 
 export class Weapon {
+  /**
+   * Weapon name
+   */
   public readonly name: string
+  /**
+   * Weapon description
+   */
   public readonly description: string
+  /**
+   * Weapon type
+   */
   public readonly WeaponType: WeaponType
+  /**
+   * Weapon skill name
+   */
   public readonly skillName: string | undefined
+  /**
+   * Weapon skill description
+   */
   public readonly skillDescription: string | undefined
+  /**
+   * Weapon id
+   */
   public readonly id: number
+  /**
+   * Weapon level
+   */
   public readonly level: number
+  /**
+   * Weapon promote level
+   */
   public readonly promoteLevel: number
+  /**
+   * Weapon refinement rank
+   */
   public readonly refinementRank: number
+  /**
+   * Weapon rarity
+   */
   public readonly rarity: number
+  /**
+   * Weapon main stat
+   */
   public readonly mainStat: StatProperty
+  /**
+   * Weapon sub stat
+   */
   public readonly subStat: StatProperty | undefined
+  /**
+   * Whether the weapon is awakened
+   */
   public readonly isAwaken: boolean
+  /**
+   * Weapon icon
+   */
   public readonly icon: ImageAssets
+
   constructor(
     weaponId: number,
     level: number = 1,

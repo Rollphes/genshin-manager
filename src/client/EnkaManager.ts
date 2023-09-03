@@ -5,12 +5,14 @@ import { EnkaNetworkError } from '@/errors/EnkaNetWorkError'
 import { AvatarInfo } from '@/models/enka/AvatarInfo'
 import { PlayerInfo } from '@/models/enka/PlayerInfo'
 import { APIEnkaData } from '@/types/EnkaTypes'
-interface EnkaData {
+
+export interface EnkaData {
   uid: number
   playerInfo: PlayerInfo
   avatarInfoList: AvatarInfo[]
   nextShowCaseDate: Date
 }
+
 export class EnkaManager {
   private readonly enkaUidURL = 'https://enka.network/api/uid/'
   private httpStatusMessages: { [statusCode: number]: string } = {
@@ -21,10 +23,25 @@ export class EnkaManager {
     500: 'General server error',
     503: 'I screwed up massively',
   }
+  /**
+   * Cache of EnkaData
+   */
   public readonly cache: Map<number, EnkaData> = new Map()
 
   constructor() {}
 
+  /**
+   * Fetch EnkaData from enka.network
+   * @param uid genshin uid
+   * @returns
+   * @example
+   * ```ts
+   * const client = new Client()
+   * await client.deploy()
+   * const enka = new EnkaManager()
+   * const enkaData = await enka.fetch(123456789)
+   * ```
+   */
   async fetch(uid: number) {
     if (uid < 100000000 || uid > 999999999)
       throw new EnkaManagerError(`The UID format is not correct(${uid})`)

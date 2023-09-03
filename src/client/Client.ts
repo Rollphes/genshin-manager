@@ -51,6 +51,14 @@ export class Client extends AssetCacheManager {
 
   public async changeLanguage(language: keyof typeof TextMapLanguage) {
     await Client.setTextMapToCache(language)
+  /**
+   * Deploy assets to cache & Update assets
+   * @example
+   * ```ts
+   * const client = new Client()
+   * await client.deploy()
+   * ```
+   */
   }
 
   public static cachedExcelBinOutputGetter(
@@ -66,5 +74,15 @@ export class Client extends AssetCacheManager {
       throw new AssetsNotFoundError(key, id)
     }
     return json
+  /**
+   * Change cached languages.
+   * @param language Country code
+   * @example
+   * ```ts
+   * const client = new Client()
+   * await client.deploy()
+   * await Client.changeLanguage('JP')
+   * ```
+   */
   }
 }

@@ -13,16 +13,13 @@ export interface GitLabAPIResponse {
 }
 
 export interface ClientOption {
-  enkaNetwork: {
-    url: string //'https://enka.network'
-    timeout: number //3000
-    userAgent: string //'Mozilla/5.0'
-  }
   defaultImageBaseUrl: string
   imageBaseUrlByRegex: { [url: string]: RegExp[] }
   defaultLanguage: keyof typeof TextMapLanguage
   showFetchCacheLog: boolean //true
-  autoFetchLatestExcelBinOutput: boolean //true
+  autoFetchLatestAssets: boolean //true
+  //TODO:更新タイミングを自由に調整できるようにオプションを増やす。
+  //TODO:更新開始終了時のFunctionOptionも増やす
   autoCacheImage: boolean //true
   assetCacheFolderPath: string
 }
@@ -37,8 +34,14 @@ export const ElementKeys = {
   Rock: 'Geo',
   Grass: 'Dendro',
 } as const
+/**
+ * Element type
+ */
 export type Element = ValueOf<typeof ElementKeys>
 
+/**
+ * TextMap language type
+ */
 export const TextMapLanguage = {
   EN: 'TextMapEN.json',
   RU: 'TextMapRU.json',
@@ -55,6 +58,9 @@ export const TextMapLanguage = {
   CHS: 'TextMapCHS.json',
 } as const
 
+/**
+ * ExcelBin outputs
+ */
 export const ExcelBinOutputs = {
   // AbilityOverrideExcelConfigData: 'AbilityOverrideExcelConfigData.json',
   // AbilityPropExcelConfigData: 'AbilityPropExcelConfigData.json',

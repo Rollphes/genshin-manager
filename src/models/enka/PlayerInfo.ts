@@ -3,17 +3,53 @@ import { Costume } from '@/models/character/Costume'
 import { ShowAvatarInfo } from '@/models/enka/ShowAvatarInfo'
 import { Material } from '@/models/Material'
 import { APIPlayerInfo } from '@/types/EnkaTypes'
+/**
+ * Class of player's information.
+ */
 export class PlayerInfo {
+  /**
+   * Nickname of the player.
+   */
   readonly nickname: string
+  /**
+   * Adventure Rank of the player.
+   */
   readonly level: number
+  /**
+   * Signature of the player.
+   */
   readonly signature: string
+  /**
+   * World Level of the player.
+   */
   readonly worldLevel: number
+  /**
+   * Name card of the player.
+   */
   readonly nameCard: Material
+  /**
+   * Number of achievements that the player has finished.
+   */
   readonly finishAchievementNum: number
+  /**
+   * Floor index of the Spiral Abyss.
+   */
   readonly towerFloorIndex: number
+  /**
+   * Level index of the Spiral Abyss.
+   */
   readonly towerLevelIndex: number
+  /**
+   * List of avatars that the player has.
+   */
   readonly showAvatarInfoList: ShowAvatarInfo[]
+  /**
+   * List of name cards that the player has.
+   */
   readonly showNameCardList: Material[]
+  /**
+   * Profile picture of the player.
+   */
   readonly profilePicture: Costume
 
   constructor(data: APIPlayerInfo) {

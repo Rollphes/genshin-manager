@@ -1,3 +1,6 @@
+/**
+ * Error thrown when an image is not found.
+ */
 export class ImageNotFoundError extends Error {
   public readonly name: string
   public readonly imageName: string

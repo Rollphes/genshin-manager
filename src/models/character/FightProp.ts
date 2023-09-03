@@ -1,6 +1,10 @@
 import { FightPropType, StatProperty } from '@/models/StatProperty'
 
+/**
+ * Class of Character's Combat Properties.
+ */
 export class FightProp {
+  //TODO: Add property description
   public readonly healthBase: StatProperty
   public readonly healthFlat: StatProperty
   public readonly healthPercent: StatProperty
@@ -155,6 +159,12 @@ export class FightProp {
     this.speed = this.getStatProperty(2003)
   }
 
+  /**
+   * Get StatProperty from APIfightProp
+   * @param id
+   * @param defaultValue
+   * @returns
+   */
   private getStatProperty(id: number, defaultValue = 0): StatProperty {
     return new StatProperty(
       fightProps[id],

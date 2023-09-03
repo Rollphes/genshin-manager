@@ -48,13 +48,35 @@ export type MaterialType =
   | 'MATERIAL_WIDGET'
   | 'MATERIAL_WOOD'
 
+//TODO: Add more properties
 export class Material {
+  /**
+   * Material id
+   */
   public readonly id: number
+  /**
+   * Material name
+   */
   public readonly name: string
+  /**
+   * Material description
+   */
   public readonly description: string
+  /**
+   * Material icon
+   */
   public readonly icon: ImageAssets
+  /**
+   * Material pictures
+   */
   public readonly pictures: ImageAssets[]
+  /**
+   * Material type
+   */
   public readonly itemType: ItemType
+  /**
+   * Material type
+   */
   public readonly materialType?: MaterialType
 
   constructor(id: number) {
