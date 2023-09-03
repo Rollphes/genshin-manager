@@ -4,8 +4,8 @@ import fetch from 'node-fetch'
 import path from 'path'
 import { pipeline } from 'stream/promises'
 
-import { Client } from '@/client/Client'
 import { ImageNotFoundError } from '@/errors/ImageNotFoundError'
+import { ClientOption } from '@/types'
 
 const imageBaseUrlMihoyo =
   'https://upload-os-bbs.mihoyo.com/game_record/genshin'
@@ -48,17 +48,19 @@ export class ImageAssets {
     this.mihoyoUrl =
       name === '' || !this.imageType ? '' : `${imageBaseUrlMihoyo}/${name}.png`
   }
-  public static deploy(client: Client) {
-    this.imageBaseUrlByRegex = client.option.imageBaseUrlByRegex
-    this.defaultImageBaseUrl = client.option.defaultImageBaseUrl
-    this.autoCacheImage = client.option.autoCacheImage
-    this.imageFolderPath = path.resolve(
-      client.option.assetCacheFolderPath,
-      'Images',
-    )
+
+  /**
+   * Classes for handling images
+   * @param option
+   */
+  public static deploy(option: ClientOption) {
+    this.imageBaseUrlByRegex = option.imageBaseUrlByRegex
+    this.defaultImageBaseUrl = option.defaultImageBaseUrl
+    this.autoCacheImage = option.autoCacheImage
+    this.imageFolderPath = path.resolve(option.assetCacheFolderPath, 'Images')
     if (!fs.existsSync(this.imageFolderPath)) fs.mkdirSync(this.imageFolderPath)
     if (
-      client.option.assetCacheFolderPath ==
+      option.assetCacheFolderPath ==
       path.resolve(__dirname, '..', '..', '..', 'cache')
     ) {
       ;[

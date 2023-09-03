@@ -7,13 +7,19 @@ import * as path from 'path'
 import { pipeline } from 'stream/promises'
 
 import { Client } from '@/client/Client'
+import { AssetsNotFoundError } from '@/errors/AssetsNotFoundError'
 import { TextMapFormatError } from '@/errors/TextMapFormatError'
-import { ExcelBinOutputs, GitLabAPIResponse, TextMapLanguage } from '@/types'
+import {
+  ClientOption,
+  ExcelBinOutputs,
+  GitLabAPIResponse,
+  TextMapLanguage,
+} from '@/types'
 import { JsonObject, JsonParser } from '@/utils/JsonParser'
 import { ObjectKeyDecoder } from '@/utils/ObjectKeyDecoder'
 import { TextMapEmptyWritable } from '@/utils/TextMapEmptyWritable'
 import { TextMapTransform } from '@/utils/TextMapTransform'
-//static only
+
 export abstract class AssetCacheManager {
   private static gitRemoteAPIUrl: string =
     'https://gitlab.com/api/v4/projects/41287973/repository/commits?per_page=1'
@@ -129,40 +135,35 @@ export abstract class AssetCacheManager {
     JsonParser
   > = new Map()
 
-  protected static async deploy(client: Client, children: Module[]) {
-    this.childrenModule = children
-    this.assetCacheFolderPath = client.option.assetCacheFolderPath
-    this.commitFilePath = path.resolve(
-      this.assetCacheFolderPath,
+  constructor(option: ClientOption, children: Module[]) {
+    AssetCacheManager.childrenModule = children
+    AssetCacheManager.assetCacheFolderPath = option.assetCacheFolderPath
+    AssetCacheManager.commitFilePath = path.resolve(
+      AssetCacheManager.assetCacheFolderPath,
       'commits.json',
     )
 
-    this.commitFilePath = path.resolve(
-      this.assetCacheFolderPath,
+    AssetCacheManager.commitFilePath = path.resolve(
+      AssetCacheManager.assetCacheFolderPath,
       'commits.json',
     )
 
-    this.excelBinOutputFolderPath = path.resolve(
-      this.assetCacheFolderPath,
+    AssetCacheManager.excelBinOutputFolderPath = path.resolve(
+      AssetCacheManager.assetCacheFolderPath,
       'ExcelBinOutput',
     )
-    this.textMapFolderPath = path.resolve(this.assetCacheFolderPath, 'TextMap')
+    AssetCacheManager.textMapFolderPath = path.resolve(
+      AssetCacheManager.assetCacheFolderPath,
+      'TextMap',
+    )
 
-    this.defaultLanguage = client.option.defaultLanguage
-    await this.updateCache()
-    if (
-      client.option.autoFetchLatestExcelBinOutput &&
-      client.option.assetCacheFolderPath ==
-        path.resolve(__dirname, '..', '..', 'cache')
-    ) {
-      void this.startFetchLatestExcelBinOutputTimeout()
-    }
+    AssetCacheManager.defaultLanguage = option.defaultLanguage
   }
 
-  private static startFetchLatestExcelBinOutputTimeout() {
   /**
    * Start timeout for fetch latest asset.
    */
+  protected static startFetchLatestAssetsTimeout() {
     const now = new Date()
     const currentDay = now.getDate()
     const targetDate = new Date(
@@ -176,7 +177,7 @@ export abstract class AssetCacheManager {
     const timeUntilMidnight = targetDate.getTime() - now.getTime()
     setTimeout(() => {
       void this.updateCache()
-      this.startFetchLatestExcelBinOutputTimeout()
+      this.startFetchLatestAssetsTimeout()
     }, timeUntilMidnight)
   }
 
@@ -200,7 +201,7 @@ export abstract class AssetCacheManager {
       this.createTextHashList()
       await this.fetchAssetFolder(
         this.textMapFolderPath,
-        Object.values(TextMapLanguage),
+        Object.values(TextMapLanguage), //TODO:TextMapすべてではなく、指定値のみをダウンロードするようにする
       )
       this.createExcelBinOutputKeyList(this.childrenModule)
       await this.setExcelBinOutputToCache()

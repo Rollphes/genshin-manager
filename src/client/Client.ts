@@ -2,22 +2,19 @@ import { merge } from 'lodash'
 import path from 'path'
 
 import { AssetCacheManager } from '@/client/AssetCacheManager'
-import { AssetsNotFoundError } from '@/errors/AssetsNotFoundError'
 import { ImageAssets } from '@/models/assets/ImageAssets'
-import { ClientOption, ExcelBinOutputs, TextMapLanguage } from '@/types'
-import { JsonObject } from '@/utils/JsonParser'
+import { ClientOption, TextMapLanguage } from '@/types'
 
 export class Client extends AssetCacheManager {
   public readonly option: ClientOption
 
   constructor(option?: Partial<ClientOption>) {
-    super()
     const defaultOption: ClientOption = {
-      enkaNetwork: {
-        url: 'https://enka.network',
-        timeout: 3000,
-        userAgent: 'Mozilla/5.0',
-      },
+      // enkaNetwork: {
+      //   url: 'https://enka.network',
+      //   timeout: 3000,
+      //   userAgent: 'Mozilla/5.0',
+      // },
       defaultImageBaseUrl: 'https://api.ambr.top/assets/UI',
       imageBaseUrlByRegex: {
         'https://enka.network/ui': [
@@ -31,26 +28,21 @@ export class Client extends AssetCacheManager {
       },
       defaultLanguage: 'EN',
       showFetchCacheLog: true, //TODO:未実装
-      autoFetchLatestExcelBinOutput: true,
+      autoFetchLatestAssets: true,
       autoCacheImage: true,
-      assetCacheFolderPath: path.resolve(__dirname, '..', '..', 'cache'),
+      assetCacheFolderPath: path.resolve(__dirname, '..', '..', 'cache'), //TODO:別のフォルダーの時を未実装
     }
-
-    this.option = option
+    const mergeOption = option
       ? merge<ClientOption, Partial<ClientOption>>(defaultOption, option)
       : defaultOption
-  }
 
-  public async deploy() {
     if (!module.parent) {
       throw new Error('module.parent is undefined.')
     }
-    await Client.deploy(this, module.parent.children)
-    ImageAssets.deploy(this)
+    super(mergeOption, module.parent.children)
+    this.option = mergeOption
   }
 
-  public async changeLanguage(language: keyof typeof TextMapLanguage) {
-    await Client.setTextMapToCache(language)
   /**
    * Deploy assets to cache & Update assets
    * @example
@@ -59,21 +51,18 @@ export class Client extends AssetCacheManager {
    * await client.deploy()
    * ```
    */
+  public async deploy() {
+    await Client.updateCache()
+    if (
+      this.option.autoFetchLatestAssets &&
+      this.option.assetCacheFolderPath ==
+        path.resolve(__dirname, '..', '..', 'cache')
+    ) {
+      void Client.startFetchLatestAssetsTimeout()
+    }
+    ImageAssets.deploy(this.option)
   }
 
-  public static cachedExcelBinOutputGetter(
-    key: keyof typeof ExcelBinOutputs,
-    id: string | number,
-  ) {
-    const excelBinOutput = Client.cachedExcelBinOutput.get(key)
-    if (!excelBinOutput) {
-      throw new AssetsNotFoundError(key)
-    }
-    const json = excelBinOutput.get(String(id)) as JsonObject | undefined
-    if (!json) {
-      throw new AssetsNotFoundError(key, id)
-    }
-    return json
   /**
    * Change cached languages.
    * @param language Country code
@@ -84,5 +73,8 @@ export class Client extends AssetCacheManager {
    * await Client.changeLanguage('JP')
    * ```
    */
+  public static async changeLanguage(language: keyof typeof TextMapLanguage) {
+    //TODO:TextHashListが0の時のエラー処理
+    await Client.setTextMapToCache(language)
   }
 }
