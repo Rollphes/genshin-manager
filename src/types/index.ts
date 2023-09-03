@@ -65,9 +65,15 @@ export interface ClientOption {
    */
   showFetchCacheLog: boolean
   /**
-   * auto fetch latest assets
-   * @default true
+   * begin auto fetch latest assets function
+   * @returns
    */
+  beginAutoFetchLatestAssetsFunction: () => void
+  /**
+   * end auto fetch latest assets function
+   * @returns
+   */
+  endAutoFetchLatestAssetsFunction: () => void
   /**
    * auto fetch latest assets by cron
    * @default '0 0 0 * * 3' //every Wednesday at 00:00:00

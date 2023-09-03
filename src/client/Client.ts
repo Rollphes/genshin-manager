@@ -46,6 +46,8 @@ export class Client extends AssetCacheManager {
       defaultLanguage: 'EN',
       showFetchCacheLog: true,
       autoFetchLatestAssetsByCron: '0 0 0 * * 3',
+      beginAutoFetchLatestAssetsFunction: () => {},
+      endAutoFetchLatestAssetsFunction: () => {},
       autoCacheImage: true,
       autoFixTextMap: true,
       assetCacheFolderPath: path.resolve(__dirname, '..', '..', 'cache'), //TODO:別のフォルダーの時を未実装

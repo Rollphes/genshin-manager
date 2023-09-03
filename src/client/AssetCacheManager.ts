@@ -166,10 +166,11 @@ export abstract class AssetCacheManager extends EventEmitter {
    * await Client.updateCache()
    * ```
    */
-  public static async updateCache() {
+  protected static async updateCache() {
+    this.option.beginAutoFetchLatestAssetsFunction()
     if (await this.checkGitUpdate()) {
       if (this.option.showFetchCacheLog)
-        console.log('GenshinManager: New Asset found. Perform updates.')
+        console.log('GenshinManager: New Assets found. Update Assets.')
       this.createExcelBinOutputKeyList()
       await this.fetchAssetFolder(
         this.excelBinOutputFolderPath,
@@ -181,6 +182,8 @@ export abstract class AssetCacheManager extends EventEmitter {
         (key) => TextMapLanguage[key],
       )
       await this.fetchAssetFolder(this.textMapFolderPath, textMapFileNames)
+      if (this.option.showFetchCacheLog)
+        console.log('GenshinManager: Set cache.')
       this.createExcelBinOutputKeyList(this.childrenModule)
       await this.setExcelBinOutputToCache()
       this.createTextHashList()
@@ -194,6 +197,9 @@ export abstract class AssetCacheManager extends EventEmitter {
       this.createTextHashList()
       await this.setTextMapToCache(this.option.defaultLanguage)
     }
+    if (this.option.showFetchCacheLog)
+      console.log('GenshinManager: finish update cache and set cache.')
+    this.option.endAutoFetchLatestAssetsFunction()
   }
 
   /**
