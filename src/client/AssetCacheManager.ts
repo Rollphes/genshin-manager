@@ -332,7 +332,9 @@ export abstract class AssetCacheManager {
     if (!fs.existsSync(selectedTextMapPath)) {
       if (this.option.autoFixTextMap) {
         if (this.option.showFetchCacheLog)
-          console.log('GenshinManager: TextMap not found. Re downloading...')
+          console.log(
+            `GenshinManager: TextMap${language}.json not found. Re downloading...`,
+          )
         await this.reDownloadTextMap(language)
       } else {
         throw new AssetsNotFoundError(language)
