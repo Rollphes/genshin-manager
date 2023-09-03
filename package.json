@@ -1,6 +1,6 @@
 {
   "name": "genshin-manager",
-  "version": "0.1.0",
+  "version": "0.1.2",
   "homepage": "",
   "bugs": "https://github.com/Rollphes/GenshinManager/issues",
   "main": "dist/index.js",
@@ -13,7 +13,7 @@
     "lint": "eslint .",
     "create-archive": "git archive --format=zip --output=sourceCode.zip HEAD --worktree-attributes && git archive --format=tar.gz --output=sourceCode.tar.gz HEAD --worktree-attributes",
     "create-release": "npm run create-archive && gh release create v%npm_package_version% -t v%npm_package_version% -n \"## Bug Fixes\" --draft && gh release upload v%npm_package_version% sourceCode.zip sourceCode.tar.gz",
-    "publish": "npm run build && npm run docs && npm publish  && npm run create-release",
+    "prepublishOnly": "npm run build && npm run docs  && npm run create-release",
     "docs": "typedoc --disableSources --out docs src",
     "install": "node scripts/install.js",
     "build": "node -e \"if (fs.existsSync('./dist')) fs.rmSync('./dist', {recursive: true});\" && tsc -p tsconfig.json && tsc-alias -p tsconfig.json",
