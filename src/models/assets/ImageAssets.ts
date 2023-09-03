@@ -61,20 +61,15 @@ export class ImageAssets {
     this.autoCacheImage = option.autoCacheImage
     this.imageFolderPath = path.resolve(option.assetCacheFolderPath, 'Images')
     if (!fs.existsSync(this.imageFolderPath)) fs.mkdirSync(this.imageFolderPath)
-    if (
-      option.assetCacheFolderPath ==
-      path.resolve(__dirname, '..', '..', '..', 'cache')
-    ) {
-      ;[
-        'UI_Gacha_AvatarImg_PlayerBoy.png',
-        'UI_Gacha_AvatarImg_PlayerGirl.png',
-      ].forEach((imgName) => {
-        fs.copyFileSync(
-          path.resolve(__dirname, '..', '..', '..', 'img', imgName),
-          path.resolve(__dirname, '..', '..', '..', 'cache', 'Images', imgName),
-        )
-      })
-    }
+    ;[
+      'UI_Gacha_AvatarImg_PlayerBoy.png',
+      'UI_Gacha_AvatarImg_PlayerGirl.png',
+    ].forEach((imgName) => {
+      fs.copyFileSync(
+        path.resolve(__dirname, '..', '..', '..', 'img', imgName),
+        path.resolve(option.assetCacheFolderPath, 'Images', imgName),
+      )
+    })
   }
 
   /**

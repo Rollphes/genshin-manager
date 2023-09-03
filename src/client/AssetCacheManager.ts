@@ -165,7 +165,10 @@ export abstract class AssetCacheManager {
    * ```
    */
   protected static async updateCache() {
-    if (await this.checkGitUpdate()) {
+    if (
+      (await this.checkGitUpdate()) &&
+      this.option.autoFetchLatestAssetsByCron
+    ) {
       if (this.option.showFetchCacheLog)
         console.log('GenshinManager: New Assets found. Update Assets.')
       this.createExcelBinOutputKeyList()
@@ -215,6 +218,8 @@ export abstract class AssetCacheManager {
           })
       }),
     )
+
+    if (!this.option.autoFetchLatestAssetsByCron) return false
 
     const oldCommits = fs.existsSync(this.commitFilePath)
       ? (JSON.parse(

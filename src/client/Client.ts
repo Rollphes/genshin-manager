@@ -48,7 +48,7 @@ export class Client extends AssetCacheManager {
       autoFetchLatestAssetsByCron: '0 0 0 * * 3', //Every Wednesday 00:00:00
       autoCacheImage: true,
       autoFixTextMap: true,
-      assetCacheFolderPath: path.resolve(__dirname, '..', '..', 'cache'), //TODO:別のフォルダーの時を未実装
+      assetCacheFolderPath: path.resolve(__dirname, '..', '..', 'cache'),
     }
     const mergeOption = option
       ? (merge.withOptions(
@@ -63,6 +63,10 @@ export class Client extends AssetCacheManager {
         mergeOption.defaultLanguage,
         ...mergeOption.downloadLanguages,
       ]
+    }
+
+    if (!mergeOption.autoFetchLatestAssetsByCron) {
+      mergeOption.autoFixTextMap = false
     }
 
     if (!module.parent) {
@@ -82,11 +86,7 @@ export class Client extends AssetCacheManager {
    */
   public async deploy() {
     await Client.updateCache()
-    if (
-      this.option.autoFetchLatestAssetsByCron &&
-      this.option.assetCacheFolderPath ==
-        path.resolve(__dirname, '..', '..', 'cache')
-    ) {
+    if (this.option.autoFetchLatestAssetsByCron) {
       cron.schedule(this.option.autoFetchLatestAssetsByCron, () => {
         void Client.updateCache()
       })

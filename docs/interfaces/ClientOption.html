@@ -30,11 +30,9 @@
 <a href="ClientOption.html#autoCacheImage" class="tsd-index-link"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-1024"></use></svg><span>auto<wbr/>Cache<wbr/>Image</span></a>
 <a href="ClientOption.html#autoFetchLatestAssetsByCron" class="tsd-index-link"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-1024"></use></svg><span>auto<wbr/>Fetch<wbr/>Latest<wbr/>Assets<wbr/>By<wbr/>Cron</span></a>
 <a href="ClientOption.html#autoFixTextMap" class="tsd-index-link"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-1024"></use></svg><span>auto<wbr/>Fix<wbr/>Text<wbr/>Map</span></a>
-<a href="ClientOption.html#beginAutoFetchLatestAssetsFunction" class="tsd-index-link"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-1024"></use></svg><span>begin<wbr/>Auto<wbr/>Fetch<wbr/>Latest<wbr/>Assets<wbr/>Function</span></a>
 <a href="ClientOption.html#defaultImageBaseUrl" class="tsd-index-link"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-1024"></use></svg><span>default<wbr/>Image<wbr/>Base<wbr/>Url</span></a>
 <a href="ClientOption.html#defaultLanguage" class="tsd-index-link"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-1024"></use></svg><span>default<wbr/>Language</span></a>
 <a href="ClientOption.html#downloadLanguages" class="tsd-index-link"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-1024"></use></svg><span>download<wbr/>Languages</span></a>
-<a href="ClientOption.html#endAutoFetchLatestAssetsFunction" class="tsd-index-link"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-1024"></use></svg><span>end<wbr/>Auto<wbr/>Fetch<wbr/>Latest<wbr/>Assets<wbr/>Function</span></a>
 <a href="ClientOption.html#fetchOption" class="tsd-index-link"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-1024"></use></svg><span>fetch<wbr/>Option</span></a>
 <a href="ClientOption.html#imageBaseUrlByRegex" class="tsd-index-link"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-1024"></use></svg><span>image<wbr/>Base<wbr/>Url<wbr/>By<wbr/>Regex</span></a>
 <a href="ClientOption.html#showFetchCacheLog" class="tsd-index-link"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-1024"></use></svg><span>show<wbr/>Fetch<wbr/>Cache<wbr/>Log</span></a>
@@ -44,7 +42,7 @@
 <section class="tsd-panel tsd-member"><a id="assetCacheFolderPath" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><span>asset<wbr/>Cache<wbr/>Folder<wbr/>Path</span><a href="#assetCacheFolderPath" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><g stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round" id="icon-anchor"><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><path d="M10 14a3.5 3.5 0 0 0 5 0l4 -4a3.5 3.5 0 0 0 -5 -5l-.5 .5"></path><path d="M14 10a3.5 3.5 0 0 0 -5 0l-4 4a3.5 3.5 0 0 0 5 5l.5 -.5"></path></g></svg></a></h3>
 <div class="tsd-signature"><span class="tsd-kind-property">asset<wbr/>Cache<wbr/>Folder<wbr/>Path</span><span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
-<div class="tsd-comment tsd-typography"><p>asset cache folder path</p>
+<div class="tsd-comment tsd-typography"><p>asset cache folder path.</p>
 </div>
 <div class="tsd-comment tsd-typography">
 <h4>Default</h4><pre><code class="language-ts"><span class="hl-5">node_modules</span><span class="hl-1">/</span><span class="hl-5">genshin</span><span class="hl-1">-</span><span class="hl-5">manager</span><span class="hl-1">/</span><span class="hl-5">cache</span>
@@ -62,7 +60,9 @@
 <section class="tsd-panel tsd-member"><a id="autoFetchLatestAssetsByCron" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><span>auto<wbr/>Fetch<wbr/>Latest<wbr/>Assets<wbr/>By<wbr/>Cron</span><a href="#autoFetchLatestAssetsByCron" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></h3>
 <div class="tsd-signature"><span class="tsd-kind-property">auto<wbr/>Fetch<wbr/>Latest<wbr/>Assets<wbr/>By<wbr/>Cron</span><span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">string</span></div>
-<div class="tsd-comment tsd-typography"><p>auto fetch latest assets by cron</p>
+<div class="tsd-comment tsd-typography"><p>auto fetch latest assets by cron.
+If this option is <code>undefined</code>, update assets will not be executed.
+Be sure to set <code>undefined</code> when using patch-updated Assets.</p>
 </div>
 <div class="tsd-comment tsd-typography">
 <h4>Default</h4><pre><code class="language-ts"><span class="hl-6">&#39;0 0 0 * * 3&#39;</span><span class="hl-1"> </span><span class="hl-8">//every Wednesday at 00:00:00</span>
@@ -73,26 +73,13 @@
 <section class="tsd-panel tsd-member"><a id="autoFixTextMap" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><span>auto<wbr/>Fix<wbr/>Text<wbr/>Map</span><a href="#autoFixTextMap" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></h3>
 <div class="tsd-signature"><span class="tsd-kind-property">auto<wbr/>Fix<wbr/>Text<wbr/>Map</span><span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span></div>
-<div class="tsd-comment tsd-typography"><p>Automatically re-download the textMap if it has not been downloaded or if there is an error in the json format.</p>
+<div class="tsd-comment tsd-typography"><p>Automatically re-download the textMap if it has not been downloaded or if there is an error in the json format.
+If <code>autoFetchLatestAssetsByCron</code> is <code>undefined</code>, this option will be ignored.</p>
 </div>
 <div class="tsd-comment tsd-typography">
 <h4>Default</h4><pre><code class="language-ts"><span class="hl-0">true</span>
 </code><button>Copy</button></pre>
 </div></section>
-<section class="tsd-panel tsd-member"><a id="beginAutoFetchLatestAssetsFunction" class="tsd-anchor"></a>
-<h3 class="tsd-anchor-link"><span>begin<wbr/>Auto<wbr/>Fetch<wbr/>Latest<wbr/>Assets<wbr/>Function</span><a href="#beginAutoFetchLatestAssetsFunction" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></h3>
-<div class="tsd-signature"><span class="tsd-kind-property">begin<wbr/>Auto<wbr/>Fetch<wbr/>Latest<wbr/>Assets<wbr/>Function</span><span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">)</span></div>
-<div class="tsd-type-declaration">
-<h4>Type declaration</h4>
-<ul class="tsd-parameters">
-<li class="tsd-parameter-signature">
-<ul class="tsd-signatures">
-<li class="tsd-signature" id="beginAutoFetchLatestAssetsFunction.__type.__type-1"><span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
-<li class="tsd-description">
-<div class="tsd-comment tsd-typography"><p>begin auto fetch latest assets function</p>
-</div>
-<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
-<div class="tsd-comment tsd-typography"></div></li></ul></li></ul></div></section>
 <section class="tsd-panel tsd-member"><a id="defaultImageBaseUrl" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><span>default<wbr/>Image<wbr/>Base<wbr/>Url</span><a href="#defaultImageBaseUrl" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></h3>
 <div class="tsd-signature"><span class="tsd-kind-property">default<wbr/>Image<wbr/>Base<wbr/>Url</span><span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
@@ -120,20 +107,6 @@
 <h4>Default</h4><pre><code class="language-ts"><span class="hl-1">[</span><span class="hl-6">&#39;EN&#39;</span><span class="hl-1">,</span><span class="hl-6">&#39;RU&#39;</span><span class="hl-1">,</span><span class="hl-6">&#39;VI&#39;</span><span class="hl-1">,</span><span class="hl-6">&#39;TH&#39;</span><span class="hl-1">,</span><span class="hl-6">&#39;PT&#39;</span><span class="hl-1">,</span><span class="hl-6">&#39;KR&#39;</span><span class="hl-1">,</span><span class="hl-6">&#39;JP&#39;</span><span class="hl-1">,</span><span class="hl-6">&#39;ID&#39;</span><span class="hl-1">,</span><span class="hl-6">&#39;FR&#39;</span><span class="hl-1">,</span><span class="hl-6">&#39;ES&#39;</span><span class="hl-1">,</span><span class="hl-6">&#39;DE&#39;</span><span class="hl-1">,</span><span class="hl-6">&#39;CHT&#39;</span><span class="hl-1">,</span><span class="hl-6">&#39;CHS&#39;</span><span class="hl-1">]</span>
 </code><button>Copy</button></pre>
 </div></section>
-<section class="tsd-panel tsd-member"><a id="endAutoFetchLatestAssetsFunction" class="tsd-anchor"></a>
-<h3 class="tsd-anchor-link"><span>end<wbr/>Auto<wbr/>Fetch<wbr/>Latest<wbr/>Assets<wbr/>Function</span><a href="#endAutoFetchLatestAssetsFunction" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></h3>
-<div class="tsd-signature"><span class="tsd-kind-property">end<wbr/>Auto<wbr/>Fetch<wbr/>Latest<wbr/>Assets<wbr/>Function</span><span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">)</span></div>
-<div class="tsd-type-declaration">
-<h4>Type declaration</h4>
-<ul class="tsd-parameters">
-<li class="tsd-parameter-signature">
-<ul class="tsd-signatures">
-<li class="tsd-signature" id="endAutoFetchLatestAssetsFunction.__type-2.__type-3"><span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
-<li class="tsd-description">
-<div class="tsd-comment tsd-typography"><p>end auto fetch latest assets function</p>
-</div>
-<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
-<div class="tsd-comment tsd-typography"></div></li></ul></li></ul></div></section>
 <section class="tsd-panel tsd-member"><a id="fetchOption" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><span>fetch<wbr/>Option</span><a href="#fetchOption" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></h3>
 <div class="tsd-signature"><span class="tsd-kind-property">fetch<wbr/>Option</span><span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type ">RequestInit</span></div>
@@ -189,11 +162,9 @@
 <li><a href="#autoCacheImage" class=""><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-1024"></use></svg><span>auto<wbr/>Cache<wbr/>Image</span></a></li>
 <li><a href="#autoFetchLatestAssetsByCron" class=""><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-1024"></use></svg><span>auto<wbr/>Fetch<wbr/>Latest<wbr/>Assets<wbr/>By<wbr/>Cron</span></a></li>
 <li><a href="#autoFixTextMap" class=""><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-1024"></use></svg><span>auto<wbr/>Fix<wbr/>Text<wbr/>Map</span></a></li>
-<li><a href="#beginAutoFetchLatestAssetsFunction" class=""><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-1024"></use></svg><span>begin<wbr/>Auto<wbr/>Fetch<wbr/>Latest<wbr/>Assets<wbr/>Function</span></a></li>
 <li><a href="#defaultImageBaseUrl" class=""><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-1024"></use></svg><span>default<wbr/>Image<wbr/>Base<wbr/>Url</span></a></li>
 <li><a href="#defaultLanguage" class=""><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-1024"></use></svg><span>default<wbr/>Language</span></a></li>
 <li><a href="#downloadLanguages" class=""><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-1024"></use></svg><span>download<wbr/>Languages</span></a></li>
-<li><a href="#endAutoFetchLatestAssetsFunction" class=""><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-1024"></use></svg><span>end<wbr/>Auto<wbr/>Fetch<wbr/>Latest<wbr/>Assets<wbr/>Function</span></a></li>
 <li><a href="#fetchOption" class=""><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-1024"></use></svg><span>fetch<wbr/>Option</span></a></li>
 <li><a href="#imageBaseUrlByRegex" class=""><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-1024"></use></svg><span>image<wbr/>Base<wbr/>Url<wbr/>By<wbr/>Regex</span></a></li>
 <li><a href="#showFetchCacheLog" class=""><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-1024"></use></svg><span>show<wbr/>Fetch<wbr/>Cache<wbr/>Log</span></a></li></ul></div></details></div>
