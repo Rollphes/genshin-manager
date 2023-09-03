@@ -165,7 +165,6 @@ export abstract class AssetCacheManager {
    * ```
    */
   protected static async updateCache() {
-    this.option.beginAutoFetchLatestAssetsFunction()
     if (await this.checkGitUpdate()) {
       if (this.option.showFetchCacheLog)
         console.log('GenshinManager: New Assets found. Update Assets.')
@@ -197,7 +196,6 @@ export abstract class AssetCacheManager {
     }
     if (this.option.showFetchCacheLog)
       console.log('GenshinManager: finish update cache and set cache.')
-    this.option.endAutoFetchLatestAssetsFunction()
   }
 
   /**

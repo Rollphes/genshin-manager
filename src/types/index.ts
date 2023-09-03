@@ -65,16 +65,6 @@ export interface ClientOption {
    */
   showFetchCacheLog: boolean
   /**
-   * begin auto fetch latest assets function
-   * @returns
-   */
-  beginAutoFetchLatestAssetsFunction: () => void
-  /**
-   * end auto fetch latest assets function
-   * @returns
-   */
-  endAutoFetchLatestAssetsFunction: () => void
-  /**
    * auto fetch latest assets by cron
    * @default '0 0 0 * * 3' //every Wednesday at 00:00:00
    * @see https://crontab.guru/
@@ -91,7 +81,7 @@ export interface ClientOption {
    */
   autoCacheImage: boolean
   /**
-   * asset cache folder path
+   * asset cache folder path.
    * @default node_modules/genshin-manager/cache
    */
   assetCacheFolderPath: string
