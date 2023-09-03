@@ -15,14 +15,6 @@ export interface EnkaData {
 
 export class EnkaManager {
   private readonly enkaUidURL = 'https://enka.network/api/uid/'
-  private httpStatusMessages: { [statusCode: number]: string } = {
-    400: 'Wrong UID format',
-    404: 'Player does not exist (MHY server said that)',
-    424: 'Game maintenance / everything is broken after the game update',
-    429: 'Rate-limited (either by my server or by MHY server)',
-    500: 'General server error',
-    503: 'I screwed up massively',
-  }
   /**
    * Cache of EnkaData
    */
@@ -49,11 +41,7 @@ export class EnkaManager {
     const previousData = this.cache.get(uid)
     const res = await fetch(url)
     if (!res.ok) {
-      throw new EnkaNetworkError(
-        this.httpStatusMessages[res.status] ?? 'Unknown error',
-        res.status,
-        res.statusText,
-      )
+      throw new EnkaNetworkError(res)
     }
     if (
       previousData &&
