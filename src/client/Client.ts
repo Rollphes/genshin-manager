@@ -1,3 +1,4 @@
+import cron from 'node-cron'
 import path from 'path'
 import merge from 'ts-deepmerge'
 
@@ -44,7 +45,7 @@ export class Client extends AssetCacheManager {
       },
       defaultLanguage: 'EN',
       showFetchCacheLog: true,
-      autoFetchLatestAssets: true,
+      autoFetchLatestAssetsByCron: '0 0 0 * * 3',
       autoCacheImage: true,
       autoFixTextMap: true,
       assetCacheFolderPath: path.resolve(__dirname, '..', '..', 'cache'), //TODO:別のフォルダーの時を未実装
@@ -75,11 +76,13 @@ export class Client extends AssetCacheManager {
   public async deploy() {
     await Client.updateCache()
     if (
-      this.option.autoFetchLatestAssets &&
+      this.option.autoFetchLatestAssetsByCron &&
       this.option.assetCacheFolderPath ==
         path.resolve(__dirname, '..', '..', 'cache')
     ) {
-      void Client.startFetchLatestAssetsTimeout()
+      cron.schedule(this.option.autoFetchLatestAssetsByCron, () => {
+        void Client.updateCache()
+      })
     }
     ImageAssets.deploy(this.option)
   }

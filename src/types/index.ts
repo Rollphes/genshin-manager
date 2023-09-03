@@ -68,14 +68,17 @@ export interface ClientOption {
    * auto fetch latest assets
    * @default true
    */
-  autoFetchLatestAssets: boolean
+  /**
+   * auto fetch latest assets by cron
+   * @default '0 0 0 * * 3' //every Wednesday at 00:00:00
+   * @see https://crontab.guru/
+   */
+  autoFetchLatestAssetsByCron: string | undefined
   /**
    * Automatically re-download the textMap if it has not been downloaded or if there is an error in the json format.
    * @default true
    */
   autoFixTextMap: boolean
-  //TODO:更新タイミングを自由に調整できるようにオプションを増やす。
-  //TODO:更新開始終了時のFunctionOptionも増やす
   /**
    * auto cache image
    * @default true

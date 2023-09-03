@@ -159,27 +159,6 @@ export abstract class AssetCacheManager extends EventEmitter {
   }
 
   /**
-   * Start timeout for fetch latest asset.
-   */
-  protected static startFetchLatestAssetsTimeout() {
-    const now = new Date()
-    const currentDay = now.getDate()
-    const targetDate = new Date(
-      now.getFullYear(),
-      now.getMonth(),
-      currentDay + 1,
-      0,
-      0,
-      0,
-    )
-    const timeUntilMidnight = targetDate.getTime() - now.getTime()
-    setTimeout(() => {
-      void this.updateCache()
-      this.startFetchLatestAssetsTimeout()
-    }, timeUntilMidnight)
-  }
-
-  /**
    * Update cache.
    * @returns
    * @example
