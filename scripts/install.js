@@ -36,6 +36,9 @@ async function main() {
       downloadLanguages: getLanguage(downloadLanguage),
       autoFetchLatestAssetsByCron: undefined,
       defaultLanguage: getLanguage(downloadLanguage)[0],
+      fetchOptions: {
+        timeout: 0,
+      },
     })
     client.deploy()
   }
