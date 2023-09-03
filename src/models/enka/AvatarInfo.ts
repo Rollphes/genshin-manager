@@ -49,10 +49,10 @@ export class AvatarInfo extends Character {
    * List of skills that the character has.
    */
   public readonly skills: Skill[]
-  public readonly fightPropMap: FightProp
   /**
    * FightProp of the character.
    */
+  public readonly fightProp: FightProp
   /**
    * Weapon equipped by the character.
    */
@@ -65,7 +65,6 @@ export class AvatarInfo extends Character {
    * Friendship level of the character.
    */
   public readonly friendShipLevel: number
-
   /**
    * IDs of set bonuses that can be activated with one artifact.
    */
@@ -91,7 +90,7 @@ export class AvatarInfo extends Character {
       return new Skill(id, data.skillLevelMap[id] || 0, extraLevel)
     })
 
-    this.fightPropMap = new FightProp(data.fightPropMap)
+    this.fightProp = new FightProp(data.fightPropMap)
     const weaponData = data.equipList.find(
       (equip): equip is APIWeaponEquip => equip.flat.itemType == 'ITEM_WEAPON',
     )
