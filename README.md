@@ -119,7 +119,7 @@ await client.deploy()
 
 ## Fetching Enka Data
 
-[EnkaManager#fetch]()
+[EnkaManager#fetch](https://rollphes.github.io/GenshinManager/classes/EnkaManager.html#fetch)
 
 ```js
 const { Client, EnkaManager } = require('genshin-manager')
@@ -139,7 +139,7 @@ console.log(enkaData.nextShowCaseDate)
 
 ## Genshin Character from characterId
 
-[Character]()
+[Character](https://rollphes.github.io/GenshinManager/classes/Character.html)
 
 ```js
 const { Client, Character } = require('genshin-manager')
@@ -155,7 +155,7 @@ console.log(character.name) // output: 神里綾華
 
 ## Genshin Weapon from characterId
 
-[Weapon]()
+[Weapon](https://rollphes.github.io/GenshinManager/classes/Weapon.html)
 
 ```js
 const { Client, Weapon } = require('genshin-manager')
@@ -171,6 +171,6 @@ console.log(weapon.name) // output: 護摩の杖
 
 examples will be added in the future.
 
-For more information, please check [Documentation]().
+For more information, please check [Documentation](https://rollphes.github.io/GenshinManager/index.html).
 
 You can see the changelog [here](https://github.com/Rollphes/GenshinManager/releases).
