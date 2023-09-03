@@ -1,6 +1,6 @@
 {
   "name": "genshin-manager",
-  "version": "0.0.18",
+  "version": "0.1.0",
   "homepage": "",
   "bugs": "https://github.com/Rollphes/GenshinManager/issues",
   "main": "dist/index.js",
@@ -17,7 +17,6 @@
     "docs": "typedoc --disableSources --out docs src",
     "install": "node scripts/install.js",
     "build": "node -e \"if (fs.existsSync('./dist')) fs.rmSync('./dist', {recursive: true});\" && tsc -p tsconfig.json && tsc-alias -p tsconfig.json",
-    "prepublishOnly": "npm run build",
     "test": "ts-node -r tsconfig-paths/register ./src/test/index.ts"
   },
   "engines": {

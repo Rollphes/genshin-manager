@@ -12,7 +12,64 @@
 <div class="col-content">
 <div class="tsd-page-title">
 <h2>genshin-manager</h2></div>
-<div class="tsd-panel tsd-typography"><a id="md:genshinmanager" class="tsd-anchor"></a><h2><a href="#md:genshinmanager">GenshinManager</a></h2></div></div>
+<div class="tsd-panel tsd-typography"><a id="md:genshinmanager" class="tsd-anchor"></a><h1><a href="#md:genshinmanager">GenshinManager</a></h1><div align="center">
+    <p>
+        <a href="https://www.npmjs.com/package/genshin-manager"><img src="https://img.shields.io/npm/v/genshin-manager.svg?maxAge=3600" alt="npm version" /></a>
+        <a href="https://www.npmjs.com/package/genshin-manager"><img src="https://img.shields.io/npm/dt/genshin-manager.svg?maxAge=3600" alt="npm downloads" /></a>
+        <a href="https://github.com/Rollphes/GenshinManager/actions/workflows/github-code-scanning/codeql"><img src="https://github.com/Rollphes/GenshinManager/actions/workflows/github-code-scanning/codeql/badge.svg"/></a>
+        <a href="https://github.com/Rollphes/GenshinManager/actions/workflows/eslint.yaml"><img src="https://github.com/Rollphes/GenshinManager/actions/workflows/eslint.yaml/badge.svg"/></a>
+        <a href="https://github.com/Rollphes/GenshinManager/blob/main/LICENCE"><img src="https://img.shields.io/badge/License-MIT-yellow.svg"/></a>
+    </p>
+</div>
+
+<a id="md:overview" class="tsd-anchor"></a><h2><a href="#md:overview">Overview</a></h2><p>A Node.js Enka.network and Genshin Data wrapper for Genshin Impact</p>
+<p><strong>This is NOT the source code of Enka.Network or its API.</strong></p>
+<a id="md:description" class="tsd-anchor"></a><h3><a href="#md:description">Description</a></h3><ul>
+<li>User Data and Character Stats using EnkaNetwork.</li>
+<li>All Characters and All Weapons Data. (Including More Advanced Info, such as Skill Attributes and Weapon Refinements.)</li>
+<li>Cache Updater for the new update of Genshin Impact.</li>
+<li>Easily instantiated using id</li>
+</ul>
+<a id="md:installation" class="tsd-anchor"></a><h2><a href="#md:installation">Installation</a></h2><p><strong>Node.js 16 or newer is required.</strong></p>
+<p>Install genshin-manager including genshin cache data.(download All TextMap)</p>
+<pre><code class="language-sh-session">npm install genshin-manager
+</code><button>Copy</button></pre>
+<p>It is recommended that you specify the language to be used since the default is to download all textMaps.</p>
+<pre><code class="language-sh-session">npm install genshin-manager --download-language=&quot;JP&quot;
+</code><button>Copy</button></pre>
+<p>If you have already moved the cache to another folder, you can also install without downloading the cache.</p>
+<pre><code class="language-sh-session">npm install genshin-manager --nocache=true
+</code><button>Copy</button></pre>
+<a id="md:about-genshin-cache-data" class="tsd-anchor"></a><h2><a href="#md:about-genshin-cache-data">About Genshin Cache Data</a></h2><p>Genshin cache data is from <a href="https://gitlab.com/Dimbreath/AnimeGameData">Dimbreath/AnimeGameData</a>.</p>
+<p>This data contains data of characters, weapons, materials, and more structure information of Genshin Impact.</p>
+<p>You can change your cache directory.</p>
+<pre><code class="language-js"><span class="hl-0">const</span><span class="hl-1"> { </span><span class="hl-2">Client</span><span class="hl-1"> } = </span><span class="hl-3">require</span><span class="hl-1">(</span><span class="hl-4">&#39;genshin-manager&#39;</span><span class="hl-1">)</span><br/><br/><span class="hl-5">// Change the directory to store cache data.</span><br/><span class="hl-5">// Default directory is node_modules/genshin-manager/cache.</span><br/><span class="hl-0">const</span><span class="hl-1"> </span><span class="hl-2">client</span><span class="hl-1"> = </span><span class="hl-0">new</span><span class="hl-1"> </span><span class="hl-3">Client</span><span class="hl-1">({ </span><span class="hl-6">assetCacheFolderPath:</span><span class="hl-1"> </span><span class="hl-4">&#39;./cache&#39;</span><span class="hl-1"> })</span><br/><span class="hl-7">await</span><span class="hl-1"> </span><span class="hl-6">client</span><span class="hl-1">.</span><span class="hl-3">deploy</span><span class="hl-1">()</span>
+</code><button>Copy</button></pre>
+<a id="md:updating" class="tsd-anchor"></a><h3><a href="#md:updating">Updating</a></h3><p>You can update your genshin cache data.</p>
+<pre><code class="language-js"><span class="hl-0">const</span><span class="hl-1"> { </span><span class="hl-2">Client</span><span class="hl-1"> } = </span><span class="hl-3">require</span><span class="hl-1">(</span><span class="hl-4">&#39;genshin-manager&#39;</span><span class="hl-1">)</span><br/><br/><span class="hl-5">// showFetchCacheLog is true by default</span><br/><span class="hl-0">const</span><span class="hl-1"> </span><span class="hl-2">client</span><span class="hl-1"> = </span><span class="hl-0">new</span><span class="hl-1"> </span><span class="hl-3">Client</span><span class="hl-1">({ </span><span class="hl-6">showFetchCacheLog:</span><span class="hl-1"> </span><span class="hl-0">true</span><span class="hl-1"> })</span><br/><span class="hl-7">await</span><span class="hl-1"> </span><span class="hl-6">client</span><span class="hl-1">.</span><span class="hl-3">deploy</span><span class="hl-1">()</span>
+</code><button>Copy</button></pre>
+<p>Also, you can activate auto cache updater.</p>
+<pre><code class="language-js"><span class="hl-0">const</span><span class="hl-1"> { </span><span class="hl-2">Client</span><span class="hl-1"> } = </span><span class="hl-3">require</span><span class="hl-1">(</span><span class="hl-4">&#39;genshin-manager&#39;</span><span class="hl-1">)</span><br/><br/><span class="hl-5">// autoFetchLatestAssetsByCron is &quot;0 0 0 * * 3&quot; by default</span><br/><span class="hl-5">// By default, it runs every Wednesday at 00:00:00</span><br/><span class="hl-5">// downloadLanguages is All TextMap by default</span><br/><span class="hl-0">const</span><span class="hl-1"> </span><span class="hl-2">client</span><span class="hl-1"> = </span><span class="hl-0">new</span><span class="hl-1"> </span><span class="hl-3">Client</span><span class="hl-1">({</span><br/><span class="hl-1">  </span><span class="hl-6">downloadLanguages:</span><span class="hl-1"> [</span><span class="hl-4">&#39;EN&#39;</span><span class="hl-1">, </span><span class="hl-4">&#39;JP&#39;</span><span class="hl-1">],</span><br/><span class="hl-1">  </span><span class="hl-6">autoFetchLatestAssetsByCron:</span><span class="hl-1"> </span><span class="hl-4">&#39;0 0 0 * * 3&#39;</span><span class="hl-1">,</span><br/><span class="hl-1">})</span><br/><span class="hl-7">await</span><span class="hl-1"> </span><span class="hl-6">client</span><span class="hl-1">.</span><span class="hl-3">deploy</span><span class="hl-1">()</span><br/><br/><span class="hl-5">// deactivate</span><br/><span class="hl-0">const</span><span class="hl-1"> </span><span class="hl-2">client</span><span class="hl-1"> = </span><span class="hl-0">new</span><span class="hl-1"> </span><span class="hl-3">Client</span><span class="hl-1">({ </span><span class="hl-6">autoFetchLatestAssetsByCron:</span><span class="hl-1"> </span><span class="hl-0">undefined</span><span class="hl-1"> })</span><br/><span class="hl-7">await</span><span class="hl-1"> </span><span class="hl-6">client</span><span class="hl-1">.</span><span class="hl-3">deploy</span><span class="hl-1">()</span>
+</code><button>Copy</button></pre>
+<a id="md:also-feature" class="tsd-anchor"></a><h3><a href="#md:also-feature">Also Feature</a></h3><p>Images can be cached.</p>
+<pre><code class="language-js"><span class="hl-0">const</span><span class="hl-1"> { </span><span class="hl-2">Client</span><span class="hl-1"> } = </span><span class="hl-3">require</span><span class="hl-1">(</span><span class="hl-4">&#39;genshin-manager&#39;</span><span class="hl-1">)</span><br/><br/><span class="hl-5">// autoCacheImage is true by default</span><br/><span class="hl-0">const</span><span class="hl-1"> </span><span class="hl-2">client</span><span class="hl-1"> = </span><span class="hl-0">new</span><span class="hl-1"> </span><span class="hl-3">Client</span><span class="hl-1">({ </span><span class="hl-6">autoCacheImage:</span><span class="hl-1"> </span><span class="hl-0">true</span><span class="hl-1"> })</span><br/><span class="hl-7">await</span><span class="hl-1"> </span><span class="hl-6">client</span><span class="hl-1">.</span><span class="hl-3">deploy</span><span class="hl-1">()</span>
+</code><button>Copy</button></pre>
+<p>Automatically fixes defects in TextMap when they occur.</p>
+<pre><code class="language-js"><span class="hl-0">const</span><span class="hl-1"> { </span><span class="hl-2">Client</span><span class="hl-1"> } = </span><span class="hl-3">require</span><span class="hl-1">(</span><span class="hl-4">&#39;genshin-manager&#39;</span><span class="hl-1">)</span><br/><br/><span class="hl-5">// autoFixTextMap is true by default</span><br/><span class="hl-0">const</span><span class="hl-1"> </span><span class="hl-2">client</span><span class="hl-1"> = </span><span class="hl-0">new</span><span class="hl-1"> </span><span class="hl-3">Client</span><span class="hl-1">({ </span><span class="hl-6">autoFixTextMap:</span><span class="hl-1"> </span><span class="hl-0">true</span><span class="hl-1"> })</span><br/><span class="hl-7">await</span><span class="hl-1"> </span><span class="hl-6">client</span><span class="hl-1">.</span><span class="hl-3">deploy</span><span class="hl-1">()</span>
+</code><button>Copy</button></pre>
+<a id="md:how-to-use" class="tsd-anchor"></a><h1><a href="#md:how-to-use">How to use</a></h1><a id="md:fetching-enka-data" class="tsd-anchor"></a><h2><a href="#md:fetching-enka-data">Fetching Enka Data</a></h2><p><a href="">EnkaManager#fetch</a></p>
+<pre><code class="language-js"><span class="hl-0">const</span><span class="hl-1"> { </span><span class="hl-2">Client</span><span class="hl-1">, </span><span class="hl-2">EnkaManager</span><span class="hl-1"> } = </span><span class="hl-3">require</span><span class="hl-1">(</span><span class="hl-4">&#39;genshin-manager&#39;</span><span class="hl-1">)</span><br/><br/><span class="hl-5">// Loading cache</span><br/><span class="hl-0">const</span><span class="hl-1"> </span><span class="hl-2">client</span><span class="hl-1"> = </span><span class="hl-0">new</span><span class="hl-1"> </span><span class="hl-3">Client</span><span class="hl-1">()</span><br/><span class="hl-7">await</span><span class="hl-1"> </span><span class="hl-6">client</span><span class="hl-1">.</span><span class="hl-3">deploy</span><span class="hl-1">()</span><br/><br/><span class="hl-0">const</span><span class="hl-1"> </span><span class="hl-2">enkaManager</span><span class="hl-1"> = </span><span class="hl-0">new</span><span class="hl-1"> </span><span class="hl-3">EnkaManager</span><span class="hl-1">()</span><br/><br/><span class="hl-0">const</span><span class="hl-1"> </span><span class="hl-2">enkaData</span><span class="hl-1"> = </span><span class="hl-7">await</span><span class="hl-1"> </span><span class="hl-6">enkaManager</span><span class="hl-1">.</span><span class="hl-3">fetch</span><span class="hl-1">(</span><span class="hl-8">800802278</span><span class="hl-1">)</span><br/><span class="hl-6">console</span><span class="hl-1">.</span><span class="hl-3">log</span><span class="hl-1">(</span><span class="hl-6">enkaData</span><span class="hl-1">.</span><span class="hl-6">uid</span><span class="hl-1">)</span><br/><span class="hl-6">console</span><span class="hl-1">.</span><span class="hl-3">log</span><span class="hl-1">(</span><span class="hl-6">enkaData</span><span class="hl-1">.</span><span class="hl-6">playerInfo</span><span class="hl-1">)</span><br/><span class="hl-6">console</span><span class="hl-1">.</span><span class="hl-3">log</span><span class="hl-1">(</span><span class="hl-6">enkaData</span><span class="hl-1">.</span><span class="hl-6">avatarInfoList</span><span class="hl-1">)</span><br/><span class="hl-6">console</span><span class="hl-1">.</span><span class="hl-3">log</span><span class="hl-1">(</span><span class="hl-6">enkaData</span><span class="hl-1">.</span><span class="hl-6">nextShowCaseDate</span><span class="hl-1">)</span>
+</code><button>Copy</button></pre>
+<a id="md:genshin-character-from-characterid" class="tsd-anchor"></a><h2><a href="#md:genshin-character-from-characterid">Genshin Character from characterId</a></h2><p><a href="">Character</a></p>
+<pre><code class="language-js"><span class="hl-0">const</span><span class="hl-1"> { </span><span class="hl-2">Client</span><span class="hl-1">, </span><span class="hl-2">Character</span><span class="hl-1"> } = </span><span class="hl-3">require</span><span class="hl-1">(</span><span class="hl-4">&#39;genshin-manager&#39;</span><span class="hl-1">)</span><br/><br/><span class="hl-5">// Loading cache</span><br/><span class="hl-0">const</span><span class="hl-1"> </span><span class="hl-2">client</span><span class="hl-1"> = </span><span class="hl-0">new</span><span class="hl-1"> </span><span class="hl-3">Client</span><span class="hl-1">({ </span><span class="hl-6">defaultLanguage:</span><span class="hl-1"> </span><span class="hl-4">&#39;JP&#39;</span><span class="hl-1"> })</span><br/><span class="hl-7">await</span><span class="hl-1"> </span><span class="hl-6">client</span><span class="hl-1">.</span><span class="hl-3">deploy</span><span class="hl-1">()</span><br/><br/><span class="hl-0">const</span><span class="hl-1"> </span><span class="hl-2">character</span><span class="hl-1"> = </span><span class="hl-0">new</span><span class="hl-1"> </span><span class="hl-3">Character</span><span class="hl-1">(</span><span class="hl-8">10000002</span><span class="hl-1">)</span><br/><span class="hl-5">// print character name in language &quot;jp&quot;</span><br/><span class="hl-6">console</span><span class="hl-1">.</span><span class="hl-3">log</span><span class="hl-1">(</span><span class="hl-6">character</span><span class="hl-1">.</span><span class="hl-6">name</span><span class="hl-1">) </span><span class="hl-5">// output: 神里綾華</span>
+</code><button>Copy</button></pre>
+<a id="md:genshin-weapon-from-characterid" class="tsd-anchor"></a><h2><a href="#md:genshin-weapon-from-characterid">Genshin Weapon from characterId</a></h2><p><a href="">Weapon</a></p>
+<pre><code class="language-js"><span class="hl-0">const</span><span class="hl-1"> { </span><span class="hl-2">Client</span><span class="hl-1">, </span><span class="hl-2">Weapon</span><span class="hl-1"> } = </span><span class="hl-3">require</span><span class="hl-1">(</span><span class="hl-4">&#39;genshin-manager&#39;</span><span class="hl-1">)</span><br/><br/><span class="hl-5">// Loading cache</span><br/><span class="hl-0">const</span><span class="hl-1"> </span><span class="hl-2">client</span><span class="hl-1"> = </span><span class="hl-0">new</span><span class="hl-1"> </span><span class="hl-3">Client</span><span class="hl-1">({ </span><span class="hl-6">defaultLanguage:</span><span class="hl-1"> </span><span class="hl-4">&#39;JP&#39;</span><span class="hl-1"> })</span><br/><span class="hl-7">await</span><span class="hl-1"> </span><span class="hl-6">client</span><span class="hl-1">.</span><span class="hl-3">deploy</span><span class="hl-1">()</span><br/><br/><span class="hl-0">const</span><span class="hl-1"> </span><span class="hl-2">weapon</span><span class="hl-1"> = </span><span class="hl-0">new</span><span class="hl-1"> </span><span class="hl-3">Weapon</span><span class="hl-1">(</span><span class="hl-8">13501</span><span class="hl-1">)</span><br/><span class="hl-5">// print weapon name in language &quot;jp&quot;</span><br/><span class="hl-6">console</span><span class="hl-1">.</span><span class="hl-3">log</span><span class="hl-1">(</span><span class="hl-6">weapon</span><span class="hl-1">.</span><span class="hl-6">name</span><span class="hl-1">) </span><span class="hl-5">// output: 護摩の杖</span>
+</code><button>Copy</button></pre>
+<p>examples will be added in the future.</p>
+<p>For more information, please check <a href="">Documentation</a>.</p>
+<p>You can see the changelog <a href="https://github.com/Rollphes/GenshinManager/releases">here</a>.</p>
+</div></div>
 <div class="col-sidebar">
 <div class="page-menu">
 <div class="tsd-navigation settings">
@@ -34,7 +91,25 @@
 <ul>
 <li>
 <ul>
-<li><a href="#md:genshinmanager"><span>Genshin<wbr/>Manager</span></a></li></ul></li></ul></div></details></div>
+<li><a href="#md:genshinmanager"><span>Genshin<wbr/>Manager</span></a></li>
+<li>
+<ul>
+<li><a href="#md:overview"><span>Overview</span></a></li>
+<li>
+<ul>
+<li><a href="#md:description"><span>Description</span></a></li></ul></li>
+<li><a href="#md:installation"><span>Installation</span></a></li>
+<li><a href="#md:about-genshin-cache-data"><span>About <wbr/>Genshin <wbr/>Cache <wbr/>Data</span></a></li>
+<li>
+<ul>
+<li><a href="#md:updating"><span>Updating</span></a></li>
+<li><a href="#md:also-feature"><span>Also <wbr/>Feature</span></a></li></ul></li></ul></li>
+<li><a href="#md:how-to-use"><span>How to use</span></a></li>
+<li>
+<ul>
+<li><a href="#md:fetching-enka-data"><span>Fetching <wbr/>Enka <wbr/>Data</span></a></li>
+<li><a href="#md:genshin-character-from-characterid"><span>Genshin <wbr/>Character from character<wbr/>Id</span></a></li>
+<li><a href="#md:genshin-weapon-from-characterid"><span>Genshin <wbr/>Weapon from character<wbr/>Id</span></a></li></ul></li></ul></li></ul></div></details></div>
 <div class="site-menu">
 <nav class="tsd-navigation"><a href="modules.html" class="current"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><g id="icon-4"><rect fill="var(--color-icon-background)" stroke="var(--color-ts-namespace)" stroke-width="1.5" x="1" y="1" width="22" height="22" rx="6"></rect><path d="M9.33 16V7.24H10.77L13.446 14.74C13.43 14.54 13.41 14.296 13.386 14.008C13.37 13.712 13.354 13.404 13.338 13.084C13.33 12.756 13.326 12.448 13.326 12.16V7.24H14.37V16H12.93L10.266 8.5C10.282 8.692 10.298 8.936 10.314 9.232C10.33 9.52 10.342 9.828 10.35 10.156C10.366 10.476 10.374 10.784 10.374 11.08V16H9.33Z" fill="var(--color-text)"></path></g></svg><span>genshin-<wbr/>manager</span></a>
 <ul class="tsd-small-nested-navigation">
