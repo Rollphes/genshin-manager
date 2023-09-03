@@ -1,5 +1,4 @@
 import * as cliProgress from 'cli-progress'
-import EventEmitter from 'events'
 import fs from 'fs'
 import * as fsPromises from 'fs/promises'
 import Module from 'module'
@@ -21,7 +20,7 @@ import { ObjectKeyDecoder } from '@/utils/ObjectKeyDecoder'
 import { TextMapEmptyWritable } from '@/utils/TextMapEmptyWritable'
 import { TextMapTransform } from '@/utils/TextMapTransform'
 
-export abstract class AssetCacheManager extends EventEmitter {
+export abstract class AssetCacheManager {
   private static option: ClientOption
   private static gitRemoteAPIUrl: string =
     'https://gitlab.com/api/v4/projects/41287973/repository/commits?per_page=1'
@@ -135,7 +134,6 @@ export abstract class AssetCacheManager extends EventEmitter {
   > = new Map()
 
   constructor(option: ClientOption, children: Module[]) {
-    super()
     AssetCacheManager.option = option
     AssetCacheManager.childrenModule = children
     AssetCacheManager.commitFilePath = path.resolve(
