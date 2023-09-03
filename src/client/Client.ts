@@ -89,6 +89,7 @@ export class Client extends AssetCacheManager {
       this.option.assetCacheFolderPath ==
         path.resolve(__dirname, '..', '..', 'cache')
     ) {
+      void Client.updateCache()
       cron.schedule(this.option.autoFetchLatestAssetsByCron, () => {
         void Client.updateCache()
       })
