@@ -70,7 +70,7 @@ export interface ClientOption {
    */
   autoFetchLatestAssets: boolean
   /**
-   * auto fix textMap
+   * Automatically re-download the textMap if it has not been downloaded or if there is an error in the json format.
    * @default true
    */
   autoFixTextMap: boolean
