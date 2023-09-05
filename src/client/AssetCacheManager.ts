@@ -191,7 +191,7 @@ export abstract class AssetCacheManager {
     } else {
       if (this.option.showFetchCacheLog)
         console.log('GenshinManager: No new Asset found. Set cache.')
-      if (this.cachedExcelBinOutput.size != 0) return
+      if (this.excelBinOutputKeyList.size != 0) return //Return here because we do not want the update process to start and the cache to be empty.
       this.createExcelBinOutputKeyList(this.childrenModule)
       await this.setExcelBinOutputToCache()
       this.createTextHashList()
