@@ -40,7 +40,7 @@ async function main() {
         timeout: 0,
       },
     })
-    client.deploy()
+    await client.deploy()
   }
 }
 void main()

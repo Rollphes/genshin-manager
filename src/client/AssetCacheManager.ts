@@ -165,10 +165,7 @@ export abstract class AssetCacheManager {
    * ```
    */
   protected static async updateCache() {
-    if (
-      (await this.checkGitUpdate()) &&
-      this.option.autoFetchLatestAssetsByCron
-    ) {
+    if (await this.checkGitUpdate()) {
       if (this.option.showFetchCacheLog)
         console.log('GenshinManager: New Assets found. Update Assets.')
       this.createExcelBinOutputKeyList()
@@ -191,7 +188,6 @@ export abstract class AssetCacheManager {
     } else {
       if (this.option.showFetchCacheLog)
         console.log('GenshinManager: No new Asset found. Set cache.')
-      if (this.excelBinOutputKeyList.size != 0) return //Return here because we do not want the update process to start and the cache to be empty.
       this.createExcelBinOutputKeyList(this.childrenModule)
       await this.setExcelBinOutputToCache()
       this.createTextHashList()
@@ -218,8 +214,6 @@ export abstract class AssetCacheManager {
           })
       }),
     )
-
-    if (!this.option.autoFetchLatestAssetsByCron) return false
 
     const oldCommits = fs.existsSync(this.commitFilePath)
       ? (JSON.parse(
