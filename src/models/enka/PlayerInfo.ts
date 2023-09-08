@@ -4,7 +4,7 @@ import { ShowAvatarInfo } from '@/models/enka/ShowAvatarInfo'
 import { Material } from '@/models/Material'
 import { APIPlayerInfo } from '@/types/EnkaTypes'
 /**
- * Class of player's information.
+ * Class of player obtained from EnkaNetwork.
  */
 export class PlayerInfo {
   /**

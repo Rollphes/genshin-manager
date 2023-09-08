@@ -14,7 +14,7 @@ import {
 } from '@/types/EnkaTypes'
 
 /**
- * Class of character's information.
+ * Class of the character obtained from EnkaNetwork.
  */
 export class AvatarInfo extends CharacterInfo {
   /**
