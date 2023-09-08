@@ -16,13 +16,13 @@
 <li><a href="AvatarInfo.html">AvatarInfo</a></li></ul>
 <h1>Class AvatarInfo</h1></div>
 <section class="tsd-panel tsd-comment">
-<div class="tsd-comment tsd-typography"><p>Class of character&#39;s information.</p>
+<div class="tsd-comment tsd-typography"><p>Class of the character obtained from EnkaNetwork.</p>
 </div>
 <div class="tsd-comment tsd-typography"></div></section>
 <section class="tsd-panel tsd-hierarchy">
 <h4>Hierarchy</h4>
 <ul class="tsd-hierarchy">
-<li><a href="Character.html" class="tsd-signature-type tsd-kind-class">Character</a>
+<li><a href="CharacterInfo.html" class="tsd-signature-type tsd-kind-class">CharacterInfo</a>
 <ul class="tsd-hierarchy">
 <li><span class="target">AvatarInfo</span></li></ul></li></ul></section>
 <section class="tsd-panel-group tsd-index-group">
@@ -48,8 +48,8 @@
 <a href="AvatarInfo.html#level" class="tsd-index-link"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-1024"></use></svg><span>level</span></a>
 <a href="AvatarInfo.html#levelXp" class="tsd-index-link"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-1024"></use></svg><span>level<wbr/>Xp</span></a>
 <a href="AvatarInfo.html#name" class="tsd-index-link tsd-is-inherited"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-1024"></use></svg><span>name</span></a>
-<a href="AvatarInfo.html#oneSetBonusIds" class="tsd-index-link tsd-is-private"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-1024"></use></svg><span>one<wbr/>Set<wbr/>Bonus<wbr/>Ids</span></a>
 <a href="AvatarInfo.html#proudMap" class="tsd-index-link tsd-is-inherited"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-1024"></use></svg><span>proud<wbr/>Map</span></a>
+<a href="AvatarInfo.html#setBonus" class="tsd-index-link"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-1024"></use></svg><span>set<wbr/>Bonus</span></a>
 <a href="AvatarInfo.html#skillOrder" class="tsd-index-link tsd-is-inherited"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-1024"></use></svg><span>skill<wbr/>Order</span></a>
 <a href="AvatarInfo.html#skills" class="tsd-index-link"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-1024"></use></svg><span>skills</span></a>
 <a href="AvatarInfo.html#subSkills" class="tsd-index-link tsd-is-inherited"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-1024"></use></svg><span>sub<wbr/>Skills</span></a>
@@ -59,8 +59,7 @@
 </div></section>
 <section class="tsd-index-section">
 <h3 class="tsd-index-heading">Methods</h3>
-<div class="tsd-index-list"><a href="AvatarInfo.html#searchActiveSetBonus" class="tsd-index-link"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><g id="icon-2048"><rect fill="var(--color-icon-background)" stroke="#FF4DB8" stroke-width="1.5" x="1" y="1" width="22" height="22" rx="12"></rect><path d="M9.162 16V7.24H10.578L11.514 10.072C11.602 10.328 11.674 10.584 11.73 10.84C11.794 11.088 11.842 11.28 11.874 11.416C11.906 11.28 11.954 11.088 12.018 10.84C12.082 10.584 12.154 10.324 12.234 10.06L13.122 7.24H14.538V16H13.482V12.82C13.482 12.468 13.49 12.068 13.506 11.62C13.53 11.172 13.558 10.716 13.59 10.252C13.622 9.78 13.654 9.332 13.686 8.908C13.726 8.476 13.762 8.1 13.794 7.78L12.366 12.16H11.334L9.894 7.78C9.934 8.092 9.97 8.456 10.002 8.872C10.042 9.28 10.078 9.716 10.11 10.18C10.142 10.636 10.166 11.092 10.182 11.548C10.206 12.004 10.218 12.428 10.218 12.82V16H9.162Z" fill="var(--color-text)"></path></g></svg><span>search<wbr/>Active<wbr/>Set<wbr/>Bonus</span></a>
-<a href="AvatarInfo.html#getAllCharacterIds" class="tsd-index-link tsd-is-inherited"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-2048"></use></svg><span>get<wbr/>All<wbr/>Character<wbr/>Ids</span></a>
+<div class="tsd-index-list"><a href="AvatarInfo.html#getAllCharacterIds" class="tsd-index-link tsd-is-inherited"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><g id="icon-2048"><rect fill="var(--color-icon-background)" stroke="#FF4DB8" stroke-width="1.5" x="1" y="1" width="22" height="22" rx="12"></rect><path d="M9.162 16V7.24H10.578L11.514 10.072C11.602 10.328 11.674 10.584 11.73 10.84C11.794 11.088 11.842 11.28 11.874 11.416C11.906 11.28 11.954 11.088 12.018 10.84C12.082 10.584 12.154 10.324 12.234 10.06L13.122 7.24H14.538V16H13.482V12.82C13.482 12.468 13.49 12.068 13.506 11.62C13.53 11.172 13.558 10.716 13.59 10.252C13.622 9.78 13.654 9.332 13.686 8.908C13.726 8.476 13.762 8.1 13.794 7.78L12.366 12.16H11.334L9.894 7.78C9.934 8.092 9.97 8.456 10.002 8.872C10.042 9.28 10.078 9.716 10.11 10.18C10.142 10.636 10.166 11.092 10.182 11.548C10.206 12.004 10.218 12.428 10.218 12.82V16H9.162Z" fill="var(--color-text)"></path></g></svg><span>get<wbr/>All<wbr/>Character<wbr/>Ids</span></a>
 </div></section></div></details></section></section>
 <section class="tsd-panel-group tsd-member-group">
 <h2>Constructors</h2>
@@ -75,7 +74,7 @@
 <li>
 <h5><span class="tsd-kind-parameter">data</span>: <span class="tsd-signature-type ">APIAvatarInfo</span></h5></li></ul></div>
 <h4 class="tsd-returns-title">Returns <a href="AvatarInfo.html" class="tsd-signature-type tsd-kind-class">AvatarInfo</a></h4><aside class="tsd-sources">
-<p>Overrides <a href="Character.html">Character</a>.<a href="Character.html#constructor">constructor</a></p></aside></li></ul></section></section>
+<p>Overrides <a href="CharacterInfo.html">CharacterInfo</a>.<a href="CharacterInfo.html#constructor">constructor</a></p></aside></li></ul></section></section>
 <section class="tsd-panel-group tsd-member-group">
 <h2>Properties</h2>
 <section class="tsd-panel tsd-member"><a id="artifacts" class="tsd-anchor"></a>
@@ -102,21 +101,21 @@
 <div class="tsd-comment tsd-typography"><p>Default costume id</p>
 </div>
 <div class="tsd-comment tsd-typography"></div><aside class="tsd-sources">
-<p>Inherited from <a href="Character.html">Character</a>.<a href="Character.html#defaultCostumeId">defaultCostumeId</a></p></aside></section>
+<p>Inherited from <a href="CharacterInfo.html">CharacterInfo</a>.<a href="CharacterInfo.html#defaultCostumeId">defaultCostumeId</a></p></aside></section>
 <section class="tsd-panel tsd-member tsd-is-inherited"><a id="depotId" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><code class="tsd-tag ts-flagReadonly">Readonly</code> <span>depot<wbr/>Id</span><a href="#depotId" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></h3>
 <div class="tsd-signature"><span class="tsd-kind-property">depot<wbr/>Id</span><span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div>
 <div class="tsd-comment tsd-typography"><p>Skill depot id</p>
 </div>
 <div class="tsd-comment tsd-typography"></div><aside class="tsd-sources">
-<p>Inherited from <a href="Character.html">Character</a>.<a href="Character.html#depotId">depotId</a></p></aside></section>
+<p>Inherited from <a href="CharacterInfo.html">CharacterInfo</a>.<a href="CharacterInfo.html#depotId">depotId</a></p></aside></section>
 <section class="tsd-panel tsd-member tsd-is-inherited"><a id="element" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><code class="tsd-tag ts-flagReadonly">Readonly</code> <span>element</span><a href="#element" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></h3>
 <div class="tsd-signature"><span class="tsd-kind-property">element</span><span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type ">ValueOf</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-symbol">{ </span><br/><span>    </span><span class="tsd-kind-property">Electric</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">&quot;Electro&quot;</span><span class="tsd-signature-symbol">; </span><br/><span>    </span><span class="tsd-kind-property">Fire</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">&quot;Pyro&quot;</span><span class="tsd-signature-symbol">; </span><br/><span>    </span><span class="tsd-kind-property">Grass</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">&quot;Dendro&quot;</span><span class="tsd-signature-symbol">; </span><br/><span>    </span><span class="tsd-kind-property">Ice</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">&quot;Cryo&quot;</span><span class="tsd-signature-symbol">; </span><br/><span>    </span><span class="tsd-kind-property">Physical</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">&quot;Phys&quot;</span><span class="tsd-signature-symbol">; </span><br/><span>    </span><span class="tsd-kind-property">Rock</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">&quot;Geo&quot;</span><span class="tsd-signature-symbol">; </span><br/><span>    </span><span class="tsd-kind-property">Water</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">&quot;Hydro&quot;</span><span class="tsd-signature-symbol">; </span><br/><span>    </span><span class="tsd-kind-property">Wind</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">&quot;Anemo&quot;</span><span class="tsd-signature-symbol">; </span><br/><span class="tsd-signature-symbol">}</span><span class="tsd-signature-symbol">&gt;</span></div>
 <div class="tsd-comment tsd-typography"><p>Element of the character</p>
 </div>
 <div class="tsd-comment tsd-typography"></div><aside class="tsd-sources">
-<p>Inherited from <a href="Character.html">Character</a>.<a href="Character.html#element">element</a></p></aside></section>
+<p>Inherited from <a href="CharacterInfo.html">CharacterInfo</a>.<a href="CharacterInfo.html#element">element</a></p></aside></section>
 <section class="tsd-panel tsd-member"><a id="fightProp" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><code class="tsd-tag ts-flagReadonly">Readonly</code> <span>fight<wbr/>Prop</span><a href="#fightProp" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></h3>
 <div class="tsd-signature"><span class="tsd-kind-property">fight<wbr/>Prop</span><span class="tsd-signature-symbol">:</span> <a href="FightProp.html" class="tsd-signature-type tsd-kind-class">FightProp</a></div>
@@ -135,7 +134,7 @@
 <div class="tsd-comment tsd-typography"><p>Character id</p>
 </div>
 <div class="tsd-comment tsd-typography"></div><aside class="tsd-sources">
-<p>Inherited from <a href="Character.html">Character</a>.<a href="Character.html#id">id</a></p></aside></section>
+<p>Inherited from <a href="CharacterInfo.html">CharacterInfo</a>.<a href="CharacterInfo.html#id">id</a></p></aside></section>
 <section class="tsd-panel tsd-member"><a id="level" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><code class="tsd-tag ts-flagReadonly">Readonly</code> <span>level</span><a href="#level" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></h3>
 <div class="tsd-signature"><span class="tsd-kind-property">level</span><span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div>
@@ -154,27 +153,24 @@
 <div class="tsd-comment tsd-typography"><p>Character name</p>
 </div>
 <div class="tsd-comment tsd-typography"></div><aside class="tsd-sources">
-<p>Inherited from <a href="Character.html">Character</a>.<a href="Character.html#name">name</a></p></aside></section>
-<section class="tsd-panel tsd-member tsd-is-private"><a id="oneSetBonusIds" class="tsd-anchor"></a>
-<h3 class="tsd-anchor-link"><code class="tsd-tag ts-flagPrivate">Private</code> <code class="tsd-tag ts-flagReadonly">Readonly</code> <span>one<wbr/>Set<wbr/>Bonus<wbr/>Ids</span><a href="#oneSetBonusIds" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></h3>
-<div class="tsd-signature"><span class="tsd-kind-property">one<wbr/>Set<wbr/>Bonus<wbr/>Ids</span><span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol"> = ...</span></div>
-<div class="tsd-comment tsd-typography"><p>IDs of set bonuses that can be activated with one artifact.</p>
-</div>
-<div class="tsd-comment tsd-typography"></div></section>
+<p>Inherited from <a href="CharacterInfo.html">CharacterInfo</a>.<a href="CharacterInfo.html#name">name</a></p></aside></section>
 <section class="tsd-panel tsd-member tsd-is-inherited"><a id="proudMap" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><code class="tsd-tag ts-flagReadonly">Readonly</code> <span>proud<wbr/>Map</span><a href="#proudMap" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></h3>
 <div class="tsd-signature"><span class="tsd-kind-property">proud<wbr/>Map</span><span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type ">Map</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> = ...</span></div>
 <div class="tsd-comment tsd-typography"><p>Map of skill id and proud id</p>
 </div>
 <div class="tsd-comment tsd-typography"></div><aside class="tsd-sources">
-<p>Inherited from <a href="Character.html">Character</a>.<a href="Character.html#proudMap">proudMap</a></p></aside></section>
+<p>Inherited from <a href="CharacterInfo.html">CharacterInfo</a>.<a href="CharacterInfo.html#proudMap">proudMap</a></p></aside></section>
+<section class="tsd-panel tsd-member"><a id="setBonus" class="tsd-anchor"></a>
+<h3 class="tsd-anchor-link"><code class="tsd-tag ts-flagReadonly">Readonly</code> <span>set<wbr/>Bonus</span><a href="#setBonus" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></h3>
+<div class="tsd-signature"><span class="tsd-kind-property">set<wbr/>Bonus</span><span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type ">SetBonus</span></div></section>
 <section class="tsd-panel tsd-member tsd-is-inherited"><a id="skillOrder" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><code class="tsd-tag ts-flagReadonly">Readonly</code> <span>skill<wbr/>Order</span><a href="#skillOrder" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></h3>
 <div class="tsd-signature"><span class="tsd-kind-property">skill<wbr/>Order</span><span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">[]</span></div>
 <div class="tsd-comment tsd-typography"><p>Skill order</p>
 </div>
 <div class="tsd-comment tsd-typography"></div><aside class="tsd-sources">
-<p>Inherited from <a href="Character.html">Character</a>.<a href="Character.html#skillOrder">skillOrder</a></p></aside></section>
+<p>Inherited from <a href="CharacterInfo.html">CharacterInfo</a>.<a href="CharacterInfo.html#skillOrder">skillOrder</a></p></aside></section>
 <section class="tsd-panel tsd-member"><a id="skills" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><code class="tsd-tag ts-flagReadonly">Readonly</code> <span>skills</span><a href="#skills" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></h3>
 <div class="tsd-signature"><span class="tsd-kind-property">skills</span><span class="tsd-signature-symbol">:</span> <a href="Skill.html" class="tsd-signature-type tsd-kind-class">Skill</a><span class="tsd-signature-symbol">[]</span></div>
@@ -187,14 +183,14 @@
 <div class="tsd-comment tsd-typography"><p>Sub skills</p>
 </div>
 <div class="tsd-comment tsd-typography"></div><aside class="tsd-sources">
-<p>Inherited from <a href="Character.html">Character</a>.<a href="Character.html#subSkills">subSkills</a></p></aside></section>
+<p>Inherited from <a href="CharacterInfo.html">CharacterInfo</a>.<a href="CharacterInfo.html#subSkills">subSkills</a></p></aside></section>
 <section class="tsd-panel tsd-member tsd-is-inherited"><a id="talentIds" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><code class="tsd-tag ts-flagReadonly">Readonly</code> <span>talent<wbr/>Ids</span><a href="#talentIds" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></h3>
 <div class="tsd-signature"><span class="tsd-kind-property">talent<wbr/>Ids</span><span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">[]</span></div>
 <div class="tsd-comment tsd-typography"><p>Talent ids</p>
 </div>
 <div class="tsd-comment tsd-typography"></div><aside class="tsd-sources">
-<p>Inherited from <a href="Character.html">Character</a>.<a href="Character.html#talentIds">talentIds</a></p></aside></section>
+<p>Inherited from <a href="CharacterInfo.html">CharacterInfo</a>.<a href="CharacterInfo.html#talentIds">talentIds</a></p></aside></section>
 <section class="tsd-panel tsd-member"><a id="talentList" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><code class="tsd-tag ts-flagReadonly">Readonly</code> <span>talent<wbr/>List</span><a href="#talentList" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></h3>
 <div class="tsd-signature"><span class="tsd-kind-property">talent<wbr/>List</span><span class="tsd-signature-symbol">:</span> <a href="Talent.html" class="tsd-signature-type tsd-kind-class">Talent</a><span class="tsd-signature-symbol">[]</span></div>
@@ -209,16 +205,6 @@
 <div class="tsd-comment tsd-typography"></div></section></section>
 <section class="tsd-panel-group tsd-member-group">
 <h2>Methods</h2>
-<section class="tsd-panel tsd-member"><a id="searchActiveSetBonus" class="tsd-anchor"></a>
-<h3 class="tsd-anchor-link"><span>search<wbr/>Active<wbr/>Set<wbr/>Bonus</span><a href="#searchActiveSetBonus" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></h3>
-<ul class="tsd-signatures">
-<li class="tsd-signature tsd-anchor-link" id="searchActiveSetBonus.searchActiveSetBonus-1"><span class="tsd-kind-call-signature">search<wbr/>Active<wbr/>Set<wbr/>Bonus</span><span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type ">SetBonus</span><a href="#searchActiveSetBonus.searchActiveSetBonus-1" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></li>
-<li class="tsd-description">
-<div class="tsd-comment tsd-typography"><p>Search active set bonus.</p>
-</div>
-<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type ">SetBonus</span></h4><p>SetBonus</p>
-
-<div class="tsd-comment tsd-typography"></div></li></ul></section>
 <section class="tsd-panel tsd-member tsd-is-inherited"><a id="getAllCharacterIds" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><code class="tsd-tag ts-flagStatic">Static</code> <span>get<wbr/>All<wbr/>Character<wbr/>Ids</span><a href="#getAllCharacterIds" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></h3>
 <ul class="tsd-signatures tsd-is-inherited">
@@ -229,7 +215,7 @@
 <h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">[]</span></h4><p>All character ids</p>
 
 <div class="tsd-comment tsd-typography"></div><aside class="tsd-sources">
-<p>Inherited from <a href="Character.html">Character</a>.<a href="Character.html#getAllCharacterIds">getAllCharacterIds</a></p></aside></li></ul></section></section></div>
+<p>Inherited from <a href="CharacterInfo.html">CharacterInfo</a>.<a href="CharacterInfo.html#getAllCharacterIds">getAllCharacterIds</a></p></aside></li></ul></section></section></div>
 <div class="col-sidebar">
 <div class="page-menu">
 <div class="tsd-navigation settings">
@@ -262,15 +248,14 @@
 <li><a href="#level" class=""><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-1024"></use></svg><span>level</span></a></li>
 <li><a href="#levelXp" class=""><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-1024"></use></svg><span>level<wbr/>Xp</span></a></li>
 <li><a href="#name" class="tsd-is-inherited"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-1024"></use></svg><span>name</span></a></li>
-<li><a href="#oneSetBonusIds" class="tsd-is-private"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-1024"></use></svg><span>one<wbr/>Set<wbr/>Bonus<wbr/>Ids</span></a></li>
 <li><a href="#proudMap" class="tsd-is-inherited"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-1024"></use></svg><span>proud<wbr/>Map</span></a></li>
+<li><a href="#setBonus" class=""><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-1024"></use></svg><span>set<wbr/>Bonus</span></a></li>
 <li><a href="#skillOrder" class="tsd-is-inherited"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-1024"></use></svg><span>skill<wbr/>Order</span></a></li>
 <li><a href="#skills" class=""><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-1024"></use></svg><span>skills</span></a></li>
 <li><a href="#subSkills" class="tsd-is-inherited"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-1024"></use></svg><span>sub<wbr/>Skills</span></a></li>
 <li><a href="#talentIds" class="tsd-is-inherited"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-1024"></use></svg><span>talent<wbr/>Ids</span></a></li>
 <li><a href="#talentList" class=""><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-1024"></use></svg><span>talent<wbr/>List</span></a></li>
 <li><a href="#weapon" class=""><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-1024"></use></svg><span>weapon</span></a></li>
-<li><a href="#searchActiveSetBonus" class=""><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-2048"></use></svg><span>search<wbr/>Active<wbr/>Set<wbr/>Bonus</span></a></li>
 <li><a href="#getAllCharacterIds" class="tsd-is-inherited"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-2048"></use></svg><span>get<wbr/>All<wbr/>Character<wbr/>Ids</span></a></li></ul></div></details></div>
 <div class="site-menu">
 <nav class="tsd-navigation"><a href="../modules.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><g id="icon-4"><rect fill="var(--color-icon-background)" stroke="var(--color-ts-namespace)" stroke-width="1.5" x="1" y="1" width="22" height="22" rx="6"></rect><path d="M9.33 16V7.24H10.77L13.446 14.74C13.43 14.54 13.41 14.296 13.386 14.008C13.37 13.712 13.354 13.404 13.338 13.084C13.33 12.756 13.326 12.448 13.326 12.16V7.24H14.37V16H12.93L10.266 8.5C10.282 8.692 10.298 8.936 10.314 9.232C10.33 9.52 10.342 9.828 10.35 10.156C10.366 10.476 10.374 10.784 10.374 11.08V16H9.33Z" fill="var(--color-text)"></path></g></svg><span>genshin-<wbr/>manager</span></a>
@@ -278,7 +263,7 @@
 <li><a href="Artifact.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><g id="icon-128"><rect fill="var(--color-icon-background)" stroke="var(--color-ts-class)" stroke-width="1.5" x="1" y="1" width="22" height="22" rx="6"></rect><path d="M11.898 16.1201C11.098 16.1201 10.466 15.8961 10.002 15.4481C9.53803 15.0001 9.30603 14.3841 9.30603 13.6001V9.64012C9.30603 8.85612 9.53803 8.24012 10.002 7.79212C10.466 7.34412 11.098 7.12012 11.898 7.12012C12.682 7.12012 13.306 7.34812 13.77 7.80412C14.234 8.25212 14.466 8.86412 14.466 9.64012H13.386C13.386 9.14412 13.254 8.76412 12.99 8.50012C12.734 8.22812 12.37 8.09212 11.898 8.09212C11.426 8.09212 11.054 8.22412 10.782 8.48812C10.518 8.75212 10.386 9.13212 10.386 9.62812V13.6001C10.386 14.0961 10.518 14.4801 10.782 14.7521C11.054 15.0161 11.426 15.1481 11.898 15.1481C12.37 15.1481 12.734 15.0161 12.99 14.7521C13.254 14.4801 13.386 14.0961 13.386 13.6001H14.466C14.466 14.3761 14.234 14.9921 13.77 15.4481C13.306 15.8961 12.682 16.1201 11.898 16.1201Z" fill="var(--color-text)"></path></g></svg><span>Artifact</span></a></li>
 <li><a href="AssetsNotFoundError.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-128"></use></svg><span>Assets<wbr/>Not<wbr/>Found<wbr/>Error</span></a></li>
 <li><a href="AvatarInfo.html" class="current"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-128"></use></svg><span>Avatar<wbr/>Info</span></a></li>
-<li><a href="Character.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-128"></use></svg><span>Character</span></a></li>
+<li><a href="CharacterInfo.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-128"></use></svg><span>Character<wbr/>Info</span></a></li>
 <li><a href="Client.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-128"></use></svg><span>Client</span></a></li>
 <li><a href="Costume.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-128"></use></svg><span>Costume</span></a></li>
 <li><a href="EnkaManager.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-128"></use></svg><span>Enka<wbr/>Manager</span></a></li>
