@@ -40,7 +40,7 @@ export class Artifact {
    */
   public readonly setName: string | undefined
   /**
-   * Artifact set description
+   * Artifact set description (index:1 = 1pc, 2 = 2pc , 4 = 4pc)
    */
   public readonly setDescriptions: { [count: number]: string | undefined } = {}
   /**
