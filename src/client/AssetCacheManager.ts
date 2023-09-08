@@ -65,6 +65,7 @@ export abstract class AssetCacheManager {
       'ReliquaryMainPropExcelConfigData',
       'ReliquaryLevelExcelConfigData',
       'ReliquaryAffixExcelConfigData',
+      'ManualTextMapConfigData',
     ],
     ShowAvatarInfo: [
       'AvatarCostumeExcelConfigData',
