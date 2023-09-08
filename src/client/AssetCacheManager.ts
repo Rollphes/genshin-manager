@@ -39,7 +39,7 @@ export abstract class AssetCacheManager {
   private static excelBinOutputMapUseModel: {
     [className: string]: Array<keyof typeof ExcelBinOutputs>
   } = {
-    Character: [
+    CharacterInfo: [
       'AvatarCostumeExcelConfigData',
       'AvatarExcelConfigData',
       'AvatarSkillDepotExcelConfigData',
