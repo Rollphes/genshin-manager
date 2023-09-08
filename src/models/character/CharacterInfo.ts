@@ -4,7 +4,7 @@ import { JsonObject } from '@/utils/JsonParser'
 /**
  * Class that summarizes IDs and other information related to the character.
  */
-export class Character {
+export class CharacterInfo {
   /**
    * Character id
    */

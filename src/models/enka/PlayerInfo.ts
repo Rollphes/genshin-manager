@@ -1,4 +1,4 @@
-import { Character } from '@/models/character/Character'
+import { CharacterInfo } from '@/models/character/CharacterInfo'
 import { Costume } from '@/models/character/Costume'
 import { ShowAvatarInfo } from '@/models/enka/ShowAvatarInfo'
 import { Material } from '@/models/Material'
@@ -67,7 +67,7 @@ export class PlayerInfo {
     this.showNameCardList = data.showNameCardIdList
       ? data.showNameCardIdList.map((id) => new Material(id))
       : []
-    const characterData = new Character(
+    const characterData = new CharacterInfo(
       data.profilePicture?.avatarId || 10000005,
     )
     this.profilePicture = new Costume(

@@ -7,7 +7,7 @@ import { ImageNotFoundError } from '@/errors/ImageNotFoundError'
 import { TextMapFormatError } from '@/errors/TextMapFormatError'
 import { Artifact, ArtifactType } from '@/models/Artifact'
 import { ImageAssets } from '@/models/assets/ImageAssets'
-import { Character } from '@/models/character/Character'
+import { CharacterInfo } from '@/models/character/CharacterInfo'
 import { Costume } from '@/models/character/Costume'
 import { FightProp } from '@/models/character/FightProp'
 import { AssocType, Profile } from '@/models/character/Profile'
@@ -31,7 +31,7 @@ export {
   TextMapFormatError,
   Artifact,
   ImageAssets,
-  Character,
+  CharacterInfo,
   Costume,
   FightProp,
   Profile,

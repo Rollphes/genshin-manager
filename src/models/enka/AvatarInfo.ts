@@ -1,7 +1,7 @@
 import { Client } from '@/client/Client'
 import { EnkaManagerError } from '@/errors/EnkaManagerError'
 import { Artifact } from '@/models/Artifact'
-import { Character } from '@/models/character/Character'
+import { CharacterInfo } from '@/models/character/CharacterInfo'
 import { Costume } from '@/models/character/Costume'
 import { FightProp } from '@/models/character/FightProp'
 import { Skill } from '@/models/character/Skill'
@@ -24,7 +24,7 @@ interface SetBonus {
 /**
  * Class of character's information.
  */
-export class AvatarInfo extends Character {
+export class AvatarInfo extends CharacterInfo {
   /**
    * Costume equipped by the character.
    */
