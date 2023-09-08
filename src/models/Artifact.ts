@@ -196,7 +196,10 @@ export class Artifact {
         .get('ReliquaryExcelConfigData')
         ?.get() as JsonObject,
     ) as JsonObject[]
-    return artifactDatas.map((data) => data.id as number)
+    const filteredArtifactDatas = artifactDatas.filter(
+      (data) => data.setId != 15000, // 15000 is dummy artifact
+    )
+    return filteredArtifactDatas.map((data) => data.id as number)
   }
 }
 export type ArtifactType =
