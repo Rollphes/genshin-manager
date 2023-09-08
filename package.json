@@ -11,8 +11,7 @@
   },
   "scripts": {
     "lint": "eslint .",
-    "create-archive": "git archive --format=zip --output=sourceCode.zip HEAD --worktree-attributes && git archive --format=tar.gz --output=sourceCode.tar.gz HEAD --worktree-attributes",
-    "create-release": "npm run create-archive && gh release create v%npm_package_version% -t v%npm_package_version% -n \"## Bug Fixes\" --draft && gh release upload v%npm_package_version% sourceCode.zip sourceCode.tar.gz",
+    "create-release": "gh release create v%npm_package_version% -t v%npm_package_version% -n \"## Bug Fixes\" --draft && gh release upload v%npm_package_version% sourceCode.zip sourceCode.tar.gz",
     "prepublishOnly": "npm run build && npm run docs  && npm run create-release",
     "docs": "typedoc --disableSources --out docs src",
     "install": "node scripts/install.js",
