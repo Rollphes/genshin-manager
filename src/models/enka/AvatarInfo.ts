@@ -1,4 +1,3 @@
-import { Client } from '@/client/Client'
 import { EnkaManagerError } from '@/errors/EnkaManagerError'
 import { Artifact } from '@/models/Artifact'
 import { CharacterInfo } from '@/models/character/CharacterInfo'
@@ -6,20 +5,13 @@ import { Costume } from '@/models/character/Costume'
 import { FightProp } from '@/models/character/FightProp'
 import { Skill } from '@/models/character/Skill'
 import { Talent } from '@/models/character/Talent'
+import { SetBonus } from '@/models/SetBonus'
 import { Weapon } from '@/models/Weapon'
 import {
   APIAvatarInfo,
   APIReliquaryEquip,
   APIWeaponEquip,
 } from '@/types/EnkaTypes'
-/**
- * Set bonus that can be activated with artifacts.
- */
-interface SetBonus {
-  1: Artifact[]
-  2: Artifact[]
-  4: Artifact[]
-}
 
 /**
  * Class of character's information.
@@ -65,12 +57,7 @@ export class AvatarInfo extends CharacterInfo {
    * Friendship level of the character.
    */
   public readonly friendShipLevel: number
-  /**
-   * IDs of set bonuses that can be activated with one artifact.
-   */
-  private readonly oneSetBonusIds: number[] = [
-    15009, 15010, 15011, 15012, 15013,
-  ]
+  public readonly setBonus: SetBonus
 
   constructor(data: APIAvatarInfo) {
     super(data.avatarId, data.skillDepotId)
@@ -118,55 +105,6 @@ export class AvatarInfo extends CharacterInfo {
         ),
     )
     this.friendShipLevel = data.fetterInfo.expLevel
-  }
-
-  /**
-   * Search active set bonus.
-   * @returns {SetBonus} SetBonus
-   */
-  public searchActiveSetBonus(): SetBonus {
-    const setIds: number[] = this.artifacts
-      .map((artifact) => artifact.setId)
-      .filter((setId): setId is number => setId !== undefined)
-    const countIds: { [setId: string]: number } = {}
-    setIds.forEach((value) => {
-      if (value in countIds) countIds[value]++
-      else countIds[value] = 1
-    })
-
-    const setBracers: { [setId: string]: Artifact } = {}
-    Object.keys(countIds).map((setId) => {
-      const setJson = Client.cachedExcelBinOutputGetter(
-        'ReliquarySetExcelConfigData',
-        setId,
-      )
-      setBracers[setId] = new Artifact(
-        (setJson.containsList as number[])[0],
-        10001,
-      )
-    })
-    const activeSetIds: string[] = Object.keys(countIds).filter((value) => {
-      if (this.oneSetBonusIds.includes(+value)) {
-        countIds[value] = 1
-        return value
-      } else if (countIds[value] >= 4) {
-        countIds[value] = 4
-        return value
-      } else if (countIds[value] >= 2) {
-        countIds[value] = 2
-        return value
-      }
-    })
-    return {
-      1: activeSetIds
-        .filter((setId) => countIds[setId] == 1)
-        .map((setId) => setBracers[setId]),
-      2: activeSetIds
-        .filter((setId) => countIds[setId] == 2)
-        .map((setId) => setBracers[setId]),
-      4: activeSetIds
-        .filter((setId) => countIds[setId] == 4)
-        .map((setId) => setBracers[setId]),
-    }
+    this.setBonus = new SetBonus(this.artifacts)
   }
 }

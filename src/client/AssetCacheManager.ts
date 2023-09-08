@@ -116,6 +116,7 @@ export abstract class AssetCacheManager {
       'WeaponPromoteExcelConfigData',
       'WeaponCurveExcelConfigData',
     ],
+    SetBonus: ['ReliquarySetExcelConfigData'],
   }
 
   private static textHashList: Set<number> = new Set()
