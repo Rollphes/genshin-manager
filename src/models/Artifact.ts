@@ -184,6 +184,18 @@ export class Artifact {
       )
     })
   }
+  /**
+   * Get all artifact ids
+   * @returns All artifact ids
+   */
+  public static getAllArtifactIds(): number[] {
+    const artifactDatas = Object.values(
+      Client.cachedExcelBinOutput
+        .get('ReliquaryExcelConfigData')
+        ?.get() as JsonObject,
+    ) as JsonObject[]
+    return artifactDatas.map((data) => data.id as number)
+  }
 }
 export type ArtifactType =
   | 'EQUIP_BRACER'

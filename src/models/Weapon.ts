@@ -134,6 +134,18 @@ export class Weapon {
       (weaponPropJson.initValue as number) * curveValue + addValue
     return new StatProperty(weaponPropJson.propType as FightPropType, statValue)
   }
+  /**
+   * Get all weapon ids
+   * @returns All weapon ids
+   */
+  public static getAllWeaponIds(): number[] {
+    const weaponDatas = Object.values(
+      Client.cachedExcelBinOutput
+        .get('WeaponExcelConfigData')
+        ?.get() as JsonObject,
+    ) as JsonObject[]
+    return weaponDatas.map((data) => data.id as number)
+  }
 }
 
 export type WeaponType =

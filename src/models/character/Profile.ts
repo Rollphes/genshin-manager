@@ -1,4 +1,5 @@
 import { Client } from '@/client/Client'
+import { JsonObject } from '@/utils/JsonParser'
 
 interface CharacterVoice {
   CH: string
@@ -116,5 +117,17 @@ export class Profile {
         Client.cachedTextMap.get(String(fetterInfoJson.cvKoreanTextMapHash)) ||
         '',
     }
+  }
+  /**
+   * Get all profile ids
+   * @returns All profile ids
+   */
+  public static getAllProfileIds(): number[] {
+    const profileDatas = Object.values(
+      Client.cachedExcelBinOutput
+        .get('FetterInfoExcelConfigData')
+        ?.get() as JsonObject,
+    ) as JsonObject[]
+    return profileDatas.map((data) => data.avatarId as number)
   }
 }

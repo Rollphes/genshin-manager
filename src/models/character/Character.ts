@@ -104,4 +104,18 @@ export class Character {
       if (proudId) this.proudMap.set(skillId, proudId)
     })
   }
+  /**
+   * Get all character ids
+   * @returns All character ids
+   */
+  public static getAllCharacterIds(): number[] {
+    const avatarDatas = Object.values(
+      Client.cachedExcelBinOutput
+        .get('AvatarExcelConfigData')
+        ?.get() as JsonObject,
+    ) as JsonObject[]
+    return avatarDatas
+      .filter((k) => !('rarity' in k))
+      .map((k) => k.id as number)
+  }
 }

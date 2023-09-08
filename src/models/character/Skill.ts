@@ -1,5 +1,6 @@
 import { Client } from '@/client/Client'
 import { ImageAssets } from '@/models/assets/ImageAssets'
+import { JsonObject } from '@/utils/JsonParser'
 
 /**
  * Class of character's skill.
@@ -29,7 +30,7 @@ export class Skill {
    * Levels increased by talent
    */
   public readonly extraLevel: number
-  constructor(skillId: number, level: number, extraLevel: number = 0) {
+  constructor(skillId: number, level: number = 1, extraLevel: number = 0) {
     this.id = skillId
     const skillJson = Client.cachedExcelBinOutputGetter(
       'AvatarSkillExcelConfigData',
@@ -42,5 +43,17 @@ export class Skill {
     this.icon = new ImageAssets(skillJson.skillIcon as string)
     this.extraLevel = extraLevel
     this.level = level + this.extraLevel
+  }
+  /**
+   * Get all skill ids
+   * @returns All skill ids
+   */
+  public static getAllSkillIds(): number[] {
+    const skillDatas = Object.values(
+      Client.cachedExcelBinOutput
+        .get('AvatarSkillExcelConfigData')
+        ?.get() as JsonObject,
+    ) as JsonObject[]
+    return skillDatas.map((data) => data.id as number)
   }
 }

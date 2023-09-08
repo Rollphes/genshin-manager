@@ -1,5 +1,6 @@
 import { Client } from '@/client/Client'
 import { ImageAssets } from '@/models/assets/ImageAssets'
+import { JsonObject } from '@/utils/JsonParser'
 
 /**
  * Class of character's costume.
@@ -63,5 +64,17 @@ export class Costume {
         ? 'UI_Costume_' + avatarTag
         : 'UI_Gacha_AvatarImg_' + avatarTag,
     )
+  }
+  /**
+   * Get all costume ids
+   * @returns All costume ids
+   */
+  public static getAllCostumeIds(): number[] {
+    const costumeDatas = Object.values(
+      Client.cachedExcelBinOutput
+        .get('AvatarCostumeExcelConfigData')
+        ?.get() as JsonObject,
+    ) as JsonObject[]
+    return costumeDatas.map((k) => k.costumeId as number)
   }
 }

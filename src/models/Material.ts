@@ -1,5 +1,6 @@
 import { Client } from '@/client/Client'
 import { ImageAssets } from '@/models/assets/ImageAssets'
+import { JsonObject } from '@/utils/JsonParser'
 export type ItemType = 'ITEM_VIRTUAL' | 'ITEM_MATERIAL'
 export type MaterialType =
   | 'MATERIAL_ACTIVITY_GEAR'
@@ -96,5 +97,17 @@ export class Material {
     )
     this.itemType = materialJson.itemType as ItemType
     this.materialType = materialJson.materialType as MaterialType | undefined
+  }
+  /**
+   * Get all material ids
+   * @returns All material ids
+   */
+  public static getAllMaterialIds(): number[] {
+    const materialDatas = Object.values(
+      Client.cachedExcelBinOutput
+        .get('MaterialExcelConfigData')
+        ?.get() as JsonObject,
+    ) as JsonObject[]
+    return materialDatas.map((data) => data.id as number)
   }
 }
