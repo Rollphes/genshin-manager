@@ -60,8 +60,10 @@ export class CharacterInfo {
     )
 
     this.depotId =
-      skillDepotId && [10000005, 10000007].includes(this.id)
-        ? skillDepotId
+      skillDepotId ?? [10000005, 10000007].includes(this.id)
+        ? this.id == 10000005
+          ? 501
+          : 701
         : (avatarJson.skillDepotId as number)
     const depotJson = Client.cachedExcelBinOutputGetter(
       'AvatarSkillDepotExcelConfigData',
