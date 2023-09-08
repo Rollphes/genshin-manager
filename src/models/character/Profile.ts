@@ -119,10 +119,10 @@ export class Profile {
     }
   }
   /**
-   * Get all profile ids
-   * @returns All profile ids
+   * Get all character ids.
+   * @returns All character ids.
    */
-  public static getAllProfileIds(): number[] {
+  public static getAllCharacterIds(): number[] {
     const profileDatas = Object.values(
       Client.cachedExcelBinOutput
         .get('FetterInfoExcelConfigData')
