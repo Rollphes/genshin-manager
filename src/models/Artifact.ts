@@ -66,7 +66,9 @@ export class Artifact {
   /**
    * IDs of set bonuses that can be activated with one artifact.
    */
-  private readonly oneSetBonusIds: number[] = [15009, 15010, 15011, 15013]
+  private readonly oneSetBonusIds: number[] = [
+    15009, 15010, 15011, 15012, 15013,
+  ]
 
   constructor(
     artifactId: number,
