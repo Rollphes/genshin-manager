@@ -65,7 +65,7 @@ export class Weapon {
     weaponId: number,
     level: number = 1,
     promoteLevel: number = 0,
-    refinementRank: number = 0,
+    refinementRank: number = 1,
   ) {
     this.id = weaponId
     this.level = level
