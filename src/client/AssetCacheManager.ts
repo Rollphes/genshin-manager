@@ -20,6 +20,9 @@ import { ObjectKeyDecoder } from '@/utils/ObjectKeyDecoder'
 import { TextMapEmptyWritable } from '@/utils/TextMapEmptyWritable'
 import { TextMapTransform } from '@/utils/TextMapTransform'
 
+/**
+ * Class for managing cached assets.
+ */
 export abstract class AssetCacheManager {
   private static option: ClientOption
   private static gitRemoteAPIUrl: string =

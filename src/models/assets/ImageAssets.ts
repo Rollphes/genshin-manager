@@ -16,6 +16,9 @@ const imageTypes: { [type: string]: RegExp[] } = {
   equip: [/^UI_EquipIcon_(.+?)(_Awaken)?$/, /^UI_RelicIcon_(.+)$/],
 }
 
+/**
+ * Class that summarizes information about an image.
+ */
 export class ImageAssets {
   private static fetchOption: RequestInit
   private static imageBaseUrlByRegex: { [url: string]: RegExp[] }

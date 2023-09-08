@@ -6,6 +6,10 @@ import { AssetCacheManager } from '@/client/AssetCacheManager'
 import { ImageAssets } from '@/models/assets/ImageAssets'
 import { ClientOption, TextMapLanguage } from '@/types'
 
+/**
+ * Class of the client.
+ * This is the main body of `Genshin-Manager` where cache information is stored.
+ */
 export class Client extends AssetCacheManager {
   public readonly option: ClientOption
 

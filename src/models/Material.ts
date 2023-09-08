@@ -50,6 +50,9 @@ export type MaterialType =
   | 'MATERIAL_WOOD'
 
 //TODO: Add more properties
+/**
+ * Class of material.
+ */
 export class Material {
   /**
    * Material id

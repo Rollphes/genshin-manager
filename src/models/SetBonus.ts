@@ -2,7 +2,7 @@ import { Client } from '@/client/Client'
 import { Artifact } from '@/models/Artifact'
 
 /**
- * Set bonus that can be activated with artifacts.
+ * Class of set bonuses that can be activated by artifacts
  */
 export class SetBonus {
   private readonly setBracers: { [setId: string]: Artifact } = {}

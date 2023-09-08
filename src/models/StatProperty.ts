@@ -1,4 +1,7 @@
 import { Client } from '@/client/Client'
+/**
+ * Class of stat property.
+ */
 export class StatProperty {
   /**
    * Type of the stat.

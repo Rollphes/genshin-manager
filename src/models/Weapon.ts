@@ -3,6 +3,9 @@ import { ImageAssets } from '@/models/assets/ImageAssets'
 import { FightPropType, StatProperty } from '@/models/StatProperty'
 import { JsonObject } from '@/utils/JsonParser'
 
+/**
+ * Class of weapon.
+ */
 export class Weapon {
   /**
    * Weapon name

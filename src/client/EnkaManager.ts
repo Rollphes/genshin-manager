@@ -13,6 +13,9 @@ export interface EnkaData {
   nextShowCaseDate: Date
 }
 
+/**
+ * Class for fetching EnkaData from enka.network
+ */
 export class EnkaManager {
   private readonly enkaUidURL = 'https://enka.network/api/uid/'
   /**
