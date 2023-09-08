@@ -16,8 +16,8 @@
     "prepublishOnly": "npm run build && npm run docs  && npm run create-release",
     "docs": "typedoc --disableSources --out docs src",
     "install": "node scripts/install.js",
-    "build": "node -e \"if (fs.existsSync('./dist')) fs.rmSync('./dist', {recursive: true});\" && tsc -p tsconfig.json && tsc-alias -p tsconfig.json",
     "test": "ts-node -r tsconfig-paths/register ./src/test/index.ts"
+    "build": "node -e \"if (fs.existsSync('./dist')) fs.rmSync('./dist', {recursive: true});\" && tsc -p tsconfig.json && tsc-alias -p tsconfig.json && npm run docs",
   },
   "engines": {
     "node": ">=16.0.0"
