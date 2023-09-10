@@ -57,6 +57,9 @@ export class AvatarInfo extends CharacterInfo {
    * Friendship level of the character.
    */
   public readonly friendShipLevel: number
+  /**
+   * Artifact set bonus of the character.
+   */
   public readonly setBonus: SetBonus
 
   constructor(data: APIAvatarInfo) {
