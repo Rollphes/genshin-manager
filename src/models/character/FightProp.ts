@@ -62,10 +62,10 @@ export class FightProp {
   public readonly attack: StatProperty
   public readonly defense: StatProperty
   public readonly speed: StatProperty
-  private readonly APIfightProp: { [key in number]: number }
+  private readonly fightPropData: { [key in number]: number | undefined }
 
-  constructor(APIfightProp: { [key in number]: number }) {
-    this.APIfightProp = APIfightProp
+  constructor(fightPropData: { [key in number]: number | undefined }) {
+    this.fightPropData = fightPropData
     this.healthBase = this.getStatProperty(1)
     this.healthFlat = this.getStatProperty(2)
     this.healthPercent = this.getStatProperty(3)
@@ -111,13 +111,13 @@ export class FightProp {
       this.physicalDamage,
     ].sort((a, b) => b.value - a.value)
 
-    this.pyroEnergyCost = this.APIfightProp[70] ?? 0
-    this.electroEnergyCost = this.APIfightProp[71] ?? 0
-    this.hydroEnergyCost = this.APIfightProp[72] ?? 0
-    this.dendroEnergyCost = this.APIfightProp[73] ?? 0
-    this.anemoEnergyCost = this.APIfightProp[74] ?? 0
-    this.cryoEnergyCost = this.APIfightProp[75] ?? 0
-    this.geoEnergyCost = this.APIfightProp[76] ?? 0
+    this.pyroEnergyCost = this.fightPropData[70] ?? 0
+    this.electroEnergyCost = this.fightPropData[71] ?? 0
+    this.hydroEnergyCost = this.fightPropData[72] ?? 0
+    this.dendroEnergyCost = this.fightPropData[73] ?? 0
+    this.anemoEnergyCost = this.fightPropData[74] ?? 0
+    this.cryoEnergyCost = this.fightPropData[75] ?? 0
+    this.geoEnergyCost = this.fightPropData[76] ?? 0
 
     this.energyCost = Math.max(
       this.pyroEnergyCost,
@@ -132,13 +132,13 @@ export class FightProp {
     this.cooldownReduction = this.getStatProperty(80)
     this.shieldStrength = this.getStatProperty(81)
 
-    this.currentPyroEnergy = this.APIfightProp[1000] ?? 0
-    this.currentElectroEnergy = this.APIfightProp[1001] ?? 0
-    this.currentHydroEnergy = this.APIfightProp[1002] ?? 0
-    this.currentDendroEnergy = this.APIfightProp[1003] ?? 0
-    this.currentAnemoEnergy = this.APIfightProp[1004] ?? 0
-    this.currentCryoEnergy = this.APIfightProp[1005] ?? 0
-    this.currentGeoEnergy = this.APIfightProp[1006] ?? 0
+    this.currentPyroEnergy = this.fightPropData[1000] ?? 0
+    this.currentElectroEnergy = this.fightPropData[1001] ?? 0
+    this.currentHydroEnergy = this.fightPropData[1002] ?? 0
+    this.currentDendroEnergy = this.fightPropData[1003] ?? 0
+    this.currentAnemoEnergy = this.fightPropData[1004] ?? 0
+    this.currentCryoEnergy = this.fightPropData[1005] ?? 0
+    this.currentGeoEnergy = this.fightPropData[1006] ?? 0
 
     this.currentEnergy = Math.max(
       this.currentPyroEnergy,
@@ -160,7 +160,7 @@ export class FightProp {
   }
 
   /**
-   * Get StatProperty from APIfightProp
+   * Get StatProperty from fightPropData
    * @param id
    * @param defaultValue
    * @returns
@@ -168,7 +168,7 @@ export class FightProp {
   private getStatProperty(id: number, defaultValue = 0): StatProperty {
     return new StatProperty(
       fightProps[id],
-      this.APIfightProp[id] ?? defaultValue,
+      this.fightPropData[id] ?? defaultValue,
     )
   }
 }
