@@ -49,6 +49,20 @@ async function main() {
       const enkaData = await new EnkaManager().fetch(800802278)
       console.log('EnkaNetwork test passed!')
       break
+    case 'findMonsterIdByDescribeId':
+      console.log('Running test of findMonsterIdByDescribeId...')
+      console.log('step 1:Spiral Abyss Schedule test...')
+      TowerSchedule.getAllTowerScheduleIds().map((id) => new TowerSchedule(id))
+      console.log('step 2:MonsterDescribeExcelConfigData keys test...')
+      const describeIds = Object.keys(
+        Client._getCachedExcelBinOutputByName('MonsterDescribeExcelConfigData'),
+      )
+      describeIds.map((id) => {
+        const monsterId = Monster.findMonsterIdByDescribeId(id)
+        new Monster(monsterId)
+      })
+      console.log('findMonsterIdByDescribeId test passed!')
+    //TODO: Image test
   }
 }
 void main()
