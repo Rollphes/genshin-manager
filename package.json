@@ -46,26 +46,26 @@
     "cli-progress": "^3.12.0",
     "fs": "^0.0.1-security",
     "node-cron": "^3.0.2",
-    "node-fetch": "^2.6.11",
+    "node-fetch": "^2.6.12",
     "path": "^0.12.7",
     "ts-deepmerge": "^6.2.0"
   },
   "devDependencies": {
-    "@types/cli-progress": "^3.11.0",
-    "@types/node": "^20.4.9",
+    "@types/cli-progress": "^3.11.2",
+    "@types/node": "^20.6.0",
     "@types/node-cron": "^3.0.8",
     "@types/node-fetch": "^2.6.4",
-    "@typescript-eslint/eslint-plugin": "^6.3.0",
-    "@typescript-eslint/parser": "^6.3.0",
-    "eslint": "^8.46.0",
+    "@typescript-eslint/eslint-plugin": "^6.7.0",
+    "@typescript-eslint/parser": "^6.7.0",
+    "eslint": "^8.49.0",
     "eslint-config-prettier": "^9.0.0",
     "eslint-plugin-prettier": "^5.0.0",
     "eslint-plugin-simple-import-sort": "^10.0.0",
-    "prettier": "^3.0.1",
-    "ts-node": "^10.0.0",
+    "prettier": "^3.0.3",
+    "ts-node": "^10.9.1",
     "tsc-alias": "^1.8.7",
     "tsconfig-paths": "^4.2.0",
-    "typedoc": "^0.25.0",
-    "typescript": "^5.1.6"
+    "typedoc": "^0.25.1",
+    "typescript": "^5.2.2"
   }
 }
