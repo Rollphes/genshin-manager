@@ -10,12 +10,13 @@
     "docs": "docs"
   },
   "scripts": {
+    "updateDoc" : "npm run docs && git add docs && git commit -m \"[update]update docs\" && git push",
     "lint": "eslint .",
     "create-release": "gh release create v%npm_package_version% -t v%npm_package_version% -n \"## Bug Fixes\" --draft && gh release upload v%npm_package_version% sourceCode.zip sourceCode.tar.gz",
-    "prepublishOnly": "npm run build && npm run docs  && npm run create-release",
+    "prepublishOnly": "npm run updateDoc && npm run build && npm run create-release",
     "docs": "typedoc --disableSources --out docs src",
     "install": "node scripts/install.js",
-    "build": "node -e \"if (fs.existsSync('./dist')) fs.rmSync('./dist', {recursive: true});\" && tsc -p tsconfig.json && tsc-alias -p tsconfig.json && npm run docs",
+    "build": "node -e \"if (fs.existsSync('./dist')) fs.rmSync('./dist', {recursive: true});\" && tsc -p tsconfig.json && tsc-alias -p tsconfig.json",
     "test": "ts-node -r tsconfig-paths/register ./src/test/index.ts",
     "release-test": "node scripts/test.js",
     "createHandBook": "node scripts/createHandBook.js"
