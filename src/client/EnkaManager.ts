@@ -66,7 +66,9 @@ export class EnkaManager {
         result.avatarInfoList?.map(
           (avatarInfo) => new AvatarInfo(avatarInfo),
         ) ?? [],
-      nextShowCaseDate: new Date(new Date().getTime() + result.ttl * 1000),
+      nextShowCaseDate: new Date(
+        new Date().getTime() + (result.ttl || 60) * 1000,
+      ),
     }
     this.cache.set(enkaData.uid, enkaData)
     return enkaData

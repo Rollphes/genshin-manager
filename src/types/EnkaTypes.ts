@@ -110,7 +110,7 @@ export interface APIAvatarInfo {
 export interface APIEnkaData {
   playerInfo: APIPlayerInfo
   avatarInfoList?: APIAvatarInfo[]
-  ttl: number
+  ttl?: number
   uid: number
 }
 
