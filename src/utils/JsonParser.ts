@@ -8,13 +8,25 @@ export type JsonValue =
 export type JsonObject = { [key: string]: JsonValue }
 export type JsonArray = JsonValue[]
 
+/**
+ * Class of json parser.
+ */
 export class JsonParser {
   private json: JsonObject | JsonArray
 
+  /**
+   * Create a JsonParser
+   * @param jsonString Json string
+   */
   constructor(jsonString: string) {
     this.json = JSON.parse(jsonString) as JsonObject | JsonArray
   }
 
+  /**
+   * Get value from json
+   * @param propertyPath Property path
+   * @returns Value
+   */
   public get(propertyPath?: string): JsonValue | undefined {
     const properties = propertyPath
       ? propertyPath.replace(/\]/g, '').split(/\.|\[/)

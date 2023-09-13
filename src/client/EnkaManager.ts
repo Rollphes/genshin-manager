@@ -18,11 +18,15 @@ export interface EnkaData {
  */
 export class EnkaManager {
   private readonly enkaUidURL = 'https://enka.network/api/uid/'
+
   /**
    * Cache of EnkaData
    */
   public readonly cache: Map<number, EnkaData> = new Map()
 
+  /**
+   * Create a EnkaManager
+   */
   constructor() {}
 
   /**

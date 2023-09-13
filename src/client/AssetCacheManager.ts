@@ -22,6 +22,7 @@ import { TextMapTransform } from '@/utils/TextMapTransform'
 
 /**
  * Class for managing cached assets.
+ * @abstract This class is abstract because it is not intended to be instantiated.
  */
 export abstract class AssetCacheManager {
   private static option: ClientOption
@@ -175,6 +176,11 @@ export abstract class AssetCacheManager {
     JsonParser
   > = new Map()
 
+  /**
+   * Create a AssetCacheManager.
+   * @param option Client option.
+   * @param children import modules.
+   */
   constructor(option: ClientOption, children: Module[]) {
     AssetCacheManager.option = option
     AssetCacheManager.childrenModule = children

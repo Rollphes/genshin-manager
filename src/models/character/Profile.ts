@@ -64,6 +64,10 @@ export class Profile {
    */
   public readonly cv: CharacterVoice
 
+  /**
+   * Create a Profile
+   * @param characterId Character id
+   */
   constructor(characterId: number) {
     this.characterId = characterId
     const fetterInfoJson = Client.cachedExcelBinOutputGetter(

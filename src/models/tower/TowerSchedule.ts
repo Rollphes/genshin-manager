@@ -41,6 +41,10 @@ export class TowerSchedule {
    */
   public readonly buffDescription: string
 
+  /**
+   * Create a TowerSchedule
+   * @param scheduleId ID of the Spiral Abyss Schedule
+   */
   constructor(scheduleId: number) {
     this.id = scheduleId
     const towerScheduleJson = Client.cachedExcelBinOutputGetter(

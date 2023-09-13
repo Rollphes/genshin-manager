@@ -14,6 +14,9 @@ class ReplaceData {
   ) {}
 }
 
+/**
+ * Class of object key decoder.
+ */
 export class ObjectKeyDecoder {
   private readonly replaceDatas: ReplaceData[] = []
   private readonly characterBlackIdList: number[] = [
@@ -24,6 +27,9 @@ export class ObjectKeyDecoder {
     11000045,
   ]
 
+  /**
+   * Create a ObjectKeyDecoder
+   */
   constructor() {
     const costumeData = Client.cachedExcelBinOutput.get(
       'AvatarCostumeExcelConfigData',
@@ -187,6 +193,12 @@ export class ObjectKeyDecoder {
     return cacheObject
   }
 
+  /**
+   * Execute object key decoder.
+   * @param jsonData JsonParser
+   * @param filename Filename
+   * @returns Decoded object
+   */
   public execute(jsonData: JsonParser, filename: keyof typeof ExcelBinOutputs) {
     this.decode(jsonData)
     return this.setKey(jsonData, filename)

@@ -6,6 +6,11 @@ export class ImageNotFoundError extends Error {
   public readonly imageName: string
   public readonly url: string
 
+  /**
+   * Create a ImageNotFoundError
+   * @param imageName Name of the image
+   * @param url URL of the image
+   */
   constructor(imageName: string, url: string) {
     super(`${imageName || 'undefined image'} was not found.`)
 

@@ -64,6 +64,10 @@ export class FightProp {
   public readonly speed: StatProperty
   private readonly fightPropData: { [key in number]: number | undefined }
 
+  /**
+   * Create a FightProp
+   * @param fightPropData FightPropMap from EnkaNetwork and other sources
+   */
   constructor(fightPropData: { [key in number]: number | undefined }) {
     this.fightPropData = fightPropData
     this.healthBase = this.getStatProperty(1)

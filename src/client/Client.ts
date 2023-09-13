@@ -9,10 +9,15 @@ import { ClientOption, TextMapLanguage } from '@/types'
 /**
  * Class of the client.
  * This is the main body of `Genshin-Manager` where cache information is stored.
+ * @extends AssetCacheManager
  */
 export class Client extends AssetCacheManager {
   public readonly option: ClientOption
 
+  /**
+   * Create a client.
+   * @param option Client option
+   */
   constructor(option?: Partial<ClientOption>) {
     const defaultOption: ClientOption = {
       fetchOption: {

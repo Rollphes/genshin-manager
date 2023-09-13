@@ -27,6 +27,10 @@ export class SetBonus {
    */
   public readonly fourSetBonus: Artifact[]
 
+  /**
+   * Create a SetBonus
+   * @param artifacts Artifacts equipped by the character.
+   */
   constructor(artifacts: Artifact[]) {
     artifacts.forEach((artifact) => {
       const setId = artifact.setId

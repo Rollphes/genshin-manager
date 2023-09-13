@@ -62,6 +62,10 @@ export class AvatarInfo extends CharacterInfo {
    */
   public readonly setBonus: SetBonus
 
+  /**
+   * Create a AvatarInfo
+   * @param data Data from EnkaNetwork
+   */
   constructor(data: APIAvatarInfo) {
     super(data.avatarId, data.skillDepotId)
     this.costume = new Costume(data.costumeId ?? this.defaultCostumeId)

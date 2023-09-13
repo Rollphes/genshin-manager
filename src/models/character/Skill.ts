@@ -30,6 +30,13 @@ export class Skill {
    * Levels increased by talent
    */
   public readonly extraLevel: number
+
+  /**
+   * Create a Skill
+   * @param skillId Skill id
+   * @param level Skill level
+   * @param extraLevel Levels increased by talent
+   */
   constructor(skillId: number, level: number = 1, extraLevel: number = 0) {
     this.id = skillId
     const skillJson = Client.cachedExcelBinOutputGetter(

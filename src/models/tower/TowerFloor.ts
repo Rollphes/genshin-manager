@@ -3,6 +3,9 @@ import { ImageAssets } from '@/models/assets/ImageAssets'
 import { TowerLevel } from '@/models/tower/TowerLevel'
 import { JsonObject } from '@/utils/JsonParser'
 
+/**
+ * Class of Spiral Abyss Floor.
+ */
 export class TowerFloor {
   /**
    * ID of the floor
@@ -29,6 +32,10 @@ export class TowerFloor {
    */
   public readonly buffDescription: string
 
+  /**
+   * Create a TowerFloor
+   * @param floorId ID of the floor
+   */
   constructor(floorId: number) {
     this.id = floorId
 

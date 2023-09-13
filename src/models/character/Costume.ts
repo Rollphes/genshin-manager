@@ -35,6 +35,10 @@ export class Costume {
    */
   public readonly art: ImageAssets
 
+  /**
+   * Create a Costume
+   * @param costumeId Costume id
+   */
   constructor(costumeId: number) {
     this.id = costumeId
     const costumeJson = Client.cachedExcelBinOutputGetter(
@@ -65,6 +69,7 @@ export class Costume {
         : 'UI_Gacha_AvatarImg_' + avatarTag,
     )
   }
+
   /**
    * Get all costume ids
    * @returns All costume ids

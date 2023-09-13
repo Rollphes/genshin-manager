@@ -42,6 +42,11 @@ export class CharacterInfo {
    */
   public readonly proudMap: Map<number, number> = new Map()
 
+  /**
+   * Create a CharacterInfo
+   * @param characterId Character id
+   * @param skillDepotId Skill depot id
+   */
   constructor(characterId: number, skillDepotId?: number) {
     this.id = characterId
     const costumeDatas = Object.values(
@@ -104,6 +109,7 @@ export class CharacterInfo {
       if (proudId) this.proudMap.set(skillId, proudId)
     })
   }
+
   /**
    * Get all character ids
    * @returns All character ids

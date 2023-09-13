@@ -1,8 +1,10 @@
 import { Client } from '@/client/Client'
 import { Monster } from '@/models/Monster'
 import { JsonObject } from '@/utils/JsonParser'
-//MonsterDescribeExcelConfigData
 
+/**
+ * Class of Spiral Abyss Room.
+ */
 export class TowerLevel {
   /**
    * ID of the level
@@ -29,6 +31,11 @@ export class TowerLevel {
    */
   public readonly secondMonsterList: Monster[]
 
+  /**
+   * Create a TowerLevel
+   * @param levelId ID of the level
+   * @param floorIndex Index of the floor
+   */
   constructor(levelId: number, floorIndex: number) {
     this.id = levelId
 

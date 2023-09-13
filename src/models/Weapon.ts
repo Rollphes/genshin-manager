@@ -64,6 +64,13 @@ export class Weapon {
    */
   public readonly icon: ImageAssets
 
+  /**
+   * Create a Weapon
+   * @param weaponId Weapon id
+   * @param level Weapon level
+   * @param promoteLevel Weapon promote level
+   * @param refinementRank Weapon refinement rank
+   */
   constructor(
     weaponId: number,
     level: number = 1,
@@ -125,6 +132,13 @@ export class Weapon {
       (this.isAwaken ? weaponJson.awakenIcon : weaponJson.icon) as string,
     )
   }
+
+  /**
+   * Get stat value by json
+   * @param weaponPropJson Weapon property json
+   * @param addValue Add value
+   * @returns Stat value
+   */
   private getStatPropertyByJson(
     weaponPropJson: JsonObject,
     addValue: number = 0,

@@ -1,3 +1,8 @@
+/**
+ * Convert CST to UTC
+ * @param dateString Date string in CST
+ * @returns Date in UTC
+ */
 export function convertCSTtoUTC(dateString: string) {
   const date = new Date(dateString)
   const offset = date.getTimezoneOffset()

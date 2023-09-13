@@ -11,6 +11,10 @@ export class ShowAvatarInfo extends Costume {
    */
   readonly level: number
 
+  /**
+   * Create a ShowAvatarInfo
+   * @param data Data from EnkaNetwork
+   */
   constructor(data: APIShowAvatarInfo) {
     const characterData = new CharacterInfo(data.avatarId)
     super(data.costumeId ?? characterData.defaultCostumeId)

@@ -1,5 +1,9 @@
 import { Writable } from 'stream'
 
+/**
+ * TextMapEmptyWritable
+ * @extends Writable
+ */
 export class TextMapEmptyWritable extends Writable {
   private buffer: string = ''
 

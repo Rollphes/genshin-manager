@@ -3,6 +3,10 @@ import { Transform } from 'stream'
 import { TextMapFormatError } from '@/errors/TextMapFormatError'
 import { TextMapLanguage } from '@/types'
 
+/**
+ * TextMapTransform
+ * @extends Transform
+ */
 export class TextMapTransform extends Transform {
   private language: keyof typeof TextMapLanguage
   private filterList: number[]

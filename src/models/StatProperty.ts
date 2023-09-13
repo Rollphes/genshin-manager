@@ -20,6 +20,11 @@ export class StatProperty {
    */
   public readonly value: number
 
+  /**
+   * Create a StatProperty
+   * @param type FightPropType
+   * @param value Value of the stat
+   */
   constructor(type: FightPropType, value: number) {
     this.type = type
 

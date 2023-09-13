@@ -83,13 +83,16 @@ export class Material {
    */
   public readonly materialType?: MaterialType
 
-  constructor(id: number) {
+  /**
+   * Create a Material
+   * @param id Material id
+   */
+  constructor(materialId: number) {
+    this.id = materialId
     const materialJson = Client.cachedExcelBinOutputGetter(
       'MaterialExcelConfigData',
-      id,
+      this.id,
     )
-
-    this.id = id
     this.name =
       Client.cachedTextMap.get(String(materialJson.nameTextMapHash)) || ''
     this.description =
@@ -101,6 +104,7 @@ export class Material {
     this.itemType = materialJson.itemType as ItemType
     this.materialType = materialJson.materialType as MaterialType | undefined
   }
+
   /**
    * Get all material ids
    * @returns All material ids

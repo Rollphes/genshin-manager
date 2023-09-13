@@ -8,6 +8,11 @@ export class AssetsNotFoundError extends Error {
   public readonly key: keyof (typeof ExcelBinOutputs & typeof TextMapLanguage)
   public readonly id?: string | number
 
+  /**
+   * Create a AssetsNotFoundError
+   * @param key Key of assets
+   * @param id ID of the specified asset
+   */
   constructor(
     key: keyof (typeof ExcelBinOutputs & typeof TextMapLanguage),
     id?: string | number,

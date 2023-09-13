@@ -70,6 +70,13 @@ export class Artifact {
     15009, 15010, 15011, 15012, 15013,
   ]
 
+  /**
+   * Create an Artifact
+   * @param artifactId Artifact id
+   * @param mainPropId Main stat id from ReliquaryMainPropExcelConfigData.json
+   * @param level Artifact level
+   * @param appendPropIdList Artifact sub stat id list
+   */
   constructor(
     artifactId: number,
     mainPropId: number,

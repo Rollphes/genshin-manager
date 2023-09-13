@@ -52,6 +52,10 @@ export class PlayerInfo {
    */
   readonly profilePicture: Costume
 
+  /**
+   * Create a PlayerInfo
+   * @param data Data from EnkaNetwork
+   */
   constructor(data: APIPlayerInfo) {
     this.nickname = data.nickname
     this.level = data.level

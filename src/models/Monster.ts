@@ -68,6 +68,12 @@ export class Monster {
    */
   public readonly codexType: CodexType | undefined
 
+  /**
+   * Create a Monster
+   * @param monsterId monsterId
+   * @param level monsterLevel
+   * @param playerCount Number of players
+   */
   constructor(monsterId: number, level: number = 1, playerCount: number = 1) {
     this.id = monsterId
     this.level = level

@@ -27,6 +27,11 @@ export class Talent {
    */
   public readonly locked: boolean
 
+  /**
+   * Create a Talent
+   * @param talentId Talent id
+   * @param locked Whether the talent is locked
+   */
   constructor(talentId: number, locked: boolean = false) {
     this.id = talentId
     this.locked = locked
