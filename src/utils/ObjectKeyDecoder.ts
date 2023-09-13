@@ -139,6 +139,37 @@ export class ObjectKeyDecoder {
         case 'EquipAffixExcelConfigData':
           cacheObject[obj.affixId as string] = obj
           break
+        case 'TowerScheduleExcelConfigData':
+          cacheObject[obj.scheduleId as string] = obj
+          break
+        case 'TowerFloorExcelConfigData':
+          cacheObject[obj.floorId as string] = obj
+          break
+        case 'TowerLevelExcelConfigData':
+          cacheObject[obj.levelId as string] = obj
+          break
+        case 'DungeonLevelEntityConfigData':
+          if (obj.show !== true) break //Because the same id exists. Added as a temporary workaround
+          cacheObject[obj.id as string] = obj
+          break
+        case 'MonsterExcelConfigData':
+          cacheObject[obj.id as string] = obj
+          break
+        case 'MonsterDescribeExcelConfigData':
+          cacheObject[obj.id as string] = obj
+          break
+        case 'AnimalCodexExcelConfigData':
+          cacheObject[obj.describeId as string] = obj
+          break
+        case 'MonsterCurveExcelConfigData':
+          ;(obj.curveInfos as JsonArray).forEach((curve) => {
+            const level = obj.level as number
+            const value = (curve as JsonObject).value ?? 0
+            const type = (curve as JsonObject).type as string
+            if (!cacheObject[type]) cacheObject[type] = {}
+            ;(cacheObject[type] as JsonObject)[level] = value
+          })
+          break
 
         //Progress
         case 'FetterStoryExcelConfigData':

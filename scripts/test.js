@@ -7,6 +7,10 @@ const { Talent } = require('../dist/models/character/Talent.js')
 const { Artifact } = require('../dist/models/Artifact.js')
 const { Material } = require('../dist/models/Material.js')
 const { Weapon } = require('../dist/models/Weapon.js')
+const { TowerSchedule } = require('../dist/models/tower/TowerSchedule.js')
+const { TowerFloor } = require('../dist/models/tower/TowerFloor.js')
+const { Monster } = require('../dist/models/Monster.js')
+
 const { EnkaManager } = require('../dist/client/EnkaManager.js')
 
 const testType = process.env.npm_config_test_type
@@ -33,6 +37,11 @@ async function main() {
       Artifact.getAllArtifactIds().forEach((id) => new Artifact(id, 10001))
       Material.getAllMaterialIds().forEach((id) => new Material(id))
       Weapon.getAllWeaponIds().forEach((id) => new Weapon(id))
+      TowerSchedule.getAllTowerScheduleIds().forEach(
+        (id) => new TowerSchedule(id),
+      )
+      Monster.getAllMonsterIds().forEach((id) => new Monster(id))
+      TowerFloor.getAllTowerFloorIds().forEach((id) => new TowerFloor(id))
       console.log('AllId test passed!')
       break
     case 'EnkaNetwork':

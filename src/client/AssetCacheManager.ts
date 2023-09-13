@@ -120,6 +120,42 @@ export abstract class AssetCacheManager {
       'WeaponCurveExcelConfigData',
     ],
     SetBonus: ['ReliquarySetExcelConfigData'],
+    TowerSchedule: [
+      'TowerScheduleExcelConfigData',
+      'TowerFloorExcelConfigData',
+      'TowerLevelExcelConfigData',
+      'DungeonLevelEntityConfigData',
+      'MonsterExcelConfigData',
+      'MonsterDescribeExcelConfigData',
+      'MonsterCurveExcelConfigData',
+      'ManualTextMapConfigData',
+      'AnimalCodexExcelConfigData',
+    ],
+    TowerFloor: [
+      'TowerFloorExcelConfigData',
+      'TowerLevelExcelConfigData',
+      'DungeonLevelEntityConfigData',
+      'MonsterExcelConfigData',
+      'MonsterDescribeExcelConfigData',
+      'MonsterCurveExcelConfigData',
+      'ManualTextMapConfigData',
+      'AnimalCodexExcelConfigData',
+    ],
+    TowerLevel: [
+      'TowerLevelExcelConfigData',
+      'MonsterExcelConfigData',
+      'MonsterDescribeExcelConfigData',
+      'MonsterCurveExcelConfigData',
+      'ManualTextMapConfigData',
+      'AnimalCodexExcelConfigData',
+    ],
+    Monster: [
+      'MonsterExcelConfigData',
+      'MonsterDescribeExcelConfigData',
+      'MonsterCurveExcelConfigData',
+      'ManualTextMapConfigData',
+      'AnimalCodexExcelConfigData',
+    ],
   }
 
   private static textHashList: Set<number> = new Set()
