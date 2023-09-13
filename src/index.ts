@@ -17,7 +17,11 @@ import { AvatarInfo } from '@/models/enka/AvatarInfo'
 import { PlayerInfo } from '@/models/enka/PlayerInfo'
 import { ShowAvatarInfo } from '@/models/enka/ShowAvatarInfo'
 import { ItemType, Material, MaterialType } from '@/models/Material'
+import { Monster } from '@/models/Monster'
 import { FightPropType, StatProperty } from '@/models/StatProperty'
+import { TowerFloor } from '@/models/tower/TowerFloor'
+import { TowerLevel } from '@/models/tower/TowerLevel'
+import { TowerSchedule } from '@/models/tower/TowerSchedule'
 import { Weapon, WeaponType } from '@/models/Weapon'
 import { ClientOption, Element } from '@/types'
 export {
@@ -44,6 +48,10 @@ export {
   Weapon,
   ClientOption,
   StatProperty,
+  TowerFloor,
+  TowerLevel,
+  TowerSchedule,
+  Monster,
 }
 export {
   Element,
