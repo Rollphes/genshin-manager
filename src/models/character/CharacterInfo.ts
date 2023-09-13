@@ -50,16 +50,14 @@ export class CharacterInfo {
   constructor(characterId: number, skillDepotId?: number) {
     this.id = characterId
     const costumeDatas = Object.values(
-      Client.cachedExcelBinOutput
-        .get('AvatarCostumeExcelConfigData')
-        ?.get() as JsonObject,
-    ) as JsonObject[]
+      Client._getCachedExcelBinOutputByName('AvatarCostumeExcelConfigData'),
+    )
     const defaultCostumeData = costumeDatas.find(
       (k) => k.avatarId == this.id && !('rarity' in k),
     ) as JsonObject
     this.defaultCostumeId = defaultCostumeData.costumeId as number
 
-    const avatarJson = Client.cachedExcelBinOutputGetter(
+    const avatarJson = Client._getJsonFromCachedExcelBinOutput(
       'AvatarExcelConfigData',
       this.id,
     )
@@ -68,13 +66,13 @@ export class CharacterInfo {
       skillDepotId && [10000005, 10000007].includes(this.id)
         ? skillDepotId
         : (avatarJson.skillDepotId as number)
-    const depotJson = Client.cachedExcelBinOutputGetter(
+    const depotJson = Client._getJsonFromCachedExcelBinOutput(
       'AvatarSkillDepotExcelConfigData',
       this.depotId,
     )
 
     const skillJson = depotJson.energySkill
-      ? Client.cachedExcelBinOutputGetter(
+      ? Client._getJsonFromCachedExcelBinOutput(
           'AvatarSkillExcelConfigData',
           depotJson.energySkill as number,
         )
@@ -101,7 +99,7 @@ export class CharacterInfo {
     this.talentIds = depotJson.talents as number[]
 
     this.skillOrder.forEach((skillId) => {
-      const skillJson = Client.cachedExcelBinOutputGetter(
+      const skillJson = Client._getJsonFromCachedExcelBinOutput(
         'AvatarSkillExcelConfigData',
         skillId,
       )
@@ -116,10 +114,8 @@ export class CharacterInfo {
    */
   public static getAllCharacterIds(): number[] {
     const avatarDatas = Object.values(
-      Client.cachedExcelBinOutput
-        .get('AvatarExcelConfigData')
-        ?.get() as JsonObject,
-    ) as JsonObject[]
+      Client._getCachedExcelBinOutputByName('AvatarExcelConfigData'),
+    )
     return avatarDatas
       .filter((k) => !('rarity' in k))
       .map((k) => k.id as number)

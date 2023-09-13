@@ -36,7 +36,7 @@ export class SetBonus {
       const setId = artifact.setId
       if (setId !== undefined) {
         this.countIds[setId] = (this.countIds[setId] || 0) + 1
-        const setJson = Client.cachedExcelBinOutputGetter(
+        const setJson = Client._getJsonFromCachedExcelBinOutput(
           'ReliquarySetExcelConfigData',
           setId,
         )

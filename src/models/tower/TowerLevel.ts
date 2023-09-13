@@ -1,6 +1,5 @@
 import { Client } from '@/client/Client'
 import { Monster } from '@/models/Monster'
-import { JsonObject } from '@/utils/JsonParser'
 
 /**
  * Class of Spiral Abyss Room.
@@ -39,7 +38,7 @@ export class TowerLevel {
   constructor(levelId: number, floorIndex: number) {
     this.id = levelId
 
-    const towerLevelJson = Client.cachedExcelBinOutputGetter(
+    const towerLevelJson = Client._getJsonFromCachedExcelBinOutput(
       'TowerLevelExcelConfigData',
       this.id,
     )
@@ -82,10 +81,8 @@ export class TowerLevel {
    */
   public static getAllTowerLevelIds() {
     const towerLevelDatas = Object.values(
-      Client.cachedExcelBinOutput
-        .get('TowerLevelExcelConfigData')
-        ?.get() as JsonObject,
-    ) as JsonObject[]
+      Client._getCachedExcelBinOutputByName('TowerLevelExcelConfigData'),
+    )
     return towerLevelDatas.map((t) => t.levelId as number)
   }
 
@@ -100,10 +97,8 @@ export class TowerLevel {
     index: number,
   ) {
     const towerLevelDatas = Object.values(
-      Client.cachedExcelBinOutput
-        .get('TowerLevelExcelConfigData')
-        ?.get() as JsonObject,
-    ) as JsonObject[]
+      Client._getCachedExcelBinOutputByName('TowerLevelExcelConfigData'),
+    )
     const towerLevelData = towerLevelDatas.find(
       (t) => t.levelGroupId === groupId && t.levelIndex === index,
     )

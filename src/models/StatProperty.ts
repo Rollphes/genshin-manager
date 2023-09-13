@@ -29,7 +29,7 @@ export class StatProperty {
   constructor(type: FightPropType, value: number) {
     this.type = type
 
-    const manualTextJson = Client.cachedExcelBinOutputGetter(
+    const manualTextJson = Client._getJsonFromCachedExcelBinOutput(
       'ManualTextMapConfigData',
       this.type,
     )

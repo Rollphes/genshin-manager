@@ -1,6 +1,5 @@
 import { Client } from '@/client/Client'
 import { ImageAssets } from '@/models/assets/ImageAssets'
-import { JsonObject } from '@/utils/JsonParser'
 
 /**
  * Class of character's talent.
@@ -35,7 +34,7 @@ export class Talent {
   constructor(talentId: number, locked: boolean = false) {
     this.id = talentId
     this.locked = locked
-    const talentJson = Client.cachedExcelBinOutputGetter(
+    const talentJson = Client._getJsonFromCachedExcelBinOutput(
       'AvatarTalentExcelConfigData',
       this.id,
     )
@@ -51,10 +50,8 @@ export class Talent {
    */
   public static getAllTalentIds(): number[] {
     const talentDatas = Object.values(
-      Client.cachedExcelBinOutput
-        .get('AvatarTalentExcelConfigData')
-        ?.get() as JsonObject,
-    ) as JsonObject[]
+      Client._getCachedExcelBinOutputByName('AvatarTalentExcelConfigData'),
+    )
     return talentDatas.map((data) => data.talentId as number)
   }
 }

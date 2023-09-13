@@ -171,7 +171,7 @@ export abstract class AssetCacheManager {
   /**
    * Cached text map.
    */
-  public static cachedExcelBinOutput: Map<
+  private static cachedExcelBinOutput: Map<
     keyof typeof ExcelBinOutputs,
     JsonParser
   > = new Map()
@@ -490,13 +490,13 @@ export abstract class AssetCacheManager {
   }
 
   /**
-   * get cached excel bin output.
+   * Get Json from cached excel bin output.
    * @deprecated This method is deprecated because it is used to pass data to each class.
    * @param key ExcelBinOutput name.
    * @param id ID of character, etc.
    * @returns
    */
-  public static cachedExcelBinOutputGetter(
+  public static _getJsonFromCachedExcelBinOutput(
     key: keyof typeof ExcelBinOutputs,
     id: string | number,
   ) {
@@ -509,5 +509,21 @@ export abstract class AssetCacheManager {
       throw new AssetsNotFoundError(key, id)
     }
     return json
+  }
+
+  /**
+   * Get cached excel bin output by name.
+   * @deprecated This method is deprecated because it is used to pass data to each class.
+   * @param key ExcelBinOutput name.
+   * @returns Cached excel bin output.
+   */
+  public static _getCachedExcelBinOutputByName(
+    key: keyof typeof ExcelBinOutputs,
+  ) {
+    const excelBinOutput = Client.cachedExcelBinOutput.get(key)
+    if (!excelBinOutput) {
+      throw new AssetsNotFoundError(key)
+    }
+    return excelBinOutput.get() as { [key in string]: JsonObject }
   }
 }

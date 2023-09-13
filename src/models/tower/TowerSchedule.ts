@@ -47,7 +47,7 @@ export class TowerSchedule {
    */
   constructor(scheduleId: number) {
     this.id = scheduleId
-    const towerScheduleJson = Client.cachedExcelBinOutputGetter(
+    const towerScheduleJson = Client._getJsonFromCachedExcelBinOutput(
       'TowerScheduleExcelConfigData',
       this.id,
     )
@@ -60,7 +60,7 @@ export class TowerSchedule {
     this.floors = (schedules[0].floorList as number[]).map(
       (floorId) => new TowerFloor(floorId),
     )
-    const dungeonLevelEntityJson = Client.cachedExcelBinOutputGetter(
+    const dungeonLevelEntityJson = Client._getJsonFromCachedExcelBinOutput(
       'DungeonLevelEntityConfigData',
       towerScheduleJson.monthlyLevelConfigId as number,
     )
@@ -79,10 +79,8 @@ export class TowerSchedule {
    */
   public static getAllTowerScheduleIds(): number[] {
     const towerSchedules = Object.values(
-      Client.cachedExcelBinOutput
-        .get('TowerScheduleExcelConfigData')
-        ?.get() as JsonObject,
-    ) as JsonObject[]
+      Client._getCachedExcelBinOutputByName('TowerScheduleExcelConfigData'),
+    )
     return towerSchedules.map((t) => t.scheduleId as number)
   }
 }

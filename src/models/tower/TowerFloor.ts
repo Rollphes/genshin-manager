@@ -1,7 +1,6 @@
 import { Client } from '@/client/Client'
 import { ImageAssets } from '@/models/assets/ImageAssets'
 import { TowerLevel } from '@/models/tower/TowerLevel'
-import { JsonObject } from '@/utils/JsonParser'
 
 /**
  * Class of Spiral Abyss Floor.
@@ -39,7 +38,7 @@ export class TowerFloor {
   constructor(floorId: number) {
     this.id = floorId
 
-    const towerFloorJson = Client.cachedExcelBinOutputGetter(
+    const towerFloorJson = Client._getJsonFromCachedExcelBinOutput(
       'TowerFloorExcelConfigData',
       this.id,
     )
@@ -53,7 +52,7 @@ export class TowerFloor {
       )
       if (levelId) this.levels.push(new TowerLevel(levelId, this.index))
     }
-    const dungeonLevelEntityJson = Client.cachedExcelBinOutputGetter(
+    const dungeonLevelEntityJson = Client._getJsonFromCachedExcelBinOutput(
       'DungeonLevelEntityConfigData',
       towerFloorJson.floorLevelConfigId as number,
     )
@@ -69,10 +68,8 @@ export class TowerFloor {
    */
   public static getAllTowerFloorIds() {
     const towerFloorDatas = Object.values(
-      Client.cachedExcelBinOutput
-        .get('TowerFloorExcelConfigData')
-        ?.get() as JsonObject,
-    ) as JsonObject[]
+      Client._getCachedExcelBinOutputByName('TowerFloorExcelConfigData'),
+    )
     return towerFloorDatas.map((t) => t.floorId as number)
   }
 }

@@ -31,22 +31,15 @@ export class ObjectKeyDecoder {
    * Create a ObjectKeyDecoder
    */
   constructor() {
-    const costumeData = Client.cachedExcelBinOutput.get(
-      'AvatarCostumeExcelConfigData',
+    const costumeDataArray = Object.values(
+      Client._getCachedExcelBinOutputByName('AvatarCostumeExcelConfigData'),
     )
-    if (!costumeData) {
-      throw Error('ExcelBinOutput cache not found')
-    }
 
-    const costumeDataArray = costumeData.get() as JsonArray
     const jeanCostume = costumeDataArray.find(
-      (data) =>
-        (data as JsonObject).jsonName === 'Avatar_Lady_Sword_QinCostumeSea',
+      (data) => data.jsonName === 'Avatar_Lady_Sword_QinCostumeSea',
     ) as JsonObject
     const dilucCostume = costumeDataArray.find(
-      (data) =>
-        (data as JsonObject).jsonName ===
-        'Avatar_Male_Claymore_DilucCostumeFlamme',
+      (data) => data.jsonName === 'Avatar_Male_Claymore_DilucCostumeFlamme',
     ) as JsonObject
 
     this.replaceDatas.push(

@@ -1,6 +1,5 @@
 import { Client } from '@/client/Client'
 import { ImageAssets } from '@/models/assets/ImageAssets'
-import { JsonObject } from '@/utils/JsonParser'
 
 /**
  * Class of character's costume.
@@ -41,11 +40,11 @@ export class Costume {
    */
   constructor(costumeId: number) {
     this.id = costumeId
-    const costumeJson = Client.cachedExcelBinOutputGetter(
+    const costumeJson = Client._getJsonFromCachedExcelBinOutput(
       'AvatarCostumeExcelConfigData',
       this.id,
     )
-    const avatarJson = Client.cachedExcelBinOutputGetter(
+    const avatarJson = Client._getJsonFromCachedExcelBinOutput(
       'AvatarExcelConfigData',
       costumeJson.avatarId as number,
     )
@@ -76,10 +75,8 @@ export class Costume {
    */
   public static getAllCostumeIds(): number[] {
     const costumeDatas = Object.values(
-      Client.cachedExcelBinOutput
-        .get('AvatarCostumeExcelConfigData')
-        ?.get() as JsonObject,
-    ) as JsonObject[]
+      Client._getCachedExcelBinOutputByName('AvatarCostumeExcelConfigData'),
+    )
     return costumeDatas.map((k) => k.costumeId as number)
   }
 }

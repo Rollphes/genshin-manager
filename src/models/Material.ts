@@ -89,7 +89,7 @@ export class Material {
    */
   constructor(materialId: number) {
     this.id = materialId
-    const materialJson = Client.cachedExcelBinOutputGetter(
+    const materialJson = Client._getJsonFromCachedExcelBinOutput(
       'MaterialExcelConfigData',
       this.id,
     )
@@ -110,11 +110,9 @@ export class Material {
    * @returns All material ids
    */
   public static getAllMaterialIds(): number[] {
-    const materialDatas = Object.values(
-      Client.cachedExcelBinOutput
-        .get('MaterialExcelConfigData')
-        ?.get() as JsonObject,
-    ) as JsonObject[]
+    const materialDatas = Client._getJsonFromCachedExcelBinOutputArray(
+      'MaterialExcelConfigData',
+    )
     return materialDatas.map((data) => data.id as number)
   }
 }

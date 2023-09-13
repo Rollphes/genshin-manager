@@ -85,7 +85,7 @@ export class Artifact {
   ) {
     this.id = artifactId
     this.level = level - 1
-    const artifactJson = Client.cachedExcelBinOutputGetter(
+    const artifactJson = Client._getJsonFromCachedExcelBinOutput(
       'ReliquaryExcelConfigData',
       this.id,
     )
@@ -97,12 +97,12 @@ export class Artifact {
     this.rarity = artifactJson.rankLevel as number
     this.setId = artifactJson.setId as number | undefined
     if (this.setId) {
-      const setJson = Client.cachedExcelBinOutputGetter(
+      const setJson = Client._getJsonFromCachedExcelBinOutput(
         'ReliquarySetExcelConfigData',
         this.setId,
       )
       const equipAffixId = (setJson.EquipAffixId as number) * 10 + 0
-      const equipAffixJson = Client.cachedExcelBinOutputGetter(
+      const equipAffixJson = Client._getJsonFromCachedExcelBinOutput(
         'EquipAffixExcelConfigData',
         equipAffixId,
       )
@@ -116,7 +116,7 @@ export class Artifact {
           ? Client.cachedTextMap.get(String(equipAffixJson.descTextMapHash))
           : undefined
       } else {
-        const equipAffixJsonBy2pc = Client.cachedExcelBinOutputGetter(
+        const equipAffixJsonBy2pc = Client._getJsonFromCachedExcelBinOutput(
           'EquipAffixExcelConfigData',
           equipAffixId,
         )
@@ -126,7 +126,7 @@ export class Artifact {
             )
           : undefined
 
-        const equipAffixJsonBy4pc = Client.cachedExcelBinOutputGetter(
+        const equipAffixJsonBy4pc = Client._getJsonFromCachedExcelBinOutput(
           'EquipAffixExcelConfigData',
           equipAffixId + 1,
         )
@@ -137,12 +137,12 @@ export class Artifact {
           : undefined
       }
     }
-    const artifactMainJson = Client.cachedExcelBinOutputGetter(
+    const artifactMainJson = Client._getJsonFromCachedExcelBinOutput(
       'ReliquaryMainPropExcelConfigData',
       mainPropId,
     )
     const mainValue = (
-      Client.cachedExcelBinOutputGetter(
+      Client._getJsonFromCachedExcelBinOutput(
         'ReliquaryLevelExcelConfigData',
         artifactMainJson.propType as string,
       )[this.rarity] as JsonObject
@@ -153,7 +153,7 @@ export class Artifact {
     )
     this.subStats = this.getSubStatProperties(appendPropIdList)
     this.appendPropList = appendPropIdList.map((propId) => {
-      const artifactAffixJson = Client.cachedExcelBinOutputGetter(
+      const artifactAffixJson = Client._getJsonFromCachedExcelBinOutput(
         'ReliquaryAffixExcelConfigData',
         propId,
       )
@@ -174,7 +174,7 @@ export class Artifact {
   private getSubStatProperties(appendPropIdList: number[]) {
     const result: Partial<{ [key in FightPropType]: number }> = {}
     appendPropIdList.forEach((propId) => {
-      const artifactAffixJson = Client.cachedExcelBinOutputGetter(
+      const artifactAffixJson = Client._getJsonFromCachedExcelBinOutput(
         'ReliquaryAffixExcelConfigData',
         propId,
       )
@@ -199,10 +199,8 @@ export class Artifact {
    */
   public static getAllArtifactIds(): number[] {
     const artifactDatas = Object.values(
-      Client.cachedExcelBinOutput
-        .get('ReliquaryExcelConfigData')
-        ?.get() as JsonObject,
-    ) as JsonObject[]
+      Client._getCachedExcelBinOutputByName('ReliquaryExcelConfigData'),
+    )
     const filteredArtifactDatas = artifactDatas.filter(
       (data) => data.setId != 15000, // 15000 is dummy artifact
     )

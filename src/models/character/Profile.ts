@@ -1,5 +1,4 @@
 import { Client } from '@/client/Client'
-import { JsonObject } from '@/utils/JsonParser'
 
 interface CharacterVoice {
   CH: string
@@ -70,7 +69,7 @@ export class Profile {
    */
   constructor(characterId: number) {
     this.characterId = characterId
-    const fetterInfoJson = Client.cachedExcelBinOutputGetter(
+    const fetterInfoJson = Client._getJsonFromCachedExcelBinOutput(
       'FetterInfoExcelConfigData',
       this.characterId,
     )
@@ -128,10 +127,8 @@ export class Profile {
    */
   public static getAllCharacterIds(): number[] {
     const profileDatas = Object.values(
-      Client.cachedExcelBinOutput
-        .get('FetterInfoExcelConfigData')
-        ?.get() as JsonObject,
-    ) as JsonObject[]
+      Client._getCachedExcelBinOutputByName('FetterInfoExcelConfigData'),
+    )
     return profileDatas.map((data) => data.avatarId as number)
   }
 }

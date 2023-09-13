@@ -81,11 +81,11 @@ export class Weapon {
     this.level = level
     this.promoteLevel = promoteLevel
     this.refinementRank = refinementRank
-    const weaponJson = Client.cachedExcelBinOutputGetter(
+    const weaponJson = Client._getJsonFromCachedExcelBinOutput(
       'WeaponExcelConfigData',
       this.id,
     )
-    const weaponPromoteJson = Client.cachedExcelBinOutputGetter(
+    const weaponPromoteJson = Client._getJsonFromCachedExcelBinOutput(
       'WeaponPromoteExcelConfigData',
       weaponJson.weaponPromoteId as number,
     )
@@ -93,7 +93,7 @@ export class Weapon {
     const skillAffix =
       (weaponJson.skillAffix as number[])[0] * 10 + this.refinementRank - 1
     if (skillAffix != 0) {
-      const equipAffixJson = Client.cachedExcelBinOutputGetter(
+      const equipAffixJson = Client._getJsonFromCachedExcelBinOutput(
         'EquipAffixExcelConfigData',
         skillAffix,
       )
@@ -143,7 +143,7 @@ export class Weapon {
     weaponPropJson: JsonObject,
     addValue: number = 0,
   ) {
-    const curveValue = Client.cachedExcelBinOutputGetter(
+    const curveValue = Client._getJsonFromCachedExcelBinOutput(
       'WeaponCurveExcelConfigData',
       weaponPropJson.type as string,
     )[this.level] as number
@@ -157,10 +157,8 @@ export class Weapon {
    */
   public static getAllWeaponIds(): number[] {
     const weaponDatas = Object.values(
-      Client.cachedExcelBinOutput
-        .get('WeaponExcelConfigData')
-        ?.get() as JsonObject,
-    ) as JsonObject[]
+      Client._getCachedExcelBinOutputByName('WeaponExcelConfigData'),
+    )
     return weaponDatas.map((data) => data.id as number)
   }
 }

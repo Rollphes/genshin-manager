@@ -78,7 +78,7 @@ export class Monster {
     this.id = monsterId
     this.level = level
 
-    const monsterJson = Client.cachedExcelBinOutputGetter(
+    const monsterJson = Client._getJsonFromCachedExcelBinOutput(
       'MonsterExcelConfigData',
       this.id,
     )
@@ -88,12 +88,10 @@ export class Monster {
     const describeId = +String(this.id).slice(1, 6)
     if (
       Object.keys(
-        Client.cachedExcelBinOutput
-          .get('MonsterDescribeExcelConfigData')
-          ?.get() as JsonObject,
+        Client._getCachedExcelBinOutputByName('MonsterDescribeExcelConfigData'),
       ).includes(String(describeId))
     ) {
-      const monsterDescribeJson = Client.cachedExcelBinOutputGetter(
+      const monsterDescribeJson = Client._getJsonFromCachedExcelBinOutput(
         'MonsterDescribeExcelConfigData',
         describeId,
       )
@@ -106,12 +104,10 @@ export class Monster {
     if (
       monsterJson.describeId &&
       Object.keys(
-        Client.cachedExcelBinOutput
-          .get('AnimalCodexExcelConfigData')
-          ?.get() as JsonObject,
+        Client._getCachedExcelBinOutputByName('AnimalCodexExcelConfigData'),
       ).includes(String(monsterJson.describeId as number))
     ) {
-      const AnimalCodexJson = Client.cachedExcelBinOutputGetter(
+      const AnimalCodexJson = Client._getJsonFromCachedExcelBinOutput(
         'AnimalCodexExcelConfigData',
         monsterJson.describeId as number,
       )
@@ -177,7 +173,7 @@ export class Monster {
       propGrowCurve.growCurve === 'GROW_CURVE_DEFENDING' //Skip GROW_CURVE_DEFENDING as it does not exist in the 4.0 data
     )
       return initValue * bonusValue
-    const curveValue = Client.cachedExcelBinOutputGetter(
+    const curveValue = Client._getJsonFromCachedExcelBinOutput(
       'MonsterCurveExcelConfigData',
       propGrowCurve.growCurve as string,
     )[this.level] as number
@@ -186,9 +182,7 @@ export class Monster {
 
   public static getAllMonsterIds(): number[] {
     return Object.keys(
-      Client.cachedExcelBinOutput
-        .get('MonsterExcelConfigData')
-        ?.get() as JsonObject,
+      Client._getCachedExcelBinOutputByName('MonsterExcelConfigData'),
     ).map((id) => Number(id))
   }
 
