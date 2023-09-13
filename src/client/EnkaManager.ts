@@ -42,6 +42,7 @@ export class EnkaManager {
    * ```
    */
   async fetch(uid: number, fetchOption?: RequestInit) {
+    this.clearCacheOverNextShowCaseDate()
     if (uid < 100000000 || uid > 999999999)
       throw new EnkaManagerError(`The UID format is not correct(${uid})`)
     const url = this.enkaUidURL + `${uid}`
@@ -72,5 +73,16 @@ export class EnkaManager {
     }
     this.cache.set(enkaData.uid, enkaData)
     return enkaData
+  }
+
+  /**
+   * Clear cache over nextShowCaseDate
+   */
+  public clearCacheOverNextShowCaseDate() {
+    this.cache.forEach((value, key) => {
+      if (new Date().getTime() > value.nextShowCaseDate.getTime()) {
+        this.cache.delete(key)
+      }
+    })
   }
 }
