@@ -473,7 +473,8 @@ export abstract class AssetCacheManager {
   private static async downloadJsonFile(url: string, downloadFilePath: string) {
     const res = await fetch(url, this.option.fetchOption)
     const writeStream = fs.createWriteStream(downloadFilePath, {
-      highWaterMark: 1 * 1024 * 1024,
+      //highWaterMark: 1 * 1024 * 1024,
+      //TODO:I'm checking because highWaterMark disappeared in types/node 20.6.0.
     })
     const language = path
       .basename(downloadFilePath)
