@@ -1,8 +1,8 @@
 import { ArtifactType } from '@/models/Artifact'
 import { FightPropType } from '@/models/StatProperty'
-import { ElementKeys } from '@/types'
+import { ElementKeys, ValueOf } from '@/types'
 
-export interface APICostume {
+interface APICostume {
   sideIconName: string
   icon: string
   art: string
@@ -29,30 +29,30 @@ export interface APIPlayerInfo {
   profilePicture?: APIProfilePicture
 }
 
-export interface APIProfilePicture {
+interface APIProfilePicture {
   avatarId?: number
   costumeId?: number
 }
 
-export interface APIPropMap {
+interface APIPropMap {
   type: number
   ival: string
   val?: string
 }
 
-export interface APIReliquary {
+interface APIReliquary {
   level: number
   mainPropId: number
   appendPropIdList?: number[]
 }
 
-export interface APIWeapon {
+interface APIWeapon {
   level: number
   promoteLevel?: number
   affixMap?: { [key in string]: number }
 }
 
-export interface APIReliquaryFlat {
+interface APIReliquaryFlat {
   nameTextMapHash: string
   setNameTextMapHash: string
   rankLevel: number
@@ -62,7 +62,7 @@ export interface APIReliquaryFlat {
   icon: string
   equipType: ArtifactType
 }
-export interface APIWeaponFlat {
+interface APIWeaponFlat {
   nameTextMapHash: string
   rankLevel: number
   weaponStats: APIItemStats[]
@@ -70,12 +70,12 @@ export interface APIWeaponFlat {
   icon: string
 }
 
-export interface APIItemStats {
+interface APIItemStats {
   appendPropId: FightPropType
   statValue: number
 }
 
-export interface APIReliquaryMainstat {
+interface APIReliquaryMainstat {
   mainPropId: FightPropType
   statValue: number
 }
@@ -114,7 +114,6 @@ export interface APIEnkaData {
   uid: number
 }
 
-type ValueOf<T> = T[keyof T]
 export interface APICharData {
   Element: ValueOf<typeof ElementKeys>
   Consts: string[]

@@ -80,6 +80,5 @@
     "node_modules",
     "./scripts/**/*",
     "./dist/**/*",
-    "./src/types/**/*",
   ],
 }
