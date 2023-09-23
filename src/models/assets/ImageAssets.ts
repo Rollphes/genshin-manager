@@ -126,8 +126,7 @@ export class ImageAssets {
         throw new ImageNotFoundError(this.name, this.url)
       }
       const fsStream = fs.createWriteStream(imageCachePath, {
-        //highWaterMark: highWaterMark,
-        //TODO:I'm checking because highWaterMark disappeared in types/node 20.6.0.
+        highWaterMark: highWaterMark,
       })
       if (ImageAssets.autoCacheImage) {
         await pipeline(res.body, fsStream)
