@@ -48,7 +48,7 @@ export class StatProperty {
     return this.cleanUp(this.value * (this.isPercent ? 100 : 1))
   }
   private cleanUp(v: number): number {
-    return Math.round(v * 10000000) / 10000000
+    return Math.round(v * 100000) / 100000 + 0
   }
 }
 
