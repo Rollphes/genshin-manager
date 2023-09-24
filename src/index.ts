@@ -1,5 +1,8 @@
 import { Client } from '@/client/Client'
 import { EnkaData, EnkaManager } from '@/client/EnkaManager'
+import { NoticeManager } from '@/client/NoticeManager'
+import { AnnContentNotFoundError } from '@/errors/AnnContentNotFoundError'
+import { AnnError } from '@/errors/AnnError'
 import { AssetsNotFoundError } from '@/errors/AssetsNotFoundError'
 import { EnkaManagerError } from '@/errors/EnkaManagerError'
 import { EnkaNetworkError } from '@/errors/EnkaNetWorkError'
@@ -18,16 +21,20 @@ import { PlayerInfo } from '@/models/enka/PlayerInfo'
 import { ShowAvatarInfo } from '@/models/enka/ShowAvatarInfo'
 import { ItemType, Material, MaterialType } from '@/models/Material'
 import { Monster } from '@/models/Monster'
+import { Notice } from '@/models/Notice'
 import { FightPropType, StatProperty } from '@/models/StatProperty'
 import { TowerFloor } from '@/models/tower/TowerFloor'
 import { TowerLevel } from '@/models/tower/TowerLevel'
 import { TowerSchedule } from '@/models/tower/TowerSchedule'
 import { Weapon, WeaponType } from '@/models/Weapon'
-import { ClientOption, Element } from '@/types'
+import { ClientOption, Element, Region } from '@/types'
+import { convertToUTC } from '@/utils/convertToUTC'
 export {
   Client,
   EnkaManager,
   EnkaData,
+  AnnContentNotFoundError,
+  AnnError,
   AssetsNotFoundError,
   EnkaManagerError,
   EnkaNetworkError,
@@ -52,7 +59,10 @@ export {
   TowerLevel,
   TowerSchedule,
   Monster,
+  NoticeManager,
+  Notice,
 }
+export { convertToUTC }
 export {
   Element,
   ArtifactType,
@@ -61,4 +71,5 @@ export {
   MaterialType,
   FightPropType,
   WeaponType,
+  Region,
 }
