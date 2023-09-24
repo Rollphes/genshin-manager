@@ -1,7 +1,7 @@
 import { Client } from '@/client/Client'
 import { ImageAssets } from '@/models/assets/ImageAssets'
 import { TowerFloor } from '@/models/tower/TowerFloor'
-import { convertCSTtoUTC } from '@/utils/convertCSTtoUTC'
+import { convertToUTC } from '@/utils/convertToUTC'
 import { JsonObject } from '@/utils/JsonParser'
 
 /**
@@ -52,8 +52,11 @@ export class TowerSchedule {
       this.id,
     )
     const schedules = towerScheduleJson.schedules as JsonObject[]
-    this.openDate = convertCSTtoUTC(schedules[0].openTime as string)
-    this.closeDate = convertCSTtoUTC(towerScheduleJson.closeTime as string)
+    this.openDate = convertToUTC(schedules[0].openTime as string, 'os_cht')
+    this.closeDate = convertToUTC(
+      towerScheduleJson.closeTime as string,
+      'os_cht',
+    )
     this.description =
       Client.cachedTextMap.get(String(towerScheduleJson.descTextMapHash)) || ''
     this.icon = new ImageAssets(towerScheduleJson.icon as string)
