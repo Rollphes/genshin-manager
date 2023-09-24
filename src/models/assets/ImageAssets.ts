@@ -20,29 +20,60 @@ const imageTypes: { [type: string]: RegExp[] } = {
  * Class that summarizes information about an image.
  */
 export class ImageAssets {
+  /**
+   * Fetch option
+   */
   private static fetchOption: RequestInit
+  /**
+   * Image base url by regex
+   */
   private static imageBaseUrlByRegex: { [url: string]: RegExp[] }
+  /**
+   * Default image base url
+   */
   private static defaultImageBaseUrl: string
+  /**
+   * Whether to cache the image
+   */
   private static autoCacheImage: boolean
+  /**
+   * Image folder path
+   */
   private static imageFolderPath: string
+  /**
+   * Image name
+   */
   public readonly name: string
+  /**
+   * Image base url
+   */
   public readonly imageBaseUrl: string
+  /**
+   * Image url
+   */
   public readonly url: string
+  /**
+   * Image type
+   */
   public readonly imageType: string | null
+  /**
+   * Image url of mihoyo
+   */
   public readonly mihoyoUrl: string
 
   /**
    * Classes for handling images
    * @param name image name
+   * @param url image url(Basically, no need to specify)
    */
-  constructor(name: string) {
+  constructor(name: string, url?: string) {
     this.name = name
     this.imageBaseUrl =
       Object.keys(ImageAssets.imageBaseUrlByRegex).find((url) =>
         ImageAssets.imageBaseUrlByRegex[url].some((regex) => regex.test(name)),
       ) ?? ImageAssets.defaultImageBaseUrl
 
-    this.url = name === '' ? '' : `${this.imageBaseUrl}/${name}.png`
+    this.url = url ? url : name === '' ? '' : `${this.imageBaseUrl}/${name}.png`
 
     this.imageType =
       Object.keys(imageTypes).find((type) =>
@@ -51,6 +82,15 @@ export class ImageAssets {
 
     this.mihoyoUrl =
       name === '' || !this.imageType ? '' : `${imageBaseUrlMihoyo}/${name}.png`
+  }
+
+  /**
+   * Create an ImageAssets instance from the image url.
+   * @param url image url
+   */
+  public static fromUrl(url: string) {
+    const name = path.basename(url, '.png')
+    return new ImageAssets(name, url)
   }
 
   /**
