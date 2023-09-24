@@ -27,13 +27,13 @@ A Node.js Enka.network and Genshin Data wrapper for Genshin Impact
 
 **Node.js 16 or newer is required.**
 
-Install genshin-manager including genshin cache data.(download All TextMap)
+Install genshin-manager including genshin cache data.(download EN TextMap by default.)
 
 ```sh-session
 npm install genshin-manager
 ```
 
-It is recommended that you specify the language to be used since the default is to download all textMaps.
+You can specify which TextMap to download during installation.('ALL' can also be specified).
 
 ```sh-session
 npm install genshin-manager --download-language="JP"

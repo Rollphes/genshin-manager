@@ -27,7 +27,10 @@ function getLanguage(value) {
   if (defaultDownloadTextMapLanguage.includes(value)) {
     return [value]
   }
-  return defaultDownloadTextMapLanguage
+  if(value === 'ALL') {
+    return defaultDownloadTextMapLanguage
+  }
+  return ['EN']
 }
 
 async function main() {
