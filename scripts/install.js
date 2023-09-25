@@ -1,4 +1,5 @@
 const { Client } = require('../dist/client/Client.js')
+const fs = require('fs')
 
 const downloadLanguage = process.env.npm_config_download_language
 const nocache = process.env.npm_config_nocache
@@ -27,7 +28,7 @@ function getLanguage(value) {
   if (defaultDownloadTextMapLanguage.includes(value)) {
     return [value]
   }
-  if(value === 'ALL') {
+  if (value === 'ALL') {
     return defaultDownloadTextMapLanguage
   }
   return ['EN']
@@ -43,6 +44,8 @@ async function main() {
         timeout: 0,
       },
     })
+    if (fs.existsSync(client.option.assetCacheFolderPath))
+      fs.rmSync(client.option.assetCacheFolderPath, { recursive: true })
     await client.deploy()
   }
 }
