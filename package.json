@@ -12,7 +12,7 @@
   "scripts": {
     "updateDoc": "npm run docs && git add docs && git commit -m \"[update]update docs\" && git push",
     "lint": "eslint .",
-    "create-release": "gh release create v%npm_package_version% -t v%npm_package_version% -n \"## Bug Fixes\" --draft && gh release upload v%npm_package_version%",
+    "create-release": "gh release create v%npm_package_version% -t v%npm_package_version% -n \"## Bug Fixes\" --draft",
     "prepublishOnly": "npm run build && npm run create-release",
     "docs": "typedoc --disableSources --out docs src",
     "install": "node scripts/install.js",
