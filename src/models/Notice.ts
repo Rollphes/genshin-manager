@@ -165,7 +165,7 @@ export class Notice {
   public getEventDuration() {
     if (this.tag === 2) return
     const elements = this.$('p').toArray()
-    const indexs = this._en$('p')
+    const indices = this._en$('p')
       .map((i, el) =>
         this._en$(el)
           .text()
@@ -174,12 +174,12 @@ export class Notice {
           : undefined,
       )
       .filter((index): index is number => index !== undefined)
-    if (!indexs.length) return
-    if (indexs.length === 1) return this.$(elements[indexs[0] + 1]).text()
+    if (!indices.length) return
+    if (indices.length === 1) return this.$(elements[indices[0] + 1]).text()
 
-    const endIndex = indexs[1] - 1
+    const endIndex = indices[1] - 1
     const duration: string[] = []
-    for (let i = indexs[0] + 1; i < endIndex; i++) {
+    for (let i = indices[0] + 1; i < endIndex; i++) {
       duration.push(this.$(elements[i]).text())
     }
     return duration.join('\n')
