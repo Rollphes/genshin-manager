@@ -1,4 +1,4 @@
-import { JSDOM } from 'jsdom'
+import { CheerioAPI, load } from 'cheerio'
 
 import { ImageAssets } from '@/models/assets/ImageAssets'
 import { Region, ValueOf } from '@/types'
@@ -26,10 +26,10 @@ export class Notice {
    */
   public banner: ImageAssets
   /**
-   * Notice content DOM
-   * @warning Note that the t tag is not unescaped.
+   * Notice content DOM(jQuery)
+   * @warning This property does not exclude table tags.
    */
-  public dom: Document
+  public $: CheerioAPI
   /**
    * Notice type
    * (1:event or 2:important)
@@ -71,7 +71,7 @@ export class Notice {
    * Notice language
    */
   public lang: ValueOf<typeof NoticeLanguage>
-  private _enDom: Document
+  private _en$: CheerioAPI
 
   /**
    * Create a Notice
@@ -95,10 +95,10 @@ export class Notice {
 
     //TODO:There is no code to unescape the t tag.
     const unescapedContent = unescape(content.content)
-    this.dom = new JSDOM(unescapedContent).window.document
+    this.$ = load(unescapedContent)
 
     const unescapedEnContent = unescape(enContent.content)
-    this._enDom = new JSDOM(unescapedEnContent).window.document
+    this._en$ = load(unescapedEnContent)
 
     const timeStrings = unescapedEnContent.match(
       /\d{4}\/\d{2}\/\d{2} \d{2}:\d{2}/g,
@@ -131,7 +131,7 @@ export class Notice {
       this.eventEnd = convertToUTC(timeStrings[timeStrings.length - 1], region)
     }
 
-    const rewardImgUrl = this.dom.querySelector('img')?.src
+    const rewardImgUrl = this.$('img').attr('src')
     this.rewardImg = rewardImgUrl
       ? ImageAssets.fromUrl(rewardImgUrl)
       : undefined
@@ -151,9 +151,10 @@ export class Notice {
    * @returns
    */
   public getText() {
-    const elements = this.dom.querySelectorAll('p')
-    const texts = Array.from(elements).map((element) => element.textContent)
-    return texts.join('\n')
+    return this.$('p')
+      .map((i, el) => this.$(el).text())
+      .get()
+      .join('\n')
   }
 
   /**
@@ -163,22 +164,23 @@ export class Notice {
    */
   public getEventDuration() {
     if (this.tag === 2) return
-    const elements = this.dom.querySelectorAll('p')
-    const enElements = this._enDom.querySelectorAll('p')
-    const indexs = Array.from(enElements)
-      .map((enElement, i) =>
-        enElement.textContent?.match(/〓.*?(Time|Duration).*?〓/g)
+    const elements = this.$('p').toArray()
+    const indexs = this._en$('p')
+      .map((i, el) =>
+        this._en$(el)
+          .text()
+          .match(/〓.*?(Time|Duration).*?〓/g)
           ? i
           : undefined,
       )
       .filter((index): index is number => index !== undefined)
     if (!indexs.length) return
-    if (indexs.length === 1) return elements[indexs[0] + 1].textContent
+    if (indexs.length === 1) return this.$(elements[indexs[0] + 1]).text()
 
     const endIndex = indexs[1] - 1
-    const duration = []
+    const duration: string[] = []
     for (let i = indexs[0] + 1; i < endIndex; i++) {
-      duration.push(elements[i].textContent)
+      duration.push(this.$(elements[i]).text())
     }
     return duration.join('\n')
   }
