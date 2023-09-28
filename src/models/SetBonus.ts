@@ -5,9 +5,6 @@ import { Artifact } from '@/models/Artifact'
  * Class of set bonuses that can be activated by artifacts
  */
 export class SetBonus {
-  private readonly setBracers: { [setId: string]: Artifact } = {}
-  private readonly activeSetIds: string[] = []
-  private readonly countIds: { [setId: string]: number } = {}
   /**
    * IDs of set bonuses that can be activated with one artifact.
    */
@@ -32,44 +29,49 @@ export class SetBonus {
    * @param artifacts Artifacts equipped by the character.
    */
   constructor(artifacts: Artifact[]) {
+    const countIds: { [setId: string]: number } = {}
+    const activeSetIds: string[] = []
+    const setBracers: { [setId: string]: Artifact } = {}
+
     artifacts.forEach((artifact) => {
       const setId = artifact.setId
       if (setId !== undefined) {
-        this.countIds[setId] = (this.countIds[setId] || 0) + 1
+        countIds[setId] = (countIds[setId] || 0) + 1
         const setJson = Client._getJsonFromCachedExcelBinOutput(
           'ReliquarySetExcelConfigData',
           setId,
         )
-        this.setBracers[setId] = new Artifact(
+        setBracers[setId] = new Artifact(
           (setJson.containsList as number[])[0],
           10001,
         )
       }
     })
 
-    this.activeSetIds.push(...Object.keys(this.countIds))
-
-    for (const setId in this.countIds) {
-      const count = this.countIds[setId]
+    Object.keys(countIds).forEach((setId) => {
+      const count = countIds[setId]
       if (this.oneSetBonusIds.includes(+setId)) {
-        this.countIds[setId] = 1
+        countIds[setId] = 1
       } else if (count >= 4) {
-        this.countIds[setId] = 4
+        countIds[setId] = 4
       } else if (count >= 2) {
-        this.countIds[setId] = 2
+        countIds[setId] = 2
+      } else {
+        delete countIds[setId]
       }
-    }
+      activeSetIds.push(setId)
+    })
 
-    this.oneSetBonus = this.activeSetIds
-      .filter((setId) => this.countIds[setId] === 1)
-      .map((setId) => this.setBracers[setId])
+    this.oneSetBonus = activeSetIds
+      .filter((setId) => countIds[setId] === 1)
+      .map((setId) => setBracers[setId])
 
-    this.twoSetBonus = this.activeSetIds
-      .filter((setId) => this.countIds[setId] === 2)
-      .map((setId) => this.setBracers[setId])
+    this.twoSetBonus = activeSetIds
+      .filter((setId) => countIds[setId] === 2)
+      .map((setId) => setBracers[setId])
 
-    this.fourSetBonus = this.activeSetIds
-      .filter((setId) => this.countIds[setId] === 4)
-      .map((setId) => this.setBracers[setId])
+    this.fourSetBonus = activeSetIds
+      .filter((setId) => countIds[setId] === 4)
+      .map((setId) => setBracers[setId])
   }
 }
