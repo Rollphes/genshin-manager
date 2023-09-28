@@ -192,6 +192,13 @@ export class Monster {
    */
   public static findMonsterIdByDescribeId(describeId: number): number {
     const convertId = describeId.toString().padStart(5, '0')
-    return describeId == 21104 ? 22110403 : Number(`2${convertId}01`) //21104 is an Id that cannot get monsterId in this way, so convert it to 22110403.
+    //Since some monsterId cannot be obtained by this method, the describeId is converted.
+    const exceptionIds: { [key in number]: number } = {
+      21104: 22110403,
+      30604: 23060201,
+    }
+    return Object.keys(exceptionIds).includes(String(describeId))
+      ? exceptionIds[+describeId]
+      : Number(`2${convertId}01`)
   }
 }
