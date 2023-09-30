@@ -84,6 +84,7 @@ export abstract class AssetCacheManager {
       'AvatarSkillDepotExcelConfigData',
       'AvatarSkillExcelConfigData',
       'MaterialExcelConfigData',
+      'ProfilePictureExcelConfigData',
     ],
     AvatarInfo: [
       'ReliquaryExcelConfigData',
@@ -119,6 +120,7 @@ export abstract class AssetCacheManager {
       'WeaponExcelConfigData',
       'WeaponPromoteExcelConfigData',
       'WeaponCurveExcelConfigData',
+      'ProfilePictureExcelConfigData',
     ],
     SetBonus: ['ReliquarySetExcelConfigData'],
     TowerSchedule: [
@@ -162,6 +164,8 @@ export abstract class AssetCacheManager {
       'AvatarCostumeExcelConfigData',
       'AvatarExcelConfigData',
       'MaterialExcelConfigData',
+      'AvatarSkillDepotExcelConfigData',
+      'AvatarSkillExcelConfigData',
     ],
   }
 
