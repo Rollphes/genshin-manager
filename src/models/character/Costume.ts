@@ -10,6 +10,10 @@ export class Costume {
    */
   public readonly id: number
   /**
+   * Character id
+   */
+  public readonly characterId: number
+  /**
    * Costume name
    */
   public readonly name: string
@@ -44,9 +48,10 @@ export class Costume {
       'AvatarCostumeExcelConfigData',
       this.id,
     )
+    this.characterId = costumeJson.characterId as number
     const avatarJson = Client._getJsonFromCachedExcelBinOutput(
       'AvatarExcelConfigData',
-      costumeJson.characterId as number,
+      this.characterId,
     )
 
     this.name =
