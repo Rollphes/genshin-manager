@@ -30,43 +30,7 @@ export class ObjectKeyDecoder {
   /**
    * Create a ObjectKeyDecoder
    */
-  constructor() {
-    const costumeDataArray = Object.values(
-      Client._getCachedExcelBinOutputByName('AvatarCostumeExcelConfigData'),
-    )
-
-    const jeanCostume = costumeDataArray.find(
-      (data) => data.jsonName === 'Avatar_Lady_Sword_QinCostumeSea',
-    ) as JsonObject
-    const dilucCostume = costumeDataArray.find(
-      (data) => data.jsonName === 'Avatar_Male_Claymore_DilucCostumeFlamme',
-    ) as JsonObject
-
-    this.replaceDatas.push(
-      new ReplaceData(
-        Object.entries(jeanCostume).find(
-          ([, v]) => v === 200301,
-        )?.[0] as string,
-        'costumeId',
-      ),
-    )
-    this.replaceDatas.push(
-      new ReplaceData(
-        Object.entries(jeanCostume).find(
-          ([, v]) => v === 10000003,
-        )?.[0] as string,
-        'avatarId',
-      ),
-    )
-    this.replaceDatas.push(
-      new ReplaceData(
-        Object.entries(jeanCostume).find(
-          ([k, v]) => v === 4 && dilucCostume[k] === 5,
-        )?.[0] as string,
-        'rarity',
-      ),
-    )
-  }
+  constructor() {}
   private decode(jsonData: JsonParser) {
     const jsonArray = jsonData.get() as JsonArray
     jsonArray.forEach((v) => {
