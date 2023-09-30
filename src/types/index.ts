@@ -1049,6 +1049,7 @@ export const ExcelBinOutputs = {
   // ProductPsnCompensationDetailConfigData:
   //   'ProductPsnCompensationDetailConfigData.json',
   ProudSkillExcelConfigData: 'ProudSkillExcelConfigData.json',
+  ProfilePictureExcelConfigData: 'ProfilePictureExcelConfigData.json',
   // PS4GroupExcelConfigData: 'PS4GroupExcelConfigData.json',
   // PS5GroupExcelConfigData: 'PS5GroupExcelConfigData.json',
   // PSActivitiesActivityConfigData: 'PSActivitiesActivityConfigData.json',

@@ -157,6 +157,12 @@ export abstract class AssetCacheManager {
       'ManualTextMapConfigData',
       'AnimalCodexExcelConfigData',
     ],
+    ProfilePicture: [
+      'ProfilePictureExcelConfigData',
+      'AvatarCostumeExcelConfigData',
+      'AvatarExcelConfigData',
+      'MaterialExcelConfigData',
+    ],
   }
 
   private static textHashList: Set<number> = new Set()
