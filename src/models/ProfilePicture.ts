@@ -52,4 +52,14 @@ export class ProfilePicture {
     this.icon = new ImageAssets(profilePictureJson.iconPath as string)
     this.type = profilePictureJson.type as ProfilePictureType
   }
+
+  /**
+   * Get all profile picture ids.
+   * @returns Profile picture ids
+   */
+  public static getAllProfilePictureIds(): number[] {
+    return Object.keys(
+      Client._getCachedExcelBinOutputByName('ProfilePictureExcelConfigData'),
+    ).map((id) => Number(id))
+  }
 }

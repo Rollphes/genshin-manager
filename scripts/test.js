@@ -10,6 +10,7 @@ const { Weapon } = require('../dist/models/Weapon.js')
 const { TowerSchedule } = require('../dist/models/tower/TowerSchedule.js')
 const { TowerFloor } = require('../dist/models/tower/TowerFloor.js')
 const { Monster } = require('../dist/models/Monster.js')
+const { ProfilePicture } = require('../dist/models/ProfilePicture.js')
 
 const { EnkaManager } = require('../dist/client/EnkaManager.js')
 
@@ -42,6 +43,7 @@ async function main() {
       )
       Monster.getAllMonsterIds().forEach((id) => new Monster(id))
       TowerFloor.getAllTowerFloorIds().forEach((id) => new TowerFloor(id))
+      ProfilePicture.getAllProfilePictureIds().forEach((id) => new ProfilePicture(id))
       console.log('AllId test passed!')
       break
     case 'EnkaNetwork':
