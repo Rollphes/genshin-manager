@@ -22,6 +22,7 @@ import { ShowAvatarInfo } from '@/models/enka/ShowAvatarInfo'
 import { ItemType, Material, MaterialType } from '@/models/Material'
 import { Monster } from '@/models/Monster'
 import { Notice } from '@/models/Notice'
+import { ProfilePicture, ProfilePictureType } from '@/models/ProfilePicture'
 import { FightPropType, StatProperty } from '@/models/StatProperty'
 import { TowerFloor } from '@/models/tower/TowerFloor'
 import { TowerLevel } from '@/models/tower/TowerLevel'
@@ -61,6 +62,7 @@ export {
   Monster,
   NoticeManager,
   Notice,
+  ProfilePicture,
 }
 export { convertToUTC }
 export {
@@ -72,4 +74,5 @@ export {
   FightPropType,
   WeaponType,
   Region,
+  ProfilePictureType,
 }
