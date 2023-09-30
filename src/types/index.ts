@@ -51,7 +51,16 @@ export interface ClientOption {
    * ],
    * 'https://res.cloudinary.com/genshin/image/upload/sprites': [
    *   /^Eff_UI_Talent_/,
+   *   /^UI_TowerPic_/,
+   *   /^UI_TowerBlessing_/,
+   *   /^UI_GcgIcon_/,
+   *   /^UI_Gcg_Cardtable_/,
+   *   /^UI_Gcg_CardBack_/,
    * ],
+   * 'https://api.ambr.top/assets/UI/monster': [/^UI_MonsterIcon_(.+)$/],
+   * 'https://api.ambr.top/assets/UI/gcg': [/^UI_Gcg_CardFace_(.+)$/],
+   * }
+   * ```
    */
   imageBaseUrlByRegex: { [url: string]: RegExp[] }
   /**
