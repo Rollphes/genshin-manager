@@ -85,6 +85,7 @@ export class PlayerInfo {
       if (profilePicture.costumeId) {
         this.profilePicture = new Costume(profilePicture.costumeId)
       } else {
+        //TODO: `ProfilePicture.icon` is not supported.
         throw new Error(
           `The error may have occurred because of the implementation of Material in ProfilePicture.`,
         )
