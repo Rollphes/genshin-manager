@@ -180,6 +180,10 @@ export class Monster {
     return initValue * curveValue * bonusValue
   }
 
+  /**
+   * Get all monster ids
+   * @returns All monster ids
+   */
   public static getAllMonsterIds(): number[] {
     return Object.keys(
       Client._getCachedExcelBinOutputByName('MonsterExcelConfigData'),
@@ -189,6 +193,7 @@ export class Monster {
   /**
    * find monsterId by describeId
    * @param describeId describeId
+   * @returns monsterId
    */
   public static findMonsterIdByDescribeId(describeId: number): number {
     const convertId = describeId.toString().padStart(5, '0')

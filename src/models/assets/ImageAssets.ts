@@ -117,7 +117,7 @@ export class ImageAssets {
 
   /**
    * Fetch image buffer
-   * @returns
+   * @returns image buffer
    */
   public async fetchBuffer() {
     if (!this.url) {
@@ -146,7 +146,7 @@ export class ImageAssets {
   /**
    * Fetch image stream
    * @param highWaterMark
-   * @returns
+   * @returns image stream
    */
   public async fetchStream(highWaterMark?: number) {
     if (!this.url) {

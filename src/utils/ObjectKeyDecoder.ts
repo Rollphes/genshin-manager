@@ -18,7 +18,13 @@ class ReplaceData {
  * Class of object key decoder.
  */
 export class ObjectKeyDecoder {
+  /**
+   * List of object key replace data.
+   */
   private readonly replaceDatas: ReplaceData[] = []
+  /**
+   * List of character IDs that are not included in the character list.
+   */
   private readonly characterBlackIdList: number[] = [
     10000001, 11000008, 11000009, 11000010, 11000011, 11000013, 11000017,
     11000018, 11000019, 11000025, 11000026, 11000027, 11000028, 11000030,
@@ -31,7 +37,7 @@ export class ObjectKeyDecoder {
    * Create a ObjectKeyDecoder
    */
   constructor() {
-    //Replace key of ProfilePictureExcelConfigData (add infoId&type)
+    // Replace key of ProfilePictureExcelConfigData (add infoId&type)
     const profilePictureDataArray = Object.values(
       Client._getCachedExcelBinOutputByName('ProfilePictureExcelConfigData'),
     )
@@ -57,6 +63,11 @@ export class ObjectKeyDecoder {
       ),
     )
   }
+
+  /**
+   * Decode object key.
+   * @param jsonData JsonParser
+   */
   private decode(jsonData: JsonParser) {
     const jsonArray = jsonData.get() as JsonArray
     jsonArray.forEach((v) => {
@@ -68,6 +79,12 @@ export class ObjectKeyDecoder {
       })
     })
   }
+  /**
+   * Set object key.
+   * @param jsonData JsonParser
+   * @param filename Filename
+   * @returns Object
+   */
   private setKey(jsonData: JsonParser, filename: keyof typeof ExcelBinOutputs) {
     const jsonArray = jsonData.get() as JsonArray
     const cacheObject: { [key in string]: JsonValue } = {}

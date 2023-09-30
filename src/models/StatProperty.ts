@@ -44,9 +44,19 @@ export class StatProperty {
     this.value = this.cleanUp(value)
   }
 
+  /**
+   * Get multiplied value
+   * @returns Multiplied value
+   */
   public getMultipliedValue(): number {
     return this.cleanUp(this.value * (this.isPercent ? 100 : 1))
   }
+
+  /**
+   * IEEE 754 rounding method
+   * @param v
+   * @returns Rounded value
+   */
   private cleanUp(v: number): number {
     return Math.round(v * 100000) / 100000 + 0
   }
