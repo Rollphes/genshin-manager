@@ -536,4 +536,15 @@ export abstract class AssetCacheManager {
     }
     return excelBinOutput.get() as { [key in string]: JsonObject }
   }
+
+  /**
+   * Check if cached excel bin output exists.
+   * @param key ExcelBinOutput name.
+   * @returns Cached excel bin output exists.
+   */
+  public static _hasCachedExcelBinOutputByName(
+    key: keyof typeof ExcelBinOutputs,
+  ) {
+    return Client.cachedExcelBinOutput.has(key)
+  }
 }
