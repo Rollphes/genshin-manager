@@ -82,6 +82,6 @@ export class Costume {
     const costumeDatas = Object.values(
       Client._getCachedExcelBinOutputByName('AvatarCostumeExcelConfigData'),
     )
-    return costumeDatas.map((k) => k.costumeId as number)
+    return costumeDatas.map((k) => k.skinId as number)
   }
 }

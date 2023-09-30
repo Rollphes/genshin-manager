@@ -114,7 +114,7 @@ export class ObjectKeyDecoder {
           cacheObject[obj.id as string] = obj
           break
         case 'AvatarCostumeExcelConfigData':
-          cacheObject[obj.costumeId as string] = obj
+          cacheObject[obj.skinId as string] = obj
           break
         case 'AvatarTalentExcelConfigData':
           cacheObject[obj.talentId as string] = obj

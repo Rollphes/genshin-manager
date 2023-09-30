@@ -53,9 +53,9 @@ export class CharacterInfo {
       Client._getCachedExcelBinOutputByName('AvatarCostumeExcelConfigData'),
     )
     const defaultCostumeData = costumeDatas.find(
-      (k) => k.avatarId == this.id && !('rarity' in k),
+      (k) => k.characterId == this.id && !('quality' in k),
     ) as JsonObject
-    this.defaultCostumeId = defaultCostumeData.costumeId as number
+    this.defaultCostumeId = defaultCostumeData.skinId as number
 
     const avatarJson = Client._getJsonFromCachedExcelBinOutput(
       'AvatarExcelConfigData',

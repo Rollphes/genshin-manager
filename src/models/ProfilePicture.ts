@@ -1,5 +1,8 @@
 import { Client } from '@/client/Client'
 import { ImageAssets } from '@/models/assets/ImageAssets'
+import { CharacterInfo } from '@/models/character/CharacterInfo'
+import { Costume } from '@/models/character/Costume'
+
 export type ProfilePictureType =
   | 'PROFILE_PICTURE_UNLOCK_BY_AVATAR'
   | 'PROFILE_PICTURE_UNLOCK_BY_COSTUME'
@@ -32,8 +35,12 @@ export class ProfilePicture {
     )
     if (String(infoId) in cachedAvatar) {
       this.avatarId = infoId
+      const characterInfo = new CharacterInfo(infoId)
+      this.costumeId = characterInfo.defaultCostumeId
     } else if (String(infoId) in cachedCostume) {
       this.costumeId = infoId
+      const costume = new Costume(infoId)
+      this.avatarId = costume.characterId
     } else if (String(infoId) in cachedMaterial) {
       this.materiaIid = infoId
     } else {
