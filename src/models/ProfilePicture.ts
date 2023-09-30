@@ -11,7 +11,7 @@ export type ProfilePictureType =
 export class ProfilePicture {
   public readonly id: number
   public readonly type: ProfilePictureType
-  public readonly avatarId?: number
+  public readonly characterId?: number
   public readonly costumeId?: number
   public readonly materiaIid?: number
   public readonly icon: ImageAssets
@@ -34,13 +34,13 @@ export class ProfilePicture {
       'MaterialExcelConfigData',
     )
     if (String(infoId) in cachedAvatar) {
-      this.avatarId = infoId
+      this.characterId = infoId
       const characterInfo = new CharacterInfo(infoId)
       this.costumeId = characterInfo.defaultCostumeId
     } else if (String(infoId) in cachedCostume) {
       this.costumeId = infoId
       const costume = new Costume(infoId)
-      this.avatarId = costume.characterId
+      this.characterId = costume.characterId
     } else if (String(infoId) in cachedMaterial) {
       this.materiaIid = infoId
     } else {
