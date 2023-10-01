@@ -15,6 +15,7 @@ import {
   GitLabAPIResponse,
   TextMapLanguage,
 } from '@/types'
+import { getClassNamesRecursive } from '@/utils/getClassNamesRecursive'
 import { JsonObject, JsonParser } from '@/utils/JsonParser'
 import { ObjectKeyDecoder } from '@/utils/ObjectKeyDecoder'
 import { TextMapEmptyWritable } from '@/utils/TextMapEmptyWritable'
@@ -306,8 +307,8 @@ export abstract class AssetCacheManager {
         ),
       )
     } else {
-      children.forEach((child) => {
-        const className = path.basename(child.id).split('.')[0]
+      console.log(getClassNamesRecursive(children))
+      getClassNamesRecursive(children).forEach((className) => {
         if (this.excelBinOutputMapUseModel[className]) {
           this.excelBinOutputKeyList = new Set([
             ...this.excelBinOutputKeyList,
