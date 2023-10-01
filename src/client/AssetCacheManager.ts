@@ -306,7 +306,6 @@ export abstract class AssetCacheManager {
         ),
       )
     } else {
-      this.excelBinOutputKeyList = new Set(['AvatarCostumeExcelConfigData'])
       children.forEach((child) => {
         const className = path.basename(child.id).split('.')[0]
         if (this.excelBinOutputMapUseModel[className]) {
