@@ -15,6 +15,7 @@ import {
   GitLabAPIResponse,
   TextMapLanguage,
 } from '@/types'
+import { getClassNamesRecursive } from '@/utils/getClassNamesRecursive'
 import { JsonObject, JsonParser } from '@/utils/JsonParser'
 import { ObjectKeyDecoder } from '@/utils/ObjectKeyDecoder'
 import { TextMapEmptyWritable } from '@/utils/TextMapEmptyWritable'
@@ -54,14 +55,12 @@ export abstract class AssetCacheManager {
     Material: ['MaterialExcelConfigData'],
     Talent: ['AvatarTalentExcelConfigData'],
     Skill: ['AvatarSkillExcelConfigData'],
-    FightProp: ['ManualTextMapConfigData'],
     StatProperty: ['ManualTextMapConfigData'],
     Weapon: [
       'WeaponExcelConfigData',
       'WeaponPromoteExcelConfigData',
       'EquipAffixExcelConfigData',
       'WeaponCurveExcelConfigData',
-      'ManualTextMapConfigData',
     ],
     Artifact: [
       'ReliquaryExcelConfigData',
@@ -70,92 +69,24 @@ export abstract class AssetCacheManager {
       'ReliquaryMainPropExcelConfigData',
       'ReliquaryLevelExcelConfigData',
       'ReliquaryAffixExcelConfigData',
-      'ManualTextMapConfigData',
     ],
-    ShowAvatarInfo: [
-      'AvatarCostumeExcelConfigData',
-      'AvatarExcelConfigData',
-      'AvatarSkillDepotExcelConfigData',
-      'AvatarSkillExcelConfigData',
-    ],
-    PlayerInfo: [
-      'AvatarCostumeExcelConfigData',
-      'AvatarExcelConfigData',
-      'AvatarSkillDepotExcelConfigData',
-      'AvatarSkillExcelConfigData',
-      'MaterialExcelConfigData',
-    ],
-    AvatarInfo: [
-      'ReliquaryExcelConfigData',
-      'ReliquarySetExcelConfigData',
-      'EquipAffixExcelConfigData',
-      'ReliquaryMainPropExcelConfigData',
-      'ReliquaryLevelExcelConfigData',
-      'ReliquaryAffixExcelConfigData',
-      'AvatarCostumeExcelConfigData',
-      'AvatarExcelConfigData',
-      'AvatarSkillDepotExcelConfigData',
-      'AvatarSkillExcelConfigData',
-      'ManualTextMapConfigData',
-      'AvatarTalentExcelConfigData',
-      'WeaponExcelConfigData',
-      'WeaponPromoteExcelConfigData',
-      'WeaponCurveExcelConfigData',
-    ],
-    EnkaManager: [
-      'MaterialExcelConfigData',
-      'ReliquaryExcelConfigData',
-      'ReliquarySetExcelConfigData',
-      'EquipAffixExcelConfigData',
-      'ReliquaryMainPropExcelConfigData',
-      'ReliquaryLevelExcelConfigData',
-      'ReliquaryAffixExcelConfigData',
-      'AvatarCostumeExcelConfigData',
-      'AvatarExcelConfigData',
-      'AvatarSkillDepotExcelConfigData',
-      'AvatarSkillExcelConfigData',
-      'ManualTextMapConfigData',
-      'AvatarTalentExcelConfigData',
-      'WeaponExcelConfigData',
-      'WeaponPromoteExcelConfigData',
-      'WeaponCurveExcelConfigData',
-    ],
-    SetBonus: ['ReliquarySetExcelConfigData'],
     TowerSchedule: [
       'TowerScheduleExcelConfigData',
-      'TowerFloorExcelConfigData',
-      'TowerLevelExcelConfigData',
       'DungeonLevelEntityConfigData',
-      'MonsterExcelConfigData',
-      'MonsterDescribeExcelConfigData',
-      'MonsterCurveExcelConfigData',
-      'ManualTextMapConfigData',
-      'AnimalCodexExcelConfigData',
     ],
-    TowerFloor: [
-      'TowerFloorExcelConfigData',
-      'TowerLevelExcelConfigData',
-      'DungeonLevelEntityConfigData',
-      'MonsterExcelConfigData',
-      'MonsterDescribeExcelConfigData',
-      'MonsterCurveExcelConfigData',
-      'ManualTextMapConfigData',
-      'AnimalCodexExcelConfigData',
-    ],
-    TowerLevel: [
-      'TowerLevelExcelConfigData',
-      'MonsterExcelConfigData',
-      'MonsterDescribeExcelConfigData',
-      'MonsterCurveExcelConfigData',
-      'ManualTextMapConfigData',
-      'AnimalCodexExcelConfigData',
-    ],
+    TowerFloor: ['TowerFloorExcelConfigData', 'DungeonLevelEntityConfigData'],
+    TowerLevel: ['TowerLevelExcelConfigData'],
     Monster: [
       'MonsterExcelConfigData',
       'MonsterDescribeExcelConfigData',
       'MonsterCurveExcelConfigData',
-      'ManualTextMapConfigData',
       'AnimalCodexExcelConfigData',
+    ],
+    ProfilePicture: [
+      'ProfilePictureExcelConfigData',
+      'AvatarCostumeExcelConfigData',
+      'AvatarExcelConfigData',
+      'MaterialExcelConfigData',
     ],
   }
 
@@ -296,9 +227,7 @@ export abstract class AssetCacheManager {
         ),
       )
     } else {
-      this.excelBinOutputKeyList = new Set(['AvatarCostumeExcelConfigData'])
-      children.forEach((child) => {
-        const className = path.basename(child.id).split('.')[0]
+      getClassNamesRecursive(children).forEach((className) => {
         if (this.excelBinOutputMapUseModel[className]) {
           this.excelBinOutputKeyList = new Set([
             ...this.excelBinOutputKeyList,
@@ -525,5 +454,16 @@ export abstract class AssetCacheManager {
       throw new AssetsNotFoundError(key)
     }
     return excelBinOutput.get() as { [key in string]: JsonObject }
+  }
+
+  /**
+   * Check if cached excel bin output exists.
+   * @param key ExcelBinOutput name.
+   * @returns Cached excel bin output exists.
+   */
+  public static _hasCachedExcelBinOutputByName(
+    key: keyof typeof ExcelBinOutputs,
+  ) {
+    return Client.cachedExcelBinOutput.has(key)
   }
 }

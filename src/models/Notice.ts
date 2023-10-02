@@ -148,7 +148,7 @@ export class Notice {
   /**
    * Get the text of the notice.
    * @warning This method does not exclude table tags.
-   * @returns
+   * @returns Notice all text
    */
   public getText() {
     return this.$('p')

@@ -31,6 +31,7 @@ export interface APIPlayerInfo {
 
 interface APIProfilePicture {
   avatarId?: number
+  id?: number //ProfilePicture id
   costumeId?: number
 }
 

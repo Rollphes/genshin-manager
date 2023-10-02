@@ -1,7 +1,7 @@
 {
   "name": "genshin-manager",
-  "version": "0.2.4",
-  "homepage": "",
+  "version": "0.2.5",
+  "homepage": "https://rollphes.github.io/GenshinManager/",
   "bugs": "https://github.com/Rollphes/GenshinManager/issues",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",

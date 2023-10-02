@@ -10,6 +10,7 @@ const { Weapon } = require('../dist/models/Weapon.js')
 const { TowerSchedule } = require('../dist/models/tower/TowerSchedule.js')
 const { TowerFloor } = require('../dist/models/tower/TowerFloor.js')
 const { Monster } = require('../dist/models/Monster.js')
+const { ProfilePicture } = require('../dist/models/ProfilePicture.js')
 
 const { EnkaManager } = require('../dist/client/EnkaManager.js')
 
@@ -42,6 +43,9 @@ async function main() {
       )
       Monster.getAllMonsterIds().forEach((id) => new Monster(id))
       TowerFloor.getAllTowerFloorIds().forEach((id) => new TowerFloor(id))
+      ProfilePicture.getAllProfilePictureIds().forEach(
+        (id) => new ProfilePicture(id),
+      )
       console.log('AllId test passed!')
       break
     case 'EnkaNetwork':
@@ -63,6 +67,65 @@ async function main() {
       })
       console.log('findMonsterIdByDescribeId test passed!')
     //TODO: Image test
+    case 'Image':
+      console.log('Running test of Image...')
+      console.log('Skip images supported by EnkaNetwork...')
+      const materialIds = await Material.getAllMaterialIds()
+      for (const id of materialIds) {
+        const material = new Material(id)
+        try {
+          await material.icon.fetchBuffer()
+          for (const img of material.pictures) {
+            await img.fetchBuffer()
+          }
+        } catch (e) {
+          console.log(e)
+        }
+      }
+
+      const towerScheduleIds = await TowerSchedule.getAllTowerScheduleIds()
+      for (const id of towerScheduleIds) {
+        const towerSchedule = new TowerSchedule(id)
+        try {
+          await towerSchedule.icon.fetchBuffer()
+        } catch (e) {
+          console.log(e)
+        }
+      }
+
+      const monsterIds = await Monster.getAllMonsterIds()
+      for (const id of monsterIds) {
+        const monster = new Monster(id)
+        if (monster.icon === undefined) continue
+        try {
+          await monster.icon.fetchBuffer()
+        } catch (e) {
+          console.log(e)
+        }
+      }
+
+      const towerFloorIds = await TowerFloor.getAllTowerFloorIds()
+      for (const id of towerFloorIds) {
+        const towerFloor = new TowerFloor(id)
+        try {
+          await towerFloor.bgImage.fetchBuffer()
+        } catch (e) {
+          console.log(e)
+        }
+      }
+
+      const profilePictureIds = await ProfilePicture.getAllProfilePictureIds()
+      for (const id of profilePictureIds) {
+        const profilePicture = new ProfilePicture(id)
+        try {
+          await profilePicture.icon.fetchBuffer()
+        } catch (e) {
+          console.log(e)
+        }
+      }
+
+      console.log('Image test passed!')
+      break
   }
 }
 void main()

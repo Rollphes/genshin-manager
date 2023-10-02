@@ -47,11 +47,20 @@ export interface ClientOption {
    *  'https://enka.network/ui': [
    *   /^UI_(Costume|NameCardIcon|NameCardPic|RelicIcon|AvatarIcon_Side)_/,
    *   /^UI_AvatarIcon_(.+)_Card$/,
-   *   /^UI_EquipIcon_(.+)_Awaken$/,
+   *   /^UI_EquipIcon_(.+)$/,
    * ],
    * 'https://res.cloudinary.com/genshin/image/upload/sprites': [
    *   /^Eff_UI_Talent_/,
+   *   /^UI_TowerPic_/,
+   *   /^UI_TowerBlessing_/,
+   *   /^UI_GcgIcon_/,
+   *   /^UI_Gcg_Cardtable_/,
+   *   /^UI_Gcg_CardBack_/,
    * ],
+   * 'https://api.ambr.top/assets/UI/monster': [/^UI_MonsterIcon_(.+)$/],
+   * 'https://api.ambr.top/assets/UI/gcg': [/^UI_Gcg_CardFace_(.+)$/],
+   * }
+   * ```
    */
   imageBaseUrlByRegex: { [url: string]: RegExp[] }
   /**
@@ -1049,6 +1058,7 @@ export const ExcelBinOutputs = {
   // ProductPsnCompensationDetailConfigData:
   //   'ProductPsnCompensationDetailConfigData.json',
   ProudSkillExcelConfigData: 'ProudSkillExcelConfigData.json',
+  ProfilePictureExcelConfigData: 'ProfilePictureExcelConfigData.json',
   // PS4GroupExcelConfigData: 'PS4GroupExcelConfigData.json',
   // PS5GroupExcelConfigData: 'PS5GroupExcelConfigData.json',
   // PSActivitiesActivityConfigData: 'PSActivitiesActivityConfigData.json',

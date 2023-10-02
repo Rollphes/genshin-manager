@@ -18,7 +18,13 @@ class ReplaceData {
  * Class of object key decoder.
  */
 export class ObjectKeyDecoder {
+  /**
+   * List of object key replace data.
+   */
   private readonly replaceDatas: ReplaceData[] = []
+  /**
+   * List of character IDs that are not included in the character list.
+   */
   private readonly characterBlackIdList: number[] = [
     10000001, 11000008, 11000009, 11000010, 11000011, 11000013, 11000017,
     11000018, 11000019, 11000025, 11000026, 11000027, 11000028, 11000030,
@@ -31,42 +37,41 @@ export class ObjectKeyDecoder {
    * Create a ObjectKeyDecoder
    */
   constructor() {
-    const costumeDataArray = Object.values(
-      Client._getCachedExcelBinOutputByName('AvatarCostumeExcelConfigData'),
-    )
+    // Replace key of ProfilePictureExcelConfigData (add infoId&type)
+    if (
+      Client._hasCachedExcelBinOutputByName('ProfilePictureExcelConfigData')
+    ) {
+      const profilePictureDataArray = Object.values(
+        Client._getCachedExcelBinOutputByName('ProfilePictureExcelConfigData'),
+      )
 
-    const jeanCostume = costumeDataArray.find(
-      (data) => data.jsonName === 'Avatar_Lady_Sword_QinCostumeSea',
-    ) as JsonObject
-    const dilucCostume = costumeDataArray.find(
-      (data) => data.jsonName === 'Avatar_Male_Claymore_DilucCostumeFlamme',
-    ) as JsonObject
+      const dummyProfilePicture = profilePictureDataArray.find(
+        (data) => data.id === 99999,
+      ) as JsonObject
 
-    this.replaceDatas.push(
-      new ReplaceData(
-        Object.entries(jeanCostume).find(
-          ([, v]) => v === 200301,
-        )?.[0] as string,
-        'costumeId',
-      ),
-    )
-    this.replaceDatas.push(
-      new ReplaceData(
-        Object.entries(jeanCostume).find(
-          ([, v]) => v === 10000003,
-        )?.[0] as string,
-        'avatarId',
-      ),
-    )
-    this.replaceDatas.push(
-      new ReplaceData(
-        Object.entries(jeanCostume).find(
-          ([k, v]) => v === 4 && dilucCostume[k] === 5,
-        )?.[0] as string,
-        'rarity',
-      ),
-    )
+      this.replaceDatas.push(
+        new ReplaceData(
+          Object.entries(dummyProfilePicture).find(
+            ([, v]) => v === 320001,
+          )?.[0] as string,
+          'infoId',
+        ),
+      )
+      this.replaceDatas.push(
+        new ReplaceData(
+          Object.entries(dummyProfilePicture).find(
+            ([, v]) => v === 'PROFILE_PICTURE_UNLOCK_BY_ITEM',
+          )?.[0] as string,
+          'type',
+        ),
+      )
+    }
   }
+
+  /**
+   * Decode object key.
+   * @param jsonData JsonParser
+   */
   private decode(jsonData: JsonParser) {
     const jsonArray = jsonData.get() as JsonArray
     jsonArray.forEach((v) => {
@@ -78,6 +83,12 @@ export class ObjectKeyDecoder {
       })
     })
   }
+  /**
+   * Set object key.
+   * @param jsonData JsonParser
+   * @param filename Filename
+   * @returns Object
+   */
   private setKey(jsonData: JsonParser, filename: keyof typeof ExcelBinOutputs) {
     const jsonArray = jsonData.get() as JsonArray
     const cacheObject: { [key in string]: JsonValue } = {}
@@ -124,7 +135,7 @@ export class ObjectKeyDecoder {
           cacheObject[obj.id as string] = obj
           break
         case 'AvatarCostumeExcelConfigData':
-          cacheObject[obj.costumeId as string] = obj
+          cacheObject[obj.skinId as string] = obj
           break
         case 'AvatarTalentExcelConfigData':
           cacheObject[obj.talentId as string] = obj

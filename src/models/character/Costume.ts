@@ -10,6 +10,10 @@ export class Costume {
    */
   public readonly id: number
   /**
+   * Character id
+   */
+  public readonly characterId: number
+  /**
    * Costume name
    */
   public readonly name: string
@@ -18,9 +22,9 @@ export class Costume {
    */
   public readonly description: string
   /**
-   * Costume rarity
+   * Costume quality
    */
-  public readonly rarity: number
+  public readonly quality: number
   /**
    * Costume side icon
    */
@@ -44,18 +48,19 @@ export class Costume {
       'AvatarCostumeExcelConfigData',
       this.id,
     )
+    this.characterId = costumeJson.characterId as number
     const avatarJson = Client._getJsonFromCachedExcelBinOutput(
       'AvatarExcelConfigData',
-      costumeJson.avatarId as number,
+      this.characterId,
     )
 
     this.name =
       Client.cachedTextMap.get(String(costumeJson.nameTextMapHash)) || ''
     this.description =
       Client.cachedTextMap.get(String(costumeJson.descTextMapHash)) || ''
-    this.rarity = (costumeJson.rarity as number) || 0
+    this.quality = (costumeJson.quality as number) || 0
     const sideIconName =
-      costumeJson.rarity && typeof avatarJson != 'undefined'
+      costumeJson.quality && typeof avatarJson != 'undefined'
         ? (costumeJson.sideIconName as string)
         : (avatarJson.sideIconName as string)
     this.sideIcon = new ImageAssets(sideIconName)
@@ -63,7 +68,7 @@ export class Costume {
     const avatarTag = nameParts[nameParts.length - 1]
     this.icon = new ImageAssets('UI_AvatarIcon_' + avatarTag)
     this.art = new ImageAssets(
-      costumeJson.rarity
+      costumeJson.quality
         ? 'UI_Costume_' + avatarTag
         : 'UI_Gacha_AvatarImg_' + avatarTag,
     )
@@ -77,6 +82,6 @@ export class Costume {
     const costumeDatas = Object.values(
       Client._getCachedExcelBinOutputByName('AvatarCostumeExcelConfigData'),
     )
-    return costumeDatas.map((k) => k.costumeId as number)
+    return costumeDatas.map((k) => k.skinId as number)
   }
 }
