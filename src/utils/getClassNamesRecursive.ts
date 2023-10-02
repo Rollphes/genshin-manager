@@ -12,7 +12,7 @@ export function getClassNamesRecursive(children: Module[], temp?: Set<string>) {
   children.forEach((child) => {
     const className = path.basename(child.id).split('.')[0]
     if (
-      child.id.match(/genshin-manager\\(src|dist)/) &&
+      child.id.match(/genshin-manager(\/|\\)(src|dist)/) &&
       !classNames.has(className)
     ) {
       classNames.add(className)
