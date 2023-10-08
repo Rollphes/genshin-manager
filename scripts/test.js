@@ -66,7 +66,6 @@ async function main() {
         new Monster(monsterId)
       })
       console.log('findMonsterIdByDescribeId test passed!')
-    //TODO: Image test
     case 'Image':
       console.log('Running test of Image...')
       console.log('Skip images supported by EnkaNetwork...')

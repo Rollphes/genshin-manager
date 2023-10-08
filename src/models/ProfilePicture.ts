@@ -80,7 +80,7 @@ export class ProfilePicture {
       )
     }
 
-    this.icon = new ImageAssets(profilePictureJson.iconPath as string) //TODO: `ProfilePicture.icon` is not supported.
+    this.icon = new ImageAssets(profilePictureJson.iconPath as string)
     this.type = profilePictureJson.type as ProfilePictureType
   }
 
