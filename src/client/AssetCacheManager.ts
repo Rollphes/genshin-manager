@@ -458,6 +458,7 @@ export abstract class AssetCacheManager {
 
   /**
    * Check if cached excel bin output exists.
+   * @deprecated This method is deprecated because it is used to pass data to each class.
    * @param key ExcelBinOutput name.
    * @returns Cached excel bin output exists.
    */
