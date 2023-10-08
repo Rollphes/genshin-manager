@@ -37,9 +37,9 @@ export class TowerSchedule {
    */
   public readonly buffName: string
   /**
-   * Blessing of the Abyssal Moon description
+   * Blessing of the Abyssal Moon descriptions
    */
-  public readonly buffDescription: string
+  public readonly buffDescriptions: string[]
 
   /**
    * Create a TowerSchedule
@@ -63,17 +63,24 @@ export class TowerSchedule {
     this.floors = (schedules[0].floorList as number[]).map(
       (floorId) => new TowerFloor(floorId),
     )
-    const dungeonLevelEntityJson = Client._getJsonFromCachedExcelBinOutput(
-      'DungeonLevelEntityConfigData',
-      towerScheduleJson.monthlyLevelConfigId as number,
-    )
     this.buffName =
       Client.cachedTextMap.get(String(towerScheduleJson.buffnameTextMapHash)) ||
       ''
-    this.buffDescription =
-      Client.cachedTextMap.get(
-        String(dungeonLevelEntityJson.descTextMapHash),
-      ) || ''
+
+    const dungeonLevelEntity = Client._getCachedExcelBinOutputByName(
+      'DungeonLevelEntityConfigData',
+    )
+    this.buffDescriptions = Object.values(dungeonLevelEntity)
+      .filter(
+        (dungeonLevelEntityJson) =>
+          dungeonLevelEntityJson.id === towerScheduleJson.monthlyLevelConfigId,
+      )
+      .map(
+        (dungeonLevelEntityJson) =>
+          Client.cachedTextMap.get(
+            String(dungeonLevelEntityJson.descTextMapHash),
+          ) || '',
+      )
   }
 
   /**

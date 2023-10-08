@@ -27,9 +27,9 @@ export class TowerFloor {
    */
   public readonly levels: TowerLevel[] = []
   /**
-   * Ley Line Disorder description
+   * Ley Line Disorder descriptions
    */
-  public readonly buffDescription: string
+  public readonly buffDescriptions: string[]
 
   /**
    * Create a TowerFloor
@@ -52,14 +52,20 @@ export class TowerFloor {
       )
       if (levelId) this.levels.push(new TowerLevel(levelId, this.index))
     }
-    const dungeonLevelEntityJson = Client._getJsonFromCachedExcelBinOutput(
+    const dungeonLevelEntity = Client._getCachedExcelBinOutputByName(
       'DungeonLevelEntityConfigData',
-      towerFloorJson.floorLevelConfigId as number,
     )
-    this.buffDescription =
-      Client.cachedTextMap.get(
-        String(dungeonLevelEntityJson.descTextMapHash),
-      ) || ''
+    this.buffDescriptions = Object.values(dungeonLevelEntity)
+      .filter(
+        (dungeonLevelEntityJson) =>
+          dungeonLevelEntityJson.id === towerFloorJson.floorLevelConfigId,
+      )
+      .map(
+        (dungeonLevelEntityJson) =>
+          Client.cachedTextMap.get(
+            String(dungeonLevelEntityJson.descTextMapHash),
+          ) || '',
+      )
   }
 
   /**

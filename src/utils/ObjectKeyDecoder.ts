@@ -160,7 +160,7 @@ export class ObjectKeyDecoder {
           break
         case 'DungeonLevelEntityConfigData':
           if (obj.show !== true) break //Because the same id exists. Added as a temporary workaround
-          cacheObject[obj.id as string] = obj
+          cacheObject[obj.clientId as string] = obj
           break
         case 'MonsterExcelConfigData':
           cacheObject[obj.id as string] = obj
