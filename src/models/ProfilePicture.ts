@@ -80,7 +80,7 @@ export class ProfilePicture {
       )
     }
 
-    this.icon = new ImageAssets(profilePictureJson.iconPath as string) //TODO: `ProfilePicture.icon` is not supported.
+    this.icon = new ImageAssets(profilePictureJson.iconPath as string)
     this.type = profilePictureJson.type as ProfilePictureType
   }
 
@@ -92,5 +92,21 @@ export class ProfilePicture {
     return Object.keys(
       Client._getCachedExcelBinOutputByName('ProfilePictureExcelConfigData'),
     ).map((id) => Number(id))
+  }
+
+  /**
+   * Find profile picture id by info id.
+   * @param infoId Costume id or Character id or Material id
+   * @returns Profile picture id
+   */
+  public static findProfilePictureIdByInfoId(infoId: number) {
+    const profilePictureDatas = Object.values(
+      Client._getCachedExcelBinOutputByName('ProfilePictureExcelConfigData'),
+    )
+    const profilePictureData = profilePictureDatas.find(
+      (data) => data.infoId == infoId,
+    )
+    if (!profilePictureData) return
+    return profilePictureData.id as number
   }
 }

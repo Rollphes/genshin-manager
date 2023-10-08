@@ -1,5 +1,3 @@
-import { CharacterInfo } from '@/models/character/CharacterInfo'
-import { Costume } from '@/models/character/Costume'
 import { ShowAvatarInfo } from '@/models/enka/ShowAvatarInfo'
 import { Material } from '@/models/Material'
 import { ProfilePicture } from '@/models/ProfilePicture'
@@ -50,9 +48,8 @@ export class PlayerInfo {
   readonly showNameCardList: Material[]
   /**
    * Profile picture of the player.
-   * Class `ProfilePicture` is not yet supported by EnkaNetwork, so it was replaced with class `Costume`.
    */
-  readonly profilePicture: Costume
+  readonly profilePicture: ProfilePicture
 
   /**
    * Create a PlayerInfo
@@ -73,23 +70,17 @@ export class PlayerInfo {
     this.showNameCardList = data.showNameCardIdList
       ? data.showNameCardIdList.map((id) => new Material(id))
       : []
-    if (!data.profilePicture?.id) {
-      const characterData = new CharacterInfo(
-        data.profilePicture?.avatarId || 10000005,
-      )
-      this.profilePicture = new Costume(
-        data.profilePicture?.costumeId ?? characterData.defaultCostumeId,
-      )
+
+    let profilePictureId
+    if (data.profilePicture && data.profilePicture.id) {
+      profilePictureId = data.profilePicture.id
     } else {
-      const profilePicture = new ProfilePicture(data.profilePicture.id)
-      if (profilePicture.costumeId) {
-        this.profilePicture = new Costume(profilePicture.costumeId)
-      } else {
-        //TODO: `ProfilePicture.icon` is not supported.
-        throw new Error(
-          `The error may have occurred because of the implementation of Material in ProfilePicture.`,
-        )
-      }
+      profilePictureId = ProfilePicture.findProfilePictureIdByInfoId(
+        data.profilePicture?.costumeId ??
+          data.profilePicture?.avatarId ??
+          10000005,
+      ) as number
     }
+    this.profilePicture = new ProfilePicture(profilePictureId || 10000005)
   }
 }
