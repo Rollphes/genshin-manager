@@ -93,4 +93,20 @@ export class ProfilePicture {
       Client._getCachedExcelBinOutputByName('ProfilePictureExcelConfigData'),
     ).map((id) => Number(id))
   }
+
+  /**
+   * Find profile picture id by info id.
+   * @param infoId Costume id or Character id or Material id
+   * @returns Profile picture id
+   */
+  public static findProfilePictureIdByInfoId(infoId: number) {
+    const profilePictureDatas = Object.values(
+      Client._getCachedExcelBinOutputByName('ProfilePictureExcelConfigData'),
+    )
+    const profilePictureData = profilePictureDatas.find(
+      (data) => data.infoId == infoId,
+    )
+    if (!profilePictureData) return
+    return profilePictureData.id as number
+  }
 }
