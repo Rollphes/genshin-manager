@@ -47,6 +47,7 @@ export class Client extends AssetCacheManager {
           /^UI_(Costume|NameCardIcon|NameCardPic|RelicIcon|AvatarIcon_Side)_/,
           /^UI_AvatarIcon_(.+)_Card$/,
           /^UI_EquipIcon_(.+)$/,
+          /^UI_AvatarIcon_(.+)_Circle/,
         ],
         'https://res.cloudinary.com/genshin/image/upload/sprites': [
           /^Eff_UI_Talent_/,
