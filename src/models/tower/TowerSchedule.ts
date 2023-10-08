@@ -86,4 +86,27 @@ export class TowerSchedule {
     )
     return towerSchedules.map((t) => t.scheduleId as number)
   }
+
+  /**
+   * Get all TowerSchedule ids that are currently open
+   * @returns All TowerSchedule ids that are currently open
+   */
+  public static getNowTowerScheduleIds(): number[] {
+    const towerSchedules = Object.values(
+      Client._getCachedExcelBinOutputByName('TowerScheduleExcelConfigData'),
+    )
+    const now = new Date()
+    return towerSchedules
+      .filter(
+        (t) =>
+          now.getTime() >=
+            convertToUTC(
+              (t.schedules as JsonObject[])[0].openTime as string,
+              'os_cht',
+            ).getTime() &&
+          now.getTime() <=
+            convertToUTC(t.closeTime as string, 'os_cht').getTime(),
+      )
+      .map((t) => t.scheduleId as number)
+  }
 }
