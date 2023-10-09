@@ -20,7 +20,7 @@ export interface ClientOption {
    * @default
    * ```ts
    * {
-   *   timeout: 3000,
+   *   timeout: 0,
    *   'user-agent': 'Mozilla/5.0',
    * }
    * ```
