@@ -45,10 +45,10 @@ export class Client extends AssetCacheManager {
       imageBaseUrlByRegex: {
         'https://api.hakush.in/gi/UI': [
           /^UI_(NameCardIcon|Costume|EquipIcon|RelicIcon|MonsterIcon|AnimalIcon|ItemIcon|Gcg_CardFace)_/,
-          /^UI_AvatarIcon_(.+)_Card$/,
         ],
         'https://enka.network/ui': [
           /^UI_(NameCardPic|AvatarIcon_Side)_/,
+          /^UI_AvatarIcon_(.+)_Card$/,
           /^UI_AvatarIcon_(.+)_Circle/,
         ],
         'https://res.cloudinary.com/genshin/image/upload/sprites': [
