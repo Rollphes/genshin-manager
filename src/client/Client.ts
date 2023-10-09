@@ -44,19 +44,17 @@ export class Client extends AssetCacheManager {
       defaultImageBaseUrl: 'https://api.ambr.top/assets/UI',
       imageBaseUrlByRegex: {
         'https://api.hakush.in/gi/UI': [
-          /^UI_(NameCardIcon|Costume|EquipIcon|RelicIcon|MonsterIcon|AnimalIcon|ItemIcon)_/,
+          /^UI_(NameCardIcon|Costume|EquipIcon|RelicIcon|MonsterIcon|AnimalIcon|ItemIcon|Gcg_CardFace)_/,
           /^UI_AvatarIcon_(.+)_Card$/,
         ],
         'https://enka.network/ui': [
           /^UI_(NameCardPic|AvatarIcon_Side)_/,
           /^UI_AvatarIcon_(.+)_Circle/,
         ],
-
         'https://res.cloudinary.com/genshin/image/upload/sprites': [
           /^Eff_UI_Talent_/,
           /^UI_(TowerPic|TowerBlessing|GcgIcon|Gcg_Cardtable|Gcg_CardBack)_/,
         ],
-        'https://api.ambr.top/assets/UI/gcg': [/^UI_Gcg_CardFace_/],
       },
       defaultLanguage: 'EN',
       showFetchCacheLog: true,

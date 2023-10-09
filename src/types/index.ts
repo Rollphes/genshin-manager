@@ -45,7 +45,7 @@ export interface ClientOption {
    * ```ts
    * {
    *   'https://api.hakush.in/gi/UI': [
-   *     /^UI_(NameCardIcon|Costume|EquipIcon|RelicIcon|MonsterIcon|AnimalIcon|ItemIcon)_/,
+   *     /^UI_(NameCardIcon|Costume|EquipIcon|RelicIcon|MonsterIcon|AnimalIcon|ItemIcon|Gcg_CardFace)_/,
    *     /^UI_AvatarIcon_(.+)_Card$/,
    *   ],
    *   'https://enka.network/ui': [
@@ -56,7 +56,6 @@ export interface ClientOption {
    *     /^Eff_UI_Talent_/,
    *     /^UI_(TowerPic|TowerBlessing|GcgIcon|Gcg_Cardtable|Gcg_CardBack)_/,
    *   ],
-   *   'https://api.ambr.top/assets/UI/gcg': [/^UI_Gcg_CardFace_/],
    * }
    * ```
    */
