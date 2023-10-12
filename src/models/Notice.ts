@@ -95,10 +95,9 @@ export class Notice {
     this.id = list.ann_id
 
     this.title = content.title
-    this.subtitle = content.subtitle.replace('<br />', ' ・')
+    this.subtitle = content.subtitle.replace('<br />', '\n')
     this.banner = ImageAssets.fromUrl(content.banner)
 
-    //TODO:There is no code to unescape the t tag.
     const unescapedContent = unescape(content.content)
     this.$ = load(unescapedContent)
 
