@@ -176,10 +176,13 @@ export class Notice {
   private convertLocalDate(text: string) {
     return text
       .replace(/(?<=<t class="(t_lc|t_gl)">)(.*?)(?=<\/t>)/g, ($1) =>
-        convertToUTC($1, this.region)
-          .toLocaleString('ja-JP')
-          .replace(/T/, ' ')
-          .replace(/(\..+|:\d\d)/, ''),
+        convertToUTC($1, this.region).toLocaleString('ja-JP', {
+          year: 'numeric',
+          month: '2-digit',
+          day: '2-digit',
+          hour: '2-digit',
+          minute: '2-digit',
+        }),
       )
       .replace(/<t class="(t_lc|t_gl)">|<\/t>/g, '')
   }
