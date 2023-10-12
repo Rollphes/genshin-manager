@@ -190,25 +190,30 @@ export class Notice {
    * @return
    */
   public getEventDuration() {
-    if (this.tag === 2) return
-    const elements = this.$('p').toArray()
-    const indices = this._en$('p')
-      .map((i, el) =>
-        this._en$(el)
-          .text()
-          .match(/〓.*?(Time|Duration).*?〓/g)
-          ? i
-          : undefined,
+    if (this.tag === 2)
+      return this.convertLocalDate(
+        this.$('td')
+          .map((i, el) => this.$(el).text())
+          .get()[3]
+          .replace('~', ' ~')
+          .replace('—', ' — ')
+          .replace('-', ' -'),
       )
-      .filter((index): index is number => index !== undefined)
-    if (!indices.length) return
-    if (indices.length === 1) return this.$(elements[indices[0] + 1]).text()
+    const textBlocks = this.$('p')
+      .map((i, el) => this.$(el).text())
+      .get()
+      .join('\n')
+      .split(/\n(?=〓)/g)
+    const enTextBlocks = this._en$('p')
+      .map((i, el) => this._en$(el).text())
+      .get()
+      .join('\n')
+      .split(/\n(?=〓)/g)
 
-    const endIndex = indices[1] - 1
-    const duration: string[] = []
-    for (let i = indices[0] + 1; i < endIndex; i++) {
-      duration.push(this.$(elements[i]).text())
-    }
-    return duration.join('\n')
+    const index = enTextBlocks.findIndex((text) =>
+      /〓.*?(Time|Duration|Wish).*?〓/g.test(text),
+    )
+    if (index === -1) return
+    return this.convertLocalDate(textBlocks[index].replace(/〓.*?〓\s*\n/g, ''))
   }
 }
