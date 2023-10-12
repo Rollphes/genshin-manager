@@ -95,7 +95,9 @@ export class Notice {
     this.id = list.ann_id
 
     this.title = content.title
-    this.subtitle = content.subtitle.replace('<br />', '\n')
+    this.subtitle = content.subtitle
+      .replace(/<br.*?>/g, '\n')
+      .replace(/\r/g, '')
     this.banner = ImageAssets.fromUrl(content.banner)
 
     const unescapedContent = unescape(content.content)
