@@ -106,38 +106,20 @@ export class Notice {
     const unescapedEnContent = unescape(enContent.content)
     this._en$ = load(unescapedEnContent)
 
-    const timeStrings = unescapedEnContent.match(
-      /\d{4}\/\d{2}\/\d{2} \d{2}:\d{2}/g,
-    )
-    if (
-      timeStrings &&
-      timeStrings.length > 1 &&
-      (list.tag_label === '3' || (list.tag_label === '2' && list.type === 1))
-    ) {
+    const timeStrings = this.convertLocalDate(
+      this._en$('p')
+        .map((i, el) => this._en$(el).text())
+        .get()
+        .filter((str) => !/shop|reword|Shop|Reword/g.test(str))
+        .join('\n')
+        .split(/\n(?=〓)/g)
+        .find((text) => /〓.*?(Time|Duration|Wish).*?〓/g.test(text)) ?? '',
+    ).match(/\d{4}\/\d{2}\/\d{2} \d{2}:\d{2}/g)
+
+    if (timeStrings && timeStrings?.length >= 2) {
       timeStrings.sort((a, b) => new Date(a).getTime() - new Date(b).getTime())
-      if (list.tag_label === '2') {
-        const replacedContent = unescapedEnContent
-          .replace(/<tr>/g, '\n<tr>')
-          .replace(/<tr.*?>.*?(shop|reword|Shop|Reword).*?<\/tr>/g, '')
-        const replacedTimeStrings = replacedContent.match(
-          /\d{4}\/\d{2}\/\d{2} \d{2}:\d{2}/g,
-        )
-        if (replacedTimeStrings && replacedTimeStrings.length > 1) {
-          replacedTimeStrings.sort(
-            (a, b) => new Date(a).getTime() - new Date(b).getTime(),
-          )
-          this.eventStart = convertToUTC(replacedTimeStrings[0], this.region)
-          this.eventEnd = convertToUTC(
-            replacedTimeStrings[replacedTimeStrings.length - 1],
-            this.region,
-          )
-        }
-      }
-      this.eventStart = convertToUTC(timeStrings[0], this.region)
-      this.eventEnd = convertToUTC(
-        timeStrings[timeStrings.length - 1],
-        this.region,
-      )
+      this.eventStart = new Date(timeStrings[0])
+      this.eventEnd = new Date(timeStrings[timeStrings.length - 1])
     }
 
     const rewardImgUrl = this.$('img').attr('src')
