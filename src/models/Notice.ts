@@ -71,6 +71,10 @@ export class Notice {
    * Notice language
    */
   public lang: ValueOf<typeof NoticeLanguage>
+  /**
+   * Notice region
+   */
+  public region: Region
   private _en$: CheerioAPI
 
   /**
@@ -86,49 +90,36 @@ export class Notice {
     enContent: ContentList,
     region: Region,
   ) {
+    this.region = region
     if (list.ann_id !== content.ann_id) throw new Error('ID mismatch')
     this.id = list.ann_id
 
     this.title = content.title
     this.subtitle = content.subtitle
+      .replace(/<br.*?>/g, '\n')
+      .replace(/\r/g, '')
     this.banner = ImageAssets.fromUrl(content.banner)
 
-    //TODO:There is no code to unescape the t tag.
     const unescapedContent = unescape(content.content)
     this.$ = load(unescapedContent)
 
     const unescapedEnContent = unescape(enContent.content)
     this._en$ = load(unescapedEnContent)
 
-    const timeStrings = unescapedEnContent.match(
-      /\d{4}\/\d{2}\/\d{2} \d{2}:\d{2}/g,
-    )
-    if (
-      timeStrings &&
-      timeStrings.length > 1 &&
-      (list.tag_label === '3' || (list.tag_label === '2' && list.type === 1))
-    ) {
+    const timeStrings = this.convertLocalDate(
+      this._en$('p')
+        .map((i, el) => this._en$(el).text())
+        .get()
+        .filter((str) => !/shop|reword|Shop|Reword/g.test(str))
+        .join('\n')
+        .split(/\n(?=〓)/g)
+        .find((text) => /〓.*?(Time|Duration|Wish).*?〓/g.test(text)) ?? '',
+    ).match(/\d{4}\/\d{2}\/\d{2} \d{2}:\d{2}/g)
+
+    if (timeStrings && timeStrings?.length >= 2) {
       timeStrings.sort((a, b) => new Date(a).getTime() - new Date(b).getTime())
-      if (list.tag_label === '2') {
-        const replacedContent = unescapedEnContent
-          .replace(/<tr>/g, '\n<tr>')
-          .replace(/<tr.*?>.*?(shop|reword|Shop|Reword).*?<\/tr>/g, '')
-        const replacedTimeStrings = replacedContent.match(
-          /\d{4}\/\d{2}\/\d{2} \d{2}:\d{2}/g,
-        )
-        if (replacedTimeStrings && replacedTimeStrings.length > 1) {
-          replacedTimeStrings.sort(
-            (a, b) => new Date(a).getTime() - new Date(b).getTime(),
-          )
-          this.eventStart = convertToUTC(replacedTimeStrings[0], region)
-          this.eventEnd = convertToUTC(
-            replacedTimeStrings[replacedTimeStrings.length - 1],
-            region,
-          )
-        }
-      }
-      this.eventStart = convertToUTC(timeStrings[0], region)
-      this.eventEnd = convertToUTC(timeStrings[timeStrings.length - 1], region)
+      this.eventStart = new Date(timeStrings[0])
+      this.eventEnd = new Date(timeStrings[timeStrings.length - 1])
     }
 
     const rewardImgUrl = this.$('img').attr('src')
@@ -151,10 +142,31 @@ export class Notice {
    * @returns Notice all text
    */
   public getText() {
-    return this.$('p')
-      .map((i, el) => this.$(el).text())
-      .get()
-      .join('\n')
+    return this.convertLocalDate(
+      this.$('p')
+        .map((i, el) => this.$(el).text())
+        .get()
+        .join('\n'),
+    )
+  }
+
+  /**
+   * Convert t tag to region time.
+   * @param text text
+   * @returns Converted text
+   */
+  private convertLocalDate(text: string) {
+    return text
+      .replace(/(?<=<t class="(t_lc|t_gl)">)(.*?)(?=<\/t>)/g, ($1) =>
+        convertToUTC($1, this.region).toLocaleString('ja-JP', {
+          year: 'numeric',
+          month: '2-digit',
+          day: '2-digit',
+          hour: '2-digit',
+          minute: '2-digit',
+        }),
+      )
+      .replace(/<t class="(t_lc|t_gl)">|<\/t>/g, '')
   }
 
   /**
@@ -163,25 +175,30 @@ export class Notice {
    * @return
    */
   public getEventDuration() {
-    if (this.tag === 2) return
-    const elements = this.$('p').toArray()
-    const indices = this._en$('p')
-      .map((i, el) =>
-        this._en$(el)
-          .text()
-          .match(/〓.*?(Time|Duration).*?〓/g)
-          ? i
-          : undefined,
+    if (this.tag === 2)
+      return this.convertLocalDate(
+        this.$('td')
+          .map((i, el) => this.$(el).text())
+          .get()[3]
+          .replace('~', ' ~')
+          .replace('—', ' — ')
+          .replace('-', ' -'),
       )
-      .filter((index): index is number => index !== undefined)
-    if (!indices.length) return
-    if (indices.length === 1) return this.$(elements[indices[0] + 1]).text()
+    const textBlocks = this.$('p')
+      .map((i, el) => this.$(el).text())
+      .get()
+      .join('\n')
+      .split(/\n(?=〓)/g)
+    const enTextBlocks = this._en$('p')
+      .map((i, el) => this._en$(el).text())
+      .get()
+      .join('\n')
+      .split(/\n(?=〓)/g)
 
-    const endIndex = indices[1] - 1
-    const duration: string[] = []
-    for (let i = indices[0] + 1; i < endIndex; i++) {
-      duration.push(this.$(elements[i]).text())
-    }
-    return duration.join('\n')
+    const index = enTextBlocks.findIndex((text) =>
+      /〓.*?(Time|Duration|Wish).*?〓/g.test(text),
+    )
+    if (index === -1) return
+    return this.convertLocalDate(textBlocks[index].replace(/〓.*?〓\s*\n/g, ''))
   }
 }
