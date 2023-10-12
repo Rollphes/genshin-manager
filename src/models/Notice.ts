@@ -71,6 +71,10 @@ export class Notice {
    * Notice language
    */
   public lang: ValueOf<typeof NoticeLanguage>
+  /**
+   * Notice region
+   */
+  public region: Region
   private _en$: CheerioAPI
 
   /**
@@ -86,6 +90,7 @@ export class Notice {
     enContent: ContentList,
     region: Region,
   ) {
+    this.region = region
     if (list.ann_id !== content.ann_id) throw new Error('ID mismatch')
     this.id = list.ann_id
 
@@ -120,15 +125,18 @@ export class Notice {
           replacedTimeStrings.sort(
             (a, b) => new Date(a).getTime() - new Date(b).getTime(),
           )
-          this.eventStart = convertToUTC(replacedTimeStrings[0], region)
+          this.eventStart = convertToUTC(replacedTimeStrings[0], this.region)
           this.eventEnd = convertToUTC(
             replacedTimeStrings[replacedTimeStrings.length - 1],
-            region,
+            this.region,
           )
         }
       }
-      this.eventStart = convertToUTC(timeStrings[0], region)
-      this.eventEnd = convertToUTC(timeStrings[timeStrings.length - 1], region)
+      this.eventStart = convertToUTC(timeStrings[0], this.region)
+      this.eventEnd = convertToUTC(
+        timeStrings[timeStrings.length - 1],
+        this.region,
+      )
     }
 
     const rewardImgUrl = this.$('img').attr('src')
@@ -151,10 +159,28 @@ export class Notice {
    * @returns Notice all text
    */
   public getText() {
-    return this.$('p')
-      .map((i, el) => this.$(el).text())
-      .get()
-      .join('\n')
+    return this.convertLocalDate(
+      this.$('p')
+        .map((i, el) => this.$(el).text())
+        .get()
+        .join('\n'),
+    )
+  }
+
+  /**
+   * Convert t tag to region time.
+   * @param text text
+   * @returns Converted text
+   */
+  private convertLocalDate(text: string) {
+    return text
+      .replace(/(?<=<t class="(t_lc|t_gl)">)(.*?)(?=<\/t>)/g, ($1) =>
+        convertToUTC($1, this.region)
+          .toLocaleString('ja-JP')
+          .replace(/T/, ' ')
+          .replace(/(\..+|:\d\d)/, ''),
+      )
+      .replace(/<t class="(t_lc|t_gl)">|<\/t>/g, '')
   }
 
   /**
