@@ -136,6 +136,7 @@ export class NoticeManager {
     const annContent = await this.getAnnContent()
     const annEnContent = await this.getAnnContent('en')
     const annList = await this.getAnnList()
+    this.notices.clear()
     annList.data.list.forEach((tab) => {
       tab.list.forEach((data) => {
         const content = annContent.data.list.find(
