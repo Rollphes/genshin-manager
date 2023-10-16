@@ -14,7 +14,7 @@ export class ImageNotFoundError extends Error {
   constructor(imageName: string, url: string) {
     super(`${imageName || 'undefined image'} was not found.`)
 
-    this.name = 'AssetsNotFoundError'
+    this.name = 'ImageNotFoundError'
     this.imageName = imageName
     this.url = url
   }
