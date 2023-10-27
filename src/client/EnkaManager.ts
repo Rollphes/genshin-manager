@@ -22,7 +22,7 @@ export class EnkaManager {
   /**
    * Cache of EnkaData
    */
-  public readonly cache: Map<number, EnkaData> = new Map()
+  private readonly cache: Map<number, EnkaData> = new Map()
 
   /**
    * Create a EnkaManager
