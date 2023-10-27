@@ -22,7 +22,7 @@ export class EnkaManager {
   /**
    * Cache of EnkaData
    */
-  public readonly cache: Map<number, EnkaData> = new Map()
+  private readonly cache: Map<number, EnkaData> = new Map()
 
   /**
    * Create a EnkaManager
@@ -47,10 +47,6 @@ export class EnkaManager {
       throw new EnkaManagerError(`The UID format is not correct(${uid})`)
     const url = this.enkaUidURL + `${uid}`
     const previousData = this.cache.get(uid)
-    const res = await fetch(url, fetchOption)
-    if (!res.ok) {
-      throw new EnkaNetworkError(res)
-    }
     if (
       previousData &&
       previousData.avatarInfoList &&
@@ -59,6 +55,10 @@ export class EnkaManager {
       return new Promise<EnkaData>((resolve) => {
         resolve(previousData)
       })
+    const res = await fetch(url, fetchOption)
+    if (!res.ok) {
+      throw new EnkaNetworkError(res)
+    }
     const result = (await res.json()) as APIEnkaData
     const enkaData: EnkaData = {
       uid: uid,
