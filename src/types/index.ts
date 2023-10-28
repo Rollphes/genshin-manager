@@ -44,11 +44,8 @@ export interface ClientOption {
    * @default
    * ```ts
    * {
-   *   'https://api.hakush.in/gi/UI': [
-   *     /^UI_(NameCardIcon|Costume|RelicIcon|MonsterIcon|AnimalIcon|ItemIcon|Gcg_CardFace)_/,
-   *   ],
    *   'https://enka.network/ui': [
-   *     /^UI_(EquipIcon|NameCardPic|AvatarIcon_Side)_/,
+   *     /^UI_(EquipIcon|NameCardPic|RelicIcon|AvatarIcon_Side|NameCardIcon|Costume|MonsterIcon|AnimalIcon|ItemIcon|Gcg_CardFace_/,
    *     /^UI_AvatarIcon_(.+)_Card$/,
    *     /^UI_AvatarIcon_(.+)_Circle/,
    *   ],
