@@ -1,4 +1,5 @@
 import fetch, { RequestInit } from 'node-fetch'
+import merge from 'ts-deepmerge'
 
 import { EnkaManagerError } from '@/errors/EnkaManagerError'
 import { EnkaNetworkError } from '@/errors/EnkaNetWorkError'
@@ -18,6 +19,12 @@ export interface EnkaData {
  */
 export class EnkaManager {
   private readonly enkaUidURL = 'https://enka.network/api/uid/'
+  private readonly defaultOption: RequestInit = {
+    timeout: 0,
+    headers: {
+      'user-agent': 'Mozilla/5.0',
+    },
+  }
 
   /**
    * Cache of EnkaData
@@ -32,6 +39,7 @@ export class EnkaManager {
   /**
    * Fetch EnkaData from enka.network
    * @param uid genshin uid
+   * @param fetchOption fetch option (default: { timeout: 0, headers: { 'user-agent': 'Mozilla/5.0' } })
    * @returns
    * @example
    * ```ts
@@ -55,7 +63,14 @@ export class EnkaManager {
       return new Promise<EnkaData>((resolve) => {
         resolve(previousData)
       })
-    const res = await fetch(url, fetchOption)
+    const mergedFetchOption = fetchOption
+      ? merge.withOptions(
+          { mergeArrays: false },
+          this.defaultOption,
+          fetchOption,
+        )
+      : this.defaultOption
+    const res = await fetch(url, mergedFetchOption)
     if (!res.ok) {
       throw new EnkaNetworkError(res)
     }
