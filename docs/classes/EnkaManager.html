@@ -35,6 +35,7 @@
 <section class="tsd-index-section">
 <h3 class="tsd-index-heading">Properties</h3>
 <div class="tsd-index-list"><a href="EnkaManager.html#cache" class="tsd-index-link tsd-is-private"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-1024"></use></svg><span>cache</span></a>
+<a href="EnkaManager.html#defaultOption" class="tsd-index-link tsd-is-private"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-1024"></use></svg><span>default<wbr/>Option</span></a>
 <a href="EnkaManager.html#enkaUidURL" class="tsd-index-link tsd-is-private"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-1024"></use></svg><span>enka<wbr/>UidURL</span></a>
 </div></section>
 <section class="tsd-index-section">
@@ -61,6 +62,9 @@
 <div class="tsd-comment tsd-typography"><p>Cache of EnkaData</p>
 </div>
 <div class="tsd-comment tsd-typography"></div></section>
+<section class="tsd-panel tsd-member tsd-is-private"><a id="defaultOption" class="tsd-anchor"></a>
+<h3 class="tsd-anchor-link"><code class="tsd-tag ts-flagPrivate">Private</code> <code class="tsd-tag ts-flagReadonly">Readonly</code> <span>default<wbr/>Option</span><a href="#defaultOption" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></h3>
+<div class="tsd-signature"><span class="tsd-kind-property">default<wbr/>Option</span><span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type ">RequestInit</span><span class="tsd-signature-symbol"> = ...</span></div></section>
 <section class="tsd-panel tsd-member tsd-is-private"><a id="enkaUidURL" class="tsd-anchor"></a>
 <h3 class="tsd-anchor-link"><code class="tsd-tag ts-flagPrivate">Private</code> <code class="tsd-tag ts-flagReadonly">Readonly</code> <span>enka<wbr/>UidURL</span><a href="#enkaUidURL" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></h3>
 <div class="tsd-signature"><span class="tsd-kind-property">enka<wbr/>UidURL</span><span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">&quot;https://enka.network/api/uid/&quot;</span><span class="tsd-signature-symbol"> = &#39;https://enka.network/api/uid/&#39;</span></div></section></section>
@@ -91,7 +95,10 @@
 </div>
 <div class="tsd-comment tsd-typography"></div></li>
 <li>
-<h5><code class="tsd-tag ts-flagOptional">Optional</code> <span class="tsd-kind-parameter">fetchOption</span>: <span class="tsd-signature-type ">RequestInit</span></h5></li></ul></div>
+<h5><code class="tsd-tag ts-flagOptional">Optional</code> <span class="tsd-kind-parameter">fetchOption</span>: <span class="tsd-signature-type ">RequestInit</span></h5>
+<div class="tsd-comment tsd-typography"><p>fetch option (default: { timeout: 0, headers: { &#39;user-agent&#39;: &#39;Mozilla/5.0&#39; } })</p>
+</div>
+<div class="tsd-comment tsd-typography"></div></li></ul></div>
 <h4 class="tsd-returns-title">Returns <span class="tsd-signature-type ">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/EnkaData.html" class="tsd-signature-type tsd-kind-interface">EnkaData</a><span class="tsd-signature-symbol">&gt;</span></h4>
 <div class="tsd-comment tsd-typography">
 <h4>Example</h4><pre><code class="language-ts"><span class="hl-0">const</span><span class="hl-1"> </span><span class="hl-2">client</span><span class="hl-1"> = </span><span class="hl-0">new</span><span class="hl-1"> </span><span class="hl-3">Client</span><span class="hl-1">()</span><br/><span class="hl-7">await</span><span class="hl-1"> </span><span class="hl-6">client</span><span class="hl-1">.</span><span class="hl-3">deploy</span><span class="hl-1">()</span><br/><span class="hl-0">const</span><span class="hl-1"> </span><span class="hl-2">enka</span><span class="hl-1"> = </span><span class="hl-0">new</span><span class="hl-1"> </span><span class="hl-3">EnkaManager</span><span class="hl-1">()</span><br/><span class="hl-0">const</span><span class="hl-1"> </span><span class="hl-2">enkaData</span><span class="hl-1"> = </span><span class="hl-7">await</span><span class="hl-1"> </span><span class="hl-6">enka</span><span class="hl-1">.</span><span class="hl-3">fetch</span><span class="hl-1">(</span><span class="hl-8">123456789</span><span class="hl-1">)</span>
@@ -118,6 +125,7 @@
 <ul>
 <li><a href="#constructor" class=""><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-512"></use></svg><span>constructor</span></a></li>
 <li><a href="#cache" class="tsd-is-private"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-1024"></use></svg><span>cache</span></a></li>
+<li><a href="#defaultOption" class="tsd-is-private"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-1024"></use></svg><span>default<wbr/>Option</span></a></li>
 <li><a href="#enkaUidURL" class="tsd-is-private"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-1024"></use></svg><span>enka<wbr/>UidURL</span></a></li>
 <li><a href="#clearCacheOverNextShowCaseDate" class=""><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-2048"></use></svg><span>clear<wbr/>Cache<wbr/>Over<wbr/>Next<wbr/>Show<wbr/>Case<wbr/>Date</span></a></li>
 <li><a href="#fetch" class=""><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-2048"></use></svg><span>fetch</span></a></li></ul></div></details></div>
