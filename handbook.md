@@ -1,4 +1,4 @@
-# GameVersion 4.1.0
+# GameVersion 4.2.0
 ## CharacterId
 ID:10000002 Name:Kamisato Ayaka<br>
 ID:10000003 Name:Jean<br>
@@ -74,6 +74,8 @@ ID:10000084 Name:Lyney<br>
 ID:10000085 Name:Freminet<br>
 ID:10000086 Name:Wriothesley<br>
 ID:10000087 Name:Neuvillette<br>
+ID:10000088 Name:Charlotte<br>
+ID:10000089 Name:Furina<br>
 ## CostumeId
 ID:200200 Name:Flawless Radiance<br>
 ID:200201 Name:Springbloom Missive<br>
@@ -163,6 +165,8 @@ ID:208400 Name:Fantasticat<br>
 ID:208500 Name:Icy Skin<br>
 ID:208600 Name:Night's Chilling Howl<br>
 ID:208700 Name:Clear Adjudication<br>
+ID:208800 Name:\"All Is Overt Through My Lens\"<br>
+ID:208900 Name:Coronated Prima Donna<br>
 ## SkillId
 ID:10001 Name:<br>
 ID:10002 Name:<br>
@@ -520,6 +524,13 @@ ID:10865 Name:Darkgold Wolfbite<br>
 ID:10871 Name:Normal Attack: As Water Seeks Equilibrium<br>
 ID:10872 Name:O Tears, I Shall Repay<br>
 ID:10875 Name:O Tides, I Have Returned<br>
+ID:10881 Name:Normal Attack: Cool-Color Capture<br>
+ID:10882 Name:Framing: Freezing Point Composition<br>
+ID:10885 Name:Still Photo: Comprehensive Confirmation<br>
+ID:10891 Name:Normal Attack: Soloist's Solicitation<br>
+ID:10892 Name:Salon Solitaire<br>
+ID:10893 Name:<br>
+ID:10895 Name:Let the People Rejoice<br>
 ID:11301 Name:<br>
 ID:11302 Name:<br>
 ID:11305 Name:<br>
@@ -581,6 +592,7 @@ ID:20066 Name:<br>
 ID:20067 Name:<br>
 ID:20070 Name:<br>
 ID:20080 Name:<br>
+ID:20082 Name:<br>
 ID:20100 Name:Capture!<br>
 ID:20101 Name:Capture!<br>
 ID:20110 Name:Mysterious Hunch<br>
@@ -749,6 +761,8 @@ ID:5084010 Name:<br>
 ID:5085010 Name:<br>
 ID:5086010 Name:<br>
 ID:5087010 Name:<br>
+ID:5088010 Name:<br>
+ID:5089010 Name:<br>
 ## TalentId
 ID:21 Name:Snowswept Sakura<br>
 ID:22 Name:Blizzard Blade Seki no To<br>
@@ -1212,6 +1226,18 @@ ID:873 Name:Ancient Postulation<br>
 ID:874 Name:Crown of Commiseration<br>
 ID:875 Name:Axiomatic Judgment<br>
 ID:876 Name:Wrathful Recompense<br>
+ID:881 Name:A Need to Verify Facts<br>
+ID:882 Name:A Duty to Pursue Truth<br>
+ID:883 Name:An Imperative to Independence<br>
+ID:884 Name:A Responsibility to Oversee<br>
+ID:885 Name:A Principle of Conscience<br>
+ID:886 Name:A Summation of Interest<br>
+ID:891 Name:\"Love Is a Rebellious Bird That None Can Tame\"<br>
+ID:892 Name:\"A Woman Adapts Like Duckweed in Water\"<br>
+ID:893 Name:\"My Secret Is Hidden Within Me, No One Will Know My Name\"<br>
+ID:894 Name:\"They Know Not Life, Who Dwelt in the Netherworld Not!\"<br>
+ID:895 Name:\"His Name I Now Know, It Is...!\"<br>
+ID:896 Name:\"Hear Me — Let Us Raise the Chalice of Love!\"<br>
 ## ArtifactId
 ID:20002 Name:Initiate's Feather<br>
 ID:20004 Name:Initiate's Flower<br>
@@ -5051,6 +5077,8 @@ ID:11424 Name:Wolf-Fang<br>
 ID:11425 Name:Finale of the Deep<br>
 ID:11426 Name:Fleuve Cendre Ferryman<br>
 ID:11427 Name:The Dockhand's Assistant<br>
+ID:11428 Name:Sword of Narzissenkreuz<br>
+ID:11429 Name:Sword of Narzissenkreuz<br>
 ID:11501 Name:Aquila Favonia<br>
 ID:11502 Name:Skyward Blade<br>
 ID:11503 Name:Freedom-Sworn<br>
@@ -5063,6 +5091,7 @@ ID:11509 Name:Mistsplitter Reforged<br>
 ID:11510 Name:Haran Geppaku Futsu<br>
 ID:11511 Name:Key of Khaj-Nisut<br>
 ID:11512 Name:Light of Foliar Incision<br>
+ID:11513 Name:Splendor of Tranquil Waters<br>
 ID:12101 Name:Waster Greatsword<br>
 ID:12201 Name:Old Merc's Pal<br>
 ID:12301 Name:Ferrous Shadow<br>
@@ -5280,6 +5309,7 @@ ID:162 Name:Fascinating Phenocryst<br>
 ID:163 Name:Enigmatic Copper Mainspring<br>
 ID:164 Name:Poetry Gala Fervor<br>
 ID:165 Name:<br>
+ID:166 Name:Thelxie's Badge<br>
 ID:201 Name:Primogem<br>
 ID:202 Name:Mora<br>
 ID:203 Name:Genesis Crystal<br>
@@ -5384,6 +5414,8 @@ ID:1084 Name:Lyney<br>
 ID:1085 Name:Freminet<br>
 ID:1086 Name:Wriothesley<br>
 ID:1087 Name:Neuvillette<br>
+ID:1088 Name:Charlotte<br>
+ID:1089 Name:Furina<br>
 ID:1102 Name:Kamisato Ayaka's Stella Fortuna<br>
 ID:1103 Name:Jean's Stella Fortuna<br>
 ID:1105 Name:Traveler (Male)'s Stella Fortuna<br>
@@ -5458,6 +5490,8 @@ ID:1184 Name:Lyney's Stella Fortuna<br>
 ID:1185 Name:Freminet's Stella Fortuna<br>
 ID:1186 Name:Wriothesley's Stella Fortuna<br>
 ID:1187 Name:Neuvillette's Stella Fortuna<br>
+ID:1188 Name:Charlotte's Stella Fortuna<br>
+ID:1189 Name:Furina's Stella Fortuna<br>
 ID:1201 Name:Gnostic Hymn - Old Notes<br>
 ID:1202 Name:Blessing of the Welkin Moon - New Moon<br>
 ID:1301 Name:An Appellative Stroke<br>
@@ -6460,7 +6494,9 @@ ID:101234 Name:Tidalga<br>
 ID:101235 Name:Lumidouce Bell<br>
 ID:101236 Name:Rainbow Rose<br>
 ID:101237 Name:Lumitoile<br>
+ID:101238 Name:Lakelight Lily<br>
 ID:101239 Name:Subdetection Unit<br>
+ID:101240 Name:Spring of the First Dewdrop<br>
 ID:101301 Name:Birch Wood<br>
 ID:101302 Name:Cuihua Wood<br>
 ID:101303 Name:Pine Wood<br>
@@ -7710,6 +7746,14 @@ ID:108601 Name:Crepes Suzette<br>
 ID:108602 Name:Delicious Crepes Suzette<br>
 ID:108603 Name:\"Consomme Purete\"<br>
 ID:108604 Name:Secret Sauce BBQ Ribs<br>
+ID:108605 Name:Suspicious La Lettre a Focalors<br>
+ID:108606 Name:La Lettre a Focalors<br>
+ID:108607 Name:Delicious La Lettre a Focalors<br>
+ID:108608 Name:Suspicious Blubber Profiterole<br>
+ID:108609 Name:Blubber Profiterole<br>
+ID:108610 Name:Delicious Blubber Profiterole<br>
+ID:108611 Name:\"Pour la Justice\"<br>
+ID:108612 Name:Exclusive Scoop: Gourmet Column<br>
 ID:109000 Name:Recipe Item<br>
 ID:109101 Name:Recipe: Chicken-Mushroom Skewer<br>
 ID:109102 Name:Recipe: Fisherman's Toast<br>
@@ -7883,6 +7927,8 @@ ID:109552 Name:Recipe: Consomme<br>
 ID:109553 Name:Recipe: Boudin Noir aux Pommes<br>
 ID:109554 Name:Recipe: Cassoulet<br>
 ID:109555 Name:Recipe: Crepes Suzette<br>
+ID:109556 Name:Recipe: La Lettre a Focalors<br>
+ID:109557 Name:Recipe: Blubber Profiterole<br>
 ID:110000 Name:Crafted Items<br>
 ID:110001 Name:Flour<br>
 ID:110002 Name:Cream<br>
@@ -8070,6 +8116,10 @@ ID:113050 Name:Artificed Spare Clockwork Component — Coppelius<br>
 ID:113051 Name:Emperor's Resolution<br>
 ID:113052 Name:\"Tourbillon Device\"<br>
 ID:113053 Name:Fontemer Unihorn<br>
+ID:113054 Name:Lightless Silk String<br>
+ID:113055 Name:Lightless Eye of the Maelstrom<br>
+ID:113056 Name:Lightless Mass<br>
+ID:113057 Name:Water That Failed To Transcend<br>
 ID:114001 Name:Tile of Decarabian's Tower<br>
 ID:114002 Name:Debris of Decarabian's City<br>
 ID:114003 Name:Fragment of Decarabian's Epic<br>
@@ -8620,6 +8670,15 @@ ID:120409 Name:Fables de Fontaine (III)<br>
 ID:120410 Name:Robben versus Chesterton: Iridescent Brooch (I)<br>
 ID:120411 Name:Robben versus Chesterton: Iridescent Brooch (II)<br>
 ID:120412 Name:Robben versus Chesterton: Iridescent Brooch (III)<br>
+ID:120413 Name:The Fall of the Faded Castle (I)<br>
+ID:120414 Name:The Fall of the Faded Castle (II)<br>
+ID:120415 Name:The Fall of the Faded Castle (III)<br>
+ID:120416 Name:La Chanson d'Erinnyes (I)<br>
+ID:120417 Name:La Chanson d'Erinnyes (II)<br>
+ID:120418 Name:La Chanson d'Erinnyes (III)<br>
+ID:120419 Name:Tales of a Snow-Winged Goose (I)<br>
+ID:120420 Name:Tales of a Snow-Winged Goose (II)<br>
+ID:120421 Name:Tales of a Snow-Winged Goose (III)<br>
 ID:120428 Name:Gift of \"Parting\"<br>
 ID:120429 Name:\"Delightful Encounter\"<br>
 ID:120430 Name:<br>
@@ -8725,6 +8784,25 @@ ID:120529 Name:Spur Gear C<br>
 ID:120530 Name:Spur Gear T<br>
 ID:120531 Name:Navigation Log Fragment<br>
 ID:120532 Name:Damaged Diary<br>
+ID:120533 Name:<br>
+ID:120534 Name:<br>
+ID:120535 Name:<br>
+ID:120536 Name:Sir Arthur's Wing<br>
+ID:120537 Name:Sir Arthur's Body<br>
+ID:120538 Name:Sir Arthur's Head<br>
+ID:120539 Name:<br>
+ID:120540 Name:Leftover Poissonchant Pie<br>
+ID:120541 Name:<br>
+ID:120542 Name:<br>
+ID:120543 Name:<br>
+ID:120544 Name:Mysterious Threat Letter<br>
+ID:120545 Name:Another Mysterious Threat Letter<br>
+ID:120546 Name:Kevin's Letter<br>
+ID:120547 Name:Messily-Written Letter<br>
+ID:120548 Name:Scribbled Orders<br>
+ID:120549 Name:Old Photo<br>
+ID:120550 Name:Letter to the Editor-in-Chief (Draft)<br>
+ID:120551 Name:<br>
 ID:120552 Name:<br>
 ID:120553 Name:<br>
 ID:120554 Name:Disclaimer<br>
@@ -8764,16 +8842,20 @@ ID:120587 Name:Enigmatic Page (XI)<br>
 ID:120588 Name:Enigmatic Page (XII)<br>
 ID:120589 Name:Enigmatic Page (XIII)<br>
 ID:120590 Name:Scattered Page<br>
+ID:120591 Name:Talochard's Investigation Notes<br>
 ID:120592 Name:A Story<br>
 ID:120593 Name:Handwheel<br>
 ID:120594 Name:Handwheel<br>
 ID:120595 Name:Handwheel<br>
+ID:120596 Name:Material for Thelxie's Weapon<br>
+ID:120597 Name:Material for Thelxie's Crown<br>
 ID:120598 Name:Punched Tape<br>
 ID:120599 Name:Punched Tape<br>
 ID:120600 Name:Energy Concentrating Component<br>
 ID:120601 Name:34th Independent Investigative Squad Deployment in Mont Esus (Eastern Quadrant) Deployment Plan<br>
 ID:120602 Name:Skirmisher's Notes<br>
 ID:120603 Name:34th Independent Investigative Squad Deployment in Mont Esus (Eastern Quadrant) Displinary Procedures<br>
+ID:120604 Name:Traveler's Exclusive Interview Handbook<br>
 ID:120605 Name:Poem on Fallen Leaf<br>
 ID:120606 Name:Response Poem on a Leaf<br>
 ID:120607 Name:Poem on a Fallen Leaf<br>
@@ -8785,6 +8867,23 @@ ID:120612 Name:\"Special Report\"<br>
 ID:120613 Name:Special Report<br>
 ID:120614 Name:Clue Book (Fortress of Meropide)<br>
 ID:120620 Name:Notice<br>
+ID:120621 Name:Liam's Ballad<br>
+ID:120622 Name:Rocky Avildsen's Disappearance<br>
+ID:120623 Name:Athos's Confession<br>
+ID:120624 Name:Parker's Hopes<br>
+ID:120625 Name:Barrow's Expectations<br>
+ID:120626 Name:Autumn's Regrets<br>
+ID:120627 Name:Rouge's Writings<br>
+ID:120628 Name:Freeman's Announcement<br>
+ID:120629 Name:Liam's Ballad<br>
+ID:120630 Name:Rocky Avildsen's Disappearance<br>
+ID:120631 Name:Athos's Confession<br>
+ID:120632 Name:Parker's Hopes<br>
+ID:120633 Name:Barrow's Expectations<br>
+ID:120634 Name:Autumn's Regrets<br>
+ID:120635 Name:Rouge's Writings<br>
+ID:120636 Name:Freeman's Announcement<br>
+ID:120637 Name:Rainbow Rose's Ideals<br>
 ID:120638 Name:Left-Side Table File Box<br>
 ID:120639 Name:Right-Side Table File Box<br>
 ID:120640 Name:Mutual Aid Network Advertisement<br>
@@ -8799,6 +8898,11 @@ ID:120648 Name:Experimental Drink No. 5<br>
 ID:120649 Name:Experimental Drink No. 6<br>
 ID:120650 Name:Experimental Drink No. 7<br>
 ID:120651 Name:Experimental Drink No. 8<br>
+ID:120652 Name:Diary of a Valiant Struggle (I)<br>
+ID:120653 Name:Diary of a Valiant Struggle (II)<br>
+ID:120654 Name:Diary of a Valiant Struggle (III)<br>
+ID:120655 Name:Diary of a Valiant Struggle (IV)<br>
+ID:120656 Name:Diary of a Valiant Struggle<br>
 ID:120657 Name:\"Academic Assembly Hall\" Picture<br>
 ID:120658 Name:Dodoco's Bomb-Tastic Adventure<br>
 ID:120659 Name:Dodoco's Bomb-Tastic Adventure<br>
@@ -8807,8 +8911,13 @@ ID:120661 Name:Messily-Written Note<br>
 ID:120662 Name:Tattered Dialogue<br>
 ID:120663 Name:A Letter Left Behind<br>
 ID:120664 Name:Dry Firewood<br>
+ID:120665 Name:Special Key<br>
+ID:120666 Name:Special Key<br>
+ID:120667 Name:Special Key<br>
+ID:120668 Name:Special Key<br>
 ID:120669 Name:Fontaine Research Institute of Kinetic Energy Engineering Certificate<br>
 ID:120670 Name:Fontaine Research Institute of Kinetic Energy Engineering Certificate<br>
+ID:120671 Name:Teardrop Key<br>
 ID:120672 Name:Training Log<br>
 ID:120673 Name:Memo<br>
 ID:120674 Name:New Tide Anthology: Part I<br>
@@ -8837,9 +8946,71 @@ ID:120696 Name:<br>
 ID:120697 Name:<br>
 ID:120698 Name:<br>
 ID:120699 Name:Blanche's Letter<br>
+ID:120700 Name:Thelxie's Fantastic Adventures<br>
 ID:120702 Name:Location No. 1 Materials<br>
 ID:120703 Name:Location No. 2 Materials<br>
 ID:120704 Name:Location No. 3 Materials<br>
+ID:120705 Name:\"Iridescent Glory\"<br>
+ID:120713 Name:Aurelie's Notes (I)<br>
+ID:120714 Name:Marvelous Jelly: Improved Fontaine Edition<br>
+ID:120715 Name:Spina di Rosula Uniform Gift Box<br>
+ID:120716 Name:Strangely-Shaped Key<br>
+ID:120718 Name:Recommendation Letter<br>
+ID:120719 Name:Rusty Iron Key<br>
+ID:120720 Name:Old Insignia<br>
+ID:120721 Name:\"Persona\"<br>
+ID:120722 Name:Unlocked \"Treasure\"<br>
+ID:120723 Name:Holy Blade of Narzissenkreuz<br>
+ID:120725 Name:Aurelie's Notes (II)<br>
+ID:120726 Name:\"A New Life's Beginning\"<br>
+ID:120727 Name:<br>
+ID:120730 Name:Root Cycle<br>
+ID:120731 Name:Root Cycle<br>
+ID:120732 Name:Root Cycle<br>
+ID:120733 Name:Simple Vault Key I<br>
+ID:120734 Name:Simple Vault Key II<br>
+ID:120735 Name:Simple Vault Key III<br>
+ID:120736 Name:<br>
+ID:120737 Name:<br>
+ID:120738 Name:<br>
+ID:120739 Name:<br>
+ID:120740 Name:<br>
+ID:120741 Name:<br>
+ID:120742 Name:<br>
+ID:120743 Name:<br>
+ID:120745 Name:Foggy Forest Branch<br>
+ID:120746 Name:Fallen Bouquet<br>
+ID:120747 Name:Tripod<br>
+ID:120748 Name:Nadia's Token<br>
+ID:120749 Name:Tiny Conch<br>
+ID:120750 Name:Diving Set<br>
+ID:120751 Name:Sunken Coin Pouch<br>
+ID:120752 Name:<br>
+ID:120753 Name:Strange Message<br>
+ID:120760 Name:Mysterious Xenochromatic Crystal<br>
+ID:120762 Name:Map Fragment<br>
+ID:120763 Name:Small Key<br>
+ID:120764 Name:Notice<br>
+ID:120765 Name:Notes<br>
+ID:120766 Name:Description<br>
+ID:120767 Name:Storybook<br>
+ID:120768 Name:Notes<br>
+ID:120770 Name:Certificate<br>
+ID:120771 Name:Certificate<br>
+ID:120772 Name:Certificate<br>
+ID:120773 Name:Certificate<br>
+ID:120774 Name:Certificate<br>
+ID:120775 Name:Certificate<br>
+ID:120776 Name:Certificate<br>
+ID:120777 Name:Investigation Log<br>
+ID:120778 Name:Notes<br>
+ID:120779 Name:Excerpt<br>
+ID:120780 Name:Excerpt<br>
+ID:120781 Name:Excerpt<br>
+ID:120782 Name:Excerpt<br>
+ID:120783 Name:Someone's Diary<br>
+ID:120784 Name:Log<br>
+ID:129001 Name:Tears Among the Stars<br>
 ID:130001 Name:Silk Flower Seed<br>
 ID:130002 Name:Sweet Flower Seed<br>
 ID:130003 Name:Cecilia Seed<br>
@@ -8906,6 +9077,7 @@ ID:131032 Name:Maintenance Mek: Initial Configuration<br>
 ID:131033 Name:Maintenance Mek: Water Body Cleaner<br>
 ID:131034 Name:Maintenance Mek: Situation Controller<br>
 ID:131035 Name:Maintenance Mek: Platinum Collection<br>
+ID:131036 Name:Maintenance Mek: Gold Leader<br>
 ID:140001 Name:Wings of First Flight<br>
 ID:140002 Name:Wings of Companionship<br>
 ID:140003 Name:Wings of Descension<br>
@@ -9050,6 +9222,11 @@ ID:141211 Name:Radiant Spincrystal 111<br>
 ID:141212 Name:Radiant Spincrystal 112<br>
 ID:141213 Name:Radiant Spincrystal 113<br>
 ID:141214 Name:Radiant Spincrystal 114<br>
+ID:141215 Name:Radiant Spincrystal 115<br>
+ID:141216 Name:Radiant Spincrystal 116<br>
+ID:141217 Name:Radiant Spincrystal 117<br>
+ID:141218 Name:Radiant Spincrystal 118<br>
+ID:141219 Name:Radiant Spincrystal 119<br>
 ID:200001 Name:Lantern Fiber<br>
 ID:200002 Name:Wick Material<br>
 ID:200003 Name:Plaustrite Shard<br>
@@ -9071,6 +9248,7 @@ ID:200114 Name:Unfading Silky Grace<br>
 ID:200115 Name:Congealed Pupa Wax<br>
 ID:200116 Name:Martens' Omni-Fix<br>
 ID:200117 Name:Dandelion Bookmark<br>
+ID:200118 Name:Surging Sacred Chalice<br>
 ID:200201 Name:Falcon's Dance<br>
 ID:200202 Name:Steelwing<br>
 ID:200203 Name:Galespring<br>
@@ -9315,6 +9493,10 @@ ID:210176 Name:Travel Notes: Falling Star<br>
 ID:210177 Name:Celebration: Euphonia<br>
 ID:210178 Name:Achievement: Perpetual<br>
 ID:210179 Name:Fontaine: Redemption<br>
+ID:210180 Name:Furina: Banquet<br>
+ID:210181 Name:Charlotte: Exclusive<br>
+ID:210182 Name:Fontaine: Completeness<br>
+ID:210183 Name:Travel Notes: Whirling Waltz<br>
 ID:220001 Name:Anemoculus Resonance Stone<br>
 ID:220002 Name:Geoculus Resonance Stone<br>
 ID:220003 Name:Geo Treasure Compass<br>
@@ -9403,6 +9585,9 @@ ID:220088 Name:Crystalfly Trap<br>
 ID:220089 Name:Wind-Powered Wind Generator<br>
 ID:220090 Name:Bresson's Special Kamera<br>
 ID:220091 Name:Portable Aerodynamic Gelatinous Bubble Generator<br>
+ID:220092 Name:???<br>
+ID:220093 Name:\"Special Analysis Zoom Lens\"<br>
+ID:220094 Name:Image Sampling Kamera<br>
 ID:221001 Name:Instructions: Anemoculus Resonance Stone<br>
 ID:221002 Name:Instructions: Geoculus Resonance Stone<br>
 ID:221003 Name:Diagram: Geo Treasure Compass<br>
@@ -9523,6 +9708,9 @@ ID:330053 Name:Lisa<br>
 ID:330054 Name:Wanderer<br>
 ID:330055 Name:Dehya<br>
 ID:330056 Name:Yaoyao<br>
+ID:330057 Name:Nilou<br>
+ID:330058 Name:Dori<br>
+ID:330059 Name:Baizhu<br>
 ID:330500 Name:Undivided Heart<br>
 ID:330501 Name:Cold-Blooded Strike<br>
 ID:330502 Name:Steady Breathing<br>
@@ -9580,6 +9768,9 @@ ID:330553 Name:Pulsating Witch<br>
 ID:330554 Name:Stalwart and True<br>
 ID:330555 Name:Gales of Reverie<br>
 ID:330556 Name:Beneficent<br>
+ID:330557 Name:The Starry Skies Their Flowers Rain<br>
+ID:330558 Name:Discretionary Supplement<br>
+ID:330559 Name:All Things Are of the Earth<br>
 ID:331000 Name:Magic Guide<br>
 ID:331001 Name:Sacrificial Fragments<br>
 ID:331002 Name:Skyward Atlas<br>
@@ -9636,6 +9827,8 @@ ID:331052 Name:Fruit of Fulfillment<br>
 ID:331053 Name:King's Squire<br>
 ID:331054 Name:Moonpiercer<br>
 ID:331055 Name:Crown of Watatsumi<br>
+ID:331056 Name:Ocean-Hued Clam<br>
+ID:331057 Name:Shadow of the Sand King<br>
 ID:332000 Name:Liyue Harbor Wharf<br>
 ID:332001 Name:Knights of Favonius Library<br>
 ID:332002 Name:Jade Chamber<br>
@@ -9674,6 +9867,7 @@ ID:332034 Name:Golden House<br>
 ID:332035 Name:Setaria<br>
 ID:332036 Name:Gandharva Ville<br>
 ID:332037 Name:Yayoi Nanatsuki<br>
+ID:332038 Name:Stormterror's Lair<br>
 ID:333000 Name:Elemental Resonance: Woven Ice<br>
 ID:333001 Name:Elemental Resonance: Shattering Ice<br>
 ID:333002 Name:Elemental Resonance: Woven Waters<br>
@@ -9731,6 +9925,8 @@ ID:333053 Name:Joyous Celebration<br>
 ID:333054 Name:Where Is the Unseen Razor?<br>
 ID:333055 Name:Fresh Wind of Freedom<br>
 ID:333056 Name:Pankration!<br>
+ID:333057 Name:In Every House a Stove<br>
+ID:333058 Name:Lyresong<br>
 ID:334000 Name:Ganyu<br>
 ID:334001 Name:Kaeya<br>
 ID:334002 Name:Chongyun<br>
@@ -9788,6 +9984,9 @@ ID:334053 Name:Lisa<br>
 ID:334054 Name:Dehya<br>
 ID:334055 Name:Wanderer<br>
 ID:334056 Name:Yaoyao<br>
+ID:334057 Name:Nilou<br>
+ID:334058 Name:Dori<br>
+ID:334059 Name:Baizhu<br>
 ID:334500 Name:Undivided Heart<br>
 ID:334501 Name:Cold-Blooded Strike<br>
 ID:334502 Name:Steady Breathing<br>
@@ -9845,6 +10044,9 @@ ID:334553 Name:Pulsating Witch<br>
 ID:334554 Name:Stalwart and True<br>
 ID:334555 Name:Gales of Reverie<br>
 ID:334556 Name:Beneficent<br>
+ID:334557 Name:The Starry Skies Their Flowers Rain<br>
+ID:334558 Name:Discretionary Supplement<br>
+ID:334559 Name:All Things Are of the Earth<br>
 ID:335000 Name:Magic Guide<br>
 ID:335001 Name:Sacrificial Fragments<br>
 ID:335002 Name:Skyward Atlas<br>
@@ -9901,6 +10103,8 @@ ID:335052 Name:Fruit of Fulfillment<br>
 ID:335053 Name:King's Squire<br>
 ID:335054 Name:Moonpiercer<br>
 ID:335055 Name:Crown of Watatsumi<br>
+ID:335056 Name:Ocean-Hued Clam<br>
+ID:335057 Name:Shadow of the Sand King<br>
 ID:336000 Name:Liyue Harbor Wharf<br>
 ID:336001 Name:Knights of Favonius Library<br>
 ID:336002 Name:Jade Chamber<br>
@@ -9939,6 +10143,7 @@ ID:336034 Name:Golden House<br>
 ID:336035 Name:Setaria<br>
 ID:336036 Name:Gandharva Ville<br>
 ID:336037 Name:Yayoi Nanatsuki<br>
+ID:336038 Name:Stormterror's Lair<br>
 ID:337000 Name:Elemental Resonance: Woven Ice<br>
 ID:337001 Name:Elemental Resonance: Shattering Ice<br>
 ID:337002 Name:Elemental Resonance: Woven Waters<br>
@@ -9996,6 +10201,8 @@ ID:337053 Name:Joyous Celebration<br>
 ID:337054 Name:Where Is the Unseen Razor?<br>
 ID:337055 Name:Fresh Wind of Freedom<br>
 ID:337056 Name:Pankration!<br>
+ID:337057 Name:In Every House a Stove<br>
+ID:337058 Name:Lyresong<br>
 ID:339000 Name:Origin<br>
 ID:339001 Name:Mondstadt<br>
 ID:339002 Name:Liyue<br>
@@ -10161,6 +10368,8 @@ ID:380434 Name:Meka Luminaire: Radiant Grounds<br>
 ID:380435 Name:Meka Luminaire: Radiant Countryside<br>
 ID:380436 Name:Splendrous Night: Overflowing Light<br>
 ID:380437 Name:Meka Luminaire: Shining Sea<br>
+ID:380438 Name:\"Hello! Welcome!\"<br>
+ID:380439 Name:\"Shiny Shell\"<br>
 ID:380504 Name:Efflorescent Illumination<br>
 ID:381101 Name:Northern Birch Folding Counter<br>
 ID:381102 Name:Open-Top Fir Shelf<br>
@@ -10227,6 +10436,7 @@ ID:381404 Name:Brightwood \"Concord\" Bed<br>
 ID:381405 Name:Adhigama Wood \"Comfort\" Bed<br>
 ID:381406 Name:Adhigama Wood \"Repose\" Couch<br>
 ID:381407 Name:Linden Wood \"Sturdy\" Bunk<br>
+ID:381408 Name:Linden Wood \"Sweet Slumber\" Bed<br>
 ID:381501 Name:Pine Reception Counter<br>
 ID:381502 Name:Teahouse Counter: \"Toshimaru\"<br>
 ID:381503 Name:Desert Stone Platform: Sturdy<br>
@@ -10378,6 +10588,9 @@ ID:383351 Name:Desk Combo - Verdant Totem<br>
 ID:383352 Name:\"Prince's Weeping Fish\"<br>
 ID:383356 Name:\"Maison Cardinalice's Musical Tone\"<br>
 ID:383357 Name:\"Maison Cardinalice's Clerk\"<br>
+ID:383358 Name:Compact Air Supply Device<br>
+ID:383359 Name:\"Passage's Stable Storage\"<br>
+ID:383360 Name:Model Contraption: Reasonable Roundabout<br>
 ID:383501 Name:\"Realizations from the Land of Wisdom\"<br>
 ID:383502 Name:Restorative Fragrance<br>
 ID:383504 Name:The Art of Retaining Water<br>
@@ -10569,6 +10782,11 @@ ID:390813 Name:Court of Justice's Newsstand<br>
 ID:390814 Name:Automnequi's Watch<br>
 ID:390815 Name:Automnequi's Chimney Smoke<br>
 ID:390816 Name:Distributed Forward Supply Depot<br>
+ID:390818 Name:\"Court of Justice's Authenticity\"<br>
+ID:390819 Name:\"Court of Justice's Respect\"<br>
+ID:390820 Name:\"Slippery Shack\"<br>
+ID:390821 Name:\"Bedroom Bedlam\"<br>
+ID:390822 Name:\"Small Stonecrab\"<br>
 ID:391101 Name:Bird and Blossom Design Fountain<br>
 ID:391102 Name:Hilichurl Spiral Watchtower<br>
 ID:391103 Name:Hilichurl Straw Hut<br>
@@ -10599,6 +10817,10 @@ ID:391132 Name:Three-Wheeled Mountain Hand Cart<br>
 ID:391134 Name:Automnequi's Cask<br>
 ID:391135 Name:\"Immaculate Judgment\"<br>
 ID:391136 Name:\"A Thousand Ephemeral Visions of Dew\"<br>
+ID:391137 Name:Lumidouce Harbor Type-05 Combine Lifter<br>
+ID:391138 Name:Standard Fluid Shipping Unit<br>
+ID:391139 Name:Standard Shipping Pallet<br>
+ID:391140 Name:Large Shipping Pallet<br>
 ID:391201 Name:Adeptus Gate<br>
 ID:391202 Name:Birch Main Courtyard Gate<br>
 ID:391203 Name:Carved Courtyard Fence Ending<br>
@@ -10711,6 +10933,9 @@ ID:393170 Name:Hey-Ha-Hoo Slime Box Trio<br>
 ID:393171 Name:Wind-Up Great Owl Spirit Mechanism<br>
 ID:393172 Name:Maintenance Mek: Technical Demo Type<br>
 ID:393176 Name:\"Majesty of the Forbidden Fortress\"<br>
+ID:393177 Name:Common Cooking Device<br>
+ID:393179 Name:Model Contraption: Repair<br>
+ID:393180 Name:Model Contraption: Rockcracker Anchor<br>
 ID:393201 Name:Potted Plant: Verdant Vastness<br>
 ID:393202 Name:Water-Retaining Flower Beds<br>
 ID:393203 Name:Soil-Carrying Wooden Barrel<br>
@@ -10810,6 +11035,16 @@ ID:393413 Name:White Fish Tallow Candle: Evenlight<br>
 ID:393414 Name:Otogi Countryside Street Lamp<br>
 ID:393415 Name:Simple Otogi Street Lamp<br>
 ID:393416 Name:Aralia \"Renzou\" Street Lamp<br>
+ID:393423 Name:Linden Wood Half-Metal Announcement Board<br>
+ID:393424 Name:\"Yet Another Discussion\"<br>
+ID:393425 Name:\"Court of Justice's Trivia\"<br>
+ID:393426 Name:\"Dueling Sigil\"<br>
+ID:393427 Name:\"Fury's Torch\"<br>
+ID:393428 Name:\"Soft Water's Voice\"<br>
+ID:393429 Name:\"Let's Play!\"<br>
+ID:393430 Name:\"Good Stuff Is for Sharing!\"<br>
+ID:393431 Name:\"Satisfying Weight\"<br>
+ID:393432 Name:\"A Sister's Duty\"<br>
 ID:393601 Name:Pool of Sapphire Grace<br>
 ID:393602 Name:Shaded Clarity<br>
 ID:394101 Name:Weathered Bamboo Fence<br>
@@ -10824,6 +11059,8 @@ ID:394109 Name:The Fruit Farmer's Thrift<br>
 ID:394110 Name:\"Kyuukou\" Otogi Flower Terrace<br>
 ID:394111 Name:\"Sanzai\" Otogi Flower Terrace<br>
 ID:394112 Name:Court of Justice's Barrier<br>
+ID:394113 Name:Standard Railing: Order and Symmetry<br>
+ID:394114 Name:Standard Railing: Scattered Structure<br>
 ID:394201 Name:Smooth Wooden Bench<br>
 ID:394202 Name:Smooth Stone Bench<br>
 ID:394203 Name:Googol Chair<br>
