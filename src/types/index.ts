@@ -1,5 +1,3 @@
-import { RequestInit } from 'node-fetch'
-
 export type ValueOf<T> = T[keyof T]
 
 export interface GitLabAPIResponse {
@@ -20,7 +18,6 @@ export interface ClientOption {
    * @default
    * ```ts
    * {
-   *   timeout: 0,
    *   'user-agent': 'Mozilla/5.0',
    * }
    * ```

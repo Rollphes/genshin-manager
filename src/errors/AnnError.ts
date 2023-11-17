@@ -1,4 +1,3 @@
-import { Response } from 'node-fetch'
 /**
  * Error thrown when the getAnnList or getAnnContent request fails.
  */

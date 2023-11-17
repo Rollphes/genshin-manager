@@ -4,6 +4,7 @@ import { NoticeManager } from '@/client/NoticeManager'
 import { AnnContentNotFoundError } from '@/errors/AnnContentNotFoundError'
 import { AnnError } from '@/errors/AnnError'
 import { AssetsNotFoundError } from '@/errors/AssetsNotFoundError'
+import { BodyNotFoundError } from '@/errors/BodyNotFoundError'
 import { EnkaManagerError } from '@/errors/EnkaManagerError'
 import { EnkaNetworkError } from '@/errors/EnkaNetWorkError'
 import { ImageNotFoundError } from '@/errors/ImageNotFoundError'
@@ -36,6 +37,7 @@ export {
   EnkaData,
   AnnContentNotFoundError,
   AnnError,
+  BodyNotFoundError,
   AssetsNotFoundError,
   EnkaManagerError,
   EnkaNetworkError,

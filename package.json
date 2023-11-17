@@ -22,7 +22,7 @@
     "createHandBook": "node scripts/createHandBook.js"
   },
   "engines": {
-    "node": ">=16.0.0"
+    "node": ">=18.0.0"
   },
   "keywords": [
     "nodejs",

@@ -21,7 +21,6 @@ export class Client extends AssetCacheManager {
   constructor(option?: Partial<ClientOption>) {
     const defaultOption: ClientOption = {
       fetchOption: {
-        timeout: 0,
         headers: {
           'user-agent': 'Mozilla/5.0',
         },

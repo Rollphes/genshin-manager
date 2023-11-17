@@ -1,5 +1,3 @@
-import { Response } from 'node-fetch'
-
 const enkaNetworkStatusMessages: { [statusCode: number]: string } = {
   400: 'Wrong UID format',
   404: 'Player does not exist (MHY server said that)',
