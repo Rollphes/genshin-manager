@@ -9,14 +9,11 @@ import { TextMapLanguage } from '@/types'
  */
 export class TextMapTransform extends Transform {
   private language: keyof typeof TextMapLanguage
-  private filterList: number[]
+  private filterList: Set<number>
   private buffer: string = ''
   private firstFlag: boolean = true
 
-  constructor(
-    language: keyof typeof TextMapLanguage,
-    filterList: number[] = [],
-  ) {
+  constructor(language: keyof typeof TextMapLanguage, filterList: Set<number>) {
     super()
     this.language = language
     this.filterList = filterList
@@ -39,7 +36,7 @@ export class TextMapTransform extends Transform {
       const matchArray = line.match(/(?<=")([^"\\]|\\.)*?(?=")/g)
       if (!matchArray) return
       const [key, , value] = matchArray
-      if (this.filterList.includes(+key)) {
+      if (this.filterList.has(+key)) {
         if (!this.firstFlag) this.push(',\n')
         this.firstFlag = false
         this.push(`"${key}":"${value.replace(/\\\\n/g, '\\n')}"`)

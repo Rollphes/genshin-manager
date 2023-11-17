@@ -328,7 +328,7 @@ export abstract class AssetCacheManager {
       fs.createReadStream(selectedTextMapPath, {
         highWaterMark: 1 * 1024 * 1024,
       }),
-      new TextMapTransform(language, [...this.textHashList]),
+      new TextMapTransform(language, this.textHashList),
       eventEmitter,
     ).catch(async (error) => {
       if (error instanceof TextMapFormatError) {
@@ -411,8 +411,8 @@ export abstract class AssetCacheManager {
       .split('.')[0] as keyof typeof TextMapLanguage
     if ('TextMap' == path.basename(path.dirname(downloadFilePath))) {
       await pipeline(
-        new TextMapTransform(language, [...this.textHashList]),
         new ReadableStreamWrapper(res.body.getReader()),
+        new TextMapTransform(language, this.textHashList),
         writeStream,
       )
     } else {
