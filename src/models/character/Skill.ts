@@ -60,4 +60,33 @@ export class Skill {
     )
     return skillDatas.map((data) => data.id as number)
   }
+
+  /**
+   * Get skill order by character id
+   * @param characterId Character id
+   * @param skillDepotId Skill depot id
+   * @returns Skill order
+   */
+  public static getSkillOrderByCharacterId(
+    characterId: number,
+    skillDepotId?: number,
+  ): number[] {
+    const avatarJson = Client._getJsonFromCachedExcelBinOutput(
+      'AvatarExcelConfigData',
+      characterId,
+    )
+    const depotId =
+      skillDepotId && [10000005, 10000007].includes(characterId)
+        ? skillDepotId
+        : (avatarJson.skillDepotId as number)
+    const depotJson = Client._getJsonFromCachedExcelBinOutput(
+      'AvatarSkillDepotExcelConfigData',
+      depotId,
+    )
+    return [501, 701].includes(depotId)
+      ? (depotJson.skills as number[]).slice(0, 1)
+      : (depotJson.skills as number[])
+          .slice(0, 2)
+          .concat(depotJson.energySkill as number)
+  }
 }
