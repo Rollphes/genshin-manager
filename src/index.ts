@@ -12,6 +12,7 @@ import { TextMapFormatError } from '@/errors/TextMapFormatError'
 import { Artifact, ArtifactType } from '@/models/Artifact'
 import { ImageAssets } from '@/models/assets/ImageAssets'
 import { CharacterInfo } from '@/models/character/CharacterInfo'
+import { CharacterStories } from '@/models/character/CharacterStories'
 import { Costume } from '@/models/character/Costume'
 import { AssocType, Profile } from '@/models/character/Profile'
 import { Skill } from '@/models/character/Skill'
@@ -48,6 +49,7 @@ export {
   Artifact,
   ImageAssets,
   CharacterInfo,
+  CharacterStories,
   Costume,
   FightProp,
   Profile,

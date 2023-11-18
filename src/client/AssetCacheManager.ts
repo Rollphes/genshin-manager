@@ -51,6 +51,7 @@ export abstract class AssetCacheManager {
       'AvatarSkillDepotExcelConfigData',
       'AvatarSkillExcelConfigData',
     ],
+    CharacterStories: ['FetterStoryExcelConfigData'],
     Costume: ['AvatarCostumeExcelConfigData', 'AvatarExcelConfigData'],
     Profile: ['FetterInfoExcelConfigData'],
     Material: ['MaterialExcelConfigData'],
@@ -288,6 +289,10 @@ export abstract class AssetCacheManager {
             if (/TextMapHash/g.exec(key)) {
               const hash = obj[key] as number
               this.textHashList.add(hash)
+            }
+            if (key == 'tips') {
+              const hashList = obj[key] as number[]
+              hashList.forEach((hash) => this.textHashList.add(hash))
             }
           })
         },

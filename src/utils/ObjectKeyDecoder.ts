@@ -184,11 +184,11 @@ export class ObjectKeyDecoder {
             ;(cacheObject[type] as JsonObject)[level] = value
           })
           break
-
-        //Progress
         case 'FetterStoryExcelConfigData':
           cacheObject[obj.fetterId as string] = obj
           break
+
+        //Progress
         case 'FettersExcelConfigData':
           cacheObject[obj.fetterId as string] = obj
           break
