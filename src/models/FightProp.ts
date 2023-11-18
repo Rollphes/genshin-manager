@@ -4,7 +4,6 @@ import { FightProps, StatProperty } from '@/models/StatProperty'
  * Class of Character's Combat Properties.
  */
 export class FightProp {
-  //TODO: Add property description
   public readonly healthBase: StatProperty
   public readonly healthFlat: StatProperty
   public readonly healthPercent: StatProperty

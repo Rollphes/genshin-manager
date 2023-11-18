@@ -48,7 +48,6 @@ export type MaterialType =
   | 'MATERIAL_WIDGET'
   | 'MATERIAL_WOOD'
 
-//TODO: Add more properties
 /**
  * Class of material.
  */

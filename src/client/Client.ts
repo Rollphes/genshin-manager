@@ -44,7 +44,7 @@ export class Client extends AssetCacheManager {
       imageBaseUrlByRegex: {
         'https://enka.network/ui': [
           /^UI_(EquipIcon|NameCardPic|RelicIcon|AvatarIcon_Side|NameCardIcon|Costume)_/,
-          /^UI_AvatarIcon_(.+)_Card$/,
+          /^UI_AvatarIcon_(.+)_Card$/, //TODO: Add Card Icon
           /^UI_AvatarIcon_(.+)_Circle/,
         ],
         'https://res.cloudinary.com/genshin/image/upload/sprites': [
