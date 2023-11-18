@@ -1,6 +1,8 @@
 import { Client } from '@/client/Client'
 import { ImageAssets } from '@/models/assets/ImageAssets'
 import { FightPropType, StatProperty } from '@/models/StatProperty'
+import { WeaponAscension } from '@/models/weapon/WeaponAscension'
+import { WeaponRefinement } from '@/models/weapon/WeaponRefinement'
 import { JsonObject } from '@/utils/JsonParser'
 
 /**
@@ -110,23 +112,11 @@ export class Weapon {
       ? afterPromoteLevelByLevel
       : beforePromoteLevelByLevel
 
-    const weaponPromoteJson = Client._getJsonFromCachedExcelBinOutput(
-      'WeaponPromoteExcelConfigData',
-      weaponJson.weaponPromoteId as number,
-    )[this.promoteLevel] as JsonObject
+    const ascension = new WeaponAscension(this.id, this.promoteLevel)
 
-    const skillAffix =
-      (weaponJson.skillAffix as number[])[0] * 10 + this.refinementRank - 1
-    if (skillAffix != 0) {
-      const equipAffixJson = Client._getJsonFromCachedExcelBinOutput(
-        'EquipAffixExcelConfigData',
-        skillAffix,
-      )
-      this.skillName =
-        Client.cachedTextMap.get(String(equipAffixJson.nameTextMapHash)) || ''
-      this.skillDescription =
-        Client.cachedTextMap.get(String(equipAffixJson.descTextMapHash)) || ''
-    }
+    const refinement = new WeaponRefinement(this.id, this.refinementRank)
+    this.skillName = refinement.skillName
+    this.skillDescription = refinement.skillDescription
 
     this.name =
       Client.cachedTextMap.get(String(weaponJson.nameTextMapHash)) || ''
@@ -138,19 +128,16 @@ export class Weapon {
 
     const weaponPropJsonArray = weaponJson.weaponProp as JsonObject[]
 
-    const addBaseAtkByPromoteLevel =
-      ((weaponPromoteJson.addProps as JsonObject[])[0].value as
-        | number
-        | undefined) ?? 0
-
-    this.mainStat = this.getStatPropertyByJson(
-      weaponPropJsonArray[0],
-      addBaseAtkByPromoteLevel,
-    )
-
-    if (weaponPropJsonArray[1].propType || weaponPropJsonArray[1].initValue) {
-      this.subStat = this.getStatPropertyByJson(weaponPropJsonArray[1])
-    }
+    const props = weaponPropJsonArray.map((weaponPropJson) => {
+      if (!weaponPropJson.initValue || !weaponPropJson.propType) return
+      return this.getStatPropertyByJson(
+        weaponPropJson,
+        ascension.addProps.find((prop) => prop.type === weaponPropJson.propType)
+          ?.value ?? 0,
+      )
+    })
+    this.mainStat = props[0] as StatProperty
+    this.subStat = props[1]
 
     this.isAwaken = this.promoteLevel >= 2
     this.icon = new ImageAssets(

@@ -60,7 +60,6 @@ export abstract class AssetCacheManager {
     Weapon: [
       'WeaponExcelConfigData',
       'WeaponPromoteExcelConfigData',
-      'EquipAffixExcelConfigData',
       'WeaponCurveExcelConfigData',
     ],
     WeaponAscension: ['WeaponExcelConfigData', 'WeaponPromoteExcelConfigData'],
