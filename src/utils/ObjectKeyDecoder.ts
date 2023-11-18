@@ -144,6 +144,22 @@ export class ObjectKeyDecoder {
         case 'AvatarTalentExcelConfigData':
           cacheObject[obj.talentId as string] = obj
           break
+        case 'AvatarCurveExcelConfigData':
+          ;(obj.curveInfos as JsonArray).forEach((curve) => {
+            const level = obj.level as number
+            const value = (curve as JsonObject).value ?? 0
+            const type = (curve as JsonObject).type as string
+            if (!cacheObject[type]) cacheObject[type] = {}
+            ;(cacheObject[type] as JsonObject)[level] = value
+          })
+          break
+        case 'AvatarPromoteExcelConfigData':
+          if (!cacheObject[obj.avatarPromoteId as string])
+            cacheObject[obj.avatarPromoteId as string] = {}
+          ;(cacheObject[obj.avatarPromoteId as string] as JsonObject)[
+            (!obj.promoteLevel ? 0 : obj.promoteLevel) as string
+          ] = obj
+          break
         case 'ProudSkillExcelConfigData':
           cacheObject[obj.proudSkillId as string] = obj
           break

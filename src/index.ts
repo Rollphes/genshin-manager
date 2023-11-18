@@ -13,6 +13,7 @@ import { Artifact, ArtifactType } from '@/models/Artifact'
 import { ImageAssets } from '@/models/assets/ImageAssets'
 import { CharacterAscension } from '@/models/character/CharacterAscension'
 import { CharacterInfo } from '@/models/character/CharacterInfo'
+import { CharacterStatus } from '@/models/character/CharacterStatus'
 import { CharacterStories } from '@/models/character/CharacterStories'
 import { Costume } from '@/models/character/Costume'
 import { AssocType, Profile } from '@/models/character/Profile'
@@ -52,6 +53,7 @@ export {
   CharacterInfo,
   CharacterStories,
   CharacterAscension,
+  CharacterStatus,
   Costume,
   FightProp,
   Profile,
