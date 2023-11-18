@@ -2,12 +2,12 @@ import * as cliProgress from 'cli-progress'
 import fs from 'fs'
 import * as fsPromises from 'fs/promises'
 import Module from 'module'
-import fetch from 'node-fetch'
 import * as path from 'path'
 import { pipeline } from 'stream/promises'
 
 import { Client } from '@/client/Client'
 import { AssetsNotFoundError } from '@/errors/AssetsNotFoundError'
+import { BodyNotFoundError } from '@/errors/BodyNotFoundError'
 import { TextMapFormatError } from '@/errors/TextMapFormatError'
 import {
   ClientOption,
@@ -18,6 +18,7 @@ import {
 import { getClassNamesRecursive } from '@/utils/getClassNamesRecursive'
 import { JsonObject, JsonParser } from '@/utils/JsonParser'
 import { ObjectKeyDecoder } from '@/utils/ObjectKeyDecoder'
+import { ReadableStreamWrapper } from '@/utils/ReadableStreamWrapper'
 import { TextMapEmptyWritable } from '@/utils/TextMapEmptyWritable'
 import { TextMapTransform } from '@/utils/TextMapTransform'
 
@@ -50,6 +51,16 @@ export abstract class AssetCacheManager {
       'AvatarSkillDepotExcelConfigData',
       'AvatarSkillExcelConfigData',
     ],
+    CharacterStatus: [
+      'AvatarExcelConfigData',
+      'AvatarPromoteExcelConfigData',
+      'AvatarCurveExcelConfigData',
+    ],
+    CharacterStories: ['FetterStoryExcelConfigData'],
+    CharacterAscension: [
+      'AvatarExcelConfigData',
+      'AvatarPromoteExcelConfigData',
+    ],
     Costume: ['AvatarCostumeExcelConfigData', 'AvatarExcelConfigData'],
     Profile: ['FetterInfoExcelConfigData'],
     Material: ['MaterialExcelConfigData'],
@@ -59,9 +70,10 @@ export abstract class AssetCacheManager {
     Weapon: [
       'WeaponExcelConfigData',
       'WeaponPromoteExcelConfigData',
-      'EquipAffixExcelConfigData',
       'WeaponCurveExcelConfigData',
     ],
+    WeaponAscension: ['WeaponExcelConfigData', 'WeaponPromoteExcelConfigData'],
+    WeaponRefinement: ['WeaponExcelConfigData', 'EquipAffixExcelConfigData'],
     Artifact: [
       'ReliquaryExcelConfigData',
       'ReliquarySetExcelConfigData',
@@ -287,6 +299,10 @@ export abstract class AssetCacheManager {
               const hash = obj[key] as number
               this.textHashList.add(hash)
             }
+            if (key == 'tips') {
+              const hashList = obj[key] as number[]
+              hashList.forEach((hash) => this.textHashList.add(hash))
+            }
           })
         },
       )
@@ -327,7 +343,7 @@ export abstract class AssetCacheManager {
       fs.createReadStream(selectedTextMapPath, {
         highWaterMark: 1 * 1024 * 1024,
       }),
-      new TextMapTransform(language, [...this.textHashList]),
+      new TextMapTransform(language, this.textHashList),
       eventEmitter,
     ).catch(async (error) => {
       if (error instanceof TextMapFormatError) {
@@ -401,6 +417,7 @@ export abstract class AssetCacheManager {
    */
   private static async downloadJsonFile(url: string, downloadFilePath: string) {
     const res = await fetch(url, this.option.fetchOption)
+    if (!res.body) throw new BodyNotFoundError(url)
     const writeStream = fs.createWriteStream(downloadFilePath, {
       highWaterMark: 1 * 1024 * 1024,
     })
@@ -409,12 +426,15 @@ export abstract class AssetCacheManager {
       .split('.')[0] as keyof typeof TextMapLanguage
     if ('TextMap' == path.basename(path.dirname(downloadFilePath))) {
       await pipeline(
-        res.body,
-        new TextMapTransform(language, [...this.textHashList]),
+        new ReadableStreamWrapper(res.body.getReader()),
+        new TextMapTransform(language, this.textHashList),
         writeStream,
       )
     } else {
-      await pipeline(res.body, writeStream)
+      await pipeline(
+        new ReadableStreamWrapper(res.body.getReader()),
+        writeStream,
+      )
     }
   }
 

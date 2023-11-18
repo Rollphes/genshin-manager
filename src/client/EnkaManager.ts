@@ -1,4 +1,3 @@
-import fetch, { RequestInit } from 'node-fetch'
 import merge from 'ts-deepmerge'
 
 import { EnkaManagerError } from '@/errors/EnkaManagerError'
@@ -20,7 +19,6 @@ export interface EnkaData {
 export class EnkaManager {
   private readonly enkaUidURL = 'https://enka.network/api/uid/'
   private readonly defaultOption: RequestInit = {
-    timeout: 0,
     headers: {
       'user-agent': 'Mozilla/5.0',
     },
@@ -39,7 +37,7 @@ export class EnkaManager {
   /**
    * Fetch EnkaData from enka.network
    * @param uid genshin uid
-   * @param fetchOption fetch option (default: { timeout: 0, headers: { 'user-agent': 'Mozilla/5.0' } })
+   * @param fetchOption fetch option (default: { headers: { 'user-agent': 'Mozilla/5.0' } })
    * @returns
    * @example
    * ```ts

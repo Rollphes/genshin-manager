@@ -1,5 +1,3 @@
-import { RequestInit } from 'node-fetch'
-
 export type ValueOf<T> = T[keyof T]
 
 export interface GitLabAPIResponse {
@@ -20,7 +18,6 @@ export interface ClientOption {
    * @default
    * ```ts
    * {
-   *   timeout: 0,
    *   'user-agent': 'Mozilla/5.0',
    * }
    * ```
@@ -383,14 +380,14 @@ export const ExcelBinOutputs = {
   // AudioSceneConfigData: 'AudioSceneConfigData.json',
   // AvatarCodexExcelConfigData: 'AvatarCodexExcelConfigData.json',
   AvatarCostumeExcelConfigData: 'AvatarCostumeExcelConfigData.json',
-  //AvatarCurveExcelConfigData: 'AvatarCurveExcelConfigData.json',
+  AvatarCurveExcelConfigData: 'AvatarCurveExcelConfigData.json',
   AvatarExcelConfigData: 'AvatarExcelConfigData.json',
   // AvatarExtraPropExcelConfigData: 'AvatarExtraPropExcelConfigData.json',
   // AvatarFettersLevelExcelConfigData: 'AvatarFettersLevelExcelConfigData.json',
   // AvatarFlycloakExcelConfigData: 'AvatarFlycloakExcelConfigData.json',
   // AvatarHeroEntityExcelConfigData: 'AvatarHeroEntityExcelConfigData.json',
   // AvatarLevelExcelConfigData: 'AvatarLevelExcelConfigData.json',
-  // AvatarPromoteExcelConfigData: 'AvatarPromoteExcelConfigData.json',
+  AvatarPromoteExcelConfigData: 'AvatarPromoteExcelConfigData.json',
   // AvatarRenameExcelConfigData: 'AvatarRenameExcelConfigData.json',
   // AvatarReplaceCostumeExcelConfigData:
   //   'AvatarReplaceCostumeExcelConfigData.json',

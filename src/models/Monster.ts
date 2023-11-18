@@ -1,6 +1,6 @@
 import { Client } from '@/client/Client'
 import { ImageAssets } from '@/models/assets/ImageAssets'
-import { FightProp } from '@/models/character/FightProp'
+import { FightProps, StatProperty } from '@/models/StatProperty'
 import { JsonObject } from '@/utils/JsonParser'
 
 /**
@@ -60,9 +60,9 @@ export class Monster {
    */
   public readonly icon: ImageAssets | undefined
   /**
-   * FightProp of the monster
+   * Status of the monster
    */
-  public readonly fightProp: FightProp
+  public readonly status: StatProperty[] = []
   /**
    * Type of the monster
    */
@@ -134,19 +134,36 @@ export class Monster {
       monsterJson.defenseBase as number | undefined,
       playerCount,
     )
-    this.fightProp = new FightProp({
-      1: hpBase,
-      4: attackBase,
-      7: defenseBase,
-      29: monsterJson.physicalSubHurt as number | undefined,
-      50: monsterJson.fireSubHurt as number | undefined,
-      51: monsterJson.elecSubHurt as number | undefined,
-      52: monsterJson.waterSubHurt as number | undefined,
-      53: monsterJson.grassSubHurt as number | undefined,
-      54: monsterJson.windSubHurt as number | undefined,
-      55: monsterJson.rockSubHurt as number | undefined,
-      56: monsterJson.iceSubHurt as number | undefined,
-    })
+    this.status = [
+      new StatProperty(FightProps[1], hpBase),
+      new StatProperty(FightProps[4], attackBase),
+      new StatProperty(FightProps[7], defenseBase),
+      new StatProperty(
+        FightProps[29],
+        (monsterJson.physicalSubHurt ?? 0) as number,
+      ),
+      new StatProperty(
+        FightProps[51],
+        (monsterJson.elecSubHurt ?? 0) as number,
+      ),
+      new StatProperty(
+        FightProps[52],
+        (monsterJson.waterSubHurt ?? 0) as number,
+      ),
+      new StatProperty(
+        FightProps[53],
+        (monsterJson.grassSubHurt ?? 0) as number,
+      ),
+      new StatProperty(
+        FightProps[54],
+        (monsterJson.windSubHurt ?? 0) as number,
+      ),
+      new StatProperty(
+        FightProps[55],
+        (monsterJson.rockSubHurt ?? 0) as number,
+      ),
+      new StatProperty(FightProps[56], (monsterJson.iceSubHurt ?? 0) as number),
+    ]
   }
 
   /**

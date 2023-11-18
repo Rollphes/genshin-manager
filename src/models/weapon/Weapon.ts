@@ -1,6 +1,9 @@
 import { Client } from '@/client/Client'
 import { ImageAssets } from '@/models/assets/ImageAssets'
 import { FightPropType, StatProperty } from '@/models/StatProperty'
+import { WeaponAscension } from '@/models/weapon/WeaponAscension'
+import { WeaponRefinement } from '@/models/weapon/WeaponRefinement'
+import { calculatePromoteLevel } from '@/utils/calculatePromoteLevel'
 import { JsonObject } from '@/utils/JsonParser'
 
 /**
@@ -40,6 +43,10 @@ export class Weapon {
    */
   public readonly promoteLevel: number
   /**
+   * Weapon is ascended
+   */
+  public readonly isAscended: boolean
+  /**
    * Weapon refinement rank
    */
   public readonly refinementRank: number
@@ -48,13 +55,9 @@ export class Weapon {
    */
   public readonly rarity: number
   /**
-   * Weapon main stat
+   * Weapon status
    */
-  public readonly mainStat: StatProperty
-  /**
-   * Weapon sub stat
-   */
-  public readonly subStat: StatProperty | undefined
+  public readonly status: StatProperty[]
   /**
    * Whether the weapon is awakened
    */
@@ -67,41 +70,40 @@ export class Weapon {
   /**
    * Create a Weapon
    * @param weaponId Weapon id
-   * @param level Weapon level
-   * @param promoteLevel Weapon promote level
-   * @param refinementRank Weapon refinement rank
+   * @param level Weapon level (1-90). Default: 1
+   * @param isAscended Weapon is ascended. Default: true
+   * @param refinementRank Weapon refinement rank (1-5). Default: 1
    */
   constructor(
     weaponId: number,
     level: number = 1,
-    promoteLevel: number = 0,
+    isAscended: boolean = true,
     refinementRank: number = 1,
   ) {
     this.id = weaponId
     this.level = level
-    this.promoteLevel = promoteLevel
+    this.isAscended = isAscended
     this.refinementRank = refinementRank
     const weaponJson = Client._getJsonFromCachedExcelBinOutput(
       'WeaponExcelConfigData',
       this.id,
     )
-    const weaponPromoteJson = Client._getJsonFromCachedExcelBinOutput(
+
+    const weaponPromotesJson = Client._getJsonFromCachedExcelBinOutput(
       'WeaponPromoteExcelConfigData',
       weaponJson.weaponPromoteId as number,
     )
+    this.promoteLevel = calculatePromoteLevel(
+      weaponPromotesJson,
+      this.level,
+      this.isAscended,
+    )
 
-    const skillAffix =
-      (weaponJson.skillAffix as number[])[0] * 10 + this.refinementRank - 1
-    if (skillAffix != 0) {
-      const equipAffixJson = Client._getJsonFromCachedExcelBinOutput(
-        'EquipAffixExcelConfigData',
-        skillAffix,
-      )
-      this.skillName =
-        Client.cachedTextMap.get(String(equipAffixJson.nameTextMapHash)) || ''
-      this.skillDescription =
-        Client.cachedTextMap.get(String(equipAffixJson.descTextMapHash)) || ''
-    }
+    const ascension = new WeaponAscension(this.id, this.promoteLevel)
+
+    const refinement = new WeaponRefinement(this.id, this.refinementRank)
+    this.skillName = refinement.skillName
+    this.skillDescription = refinement.skillDescription
 
     this.name =
       Client.cachedTextMap.get(String(weaponJson.nameTextMapHash)) || ''
@@ -113,19 +115,17 @@ export class Weapon {
 
     const weaponPropJsonArray = weaponJson.weaponProp as JsonObject[]
 
-    const addBaseAtkByPromoteLevel =
-      ((weaponPromoteJson.addProps as JsonObject[])[0].value as
-        | number
-        | undefined) ?? 0
-
-    this.mainStat = this.getStatPropertyByJson(
-      weaponPropJsonArray[0],
-      addBaseAtkByPromoteLevel,
-    )
-
-    if (weaponPropJsonArray[1].propType || weaponPropJsonArray[1].initValue) {
-      this.subStat = this.getStatPropertyByJson(weaponPropJsonArray[1])
-    }
+    this.status = weaponPropJsonArray
+      .map((weaponPropJson) => {
+        if (!weaponPropJson.initValue || !weaponPropJson.propType) return
+        return this.getStatPropertyByJson(
+          weaponPropJson,
+          ascension.addProps.find(
+            (prop) => prop.type === weaponPropJson.propType,
+          )?.value ?? 0,
+        )
+      })
+      .filter((stat): stat is StatProperty => stat !== undefined)
 
     this.isAwaken = this.promoteLevel >= 2
     this.icon = new ImageAssets(

@@ -54,4 +54,29 @@ export class Talent {
     )
     return talentDatas.map((data) => data.talentId as number)
   }
+
+  /**
+   * Get talent ids by character id
+   * @param characterId Character id
+   * @param skillDepotId Skill depot id
+   * @returns Talent ids
+   */
+  public static getTalentIdsByCharacterId(
+    characterId: number,
+    skillDepotId?: number,
+  ): number[] {
+    const avatarJson = Client._getJsonFromCachedExcelBinOutput(
+      'AvatarExcelConfigData',
+      characterId,
+    )
+    const depotId =
+      skillDepotId && [10000005, 10000007].includes(characterId)
+        ? skillDepotId
+        : (avatarJson.skillDepotId as number)
+    const depotJson = Client._getJsonFromCachedExcelBinOutput(
+      'AvatarSkillDepotExcelConfigData',
+      depotId,
+    )
+    return depotJson.talents as number[]
+  }
 }

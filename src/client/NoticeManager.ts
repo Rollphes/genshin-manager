@@ -1,4 +1,3 @@
-import fetch, { RequestInit } from 'node-fetch'
 import merge from 'ts-deepmerge'
 
 import { AnnContentNotFoundError } from '@/errors/AnnContentNotFoundError'
@@ -19,14 +18,12 @@ export class NoticeManager {
    * @default
    * ```ts
    * {
-   *  timeout: 3000,
    * headers: {
    *   'user-agent': 'Mozilla/5.0',
    * },
    * ```
    */
   public fetchOption: RequestInit = {
-    timeout: 3000,
     headers: {
       'user-agent': 'Mozilla/5.0',
     },

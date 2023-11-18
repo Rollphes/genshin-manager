@@ -2,11 +2,11 @@ import { EnkaManagerError } from '@/errors/EnkaManagerError'
 import { Artifact } from '@/models/Artifact'
 import { CharacterInfo } from '@/models/character/CharacterInfo'
 import { Costume } from '@/models/character/Costume'
-import { FightProp } from '@/models/character/FightProp'
 import { Skill } from '@/models/character/Skill'
 import { Talent } from '@/models/character/Talent'
+import { FightProp } from '@/models/FightProp'
 import { SetBonus } from '@/models/SetBonus'
-import { Weapon } from '@/models/Weapon'
+import { Weapon } from '@/models/weapon/Weapon'
 import {
   APIAvatarInfo,
   APIReliquaryEquip,
@@ -95,7 +95,8 @@ export class AvatarInfo extends CharacterInfo {
     this.weapon = new Weapon(
       weaponData.itemId,
       weaponData.weapon.level,
-      weaponData.weapon.promoteLevel,
+      [0, 20, 40, 50, 60, 70, 80, 90][weaponData.weapon.promoteLevel ?? 0] >=
+        weaponData.weapon.level,
       (affixMap ? affixMap[weaponData.itemId + 100000] : 0) + 1,
     )
     const artifactDatas = data.equipList.filter(

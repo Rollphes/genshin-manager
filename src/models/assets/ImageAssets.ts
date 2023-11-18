@@ -1,11 +1,11 @@
 import fs from 'fs'
 import * as fsPromises from 'fs/promises'
-import fetch, { RequestInit } from 'node-fetch'
 import path from 'path'
 import { pipeline } from 'stream/promises'
 
 import { ImageNotFoundError } from '@/errors/ImageNotFoundError'
 import { ClientOption } from '@/types'
+import { ReadableStreamWrapper } from '@/utils/ReadableStreamWrapper'
 
 const imageBaseUrlMihoyo =
   'https://upload-os-bbs.mihoyo.com/game_record/genshin'
@@ -169,7 +169,10 @@ export class ImageAssets {
         highWaterMark: highWaterMark,
       })
       if (ImageAssets.autoCacheImage) {
-        await pipeline(res.body, fsStream)
+        await pipeline(
+          new ReadableStreamWrapper(res.body.getReader()),
+          fsStream,
+        )
       }
       return fs.createReadStream(imageCachePath, {
         highWaterMark: highWaterMark,

@@ -21,7 +21,6 @@ export class Client extends AssetCacheManager {
   constructor(option?: Partial<ClientOption>) {
     const defaultOption: ClientOption = {
       fetchOption: {
-        timeout: 0,
         headers: {
           'user-agent': 'Mozilla/5.0',
         },
@@ -45,7 +44,7 @@ export class Client extends AssetCacheManager {
       imageBaseUrlByRegex: {
         'https://enka.network/ui': [
           /^UI_(EquipIcon|NameCardPic|RelicIcon|AvatarIcon_Side|NameCardIcon|Costume)_/,
-          /^UI_AvatarIcon_(.+)_Card$/,
+          /^UI_AvatarIcon_(.+)_Card$/, //TODO: Add Card Icon
           /^UI_AvatarIcon_(.+)_Circle/,
         ],
         'https://res.cloudinary.com/genshin/image/upload/sprites': [

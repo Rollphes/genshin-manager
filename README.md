@@ -25,7 +25,7 @@ A Node.js Enka.network and Genshin Data wrapper for Genshin Impact
 
 ## Installation
 
-**Node.js 16 or newer is required.**
+**Node.js 18 or newer is required.**
 
 Install genshin-manager including genshin cache data.(download EN TextMap by default.)
 
