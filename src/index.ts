@@ -13,13 +13,13 @@ import { Artifact, ArtifactType } from '@/models/Artifact'
 import { ImageAssets } from '@/models/assets/ImageAssets'
 import { CharacterInfo } from '@/models/character/CharacterInfo'
 import { Costume } from '@/models/character/Costume'
-import { FightProp } from '@/models/FightProp'
 import { AssocType, Profile } from '@/models/character/Profile'
 import { Skill } from '@/models/character/Skill'
 import { Talent } from '@/models/character/Talent'
 import { AvatarInfo } from '@/models/enka/AvatarInfo'
 import { PlayerInfo } from '@/models/enka/PlayerInfo'
 import { ShowAvatarInfo } from '@/models/enka/ShowAvatarInfo'
+import { FightProp } from '@/models/FightProp'
 import { ItemType, Material, MaterialType } from '@/models/Material'
 import { Monster } from '@/models/Monster'
 import { Notice } from '@/models/Notice'
@@ -29,6 +29,8 @@ import { TowerFloor } from '@/models/tower/TowerFloor'
 import { TowerLevel } from '@/models/tower/TowerLevel'
 import { TowerSchedule } from '@/models/tower/TowerSchedule'
 import { Weapon, WeaponType } from '@/models/weapon/Weapon'
+import { WeaponAscension } from '@/models/weapon/WeaponAscension'
+import { WeaponRefinement } from '@/models/weapon/WeaponRefinement'
 import { ClientOption, Element, Region } from '@/types'
 import { convertToUTC } from '@/utils/convertToUTC'
 export {
@@ -56,6 +58,8 @@ export {
   ShowAvatarInfo,
   Material,
   Weapon,
+  WeaponAscension,
+  WeaponRefinement,
   ClientOption,
   StatProperty,
   TowerFloor,
