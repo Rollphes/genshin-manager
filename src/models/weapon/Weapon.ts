@@ -3,6 +3,7 @@ import { ImageAssets } from '@/models/assets/ImageAssets'
 import { FightPropType, StatProperty } from '@/models/StatProperty'
 import { WeaponAscension } from '@/models/weapon/WeaponAscension'
 import { WeaponRefinement } from '@/models/weapon/WeaponRefinement'
+import { calculatePromoteLevel } from '@/utils/calculatePromoteLevel'
 import { JsonObject } from '@/utils/JsonParser'
 
 /**
@@ -54,13 +55,9 @@ export class Weapon {
    */
   public readonly rarity: number
   /**
-   * Weapon main stat
+   * Weapon status
    */
-  public readonly mainStat: StatProperty
-  /**
-   * Weapon sub stat
-   */
-  public readonly subStat: StatProperty | undefined
+  public readonly status: StatProperty[]
   /**
    * Whether the weapon is awakened
    */
@@ -96,21 +93,11 @@ export class Weapon {
       'WeaponPromoteExcelConfigData',
       weaponJson.weaponPromoteId as number,
     )
-    const beforePromoteLevelByLevel = Math.max(
-      ...(Object.values(weaponPromotesJson) as JsonObject[])
-        .filter((promote) => (promote.unlockMaxLevel as number) < this.level)
-        .map((promote) => ((promote.promoteLevel ?? 0) as number) + 1),
-      0,
+    this.promoteLevel = calculatePromoteLevel(
+      weaponPromotesJson,
+      this.level,
+      this.isAscended,
     )
-    const afterPromoteLevelByLevel = Math.max(
-      ...(Object.values(weaponPromotesJson) as JsonObject[])
-        .filter((promote) => (promote.unlockMaxLevel as number) <= this.level)
-        .map((promote) => ((promote.promoteLevel ?? 0) as number) + 1),
-      0,
-    )
-    this.promoteLevel = isAscended
-      ? afterPromoteLevelByLevel
-      : beforePromoteLevelByLevel
 
     const ascension = new WeaponAscension(this.id, this.promoteLevel)
 
@@ -128,16 +115,17 @@ export class Weapon {
 
     const weaponPropJsonArray = weaponJson.weaponProp as JsonObject[]
 
-    const props = weaponPropJsonArray.map((weaponPropJson) => {
-      if (!weaponPropJson.initValue || !weaponPropJson.propType) return
-      return this.getStatPropertyByJson(
-        weaponPropJson,
-        ascension.addProps.find((prop) => prop.type === weaponPropJson.propType)
-          ?.value ?? 0,
-      )
-    })
-    this.mainStat = props[0] as StatProperty
-    this.subStat = props[1]
+    this.status = weaponPropJsonArray
+      .map((weaponPropJson) => {
+        if (!weaponPropJson.initValue || !weaponPropJson.propType) return
+        return this.getStatPropertyByJson(
+          weaponPropJson,
+          ascension.addProps.find(
+            (prop) => prop.type === weaponPropJson.propType,
+          )?.value ?? 0,
+        )
+      })
+      .filter((stat): stat is StatProperty => stat !== undefined)
 
     this.isAwaken = this.promoteLevel >= 2
     this.icon = new ImageAssets(
