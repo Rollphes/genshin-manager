@@ -63,6 +63,7 @@ export abstract class AssetCacheManager {
       'EquipAffixExcelConfigData',
       'WeaponCurveExcelConfigData',
     ],
+    WeaponAscension: ['WeaponExcelConfigData', 'WeaponPromoteExcelConfigData'],
     Artifact: [
       'ReliquaryExcelConfigData',
       'ReliquarySetExcelConfigData',
