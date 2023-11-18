@@ -40,6 +40,10 @@ export class Weapon {
    */
   public readonly promoteLevel: number
   /**
+   * Weapon is ascended
+   */
+  public readonly isAscended: boolean
+  /**
    * Weapon refinement rank
    */
   public readonly refinementRank: number
@@ -67,28 +71,49 @@ export class Weapon {
   /**
    * Create a Weapon
    * @param weaponId Weapon id
-   * @param level Weapon level
-   * @param promoteLevel Weapon promote level
-   * @param refinementRank Weapon refinement rank
+   * @param level Weapon level (1-90). Default: 1
+   * @param isAscended Weapon is ascended. Default: true
+   * @param refinementRank Weapon refinement rank (1-5). Default: 1
    */
   constructor(
     weaponId: number,
     level: number = 1,
-    promoteLevel: number = 0,
+    isAscended: boolean = true,
     refinementRank: number = 1,
   ) {
     this.id = weaponId
     this.level = level
-    this.promoteLevel = promoteLevel
+    this.isAscended = isAscended
     this.refinementRank = refinementRank
     const weaponJson = Client._getJsonFromCachedExcelBinOutput(
       'WeaponExcelConfigData',
       this.id,
     )
-    const weaponPromoteJson = Client._getJsonFromCachedExcelBinOutput(
+
+    const weaponPromotesJson = Client._getJsonFromCachedExcelBinOutput(
       'WeaponPromoteExcelConfigData',
       weaponJson.weaponPromoteId as number,
     )
+    const beforePromoteLevelByLevel = Math.max(
+      ...(Object.values(weaponPromotesJson) as JsonObject[])
+        .filter((promote) => (promote.unlockMaxLevel as number) < this.level)
+        .map((promote) => ((promote.promoteLevel ?? 0) as number) + 1),
+      0,
+    )
+    const afterPromoteLevelByLevel = Math.max(
+      ...(Object.values(weaponPromotesJson) as JsonObject[])
+        .filter((promote) => (promote.unlockMaxLevel as number) <= this.level)
+        .map((promote) => ((promote.promoteLevel ?? 0) as number) + 1),
+      0,
+    )
+    this.promoteLevel = isAscended
+      ? afterPromoteLevelByLevel
+      : beforePromoteLevelByLevel
+
+    const weaponPromoteJson = Client._getJsonFromCachedExcelBinOutput(
+      'WeaponPromoteExcelConfigData',
+      weaponJson.weaponPromoteId as number,
+    )[this.promoteLevel] as JsonObject
 
     const skillAffix =
       (weaponJson.skillAffix as number[])[0] * 10 + this.refinementRank - 1

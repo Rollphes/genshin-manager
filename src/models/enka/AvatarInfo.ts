@@ -95,7 +95,8 @@ export class AvatarInfo extends CharacterInfo {
     this.weapon = new Weapon(
       weaponData.itemId,
       weaponData.weapon.level,
-      weaponData.weapon.promoteLevel,
+      [0, 20, 40, 50, 60, 70, 80, 90][weaponData.weapon.promoteLevel ?? 0] >=
+        weaponData.weapon.level,
       (affixMap ? affixMap[weaponData.itemId + 100000] : 0) + 1,
     )
     const artifactDatas = data.equipList.filter(

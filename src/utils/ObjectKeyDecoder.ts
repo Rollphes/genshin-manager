@@ -111,7 +111,11 @@ export class ObjectKeyDecoder {
           })
           break
         case 'WeaponPromoteExcelConfigData':
-          cacheObject[obj.weaponPromoteId as string] = obj
+          if (!cacheObject[obj.weaponPromoteId as string])
+            cacheObject[obj.weaponPromoteId as string] = {}
+          ;(cacheObject[obj.weaponPromoteId as string] as JsonObject)[
+            (!obj.promoteLevel ? 0 : obj.promoteLevel) as string
+          ] = obj
           break
         case 'ReliquaryLevelExcelConfigData':
           ;(obj.addProps as JsonArray).forEach((prop) => {
