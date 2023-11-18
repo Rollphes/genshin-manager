@@ -6,7 +6,7 @@ import { FightProp } from '@/models/character/FightProp'
 import { Skill } from '@/models/character/Skill'
 import { Talent } from '@/models/character/Talent'
 import { SetBonus } from '@/models/SetBonus'
-import { Weapon } from '@/models/Weapon'
+import { Weapon } from '@/models/weapon/Weapon'
 import {
   APIAvatarInfo,
   APIReliquaryEquip,

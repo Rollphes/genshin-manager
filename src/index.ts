@@ -28,7 +28,7 @@ import { FightPropType, StatProperty } from '@/models/StatProperty'
 import { TowerFloor } from '@/models/tower/TowerFloor'
 import { TowerLevel } from '@/models/tower/TowerLevel'
 import { TowerSchedule } from '@/models/tower/TowerSchedule'
-import { Weapon, WeaponType } from '@/models/Weapon'
+import { Weapon, WeaponType } from '@/models/weapon/Weapon'
 import { ClientOption, Element, Region } from '@/types'
 import { convertToUTC } from '@/utils/convertToUTC'
 export {
