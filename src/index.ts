@@ -11,6 +11,7 @@ import { ImageNotFoundError } from '@/errors/ImageNotFoundError'
 import { TextMapFormatError } from '@/errors/TextMapFormatError'
 import { Artifact, ArtifactType } from '@/models/Artifact'
 import { ImageAssets } from '@/models/assets/ImageAssets'
+import { CharacterAscension } from '@/models/character/CharacterAscension'
 import { CharacterInfo } from '@/models/character/CharacterInfo'
 import { CharacterStories } from '@/models/character/CharacterStories'
 import { Costume } from '@/models/character/Costume'
@@ -50,6 +51,7 @@ export {
   ImageAssets,
   CharacterInfo,
   CharacterStories,
+  CharacterAscension,
   Costume,
   FightProp,
   Profile,
