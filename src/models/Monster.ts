@@ -1,6 +1,6 @@
 import { Client } from '@/client/Client'
 import { ImageAssets } from '@/models/assets/ImageAssets'
-import { FightProp } from '@/models/character/FightProp'
+import { FightProp } from '@/models/FightProp'
 import { JsonObject } from '@/utils/JsonParser'
 
 /**
