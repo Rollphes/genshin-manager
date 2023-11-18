@@ -43,7 +43,7 @@ export class WeaponAscension {
   /**
    * Create a weapon ascension.
    * @param weaponId Weapon id
-   * @param promoteLevel Weapon promote level (0-5). Default: 0.
+   * @param promoteLevel Weapon promote level (0-6). Default: 0.
    */
   constructor(weaponId: number, promoteLevel: number = 0) {
     this.id = weaponId
