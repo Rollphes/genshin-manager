@@ -10,7 +10,7 @@ import { TextMapLanguage } from '@/types'
 export class TextMapTransform extends Transform {
   private language: keyof typeof TextMapLanguage
   private filterList: Set<number>
-  private buffer: string = ''
+  private buffer: Buffer = Buffer.from('')
   private firstFlag: boolean = true
 
   constructor(language: keyof typeof TextMapLanguage, filterList: Set<number>) {
@@ -24,13 +24,14 @@ export class TextMapTransform extends Transform {
     encoding: BufferEncoding,
     callback: () => void,
   ) {
-    const str = this.buffer + chunk.toString()
+    const combinedBuffer = Buffer.concat([this.buffer, chunk])
+    const str = combinedBuffer.toString()
     const lines = str.split('\n')
     const isFirstChunk = str.startsWith('{')
 
     if (isFirstChunk) this.push('{\n')
 
-    this.buffer = lines.pop() || ''
+    this.buffer = Buffer.from(lines.pop() || '')
 
     lines.forEach((line) => {
       const matchArray = line.match(/(?<=")([^"\\]|\\.)*?(?=")/g)
@@ -47,12 +48,13 @@ export class TextMapTransform extends Transform {
   }
 
   public _flush(callback: () => void) {
-    this.push('\n' + this.buffer)
+    this.push('\n' + this.buffer.toString())
     callback()
   }
 
   public _final(callback: () => void) {
-    if (!this.buffer.endsWith('}')) throw new TextMapFormatError(this.language)
+    if (!this.buffer.toString().endsWith('}'))
+      throw new TextMapFormatError(this.language)
 
     callback()
   }
