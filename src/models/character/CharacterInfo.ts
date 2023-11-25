@@ -120,4 +120,17 @@ export class CharacterInfo {
       .filter((k) => !('rarity' in k))
       .map((k) => k.id as number)
   }
+
+  /**
+   * Get character id by name
+   * @param name Character name
+   * @returns Character id
+   */
+  public static getCharacterIdByName(name: string): number[] {
+    const hashes = Client._searchHashInCachedTextMapByValue(name)
+    return Client._searchKeyInExcelBinOutputByTextHashes(
+      'AvatarExcelConfigData',
+      hashes,
+    ).map((k) => +k)
+  }
 }

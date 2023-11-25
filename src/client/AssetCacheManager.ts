@@ -487,4 +487,41 @@ export abstract class AssetCacheManager {
   ) {
     return Client.cachedExcelBinOutput.has(key)
   }
+
+  /**
+   * search hashes in CachedTextMap by value
+   * @deprecated This method is deprecated because it is used to pass data to each class.
+   * @param searchValue Search value.
+   * @returns Hashes.
+   */
+  public static _searchHashInCachedTextMapByValue(
+    searchValue: string,
+  ): string[] {
+    return Array.from(this.cachedTextMap)
+      .filter(([, value]) => value === searchValue)
+      .map(([key]) => key)
+  }
+
+  /**
+   * search key in CachedExcelBinOutput by text hashes
+   * @deprecated This method is deprecated because it is used to pass data to each class.
+   * @param key ExcelBinOutput name.
+   * @param textHashes Text hashes.
+   * @returns Keys.
+   */
+  public static _searchKeyInExcelBinOutputByTextHashes(
+    key: keyof typeof ExcelBinOutputs,
+    textHashes: string[],
+  ): string[] {
+    return Object.entries(Client._getCachedExcelBinOutputByName(key))
+      .filter(([, avatarData]) =>
+        Object.keys(avatarData).some((key) => {
+          if (/TextMapHash/g.exec(key)) {
+            const hash = avatarData[key] as number
+            return textHashes.includes(String(hash))
+          }
+        }),
+      )
+      .map(([key]) => key)
+  }
 }
