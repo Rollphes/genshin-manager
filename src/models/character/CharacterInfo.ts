@@ -1,4 +1,5 @@
 import { Client } from '@/client/Client'
+import { WeaponType } from '@/models/weapon/Weapon'
 import { ElementKeys, ValueOf } from '@/types'
 import { JsonObject } from '@/utils/JsonParser'
 /**
@@ -41,6 +42,19 @@ export class CharacterInfo {
    * Map of skill id and proud id
    */
   public readonly proudMap: Map<number, number> = new Map()
+  /**
+   * Rarity.
+   * aloy is treated as 0 because it is special
+   */
+  public readonly rarity: number
+  /**
+   * Weapon type
+   */
+  public readonly weaponType: WeaponType
+  /**
+   * Body type
+   */
+  public readonly bodyType: BodyType
 
   /**
    * Create a CharacterInfo
@@ -106,6 +120,15 @@ export class CharacterInfo {
       const proudId = skillJson.proudSkillGroupId as number | undefined
       if (proudId) this.proudMap.set(skillId, proudId)
     })
+
+    const qualityMap: { [key in QualityType]: number } = {
+      QUALITY_ORANGE: 5,
+      QUALITY_PURPLE: 4,
+      QUALITY_ORANGE_SP: 0,
+    }
+    this.rarity = qualityMap[avatarJson.quality as QualityType]
+    this.weaponType = avatarJson.weaponType as WeaponType
+    this.bodyType = avatarJson.bodyType as BodyType
   }
 
   /**
@@ -134,3 +157,12 @@ export class CharacterInfo {
     ).map((k) => +k)
   }
 }
+
+type QualityType = 'QUALITY_ORANGE' | 'QUALITY_PURPLE' | 'QUALITY_ORANGE_SP'
+
+export type BodyType =
+  | 'BODY_BOY'
+  | 'BODY_GIRL'
+  | 'BODY_LADY'
+  | 'BODY_LOLI'
+  | 'BODY_MALE'
