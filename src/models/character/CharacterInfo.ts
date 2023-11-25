@@ -126,7 +126,7 @@ export class CharacterInfo {
       QUALITY_PURPLE: 4,
       QUALITY_ORANGE_SP: 0,
     }
-    this.rarity = qualityMap[avatarJson.quality as QualityType]
+    this.rarity = qualityMap[avatarJson.qualityType as QualityType]
     this.weaponType = avatarJson.weaponType as WeaponType
     this.bodyType = avatarJson.bodyType as BodyType
   }
