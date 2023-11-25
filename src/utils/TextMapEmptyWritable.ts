@@ -9,10 +9,10 @@ export class TextMapEmptyWritable extends Writable {
 
   public _write(chunk: Buffer, encoding: BufferEncoding, callback: () => void) {
     const combinedBuffer = Buffer.concat([this.buffer, chunk])
-    const str = combinedBuffer.toString()
-    const lines = str.split('\n')
+    const lineBuffers = this.splitBuffer(combinedBuffer, Buffer.from('\n'))
+    this.buffer = lineBuffers.pop() || Buffer.from('')
 
-    this.buffer = Buffer.from(lines.pop() || '')
+    const lines = lineBuffers.map((buffer) => buffer.toString())
 
     lines.forEach((line) => {
       const matchArray = line.match(/(?<=")([^"\\]|\\.)*?(?=")/g)
@@ -25,5 +25,20 @@ export class TextMapEmptyWritable extends Writable {
     })
 
     callback()
+  }
+
+  private splitBuffer(array: Buffer, separator: Buffer): Buffer[] {
+    const result: Buffer[] = []
+    let start = 0
+    let index: number
+
+    while ((index = array.indexOf(separator, start)) !== -1) {
+      result.push(array.slice(start, index))
+      start = index + separator.length
+    }
+
+    result.push(array.slice(start))
+
+    return result
   }
 }
