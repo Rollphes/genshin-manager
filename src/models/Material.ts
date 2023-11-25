@@ -113,4 +113,17 @@ export class Material {
     )
     return materialDatas.map((data) => data.id as number)
   }
+
+  /**
+   * Get material id by name
+   * @param name Material name
+   * @returns Material id
+   */
+  public static getMaterialIdByName(name: string): number[] {
+    const hashes = Client._searchHashInCachedTextMapByValue(name)
+    return Client._searchKeyInExcelBinOutputByTextHashes(
+      'MaterialExcelConfigData',
+      hashes,
+    ).map((k) => +k)
+  }
 }
