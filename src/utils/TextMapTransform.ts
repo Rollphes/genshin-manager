@@ -25,13 +25,13 @@ export class TextMapTransform extends Transform {
     callback: () => void,
   ) {
     const combinedBuffer = Buffer.concat([this.buffer, chunk])
-    const str = combinedBuffer.toString()
-    const lines = str.split('\n')
-    const isFirstChunk = str.startsWith('{')
+    const lineBuffers = this.splitBuffer(combinedBuffer, Buffer.from('\n'))
+    this.buffer = lineBuffers.pop() || Buffer.from('')
+
+    const lines = lineBuffers.map((buffer) => buffer.toString())
+    const isFirstChunk = lines[0].startsWith('{')
 
     if (isFirstChunk) this.push('{\n')
-
-    this.buffer = Buffer.from(lines.pop() || '')
 
     lines.forEach((line) => {
       const matchArray = line.match(/(?<=")([^"\\]|\\.)*?(?=")/g)
@@ -57,5 +57,20 @@ export class TextMapTransform extends Transform {
       throw new TextMapFormatError(this.language)
 
     callback()
+  }
+
+  private splitBuffer(array: Buffer, separator: Buffer): Buffer[] {
+    const result: Buffer[] = []
+    let start = 0
+    let index: number
+
+    while ((index = array.indexOf(separator, start)) !== -1) {
+      result.push(array.slice(start, index))
+      start = index + separator.length
+    }
+
+    result.push(array.slice(start))
+
+    return result
   }
 }

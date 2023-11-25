@@ -1,6 +1,6 @@
 {
   "name": "genshin-manager",
-  "version": "0.3.3",
+  "version": "0.3.4",
   "homepage": "https://rollphes.github.io/genshin-manager/",
   "bugs": "https://github.com/Rollphes/genshin-manager/issues",
   "main": "dist/index.js",
@@ -65,6 +65,6 @@
     "tsc-alias": "^1.8.8",
     "tsconfig-paths": "^4.2.0",
     "typedoc": "^0.25.3",
-    "typescript": "^5.3.2"
+    "typescript": "^5.2.2"
   }
 }
