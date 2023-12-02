@@ -187,6 +187,7 @@ export class Monster {
     const exceptionIds: { [key in number]: number } = {
       21104: 22110403,
       30604: 23060201,
+      90903: 29090304,
     }
     return Object.keys(exceptionIds).includes(String(describeId))
       ? exceptionIds[+describeId]
