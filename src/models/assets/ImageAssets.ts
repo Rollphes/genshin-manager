@@ -87,17 +87,18 @@ export class ImageAssets {
   /**
    * Create an ImageAssets instance from the image url.
    * @param url image url
+   * @returns ImageAssets instance
    */
-  public static fromUrl(url: string) {
+  public static fromUrl(url: string): ImageAssets {
     const name = path.basename(url, '.png')
     return new ImageAssets(name, url)
   }
 
   /**
    * Classes for handling images
-   * @param option
+   * @param option Client option
    */
-  public static deploy(option: ClientOption) {
+  public static deploy(option: ClientOption): void {
     this.fetchOption = option.fetchOption
     this.imageBaseUrlByRegex = option.imageBaseUrlByRegex
     this.defaultImageBaseUrl = option.defaultImageBaseUrl
@@ -119,7 +120,7 @@ export class ImageAssets {
    * Fetch image buffer
    * @returns image buffer
    */
-  public async fetchBuffer() {
+  public async fetchBuffer(): Promise<Buffer> {
     if (!this.url) throw new ImageNotFoundError(this.name, this.url)
 
     const imageCachePath = path.resolve(
@@ -144,10 +145,10 @@ export class ImageAssets {
 
   /**
    * Fetch image stream
-   * @param highWaterMark
+   * @param highWaterMark highWaterMark
    * @returns image stream
    */
-  public async fetchStream(highWaterMark?: number) {
+  public async fetchStream(highWaterMark?: number): Promise<fs.ReadStream> {
     if (!this.url) throw new ImageNotFoundError(this.name, this.url)
 
     const imageCachePath = path.resolve(

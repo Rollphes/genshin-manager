@@ -32,39 +32,39 @@ const StatusBonusMonsterAtMultiPlay = {
  */
 export class Monster {
   /**
-   * ID of the monster
+   * Monster id
    */
   public readonly id: number
   /**
-   * Level of the monster
+   * Monster level
    */
   public readonly level: number
   /**
-   * Internal name of the monster
+   * Monster Internal name
    */
   public readonly monsterName: string
   /**
-   * Name of the monster
+   * Monster name
    */
   public readonly name: string
   /**
-   * Preview name of the monster
+   * Monster Preview name
    */
   public readonly describeName: string = ''
   /**
-   * Description of the monster
+   * Monster description
    */
   public readonly description: string = ''
   /**
-   * Preview icon of the monster
+   * Monster Preview icon
    */
   public readonly icon: ImageAssets | undefined
   /**
-   * Status of the monster
+   * Monster status
    */
   public readonly status: StatProperty[] = []
   /**
-   * Type of the monster
+   * Monster type
    */
   public readonly codexType: CodexType | undefined
 
@@ -167,38 +167,6 @@ export class Monster {
   }
 
   /**
-   * Get monster's stat value by stat type
-   * @param monsterGrowJson monsterExcelConfigData.propGrowCurves
-   * @param propGrowCurve
-   * @param initValue Initial value
-   * @param playerCount Number of players
-   * @returns Stat value
-   */
-  private getStatValueByJson(
-    propGrowCurve: JsonObject | undefined,
-    initValue: number = 0,
-    playerCount: number = 1,
-  ) {
-    if (!propGrowCurve) return initValue
-    const bonusValue =
-      propGrowCurve.type === undefined
-        ? 1.0
-        : StatusBonusMonsterAtMultiPlay[
-            propGrowCurve.type as keyof typeof StatusBonusMonsterAtMultiPlay
-          ][playerCount - 1]
-    if (
-      propGrowCurve.growCurve === undefined ||
-      propGrowCurve.growCurve === 'GROW_CURVE_DEFENDING' //Skip GROW_CURVE_DEFENDING as it does not exist in the 4.0 data
-    )
-      return initValue * bonusValue
-    const curveValue = Client._getJsonFromCachedExcelBinOutput(
-      'MonsterCurveExcelConfigData',
-      propGrowCurve.growCurve as string,
-    )[this.level] as number
-    return initValue * curveValue * bonusValue
-  }
-
-  /**
    * Get all monster ids
    * @returns All monster ids
    */
@@ -223,5 +191,36 @@ export class Monster {
     return Object.keys(exceptionIds).includes(String(describeId))
       ? exceptionIds[+describeId]
       : Number(`2${convertId}01`)
+  }
+
+  /**
+   * Get monster's stat value by stat type
+   * @param propGrowCurve monsterExcelConfigData.propGrowCurves
+   * @param initValue Initial value
+   * @param playerCount Number of players
+   * @returns Stat value
+   */
+  private getStatValueByJson(
+    propGrowCurve: JsonObject | undefined,
+    initValue: number = 0,
+    playerCount: number = 1,
+  ): number {
+    if (!propGrowCurve) return initValue
+    const bonusValue =
+      propGrowCurve.type === undefined
+        ? 1.0
+        : StatusBonusMonsterAtMultiPlay[
+            propGrowCurve.type as keyof typeof StatusBonusMonsterAtMultiPlay
+          ][playerCount - 1]
+    if (
+      propGrowCurve.growCurve === undefined ||
+      propGrowCurve.growCurve === 'GROW_CURVE_DEFENDING' //Skip GROW_CURVE_DEFENDING as it does not exist in the 4.0 data
+    )
+      return initValue * bonusValue
+    const curveValue = Client._getJsonFromCachedExcelBinOutput(
+      'MonsterCurveExcelConfigData',
+      propGrowCurve.growCurve as string,
+    )[this.level] as number
+    return initValue * curveValue * bonusValue
   }
 }

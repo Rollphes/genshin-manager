@@ -9,27 +9,27 @@ import { JsonObject } from '@/utils/JsonParser'
  */
 export class TowerSchedule {
   /**
-   * ID of the Spiral Abyss
+   * Schedule id
    */
   public readonly id: number
   /**
-   * Open date of the Spiral Abyss
+   * Open date
    */
   public readonly openDate: Date
   /**
-   * Close date of the Spiral Abyss
+   * Close date
    */
   public readonly closeDate: Date
   /**
-   * Description of the Spiral Abyss
+   * Description
    */
   public readonly description: string
   /**
-   * Icon of the Spiral Abyss
+   * Blessing of the Abyssal Moon icon
    */
   public readonly icon: ImageAssets
   /**
-   * Floors of the Spiral Abyss
+   * Floors
    */
   public readonly floors: TowerFloor[]
   /**

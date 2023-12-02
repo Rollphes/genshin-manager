@@ -9,7 +9,7 @@ interface CharacterVoice {
 
 //TODO: If genshin does a major update, I'll update here.
 /**
- *
+ * Association type.
  */
 export type AssocType =
   | 'ASSOC_TYPE_FATUI'

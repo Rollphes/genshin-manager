@@ -167,11 +167,25 @@ export class Artifact {
   }
 
   /**
-   * Get sub stat properties from appendPropIdList.
-   * @param appendPropIdList
-   * @returns
+   * Get all artifact ids
+   * @returns All artifact ids
    */
-  private getSubStatProperties(appendPropIdList: number[]) {
+  public static getAllArtifactIds(): number[] {
+    const artifactDatas = Object.values(
+      Client._getCachedExcelBinOutputByName('ReliquaryExcelConfigData'),
+    )
+    const filteredArtifactDatas = artifactDatas.filter(
+      (data) => data.setId !== 15000, // 15000 is dummy artifact
+    )
+    return filteredArtifactDatas.map((data) => data.id as number)
+  }
+
+  /**
+   * Get sub stat properties from appendPropIdList.
+   * @param appendPropIdList Artifact sub stat id list
+   * @returns Sub stat properties
+   */
+  private getSubStatProperties(appendPropIdList: number[]): StatProperty[] {
     const result: Partial<{ [key in FightPropType]: number }> = {}
     appendPropIdList.forEach((propId) => {
       const artifactAffixJson = Client._getJsonFromCachedExcelBinOutput(
@@ -191,22 +205,10 @@ export class Artifact {
       )
     })
   }
-  /**
-   * Get all artifact ids
-   * @returns All artifact ids
-   */
-  public static getAllArtifactIds(): number[] {
-    const artifactDatas = Object.values(
-      Client._getCachedExcelBinOutputByName('ReliquaryExcelConfigData'),
-    )
-    const filteredArtifactDatas = artifactDatas.filter(
-      (data) => data.setId != 15000, // 15000 is dummy artifact
-    )
-    return filteredArtifactDatas.map((data) => data.id as number)
-  }
 }
+
 /**
- *
+ * Artifact type
  */
 export type ArtifactType =
   | 'EQUIP_BRACER'

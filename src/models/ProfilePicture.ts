@@ -99,12 +99,14 @@ export class ProfilePicture {
    * @param infoId Costume id or Character id or Material id
    * @returns Profile picture id
    */
-  public static findProfilePictureIdByInfoId(infoId: number) {
+  public static findProfilePictureIdByInfoId(
+    infoId: number,
+  ): number | undefined {
     const profilePictureDatas = Object.values(
       Client._getCachedExcelBinOutputByName('ProfilePictureExcelConfigData'),
     )
     const profilePictureData = profilePictureDatas.find(
-      (data) => data.infoId == infoId,
+      (data) => data.infoId === infoId,
     )
     if (!profilePictureData) return
     return profilePictureData.id as number

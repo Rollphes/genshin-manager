@@ -5,11 +5,11 @@ import { ValueOf } from '@/types'
  */
 export class StatProperty {
   /**
-   * Type of the stat.
+   * Stat type.
    */
   public readonly type: FightPropType
   /**
-   * Name of the stat.
+   * Stat name.
    */
   public readonly name: string
   /**
@@ -17,7 +17,7 @@ export class StatProperty {
    */
   public readonly isPercent: boolean
   /**
-   * Value of the stat.
+   * Stat value.
    */
   public readonly value: number
 
@@ -54,7 +54,7 @@ export class StatProperty {
 
   /**
    * IEEE 754 rounding method
-   * @param v
+   * @param v Value
    * @returns Rounded value
    */
   private cleanUp(v: number): number {
@@ -96,14 +96,10 @@ const percentFightPropType: FightPropType[] = [
   'FIGHT_PROP_SHIELD_COST_MINUS_RATIO',
 ]
 
-export /**
-eeeeeee *
-eeeeeee
-eeeeeee
-eeeeeee
-eeeeeee
-eeeeeee */
-const FightProps = {
+/**
+ * FightProp Map
+ */
+export const FightProps = {
   // 0: 'FIGHT_PROP_NONE',
   1: 'FIGHT_PROP_BASE_HP',
   2: 'FIGHT_PROP_HP',
@@ -223,7 +219,8 @@ const FightProps = {
   // 3043: 'FIGHT_PROP_ELEM_REACT_OVERGROW_ELECTRIC_CRITICAL',
   // 3044: 'FIGHT_PROP_ELEM_REACT_OVERGROW_ELECTRIC_CRITICAL_HURT',
 } as const
+
 /**
- *
+ * FightPropType
  */
 export type FightPropType = ValueOf<typeof FightProps>

@@ -5,7 +5,7 @@ import { calculatePromoteLevel } from '@/utils/calculatePromoteLevel'
 import { JsonObject } from '@/utils/JsonParser'
 
 /**
- *
+ * Class of character's status.
  */
 export class CharacterStatus {
   /**
@@ -39,17 +39,11 @@ export class CharacterStatus {
     this.id = characterId
     this.level = level
     this.isAscended = isAscended
-    /**
-     *
-     */
     const avatarJson = Client._getJsonFromCachedExcelBinOutput(
       'AvatarExcelConfigData',
       this.id,
     )
 
-    /**
-     *
-     */
     const avatarPromotesJson = Client._getJsonFromCachedExcelBinOutput(
       'AvatarPromoteExcelConfigData',
       avatarJson.avatarPromoteId as number,
@@ -60,14 +54,8 @@ export class CharacterStatus {
       this.isAscended,
     )
 
-    /**
-     *
-     */
     const ascension = new CharacterAscension(this.id, this.promoteLevel)
 
-    /**
-     *
-     */
     const propGrowCurves = avatarJson.propGrowCurves as JsonObject[]
 
     this.status = this.calculateStatus(avatarJson, propGrowCurves, ascension)
@@ -78,9 +66,6 @@ export class CharacterStatus {
     propGrowCurves: JsonObject[],
     ascension: CharacterAscension,
   ): StatProperty[] {
-    /**
-     *
-     */
     const initValueObj: Partial<{ [key in FightPropType]: number }> = {
       FIGHT_PROP_BASE_HP: avatarJson.hpBase as number,
       FIGHT_PROP_BASE_ATTACK: avatarJson.attackBase as number,
@@ -89,17 +74,9 @@ export class CharacterStatus {
       FIGHT_PROP_CRITICAL_HURT: avatarJson.criticalHurt as number,
     }
 
-    /**
-     *
-     */
     const status = Object.entries(initValueObj).map(([key, value]) => {
-      /**
-       *
-       */
       const statProperty = new StatProperty(key as FightPropType, value)
-      /**
-       *
-       */
+
       const propGrowCurve = propGrowCurves.find(
         (propGrowCurve) => propGrowCurve.type === statProperty.type,
       )
@@ -140,7 +117,7 @@ export class CharacterStatus {
   /**
    * Get stat value by json
    * @param propGrowCurve Json object
-   * @param initValue
+   * @param initValue Initial value
    * @param addValue Add value
    * @returns Stat value
    */
@@ -148,17 +125,12 @@ export class CharacterStatus {
     propGrowCurve: JsonObject,
     initValue: number,
     addValue: number = 0,
-  ) {
-    /**
-     *
-     */
+  ): StatProperty {
     const curveValue = Client._getJsonFromCachedExcelBinOutput(
       'AvatarCurveExcelConfigData',
       propGrowCurve.growCurve as string,
     )[this.level] as number
-    /**
-     *
-     */
+
     const statValue = initValue * curveValue + addValue
     return new StatProperty(propGrowCurve.type as FightPropType, statValue)
   }

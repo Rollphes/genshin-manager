@@ -1,5 +1,5 @@
 /**
- * Json value
+ * Type of Json value
  */
 export type JsonValue =
   | string
@@ -10,12 +10,12 @@ export type JsonValue =
   | JsonArray
 
 /**
- * Json object
+ * Type of Json object
  */
 export type JsonObject = { [key: string]: JsonValue }
 
 /**
- * Json array
+ * Type of Json array
  */
 export type JsonArray = JsonValue[]
 

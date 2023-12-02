@@ -74,7 +74,7 @@ export class TowerLevel {
    * Get all tower level ids
    * @returns All tower level ids
    */
-  public static getAllTowerLevelIds() {
+  public static getAllTowerLevelIds(): number[] {
     const towerLevelDatas = Object.values(
       Client._getCachedExcelBinOutputByName('TowerLevelExcelConfigData'),
     )
@@ -90,7 +90,7 @@ export class TowerLevel {
   public static findTowerLevelIdByGroupIdAndIndex(
     groupId: number,
     index: number,
-  ) {
+  ): number | undefined {
     const towerLevelDatas = Object.values(
       Client._getCachedExcelBinOutputByName('TowerLevelExcelConfigData'),
     )

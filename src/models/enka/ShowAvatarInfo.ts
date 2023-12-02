@@ -9,7 +9,7 @@ export class ShowAvatarInfo extends Costume {
   /**
    * Level of the character.
    */
-  readonly level: number
+  public readonly level: number
 
   /**
    * Create a ShowAvatarInfo

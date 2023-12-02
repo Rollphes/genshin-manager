@@ -87,24 +87,6 @@ export class Client extends AssetCacheManager {
   }
 
   /**
-   * Deploy assets to cache & Update assets
-   * @example
-   * ```ts
-   * const client = new Client()
-   * await client.deploy()
-   * ```
-   */
-  public async deploy() {
-    await Client.updateCache()
-    if (this.option.autoFetchLatestAssetsByCron) {
-      cron.schedule(this.option.autoFetchLatestAssetsByCron, () => {
-        void Client.updateCache()
-      })
-    }
-    ImageAssets.deploy(this.option)
-  }
-
-  /**
    * Change cached languages.
    * @param language Country code
    * @example
@@ -114,7 +96,27 @@ export class Client extends AssetCacheManager {
    * await Client.changeLanguage('JP')
    * ```
    */
-  public static async changeLanguage(language: keyof typeof TextMapLanguage) {
+  public static async changeLanguage(
+    language: keyof typeof TextMapLanguage,
+  ): Promise<void> {
     await Client.setTextMapToCache(language)
+  }
+
+  /**
+   * Deploy assets to cache & Update assets
+   * @example
+   * ```ts
+   * const client = new Client()
+   * await client.deploy()
+   * ```
+   */
+  public async deploy(): Promise<void> {
+    await Client.updateCache()
+    if (this.option.autoFetchLatestAssetsByCron) {
+      cron.schedule(this.option.autoFetchLatestAssetsByCron, () => {
+        void Client.updateCache()
+      })
+    }
+    ImageAssets.deploy(this.option)
   }
 }

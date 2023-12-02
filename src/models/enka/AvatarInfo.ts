@@ -88,7 +88,7 @@ export class AvatarInfo extends CharacterInfo {
 
     this.fightProp = new FightProp(data.fightPropMap)
     const weaponData = data.equipList.find(
-      (equip): equip is APIWeaponEquip => equip.flat.itemType == 'ITEM_WEAPON',
+      (equip): equip is APIWeaponEquip => equip.flat.itemType === 'ITEM_WEAPON',
     )
     if (!weaponData) throw new EnkaManagerError('Weapon not found.')
     const affixMap = weaponData.weapon.affixMap
@@ -101,7 +101,7 @@ export class AvatarInfo extends CharacterInfo {
     )
     const artifactDatas = data.equipList.filter(
       (equip): equip is APIReliquaryEquip =>
-        equip.flat.itemType == 'ITEM_RELIQUARY',
+        equip.flat.itemType === 'ITEM_RELIQUARY',
     )
     this.artifacts = artifactDatas.map(
       (data) =>

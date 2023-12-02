@@ -134,25 +134,6 @@ export class Weapon {
   }
 
   /**
-   * Get stat value by json
-   * @param weaponPropJson Weapon property json
-   * @param addValue Add value
-   * @returns Stat value
-   */
-  private getStatPropertyByJson(
-    weaponPropJson: JsonObject,
-    addValue: number = 0,
-  ) {
-    const curveValue = Client._getJsonFromCachedExcelBinOutput(
-      'WeaponCurveExcelConfigData',
-      weaponPropJson.type as string,
-    )[this.level] as number
-    const statValue =
-      (weaponPropJson.initValue as number) * curveValue + addValue
-    return new StatProperty(weaponPropJson.propType as FightPropType, statValue)
-  }
-
-  /**
    * Get all weapon ids
    * @returns All weapon ids
    */
@@ -175,10 +156,29 @@ export class Weapon {
       hashes,
     ).map((k) => +k)
   }
+
+  /**
+   * Get stat value by json
+   * @param weaponPropJson Weapon property json
+   * @param addValue Add value
+   * @returns Stat value
+   */
+  private getStatPropertyByJson(
+    weaponPropJson: JsonObject,
+    addValue: number = 0,
+  ): StatProperty {
+    const curveValue = Client._getJsonFromCachedExcelBinOutput(
+      'WeaponCurveExcelConfigData',
+      weaponPropJson.type as string,
+    )[this.level] as number
+    const statValue =
+      (weaponPropJson.initValue as number) * curveValue + addValue
+    return new StatProperty(weaponPropJson.propType as FightPropType, statValue)
+  }
 }
 
 /**
- *
+ * Weapon type
  */
 export type WeaponType =
   | 'WEAPON_BOW'

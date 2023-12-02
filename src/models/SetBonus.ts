@@ -6,12 +6,6 @@ import { Artifact } from '@/models/Artifact'
  */
 export class SetBonus {
   /**
-   * IDs of set bonuses that can be activated with one artifact.
-   */
-  private readonly oneSetBonusIds: number[] = [
-    15009, 15010, 15011, 15012, 15013,
-  ]
-  /**
    * Set bonus that can be triggered by a single artifact
    */
   public readonly oneSetBonus: Artifact[]
@@ -23,6 +17,12 @@ export class SetBonus {
    * Set bonus that can be triggered by four artifacts
    */
   public readonly fourSetBonus: Artifact[]
+  /**
+   * IDs of set bonuses that can be activated with one artifact.
+   */
+  private readonly oneSetBonusIds: number[] = [
+    15009, 15010, 15011, 15012, 15013,
+  ]
 
   /**
    * Create a SetBonus

@@ -1,7 +1,7 @@
 import { Region, ValueOf } from '@/types'
 
 /**
- *
+ * URL params for getAnn
  */
 export interface UrlParams {
   /**
@@ -67,19 +67,19 @@ export interface UrlParams {
 }
 
 /**
- *
+ * GetAnnContent response
  */
 export interface APIGetAnnContent {
   /**
-   *
+   * return code
    */
   retcode: number
   /**
-   *
+   * message
    */
   message: string
   /**
-   *
+   * content data
    */
   data: ContentData
 }
@@ -92,49 +92,49 @@ interface ContentData {
 }
 
 /**
- *
+ * Data of ContentData
  */
 export interface ContentList {
   /**
-   *
+   * Ann ID
    */
   ann_id: number
   /**
-   *
+   * Ann title
    */
   title: string
   /**
-   *
+   * Ann subtitle
    */
   subtitle: string
   /**
-   *
+   * Ann banner URL
    */
   banner: string
   /**
-   *
+   * Ann content
    */
   content: string
   /**
-   *
+   * Ann language
    */
   lang: ValueOf<typeof NoticeLanguage>
 }
 
 /**
- *
+ * GetAnnList response
  */
 export interface APIGetAnnList {
   /**
-   *
+   * return code
    */
   retcode: number
   /**
-   *
+   * message
    */
   message: string
   /**
-   *
+   * list data
    */
   data: ListData
 }
@@ -162,99 +162,102 @@ interface TabList {
 }
 
 /**
- *
+ * Data of TabList
  */
 export interface DataList {
   /**
-   *
+   * Ann ID
    */
   ann_id: number
   /**
-   *
+   * Ann title
    */
   title: string
   /**
-   *
+   * Ann subtitle
    */
   subtitle: string
   /**
-   *
+   * Ann banner URL
    */
-  banner: string //Image URL
+  banner: string
   /**
-   *
+   * Ann content
+   * @remark none
    */
-  content: string //none
+  content: string
   /**
-   *
+   * Ann type label (type_list.mi18n_name)
    */
-  type_label: string //from type_list.mi18n_name
+  type_label: string
   /**
-   *
+   * Ann Tab label (1:! 2:flag 3:star)
    */
-  tag_label: string // 1:! 2:flag 3:star
+  tag_label: string
   /**
-   *
+   * Ann Tab icon URL
    */
-  tag_icon: string //Image URL
+  tag_icon: string
   /**
-   *
+   * Ann login alert (1:yes 0:no)
+   * @remark unknown. 1 only?
    */
-  login_alert: number //unknown 1 only?
+  login_alert: number
   /**
-   *
+   * Ann language
    */
-  lang: ValueOf<typeof NoticeLanguage> //language
+  lang: ValueOf<typeof NoticeLanguage>
   /**
-   *
+   * Ann start time (Always fluctuating)
    */
-  start_time: string // banner start time(Always fluctuating)
+  start_time: string
   /**
-   *
+   * Ann end time (Always fluctuating)
    */
-  end_time: string // banner end time(Always fluctuating)
+  end_time: string
   /**
-   *
+   * Ann type (type_list.id)
    */
-  type: number //from type_list.id
+  type: number
   /**
-   *
+   * Ann remind (1:yes 0:no)
+   * @remark unknown. 0 only?
    */
-  remind: number //unknown. 0 only?
+  remind: number
   /**
-   *
+   * Ann alert (1:yes 0:no)
+   * @remark unknown. 0 only?
    */
-  alert: number //unknown. 0 only?
+  alert: number
   /**
-   *
+   * Ann Tab start time(unknown)
    */
-  tag_start_time: string //unknown.
+  tag_start_time: string
   /**
-   *
+   * Ann Tab end time(unknown)
    */
-  tag_end_time: string //unknown.
+  tag_end_time: string
   /**
-   *
+   * Ann remind version
+   * @remark fix version?
    */
-  remind_ver: number //fix version?
+  remind_ver: number
   /**
-   *
+   * Ann has content
+   * @remark unknown. true only?
    */
-  has_content: boolean //unknown. true only?
+  has_content: boolean
   /**
-   *
+   * Ann extra remind
+   * @remark unknown.
    */
-  extra_remind: number //unknown.
+  extra_remind: number
 }
 
-export /**
-eeeeeee *
-eeeeeee
-eeeeeee
-eeeeeee
-eeeeeee
-eeeeeee */
-const NoticeLanguage = {
+/**
+ * language code map for getAnn
+ */
+export const NoticeLanguage = {
   en: 'en-us',
   ru: 'ru-ru',
   vi: 'vi-vn',

@@ -7,6 +7,9 @@ import {
   JsonValue,
 } from '@/utils/JsonParser'
 
+/**
+ * Class of replace data.
+ */
 class ReplaceData {
   constructor(
     public oldKey: string,
@@ -69,10 +72,10 @@ export class ObjectKeyDecoder {
   }
 
   /**
-   * Execute object key decoder.
+   * Execute JsonParser key decoder.
    * @param jsonData JsonParser
-   * @param filename Filename
-   * @returns Decoded object
+   * @param filename ExcelBinOutput Filename
+   * @returns Objects to cache
    */
   public execute(
     jsonData: JsonParser,
@@ -83,10 +86,11 @@ export class ObjectKeyDecoder {
   }
 
   /**
-   * Decode object key.
+   * Decode JsonParser key.
    * @param jsonData JsonParser
+   * @returns Decoded JsonParser
    */
-  private decode(jsonData: JsonParser): void {
+  private decode(jsonData: JsonParser): JsonParser {
     const jsonArray = jsonData.get() as JsonArray
     jsonArray.forEach((v) => {
       const obj = v as JsonObject
@@ -95,13 +99,14 @@ export class ObjectKeyDecoder {
           obj[replaceData.newKey] = obj[replaceData.oldKey]
       })
     })
+    return jsonData
   }
 
   /**
-   * Set object key.
+   * Set key to store in cache
    * @param jsonData JsonParser
-   * @param filename Filename
-   * @returns Object
+   * @param filename ExcelBinOutput Filename
+   * @returns Objects to cache
    */
   private setKey(
     jsonData: JsonParser,

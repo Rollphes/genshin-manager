@@ -9,47 +9,47 @@ export class PlayerInfo {
   /**
    * Nickname of the player.
    */
-  readonly nickname: string
+  public readonly nickname: string
   /**
    * Adventure Rank of the player.
    */
-  readonly level: number
+  public readonly level: number
   /**
    * Signature of the player.
    */
-  readonly signature: string
+  public readonly signature: string
   /**
    * World Level of the player.
    */
-  readonly worldLevel: number
+  public readonly worldLevel: number
   /**
    * Name card of the player.
    */
-  readonly nameCard: Material
+  public readonly nameCard: Material
   /**
    * Number of achievements that the player has finished.
    */
-  readonly finishAchievementNum: number
+  public readonly finishAchievementNum: number
   /**
    * Floor index of the Spiral Abyss.
    */
-  readonly towerFloorIndex: number
+  public readonly towerFloorIndex: number
   /**
    * Level index of the Spiral Abyss.
    */
-  readonly towerLevelIndex: number
+  public readonly towerLevelIndex: number
   /**
    * List of avatars that the player has.
    */
-  readonly showAvatarInfoList: ShowAvatarInfo[]
+  public readonly showAvatarInfoList: ShowAvatarInfo[]
   /**
    * List of name cards that the player has.
    */
-  readonly showNameCardList: Material[]
+  public readonly showNameCardList: Material[]
   /**
    * Profile picture of the player.
    */
-  readonly profilePicture: ProfilePicture
+  public readonly profilePicture: ProfilePicture
 
   /**
    * Create a PlayerInfo

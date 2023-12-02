@@ -141,7 +141,7 @@ export class Notice {
    * @warning This method does not exclude table tags.
    * @returns Notice all text
    */
-  public getText() {
+  public getText(): string {
     return this.convertLocalDate(
       this.$('p')
         .map((i, el) => this.$(el).text())
@@ -151,30 +151,11 @@ export class Notice {
   }
 
   /**
-   * Convert t tag to region time.
-   * @param text text
-   * @returns Converted text
-   */
-  private convertLocalDate(text: string) {
-    return text
-      .replace(/(?<=<t class="(t_lc|t_gl)">)(.*?)(?=<\/t>)/g, ($1) =>
-        convertToUTC($1, this.region).toLocaleString('ja-JP', {
-          year: 'numeric',
-          month: '2-digit',
-          day: '2-digit',
-          hour: '2-digit',
-          minute: '2-digit',
-        }),
-      )
-      .replace(/<t class="(t_lc|t_gl)">|<\/t>/g, '')
-  }
-
-  /**
    * Get the duration of the event.
    * However, this method should only be used when `eventStart` or `eventEnd` cannot be obtained.
-   * @returns
+   * @returns Event duration
    */
-  public getEventDuration() {
+  public getEventDuration(): string | undefined {
     if (this.tag === 2) {
       return this.convertLocalDate(
         this.$('td')
@@ -201,5 +182,24 @@ export class Notice {
     )
     if (index === -1) return
     return this.convertLocalDate(textBlocks[index].replace(/〓.*?〓\s*\n/g, ''))
+  }
+
+  /**
+   * Convert t tag to region time.
+   * @param text text
+   * @returns Converted text
+   */
+  private convertLocalDate(text: string): string {
+    return text
+      .replace(/(?<=<t class="(t_lc|t_gl)">)(.*?)(?=<\/t>)/g, ($1) =>
+        convertToUTC($1, this.region).toLocaleString('ja-JP', {
+          year: 'numeric',
+          month: '2-digit',
+          day: '2-digit',
+          hour: '2-digit',
+          minute: '2-digit',
+        }),
+      )
+      .replace(/<t class="(t_lc|t_gl)">|<\/t>/g, '')
   }
 }

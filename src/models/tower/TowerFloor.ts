@@ -72,7 +72,7 @@ export class TowerFloor {
    * Get all tower floor ids
    * @returns All tower floor ids
    */
-  public static getAllTowerFloorIds() {
+  public static getAllTowerFloorIds(): number[] {
     const towerFloorDatas = Object.values(
       Client._getCachedExcelBinOutputByName('TowerFloorExcelConfigData'),
     )

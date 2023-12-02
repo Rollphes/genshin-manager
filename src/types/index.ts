@@ -1,52 +1,10 @@
 /**
- *
+ * Type of value of object
  */
 export type ValueOf<T> = T[keyof T]
 
 /**
- *
- */
-export interface GitLabAPIResponse {
-  /**
-   *
-   */
-  id: string
-  /**
-   *
-   */
-  short_id: string
-  /**
-   *
-   */
-  created_at: string
-  /**
-   *
-   */
-  parent_ids: string[]
-  /**
-   *
-   */
-  title: string
-  /**
-   *
-   */
-  message: string
-  /**
-   *
-   */
-  authored_date: string
-  /**
-   *
-   */
-  committed_date: string
-  /**
-   *
-   */
-  web_url: string
-}
-
-/**
- *
+ * Client option
  */
 export interface ClientOption {
   /**
@@ -130,14 +88,10 @@ export interface ClientOption {
   assetCacheFolderPath: string
 }
 
-export /**
-eeeeeee *
-eeeeeee
-eeeeeee
-eeeeeee
-eeeeeee
-eeeeeee */
-const ElementKeys = {
+/**
+ * Element Map for ExcelBinOut to Element
+ */
+export const ElementKeys = {
   Physical: 'Phys',
   Fire: 'Pyro',
   Electric: 'Electro',
@@ -147,19 +101,16 @@ const ElementKeys = {
   Rock: 'Geo',
   Grass: 'Dendro',
 } as const
+
 /**
  * Element type
  */
 export type Element = ValueOf<typeof ElementKeys>
 
-export /**
-eeeeeee *
-eeeeeee
-eeeeeee
-eeeeeee
-eeeeeee
-eeeeeee */
-const TimeZonesPerRegion = {
+/**
+ * Time difference per region (hour)
+ */
+export const TimeZonesPerRegion = {
   cn_gf01: +8,
   cn_qd01: +8,
   os_usa: -5,
@@ -167,6 +118,7 @@ const TimeZonesPerRegion = {
   os_asia: +8,
   os_cht: +8,
 } as const
+
 /**
  * Region type
  */

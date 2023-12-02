@@ -67,7 +67,7 @@ export class CharacterInfo {
       Client._getCachedExcelBinOutputByName('AvatarCostumeExcelConfigData'),
     )
     const defaultCostumeData = costumeDatas.find(
-      (k) => k.characterId == this.id && !('quality' in k),
+      (k) => k.characterId === this.id && !('quality' in k),
     ) as JsonObject
     this.defaultCostumeId = defaultCostumeData.skinId as number
 
@@ -161,7 +161,7 @@ export class CharacterInfo {
 type QualityType = 'QUALITY_ORANGE' | 'QUALITY_PURPLE' | 'QUALITY_ORANGE_SP'
 
 /**
- *
+ * Body type
  */
 export type BodyType =
   | 'BODY_BOY'
