@@ -18,7 +18,7 @@ export class SetBonus {
    */
   public readonly fourSetBonus: Artifact[]
   /**
-   * IDs of set bonuses that can be activated with one artifact.
+   * IDs of set bonuses that can be activated with one artifact
    */
   private readonly oneSetBonusIds: number[] = [
     15009, 15010, 15011, 15012, 15013,
@@ -26,7 +26,7 @@ export class SetBonus {
 
   /**
    * Create a SetBonus
-   * @param artifacts Artifacts equipped by the character.
+   * @param artifacts Artifacts equipped by the character
    */
   constructor(artifacts: Artifact[]) {
     const countIds: { [setId: string]: number } = {}

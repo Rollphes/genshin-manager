@@ -4,7 +4,7 @@ import { CharacterInfo } from '@/models/character/CharacterInfo'
 import { Costume } from '@/models/character/Costume'
 
 /**
- * Type of character's profile picture.
+ * Type of character's profile picture
  */
 export type ProfilePictureType =
   | 'PROFILE_PICTURE_UNLOCK_BY_AVATAR'
@@ -12,11 +12,11 @@ export type ProfilePictureType =
   | 'PROFILE_PICTURE_UNLOCK_BY_ITEM'
 
 /**
- * Class of character's profile picture.
+ * Class of character's profile picture
  */
 export class ProfilePicture {
   /**
-   * Profile picture id.
+   * Profile picture ID
    */
   public readonly id: number
   /**
@@ -24,28 +24,28 @@ export class ProfilePicture {
    */
   public readonly type: ProfilePictureType
   /**
-   * Avatar id.
+   * Avatar ID
    * Exists only if type is `PROFILE_PICTURE_UNLOCK_BY_AVATAR`
    */
   public readonly characterId?: number
   /**
-   * Costume id.
+   * Costume ID
    * Exists only if type is `PROFILE_PICTURE_UNLOCK_BY_COSTUME`
    */
   public readonly costumeId?: number
   /**
-   * Material id.
+   * Material ID
    * Exists only if type is `PROFILE_PICTURE_UNLOCK_BY_ITEM`
    */
   public readonly materialId?: number
   /**
-   * Profile picture icon.
+   * Profile picture icon
    */
   public readonly icon: ImageAssets
 
   /**
-   * Create a ProfilePicture.
-   * @param profilePictureId Profile picture id
+   * Create a ProfilePicture
+   * @param profilePictureId Profile picture ID
    */
   constructor(profilePictureId: number) {
     this.id = profilePictureId
@@ -85,8 +85,8 @@ export class ProfilePicture {
   }
 
   /**
-   * Get all profile picture ids.
-   * @returns Profile picture ids
+   * Get all profile picture IDs
+   * @returns Profile picture IDs
    */
   public static getAllProfilePictureIds(): number[] {
     return Object.keys(
@@ -95,9 +95,9 @@ export class ProfilePicture {
   }
 
   /**
-   * Find profile picture id by info id.
-   * @param infoId Costume id or Character id or Material id
-   * @returns Profile picture id
+   * Find profile picture ID by info ID
+   * @param infoId Costume ID or Character ID or Material ID
+   * @returns Profile picture ID
    */
   public static findProfilePictureIdByInfoId(
     infoId: number,

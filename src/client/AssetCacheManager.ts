@@ -29,12 +29,14 @@ interface GitLabAPIResponse {
 }
 
 /**
- * Class for managing cached assets.
+ * Class for managing cached assets
  * @abstract
  */
 export abstract class AssetCacheManager {
   /**
-   * Cached text map.
+   * Cached text map
+   * @key Text hash
+   * @value Text
    */
   public static cachedTextMap: Map<string, string> = new Map()
 
@@ -118,7 +120,7 @@ export abstract class AssetCacheManager {
     new Set()
 
   /**
-   * Cached text map.
+   * Cached text map
    */
   private static cachedExcelBinOutput: Map<
     keyof typeof ExcelBinOutputs,
@@ -126,9 +128,9 @@ export abstract class AssetCacheManager {
   > = new Map()
 
   /**
-   * Create a AssetCacheManager.
-   * @param option Client option.
-   * @param children import modules.
+   * Create a AssetCacheManager
+   * @param option Client option
+   * @param children import modules
    */
   constructor(option: ClientOption, children: Module[]) {
     AssetCacheManager.option = option
@@ -154,11 +156,11 @@ export abstract class AssetCacheManager {
   }
 
   /**
-   * Get Json from cached excel bin output.
-   * @deprecated This method is deprecated because it is used to pass data to each class.
-   * @param key ExcelBinOutput name.
-   * @param id ID of character, etc.
-   * @returns Json.
+   * Get Json from cached excel bin output
+   * @deprecated This method is deprecated because it is used to pass data to each class
+   * @param key ExcelBinOutput name
+   * @param id ID of character, etc
+   * @returns Json
    */
   public static _getJsonFromCachedExcelBinOutput(
     key: keyof typeof ExcelBinOutputs,
@@ -174,10 +176,10 @@ export abstract class AssetCacheManager {
   }
 
   /**
-   * Get cached excel bin output by name.
-   * @deprecated This method is deprecated because it is used to pass data to each class.
-   * @param key ExcelBinOutput name.
-   * @returns Cached excel bin output.
+   * Get cached excel bin output by name
+   * @deprecated This method is deprecated because it is used to pass data to each class
+   * @param key ExcelBinOutput name
+   * @returns Cached excel bin output
    */
   public static _getCachedExcelBinOutputByName(
     key: keyof typeof ExcelBinOutputs,
@@ -189,10 +191,10 @@ export abstract class AssetCacheManager {
   }
 
   /**
-   * Check if cached excel bin output exists.
-   * @deprecated This method is deprecated because it is used to pass data to each class.
-   * @param key ExcelBinOutput name.
-   * @returns Cached excel bin output exists.
+   * Check if cached excel bin output exists
+   * @deprecated This method is deprecated because it is used to pass data to each class
+   * @param key ExcelBinOutput name
+   * @returns Cached excel bin output exists
    */
   public static _hasCachedExcelBinOutputByName(
     key: keyof typeof ExcelBinOutputs,
@@ -202,9 +204,9 @@ export abstract class AssetCacheManager {
 
   /**
    * search hashes in CachedTextMap by value
-   * @deprecated This method is deprecated because it is used to pass data to each class.
-   * @param searchValue Search value.
-   * @returns Hashes.
+   * @deprecated This method is deprecated because it is used to pass data to each class
+   * @param searchValue Search value
+   * @returns Hashes
    */
   public static _searchHashInCachedTextMapByValue(
     searchValue: string,
@@ -216,10 +218,10 @@ export abstract class AssetCacheManager {
 
   /**
    * search key in CachedExcelBinOutput by text hashes
-   * @deprecated This method is deprecated because it is used to pass data to each class.
-   * @param key ExcelBinOutput name.
-   * @param textHashes Text hashes.
-   * @returns Keys.
+   * @deprecated This method is deprecated because it is used to pass data to each class
+   * @param key ExcelBinOutput name
+   * @param textHashes Text hashes
+   * @returns Keys
    */
   public static _searchKeyInExcelBinOutputByTextHashes(
     key: keyof typeof ExcelBinOutputs,
@@ -238,7 +240,7 @@ export abstract class AssetCacheManager {
   }
 
   /**
-   * Update cache.
+   * Update cache
    * @example
    * ```ts
    * await Client.updateCache()
@@ -278,7 +280,7 @@ export abstract class AssetCacheManager {
   }
 
   /**
-   * Set excel bin output to cache.
+   * Set excel bin output to cache
    */
   protected static async setExcelBinOutputToCache(): Promise<void> {
     this.cachedExcelBinOutput.clear()
@@ -314,7 +316,7 @@ export abstract class AssetCacheManager {
   }
 
   /**
-   * Change cached languages.
+   * Change cached languages
    * @param language Country code
    */
   protected static async setTextMapToCache(
@@ -367,8 +369,8 @@ export abstract class AssetCacheManager {
   }
 
   /**
-   * Check gitlab for new commits.
-   * @returns New commits found.
+   * Check gitlab for new commits
+   * @returns New commits found
    */
   private static async checkGitUpdate(): Promise<boolean> {
     await Promise.all(
@@ -406,8 +408,8 @@ export abstract class AssetCacheManager {
   }
 
   /**
-   * Create ExcelBinOutput Key List to cache.
-   * @param children import modules.
+   * Create ExcelBinOutput Key List to cache
+   * @param children import modules
    */
   private static createExcelBinOutputKeyList(children?: Module[]): void {
     this.excelBinOutputKeyList.clear()
@@ -430,7 +432,7 @@ export abstract class AssetCacheManager {
   }
 
   /**
-   * Create TextHash List to cache.
+   * Create TextHash List to cache
    */
   private static createTextHashList(): void {
     this.textHashList.clear()
@@ -453,7 +455,7 @@ export abstract class AssetCacheManager {
   }
 
   /**
-   * Re download text map.
+   * Re download text map
    * @param language Country code
    */
   private static async reDownloadTextMap(
@@ -468,9 +470,9 @@ export abstract class AssetCacheManager {
   }
 
   /**
-   * Fetch asset folder from gitlab.
-   * @param FolderPath Folder path.
-   * @param files File names.
+   * Fetch asset folder from gitlab
+   * @param FolderPath Folder path
+   * @param files File names
    */
   private static async fetchAssetFolder(
     FolderPath: string,
@@ -506,9 +508,9 @@ export abstract class AssetCacheManager {
   }
 
   /**
-   * download json file from url and write to downloadFilePath.
-   * @param url URL.
-   * @param downloadFilePath Download file path.
+   * download json file from url and write to downloadFilePath
+   * @param url URL
+   * @param downloadFilePath Download file path
    */
   private static async downloadJsonFile(
     url: string,

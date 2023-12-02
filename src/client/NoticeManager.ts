@@ -10,7 +10,7 @@ import {
   UrlParams,
 } from '@/types/GetAnnTypes'
 /**
- * Class that manages notices.
+ * Class that manages notices
  */
 export class NoticeManager {
   /**
@@ -34,9 +34,8 @@ export class NoticeManager {
   public language: keyof typeof NoticeLanguage
   /**
    * Notices
-   * @key Notice id
+   * @key Notice ID
    * @value Notice
-   * @example
    */
   public notices = new Map<number, Notice>()
 

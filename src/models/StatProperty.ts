@@ -1,23 +1,23 @@
 import { Client } from '@/client/Client'
 import { ValueOf } from '@/types'
 /**
- * Class of stat property.
+ * Class of stat property
  */
 export class StatProperty {
   /**
-   * Stat type.
+   * Stat type
    */
   public readonly type: FightPropType
   /**
-   * Stat name.
+   * Stat name
    */
   public readonly name: string
   /**
-   * Whether the stat is a percent value.
+   * Whether the stat is a percent value
    */
   public readonly isPercent: boolean
   /**
-   * Stat value.
+   * Stat value
    */
   public readonly value: number
 

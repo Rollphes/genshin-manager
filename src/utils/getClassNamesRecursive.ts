@@ -2,7 +2,7 @@ import Module from 'module'
 import path from 'path'
 
 /**
- * Get class names from module.children recursively.
+ * Get class names from module.children recursively
  * @param children module.children
  * @param temp Temporary Set
  * @returns Class names

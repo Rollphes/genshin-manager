@@ -17,7 +17,7 @@ const imageTypes: { [type: string]: RegExp[] } = {
 }
 
 /**
- * Class that summarizes information about an image.
+ * Class that summarizes information about an image
  */
 export class ImageAssets {
   /**
@@ -85,7 +85,7 @@ export class ImageAssets {
   }
 
   /**
-   * Create an ImageAssets instance from the image url.
+   * Create an ImageAssets instance from the image url
    * @param url image url
    * @returns ImageAssets instance
    */

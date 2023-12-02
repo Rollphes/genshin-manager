@@ -2,11 +2,11 @@ import { Client } from '@/client/Client'
 import { ImageAssets } from '@/models/assets/ImageAssets'
 
 /**
- * Class of character's talent.
+ * Class of character's talent
  */
 export class Talent {
   /**
-   * Talent id
+   * Talent ID
    */
   public readonly id: number
   /**
@@ -28,7 +28,7 @@ export class Talent {
 
   /**
    * Create a Talent
-   * @param talentId Talent id
+   * @param talentId Talent ID
    * @param locked Whether the talent is locked
    */
   constructor(talentId: number, locked: boolean = false) {
@@ -45,8 +45,8 @@ export class Talent {
     this.icon = new ImageAssets(talentJson.icon as string)
   }
   /**
-   * Get all talent ids
-   * @returns All talent ids
+   * Get all talent IDs
+   * @returns All talent IDs
    */
   public static getAllTalentIds(): number[] {
     const talentDatas = Object.values(
@@ -56,10 +56,10 @@ export class Talent {
   }
 
   /**
-   * Get talent ids by character id
-   * @param characterId Character id
-   * @param skillDepotId Skill depot id
-   * @returns Talent ids
+   * Get talent IDs by character ID
+   * @param characterId Character ID
+   * @param skillDepotId Skill depot ID
+   * @returns Talent IDs
    */
   public static getTalentIdsByCharacterId(
     characterId: number,

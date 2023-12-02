@@ -13,7 +13,7 @@ export class TextMapTransform extends Transform {
   private firstFlag: boolean = true
 
   /**
-   * Create TextMapTransform.
+   * Create TextMapTransform
    * @param language Language
    * @param filterList Filter list
    */
@@ -24,7 +24,7 @@ export class TextMapTransform extends Transform {
   }
 
   /**
-   * Transform.
+   * Transform
    * @param chunk Buffer
    * @param encoding Encoding
    * @param callback Callback
@@ -58,7 +58,7 @@ export class TextMapTransform extends Transform {
   }
 
   /**
-   * Flush.
+   * Flush
    * @param callback Callback
    */
   public _flush(callback: () => void): void {
@@ -67,7 +67,7 @@ export class TextMapTransform extends Transform {
   }
 
   /**
-   * Final.
+   * Final
    * @param callback Callback
    */
   public _final(callback: () => void): void {

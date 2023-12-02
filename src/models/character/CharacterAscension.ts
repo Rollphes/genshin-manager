@@ -3,11 +3,11 @@ import { FightPropType, StatProperty } from '@/models/StatProperty'
 import { JsonObject } from '@/utils/JsonParser'
 
 /**
- * Class of character ascension.
+ * Class of character ascension
  */
 export class CharacterAscension {
   /**
-   * Character id
+   * Character ID
    */
   public readonly id: number
   /**
@@ -19,7 +19,7 @@ export class CharacterAscension {
    */
   public readonly costItems: {
     /**
-     * Cost item id(material id)
+     * Cost item ID(material ID)
      */
     id: number
     /**
@@ -41,9 +41,9 @@ export class CharacterAscension {
   public readonly unlockMaxLevel: number
 
   /**
-   * Create a character ascension.
-   * @param characterId Character id
-   * @param promoteLevel Character promote level (0-6). Default: 0.
+   * Create a character ascension
+   * @param characterId Character ID
+   * @param promoteLevel Character promote level (0-6). Default: 0
    */
   constructor(characterId: number, promoteLevel: number = 0) {
     this.id = characterId

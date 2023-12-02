@@ -1,5 +1,5 @@
 /**
- * Error thrown when the getAnnList or getAnnContent request fails.
+ * Error thrown when the getAnnList or getAnnContent request fails
  */
 export class AnnError extends Error {
   public readonly name: string

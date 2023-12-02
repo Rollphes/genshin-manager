@@ -63,16 +63,16 @@ export interface ClientOption {
    */
   showFetchCacheLog: boolean
   /**
-   * auto fetch latest assets by cron.
-   * If this option is `undefined`, update assets will not be executed.
-   * Be sure to set `undefined` when using patch-updated Assets.
+   * auto fetch latest assets by cron
+   * If this option is `undefined`, update assets will not be executed
+   * Be sure to set `undefined` when using patch-updated Assets
    * @default '0 0 0 * * 3' //every Wednesday at 00:00:00
    * @see https://crontab.guru/
    */
   autoFetchLatestAssetsByCron: string | undefined
   /**
-   * Automatically re-download the textMap if it has not been downloaded or if there is an error in the json format.
-   * If `autoFetchLatestAssetsByCron` is `undefined`, this option will be ignored.
+   * Automatically re-download the textMap if it has not been downloaded or if there is an error in the json format
+   * If `autoFetchLatestAssetsByCron` is `undefined`, this option will be ignored
    * @default true
    */
   autoFixTextMap: boolean
@@ -82,7 +82,7 @@ export interface ClientOption {
    */
   autoCacheImage: boolean
   /**
-   * asset cache folder path.
+   * asset cache folder path
    * @default node_modules/genshin-manager/cache
    */
   assetCacheFolderPath: string

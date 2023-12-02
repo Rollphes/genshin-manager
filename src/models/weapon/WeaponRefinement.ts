@@ -1,11 +1,11 @@
 import { Client } from '@/client/Client'
 
 /**
- * Class of weapon refinement.
+ * Class of weapon refinement
  */
 export class WeaponRefinement {
   /**
-   * Weapon id
+   * Weapon ID
    */
   public readonly id: number
   /**
@@ -22,9 +22,9 @@ export class WeaponRefinement {
   public readonly skillDescription: string | undefined
 
   /**
-   * Create a weapon refinement.
-   * @param weaponId Weapon id
-   * @param refinementRank Weapon refinement rank (1-5). Default: 1.
+   * Create a weapon refinement
+   * @param weaponId Weapon ID
+   * @param refinementRank Weapon refinement rank (1-5). Default: 1
    */
   constructor(weaponId: number, refinementRank: number = 1) {
     this.id = weaponId

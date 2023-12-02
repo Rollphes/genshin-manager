@@ -1,7 +1,7 @@
 import { Region, TimeZonesPerRegion } from '@/types'
 
 /**
- * Convert the date string to UTC.
+ * Convert the date string to UTC
  * @param dateString Date string
  * @param region Game Region
  * @returns UTC date

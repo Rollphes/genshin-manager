@@ -28,11 +28,11 @@ const StatusBonusMonsterAtMultiPlay = {
 } as const
 
 /**
- * Class of Monster.
+ * Class of Monster
  */
 export class Monster {
   /**
-   * Monster id
+   * Monster ID
    */
   public readonly id: number
   /**
@@ -167,8 +167,8 @@ export class Monster {
   }
 
   /**
-   * Get all monster ids
-   * @returns All monster ids
+   * Get all monster IDs
+   * @returns All monster IDs
    */
   public static getAllMonsterIds(): number[] {
     return Object.keys(

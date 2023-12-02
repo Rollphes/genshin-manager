@@ -1,11 +1,11 @@
 import { Client } from '@/client/Client'
 
 /**
- * Class of character's stories.
+ * Class of character's stories
  */
 export class CharacterStories {
   /**
-   * Character id
+   * Character ID
    */
   public readonly characterId: number
   /**
@@ -13,7 +13,7 @@ export class CharacterStories {
    */
   public readonly stories: {
     /**
-     * Story id
+     * Story ID
      */
     title: string
     /**
@@ -25,14 +25,14 @@ export class CharacterStories {
      */
     tips: string[]
     /**
-     * fetter id
+     * fetter ID
      */
     fetterId: number
   }[]
 
   /**
    * Create a CharacterStories
-   * @param characterId Character id
+   * @param characterId Character ID
    */
   constructor(characterId: number) {
     this.characterId = characterId

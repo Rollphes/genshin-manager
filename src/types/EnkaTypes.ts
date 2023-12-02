@@ -2,7 +2,7 @@ import { ArtifactType } from '@/models/Artifact'
 import { FightPropType } from '@/models/StatProperty'
 
 /**
- * Enka API ShowAvatarInfo type.
+ * Enka API ShowAvatarInfo type
  */
 export interface APIShowAvatarInfo {
   /**
@@ -10,7 +10,7 @@ export interface APIShowAvatarInfo {
    */
   avatarId: number
   /**
-   * Character level.
+   * Character level
    */
   level: number
   /**
@@ -20,7 +20,7 @@ export interface APIShowAvatarInfo {
 }
 
 /**
- * Enka API PlayerInfo type.
+ * Enka API PlayerInfo type
  */
 export interface APIPlayerInfo {
   /**
@@ -71,7 +71,7 @@ export interface APIPlayerInfo {
 
 interface APIProfilePicture {
   avatarId?: number
-  id?: number //ProfilePicture id
+  id?: number //ProfilePicture ID
   costumeId?: number
 }
 
@@ -122,7 +122,7 @@ interface APIReliquaryMainstat {
 }
 
 /**
- * Enka API ReliquaryEquip type.
+ * Enka API ReliquaryEquip type
  */
 export interface APIReliquaryEquip {
   /**
@@ -139,7 +139,7 @@ export interface APIReliquaryEquip {
   flat: APIReliquaryFlat
 }
 /**
- * Enka API WeaponEquip type.
+ * Enka API WeaponEquip type
  */
 export interface APIWeaponEquip {
   /**
@@ -157,7 +157,7 @@ export interface APIWeaponEquip {
 }
 
 /**
- * Enka API AvatarInfo type.
+ * Enka API AvatarInfo type
  */
 export interface APIAvatarInfo {
   /**
@@ -178,7 +178,7 @@ export interface APIAvatarInfo {
    */
   talentIdList?: number[]
   /**
-   * Map of Character's Combat Properties.
+   * Map of Character's Combat Properties
    */
   fightPropMap: { [key in number]: number }
   /**
@@ -213,7 +213,7 @@ export interface APIAvatarInfo {
 }
 
 /**
- * EnkaNetWork response type.
+ * EnkaNetWork response type
  * https://enka.network/api/uid/:uid
  */
 export interface APIEnkaData {

@@ -3,15 +3,15 @@ import { WeaponType } from '@/models/weapon/Weapon'
 import { ElementKeys, ValueOf } from '@/types'
 import { JsonObject } from '@/utils/JsonParser'
 /**
- * Class that summarizes IDs and other information related to the character.
+ * Class that summarizes IDs and other information related to the character
  */
 export class CharacterInfo {
   /**
-   * Character id
+   * Character ID
    */
   public readonly id: number
   /**
-   * Default costume id
+   * Default costume ID
    */
   public readonly defaultCostumeId: number
   /**
@@ -19,7 +19,7 @@ export class CharacterInfo {
    */
   public readonly name: string
   /**
-   * Skill depot id
+   * Skill depot ID
    */
   public readonly depotId: number
   /**
@@ -35,15 +35,17 @@ export class CharacterInfo {
    */
   public readonly subSkills: number[]
   /**
-   * Talent ids
+   * Talent IDs
    */
   public readonly talentIds: number[]
   /**
-   * Map of skill id and proud id
+   * Map of skill ID and proud ID
+   * @key Skill ID
+   * @value Proud ID
    */
   public readonly proudMap: Map<number, number> = new Map()
   /**
-   * Rarity.
+   * Rarity
    * aloy is treated as 0 because it is special
    */
   public readonly rarity: number
@@ -58,8 +60,8 @@ export class CharacterInfo {
 
   /**
    * Create a CharacterInfo
-   * @param characterId Character id
-   * @param skillDepotId Skill depot id
+   * @param characterId Character ID
+   * @param skillDepotId Skill depot ID
    */
   constructor(characterId: number, skillDepotId?: number) {
     this.id = characterId
@@ -132,8 +134,8 @@ export class CharacterInfo {
   }
 
   /**
-   * Get all character ids
-   * @returns All character ids
+   * Get all character IDs
+   * @returns All character IDs
    */
   public static getAllCharacterIds(): number[] {
     const avatarDatas = Object.values(
@@ -145,9 +147,9 @@ export class CharacterInfo {
   }
 
   /**
-   * Get character id by name
+   * Get character ID by name
    * @param name Character name
-   * @returns Character id
+   * @returns Character ID
    */
   public static getCharacterIdByName(name: string): number[] {
     const hashes = Client._searchHashInCachedTextMapByValue(name)

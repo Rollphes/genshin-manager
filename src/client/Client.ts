@@ -7,14 +7,14 @@ import { ImageAssets } from '@/models/assets/ImageAssets'
 import { ClientOption, TextMapLanguage } from '@/types'
 
 /**
- * Class of the client.
- * This is the main body of `Genshin-Manager` where cache information is stored.
+ * Class of the client
+ * This is the main body of `Genshin-Manager` where cache information is stored
  */
 export class Client extends AssetCacheManager {
   public readonly option: ClientOption
 
   /**
-   * Create a client.
+   * Create a client
    * @param option Client option
    */
   constructor(option?: Partial<ClientOption>) {
@@ -87,7 +87,7 @@ export class Client extends AssetCacheManager {
   }
 
   /**
-   * Change cached languages.
+   * Change cached languages
    * @param language Country code
    * @example
    * ```ts

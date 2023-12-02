@@ -5,23 +5,23 @@ import { convertToUTC } from '@/utils/convertToUTC'
 import { JsonObject } from '@/utils/JsonParser'
 
 /**
- * Class of Spiral Abyss Schedule.
+ * Class of Spiral Abyss Schedule
  */
 export class TowerSchedule {
   /**
-   * Schedule id
+   * Spiral Abyss Schedule ID
    */
   public readonly id: number
   /**
-   * Open date
+   * Spiral Abyss Open date
    */
   public readonly openDate: Date
   /**
-   * Close date
+   * Spiral Abyss Close date
    */
   public readonly closeDate: Date
   /**
-   * Description
+   * Spiral Abyss description
    */
   public readonly description: string
   /**
@@ -29,7 +29,7 @@ export class TowerSchedule {
    */
   public readonly icon: ImageAssets
   /**
-   * Floors
+   * Spiral Abyss Floors
    */
   public readonly floors: TowerFloor[]
   /**
@@ -43,7 +43,7 @@ export class TowerSchedule {
 
   /**
    * Create a TowerSchedule
-   * @param scheduleId ID of the Spiral Abyss Schedule
+   * @param scheduleId Spiral Abyss Schedule ID
    */
   constructor(scheduleId: number) {
     this.id = scheduleId
@@ -84,8 +84,8 @@ export class TowerSchedule {
   }
 
   /**
-   * Get all TowerSchedule ids
-   * @returns All TowerSchedule ids
+   * Get all TowerSchedule IDs
+   * @returns All TowerSchedule IDs
    */
   public static getAllTowerScheduleIds(): number[] {
     const towerSchedules = Object.values(
@@ -95,8 +95,8 @@ export class TowerSchedule {
   }
 
   /**
-   * Get all TowerSchedule ids that are currently open
-   * @returns All TowerSchedule ids that are currently open
+   * Get all TowerSchedule IDs that are currently open
+   * @returns All TowerSchedule IDs that are currently open
    */
   public static getNowTowerScheduleIds(): number[] {
     const towerSchedules = Object.values(

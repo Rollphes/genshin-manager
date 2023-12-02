@@ -7,7 +7,7 @@ import { PlayerInfo } from '@/models/enka/PlayerInfo'
 import { APIEnkaData } from '@/types/EnkaTypes'
 
 /**
- * cached EnkaData type.
+ * cached EnkaData type
  */
 export interface EnkaData {
   /**
@@ -41,6 +41,8 @@ export class EnkaManager {
 
   /**
    * Cache of EnkaData
+   * @key uid
+   * @value cached EnkaData
    */
   private readonly cache: Map<number, EnkaData> = new Map()
 

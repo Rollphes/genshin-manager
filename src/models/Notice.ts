@@ -6,7 +6,7 @@ import { ContentList, DataList, NoticeLanguage } from '@/types/GetAnnTypes'
 import { convertToUTC } from '@/utils/convertToUTC'
 
 /**
- * Class that summarizes information about a notice in game.
+ * Class that summarizes information about a notice in game
  */
 export class Notice {
   /**
@@ -27,7 +27,7 @@ export class Notice {
   public banner: ImageAssets
   /**
    * Notice content DOM(jQuery)
-   * @warning This property does not exclude table tags.
+   * @warning This property does not exclude table tags
    */
   public $: CheerioAPI
   /**
@@ -51,12 +51,12 @@ export class Notice {
   public tagIcon: ImageAssets
   /**
    * Event start time
-   * If `undefined`, use getEventDuration().
+   * If `undefined`, use getEventDuration()
    */
   public eventStart: Date | undefined
   /**
    * Event end time
-   * If `undefined`, use getEventDuration().
+   * If `undefined`, use getEventDuration()
    */
   public eventEnd: Date | undefined
   /**
@@ -137,8 +137,8 @@ export class Notice {
   }
 
   /**
-   * Get the text of the notice.
-   * @warning This method does not exclude table tags.
+   * Get the text of the notice
+   * @warning This method does not exclude table tags
    * @returns Notice all text
    */
   public getText(): string {
@@ -151,8 +151,8 @@ export class Notice {
   }
 
   /**
-   * Get the duration of the event.
-   * However, this method should only be used when `eventStart` or `eventEnd` cannot be obtained.
+   * Get the duration of the event
+   * However, this method should only be used when `eventStart` or `eventEnd` cannot be obtained
    * @returns Event duration
    */
   public getEventDuration(): string | undefined {
@@ -185,7 +185,7 @@ export class Notice {
   }
 
   /**
-   * Convert t tag to region time.
+   * Convert t tag to region time
    * @param text text
    * @returns Converted text
    */

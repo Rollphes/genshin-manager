@@ -3,27 +3,27 @@ import { ImageAssets } from '@/models/assets/ImageAssets'
 import { TowerLevel } from '@/models/tower/TowerLevel'
 
 /**
- * Class of Spiral Abyss Floor.
+ * Class of Spiral Abyss Floor
  */
 export class TowerFloor {
   /**
-   * ID of the floor
+   * Spiral Abyss Floor ID
    */
   public readonly id: number
   /**
-   * Team number of the floor
+   * Number of teams
    */
   public readonly teamNum: number
   /**
-   * Background image of the floor
+   * Spiral Abyss background image
    */
   public readonly bgImage: ImageAssets
   /**
-   * Index of the floor
+   * Spiral Abyss Floor Index
    */
   public readonly index: number
   /**
-   * Rooms of the floor
+   * Spiral Abyss Floor Rooms
    */
   public readonly levels: TowerLevel[] = []
   /**
@@ -33,7 +33,7 @@ export class TowerFloor {
 
   /**
    * Create a TowerFloor
-   * @param floorId ID of the floor
+   * @param floorId Spiral Abyss Floor ID
    */
   constructor(floorId: number) {
     this.id = floorId
@@ -69,8 +69,8 @@ export class TowerFloor {
   }
 
   /**
-   * Get all tower floor ids
-   * @returns All tower floor ids
+   * Get all tower floor IDs
+   * @returns All tower floor IDs
    */
   public static getAllTowerFloorIds(): number[] {
     const towerFloorDatas = Object.values(

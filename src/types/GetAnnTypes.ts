@@ -249,7 +249,7 @@ export interface DataList {
   has_content: boolean
   /**
    * Ann extra remind
-   * @remark unknown.
+   * @remark unknown
    */
   extra_remind: number
 }

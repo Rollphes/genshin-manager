@@ -1,7 +1,7 @@
 import { TextMapLanguage } from '@/types'
 
 /**
- * Error thrown when the text map is not in the correct format.
+ * Error thrown when the text map is not in the correct format
  */
 export class TextMapFormatError extends Error {
   public readonly name: string

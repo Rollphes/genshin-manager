@@ -14,51 +14,51 @@ import {
 } from '@/types/EnkaTypes'
 
 /**
- * Class of the character obtained from EnkaNetwork.
+ * Class of the character obtained from EnkaNetwork
  */
 export class AvatarInfo extends CharacterInfo {
   /**
-   * Costume equipped by the character.
+   * Character costume
    */
   public readonly costume: Costume
   /**
-   * Level of the character.
+   * Character level
    */
   public readonly level: number
   /**
-   * Experience of the character.
+   * Character level XP
    */
   public readonly levelXp: number
   /**
-   * Ascension of the character.
+   * Character ascension
    */
   public readonly ascension: number
   /**
-   * List of talents that the character has.
+   * Character talent list
    */
   public readonly talentList: Talent[]
   /**
-   * List of skills that the character has.
+   * Character skill list
    */
   public readonly skills: Skill[]
   /**
-   * FightProp of the character.
+   * Character fight prop
    */
   public readonly fightProp: FightProp
   /**
-   * Weapon equipped by the character.
+   * Weapon equipped by Character
    */
   public readonly weapon: Weapon
   /**
-   * Artifacts equipped by the character.
+   * Artifacts equipped by Character
    */
   public readonly artifacts: Artifact[]
   /**
-   * Friendship level of the character.
+   * Character friendship level
    */
   public readonly friendShipLevel: number
   /**
-   * Artifact set bonus of the character.
+   * Character set bonus
    */
   public readonly setBonus: SetBonus
 

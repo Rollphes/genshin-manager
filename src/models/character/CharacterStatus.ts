@@ -5,11 +5,11 @@ import { calculatePromoteLevel } from '@/utils/calculatePromoteLevel'
 import { JsonObject } from '@/utils/JsonParser'
 
 /**
- * Class of character's status.
+ * Class of character's status
  */
 export class CharacterStatus {
   /**
-   * Character id
+   * Character ID
    */
   public readonly id: number
   /**
@@ -31,7 +31,7 @@ export class CharacterStatus {
 
   /**
    * Create a Character
-   * @param characterId Character id
+   * @param characterId Character ID
    * @param level Character level
    * @param isAscended Character is ascended
    */

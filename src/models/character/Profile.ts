@@ -9,7 +9,7 @@ interface CharacterVoice {
 
 //TODO: If genshin does a major update, I'll update here.
 /**
- * Association type.
+ * Association type
  */
 export type AssocType =
   | 'ASSOC_TYPE_FATUI'
@@ -22,15 +22,15 @@ export type AssocType =
   | 'ASSOC_TYPE_SUMERU'
 
 /**
- * Class of character's profile.
+ * Class of character's profile
  */
 export class Profile {
   /**
-   * Character id
+   * Character ID
    */
   public readonly characterId: number
   /**
-   * Fetter id
+   * Fetter ID
    */
   public readonly fetterId: number
   /**
@@ -68,7 +68,7 @@ export class Profile {
 
   /**
    * Create a Profile
-   * @param characterId Character id
+   * @param characterId Character ID
    */
   constructor(characterId: number) {
     this.characterId = characterId
@@ -124,9 +124,10 @@ export class Profile {
         '',
     }
   }
+
   /**
-   * Get all character ids.
-   * @returns All character ids.
+   * Get all character IDs
+   * @returns All character IDs
    */
   public static getAllCharacterIds(): number[] {
     const profileDatas = Object.values(

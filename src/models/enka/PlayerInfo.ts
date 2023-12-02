@@ -3,51 +3,51 @@ import { Material } from '@/models/Material'
 import { ProfilePicture } from '@/models/ProfilePicture'
 import { APIPlayerInfo } from '@/types/EnkaTypes'
 /**
- * Class of player obtained from EnkaNetwork.
+ * Class of player obtained from EnkaNetwork
  */
 export class PlayerInfo {
   /**
-   * Nickname of the player.
+   * Player Nickname
    */
   public readonly nickname: string
   /**
-   * Adventure Rank of the player.
+   * Player Adventure Rank
    */
   public readonly level: number
   /**
-   * Signature of the player.
+   * Player signature
    */
   public readonly signature: string
   /**
-   * World Level of the player.
+   * Player World Level
    */
   public readonly worldLevel: number
   /**
-   * Name card of the player.
+   * Profile Namecard ID
    */
   public readonly nameCard: Material
   /**
-   * Number of achievements that the player has finished.
+   * Number of Completed Achievements
    */
   public readonly finishAchievementNum: number
   /**
-   * Floor index of the Spiral Abyss.
+   * Abyss Floor
    */
   public readonly towerFloorIndex: number
   /**
-   * Level index of the Spiral Abyss.
+   * Abyss Floor's Chamber
    */
   public readonly towerLevelIndex: number
   /**
-   * List of avatars that the player has.
+   * List of Character Costume and Level
    */
   public readonly showAvatarInfoList: ShowAvatarInfo[]
   /**
-   * List of name cards that the player has.
+   * List of Namecard
    */
   public readonly showNameCardList: Material[]
   /**
-   * Profile picture of the player.
+   * Player Profile Picture
    */
   public readonly profilePicture: ProfilePicture
 

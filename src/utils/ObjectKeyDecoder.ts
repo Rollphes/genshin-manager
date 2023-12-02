@@ -8,7 +8,7 @@ import {
 } from '@/utils/JsonParser'
 
 /**
- * Class of replace data.
+ * Class of replace data
  */
 class ReplaceData {
   constructor(
@@ -18,15 +18,15 @@ class ReplaceData {
 }
 
 /**
- * Class of object key decoder.
+ * Class of object key decoder
  */
 export class ObjectKeyDecoder {
   /**
-   * List of object key replace data.
+   * List of object key replace data
    */
   private readonly replaceDatas: ReplaceData[] = []
   /**
-   * List of character IDs that are not included in the character list.
+   * List of character IDs that are not included in the character list
    */
   private readonly characterBlackIdList: number[] = [
     10000001, 11000008, 11000009, 11000010, 11000011, 11000013, 11000017,
@@ -72,7 +72,7 @@ export class ObjectKeyDecoder {
   }
 
   /**
-   * Execute JsonParser key decoder.
+   * Execute JsonParser key decoder
    * @param jsonData JsonParser
    * @param filename ExcelBinOutput Filename
    * @returns Objects to cache
@@ -86,7 +86,7 @@ export class ObjectKeyDecoder {
   }
 
   /**
-   * Decode JsonParser key.
+   * Decode JsonParser key
    * @param jsonData JsonParser
    * @returns Decoded JsonParser
    */

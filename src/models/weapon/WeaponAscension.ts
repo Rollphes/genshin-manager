@@ -3,11 +3,11 @@ import { FightPropType, StatProperty } from '@/models/StatProperty'
 import { JsonObject } from '@/utils/JsonParser'
 
 /**
- * Class of weapon ascension.
+ * Class of weapon ascension
  */
 export class WeaponAscension {
   /**
-   * Weapon id
+   * Weapon ID
    */
   public readonly id: number
   /**
@@ -19,7 +19,7 @@ export class WeaponAscension {
    */
   public readonly costItems: {
     /**
-     * Cost item id(material id)
+     * Cost item ID(materialIDd)
      */
     id: number
     /**
@@ -41,9 +41,9 @@ export class WeaponAscension {
   public readonly unlockMaxLevel: number
 
   /**
-   * Create a weapon ascension.
-   * @param weaponId Weapon id
-   * @param promoteLevel Weapon promote level (0-6). Default: 0.
+   * Create a weapon ascension
+   * @param weaponId Weapon ID
+   * @param promoteLevel Weapon promote level (0-6). Default: 0
    */
   constructor(weaponId: number, promoteLevel: number = 0) {
     this.id = weaponId
