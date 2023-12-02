@@ -199,10 +199,11 @@ export abstract class AssetCacheManager {
         this.excelBinOutputFolderPath,
         this.textMapFolderPath,
       ].map(async (FolderPath) => {
-        if (!fs.existsSync(FolderPath))
+        if (!fs.existsSync(FolderPath)) {
           await fsPromises.mkdir(FolderPath, {
             recursive: true,
           })
+        }
       }),
     )
 
@@ -323,10 +324,11 @@ export abstract class AssetCacheManager {
     )
     if (!fs.existsSync(selectedTextMapPath)) {
       if (this.option.autoFixTextMap) {
-        if (this.option.showFetchCacheLog)
+        if (this.option.showFetchCacheLog) {
           console.log(
             `GenshinManager: TextMap${language}.json not found. Re downloading...`,
           )
+        }
         await this.reDownloadTextMap(language)
       } else {
         throw new AssetsNotFoundError(language)
@@ -348,10 +350,11 @@ export abstract class AssetCacheManager {
     ).catch(async (error) => {
       if (error instanceof TextMapFormatError) {
         if (this.option.autoFixTextMap) {
-          if (this.option.showFetchCacheLog)
+          if (this.option.showFetchCacheLog) {
             console.log(
               'GenshinManager: TextMap format error. Re downloading...',
             )
+          }
           await this.reDownloadTextMap(language)
         } else {
           throw error
@@ -450,13 +453,11 @@ export abstract class AssetCacheManager {
     id: string | number,
   ) {
     const excelBinOutput = Client.cachedExcelBinOutput.get(key)
-    if (!excelBinOutput) {
-      throw new AssetsNotFoundError(key)
-    }
+    if (!excelBinOutput) throw new AssetsNotFoundError(key)
+
     const json = excelBinOutput.get(String(id)) as JsonObject | undefined
-    if (!json) {
-      throw new AssetsNotFoundError(key, id)
-    }
+    if (!json) throw new AssetsNotFoundError(key, id)
+
     return json
   }
 
@@ -470,9 +471,8 @@ export abstract class AssetCacheManager {
     key: keyof typeof ExcelBinOutputs,
   ) {
     const excelBinOutput = Client.cachedExcelBinOutput.get(key)
-    if (!excelBinOutput) {
-      throw new AssetsNotFoundError(key)
-    }
+    if (!excelBinOutput) throw new AssetsNotFoundError(key)
+
     return excelBinOutput.get() as { [key in string]: JsonObject }
   }
 

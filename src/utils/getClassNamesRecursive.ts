@@ -7,7 +7,10 @@ import path from 'path'
  * @param temp Temporary Set
  * @returns Class names
  */
-export function getClassNamesRecursive(children: Module[], temp?: Set<string>) {
+export function getClassNamesRecursive(
+  children: Module[],
+  temp?: Set<string>,
+): Set<string> {
   const classNames = temp ? temp : new Set<string>()
   children.forEach((child) => {
     const className = path.basename(child.id).split('.')[0]

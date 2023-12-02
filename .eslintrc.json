@@ -1,5 +1,5 @@
 {
-  "plugins": ["simple-import-sort"],
+  "plugins": ["simple-import-sort", "jsdoc"],
   "parser": "@typescript-eslint/parser",
   "parserOptions": {
     "ecmaVersion": 2018,
@@ -16,11 +16,75 @@
     "eslint:recommended",
     "prettier",
     "plugin:prettier/recommended",
-    "plugin:@typescript-eslint/recommended-requiring-type-checking"
+    "plugin:@typescript-eslint/recommended-requiring-type-checking",
+    "plugin:jsdoc/recommended-typescript-error"
   ],
   "rules": {
+    "jsdoc/require-jsdoc": [
+      "error",
+      {
+        "publicOnly": true,
+        "require": {
+          "ArrowFunctionExpression": true,
+          "ClassDeclaration": true,
+          "ClassExpression": true,
+          "FunctionDeclaration": true,
+          "FunctionExpression": true,
+          "MethodDefinition": true
+       },
+       "contexts": [
+         "VariableDeclaration",
+         "TSInterfaceDeclaration",
+         "TSTypeAliasDeclaration",
+         "TSPropertySignature",
+         "TSMethodSignature"
+       ]
+     }
+   ],
+   "jsdoc/require-description": [
+    "error",
+    {
+      "contexts": [
+        "ArrowFunctionExpression",
+        "ClassDeclaration",
+        "ClassExpression",
+        "FunctionDeclaration",
+        "FunctionExpression",
+        "MethodDefinition",
+        "PropertyDefinition",
+        "VariableDeclaration",
+        "TSInterfaceDeclaration",
+        "TSTypeAliasDeclaration",
+        "TSPropertySignature",
+        "TSMethodSignature"
+      ]
+    }
+  ],
     "no-unused-vars": "off",
     "@typescript-eslint/no-unused-vars": ["error"],
+    "@typescript-eslint/member-ordering": "warn",
+    "@typescript-eslint/explicit-member-accessibility": [
+      "error",
+      {
+        "accessibility": "explicit",
+        "overrides": {
+          "accessors": "explicit",
+          "constructors": "no-public",
+          "methods": "explicit",
+          "properties": "explicit",
+          "parameterProperties": "explicit"
+        }
+      }
+    ],
+    "@typescript-eslint/explicit-function-return-type": "error",
+    "complexity": ["error"],
+    "curly": ["error", "multi-or-nest", "consistent"],
+    "dot-notation": "error",
+    "eqeqeq": ["error", "smart"],
+    "no-new": "error",
+    "no-param-reassign": "error",
+    "no-throw-literal": "error",
+    "func-style": ["warn", "declaration", { "allowArrowFunctions": true }],
     "prettier/prettier": [
       "error",
       {
@@ -32,9 +96,7 @@
     "no-restricted-imports": [
       "error",
       {
-        "patterns": [
-          "./", "../", "~/"
-        ]
+        "patterns": ["./", "../", "~/"]
       }
     ]
   }

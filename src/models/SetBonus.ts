@@ -50,15 +50,11 @@ export class SetBonus {
 
     Object.keys(countIds).forEach((setId) => {
       const count = countIds[setId]
-      if (this.oneSetBonusIds.includes(+setId)) {
-        countIds[setId] = 1
-      } else if (count >= 4) {
-        countIds[setId] = 4
-      } else if (count >= 2) {
-        countIds[setId] = 2
-      } else {
-        delete countIds[setId]
-      }
+      if (this.oneSetBonusIds.includes(+setId)) countIds[setId] = 1
+      else if (count >= 4) countIds[setId] = 4
+      else if (count >= 2) countIds[setId] = 2
+      else delete countIds[setId]
+
       activeSetIds.push(setId)
     })
 

@@ -8,6 +8,9 @@ interface CharacterVoice {
 }
 
 //TODO: If genshin does a major update, I'll update here.
+/**
+ *
+ */
 export type AssocType =
   | 'ASSOC_TYPE_FATUI'
   | 'ASSOC_TYPE_FONTAINE'

@@ -47,15 +47,10 @@ export class TowerLevel {
     this.monsterLevel = (towerLevelJson.monsterLevel as number) + 1
 
     let playerCount = 1
-    if (floorIndex <= 2) {
-      playerCount = 1
-    } else if (floorIndex <= 7) {
-      playerCount = 2
-    } else if (floorIndex <= 11) {
-      playerCount = 3
-    } else if (floorIndex === 12) {
-      playerCount = 4
-    }
+    if (floorIndex <= 2) playerCount = 1
+    else if (floorIndex <= 7) playerCount = 2
+    else if (floorIndex <= 11) playerCount = 3
+    else if (floorIndex === 12) playerCount = 4
 
     this.firstMonsterList = (towerLevelJson.firstMonsterList as number[]).map(
       (monsterDescribeId) =>

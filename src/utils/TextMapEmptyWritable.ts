@@ -2,12 +2,21 @@ import { Writable } from 'stream'
 
 /**
  * TextMapEmptyWritable
- * @extends Writable
  */
 export class TextMapEmptyWritable extends Writable {
   private buffer: Buffer = Buffer.from('')
 
-  public _write(chunk: Buffer, encoding: BufferEncoding, callback: () => void) {
+  /**
+   * Create TextMapEmptyWritable.
+   * @param chunk Buffer
+   * @param encoding Encoding
+   * @param callback Callback
+   */
+  public _write(
+    chunk: Buffer,
+    encoding: BufferEncoding,
+    callback: () => void,
+  ): void {
     const combinedBuffer = Buffer.concat([this.buffer, chunk])
     const lineBuffers = this.splitBuffer(combinedBuffer, Buffer.from('\n'))
     this.buffer = lineBuffers.pop() || Buffer.from('')

@@ -177,6 +177,9 @@ export class Weapon {
   }
 }
 
+/**
+ *
+ */
 export type WeaponType =
   | 'WEAPON_BOW'
   | 'WEAPON_CATALYST'

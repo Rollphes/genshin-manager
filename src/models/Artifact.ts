@@ -180,11 +180,9 @@ export class Artifact {
       )
       const propType = artifactAffixJson.propType as FightPropType
       const propValue = result[propType]
-      if (propValue) {
+      if (propValue)
         result[propType] = propValue + (artifactAffixJson.propValue as number)
-      } else {
-        result[propType] = artifactAffixJson.propValue as number
-      }
+      else result[propType] = artifactAffixJson.propValue as number
     })
     return Object.keys(result).map((key) => {
       return new StatProperty(
@@ -207,6 +205,9 @@ export class Artifact {
     return filteredArtifactDatas.map((data) => data.id as number)
   }
 }
+/**
+ *
+ */
 export type ArtifactType =
   | 'EQUIP_BRACER'
   | 'EQUIP_NECKLACE'

@@ -69,29 +69,47 @@ export class ObjectKeyDecoder {
   }
 
   /**
+   * Execute object key decoder.
+   * @param jsonData JsonParser
+   * @param filename Filename
+   * @returns Decoded object
+   */
+  public execute(
+    jsonData: JsonParser,
+    filename: keyof typeof ExcelBinOutputs,
+  ): { [key in string]: JsonValue } {
+    this.decode(jsonData)
+    return this.setKey(jsonData, filename)
+  }
+
+  /**
    * Decode object key.
    * @param jsonData JsonParser
    */
-  private decode(jsonData: JsonParser) {
+  private decode(jsonData: JsonParser): void {
     const jsonArray = jsonData.get() as JsonArray
     jsonArray.forEach((v) => {
       const obj = v as JsonObject
       this.replaceDatas.forEach((replaceData) => {
-        if (obj[replaceData.oldKey] !== undefined) {
+        if (obj[replaceData.oldKey] !== undefined)
           obj[replaceData.newKey] = obj[replaceData.oldKey]
-        }
       })
     })
   }
+
   /**
    * Set object key.
    * @param jsonData JsonParser
    * @param filename Filename
    * @returns Object
    */
-  private setKey(jsonData: JsonParser, filename: keyof typeof ExcelBinOutputs) {
+  private setKey(
+    jsonData: JsonParser,
+    filename: keyof typeof ExcelBinOutputs,
+  ): { [key in string]: JsonValue } {
     const jsonArray = jsonData.get() as JsonArray
     const cacheObject: { [key in string]: JsonValue } = {}
+    // eslint-disable-next-line complexity
     jsonArray.forEach((json) => {
       const obj = json as JsonObject
       switch (filename) {
@@ -215,16 +233,5 @@ export class ObjectKeyDecoder {
       }
     })
     return cacheObject
-  }
-
-  /**
-   * Execute object key decoder.
-   * @param jsonData JsonParser
-   * @param filename Filename
-   * @returns Decoded object
-   */
-  public execute(jsonData: JsonParser, filename: keyof typeof ExcelBinOutputs) {
-    this.decode(jsonData)
-    return this.setKey(jsonData, filename)
   }
 }

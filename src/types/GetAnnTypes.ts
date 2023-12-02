@@ -1,5 +1,8 @@
 import { Region, ValueOf } from '@/types'
 
+/**
+ *
+ */
 export interface UrlParams {
   /**
    * Game ID
@@ -63,9 +66,21 @@ export interface UrlParams {
   uid: string
 }
 
+/**
+ *
+ */
 export interface APIGetAnnContent {
+  /**
+   *
+   */
   retcode: number
+  /**
+   *
+   */
   message: string
+  /**
+   *
+   */
   data: ContentData
 }
 
@@ -76,18 +91,51 @@ interface ContentData {
   pic_total: number
 }
 
+/**
+ *
+ */
 export interface ContentList {
+  /**
+   *
+   */
   ann_id: number
+  /**
+   *
+   */
   title: string
+  /**
+   *
+   */
   subtitle: string
+  /**
+   *
+   */
   banner: string
+  /**
+   *
+   */
   content: string
+  /**
+   *
+   */
   lang: ValueOf<typeof NoticeLanguage>
 }
 
+/**
+ *
+ */
 export interface APIGetAnnList {
+  /**
+   *
+   */
   retcode: number
+  /**
+   *
+   */
   message: string
+  /**
+   *
+   */
   data: ListData
 }
 
@@ -113,30 +161,100 @@ interface TabList {
   type_label: string
 }
 
+/**
+ *
+ */
 export interface DataList {
+  /**
+   *
+   */
   ann_id: number
+  /**
+   *
+   */
   title: string
+  /**
+   *
+   */
   subtitle: string
+  /**
+   *
+   */
   banner: string //Image URL
+  /**
+   *
+   */
   content: string //none
+  /**
+   *
+   */
   type_label: string //from type_list.mi18n_name
+  /**
+   *
+   */
   tag_label: string // 1:! 2:flag 3:star
+  /**
+   *
+   */
   tag_icon: string //Image URL
+  /**
+   *
+   */
   login_alert: number //unknown 1 only?
+  /**
+   *
+   */
   lang: ValueOf<typeof NoticeLanguage> //language
+  /**
+   *
+   */
   start_time: string // banner start time(Always fluctuating)
+  /**
+   *
+   */
   end_time: string // banner end time(Always fluctuating)
+  /**
+   *
+   */
   type: number //from type_list.id
+  /**
+   *
+   */
   remind: number //unknown. 0 only?
+  /**
+   *
+   */
   alert: number //unknown. 0 only?
+  /**
+   *
+   */
   tag_start_time: string //unknown.
+  /**
+   *
+   */
   tag_end_time: string //unknown.
+  /**
+   *
+   */
   remind_ver: number //fix version?
+  /**
+   *
+   */
   has_content: boolean //unknown. true only?
+  /**
+   *
+   */
   extra_remind: number //unknown.
 }
 
-export const NoticeLanguage = {
+export /**
+eeeeeee *
+eeeeeee
+eeeeeee
+eeeeeee
+eeeeeee
+eeeeeee */
+const NoticeLanguage = {
   en: 'en-us',
   ru: 'ru-ru',
   vi: 'vi-vn',

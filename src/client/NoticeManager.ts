@@ -115,11 +115,8 @@ export class NoticeManager {
   private async _getAnn(urlText: string, lang?: keyof typeof NoticeLanguage) {
     const url = new URL(urlText)
     Object.keys(this.urlParams).forEach((key) => {
-      if (key === 'lang') {
-        url.searchParams.append(key, lang ?? this.language)
-      } else {
-        url.searchParams.append(key, this.urlParams[key as keyof UrlParams])
-      }
+      if (key === 'lang') url.searchParams.append(key, lang ?? this.language)
+      else url.searchParams.append(key, this.urlParams[key as keyof UrlParams])
     })
     const res = await fetch(url.toString())
     if (!res.ok) throw new AnnError(res)

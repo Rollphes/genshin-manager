@@ -172,10 +172,10 @@ export class Notice {
   /**
    * Get the duration of the event.
    * However, this method should only be used when `eventStart` or `eventEnd` cannot be obtained.
-   * @return
+   * @returns
    */
   public getEventDuration() {
-    if (this.tag === 2)
+    if (this.tag === 2) {
       return this.convertLocalDate(
         this.$('td')
           .map((i, el) => this.$(el).text())
@@ -184,6 +184,7 @@ export class Notice {
           .replace('—', ' — ')
           .replace('-', ' -'),
       )
+    }
     const textBlocks = this.$('p')
       .map((i, el) => this.$(el).text())
       .get()

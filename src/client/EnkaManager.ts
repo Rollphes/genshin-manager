@@ -6,10 +6,25 @@ import { AvatarInfo } from '@/models/enka/AvatarInfo'
 import { PlayerInfo } from '@/models/enka/PlayerInfo'
 import { APIEnkaData } from '@/types/EnkaTypes'
 
+/**
+ *
+ */
 export interface EnkaData {
+  /**
+   *
+   */
   uid: number
+  /**
+   *
+   */
   playerInfo: PlayerInfo
+  /**
+   *
+   */
   avatarInfoList: AvatarInfo[]
+  /**
+   *
+   */
   nextShowCaseDate: Date
 }
 
@@ -57,10 +72,11 @@ export class EnkaManager {
       previousData &&
       previousData.avatarInfoList &&
       new Date().getTime() < previousData.nextShowCaseDate.getTime()
-    )
+    ) {
       return new Promise<EnkaData>((resolve) => {
         resolve(previousData)
       })
+    }
     const mergedFetchOption = fetchOption
       ? merge.withOptions(
           { mergeArrays: false },
@@ -69,9 +85,8 @@ export class EnkaManager {
         )
       : this.defaultOption
     const res = await fetch(url, mergedFetchOption)
-    if (!res.ok) {
-      throw new EnkaNetworkError(res)
-    }
+    if (!res.ok) throw new EnkaNetworkError(res)
+
     const result = (await res.json()) as APIEnkaData
     const enkaData: EnkaData = {
       uid: uid,
@@ -93,9 +108,8 @@ export class EnkaManager {
    */
   public clearCacheOverNextShowCaseDate() {
     this.cache.forEach((value, key) => {
-      if (new Date().getTime() > value.nextShowCaseDate.getTime()) {
+      if (new Date().getTime() > value.nextShowCaseDate.getTime())
         this.cache.delete(key)
-      }
     })
   }
 }

@@ -9,7 +9,6 @@ import { ClientOption, TextMapLanguage } from '@/types'
 /**
  * Class of the client.
  * This is the main body of `Genshin-Manager` where cache information is stored.
- * @extends AssetCacheManager
  */
 export class Client extends AssetCacheManager {
   public readonly option: ClientOption
@@ -78,13 +77,11 @@ export class Client extends AssetCacheManager {
       ]
     }
 
-    if (!mergeOption.autoFetchLatestAssetsByCron) {
+    if (!mergeOption.autoFetchLatestAssetsByCron)
       mergeOption.autoFixTextMap = false
-    }
 
-    if (!module.parent) {
-      throw new Error('module.parent is undefined.')
-    }
+    if (!module.parent) throw new Error('module.parent is undefined.')
+
     super(mergeOption, module.parent.children)
     this.option = mergeOption
   }

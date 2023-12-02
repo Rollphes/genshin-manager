@@ -5,7 +5,6 @@ import { TextMapLanguage } from '@/types'
 
 /**
  * TextMapTransform
- * @extends Transform
  */
 export class TextMapTransform extends Transform {
   private language: keyof typeof TextMapLanguage
@@ -13,17 +12,28 @@ export class TextMapTransform extends Transform {
   private buffer: Buffer = Buffer.from('')
   private firstFlag: boolean = true
 
+  /**
+   * Create TextMapTransform.
+   * @param language Language
+   * @param filterList Filter list
+   */
   constructor(language: keyof typeof TextMapLanguage, filterList: Set<number>) {
     super()
     this.language = language
     this.filterList = filterList
   }
 
+  /**
+   * Transform.
+   * @param chunk Buffer
+   * @param encoding Encoding
+   * @param callback Callback
+   */
   public _transform(
     chunk: Buffer,
     encoding: BufferEncoding,
     callback: () => void,
-  ) {
+  ): void {
     const combinedBuffer = Buffer.concat([this.buffer, chunk])
     const lineBuffers = this.splitBuffer(combinedBuffer, Buffer.from('\n'))
     this.buffer = lineBuffers.pop() || Buffer.from('')
@@ -47,12 +57,20 @@ export class TextMapTransform extends Transform {
     callback()
   }
 
-  public _flush(callback: () => void) {
+  /**
+   * Flush.
+   * @param callback Callback
+   */
+  public _flush(callback: () => void): void {
     this.push('\n' + this.buffer.toString())
     callback()
   }
 
-  public _final(callback: () => void) {
+  /**
+   * Final.
+   * @param callback Callback
+   */
+  public _final(callback: () => void): void {
     if (!this.buffer.toString().endsWith('}'))
       throw new TextMapFormatError(this.language)
 

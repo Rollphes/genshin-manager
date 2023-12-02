@@ -1,6 +1,12 @@
 import { Client } from '@/client/Client'
 import { ImageAssets } from '@/models/assets/ImageAssets'
+/**
+ *
+ */
 export type ItemType = 'ITEM_VIRTUAL' | 'ITEM_MATERIAL'
+/**
+ *
+ */
 export type MaterialType =
   | 'MATERIAL_ACTIVITY_GEAR'
   | 'MATERIAL_ACTIVITY_JIGSAW'
@@ -84,6 +90,7 @@ export class Material {
   /**
    * Create a Material
    * @param id Material id
+   * @param materialId
    */
   constructor(materialId: number) {
     this.id = materialId

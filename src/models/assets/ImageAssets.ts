@@ -120,9 +120,8 @@ export class ImageAssets {
    * @returns image buffer
    */
   public async fetchBuffer() {
-    if (!this.url) {
-      throw new ImageNotFoundError(this.name, this.url)
-    }
+    if (!this.url) throw new ImageNotFoundError(this.name, this.url)
+
     const imageCachePath = path.resolve(
       ImageAssets.imageFolderPath,
       `${this.name}.png`,
@@ -131,14 +130,14 @@ export class ImageAssets {
       return await fsPromises.readFile(imageCachePath)
     } else {
       const res = await fetch(this.url, ImageAssets.fetchOption)
-      if (!res.ok || !res.body) {
+      if (!res.ok || !res.body)
         throw new ImageNotFoundError(this.name, this.url)
-      }
+
       const arrayBuffer = await res.arrayBuffer()
       const data = Buffer.from(arrayBuffer)
-      if (ImageAssets.autoCacheImage) {
+      if (ImageAssets.autoCacheImage)
         await fsPromises.writeFile(imageCachePath, data, { flag: 'w' })
-      }
+
       return data
     }
   }
@@ -149,9 +148,8 @@ export class ImageAssets {
    * @returns image stream
    */
   public async fetchStream(highWaterMark?: number) {
-    if (!this.url) {
-      throw new ImageNotFoundError(this.name, this.url)
-    }
+    if (!this.url) throw new ImageNotFoundError(this.name, this.url)
+
     const imageCachePath = path.resolve(
       ImageAssets.imageFolderPath,
       `${this.name}.png`,
@@ -162,9 +160,9 @@ export class ImageAssets {
       })
     } else {
       const res = await fetch(this.url, ImageAssets.fetchOption)
-      if (!res.ok || !res.body) {
+      if (!res.ok || !res.body)
         throw new ImageNotFoundError(this.name, this.url)
-      }
+
       const fsStream = fs.createWriteStream(imageCachePath, {
         highWaterMark: highWaterMark,
       })

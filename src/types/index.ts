@@ -1,17 +1,53 @@
+/**
+ *
+ */
 export type ValueOf<T> = T[keyof T]
 
+/**
+ *
+ */
 export interface GitLabAPIResponse {
+  /**
+   *
+   */
   id: string
+  /**
+   *
+   */
   short_id: string
+  /**
+   *
+   */
   created_at: string
+  /**
+   *
+   */
   parent_ids: string[]
+  /**
+   *
+   */
   title: string
+  /**
+   *
+   */
   message: string
+  /**
+   *
+   */
   authored_date: string
+  /**
+   *
+   */
   committed_date: string
+  /**
+   *
+   */
   web_url: string
 }
 
+/**
+ *
+ */
 export interface ClientOption {
   /**
    * Fetch option
@@ -94,7 +130,14 @@ export interface ClientOption {
   assetCacheFolderPath: string
 }
 
-export const ElementKeys = {
+export /**
+eeeeeee *
+eeeeeee
+eeeeeee
+eeeeeee
+eeeeeee
+eeeeeee */
+const ElementKeys = {
   Physical: 'Phys',
   Fire: 'Pyro',
   Electric: 'Electro',
@@ -109,7 +152,14 @@ export const ElementKeys = {
  */
 export type Element = ValueOf<typeof ElementKeys>
 
-export const TimeZonesPerRegion = {
+export /**
+eeeeeee *
+eeeeeee
+eeeeeee
+eeeeeee
+eeeeeee
+eeeeeee */
+const TimeZonesPerRegion = {
   cn_gf01: +8,
   cn_qd01: +8,
   os_usa: -5,

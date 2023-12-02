@@ -160,6 +160,9 @@ export class CharacterInfo {
 
 type QualityType = 'QUALITY_ORANGE' | 'QUALITY_PURPLE' | 'QUALITY_ORANGE_SP'
 
+/**
+ *
+ */
 export type BodyType =
   | 'BODY_BOY'
   | 'BODY_GIRL'

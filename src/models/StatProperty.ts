@@ -96,7 +96,14 @@ const percentFightPropType: FightPropType[] = [
   'FIGHT_PROP_SHIELD_COST_MINUS_RATIO',
 ]
 
-export const FightProps = {
+export /**
+eeeeeee *
+eeeeeee
+eeeeeee
+eeeeeee
+eeeeeee
+eeeeeee */
+const FightProps = {
   // 0: 'FIGHT_PROP_NONE',
   1: 'FIGHT_PROP_BASE_HP',
   2: 'FIGHT_PROP_HP',
@@ -216,4 +223,7 @@ export const FightProps = {
   // 3043: 'FIGHT_PROP_ELEM_REACT_OVERGROW_ELECTRIC_CRITICAL',
   // 3044: 'FIGHT_PROP_ELEM_REACT_OVERGROW_ELECTRIC_CRITICAL_HURT',
 } as const
+/**
+ *
+ */
 export type FightPropType = ValueOf<typeof FightProps>

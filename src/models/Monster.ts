@@ -169,6 +169,7 @@ export class Monster {
   /**
    * Get monster's stat value by stat type
    * @param monsterGrowJson monsterExcelConfigData.propGrowCurves
+   * @param propGrowCurve
    * @param initValue Initial value
    * @param playerCount Number of players
    * @returns Stat value
