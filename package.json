@@ -40,6 +40,10 @@
     "enka-network",
     "enka"
   ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Rollphes/genshin-manager.git"
+  },
   "author": "Rollphes",
   "license": "MIT",
   "dependencies": {
