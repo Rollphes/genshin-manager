@@ -37,7 +37,7 @@ export class ProfilePicture {
    * Material id.
    * Exists only if type is `PROFILE_PICTURE_UNLOCK_BY_ITEM`
    */
-  public readonly materiaIid?: number
+  public readonly materialId?: number
   /**
    * Profile picture icon.
    */
@@ -73,7 +73,7 @@ export class ProfilePicture {
       const costume = new Costume(infoId)
       this.characterId = costume.characterId
     } else if (String(infoId) in cachedMaterial) {
-      this.materiaIid = infoId
+      this.materialId = infoId
     } else {
       throw new Error(
         `ProfilePictureId ${this.id} has invalid infoId ${infoId}`,
