@@ -8,11 +8,11 @@ interface ArtifactAffixAppendProp {
   value: number
 }
 /**
- * Class of artifact.
+ * Class of artifact
  */
 export class Artifact {
   /**
-   * Artifact id
+   * Artifact ID
    */
   public readonly id: number
   /**
@@ -32,7 +32,7 @@ export class Artifact {
    */
   public readonly description: string
   /**
-   * Artifact set id
+   * Artifact set ID
    */
   public readonly setId: number | undefined
   /**
@@ -56,7 +56,7 @@ export class Artifact {
    */
   public readonly subStats: StatProperty[]
   /**
-   * Artifact sub stat id list
+   * Artifact sub stat ID list
    */
   public readonly appendPropList: ArtifactAffixAppendProp[]
   /**
@@ -64,7 +64,7 @@ export class Artifact {
    */
   public readonly icon: ImageAssets
   /**
-   * IDs of set bonuses that can be activated with one artifact.
+   * IDs of set bonuses that can be activated with one artifact
    */
   private readonly oneSetBonusIds: number[] = [
     15009, 15010, 15011, 15012, 15013,
@@ -72,10 +72,10 @@ export class Artifact {
 
   /**
    * Create an Artifact
-   * @param artifactId Artifact id
-   * @param mainPropId Main stat id from ReliquaryMainPropExcelConfigData.json
+   * @param artifactId Artifact ID
+   * @param mainPropId Main stat ID from ReliquaryMainPropExcelConfigData.json
    * @param level Artifact level
-   * @param appendPropIdList Artifact sub stat id list
+   * @param appendPropIdList Artifact sub stat ID list
    */
   constructor(
     artifactId: number,
@@ -167,11 +167,25 @@ export class Artifact {
   }
 
   /**
-   * Get sub stat properties from appendPropIdList.
-   * @param appendPropIdList
-   * @returns
+   * Get all artifact IDs
+   * @returns All artifact IDs
    */
-  private getSubStatProperties(appendPropIdList: number[]) {
+  public static getAllArtifactIds(): number[] {
+    const artifactDatas = Object.values(
+      Client._getCachedExcelBinOutputByName('ReliquaryExcelConfigData'),
+    )
+    const filteredArtifactDatas = artifactDatas.filter(
+      (data) => data.setId !== 15000, // 15000 is dummy artifact
+    )
+    return filteredArtifactDatas.map((data) => data.id as number)
+  }
+
+  /**
+   * Get sub stat properties from appendPropIdList
+   * @param appendPropIdList Artifact sub stat ID list
+   * @returns Sub stat properties
+   */
+  private getSubStatProperties(appendPropIdList: number[]): StatProperty[] {
     const result: Partial<{ [key in FightPropType]: number }> = {}
     appendPropIdList.forEach((propId) => {
       const artifactAffixJson = Client._getJsonFromCachedExcelBinOutput(
@@ -180,11 +194,9 @@ export class Artifact {
       )
       const propType = artifactAffixJson.propType as FightPropType
       const propValue = result[propType]
-      if (propValue) {
+      if (propValue)
         result[propType] = propValue + (artifactAffixJson.propValue as number)
-      } else {
-        result[propType] = artifactAffixJson.propValue as number
-      }
+      else result[propType] = artifactAffixJson.propValue as number
     })
     return Object.keys(result).map((key) => {
       return new StatProperty(
@@ -193,20 +205,11 @@ export class Artifact {
       )
     })
   }
-  /**
-   * Get all artifact ids
-   * @returns All artifact ids
-   */
-  public static getAllArtifactIds(): number[] {
-    const artifactDatas = Object.values(
-      Client._getCachedExcelBinOutputByName('ReliquaryExcelConfigData'),
-    )
-    const filteredArtifactDatas = artifactDatas.filter(
-      (data) => data.setId != 15000, // 15000 is dummy artifact
-    )
-    return filteredArtifactDatas.map((data) => data.id as number)
-  }
 }
+
+/**
+ * Artifact type
+ */
 export type ArtifactType =
   | 'EQUIP_BRACER'
   | 'EQUIP_NECKLACE'

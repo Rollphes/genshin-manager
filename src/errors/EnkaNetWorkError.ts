@@ -8,7 +8,7 @@ const enkaNetworkStatusMessages: { [statusCode: number]: string } = {
 } as const
 
 /**
- * Error thrown when the EnkaNetwork request fails.
+ * Error thrown when the EnkaNetwork request fails
  */
 export class EnkaNetworkError extends Error {
   public readonly name: string

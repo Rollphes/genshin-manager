@@ -7,15 +7,14 @@ import { ImageAssets } from '@/models/assets/ImageAssets'
 import { ClientOption, TextMapLanguage } from '@/types'
 
 /**
- * Class of the client.
- * This is the main body of `Genshin-Manager` where cache information is stored.
- * @extends AssetCacheManager
+ * Class of the client
+ * This is the main body of `Genshin-Manager` where cache information is stored
  */
 export class Client extends AssetCacheManager {
   public readonly option: ClientOption
 
   /**
-   * Create a client.
+   * Create a client
    * @param option Client option
    */
   constructor(option?: Partial<ClientOption>) {
@@ -78,15 +77,29 @@ export class Client extends AssetCacheManager {
       ]
     }
 
-    if (!mergeOption.autoFetchLatestAssetsByCron) {
+    if (!mergeOption.autoFetchLatestAssetsByCron)
       mergeOption.autoFixTextMap = false
-    }
 
-    if (!module.parent) {
-      throw new Error('module.parent is undefined.')
-    }
+    if (!module.parent) throw new Error('module.parent is undefined.')
+
     super(mergeOption, module.parent.children)
     this.option = mergeOption
+  }
+
+  /**
+   * Change cached languages
+   * @param language Country code
+   * @example
+   * ```ts
+   * const client = new Client()
+   * await client.deploy()
+   * await Client.changeLanguage('JP')
+   * ```
+   */
+  public static async changeLanguage(
+    language: keyof typeof TextMapLanguage,
+  ): Promise<void> {
+    await Client.setTextMapToCache(language)
   }
 
   /**
@@ -97,7 +110,7 @@ export class Client extends AssetCacheManager {
    * await client.deploy()
    * ```
    */
-  public async deploy() {
+  public async deploy(): Promise<void> {
     await Client.updateCache()
     if (this.option.autoFetchLatestAssetsByCron) {
       cron.schedule(this.option.autoFetchLatestAssetsByCron, () => {
@@ -105,19 +118,5 @@ export class Client extends AssetCacheManager {
       })
     }
     ImageAssets.deploy(this.option)
-  }
-
-  /**
-   * Change cached languages.
-   * @param language Country code
-   * @example
-   * ```ts
-   * const client = new Client()
-   * await client.deploy()
-   * await Client.changeLanguage('JP')
-   * ```
-   */
-  public static async changeLanguage(language: keyof typeof TextMapLanguage) {
-    await Client.setTextMapToCache(language)
   }
 }

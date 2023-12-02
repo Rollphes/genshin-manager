@@ -3,53 +3,53 @@ import { Material } from '@/models/Material'
 import { ProfilePicture } from '@/models/ProfilePicture'
 import { APIPlayerInfo } from '@/types/EnkaTypes'
 /**
- * Class of player obtained from EnkaNetwork.
+ * Class of player obtained from EnkaNetwork
  */
 export class PlayerInfo {
   /**
-   * Nickname of the player.
+   * Player Nickname
    */
-  readonly nickname: string
+  public readonly nickname: string
   /**
-   * Adventure Rank of the player.
+   * Player Adventure Rank
    */
-  readonly level: number
+  public readonly level: number
   /**
-   * Signature of the player.
+   * Player signature
    */
-  readonly signature: string
+  public readonly signature: string
   /**
-   * World Level of the player.
+   * Player World Level
    */
-  readonly worldLevel: number
+  public readonly worldLevel: number
   /**
-   * Name card of the player.
+   * Profile Namecard ID
    */
-  readonly nameCard: Material
+  public readonly nameCard: Material
   /**
-   * Number of achievements that the player has finished.
+   * Number of Completed Achievements
    */
-  readonly finishAchievementNum: number
+  public readonly finishAchievementNum: number
   /**
-   * Floor index of the Spiral Abyss.
+   * Abyss Floor
    */
-  readonly towerFloorIndex: number
+  public readonly towerFloorIndex: number
   /**
-   * Level index of the Spiral Abyss.
+   * Abyss Floor's Chamber
    */
-  readonly towerLevelIndex: number
+  public readonly towerLevelIndex: number
   /**
-   * List of avatars that the player has.
+   * List of Character Costume and Level
    */
-  readonly showAvatarInfoList: ShowAvatarInfo[]
+  public readonly showAvatarInfoList: ShowAvatarInfo[]
   /**
-   * List of name cards that the player has.
+   * List of Namecard
    */
-  readonly showNameCardList: Material[]
+  public readonly showNameCardList: Material[]
   /**
-   * Profile picture of the player.
+   * Player Profile Picture
    */
-  readonly profilePicture: ProfilePicture
+  public readonly profilePicture: ProfilePicture
 
   /**
    * Create a PlayerInfo

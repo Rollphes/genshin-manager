@@ -2,38 +2,38 @@ import { Client } from '@/client/Client'
 import { Monster } from '@/models/Monster'
 
 /**
- * Class of Spiral Abyss Room.
+ * Class of Spiral Abyss Room
  */
 export class TowerLevel {
   /**
-   * ID of the level
+   * Spiral Abyss Level ID
    */
   public readonly id: number
   /**
-   * Group ID of the level
+   * Group ID
    */
   public readonly groupId: number
   /**
-   * Index of the level
+   * Spiral Abyss Level Index
    */
   public readonly index: number
   /**
-   * Monster level of the level
+   * Monster level
    */
   public readonly monsterLevel: number
   /**
-   * First monster list of the level
+   * First monster list this level
    */
   public readonly firstMonsterList: Monster[]
   /**
-   * Second monster list of the level
+   * Second monster list this level
    */
   public readonly secondMonsterList: Monster[]
 
   /**
    * Create a TowerLevel
-   * @param levelId ID of the level
-   * @param floorIndex Index of the floor
+   * @param levelId Spiral Abyss Level ID
+   * @param floorIndex Spiral Abyss Floor index
    */
   constructor(levelId: number, floorIndex: number) {
     this.id = levelId
@@ -47,15 +47,10 @@ export class TowerLevel {
     this.monsterLevel = (towerLevelJson.monsterLevel as number) + 1
 
     let playerCount = 1
-    if (floorIndex <= 2) {
-      playerCount = 1
-    } else if (floorIndex <= 7) {
-      playerCount = 2
-    } else if (floorIndex <= 11) {
-      playerCount = 3
-    } else if (floorIndex === 12) {
-      playerCount = 4
-    }
+    if (floorIndex <= 2) playerCount = 1
+    else if (floorIndex <= 7) playerCount = 2
+    else if (floorIndex <= 11) playerCount = 3
+    else if (floorIndex === 12) playerCount = 4
 
     this.firstMonsterList = (towerLevelJson.firstMonsterList as number[]).map(
       (monsterDescribeId) =>
@@ -76,10 +71,10 @@ export class TowerLevel {
   }
 
   /**
-   * Get all tower level ids
-   * @returns All tower level ids
+   * Get all tower level IDs
+   * @returns All tower level IDs
    */
-  public static getAllTowerLevelIds() {
+  public static getAllTowerLevelIds(): number[] {
     const towerLevelDatas = Object.values(
       Client._getCachedExcelBinOutputByName('TowerLevelExcelConfigData'),
     )
@@ -87,7 +82,7 @@ export class TowerLevel {
   }
 
   /**
-   * Find tower level id by group id and index
+   * Find tower level ID by group ID and index
    * @param groupId LevelGroupId
    * @param index LevelIndex
    * @returns levelId
@@ -95,7 +90,7 @@ export class TowerLevel {
   public static findTowerLevelIdByGroupIdAndIndex(
     groupId: number,
     index: number,
-  ) {
+  ): number | undefined {
     const towerLevelDatas = Object.values(
       Client._getCachedExcelBinOutputByName('TowerLevelExcelConfigData'),
     )

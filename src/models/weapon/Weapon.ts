@@ -7,7 +7,7 @@ import { calculatePromoteLevel } from '@/utils/calculatePromoteLevel'
 import { JsonObject } from '@/utils/JsonParser'
 
 /**
- * Class of weapon.
+ * Class of weapon
  */
 export class Weapon {
   /**
@@ -31,7 +31,7 @@ export class Weapon {
    */
   public readonly skillDescription: string | undefined
   /**
-   * Weapon id
+   * Weapon ID
    */
   public readonly id: number
   /**
@@ -69,7 +69,7 @@ export class Weapon {
 
   /**
    * Create a Weapon
-   * @param weaponId Weapon id
+   * @param weaponId Weapon ID
    * @param level Weapon level (1-90). Default: 1
    * @param isAscended Weapon is ascended. Default: true
    * @param refinementRank Weapon refinement rank (1-5). Default: 1
@@ -134,27 +134,8 @@ export class Weapon {
   }
 
   /**
-   * Get stat value by json
-   * @param weaponPropJson Weapon property json
-   * @param addValue Add value
-   * @returns Stat value
-   */
-  private getStatPropertyByJson(
-    weaponPropJson: JsonObject,
-    addValue: number = 0,
-  ) {
-    const curveValue = Client._getJsonFromCachedExcelBinOutput(
-      'WeaponCurveExcelConfigData',
-      weaponPropJson.type as string,
-    )[this.level] as number
-    const statValue =
-      (weaponPropJson.initValue as number) * curveValue + addValue
-    return new StatProperty(weaponPropJson.propType as FightPropType, statValue)
-  }
-
-  /**
-   * Get all weapon ids
-   * @returns All weapon ids
+   * Get all weapon IDs
+   * @returns All weapon IDs
    */
   public static getAllWeaponIds(): number[] {
     const weaponDatas = Object.values(
@@ -164,9 +145,9 @@ export class Weapon {
   }
 
   /**
-   * Get weapon id by name
+   * Get weapon ID by name
    * @param name weapon name
-   * @returns Weapon id
+   * @returns Weapon ID
    */
   public static getWeaponIdByName(name: string): number[] {
     const hashes = Client._searchHashInCachedTextMapByValue(name)
@@ -175,8 +156,30 @@ export class Weapon {
       hashes,
     ).map((k) => +k)
   }
+
+  /**
+   * Get stat value by json
+   * @param weaponPropJson Weapon property json
+   * @param addValue Add value
+   * @returns Stat value
+   */
+  private getStatPropertyByJson(
+    weaponPropJson: JsonObject,
+    addValue: number = 0,
+  ): StatProperty {
+    const curveValue = Client._getJsonFromCachedExcelBinOutput(
+      'WeaponCurveExcelConfigData',
+      weaponPropJson.type as string,
+    )[this.level] as number
+    const statValue =
+      (weaponPropJson.initValue as number) * curveValue + addValue
+    return new StatProperty(weaponPropJson.propType as FightPropType, statValue)
+  }
 }
 
+/**
+ * Weapon type
+ */
 export type WeaponType =
   | 'WEAPON_BOW'
   | 'WEAPON_CATALYST'

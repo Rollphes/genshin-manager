@@ -1,5 +1,8 @@
 import { Region, ValueOf } from '@/types'
 
+/**
+ * URL params for getAnn
+ */
 export interface UrlParams {
   /**
    * Game ID
@@ -63,9 +66,21 @@ export interface UrlParams {
   uid: string
 }
 
+/**
+ * GetAnnContent response
+ */
 export interface APIGetAnnContent {
+  /**
+   * return code
+   */
   retcode: number
+  /**
+   * message
+   */
   message: string
+  /**
+   * content data
+   */
   data: ContentData
 }
 
@@ -76,18 +91,51 @@ interface ContentData {
   pic_total: number
 }
 
+/**
+ * Data of ContentData
+ */
 export interface ContentList {
+  /**
+   * Ann ID
+   */
   ann_id: number
+  /**
+   * Ann title
+   */
   title: string
+  /**
+   * Ann subtitle
+   */
   subtitle: string
+  /**
+   * Ann banner URL
+   */
   banner: string
+  /**
+   * Ann content
+   */
   content: string
+  /**
+   * Ann language
+   */
   lang: ValueOf<typeof NoticeLanguage>
 }
 
+/**
+ * GetAnnList response
+ */
 export interface APIGetAnnList {
+  /**
+   * return code
+   */
   retcode: number
+  /**
+   * message
+   */
   message: string
+  /**
+   * list data
+   */
   data: ListData
 }
 
@@ -113,29 +161,102 @@ interface TabList {
   type_label: string
 }
 
+/**
+ * Data of TabList
+ */
 export interface DataList {
+  /**
+   * Ann ID
+   */
   ann_id: number
+  /**
+   * Ann title
+   */
   title: string
+  /**
+   * Ann subtitle
+   */
   subtitle: string
-  banner: string //Image URL
-  content: string //none
-  type_label: string //from type_list.mi18n_name
-  tag_label: string // 1:! 2:flag 3:star
-  tag_icon: string //Image URL
-  login_alert: number //unknown 1 only?
-  lang: ValueOf<typeof NoticeLanguage> //language
-  start_time: string // banner start time(Always fluctuating)
-  end_time: string // banner end time(Always fluctuating)
-  type: number //from type_list.id
-  remind: number //unknown. 0 only?
-  alert: number //unknown. 0 only?
-  tag_start_time: string //unknown.
-  tag_end_time: string //unknown.
-  remind_ver: number //fix version?
-  has_content: boolean //unknown. true only?
-  extra_remind: number //unknown.
+  /**
+   * Ann banner URL
+   */
+  banner: string
+  /**
+   * Ann content
+   * @remark none
+   */
+  content: string
+  /**
+   * Ann type label (type_list.mi18n_name)
+   */
+  type_label: string
+  /**
+   * Ann Tab label (1:! 2:flag 3:star)
+   */
+  tag_label: string
+  /**
+   * Ann Tab icon URL
+   */
+  tag_icon: string
+  /**
+   * Ann login alert (1:yes 0:no)
+   * @remark unknown. 1 only?
+   */
+  login_alert: number
+  /**
+   * Ann language
+   */
+  lang: ValueOf<typeof NoticeLanguage>
+  /**
+   * Ann start time (Always fluctuating)
+   */
+  start_time: string
+  /**
+   * Ann end time (Always fluctuating)
+   */
+  end_time: string
+  /**
+   * Ann type (type_list.id)
+   */
+  type: number
+  /**
+   * Ann remind (1:yes 0:no)
+   * @remark unknown. 0 only?
+   */
+  remind: number
+  /**
+   * Ann alert (1:yes 0:no)
+   * @remark unknown. 0 only?
+   */
+  alert: number
+  /**
+   * Ann Tab start time(unknown)
+   */
+  tag_start_time: string
+  /**
+   * Ann Tab end time(unknown)
+   */
+  tag_end_time: string
+  /**
+   * Ann remind version
+   * @remark fix version?
+   */
+  remind_ver: number
+  /**
+   * Ann has content
+   * @remark unknown. true only?
+   */
+  has_content: boolean
+  /**
+   * Ann extra remind
+   * @remark unknown
+   */
+  extra_remind: number
 }
 
+/**
+ * language code map for getAnn
+ */
 export const NoticeLanguage = {
   en: 'en-us',
   ru: 'ru-ru',

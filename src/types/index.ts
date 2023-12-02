@@ -1,17 +1,11 @@
+/**
+ * Type of value of object
+ */
 export type ValueOf<T> = T[keyof T]
 
-export interface GitLabAPIResponse {
-  id: string
-  short_id: string
-  created_at: string
-  parent_ids: string[]
-  title: string
-  message: string
-  authored_date: string
-  committed_date: string
-  web_url: string
-}
-
+/**
+ * Client option
+ */
 export interface ClientOption {
   /**
    * Fetch option
@@ -69,16 +63,16 @@ export interface ClientOption {
    */
   showFetchCacheLog: boolean
   /**
-   * auto fetch latest assets by cron.
-   * If this option is `undefined`, update assets will not be executed.
-   * Be sure to set `undefined` when using patch-updated Assets.
+   * auto fetch latest assets by cron
+   * If this option is `undefined`, update assets will not be executed
+   * Be sure to set `undefined` when using patch-updated Assets
    * @default '0 0 0 * * 3' //every Wednesday at 00:00:00
    * @see https://crontab.guru/
    */
   autoFetchLatestAssetsByCron: string | undefined
   /**
-   * Automatically re-download the textMap if it has not been downloaded or if there is an error in the json format.
-   * If `autoFetchLatestAssetsByCron` is `undefined`, this option will be ignored.
+   * Automatically re-download the textMap if it has not been downloaded or if there is an error in the json format
+   * If `autoFetchLatestAssetsByCron` is `undefined`, this option will be ignored
    * @default true
    */
   autoFixTextMap: boolean
@@ -88,12 +82,15 @@ export interface ClientOption {
    */
   autoCacheImage: boolean
   /**
-   * asset cache folder path.
+   * asset cache folder path
    * @default node_modules/genshin-manager/cache
    */
   assetCacheFolderPath: string
 }
 
+/**
+ * Element Map for ExcelBinOut to Element
+ */
 export const ElementKeys = {
   Physical: 'Phys',
   Fire: 'Pyro',
@@ -104,11 +101,15 @@ export const ElementKeys = {
   Rock: 'Geo',
   Grass: 'Dendro',
 } as const
+
 /**
  * Element type
  */
 export type Element = ValueOf<typeof ElementKeys>
 
+/**
+ * Time difference per region (hour)
+ */
 export const TimeZonesPerRegion = {
   cn_gf01: +8,
   cn_qd01: +8,
@@ -117,6 +118,7 @@ export const TimeZonesPerRegion = {
   os_asia: +8,
   os_cht: +8,
 } as const
+
 /**
  * Region type
  */

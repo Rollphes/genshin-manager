@@ -4,9 +4,9 @@
 	<p>
 		<a href="https://www.npmjs.com/package/genshin-manager"><img src="https://img.shields.io/npm/v/genshin-manager.svg?maxAge=3600" alt="npm version" /></a>
 		<a href="https://www.npmjs.com/package/genshin-manager"><img src="https://img.shields.io/npm/dt/genshin-manager.svg?maxAge=3600" alt="npm downloads" /></a>
-		<a href="https://github.com/Rollphes/GenshinManager/actions/workflows/github-code-scanning/codeql"><img src="https://github.com/Rollphes/GenshinManager/actions/workflows/github-code-scanning/codeql/badge.svg"/></a>
-        <a href="https://github.com/Rollphes/GenshinManager/actions/workflows/eslint.yaml"><img src="https://github.com/Rollphes/GenshinManager/actions/workflows/eslint.yaml/badge.svg"/></a>
-    	<a href="https://github.com/Rollphes/GenshinManager/blob/main/LICENCE"><img src="https://img.shields.io/badge/License-MIT-yellow.svg"/></a>
+		<a href="https://github.com/Rollphes/genshin-manager/actions/workflows/github-code-scanning/codeql"><img src="https://github.com/Rollphes/genshin-manager/actions/workflows/github-code-scanning/codeql/badge.svg"/></a>
+        <a href="https://github.com/Rollphes/genshin-manager/actions/workflows/eslint.yaml"><img src="https://github.com/Rollphes/genshin-manager/actions/workflows/eslint.yaml/badge.svg"/></a>
+    	<a href="https://github.com/Rollphes/genshin-manager/blob/main/LICENCE"><img src="https://img.shields.io/badge/License-MIT-yellow.svg"/></a>
 	</p>
 </div>
 
@@ -119,7 +119,7 @@ await client.deploy()
 
 ## Fetching Enka Data
 
-[EnkaManager#fetch](https://rollphes.github.io/GenshinManager/classes/EnkaManager.html#fetch)
+[EnkaManager#fetch](https://rollphes.github.io/genshin-manager/classes/EnkaManager.html#fetch)
 
 ```js
 const { Client, EnkaManager } = require('genshin-manager')
@@ -139,7 +139,7 @@ console.log(enkaData.nextShowCaseDate)
 
 ## Genshin Character from characterId
 
-[Character](https://rollphes.github.io/GenshinManager/classes/Character.html)
+[Character](https://rollphes.github.io/genshin-manager/classes/Character.html)
 
 ```js
 const { Client, Character } = require('genshin-manager')
@@ -155,7 +155,7 @@ console.log(character.name) // output: 神里綾華
 
 ## Genshin Weapon from characterId
 
-[Weapon](https://rollphes.github.io/GenshinManager/classes/Weapon.html)
+[Weapon](https://rollphes.github.io/genshin-manager/classes/Weapon.html)
 
 ```js
 const { Client, Weapon } = require('genshin-manager')
@@ -171,6 +171,6 @@ console.log(weapon.name) // output: 護摩の杖
 
 examples will be added in the future.
 
-For more information, please check [Documentation](https://rollphes.github.io/GenshinManager/index.html).
+For more information, please check [Documentation](https://rollphes.github.io/genshin-manager/index.html).
 
-You can see the changelog [here](https://github.com/Rollphes/GenshinManager/releases).
+You can see the changelog [here](https://github.com/Rollphes/genshin-manager/releases).

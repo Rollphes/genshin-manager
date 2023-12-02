@@ -2,15 +2,15 @@ import { Client } from '@/client/Client'
 import { ImageAssets } from '@/models/assets/ImageAssets'
 
 /**
- * Class of character's costume.
+ * Class of character's costume
  */
 export class Costume {
   /**
-   * Costume id
+   * Costume ID
    */
   public readonly id: number
   /**
-   * Character id
+   * Character ID
    */
   public readonly characterId: number
   /**
@@ -40,7 +40,7 @@ export class Costume {
 
   /**
    * Create a Costume
-   * @param costumeId Costume id
+   * @param costumeId Costume ID
    */
   constructor(costumeId: number) {
     this.id = costumeId
@@ -75,8 +75,8 @@ export class Costume {
   }
 
   /**
-   * Get all costume ids
-   * @returns All costume ids
+   * Get all costume IDs
+   * @returns All costume IDs
    */
   public static getAllCostumeIds(): number[] {
     const costumeDatas = Object.values(

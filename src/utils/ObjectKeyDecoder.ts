@@ -7,6 +7,9 @@ import {
   JsonValue,
 } from '@/utils/JsonParser'
 
+/**
+ * Class of replace data
+ */
 class ReplaceData {
   constructor(
     public oldKey: string,
@@ -15,15 +18,15 @@ class ReplaceData {
 }
 
 /**
- * Class of object key decoder.
+ * Class of object key decoder
  */
 export class ObjectKeyDecoder {
   /**
-   * List of object key replace data.
+   * List of object key replace data
    */
   private readonly replaceDatas: ReplaceData[] = []
   /**
-   * List of character IDs that are not included in the character list.
+   * List of character IDs that are not included in the character list
    */
   private readonly characterBlackIdList: number[] = [
     10000001, 11000008, 11000009, 11000010, 11000011, 11000013, 11000017,
@@ -69,29 +72,49 @@ export class ObjectKeyDecoder {
   }
 
   /**
-   * Decode object key.
+   * Execute JsonParser key decoder
    * @param jsonData JsonParser
+   * @param filename ExcelBinOutput Filename
+   * @returns Objects to cache
    */
-  private decode(jsonData: JsonParser) {
+  public execute(
+    jsonData: JsonParser,
+    filename: keyof typeof ExcelBinOutputs,
+  ): { [key in string]: JsonValue } {
+    this.decode(jsonData)
+    return this.setKey(jsonData, filename)
+  }
+
+  /**
+   * Decode JsonParser key
+   * @param jsonData JsonParser
+   * @returns Decoded JsonParser
+   */
+  private decode(jsonData: JsonParser): JsonParser {
     const jsonArray = jsonData.get() as JsonArray
     jsonArray.forEach((v) => {
       const obj = v as JsonObject
       this.replaceDatas.forEach((replaceData) => {
-        if (obj[replaceData.oldKey] !== undefined) {
+        if (obj[replaceData.oldKey] !== undefined)
           obj[replaceData.newKey] = obj[replaceData.oldKey]
-        }
       })
     })
+    return jsonData
   }
+
   /**
-   * Set object key.
+   * Set key to store in cache
    * @param jsonData JsonParser
-   * @param filename Filename
-   * @returns Object
+   * @param filename ExcelBinOutput Filename
+   * @returns Objects to cache
    */
-  private setKey(jsonData: JsonParser, filename: keyof typeof ExcelBinOutputs) {
+  private setKey(
+    jsonData: JsonParser,
+    filename: keyof typeof ExcelBinOutputs,
+  ): { [key in string]: JsonValue } {
     const jsonArray = jsonData.get() as JsonArray
     const cacheObject: { [key in string]: JsonValue } = {}
+    // eslint-disable-next-line complexity
     jsonArray.forEach((json) => {
       const obj = json as JsonObject
       switch (filename) {
@@ -215,16 +238,5 @@ export class ObjectKeyDecoder {
       }
     })
     return cacheObject
-  }
-
-  /**
-   * Execute object key decoder.
-   * @param jsonData JsonParser
-   * @param filename Filename
-   * @returns Decoded object
-   */
-  public execute(jsonData: JsonParser, filename: keyof typeof ExcelBinOutputs) {
-    this.decode(jsonData)
-    return this.setKey(jsonData, filename)
   }
 }

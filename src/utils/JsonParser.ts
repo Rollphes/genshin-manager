@@ -1,3 +1,6 @@
+/**
+ * Type of Json value
+ */
 export type JsonValue =
   | string
   | number
@@ -5,11 +8,19 @@ export type JsonValue =
   | null
   | JsonObject
   | JsonArray
+
+/**
+ * Type of Json object
+ */
 export type JsonObject = { [key: string]: JsonValue }
+
+/**
+ * Type of Json array
+ */
 export type JsonArray = JsonValue[]
 
 /**
- * Class of json parser.
+ * Class of json parser
  */
 export class JsonParser {
   private json: JsonObject | JsonArray
@@ -34,13 +45,10 @@ export class JsonParser {
 
     let value: JsonValue = this.json
     for (const property of properties) {
-      if (Array.isArray(value)) {
-        value = value[+property]
-      } else if (typeof value === 'object' && value != null) {
+      if (Array.isArray(value)) value = value[+property]
+      else if (typeof value === 'object' && value != null)
         value = value[property]
-      } else {
-        return undefined
-      }
+      else return undefined
     }
     return value
   }

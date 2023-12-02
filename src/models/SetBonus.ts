@@ -6,12 +6,6 @@ import { Artifact } from '@/models/Artifact'
  */
 export class SetBonus {
   /**
-   * IDs of set bonuses that can be activated with one artifact.
-   */
-  private readonly oneSetBonusIds: number[] = [
-    15009, 15010, 15011, 15012, 15013,
-  ]
-  /**
    * Set bonus that can be triggered by a single artifact
    */
   public readonly oneSetBonus: Artifact[]
@@ -23,10 +17,16 @@ export class SetBonus {
    * Set bonus that can be triggered by four artifacts
    */
   public readonly fourSetBonus: Artifact[]
+  /**
+   * IDs of set bonuses that can be activated with one artifact
+   */
+  private readonly oneSetBonusIds: number[] = [
+    15009, 15010, 15011, 15012, 15013,
+  ]
 
   /**
    * Create a SetBonus
-   * @param artifacts Artifacts equipped by the character.
+   * @param artifacts Artifacts equipped by the character
    */
   constructor(artifacts: Artifact[]) {
     const countIds: { [setId: string]: number } = {}
@@ -50,15 +50,11 @@ export class SetBonus {
 
     Object.keys(countIds).forEach((setId) => {
       const count = countIds[setId]
-      if (this.oneSetBonusIds.includes(+setId)) {
-        countIds[setId] = 1
-      } else if (count >= 4) {
-        countIds[setId] = 4
-      } else if (count >= 2) {
-        countIds[setId] = 2
-      } else {
-        delete countIds[setId]
-      }
+      if (this.oneSetBonusIds.includes(+setId)) countIds[setId] = 1
+      else if (count >= 4) countIds[setId] = 4
+      else if (count >= 2) countIds[setId] = 2
+      else delete countIds[setId]
+
       activeSetIds.push(setId)
     })
 

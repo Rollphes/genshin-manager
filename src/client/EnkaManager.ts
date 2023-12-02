@@ -6,10 +6,25 @@ import { AvatarInfo } from '@/models/enka/AvatarInfo'
 import { PlayerInfo } from '@/models/enka/PlayerInfo'
 import { APIEnkaData } from '@/types/EnkaTypes'
 
+/**
+ * cached EnkaData type
+ */
 export interface EnkaData {
+  /**
+   * uid
+   */
   uid: number
+  /**
+   * playerInfo
+   */
   playerInfo: PlayerInfo
+  /**
+   * avatarInfoList
+   */
   avatarInfoList: AvatarInfo[]
+  /**
+   * nextShowCaseDate
+   */
   nextShowCaseDate: Date
 }
 
@@ -26,6 +41,8 @@ export class EnkaManager {
 
   /**
    * Cache of EnkaData
+   * @key uid
+   * @value cached EnkaData
    */
   private readonly cache: Map<number, EnkaData> = new Map()
 
@@ -38,7 +55,7 @@ export class EnkaManager {
    * Fetch EnkaData from enka.network
    * @param uid genshin uid
    * @param fetchOption fetch option (default: { headers: { 'user-agent': 'Mozilla/5.0' } })
-   * @returns
+   * @returns cached EnkaData
    * @example
    * ```ts
    * const client = new Client()
@@ -47,7 +64,10 @@ export class EnkaManager {
    * const enkaData = await enka.fetch(123456789)
    * ```
    */
-  async fetch(uid: number, fetchOption?: RequestInit) {
+  public async fetch(
+    uid: number,
+    fetchOption?: RequestInit,
+  ): Promise<EnkaData> {
     this.clearCacheOverNextShowCaseDate()
     if (uid < 100000000 || uid > 999999999)
       throw new EnkaManagerError(`The UID format is not correct(${uid})`)
@@ -57,10 +77,11 @@ export class EnkaManager {
       previousData &&
       previousData.avatarInfoList &&
       new Date().getTime() < previousData.nextShowCaseDate.getTime()
-    )
+    ) {
       return new Promise<EnkaData>((resolve) => {
         resolve(previousData)
       })
+    }
     const mergedFetchOption = fetchOption
       ? merge.withOptions(
           { mergeArrays: false },
@@ -69,9 +90,8 @@ export class EnkaManager {
         )
       : this.defaultOption
     const res = await fetch(url, mergedFetchOption)
-    if (!res.ok) {
-      throw new EnkaNetworkError(res)
-    }
+    if (!res.ok) throw new EnkaNetworkError(res)
+
     const result = (await res.json()) as APIEnkaData
     const enkaData: EnkaData = {
       uid: uid,
@@ -91,11 +111,10 @@ export class EnkaManager {
   /**
    * Clear cache over nextShowCaseDate
    */
-  public clearCacheOverNextShowCaseDate() {
+  public clearCacheOverNextShowCaseDate(): void {
     this.cache.forEach((value, key) => {
-      if (new Date().getTime() > value.nextShowCaseDate.getTime()) {
+      if (new Date().getTime() > value.nextShowCaseDate.getTime())
         this.cache.delete(key)
-      }
     })
   }
 }

@@ -1,6 +1,14 @@
 import { Client } from '@/client/Client'
 import { ImageAssets } from '@/models/assets/ImageAssets'
+
+/**
+ * Item type
+ */
 export type ItemType = 'ITEM_VIRTUAL' | 'ITEM_MATERIAL'
+
+/**
+ * Material type
+ */
 export type MaterialType =
   | 'MATERIAL_ACTIVITY_GEAR'
   | 'MATERIAL_ACTIVITY_JIGSAW'
@@ -49,11 +57,11 @@ export type MaterialType =
   | 'MATERIAL_WOOD'
 
 /**
- * Class of material.
+ * Class of material
  */
 export class Material {
   /**
-   * Material id
+   * Material ID
    */
   public readonly id: number
   /**
@@ -83,7 +91,7 @@ export class Material {
 
   /**
    * Create a Material
-   * @param id Material id
+   * @param materialId Material ID
    */
   constructor(materialId: number) {
     this.id = materialId
@@ -104,8 +112,8 @@ export class Material {
   }
 
   /**
-   * Get all material ids
-   * @returns All material ids
+   * Get all material IDs
+   * @returns All material IDs
    */
   public static getAllMaterialIds(): number[] {
     const materialDatas = Object.values(
@@ -115,9 +123,9 @@ export class Material {
   }
 
   /**
-   * Get material id by name
+   * Get material ID by name
    * @param name Material name
-   * @returns Material id
+   * @returns Material ID
    */
   public static getMaterialIdByName(name: string): number[] {
     const hashes = Client._searchHashInCachedTextMapByValue(name)

@@ -10,7 +10,7 @@ import {
   UrlParams,
 } from '@/types/GetAnnTypes'
 /**
- * Class that manages notices.
+ * Class that manages notices
  */
 export class NoticeManager {
   /**
@@ -32,6 +32,13 @@ export class NoticeManager {
    * Language of notices
    */
   public language: keyof typeof NoticeLanguage
+  /**
+   * Notices
+   * @key Notice ID
+   * @value Notice
+   */
+  public notices = new Map<number, Notice>()
+
   /**
    * getAnnContent url
    */
@@ -59,19 +66,12 @@ export class NoticeManager {
     sdk_screen_transparent: 'true',
     uid: '888888888',
   }
-  /**
-   * Notices
-   * @key Notice id
-   * @value Notice
-   * @example
-   */
-  public notices = new Map<number, Notice>()
 
   /**
    * Create a NoticeManager
-   * @param language
-   * @param fetchOption
-   * @param urlParams
+   * @param language Language of notices
+   * @param fetchOption Fetch option
+   * @param urlParams Url params
    */
   constructor(
     language: keyof typeof NoticeLanguage,
@@ -90,46 +90,9 @@ export class NoticeManager {
   }
 
   /**
-   * Get AnnContent
-   * @param lang
-   * @returns
-   */
-  private async getAnnContent(lang?: keyof typeof NoticeLanguage) {
-    return (await this._getAnn(this.getContentUrl, lang)) as APIGetAnnContent
-  }
-
-  /**
-   * Get AnnList
-   * @returns
-   */
-  private async getAnnList() {
-    return (await this._getAnn(this.getListUrl)) as APIGetAnnList
-  }
-
-  /**
-   * Get Ann
-   * @param urlText
-   * @param lang
-   * @returns
-   */
-  private async _getAnn(urlText: string, lang?: keyof typeof NoticeLanguage) {
-    const url = new URL(urlText)
-    Object.keys(this.urlParams).forEach((key) => {
-      if (key === 'lang') {
-        url.searchParams.append(key, lang ?? this.language)
-      } else {
-        url.searchParams.append(key, this.urlParams[key as keyof UrlParams])
-      }
-    })
-    const res = await fetch(url.toString())
-    if (!res.ok) throw new AnnError(res)
-    return (await res.json()) as APIGetAnnContent | APIGetAnnList
-  }
-
-  /**
    * Update notices
    */
-  public async update() {
+  public async update(): Promise<void> {
     const annContent = await this.getAnnContent()
     const annEnContent = await this.getAnnContent('en')
     const annList = await this.getAnnList()
@@ -150,5 +113,44 @@ export class NoticeManager {
         )
       })
     })
+  }
+
+  /**
+   * Get AnnContent
+   * @param lang Language of notices
+   * @returns AnnContent
+   */
+  private async getAnnContent(
+    lang?: keyof typeof NoticeLanguage,
+  ): Promise<APIGetAnnContent> {
+    return (await this._getAnn(this.getContentUrl, lang)) as APIGetAnnContent
+  }
+
+  /**
+   * Get AnnList
+   * @returns AnnList
+   */
+  private async getAnnList(): Promise<APIGetAnnList> {
+    return (await this._getAnn(this.getListUrl)) as APIGetAnnList
+  }
+
+  /**
+   * Get Ann
+   * @param urlText Url
+   * @param lang Language of notices
+   * @returns Ann
+   */
+  private async _getAnn(
+    urlText: string,
+    lang?: keyof typeof NoticeLanguage,
+  ): Promise<APIGetAnnContent | APIGetAnnList> {
+    const url = new URL(urlText)
+    Object.keys(this.urlParams).forEach((key) => {
+      if (key === 'lang') url.searchParams.append(key, lang ?? this.language)
+      else url.searchParams.append(key, this.urlParams[key as keyof UrlParams])
+    })
+    const res = await fetch(url.toString())
+    if (!res.ok) throw new AnnError(res)
+    return (await res.json()) as APIGetAnnContent | APIGetAnnList
   }
 }

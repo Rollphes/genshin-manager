@@ -2,11 +2,11 @@ import { Client } from '@/client/Client'
 import { ImageAssets } from '@/models/assets/ImageAssets'
 
 /**
- * Class of character's skill.
+ * Class of character's skill
  */
 export class Skill {
   /**
-   * Skill id
+   * Skill ID
    */
   public readonly id: number
   /**
@@ -32,7 +32,7 @@ export class Skill {
 
   /**
    * Create a Skill
-   * @param skillId Skill id
+   * @param skillId Skill ID
    * @param level Skill level
    * @param extraLevel Levels increased by talent
    */
@@ -51,8 +51,8 @@ export class Skill {
     this.level = level + this.extraLevel
   }
   /**
-   * Get all skill ids
-   * @returns All skill ids
+   * Get all skill IDs
+   * @returns All skill IDs
    */
   public static getAllSkillIds(): number[] {
     const skillDatas = Object.values(
@@ -62,9 +62,9 @@ export class Skill {
   }
 
   /**
-   * Get skill order by character id
-   * @param characterId Character id
-   * @param skillDepotId Skill depot id
+   * Get skill order by character ID
+   * @param characterId Character ID
+   * @param skillDepotId Skill depot ID
    * @returns Skill order
    */
   public static getSkillOrderByCharacterId(

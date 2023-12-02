@@ -1,7 +1,7 @@
 import { JsonObject } from '@/utils/JsonParser'
 
 /**
- * Calculate promote level.
+ * Calculate promote level
  * @param promotesJson Promotes json
  * @param level Level
  * @param isAscended Is ascended
