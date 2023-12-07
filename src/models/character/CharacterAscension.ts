@@ -56,14 +56,16 @@ export class CharacterAscension {
       'AvatarPromoteExcelConfigData',
       avatarJson.avatarPromoteId as number,
     )[this.promoteLevel] as JsonObject
-    this.costItems = (avatarPromoteJson.costItems as JsonObject[]).map(
-      (costItem) => {
+    this.costItems = (avatarPromoteJson.costItems as JsonObject[])
+      .map((costItem) => {
         return {
           id: costItem.id as number,
           count: costItem.count as number,
         }
-      },
-    )
+      })
+      .filter(
+        (costItem) => costItem.id !== undefined && costItem.count !== undefined,
+      )
     this.costMora = avatarPromoteJson.scoinCost as number
     this.addProps = (avatarPromoteJson.addProps as JsonObject[]).map(
       (addProp) =>
