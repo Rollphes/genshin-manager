@@ -1,9 +1,9 @@
 import { EnkaManagerError } from '@/errors/EnkaManagerError'
 import { Artifact } from '@/models/Artifact'
+import { CharacterCostume } from '@/models/character/CharacterCostume'
 import { CharacterInfo } from '@/models/character/CharacterInfo'
-import { Costume } from '@/models/character/CharacterCostume'
-import { Skill } from '@/models/character/CharacterSkill'
-import { Talent } from '@/models/character/CharacterTalent'
+import { CharacterSkill } from '@/models/character/CharacterSkill'
+import { CharacterTalent } from '@/models/character/CharacterTalent'
 import { FightProp } from '@/models/FightProp'
 import { SetBonus } from '@/models/SetBonus'
 import { Weapon } from '@/models/weapon/Weapon'
@@ -20,7 +20,7 @@ export class AvatarInfo extends CharacterInfo {
   /**
    * Character costume
    */
-  public readonly costume: Costume
+  public readonly costume: CharacterCostume
   /**
    * Character level
    */
@@ -36,11 +36,11 @@ export class AvatarInfo extends CharacterInfo {
   /**
    * Character talent list
    */
-  public readonly talentList: Talent[]
+  public readonly talentList: CharacterTalent[]
   /**
    * Character skill list
    */
-  public readonly skills: Skill[]
+  public readonly skills: CharacterSkill[]
   /**
    * Character fight prop
    */
@@ -68,13 +68,13 @@ export class AvatarInfo extends CharacterInfo {
    */
   constructor(data: APIAvatarInfo) {
     super(data.avatarId, data.skillDepotId)
-    this.costume = new Costume(data.costumeId ?? this.defaultCostumeId)
+    this.costume = new CharacterCostume(data.costumeId ?? this.defaultCostumeId)
     this.level = +(data.propMap[4001].val || 0)
     this.levelXp = +(data.propMap[1001].val || 0)
     this.ascension = +(data.propMap[1002].val || 0)
     this.talentList =
       this.talentIds.map((id) => {
-        return new Talent(id, !data.talentIdList?.includes(id))
+        return new CharacterTalent(id, !data.talentIdList?.includes(id))
       }) || []
 
     this.skills = this.skillOrder.map((id) => {
@@ -83,7 +83,7 @@ export class AvatarInfo extends CharacterInfo {
         proudId && data.proudSkillExtraLevelMap
           ? data.proudSkillExtraLevelMap[proudId]
           : 0
-      return new Skill(id, data.skillLevelMap[id] || 0, extraLevel)
+      return new CharacterSkill(id, data.skillLevelMap[id] || 0, extraLevel)
     })
 
     this.fightProp = new FightProp(data.fightPropMap)
