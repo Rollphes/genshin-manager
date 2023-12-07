@@ -1,7 +1,7 @@
 import { Client } from '@/client/Client'
 import { ImageAssets } from '@/models/assets/ImageAssets'
+import { CharacterCostume } from '@/models/character/CharacterCostume'
 import { CharacterInfo } from '@/models/character/CharacterInfo'
-import { Costume } from '@/models/character/Costume'
 
 /**
  * Type of character's profile picture
@@ -70,7 +70,7 @@ export class ProfilePicture {
       this.costumeId = characterInfo.defaultCostumeId
     } else if (String(infoId) in cachedCostume) {
       this.costumeId = infoId
-      const costume = new Costume(infoId)
+      const costume = new CharacterCostume(infoId)
       this.characterId = costume.characterId
     } else if (String(infoId) in cachedMaterial) {
       this.materialId = infoId

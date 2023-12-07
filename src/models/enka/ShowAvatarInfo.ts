@@ -1,11 +1,11 @@
+import { CharacterCostume } from '@/models/character/CharacterCostume'
 import { CharacterInfo } from '@/models/character/CharacterInfo'
-import { Costume } from '@/models/character/Costume'
 import { APIShowAvatarInfo } from '@/types/EnkaTypes'
 
 /**
  * Class of the character preview obtained from EnkaNetwork
  */
-export class ShowAvatarInfo extends Costume {
+export class ShowAvatarInfo extends CharacterCostume {
   /**
    * Character level
    */

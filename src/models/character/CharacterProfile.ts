@@ -24,7 +24,7 @@ export type AssocType =
 /**
  * Class of character's profile
  */
-export class Profile {
+export class CharacterProfile {
   /**
    * Character ID
    */
@@ -79,7 +79,9 @@ export class Profile {
     this.fetterId = fetterInfoJson.fetterId as number
     const birthMonth = fetterInfoJson.infoBirthMonth as number | undefined
     const birthDay = fetterInfoJson.infoBirthDay as number | undefined
-    this.birthDate = birthMonth ? new Date(0, birthMonth, birthDay) : undefined
+    this.birthDate = birthMonth
+      ? new Date(0, birthMonth - 1, birthDay)
+      : undefined
     this.native =
       Client.cachedTextMap.get(
         String(fetterInfoJson.avatarNativeTextMapHash),

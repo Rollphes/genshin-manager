@@ -4,7 +4,7 @@ import { ImageAssets } from '@/models/assets/ImageAssets'
 /**
  * Class of character's talent
  */
-export class Talent {
+export class CharacterTalent {
   /**
    * Talent ID
    */

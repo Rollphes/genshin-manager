@@ -4,7 +4,7 @@ import { ImageAssets } from '@/models/assets/ImageAssets'
 /**
  * Class of character's costume
  */
-export class Costume {
+export class CharacterCostume {
   /**
    * Costume ID
    */
