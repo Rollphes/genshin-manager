@@ -1,7 +1,7 @@
 import { Client } from '@/client/Client'
 import { ImageAssets } from '@/models/assets/ImageAssets'
 import { CharacterInfo } from '@/models/character/CharacterInfo'
-import { Costume } from '@/models/character/Costume'
+import { Costume } from '@/models/character/CharacterCostume'
 
 /**
  * Type of character's profile picture

@@ -1,5 +1,5 @@
 import { CharacterInfo } from '@/models/character/CharacterInfo'
-import { Costume } from '@/models/character/Costume'
+import { Costume } from '@/models/character/CharacterCostume'
 import { APIShowAvatarInfo } from '@/types/EnkaTypes'
 
 /**
