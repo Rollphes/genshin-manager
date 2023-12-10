@@ -1,9 +1,15 @@
 const { Client } = require('../dist/client/Client.js')
 const { CharacterInfo } = require('../dist/models/character/CharacterInfo.js')
-const { CharacterCostume } = require('../dist/models/character/CharacterCostume.js')
-const { CharacterProfile } = require('../dist/models/character/CharacterProfile.js')
+const {
+  CharacterCostume,
+} = require('../dist/models/character/CharacterCostume.js')
+const {
+  CharacterProfile,
+} = require('../dist/models/character/CharacterProfile.js')
 const { CharacterSkill } = require('../dist/models/character/CharacterSkill.js')
-const { CharacterTalent } = require('../dist/models/character/CharacterTalent.js')
+const {
+  CharacterConstellation,
+} = require('../dist/models/character/CharacterConstellation.js')
 const { Artifact } = require('../dist/models/Artifact.js')
 const { Material } = require('../dist/models/Material.js')
 const { Weapon } = require('../dist/models/weapon/Weapon.js')
@@ -31,10 +37,16 @@ async function main() {
     case 'AllId':
       console.log('Running test of class has AllId method...')
       CharacterInfo.getAllCharacterIds().forEach((id) => new CharacterInfo(id))
-      CharacterCostume.getAllCostumeIds().forEach((id) => new CharacterCostume(id))
-      CharacterProfile.getAllCharacterIds().forEach((id) => new CharacterProfile(id))
+      CharacterCostume.getAllCostumeIds().forEach(
+        (id) => new CharacterCostume(id),
+      )
+      CharacterProfile.getAllCharacterIds().forEach(
+        (id) => new CharacterProfile(id),
+      )
       CharacterSkill.getAllSkillIds().forEach((id) => new CharacterSkill(id))
-      CharacterTalent.getAllTalentIds().forEach((id) => new CharacterTalent(id))
+      CharacterConstellation.getConstellationIdsByCharacterId.forEach(
+        (id) => new CharacterConstellation(id),
+      )
       Artifact.getAllArtifactIds().forEach((id) => new Artifact(id, 10001))
       Material.getAllMaterialIds().forEach((id) => new Material(id))
       Weapon.getAllWeaponIds().forEach((id) => new Weapon(id))

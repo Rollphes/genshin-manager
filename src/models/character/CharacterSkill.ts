@@ -26,7 +26,7 @@ export class CharacterSkill {
    */
   public readonly level: number
   /**
-   * Levels increased by talent
+   * Levels increased by constellation
    */
   public readonly extraLevel: number
 
@@ -34,7 +34,7 @@ export class CharacterSkill {
    * Create a Skill
    * @param skillId Skill ID
    * @param level Skill level
-   * @param extraLevel Levels increased by talent
+   * @param extraLevel Levels increased by constellation
    */
   constructor(skillId: number, level: number = 1, extraLevel: number = 0) {
     this.id = skillId

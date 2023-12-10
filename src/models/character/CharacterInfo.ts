@@ -35,9 +35,9 @@ export class CharacterInfo {
    */
   public readonly subSkills: number[]
   /**
-   * Talent IDs
+   * Constellation IDs
    */
-  public readonly talentIds: number[]
+  public readonly constellationIds: number[]
   /**
    * Map of skill ID and proud ID
    * @key Skill ID
@@ -112,7 +112,7 @@ export class CharacterInfo {
         ? [runSkillId].concat(depotJson.subSkills as number[])
         : (depotJson.subSkills as number[])
 
-    this.talentIds = depotJson.talents as number[]
+    this.constellationIds = depotJson.talents as number[]
 
     this.skillOrder.forEach((skillId) => {
       const skillJson = Client._getJsonFromCachedExcelBinOutput(

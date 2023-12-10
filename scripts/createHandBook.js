@@ -3,7 +3,7 @@ const { Client } = require('../dist/client/Client.js')
 const { CharacterInfo } = require('../dist/models/character/CharacterInfo.js')
 const { CharacterCostume } = require('../dist/models/character/CharacterCostume.js')
 const { CharacterSkill } = require('../dist/models/character/CharacterSkill.js')
-const { CharacterTalent } = require('../dist/models/character/CharacterTalent.js')
+const { CharacterConstellation } = require('../dist/models/character/CharacterConstellation.js')
 const { Artifact } = require('../dist/models/Artifact.js')
 const { Material } = require('../dist/models/Material.js')
 const { Weapon } = require('../dist/models/weapon/Weapon.js')
@@ -58,11 +58,11 @@ async function main() {
         fs.appendFileSync('./handbook.md', `ID:${id} Name:${skill.name}<br>\n`)
       })
 
-      //write talentId
-      fs.appendFileSync('./handbook.md', `## TalentId\n`)
-      CharacterTalent.getAllTalentIds().forEach((id) => {
-        const talent = new CharacterTalent(id)
-        fs.appendFileSync('./handbook.md', `ID:${id} Name:${talent.name}<br>\n`)
+      //write constellationId
+      fs.appendFileSync('./handbook.md', `## ConstellationId\n`)
+      CharacterConstellation.getAllConstellationIds().forEach((id) => {
+        const constellation = new CharacterConstellation(id)
+        fs.appendFileSync('./handbook.md', `ID:${id} Name:${constellation.name}<br>\n`)
       })
 
       //write artifactId

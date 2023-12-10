@@ -1,38 +1,37 @@
 import { Client } from '@/client/Client'
 import { ImageAssets } from '@/models/assets/ImageAssets'
-
 /**
- * Class of character's talent
+ * Class of character's constellation
  */
-export class CharacterTalent {
+export class CharacterConstellation {
   /**
-   * Talent ID
+   * Constellation ID
    */
   public readonly id: number
   /**
-   * Talent name
+   * Constellation name
    */
   public readonly name: string
   /**
-   * Talent description
+   * Constellation description
    */
   public readonly description: string
   /**
-   * Talent icon
+   * Constellation icon
    */
   public readonly icon: ImageAssets
   /**
-   * Whether the talent is locked
+   * Whether the constellation is locked
    */
   public readonly locked: boolean
 
   /**
-   * Create a Talent
-   * @param talentId Talent ID
-   * @param locked Whether the talent is locked
+   * Create a Constellation
+   * @param constellationId Constellation ID
+   * @param locked Whether the constellation is locked
    */
-  constructor(talentId: number, locked: boolean = false) {
-    this.id = talentId
+  constructor(constellationId: number, locked: boolean = false) {
+    this.id = constellationId
     this.locked = locked
     const talentJson = Client._getJsonFromCachedExcelBinOutput(
       'AvatarTalentExcelConfigData',
@@ -45,10 +44,10 @@ export class CharacterTalent {
     this.icon = new ImageAssets(talentJson.icon as string)
   }
   /**
-   * Get all talent IDs
-   * @returns All talent IDs
+   * Get all constellation IDs
+   * @returns All constellation IDs
    */
-  public static getAllTalentIds(): number[] {
+  public static getAllConstellationIds(): number[] {
     const talentDatas = Object.values(
       Client._getCachedExcelBinOutputByName('AvatarTalentExcelConfigData'),
     )
@@ -56,12 +55,12 @@ export class CharacterTalent {
   }
 
   /**
-   * Get talent IDs by character ID
+   * Get constellation IDs by character ID
    * @param characterId Character ID
    * @param skillDepotId Skill depot ID
-   * @returns Talent IDs
+   * @returns Constellation IDs
    */
-  public static getTalentIdsByCharacterId(
+  public static getConstellationIdsByCharacterId(
     characterId: number,
     skillDepotId?: number,
   ): number[] {

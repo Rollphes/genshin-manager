@@ -1,9 +1,9 @@
 import { EnkaManagerError } from '@/errors/EnkaManagerError'
 import { Artifact } from '@/models/Artifact'
+import { CharacterConstellation } from '@/models/character/CharacterConstellation'
 import { CharacterCostume } from '@/models/character/CharacterCostume'
 import { CharacterInfo } from '@/models/character/CharacterInfo'
 import { CharacterSkill } from '@/models/character/CharacterSkill'
-import { CharacterTalent } from '@/models/character/CharacterTalent'
 import { FightProp } from '@/models/FightProp'
 import { SetBonus } from '@/models/SetBonus'
 import { Weapon } from '@/models/weapon/Weapon'
@@ -34,9 +34,9 @@ export class AvatarInfo extends CharacterInfo {
    */
   public readonly ascension: number
   /**
-   * Character talent list
+   * Character constellation list
    */
-  public readonly talentList: CharacterTalent[]
+  public readonly constellationList: CharacterConstellation[]
   /**
    * Character skill list
    */
@@ -72,9 +72,9 @@ export class AvatarInfo extends CharacterInfo {
     this.level = +(data.propMap[4001].val || 0)
     this.levelXp = +(data.propMap[1001].val || 0)
     this.ascension = +(data.propMap[1002].val || 0)
-    this.talentList =
-      this.talentIds.map((id) => {
-        return new CharacterTalent(id, !data.talentIdList?.includes(id))
+    this.constellationList =
+      this.constellationIds.map((id) => {
+        return new CharacterConstellation(id, !data.talentIdList?.includes(id))
       }) || []
 
     this.skills = this.skillOrder.map((id) => {
