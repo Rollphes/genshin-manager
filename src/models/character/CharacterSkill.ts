@@ -59,6 +59,7 @@ export class CharacterSkill {
     if (this.level < 1 || this.level > 15)
       throw new OutOfRangeError('level + extraLevel', this.level, 1, 15)
 
+    if (skillJson.proudSkillGroupId === undefined) return
     const proudSkillGroupId = skillJson.proudSkillGroupId as number
     const proudSkillJson = Client._getJsonFromCachedExcelBinOutput(
       'ProudSkillExcelConfigData',

@@ -44,13 +44,16 @@ export class CharacterInherentSkill {
     this.description =
       Client.cachedTextMap.get(String(proudSkillJson.descTextMapHash)) || ''
     this.icon = new ImageAssets(proudSkillJson.icon as string)
-    this.addProps = (proudSkillJson.addProps as JsonObject[]).map(
-      (addProp) =>
-        new StatProperty(
-          addProp.propType as FightPropType,
-          (addProp.value ?? 0) as number,
-        ),
-    )
+    this.addProps = (proudSkillJson.addProps as JsonObject[])
+      .map((addProp) =>
+        addProp.propType !== undefined && addProp.value !== undefined
+          ? new StatProperty(
+              addProp.propType as FightPropType,
+              (addProp.value ?? 0) as number,
+            )
+          : undefined,
+      )
+      .filter((k): k is StatProperty => k !== undefined)
   }
 
   /**
