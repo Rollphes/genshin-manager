@@ -39,7 +39,6 @@ import { Weapon, WeaponType } from '@/models/weapon/Weapon'
 import { WeaponAscension } from '@/models/weapon/WeaponAscension'
 import { WeaponRefinement } from '@/models/weapon/WeaponRefinement'
 import { ClientOption, Element, Region } from '@/types'
-import { calculatePromoteLevel } from '@/utils/calculatePromoteLevel'
 import { convertToUTC } from '@/utils/convertToUTC'
 export {
   Client,
@@ -83,7 +82,7 @@ export {
   Notice,
   ProfilePicture,
 }
-export { convertToUTC, calculatePromoteLevel }
+export { convertToUTC }
 export {
   Element,
   ArtifactType,
