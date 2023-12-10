@@ -1,5 +1,7 @@
 import { Client } from '@/client/Client'
+import { OutOfRangeError } from '@/errors/OutOfRangeError'
 import { ImageAssets } from '@/models/assets/ImageAssets'
+import { JsonObject } from '@/utils/JsonParser'
 
 /**
  * Class of character's skill
@@ -26,15 +28,20 @@ export class CharacterSkill {
    */
   public readonly level: number
   /**
-   * Levels increased by talent
+   * Levels increased by constellation
    */
   public readonly extraLevel: number
+  /**
+   * Skill param description list
+   * (description|params)
+   */
+  public readonly paramDescList: string[] = []
 
   /**
    * Create a Skill
    * @param skillId Skill ID
-   * @param level Skill level
-   * @param extraLevel Levels increased by talent
+   * @param level Skill level (1-15). Default: 1
+   * @param extraLevel Levels increased by constellation (0 or 3). Default: 0
    */
   constructor(skillId: number, level: number = 1, extraLevel: number = 0) {
     this.id = skillId
@@ -49,7 +56,38 @@ export class CharacterSkill {
     this.icon = new ImageAssets(skillJson.skillIcon as string)
     this.extraLevel = extraLevel
     this.level = level + this.extraLevel
+    if (this.level < 1 || this.level > 15)
+      throw new OutOfRangeError('level + extraLevel', this.level, 1, 15)
+
+    const proudSkillGroupId = skillJson.proudSkillGroupId as number
+    const proudSkillJson = Client._getJsonFromCachedExcelBinOutput(
+      'ProudSkillExcelConfigData',
+      proudSkillGroupId,
+    )[this.level] as JsonObject
+    const paramList = proudSkillJson.paramList as number[]
+    ;(proudSkillJson.paramDescList as number[]).forEach((paramDescHash) => {
+      const paramDesc = (
+        Client.cachedTextMap.get(String(paramDescHash)) || ''
+      ).replace(/|/g, '')
+      if (paramDesc === '') return
+      this.paramDescList.push(
+        paramDesc.replace(/\{param.*?\}/g, (paramTag) => {
+          const paramId = paramTag.match(/(?<=param).*?(?=:)/g)?.[0]
+          const replaceTag = paramTag.match(/(?<=:).*?(?=})/g)?.[0]
+          if (paramId === undefined || replaceTag === undefined) return ''
+          const fixedIndex = +(replaceTag.match(/(?<=F)./g)?.[0] ?? '0')
+          const isInt = replaceTag.includes('I')
+          const isPercent = replaceTag.includes('P')
+          const paramValue = paramList[+paramId - 1]
+
+          if (isInt) return `${Math.floor(paramValue)}`
+          if (isPercent) return `${(paramValue * 100).toFixed(fixedIndex)}%`
+          return `${paramValue.toFixed(fixedIndex)}`
+        }),
+      )
+    })
   }
+
   /**
    * Get all skill IDs
    * @returns All skill IDs

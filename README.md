@@ -139,16 +139,16 @@ console.log(enkaData.nextShowCaseDate)
 
 ## Genshin Character from characterId
 
-[Character](https://rollphes.github.io/genshin-manager/classes/Character.html)
+[Character](https://rollphes.github.io/genshin-manager/classes/CharacterInfo.html)
 
 ```js
-const { Client, Character } = require('genshin-manager')
+const { Client, CharacterInfo } = require('genshin-manager')
 
 // Loading cache
 const client = new Client({ defaultLanguage: 'JP' })
 await client.deploy()
 
-const character = new Character(10000002)
+const character = new CharacterInfo(10000002)
 // print character name in language "jp"
 console.log(character.name) // output: 神里綾華
 ```

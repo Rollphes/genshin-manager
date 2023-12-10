@@ -12,8 +12,10 @@ import { TextMapFormatError } from '@/errors/TextMapFormatError'
 import { Artifact, ArtifactType } from '@/models/Artifact'
 import { ImageAssets } from '@/models/assets/ImageAssets'
 import { CharacterAscension } from '@/models/character/CharacterAscension'
+import { CharacterConstellation } from '@/models/character/CharacterConstellation'
 import { CharacterCostume } from '@/models/character/CharacterCostume'
 import { BodyType, CharacterInfo } from '@/models/character/CharacterInfo'
+import { CharacterInherentSkill } from '@/models/character/CharacterInherentSkill'
 import {
   AssocType,
   CharacterProfile,
@@ -21,7 +23,6 @@ import {
 import { CharacterSkill } from '@/models/character/CharacterSkill'
 import { CharacterStatus } from '@/models/character/CharacterStatus'
 import { CharacterStories } from '@/models/character/CharacterStories'
-import { CharacterTalent } from '@/models/character/CharacterTalent'
 import { AvatarInfo } from '@/models/enka/AvatarInfo'
 import { PlayerInfo } from '@/models/enka/PlayerInfo'
 import { ShowAvatarInfo } from '@/models/enka/ShowAvatarInfo'
@@ -62,7 +63,8 @@ export {
   FightProp,
   CharacterProfile,
   CharacterSkill,
-  CharacterTalent,
+  CharacterInherentSkill,
+  CharacterConstellation,
   AvatarInfo,
   PlayerInfo,
   ShowAvatarInfo,

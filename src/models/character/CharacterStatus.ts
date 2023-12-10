@@ -1,4 +1,5 @@
 import { Client } from '@/client/Client'
+import { OutOfRangeError } from '@/errors/OutOfRangeError'
 import { CharacterAscension } from '@/models/character/CharacterAscension'
 import { FightPropType, StatProperty } from '@/models/StatProperty'
 import { calculatePromoteLevel } from '@/utils/calculatePromoteLevel'
@@ -32,12 +33,18 @@ export class CharacterStatus {
   /**
    * Create a Character
    * @param characterId Character ID
-   * @param level Character level
-   * @param isAscended Character is ascended
+   * @param level Character level (1-90). Default: 1
+   * @param isAscended Character is ascended (true or false). Default: false
    */
-  constructor(characterId: number, level: number, isAscended: boolean) {
+  constructor(
+    characterId: number,
+    level: number = 1,
+    isAscended: boolean = false,
+  ) {
     this.id = characterId
     this.level = level
+    if (this.level < 1 || this.level > 90)
+      throw new OutOfRangeError('level', this.level, 1, 90)
     this.isAscended = isAscended
     const avatarJson = Client._getJsonFromCachedExcelBinOutput(
       'AvatarExcelConfigData',

@@ -1,4 +1,5 @@
 import { Client } from '@/client/Client'
+import { OutOfRangeError } from '@/errors/OutOfRangeError'
 import { FightPropType, StatProperty } from '@/models/StatProperty'
 import { JsonObject } from '@/utils/JsonParser'
 
@@ -48,6 +49,8 @@ export class CharacterAscension {
   constructor(characterId: number, promoteLevel: number = 0) {
     this.id = characterId
     this.promoteLevel = promoteLevel
+    if (this.promoteLevel < 0 || this.promoteLevel > 6)
+      throw new OutOfRangeError('promoteLevel', this.promoteLevel, 0, 6)
     const avatarJson = Client._getJsonFromCachedExcelBinOutput(
       'AvatarExcelConfigData',
       this.id,
@@ -66,7 +69,7 @@ export class CharacterAscension {
       .filter(
         (costItem) => costItem.id !== undefined && costItem.count !== undefined,
       )
-    this.costMora = avatarPromoteJson.scoinCost as number
+    this.costMora = (avatarPromoteJson.scoinCost as number | undefined) ?? 0
     this.addProps = (avatarPromoteJson.addProps as JsonObject[]).map(
       (addProp) =>
         new StatProperty(

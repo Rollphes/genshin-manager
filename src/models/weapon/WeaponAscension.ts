@@ -1,4 +1,5 @@
 import { Client } from '@/client/Client'
+import { OutOfRangeError } from '@/errors/OutOfRangeError'
 import { FightPropType, StatProperty } from '@/models/StatProperty'
 import { JsonObject } from '@/utils/JsonParser'
 
@@ -48,6 +49,8 @@ export class WeaponAscension {
   constructor(weaponId: number, promoteLevel: number = 0) {
     this.id = weaponId
     this.promoteLevel = promoteLevel
+    if (this.promoteLevel < 0 || this.promoteLevel > 6)
+      throw new OutOfRangeError('promoteLevel', this.promoteLevel, 0, 6)
     const weaponJson = Client._getJsonFromCachedExcelBinOutput(
       'WeaponExcelConfigData',
       this.id,
@@ -56,15 +59,17 @@ export class WeaponAscension {
       'WeaponPromoteExcelConfigData',
       weaponJson.weaponPromoteId as number,
     )[this.promoteLevel] as JsonObject
-    this.costItems = (weaponPromoteJson.costItems as JsonObject[]).map(
-      (costItem) => {
+    this.costItems = (weaponPromoteJson.costItems as JsonObject[])
+      .map((costItem) => {
         return {
           id: costItem.id as number,
           count: costItem.count as number,
         }
-      },
-    )
-    this.costMora = weaponPromoteJson.coinCost as number
+      })
+      .filter(
+        (costItem) => costItem.id !== undefined && costItem.count !== undefined,
+      )
+    this.costMora = (weaponPromoteJson.coinCost as number | undefined) ?? 0
     this.addProps = (weaponPromoteJson.addProps as JsonObject[]).map(
       (addProp) =>
         new StatProperty(
