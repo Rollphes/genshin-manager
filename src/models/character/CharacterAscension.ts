@@ -66,7 +66,7 @@ export class CharacterAscension {
       .filter(
         (costItem) => costItem.id !== undefined && costItem.count !== undefined,
       )
-    this.costMora = avatarPromoteJson.scoinCost as number
+    this.costMora = (avatarPromoteJson.scoinCost as number | undefined) ?? 0
     this.addProps = (avatarPromoteJson.addProps as JsonObject[]).map(
       (addProp) =>
         new StatProperty(

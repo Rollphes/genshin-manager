@@ -64,7 +64,7 @@ export class WeaponAscension {
         }
       },
     )
-    this.costMora = weaponPromoteJson.coinCost as number
+    this.costMora = (weaponPromoteJson.coinCost as number | undefined) ?? 0
     this.addProps = (weaponPromoteJson.addProps as JsonObject[]).map(
       (addProp) =>
         new StatProperty(
