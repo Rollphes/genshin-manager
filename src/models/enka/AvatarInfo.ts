@@ -108,7 +108,7 @@ export class AvatarInfo extends CharacterInfo {
         new Artifact(
           data.itemId,
           data.reliquary.mainPropId,
-          data.reliquary.level,
+          data.reliquary.level - 1,
           data.reliquary.appendPropIdList,
         ),
     )

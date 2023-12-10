@@ -84,7 +84,7 @@ export class Artifact {
     appendPropIdList: number[] = [],
   ) {
     this.id = artifactId
-    this.level = level - 1
+    this.level = level
     const artifactJson = Client._getJsonFromCachedExcelBinOutput(
       'ReliquaryExcelConfigData',
       this.id,
@@ -146,7 +146,7 @@ export class Artifact {
         'ReliquaryLevelExcelConfigData',
         artifactMainJson.propType as string,
       )[this.rarity] as JsonObject
-    )[this.level + 1] as number
+    )[this.level] as number
     this.mainStat = new StatProperty(
       artifactMainJson.propType as FightPropType,
       mainValue,
