@@ -184,7 +184,11 @@ export class ObjectKeyDecoder {
           ] = obj
           break
         case 'ProudSkillExcelConfigData':
-          cacheObject[obj.proudSkillId as string] = obj
+          if (!cacheObject[obj.proudSkillGroupId as string])
+            cacheObject[obj.proudSkillGroupId as string] = {}
+          ;(cacheObject[obj.proudSkillGroupId as string] as JsonObject)[
+            (obj.proudSkillId as number) % 100
+          ] = obj
           break
         case 'FetterInfoExcelConfigData':
           cacheObject[obj.avatarId as string] = obj

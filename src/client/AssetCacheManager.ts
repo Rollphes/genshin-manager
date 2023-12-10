@@ -77,8 +77,8 @@ export abstract class AssetCacheManager {
     CharacterCostume: ['AvatarCostumeExcelConfigData', 'AvatarExcelConfigData'],
     CharacterProfile: ['FetterInfoExcelConfigData'],
     Material: ['MaterialExcelConfigData'],
-    CharacterSkill: ['AvatarSkillExcelConfigData'],
     CharacterConstellation: ['AvatarTalentExcelConfigData'],
+    CharacterSkill: ['AvatarSkillExcelConfigData', 'ProudSkillExcelConfigData'],
     StatProperty: ['ManualTextMapConfigData'],
     Weapon: [
       'WeaponExcelConfigData',
@@ -439,6 +439,19 @@ export abstract class AssetCacheManager {
     Client.cachedExcelBinOutput.forEach((excelBin) => {
       ;(Object.values(excelBin.get() as JsonObject) as JsonObject[]).forEach(
         (obj) => {
+          Object.values(obj).forEach((value) => {
+            const obj = value as JsonObject
+            Object.keys(obj).forEach((key) => {
+              if (/TextMapHash/g.exec(key)) {
+                const hash = obj[key] as number
+                this.textHashList.add(hash)
+              }
+              if (key === 'paramDescList') {
+                const hashList = obj[key] as number[]
+                hashList.forEach((hash) => this.textHashList.add(hash))
+              }
+            })
+          })
           Object.keys(obj).forEach((key) => {
             if (/TextMapHash/g.exec(key)) {
               const hash = obj[key] as number
