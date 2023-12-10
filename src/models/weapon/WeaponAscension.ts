@@ -56,14 +56,16 @@ export class WeaponAscension {
       'WeaponPromoteExcelConfigData',
       weaponJson.weaponPromoteId as number,
     )[this.promoteLevel] as JsonObject
-    this.costItems = (weaponPromoteJson.costItems as JsonObject[]).map(
-      (costItem) => {
+    this.costItems = (weaponPromoteJson.costItems as JsonObject[])
+      .map((costItem) => {
         return {
           id: costItem.id as number,
           count: costItem.count as number,
         }
-      },
-    )
+      })
+      .filter(
+        (costItem) => costItem.id !== undefined && costItem.count !== undefined,
+      )
     this.costMora = (weaponPromoteJson.coinCost as number | undefined) ?? 0
     this.addProps = (weaponPromoteJson.addProps as JsonObject[]).map(
       (addProp) =>
