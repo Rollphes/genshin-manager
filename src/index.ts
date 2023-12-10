@@ -15,6 +15,7 @@ import { CharacterAscension } from '@/models/character/CharacterAscension'
 import { CharacterConstellation } from '@/models/character/CharacterConstellation'
 import { CharacterCostume } from '@/models/character/CharacterCostume'
 import { BodyType, CharacterInfo } from '@/models/character/CharacterInfo'
+import { CharacterInherentSkill } from '@/models/character/CharacterInherentSkill'
 import {
   AssocType,
   CharacterProfile,
@@ -63,6 +64,7 @@ export {
   FightProp,
   CharacterProfile,
   CharacterSkill,
+  CharacterInherentSkill,
   CharacterConstellation,
   AvatarInfo,
   PlayerInfo,

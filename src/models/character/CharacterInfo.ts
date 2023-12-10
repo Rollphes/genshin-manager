@@ -31,9 +31,9 @@ export class CharacterInfo {
    */
   public readonly skillOrder: number[]
   /**
-   * Sub skills
+   * Inherent skill order
    */
-  public readonly subSkills: number[]
+  public readonly inherentSkillOrder: number[] = []
   /**
    * Constellation IDs
    */
@@ -106,11 +106,10 @@ export class CharacterInfo {
       : (depotJson.skills as number[])
           .slice(0, 2)
           .concat(depotJson.energySkill as number)
-    const runSkillId = (depotJson.subSkills as number[])[3]
-    this.subSkills =
-      runSkillId ?? null
-        ? [runSkillId].concat(depotJson.subSkills as number[])
-        : (depotJson.subSkills as number[])
+    ;(depotJson.inherentProudSkillOpens as JsonObject[]).forEach((k) => {
+      if (k.proudSkillGroupId === undefined) return
+      this.inherentSkillOrder.push(k.proudSkillGroupId as number)
+    })
 
     this.constellationIds = depotJson.talents as number[]
 

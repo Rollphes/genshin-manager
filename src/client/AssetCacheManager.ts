@@ -86,6 +86,11 @@ export abstract class AssetCacheManager {
       'ProudSkillExcelConfigData',
       'AvatarExcelConfigData',
     ],
+    CharacterInherentSkill: [
+      'ProudSkillExcelConfigData',
+      'AvatarSkillDepotExcelConfigData',
+      'AvatarExcelConfigData',
+    ],
     StatProperty: ['ManualTextMapConfigData'],
     Weapon: [
       'WeaponExcelConfigData',
