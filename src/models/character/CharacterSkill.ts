@@ -56,7 +56,6 @@ export class CharacterSkill {
     this.extraLevel = extraLevel
     this.level = level + this.extraLevel
 
-    if (skillJson.proudSkillGroupId === undefined) return
     const proudSkillGroupId = skillJson.proudSkillGroupId as number
     const proudSkillJson = Client._getJsonFromCachedExcelBinOutput(
       'ProudSkillExcelConfigData',
