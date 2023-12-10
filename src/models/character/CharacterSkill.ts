@@ -1,4 +1,5 @@
 import { Client } from '@/client/Client'
+import { OutOfRangeError } from '@/errors/OutOfRangeError'
 import { ImageAssets } from '@/models/assets/ImageAssets'
 import { JsonObject } from '@/utils/JsonParser'
 
@@ -39,8 +40,8 @@ export class CharacterSkill {
   /**
    * Create a Skill
    * @param skillId Skill ID
-   * @param level Skill level
-   * @param extraLevel Levels increased by constellation
+   * @param level Skill level (1-15). Default: 1
+   * @param extraLevel Levels increased by constellation (0 or 3). Default: 0
    */
   constructor(skillId: number, level: number = 1, extraLevel: number = 0) {
     this.id = skillId
@@ -55,6 +56,8 @@ export class CharacterSkill {
     this.icon = new ImageAssets(skillJson.skillIcon as string)
     this.extraLevel = extraLevel
     this.level = level + this.extraLevel
+    if (this.level < 1 || this.level > 15)
+      throw new OutOfRangeError('level + extraLevel', this.level, 1, 15)
 
     const proudSkillGroupId = skillJson.proudSkillGroupId as number
     const proudSkillJson = Client._getJsonFromCachedExcelBinOutput(

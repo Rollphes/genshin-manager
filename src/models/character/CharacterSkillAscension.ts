@@ -1,4 +1,5 @@
 import { Client } from '@/client/Client'
+import { OutOfRangeError } from '@/errors/OutOfRangeError'
 import { FightPropType, StatProperty } from '@/models/StatProperty'
 import { JsonObject } from '@/utils/JsonParser'
 
@@ -44,6 +45,8 @@ export class CharacterSkillAscension {
   constructor(skillId: number, Level: number = 1) {
     this.id = skillId
     this.level = Level
+    if (this.level < 1 || this.level > 15)
+      throw new OutOfRangeError('level', this.level, 1, 15)
     const skillJson = Client._getJsonFromCachedExcelBinOutput(
       'AvatarSkillExcelConfigData',
       this.id,

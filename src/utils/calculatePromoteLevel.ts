@@ -1,17 +1,19 @@
+import { OutOfRangeError } from '@/errors/OutOfRangeError'
 import { JsonObject } from '@/utils/JsonParser'
 
 /**
  * Calculate promote level
  * @param promotesJson Promotes json
- * @param level Level
+ * @param level Level (1-90)
  * @param isAscended Is ascended
- * @returns Promote level
+ * @returns Promote level (0-6)
  */
 export function calculatePromoteLevel(
   promotesJson: JsonObject,
   level: number,
   isAscended: boolean,
 ): number {
+  if (level < 1 || level > 90) throw new OutOfRangeError('level', level, 1, 90)
   const maxPromoteLevel = Math.max(
     ...(Object.values(promotesJson) as JsonObject[]).map(
       (promote) => (promote.promoteLevel ?? 0) as number,

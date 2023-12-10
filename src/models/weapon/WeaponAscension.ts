@@ -1,4 +1,5 @@
 import { Client } from '@/client/Client'
+import { OutOfRangeError } from '@/errors/OutOfRangeError'
 import { FightPropType, StatProperty } from '@/models/StatProperty'
 import { JsonObject } from '@/utils/JsonParser'
 
@@ -48,6 +49,8 @@ export class WeaponAscension {
   constructor(weaponId: number, promoteLevel: number = 0) {
     this.id = weaponId
     this.promoteLevel = promoteLevel
+    if (this.promoteLevel < 0 || this.promoteLevel > 6)
+      throw new OutOfRangeError('promoteLevel', this.promoteLevel, 0, 6)
     const weaponJson = Client._getJsonFromCachedExcelBinOutput(
       'WeaponExcelConfigData',
       this.id,

@@ -1,4 +1,5 @@
 import { Client } from '@/client/Client'
+import { OutOfRangeError } from '@/errors/OutOfRangeError'
 import { Monster } from '@/models/Monster'
 
 /**
@@ -33,7 +34,7 @@ export class TowerLevel {
   /**
    * Create a TowerLevel
    * @param levelId Spiral Abyss Level ID
-   * @param floorIndex Spiral Abyss Floor index
+   * @param floorIndex Spiral Abyss Floor index (1-12)
    */
   constructor(levelId: number, floorIndex: number) {
     this.id = levelId
@@ -51,6 +52,7 @@ export class TowerLevel {
     else if (floorIndex <= 7) playerCount = 2
     else if (floorIndex <= 11) playerCount = 3
     else if (floorIndex === 12) playerCount = 4
+    else throw new OutOfRangeError('floorIndex', floorIndex, 1, 12)
 
     this.firstMonsterList = (towerLevelJson.firstMonsterList as number[]).map(
       (monsterDescribeId) =>
@@ -84,13 +86,14 @@ export class TowerLevel {
   /**
    * Find tower level ID by group ID and index
    * @param groupId LevelGroupId
-   * @param index LevelIndex
+   * @param index LevelIndex (1-3)
    * @returns levelId
    */
   public static findTowerLevelIdByGroupIdAndIndex(
     groupId: number,
     index: number,
   ): number | undefined {
+    if (index < 1 || index > 3) throw new OutOfRangeError('index', index, 1, 3)
     const towerLevelDatas = Object.values(
       Client._getCachedExcelBinOutputByName('TowerLevelExcelConfigData'),
     )

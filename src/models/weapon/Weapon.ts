@@ -1,4 +1,5 @@
 import { Client } from '@/client/Client'
+import { OutOfRangeError } from '@/errors/OutOfRangeError'
 import { ImageAssets } from '@/models/assets/ImageAssets'
 import { FightPropType, StatProperty } from '@/models/StatProperty'
 import { WeaponAscension } from '@/models/weapon/WeaponAscension'
@@ -82,8 +83,12 @@ export class Weapon {
   ) {
     this.id = weaponId
     this.level = level
+    if (this.level < 1 || this.level > 90)
+      throw new OutOfRangeError('level', this.level, 1, 90)
     this.isAscended = isAscended
     this.refinementRank = refinementRank
+    if (this.refinementRank < 1 || this.refinementRank > 5)
+      throw new OutOfRangeError('refinementRank', this.refinementRank, 1, 5)
     const weaponJson = Client._getJsonFromCachedExcelBinOutput(
       'WeaponExcelConfigData',
       this.id,

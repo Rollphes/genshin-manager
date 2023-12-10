@@ -1,4 +1,5 @@
 import { Client } from '@/client/Client'
+import { OutOfRangeError } from '@/errors/OutOfRangeError'
 import { ImageAssets } from '@/models/assets/ImageAssets'
 import { FightProps, StatProperty } from '@/models/StatProperty'
 import { JsonObject } from '@/utils/JsonParser'
@@ -71,12 +72,16 @@ export class Monster {
   /**
    * Create a Monster
    * @param monsterId monsterId
-   * @param level monsterLevel
-   * @param playerCount Number of players
+   * @param level monsterLevel (1-100). Default: 1
+   * @param playerCount Number of players (1-4). Default: 1
    */
   constructor(monsterId: number, level: number = 1, playerCount: number = 1) {
     this.id = monsterId
     this.level = level
+    if (this.level < 1 || this.level > 100)
+      throw new OutOfRangeError('level', this.level, 1, 100)
+    if (playerCount < 1 || playerCount > 4)
+      throw new OutOfRangeError('playerCount', playerCount, 1, 4)
 
     const monsterJson = Client._getJsonFromCachedExcelBinOutput(
       'MonsterExcelConfigData',

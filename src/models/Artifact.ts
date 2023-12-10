@@ -1,4 +1,5 @@
 import { Client } from '@/client/Client'
+import { OutOfRangeError } from '@/errors/OutOfRangeError'
 import { ImageAssets } from '@/models/assets/ImageAssets'
 import { FightPropType, StatProperty } from '@/models/StatProperty'
 import { JsonObject } from '@/utils/JsonParser'
@@ -74,7 +75,7 @@ export class Artifact {
    * Create an Artifact
    * @param artifactId Artifact ID
    * @param mainPropId Main stat ID from ReliquaryMainPropExcelConfigData.json
-   * @param level Artifact level
+   * @param level Artifact level (0-20). Default: 0
    * @param appendPropIdList Artifact sub stat ID list
    */
   constructor(
@@ -85,6 +86,8 @@ export class Artifact {
   ) {
     this.id = artifactId
     this.level = level
+    if (this.level < 0 || this.level > 20)
+      throw new OutOfRangeError('level', this.level, 0, 20)
     const artifactJson = Client._getJsonFromCachedExcelBinOutput(
       'ReliquaryExcelConfigData',
       this.id,
