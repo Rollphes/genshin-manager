@@ -7,6 +7,7 @@ const {
   CharacterProfile,
 } = require('../dist/models/character/CharacterProfile.js')
 const { CharacterSkill } = require('../dist/models/character/CharacterSkill.js')
+const { CharacterInherentSkill } = require('../dist/models/character/CharacterInherentSkill.js')
 const {
   CharacterConstellation,
 } = require('../dist/models/character/CharacterConstellation.js')
@@ -44,7 +45,10 @@ async function main() {
         (id) => new CharacterProfile(id),
       )
       CharacterSkill.getAllSkillIds().forEach((id) => new CharacterSkill(id))
-      CharacterConstellation.getConstellationIdsByCharacterId.forEach(
+      CharacterInherentSkill.getAllInherentSkillIds().forEach(
+        (id) => new CharacterInherentSkill(id),
+      )
+      CharacterConstellation.getAllConstellationIds().forEach(
         (id) => new CharacterConstellation(id),
       )
       Artifact.getAllArtifactIds().forEach((id) => new Artifact(id, 10001))
