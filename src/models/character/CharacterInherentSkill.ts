@@ -1,5 +1,6 @@
 import { Client } from '@/client/Client'
 import { ImageAssets } from '@/models/assets/ImageAssets'
+import { FightPropType, StatProperty } from '@/models/StatProperty'
 import { JsonObject } from '@/utils/JsonParser'
 
 /**
@@ -22,6 +23,10 @@ export class CharacterInherentSkill {
    * Inherent Skill icon
    */
   public readonly icon: ImageAssets
+  /**
+   * Inherent Skill addProps
+   */
+  public readonly addProps: StatProperty[]
 
   /**
    * Create a Inherent Skill
@@ -39,6 +44,13 @@ export class CharacterInherentSkill {
     this.description =
       Client.cachedTextMap.get(String(proudSkillJson.descTextMapHash)) || ''
     this.icon = new ImageAssets(proudSkillJson.icon as string)
+    this.addProps = (proudSkillJson.addProps as JsonObject[]).map(
+      (addProp) =>
+        new StatProperty(
+          addProp.propType as FightPropType,
+          (addProp.value ?? 0) as number,
+        ),
+    )
   }
 
   /**
