@@ -144,7 +144,7 @@ export class ObjectKeyDecoder {
           ;(obj.addProps as JsonArray).forEach((prop) => {
             if (!obj.rank) return
             const rank = obj.rank as number
-            const level = obj.level as number
+            const level = (obj.level as number) - 1
             const value = (prop as JsonObject).value
             const type = (prop as JsonObject).propType as string
             if (!cacheObject[type]) cacheObject[type] = {}
