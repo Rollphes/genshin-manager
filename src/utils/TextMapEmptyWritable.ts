@@ -21,6 +21,11 @@ export class TextMapEmptyWritable extends Writable {
     const lineBuffers = this.splitBuffer(combinedBuffer, Buffer.from('\n'))
     this.buffer = lineBuffers.pop() || Buffer.from('')
 
+    if (lineBuffers.length === 0) {
+      callback()
+      return
+    }
+
     const lines = lineBuffers.map((buffer) => buffer.toString())
 
     lines.forEach((line) => {

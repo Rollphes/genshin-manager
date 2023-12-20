@@ -38,8 +38,13 @@ export class TextMapTransform extends Transform {
     const lineBuffers = this.splitBuffer(combinedBuffer, Buffer.from('\n'))
     this.buffer = lineBuffers.pop() || Buffer.from('')
 
+    if (lineBuffers.length === 0) {
+      callback()
+      return
+    }
+
     const lines = lineBuffers.map((buffer) => buffer.toString())
-    const isFirstChunk = lines[0].startsWith('{')
+    const isFirstChunk = this.firstFlag && lines[0].startsWith('{')
 
     if (isFirstChunk) this.push('{\n')
 
