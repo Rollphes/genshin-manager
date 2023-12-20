@@ -22,7 +22,7 @@ export class Weapon {
   /**
    * Weapon type
    */
-  public readonly WeaponType: WeaponType
+  public readonly type: WeaponType
   /**
    * Weapon skill name
    */
@@ -114,7 +114,7 @@ export class Weapon {
       Client.cachedTextMap.get(String(weaponJson.nameTextMapHash)) || ''
     this.description =
       Client.cachedTextMap.get(String(weaponJson.descTextMapHash)) || ''
-    this.WeaponType = weaponJson.weaponType as WeaponType
+    this.type = weaponJson.weaponType as WeaponType
 
     this.rarity = weaponJson.rankLevel as number
 
