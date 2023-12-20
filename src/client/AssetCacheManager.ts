@@ -42,7 +42,7 @@ export abstract class AssetCacheManager {
 
   private static option: ClientOption
   private static gitRemoteAPIUrl: string =
-    'https://gitlab.com/api/v4/projects/41287973/repository/commits?per_page=1'
+    'https://gitlab.com/api/v4/projects/53216109/repository/commits?per_page=1'
   private static gitRemoteRawBaseURL: string =
     'https://gitlab.com/Dimbreath/AnimeGameData/-/raw'
   private static nowCommitId: string
