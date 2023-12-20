@@ -207,7 +207,7 @@ export abstract class AssetCacheManager {
   }
 
   /**
-   * Check if cached excel bin output exists
+   * Check if cached excel bin output exists by name
    * @deprecated This method is deprecated because it is used to pass data to each class
    * @param key ExcelBinOutput name
    * @returns Cached excel bin output exists
@@ -216,6 +216,26 @@ export abstract class AssetCacheManager {
     key: keyof typeof ExcelBinOutputs,
   ): boolean {
     return Client.cachedExcelBinOutput.has(key)
+  }
+
+  /**
+   * Check if cached excel bin output exists by id
+   * @deprecated This method is deprecated because it is used to pass data to each class
+   * @param key ExcelBinOutput name
+   * @param id ID of character, etc
+   * @returns Cached excel bin output exists
+   */
+  public static _hasCachedExcelBinOutputById(
+    key: keyof typeof ExcelBinOutputs,
+    id: string | number,
+  ): boolean {
+    const excelBinOutput = Client.cachedExcelBinOutput.get(key)
+    if (!excelBinOutput) return false
+
+    const json = excelBinOutput.get(String(id)) as JsonObject | undefined
+    if (!json) return false
+
+    return true
   }
 
   /**

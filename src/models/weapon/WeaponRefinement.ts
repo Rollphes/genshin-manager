@@ -38,7 +38,12 @@ export class WeaponRefinement {
     )
     const skillAffix =
       (weaponJson.skillAffix as number[])[0] * 10 + this.refinementRank - 1
-    if (skillAffix !== 0) {
+    if (
+      Client._hasCachedExcelBinOutputById(
+        'EquipAffixExcelConfigData',
+        skillAffix,
+      )
+    ) {
       const equipAffixJson = Client._getJsonFromCachedExcelBinOutput(
         'EquipAffixExcelConfigData',
         skillAffix,
