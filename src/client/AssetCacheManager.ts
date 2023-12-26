@@ -415,11 +415,7 @@ export abstract class AssetCacheManager {
         this.excelBinOutputFolderPath,
         this.textMapFolderPath,
       ].map(async (FolderPath) => {
-        if (!fs.existsSync(FolderPath)) {
-          await fsPromises.mkdir(FolderPath, {
-            recursive: true,
-          })
-        }
+        if (!fs.existsSync(FolderPath)) await fsPromises.mkdir(FolderPath)
       }),
     )
 
