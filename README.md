@@ -46,8 +46,8 @@ npm install genshin-manager --nocache=true
 ```
 
 > [!NOTE]
-> Once the installation script runs, the cache image is automatically inherited from the previous version.
-> If you want to remove it, uninstall it once or delete node_module/genshin-manager/cache/Image/*.
+> Once the installation script runs, the cached image is automatically inherited from the previous version.
+> If you want to remove it, uninstall it once or delete node_module/genshin-manager/cache/Images/*.
 
 ## About Genshin Cache Data
 
