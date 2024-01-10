@@ -49,8 +49,15 @@ export class CharacterAscension {
   constructor(characterId: number, promoteLevel: number = 0) {
     this.id = characterId
     this.promoteLevel = promoteLevel
-    if (this.promoteLevel < 0 || this.promoteLevel > 6)
-      throw new OutOfRangeError('promoteLevel', this.promoteLevel, 0, 6)
+    const maxPromoteLevel = CharacterAscension.getMaxPromoteLevel(this.id)
+    if (this.promoteLevel < 0 || this.promoteLevel > maxPromoteLevel) {
+      throw new OutOfRangeError(
+        'promoteLevel',
+        this.promoteLevel,
+        0,
+        maxPromoteLevel,
+      )
+    }
     const avatarJson = Client._getJsonFromCachedExcelBinOutput(
       'AvatarExcelConfigData',
       this.id,
@@ -78,5 +85,26 @@ export class CharacterAscension {
         ),
     )
     this.unlockMaxLevel = avatarPromoteJson.unlockMaxLevel as number
+  }
+
+  /**
+   * Get max promote level by character ID
+   * @param characterId Character ID
+   * @returns Max promote level
+   */
+  public static getMaxPromoteLevel(characterId: number): number {
+    const avatarJson = Client._getJsonFromCachedExcelBinOutput(
+      'AvatarExcelConfigData',
+      characterId,
+    )
+    const avatarPromoteJson = Client._getJsonFromCachedExcelBinOutput(
+      'AvatarPromoteExcelConfigData',
+      avatarJson.avatarPromoteId as number,
+    )
+    return Math.max(
+      ...(Object.values(avatarPromoteJson) as JsonObject[]).map(
+        (promote) => (promote.promoteLevel ?? 0) as number,
+      ),
+    )
   }
 }
