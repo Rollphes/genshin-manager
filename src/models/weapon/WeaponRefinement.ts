@@ -16,11 +16,11 @@ export class WeaponRefinement {
   /**
    * Weapon skill name
    */
-  public readonly skillName: string
+  public readonly skillName: string | undefined
   /**
    * Weapon skill description
    */
-  public readonly skillDescription: string
+  public readonly skillDescription: string | undefined
   //TODO:add addProps
 
   /**
@@ -40,20 +40,24 @@ export class WeaponRefinement {
     const skillAffix =
       (weaponJson.skillAffix as number[])[0] * 10 + this.refinementRank - 1
     if (
-      !Client._hasCachedExcelBinOutputById(
+      Client._hasCachedExcelBinOutputById(
         'EquipAffixExcelConfigData',
         skillAffix,
       )
-    )
-      throw new OutOfRangeError('refinementRank', skillAffix + 1, 1, 1)
-
-    const equipAffixJson = Client._getJsonFromCachedExcelBinOutput(
-      'EquipAffixExcelConfigData',
-      skillAffix,
-    )
-    this.skillName =
-      Client.cachedTextMap.get(String(equipAffixJson.nameTextMapHash)) || ''
-    this.skillDescription =
-      Client.cachedTextMap.get(String(equipAffixJson.descTextMapHash)) || ''
+    ) {
+      const equipAffixJson = Client._getJsonFromCachedExcelBinOutput(
+        'EquipAffixExcelConfigData',
+        skillAffix,
+      )
+      this.skillName =
+        Client.cachedTextMap.get(String(equipAffixJson.nameTextMapHash)) || ''
+      this.skillDescription =
+        Client.cachedTextMap.get(String(equipAffixJson.descTextMapHash)) || ''
+    } else {
+      this.skillName = undefined
+      this.skillDescription = undefined
+      if (this.refinementRank > 1)
+        throw new OutOfRangeError('refinementRank', this.refinementRank, 1, 1)
+    }
   }
 }
