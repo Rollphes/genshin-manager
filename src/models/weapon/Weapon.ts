@@ -83,8 +83,11 @@ export class Weapon {
   ) {
     this.id = weaponId
     this.level = level
-    if (this.level < 1 || this.level > 90)
-      throw new OutOfRangeError('level', this.level, 1, 90)
+
+    const maxLevel = Weapon.getMaxLevelByWeaponId(this.id)
+    if (this.level < 1 || this.level > maxLevel)
+      throw new OutOfRangeError('level', this.level, 1, maxLevel)
+
     this.isAscended = isAscended
     this.refinementRank = refinementRank
     if (this.refinementRank < 1 || this.refinementRank > 5)
@@ -160,6 +163,18 @@ export class Weapon {
       'WeaponExcelConfigData',
       hashes,
     ).map((k) => +k)
+  }
+
+  /**
+   * Get max level by weapon ID
+   * @param weaponId Weapon ID
+   * @returns Max level
+   */
+  public static getMaxLevelByWeaponId(weaponId: number): number {
+    const maxPromoteLevel =
+      WeaponAscension.getMaxPromoteLevelByWeaponId(weaponId)
+    const ascension = new WeaponAscension(weaponId, maxPromoteLevel)
+    return ascension.unlockMaxLevel
   }
 
   /**

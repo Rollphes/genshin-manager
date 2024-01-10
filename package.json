@@ -1,6 +1,6 @@
 {
   "name": "genshin-manager",
-  "version": "0.4.4",
+  "version": "0.4.5",
   "homepage": "https://rollphes.github.io/genshin-manager/",
   "bugs": "https://github.com/Rollphes/genshin-manager/issues",
   "main": "dist/index.js",
@@ -15,7 +15,9 @@
     "create-release": "gh release create v%npm_package_version% -t v%npm_package_version% -n \"## Bug Fixes\" --draft",
     "prepublishOnly": "npm run build && npm run create-release",
     "docs": "typedoc --disableSources --out docs src",
+    "preinstall": "node scripts/evacuation-cache.js",
     "install": "node scripts/install.js",
+    "postinstall": "node scripts/takeover-cache.js",
     "build": "node -e \"if (fs.existsSync('./dist')) fs.rmSync('./dist', {recursive: true});\" && tsc -p tsconfig.json && tsc-alias -p tsconfig.json",
     "test": "ts-node -r tsconfig-paths/register ./src/test/index.ts",
     "release-test": "node scripts/test.js",
@@ -49,6 +51,7 @@
   "dependencies": {
     "cheerio": "^1.0.0-rc.12",
     "cli-progress": "^3.12.0",
+    "fs-extra": "^11.2.0",
     "node-cron": "^3.0.3",
     "path": "^0.12.7",
     "ts-deepmerge": "^6.2.0"
@@ -56,20 +59,20 @@
   "devDependencies": {
     "@types/cheerio": "^0.22.35",
     "@types/cli-progress": "^3.11.5",
-    "@types/node": "^20.10.5",
+    "@types/node": "^20.10.8",
     "@types/node-cron": "^3.0.11",
-    "@typescript-eslint/eslint-plugin": "^6.15.0",
-    "@typescript-eslint/parser": "^6.15.0",
+    "@typescript-eslint/eslint-plugin": "^6.18.1",
+    "@typescript-eslint/parser": "^6.18.1",
     "eslint": "^8.56.0",
     "eslint-config-prettier": "^9.1.0",
-    "eslint-plugin-jsdoc": "^46.9.1",
-    "eslint-plugin-prettier": "^5.1.0",
+    "eslint-plugin-jsdoc": "^48.0.2",
+    "eslint-plugin-prettier": "^5.1.3",
     "eslint-plugin-simple-import-sort": "^10.0.0",
     "prettier": "^3.1.1",
     "ts-node": "^10.9.2",
     "tsc-alias": "^1.8.8",
     "tsconfig-paths": "^4.2.0",
-    "typedoc": "^0.25.4",
+    "typedoc": "^0.25.7",
     "typescript": "^5.3.3"
   }
 }

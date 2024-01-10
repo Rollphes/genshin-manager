@@ -49,8 +49,17 @@ export class WeaponAscension {
   constructor(weaponId: number, promoteLevel: number = 0) {
     this.id = weaponId
     this.promoteLevel = promoteLevel
-    if (this.promoteLevel < 0 || this.promoteLevel > 6)
-      throw new OutOfRangeError('promoteLevel', this.promoteLevel, 0, 6)
+    const maxPromoteLevel = WeaponAscension.getMaxPromoteLevelByWeaponId(
+      this.id,
+    )
+    if (this.promoteLevel < 0 || this.promoteLevel > maxPromoteLevel) {
+      throw new OutOfRangeError(
+        'promoteLevel',
+        this.promoteLevel,
+        0,
+        maxPromoteLevel,
+      )
+    }
     const weaponJson = Client._getJsonFromCachedExcelBinOutput(
       'WeaponExcelConfigData',
       this.id,
@@ -78,5 +87,26 @@ export class WeaponAscension {
         ),
     )
     this.unlockMaxLevel = weaponPromoteJson.unlockMaxLevel as number
+  }
+
+  /**
+   * Get max promote level by weapon ID
+   * @param weaponId Weapon ID
+   * @returns Max promote level
+   */
+  public static getMaxPromoteLevelByWeaponId(weaponId: number): number {
+    const weaponJson = Client._getJsonFromCachedExcelBinOutput(
+      'WeaponExcelConfigData',
+      weaponId,
+    )
+    const weaponPromoteJson = Client._getJsonFromCachedExcelBinOutput(
+      'WeaponPromoteExcelConfigData',
+      weaponJson.weaponPromoteId as number,
+    )
+    return Math.max(
+      ...(Object.values(weaponPromoteJson) as JsonObject[]).map(
+        (promote) => (promote.promoteLevel ?? 0) as number,
+      ),
+    )
   }
 }

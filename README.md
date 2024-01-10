@@ -45,6 +45,10 @@ If you have already moved the cache to another folder, you can also install with
 npm install genshin-manager --nocache=true
 ```
 
+> [!NOTE]
+> Once the installation script runs, the cached image is automatically inherited from the previous version.
+> If you want to remove it, uninstall it once or delete node_module/genshin-manager/cache/Images/*.
+
 ## About Genshin Cache Data
 
 Genshin cache data is from [Dimbreath/AnimeGameData](https://gitlab.com/Dimbreath/AnimeGameData).

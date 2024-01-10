@@ -13,6 +13,20 @@ interface ArtifactAffixAppendProp {
  */
 export class Artifact {
   /**
+   * Max level map of artifacts by rarity
+   */
+  private static maxLevelMap: { [rarity: number]: number } = {
+    1: 5,
+    2: 5,
+    3: 12,
+    4: 16,
+    5: 20,
+  }
+  /**
+   * IDs of set bonuses that can be activated with one artifact
+   */
+  private static oneSetBonusIds: number[] = [15009, 15010, 15011, 15012, 15013]
+  /**
    * Artifact ID
    */
   public readonly id: number
@@ -64,12 +78,6 @@ export class Artifact {
    * Artifact icon
    */
   public readonly icon: ImageAssets
-  /**
-   * IDs of set bonuses that can be activated with one artifact
-   */
-  private readonly oneSetBonusIds: number[] = [
-    15009, 15010, 15011, 15012, 15013,
-  ]
 
   /**
    * Create an Artifact
@@ -86,8 +94,6 @@ export class Artifact {
   ) {
     this.id = artifactId
     this.level = level
-    if (this.level < 0 || this.level > 20)
-      throw new OutOfRangeError('level', this.level, 0, 20)
     const artifactJson = Client._getJsonFromCachedExcelBinOutput(
       'ReliquaryExcelConfigData',
       this.id,
@@ -99,6 +105,9 @@ export class Artifact {
       Client.cachedTextMap.get(String(artifactJson.descTextMapHash)) || ''
     this.rarity = artifactJson.rankLevel as number
     this.setId = artifactJson.setId as number | undefined
+    const maxLevel = Artifact.maxLevelMap[this.rarity]
+    if (this.level < 0 || this.level > maxLevel)
+      throw new OutOfRangeError('level', this.level, 0, maxLevel)
     if (this.setId) {
       const setJson = Client._getJsonFromCachedExcelBinOutput(
         'ReliquarySetExcelConfigData',
@@ -114,7 +123,7 @@ export class Artifact {
         String(equipAffixJson.nameTextMapHash),
       )
 
-      if (this.oneSetBonusIds.includes(this.setId)) {
+      if (Artifact.oneSetBonusIds.includes(this.setId)) {
         this.setDescriptions[1] = equipAffixJson
           ? Client.cachedTextMap.get(String(equipAffixJson.descTextMapHash))
           : undefined
@@ -181,6 +190,19 @@ export class Artifact {
       (data) => data.setId !== 15000, // 15000 is dummy artifact
     )
     return filteredArtifactDatas.map((data) => data.id as number)
+  }
+
+  /**
+   * Get max level by artifact ID
+   * @param artifactId Artifact ID
+   * @returns Max level
+   */
+  public static getMaxLevelByArtifactId(artifactId: number): number {
+    const artifactJson = Client._getJsonFromCachedExcelBinOutput(
+      'ReliquaryExcelConfigData',
+      artifactId,
+    )
+    return Artifact.maxLevelMap[artifactJson.rankLevel as number]
   }
 
   /**

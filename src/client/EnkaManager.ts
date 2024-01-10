@@ -32,8 +32,8 @@ export interface EnkaData {
  * Class for fetching EnkaData from enka.network
  */
 export class EnkaManager {
-  private readonly enkaUidURL = 'https://enka.network/api/uid/'
-  private readonly defaultOption: RequestInit = {
+  private static enkaUidURL = 'https://enka.network/api/uid/'
+  private static defaultOption: RequestInit = {
     headers: {
       'user-agent': 'Mozilla/5.0',
     },
@@ -71,7 +71,7 @@ export class EnkaManager {
     this.clearCacheOverNextShowCaseDate()
     if (uid < 100000000 || uid > 999999999)
       throw new EnkaManagerError(`The UID format is not correct(${uid})`)
-    const url = this.enkaUidURL + `${uid}`
+    const url = EnkaManager.enkaUidURL + `${uid}`
     const previousData = this.cache.get(uid)
     if (
       previousData &&
@@ -85,10 +85,10 @@ export class EnkaManager {
     const mergedFetchOption = fetchOption
       ? merge.withOptions(
           { mergeArrays: false },
-          this.defaultOption,
+          EnkaManager.defaultOption,
           fetchOption,
         )
-      : this.defaultOption
+      : EnkaManager.defaultOption
     const res = await fetch(url, mergedFetchOption)
     if (!res.ok) throw new EnkaNetworkError(res)
 

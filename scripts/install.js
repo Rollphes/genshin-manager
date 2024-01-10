@@ -44,8 +44,6 @@ async function main() {
         timeout: 0,
       },
     })
-    if (fs.existsSync(client.option.assetCacheFolderPath))
-      fs.rmSync(client.option.assetCacheFolderPath, { recursive: true })
     await client.deploy()
   }
 }

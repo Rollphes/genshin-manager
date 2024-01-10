@@ -21,6 +21,7 @@ export class WeaponRefinement {
    * Weapon skill description
    */
   public readonly skillDescription: string | undefined
+  //TODO:add addProps
 
   /**
    * Create a weapon refinement
@@ -52,6 +53,11 @@ export class WeaponRefinement {
         Client.cachedTextMap.get(String(equipAffixJson.nameTextMapHash)) || ''
       this.skillDescription =
         Client.cachedTextMap.get(String(equipAffixJson.descTextMapHash)) || ''
+    } else {
+      this.skillName = undefined
+      this.skillDescription = undefined
+      if (this.refinementRank > 1)
+        throw new OutOfRangeError('refinementRank', this.refinementRank, 1, 1)
     }
   }
 }
