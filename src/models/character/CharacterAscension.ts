@@ -49,7 +49,9 @@ export class CharacterAscension {
   constructor(characterId: number, promoteLevel: number = 0) {
     this.id = characterId
     this.promoteLevel = promoteLevel
-    const maxPromoteLevel = CharacterAscension.getMaxPromoteLevel(this.id)
+    const maxPromoteLevel = CharacterAscension.getMaxPromoteLevelByCharacterId(
+      this.id,
+    )
     if (this.promoteLevel < 0 || this.promoteLevel > maxPromoteLevel) {
       throw new OutOfRangeError(
         'promoteLevel',
@@ -92,7 +94,7 @@ export class CharacterAscension {
    * @param characterId Character ID
    * @returns Max promote level
    */
-  public static getMaxPromoteLevel(characterId: number): number {
+  public static getMaxPromoteLevelByCharacterId(characterId: number): number {
     const avatarJson = Client._getJsonFromCachedExcelBinOutput(
       'AvatarExcelConfigData',
       characterId,

@@ -49,7 +49,9 @@ export class WeaponAscension {
   constructor(weaponId: number, promoteLevel: number = 0) {
     this.id = weaponId
     this.promoteLevel = promoteLevel
-    const maxPromoteLevel = WeaponAscension.getMaxPromoteLevel(this.id)
+    const maxPromoteLevel = WeaponAscension.getMaxPromoteLevelByWeaponId(
+      this.id,
+    )
     if (this.promoteLevel < 0 || this.promoteLevel > maxPromoteLevel) {
       throw new OutOfRangeError(
         'promoteLevel',
@@ -92,7 +94,7 @@ export class WeaponAscension {
    * @param weaponId Weapon ID
    * @returns Max promote level
    */
-  public static getMaxPromoteLevel(weaponId: number): number {
+  public static getMaxPromoteLevelByWeaponId(weaponId: number): number {
     const weaponJson = Client._getJsonFromCachedExcelBinOutput(
       'WeaponExcelConfigData',
       weaponId,
