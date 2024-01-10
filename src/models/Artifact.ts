@@ -70,6 +70,16 @@ export class Artifact {
   private readonly oneSetBonusIds: number[] = [
     15009, 15010, 15011, 15012, 15013,
   ]
+  /**
+   * Max level map of artifacts by rarity
+   */
+  private readonly maxLevelMap: { [rarity: number]: number } = {
+    1: 5,
+    2: 5,
+    3: 12,
+    4: 16,
+    5: 20,
+  }
 
   /**
    * Create an Artifact
@@ -86,8 +96,6 @@ export class Artifact {
   ) {
     this.id = artifactId
     this.level = level
-    if (this.level < 0 || this.level > 20)
-      throw new OutOfRangeError('level', this.level, 0, 20)
     const artifactJson = Client._getJsonFromCachedExcelBinOutput(
       'ReliquaryExcelConfigData',
       this.id,
@@ -99,6 +107,9 @@ export class Artifact {
       Client.cachedTextMap.get(String(artifactJson.descTextMapHash)) || ''
     this.rarity = artifactJson.rankLevel as number
     this.setId = artifactJson.setId as number | undefined
+    const maxLevel = this.maxLevelMap[this.rarity]
+    if (this.level < 0 || this.level > maxLevel)
+      throw new OutOfRangeError('level', this.level, 0, maxLevel)
     if (this.setId) {
       const setJson = Client._getJsonFromCachedExcelBinOutput(
         'ReliquarySetExcelConfigData',
