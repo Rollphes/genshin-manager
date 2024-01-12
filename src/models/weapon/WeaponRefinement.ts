@@ -73,4 +73,27 @@ export class WeaponRefinement {
         throw new OutOfRangeError('refinementRank', this.refinementRank, 1, 1)
     }
   }
+
+  /**
+   * Get max refinement rank by weapon ID
+   * @param weaponId Weapon ID
+   * @returns Max refinement rank
+   */
+  public static getMaxRefinementRankByWeaponId(weaponId: number): number {
+    const weaponJson = Client._getJsonFromCachedExcelBinOutput(
+      'WeaponExcelConfigData',
+      weaponId,
+    )
+    for (let i = 1; i < 6; i++) {
+      const skillAffix = (weaponJson.skillAffix as number[])[0] * 10 + i - 1
+      if (
+        !Client._hasCachedExcelBinOutputById(
+          'EquipAffixExcelConfigData',
+          skillAffix,
+        )
+      )
+        return i - 1 || 1
+    }
+    return 5
+  }
 }
