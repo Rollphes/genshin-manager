@@ -157,6 +157,20 @@ export class CharacterInfo {
       hashes,
     ).map((k) => +k)
   }
+
+  /**
+   * Get traveler skill depot IDs
+   * @param characterId Character ID
+   * @returns skill depot IDs
+   */
+  public static getTravelerSkillDepotIds(
+    characterId: 10000005 | 10000007,
+  ): number[] {
+    const avatarDatas = Object.values(
+      Client._getCachedExcelBinOutputByName('AvatarExcelConfigData'),
+    )
+    return avatarDatas[characterId].candSkillDepotIds as number[]
+  }
 }
 
 type QualityType = 'QUALITY_ORANGE' | 'QUALITY_PURPLE' | 'QUALITY_ORANGE_SP'
