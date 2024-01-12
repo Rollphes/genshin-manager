@@ -1,5 +1,7 @@
 import { Client } from '@/client/Client'
 import { OutOfRangeError } from '@/errors/OutOfRangeError'
+import { FightPropType, StatProperty } from '@/models/StatProperty'
+import { JsonObject } from '@/utils/JsonParser'
 
 /**
  * Class of weapon refinement
@@ -21,7 +23,10 @@ export class WeaponRefinement {
    * Weapon skill description
    */
   public readonly skillDescription: string | undefined
-  //TODO:add addProps
+  /**
+   * Weapon skill addProps
+   */
+  public readonly addProps: StatProperty[]
 
   /**
    * Create a weapon refinement
@@ -53,9 +58,17 @@ export class WeaponRefinement {
         Client.cachedTextMap.get(String(equipAffixJson.nameTextMapHash)) || ''
       this.skillDescription =
         Client.cachedTextMap.get(String(equipAffixJson.descTextMapHash)) || ''
+      this.addProps = (equipAffixJson.addProps as JsonObject[]).map(
+        (addProp) =>
+          new StatProperty(
+            addProp.propType as FightPropType,
+            (addProp.value ?? 0) as number,
+          ),
+      )
     } else {
       this.skillName = undefined
       this.skillDescription = undefined
+      this.addProps = []
       if (this.refinementRank > 1)
         throw new OutOfRangeError('refinementRank', this.refinementRank, 1, 1)
     }
