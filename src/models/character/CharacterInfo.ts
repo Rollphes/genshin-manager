@@ -166,10 +166,11 @@ export class CharacterInfo {
   public static getTravelerSkillDepotIds(
     characterId: 10000005 | 10000007,
   ): number[] {
-    const avatarDatas = Object.values(
-      Client._getCachedExcelBinOutputByName('AvatarExcelConfigData'),
+    const avatarData = Client._getJsonFromCachedExcelBinOutput(
+      'AvatarExcelConfigData',
+      characterId,
     )
-    return avatarDatas[characterId].candSkillDepotIds as number[]
+    return avatarData.candSkillDepotIds as number[]
   }
 }
 
