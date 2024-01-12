@@ -101,17 +101,23 @@ export class CharacterInfo {
       ? ElementKeys[skillJson.costElemType as keyof typeof ElementKeys]
       : undefined
 
-    this.skillOrder = [501, 701].includes(this.depotId)
-      ? (depotJson.skills as number[]).slice(0, 1)
-      : (depotJson.skills as number[])
-          .slice(0, 2)
-          .concat(depotJson.energySkill as number)
+    this.skillOrder = (
+      [501, 701].includes(this.depotId)
+        ? (depotJson.skills as number[]).slice(0, 1)
+        : (depotJson.skills as (number | undefined)[])
+            .slice(0, 2)
+            .concat(depotJson.energySkill as number | undefined)
+    ).filter(
+      (skillId): skillId is number => skillId !== 0 && skillId !== undefined,
+    )
     ;(depotJson.inherentProudSkillOpens as JsonObject[]).forEach((k) => {
       if (k.proudSkillGroupId === undefined) return
       this.inherentSkillOrder.push(k.proudSkillGroupId as number)
     })
 
-    this.constellationIds = depotJson.talents as number[]
+    this.constellationIds = (depotJson.talents as number[]).filter(
+      (constId) => constId !== 0,
+    )
 
     this.skillOrder.forEach((skillId) => {
       const skillJson = Client._getJsonFromCachedExcelBinOutput(
