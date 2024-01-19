@@ -515,7 +515,7 @@ export abstract class AssetCacheManager {
     this.createExcelBinOutputKeyList()
     await this.setExcelBinOutputToCache()
     this.createTextHashList()
-    await this.fetchAssetFolder(this.textMapFolderPath, [textMapFileName])
+    await this.fetchAssetFolder(this.textMapFolderPath, [textMapFileName], true)
     await Client.updateCache()
   }
 
@@ -523,11 +523,17 @@ export abstract class AssetCacheManager {
    * Fetch asset folder from gitlab
    * @param FolderPath Folder path
    * @param files File names
+   * @param isRetry Retry
    */
   private static async fetchAssetFolder(
     FolderPath: string,
     files: string[],
+    isRetry = false,
   ): Promise<void> {
+    if (!isRetry) {
+      await fsPromises.rmdir(FolderPath, { recursive: true })
+      await fsPromises.mkdir(FolderPath)
+    }
     const gitFolderName = path.relative(
       this.option.assetCacheFolderPath,
       FolderPath,
