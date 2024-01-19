@@ -27,6 +27,19 @@ export class Artifact {
    */
   private static oneSetBonusIds: number[] = [15009, 15010, 15011, 15012, 15013]
   /**
+   * IDs of set bonuses that cannot be obtained
+   */
+  private static blackSetIds: number[] = [15000, 15004, 15012]
+  /**
+   * IDs of artifacts that cannot be obtained
+   */
+  private static blackArtifactIds: number[] = [
+    23300, 23301, 23302, 23303, 23304, 23305, 23306, 23307, 23308, 23309, 23310,
+    23311, 23312, 23313, 23314, 23315, 23316, 23317, 23318, 23329, 23330, 23334,
+    23335, 23336, 23337, 23338, 23339, 23340,
+  ]
+
+  /**
    * Artifact ID
    */
   public readonly id: number
@@ -82,13 +95,13 @@ export class Artifact {
   /**
    * Create an Artifact
    * @param artifactId Artifact ID
-   * @param mainPropId Main stat ID from ReliquaryMainPropExcelConfigData.json
+   * @param mainPropId Main stat ID from ReliquaryMainPropExcelConfigData.json. Default: 10001
    * @param level Artifact level (0-20). Default: 0
    * @param appendPropIdList Artifact sub stat ID list
    */
   constructor(
     artifactId: number,
-    mainPropId: number,
+    mainPropId: number = 10001,
     level: number = 0,
     appendPropIdList: number[] = [],
   ) {
@@ -187,7 +200,9 @@ export class Artifact {
       Client._getCachedExcelBinOutputByName('ReliquaryExcelConfigData'),
     )
     const filteredArtifactDatas = artifactDatas.filter(
-      (data) => data.setId !== 15000, // 15000 is dummy artifact
+      (data) =>
+        !this.blackSetIds.includes(data.setId as number) &&
+        !this.blackArtifactIds.includes(data.id as number),
     )
     return filteredArtifactDatas.map((data) => data.id as number)
   }

@@ -1,6 +1,7 @@
 import { Client } from '@/client/Client'
 import { OutOfRangeError } from '@/errors/OutOfRangeError'
 import { ImageAssets } from '@/models/assets/ImageAssets'
+import { CharacterInfo } from '@/models/character/CharacterInfo'
 import { JsonObject } from '@/utils/JsonParser'
 
 /**
@@ -94,10 +95,10 @@ export class CharacterSkill {
    * @returns All skill IDs
    */
   public static getAllSkillIds(): number[] {
-    const skillDatas = Object.values(
-      Client._getCachedExcelBinOutputByName('AvatarSkillExcelConfigData'),
-    )
-    return skillDatas.map((data) => data.id as number)
+    const characterIds = CharacterInfo.getAllCharacterIds()
+    return characterIds.flatMap((characterId) => {
+      return new CharacterInfo(characterId).skillOrder
+    })
   }
 
   /**
