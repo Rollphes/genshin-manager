@@ -112,6 +112,12 @@ export class CharacterInfo {
     )
     ;(depotJson.inherentProudSkillOpens as JsonObject[]).forEach((k) => {
       if (k.proudSkillGroupId === undefined) return
+      const proudSkillJson = Client._getJsonFromCachedExcelBinOutput(
+        'ProudSkillExcelConfigData',
+        k.proudSkillGroupId as number,
+      )[1] as JsonObject
+      if (!proudSkillJson) return
+      if (proudSkillJson.isHideLifeProudSkill) return
       this.inherentSkillOrder.push(k.proudSkillGroupId as number)
     })
 

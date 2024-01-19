@@ -1,5 +1,6 @@
 import { Client } from '@/client/Client'
 import { ImageAssets } from '@/models/assets/ImageAssets'
+import { CharacterInfo } from '@/models/character/CharacterInfo'
 import { FightPropType, StatProperty } from '@/models/StatProperty'
 import { JsonObject } from '@/utils/JsonParser'
 
@@ -61,17 +62,10 @@ export class CharacterInherentSkill {
    * @returns All inherent skill IDs
    */
   public static getAllInherentSkillIds(): number[] {
-    const result: number[] = []
-    const skillDepotJson = Object.values(
-      Client._getCachedExcelBinOutputByName('AvatarSkillDepotExcelConfigData'),
-    )
-    skillDepotJson.forEach((k) => {
-      ;(k.inherentProudSkillOpens as JsonObject[]).forEach((l) => {
-        if (l.proudSkillGroupId === undefined) return
-        result.push(l.proudSkillGroupId as number)
-      })
+    const characterIds = CharacterInfo.getAllCharacterIds()
+    return characterIds.flatMap((characterId) => {
+      return new CharacterInfo(characterId).inherentSkillOrder
     })
-    return result
   }
 
   /**

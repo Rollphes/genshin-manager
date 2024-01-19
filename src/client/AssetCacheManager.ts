@@ -63,6 +63,7 @@ export abstract class AssetCacheManager {
       'AvatarExcelConfigData',
       'AvatarSkillDepotExcelConfigData',
       'AvatarSkillExcelConfigData',
+      'ProudSkillExcelConfigData',
     ],
     CharacterStatus: [
       'AvatarExcelConfigData',
