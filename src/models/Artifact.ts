@@ -88,13 +88,13 @@ export class Artifact {
   /**
    * Create an Artifact
    * @param artifactId Artifact ID
-   * @param mainPropId Main stat ID from ReliquaryMainPropExcelConfigData.json
+   * @param mainPropId Main stat ID from ReliquaryMainPropExcelConfigData.json. Default: 10001
    * @param level Artifact level (0-20). Default: 0
    * @param appendPropIdList Artifact sub stat ID list
    */
   constructor(
     artifactId: number,
-    mainPropId: number,
+    mainPropId: number = 10001,
     level: number = 0,
     appendPropIdList: number[] = [],
   ) {
