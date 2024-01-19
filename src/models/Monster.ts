@@ -43,7 +43,7 @@ export class Monster {
   /**
    * Monster Internal name
    */
-  public readonly monsterName: string
+  public readonly internalName: string
   /**
    * Monster name
    */
@@ -87,7 +87,7 @@ export class Monster {
       'MonsterExcelConfigData',
       this.id,
     )
-    this.monsterName = monsterJson.monsterName as string
+    this.internalName = monsterJson.monsterName as string
     this.name =
       Client.cachedTextMap.get(String(monsterJson.nameTextMapHash)) || ''
     const describeId = +String(this.id).slice(1, 6)
