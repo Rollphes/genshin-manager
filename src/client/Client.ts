@@ -60,6 +60,7 @@ export class Client extends AssetCacheManager {
       autoFetchLatestAssetsByCron: '0 0 0 * * 3', //Every Wednesday 00:00:00
       autoCacheImage: true,
       autoFixTextMap: true,
+      autoFixExcelBin: true,
       assetCacheFolderPath: path.resolve(__dirname, '..', '..', 'cache'),
     }
     const mergeOption = option
@@ -77,8 +78,10 @@ export class Client extends AssetCacheManager {
       ]
     }
 
-    if (!mergeOption.autoFetchLatestAssetsByCron)
+    if (!mergeOption.autoFetchLatestAssetsByCron) {
       mergeOption.autoFixTextMap = false
+      mergeOption.autoFixExcelBin = false
+    }
 
     if (!module.parent) throw new Error('module.parent is undefined.')
 

@@ -77,7 +77,13 @@ export interface ClientOption {
    */
   autoFixTextMap: boolean
   /**
-   * auto cache image
+   * Automatically fix the ExcelBin if it has not been downloaded or if there is an error in the json format.
+   * If `autoFetchLatestAssetsByCron` is `undefined`, this option will be ignored.
+   * @default true
+   */
+  autoFixExcelBin: boolean
+  /**
+   * auto cache image.
    * @default true
    */
   autoCacheImage: boolean
