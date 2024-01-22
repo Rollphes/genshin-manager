@@ -64,25 +64,25 @@ export interface ClientOption {
   showFetchCacheLog: boolean
   /**
    * auto fetch latest assets by cron
-   * @warn If this option is `undefined`, asset updates and initial setup are not executed.
-   * @default '0 0 0 * * 3' //every Wednesday at 00:00:00
+   * @warn If this option is `undefined`, asset updates and initial setup are not executed
+   * @default '0 0 0 * * 3' // minute hour day-of-month month day-of-week
    * @see https://crontab.guru/
    */
   autoFetchLatestAssetsByCron: string | undefined
   /**
    * Automatically re-download the textMap if it has not been downloaded or if there is an error in the json format
-   * If `autoFetchLatestAssetsByCron` is `undefined`, this option will be ignored
+   * @warn If `autoFetchLatestAssetsByCron` is `undefined`, this option will be ignored
    * @default true
    */
   autoFixTextMap: boolean
   /**
-   * Automatically fix the ExcelBin if it has not been downloaded or if there is an error in the json format.
-   * If `autoFetchLatestAssetsByCron` is `undefined`, this option will be ignored.
+   * Automatically fix the ExcelBin if it has not been downloaded or if there is an error in the json format
+   * @warn If `autoFetchLatestAssetsByCron` is `undefined`, this option will be ignored
    * @default true
    */
   autoFixExcelBin: boolean
   /**
-   * auto cache image.
+   * auto cache image
    * @default true
    */
   autoCacheImage: boolean

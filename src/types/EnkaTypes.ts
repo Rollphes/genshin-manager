@@ -40,7 +40,7 @@ export interface APIPlayerInfo {
    */
   worldLevel?: number
   /**
-   * Profile Namecard ID
+   * Profile NameCard ID
    */
   nameCardId: number
   /**
@@ -60,7 +60,7 @@ export interface APIPlayerInfo {
    */
   showAvatarInfoList?: APIShowAvatarInfo[]
   /**
-   * List of Namecard IDs
+   * List of NameCard IDs
    */
   showNameCardIdList?: number[]
   /**
@@ -174,7 +174,7 @@ export interface APIAvatarInfo {
   propMap: { [key in number]: APIPropMap }
   /**
    * List of Constellation IDs
-   * There is no data if 0 Constellation
+   * @warn There is no data if 0 Constellation
    */
   talentIdList?: number[]
   /**
@@ -214,7 +214,7 @@ export interface APIAvatarInfo {
 
 /**
  * EnkaNetWork response type
- * https://enka.network/api/uid/:uid
+ * @link https://enka.network/api/uid/:uid
  */
 export interface APIEnkaData {
   /**

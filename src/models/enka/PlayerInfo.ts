@@ -23,7 +23,7 @@ export class PlayerInfo {
    */
   public readonly worldLevel: number
   /**
-   * Profile Namecard ID
+   * Profile NameCard ID
    */
   public readonly nameCard: Material
   /**
@@ -43,7 +43,7 @@ export class PlayerInfo {
    */
   public readonly showAvatarInfoList: ShowAvatarInfo[]
   /**
-   * List of Namecard
+   * List of NameCard
    */
   public readonly showNameCardList: Material[]
   /**

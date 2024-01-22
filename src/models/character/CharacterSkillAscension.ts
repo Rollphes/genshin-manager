@@ -20,7 +20,7 @@ export class CharacterSkillAscension {
    */
   public readonly costItems: {
     /**
-     * Cost item ID(materialIDd)
+     * Cost item ID (materialID)
      */
     id: number
     /**

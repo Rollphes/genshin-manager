@@ -25,17 +25,17 @@ export class ProfilePicture {
   public readonly type: ProfilePictureType
   /**
    * Avatar ID
-   * Exists only if type is `PROFILE_PICTURE_UNLOCK_BY_AVATAR`
+   * @description Exists only if type is `PROFILE_PICTURE_UNLOCK_BY_AVATAR`
    */
   public readonly characterId?: number
   /**
    * Costume ID
-   * Exists only if type is `PROFILE_PICTURE_UNLOCK_BY_COSTUME`
+   * @description Exists only if type is `PROFILE_PICTURE_UNLOCK_BY_COSTUME`
    */
   public readonly costumeId?: number
   /**
    * Material ID
-   * Exists only if type is `PROFILE_PICTURE_UNLOCK_BY_ITEM`
+   * @description Exists only if type is `PROFILE_PICTURE_UNLOCK_BY_ITEM`
    */
   public readonly materialId?: number
   /**

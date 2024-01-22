@@ -8,7 +8,7 @@ import { ClientOption, TextMapLanguage } from '@/types'
 
 /**
  * Class of the client
- * This is the main body of `Genshin-Manager` where cache information is stored
+ * @description This is the main body of `Genshin-Manager` where cache information is stored
  */
 export class Client extends AssetCacheManager {
   public readonly option: ClientOption

@@ -46,7 +46,7 @@ export class CharacterInfo {
   public readonly proudMap: Map<number, number> = new Map()
   /**
    * Rarity
-   * aloy is treated as 0 because it is special
+   * @warn aloy is treated as 0 because it is special
    */
   public readonly rarity: number
   /**
