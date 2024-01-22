@@ -288,7 +288,10 @@ export abstract class AssetCacheManager {
    */
   protected static async updateCache(): Promise<void> {
     console.log('GenshinManager: Start update cache.')
-    if (await this.checkGitUpdate()) {
+    if (
+      (await this.checkGitUpdate()) &&
+      this.option.autoFetchLatestAssetsByCron
+    ) {
       if (this.option.showFetchCacheLog)
         console.log('GenshinManager: New Assets found. Update Assets.')
       this.createExcelBinOutputKeyList()

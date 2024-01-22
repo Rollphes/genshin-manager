@@ -64,8 +64,7 @@ export interface ClientOption {
   showFetchCacheLog: boolean
   /**
    * auto fetch latest assets by cron
-   * If this option is `undefined`, update assets will not be executed
-   * Be sure to set `undefined` when using patch-updated Assets
+   * @warn If this option is `undefined`, asset updates and initial setup are not executed.
    * @default '0 0 0 * * 3' //every Wednesday at 00:00:00
    * @see https://crontab.guru/
    */
