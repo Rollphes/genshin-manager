@@ -133,6 +133,7 @@ export abstract class AssetCacheManager {
       'AvatarExcelConfigData',
       'MaterialExcelConfigData',
     ],
+    DailyFarming: ['DungeonEntryExcelConfigData'],
   }
 
   private static textHashList: Set<number> = new Set()

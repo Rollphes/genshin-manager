@@ -23,6 +23,7 @@ import {
 import { CharacterSkill } from '@/models/character/CharacterSkill'
 import { CharacterStatus } from '@/models/character/CharacterStatus'
 import { CharacterStories } from '@/models/character/CharacterStories'
+import { DailyFarming } from '@/models/DailyFarming'
 import { AvatarInfo } from '@/models/enka/AvatarInfo'
 import { PlayerInfo } from '@/models/enka/PlayerInfo'
 import { ShowAvatarInfo } from '@/models/enka/ShowAvatarInfo'
@@ -81,6 +82,7 @@ export {
   NoticeManager,
   Notice,
   ProfilePicture,
+  DailyFarming,
 }
 export { convertToUTC }
 export {

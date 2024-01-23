@@ -232,6 +232,10 @@ export class ObjectKeyDecoder {
           cacheObject[obj.fetterId as string] = obj
           break
 
+        case 'DungeonEntryExcelConfigData':
+          cacheObject[obj.id as string] = obj
+          break
+
         //Progress
         case 'FettersExcelConfigData':
           cacheObject[obj.fetterId as string] = obj

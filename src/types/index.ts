@@ -559,7 +559,7 @@ export const ExcelBinOutputs = {
   // DungeonChallengeConfigData: 'DungeonChallengeConfigData.json',
   // DungeonElementChallengeExcelConfigData:
   //   'DungeonElementChallengeExcelConfigData.json',
-  // DungeonEntryExcelConfigData: 'DungeonEntryExcelConfigData.json',
+  DungeonEntryExcelConfigData: 'DungeonEntryExcelConfigData.json',
   // DungeonExcelConfigData: 'DungeonExcelConfigData.json',
   DungeonLevelEntityConfigData: 'DungeonLevelEntityConfigData.json',
   // DungeonMapAreaExcelConfigData: 'DungeonMapAreaExcelConfigData.json',
