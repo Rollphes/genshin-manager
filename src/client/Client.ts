@@ -3,6 +3,7 @@ import path from 'path'
 import merge from 'ts-deepmerge'
 
 import { AssetCacheManager } from '@/client/AssetCacheManager'
+import { AudioAssets } from '@/models/assets/AudioAssets'
 import { ImageAssets } from '@/models/assets/ImageAssets'
 import { ClientOption, TextMapLanguage } from '@/types'
 
@@ -40,6 +41,7 @@ export class Client extends AssetCacheManager {
         'CHS',
       ],
       defaultImageBaseUrl: 'https://api.ambr.top/assets/UI',
+      defaultAudioBaseUrl: 'https://api.ambr.top/assets/Audio',
       imageBaseUrlByRegex: {
         'https://enka.network/ui': [
           /^UI_(EquipIcon|NameCardPic|RelicIcon|AvatarIcon_Side|NameCardIcon|Costume)_/,
@@ -55,10 +57,12 @@ export class Client extends AssetCacheManager {
         ],
         'https://api.ambr.top/assets/UI/gcg': [/^UI_Gcg_CardFace_/],
       },
+      audioBaseUrlByRegex: {},
       defaultLanguage: 'EN',
       showFetchCacheLog: true,
       autoFetchLatestAssetsByCron: '0 0 0 * * 3', //Every Wednesday 00:00:00
       autoCacheImage: true,
+      autoCacheAudio: true,
       autoFixTextMap: true,
       autoFixExcelBin: true,
       assetCacheFolderPath: path.resolve(__dirname, '..', '..', 'cache'),
@@ -121,5 +125,6 @@ export class Client extends AssetCacheManager {
       })
     }
     ImageAssets.deploy(this.option)
+    AudioAssets.deploy(this.option)
   }
 }

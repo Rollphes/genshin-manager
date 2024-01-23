@@ -31,6 +31,11 @@ export interface ClientOption {
    */
   defaultImageBaseUrl: string
   /**
+   * default Audio base url
+   * @default 'https://api.ambr.top/assets/Audio'
+   */
+  defaultAudioBaseUrl: string
+  /**
    * image base url by regex
    * @default
    * ```ts
@@ -52,6 +57,14 @@ export interface ClientOption {
    * ```
    */
   imageBaseUrlByRegex: { [url: string]: RegExp[] }
+  /**
+   * audio base url by regex
+   * @default
+   * ```ts
+   * {}
+   * ```
+   */
+  audioBaseUrlByRegex: { [url: string]: RegExp[] }
   /**
    * default language
    * @default 'EN'
@@ -86,6 +99,11 @@ export interface ClientOption {
    * @default true
    */
   autoCacheImage: boolean
+  /**
+   * auto cache audio
+   * @default true
+   */
+  autoCacheAudio: boolean
   /**
    * asset cache folder path
    * @default node_modules/genshin-manager/cache
@@ -128,6 +146,14 @@ export const TimeZonesPerRegion = {
  * Region type
  */
 export type Region = keyof typeof TimeZonesPerRegion
+
+/**
+ * Character voice type
+ */
+export type CVType = keyof Omit<
+  typeof TextMapLanguage,
+  'RU' | 'VI' | 'TH' | 'PT' | 'ID' | 'FR' | 'ES' | 'DE' | 'CHT'
+>
 
 /**
  * TextMap language type

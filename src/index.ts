@@ -4,12 +4,14 @@ import { NoticeManager } from '@/client/NoticeManager'
 import { AnnContentNotFoundError } from '@/errors/AnnContentNotFoundError'
 import { AnnError } from '@/errors/AnnError'
 import { AssetsNotFoundError } from '@/errors/AssetsNotFoundError'
+import { AudioNotFoundError } from '@/errors/AudioNotFoundError'
 import { BodyNotFoundError } from '@/errors/BodyNotFoundError'
 import { EnkaManagerError } from '@/errors/EnkaManagerError'
 import { EnkaNetworkError } from '@/errors/EnkaNetWorkError'
 import { ImageNotFoundError } from '@/errors/ImageNotFoundError'
 import { TextMapFormatError } from '@/errors/TextMapFormatError'
 import { Artifact, ArtifactType } from '@/models/Artifact'
+import { AudioAssets } from '@/models/assets/AudioAssets'
 import { ImageAssets } from '@/models/assets/ImageAssets'
 import { CharacterAscension } from '@/models/character/CharacterAscension'
 import { CharacterConstellation } from '@/models/character/CharacterConstellation'
@@ -51,9 +53,11 @@ export {
   AssetsNotFoundError,
   EnkaManagerError,
   EnkaNetworkError,
+  AudioNotFoundError,
   ImageNotFoundError,
   TextMapFormatError,
   Artifact,
+  AudioAssets,
   ImageAssets,
   CharacterInfo,
   BodyType,
