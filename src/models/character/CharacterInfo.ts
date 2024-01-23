@@ -1,7 +1,13 @@
 import { Client } from '@/client/Client'
-import { WeaponType } from '@/models/weapon/Weapon'
-import { ElementKeys, ValueOf } from '@/types'
+import {
+  BodyType,
+  Element,
+  ElementKeys,
+  QualityType,
+  WeaponType,
+} from '@/types'
 import { JsonObject } from '@/utils/JsonParser'
+
 /**
  * Class that summarizes IDs and other information related to the character
  */
@@ -25,7 +31,7 @@ export class CharacterInfo {
   /**
    * Element of the character
    */
-  public readonly element: ValueOf<typeof ElementKeys> | undefined
+  public readonly element: Element | undefined
   /**
    * Skill order
    */
@@ -185,15 +191,3 @@ export class CharacterInfo {
     return avatarData.candSkillDepotIds as number[]
   }
 }
-
-type QualityType = 'QUALITY_ORANGE' | 'QUALITY_PURPLE' | 'QUALITY_ORANGE_SP'
-
-/**
- * Body type
- */
-export type BodyType =
-  | 'BODY_BOY'
-  | 'BODY_GIRL'
-  | 'BODY_LADY'
-  | 'BODY_LOLI'
-  | 'BODY_MALE'

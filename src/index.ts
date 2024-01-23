@@ -10,18 +10,15 @@ import { EnkaManagerError } from '@/errors/EnkaManagerError'
 import { EnkaNetworkError } from '@/errors/EnkaNetWorkError'
 import { ImageNotFoundError } from '@/errors/ImageNotFoundError'
 import { TextMapFormatError } from '@/errors/TextMapFormatError'
-import { Artifact, ArtifactType } from '@/models/Artifact'
+import { Artifact } from '@/models/Artifact'
 import { AudioAssets } from '@/models/assets/AudioAssets'
 import { ImageAssets } from '@/models/assets/ImageAssets'
 import { CharacterAscension } from '@/models/character/CharacterAscension'
 import { CharacterConstellation } from '@/models/character/CharacterConstellation'
 import { CharacterCostume } from '@/models/character/CharacterCostume'
-import { BodyType, CharacterInfo } from '@/models/character/CharacterInfo'
+import { CharacterInfo } from '@/models/character/CharacterInfo'
 import { CharacterInherentSkill } from '@/models/character/CharacterInherentSkill'
-import {
-  AssocType,
-  CharacterProfile,
-} from '@/models/character/CharacterProfile'
+import { CharacterProfile } from '@/models/character/CharacterProfile'
 import { CharacterSkill } from '@/models/character/CharacterSkill'
 import { CharacterStatus } from '@/models/character/CharacterStatus'
 import { CharacterStories } from '@/models/character/CharacterStories'
@@ -30,23 +27,37 @@ import { AvatarInfo } from '@/models/enka/AvatarInfo'
 import { PlayerInfo } from '@/models/enka/PlayerInfo'
 import { ShowAvatarInfo } from '@/models/enka/ShowAvatarInfo'
 import { FightProp } from '@/models/FightProp'
-import { ItemType, Material, MaterialType } from '@/models/Material'
+import { Material } from '@/models/Material'
 import { Monster } from '@/models/Monster'
 import { Notice } from '@/models/Notice'
-import { ProfilePicture, ProfilePictureType } from '@/models/ProfilePicture'
-import { FightPropType, StatProperty } from '@/models/StatProperty'
+import { ProfilePicture } from '@/models/ProfilePicture'
+import { StatProperty } from '@/models/StatProperty'
 import { TowerFloor } from '@/models/tower/TowerFloor'
 import { TowerLevel } from '@/models/tower/TowerLevel'
 import { TowerSchedule } from '@/models/tower/TowerSchedule'
-import { Weapon, WeaponType } from '@/models/weapon/Weapon'
+import { Weapon } from '@/models/weapon/Weapon'
 import { WeaponAscension } from '@/models/weapon/WeaponAscension'
 import { WeaponRefinement } from '@/models/weapon/WeaponRefinement'
-import { ClientOption, Element, Region } from '@/types'
+import {
+  ArtifactType,
+  AssocType,
+  BodyType,
+  ClientOption,
+  CodexType,
+  CVType,
+  Element,
+  FightPropType,
+  ItemType,
+  MaterialType,
+  ProfilePictureType,
+  QualityType,
+  Region,
+  WeaponType,
+} from '@/types'
 import { convertToUTC } from '@/utils/convertToUTC'
 export {
   Client,
   EnkaManager,
-  EnkaData,
   AnnContentNotFoundError,
   AnnError,
   BodyNotFoundError,
@@ -60,7 +71,6 @@ export {
   AudioAssets,
   ImageAssets,
   CharacterInfo,
-  BodyType,
   CharacterStories,
   CharacterAscension,
   CharacterStatus,
@@ -90,6 +100,7 @@ export {
 }
 export { convertToUTC }
 export {
+  EnkaData,
   Element,
   ArtifactType,
   AssocType,
@@ -99,4 +110,8 @@ export {
   WeaponType,
   Region,
   ProfilePictureType,
+  BodyType,
+  QualityType,
+  CodexType,
+  CVType,
 }

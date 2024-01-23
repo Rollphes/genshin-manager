@@ -2,14 +2,7 @@ import { Client } from '@/client/Client'
 import { ImageAssets } from '@/models/assets/ImageAssets'
 import { CharacterCostume } from '@/models/character/CharacterCostume'
 import { CharacterInfo } from '@/models/character/CharacterInfo'
-
-/**
- * Type of character's profile picture
- */
-export type ProfilePictureType =
-  | 'PROFILE_PICTURE_UNLOCK_BY_AVATAR'
-  | 'PROFILE_PICTURE_UNLOCK_BY_COSTUME'
-  | 'PROFILE_PICTURE_UNLOCK_BY_ITEM'
+import { ProfilePictureType } from '@/types'
 
 /**
  * Class of character's profile picture

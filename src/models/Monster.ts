@@ -1,26 +1,9 @@
 import { Client } from '@/client/Client'
 import { OutOfRangeError } from '@/errors/OutOfRangeError'
 import { ImageAssets } from '@/models/assets/ImageAssets'
-import { FightProps, StatProperty } from '@/models/StatProperty'
+import { StatProperty } from '@/models/StatProperty'
+import { CodexType, FightProps } from '@/types'
 import { JsonObject } from '@/utils/JsonParser'
-
-/**
- * Monster type
- * @CODEX_SUBTYPE_ELEMENT_LIFE is original reason: Element lifeforms does not have a subType
- */
-export type CodexType =
-  | 'CODEX_SUBTYPE_ELEMENT_LIFE'
-  | 'CODEX_SUBTYPE_ABYSS'
-  | 'CODEX_SUBTYPE_ANIMAL'
-  | 'CODEX_SUBTYPE_AUTOMATRON'
-  | 'CODEX_SUBTYPE_AVIARY'
-  | 'CODEX_SUBTYPE_BEAST'
-  | 'CODEX_SUBTYPE_BOSS'
-  | 'CODEX_SUBTYPE_CRITTER'
-  | 'CODEX_SUBTYPE_FATUI'
-  | 'CODEX_SUBTYPE_FISH'
-  | 'CODEX_SUBTYPE_HILICHURL'
-  | 'CODEX_SUBTYPE_HUMAN'
 
 const StatusBonusMonsterAtMultiPlay = {
   FIGHT_PROP_BASE_HP: [1.0, 1.5, 2.0, 2.5],

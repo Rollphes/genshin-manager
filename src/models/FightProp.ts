@@ -1,4 +1,5 @@
-import { FightProps, StatProperty } from '@/models/StatProperty'
+import { StatProperty } from '@/models/StatProperty'
+import { FightProps } from '@/types'
 
 /**
  * Class of Character's Combat Properties

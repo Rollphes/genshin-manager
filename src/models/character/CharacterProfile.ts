@@ -1,19 +1,5 @@
 import { Client } from '@/client/Client'
-import { CVType } from '@/types'
-
-//TODO: If genshin does a major update, I'll update here.
-/**
- * Association type
- */
-export type AssocType =
-  | 'ASSOC_TYPE_FATUI'
-  | 'ASSOC_TYPE_FONTAINE'
-  | 'ASSOC_TYPE_INAZUMA'
-  | 'ASSOC_TYPE_LIYUE'
-  | 'ASSOC_TYPE_MAINACTOR'
-  | 'ASSOC_TYPE_MONDSTADT'
-  | 'ASSOC_TYPE_RANGER'
-  | 'ASSOC_TYPE_SUMERU'
+import { AssocType, CVType } from '@/types'
 
 /**
  * Class of character's profile

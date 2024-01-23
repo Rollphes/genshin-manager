@@ -1,6 +1,7 @@
 import { Client } from '@/client/Client'
 import { OutOfRangeError } from '@/errors/OutOfRangeError'
-import { FightPropType, StatProperty } from '@/models/StatProperty'
+import { StatProperty } from '@/models/StatProperty'
+import { FightPropType } from '@/types'
 import { JsonObject } from '@/utils/JsonParser'
 
 /**

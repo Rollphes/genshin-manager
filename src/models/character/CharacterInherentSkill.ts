@@ -1,7 +1,8 @@
 import { Client } from '@/client/Client'
 import { ImageAssets } from '@/models/assets/ImageAssets'
 import { CharacterInfo } from '@/models/character/CharacterInfo'
-import { FightPropType, StatProperty } from '@/models/StatProperty'
+import { StatProperty } from '@/models/StatProperty'
+import { FightPropType } from '@/types'
 import { JsonObject } from '@/utils/JsonParser'
 
 /**
