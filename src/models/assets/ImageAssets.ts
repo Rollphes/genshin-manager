@@ -164,13 +164,13 @@ export class ImageAssets {
       if (!res.ok || !res.body)
         throw new ImageNotFoundError(this.name, this.url)
 
-      const fsStream = fs.createWriteStream(imageCachePath, {
-        highWaterMark: highWaterMark,
-      })
       if (ImageAssets.autoCacheImage) {
+        const fsWriteStream = fs.createWriteStream(imageCachePath, {
+          highWaterMark: highWaterMark,
+        })
         await pipeline(
           new ReadableStreamWrapper(res.body.getReader()),
-          fsStream,
+          fsWriteStream,
         )
       }
       return fs.createReadStream(imageCachePath, {
