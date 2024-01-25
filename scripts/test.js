@@ -105,7 +105,7 @@ async function main() {
       const materialIds = await Material.getAllMaterialIds()
       for (const id of materialIds) {
         const material = new Material(id)
-        await material.icon.fetchBuffer()
+        await material.icon.fetchBuffer().catch((e) => console.log(e))
         for (const img of material.pictures) {
           await img.fetchBuffer().catch((e) => console.log(e))
         }
@@ -124,7 +124,8 @@ async function main() {
         await profilePicture.icon.fetchBuffer().catch((e) => console.log(e))
       }
 
-      const constellationIds = await CharacterConstellation.getAllConstellationIds()
+      const constellationIds =
+        await CharacterConstellation.getAllConstellationIds()
       for (const id of constellationIds) {
         const constellation = new CharacterConstellation(id)
         await constellation.icon.fetchBuffer().catch((e) => console.log(e))
@@ -138,7 +139,8 @@ async function main() {
         await costume.art.fetchBuffer().catch((e) => console.log(e))
       }
 
-      const inherentSkillIds = await CharacterInherentSkill.getAllInherentSkillIds()
+      const inherentSkillIds =
+        await CharacterInherentSkill.getAllInherentSkillIds()
       for (const id of inherentSkillIds) {
         const inherentSkill = new CharacterInherentSkill(id)
         await inherentSkill.icon.fetchBuffer().catch((e) => console.log(e))
