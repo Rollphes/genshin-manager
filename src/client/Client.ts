@@ -1,6 +1,6 @@
 import cron from 'node-cron'
 import path from 'path'
-import merge from 'ts-deepmerge'
+import { merge } from 'ts-deepmerge'
 
 import { AssetCacheManager } from '@/client/AssetCacheManager'
 import { AudioAssets } from '@/models/assets/AudioAssets'

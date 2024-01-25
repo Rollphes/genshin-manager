@@ -1,4 +1,4 @@
-import merge from 'ts-deepmerge'
+import { merge } from 'ts-deepmerge'
 
 import { EnkaManagerError } from '@/errors/EnkaManagerError'
 import { EnkaNetworkError } from '@/errors/EnkaNetWorkError'

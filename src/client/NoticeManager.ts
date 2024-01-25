@@ -1,4 +1,4 @@
-import merge from 'ts-deepmerge'
+import { merge } from 'ts-deepmerge'
 
 import { AnnContentNotFoundError } from '@/errors/AnnContentNotFoundError'
 import { AnnError } from '@/errors/AnnError'
