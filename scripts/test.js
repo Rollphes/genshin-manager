@@ -170,6 +170,15 @@ async function main() {
 
       console.log('Image test passed!')
       break
+    case 'Audio':
+      console.log('Running test of Audio...')
+      const voiceIds = await CharacterVoice.getAllFetterIds()
+      for (const id of voiceIds) {
+        const voice = new CharacterVoice(id)
+        await voice.audio.fetchBuffer().catch((e) => console.log(e))
+      }
+      console.log('Audio test passed!')
+      break
   }
   process.exit(0)
 }
