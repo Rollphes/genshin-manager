@@ -7,17 +7,23 @@ const {
   CharacterProfile,
 } = require('../dist/models/character/CharacterProfile.js')
 const { CharacterSkill } = require('../dist/models/character/CharacterSkill.js')
-const { CharacterInherentSkill } = require('../dist/models/character/CharacterInherentSkill.js')
+const {
+  CharacterInherentSkill,
+} = require('../dist/models/character/CharacterInherentSkill.js')
 const {
   CharacterConstellation,
 } = require('../dist/models/character/CharacterConstellation.js')
+const { CharacterStory } = require('../dist/models/character/CharacterStory.js')
+const { CharacterVoice } = require('../dist/models/character/CharacterVoice.js')
 const { Artifact } = require('../dist/models/Artifact.js')
 const { Material } = require('../dist/models/Material.js')
 const { Weapon } = require('../dist/models/weapon/Weapon.js')
 const { TowerSchedule } = require('../dist/models/tower/TowerSchedule.js')
 const { TowerFloor } = require('../dist/models/tower/TowerFloor.js')
+const { TowerLevel } = require('../dist/models/tower/TowerLevel.js')
 const { Monster } = require('../dist/models/Monster.js')
 const { ProfilePicture } = require('../dist/models/ProfilePicture.js')
+const { DailyFarming } = require('../dist/models/DailyFarming.js')
 
 const { EnkaManager } = require('../dist/client/EnkaManager.js')
 
@@ -50,17 +56,23 @@ async function main() {
       CharacterConstellation.getAllConstellationIds().forEach(
         (id) => new CharacterConstellation(id),
       )
+      CharacterStory.getAllFetterIds().forEach((id) => new CharacterStory(id))
+      CharacterVoice.getAllFetterIds().forEach((id) => new CharacterVoice(id))
       Artifact.getAllArtifactIds().forEach((id) => new Artifact(id, 10001))
       Material.getAllMaterialIds().forEach((id) => new Material(id))
       Weapon.getAllWeaponIds().forEach((id) => new Weapon(id))
       TowerSchedule.getAllTowerScheduleIds().forEach(
         (id) => new TowerSchedule(id),
       )
-      Monster.getAllMonsterIds().forEach((id) => new Monster(id))
       TowerFloor.getAllTowerFloorIds().forEach((id) => new TowerFloor(id))
+      TowerLevel.getAllTowerLevelIds().forEach((id) => new TowerLevel(id, 12))
+      Monster.getAllMonsterIds().forEach((id) => new Monster(id))
       ProfilePicture.getAllProfilePictureIds().forEach(
         (id) => new ProfilePicture(id),
       )
+      for (let i = 0; i < 7; i++) {
+        new DailyFarming(i)
+      }
       console.log('AllId test passed!')
       break
     case 'EnkaNetwork':
