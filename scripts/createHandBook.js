@@ -18,7 +18,6 @@ async function main() {
   rl.question('language?:', async (answer) => {
     const client = new Client({
       downloadLanguages: [answer],
-      autoFetchLatestAssetsByCron: undefined,
       defaultLanguage: answer,
       fetchOptions: {
         timeout: 0,
@@ -90,5 +89,6 @@ async function main() {
       rl.close()
     })
   })
+  process.exit(0)
 }
 void main()

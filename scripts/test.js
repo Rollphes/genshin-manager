@@ -26,7 +26,6 @@ const testType = process.env.npm_config_test_type
 async function main() {
   const client = new Client({
     downloadLanguages: ['EN'],
-    autoFetchLatestAssetsByCron: undefined,
     defaultLanguage: 'EN',
     fetchOptions: {
       timeout: 0,
@@ -143,5 +142,6 @@ async function main() {
       console.log('Image test passed!')
       break
   }
+  process.exit(0)
 }
 void main()
