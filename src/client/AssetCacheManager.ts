@@ -70,6 +70,7 @@ export abstract class AssetCacheManager {
       'AvatarCurveExcelConfigData',
     ],
     CharacterStory: ['FetterStoryExcelConfigData'],
+    CharacterVoice: ['FettersExcelConfigData'],
     CharacterAscension: [
       'AvatarExcelConfigData',
       'AvatarPromoteExcelConfigData',

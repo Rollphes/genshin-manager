@@ -22,6 +22,7 @@ import { CharacterProfile } from '@/models/character/CharacterProfile'
 import { CharacterSkill } from '@/models/character/CharacterSkill'
 import { CharacterStatus } from '@/models/character/CharacterStatus'
 import { CharacterStory } from '@/models/character/CharacterStory'
+import { CharacterVoice } from '@/models/character/CharacterVoice'
 import { DailyFarming } from '@/models/DailyFarming'
 import { AvatarInfo } from '@/models/enka/AvatarInfo'
 import { PlayerInfo } from '@/models/enka/PlayerInfo'
@@ -72,6 +73,7 @@ export {
   ImageAssets,
   CharacterInfo,
   CharacterStory,
+  CharacterVoice,
   CharacterAscension,
   CharacterStatus,
   CharacterCostume,
