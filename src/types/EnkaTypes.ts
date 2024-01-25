@@ -1,5 +1,4 @@
-import { ArtifactType } from '@/models/Artifact'
-import { FightPropType } from '@/models/StatProperty'
+import { ArtifactType, FightPropType } from '@/types'
 
 /**
  * Enka API ShowAvatarInfo type
