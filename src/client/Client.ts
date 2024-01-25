@@ -100,13 +100,17 @@ export class Client extends AssetCacheManager {
    * ```ts
    * const client = new Client()
    * await client.deploy()
-   * await Client.changeLanguage('JP')
+   * await client.changeLanguage('JP')
    * ```
    */
-  public static async changeLanguage(
+  public async changeLanguage(
     language: keyof typeof TextMapLanguage,
   ): Promise<void> {
-    await Client.setTextMapToCache(language)
+    if (await Client.setTextMapToCache(language)) {
+      this.option.autoFixTextMap = false
+      await Client.setTextMapToCache(language)
+      this.option.autoFixTextMap = true
+    }
   }
 
   /**

@@ -344,9 +344,7 @@ export abstract class AssetCacheManager {
    * Set excel bin output to cache
    * @returns Returns true if an error occurs
    */
-  protected static async setExcelBinOutputToCache(): Promise<
-    boolean | undefined
-  > {
+  protected static async setExcelBinOutputToCache(): Promise<boolean> {
     this.cachedExcelBinOutput.clear()
     for (const key of this.excelBinOutputKeyList) {
       const filename = ExcelBinOutputs[key]
@@ -405,6 +403,7 @@ export abstract class AssetCacheManager {
         new JsonParser(JSON.stringify(decoder.execute(v, k))),
       )
     })
+    return false
   }
 
   /**
@@ -414,7 +413,7 @@ export abstract class AssetCacheManager {
    */
   protected static async setTextMapToCache(
     language: keyof typeof TextMapLanguage,
-  ): Promise<boolean | undefined> {
+  ): Promise<boolean> {
     //Since the timing of loading into the cache is the last, unnecessary cache is not loaded, and therefore clearing the cache is not necessary.
     const selectedTextMapPath = path.join(
       this.textMapFolderPath,
@@ -462,6 +461,7 @@ export abstract class AssetCacheManager {
       }
     })
     if (pipelinePromiseResult) return true
+    return false
   }
 
   /**
