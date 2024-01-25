@@ -177,7 +177,7 @@ async function main() {
       const voiceIds = await CharacterVoice.getAllFetterIds()
       for (const cv of ['JP', 'EN', 'CHS', 'KR']) {
         for (const id of voiceIds) {
-          const voice = new CharacterVoice(id)
+          const voice = new CharacterVoice(id, cv)
           await voice.audio.fetchBuffer().catch((e) => console.log(e))
         }
       }
