@@ -402,6 +402,236 @@ ID:10905 Name:Bombardeo radial<br>
 ID:10911 Name:Ataque Normal: Declinación directa<br>
 ID:10912 Name:Etiqueta vidriopírica<br>
 ID:10915 Name:Aluvión artillero<br>
+## InherentSkillId
+ID:221 Name:Supresión de lo impuro<br>
+ID:222 Name:Edicto helado<br>
+ID:223 Name:Los frutos de la reflexión<br>
+ID:321 Name:Compañera del viento<br>
+ID:322 Name:Que el viento nos guíe<br>
+ID:323 Name:Viento guía<br>
+ID:421 Name:Réplica eléctrica<br>
+ID:422 Name:Campo de electricidad estática<br>
+ID:423 Name:Conocimientos farmacéuticos<br>
+ID:1421 Name:Momento de gloria<br>
+ID:1422 Name:Bis<br>
+ID:1423 Name:Con todo mi corazón ♪<br>
+ID:1521 Name:Espada de sangre fría<br>
+ID:1522 Name:Corazón glacial<br>
+ID:1523 Name:Fuerza subyacente<br>
+ID:1621 Name:Implacable<br>
+ID:1622 Name:Bendición del fénix<br>
+ID:1623 Name:Tradición del Caballero del Amanecer<br>
+ID:2021 Name:Despertar<br>
+ID:2022 Name:Hambre<br>
+ID:2023 Name:Velocidad de lobo<br>
+ID:2121 Name:¡Puntería final!<br>
+ID:2122 Name:Flecha precisa<br>
+ID:2123 Name:Campeona de vuelo<br>
+ID:2221 Name:Abraza los vientos<br>
+ID:2222 Name:Ojo del huracán<br>
+ID:2223 Name:Jinete del viento<br>
+ID:2321 Name:Fuego cruzado<br>
+ID:2322 Name:¡Cuidado, que pica!<br>
+ID:2323 Name:Chef de cocina<br>
+ID:2421 Name:Castigo divino<br>
+ID:2422 Name:Tormenta eléctrica<br>
+ID:2423 Name:Conquistadora de mareas<br>
+ID:2521 Name:Secretos del agua<br>
+ID:2522 Name:Cuchillas a cántaros<br>
+ID:2523 Name:Destello repentino<br>
+ID:2621 Name:Conquista del mal: Domademonios<br>
+ID:2622 Name:Desintegración: Caída celestial<br>
+ID:2623 Name:Trascendencia: Desafío a la gravedad<br>
+ID:2721 Name:Plan B<br>
+ID:2722 Name:Reserva estratégica<br>
+ID:2723 Name:Registro de tesoros maravillosos<br>
+ID:2921 Name:Regalo explosivo<br>
+ID:2922 Name:Estallido incesante<br>
+ID:2923 Name:Todos mis tesoros<br>
+ID:3021 Name:Ondas resonantes<br>
+ID:3022 Name:Dominio de la Tierra<br>
+ID:3023 Name:Cristal del destino<br>
+ID:3121 Name:Cuervo devoraestrellas<br>
+ID:3122 Name:Juicio de los pecadores<br>
+ID:3123 Name:Mi jardín secreto<br>
+ID:3221 Name:Resurgimiento de la pasión<br>
+ID:3222 Name:Fervor intrépido<br>
+ID:3223 Name:Supuestamente seguro<br>
+ID:3321 Name:Infinito sinfín<br>
+ID:3322 Name:Espada hidromorfa<br>
+ID:3323 Name:Maestro de armas<br>
+ID:3421 Name:De todo corazón<br>
+ID:3422 Name:Pulcra y eficaz<br>
+ID:3423 Name:Dedicación de la criada<br>
+ID:3521 Name:Elixir de vida<br>
+ID:3522 Name:Apertura arcana<br>
+ID:3523 Name:Recuerdos de una vida pasada<br>
+ID:3621 Name:Respiración inalterable<br>
+ID:3622 Name:Hoja cazaescarcha<br>
+ID:3623 Name:Viaje por las nubes<br>
+ID:3721 Name:Corazón indiviso<br>
+ID:3722 Name:Armonía entre el Cielo y la Tierra<br>
+ID:3723 Name:Arco de repuesto<br>
+ID:3821 Name:Fuerza caliza<br>
+ID:3822 Name:Sabiduría del homúnculo<br>
+ID:3823 Name:Genio de la alquimia<br>
+ID:3921 Name:Menú secreto de Cola de Gato<br>
+ID:3922 Name:Diversión de los borrachos<br>
+ID:3923 Name:Refrigerio gratis<br>
+ID:4121 Name:¡Atrápame si puedes!<br>
+ID:4122 Name:¡Que el destino decida!<br>
+ID:4123 Name:Principios de la astrología<br>
+ID:4221 Name:Penitencia del trueno<br>
+ID:4222 Name:Dignidad aristocrática<br>
+ID:4223 Name:Supervisora de la tierra<br>
+ID:4321 Name:Conversión de catalizador<br>
+ID:4322 Name:Mollis Favonius<br>
+ID:4323 Name:Invención inestable<br>
+ID:4421 Name:El espectáculo debe continuar<br>
+ID:4422 Name:¡Rock and Roll!<br>
+ID:4423 Name:Receta rockera<br>
+ID:4521 Name:Regina probatorum<br>
+ID:4522 Name:Oscuridad expiatoria<br>
+ID:4523 Name:Travesía nocturna<br>
+ID:4621 Name:Aleteo sutil<br>
+ID:4622 Name:Baño de sangre<br>
+ID:4623 Name:Cuanto más, mejor<br>
+ID:4721 Name:Espada de la erosión<br>
+ID:4722 Name:Haiku de la brisa<br>
+ID:4723 Name:Viento arrebol<br>
+ID:4821 Name:Términos asociados<br>
+ID:4822 Name:Ojos justicieros<br>
+ID:4823 Name:Conocimiento enciclopédico<br>
+ID:4921 Name:Truco ígneo<br>
+ID:4922 Name:Sofoco estival<br>
+ID:4923 Name:Ornamentación flagrante<br>
+ID:5021 Name:Cota de malla<br>
+ID:5022 Name:Ofensiva incineradora<br>
+ID:5023 Name:Apasionado de la pesca<br>
+ID:5121 Name:Escarcha turbulenta<br>
+ID:5122 Name:Ansia de guerra<br>
+ID:5123 Name:Introspección aristocrática<br>
+ID:5221 Name:Aspiración infinita<br>
+ID:5222 Name:La iluminada<br>
+ID:5225 Name:Colectora suprema<br>
+ID:5321 Name:¡Déjame en paz!<br>
+ID:5322 Name:¡Sayu no trabaja!<br>
+ID:5323 Name:Técnica “¡Yujuuu!”: Secreto del sigilo<br>
+ID:5421 Name:Bendición de Tamakushi<br>
+ID:5422 Name:Canto de la perla<br>
+ID:5423 Name:Princesa de Watatsumi<br>
+ID:5425 Name:Estrategia infalible<br>
+ID:5521 Name:Contra viento y marea<br>
+ID:5522 Name:Favor recíproco<br>
+ID:5523 Name:Perro rastreador<br>
+ID:5621 Name:Voluntad inamovible<br>
+ID:5622 Name:Decoro imperial<br>
+ID:5623 Name:Investigación de campo<br>
+ID:5721 Name:Itto, el ónico e inimitable<br>
+ID:5722 Name:Linaje de oni escarlata<br>
+ID:5723 Name:Itto el leñador<br>
+ID:5821 Name:Sombra sagrada<br>
+ID:5822 Name:Bendición del despertar<br>
+ID:5823 Name:Meditación de yako<br>
+ID:5921 Name:Práctica paradójica<br>
+ID:5922 Name:Razonamiento penetrante<br>
+ID:5923 Name:Un paso adelante<br>
+ID:6021 Name:Control estratégico<br>
+ID:6022 Name:Adaptación maestra<br>
+ID:6023 Name:Jugada táctica<br>
+ID:6121 Name:Cola exorcizadora<br>
+ID:6122 Name:Distracción oportuna<br>
+ID:6123 Name:Acecho furtivo<br>
+ID:6221 Name:Superposición bélica<br>
+ID:6222 Name:Golpe contundente<br>
+ID:6223 Name:Cazadora de lo salvaje<br>
+ID:6321 Name:Precepto divino<br>
+ID:6322 Name:Sello de la convergencia espiritual<br>
+ID:6323 Name:Llegada oportuna<br>
+ID:6421 Name:Fiel a sí misma<br>
+ID:6422 Name:Rechazo de la convención<br>
+ID:6423 Name:Alimentación ligera<br>
+ID:6521 Name:Designio liberador<br>
+ID:6522 Name:Retiro espiritual<br>
+ID:6523 Name:Plegaria perpetua<br>
+ID:6621 Name:Estilo Kamisato: Corriente montañosa<br>
+ID:6622 Name:Estilo Kamisato: Crecida de la luna<br>
+ID:6623 Name:Estilo Kamisato: Cocina diaria<br>
+ID:6721 Name:Retorno foliáceo<br>
+ID:6722 Name:Quietud del bosque<br>
+ID:6723 Name:Campeona de Vuelo de Sumeru<br>
+ID:6821 Name:Buscando oro<br>
+ID:6822 Name:Interés compuesto<br>
+ID:6823 Name:Venta inesperada<br>
+ID:6921 Name:Visión aguda<br>
+ID:6922 Name:Conocedor de la flora<br>
+ID:6923 Name:Erudición botánica<br>
+ID:7021 Name:Corte de los pétalos danzantes<br>
+ID:7022 Name:Sueño de la danza eónica<br>
+ID:7023 Name:Loto de jade blanco<br>
+ID:7121 Name:Juicio de la pluma<br>
+ID:7122 Name:Potestad de los Nueve Arcos<br>
+ID:7123 Name:Gracia del silencio<br>
+ID:7221 Name:Escudo antiflechas<br>
+ID:7222 Name:Bóveda celestial de las arenas<br>
+ID:7223 Name:Luz del alba<br>
+ID:7321 Name:Iluminación de la compasión<br>
+ID:7322 Name:Dilucidación del despertar<br>
+ID:7323 Name:Meditación holística<br>
+ID:7421 Name:Manifestación de la luz<br>
+ID:7422 Name:Sueños imperturbables<br>
+ID:7423 Name:Sueño premonitorio<br>
+ID:7521 Name:Flor de jade<br>
+ID:7522 Name:Céfiro de la ensoñación<br>
+ID:7523 Name:Acordes nubosos<br>
+ID:7621 Name:Ráfaga impetuosa<br>
+ID:7622 Name:Sabiduría del pasado<br>
+ID:7623 Name:Conocimiento deslumbrante<br>
+ID:7721 Name:Propagación estelar<br>
+ID:7722 Name:Circunspección<br>
+ID:7723 Name:Rastreo sigiloso<br>
+ID:7821 Name:Rectificación de las cuatro causas<br>
+ID:7822 Name:Revelación de incógnitas<br>
+ID:7823 Name:Teorema de la reducción sobredeterminada<br>
+ID:7921 Name:Auxilio abnegado<br>
+ID:7922 Name:Rectitud incondicional<br>
+ID:7923 Name:Camino soleado<br>
+ID:8021 Name:Supresión fuegorrápido<br>
+ID:8022 Name:Levantamiento topográfico<br>
+ID:8023 Name:Demarcación<br>
+ID:8121 Name:Deber arquitectónico<br>
+ID:8122 Name:Ideas curiosas de un alarife<br>
+ID:8123 Name:El arte de la presupuestación<br>
+ID:8221 Name:Cinco elementos de la fortuna<br>
+ID:8222 Name:Madre tierra<br>
+ID:8223 Name:Nutrición vegetal<br>
+ID:8321 Name:Sinergia oportuna<br>
+ID:8322 Name:Atrezo preparado<br>
+ID:8323 Name:Hidrolocalización<br>
+ID:8421 Name:Espectáculo arriesgado<br>
+ID:8422 Name:¡Un fuerte aplauso!<br>
+ID:8423 Name:Observación de lo cotidiano<br>
+ID:8521 Name:Buceo de saturación<br>
+ID:8522 Name:Condensador de flujos<br>
+ID:8523 Name:Pilotaje submarino<br>
+ID:8621 Name:Refutación del dogma<br>
+ID:8622 Name:Redención del pecado<br>
+ID:8623 Name:Dádiva ducal<br>
+ID:8721 Name:Legatario de toda agua<br>
+ID:8722 Name:Arbitrador supremo<br>
+ID:8723 Name:Impetuosidad marítima<br>
+ID:8821 Name:Instante impactante<br>
+ID:8822 Name:Investigación diversificada<br>
+ID:8823 Name:Obturador de primera persona<br>
+ID:8921 Name:Vals irrefrenable<br>
+ID:8922 Name:Confesión inaudible<br>
+ID:8923 Name:El mar es mi escenario<br>
+ID:9021 Name:Vigilancia coordinada<br>
+ID:9022 Name:Formación lineal integral<br>
+ID:9023 Name:Marcha rápida táctica<br>
+ID:9121 Name:Canal no identificado<br>
+ID:9122 Name:Red de apoyo mutuo<br>
+ID:9123 Name:Transacción meticulosa<br>
 ## ConstellationId
 ID:21 Name:Cerezo de escarcha<br>
 ID:22 Name:Pasaje níveo<br>
@@ -10843,3 +11073,1425 @@ ID:394503 Name:Suelo rocoso: Camino transitable<br>
 ID:394504 Name:Verdes campos: Camino de galleta<br>
 ID:394505 Name:Suelo rocoso: Patrón magnificente<br>
 ID:394506 Name:Losa de lacripórfido: Teoría de la perspectiva<br>
+## MonsterId
+ID:20010101 Name:Slime Dendro<br>
+ID:20010201 Name:Slime Gigante Dendro<br>
+ID:20010202 Name:Slime Gigante Dendro<br>
+ID:20010301 Name:Slime Anemo<br>
+ID:20010302 Name:Slime Anemo<br>
+ID:20010381 Name:Slime Anemo<br>
+ID:20010401 Name:Slime Gigante Anemo<br>
+ID:20010402 Name:Slime Gigante Anemo<br>
+ID:20010403 Name:Slime Gigante Anemo<br>
+ID:20010481 Name:Slime Gigante Anemo<br>
+ID:20010501 Name:Slime Electro<br>
+ID:20010502 Name:Slime Electro<br>
+ID:20010503 Name:Slime Electro<br>
+ID:20010581 Name:Slime Electro<br>
+ID:20010601 Name:Slime Gigante Electro<br>
+ID:20010602 Name:Slime Gigante Electro<br>
+ID:20010604 Name:Slime Gigante Electro<br>
+ID:20010605 Name:Slime Gigante Electro<br>
+ID:20010681 Name:Slime Gigante Electro<br>
+ID:20010701 Name:Slime Mutante Electro<br>
+ID:20010702 Name:Slime Mutante Electro<br>
+ID:20010703 Name:Slime Mutante Electro<br>
+ID:20010801 Name:Slime Cryo<br>
+ID:20010802 Name:Slime Cryo - Evento de Espinadragón<br>
+ID:20010803 Name:Slime Cryo<br>
+ID:20010881 Name:Slime Cryo<br>
+ID:20010901 Name:Slime Gigante Cryo<br>
+ID:20010902 Name:Slime Gigante Cryo - Evento de Espinadragón<br>
+ID:20010903 Name:Slime Gigante Cryo<br>
+ID:20010904 Name:Slime Gigante Cryo<br>
+ID:20010905 Name:Slime Gigante Cryo<br>
+ID:20010981 Name:Slime Gigante Cryo<br>
+ID:20011001 Name:Slime Hydro<br>
+ID:20011002 Name:Slime Hydro<br>
+ID:20011081 Name:Slime Hydro<br>
+ID:20011101 Name:Slime Gigante Hydro<br>
+ID:20011102 Name:Slime Gigante Hydro<br>
+ID:20011103 Name:Slime Gigante Hydro<br>
+ID:20011181 Name:Slime Gigante Hydro<br>
+ID:20011201 Name:Slime Pyro<br>
+ID:20011202 Name:Slime Pyro<br>
+ID:20011203 Name:Slime Pyro<br>
+ID:20011204 Name:Slime Pyro<br>
+ID:20011205 Name:Slime Pyro<br>
+ID:20011281 Name:Slime Pyro<br>
+ID:20011301 Name:Slime Gigante Pyro<br>
+ID:20011302 Name:Slime Gigante Pyro<br>
+ID:20011304 Name:Slime Gigante Pyro<br>
+ID:20011305 Name:Slime Gigante Pyro<br>
+ID:20011306 Name:Slime Gigante Pyro<br>
+ID:20011381 Name:Slime Gigante Pyro<br>
+ID:20011401 Name:Slime Geo<br>
+ID:20011402 Name:Slime Geo<br>
+ID:20011481 Name:Slime Geo<br>
+ID:20011501 Name:Slime Gigante Geo<br>
+ID:20011502 Name:Slime Gigante Geo<br>
+ID:20011503 Name:Slime Gigante Geo<br>
+ID:20011581 Name:Slime Gigante Geo<br>
+ID:20011601 Name:Invocación de Hipostasis Hydro - División mayor<br>
+ID:20011701 Name:Invocación de Hipostasis Hydro - División menor<br>
+ID:20011801 Name:Invocación de Hipostasis Hydro - Autodestrucción<br>
+ID:20011901 Name:Invocación de Hipostasis Hydro - Sanación<br>
+ID:20012001 Name:<br>
+ID:20012101 Name:<br>
+ID:20012201 Name:<br>
+ID:20020101 Name:Ojo de la Tormenta<br>
+ID:20040101 Name:Hipostasis Electro - Aleph<br>
+ID:20040102 Name:Hipostasis Electro - Aleph (evento)<br>
+ID:20040181 Name:Hipóstasis Electro<br>
+ID:20040201 Name:Hipostasis Anemo - Bett<br>
+ID:20040202 Name:Hipostasis Anemo - Bett (evento)<br>
+ID:20040301 Name:Hipostasis Geo - Grimorio<br>
+ID:20040302 Name:Hipostasis Geo - Grimorio (evento)<br>
+ID:20040401 Name:Hipostasis Hydro<br>
+ID:20040402 Name:Hipóstasis Hydro<br>
+ID:20040501 Name:Hipostasis Cryo - Daleth<br>
+ID:20040502 Name:Hipóstasis Cryo<br>
+ID:20040601 Name:Hipostasis Pyro - Ayin<br>
+ID:20040602 Name:Hipóstasis Pyro<br>
+ID:20040701 Name:Hipóstasis Dendro<br>
+ID:20040702 Name:Hipóstasis Dendro<br>
+ID:20050101 Name:Oceánida<br>
+ID:20050102 Name:Oceánida - Forma original<br>
+ID:20050103 Name:Oceánida<br>
+ID:20050201 Name:Jabalí oceánido<br>
+ID:20050202 Name:Jabalí oceánido fortalecido<br>
+ID:20050203 Name:Jabalí Hidromimético<br>
+ID:20050281 Name:Jabalí Hidromimético<br>
+ID:20050301 Name:Grulla oceánida<br>
+ID:20050302 Name:Grulla Hidromimética<br>
+ID:20050381 Name:Grulla Hidromimética<br>
+ID:20050401 Name:Cangrejo oceánido<br>
+ID:20050402 Name:Cangrejo oceánido fortalecido<br>
+ID:20050403 Name:Cangrejo Hidromimético<br>
+ID:20050481 Name:Cangrejo Hidromimético<br>
+ID:20050501 Name:Pinzón oceánido<br>
+ID:20050502 Name:Pinzón Hidromimético<br>
+ID:20050581 Name:Pinzón Hidromimético<br>
+ID:20050601 Name:Pato oceánido<br>
+ID:20050602 Name:Pato oceánido de tierra<br>
+ID:20050603 Name:Pato Hidromimético<br>
+ID:20050681 Name:Pato Hidromimético<br>
+ID:20050701 Name:Ardilla oceánida<br>
+ID:20050702 Name:Ardilla oceánida fortalecida<br>
+ID:20050703 Name:Ardilla Hidromimética<br>
+ID:20050781 Name:Ardilla Hidromimética<br>
+ID:20050801 Name:Rana oceánida<br>
+ID:20050802 Name:Rana Hidromimética<br>
+ID:20050881 Name:Rana Hidromimética<br>
+ID:20050901 Name:Ave rapaz oceánida<br>
+ID:20051001 Name:Ánima Aplastalodo<br>
+ID:20051002 Name:Ánima Aplastalodo<br>
+ID:20051003 Name:Ánima Aplastalodo<br>
+ID:20051101 Name:Ánima Escupelodo<br>
+ID:20051102 Name:Ánima Escupelodo<br>
+ID:20051103 Name:Ánima Escupelodo<br>
+ID:20051201 Name:Tulpa Hidromimético<br>
+ID:20051301 Name:Tulpa Semimimético<br>
+ID:20051401 Name:Ánima Aplastalodo veterana<br>
+ID:20051501 Name:Ánima Escupelodo veterana<br>
+ID:20051601 Name:Tulpa Hidromimético<br>
+ID:20060101 Name:Espectro Hydro<br>
+ID:20060181 Name:Espectro Hydro<br>
+ID:20060201 Name:Espectro Geo<br>
+ID:20060281 Name:Espectro Geo<br>
+ID:20060301 Name:Espectro Anemo<br>
+ID:20060381 Name:Espectro Anemo<br>
+ID:20060382 Name:Espectro Anemo<br>
+ID:20060401 Name:Espectro Cryo<br>
+ID:20060481 Name:Espectro Cryo<br>
+ID:20060501 Name:Espectro Electro<br>
+ID:20060581 Name:Espectro Electro<br>
+ID:20060601 Name:Espectro Pyro<br>
+ID:20060681 Name:Espectro Pyro<br>
+ID:20060701 Name:Espectro Dendro<br>
+ID:20060781 Name:Espectro Dendro<br>
+ID:20070101 Name:Manifestación del Trueno<br>
+ID:20070102 Name:Manifestación del Trueno<br>
+ID:21010101 Name:Hilichurl<br>
+ID:21010102 Name:Hilichurl<br>
+ID:21010103 Name:Hilichurl<br>
+ID:21010104 Name:Hilichurl<br>
+ID:21010105 Name:Hilichurl<br>
+ID:21010181 Name:Hilichurl<br>
+ID:21010201 Name:Hilichurl Guerrero<br>
+ID:21010202 Name:Hilichurl Guerrero<br>
+ID:21010281 Name:Hilichurl Guerrero<br>
+ID:21010299 Name:Hilichurl Guerrero<br>
+ID:21010301 Name:Hilichurl con Escudo de Madera<br>
+ID:21010302 Name:Hilichurl con Escudo de Madera<br>
+ID:21010381 Name:Hilichurl con Escudo de Madera<br>
+ID:21010401 Name:Hilichurl Ballestero<br>
+ID:21010402 Name:Test_Hilichurl arquero variado<br>
+ID:21010403 Name:Hilichurl Ballestero<br>
+ID:21010404 Name:Hilichurl Ballestero<br>
+ID:21010481 Name:Hilichurl Ballestero<br>
+ID:21010482 Name:Hilichurl Ballestero<br>
+ID:21010501 Name:Hilichurl Ballestero Pyro<br>
+ID:21010502 Name:Test_Hilichurl Pyro arquero variado<br>
+ID:21010581 Name:Hilichurl Ballestero Pyro<br>
+ID:21010582 Name:Hilichurl Ballestero Pyro<br>
+ID:21010601 Name:Hilichurl Lanzagranadas<br>
+ID:21010603 Name:Hilichurl Lanzagranadas<br>
+ID:21010681 Name:Hilichurl Lanzagranadas<br>
+ID:21010701 Name:Hilichurl Berserker<br>
+ID:21010702 Name:Hilichurl Berserker<br>
+ID:21010781 Name:Hilichurl Berserker<br>
+ID:21010901 Name:Hilichurl Ballestero Cryo<br>
+ID:21010902 Name:Test_Hilichurl Cryo arquero variado<br>
+ID:21010981 Name:Hilichurl Ballestero Cryo<br>
+ID:21010982 Name:Hilichurl Ballestero Cryo<br>
+ID:21011001 Name:Hilichurl Ballestero Electro<br>
+ID:21011002 Name:Test_Hilichurl Electro arquero variado<br>
+ID:21011081 Name:Hilichurl Ballestero Electro<br>
+ID:21011082 Name:Hilichurl Ballestero Electro<br>
+ID:21011201 Name:Hilichurl con Escudo de Piedra<br>
+ID:21011202 Name:Hilichurl con Escudo de Piedra<br>
+ID:21011281 Name:Hilichurl con Escudo de Piedra<br>
+ID:21011301 Name:Hilichurl Granadero Cryo<br>
+ID:21011302 Name:Hilichurl Granadero Cryo - ATQ mejorado<br>
+ID:21011381 Name:Hilichurl Granadero Cryo<br>
+ID:21011401 Name:Hilichurl con Escudo Cryo<br>
+ID:21011402 Name:Hilichurl con Escudo Cryo<br>
+ID:21011403 Name:Hilichurl con Escudo Cryo - Espinadragón<br>
+ID:21011481 Name:Hilichurl con Escudo Cryo<br>
+ID:21011501 Name:Hilichurl Extraño Desarmado<br>
+ID:21011601 Name:Hilichurl Lanzagranadas Electro<br>
+ID:21011602 Name:Hilichurl Lanzagranadas Electro - ATQ mejorado<br>
+ID:21011681 Name:Hilichurl Lanzagranadas Electro<br>
+ID:21020101 Name:Mitachurl con Escudo de Madera<br>
+ID:21020102 Name:Mitachurl con Escudo de Madera<br>
+ID:21020181 Name:Mitachurl con Escudo de Madera<br>
+ID:21020201 Name:Mitachurl con Hacha de Fuego<br>
+ID:21020202 Name:Mitachurl con Hacha de Fuego<br>
+ID:21020203 Name:Mitachurl con Hacha de Fuego<br>
+ID:21020281 Name:Mitachurl con Hacha de Fuego<br>
+ID:21020282 Name:Mitachurl con Hacha de Fuego<br>
+ID:21020299 Name:Mitachurl con Hacha de Fuego<br>
+ID:21020301 Name:Mitachurl con Escudo de Piedra<br>
+ID:21020302 Name:Mitachurl con Escudo de Piedra<br>
+ID:21020381 Name:Mitachurl con Escudo de Piedra<br>
+ID:21020382 Name:Mitachurl con Escudo de Piedra<br>
+ID:21020401 Name:Lawachurl Brazo Helado<br>
+ID:21020402 Name:Lawachurl Brazo Helado<br>
+ID:21020481 Name:Lawachurl Brazo Helado<br>
+ID:21020482 Name:Lawachurl Brazo Helado<br>
+ID:21020501 Name:Lawachurl Acorazado<br>
+ID:21020502 Name:Lawachurl Acorazado<br>
+ID:21020581 Name:Lawachurl Acorazado<br>
+ID:21020601 Name:Mitachurl con Escudo Cryo<br>
+ID:21020602 Name:Mitachurl con Escudo Cryo<br>
+ID:21020681 Name:Mitachurl con Escudo Cryo<br>
+ID:21020701 Name:Mitachurl con Hacha Electro<br>
+ID:21020702 Name:Mitachurl con Hacha Electro<br>
+ID:21020703 Name:Mitachurl con Hacha Electro - ATQ mejorado<br>
+ID:21020704 Name:Mitachurl con Hacha Electro<br>
+ID:21020781 Name:Mitachurl con Hacha Electro<br>
+ID:21020782 Name:Mitachurl con Hacha Electro<br>
+ID:21020801 Name:Lawachurl Electroyelmo<br>
+ID:21020802 Name:Lawachurl Electroyelmo<br>
+ID:21020881 Name:Lawachurl Electroyelmo<br>
+ID:21020882 Name:Lawachurl Electroyelmo<br>
+ID:21030101 Name:Samachurl Hydro<br>
+ID:21030102 Name:Samachurl Hydro<br>
+ID:21030103 Name:Test_Samachurl Hydro curación en movimiento<br>
+ID:21030181 Name:Samachurl Hydro<br>
+ID:21030201 Name:Samachurl Dendro<br>
+ID:21030202 Name:Samachurl Dendro<br>
+ID:21030203 Name:Samachurl Dendro<br>
+ID:21030281 Name:Samachurl Dendro<br>
+ID:21030282 Name:Samachurl Dendro<br>
+ID:21030301 Name:Samachurl Anemo<br>
+ID:21030302 Name:Samachurl Anemo<br>
+ID:21030303 Name:Test_Samachurl Anemo campos de viento fortalecido<br>
+ID:21030304 Name:Samachurl Anemo<br>
+ID:21030381 Name:Samachurl Anemo<br>
+ID:21030382 Name:Samachurl Anemo<br>
+ID:21030383 Name:Samachurl Anemo<br>
+ID:21030401 Name:Samachurl Geo<br>
+ID:21030402 Name:Samachurl Geo<br>
+ID:21030403 Name:Samachurl Geo<br>
+ID:21030481 Name:Samachurl Geo<br>
+ID:21030482 Name:Samachurl Geo<br>
+ID:21030501 Name:Samachurl Cryo<br>
+ID:21030502 Name:Samachurl<br>
+ID:21030581 Name:Samachurl Cryo<br>
+ID:21030582 Name:Samachurl Cryo<br>
+ID:21030601 Name:Samachurl Electro<br>
+ID:21030602 Name:Samachurl Electro<br>
+ID:21030603 Name:Samachurl Electro - Apoyo mejorado<br>
+ID:21030681 Name:Samachurl Electro<br>
+ID:21040101 Name:Hilichurl Errabundo Anemo<br>
+ID:21040181 Name:Hilichurl Errabundo Anemo<br>
+ID:21040182 Name:Hilichurl Errabundo Anemo<br>
+ID:21040201 Name:Hilichurl Errabundo Hydro<br>
+ID:21040281 Name:Hilichurl Errabundo Hydro<br>
+ID:21040282 Name:Hilichurl Errabundo Hydro<br>
+ID:22010101 Name:Mago del Abismo Pyro<br>
+ID:22010102 Name:Test_Mago del Abismo Pyro escudo fortalecido<br>
+ID:22010103 Name:Test_Mago del Abismo Pyro teletransporte fortalecido<br>
+ID:22010104 Name:Test_进攻强化火深渊法师<br>
+ID:22010105 Name:Mago del Abismo Pyro<br>
+ID:22010201 Name:Mago del Abismo Cryo<br>
+ID:22010202 Name:Test_Mago del Abismo Cryo escudo fortalecido<br>
+ID:22010203 Name:Test_Mago del Abismo Cryo teletransporte fortalecido<br>
+ID:22010204 Name:Test_进攻强化冰深渊法师<br>
+ID:22010205 Name:Mago del Abismo Cryo<br>
+ID:22010301 Name:Mago del Abismo Hydro<br>
+ID:22010302 Name:Test_Mago del Abismo Hydro escudo fortalecido<br>
+ID:22010303 Name:Test_Mago del Abismo Hydro teletransporte fortalecido<br>
+ID:22010304 Name:Test_进攻强化水深渊法师<br>
+ID:22010305 Name:Mago del Abismo Hydro<br>
+ID:22010401 Name:Mago del Abismo Electro<br>
+ID:22010402 Name:Mago del Abismo Electro<br>
+ID:22010403 Name:Mago del Abismo Electro - DEF mejorada<br>
+ID:22010404 Name:Mago del Abismo Electro - ATQ mejorado<br>
+ID:22020101 Name:Emisario del Abismo - Rápidos malignos (desaparecido)<br>
+ID:22020102 Name:Emisario del Abismo - Rápidos malignos (permanente)<br>
+ID:22020103 Name:Emisario del Abismo - Rápidos malignos<br>
+ID:22020201 Name:Emisario del Abismo - Helada sombría<br>
+ID:22030101 Name:Bardo del Abismo - Trueno púrpura (desaparecido)<br>
+ID:22030102 Name:Bardo del Abismo - Trueno púrpura (permanente)<br>
+ID:22030103 Name:Bardo del Abismo - Trueno púrpura<br>
+ID:22030201 Name:Bardo del Abismo - Llamas abismales<br>
+ID:22030202 Name:Bardo del Abismo - Llamas abismales<br>
+ID:22040101 Name:Cachorro Acechador Lítico<br>
+ID:22040102 Name:Cachorro Acechador Lítico<br>
+ID:22040201 Name:Cachorro Acechador Eléctrico<br>
+ID:22040202 Name:Cachorro Acechador Eléctrico<br>
+ID:22050101 Name:Sabueso Acechador Lítico<br>
+ID:22050102 Name:Sabueso Acechador Lítico<br>
+ID:22050201 Name:Sabueso Acechador Eléctrico<br>
+ID:22050202 Name:Sabueso Acechador Eléctrico<br>
+ID:22060101 Name:Rey Acechador Dorado<br>
+ID:22070101 Name:Soldado del Vacío - Abanderado<br>
+ID:22070102 Name:Soldado del Vacío - Abanderado<br>
+ID:22070201 Name:Soldado del Vacío - Rompefilas<br>
+ID:22070202 Name:Soldado del Vacío - Rompefilas<br>
+ID:22070301 Name:Soldado del Vacío - Defensor<br>
+ID:22070302 Name:Soldado del Vacío - Defensor<br>
+ID:22080101 Name:Caballero Serpiente Negra - Aire afilado<br>
+ID:22080201 Name:Caballero Serpiente Negra - Hachero demolerrocas<br>
+ID:22090101 Name:<br>
+ID:22100101 Name:Bautista Sacrílego: Invocador de fuego, hielo y rayo<br>
+ID:22100201 Name:Bautista Sacrílego: Invocador de agua, fuego y hielo<br>
+ID:22100202 Name:Bautista Sacrílego: Invocador de agua, fuego y hielo<br>
+ID:22100301 Name:Bautista Sacrílego: Invocador de agua, fuego y rayo<br>
+ID:22100401 Name:Bautista Sacrílego: Invocador de agua, hielo y rayo<br>
+ID:22100501 Name:Bautista Sacrílego<br>
+ID:22110101 Name:Protofisurador Quebrantarrocas Gigante<br>
+ID:22110102 Name:Protofisurador Quebrantarrocas Gigante<br>
+ID:22110201 Name:Protofisurador Quebrantarrocas<br>
+ID:22110202 Name:Protofisurador Quebrantarrocas<br>
+ID:22110301 Name:Protofisurador Sobrecrecido Gigante<br>
+ID:22110302 Name:Protofisurador Sobrecrecido Gigante<br>
+ID:22110402 Name:Protofisurador Sobrecrecido<br>
+ID:22110403 Name:Protofisurador Sobrecrecido<br>
+ID:23010101 Name:Soldado Fatui - Guardia con Cañón Cryo<br>
+ID:23010201 Name:Soldado Fatui - Guardia con Cañón Hydro<br>
+ID:23010301 Name:Soldado Fatui - Electromartillador de Vanguardia<br>
+ID:23010401 Name:Soldado Fatui - Guerrillero Geo<br>
+ID:23010501 Name:Soldado Fatui - Boxeador Anemo de Vanguardia<br>
+ID:23010601 Name:Soldado Fatui - Guerrillero con Cañón Pyro<br>
+ID:23020101 Name:Fatui - Recaudador<br>
+ID:23020102 Name:Soldado Fatui - Recaudador Pyro<br>
+ID:23030101 Name:Fatui - Maga de Cicin Electro<br>
+ID:23030102 Name:Soldado Fatui - Maga de Cicin Electro<br>
+ID:23040101 Name:Fatui - Maga de Cicin Cryo<br>
+ID:23040102 Name:Maga de Cicin Cryo - ATQ mejorado<br>
+ID:23050101 Name:Fatui - Doncella del Espejo<br>
+ID:23060101 Name:Soldado Fatui - Senescal Cryo<br>
+ID:23060201 Name:Soldado Fatui - Senescal Anemo<br>
+ID:23060301 Name:Soldado Fatui - Senescal Cryo veterana<br>
+ID:23060302 Name:Soldado Fatui - Senescal Cryo veterana<br>
+ID:23060401 Name:Soldado Fatui - Senescal Anemo veterana<br>
+ID:23060402 Name:Soldado Fatui - Senescal Anemo veterana<br>
+ID:24010101 Name:Guardián de las Ruinas<br>
+ID:24010102 Name:Guardián de las Ruinas<br>
+ID:24010108 Name:Guardián de las Ruinas<br>
+ID:24010109 Name:Guardián de las Ruinas<br>
+ID:24010181 Name:Guardián de las Ruinas<br>
+ID:24010182 Name:Guardián de las Ruinas<br>
+ID:24010201 Name:Cazador de las Ruinas<br>
+ID:24010202 Name:Cazador de las Ruinas<br>
+ID:24010281 Name:Cazador de las Ruinas<br>
+ID:24010301 Name:Demoledor de las Ruinas<br>
+ID:24010302 Name:Demoledor de las Ruinas<br>
+ID:24010303 Name:Demoledor de las Ruinas (versión de minado)<br>
+ID:24010304 Name:Demoledor de las Ruinas<br>
+ID:24010305 Name:Demoledor de las Ruinas<br>
+ID:24010381 Name:Demoledor de las Ruinas<br>
+ID:24010382 Name:Demoledor de las Ruinas<br>
+ID:24010401 Name:Serpiente de las Ruinas<br>
+ID:24020101 Name:Patrullero de las Ruinas<br>
+ID:24020102 Name:Patrullero de las Ruinas (simplificado)<br>
+ID:24020103 Name:Patrullero de las Ruinas (reforzado)<br>
+ID:24020181 Name:Patrullero de las Ruinas<br>
+ID:24020201 Name:Destructor de las Ruinas<br>
+ID:24020202 Name:Destructor de las Ruinas (simplificado)<br>
+ID:24020203 Name:Destructor de las Ruinas (reforzado)<br>
+ID:24020281 Name:Destructor de las Ruinas<br>
+ID:24020301 Name:Defensor de las Ruinas<br>
+ID:24020302 Name:Defensor de las Ruinas (simplificado)<br>
+ID:24020303 Name:Defensor de las Ruinas (reforzado)<br>
+ID:24020304 Name:Defensor de las Ruinas<br>
+ID:24020381 Name:Defensor de las Ruinas<br>
+ID:24020401 Name:Explorador de las Ruinas<br>
+ID:24020402 Name:Explorador de las Ruinas (simplificado)<br>
+ID:24020403 Name:Explorador de las Ruinas (reforzado)<br>
+ID:24020481 Name:Explorador de las Ruinas<br>
+ID:24021101 Name:Maquinaria Eterna<br>
+ID:24021102 Name:Maquinaria Eterna (exclusivo de evento de Inazuma<br>
+ID:24021181 Name:Maquinaria Eterna<br>
+ID:24030101 Name:Dragón de las Ruinas - Vigía aéreo<br>
+ID:24030181 Name:Dragón de las Ruinas - Vigía aéreo<br>
+ID:24030201 Name:Dragón de las Ruinas - Vigía terrestre<br>
+ID:24030281 Name:Dragón de las Ruinas - Vigía terrestre<br>
+ID:24030301 Name:Dragón Aciagoeterno<br>
+ID:24030302 Name:Dragón Aciagoeterno<br>
+ID:24030381 Name:Dragón Aciagoeterno<br>
+ID:24040101 Name:Creación Primigenia - Repulsora<br>
+ID:24040181 Name:Creación Primigenia - Repulsora<br>
+ID:24040201 Name:Creación Primigenia - Remodeladora<br>
+ID:24040281 Name:Creación Primigenia - Remodeladora<br>
+ID:24040301 Name:Creación Primigenia - Prospectora<br>
+ID:24040381 Name:Creación Primigenia - Prospectora<br>
+ID:24050101 Name:Algoritmo de Semi-Incesante Matriz de Observación Navegadora<br>
+ID:24050181 Name:Algoritmo de Semi-Incesante Matriz de Observación Navegadora<br>
+ID:24060101 Name:Mecarrastreador - Ousía<br>
+ID:24060102 Name:Mecarrastreador - Ousía<br>
+ID:24060201 Name:Mecaoptimizador Aritmético - Ousía<br>
+ID:24060202 Name:Mecaoptimizador Aritmético - Ousía<br>
+ID:24060301 Name:Mecasondeador Subacuático - Ousía<br>
+ID:24060302 Name:Mecasondeador Subacuático - Ousía<br>
+ID:24060401 Name:Mecaprospector - Ousía<br>
+ID:24060402 Name:Mecaprospector - Ousía<br>
+ID:24060501 Name:Mecapatrullero Subacuático - Ousía<br>
+ID:24060502 Name:Mecapatrullero Subacuático - Ousía<br>
+ID:24060601 Name:Mecaasaltador Submarino - Ousía<br>
+ID:24060602 Name:Mecaasaltador Submarino - Ousía<br>
+ID:24060701 Name:Mecarrecolector Dinámico - Ousía<br>
+ID:24060702 Name:Mecarrecolector Dinámico - Ousía<br>
+ID:24060801 Name:Mecaespecialista Asaltador - Ousía<br>
+ID:24060802 Name:Mecaespecialista Asaltador - Ousía<br>
+ID:24060901 Name:Mecaespecialista Inhibidor - Ousía<br>
+ID:24060902 Name:Mecaespecialista Inhibidor - Ousía<br>
+ID:24060903 Name:Mecaespecialista Inhibidor - Ousía<br>
+ID:24061001 Name:Mecaespecialista Aniquiladora - Ousía<br>
+ID:24061002 Name:Mecaespecialista Aniquiladora - Ousía<br>
+ID:24061101 Name:Mecacentinela Zonal - Ousía<br>
+ID:24061102 Name:Mecacentinela Zonal - Ousía<br>
+ID:24061103 Name:Mecacentinela Zonal - Ousía<br>
+ID:24061105 Name:Mecacentinela Zonal - Ousía<br>
+ID:24061106 Name:Mecacentinela Zonal - Ousía<br>
+ID:24061109 Name:Mecacentinela Zonal - Ousía<br>
+ID:24061110 Name:Mecacentinela Zonal - Ousía<br>
+ID:24061201 Name:Mecaespecialista Constructor - Ousía<br>
+ID:24061202 Name:Mecaespecialista Constructor - Ousía<br>
+ID:24061301 Name:Mecaoptimizador Aritmético veterano<br>
+ID:24061302 Name:Mecaoptimizador Aritmético veterano<br>
+ID:24061303 Name:Mecaoptimizador Aritmético veterano<br>
+ID:24065101 Name:Mecarrastreador - Pneuma<br>
+ID:24065102 Name:Mecarrastreador - Pneuma<br>
+ID:24065103 Name:Mecarrastreador - Pneuma<br>
+ID:24065201 Name:Mecaoptimizador Aritmético - Pneuma<br>
+ID:24065202 Name:Mecaoptimizador Aritmético - Pneuma<br>
+ID:24065301 Name:Mecasondeador Subacuático - Pneuma<br>
+ID:24065302 Name:Mecasondeador Subacuático - Pneuma<br>
+ID:24065401 Name:Mecaprospector - Pneuma<br>
+ID:24065402 Name:Mecaprospector - Pneuma<br>
+ID:24065501 Name:Mecapatrullero Subacuático - Pneuma<br>
+ID:24065502 Name:Mecapatrullero Subacuático - Pneuma<br>
+ID:24065601 Name:Mecaasaltador Submarino - Pneuma<br>
+ID:24065602 Name:Mecaasaltador Submarino - Pneuma<br>
+ID:24065701 Name:Mecarrecolector Dinámico - Pneuma<br>
+ID:24065702 Name:Mecarrecolector Dinámico - Pneuma<br>
+ID:24065801 Name:Mecaespecialista Asaltador - Pneuma<br>
+ID:24065802 Name:Mecaespecialista Asaltador - Pneuma<br>
+ID:24065803 Name:Mecaespecialista Asaltador - Pneuma<br>
+ID:24065901 Name:Mecaespecialista Inhibidor - Pneuma<br>
+ID:24065902 Name:Mecaespecialista Inhibidor - Pneuma<br>
+ID:24066001 Name:Mecaespecialista Aniquiladora - Pneuma<br>
+ID:24066002 Name:Mecaespecialista Aniquiladora - Pneuma<br>
+ID:24066101 Name:Mecacentinela Zonal - Pneuma<br>
+ID:24066102 Name:Mecacentinela Zonal - Pneuma<br>
+ID:24066103 Name:Mecacentinela Zonal - Pneuma<br>
+ID:24066105 Name:Mecacentinela Zonal - Pneuma<br>
+ID:24066106 Name:Mecacentinela Zonal - Pneuma<br>
+ID:24066109 Name:Mecacentinela Zonal - Pneuma<br>
+ID:24066110 Name:Mecacentinela Zonal - Pneuma<br>
+ID:24066201 Name:Mecaespecialista Constructor - Pneuma<br>
+ID:24066202 Name:Mecaespecialista Constructor - Pneuma<br>
+ID:24068101 Name:Mecarrastreador<br>
+ID:24068201 Name:Mecaoptimizador Aritmético<br>
+ID:24068301 Name:Mecasondeador Subacuático<br>
+ID:24068401 Name:Mecaprospector<br>
+ID:24068501 Name:Mecapatrullero Subacuático<br>
+ID:24068601 Name:Mecaasaltador Submarino<br>
+ID:24068701 Name:Mecarrecolector Dinámico<br>
+ID:24068801 Name:Mecaespecialista Asaltador<br>
+ID:24068901 Name:Mecaespecialista Inhibidor<br>
+ID:24069001 Name:Mecaespecialista Aniquiladora<br>
+ID:24069101 Name:Mecacentinela Zonal<br>
+ID:24069201 Name:Mecaespecialista Constructor<br>
+ID:24070101 Name:Suite Criocéfiro - Condena de Coppélius<br>
+ID:24070102 Name:Suite Criocéfiro - Condena de Coppélius<br>
+ID:24070201 Name:Suite Criocéfiro - Funeral de Coppélia<br>
+ID:24070202 Name:Suite Criocéfiro - Funeral de Coppélia<br>
+ID:24070301 Name:Suite Criocéfiro<br>
+ID:24080101 Name:Generador de Campo Experimental<br>
+ID:24080102 Name:Generador de Campo Experimental<br>
+ID:24810101 Name:Pirotorreta Básica<br>
+ID:24810201 Name:Pirotorreta Avanzada<br>
+ID:24810301 Name:Electrotorreta Básica<br>
+ID:24810401 Name:Electrotorreta Avanzada<br>
+ID:24810501 Name:Hidrotorreta Básica<br>
+ID:24810601 Name:Hidrotorreta Avanzada<br>
+ID:24810701 Name:Criotorreta Básica<br>
+ID:24810801 Name:Criotorreta Avanzada<br>
+ID:24810901 Name:Anemotorreta Básica<br>
+ID:24811001 Name:Anemotorreta Avanzada<br>
+ID:24811101 Name:Torreta Física<br>
+ID:24920101 Name:Autómata: Globo de Slime pequeño<br>
+ID:24920201 Name:Autómata: Globo de Slime grande<br>
+ID:24920301 Name:Autómata: Fungiglobo<br>
+ID:24990101 Name:<br>
+ID:25010101 Name:“Liuliu”<br>
+ID:25010102 Name:Persona misteriosa<br>
+ID:25010103 Name:Ladrón de Tesoros - Liuliu<br>
+ID:25010104 Name:Ladrón de Tesoros - Liuliu<br>
+ID:25010105 Name:Ladrón de Tesoros - Liuliu<br>
+ID:25010106 Name:Ladrón de Tesoros - Liuliu<br>
+ID:25010201 Name:Centinela de los Ladrones de Tesoros<br>
+ID:25010203 Name:Ladrón de Tesoros - Centinela<br>
+ID:25010204 Name:Ladrón de Tesoros - Centinela<br>
+ID:25010205 Name:Ladrón de Tesoros - Centinela<br>
+ID:25010206 Name:Ladrón de Tesoros - Centinela<br>
+ID:25010207 Name:Ladrón de Tesoros - Centinela<br>
+ID:25010208 Name:Ladrón de Tesoros - Centinela<br>
+ID:25010209 Name:Ladrón de Tesoros - Centinela<br>
+ID:25010210 Name:Ladrón de Tesoros - Centinela<br>
+ID:25010211 Name:Ladrón de Tesoros - Centinela<br>
+ID:25010212 Name:Ladrón de Tesoros - Centinela<br>
+ID:25010213 Name:Ladrón de Tesoros - Centinela<br>
+ID:25010214 Name:Ladrón de Tesoros - Centinela<br>
+ID:25010215 Name:Ladrón de Tesoros - Centinela<br>
+ID:25010216 Name:Ladrón de Tesoros - Centinela<br>
+ID:25010217 Name:Ladrón de Tesoros - Centinela<br>
+ID:25010218 Name:Ladrón de Tesoros - Centinela<br>
+ID:25010219 Name:Ladrón de Tesoros - Centinela<br>
+ID:25010220 Name:Ladrón de Tesoros - Centinela<br>
+ID:25010221 Name:Ladrón de Tesoros - Centinela<br>
+ID:25010222 Name:Ladrón de Tesoros - Centinela<br>
+ID:25010223 Name:Ladrón de Tesoros - Centinela<br>
+ID:25010224 Name:Ladrón de Tesoros - Centinela<br>
+ID:25010225 Name:Ladrón de Tesoros - Centinela<br>
+ID:25010226 Name:Ladrón de Tesoros - Centinela<br>
+ID:25010227 Name:Ladrón de Tesoros - Centinela<br>
+ID:25010228 Name:Ladrón de Tesoros - Centinela<br>
+ID:25010229 Name:Ladrón de Tesoros - Centinela<br>
+ID:25010281 Name:Ladrón de Tesoros - Centinela<br>
+ID:25010301 Name:Ladrón de Tesoros - Maestro de Pociones Pyro<br>
+ID:25010302 Name:Ladrón de Tesoros - Maestro de Pociones Pyro<br>
+ID:25010303 Name:Ladrón de Tesoros - Maestro de Pociones Pyro<br>
+ID:25010304 Name:Ladrón de Tesoros - Maestro de Pociones Pyro<br>
+ID:25010381 Name:Ladrón de Tesoros - Maestro de Pociones Pyro<br>
+ID:25010401 Name:Ladrón de Tesoros - Maestro de Pociones Hydro<br>
+ID:25010402 Name:Ladrón de Tesoros - Maestro de Pociones Hydro<br>
+ID:25010403 Name:Ladrón de Tesoros - Maestro de Pociones Hydro<br>
+ID:25010404 Name:Ladrón de Tesoros - Maestro de Pociones Hydro<br>
+ID:25010405 Name:Ladrón de Tesoros - Maestro de Pociones Hydro<br>
+ID:25010481 Name:Ladrón de Tesoros - Maestro de Pociones Hydro<br>
+ID:25010501 Name:Ladrón de Tesoros - Maestro de Pociones Electro<br>
+ID:25010502 Name:Ladrón de Tesoros - Maestro de Pociones Electro<br>
+ID:25010503 Name:Ladrón de Tesoros - Maestro de Pociones Electro<br>
+ID:25010581 Name:Ladrón de Tesoros - Maestro de Pociones Electro<br>
+ID:25010601 Name:Ladrón de Tesoros - Maestro de Pociones Cryo<br>
+ID:25010602 Name:Ladrón de Tesoros - Maestro de Pociones Cryo<br>
+ID:25010603 Name:Ladrón de Tesoros - Maestro de Pociones Cryo<br>
+ID:25010604 Name:Ladrón de Tesoros - Maestro de Pociones Cryo<br>
+ID:25010681 Name:Ladrón de Tesoros - Maestro de Pociones Cryo<br>
+ID:25010701 Name:Ladrón de Tesoros - Mozo<br>
+ID:25010702 Name:Ladrón de Tesoros - Mozo<br>
+ID:25010781 Name:Ladrón de Tesoros - Mozo<br>
+ID:25010801 Name:<br>
+ID:25020101 Name:Ave Rapaz<br>
+ID:25020102 Name:Ladrones de Tesoros- Ave Rapaz<br>
+ID:25020103 Name:Ladrones de Tesoros- Ave Rapaz<br>
+ID:25020104 Name:Ladrones de Tesoros- Ave Rapaz<br>
+ID:25020105 Name:Ladrones de Tesoros- Ave Rapaz<br>
+ID:25020201 Name:Arquero Divino de los Ladrones de Tesoros<br>
+ID:25020204 Name:Ladrón de Tesoros - Ballestero<br>
+ID:25020205 Name:Ladrón de Tesoros - Ballestero<br>
+ID:25020206 Name:Ladrón de Tesoros - Ballestero<br>
+ID:25020207 Name:Ladrón de Tesoros - Ballestero<br>
+ID:25020208 Name:Ladrón de Tesoros - Ballestero<br>
+ID:25020209 Name:Ladrón de Tesoros - Ballestero<br>
+ID:25020210 Name:Ladrón de Tesoros - Ballestero<br>
+ID:25020281 Name:Ladrón de Tesoros - Ballestero<br>
+ID:25030101 Name:“Carmen”<br>
+ID:25030102 Name:Ladrón de Tesoros - Carmelo<br>
+ID:25030103 Name:Ladrón de Tesoros - Carmelo<br>
+ID:25030201 Name:Asaltante de Tumbas de los Ladrones de Tesoros<br>
+ID:25030202 Name:Ladrón de Tesoros - Asaltante de Tumbas<br>
+ID:25030281 Name:Ladrón de Tesoros - Asaltante de Tumbas<br>
+ID:25030301 Name:Remero de los Ladrones de Tesoros<br>
+ID:25030302 Name:Ladrón de Tesoros - Grumete<br>
+ID:25030303 Name:Ladrón de Tesoros - Grumete<br>
+ID:25030381 Name:Ladrón de Tesoros - Grumete<br>
+ID:25040101 Name:“Jefa”<br>
+ID:25040102 Name:Ladrón de Tesoros - Jefa<br>
+ID:25040103 Name:Ladrón de Tesoros - Jefa<br>
+ID:25040104 Name:Ladrón de Tesoros - Jefa<br>
+ID:25040105 Name:Ladrón de Tesoros - Jefa<br>
+ID:25050101 Name:Soldado de la Geoarmada<br>
+ID:25050201 Name:Sargento de la Geoarmada<br>
+ID:25050301 Name:Ashigaru del shogunato<br>
+ID:25050401 Name:Capitán Ashigaru del shogunato<br>
+ID:25050402 Name:Capitán Ashigaru del shogunato<br>
+ID:25050501 Name:Secuaz de Sangonomiya<br>
+ID:25050502 Name:(test)心海个人线反抗军足轻<br>
+ID:25050503 Name:Secuaz de Sangonomiya<br>
+ID:25050601 Name:<br>
+ID:25050602 Name:<br>
+ID:25050603 Name:<br>
+ID:25050604 Name:<br>
+ID:25060101 Name:Ladrón de Tesoros - Boxeador<br>
+ID:25060102 Name:Ladrón de Tesoros - Boxeador<br>
+ID:25060103 Name:Ladrón de Tesoros - Boxeador<br>
+ID:25060104 Name:Ladrón de Tesoros - Boxeador<br>
+ID:25060105 Name:Ladrón de Tesoros - Boxeador<br>
+ID:25060106 Name:Ladrón de Tesoros - Boxeador<br>
+ID:25060107 Name:Ladrón de Tesoros - Boxeador<br>
+ID:25060108 Name:Ladrón de Tesoros - Boxeador<br>
+ID:25060109 Name:Ladrón de Tesoros - Boxeador<br>
+ID:25060110 Name:Ladrón de Tesoros - Boxeador<br>
+ID:25060111 Name:Ladrón de Tesoros - Boxeador<br>
+ID:25060112 Name:Ladrón de Tesoros - Boxeador<br>
+ID:25060181 Name:Ladrón de Tesoros - Boxeador<br>
+ID:25060201 Name:<br>
+ID:25070101 Name:Ladrón de Tesoros - Aplastador<br>
+ID:25070102 Name:Ladrón de Tesoros - Aplastador<br>
+ID:25070103 Name:Ladrón de Tesoros - Aplastador<br>
+ID:25070104 Name:Ladrón de Tesoros - Aplastador<br>
+ID:25070181 Name:Ladrón de Tesoros - Aplastador<br>
+ID:25070201 Name:Ladrón de Tesoros - Wallenstein<br>
+ID:25070202 Name:Ladrón de Tesoros - Wallenstein<br>
+ID:25080101 Name:Ronin<br>
+ID:25080181 Name:Nobushi - Filodemonio<br>
+ID:25080201 Name:Ronin - Bandido de la montaña<br>
+ID:25080202 Name:Nobushi - Deuda del fuego<br>
+ID:25080281 Name:Nobushi - Deuda del fuego<br>
+ID:25080301 Name:Ronin - Agente encubierto<br>
+ID:25080381 Name:Nobushi - Astucia<br>
+ID:25080401 Name:Samurái del Shogunato<br>
+ID:25080402 Name:Asistente de Samurái<br>
+ID:25080403 Name:Asistente de Samurái<br>
+ID:25080404 Name:Asistente de Samurái<br>
+ID:25080405 Name:Asistente de Samurái<br>
+ID:25090101 Name:General Títere<br>
+ID:25090102 Name:General Títere - Clon de viento<br>
+ID:25090103 Name:General Títere - Clon de hielo<br>
+ID:25090104 Name:General Títere - Clon enmascarado<br>
+ID:25090105 Name:Oni Espadachín<br>
+ID:25090106 Name:Oni Espadachín<br>
+ID:25090201 Name:General Títere - Clon de viento (con ícono)<br>
+ID:25090301 Name:General Títere - Clon de hielo (con ícono)<br>
+ID:25090401 Name:General Títere - Clon enmascarado (con ícono)<br>
+ID:25100101 Name:Samurái Kairagi Electro<br>
+ID:25100102 Name:Samurái Kairagi - Rayo danzarín<br>
+ID:25100181 Name:Samurái Kairagi - Rayo danzarín<br>
+ID:25100182 Name:Samurái Kairagi - Rayo danzarín<br>
+ID:25100183 Name:Samurái Kairagi - Rayo danzarín<br>
+ID:25100201 Name:Samurái Kairagi Pyro<br>
+ID:25100202 Name:Samurái Kairagi - Amenaza ígnea<br>
+ID:25100281 Name:Samurái Kairagi - Amenaza ígnea<br>
+ID:25100282 Name:Samurái Kairagi - Amenaza ígnea<br>
+ID:25100283 Name:Samurái Kairagi - Amenaza ígnea<br>
+ID:25100301 Name:Samurái Kairagi - Espectro eléctrico<br>
+ID:25100302 Name:Guerrero caído - Trueno embrujado<br>
+ID:25100401 Name:Samurái Kairagi - Espectro ígneo<br>
+ID:25110101 Name:Ominoespíritu - Dragón rocoso<br>
+ID:25110102 Name:Ominoespíritu - Dragón rocoso<br>
+ID:25110201 Name:Ominoespíritu - Milano de viento<br>
+ID:25110202 Name:Ominoespíritu - Milano de viento<br>
+ID:25110301 Name:Ominoespíritu - Escorpio ígneo<br>
+ID:25110401 Name:Ominoespíritu - Ánima dendrofidia<br>
+ID:25210101 Name:Eremita Hachera<br>
+ID:25210102 Name:Eremita Hachera<br>
+ID:25210103 Name:Eremita Hachera<br>
+ID:25210104 Name:Eremita Hachera<br>
+ID:25210105 Name:Eremita Hachera<br>
+ID:25210106 Name:Eremita Hachera<br>
+ID:25210107 Name:Eremita Hachera<br>
+ID:25210108 Name:Eremita Hachera<br>
+ID:25210109 Name:Eremita Hachera<br>
+ID:25210181 Name:Eremita Hachera<br>
+ID:25210201 Name:Eremita Ballestero<br>
+ID:25210202 Name:Eremita Ballestero<br>
+ID:25210203 Name:Eremita Ballestero<br>
+ID:25210204 Name:Eremita Ballestero<br>
+ID:25210205 Name:Eremita Ballestero<br>
+ID:25210206 Name:Eremita Ballestero<br>
+ID:25210207 Name:Eremita Ballestero<br>
+ID:25210208 Name:Eremita Ballestero<br>
+ID:25210209 Name:Eremita Ballestero<br>
+ID:25210210 Name:Eremita Ballestero<br>
+ID:25210211 Name:Eremita Ballestero<br>
+ID:25210212 Name:Eremita Ballestero<br>
+ID:25210213 Name:Eremita Ballestero<br>
+ID:25210281 Name:Eremita Ballestero<br>
+ID:25210301 Name:Eremita Alabardero<br>
+ID:25210302 Name:Eremita Alabardero<br>
+ID:25210303 Name:Eremita Alabardero<br>
+ID:25210304 Name:Eremita Alabardero<br>
+ID:25210305 Name:Eremita Alabardero<br>
+ID:25210306 Name:Eremita Alabardero<br>
+ID:25210307 Name:Eremita Alabardero<br>
+ID:25210308 Name:Eremita Alabardero<br>
+ID:25210309 Name:Eremita Alabardero<br>
+ID:25210310 Name:Eremita Alabardero<br>
+ID:25210381 Name:Eremita Alabardero<br>
+ID:25210401 Name:Eremita Rompefilas<br>
+ID:25210402 Name:Eremita Rompefilas<br>
+ID:25210403 Name:Eremita Rompefilas<br>
+ID:25210404 Name:Eremita Rompefilas<br>
+ID:25210405 Name:Eremita Rompefilas<br>
+ID:25210406 Name:Eremita Rompefilas<br>
+ID:25210407 Name:Eremita Rompefilas<br>
+ID:25210408 Name:Eremita Rompefilas<br>
+ID:25210409 Name:Eremita Rompefilas<br>
+ID:25210481 Name:Eremita Rompefilas<br>
+ID:25210501 Name:Eremita Espadachín<br>
+ID:25210502 Name:Eremita Espadachín<br>
+ID:25210503 Name:Eremita Espadachín<br>
+ID:25210504 Name:Eremita Espadachín<br>
+ID:25210505 Name:Eremita Espadachín<br>
+ID:25210506 Name:Eremita Espadachín<br>
+ID:25210507 Name:Eremita Espadachín<br>
+ID:25210508 Name:Eremita Espadachín<br>
+ID:25210509 Name:Eremita Espadachín<br>
+ID:25210510 Name:Eremita Espadachín<br>
+ID:25210581 Name:Eremita Espadachín<br>
+ID:25210601 Name:<br>
+ID:25210602 Name:<br>
+ID:25310101 Name:Eremita Ablucionadora<br>
+ID:25310102 Name:Eremita Ablucionadora<br>
+ID:25310181 Name:Eremita Ablucionadora<br>
+ID:25310182 Name:Eremita Ablucionadora<br>
+ID:25310201 Name:Eremita Congelafuegos<br>
+ID:25310202 Name:Eremita Congelafuegos<br>
+ID:25310281 Name:Eremita Congelafuegos<br>
+ID:25310282 Name:Eremita Congelafuegos<br>
+ID:25310301 Name:Eremita Invocatruenos<br>
+ID:25310381 Name:Eremita Invocatruenos<br>
+ID:25310382 Name:Eremita Invocatruenos<br>
+ID:25410101 Name:Eremita Hechizarrocas<br>
+ID:25410102 Name:Eremita Hechizarrocas<br>
+ID:25410103 Name:Eremita Hechizarrocas<br>
+ID:25410181 Name:Eremita Hechizarrocas<br>
+ID:25410201 Name:Eremita Cazavientos<br>
+ID:25410202 Name:Eremita Cazavientos<br>
+ID:25410281 Name:Eremita Cazavientos<br>
+ID:25410282 Name:Eremita Cazavientos<br>
+ID:25410301 Name:Eremita Susurrarenas<br>
+ID:25410302 Name:Eremita Susurrarenas<br>
+ID:25410303 Name:Eremita Susurrarenas<br>
+ID:25410381 Name:Eremita Susurrarenas<br>
+ID:25410382 Name:Eremita Susurrarenas<br>
+ID:25410401 Name:Eremita Danzacróbata<br>
+ID:25410481 Name:Eremita Danzacróbata<br>
+ID:26010101 Name:Megaflora Cryo<br>
+ID:26010102 Name:Megaflora Cryo (Evento de Espinadragón)<br>
+ID:26010103 Name:Megaflora Cryo grande (evento 2.3)<br>
+ID:26010104 Name:Megaflora Cryo<br>
+ID:26010201 Name:Megaflora Pyro<br>
+ID:26010301 Name:Megaflora Electro<br>
+ID:26020101 Name:Regisvid Cryo<br>
+ID:26020102 Name:Regisvid Cryo (Evento de Espinadragón)<br>
+ID:26020181 Name:Regisvid Cryo<br>
+ID:26020201 Name:Regisvid Pyro<br>
+ID:26020281 Name:Regisvid Pyro<br>
+ID:26020301 Name:Regisvid Electro<br>
+ID:26020381 Name:Regisvid Electro<br>
+ID:26030101 Name:Cría de Dragarto Geo<br>
+ID:26030181 Name:Cría de Dragarto Geo<br>
+ID:26040101 Name:Dragarto Geo: Hydro<br>
+ID:26040102 Name:Dragarto Geo: Pyro<br>
+ID:26040103 Name:Dragarto Geo: Cryo<br>
+ID:26040104 Name:Dragarto Geo: Electro<br>
+ID:26040105 Name:Dragarto Geo: Hydro<br>
+ID:26040181 Name:Dragarto Geo<br>
+ID:26040182 Name:Dragarto Geo<br>
+ID:26040183 Name:Dragarto Geo<br>
+ID:26040184 Name:Dragarto Geo<br>
+ID:26040185 Name:Dragarto Geo<br>
+ID:26040186 Name:Dragarto Geo<br>
+ID:26040187 Name:Dragarto Geo<br>
+ID:26040188 Name:Dragarto Geo<br>
+ID:26050101 Name:Protodragarto Geo: Hydro<br>
+ID:26050201 Name:Protodragarto Geo: Pyro<br>
+ID:26050301 Name:Protodragarto Geo: Cryo<br>
+ID:26050401 Name:Protodragarto Geo: Electro<br>
+ID:26050501 Name:Protodragarto Geo - Evento<br>
+ID:26050601 Name:Dragarto de las Profundidades Primordial<br>
+ID:26050681 Name:Dragarto de las Profundidades Primordial<br>
+ID:26050682 Name:Dragarto de las Profundidades Primordial<br>
+ID:26050701 Name:Dragarto de las Profundidades - Hielo mordaz<br>
+ID:26050702 Name:Dragarto de las Profundidades - Hielo mordaz<br>
+ID:26050703 Name:Dragarto de las Profundidades - Hielo mordaz<br>
+ID:26050781 Name:Dragarto de las Profundidades - Hielo mordaz<br>
+ID:26050801 Name:Dragarto de las Profundidades - Engulletruenos<br>
+ID:26050802 Name:Dragarto de las Profundidades - Engulletruenos<br>
+ID:26050803 Name:Dragarto de las Profundidades - Engulletruenos<br>
+ID:26050881 Name:Dragarto de las Profundidades - Engulletruenos<br>
+ID:26050901 Name:Cría de Dragarto de las Profundidades Primordial<br>
+ID:26051001 Name:Cría de Dragarto de las Profundidades - Hielo mordaz<br>
+ID:26051081 Name:Cría de Dragarto de las Profundidades - Hielo mordaz<br>
+ID:26051082 Name:Cría de Dragarto de las Profundidades - Hielo mordaz<br>
+ID:26051101 Name:Cría de Dragarto de las Profundidades - Engulletruenos<br>
+ID:26051181 Name:Cría de Dragarto de las Profundidades - Engulletruenos<br>
+ID:26051182 Name:Cría de Dragarto de las Profundidades - Engulletruenos<br>
+ID:26060101 Name:Cicin Electro<br>
+ID:26060201 Name:Cicin Hydro<br>
+ID:26060301 Name:Cicin Cryo<br>
+ID:26080101 Name:Beisht<br>
+ID:26090101 Name:Flotihongo Hydro<br>
+ID:26090181 Name:Flotihongo Hydro<br>
+ID:26090190 Name:Flotihongo Hydro<br>
+ID:26090191 Name:Flotihongo Hydro<br>
+ID:26090201 Name:Flotihongo Dendro<br>
+ID:26090202 Name:Flotihongo Dendro<br>
+ID:26090281 Name:Flotihongo Dendro<br>
+ID:26090290 Name:Flotihongo Dendro<br>
+ID:26090291 Name:Flotihongo Dendro<br>
+ID:26090301 Name:Flotihongo Anemo<br>
+ID:26090381 Name:Flotihongo Anemo<br>
+ID:26090390 Name:Flotihongo Anemo<br>
+ID:26090391 Name:Flotihongo Anemo<br>
+ID:26090401 Name:Girohongo Electro<br>
+ID:26090481 Name:Girohongo Electro<br>
+ID:26090490 Name:Girohongo Electro<br>
+ID:26090491 Name:Girohongo Electro<br>
+ID:26090501 Name:Girohongo Cryo<br>
+ID:26090581 Name:Girohongo Cryo<br>
+ID:26090590 Name:Girohongo Cryo<br>
+ID:26090591 Name:Girohongo Cryo<br>
+ID:26090601 Name:Girohongo Pyro<br>
+ID:26090681 Name:Girohongo Pyro<br>
+ID:26090690 Name:Girohongo Pyro<br>
+ID:26090691 Name:Girohongo Pyro<br>
+ID:26090701 Name:Flexihongo Pyro<br>
+ID:26090781 Name:Flexihongo Pyro<br>
+ID:26090790 Name:Flexihongo Pyro<br>
+ID:26090791 Name:Flexihongo Pyro<br>
+ID:26090801 Name:Flexihongo Anemo<br>
+ID:26090881 Name:Flexihongo Anemo<br>
+ID:26090890 Name:Flexihongo Anemo<br>
+ID:26090891 Name:Flexihongo Anemo<br>
+ID:26090901 Name:Flexihongo Geo<br>
+ID:26090981 Name:Flexihongo Geo<br>
+ID:26090990 Name:Flexihongo Geo<br>
+ID:26090991 Name:Flexihongo Geo<br>
+ID:26091001 Name:Flexihongo Electro<br>
+ID:26091081 Name:Flexihongo Electro<br>
+ID:26091090 Name:Flexihongo Electro<br>
+ID:26091091 Name:Flexihongo Electro<br>
+ID:26100101 Name:Corniodrilo Sacróseo<br>
+ID:26100201 Name:Colmibestia Sacrósea<br>
+ID:26100301 Name:Buitre Escarlata Sacróseo<br>
+ID:26100401 Name:Escorpión Sacróseo<br>
+ID:26100501 Name:Aerofidio Sacróseo<br>
+ID:26110101 Name:Espantohongo Plumaverde<br>
+ID:26110181 Name:Espantohongo Plumaverde<br>
+ID:26120101 Name:Dendrohongo Alado<br>
+ID:26120181 Name:Dendrohongo Alado<br>
+ID:26120201 Name:Cryohongo Alado<br>
+ID:26120281 Name:Cryohongo Alado<br>
+ID:26120301 Name:Hydrohongo Terrestre<br>
+ID:26120381 Name:Hydrohongo Terrestre<br>
+ID:26120382 Name:Hydrohongo Terrestre<br>
+ID:26120401 Name:Geohongo Terrestre<br>
+ID:26120481 Name:Geohongo Terrestre<br>
+ID:26120482 Name:Geohongo Terrestre<br>
+ID:26130101 Name:Gusano de Sutej<br>
+ID:26151001 Name:Raya Depredadora<br>
+ID:26151002 Name:Raya Depredadora<br>
+ID:26151101 Name:Raya Depredadora<br>
+ID:26151102 Name:Raya Depredadora<br>
+ID:26152101 Name:Cangrejo Acorazado<br>
+ID:26152102 Name:Cangrejo Acorazado<br>
+ID:26152201 Name:Cangrejo Acorazado<br>
+ID:26152202 Name:Cangrejo Acorazado<br>
+ID:26153101 Name:Foca Abotargada<br>
+ID:26153102 Name:Foca Abotargada<br>
+ID:26153103 Name:Foca Abotargada<br>
+ID:26153104 Name:Foca Abotargada<br>
+ID:26154101 Name:Medusa Sombreruda<br>
+ID:26154102 Name:Medusa Sombreruda<br>
+ID:26154201 Name:Medusa Sombreruda<br>
+ID:26154202 Name:Medusa Sombreruda<br>
+ID:26155101 Name:Caballito Burbumarino<br>
+ID:26155201 Name:Caballito Burbumarino<br>
+ID:26155301 Name:Caballito Burbumarino<br>
+ID:26156101 Name:Esferoctópodo<br>
+ID:26156201 Name:Esferoctópodo<br>
+ID:26157101 Name:Gasterópodo Ángel<br>
+ID:26157201 Name:Gasterópodo Ángel<br>
+ID:26160101 Name:Cangrejo Acorazado Robusto<br>
+ID:26160102 Name:Cangrejo Acorazado Robusto<br>
+ID:26160201 Name:Gran Gasterópodo Ángel<br>
+ID:26160202 Name:Gran Gasterópodo Ángel<br>
+ID:26160301 Name:Caballito Burbumarino Macho<br>
+ID:26160302 Name:Caballito Burbumarino Macho<br>
+ID:26162101 Name:Cangrejo Acorazado - Leyenda local<br>
+ID:26162201 Name:Raya Depredadora - Leyenda local<br>
+ID:26162301 Name:Foca Abotargada - Leyenda local<br>
+ID:26162401 Name:Gran Gasterópodo Ángel - Leyenda local<br>
+ID:26162501 Name:Medusa Sombreruda - Leyenda local<br>
+ID:26170101 Name:Emperador Piroacorazado<br>
+ID:26180101 Name:Corcel de Mar Perlamilenario<br>
+ID:28010101 Name:Cangrejo dorado<br>
+ID:28010102 Name:Cangrejo solar<br>
+ID:28010103 Name:Cangrejo oceánico<br>
+ID:28010104 Name:Cangrejo general<br>
+ID:28010105 Name:Cangrejo rojizo<br>
+ID:28010106 Name:Cangrejo<br>
+ID:28010201 Name:Lagarto cornudo azul<br>
+ID:28010202 Name:Lagarto cornudo rojo<br>
+ID:28010203 Name:Lagarto cornudo verde<br>
+ID:28010204 Name:Locha del anochecer<br>
+ID:28010205 Name:Locha dorada<br>
+ID:28010206 Name:Locha soleada<br>
+ID:28010207 Name:Lagarto de médula<br>
+ID:28010208 Name:<br>
+ID:28010301 Name:Rana<br>
+ID:28010302 Name:Rana de barro<br>
+ID:28010303 Name:Rana azul<br>
+ID:28010304 Name:<br>
+ID:28010401 Name:（test）摇曳鳗01<br>
+ID:28010402 Name:<br>
+ID:28010403 Name:（test）摇曳鳗03<br>
+ID:28010404 Name:<br>
+ID:28020101 Name:Zorro de nieve<br>
+ID:28020102 Name:Zorro carmesí<br>
+ID:28020103 Name:Zorro de nieve con regalo<br>
+ID:28020104 Name:Zorro de nieve con regalo grande<br>
+ID:28020105 Name:<br>
+ID:28020106 Name:<br>
+ID:28020107 Name:<br>
+ID:28020108 Name:<br>
+ID:28020109 Name:<br>
+ID:28020110 Name:<br>
+ID:28020201 Name:Ardilla<br>
+ID:28020202 Name:<br>
+ID:28020301 Name:Jabalí del bosque<br>
+ID:28020302 Name:Cría de jabalí del bosque<br>
+ID:28020303 Name:Jabalí de las nieves<br>
+ID:28020304 Name:Rey Jabalí de las Nieves<br>
+ID:28020305 Name:Jabalí de las nieves congelado<br>
+ID:28020306 Name:<br>
+ID:28020307 Name:<br>
+ID:28020308 Name:<br>
+ID:28020309 Name:<br>
+ID:28020310 Name:<br>
+ID:28020311 Name:<br>
+ID:28020312 Name:<br>
+ID:28020313 Name:<br>
+ID:28020314 Name:<br>
+ID:28020315 Name:<br>
+ID:28020316 Name:<br>
+ID:28020317 Name:<br>
+ID:28020318 Name:<br>
+ID:28020319 Name:<br>
+ID:28020401 Name:Sabueso del Norte<br>
+ID:28020402 Name:Sabueso guardabosques<br>
+ID:28020403 Name:Shiba<br>
+ID:28020404 Name:Sabueso de lomo negro<br>
+ID:28020405 Name:Shiba<br>
+ID:28020406 Name:Sabueso del Norte (evento de perros, campo de visión aumentado)<br>
+ID:28020407 Name:<br>
+ID:28020408 Name:<br>
+ID:28020409 Name:<br>
+ID:28020410 Name:<br>
+ID:28020411 Name:<br>
+ID:28020412 Name:<br>
+ID:28020413 Name:<br>
+ID:28020501 Name:Zafiro<br>
+ID:28020502 Name:Gato de ojos de jade<br>
+ID:28020503 Name:Gato de nieve gris<br>
+ID:28020504 Name:Gato del Norte<br>
+ID:28020505 Name:Gato atigrado<br>
+ID:28020506 Name:Gato alguacil<br>
+ID:28020507 Name:Gato negro<br>
+ID:28020508 Name:Zafiro<br>
+ID:28020509 Name:Gato de nieve gris (evento de perros, campo de visión aumentado)<br>
+ID:28020510 Name:<br>
+ID:28020511 Name:<br>
+ID:28020512 Name:<br>
+ID:28020513 Name:<br>
+ID:28020601 Name:Hurón de las nieves<br>
+ID:28020602 Name:Hurón de cola roja<br>
+ID:28020603 Name:Hurón con botas<br>
+ID:28020604 Name:Hurón enmascarado<br>
+ID:28020605 Name:<br>
+ID:28020701 Name:Kitsune<br>
+ID:28020702 Name:Kitsune (evento de perros, campo de visión aumentado)<br>
+ID:28020801 Name:Tanuki<br>
+ID:28020802 Name:<br>
+ID:28020803 Name:<br>
+ID:28020901 Name:Perro samurái (patrulla)<br>
+ID:28020902 Name:Perro samurái (combate)<br>
+ID:28020903 Name:<br>
+ID:28020904 Name:<br>
+ID:28020905 Name:<br>
+ID:28021001 Name:<br>
+ID:28021101 Name:<br>
+ID:28021102 Name:<br>
+ID:28021103 Name:<br>
+ID:28021201 Name:<br>
+ID:28030101 Name:Garza azul<br>
+ID:28030102 Name:Ibis violeta<br>
+ID:28030103 Name:<br>
+ID:28030104 Name:<br>
+ID:28030105 Name:<br>
+ID:28030106 Name:<br>
+ID:28030107 Name:<br>
+ID:28030201 Name:Halcón de alas marrones<br>
+ID:28030202 Name:Halcón pardo<br>
+ID:28030203 Name:Milano lapis<br>
+ID:28030204 Name:Halcón blanco<br>
+ID:28030301 Name:Paloma blanca<br>
+ID:28030302 Name:Paloma coronada<br>
+ID:28030303 Name:Paloma alagrís<br>
+ID:28030304 Name:Paloma carmesí<br>
+ID:28030305 Name:Paloma azabache<br>
+ID:28030306 Name:Cuervo<br>
+ID:28030307 Name:Paloma blanca<br>
+ID:28030308 Name:Paloma coronada<br>
+ID:28030309 Name:Paloma alagrís<br>
+ID:28030310 Name:Paloma carmesí<br>
+ID:28030311 Name:Paloma azabache<br>
+ID:28030312 Name:<br>
+ID:28030313 Name:<br>
+ID:28030314 Name:<br>
+ID:28030315 Name:<br>
+ID:28030316 Name:<br>
+ID:28030401 Name:Pinzón carmesí<br>
+ID:28030402 Name:Pinzón dorado<br>
+ID:28030403 Name:Pinzón polar<br>
+ID:28030404 Name:Pinzón esmeralda<br>
+ID:28030405 Name:<br>
+ID:28030406 Name:<br>
+ID:28030407 Name:<br>
+ID:28030408 Name:<br>
+ID:28030409 Name:<br>
+ID:28030410 Name:<br>
+ID:28030501 Name:Ánade picorrojo<br>
+ID:28030502 Name:Ánade esmeralda<br>
+ID:28030504 Name:<br>
+ID:28030505 Name:<br>
+ID:28030601 Name:<br>
+ID:28030602 Name:<br>
+ID:28030604 Name:<br>
+ID:28030605 Name:<br>
+ID:28030607 Name:<br>
+ID:28030608 Name:<br>
+ID:28030610 Name:<br>
+ID:28030611 Name:<br>
+ID:28030701 Name:<br>
+ID:28030702 Name:<br>
+ID:28030703 Name:<br>
+ID:28030704 Name:<br>
+ID:28030705 Name:<br>
+ID:28030706 Name:<br>
+ID:28030707 Name:<br>
+ID:28030708 Name:<br>
+ID:28030709 Name:<br>
+ID:28030710 Name:<br>
+ID:28030711 Name:<br>
+ID:28030712 Name:<br>
+ID:28030713 Name:<br>
+ID:28030714 Name:<br>
+ID:28030715 Name:<br>
+ID:28030716 Name:<br>
+ID:28040101 Name:Perca de lomo negro<br>
+ID:28040102 Name:Perca de lomo azul<br>
+ID:28040103 Name:Perca de lomo dorado<br>
+ID:28040104 Name:Perca de lomo negro<br>
+ID:28040105 Name:Perca de lomo negro<br>
+ID:28040106 Name:Perca de lomo azul<br>
+ID:28040107 Name:Perca de lomo dorado<br>
+ID:28040108 Name:<br>
+ID:28040201 Name:Medaka<br>
+ID:28040202 Name:Medaka brillante<br>
+ID:28040203 Name:Medaka flor dulce<br>
+ID:28040204 Name:Medaka azul<br>
+ID:28040205 Name:Atrapaauroras<br>
+ID:28040206 Name:Pez de cristal<br>
+ID:28040301 Name:Espinoso anfibio<br>
+ID:28040302 Name:Espinoso luchador<br>
+ID:28040303 Name:Espinoso venenoso<br>
+ID:28040304 Name:Akai maou<br>
+ID:28040305 Name:Pisanieves<br>
+ID:28040401 Name:Koi dorado<br>
+ID:28040402 Name:Koi plateado<br>
+ID:28040501 Name:Pez mariposa marrón<br>
+ID:28040502 Name:Pez mariposa violeta<br>
+ID:28040503 Name:Pez mariposa verdoso<br>
+ID:28040504 Name:Pez ángel<br>
+ID:28040505 Name:Pez ángel raimei<br>
+ID:28040506 Name:Selénido<br>
+ID:28040601 Name:Pez globo<br>
+ID:28040602 Name:Pez globo amargo<br>
+ID:28040701 Name:<br>
+ID:28040702 Name:<br>
+ID:28040703 Name:<br>
+ID:28040801 Name:<br>
+ID:28040802 Name:<br>
+ID:28040803 Name:<br>
+ID:28040804 Name:<br>
+ID:28040901 Name:<br>
+ID:28040902 Name:<br>
+ID:28040903 Name:<br>
+ID:28041001 Name:<br>
+ID:28041002 Name:<br>
+ID:28041101 Name:<br>
+ID:28041102 Name:<br>
+ID:28041103 Name:<br>
+ID:28041104 Name:<br>
+ID:28041105 Name:<br>
+ID:28050101 Name:Cristalóptero Anemo<br>
+ID:28050102 Name:Cristalóptero Geo<br>
+ID:28050103 Name:Cristalóptero Cryo<br>
+ID:28050104 Name:Cristalóptero Electro<br>
+ID:28050105 Name:<br>
+ID:28050106 Name:<br>
+ID:28050107 Name:<br>
+ID:28050108 Name:<br>
+ID:28050201 Name:Hurón ladrón novato<br>
+ID:28050202 Name:Hurón ladrón de tesoros<br>
+ID:28050203 Name:Hurón ladrón dorado<br>
+ID:28050204 Name:<br>
+ID:28050211 Name:Hurón ladrón novato<br>
+ID:28050212 Name:Hurón ladrón de tesoros<br>
+ID:28050213 Name:Hurón ladrón dorado<br>
+ID:28050221 Name:<br>
+ID:28050222 Name:<br>
+ID:28050223 Name:<br>
+ID:28050301 Name:<br>
+ID:28050401 Name:<br>
+ID:28050501 Name:<br>
+ID:28050502 Name:<br>
+ID:28050503 Name:<br>
+ID:28050504 Name:<br>
+ID:28050505 Name:<br>
+ID:28050506 Name:<br>
+ID:28050507 Name:<br>
+ID:28050508 Name:<br>
+ID:28050509 Name:<br>
+ID:28050510 Name:<br>
+ID:28050511 Name:<br>
+ID:28050512 Name:<br>
+ID:28050701 Name:<br>
+ID:28060101 Name:<br>
+ID:28060102 Name:<br>
+ID:28060103 Name:<br>
+ID:28060201 Name:<br>
+ID:28060202 Name:<br>
+ID:28060203 Name:<br>
+ID:28060301 Name:<br>
+ID:28060302 Name:<br>
+ID:28060401 Name:<br>
+ID:28060402 Name:<br>
+ID:28060501 Name:<br>
+ID:28060502 Name:<br>
+ID:28060503 Name:<br>
+ID:28060504 Name:<br>
+ID:28060505 Name:<br>
+ID:28060506 Name:<br>
+ID:28060509 Name:<br>
+ID:28060510 Name:<br>
+ID:28060511 Name:<br>
+ID:28060512 Name:<br>
+ID:28060513 Name:<br>
+ID:28060601 Name:<br>
+ID:28060602 Name:<br>
+ID:28060603 Name:<br>
+ID:28060604 Name:<br>
+ID:28060605 Name:<br>
+ID:28060606 Name:<br>
+ID:28060609 Name:<br>
+ID:28060610 Name:<br>
+ID:28060611 Name:<br>
+ID:28060612 Name:<br>
+ID:28060613 Name:<br>
+ID:28060614 Name:<br>
+ID:28060701 Name:<br>
+ID:28060801 Name:<br>
+ID:28060901 Name:<br>
+ID:28061001 Name:<br>
+ID:28061002 Name:<br>
+ID:28061101 Name:<br>
+ID:28061201 Name:<br>
+ID:28061301 Name:<br>
+ID:28061401 Name:<br>
+ID:28061402 Name:<br>
+ID:28061501 Name:<br>
+ID:28061502 Name:<br>
+ID:28070101 Name:<br>
+ID:28070102 Name:<br>
+ID:28070201 Name:<br>
+ID:28070301 Name:<br>
+ID:28070302 Name:<br>
+ID:28070401 Name:<br>
+ID:28070402 Name:<br>
+ID:28070601 Name:<br>
+ID:28210101 Name:Cangrejo dorado doméstico<br>
+ID:28210102 Name:Cangrejo solar doméstico<br>
+ID:28210103 Name:Cangrejo oceánico doméstico<br>
+ID:28210104 Name:Cangrejo general doméstico<br>
+ID:28210105 Name:Cangrejo rojizo doméstico<br>
+ID:28210201 Name:Lagarto cornudo azul doméstico<br>
+ID:28210202 Name:Lagarto cornudo rojo doméstico<br>
+ID:28210203 Name:Lagarto cornudo verde doméstico<br>
+ID:28210204 Name:Locha del anochecer doméstica<br>
+ID:28210205 Name:Locha dorada doméstica<br>
+ID:28210206 Name:Locha soleada doméstica<br>
+ID:28210207 Name:Lagarto de médula doméstico<br>
+ID:28210208 Name:<br>
+ID:28210301 Name:Rana doméstica<br>
+ID:28210302 Name:Rana de barro doméstica<br>
+ID:28210303 Name:Rana azul doméstica<br>
+ID:28210304 Name:<br>
+ID:28210401 Name:Anguila adornada doméstica<br>
+ID:28210402 Name:<br>
+ID:28210403 Name:Anguila de aleta roja doméstica<br>
+ID:28210404 Name:<br>
+ID:28220101 Name:Zorro de nieve doméstico<br>
+ID:28220102 Name:Zorro carmesí doméstico<br>
+ID:28220108 Name:<br>
+ID:28220201 Name:Ardilla doméstica<br>
+ID:28220301 Name:Jabalí doméstico<br>
+ID:28220303 Name:Jabalí de las nieves doméstico<br>
+ID:28220313 Name:<br>
+ID:28220314 Name:<br>
+ID:28220401 Name:Sabueso del Norte doméstico<br>
+ID:28220402 Name:Sabueso guardabosques doméstico<br>
+ID:28220403 Name:Shiba doméstico<br>
+ID:28220404 Name:Sabueso de lomo negro doméstico<br>
+ID:28220405 Name:<br>
+ID:28220406 Name:<br>
+ID:28220407 Name:<br>
+ID:28220501 Name:Zafiro doméstico<br>
+ID:28220502 Name:Gato de ojos de jade doméstico<br>
+ID:28220503 Name:Gato de nieve gris doméstico<br>
+ID:28220504 Name:Gato del Norte doméstico<br>
+ID:28220505 Name:Gato atigrado doméstico<br>
+ID:28220506 Name:Gato alguacil doméstico<br>
+ID:28220601 Name:Hurón de las nieves doméstico<br>
+ID:28220602 Name:Hurón de cola roja doméstico<br>
+ID:28220603 Name:Hurón con botas doméstico<br>
+ID:28220604 Name:<br>
+ID:28220605 Name:<br>
+ID:28220701 Name:Kitsune doméstico<br>
+ID:28220901 Name:Perro samurái doméstico<br>
+ID:28230101 Name:Garza azul doméstica<br>
+ID:28230102 Name:Ibis violeta doméstico<br>
+ID:28230104 Name:<br>
+ID:28230301 Name:Paloma blanca doméstica<br>
+ID:28230302 Name:Paloma coronada doméstica<br>
+ID:28230303 Name:Paloma alagrís doméstica<br>
+ID:28230304 Name:Paloma carmesí doméstica<br>
+ID:28230305 Name:Paloma azabache doméstica<br>
+ID:28230306 Name:Cuervo doméstico<br>
+ID:28230313 Name:<br>
+ID:28230401 Name:Pinzón carmesí doméstico<br>
+ID:28230402 Name:Pinzón dorado doméstico<br>
+ID:28230403 Name:Pinzón polar doméstico<br>
+ID:28230404 Name:Pinzón esmeralda doméstico<br>
+ID:28230601 Name:<br>
+ID:28230602 Name:<br>
+ID:28230701 Name:<br>
+ID:28230702 Name:<br>
+ID:28230703 Name:<br>
+ID:28230704 Name:<br>
+ID:28230705 Name:<br>
+ID:28230706 Name:<br>
+ID:28230707 Name:<br>
+ID:28230708 Name:<br>
+ID:28240201 Name:Medaka doméstico<br>
+ID:28240202 Name:Medaka brillante doméstico<br>
+ID:28240203 Name:Medaka flor dulce doméstico<br>
+ID:28240204 Name:Medaka azul doméstico<br>
+ID:28240205 Name:Atrapaauroras doméstico<br>
+ID:28240206 Name:Pez de cristal doméstico<br>
+ID:28240301 Name:Espinoso anfibio doméstico<br>
+ID:28240302 Name:Espinoso luchador doméstico<br>
+ID:28240303 Name:Espinoso venenoso doméstico<br>
+ID:28240304 Name:Akai maou doméstico<br>
+ID:28240305 Name:Pisanieves doméstico<br>
+ID:28240401 Name:Koi dorado doméstico<br>
+ID:28240402 Name:Koi plateado doméstico<br>
+ID:28240501 Name:Pez mariposa marrón doméstico<br>
+ID:28240502 Name:Pez mariposa violeta doméstico<br>
+ID:28240503 Name:Pez mariposa verdoso doméstico<br>
+ID:28240504 Name:Pez ángel doméstico<br>
+ID:28240505 Name:Pez ángel raimei doméstico<br>
+ID:28240506 Name:Selénido doméstico<br>
+ID:28240601 Name:Pez globo doméstico<br>
+ID:28240602 Name:Pez globo amargo doméstico<br>
+ID:28240701 Name:<br>
+ID:28240702 Name:<br>
+ID:28240801 Name:<br>
+ID:28240802 Name:<br>
+ID:28240803 Name:<br>
+ID:28240804 Name:<br>
+ID:28240901 Name:<br>
+ID:28240902 Name:<br>
+ID:28240903 Name:<br>
+ID:28241001 Name:<br>
+ID:28241002 Name:<br>
+ID:28241101 Name:<br>
+ID:28241102 Name:<br>
+ID:28241103 Name:<br>
+ID:28241104 Name:<br>
+ID:28241105 Name:<br>
+ID:28250101 Name:Cristalóptero Anemo doméstico<br>
+ID:28250102 Name:Cristalóptero Geo doméstico<br>
+ID:28250103 Name:Cristalóptero Cryo doméstico<br>
+ID:28250104 Name:Cristalóptero Electro doméstico<br>
+ID:28250105 Name:<br>
+ID:28250106 Name:<br>
+ID:28250107 Name:<br>
+ID:28250301 Name:<br>
+ID:28250401 Name:<br>
+ID:28250701 Name:<br>
+ID:29010101 Name:Stormterror Dvalin<br>
+ID:29010102 Name:Stormterror Dvalin<br>
+ID:29010103 Name:Stormterror<br>
+ID:29010104 Name:Stormterror Dvalin<br>
+ID:29020101 Name:Boreas, Rey Lobo del Norte<br>
+ID:29020102 Name:Andrius, Señor de los Lobos<br>
+ID:29030101 Name:Nobile, el undécimo de Los Once de los Fatui<br>
+ID:29030102 Name:Engaño liberado - Nobile<br>
+ID:29030103 Name:Nobile<br>
+ID:29030104 Name:Nobile, el undécimo de Los Once de los Fatui<br>
+ID:29030105 Name:Engaño liberado - Nobile<br>
+ID:29030106 Name:Nobile<br>
+ID:29040101 Name:Azhdaha<br>
+ID:29040102 Name:Azhdaha<br>
+ID:29040103 Name:Azhdaha<br>
+ID:29040104 Name:Azhdaha<br>
+ID:29040111 Name:Azhdaha<br>
+ID:29050101 Name:Signora<br>
+ID:29050102 Name:Bruja Carmesí de las Ascuas<br>
+ID:29050103 Name:Signora<br>
+ID:29050104 Name:Bruja Carmesí de las Ascuas<br>
+ID:29060101 Name:Shogun Raiden<br>
+ID:29060102 Name:Raiden Ei<br>
+ID:29060201 Name:Todopoderosa Narukami de la catástrofe<br>
+ID:29060202 Name:Todopoderosa Narukami de la catástrofe<br>
+ID:29060203 Name:Todopoderosa Narukami de la catástrofe<br>
+ID:29070101 Name:Dios Mecánico, el Pródigo<br>
+ID:29070102 Name:Dios Mecánico, el Pródigo<br>
+ID:29070103 Name:Dios Mecánico, el Pródigo<br>
+ID:29070104 Name:Dios Mecánico, el Pródigo<br>
+ID:29070105 Name:Dios Mecánico, el Pródigo<br>
+ID:29070106 Name:Dios Mecánico, el Pródigo<br>
+ID:29080101 Name:Guardián del Oasis de Apep<br>
+ID:29080102 Name:Guardián del Oasis de Apep<br>
+ID:29080103 Name:Guardián del Oasis de Apep<br>
+ID:29080104 Name:Guardián del Oasis de Apep<br>
+ID:29080201 Name:Organismo proliferador básico<br>
+ID:29080202 Name:Organismo proliferador básico<br>
+ID:29080301 Name:Organismo proliferador depredador<br>
+ID:29080302 Name:Organismo proliferador depredador<br>
+ID:29080401 Name:Organismo proliferador protector<br>
+ID:29080501 Name:Organismo proliferador fortificante<br>
+ID:29080601 Name:Organismo proliferador destructor<br>
+ID:29080701 Name:Organismo proliferador anidador<br>
+ID:29080702 Name:Organismo proliferador anidador<br>
+ID:29090101 Name:Narval Devoraestrellas<br>
+ID:29090102 Name:Narval Devoraestrellas<br>
+ID:29090201 Name:<br>
+ID:29090202 Name:<br>
+ID:29090304 Name:<br>
+ID:30050501 Name:Pinzón Hidromimético<br>
+ID:30050601 Name:Pato Hidromimético<br>
+ID:30050701 Name:Ardilla Hidromimética<br>
+ID:31040101 Name:Hilichurl Errabundo Anemo<br>
+ID:32110201 Name:Protofisurador Quebrantarrocas<br>
+ID:34060101 Name:Mecarrastreador - Ousía<br>
+ID:34060102 Name:Mecarrastreador - Ousía<br>
+ID:34060901 Name:Mecaespecialista Inhibidor - Ousía<br>
+ID:35010201 Name:Ladrón de Tesoros - Centinela<br>
+ID:35010202 Name:Ladrón de Tesoros - Centinela<br>
+ID:35010203 Name:Ladrón de Tesoros - Centinela<br>
+ID:35010602 Name:Ladrón de Tesoros - Maestro de Pociones Cryo<br>
+ID:35020201 Name:Ladrón de Tesoros - Ballestero<br>
+ID:35020202 Name:Ladrón de Tesoros - Ballestero<br>
+ID:35060101 Name:Ladrón de Tesoros - Boxeador<br>
+ID:35060102 Name:Ladrón de Tesoros - Boxeador<br>
+ID:35060103 Name:Ladrón de Tesoros - Boxeador<br>
+ID:35110101 Name:Ominoespíritu - Dragón rocoso<br>
+ID:35110102 Name:Ominoespíritu - Dragón rocoso<br>
+ID:35110103 Name:Ominoespíritu - Dragón rocoso<br>
+ID:35110201 Name:Ominoespíritu - Milano de viento<br>
+ID:35110301 Name:Ominoespíritu - Escorpio ígneo<br>
+ID:35210101 Name:Eremita Hachera<br>
+ID:35210102 Name:Eremita Hachera<br>
+ID:35210103 Name:Eremita Hachera<br>
+ID:35210104 Name:Eremita Hachera<br>
+ID:35210201 Name:Eremita Ballestero<br>
+ID:35210202 Name:Eremita Ballestero<br>
+ID:35210203 Name:Eremita Ballestero<br>
+ID:35210301 Name:Eremita Alabardero<br>
+ID:35210302 Name:Eremita Alabardero<br>
+ID:35210303 Name:Eremita Alabardero<br>
+ID:35210304 Name:Eremita Alabardero<br>
+ID:35210401 Name:Eremita Rompefilas<br>
+ID:35210402 Name:Eremita Rompefilas<br>
+ID:35210501 Name:Eremita Espadachín<br>
+ID:35210502 Name:Eremita Espadachín<br>
+ID:35310101 Name:Eremita Ablucionadora<br>
+ID:35310301 Name:Eremita Invocatruenos<br>
+ID:35410101 Name:Eremita Hechizarrocas<br>
+ID:35410201 Name:Eremita Cazavientos<br>
+ID:36050601 Name:Dragarto de las Profundidades Primordial<br>
+ID:36090190 Name:Flotihongo Hydro<br>
+ID:36090191 Name:Flotihongo Hydro<br>
+ID:36090192 Name:Flotihongo Hydro<br>
+ID:36090290 Name:Flotihongo Dendro<br>
+ID:36090291 Name:Flotihongo Dendro<br>
+ID:36090292 Name:Flotihongo Dendro<br>
+ID:36090390 Name:Flotihongo Anemo<br>
+ID:36090391 Name:Flotihongo Anemo<br>
+ID:36090392 Name:Flotihongo Anemo<br>
+ID:36090490 Name:Girohongo Electro<br>
+ID:36090491 Name:Girohongo Electro<br>
+ID:36090492 Name:Girohongo Electro<br>
+ID:36090590 Name:Girohongo Cryo<br>
+ID:36090591 Name:Girohongo Cryo<br>
+ID:36090592 Name:Girohongo Cryo<br>
+ID:36090690 Name:Girohongo Pyro<br>
+ID:36090691 Name:Girohongo Pyro<br>
+ID:36090692 Name:Girohongo Pyro<br>
+ID:36090790 Name:Flexihongo Pyro<br>
+ID:36090791 Name:Flexihongo Pyro<br>
+ID:36090792 Name:Flexihongo Pyro<br>
+ID:36090890 Name:Flexihongo Anemo<br>
+ID:36090891 Name:Flexihongo Anemo<br>
+ID:36090892 Name:Flexihongo Anemo<br>
+ID:36090990 Name:Flexihongo Geo<br>
+ID:36090991 Name:Flexihongo Geo<br>
+ID:36090992 Name:Flexihongo Geo<br>
+ID:36091090 Name:Flexihongo Electro<br>
+ID:36091091 Name:Flexihongo Electro<br>
+ID:36091092 Name:Flexihongo Electro<br>
+ID:38050590 Name:<br>
+ID:38050591 Name:<br>

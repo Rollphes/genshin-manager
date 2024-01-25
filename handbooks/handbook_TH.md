@@ -402,6 +402,236 @@ ID:10905 Name:Ring of Bursting Grenades<br>
 ID:10911 Name:โจมตีปกติ: Blunt Refusal<br>
 ID:10912 Name:Ceremonial Crystalshot<br>
 ID:10915 Name:As the Sunlit Sky's Singing Salute<br>
+## InherentSkillId
+ID:221 Name:Amatsumi Kunitsumi Sanctification<br>
+ID:222 Name:Kanten Senmyou Blessing<br>
+ID:223 Name:Fruits of Shinsa<br>
+ID:321 Name:Wind Companion<br>
+ID:322 Name:Let the Wind Lead<br>
+ID:323 Name:Guiding Breeze<br>
+ID:421 Name:Induced Aftershock<br>
+ID:422 Name:Static Electricity Field<br>
+ID:423 Name:General Pharmaceutics<br>
+ID:1421 Name:Glorious Season<br>
+ID:1422 Name:Encore<br>
+ID:1423 Name:With My Whole Heart♪<br>
+ID:1521 Name:Cold-Blooded Strike<br>
+ID:1522 Name:Glacial Heart<br>
+ID:1523 Name:Hidden Strength<br>
+ID:1621 Name:Relentless<br>
+ID:1622 Name:Blessing of Phoenix<br>
+ID:1623 Name:Tradition of the Dawn Knight<br>
+ID:2021 Name:Awakening<br>
+ID:2022 Name:Hunger<br>
+ID:2023 Name:Wolvensprint<br>
+ID:2121 Name:Every Arrow Finds Its Target!<br>
+ID:2122 Name:Precise Shot<br>
+ID:2123 Name:Gliding Champion<br>
+ID:2221 Name:Embrace of Winds<br>
+ID:2222 Name:Stormeye<br>
+ID:2223 Name:Windrider<br>
+ID:2321 Name:Crossfire<br>
+ID:2322 Name:Beware, It's Super Hot!<br>
+ID:2323 Name:Chef de Cuisine<br>
+ID:2421 Name:Retribution<br>
+ID:2422 Name:Lightning Storm<br>
+ID:2423 Name:Conqueror of Tides<br>
+ID:2521 Name:Hydropathic<br>
+ID:2522 Name:Blades Amidst Raindrops<br>
+ID:2523 Name:Flash of Genius<br>
+ID:2621 Name:Conqueror of Evil: Tamer of Demons<br>
+ID:2622 Name:Dissolution Eon: Heaven Fall<br>
+ID:2623 Name:Transcension: Gravity Defier<br>
+ID:2721 Name:Backup Plan<br>
+ID:2722 Name:Strategic Reserve<br>
+ID:2723 Name:Trove of Marvelous Treasures<br>
+ID:2921 Name:Pounding Surprise<br>
+ID:2922 Name:Sparkling Burst<br>
+ID:2923 Name:All Of My Treasures!<br>
+ID:3021 Name:Resonant Waves<br>
+ID:3022 Name:Dominance of Earth<br>
+ID:3023 Name:Arcanum of Crystal<br>
+ID:3121 Name:Stellar Predator<br>
+ID:3122 Name:Undone Be Thy Sinful Hex<br>
+ID:3123 Name:Mein Hausgarten<br>
+ID:3221 Name:Rekindle<br>
+ID:3222 Name:Fearnaught<br>
+ID:3223 Name:It Should Be Safe...<br>
+ID:3321 Name:Never Ending<br>
+ID:3322 Name:Sword of Torrents<br>
+ID:3323 Name:Master of Weaponry<br>
+ID:3421 Name:Devotion<br>
+ID:3422 Name:Nice and Clean<br>
+ID:3423 Name:Maid's Knighthood<br>
+ID:3521 Name:Life-Prolonging Methods<br>
+ID:3522 Name:A Glimpse into Arcanum<br>
+ID:3523 Name:Former Life Memories<br>
+ID:3621 Name:Steady Breathing<br>
+ID:3622 Name:Rimechaser Blade<br>
+ID:3623 Name:Gallant Journey<br>
+ID:3721 Name:Undivided Heart<br>
+ID:3722 Name:Harmony between Heaven and Earth<br>
+ID:3723 Name:Perserved for the Hunt<br>
+ID:3821 Name:Calcite Might<br>
+ID:3822 Name:Homuncular Nature<br>
+ID:3823 Name:Flash of Genius<br>
+ID:3921 Name:Cat's Tail Secret Menu<br>
+ID:3922 Name:Drunkards' Farce<br>
+ID:3923 Name:Complimentary Bar Food<br>
+ID:4121 Name:\"Come 'n' Get Me, Hag!\"<br>
+ID:4122 Name:Waterborne Destiny<br>
+ID:4123 Name:Principium of Astrology<br>
+ID:4221 Name:Thundering Penance<br>
+ID:4222 Name:Aristocratic Dignity<br>
+ID:4223 Name:Land's Overseer<br>
+ID:4321 Name:Catalyst Conversion<br>
+ID:4322 Name:Mollis Favonius<br>
+ID:4323 Name:Astable Invention<br>
+ID:4421 Name:\"The Show Goes On, Even Without An Audience...\"<br>
+ID:4422 Name:\"...Now That's Rock 'N' Roll!\"<br>
+ID:4423 Name:A Rad Recipe<br>
+ID:4521 Name:Regina Probationum<br>
+ID:4522 Name:Shadow Samaritan<br>
+ID:4523 Name:Night Walk<br>
+ID:4621 Name:Flutter By<br>
+ID:4622 Name:Sanguine Rouge<br>
+ID:4623 Name:The More the Merrier<br>
+ID:4721 Name:Soumon Swordsmanship<br>
+ID:4722 Name:Poetics of Fuubutsu<br>
+ID:4723 Name:Cloud Strider<br>
+ID:4821 Name:Proviso<br>
+ID:4822 Name:Blazing Eye<br>
+ID:4823 Name:Encyclopedic Expertise<br>
+ID:4921 Name:Tricks of the Trouble-Maker<br>
+ID:4922 Name:Summer Night's Dawn<br>
+ID:4923 Name:Blazing Match<br>
+ID:5021 Name:Imbricated Armor<br>
+ID:5022 Name:Flaming Assault<br>
+ID:5023 Name:Snap and Swing<br>
+ID:5121 Name:Roiling Rime<br>
+ID:5122 Name:Wellspring of War-Lust<br>
+ID:5123 Name:Aristocratic Introspection<br>
+ID:5221 Name:Wishes Unnumbered<br>
+ID:5222 Name:Enlightened One<br>
+ID:5225 Name:All-Preserver<br>
+ID:5321 Name:Someone More Capable<br>
+ID:5322 Name:No Work Today!<br>
+ID:5323 Name:Yoohoo Art: Silencer's Secret<br>
+ID:5421 Name:Tamakushi Casket<br>
+ID:5422 Name:Song of Pearls<br>
+ID:5423 Name:Princess of Watatsumi<br>
+ID:5425 Name:Flawless Strategy<br>
+ID:5521 Name:Heedless of the Wind and Weather<br>
+ID:5522 Name:A Favor Repaid<br>
+ID:5523 Name:Seeker of Shinies<br>
+ID:5621 Name:Immovable Will<br>
+ID:5622 Name:Decorum<br>
+ID:5623 Name:Land Survey<br>
+ID:5721 Name:Arataki Ichiban<br>
+ID:5722 Name:Bloodline of the Crimson Oni<br>
+ID:5723 Name:Woodchuck Chucked<br>
+ID:5821 Name:The Shrine's Sacred Shade<br>
+ID:5822 Name:Enlightened Blessing<br>
+ID:5823 Name:Meditations of a Yako<br>
+ID:5921 Name:Paradoxical Practice<br>
+ID:5922 Name:Penetrative Reasoning<br>
+ID:5923 Name:Pre-Existing Guilt<br>
+ID:6021 Name:Turn Control<br>
+ID:6022 Name:Adapt With Ease<br>
+ID:6023 Name:Necessary Calculation<br>
+ID:6121 Name:Bewitching, Betwitching Tails<br>
+ID:6122 Name:Pupillary Variance<br>
+ID:6123 Name:Cat's Creeping Carriage<br>
+ID:6221 Name:Combat Override<br>
+ID:6222 Name:Strong Strike<br>
+ID:6223 Name:Easy Does It<br>
+ID:6321 Name:Deific Embrace<br>
+ID:6322 Name:Spirit Communion Seal<br>
+ID:6323 Name:Precise Comings and Goings<br>
+ID:6421 Name:True to Oneself<br>
+ID:6422 Name:Breaking Conventions<br>
+ID:6423 Name:Light Nourishment<br>
+ID:6521 Name:Breaking Free<br>
+ID:6522 Name:Heart's Repose<br>
+ID:6523 Name:Protracted Prayers<br>
+ID:6621 Name:Kamisato Art: Mine Wo Matoishi Kiyotaki<br>
+ID:6622 Name:Kamisato Art: Michiyuku Hagetsu<br>
+ID:6623 Name:Kamisato Art: Daily Cooking<br>
+ID:6721 Name:Floral Sidewinder<br>
+ID:6722 Name:The Languid Wood<br>
+ID:6723 Name:Gliding Champion of Sumeru<br>
+ID:6821 Name:An Eye for Gold<br>
+ID:6822 Name:Compound Interest<br>
+ID:6823 Name:Unexpected Order<br>
+ID:6921 Name:Keen Sight<br>
+ID:6922 Name:Scholarly Blade<br>
+ID:6923 Name:Encyclopedic Knowledge<br>
+ID:7021 Name:Court of Dancing Petals<br>
+ID:7022 Name:Dreamy Dance of Aeons<br>
+ID:7023 Name:White Jade Lotus<br>
+ID:7121 Name:Featherfall Judgment<br>
+ID:7122 Name:Authority Over the Nine Bows<br>
+ID:7123 Name:The Gift of Silence<br>
+ID:7221 Name:Aegis of Crossed Arrows<br>
+ID:7222 Name:Celestial Dome of Sand<br>
+ID:7223 Name:To Dawn's First Light<br>
+ID:7321 Name:Compassion Illuminated<br>
+ID:7322 Name:Awakening Elucidated<br>
+ID:7323 Name:On All Things Meditated<br>
+ID:7421 Name:Like Nascent Light<br>
+ID:7422 Name:Sweet Slumber Undisturbed<br>
+ID:7423 Name:Shadowy Dream-Signs<br>
+ID:7521 Name:Jade-Claimed Flower<br>
+ID:7522 Name:Gales of Reverie<br>
+ID:7523 Name:Strum the Swirling Winds<br>
+ID:7621 Name:Impetuous Flow<br>
+ID:7622 Name:Lost Wisdom of the Seven Caverns<br>
+ID:7623 Name:Tomes Light the Path<br>
+ID:7721 Name:Starscatter<br>
+ID:7722 Name:In Others' Shoes<br>
+ID:7723 Name:Tailing on Tiptoes<br>
+ID:7821 Name:Four-Causal Correction<br>
+ID:7822 Name:Mysteries Laid Bare<br>
+ID:7823 Name:Law of Reductive Overdetermination<br>
+ID:7921 Name:Unstinting Succor<br>
+ID:7922 Name:Stalwart and True<br>
+ID:7923 Name:The Sunlit Way<br>
+ID:8021 Name:Suppressive Barrage<br>
+ID:8022 Name:Topographical Mapping<br>
+ID:8023 Name:Demarcation<br>
+ID:8121 Name:An Architect's Undertaking<br>
+ID:8122 Name:A Craftsman's Curious Conceptions<br>
+ID:8123 Name:The Art of Budgeting<br>
+ID:8221 Name:Five Fortunes Forever<br>
+ID:8222 Name:All Things Are of the Earth<br>
+ID:8223 Name:Herbal Nourishment<br>
+ID:8321 Name:Sophisticated Synergy<br>
+ID:8322 Name:Props Positively Prepped<br>
+ID:8323 Name:Loci-Based Mnemonics<br>
+ID:8421 Name:Perilous Performance<br>
+ID:8422 Name:Conclusive Ovation<br>
+ID:8423 Name:Trivial Observations<br>
+ID:8521 Name:Saturation Deep Dive<br>
+ID:8522 Name:Parallel Condensers<br>
+ID:8523 Name:Deepwater Navigation<br>
+ID:8621 Name:There Shall Be a Plea for Justice<br>
+ID:8622 Name:There Shall Be a Reckoning for Sin<br>
+ID:8623 Name:The Duke's Grace<br>
+ID:8721 Name:Heir to the Ancient Sea's Authority<br>
+ID:8722 Name:Discipline of the Supreme Arbitration<br>
+ID:8723 Name:Gather Like the Tide<br>
+ID:8821 Name:Moment of Impact<br>
+ID:8822 Name:Diversified Investigation<br>
+ID:8823 Name:First-Person Shutter<br>
+ID:8921 Name:Endless Waltz<br>
+ID:8922 Name:Unheard Confession<br>
+ID:8923 Name:The Sea Is My Stage<br>
+ID:9021 Name:Vanguard's Coordinated Tactics<br>
+ID:9022 Name:Vertical Force Coordination<br>
+ID:9023 Name:Double Time March<br>
+ID:9121 Name:Undisclosed Distribution Channels<br>
+ID:9122 Name:Mutual Assistance Network<br>
+ID:9123 Name:Painstaking Transaction<br>
 ## ConstellationId
 ID:21 Name:Snowswept Sakura<br>
 ID:22 Name:Blizzard Blade Seki no To<br>
@@ -10843,3 +11073,1425 @@ ID:394503 Name:ฐานรากหินหล่อ - \"ทบทวี\"<br>
 ID:394504 Name:แดนอัศจรรย์อันเขียวขจี - \"พื้นหินคุกกี้\"<br>
 ID:394505 Name:ฐานรากหินหล่อ - การออกแบบที่ยิ่งใหญ่<br>
 ID:394506 Name:แผ่น Tearstone - \"ทฤษฎีมุมมอง\"<br>
+## MonsterId
+ID:20010101 Name:Dendro Slime<br>
+ID:20010201 Name:Large Dendro Slime<br>
+ID:20010202 Name:Large Dendro Slime<br>
+ID:20010301 Name:Anemo Slime<br>
+ID:20010302 Name:Anemo Slime (Mechanicus)<br>
+ID:20010381 Name:Anemo Slime<br>
+ID:20010401 Name:Large Anemo Slime<br>
+ID:20010402 Name:Large Anemo Slime (Mechanicus)<br>
+ID:20010403 Name:Large Anemo Slime<br>
+ID:20010481 Name:Large Anemo Slime<br>
+ID:20010501 Name:Electro Slime<br>
+ID:20010502 Name:Electro Slime (Mechanicus)<br>
+ID:20010503 Name:Electro Slime<br>
+ID:20010581 Name:Electro Slime<br>
+ID:20010601 Name:Large Electro Slime<br>
+ID:20010602 Name:Large Electro Slime (Mechanicus)<br>
+ID:20010604 Name:Large Electro Slime<br>
+ID:20010605 Name:Large Electro Slime<br>
+ID:20010681 Name:Large Electro Slime<br>
+ID:20010701 Name:Mutant Electro Slime<br>
+ID:20010702 Name:Mutant Electro Slime<br>
+ID:20010703 Name:Mutant Electro Slime (Mechanicus)<br>
+ID:20010801 Name:Cryo Slime<br>
+ID:20010802 Name:Cryo Slime - กิจกรรม Dragonspine<br>
+ID:20010803 Name:Cryo Slime (Mechanicus)<br>
+ID:20010881 Name:Cryo Slime<br>
+ID:20010901 Name:Large Cryo Slime<br>
+ID:20010902 Name:Large Cryo Slime - กิจกรรม Dragonspine<br>
+ID:20010903 Name:Large Cryo Slime (Mechanicus)<br>
+ID:20010904 Name:Large Cryo Slime<br>
+ID:20010905 Name:Large Cryo Slime<br>
+ID:20010981 Name:Large Cryo Slime<br>
+ID:20011001 Name:Hydro Slime<br>
+ID:20011002 Name:Hydro Slime (Mechanicus)<br>
+ID:20011081 Name:Hydro Slime<br>
+ID:20011101 Name:Large Hydro Slime<br>
+ID:20011102 Name:Large Hydro Slime (Mechanicus)<br>
+ID:20011103 Name:Large Hydro Slime<br>
+ID:20011181 Name:Large Hydro Slime<br>
+ID:20011201 Name:Pyro Slime<br>
+ID:20011202 Name:Pyro Slime<br>
+ID:20011203 Name:Pyro Slime (Mechanicus)<br>
+ID:20011204 Name:Pyro Slime<br>
+ID:20011205 Name:Pyro Slime<br>
+ID:20011281 Name:Pyro Slime<br>
+ID:20011301 Name:Large Pyro Slime<br>
+ID:20011302 Name:Large Pyro Slime (Mechanicus)<br>
+ID:20011304 Name:Large Pyro Slime<br>
+ID:20011305 Name:Large Pyro Slime<br>
+ID:20011306 Name:Large Pyro Slime<br>
+ID:20011381 Name:Large Pyro Slime<br>
+ID:20011401 Name:Geo Slime<br>
+ID:20011402 Name:Geo Slime (Mechanicus)<br>
+ID:20011481 Name:Geo Slime<br>
+ID:20011501 Name:Large Geo Slime<br>
+ID:20011502 Name:Large Geo Slime<br>
+ID:20011503 Name:Large Geo Slime (Mechanicus)<br>
+ID:20011581 Name:Large Geo Slime<br>
+ID:20011601 Name:Hydro Hypostasis Summon - Split (L)<br>
+ID:20011701 Name:Hydro Hypostasis Summon - Split (S)<br>
+ID:20011801 Name:Hydro Hypostasis Summon - Self-Destruct<br>
+ID:20011901 Name:Hydro Hypostasis Summon - Heal<br>
+ID:20012001 Name:<br>
+ID:20012101 Name:<br>
+ID:20012201 Name:<br>
+ID:20020101 Name:Eye of the Storm<br>
+ID:20040101 Name:Electro Hypostasis - Aleph<br>
+ID:20040102 Name:(กิจกรรม) Electro Hypostasis - Aleph<br>
+ID:20040181 Name:Electro Hypostasis<br>
+ID:20040201 Name:Anemo Hypostasis - Bett<br>
+ID:20040202 Name:(กิจกรรม) Anemo Hypostasis - Beth<br>
+ID:20040301 Name:Geo Hypostasis - Gimel<br>
+ID:20040302 Name:(กิจกรรม) Geo Hypostasis - Gimel<br>
+ID:20040401 Name:Hydro Hypostasis<br>
+ID:20040402 Name:Hydro Hypostasis<br>
+ID:20040501 Name:Cryo Hypostasis - Daleth<br>
+ID:20040502 Name:Cryo Hypostasis<br>
+ID:20040601 Name:Pyro Hypostasis - Ayin<br>
+ID:20040602 Name:Pyro Hypostasis<br>
+ID:20040701 Name:Dendro Hypostasis<br>
+ID:20040702 Name:Dendro Hypostasis<br>
+ID:20050101 Name:Oceanid<br>
+ID:20050102 Name:Oceanid (Main Body)<br>
+ID:20050103 Name:Oceanid<br>
+ID:20050201 Name:Oceanid Boar<br>
+ID:20050202 Name:Oceanid Boar (เสริมพลัง)<br>
+ID:20050203 Name:Hydro Mimic Boar<br>
+ID:20050281 Name:Hydro Mimic Boar<br>
+ID:20050301 Name:Oceanid Crane<br>
+ID:20050302 Name:Hydro Mimic Crane<br>
+ID:20050381 Name:Hydro Mimic Crane<br>
+ID:20050401 Name:Oceanid Crab<br>
+ID:20050402 Name:Oceanid Crab (เสริมพลัง)<br>
+ID:20050403 Name:Hydro Mimic Crab<br>
+ID:20050481 Name:Hydro Mimic Crab<br>
+ID:20050501 Name:Oceanid Finch<br>
+ID:20050502 Name:Hydro Mimic Finch<br>
+ID:20050581 Name:Hydro Mimic Finch<br>
+ID:20050601 Name:Oceanid Mallard<br>
+ID:20050602 Name:Oceanid Mallard (เดินบนพื้น)<br>
+ID:20050603 Name:Hydro Mimic Mallard<br>
+ID:20050681 Name:Hydro Mimic Mallard<br>
+ID:20050701 Name:Oceanid Ferret<br>
+ID:20050702 Name:Oceanid Ferret (เสริมพลัง)<br>
+ID:20050703 Name:Hydro Mimic Squirrel<br>
+ID:20050781 Name:Hydro Mimic Squirrel<br>
+ID:20050801 Name:Oceanid Frog<br>
+ID:20050802 Name:Hydro Mimic Frog<br>
+ID:20050881 Name:Hydro Mimic Frog<br>
+ID:20050901 Name:Oceanid Raptor<br>
+ID:20051001 Name:Tainted Water-Splitting Phantasm<br>
+ID:20051002 Name:Tainted Water-Splitting Phantasm<br>
+ID:20051003 Name:Tainted Water-Splitting Phantasm<br>
+ID:20051101 Name:Tainted Water-Spouting Phantasm<br>
+ID:20051102 Name:Tainted Water-Spouting Phantasm<br>
+ID:20051103 Name:Tainted Water-Spouting Phantasm<br>
+ID:20051201 Name:Hydro Tulpa<br>
+ID:20051301 Name:Half-Tulpa<br>
+ID:20051401 Name:Tainted Water-Splitting Phantasm ที่ผ่านศึกมานับร้อย<br>
+ID:20051501 Name:Tainted Water-Spouting Phantasm ที่ผ่านศึกมานับร้อย<br>
+ID:20051601 Name:Hydro Tulpa<br>
+ID:20060101 Name:Hydro Specter<br>
+ID:20060181 Name:Hydro Specter<br>
+ID:20060201 Name:Geo Specter<br>
+ID:20060281 Name:Geo Specter<br>
+ID:20060301 Name:Anemo Specter<br>
+ID:20060381 Name:Anemo Specter<br>
+ID:20060382 Name:Anemo Specter<br>
+ID:20060401 Name:Cryo Specter<br>
+ID:20060481 Name:Cryo Specter<br>
+ID:20060501 Name:Electro Specter<br>
+ID:20060581 Name:Electro Specter<br>
+ID:20060601 Name:Pyro Specter<br>
+ID:20060681 Name:Pyro Specter<br>
+ID:20060701 Name:Dendro Specter<br>
+ID:20060781 Name:Dendro Specter<br>
+ID:20070101 Name:Thunder Manifestation<br>
+ID:20070102 Name:Thunder Manifestation<br>
+ID:21010101 Name:Hilichurl<br>
+ID:21010102 Name:Hilichurl (Mechanicus)<br>
+ID:21010103 Name:Hilichurl<br>
+ID:21010104 Name:Hilichurl<br>
+ID:21010105 Name:Hilichurl<br>
+ID:21010181 Name:Hilichurl<br>
+ID:21010201 Name:Hilichurl Fighter<br>
+ID:21010202 Name:Hilichurl Fighter<br>
+ID:21010281 Name:Hilichurl Fighter<br>
+ID:21010299 Name:Hilichurl Fighter<br>
+ID:21010301 Name:Wooden Shield Hilichurl Guard<br>
+ID:21010302 Name:Wooden Shield Hilichurl Guard (Mechanicus)<br>
+ID:21010381 Name:Wooden Shield Hilichurl Guard<br>
+ID:21010401 Name:Hilichurl Shooter<br>
+ID:21010402 Name:Test_Varied Hilichurl<br>
+ID:21010403 Name:Hilichurl Shooter<br>
+ID:21010404 Name:Hilichurl Shooter<br>
+ID:21010481 Name:Hilichurl Shooter<br>
+ID:21010482 Name:Hilichurl Shooter<br>
+ID:21010501 Name:Pyro Hilichurl Shooter<br>
+ID:21010502 Name:Test_Varied Pyro Hilichurl Shooter<br>
+ID:21010581 Name:Pyro Hilichurl Shooter<br>
+ID:21010582 Name:Pyro Hilichurl Shooter<br>
+ID:21010601 Name:Hilichurl Grenadier<br>
+ID:21010603 Name:Hilichurl Grenadier<br>
+ID:21010681 Name:Hilichurl Grenadier<br>
+ID:21010701 Name:Hilichurl Berserker<br>
+ID:21010702 Name:Hilichurl Berserker (Mechanicus)<br>
+ID:21010781 Name:Hilichurl Berserker<br>
+ID:21010901 Name:Cryo Hilichurl Shooter<br>
+ID:21010902 Name:Test_Varied Cryo Hilichurl Shooter<br>
+ID:21010981 Name:Cryo Hilichurl Shooter<br>
+ID:21010982 Name:Cryo Hilichurl Shooter<br>
+ID:21011001 Name:Electro Hilichurl Shooter<br>
+ID:21011002 Name:Test_Varied Electro Hilichurl Shooter<br>
+ID:21011081 Name:Electro Hilichurl Shooter<br>
+ID:21011082 Name:Electro Hilichurl Shooter<br>
+ID:21011201 Name:Rock Shield Hilichurl Guard<br>
+ID:21011202 Name:Rock Shield Hilichurl Guard (Mechanicus)<br>
+ID:21011281 Name:Rock Shield Hilichurl Guard<br>
+ID:21011301 Name:Cryo Hilichurl Grenadier<br>
+ID:21011302 Name:Cryo Hilichurl Grenadier - เสริมการโจมตี<br>
+ID:21011381 Name:Cryo Hilichurl Grenadier<br>
+ID:21011401 Name:Ice Shield Hilichurl Guard<br>
+ID:21011402 Name:Ice Shield Hilichurl Guard (Mechanicus)<br>
+ID:21011403 Name:Ice Shield Hilichurl Guard: กิจกรรม Dragonspine<br>
+ID:21011481 Name:Ice Shield Hilichurl Guard<br>
+ID:21011501 Name:Hilichurl สุดแปลกที่ไร้อาวุธ<br>
+ID:21011601 Name:Electro Hilichurl Grenadier<br>
+ID:21011602 Name:Electro Hilichurl Grenadier - เสริมการโจมตี<br>
+ID:21011681 Name:Electro Hilichurl Grenadier<br>
+ID:21020101 Name:Wooden Shieldwall Mitachurl<br>
+ID:21020102 Name:Wooden Shieldwall Mitachurl (Mechanicus)<br>
+ID:21020181 Name:Wooden Shieldwall Mitachurl<br>
+ID:21020201 Name:Blazing Axe Mitachurl<br>
+ID:21020202 Name:Blazing Axe Mitachurl<br>
+ID:21020203 Name:Blazing Axe Mitachurl (Mechanicus)<br>
+ID:21020281 Name:Blazing Axe Mitachurl<br>
+ID:21020282 Name:Blazing Axe Mitachurl<br>
+ID:21020299 Name:Blazing Axe Mitachurl<br>
+ID:21020301 Name:Rock Shieldwall Mitachurl<br>
+ID:21020302 Name:Rock Shieldwall Mitachurl (Mechanicus)<br>
+ID:21020381 Name:Rock Shieldwall Mitachurl<br>
+ID:21020382 Name:Rock Shieldwall Mitachurl<br>
+ID:21020401 Name:Frostarm Lawachurl<br>
+ID:21020402 Name:Frostarm Lawachurl (Mechanicus)<br>
+ID:21020481 Name:Frostarm Lawachurl<br>
+ID:21020482 Name:Frostarm Lawachurl<br>
+ID:21020501 Name:Stonehide Lawachurl<br>
+ID:21020502 Name:Stonehide Lawachurl (Mechanicus)<br>
+ID:21020581 Name:Stonehide Lawachurl<br>
+ID:21020601 Name:Ice Shieldwall Mitachurl<br>
+ID:21020602 Name:Ice Shieldwall Mitachurl (Mechanicus)<br>
+ID:21020681 Name:Ice Shieldwall Mitachurl<br>
+ID:21020701 Name:Crackling Axe Mitachurl<br>
+ID:21020702 Name:Crackling Axe Mitachurl (Mechanicus)<br>
+ID:21020703 Name:Crackling Axe Mitachurl - เสริมการโจมตี<br>
+ID:21020704 Name:Crackling Axe Mitachurl<br>
+ID:21020781 Name:Crackling Axe Mitachurl<br>
+ID:21020782 Name:Crackling Axe Mitachurl<br>
+ID:21020801 Name:Thunderhelm Lawachurl<br>
+ID:21020802 Name:Thunderhelm Lawachurl (Mechanicus)<br>
+ID:21020881 Name:Thunderhelm Lawachurl<br>
+ID:21020882 Name:Thunderhelm Lawachurl<br>
+ID:21030101 Name:Hydro Samachurl<br>
+ID:21030102 Name:Hydro Samachurl (Mechanicus)<br>
+ID:21030103 Name:Test_Movement Healing Hydro Samachurl<br>
+ID:21030181 Name:Hydro Samachurl<br>
+ID:21030201 Name:Dendro Samachurl<br>
+ID:21030202 Name:Dendro Samachurl (Mechanicus)<br>
+ID:21030203 Name:Dendro Samachurl<br>
+ID:21030281 Name:Dendro Samachurl<br>
+ID:21030282 Name:Dendro Samachurl<br>
+ID:21030301 Name:Anemo Samachurl<br>
+ID:21030302 Name:Anemo Samachurl (Mechanicus)<br>
+ID:21030303 Name:Test_Wind Current Enhanced Anemo Samachurl<br>
+ID:21030304 Name:Anemo Samachurl<br>
+ID:21030381 Name:Anemo Samachurl<br>
+ID:21030382 Name:Anemo Samachurl<br>
+ID:21030383 Name:Anemo Samachurl<br>
+ID:21030401 Name:Geo Samachurl<br>
+ID:21030402 Name:Geo Samachurl<br>
+ID:21030403 Name:Geo Samachurl (Mechanicus)<br>
+ID:21030481 Name:Geo Samachurl<br>
+ID:21030482 Name:Geo Samachurl<br>
+ID:21030501 Name:Cryo Samachurl<br>
+ID:21030502 Name:Cryo Samachurl (Mechanicus)<br>
+ID:21030581 Name:Cryo Samachurl<br>
+ID:21030582 Name:Cryo Samachurl<br>
+ID:21030601 Name:Electro Samachurl<br>
+ID:21030602 Name:Electro Samachurl (Mechanicus)<br>
+ID:21030603 Name:Electro Samachurl - เสริมการสนับสนุน<br>
+ID:21030681 Name:Electro Samachurl<br>
+ID:21040101 Name:Anemo Hilichurl Rogue<br>
+ID:21040181 Name:Anemo Hilichurl Rogue<br>
+ID:21040182 Name:Anemo Hilichurl Rogue<br>
+ID:21040201 Name:Hydro Hilichurl Rogue<br>
+ID:21040281 Name:Hydro Hilichurl Rogue<br>
+ID:21040282 Name:Hydro Hilichurl Rogue<br>
+ID:22010101 Name:Pyro Abyss Mage<br>
+ID:22010102 Name:Test_Shield-Enhanced Pyro Abyss Mage<br>
+ID:22010103 Name:Test_Teleport-Enhanced Pyro Abyss Mage<br>
+ID:22010104 Name:Test_โจมตี Pyro Abyss Mage ที่ได้รับการเสริมพลัง<br>
+ID:22010105 Name:Pyro Abyss Mage (Mechanicus)<br>
+ID:22010201 Name:Cryo Abyss Mage<br>
+ID:22010202 Name:Test_Shield-Enhanced Cryo Abyss Mage<br>
+ID:22010203 Name:Test_Teleport-Enhanced Cryo Abyss Mage<br>
+ID:22010204 Name:Test_โจมตี Cryo Abyss Mage ที่ได้รับการเสริมพลัง<br>
+ID:22010205 Name:Cryo Abyss Mage (Mechanicus)<br>
+ID:22010301 Name:Hydro Abyss Mage<br>
+ID:22010302 Name:Test_Shield-Enhanced Hydro Abyss Mage<br>
+ID:22010303 Name:Test_Teleport-Enhanced Hydro Abyss Mage<br>
+ID:22010304 Name:Test_โจมตี Hydro Abyss Mage ที่ได้รับการเสริมพลัง<br>
+ID:22010305 Name:Hydro Abyss Mage (Mechanicus)<br>
+ID:22010401 Name:Electro Abyss Mage<br>
+ID:22010402 Name:Electro Abyss Mage (Mechanicus)<br>
+ID:22010403 Name:Electro Abyss Mage - เสริมการป้องกัน<br>
+ID:22010404 Name:Electro Abyss Mage - เสริมการโจมตี<br>
+ID:22020101 Name:Abyss Herald - Wicked Torrent (หายไป)<br>
+ID:22020102 Name:Abyss Herald - Wicked Torrent (ถาวร)<br>
+ID:22020103 Name:Abyss Herald - Wicked Torrents<br>
+ID:22020201 Name:Abyss Herald: Frost Fall<br>
+ID:22030101 Name:Abyss Lector - Violet Lightning (หายไป)<br>
+ID:22030102 Name:Abyss Lector - Violet Lightning (ถาวร)<br>
+ID:22030103 Name:Abyss Lector - Violet Lightning<br>
+ID:22030201 Name:Abyss Lector - Fathomless Flames<br>
+ID:22030202 Name:Abyss Lector - Fathomless Flames<br>
+ID:22040101 Name:Rockfond - Rifthound Whelp<br>
+ID:22040102 Name:Rockfond - Rifthound Whelp<br>
+ID:22040201 Name:Thundercraven - Rifthound Whelp<br>
+ID:22040202 Name:Thundercraven - Rifthound Whelp<br>
+ID:22050101 Name:Rockfond - Rifthound<br>
+ID:22050102 Name:Rockfond - Rifthound<br>
+ID:22050201 Name:Thundercraven - Rifthound<br>
+ID:22050202 Name:Thundercraven - Rifthound<br>
+ID:22060101 Name:Golden Wolflord<br>
+ID:22070101 Name:Shadowy Husk: Standard Bearer<br>
+ID:22070102 Name:Shadowy Husk: Standard Bearer<br>
+ID:22070201 Name:Shadowy Husk: Line Breaker<br>
+ID:22070202 Name:Shadowy Husk: Line Breaker<br>
+ID:22070301 Name:Shadowy Husk: Defender<br>
+ID:22070302 Name:Shadowy Husk: Defender<br>
+ID:22080101 Name:Black Serpent Knight: Windcutter<br>
+ID:22080201 Name:Black Serpent Knight: Rockbreaker Ax<br>
+ID:22090101 Name:<br>
+ID:22100101 Name:Iniquitous Baptist: ผู้ควบคุมเปลวเพลิง, น้ำแข็ง และสายฟ้า<br>
+ID:22100201 Name:Iniquitous Baptist: ผู้ควบคุมสายน้ำ, เปลวเพลิง และน้ำแข็ง<br>
+ID:22100202 Name:Iniquitous Baptist: ผู้ควบคุมสายน้ำ, เปลวเพลิง และน้ำแข็ง<br>
+ID:22100301 Name:Iniquitous Baptist: ผู้ควบคุมสายน้ำ, เปลวเพลิง และสายฟ้า<br>
+ID:22100401 Name:Iniquitous Baptist: ผู้ควบคุมสายน้ำ, น้ำแข็ง และสายฟ้า<br>
+ID:22100501 Name:Iniquitous Baptist<br>
+ID:22110101 Name:Shatterstone Breacher Primus ขนาดใหญ่<br>
+ID:22110102 Name:Shatterstone Breacher Primus ขนาดใหญ่<br>
+ID:22110201 Name:Shatterstone Breacher Primus<br>
+ID:22110202 Name:Shatterstone Breacher Primus<br>
+ID:22110301 Name:Overgrown Breacher Primus ขนาดใหญ่<br>
+ID:22110302 Name:Overgrown Breacher Primus ขนาดใหญ่<br>
+ID:22110402 Name:Overgrown Breacher Primus<br>
+ID:22110403 Name:Overgrown Breacher Primus<br>
+ID:23010101 Name:Fatui Skirmisher - Cryogunner Legionnaire<br>
+ID:23010201 Name:Fatui Skirmisher - Hydrogunner Legionnaire<br>
+ID:23010301 Name:Fatui Skirmisher - Electrohammer Vanguard<br>
+ID:23010401 Name:Fatui Skirmisher - Geochanter Bracer<br>
+ID:23010501 Name:Fatui Skirmisher - Anemoboxer Vanguard<br>
+ID:23010601 Name:Fatui Skirmisher - Pyroslinger Bracer<br>
+ID:23020101 Name:Fatui Agent<br>
+ID:23020102 Name:Fatui - Pyro Agent<br>
+ID:23030101 Name:Fatui Electro Cicin Mage<br>
+ID:23030102 Name:Fatui - Electro Cicin Mage<br>
+ID:23040101 Name:Fatui - Cryo Cicin Mage<br>
+ID:23040102 Name:Fatui Cryo Cicin Mage - เสริมการโจมตี<br>
+ID:23050101 Name:Fatui - Mirror Maiden<br>
+ID:23060101 Name:Fatui - Frost Operative<br>
+ID:23060201 Name:Fatui - Wind Operative<br>
+ID:23060301 Name:Fatui - Frost Operative ที่ผ่านศึกมานับร้อย<br>
+ID:23060302 Name:Fatui - Frost Operative ที่ผ่านศึกมานับร้อย<br>
+ID:23060401 Name:Fatui - Wind Operative ที่ผ่านศึกมานับร้อย<br>
+ID:23060402 Name:Fatui - Wind Operative ที่ผ่านศึกมานับร้อย<br>
+ID:24010101 Name:Ruin Guard<br>
+ID:24010102 Name:Ruin Guard (Mechanicus)<br>
+ID:24010108 Name:Ruin Guard<br>
+ID:24010109 Name:Ruin Guard<br>
+ID:24010181 Name:Ruin Guard<br>
+ID:24010182 Name:Ruin Guard<br>
+ID:24010201 Name:Ruin Hunter<br>
+ID:24010202 Name:Ruin Hunter (Mechanicus)<br>
+ID:24010281 Name:Ruin Hunter<br>
+ID:24010301 Name:Ruin Grader<br>
+ID:24010302 Name:Ruin Grader (Mechanicus)<br>
+ID:24010303 Name:Ruin Grader (เวอร์ชันขุดแร่)<br>
+ID:24010304 Name:Ruin Grader<br>
+ID:24010305 Name:Ruin Grader<br>
+ID:24010381 Name:Ruin Grader<br>
+ID:24010382 Name:Ruin Grader<br>
+ID:24010401 Name:Ruin Serpent<br>
+ID:24020101 Name:Ruin Cruiser<br>
+ID:24020102 Name:Ruin Cruiser (Weakened)<br>
+ID:24020103 Name:Ruin Cruiser (Enhanced)<br>
+ID:24020181 Name:Ruin Cruiser<br>
+ID:24020201 Name:Ruin Destroyer<br>
+ID:24020202 Name:Ruin Destroyer (Weakened)<br>
+ID:24020203 Name:Ruin Destroyer (Enhanced)<br>
+ID:24020281 Name:Ruin Destroyer<br>
+ID:24020301 Name:Ruin Defender<br>
+ID:24020302 Name:Ruin Defender (Weakened)<br>
+ID:24020303 Name:Ruin Defender (Enhanced)<br>
+ID:24020304 Name:Ruin Defender<br>
+ID:24020381 Name:Ruin Defender<br>
+ID:24020401 Name:Ruin Scout<br>
+ID:24020402 Name:Ruin Scout (Weakened)<br>
+ID:24020403 Name:Ruin Scout (Enhanced)<br>
+ID:24020481 Name:Ruin Scout<br>
+ID:24021101 Name:Perpetual Mechanical Array<br>
+ID:24021102 Name:Perpetual Mechanical Array (สำหรับใช้ในกิจกรรมของ Inazuma เท่านั้น)<br>
+ID:24021181 Name:Perpetual Mechanical Array<br>
+ID:24030101 Name:Ruin Drake: Skywatch<br>
+ID:24030181 Name:Ruin Drake: Skywatch<br>
+ID:24030201 Name:Ruin Drake: Earthguard<br>
+ID:24030281 Name:Ruin Drake: Earthguard<br>
+ID:24030301 Name:Aeonblight Drake<br>
+ID:24030302 Name:Aeonblight Drake<br>
+ID:24030381 Name:Aeonblight Drake<br>
+ID:24040101 Name:Primal Construct: Repulsor<br>
+ID:24040181 Name:Primal Construct: Repulsor<br>
+ID:24040201 Name:Primal Construct: Reshaper<br>
+ID:24040281 Name:Primal Construct: Reshaper<br>
+ID:24040301 Name:Primal Construct: Prospector<br>
+ID:24040381 Name:Primal Construct: Prospector<br>
+ID:24050101 Name:Algorithm of Semi-Intransient Matrix of Overseer Network<br>
+ID:24050181 Name:Algorithm of Semi-Intransient Matrix of Overseer Network<br>
+ID:24060101 Name:จักรกลสอดแนม - สสาร<br>
+ID:24060102 Name:จักรกลสอดแนม - สสาร<br>
+ID:24060201 Name:จักรกลรุ่นเพิ่มประสิทธิภาพการคำนวณ - สสาร<br>
+ID:24060202 Name:จักรกลรุ่นเพิ่มประสิทธิภาพการคำนวณ - สสาร<br>
+ID:24060301 Name:จักรกลสำรวจใต้น้ำ - สสาร<br>
+ID:24060302 Name:จักรกลสำรวจใต้น้ำ - สสาร<br>
+ID:24060401 Name:จักรกลสำรวจภาคพื้นดิน - สสาร<br>
+ID:24060402 Name:จักรกลสำรวจภาคพื้นดิน - สสาร<br>
+ID:24060501 Name:จักรกลรักษาการณ์ใต้น้ำ - สสาร<br>
+ID:24060502 Name:จักรกลรักษาการณ์ใต้น้ำ - สสาร<br>
+ID:24060601 Name:Deepwater Assault Mek - สสาร<br>
+ID:24060602 Name:Deepwater Assault Mek - สสาร<br>
+ID:24060701 Name:จักรกลเก็บเกี่ยว - สสาร<br>
+ID:24060702 Name:จักรกลเก็บเกี่ยว - สสาร<br>
+ID:24060801 Name:จักรกลจู่โจม - สสาร<br>
+ID:24060802 Name:จักรกลจู่โจม - สสาร<br>
+ID:24060901 Name:จักรกลปราบปราม - สสาร<br>
+ID:24060902 Name:จักรกลปราบปราม - สสาร<br>
+ID:24060903 Name:จักรกลปราบปราม - สสาร<br>
+ID:24061001 Name:จักรกลทำลายล้าง - สสาร<br>
+ID:24061002 Name:จักรกลทำลายล้าง - สสาร<br>
+ID:24061101 Name:จักรกลระวังภัยภาคพื้นที่ - สสาร<br>
+ID:24061102 Name:จักรกลระวังภัยภาคพื้นที่ - สสาร<br>
+ID:24061103 Name:จักรกลระวังภัยภาคพื้นที่ - สสาร<br>
+ID:24061105 Name:จักรกลระวังภัยภาคพื้นที่ - สสาร<br>
+ID:24061106 Name:จักรกลระวังภัยภาคพื้นที่ - สสาร<br>
+ID:24061109 Name:จักรกลระวังภัยภาคพื้นที่ - สสาร<br>
+ID:24061110 Name:จักรกลระวังภัยภาคพื้นที่ - สสาร<br>
+ID:24061201 Name:จักรกลก่อสร้าง - สสาร<br>
+ID:24061202 Name:จักรกลก่อสร้าง - สสาร<br>
+ID:24061301 Name:Arithmetic Enhancer Mek ที่ผ่านศึกมานับร้อย<br>
+ID:24061302 Name:Arithmetic Enhancer Mek ที่ผ่านศึกมานับร้อย<br>
+ID:24061303 Name:Arithmetic Enhancer Mek ที่ผ่านศึกมานับร้อย<br>
+ID:24065101 Name:จักรกลสอดแนม - วิญญาณ<br>
+ID:24065102 Name:จักรกลสอดแนม - วิญญาณ<br>
+ID:24065103 Name:จักรกลสอดแนม - วิญญาณ<br>
+ID:24065201 Name:จักรกลรุ่นเพิ่มประสิทธิภาพการคำนวณ - วิญญาณ<br>
+ID:24065202 Name:จักรกลรุ่นเพิ่มประสิทธิภาพการคำนวณ - วิญญาณ<br>
+ID:24065301 Name:จักรกลสำรวจใต้น้ำ - วิญญาณ<br>
+ID:24065302 Name:จักรกลสำรวจใต้น้ำ - วิญญาณ<br>
+ID:24065401 Name:จักรกลสำรวจภาคพื้นดิน - วิญญาณ<br>
+ID:24065402 Name:จักรกลสำรวจภาคพื้นดิน - วิญญาณ<br>
+ID:24065501 Name:จักรกลรักษาการณ์ใต้น้ำ - วิญญาณ<br>
+ID:24065502 Name:จักรกลรักษาการณ์ใต้น้ำ - วิญญาณ<br>
+ID:24065601 Name:Deepwater Assault Mek - วิญญาณ<br>
+ID:24065602 Name:Deepwater Assault Mek - วิญญาณ<br>
+ID:24065701 Name:จักรกลเก็บเกี่ยว - วิญญาณ<br>
+ID:24065702 Name:จักรกลเก็บเกี่ยว - วิญญาณ<br>
+ID:24065801 Name:จักรกลจู่โจม - วิญญาณ<br>
+ID:24065802 Name:จักรกลจู่โจม - วิญญาณ<br>
+ID:24065803 Name:จักรกลจู่โจม - วิญญาณ<br>
+ID:24065901 Name:จักรกลปราบปราม - วิญญาณ<br>
+ID:24065902 Name:จักรกลปราบปราม - วิญญาณ<br>
+ID:24066001 Name:จักรกลทำลายล้าง - วิญญาณ<br>
+ID:24066002 Name:จักรกลทำลายล้าง - วิญญาณ<br>
+ID:24066101 Name:จักรกลระวังภัยภาคพื้นที่ - วิญญาณ<br>
+ID:24066102 Name:จักรกลระวังภัยภาคพื้นที่ - วิญญาณ<br>
+ID:24066103 Name:จักรกลระวังภัยภาคพื้นที่ - วิญญาณ<br>
+ID:24066105 Name:จักรกลระวังภัยภาคพื้นที่ - วิญญาณ<br>
+ID:24066106 Name:จักรกลระวังภัยภาคพื้นที่ - วิญญาณ<br>
+ID:24066109 Name:จักรกลระวังภัยภาคพื้นที่ - วิญญาณ<br>
+ID:24066110 Name:จักรกลระวังภัยภาคพื้นที่ - วิญญาณ<br>
+ID:24066201 Name:จักรกลก่อสร้าง - วิญญาณ<br>
+ID:24066202 Name:จักรกลก่อสร้าง - วิญญาณ<br>
+ID:24068101 Name:จักรกลสอดแนม<br>
+ID:24068201 Name:จักรกลรุ่นเพิ่มประสิทธิภาพการคำนวณ<br>
+ID:24068301 Name:จักรกลสำรวจใต้น้ำ<br>
+ID:24068401 Name:จักรกลสำรวจภาคพื้นดิน<br>
+ID:24068501 Name:จักรกลรักษาการณ์ใต้น้ำ<br>
+ID:24068601 Name:Deepwater Assault Mek<br>
+ID:24068701 Name:จักรกลเก็บเกี่ยว<br>
+ID:24068801 Name:จักรกลจู่โจม<br>
+ID:24068901 Name:จักรกลปราบปราม<br>
+ID:24069001 Name:จักรกลทำลายล้าง<br>
+ID:24069101 Name:จักรกลระวังภัยภาคพื้นที่<br>
+ID:24069201 Name:จักรกลก่อสร้าง<br>
+ID:24070101 Name:Icewind Suite: ทัณฑ์นิรันดร์ของ Coppelius<br>
+ID:24070102 Name:Icewind Suite: ทัณฑ์นิรันดร์ของ Coppelius<br>
+ID:24070201 Name:Icewind Suite: ฝังมรณะแห่ง Coppelia<br>
+ID:24070202 Name:Icewind Suite: ฝังมรณะแห่ง Coppelia<br>
+ID:24070301 Name:Icewind Suite<br>
+ID:24080101 Name:Experimental Field Generator<br>
+ID:24080102 Name:Experimental Field Generator<br>
+ID:24810101 Name:หอคอยป้องกันไฟระดับพื้นฐาน<br>
+ID:24810201 Name:หอคอยป้องกันไฟระดับสูง<br>
+ID:24810301 Name:หอคอยป้องกันไฟฟ้าระดับพื้นฐาน<br>
+ID:24810401 Name:หอคอยป้องกันไฟฟ้าระดับสูง<br>
+ID:24810501 Name:หอคอยป้องกันน้ำระดับพื้นฐาน<br>
+ID:24810601 Name:หอคอยป้องกันน้ำระดับสูง<br>
+ID:24810701 Name:หอคอยป้องกันน้ำแข็งระดับพื้นฐาน<br>
+ID:24810801 Name:หอคอยป้องกันน้ำแข็งระดับสูง<br>
+ID:24810901 Name:หอคอยป้องกันลมระดับพื้นฐาน<br>
+ID:24811001 Name:หอคอยป้องกันลมระดับสูง<br>
+ID:24811101 Name:หอคอยป้องกันกายภาพ<br>
+ID:24920101 Name:จักรกลอัตโนมัติ: บอลลูน Slime ขนาดเล็ก<br>
+ID:24920201 Name:จักรกลอัตโนมัติ: บอลลูน Slime ขนาดใหญ่<br>
+ID:24920301 Name:จักรกลอัตโนมัติ: บอลลูน Fungus<br>
+ID:24990101 Name:<br>
+ID:25010101 Name:Liuliu<br>
+ID:25010102 Name:Mystery Man<br>
+ID:25010103 Name:กองโจรล่าสมบัติ - Liuliu<br>
+ID:25010104 Name:กองโจรล่าสมบัติ - Liuliu<br>
+ID:25010105 Name:กองโจรล่าสมบัติ - Liuliu<br>
+ID:25010106 Name:กองโจรล่าสมบัติ - Liuliu<br>
+ID:25010201 Name:Treasure Thieves Scout<br>
+ID:25010203 Name:กองโจรล่าสมบัติ - Scout<br>
+ID:25010204 Name:กองโจรล่าสมบัติ - Scout<br>
+ID:25010205 Name:กองโจรล่าสมบัติ - Scout<br>
+ID:25010206 Name:กองโจรล่าสมบัติ - Scout<br>
+ID:25010207 Name:กองโจรล่าสมบัติ - Scout<br>
+ID:25010208 Name:กองโจรล่าสมบัติ - Scout<br>
+ID:25010209 Name:กองโจรล่าสมบัติ - Scout<br>
+ID:25010210 Name:กองโจรล่าสมบัติ - Scout<br>
+ID:25010211 Name:กองโจรล่าสมบัติ - Scout<br>
+ID:25010212 Name:กองโจรล่าสมบัติ - Scout<br>
+ID:25010213 Name:กองโจรล่าสมบัติ - Scout<br>
+ID:25010214 Name:กองโจรล่าสมบัติ - Scout<br>
+ID:25010215 Name:กองโจรล่าสมบัติ - Scout<br>
+ID:25010216 Name:กองโจรล่าสมบัติ - Scout<br>
+ID:25010217 Name:กองโจรล่าสมบัติ - Scout<br>
+ID:25010218 Name:กองโจรล่าสมบัติ - Scout<br>
+ID:25010219 Name:กองโจรล่าสมบัติ - Scout<br>
+ID:25010220 Name:กองโจรล่าสมบัติ - Scout<br>
+ID:25010221 Name:กองโจรล่าสมบัติ - Scout<br>
+ID:25010222 Name:กองโจรล่าสมบัติ - Scout<br>
+ID:25010223 Name:กองโจรล่าสมบัติ - Scout<br>
+ID:25010224 Name:กองโจรล่าสมบัติ - Scout<br>
+ID:25010225 Name:กองโจรล่าสมบัติ - Scout<br>
+ID:25010226 Name:กองโจรล่าสมบัติ - Scout<br>
+ID:25010227 Name:กองโจรล่าสมบัติ - Scout<br>
+ID:25010228 Name:กองโจรล่าสมบัติ - Scout<br>
+ID:25010229 Name:กองโจรล่าสมบัติ - Scout<br>
+ID:25010281 Name:กองโจรล่าสมบัติ - Scout<br>
+ID:25010301 Name:กองโจรล่าสมบัติ - Pyro Potioneer<br>
+ID:25010302 Name:กองโจรล่าสมบัติ - Pyro Potioneer<br>
+ID:25010303 Name:กองโจรล่าสมบัติ - Pyro Potioneer<br>
+ID:25010304 Name:กองโจรล่าสมบัติ - Pyro Potioneer<br>
+ID:25010381 Name:กองโจรล่าสมบัติ - Pyro Potioneer<br>
+ID:25010401 Name:กองโจรล่าสมบัติ - Hydro Potioneer<br>
+ID:25010402 Name:กองโจรล่าสมบัติ - Hydro Potioneer<br>
+ID:25010403 Name:กองโจรล่าสมบัติ - Hydro Potioneer<br>
+ID:25010404 Name:กองโจรล่าสมบัติ - Hydro Potioneer<br>
+ID:25010405 Name:กองโจรล่าสมบัติ - Hydro Potioneer<br>
+ID:25010481 Name:กองโจรล่าสมบัติ - Hydro Potioneer<br>
+ID:25010501 Name:กองโจรล่าสมบัติ - Electro Potioneer<br>
+ID:25010502 Name:กองโจรล่าสมบัติ - Electro Potioneer<br>
+ID:25010503 Name:กองโจรล่าสมบัติ - Electro Potioneer<br>
+ID:25010581 Name:กองโจรล่าสมบัติ - Electro Potioneer<br>
+ID:25010601 Name:กองโจรล่าสมบัติ - Cryo Potioneer<br>
+ID:25010602 Name:กองโจรล่าสมบัติ - Cryo Potioneer<br>
+ID:25010603 Name:กองโจรล่าสมบัติ - Cryo Potioneer<br>
+ID:25010604 Name:กองโจรล่าสมบัติ - Cryo Potioneer<br>
+ID:25010681 Name:กองโจรล่าสมบัติ - Cryo Potioneer<br>
+ID:25010701 Name:กองโจรล่าสมบัติ - Handyman<br>
+ID:25010702 Name:กองโจรล่าสมบัติ - Handyman<br>
+ID:25010781 Name:กองโจรล่าสมบัติ - Handyman<br>
+ID:25010801 Name:<br>
+ID:25020101 Name:Raptor<br>
+ID:25020102 Name:กองโจรล่าสมบัติ - Raptor<br>
+ID:25020103 Name:กองโจรล่าสมบัติ - Raptor<br>
+ID:25020104 Name:กองโจรล่าสมบัติ - Raptor<br>
+ID:25020105 Name:กองโจรล่าสมบัติ - Raptor<br>
+ID:25020201 Name:Treasure Thieves Marksman<br>
+ID:25020204 Name:กองโจรล่าสมบัติ - Marksman<br>
+ID:25020205 Name:กองโจรล่าสมบัติ - Marksman<br>
+ID:25020206 Name:กองโจรล่าสมบัติ - Marksman<br>
+ID:25020207 Name:กองโจรล่าสมบัติ - Marksman<br>
+ID:25020208 Name:กองโจรล่าสมบัติ - Marksman<br>
+ID:25020209 Name:กองโจรล่าสมบัติ - Marksman<br>
+ID:25020210 Name:กองโจรล่าสมบัติ - Marksman<br>
+ID:25020281 Name:กองโจรล่าสมบัติ - Marksman<br>
+ID:25030101 Name:\"Carmen\"<br>
+ID:25030102 Name:กองโจรล่าสมบัติ - Carmen<br>
+ID:25030103 Name:กองโจรล่าสมบัติ - Carmen<br>
+ID:25030201 Name:Treasure Thieves Gravedigger<br>
+ID:25030202 Name:กองโจรล่าสมบัติ - Gravedigger<br>
+ID:25030281 Name:กองโจรล่าสมบัติ - Gravedigger<br>
+ID:25030301 Name:Treasure Hoarder Oarsman<br>
+ID:25030302 Name:กองโจรล่าสมบัติ - Seaman<br>
+ID:25030303 Name:กองโจรล่าสมบัติ - Seaman<br>
+ID:25030381 Name:กองโจรล่าสมบัติ - Seaman<br>
+ID:25040101 Name:\"Boss\"<br>
+ID:25040102 Name:กองโจรล่าสมบัติ - Boss<br>
+ID:25040103 Name:กองโจรล่าสมบัติ - Boss<br>
+ID:25040104 Name:กองโจรล่าสมบัติ - Boss<br>
+ID:25040105 Name:กองโจรล่าสมบัติ - Boss<br>
+ID:25050101 Name:Millelith Soldier<br>
+ID:25050201 Name:Millelith Sergeant<br>
+ID:25050301 Name:Shogunate Infantry<br>
+ID:25050401 Name:Shogunate Infantry Captain<br>
+ID:25050402 Name:Shogunate Infantry Captain<br>
+ID:25050501 Name:Sangonomiya Cohort<br>
+ID:25050502 Name:(test) Binh Lính Quân Kháng Chiến Của Kokomi<br>
+ID:25050503 Name:Sangonomiya Cohort<br>
+ID:25050601 Name:<br>
+ID:25050602 Name:<br>
+ID:25050603 Name:<br>
+ID:25050604 Name:<br>
+ID:25060101 Name:กองโจรล่าสมบัติ - Pugilist<br>
+ID:25060102 Name:กองโจรล่าสมบัติ - Pugilist<br>
+ID:25060103 Name:กองโจรล่าสมบัติ - Pugilist<br>
+ID:25060104 Name:กองโจรล่าสมบัติ - Pugilist<br>
+ID:25060105 Name:กองโจรล่าสมบัติ - Pugilist<br>
+ID:25060106 Name:กองโจรล่าสมบัติ - Pugilist<br>
+ID:25060107 Name:กองโจรล่าสมบัติ - Pugilist<br>
+ID:25060108 Name:กองโจรล่าสมบัติ - Pugilist<br>
+ID:25060109 Name:กองโจรล่าสมบัติ - Pugilist<br>
+ID:25060110 Name:กองโจรล่าสมบัติ - Pugilist<br>
+ID:25060111 Name:กองโจรล่าสมบัติ - Pugilist<br>
+ID:25060112 Name:กองโจรล่าสมบัติ - Pugilist<br>
+ID:25060181 Name:กองโจรล่าสมบัติ - Pugilist<br>
+ID:25060201 Name:<br>
+ID:25070101 Name:กองโจรล่าสมบัติ - Crusher<br>
+ID:25070102 Name:กองโจรล่าสมบัติ - Crusher<br>
+ID:25070103 Name:กองโจรล่าสมบัติ - Crusher<br>
+ID:25070104 Name:กองโจรล่าสมบัติ - Crusher<br>
+ID:25070181 Name:กองโจรล่าสมบัติ - Crusher<br>
+ID:25070201 Name:กองโจรล่าสมบัติ - Wallenstein<br>
+ID:25070202 Name:กองโจรล่าสมบัติ - Wallenstein<br>
+ID:25080101 Name:Ronin<br>
+ID:25080181 Name:Nobushi: Jintouban<br>
+ID:25080201 Name:Ronin: Sanzoku<br>
+ID:25080202 Name:Nobushi: Hitsukeban<br>
+ID:25080281 Name:Nobushi: Hitsukeban<br>
+ID:25080301 Name:Ronin: Anbu<br>
+ID:25080381 Name:Nobushi: Kikouban<br>
+ID:25080401 Name:Shogunate Samurai<br>
+ID:25080402 Name:Yoriki Samurai<br>
+ID:25080403 Name:Yoriki Samurai<br>
+ID:25080404 Name:Yoriki Samurai<br>
+ID:25080405 Name:Yoriki Samurai<br>
+ID:25090101 Name:Marionette General<br>
+ID:25090102 Name:Marionette General: Wind Bunshin<br>
+ID:25090103 Name:Marionette General: Ice Bunshin<br>
+ID:25090104 Name:Marionette General: Masked Bunshin<br>
+ID:25090105 Name:Maguu Kenki<br>
+ID:25090106 Name:Maguu Kenki<br>
+ID:25090201 Name:Marionette General: Wind Bunshin (พร้อมไอคอน)<br>
+ID:25090301 Name:Marionette General: Ice Bunshin (พร้อมไอคอน)<br>
+ID:25090401 Name:Marionette General: Masked Bunshin (พร้อมไอคอน)<br>
+ID:25100101 Name:Electro Kairagi<br>
+ID:25100102 Name:Kairagi: Dancing Thunder<br>
+ID:25100181 Name:Kairagi: Dancing Thunder<br>
+ID:25100182 Name:Kairagi: Dancing Thunder<br>
+ID:25100183 Name:Kairagi: Dancing Thunder<br>
+ID:25100201 Name:Pyro Kairagi<br>
+ID:25100202 Name:Kairagi: Fiery Might<br>
+ID:25100281 Name:Kairagi: Fiery Might<br>
+ID:25100282 Name:Kairagi: Fiery Might<br>
+ID:25100283 Name:Kairagi: Fiery Might<br>
+ID:25100301 Name:Thunderwraith Kairagi<br>
+ID:25100302 Name:Ochimusha: Ensorcelled Thunder<br>
+ID:25100401 Name:Flameghoul - Kairagi<br>
+ID:25110101 Name:Spirit of Omen: Stone Drake<br>
+ID:25110102 Name:Spirit of Omen: Stone Drake<br>
+ID:25110201 Name:Spirit of Omen: Wind Glede<br>
+ID:25110202 Name:Spirit of Omen: Wind Glede<br>
+ID:25110301 Name:Spirit of Omen: Pyro Scorpion<br>
+ID:25110401 Name:Spirit of Omen: Dendro Spirit-Serpent<br>
+ID:25210101 Name:Eremite Axe Vanguard<br>
+ID:25210102 Name:Eremite Axe Vanguard<br>
+ID:25210103 Name:Eremite Axe Vanguard<br>
+ID:25210104 Name:Eremite Axe Vanguard<br>
+ID:25210105 Name:Eremite Axe Vanguard<br>
+ID:25210106 Name:Eremite Axe Vanguard<br>
+ID:25210107 Name:Eremite Axe Vanguard<br>
+ID:25210108 Name:Eremite Axe Vanguard<br>
+ID:25210109 Name:Eremite Axe Vanguard<br>
+ID:25210181 Name:Eremite Axe Vanguard<br>
+ID:25210201 Name:Eremite Crossbow<br>
+ID:25210202 Name:Eremite Crossbow<br>
+ID:25210203 Name:Eremite Crossbow<br>
+ID:25210204 Name:Eremite Crossbow<br>
+ID:25210205 Name:Eremite Crossbow<br>
+ID:25210206 Name:Eremite Crossbow<br>
+ID:25210207 Name:Eremite Crossbow<br>
+ID:25210208 Name:Eremite Crossbow<br>
+ID:25210209 Name:Eremite Crossbow<br>
+ID:25210210 Name:Eremite Crossbow<br>
+ID:25210211 Name:Eremite Crossbow<br>
+ID:25210212 Name:Eremite Crossbow<br>
+ID:25210213 Name:Eremite Crossbow<br>
+ID:25210281 Name:Eremite Crossbow<br>
+ID:25210301 Name:Eremite Ravenbeak Halberdier<br>
+ID:25210302 Name:Eremite Ravenbeak Halberdier<br>
+ID:25210303 Name:Eremite Ravenbeak Halberdier<br>
+ID:25210304 Name:Eremite Ravenbeak Halberdier<br>
+ID:25210305 Name:Eremite Ravenbeak Halberdier<br>
+ID:25210306 Name:Eremite Ravenbeak Halberdier<br>
+ID:25210307 Name:Eremite Ravenbeak Halberdier<br>
+ID:25210308 Name:Eremite Ravenbeak Halberdier<br>
+ID:25210309 Name:Eremite Ravenbeak Halberdier<br>
+ID:25210310 Name:Eremite Ravenbeak Halberdier<br>
+ID:25210381 Name:Eremite Ravenbeak Halberdier<br>
+ID:25210401 Name:Eremite Linebreaker<br>
+ID:25210402 Name:Eremite Linebreaker<br>
+ID:25210403 Name:Eremite Linebreaker<br>
+ID:25210404 Name:Eremite Linebreaker<br>
+ID:25210405 Name:Eremite Linebreaker<br>
+ID:25210406 Name:Eremite Linebreaker<br>
+ID:25210407 Name:Eremite Linebreaker<br>
+ID:25210408 Name:Eremite Linebreaker<br>
+ID:25210409 Name:Eremite Linebreaker<br>
+ID:25210481 Name:Eremite Linebreaker<br>
+ID:25210501 Name:Eremite Sword-Dancer<br>
+ID:25210502 Name:Eremite Sword-Dancer<br>
+ID:25210503 Name:Eremite Sword-Dancer<br>
+ID:25210504 Name:Eremite Sword-Dancer<br>
+ID:25210505 Name:Eremite Sword-Dancer<br>
+ID:25210506 Name:Eremite Sword-Dancer<br>
+ID:25210507 Name:Eremite Sword-Dancer<br>
+ID:25210508 Name:Eremite Sword-Dancer<br>
+ID:25210509 Name:Eremite Sword-Dancer<br>
+ID:25210510 Name:Eremite Sword-Dancer<br>
+ID:25210581 Name:Eremite Sword-Dancer<br>
+ID:25210601 Name:<br>
+ID:25210602 Name:<br>
+ID:25310101 Name:Eremite Desert Clearwater<br>
+ID:25310102 Name:Eremite Desert Clearwater<br>
+ID:25310181 Name:Eremite Desert Clearwater<br>
+ID:25310182 Name:Eremite Desert Clearwater<br>
+ID:25310201 Name:Eremite Sunfrost<br>
+ID:25310202 Name:Eremite Sunfrost<br>
+ID:25310281 Name:Eremite Sunfrost<br>
+ID:25310282 Name:Eremite Sunfrost<br>
+ID:25310301 Name:Eremite Daythunder<br>
+ID:25310381 Name:Eremite Daythunder<br>
+ID:25310382 Name:Eremite Daythunder<br>
+ID:25410101 Name:Eremite Stone Enchanter<br>
+ID:25410102 Name:Eremite Stone Enchanter<br>
+ID:25410103 Name:Eremite Stone Enchanter<br>
+ID:25410181 Name:Eremite Stone Enchanter<br>
+ID:25410201 Name:Eremite Galehunter<br>
+ID:25410202 Name:Eremite Galehunter<br>
+ID:25410281 Name:Eremite Galehunter<br>
+ID:25410282 Name:Eremite Galehunter<br>
+ID:25410301 Name:Eremite Scorching Loremaster<br>
+ID:25410302 Name:Eremite Scorching Loremaster<br>
+ID:25410303 Name:Eremite Scorching Loremaster<br>
+ID:25410381 Name:Eremite Scorching Loremaster<br>
+ID:25410382 Name:Eremite Scorching Loremaster<br>
+ID:25410401 Name:Eremite Floral Ring-Dancer<br>
+ID:25410481 Name:Eremite Floral Ring-Dancer<br>
+ID:26010101 Name:Cryo Whopperflower<br>
+ID:26010102 Name:Cryo Whopperflower (กิจกรรม Dragonspine)<br>
+ID:26010103 Name:Giant Cryo Whopperflower (กิจกรรม Dragonspine 2.3)<br>
+ID:26010104 Name:Cryo Whopperflower<br>
+ID:26010201 Name:Pyro Whopperflower<br>
+ID:26010301 Name:Electro Whopperflower<br>
+ID:26020101 Name:Cryo Regisvine<br>
+ID:26020102 Name:Cryo Regisvine (กิจกรรม Dragonspine)<br>
+ID:26020181 Name:Cryo Regisvine<br>
+ID:26020201 Name:Pyro Regisvine<br>
+ID:26020281 Name:Pyro Regisvine<br>
+ID:26020301 Name:Electro Regisvine<br>
+ID:26020381 Name:Electro Regisvine<br>
+ID:26030101 Name:Geovishap Hatchling<br>
+ID:26030181 Name:Geovishap Hatchling<br>
+ID:26040101 Name:Geovishap - น้ำ<br>
+ID:26040102 Name:Geovishap - ไฟ<br>
+ID:26040103 Name:Geovishap - น้ำแข็ง<br>
+ID:26040104 Name:Geovishap - ไฟฟ้า<br>
+ID:26040105 Name:Geovishap - Hydro (Mechanicus)<br>
+ID:26040181 Name:Geovishap<br>
+ID:26040182 Name:Geovishap<br>
+ID:26040183 Name:Geovishap<br>
+ID:26040184 Name:Geovishap<br>
+ID:26040185 Name:Geovishap<br>
+ID:26040186 Name:Geovishap<br>
+ID:26040187 Name:Geovishap<br>
+ID:26040188 Name:Geovishap<br>
+ID:26050101 Name:Primo Geovishap - น้ำ<br>
+ID:26050201 Name:Primo Geovishap - ไฟ<br>
+ID:26050301 Name:Primo Geovishap - น้ำแข็ง<br>
+ID:26050401 Name:Primo Geovishap - ไฟฟ้า<br>
+ID:26050501 Name:Primo Geovishap - กิจกรรม<br>
+ID:26050601 Name:Primordial Bathysmal Vishap<br>
+ID:26050681 Name:Primordial Bathysmal Vishap<br>
+ID:26050682 Name:Primordial Bathysmal Vishap<br>
+ID:26050701 Name:Rimebiter Bathysmal Vishap<br>
+ID:26050702 Name:Rimebiter Bathysmal Vishap<br>
+ID:26050703 Name:Rimebiter Bathysmal Vishap<br>
+ID:26050781 Name:Rimebiter Bathysmal Vishap<br>
+ID:26050801 Name:Bolteater Bathysmal Vishap<br>
+ID:26050802 Name:Bolteater Bathysmal Vishap<br>
+ID:26050803 Name:Bolteater Bathysmal Vishap<br>
+ID:26050881 Name:Bolteater Bathysmal Vishap<br>
+ID:26050901 Name:Primordial Bathysmal Vishap Hatchling<br>
+ID:26051001 Name:Rimebiter Bathysmal Vishap Hatchling<br>
+ID:26051081 Name:Rimebiter Bathysmal Vishap Hatchling<br>
+ID:26051082 Name:Rimebiter Bathysmal Vishap Hatchling<br>
+ID:26051101 Name:Bolteater Bathysmal Vishap Hatchling<br>
+ID:26051181 Name:Bolteater Bathysmal Vishap Hatchling<br>
+ID:26051182 Name:Bolteater Bathysmal Vishap Hatchling<br>
+ID:26060101 Name:Electro Cicin<br>
+ID:26060201 Name:Hydro Cicin<br>
+ID:26060301 Name:Cryo Cicin<br>
+ID:26080101 Name:Beisht<br>
+ID:26090101 Name:Floating Hydro Fungus<br>
+ID:26090181 Name:Floating Hydro Fungus<br>
+ID:26090190 Name:Floating Hydro Fungus<br>
+ID:26090191 Name:Floating Hydro Fungus<br>
+ID:26090201 Name:Floating Dendro Fungus<br>
+ID:26090202 Name:Floating Dendro Fungus<br>
+ID:26090281 Name:Floating Dendro Fungus<br>
+ID:26090290 Name:Floating Dendro Fungus<br>
+ID:26090291 Name:Floating Dendro Fungus<br>
+ID:26090301 Name:Floating Anemo Fungus<br>
+ID:26090381 Name:Floating Anemo Fungus<br>
+ID:26090390 Name:Floating Anemo Fungus<br>
+ID:26090391 Name:Floating Anemo Fungus<br>
+ID:26090401 Name:Whirling Electro Fungus<br>
+ID:26090481 Name:Whirling Electro Fungus<br>
+ID:26090490 Name:Whirling Electro Fungus<br>
+ID:26090491 Name:Whirling Electro Fungus<br>
+ID:26090501 Name:Whirling Cryo Fungus<br>
+ID:26090581 Name:Whirling Cryo Fungus<br>
+ID:26090590 Name:Whirling Cryo Fungus<br>
+ID:26090591 Name:Whirling Cryo Fungus<br>
+ID:26090601 Name:Whirling Pyro Fungus<br>
+ID:26090681 Name:Whirling Pyro Fungus<br>
+ID:26090690 Name:Whirling Pyro Fungus<br>
+ID:26090691 Name:Whirling Pyro Fungus<br>
+ID:26090701 Name:Stretchy Pyro Fungus<br>
+ID:26090781 Name:Stretchy Pyro Fungus<br>
+ID:26090790 Name:Stretchy Pyro Fungus<br>
+ID:26090791 Name:Stretchy Pyro Fungus<br>
+ID:26090801 Name:Stretchy Anemo Fungus<br>
+ID:26090881 Name:Stretchy Anemo Fungus<br>
+ID:26090890 Name:Stretchy Anemo Fungus<br>
+ID:26090891 Name:Stretchy Anemo Fungus<br>
+ID:26090901 Name:Stretchy Geo Fungus<br>
+ID:26090981 Name:Stretchy Geo Fungus<br>
+ID:26090990 Name:Stretchy Geo Fungus<br>
+ID:26090991 Name:Stretchy Geo Fungus<br>
+ID:26091001 Name:Stretchy Electro Fungus<br>
+ID:26091081 Name:Stretchy Electro Fungus<br>
+ID:26091090 Name:Stretchy Electro Fungus<br>
+ID:26091091 Name:Stretchy Electro Fungus<br>
+ID:26100101 Name:Consecrated Horned Crocodile<br>
+ID:26100201 Name:Consecrated Fanged Beast<br>
+ID:26100301 Name:Consecrated Red Vulture<br>
+ID:26100401 Name:Consecrated Scorpion<br>
+ID:26100501 Name:Consecrated Flying Serpent<br>
+ID:26110101 Name:Jadeplume Terrorshroom<br>
+ID:26110181 Name:Jadeplume Terrorshroom<br>
+ID:26120101 Name:Winged Dendroshroom<br>
+ID:26120181 Name:Winged Dendroshroom<br>
+ID:26120201 Name:Winged Cryoshroom<br>
+ID:26120281 Name:Winged Cryoshroom<br>
+ID:26120301 Name:Grounded Hydroshroom<br>
+ID:26120381 Name:Grounded Hydroshroom<br>
+ID:26120382 Name:Grounded Hydroshroom<br>
+ID:26120401 Name:Grounded Geoshroom<br>
+ID:26120481 Name:Grounded Geoshroom<br>
+ID:26120482 Name:Grounded Geoshroom<br>
+ID:26130101 Name:Setekh Wenut<br>
+ID:26151001 Name:Hunter's Ray<br>
+ID:26151002 Name:Hunter's Ray<br>
+ID:26151101 Name:Hunter's Ray<br>
+ID:26151102 Name:Hunter's Ray<br>
+ID:26152101 Name:Armored Crab<br>
+ID:26152102 Name:Armored Crab<br>
+ID:26152201 Name:Armored Crab<br>
+ID:26152202 Name:Armored Crab<br>
+ID:26153101 Name:Blubberbeast<br>
+ID:26153102 Name:Blubberbeast<br>
+ID:26153103 Name:Blubberbeast<br>
+ID:26153104 Name:Blubberbeast<br>
+ID:26154101 Name:Hat Jellyfish<br>
+ID:26154102 Name:Hat Jellyfish<br>
+ID:26154201 Name:Hat Jellyfish<br>
+ID:26154202 Name:Hat Jellyfish<br>
+ID:26155101 Name:Bubbly Seahorse<br>
+ID:26155201 Name:Bubbly Seahorse<br>
+ID:26155301 Name:Bubbly Seahorse<br>
+ID:26156101 Name:Ball Octopus<br>
+ID:26156201 Name:Ball Octopus<br>
+ID:26157101 Name:Angelic Sea Hare<br>
+ID:26157201 Name:Angelic Sea Hare<br>
+ID:26160101 Name:Sternshield Crab<br>
+ID:26160102 Name:Sternshield Crab<br>
+ID:26160201 Name:Cherubic Sea Hare<br>
+ID:26160202 Name:Cherubic Sea Hare<br>
+ID:26160301 Name:Bubbler Seahorse<br>
+ID:26160302 Name:Bubbler Seahorse<br>
+ID:26162101 Name:ตำนานท้องถิ่น - Armored Crab<br>
+ID:26162201 Name:ตำนานท้องถิ่น - Hunter's Ray<br>
+ID:26162301 Name:ตำนานท้องถิ่น - Blubberbeast<br>
+ID:26162401 Name:ตำนานท้องถิ่น - Cherubic Sea Hare<br>
+ID:26162501 Name:ตำนานท้องถิ่น - Hat Jellyfish<br>
+ID:26170101 Name:Emperor of Fire and Iron<br>
+ID:26180101 Name:Millennial Pearl Seahorse<br>
+ID:28010101 Name:Golden Crab<br>
+ID:28010102 Name:Sun Crab<br>
+ID:28010103 Name:Ocean Crab<br>
+ID:28010104 Name:General Crab<br>
+ID:28010105 Name:Pale Red Crab<br>
+ID:28010106 Name:Crab<br>
+ID:28010201 Name:Blue Horned Lizard<br>
+ID:28010202 Name:Red Horned Lizard<br>
+ID:28010203 Name:Green Horned Lizard<br>
+ID:28010204 Name:Sunset Loach<br>
+ID:28010205 Name:Golden Loach<br>
+ID:28010206 Name:Sunny Loach<br>
+ID:28010207 Name:Marrow Lizard<br>
+ID:28010208 Name:<br>
+ID:28010301 Name:Frog<br>
+ID:28010302 Name:Mud Frog<br>
+ID:28010303 Name:Blue Frog<br>
+ID:28010304 Name:<br>
+ID:28010401 Name:(test) Lươn 01<br>
+ID:28010402 Name:<br>
+ID:28010403 Name:(test) Lươn 03<br>
+ID:28010404 Name:<br>
+ID:28020101 Name:Snow Fox<br>
+ID:28020102 Name:Crimson Fox<br>
+ID:28020103 Name:Gifting Snow Fox<br>
+ID:28020104 Name:Super-Gifting Snow Fox<br>
+ID:28020105 Name:<br>
+ID:28020106 Name:<br>
+ID:28020107 Name:<br>
+ID:28020108 Name:<br>
+ID:28020109 Name:<br>
+ID:28020110 Name:<br>
+ID:28020201 Name:Squirrel<br>
+ID:28020202 Name:<br>
+ID:28020301 Name:Forest Boar<br>
+ID:28020302 Name:Forest Piglet<br>
+ID:28020303 Name:Snowboar<br>
+ID:28020304 Name:Great Snowboar King<br>
+ID:28020305 Name:Frozen Snowboar<br>
+ID:28020306 Name:<br>
+ID:28020307 Name:<br>
+ID:28020308 Name:<br>
+ID:28020309 Name:<br>
+ID:28020310 Name:<br>
+ID:28020311 Name:<br>
+ID:28020312 Name:<br>
+ID:28020313 Name:<br>
+ID:28020314 Name:<br>
+ID:28020315 Name:<br>
+ID:28020316 Name:<br>
+ID:28020317 Name:<br>
+ID:28020318 Name:<br>
+ID:28020319 Name:<br>
+ID:28020401 Name:Northland Hound<br>
+ID:28020402 Name:Forest-Patrol Hound<br>
+ID:28020403 Name:Shiba<br>
+ID:28020404 Name:Black-Back Hound<br>
+ID:28020405 Name:Shiba<br>
+ID:28020406 Name:Northland Hound (เฉพาะสำหรับกิจกรรมสุนัข เพิ่มระยะการมองเห็น)<br>
+ID:28020407 Name:<br>
+ID:28020408 Name:<br>
+ID:28020409 Name:<br>
+ID:28020410 Name:<br>
+ID:28020411 Name:<br>
+ID:28020412 Name:<br>
+ID:28020413 Name:<br>
+ID:28020501 Name:Sapphire<br>
+ID:28020502 Name:Jade-Eyed Cat<br>
+ID:28020503 Name:Gray Snow Cat<br>
+ID:28020504 Name:Northland Cat<br>
+ID:28020505 Name:Tiger-Striped Cat<br>
+ID:28020506 Name:Sheriff Cat<br>
+ID:28020507 Name:Black Cat<br>
+ID:28020508 Name:Sapphire<br>
+ID:28020509 Name:Gray Snow Cat (เฉพาะสำหรับกิจกรรมสุนัข เพิ่มระยะการมองเห็น)<br>
+ID:28020510 Name:<br>
+ID:28020511 Name:<br>
+ID:28020512 Name:<br>
+ID:28020513 Name:<br>
+ID:28020601 Name:Snow Weasel<br>
+ID:28020602 Name:Red-Tailed Weasel<br>
+ID:28020603 Name:Boot Weasel<br>
+ID:28020604 Name:Masked Weasel<br>
+ID:28020605 Name:<br>
+ID:28020701 Name:Kitsune<br>
+ID:28020702 Name:Kitsune (เฉพาะสำหรับกิจกรรมสุนัข เพิ่มระยะการมองเห็น)<br>
+ID:28020801 Name:Bake-Danuki<br>
+ID:28020802 Name:<br>
+ID:28020803 Name:<br>
+ID:28020901 Name:Samurai Dog (ลาดตระเวน)<br>
+ID:28020902 Name:Samurai Dog (ต่อสู้)<br>
+ID:28020903 Name:<br>
+ID:28020904 Name:<br>
+ID:28020905 Name:<br>
+ID:28021001 Name:<br>
+ID:28021101 Name:<br>
+ID:28021102 Name:<br>
+ID:28021103 Name:<br>
+ID:28021201 Name:<br>
+ID:28030101 Name:Azure Crane<br>
+ID:28030102 Name:Violet Ibis<br>
+ID:28030103 Name:<br>
+ID:28030104 Name:<br>
+ID:28030105 Name:<br>
+ID:28030106 Name:<br>
+ID:28030107 Name:<br>
+ID:28030201 Name:Brownwing Falcon<br>
+ID:28030202 Name:Umbertail Falcon<br>
+ID:28030203 Name:Lapis Glede<br>
+ID:28030204 Name:Silkwhite Falcon<br>
+ID:28030301 Name:White Pigeon<br>
+ID:28030302 Name:Brightcrown Pigeon<br>
+ID:28030303 Name:Graywing Pigeon<br>
+ID:28030304 Name:Crimsonflank Pigeon<br>
+ID:28030305 Name:Black King Pigeon<br>
+ID:28030306 Name:Crow<br>
+ID:28030307 Name:White Pigeon<br>
+ID:28030308 Name:Brightcrown Pigeon<br>
+ID:28030309 Name:Graywing Pigeon<br>
+ID:28030310 Name:Crimsonflank Pigeon<br>
+ID:28030311 Name:Black King Pigeon<br>
+ID:28030312 Name:<br>
+ID:28030313 Name:<br>
+ID:28030314 Name:<br>
+ID:28030315 Name:<br>
+ID:28030316 Name:<br>
+ID:28030401 Name:Crimson Finch<br>
+ID:28030402 Name:Golden Finch<br>
+ID:28030403 Name:Snow Finch<br>
+ID:28030404 Name:Emerald Finch<br>
+ID:28030405 Name:<br>
+ID:28030406 Name:<br>
+ID:28030407 Name:<br>
+ID:28030408 Name:<br>
+ID:28030409 Name:<br>
+ID:28030410 Name:<br>
+ID:28030501 Name:Scarletbeak Duck<br>
+ID:28030502 Name:Emerald Duck<br>
+ID:28030504 Name:<br>
+ID:28030505 Name:<br>
+ID:28030601 Name:<br>
+ID:28030602 Name:<br>
+ID:28030604 Name:<br>
+ID:28030605 Name:<br>
+ID:28030607 Name:<br>
+ID:28030608 Name:<br>
+ID:28030610 Name:<br>
+ID:28030611 Name:<br>
+ID:28030701 Name:<br>
+ID:28030702 Name:<br>
+ID:28030703 Name:<br>
+ID:28030704 Name:<br>
+ID:28030705 Name:<br>
+ID:28030706 Name:<br>
+ID:28030707 Name:<br>
+ID:28030708 Name:<br>
+ID:28030709 Name:<br>
+ID:28030710 Name:<br>
+ID:28030711 Name:<br>
+ID:28030712 Name:<br>
+ID:28030713 Name:<br>
+ID:28030714 Name:<br>
+ID:28030715 Name:<br>
+ID:28030716 Name:<br>
+ID:28040101 Name:Black-back Bass<br>
+ID:28040102 Name:Blue-fin Bass<br>
+ID:28040103 Name:Golden Bass<br>
+ID:28040104 Name:Black-back Bass<br>
+ID:28040105 Name:Black-Back Bass<br>
+ID:28040106 Name:Blue-Fin Bass<br>
+ID:28040107 Name:Golden Bass<br>
+ID:28040108 Name:<br>
+ID:28040201 Name:Medaka<br>
+ID:28040202 Name:Glaze Medaka<br>
+ID:28040203 Name:Sweet-Flower Medaka<br>
+ID:28040204 Name:Aizen Medaka<br>
+ID:28040205 Name:Dawncatcher<br>
+ID:28040206 Name:Crystalfish<br>
+ID:28040301 Name:Lunged Stickleback<br>
+ID:28040302 Name:Betta<br>
+ID:28040303 Name:Venomspine Fish<br>
+ID:28040304 Name:Akai Maou<br>
+ID:28040305 Name:Snowstrider<br>
+ID:28040401 Name:Golden Koi<br>
+ID:28040402 Name:Rusty Koi<br>
+ID:28040501 Name:Brown Shirakodai<br>
+ID:28040502 Name:Purple Shirakodai<br>
+ID:28040503 Name:Tea-Colored Shirakodai<br>
+ID:28040504 Name:Abiding Angelfish<br>
+ID:28040505 Name:Raimei Angelfish<br>
+ID:28040506 Name:Moonfin<br>
+ID:28040601 Name:Pufferfish<br>
+ID:28040602 Name:Bitter Pufferfish<br>
+ID:28040701 Name:<br>
+ID:28040702 Name:<br>
+ID:28040703 Name:<br>
+ID:28040801 Name:<br>
+ID:28040802 Name:<br>
+ID:28040803 Name:<br>
+ID:28040804 Name:<br>
+ID:28040901 Name:<br>
+ID:28040902 Name:<br>
+ID:28040903 Name:<br>
+ID:28041001 Name:<br>
+ID:28041002 Name:<br>
+ID:28041101 Name:<br>
+ID:28041102 Name:<br>
+ID:28041103 Name:<br>
+ID:28041104 Name:<br>
+ID:28041105 Name:<br>
+ID:28050101 Name:Anemo Crystalfly<br>
+ID:28050102 Name:Geo Crystalfly<br>
+ID:28050103 Name:Cryo Crystalfly<br>
+ID:28050104 Name:Electro Crystalfly<br>
+ID:28050105 Name:<br>
+ID:28050106 Name:<br>
+ID:28050107 Name:<br>
+ID:28050108 Name:<br>
+ID:28050201 Name:Amateur Weasel Thief<br>
+ID:28050202 Name:Hoarder Weasel Thief<br>
+ID:28050203 Name:Golden Weasel Thief<br>
+ID:28050204 Name:<br>
+ID:28050211 Name:Amateur Weasel Thief<br>
+ID:28050212 Name:Hoarder Weasel Thief<br>
+ID:28050213 Name:Golden Weasel Thief<br>
+ID:28050221 Name:<br>
+ID:28050222 Name:<br>
+ID:28050223 Name:<br>
+ID:28050301 Name:<br>
+ID:28050401 Name:<br>
+ID:28050501 Name:<br>
+ID:28050502 Name:<br>
+ID:28050503 Name:<br>
+ID:28050504 Name:<br>
+ID:28050505 Name:<br>
+ID:28050506 Name:<br>
+ID:28050507 Name:<br>
+ID:28050508 Name:<br>
+ID:28050509 Name:<br>
+ID:28050510 Name:<br>
+ID:28050511 Name:<br>
+ID:28050512 Name:<br>
+ID:28050701 Name:<br>
+ID:28060101 Name:<br>
+ID:28060102 Name:<br>
+ID:28060103 Name:<br>
+ID:28060201 Name:<br>
+ID:28060202 Name:<br>
+ID:28060203 Name:<br>
+ID:28060301 Name:<br>
+ID:28060302 Name:<br>
+ID:28060401 Name:<br>
+ID:28060402 Name:<br>
+ID:28060501 Name:<br>
+ID:28060502 Name:<br>
+ID:28060503 Name:<br>
+ID:28060504 Name:<br>
+ID:28060505 Name:<br>
+ID:28060506 Name:<br>
+ID:28060509 Name:<br>
+ID:28060510 Name:<br>
+ID:28060511 Name:<br>
+ID:28060512 Name:<br>
+ID:28060513 Name:<br>
+ID:28060601 Name:<br>
+ID:28060602 Name:<br>
+ID:28060603 Name:<br>
+ID:28060604 Name:<br>
+ID:28060605 Name:<br>
+ID:28060606 Name:<br>
+ID:28060609 Name:<br>
+ID:28060610 Name:<br>
+ID:28060611 Name:<br>
+ID:28060612 Name:<br>
+ID:28060613 Name:<br>
+ID:28060614 Name:<br>
+ID:28060701 Name:<br>
+ID:28060801 Name:<br>
+ID:28060901 Name:<br>
+ID:28061001 Name:<br>
+ID:28061002 Name:<br>
+ID:28061101 Name:<br>
+ID:28061201 Name:<br>
+ID:28061301 Name:<br>
+ID:28061401 Name:<br>
+ID:28061402 Name:<br>
+ID:28061501 Name:<br>
+ID:28061502 Name:<br>
+ID:28070101 Name:<br>
+ID:28070102 Name:<br>
+ID:28070201 Name:<br>
+ID:28070301 Name:<br>
+ID:28070302 Name:<br>
+ID:28070401 Name:<br>
+ID:28070402 Name:<br>
+ID:28070601 Name:<br>
+ID:28210101 Name:Domestic Golden Crab<br>
+ID:28210102 Name:Domestic Sun Crab<br>
+ID:28210103 Name:Domestic Ocean Crab<br>
+ID:28210104 Name:Domestic General Crab<br>
+ID:28210105 Name:Domestic Pale Red Crab<br>
+ID:28210201 Name:Domestic Blue Horned Lizard<br>
+ID:28210202 Name:Domestic Red Horned Lizard<br>
+ID:28210203 Name:Domestic Green Horned Lizard<br>
+ID:28210204 Name:Domestic Sunset Loach<br>
+ID:28210205 Name:Domestic Golden Loach<br>
+ID:28210206 Name:Domestic Sunny Loach<br>
+ID:28210207 Name:Domestic Marrow Lizard<br>
+ID:28210208 Name:<br>
+ID:28210301 Name:Domestic Frog<br>
+ID:28210302 Name:Domestic Mud Frog<br>
+ID:28210303 Name:Domestic Blue Frog<br>
+ID:28210304 Name:<br>
+ID:28210401 Name:Domestic Adorned Unagi<br>
+ID:28210402 Name:<br>
+ID:28210403 Name:Domestic Red-Finned Unagi<br>
+ID:28210404 Name:<br>
+ID:28220101 Name:Domestic Snow Fox<br>
+ID:28220102 Name:Domestic Crimson Fox<br>
+ID:28220108 Name:<br>
+ID:28220201 Name:Domestic Squirrel<br>
+ID:28220301 Name:Domestic Forest Boar<br>
+ID:28220303 Name:Domestic Snowboar<br>
+ID:28220313 Name:<br>
+ID:28220314 Name:<br>
+ID:28220401 Name:Domestic Northland Hound<br>
+ID:28220402 Name:Domestic Forest-Patrol Hound<br>
+ID:28220403 Name:Domestic Shiba<br>
+ID:28220404 Name:Domestic Black-Back Hound<br>
+ID:28220405 Name:<br>
+ID:28220406 Name:<br>
+ID:28220407 Name:<br>
+ID:28220501 Name:Domestic Sapphire<br>
+ID:28220502 Name:Domestic Jade-Eyed Cat<br>
+ID:28220503 Name:Domestic Gray Snow Cat<br>
+ID:28220504 Name:Domestic Northland Cat<br>
+ID:28220505 Name:Domestic Tiger-Striped Cat<br>
+ID:28220506 Name:Domestic Sheriff Cat<br>
+ID:28220601 Name:Domestic Snow Weasel<br>
+ID:28220602 Name:Domestic Red-Tailed Weasel<br>
+ID:28220603 Name:Domestic Boot Weasel<br>
+ID:28220604 Name:<br>
+ID:28220605 Name:<br>
+ID:28220701 Name:Domestic Kitsune<br>
+ID:28220901 Name:Domestic Samurai Dog<br>
+ID:28230101 Name:Domestic Azure Crane<br>
+ID:28230102 Name:Domestic Violet Ibis<br>
+ID:28230104 Name:<br>
+ID:28230301 Name:Domestic White Pigeon<br>
+ID:28230302 Name:Domestic Brightcrown Pigeon<br>
+ID:28230303 Name:Domestic Graywing Pigeon<br>
+ID:28230304 Name:Domestic Crimsonflank Pigeon<br>
+ID:28230305 Name:Domestic Black King Pigeon<br>
+ID:28230306 Name:Domestic Crow<br>
+ID:28230313 Name:<br>
+ID:28230401 Name:Domestic Crimson Finch<br>
+ID:28230402 Name:Domestic Golden Finch<br>
+ID:28230403 Name:Domestic Snow Finch<br>
+ID:28230404 Name:Domestic Emerald Finch<br>
+ID:28230601 Name:<br>
+ID:28230602 Name:<br>
+ID:28230701 Name:<br>
+ID:28230702 Name:<br>
+ID:28230703 Name:<br>
+ID:28230704 Name:<br>
+ID:28230705 Name:<br>
+ID:28230706 Name:<br>
+ID:28230707 Name:<br>
+ID:28230708 Name:<br>
+ID:28240201 Name:Domestic Medaka<br>
+ID:28240202 Name:Domestic Glaze Medaka<br>
+ID:28240203 Name:Domestic Sweet-Flower Medaka<br>
+ID:28240204 Name:Domestic Aizen Medaka<br>
+ID:28240205 Name:Domestic Dawncatcher<br>
+ID:28240206 Name:Domestic Crystalfish<br>
+ID:28240301 Name:Domestic Lunged Stickleback<br>
+ID:28240302 Name:Domestic Betta<br>
+ID:28240303 Name:Domestic Venomspine Fish<br>
+ID:28240304 Name:Domestic Akai Maou<br>
+ID:28240305 Name:Domestic Snowstrider<br>
+ID:28240401 Name:Domestic Golden Koi<br>
+ID:28240402 Name:Domestic Rusty Koi<br>
+ID:28240501 Name:Domestic Brown Shirakodai<br>
+ID:28240502 Name:Domestic Purple Shirakodai<br>
+ID:28240503 Name:Domestic Tea-Colored Shirakodai<br>
+ID:28240504 Name:Domestic Abiding Angelfish<br>
+ID:28240505 Name:Domestic Raimei Angelfish<br>
+ID:28240506 Name:Domestic Moonfin<br>
+ID:28240601 Name:Domestic Pufferfish<br>
+ID:28240602 Name:Domestic Bitter Pufferfish<br>
+ID:28240701 Name:<br>
+ID:28240702 Name:<br>
+ID:28240801 Name:<br>
+ID:28240802 Name:<br>
+ID:28240803 Name:<br>
+ID:28240804 Name:<br>
+ID:28240901 Name:<br>
+ID:28240902 Name:<br>
+ID:28240903 Name:<br>
+ID:28241001 Name:<br>
+ID:28241002 Name:<br>
+ID:28241101 Name:<br>
+ID:28241102 Name:<br>
+ID:28241103 Name:<br>
+ID:28241104 Name:<br>
+ID:28241105 Name:<br>
+ID:28250101 Name:Domestic Anemo Crystalfly<br>
+ID:28250102 Name:Domestic Geo Crystalfly<br>
+ID:28250103 Name:Domestic Cryo Crystalfly<br>
+ID:28250104 Name:Domestic Electro Crystalfly<br>
+ID:28250105 Name:<br>
+ID:28250106 Name:<br>
+ID:28250107 Name:<br>
+ID:28250301 Name:<br>
+ID:28250401 Name:<br>
+ID:28250701 Name:<br>
+ID:29010101 Name:Stormterror Dvalin<br>
+ID:29010102 Name:Stormterror Dvalin<br>
+ID:29010103 Name:Stormterror<br>
+ID:29010104 Name:Stormterror Dvalin<br>
+ID:29020101 Name:Boreas of North Wind<br>
+ID:29020102 Name:Andrius, Dominator of Wolves<br>
+ID:29030101 Name:ผู้บริหารอันดับที่สิบเอ็ดของ Fatui - Childe<br>
+ID:29030102 Name:Delusion Unleashed - Childe<br>
+ID:29030103 Name:Childe<br>
+ID:29030104 Name:ผู้บริหารอันดับที่สิบเอ็ดของ Fatui - Childe<br>
+ID:29030105 Name:Delusion Unleashed - Childe<br>
+ID:29030106 Name:Childe<br>
+ID:29040101 Name:Azhdaha<br>
+ID:29040102 Name:Azhdaha<br>
+ID:29040103 Name:Azhdaha<br>
+ID:29040104 Name:Azhdaha<br>
+ID:29040111 Name:Azhdaha<br>
+ID:29050101 Name:Signora<br>
+ID:29050102 Name:Crimson Witch of Embers<br>
+ID:29050103 Name:Signora<br>
+ID:29050104 Name:Crimson Witch of Embers<br>
+ID:29060101 Name:Raiden Shogun<br>
+ID:29060102 Name:Raiden Ei<br>
+ID:29060201 Name:Magatsu Mitake Narukami no Mikoto<br>
+ID:29060202 Name:Magatsu Mitake Narukami no Mikoto<br>
+ID:29060203 Name:Magatsu Mitake Narukami no Mikoto<br>
+ID:29070101 Name:Shouki no Kami<br>
+ID:29070102 Name:Shouki no Kami<br>
+ID:29070103 Name:Shouki no Kami<br>
+ID:29070104 Name:Shouki no Kami<br>
+ID:29070105 Name:Shouki no Kami<br>
+ID:29070106 Name:Shouki no Kami<br>
+ID:29080101 Name:ผู้พิทักษ์โอเอซิสของ Apep<br>
+ID:29080102 Name:ผู้พิทักษ์โอเอซิสของ Apep<br>
+ID:29080103 Name:ผู้พิทักษ์โอเอซิสของ Apep<br>
+ID:29080104 Name:ผู้พิทักษ์โอเอซิสของ Apep<br>
+ID:29080201 Name:สิ่งมีชีวิตที่สามารถเพิ่มจำนวนได้อย่างรวดเร็วร่างพื้นฐาน<br>
+ID:29080202 Name:สิ่งมีชีวิตที่สามารถเพิ่มจำนวนได้อย่างรวดเร็วร่างพื้นฐาน<br>
+ID:29080301 Name:สิ่งมีชีวิตที่สามารถเพิ่มจำนวนได้อย่างรวดเร็วร่างนักล่า<br>
+ID:29080302 Name:สิ่งมีชีวิตที่สามารถเพิ่มจำนวนได้อย่างรวดเร็วร่างนักล่า<br>
+ID:29080401 Name:สิ่งมีชีวิตที่สามารถเพิ่มจำนวนได้อย่างรวดเร็วร่างผู้พิทักษ์<br>
+ID:29080501 Name:สิ่งมีชีวิตที่สามารถเพิ่มจำนวนได้อย่างรวดเร็วร่างผู้เพาะเลี้ยง<br>
+ID:29080601 Name:สิ่งมีชีวิตที่สามารถเพิ่มจำนวนได้อย่างรวดเร็วร่างจอมทำลาย<br>
+ID:29080701 Name:สิ่งมีชีวิตที่สามารถเพิ่มจำนวนได้อย่างรวดเร็วร่างผู้สร้างรัง<br>
+ID:29080702 Name:สิ่งมีชีวิตที่สามารถเพิ่มจำนวนได้อย่างรวดเร็วร่างผู้สร้างรัง<br>
+ID:29090101 Name:All-Devouring Narwhal<br>
+ID:29090102 Name:All-Devouring Narwhal<br>
+ID:29090201 Name:<br>
+ID:29090202 Name:<br>
+ID:29090304 Name:<br>
+ID:30050501 Name:Hydro Mimic Finch<br>
+ID:30050601 Name:Hydro Mimic Mallard<br>
+ID:30050701 Name:Hydro Mimic Squirrel<br>
+ID:31040101 Name:Anemo Hilichurl Rogue<br>
+ID:32110201 Name:Shatterstone Breacher Primus<br>
+ID:34060101 Name:จักรกลสอดแนม - สสาร<br>
+ID:34060102 Name:จักรกลสอดแนม - สสาร<br>
+ID:34060901 Name:จักรกลปราบปราม - สสาร<br>
+ID:35010201 Name:กองโจรล่าสมบัติ - Scout<br>
+ID:35010202 Name:กองโจรล่าสมบัติ - Scout<br>
+ID:35010203 Name:กองโจรล่าสมบัติ - Scout<br>
+ID:35010602 Name:กองโจรล่าสมบัติ - Cryo Potioneer<br>
+ID:35020201 Name:กองโจรล่าสมบัติ - Marksman<br>
+ID:35020202 Name:กองโจรล่าสมบัติ - Marksman<br>
+ID:35060101 Name:กองโจรล่าสมบัติ - Pugilist<br>
+ID:35060102 Name:กองโจรล่าสมบัติ - Pugilist<br>
+ID:35060103 Name:กองโจรล่าสมบัติ - Pugilist<br>
+ID:35110101 Name:Spirit of Omen: Stone Drake<br>
+ID:35110102 Name:Spirit of Omen: Stone Drake<br>
+ID:35110103 Name:Spirit of Omen: Stone Drake<br>
+ID:35110201 Name:Spirit of Omen: Wind Glede<br>
+ID:35110301 Name:Spirit of Omen: Pyro Scorpion<br>
+ID:35210101 Name:Eremite Axe Vanguard<br>
+ID:35210102 Name:Eremite Axe Vanguard<br>
+ID:35210103 Name:Eremite Axe Vanguard<br>
+ID:35210104 Name:Eremite Axe Vanguard<br>
+ID:35210201 Name:Eremite Crossbow<br>
+ID:35210202 Name:Eremite Crossbow<br>
+ID:35210203 Name:Eremite Crossbow<br>
+ID:35210301 Name:Eremite Ravenbeak Halberdier<br>
+ID:35210302 Name:Eremite Ravenbeak Halberdier<br>
+ID:35210303 Name:Eremite Ravenbeak Halberdier<br>
+ID:35210304 Name:Eremite Ravenbeak Halberdier<br>
+ID:35210401 Name:Eremite Linebreaker<br>
+ID:35210402 Name:Eremite Linebreaker<br>
+ID:35210501 Name:Eremite Sword-Dancer<br>
+ID:35210502 Name:Eremite Sword-Dancer<br>
+ID:35310101 Name:Eremite Desert Clearwater<br>
+ID:35310301 Name:Eremite Daythunder<br>
+ID:35410101 Name:Eremite Stone Enchanter<br>
+ID:35410201 Name:Eremite Galehunter<br>
+ID:36050601 Name:Primordial Bathysmal Vishap<br>
+ID:36090190 Name:Floating Hydro Fungus<br>
+ID:36090191 Name:Floating Hydro Fungus<br>
+ID:36090192 Name:Floating Hydro Fungus<br>
+ID:36090290 Name:Floating Dendro Fungus<br>
+ID:36090291 Name:Floating Dendro Fungus<br>
+ID:36090292 Name:Floating Dendro Fungus<br>
+ID:36090390 Name:Floating Anemo Fungus<br>
+ID:36090391 Name:Floating Anemo Fungus<br>
+ID:36090392 Name:Floating Anemo Fungus<br>
+ID:36090490 Name:Whirling Electro Fungus<br>
+ID:36090491 Name:Whirling Electro Fungus<br>
+ID:36090492 Name:Whirling Electro Fungus<br>
+ID:36090590 Name:Whirling Cryo Fungus<br>
+ID:36090591 Name:Whirling Cryo Fungus<br>
+ID:36090592 Name:Whirling Cryo Fungus<br>
+ID:36090690 Name:Whirling Pyro Fungus<br>
+ID:36090691 Name:Whirling Pyro Fungus<br>
+ID:36090692 Name:Whirling Pyro Fungus<br>
+ID:36090790 Name:Stretchy Pyro Fungus<br>
+ID:36090791 Name:Stretchy Pyro Fungus<br>
+ID:36090792 Name:Stretchy Pyro Fungus<br>
+ID:36090890 Name:Stretchy Anemo Fungus<br>
+ID:36090891 Name:Stretchy Anemo Fungus<br>
+ID:36090892 Name:Stretchy Anemo Fungus<br>
+ID:36090990 Name:Stretchy Geo Fungus<br>
+ID:36090991 Name:Stretchy Geo Fungus<br>
+ID:36090992 Name:Stretchy Geo Fungus<br>
+ID:36091090 Name:Stretchy Electro Fungus<br>
+ID:36091091 Name:Stretchy Electro Fungus<br>
+ID:36091092 Name:Stretchy Electro Fungus<br>
+ID:38050590 Name:<br>
+ID:38050591 Name:<br>

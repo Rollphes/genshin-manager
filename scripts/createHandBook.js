@@ -6,12 +6,16 @@ const {
 } = require('../dist/models/character/CharacterCostume.js')
 const { CharacterSkill } = require('../dist/models/character/CharacterSkill.js')
 const {
+  CharacterInherentSkill,
+} = require('../dist/models/character/CharacterInherentSkill.js')
+const {
   CharacterConstellation,
 } = require('../dist/models/character/CharacterConstellation.js')
 const { Artifact } = require('../dist/models/Artifact.js')
 const { Material } = require('../dist/models/Material.js')
 const { Weapon } = require('../dist/models/weapon/Weapon.js')
 const readline = require('readline')
+const { Monster } = require('../dist/models/Monster.js')
 
 const rl = readline.createInterface({
   input: process.stdin,
@@ -45,9 +49,7 @@ async function main() {
     for (const lang of client.option.downloadLanguages) {
       await client.changeLanguage(lang)
       const filePath = `./handbooks/handbook_${lang}.md`
-      console.log(
-        `HandBook is being created... (Language: ${lang})`,
-      )
+      console.log(`HandBook is being created... (Language: ${lang})`)
       //write version
       fs.writeFileSync(filePath, `# GameVersion ${answer}\n`, {
         encoding: 'utf-8',
@@ -57,20 +59,14 @@ async function main() {
       fs.appendFileSync(filePath, `## CharacterId\n`)
       CharacterInfo.getAllCharacterIds().forEach((id) => {
         const characterInfo = new CharacterInfo(id)
-        fs.appendFileSync(
-          filePath,
-          `ID:${id} Name:${characterInfo.name}<br>\n`,
-        )
+        fs.appendFileSync(filePath, `ID:${id} Name:${characterInfo.name}<br>\n`)
       })
 
       //write costumeId
       fs.appendFileSync(filePath, `## CostumeId\n`)
       CharacterCostume.getAllCostumeIds().forEach((id) => {
         const costume = new CharacterCostume(id)
-        fs.appendFileSync(
-          filePath,
-          `ID:${id} Name:${costume.name}<br>\n`,
-        )
+        fs.appendFileSync(filePath, `ID:${id} Name:${costume.name}<br>\n`)
       })
 
       //write skillId
@@ -80,24 +76,25 @@ async function main() {
         fs.appendFileSync(filePath, `ID:${id} Name:${skill.name}<br>\n`)
       })
 
+      //write inherentSkillId
+      fs.appendFileSync(filePath, `## InherentSkillId\n`)
+      CharacterInherentSkill.getAllInherentSkillIds().forEach((id) => {
+        const inherentSkill = new CharacterInherentSkill(id)
+        fs.appendFileSync(filePath, `ID:${id} Name:${inherentSkill.name}<br>\n`)
+      })
+
       //write constellationId
       fs.appendFileSync(filePath, `## ConstellationId\n`)
       CharacterConstellation.getAllConstellationIds().forEach((id) => {
         const constellation = new CharacterConstellation(id)
-        fs.appendFileSync(
-          filePath,
-          `ID:${id} Name:${constellation.name}<br>\n`,
-        )
+        fs.appendFileSync(filePath, `ID:${id} Name:${constellation.name}<br>\n`)
       })
 
       //write artifactId
       fs.appendFileSync(filePath, `## ArtifactId\n`)
       Artifact.getAllArtifactIds().forEach((id) => {
         const artifact = new Artifact(id, 10001)
-        fs.appendFileSync(
-          filePath,
-          `ID:${id} Name:${artifact.name}<br>\n`,
-        )
+        fs.appendFileSync(filePath, `ID:${id} Name:${artifact.name}<br>\n`)
       })
 
       //write weaponId
@@ -111,9 +108,16 @@ async function main() {
       fs.appendFileSync(filePath, `## MaterialId\n`)
       Material.getAllMaterialIds().forEach((id) => {
         const material = new Material(id)
+        fs.appendFileSync(filePath, `ID:${id} Name:${material.name}<br>\n`)
+      })
+
+      //write monsterId
+      fs.appendFileSync(filePath, `## MonsterId\n`)
+      Monster.getAllMonsterIds().forEach((id) => {
+        const monster = new Monster(id)
         fs.appendFileSync(
           filePath,
-          `ID:${id} Name:${material.name}<br>\n`,
+          `ID:${id} Name:${monster.name || monster.describeName}<br>\n`,
         )
       })
 
