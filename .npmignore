@@ -3,12 +3,10 @@
 /cache
 /dist/test
 /src/test
+/handbooks
 /.vscode
 /.github
 
-
-sourceCode.zip
-sourceCode.tar.gz
 .eslintrc.json
 .eslintignore
 .gitignore
