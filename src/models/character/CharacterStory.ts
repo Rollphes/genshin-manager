@@ -5,7 +5,7 @@ import { Client } from '@/client/Client'
  */
 export class CharacterStory {
   /**
-   * fetter ID
+   * fetter ID in the story
    */
   public readonly fetterId: number
   /**
