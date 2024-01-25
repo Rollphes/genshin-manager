@@ -96,27 +96,18 @@ async function main() {
       break
     case 'Image':
       console.log('Running test of Image...')
-      console.log('Skip images supported by EnkaNetwork...')
+      const artifactIds = await Artifact.getAllArtifactIds()
+      for (const id of artifactIds) {
+        const artifact = new Artifact(id, 10001)
+        await artifact.icon.fetchBuffer().catch((e) => console.log(e))
+      }
+
       const materialIds = await Material.getAllMaterialIds()
       for (const id of materialIds) {
         const material = new Material(id)
-        try {
-          await material.icon.fetchBuffer()
-          for (const img of material.pictures) {
-            await img.fetchBuffer()
-          }
-        } catch (e) {
-          console.log(e)
-        }
-      }
-
-      const towerScheduleIds = await TowerSchedule.getAllTowerScheduleIds()
-      for (const id of towerScheduleIds) {
-        const towerSchedule = new TowerSchedule(id)
-        try {
-          await towerSchedule.icon.fetchBuffer()
-        } catch (e) {
-          console.log(e)
+        await material.icon.fetchBuffer()
+        for (const img of material.pictures) {
+          await img.fetchBuffer().catch((e) => console.log(e))
         }
       }
 
@@ -124,31 +115,57 @@ async function main() {
       for (const id of monsterIds) {
         const monster = new Monster(id)
         if (monster.icon === undefined) continue
-        try {
-          await monster.icon.fetchBuffer()
-        } catch (e) {
-          console.log(e)
-        }
-      }
-
-      const towerFloorIds = await TowerFloor.getAllTowerFloorIds()
-      for (const id of towerFloorIds) {
-        const towerFloor = new TowerFloor(id)
-        try {
-          await towerFloor.bgImage.fetchBuffer()
-        } catch (e) {
-          console.log(e)
-        }
+        await monster.icon.fetchBuffer().catch((e) => console.log(e))
       }
 
       const profilePictureIds = await ProfilePicture.getAllProfilePictureIds()
       for (const id of profilePictureIds) {
         const profilePicture = new ProfilePicture(id)
-        try {
-          await profilePicture.icon.fetchBuffer()
-        } catch (e) {
-          console.log(e)
-        }
+        await profilePicture.icon.fetchBuffer().catch((e) => console.log(e))
+      }
+
+      const constellationIds = await CharacterConstellation.getAllConstellationIds()
+      for (const id of constellationIds) {
+        const constellation = new CharacterConstellation(id)
+        await constellation.icon.fetchBuffer().catch((e) => console.log(e))
+      }
+
+      const costumeIds = await CharacterCostume.getAllCostumeIds()
+      for (const id of costumeIds) {
+        const costume = new CharacterCostume(id)
+        await costume.sideIcon.fetchBuffer().catch((e) => console.log(e))
+        await costume.icon.fetchBuffer().catch((e) => console.log(e))
+        await costume.art.fetchBuffer().catch((e) => console.log(e))
+      }
+
+      const inherentSkillIds = await CharacterInherentSkill.getAllInherentSkillIds()
+      for (const id of inherentSkillIds) {
+        const inherentSkill = new CharacterInherentSkill(id)
+        await inherentSkill.icon.fetchBuffer().catch((e) => console.log(e))
+      }
+
+      const skillIds = await CharacterSkill.getAllSkillIds()
+      for (const id of skillIds) {
+        const skill = new CharacterSkill(id)
+        await skill.icon.fetchBuffer().catch((e) => console.log(e))
+      }
+
+      const towerFloorIds = await TowerFloor.getAllTowerFloorIds()
+      for (const id of towerFloorIds) {
+        const towerFloor = new TowerFloor(id)
+        await towerFloor.bgImage.fetchBuffer().catch((e) => console.log(e))
+      }
+
+      const towerScheduleIds = await TowerSchedule.getAllTowerScheduleIds()
+      for (const id of towerScheduleIds) {
+        const towerSchedule = new TowerSchedule(id)
+        await towerSchedule.icon.fetchBuffer().catch((e) => console.log(e))
+      }
+
+      const weaponIds = await Weapon.getAllWeaponIds()
+      for (const id of weaponIds) {
+        const weapon = new Weapon(id)
+        await weapon.icon.fetchBuffer().catch((e) => console.log(e))
       }
 
       console.log('Image test passed!')
