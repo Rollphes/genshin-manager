@@ -175,12 +175,14 @@ async function main() {
     case 'Audio':
       console.log('Running test of Audio...')
       const voiceIds = await CharacterVoice.getAllFetterIds()
-      for (const cv of ['JP', 'EN', 'CHS', 'KR']) {
-        for (const id of voiceIds) {
-          const voice = new CharacterVoice(id, cv)
-          await voice.audio.fetchBuffer().catch((e) => console.log(e))
-        }
-      }
+      await Promise.all(
+        ['JP', 'EN', 'CHS', 'KR'].map(async (cv) => {
+          for (const id of voiceIds) {
+            const voice = new CharacterVoice(id, cv)
+            await voice.audio.fetchBuffer().catch((e) => console.log(e))
+          }
+        }),
+      )
       console.log('Audio test passed!')
       break
   }
