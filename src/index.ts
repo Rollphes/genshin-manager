@@ -89,7 +89,6 @@ export {
   Weapon,
   WeaponAscension,
   WeaponRefinement,
-  ClientOption,
   StatProperty,
   TowerFloor,
   TowerLevel,
@@ -102,6 +101,7 @@ export {
 }
 export { convertToUTC }
 export {
+  ClientOption,
   EnkaData,
   Element,
   ArtifactType,
