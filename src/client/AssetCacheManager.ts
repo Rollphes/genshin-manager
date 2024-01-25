@@ -69,7 +69,7 @@ export abstract class AssetCacheManager {
       'AvatarPromoteExcelConfigData',
       'AvatarCurveExcelConfigData',
     ],
-    CharacterStories: ['FetterStoryExcelConfigData'],
+    CharacterStory: ['FetterStoryExcelConfigData'],
     CharacterAscension: [
       'AvatarExcelConfigData',
       'AvatarPromoteExcelConfigData',
