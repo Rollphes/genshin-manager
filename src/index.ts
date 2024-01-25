@@ -21,7 +21,7 @@ import { CharacterInherentSkill } from '@/models/character/CharacterInherentSkil
 import { CharacterProfile } from '@/models/character/CharacterProfile'
 import { CharacterSkill } from '@/models/character/CharacterSkill'
 import { CharacterStatus } from '@/models/character/CharacterStatus'
-import { CharacterStories } from '@/models/character/CharacterStories'
+import { CharacterStory } from '@/models/character/CharacterStory'
 import { DailyFarming } from '@/models/DailyFarming'
 import { AvatarInfo } from '@/models/enka/AvatarInfo'
 import { PlayerInfo } from '@/models/enka/PlayerInfo'
@@ -71,7 +71,7 @@ export {
   AudioAssets,
   ImageAssets,
   CharacterInfo,
-  CharacterStories,
+  CharacterStory,
   CharacterAscension,
   CharacterStatus,
   CharacterCostume,
