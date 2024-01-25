@@ -1,5 +1,4 @@
 const { Client } = require('../dist/client/Client.js')
-const fs = require('fs')
 
 const downloadLanguage = process.env.npm_config_download_language
 const nocache = process.env.npm_config_nocache
