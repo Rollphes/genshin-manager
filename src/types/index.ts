@@ -31,7 +31,7 @@ export interface ClientOption {
    */
   defaultImageBaseUrl: string
   /**
-   * default Audio base url
+   * default audio base url
    * @default 'https://api.ambr.top/assets/Audio'
    */
   defaultAudioBaseUrl: string
