@@ -1,9 +1,10 @@
 import { Client } from '@/client/Client'
 import { OutOfRangeError } from '@/errors/OutOfRangeError'
 import { ImageAssets } from '@/models/assets/ImageAssets'
-import { FightPropType, StatProperty } from '@/models/StatProperty'
+import { StatProperty } from '@/models/StatProperty'
 import { WeaponAscension } from '@/models/weapon/WeaponAscension'
 import { WeaponRefinement } from '@/models/weapon/WeaponRefinement'
+import { FightPropType, WeaponType } from '@/types'
 import { calculatePromoteLevel } from '@/utils/calculatePromoteLevel'
 import { JsonObject } from '@/utils/JsonParser'
 
@@ -202,13 +203,3 @@ export class Weapon {
     return new StatProperty(weaponPropJson.propType as FightPropType, statValue)
   }
 }
-
-/**
- * Weapon type
- */
-export type WeaponType =
-  | 'WEAPON_BOW'
-  | 'WEAPON_CATALYST'
-  | 'WEAPON_CLAYMORE'
-  | 'WEAPON_POLE'
-  | 'WEAPON_SWORD_ONE_HAND'

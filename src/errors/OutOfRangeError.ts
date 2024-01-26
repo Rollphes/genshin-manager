@@ -1,5 +1,5 @@
 /**
- * Error thrown if the value is out of range.
+ * Error thrown if the value is out of range
  */
 export class OutOfRangeError extends Error {
   public readonly name: string

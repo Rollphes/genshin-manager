@@ -105,13 +105,14 @@ const client = new Client({ autoCacheImage: true })
 await client.deploy()
 ```
 
-Automatically fixes defects in TextMap when they occur.
+Automatically fixes defects in TextMap & ExcelBinOutput when they occur.
 
 ```js
 const { Client } = require('genshin-manager')
 
-// autoFixTextMap is true by default
-const client = new Client({ autoFixTextMap: true })
+// autoFixTextMap and autoFixExcelBin is true by default
+// but, if autoFetchLatestAssetsByCron is undefined, it is forced to false.
+const client = new Client({ autoFixTextMap: true, autoFixExcelBin: true })
 await client.deploy()
 ```
 

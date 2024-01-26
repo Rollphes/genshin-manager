@@ -31,18 +31,15 @@ export class Notice {
    */
   public $: CheerioAPI
   /**
-   * Notice type
-   * (1:event or 2:important)
+   * Notice type (1:event or 2:important)
    */
   public type: number
   /**
-   * Notice type label
-   * (event or important)
+   * Notice type label (event or important)
    */
   public typeLabel: string
   /**
-   * Notice tag
-   * (1:! 2:flag 3:star)
+   * Notice tag (1:! 2:flag 3:star)
    */
   public tag: number
   /**
@@ -51,12 +48,12 @@ export class Notice {
   public tagIcon: ImageAssets
   /**
    * Event start time
-   * If `undefined`, use getEventDuration()
+   * @description If `undefined`, use getEventDuration()
    */
   public eventStart: Date | undefined
   /**
    * Event end time
-   * If `undefined`, use getEventDuration()
+   * @description If `undefined`, use getEventDuration()
    */
   public eventEnd: Date | undefined
   /**
@@ -152,7 +149,7 @@ export class Notice {
 
   /**
    * Get the duration of the event
-   * However, this method should only be used when `eventStart` or `eventEnd` cannot be obtained
+   * @description However, this method should only be used when `eventStart` or `eventEnd` cannot be obtained
    * @returns Event duration
    */
   public getEventDuration(): string | undefined {

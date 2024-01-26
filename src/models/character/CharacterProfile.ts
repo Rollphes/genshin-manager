@@ -1,25 +1,5 @@
 import { Client } from '@/client/Client'
-
-interface CharacterVoice {
-  CH: string
-  JP: string
-  EN: string
-  KR: string
-}
-
-//TODO: If genshin does a major update, I'll update here.
-/**
- * Association type
- */
-export type AssocType =
-  | 'ASSOC_TYPE_FATUI'
-  | 'ASSOC_TYPE_FONTAINE'
-  | 'ASSOC_TYPE_INAZUMA'
-  | 'ASSOC_TYPE_LIYUE'
-  | 'ASSOC_TYPE_MAINACTOR'
-  | 'ASSOC_TYPE_MONDSTADT'
-  | 'ASSOC_TYPE_RANGER'
-  | 'ASSOC_TYPE_SUMERU'
+import { AssocType, CVType } from '@/types'
 
 /**
  * Class of character's profile
@@ -64,7 +44,7 @@ export class CharacterProfile {
   /**
    * Character Voice
    */
-  public readonly cv: CharacterVoice
+  public readonly cv: { [key in CVType]: string }
 
   /**
    * Create a Profile
@@ -111,7 +91,7 @@ export class CharacterProfile {
       ) || ''
     this.assocType = fetterInfoJson.avatarAssocType as AssocType
     this.cv = {
-      CH:
+      CHS:
         Client.cachedTextMap.get(String(fetterInfoJson.cvChineseTextMapHash)) ||
         '',
       JP:

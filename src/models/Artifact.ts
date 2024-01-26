@@ -1,7 +1,8 @@
 import { Client } from '@/client/Client'
 import { OutOfRangeError } from '@/errors/OutOfRangeError'
 import { ImageAssets } from '@/models/assets/ImageAssets'
-import { FightPropType, StatProperty } from '@/models/StatProperty'
+import { StatProperty } from '@/models/StatProperty'
+import { ArtifactType, FightPropType } from '@/types'
 import { JsonObject } from '@/utils/JsonParser'
 interface ArtifactAffixAppendProp {
   id: number
@@ -246,13 +247,3 @@ export class Artifact {
     })
   }
 }
-
-/**
- * Artifact type
- */
-export type ArtifactType =
-  | 'EQUIP_BRACER'
-  | 'EQUIP_NECKLACE'
-  | 'EQUIP_SHOES'
-  | 'EQUIP_RING'
-  | 'EQUIP_DRESS'

@@ -5,7 +5,6 @@ import Module from 'module'
 import * as path from 'path'
 import { pipeline } from 'stream/promises'
 
-import { Client } from '@/client/Client'
 import { AssetsNotFoundError } from '@/errors/AssetsNotFoundError'
 import { BodyNotFoundError } from '@/errors/BodyNotFoundError'
 import { TextMapFormatError } from '@/errors/TextMapFormatError'
@@ -70,7 +69,8 @@ export abstract class AssetCacheManager {
       'AvatarPromoteExcelConfigData',
       'AvatarCurveExcelConfigData',
     ],
-    CharacterStories: ['FetterStoryExcelConfigData'],
+    CharacterStory: ['FetterStoryExcelConfigData'],
+    CharacterVoice: ['FettersExcelConfigData'],
     CharacterAscension: [
       'AvatarExcelConfigData',
       'AvatarPromoteExcelConfigData',
@@ -134,6 +134,7 @@ export abstract class AssetCacheManager {
       'AvatarExcelConfigData',
       'MaterialExcelConfigData',
     ],
+    DailyFarming: ['DungeonEntryExcelConfigData'],
   }
 
   private static textHashList: Set<number> = new Set()
@@ -187,7 +188,7 @@ export abstract class AssetCacheManager {
     key: keyof typeof ExcelBinOutputs,
     id: string | number,
   ): JsonObject {
-    const excelBinOutput = Client.cachedExcelBinOutput.get(key)
+    const excelBinOutput = this.cachedExcelBinOutput.get(key)
     if (!excelBinOutput) throw new AssetsNotFoundError(key)
 
     const json = excelBinOutput.get(String(id)) as JsonObject | undefined
@@ -205,7 +206,7 @@ export abstract class AssetCacheManager {
   public static _getCachedExcelBinOutputByName(
     key: keyof typeof ExcelBinOutputs,
   ): { [key in string]: JsonObject } {
-    const excelBinOutput = Client.cachedExcelBinOutput.get(key)
+    const excelBinOutput = this.cachedExcelBinOutput.get(key)
     if (!excelBinOutput) throw new AssetsNotFoundError(key)
 
     return excelBinOutput.get() as { [key in string]: JsonObject }
@@ -220,7 +221,7 @@ export abstract class AssetCacheManager {
   public static _hasCachedExcelBinOutputByName(
     key: keyof typeof ExcelBinOutputs,
   ): boolean {
-    return Client.cachedExcelBinOutput.has(key)
+    return this.cachedExcelBinOutput.has(key)
   }
 
   /**
@@ -234,7 +235,7 @@ export abstract class AssetCacheManager {
     key: keyof typeof ExcelBinOutputs,
     id: string | number,
   ): boolean {
-    const excelBinOutput = Client.cachedExcelBinOutput.get(key)
+    const excelBinOutput = this.cachedExcelBinOutput.get(key)
     if (!excelBinOutput) return false
 
     const json = excelBinOutput.get(String(id)) as JsonObject | undefined
@@ -268,7 +269,7 @@ export abstract class AssetCacheManager {
     key: keyof typeof ExcelBinOutputs,
     textHashes: string[],
   ): string[] {
-    return Object.entries(Client._getCachedExcelBinOutputByName(key))
+    return Object.entries(this._getCachedExcelBinOutputByName(key))
       .filter(([, avatarData]) =>
         Object.keys(avatarData).some((key) => {
           if (/TextMapHash/g.exec(key)) {
@@ -288,7 +289,11 @@ export abstract class AssetCacheManager {
    * ```
    */
   protected static async updateCache(): Promise<void> {
-    if (await this.checkGitUpdate()) {
+    console.log('GenshinManager: Start update cache.')
+    if (
+      (await this.checkGitUpdate()) &&
+      this.option.autoFetchLatestAssetsByCron
+    ) {
       if (this.option.showFetchCacheLog)
         console.log('GenshinManager: New Assets found. Update Assets.')
       this.createExcelBinOutputKeyList()
@@ -296,7 +301,10 @@ export abstract class AssetCacheManager {
         this.excelBinOutputFolderPath,
         Object.values(ExcelBinOutputs),
       )
-      await this.setExcelBinOutputToCache()
+      if (await this.setExcelBinOutputToCache()) {
+        await this.updateCache()
+        return
+      }
       this.createTextHashList()
       const textMapFileNames = this.option.downloadLanguages.map(
         (key) => TextMapLanguage[key],
@@ -305,47 +313,88 @@ export abstract class AssetCacheManager {
       if (this.option.showFetchCacheLog)
         console.log('GenshinManager: Set cache.')
       this.createExcelBinOutputKeyList(this.childrenModule)
-      await this.setExcelBinOutputToCache()
+      if (await this.setExcelBinOutputToCache()) {
+        await this.updateCache()
+        return
+      }
       this.createTextHashList()
-      await this.setTextMapToCache(this.option.defaultLanguage)
+      if (await this.setTextMapToCache(this.option.defaultLanguage)) {
+        await this.updateCache()
+        return
+      }
     } else {
       if (this.option.showFetchCacheLog)
         console.log('GenshinManager: No new Asset found. Set cache.')
       this.createExcelBinOutputKeyList(this.childrenModule)
-      await this.setExcelBinOutputToCache()
+      if (await this.setExcelBinOutputToCache()) {
+        await this.updateCache()
+        return
+      }
       this.createTextHashList()
-      await this.setTextMapToCache(this.option.defaultLanguage)
+      if (await this.setTextMapToCache(this.option.defaultLanguage)) {
+        await this.updateCache()
+        return
+      }
     }
     if (this.option.showFetchCacheLog)
-      console.log('GenshinManager: finish update cache and set cache.')
+      console.log('GenshinManager: Finish update cache and set cache.')
   }
 
   /**
    * Set excel bin output to cache
+   * @returns Returns true if an error occurs
    */
-  protected static async setExcelBinOutputToCache(): Promise<void> {
+  protected static async setExcelBinOutputToCache(): Promise<boolean> {
     this.cachedExcelBinOutput.clear()
-    await Promise.all(
-      [...this.excelBinOutputKeyList].map(async (key) => {
-        const filename = ExcelBinOutputs[key]
-        const selectedExcelBinOutputPath = path.join(
-          this.excelBinOutputFolderPath,
-          filename,
-        )
-        let text = ''
-        const stream = fs.createReadStream(selectedExcelBinOutputPath, {
-          highWaterMark: 1 * 1024 * 1024,
-        })
-        stream.on('data', (chunk) => (text += chunk as string))
-        stream.on('error', (error) => console.error(error))
-        await new Promise<void>((resolve) => {
+    for (const key of this.excelBinOutputKeyList) {
+      const filename = ExcelBinOutputs[key]
+      const selectedExcelBinOutputPath = path.join(
+        this.excelBinOutputFolderPath,
+        filename,
+      )
+      let text = ''
+      if (!fs.existsSync(selectedExcelBinOutputPath)) {
+        if (this.option.autoFixExcelBin) {
+          if (this.option.showFetchCacheLog) {
+            console.log(
+              `GenshinManager: ${filename} not found. Re downloading...`,
+            )
+          }
+          await this.reDownloadAllExcelBinOutput()
+          return true
+        } else {
+          throw new AssetsNotFoundError(key)
+        }
+      }
+      const stream = fs.createReadStream(selectedExcelBinOutputPath, {
+        highWaterMark: 1 * 1024 * 1024,
+      })
+      stream.on('data', (chunk) => (text += chunk as string))
+      const setCachePromiseResult = await new Promise<void>(
+        (resolve, reject) => {
+          stream.on('error', () => reject())
           stream.on('end', () => {
             this.cachedExcelBinOutput.set(key, new JsonParser(text))
             resolve()
           })
-        })
-      }),
-    )
+        },
+      ).catch(async (error) => {
+        if (error instanceof SyntaxError) {
+          if (this.option.autoFixExcelBin) {
+            if (this.option.showFetchCacheLog) {
+              console.log(
+                `GenshinManager: ${filename} format error. Re downloading...`,
+              )
+            }
+            await this.reDownloadAllExcelBinOutput()
+            return true
+          } else {
+            throw error
+          }
+        }
+      })
+      if (setCachePromiseResult) return true
+    }
 
     const decoder = new ObjectKeyDecoder()
     this.cachedExcelBinOutput.forEach((v, k) => {
@@ -354,15 +403,17 @@ export abstract class AssetCacheManager {
         new JsonParser(JSON.stringify(decoder.execute(v, k))),
       )
     })
+    return false
   }
 
   /**
    * Change cached languages
    * @param language Country code
+   * @returns Returns true if an error occurs
    */
   protected static async setTextMapToCache(
     language: keyof typeof TextMapLanguage,
-  ): Promise<void> {
+  ): Promise<boolean> {
     //Since the timing of loading into the cache is the last, unnecessary cache is not loaded, and therefore clearing the cache is not necessary.
     const selectedTextMapPath = path.join(
       this.textMapFolderPath,
@@ -376,6 +427,7 @@ export abstract class AssetCacheManager {
           )
         }
         await this.reDownloadTextMap(language)
+        return true
       } else {
         throw new AssetsNotFoundError(language)
       }
@@ -387,7 +439,7 @@ export abstract class AssetCacheManager {
       this.cachedTextMap.set(key as string, value as string),
     )
 
-    await pipeline(
+    const pipelinePromiseResult = await pipeline(
       fs.createReadStream(selectedTextMapPath, {
         highWaterMark: 1 * 1024 * 1024,
       }),
@@ -398,15 +450,18 @@ export abstract class AssetCacheManager {
         if (this.option.autoFixTextMap) {
           if (this.option.showFetchCacheLog) {
             console.log(
-              'GenshinManager: TextMap format error. Re downloading...',
+              `GenshinManager: TextMap${language}.json format error. Re downloading...`,
             )
           }
           await this.reDownloadTextMap(language)
+          return true
         } else {
           throw error
         }
       }
     })
+    if (pipelinePromiseResult) return true
+    return false
   }
 
   /**
@@ -473,7 +528,7 @@ export abstract class AssetCacheManager {
    */
   private static createTextHashList(): void {
     this.textHashList.clear()
-    Client.cachedExcelBinOutput.forEach((excelBin) => {
+    this.cachedExcelBinOutput.forEach((excelBin) => {
       ;(Object.values(excelBin.get() as JsonObject) as JsonObject[]).forEach(
         (obj) => {
           Object.values(obj).forEach((value) => {
@@ -516,7 +571,17 @@ export abstract class AssetCacheManager {
     await this.setExcelBinOutputToCache()
     this.createTextHashList()
     await this.fetchAssetFolder(this.textMapFolderPath, [textMapFileName], true)
-    await Client.updateCache()
+  }
+
+  /**
+   * Re download all excel bin output
+   */
+  private static async reDownloadAllExcelBinOutput(): Promise<void> {
+    await this.fetchAssetFolder(
+      this.excelBinOutputFolderPath,
+      Object.values(ExcelBinOutputs),
+      true,
+    )
   }
 
   /**

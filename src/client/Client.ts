@@ -1,14 +1,15 @@
 import cron from 'node-cron'
 import path from 'path'
-import merge from 'ts-deepmerge'
+import { merge } from 'ts-deepmerge'
 
 import { AssetCacheManager } from '@/client/AssetCacheManager'
+import { AudioAssets } from '@/models/assets/AudioAssets'
 import { ImageAssets } from '@/models/assets/ImageAssets'
 import { ClientOption, TextMapLanguage } from '@/types'
 
 /**
  * Class of the client
- * This is the main body of `Genshin-Manager` where cache information is stored
+ * @description This is the main body of `Genshin-Manager` where cache information is stored
  */
 export class Client extends AssetCacheManager {
   public readonly option: ClientOption
@@ -40,6 +41,7 @@ export class Client extends AssetCacheManager {
         'CHS',
       ],
       defaultImageBaseUrl: 'https://api.ambr.top/assets/UI',
+      defaultAudioBaseUrl: 'https://api.ambr.top/assets/Audio',
       imageBaseUrlByRegex: {
         'https://enka.network/ui': [
           /^UI_(EquipIcon|NameCardPic|RelicIcon|AvatarIcon_Side|NameCardIcon|Costume)_/,
@@ -55,11 +57,14 @@ export class Client extends AssetCacheManager {
         ],
         'https://api.ambr.top/assets/UI/gcg': [/^UI_Gcg_CardFace_/],
       },
+      audioBaseUrlByRegex: {},
       defaultLanguage: 'EN',
       showFetchCacheLog: true,
       autoFetchLatestAssetsByCron: '0 0 0 * * 3', //Every Wednesday 00:00:00
       autoCacheImage: true,
+      autoCacheAudio: true,
       autoFixTextMap: true,
+      autoFixExcelBin: true,
       assetCacheFolderPath: path.resolve(__dirname, '..', '..', 'cache'),
     }
     const mergeOption = option
@@ -77,8 +82,10 @@ export class Client extends AssetCacheManager {
       ]
     }
 
-    if (!mergeOption.autoFetchLatestAssetsByCron)
+    if (!mergeOption.autoFetchLatestAssetsByCron) {
       mergeOption.autoFixTextMap = false
+      mergeOption.autoFixExcelBin = false
+    }
 
     if (!module.parent) throw new Error('module.parent is undefined.')
 
@@ -93,13 +100,17 @@ export class Client extends AssetCacheManager {
    * ```ts
    * const client = new Client()
    * await client.deploy()
-   * await Client.changeLanguage('JP')
+   * await client.changeLanguage('JP')
    * ```
    */
-  public static async changeLanguage(
+  public async changeLanguage(
     language: keyof typeof TextMapLanguage,
   ): Promise<void> {
-    await Client.setTextMapToCache(language)
+    if (await Client.setTextMapToCache(language)) {
+      this.option.autoFixTextMap = false
+      await Client.setTextMapToCache(language)
+      this.option.autoFixTextMap = true
+    }
   }
 
   /**
@@ -118,5 +129,6 @@ export class Client extends AssetCacheManager {
       })
     }
     ImageAssets.deploy(this.option)
+    AudioAssets.deploy(this.option)
   }
 }

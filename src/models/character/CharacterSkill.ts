@@ -34,7 +34,7 @@ export class CharacterSkill {
   public readonly extraLevel: number
   /**
    * Skill param description list
-   * (description|params)
+   * @returns (`${description}|${param}`)[]
    */
   public readonly paramDescList: string[] = []
 

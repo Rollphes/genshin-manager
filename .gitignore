@@ -10,10 +10,6 @@ yarn-error.log
 
 /.vscode
 
-!/lib/enkaManager/ui/UI_Gacha_AvatarImg_PlayerBoy.png
-
-!/lib/enkaManager/ui/UI_Gacha_AvatarImg_PlayerGirl.png
-
 package-lock.json
 
 yarn.lock
@@ -23,6 +19,3 @@ yarn.lock
 /src/test
 
 /dist
-
-sourceCode.zip
-sourceCode.tar.gz

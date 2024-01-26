@@ -1,5 +1,4 @@
 const { Client } = require('../dist/client/Client.js')
-const fs = require('fs')
 
 const downloadLanguage = process.env.npm_config_download_language
 const nocache = process.env.npm_config_nocache
@@ -38,7 +37,6 @@ async function main() {
   if (!getBool(nocache)) {
     const client = new Client({
       downloadLanguages: getLanguage(downloadLanguage),
-      autoFetchLatestAssetsByCron: undefined,
       defaultLanguage: getLanguage(downloadLanguage)[0],
       fetchOptions: {
         timeout: 0,
@@ -46,5 +44,6 @@ async function main() {
     })
     await client.deploy()
   }
+  process.exit(0)
 }
 void main()

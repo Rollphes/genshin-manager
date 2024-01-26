@@ -1,7 +1,8 @@
 import { Client } from '@/client/Client'
 import { OutOfRangeError } from '@/errors/OutOfRangeError'
 import { CharacterAscension } from '@/models/character/CharacterAscension'
-import { FightPropType, StatProperty } from '@/models/StatProperty'
+import { StatProperty } from '@/models/StatProperty'
+import { FightPropType } from '@/types'
 import { calculatePromoteLevel } from '@/utils/calculatePromoteLevel'
 import { JsonObject } from '@/utils/JsonParser'
 
