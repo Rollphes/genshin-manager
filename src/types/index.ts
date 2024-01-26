@@ -18,7 +18,7 @@ export interface ClientOption {
    */
   fetchOption: RequestInit
   /**
-   * download languages option
+   * List of TextMaps to download when new assets are found.
    * @default
    * ```ts
    * ['EN','RU','VI','TH','PT','KR','JP','ID','FR','ES','DE','CHT','CHS']
