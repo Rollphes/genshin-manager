@@ -1,4 +1,4 @@
-/example/**/*.js
+/examples/*.js
 /scripts/**/*.js
 /docs/
 /dist/
