@@ -57,63 +57,63 @@ async function main() {
 
       //write characterId
       fs.appendFileSync(filePath, `## CharacterId\n`)
-      CharacterInfo.getAllCharacterIds().forEach((id) => {
+      CharacterInfo.allCharacterIds.forEach((id) => {
         const characterInfo = new CharacterInfo(id)
         fs.appendFileSync(filePath, `ID:${id} Name:${characterInfo.name}<br>\n`)
       })
 
       //write costumeId
       fs.appendFileSync(filePath, `## CostumeId\n`)
-      CharacterCostume.getAllCostumeIds().forEach((id) => {
+      CharacterCostume.allCostumeIds.forEach((id) => {
         const costume = new CharacterCostume(id)
         fs.appendFileSync(filePath, `ID:${id} Name:${costume.name}<br>\n`)
       })
 
       //write skillId
       fs.appendFileSync(filePath, `## SkillId\n`)
-      CharacterSkill.getAllSkillIds().forEach((id) => {
+      CharacterSkill.allSkillIds.forEach((id) => {
         const skill = new CharacterSkill(id)
         fs.appendFileSync(filePath, `ID:${id} Name:${skill.name}<br>\n`)
       })
 
       //write inherentSkillId
       fs.appendFileSync(filePath, `## InherentSkillId\n`)
-      CharacterInherentSkill.getAllInherentSkillIds().forEach((id) => {
+      CharacterInherentSkill.allInherentSkillIds.forEach((id) => {
         const inherentSkill = new CharacterInherentSkill(id)
         fs.appendFileSync(filePath, `ID:${id} Name:${inherentSkill.name}<br>\n`)
       })
 
       //write constellationId
       fs.appendFileSync(filePath, `## ConstellationId\n`)
-      CharacterConstellation.getAllConstellationIds().forEach((id) => {
+      CharacterConstellation.allConstellationIds.forEach((id) => {
         const constellation = new CharacterConstellation(id)
         fs.appendFileSync(filePath, `ID:${id} Name:${constellation.name}<br>\n`)
       })
 
       //write artifactId
       fs.appendFileSync(filePath, `## ArtifactId\n`)
-      Artifact.getAllArtifactIds().forEach((id) => {
+      Artifact.allArtifactIds.forEach((id) => {
         const artifact = new Artifact(id, 10001)
         fs.appendFileSync(filePath, `ID:${id} Name:${artifact.name}<br>\n`)
       })
 
       //write weaponId
       fs.appendFileSync(filePath, `## WeaponId\n`)
-      Weapon.getAllWeaponIds().forEach((id) => {
+      Weapon.allWeaponIds.forEach((id) => {
         const weapon = new Weapon(id)
         fs.appendFileSync(filePath, `ID:${id} Name:${weapon.name}<br>\n`)
       })
 
       //write materialId
       fs.appendFileSync(filePath, `## MaterialId\n`)
-      Material.getAllMaterialIds().forEach((id) => {
+      Material.allMaterialIds.forEach((id) => {
         const material = new Material(id)
         fs.appendFileSync(filePath, `ID:${id} Name:${material.name}<br>\n`)
       })
 
       //write monsterId
       fs.appendFileSync(filePath, `## MonsterId\n`)
-      Monster.getAllMonsterIds().forEach((id) => {
+      Monster.allMonsterIds.forEach((id) => {
         const monster = new Monster(id)
         fs.appendFileSync(
           filePath,
