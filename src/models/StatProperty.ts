@@ -48,7 +48,7 @@ export class StatProperty {
    * Get multiplied value
    * @returns Multiplied value
    */
-  public getMultipliedValue(): number {
+  public get multipliedValue(): number {
     return this.cleanUp(this.value * (this.isPercent ? 100 : 1))
   }
 
