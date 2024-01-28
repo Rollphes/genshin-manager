@@ -7,6 +7,7 @@ import { CharacterSkill } from '@/models/character/CharacterSkill'
 import { CharacterStatusManager } from '@/models/character/CharacterStatusManager'
 import { SetBonus } from '@/models/SetBonus'
 import { Weapon } from '@/models/weapon/Weapon'
+import { BodyType, Element, WeaponType } from '@/types'
 import {
   APIAvatarInfo,
   APIReliquaryEquip,
@@ -16,7 +17,31 @@ import {
 /**
  * Class of the character obtained from EnkaNetwork
  */
-export class AvatarInfo extends CharacterInfo {
+export class AvatarInfo {
+  /**
+   * Character id
+   */
+  public readonly id: number
+  /**
+   * Character name
+   */
+  public readonly name: string
+  /**
+   * Character element
+   */
+  public readonly element: Element | undefined
+  /**
+   * Character rarity
+   */
+  public readonly rarity: number
+  /**
+   * Character body type
+   */
+  public readonly bodyType: BodyType
+  /**
+   * Character weapon type
+   */
+  public readonly weaponType: WeaponType
   /**
    * Character costume
    */
@@ -67,18 +92,26 @@ export class AvatarInfo extends CharacterInfo {
    * @param data Data from EnkaNetwork
    */
   constructor(data: APIAvatarInfo) {
-    super(data.avatarId, data.skillDepotId)
-    this.costume = new CharacterCostume(data.costumeId ?? this.defaultCostumeId)
+    const characterInfo = new CharacterInfo(data.avatarId, data.skillDepotId)
+    this.id = characterInfo.id
+    this.name = characterInfo.name
+    this.element = characterInfo.element
+    this.rarity = characterInfo.rarity
+    this.bodyType = characterInfo.bodyType
+    this.weaponType = characterInfo.weaponType
+    this.costume = new CharacterCostume(
+      data.costumeId ?? characterInfo.defaultCostumeId,
+    )
     this.level = +(data.propMap[4001].val || 0)
     this.levelXp = +(data.propMap[1001].val || 0)
     this.ascension = +(data.propMap[1002].val || 0)
     this.constellationList =
-      this.constellationIds.map((id) => {
+      characterInfo.constellationIds.map((id) => {
         return new CharacterConstellation(id, !data.talentIdList?.includes(id))
       }) || []
 
-    this.skills = this.skillOrder.map((id) => {
-      const proudId = this.proudMap.get(id)
+    this.skills = characterInfo.skillOrder.map((id) => {
+      const proudId = characterInfo.proudMap.get(id)
       const extraLevel =
         proudId && data.proudSkillExtraLevelMap
           ? data.proudSkillExtraLevelMap[proudId]
