@@ -152,7 +152,7 @@ export class Weapon {
    * Get all weapon IDs
    * @returns All weapon IDs
    */
-  public static getAllWeaponIds(): number[] {
+  public static get allWeaponIds(): number[] {
     const blackList = [
       10002, 10003, 10004, 10005, 10006, 10008, 11411, 11508, 12304, 12508,
       12509, 13304, 13503, 14306, 14411, 14508, 15306, 20001,

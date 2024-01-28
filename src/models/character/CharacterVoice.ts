@@ -85,7 +85,7 @@ export class CharacterVoice {
    * Get all Fetter IDs in the voice
    * @returns All Fetter IDs in the voice
    */
-  public static getAllFetterIds(): number[] {
+  public static get allFetterIds(): number[] {
     const fetterVoicesJson = Object.values(
       Client._getCachedExcelBinOutputByName('FettersExcelConfigData'),
     )

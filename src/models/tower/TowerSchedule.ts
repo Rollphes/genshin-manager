@@ -87,7 +87,7 @@ export class TowerSchedule {
    * Get all TowerSchedule IDs
    * @returns All TowerSchedule IDs
    */
-  public static getAllTowerScheduleIds(): number[] {
+  public static get allTowerScheduleIds(): number[] {
     const towerSchedules = Object.values(
       Client._getCachedExcelBinOutputByName('TowerScheduleExcelConfigData'),
     )

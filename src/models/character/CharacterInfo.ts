@@ -158,7 +158,7 @@ export class CharacterInfo {
    * Get all character IDs
    * @returns All character IDs
    */
-  public static getAllCharacterIds(): number[] {
+  public static get allCharacterIds(): number[] {
     const avatarDatas = Object.values(
       Client._getCachedExcelBinOutputByName('AvatarExcelConfigData'),
     )

@@ -94,8 +94,8 @@ export class CharacterSkill {
    * Get all skill IDs
    * @returns All skill IDs
    */
-  public static getAllSkillIds(): number[] {
-    const characterIds = CharacterInfo.getAllCharacterIds()
+  public static get allSkillIds(): number[] {
+    const characterIds = CharacterInfo.allCharacterIds
     return characterIds.flatMap((characterId) => {
       return new CharacterInfo(characterId).skillOrder
     })

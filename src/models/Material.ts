@@ -61,7 +61,7 @@ export class Material {
    * Get all material IDs
    * @returns All material IDs
    */
-  public static getAllMaterialIds(): number[] {
+  public static get allMaterialIds(): number[] {
     const materialDatas = Object.values(
       Client._getCachedExcelBinOutputByName('MaterialExcelConfigData'),
     )

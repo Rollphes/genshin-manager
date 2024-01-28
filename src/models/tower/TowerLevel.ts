@@ -76,7 +76,7 @@ export class TowerLevel {
    * Get all tower level IDs
    * @returns All tower level IDs
    */
-  public static getAllTowerLevelIds(): number[] {
+  public static get allTowerLevelIds(): number[] {
     const towerLevelDatas = Object.values(
       Client._getCachedExcelBinOutputByName('TowerLevelExcelConfigData'),
     )

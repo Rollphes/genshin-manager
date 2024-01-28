@@ -47,7 +47,7 @@ export class CharacterConstellation {
    * Get all constellation IDs
    * @returns All constellation IDs
    */
-  public static getAllConstellationIds(): number[] {
+  public static get allConstellationIds(): number[] {
     const talentDatas = Object.values(
       Client._getCachedExcelBinOutputByName('AvatarTalentExcelConfigData'),
     )

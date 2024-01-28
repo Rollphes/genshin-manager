@@ -158,7 +158,7 @@ export class Monster {
    * Get all monster IDs
    * @returns All monster IDs
    */
-  public static getAllMonsterIds(): number[] {
+  public static get allMonsterIds(): number[] {
     return Object.keys(
       Client._getCachedExcelBinOutputByName('MonsterExcelConfigData'),
     ).map((id) => Number(id))

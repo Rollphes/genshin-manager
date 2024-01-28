@@ -78,7 +78,7 @@ export class CharacterCostume {
    * Get all costume IDs
    * @returns All costume IDs
    */
-  public static getAllCostumeIds(): number[] {
+  public static get allCostumeIds(): number[] {
     const costumeDatas = Object.values(
       Client._getCachedExcelBinOutputByName('AvatarCostumeExcelConfigData'),
     )

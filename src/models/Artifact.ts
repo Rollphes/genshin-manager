@@ -196,7 +196,7 @@ export class Artifact {
    * Get all artifact IDs
    * @returns All artifact IDs
    */
-  public static getAllArtifactIds(): number[] {
+  public static get allArtifactIds(): number[] {
     const artifactDatas = Object.values(
       Client._getCachedExcelBinOutputByName('ReliquaryExcelConfigData'),
     )
