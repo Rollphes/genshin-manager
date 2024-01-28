@@ -4,7 +4,7 @@ import { CharacterConstellation } from '@/models/character/CharacterConstellatio
 import { CharacterCostume } from '@/models/character/CharacterCostume'
 import { CharacterInfo } from '@/models/character/CharacterInfo'
 import { CharacterSkill } from '@/models/character/CharacterSkill'
-import { FightProp } from '@/models/FightProp'
+import { CharacterStatusManager } from '@/models/character/CharacterStatusManager'
 import { SetBonus } from '@/models/SetBonus'
 import { Weapon } from '@/models/weapon/Weapon'
 import {
@@ -42,9 +42,9 @@ export class AvatarInfo extends CharacterInfo {
    */
   public readonly skills: CharacterSkill[]
   /**
-   * Character fight prop
+   * Character combat status
    */
-  public readonly fightProp: FightProp
+  public readonly combatStatus: CharacterStatusManager
   /**
    * Weapon equipped by Character
    */
@@ -86,7 +86,7 @@ export class AvatarInfo extends CharacterInfo {
       return new CharacterSkill(id, data.skillLevelMap[id] || 0, extraLevel)
     })
 
-    this.fightProp = new FightProp(data.fightPropMap)
+    this.combatStatus = new CharacterStatusManager(data.fightPropMap)
     const weaponData = data.equipList.find(
       (equip): equip is APIWeaponEquip => equip.flat.itemType === 'ITEM_WEAPON',
     )

@@ -61,9 +61,9 @@ export class Weapon {
    */
   public readonly rarity: number
   /**
-   * Weapon status
+   * Weapon stats
    */
-  public readonly status: StatProperty[]
+  public readonly stats: StatProperty[]
   /**
    * Whether the weapon is awakened
    */
@@ -130,7 +130,7 @@ export class Weapon {
 
     const weaponPropJsonArray = weaponJson.weaponProp as JsonObject[]
 
-    this.status = weaponPropJsonArray
+    this.stats = weaponPropJsonArray
       .map((weaponPropJson) => {
         if (!weaponPropJson.initValue || !weaponPropJson.propType) return
         return this.getStatPropertyByJson(

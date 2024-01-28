@@ -14,20 +14,20 @@ import { Artifact } from '@/models/Artifact'
 import { AudioAssets } from '@/models/assets/AudioAssets'
 import { ImageAssets } from '@/models/assets/ImageAssets'
 import { CharacterAscension } from '@/models/character/CharacterAscension'
+import { CharacterBaseStats } from '@/models/character/CharacterBaseStats'
 import { CharacterConstellation } from '@/models/character/CharacterConstellation'
 import { CharacterCostume } from '@/models/character/CharacterCostume'
 import { CharacterInfo } from '@/models/character/CharacterInfo'
 import { CharacterInherentSkill } from '@/models/character/CharacterInherentSkill'
 import { CharacterProfile } from '@/models/character/CharacterProfile'
 import { CharacterSkill } from '@/models/character/CharacterSkill'
-import { CharacterStatus } from '@/models/character/CharacterStatus'
+import { CharacterStatusManager } from '@/models/character/CharacterStatusManager'
 import { CharacterStory } from '@/models/character/CharacterStory'
 import { CharacterVoice } from '@/models/character/CharacterVoice'
 import { DailyFarming } from '@/models/DailyFarming'
 import { AvatarInfo } from '@/models/enka/AvatarInfo'
 import { PlayerInfo } from '@/models/enka/PlayerInfo'
 import { ShowAvatarInfo } from '@/models/enka/ShowAvatarInfo'
-import { FightProp } from '@/models/FightProp'
 import { Material } from '@/models/Material'
 import { Monster } from '@/models/Monster'
 import { Notice } from '@/models/Notice'
@@ -75,9 +75,9 @@ export {
   CharacterStory,
   CharacterVoice,
   CharacterAscension,
-  CharacterStatus,
+  CharacterBaseStats,
   CharacterCostume,
-  FightProp,
+  CharacterStatusManager,
   CharacterProfile,
   CharacterSkill,
   CharacterInherentSkill,

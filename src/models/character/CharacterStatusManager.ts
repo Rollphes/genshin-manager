@@ -4,7 +4,7 @@ import { FightProps } from '@/types'
 /**
  * Class of Character's Combat Properties
  */
-export class FightProp {
+export class CharacterStatusManager {
   public readonly healthBase: StatProperty
   public readonly healthFlat: StatProperty
   public readonly healthPercent: StatProperty
@@ -66,7 +66,7 @@ export class FightProp {
   private readonly fightPropData: { [key in number]: number | undefined }
 
   /**
-   * Create a FightProp
+   * Create a CharacterStatusManager
    * @param fightPropData FightPropMap from EnkaNetwork and other sources
    */
   constructor(fightPropData: { [key in number]: number | undefined }) {

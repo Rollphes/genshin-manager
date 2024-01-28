@@ -44,9 +44,9 @@ export class Monster {
    */
   public readonly icon: ImageAssets | undefined
   /**
-   * Monster status
+   * Monster stats
    */
-  public readonly status: StatProperty[] = []
+  public readonly stats: StatProperty[] = []
   /**
    * Monster type
    */
@@ -122,7 +122,7 @@ export class Monster {
       monsterJson.defenseBase as number | undefined,
       playerCount,
     )
-    this.status = [
+    this.stats = [
       new StatProperty(FightProps[1], hpBase),
       new StatProperty(FightProps[4], attackBase),
       new StatProperty(FightProps[7], defenseBase),
