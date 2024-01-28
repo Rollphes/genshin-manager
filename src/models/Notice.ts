@@ -138,7 +138,7 @@ export class Notice {
    * @warning This method does not exclude table tags
    * @returns Notice all text
    */
-  public getText(): string {
+  public get text(): string {
     return this.convertLocalDate(
       this.$('p')
         .map((i, el) => this.$(el).text())
@@ -152,7 +152,7 @@ export class Notice {
    * @description However, this method should only be used when `eventStart` or `eventEnd` cannot be obtained
    * @returns Event duration
    */
-  public getEventDuration(): string | undefined {
+  public get eventDuration(): string | undefined {
     if (this.tag === 2) {
       return this.convertLocalDate(
         this.$('td')
