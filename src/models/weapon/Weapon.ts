@@ -41,6 +41,10 @@ export class Weapon {
    */
   public readonly level: number
   /**
+   * Weapon max level
+   */
+  public readonly maxLevel: number
+  /**
    * Weapon promote level
    */
   public readonly promoteLevel: number
@@ -85,9 +89,12 @@ export class Weapon {
     this.id = weaponId
     this.level = level
 
-    const maxLevel = Weapon.getMaxLevelByWeaponId(this.id)
-    if (this.level < 1 || this.level > maxLevel)
-      throw new OutOfRangeError('level', this.level, 1, maxLevel)
+    const maxPromoteLevel =
+      WeaponAscension.getMaxPromoteLevelByWeaponId(weaponId)
+    const maxAscension = new WeaponAscension(this.id, maxPromoteLevel)
+    this.maxLevel = maxAscension.unlockMaxLevel
+    if (this.level < 1 || this.level > this.maxLevel)
+      throw new OutOfRangeError('level', this.level, 1, this.maxLevel)
 
     this.isAscended = isAscended
     this.refinementRank = refinementRank
@@ -109,7 +116,6 @@ export class Weapon {
     )
 
     const ascension = new WeaponAscension(this.id, this.promoteLevel)
-
     const refinement = new WeaponRefinement(this.id, this.refinementRank)
     this.skillName = refinement.skillName
     this.skillDescription = refinement.skillDescription
@@ -170,18 +176,6 @@ export class Weapon {
       'WeaponExcelConfigData',
       hashes,
     ).map((k) => +k)
-  }
-
-  /**
-   * Get max level by weapon ID
-   * @param weaponId Weapon ID
-   * @returns Max level
-   */
-  public static getMaxLevelByWeaponId(weaponId: number): number {
-    const maxPromoteLevel =
-      WeaponAscension.getMaxPromoteLevelByWeaponId(weaponId)
-    const ascension = new WeaponAscension(weaponId, maxPromoteLevel)
-    return ascension.unlockMaxLevel
   }
 
   /**

@@ -25,6 +25,10 @@ export class CharacterInfo {
    */
   public readonly name: string
   /**
+   * Character max level
+   */
+  public readonly maxLevel: number = 90
+  /**
    * Skill depot ID
    */
   public readonly depotId: number
