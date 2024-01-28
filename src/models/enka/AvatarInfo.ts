@@ -51,6 +51,10 @@ export class AvatarInfo {
    */
   public readonly level: number
   /**
+   * Character max level
+   */
+  public readonly maxLevel: number
+  /**
    * Character level XP
    */
   public readonly levelXp: number
@@ -99,6 +103,7 @@ export class AvatarInfo {
     this.rarity = characterInfo.rarity
     this.bodyType = characterInfo.bodyType
     this.weaponType = characterInfo.weaponType
+    this.maxLevel = characterInfo.maxLevel
     this.costume = new CharacterCostume(
       data.costumeId ?? characterInfo.defaultCostumeId,
     )
