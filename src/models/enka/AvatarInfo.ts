@@ -42,9 +42,9 @@ export class AvatarInfo extends CharacterInfo {
    */
   public readonly skills: CharacterSkill[]
   /**
-   * Character fight prop
+   * Character status
    */
-  public readonly fightProp: FightProp
+  public readonly status: FightProp
   /**
    * Weapon equipped by Character
    */
@@ -86,7 +86,7 @@ export class AvatarInfo extends CharacterInfo {
       return new CharacterSkill(id, data.skillLevelMap[id] || 0, extraLevel)
     })
 
-    this.fightProp = new FightProp(data.fightPropMap)
+    this.status = new FightProp(data.fightPropMap)
     const weaponData = data.equipList.find(
       (equip): equip is APIWeaponEquip => equip.flat.itemType === 'ITEM_WEAPON',
     )
