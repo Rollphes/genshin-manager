@@ -62,6 +62,7 @@ export class FightProp {
   public readonly attack: StatProperty
   public readonly defense: StatProperty
   public readonly speed: StatProperty
+  public readonly statProperties: StatProperty[] = []
   private readonly fightPropData: { [key in number]: number | undefined }
 
   /**
@@ -161,6 +162,10 @@ export class FightProp {
     this.attack = this.getStatProperty(2001)
     this.defense = this.getStatProperty(2002)
     this.speed = this.getStatProperty(2003)
+
+    this.statProperties = Object.values(this).filter(
+      (value): value is StatProperty => value instanceof StatProperty,
+    )
   }
 
   /**
