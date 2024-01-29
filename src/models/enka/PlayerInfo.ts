@@ -41,11 +41,11 @@ export class PlayerInfo {
   /**
    * List of Character Costume and Level
    */
-  public readonly showAvatarInfoList: ShowAvatarInfo[]
+  public readonly showAvatarInfoList: ShowAvatarInfo[] //TODO:List
   /**
    * List of NameCard
    */
-  public readonly showNameCardList: Material[]
+  public readonly showNameCardList: Material[] //TODO:List
   /**
    * Player Profile Picture
    */

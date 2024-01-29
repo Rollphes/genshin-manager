@@ -135,8 +135,8 @@ export abstract class AssetCacheManager {
   private static excelBinOutputFolderPath: string
   private static textMapFolderPath: string
   private static childrenModule: Module[]
-  private static textHashList: Set<number> = new Set()
-  private static excelBinOutputKeyList: Set<keyof typeof ExcelBinOutputs> =
+  private static textHashes: Set<number> = new Set()
+  private static excelBinOutputKeys: Set<keyof typeof ExcelBinOutputs> =
     new Set()
   /**
    * Cached text map
@@ -293,7 +293,7 @@ export abstract class AssetCacheManager {
     ) {
       if (this.option.showFetchCacheLog)
         console.log('GenshinManager: New Assets found. Update Assets.')
-      this.createExcelBinOutputKeyList()
+      this.createExcelBinOutputKeys()
       await this.fetchAssetFolder(
         this.excelBinOutputFolderPath,
         Object.values(ExcelBinOutputs),
@@ -302,19 +302,19 @@ export abstract class AssetCacheManager {
         await this.updateCache()
         return
       }
-      this.createTextHashList()
+      this.createTextHashes()
       const textMapFileNames = this.option.downloadLanguages.map(
         (key) => TextMapLanguage[key],
       )
       await this.fetchAssetFolder(this.textMapFolderPath, textMapFileNames)
       if (this.option.showFetchCacheLog)
         console.log('GenshinManager: Set cache.')
-      this.createExcelBinOutputKeyList(this.childrenModule)
+      this.createExcelBinOutputKeys(this.childrenModule)
       if (await this.setExcelBinOutputToCache()) {
         await this.updateCache()
         return
       }
-      this.createTextHashList()
+      this.createTextHashes()
       if (await this.setTextMapToCache(this.option.defaultLanguage)) {
         await this.updateCache()
         return
@@ -322,12 +322,12 @@ export abstract class AssetCacheManager {
     } else {
       if (this.option.showFetchCacheLog)
         console.log('GenshinManager: No new Asset found. Set cache.')
-      this.createExcelBinOutputKeyList(this.childrenModule)
+      this.createExcelBinOutputKeys(this.childrenModule)
       if (await this.setExcelBinOutputToCache()) {
         await this.updateCache()
         return
       }
-      this.createTextHashList()
+      this.createTextHashes()
       if (await this.setTextMapToCache(this.option.defaultLanguage)) {
         await this.updateCache()
         return
@@ -343,7 +343,7 @@ export abstract class AssetCacheManager {
    */
   protected static async setExcelBinOutputToCache(): Promise<boolean> {
     this.cachedExcelBinOutput.clear()
-    for (const key of this.excelBinOutputKeyList) {
+    for (const key of this.excelBinOutputKeys) {
       const filename = ExcelBinOutputs[key]
       const selectedExcelBinOutputPath = path.join(
         this.excelBinOutputFolderPath,
@@ -440,7 +440,7 @@ export abstract class AssetCacheManager {
       fs.createReadStream(selectedTextMapPath, {
         highWaterMark: 1 * 1024 * 1024,
       }),
-      new TextMapTransform(language, this.textHashList),
+      new TextMapTransform(language, this.textHashes),
       eventEmitter,
     ).catch(async (error) => {
       if (error instanceof TextMapFormatError) {
@@ -497,13 +497,13 @@ export abstract class AssetCacheManager {
   }
 
   /**
-   * Create ExcelBinOutput Key List to cache
+   * Create ExcelBinOutput Keys to cache
    * @param children import modules
    */
-  private static createExcelBinOutputKeyList(children?: Module[]): void {
-    this.excelBinOutputKeyList.clear()
+  private static createExcelBinOutputKeys(children?: Module[]): void {
+    this.excelBinOutputKeys.clear()
     if (!children) {
-      this.excelBinOutputKeyList = new Set(
+      this.excelBinOutputKeys = new Set(
         Object.keys(ExcelBinOutputs).map(
           (key) => key as keyof typeof ExcelBinOutputs,
         ),
@@ -511,8 +511,8 @@ export abstract class AssetCacheManager {
     } else {
       getClassNamesRecursive(children).forEach((className) => {
         if (this.excelBinOutputMapUseModel[className]) {
-          this.excelBinOutputKeyList = new Set([
-            ...this.excelBinOutputKeyList,
+          this.excelBinOutputKeys = new Set([
+            ...this.excelBinOutputKeys,
             ...this.excelBinOutputMapUseModel[className],
           ])
         }
@@ -521,10 +521,10 @@ export abstract class AssetCacheManager {
   }
 
   /**
-   * Create TextHash List to cache
+   * Create TextHashes to cache
    */
-  private static createTextHashList(): void {
-    this.textHashList.clear()
+  private static createTextHashes(): void {
+    this.textHashes.clear()
     this.cachedExcelBinOutput.forEach((excelBin) => {
       ;(Object.values(excelBin.get() as JsonObject) as JsonObject[]).forEach(
         (obj) => {
@@ -533,22 +533,22 @@ export abstract class AssetCacheManager {
             Object.keys(obj).forEach((key) => {
               if (/TextMapHash/g.exec(key)) {
                 const hash = obj[key] as number
-                this.textHashList.add(hash)
+                this.textHashes.add(hash)
               }
               if (key === 'paramDescList') {
-                const hashList = obj[key] as number[]
-                hashList.forEach((hash) => this.textHashList.add(hash))
+                const hashes = obj[key] as number[]
+                hashes.forEach((hash) => this.textHashes.add(hash))
               }
             })
           })
           Object.keys(obj).forEach((key) => {
             if (/TextMapHash/g.exec(key)) {
               const hash = obj[key] as number
-              this.textHashList.add(hash)
+              this.textHashes.add(hash)
             }
             if (key === 'tips') {
-              const hashList = obj[key] as number[]
-              hashList.forEach((hash) => this.textHashList.add(hash))
+              const hashes = obj[key] as number[]
+              hashes.forEach((hash) => this.textHashes.add(hash))
             }
           })
         },
@@ -564,9 +564,9 @@ export abstract class AssetCacheManager {
     language: keyof typeof TextMapLanguage,
   ): Promise<void> {
     const textMapFileName = TextMapLanguage[language]
-    this.createExcelBinOutputKeyList()
+    this.createExcelBinOutputKeys()
     await this.setExcelBinOutputToCache()
-    this.createTextHashList()
+    this.createTextHashes()
     await this.fetchAssetFolder(this.textMapFolderPath, [textMapFileName], true)
   }
 
@@ -645,7 +645,7 @@ export abstract class AssetCacheManager {
     if ('TextMap' === path.basename(path.dirname(downloadFilePath))) {
       await pipeline(
         new ReadableStreamWrapper(res.body.getReader()),
-        new TextMapTransform(language, this.textHashList),
+        new TextMapTransform(language, this.textHashes),
         writeStream,
       )
     } else {

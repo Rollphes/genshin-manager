@@ -63,11 +63,11 @@ export class AvatarInfo {
    */
   public readonly ascension: number
   /**
-   * Character constellation list
+   * Character constellations
    */
-  public readonly constellationList: CharacterConstellation[]
+  public readonly constellations: CharacterConstellation[]
   /**
-   * Character skill list
+   * Character skills
    */
   public readonly skills: CharacterSkill[]
   /**
@@ -110,7 +110,7 @@ export class AvatarInfo {
     this.level = +(data.propMap[4001].val || 0)
     this.levelXp = +(data.propMap[1001].val || 0)
     this.ascension = +(data.propMap[1002].val || 0)
-    this.constellationList =
+    this.constellations =
       characterInfo.constellationIds.map((id) => {
         return new CharacterConstellation(id, !data.talentIdList?.includes(id))
       }) || []

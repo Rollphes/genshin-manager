@@ -8,19 +8,19 @@ import { TextMapLanguage } from '@/types'
  */
 export class TextMapTransform extends Transform {
   private language: keyof typeof TextMapLanguage
-  private filterList: Set<number>
+  private filterSet: Set<number>
   private buffer: Buffer = Buffer.from('')
   private firstFlag: boolean = true
 
   /**
    * Create TextMapTransform
    * @param language Language
-   * @param filterList Filter list
+   * @param filterSet Filter set
    */
-  constructor(language: keyof typeof TextMapLanguage, filterList: Set<number>) {
+  constructor(language: keyof typeof TextMapLanguage, filterSet: Set<number>) {
     super()
     this.language = language
-    this.filterList = filterList
+    this.filterSet = filterSet
   }
 
   /**
@@ -52,7 +52,7 @@ export class TextMapTransform extends Transform {
       const matchArray = line.match(/(?<=")([^"\\]|\\.)*?(?=")/g)
       if (!matchArray) return
       const [key, , value] = matchArray
-      if (this.filterList.has(+key)) {
+      if (this.filterSet.has(+key)) {
         if (!this.firstFlag) this.push(',\n')
         this.firstFlag = false
         this.push(`"${key}":"${value.replace(/\\\\n/g, '\\n')}"`)

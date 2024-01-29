@@ -76,31 +76,31 @@ export class Notice {
 
   /**
    * Create a Notice
-   * @param list AnnList
-   * @param content AnnContent
-   * @param enContent AnnContent(lang=en)
+   * @param annList AnnList
+   * @param annContent AnnContent
+   * @param enAnnContent AnnContent(lang=en)
    * @param region Region
    */
   constructor(
-    list: DataList,
-    content: ContentList,
-    enContent: ContentList,
+    annList: DataList,
+    annContent: ContentList,
+    enAnnContent: ContentList,
     region: Region,
   ) {
     this.region = region
-    if (list.ann_id !== content.ann_id) throw new Error('ID mismatch')
-    this.id = list.ann_id
+    if (annList.ann_id !== annContent.ann_id) throw new Error('ID mismatch')
+    this.id = annList.ann_id
 
-    this.title = content.title
-    this.subtitle = content.subtitle
+    this.title = annContent.title
+    this.subtitle = annContent.subtitle
       .replace(/<br.*?>/g, '\n')
       .replace(/\r/g, '')
-    this.banner = ImageAssets.fromUrl(content.banner)
+    this.banner = ImageAssets.fromUrl(annContent.banner)
 
-    const unescapedContent = unescape(content.content)
+    const unescapedContent = unescape(annContent.content)
     this.$ = load(unescapedContent)
 
-    const unescapedEnContent = unescape(enContent.content)
+    const unescapedEnContent = unescape(enAnnContent.content)
     this._en$ = load(unescapedEnContent)
 
     const timeStrings = this.convertLocalDate(
@@ -124,13 +124,13 @@ export class Notice {
       ? ImageAssets.fromUrl(rewardImgUrl)
       : undefined
 
-    this.lang = content.lang
+    this.lang = annContent.lang
 
-    this.type = list.type
-    this.typeLabel = list.type_label
-    this.tag = Number(list.tag_label)
-    this.tagIcon = ImageAssets.fromUrl(list.tag_icon)
-    this.version = list.remind_ver
+    this.type = annList.type
+    this.typeLabel = annList.type_label
+    this.tag = Number(annList.tag_label)
+    this.tagIcon = ImageAssets.fromUrl(annList.tag_icon)
+    this.version = annList.remind_ver
   }
 
   /**

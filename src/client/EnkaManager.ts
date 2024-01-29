@@ -21,7 +21,7 @@ export interface EnkaData {
   /**
    * avatarInfoList
    */
-  avatarInfoList: AvatarInfo[]
+  avatarInfoList: AvatarInfo[] //TODO:List
   /**
    * nextShowCaseDate
    */

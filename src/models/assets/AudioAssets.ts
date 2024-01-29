@@ -112,12 +112,12 @@ export class AudioAssets {
   public async fetchBuffer(): Promise<Buffer> {
     if (!this.url) throw new AudioNotFoundError(this.name, this.url)
 
-    const cvPathList: string[] = []
-    if (this.cv !== undefined) cvPathList.push(this.cv)
-    if (this.characterId !== undefined) cvPathList.push(`${this.characterId}`)
+    const cvPaths: string[] = []
+    if (this.cv !== undefined) cvPaths.push(this.cv)
+    if (this.characterId !== undefined) cvPaths.push(`${this.characterId}`)
     const audioCachePath = path.resolve(
       AudioAssets.audioFolderPath,
-      ...cvPathList,
+      ...cvPaths,
       `${this.name}.ogg`,
     )
     if (fs.existsSync(audioCachePath)) {
@@ -146,12 +146,12 @@ export class AudioAssets {
   public async fetchStream(highWaterMark?: number): Promise<fs.ReadStream> {
     if (!this.url) throw new AudioNotFoundError(this.name, this.url)
 
-    const cvPathList: string[] = []
-    if (this.cv !== undefined) cvPathList.push(this.cv)
-    if (this.characterId !== undefined) cvPathList.push(`${this.characterId}`)
+    const cvPaths: string[] = []
+    if (this.cv !== undefined) cvPaths.push(this.cv)
+    if (this.characterId !== undefined) cvPaths.push(`${this.characterId}`)
     const audioCachePath = path.resolve(
       AudioAssets.audioFolderPath,
-      ...cvPathList,
+      ...cvPaths,
       `${this.name}.ogg`,
     )
     if (fs.existsSync(audioCachePath)) {

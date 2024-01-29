@@ -23,13 +23,13 @@ export class TowerLevel {
    */
   public readonly monsterLevel: number
   /**
-   * First monster list this level
+   * First monsters this level
    */
-  public readonly firstMonsterList: Monster[]
+  public readonly firstMonsters: Monster[]
   /**
-   * Second monster list this level
+   * Second monsters this level
    */
-  public readonly secondMonsterList: Monster[]
+  public readonly secondMonsters: Monster[]
 
   /**
    * Create a TowerLevel
@@ -54,7 +54,7 @@ export class TowerLevel {
     else if (floorIndex === 12) playerCount = 4
     else throw new OutOfRangeError('floorIndex', floorIndex, 1, 12)
 
-    this.firstMonsterList = (towerLevelJson.firstMonsterList as number[]).map(
+    this.firstMonsters = (towerLevelJson.firstMonsterList as number[]).map(
       (monsterDescribeId) =>
         new Monster(
           Monster.findMonsterIdByDescribeId(monsterDescribeId),
@@ -62,7 +62,7 @@ export class TowerLevel {
           playerCount,
         ),
     )
-    this.secondMonsterList = (towerLevelJson.secondMonsterList as number[]).map(
+    this.secondMonsters = (towerLevelJson.secondMonsterList as number[]).map(
       (monsterDescribeId) =>
         new Monster(
           Monster.findMonsterIdByDescribeId(monsterDescribeId),
