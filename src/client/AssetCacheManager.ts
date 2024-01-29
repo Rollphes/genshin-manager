@@ -39,22 +39,14 @@ export abstract class AssetCacheManager {
    */
   public static cachedTextMap: Map<string, string> = new Map()
 
-  private static option: ClientOption
-  private static gitRemoteAPIUrl: string =
+  private static readonly gitRemoteAPIUrl: string =
     'https://gitlab.com/api/v4/projects/53216109/repository/commits?per_page=1'
-  private static gitRemoteRawBaseURL: string =
+  private static readonly gitRemoteRawBaseURL: string =
     'https://gitlab.com/Dimbreath/AnimeGameData/-/raw'
-  private static nowCommitId: string
-  private static commitFilePath: string
-  private static excelBinOutputFolderPath: string
-  private static textMapFolderPath: string
-
-  private static childrenModule: Module[]
-
   /**
    * Map to cache ExcelBinOutput for each class
    */
-  private static excelBinOutputMapUseModel: {
+  private static readonly excelBinOutputMapUseModel: {
     [className: string]: Array<keyof typeof ExcelBinOutputs>
   } = {
     CharacterInfo: [
@@ -137,10 +129,15 @@ export abstract class AssetCacheManager {
     DailyFarming: ['DungeonEntryExcelConfigData'],
   }
 
+  private static option: ClientOption
+  private static nowCommitId: string
+  private static commitFilePath: string
+  private static excelBinOutputFolderPath: string
+  private static textMapFolderPath: string
+  private static childrenModule: Module[]
   private static textHashList: Set<number> = new Set()
   private static excelBinOutputKeyList: Set<keyof typeof ExcelBinOutputs> =
     new Set()
-
   /**
    * Cached text map
    */

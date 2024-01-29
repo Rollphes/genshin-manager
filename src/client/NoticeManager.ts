@@ -14,16 +14,28 @@ import {
  * Class that manages notices
  */
 export class NoticeManager {
-  private static getContentUrl: string =
+  /**
+   * URL of getAnnContent
+   */
+  private static readonly getContentUrl: string =
     'https://sg-hk4e-api-static.hoyoverse.com/common/hk4e_global/announcement/api/getAnnContent'
-  private static getListUrl: string =
+  /**
+   * URL of getAnnList
+   */
+  private static readonly getListUrl: string =
     'https://sg-hk4e-api.hoyoverse.com/common/hk4e_global/announcement/api/getAnnList'
-  private static defaultFetchOption: RequestInit = {
+  /**
+   * Default fetch option
+   */
+  private static readonly defaultFetchOption: RequestInit = {
     headers: {
       'user-agent': 'Mozilla/5.0',
     },
   }
-  private static defaultUrlParams: UrlParams = {
+  /**
+   * Default url params
+   */
+  private static readonly defaultUrlParams: UrlParams = {
     game: 'hk4e',
     game_biz: 'hk4e_global',
     lang: 'en',
@@ -37,6 +49,7 @@ export class NoticeManager {
     sdk_screen_transparent: 'true',
     uid: '888888888',
   }
+
   /**
    * Fetch option
    * @default

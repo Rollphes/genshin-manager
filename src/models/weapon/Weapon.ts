@@ -13,6 +13,14 @@ import { JsonObject } from '@/utils/JsonParser'
  */
 export class Weapon {
   /**
+   * Black weapon IDs
+   */
+  private static readonly blackWeaponIds = [
+    10002, 10003, 10004, 10005, 10006, 10008, 11411, 11508, 12304, 12508, 12509,
+    13304, 13503, 14306, 14411, 14508, 15306, 20001,
+  ]
+
+  /**
    * Weapon name
    */
   public readonly name: string
@@ -153,15 +161,11 @@ export class Weapon {
    * @returns All weapon IDs
    */
   public static get allWeaponIds(): number[] {
-    const blackList = [
-      10002, 10003, 10004, 10005, 10006, 10008, 11411, 11508, 12304, 12508,
-      12509, 13304, 13503, 14306, 14411, 14508, 15306, 20001,
-    ]
     const weaponDatas = Object.values(
       Client._getCachedExcelBinOutputByName('WeaponExcelConfigData'),
     )
     return weaponDatas
-      .filter((data) => !blackList.includes(data.id as number))
+      .filter((data) => !Weapon.blackWeaponIds.includes(data.id as number))
       .map((data) => data.id as number)
   }
 

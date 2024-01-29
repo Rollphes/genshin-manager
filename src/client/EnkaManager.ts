@@ -32,8 +32,14 @@ export interface EnkaData {
  * Class for fetching EnkaData from enka.network
  */
 export class EnkaManager {
-  private static enkaUidURL = 'https://enka.network/api/uid/'
-  private static defaultFetchOption: RequestInit = {
+  /**
+   * URL of enka.network
+   */
+  private static readonly enkaUidURL = 'https://enka.network/api/uid/'
+  /**
+   * Default fetch option
+   */
+  private static readonly defaultFetchOption: RequestInit = {
     headers: {
       'user-agent': 'Mozilla/5.0',
     },

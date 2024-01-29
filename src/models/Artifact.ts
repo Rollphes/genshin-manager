@@ -16,7 +16,7 @@ export class Artifact {
   /**
    * Max level map of artifacts by rarity
    */
-  private static maxLevelMap: { [rarity: number]: number } = {
+  private static readonly maxLevelMap: { [rarity: number]: number } = {
     1: 5,
     2: 5,
     3: 12,
@@ -26,15 +26,17 @@ export class Artifact {
   /**
    * IDs of set bonuses that can be activated with one artifact
    */
-  private static oneSetBonusIds: number[] = [15009, 15010, 15011, 15012, 15013]
+  private static readonly oneSetBonusIds: number[] = [
+    15009, 15010, 15011, 15012, 15013,
+  ]
   /**
    * IDs of set bonuses that cannot be obtained
    */
-  private static blackSetIds: number[] = [15000, 15004, 15012]
+  private static readonly blackSetIds: number[] = [15000, 15004, 15012]
   /**
    * IDs of artifacts that cannot be obtained
    */
-  private static blackArtifactIds: number[] = [
+  private static readonly blackArtifactIds: number[] = [
     23300, 23301, 23302, 23303, 23304, 23305, 23306, 23307, 23308, 23309, 23310,
     23311, 23312, 23313, 23314, 23315, 23316, 23317, 23318, 23329, 23330, 23334,
     23335, 23336, 23337, 23338, 23339, 23340,

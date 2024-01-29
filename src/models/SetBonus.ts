@@ -8,7 +8,9 @@ export class SetBonus {
   /**
    * IDs of set bonuses that can be activated with one artifact
    */
-  private static oneSetBonusIds: number[] = [15009, 15010, 15011, 15012, 15013]
+  private static readonly oneSetBonusIds: number[] = [
+    15009, 15010, 15011, 15012, 15013,
+  ]
   /**
    * Set bonus that can be triggered by a single artifact
    */

@@ -12,7 +12,10 @@ import { ClientOption, TextMapLanguage } from '@/types'
  * @description This is the main body of `Genshin-Manager` where cache information is stored
  */
 export class Client extends AssetCacheManager {
-  private static defaultOption: ClientOption = {
+  /**
+   * Default option
+   */
+  private static readonly defaultOption: ClientOption = {
     fetchOption: {
       headers: {
         'user-agent': 'Mozilla/5.0',

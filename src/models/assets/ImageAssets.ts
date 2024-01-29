@@ -7,19 +7,24 @@ import { ImageNotFoundError } from '@/errors/ImageNotFoundError'
 import { ClientOption } from '@/types'
 import { ReadableStreamWrapper } from '@/utils/ReadableStreamWrapper'
 
-const imageBaseUrlMihoyo =
-  'https://upload-os-bbs.mihoyo.com/game_record/genshin'
-
-const imageTypes: { [type: string]: RegExp[] } = {
-  character_side_icon: [/^UI_AvatarIcon_Side_(.+)$/],
-  character_icon: [/^UI_AvatarIcon_(.+)$/],
-  equip: [/^UI_EquipIcon_(.+?)(_Awaken)?$/, /^UI_RelicIcon_(.+)$/],
-}
-
 /**
  * Class that summarizes information about an image
  */
 export class ImageAssets {
+  /**
+   * Image base url of mihoyo
+   */
+  private static readonly imageBaseUrlMihoyo =
+    'https://upload-os-bbs.mihoyo.com/game_record/genshin'
+  /**
+   * Image types
+   */
+  private static readonly imageTypes: { [type: string]: RegExp[] } = {
+    character_side_icon: [/^UI_AvatarIcon_Side_(.+)$/],
+    character_icon: [/^UI_AvatarIcon_(.+)$/],
+    equip: [/^UI_EquipIcon_(.+?)(_Awaken)?$/, /^UI_RelicIcon_(.+)$/],
+  }
+
   /**
    * Fetch option
    */
@@ -76,12 +81,14 @@ export class ImageAssets {
     this.url = url ? url : name === '' ? '' : `${this.imageBaseUrl}/${name}.png`
 
     this.imageType =
-      Object.keys(imageTypes).find((type) =>
-        imageTypes[type].some((regex) => regex.test(name)),
+      Object.keys(ImageAssets.imageTypes).find((type) =>
+        ImageAssets.imageTypes[type].some((regex) => regex.test(name)),
       ) ?? null
 
     this.mihoyoUrl =
-      name === '' || !this.imageType ? '' : `${imageBaseUrlMihoyo}/${name}.png`
+      name === '' || !this.imageType
+        ? ''
+        : `${ImageAssets.imageBaseUrlMihoyo}/${name}.png`
   }
 
   /**

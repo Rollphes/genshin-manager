@@ -24,7 +24,7 @@ export class ObjectKeyDecoder {
   /**
    * List of character IDs that are not included in the character list
    */
-  private static characterBlackIdList: number[] = [
+  private static readonly characterBlackIdList: number[] = [
     10000001, 11000008, 11000009, 11000010, 11000011, 11000013, 11000017,
     11000018, 11000019, 11000025, 11000026, 11000027, 11000028, 11000030,
     11000031, 11000032, 11000033, 11000034, 11000035, 11000036, 11000037,

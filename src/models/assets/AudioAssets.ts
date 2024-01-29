@@ -8,13 +8,16 @@ import { CVType } from '@/types'
 import { ClientOption } from '@/types'
 import { ReadableStreamWrapper } from '@/utils/ReadableStreamWrapper'
 
-const audioBaseUrlMihoyo =
-  'https://upload-os-bbs.mihoyo.com/game_record/genshin'
-
 /**
  * Class that summarizes information about an audio
  */
 export class AudioAssets {
+  /**
+   * Audio base url of mihoyo
+   */
+  private static readonly audioBaseUrlMihoyo =
+    'https://upload-os-bbs.mihoyo.com/game_record/genshin'
+
   /**
    * Fetch option
    */
@@ -86,7 +89,7 @@ export class AudioAssets {
     this.mihoyoUrl =
       name === ''
         ? ''
-        : `${audioBaseUrlMihoyo}${cvPath}${characterIdPath}/${name}.ogg`
+        : `${AudioAssets.audioBaseUrlMihoyo}${cvPath}${characterIdPath}/${name}.ogg`
   }
 
   /**
