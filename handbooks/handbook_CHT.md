@@ -1,4 +1,4 @@
-# GameVersion 4.3.0
+# GameVersion 4.4.0
 ## CharacterId
 ID:10000002 Name:神里綾華<br>
 ID:10000003 Name:琴<br>
@@ -78,6 +78,8 @@ ID:10000088 Name:夏洛蒂<br>
 ID:10000089 Name:芙寧娜<br>
 ID:10000090 Name:夏沃蕾<br>
 ID:10000091 Name:娜維婭<br>
+ID:10000092 Name:嘉明<br>
+ID:10000093 Name:閒雲<br>
 ## CostumeId
 ID:200200 Name:瑩輝流華<br>
 ID:200201 Name:花時來信<br>
@@ -101,6 +103,7 @@ ID:202200 Name:青風結詩<br>
 ID:202300 Name:椒紅薑黃<br>
 ID:202400 Name:赫浪連濤<br>
 ID:202500 Name:錦鈺蘭衫<br>
+ID:202501 Name:雨化竹身<br>
 ID:202600 Name:千秋競歲<br>
 ID:202700 Name:璣玉瓊金<br>
 ID:202701 Name:紗中幽蘭<br>
@@ -115,6 +118,7 @@ ID:203400 Name:甲鐵玫瑰<br>
 ID:203500 Name:夏冰夢身<br>
 ID:203600 Name:清正靈臺<br>
 ID:203700 Name:霜麟聚露<br>
+ID:203701 Name:玄玉瑤芳<br>
 ID:203800 Name:朔分星芒<br>
 ID:203900 Name:糖粉青釀<br>
 ID:204100 Name:星命流轉<br>
@@ -143,6 +147,7 @@ ID:206000 Name:於闌珊處<br>
 ID:206100 Name:百花戲<br>
 ID:206200 Name:機動獵人<br>
 ID:206300 Name:縛絕紅塵<br>
+ID:206301 Name:冷花幽露<br>
 ID:206400 Name:氍毹煙雲<br>
 ID:206500 Name:荒瀧鬼副手<br>
 ID:206600 Name:綾羅錦繡<br>
@@ -171,6 +176,8 @@ ID:208800 Name:「皆在鏡前」<br>
 ID:208900 Name:冠笄伶優<br>
 ID:209000 Name:守正之槍<br>
 ID:209100 Name:黃絲絨沙龍<br>
+ID:209200 Name:萬里飛虹<br>
+ID:209300 Name:有客來儀<br>
 ## SkillId
 ID:10024 Name:普通攻擊·神里流·傾<br>
 ID:10018 Name:神里流·冰華<br>
@@ -402,6 +409,12 @@ ID:10905 Name:圓陣擲彈爆轟術<br>
 ID:10911 Name:普通攻擊·直率的辭絕<br>
 ID:10912 Name:典儀式晶火<br>
 ID:10915 Name:如霰澄天的鳴禮<br>
+ID:10921 Name:普通攻擊·刃爪懸星<br>
+ID:10922 Name:瑞獸登高樓<br>
+ID:10925 Name:璨焰金猊舞<br>
+ID:10931 Name:普通攻擊·清風散花詞<br>
+ID:10932 Name:朝起鶴雲<br>
+ID:10935 Name:暮集竹星<br>
 ## InherentSkillId
 ID:221 Name:天罪國罪鎮詞<br>
 ID:222 Name:寒天宣命祝詞<br>
@@ -632,6 +645,12 @@ ID:9023 Name:迅捷行軍策略<br>
 ID:9121 Name:不明流通管道<br>
 ID:9122 Name:互助關係網<br>
 ID:9123 Name:流程細緻的交易<br>
+ID:9221 Name:舞起昇平<br>
+ID:9222 Name:祥煙瑞氣<br>
+ID:9223 Name:醒獸銳行<br>
+ID:9321 Name:霜翎高逐祥風勢<br>
+ID:9322 Name:細想應是洞中仙<br>
+ID:9323 Name:身形如鶴<br>
 ## ConstellationId
 ID:21 Name:霜殺墨染櫻<br>
 ID:22 Name:三重雪關扉<br>
@@ -1119,6 +1138,18 @@ ID:913 Name:經營家的開闊視野<br>
 ID:914 Name:銘誓者的絕不姑息<br>
 ID:915 Name:協商人的堅決談判<br>
 ID:916 Name:刺玫會長的靈活手腕<br>
+ID:921 Name:通明庇佑<br>
+ID:922 Name:步踏梅花<br>
+ID:923 Name:醒靈擂震<br>
+ID:924 Name:雲裡翻山<br>
+ID:925 Name:吼法怖魔<br>
+ID:926 Name:百獸俱馴<br>
+ID:931 Name:借風洗塵緣<br>
+ID:932 Name:鶴唳遠人間<br>
+ID:933 Name:造化有星月<br>
+ID:934 Name:奧妙烹黍珠<br>
+ID:935 Name:旋步霞蔚上<br>
+ID:936 Name:知是留雲僊<br>
 ## ArtifactId
 ID:20002 Name:初學者之羽<br>
 ID:20004 Name:初學者之花<br>
@@ -5001,6 +5032,7 @@ ID:14511 Name:千夜浮夢<br>
 ID:14512 Name:圖萊杜拉的回憶<br>
 ID:14513 Name:金流監督<br>
 ID:14514 Name:萬世流湧大典<br>
+ID:14515 Name:鶴鳴餘音<br>
 ID:15101 Name:獵弓<br>
 ID:15201 Name:歷練的獵弓<br>
 ID:15301 Name:鴉羽弓<br>
@@ -5109,6 +5141,7 @@ ID:165 Name:<br>
 ID:166 Name:「特爾克西徽章」<br>
 ID:167 Name:劇戲票券<br>
 ID:168 Name:古鐵錢<br>
+ID:169 Name:節慶熱度<br>
 ID:170 Name:逸趣映片<br>
 ID:201 Name:原石<br>
 ID:202 Name:摩拉<br>
@@ -5218,6 +5251,8 @@ ID:1088 Name:夏洛蒂<br>
 ID:1089 Name:芙寧娜<br>
 ID:1090 Name:夏沃蕾<br>
 ID:1091 Name:娜維婭<br>
+ID:1092 Name:嘉明<br>
+ID:1093 Name:閒雲<br>
 ID:1102 Name:神里綾華的命星<br>
 ID:1103 Name:琴的命星<br>
 ID:1105 Name:旅行者（男）的命星<br>
@@ -5296,6 +5331,8 @@ ID:1188 Name:夏洛蒂的命星<br>
 ID:1189 Name:芙寧娜的命星<br>
 ID:1190 Name:夏沃蕾的命星<br>
 ID:1191 Name:娜維婭的命星<br>
+ID:1192 Name:嘉明的命星<br>
+ID:1193 Name:閒雲的命星<br>
 ID:1201 Name:珍珠紀行·初稿<br>
 ID:1202 Name:空月祝福·新月<br>
 ID:1301 Name:新名撰聿<br>
@@ -6301,6 +6338,8 @@ ID:101237 Name:幽光星星<br>
 ID:101238 Name:湖光鈴蘭<br>
 ID:101239 Name:子探測單元<br>
 ID:101240 Name:初露之源<br>
+ID:101241 Name:清水玉<br>
+ID:101242 Name:沉玉仙茗<br>
 ID:101301 Name:樺木<br>
 ID:101302 Name:萃華木<br>
 ID:101303 Name:松木<br>
@@ -6945,6 +6984,7 @@ ID:107022 Name:淨光翎<br>
 ID:107023 Name:散失的水神瞳<br>
 ID:107024 Name:禮券秘盒<br>
 ID:107025 Name:楓丹地靈龕之鑰<br>
+ID:107026 Name:蒼靈鯉<br>
 ID:108000 Name:料理<br>
 ID:108001 Name:奇怪的漁人吐司<br>
 ID:108002 Name:漁人吐司<br>
@@ -7569,6 +7609,47 @@ ID:108620 Name:#「選{F#妳}{M#你}喜歡的！」<br>
 ID:108621 Name:奇怪的千靈慕斯<br>
 ID:108622 Name:千靈慕斯<br>
 ID:108623 Name:美味的千靈慕斯<br>
+ID:108624 Name:奇怪的金玉滿堂<br>
+ID:108625 Name:金玉滿堂<br>
+ID:108626 Name:美味的金玉滿堂<br>
+ID:108627 Name:奇怪的繁弦急管<br>
+ID:108628 Name:繁弦急管<br>
+ID:108629 Name:美味的繁弦急管<br>
+ID:108630 Name:奇怪的知足常樂<br>
+ID:108631 Name:知足常樂<br>
+ID:108632 Name:美味的知足常樂<br>
+ID:108633 Name:奇怪的賓至如歸<br>
+ID:108634 Name:賓至如歸<br>
+ID:108635 Name:美味的賓至如歸<br>
+ID:108636 Name:奇怪的八寶福祿鴨<br>
+ID:108637 Name:八寶福祿鴨<br>
+ID:108638 Name:美味的八寶福祿鴨<br>
+ID:108639 Name:奇怪的油爆雙脆<br>
+ID:108640 Name:油爆雙脆<br>
+ID:108641 Name:美味的油爆雙脆<br>
+ID:108642 Name:奇怪的紅燒肉圓<br>
+ID:108643 Name:紅燒肉圓<br>
+ID:108644 Name:美味的紅燒肉圓<br>
+ID:108645 Name:奇怪的蜜汁叉燒<br>
+ID:108646 Name:蜜汁叉燒<br>
+ID:108647 Name:美味的蜜汁叉燒<br>
+ID:108648 Name:奇怪的茶好月圓<br>
+ID:108649 Name:茶好月圓<br>
+ID:108650 Name:美味的茶好月圓<br>
+ID:108651 Name:奇怪的玉紋茶葉蛋<br>
+ID:108652 Name:玉紋茶葉蛋<br>
+ID:108653 Name:美味的玉紋茶葉蛋<br>
+ID:108654 Name:奇怪的茶燻乳鴿<br>
+ID:108655 Name:茶燻乳鴿<br>
+ID:108656 Name:美味的茶燻乳鴿<br>
+ID:108657 Name:奇怪的古華魚羊鮮<br>
+ID:108658 Name:古華魚羊鮮<br>
+ID:108659 Name:美味的古華魚羊鮮<br>
+ID:108660 Name:奇怪的沉玉茶露<br>
+ID:108661 Name:沉玉茶露<br>
+ID:108662 Name:美味的沉玉茶露<br>
+ID:108663 Name:四喜圓滿<br>
+ID:108664 Name:得閒飲茶<br>
 ID:109000 Name:食譜道具<br>
 ID:109101 Name:食譜：野菇雞肉串<br>
 ID:109102 Name:食譜：漁人吐司<br>
@@ -7747,6 +7828,19 @@ ID:109557 Name:食譜：膨膨泡芙<br>
 ID:109558 Name:食譜：圈圈圓圓<br>
 ID:109559 Name:食譜：繽紛馬卡龍<br>
 ID:109560 Name:食譜：千靈慕斯<br>
+ID:109561 Name:食譜：金玉滿堂<br>
+ID:109562 Name:食譜：繁弦急管<br>
+ID:109563 Name:食譜：知足常樂<br>
+ID:109564 Name:食譜：賓至如歸<br>
+ID:109565 Name:食譜：八寶福祿鴨<br>
+ID:109566 Name:食譜：油爆雙脆<br>
+ID:109567 Name:食譜：紅燒肉圓<br>
+ID:109568 Name:食譜：蜜汁叉燒<br>
+ID:109569 Name:食譜：茶好月圓<br>
+ID:109570 Name:食譜：玉紋茶葉蛋<br>
+ID:109571 Name:食譜：茶燻乳鴿<br>
+ID:109572 Name:食譜：古華魚羊鮮<br>
+ID:109573 Name:食譜：沉玉茶露<br>
 ID:110000 Name:合成產物<br>
 ID:110001 Name:麵粉<br>
 ID:110002 Name:鮮奶油<br>
@@ -7881,6 +7975,9 @@ ID:112091 Name:異界生命核<br>
 ID:112092 Name:老舊的役人懷錶<br>
 ID:112093 Name:役人的制式懷錶<br>
 ID:112094 Name:役人的時時刻刻<br>
+ID:112095 Name:羽狀鰭翅<br>
+ID:112096 Name:月色鰭翅<br>
+ID:112097 Name:淵光鰭翅<br>
 ID:113001 Name:颶風之種<br>
 ID:113002 Name:雷光稜鏡<br>
 ID:113003 Name:東風之翎<br>
@@ -7938,6 +8035,7 @@ ID:113054 Name:無光絲線<br>
 ID:113055 Name:無光渦眼<br>
 ID:113056 Name:無光質塊<br>
 ID:113057 Name:未能達成超越之水<br>
+ID:113058 Name:凝雲鱗甲<br>
 ID:114001 Name:高塔孤王的破瓦<br>
 ID:114002 Name:高塔孤王的殘垣<br>
 ID:114003 Name:高塔孤王的斷片<br>
@@ -8037,6 +8135,7 @@ ID:115038 Name:精緻的擺設贈禮<br>
 ID:115039 Name:奇妙的擺設贈品<br>
 ID:115040 Name:央陸原胚之匣<br>
 ID:115041 Name:遐音逸奏<br>
+ID:115042 Name:衣裝心選包<br>
 ID:116001 Name:紀行經驗<br>
 ID:116002 Name:紀行寶匣<br>
 ID:116003 Name:BP三選一測試禮包<br>
@@ -8502,6 +8601,9 @@ ID:120421 Name:雪翅雁童話集·卷三<br>
 ID:120422 Name:兩個銃槍手·卷一<br>
 ID:120423 Name:兩個銃槍手·卷二<br>
 ID:120424 Name:兩個銃槍手·卷三<br>
+ID:120425 Name:旅時者·第一卷<br>
+ID:120426 Name:旅時者·第二卷<br>
+ID:120427 Name:旅時者·第三卷<br>
 ID:120428 Name:「離別」的贈禮<br>
 ID:120429 Name:「美好相遇」<br>
 ID:120430 Name:<br>
@@ -8689,6 +8791,11 @@ ID:120611 Name:始基礦抑制器冷凝零件<br>
 ID:120612 Name:「特別報告」<br>
 ID:120613 Name:「特別報告」<br>
 ID:120614 Name:梅洛彼得堡線索紀錄冊<br>
+ID:120615 Name:畫片-明月荷塘<br>
+ID:120616 Name:畫片-翹英嘉客<br>
+ID:120617 Name:畫片-靜水寶玦<br>
+ID:120618 Name:畫片-山如懸練<br>
+ID:120619 Name:沉玉谷風光指南<br>
 ID:120620 Name:告示<br>
 ID:120621 Name:利亞姆的高歌<br>
 ID:120622 Name:羅基·艾威爾森的失落<br>
@@ -8784,6 +8891,7 @@ ID:120720 Name:老舊的徽記<br>
 ID:120721 Name:「人格」<br>
 ID:120722 Name:開啟的「寶物」<br>
 ID:120723 Name:水仙十字聖劍<br>
+ID:120724 Name:古樹樹枝<br>
 ID:120725 Name:奧蕾麗的筆記其二<br>
 ID:120726 Name:「新生活的開始」<br>
 ID:120727 Name:<br>
@@ -8811,6 +8919,10 @@ ID:120750 Name:潛水套裝<br>
 ID:120751 Name:沉入水裡的錢袋<br>
 ID:120752 Name:<br>
 ID:120753 Name:奇怪的留言<br>
+ID:120754 Name:王山廳備用鑰匙<br>
+ID:120755 Name:派蒙特製心意料理<br>
+ID:120757 Name:一袋摩拉<br>
+ID:120758 Name:斡流的鑽探裝置<br>
 ID:120759 Name:秋的禮物<br>
 ID:120760 Name:神秘的異色結晶石<br>
 ID:120761 Name:招募說明<br>
@@ -8821,6 +8933,7 @@ ID:120765 Name:筆記<br>
 ID:120766 Name:介紹<br>
 ID:120767 Name:故事書<br>
 ID:120768 Name:筆記<br>
+ID:120769 Name:蒼鯉靈珠<br>
 ID:120770 Name:表彰狀<br>
 ID:120771 Name:表彰狀<br>
 ID:120772 Name:表彰狀<br>
@@ -8836,12 +8949,38 @@ ID:120781 Name:摘錄<br>
 ID:120782 Name:摘錄<br>
 ID:120783 Name:誰人的日誌<br>
 ID:120784 Name:紀錄<br>
+ID:120785 Name:遺蹟機關的核心<br>
+ID:120786 Name:玉玦斷片·左<br>
+ID:120787 Name:玉玦斷片·右<br>
+ID:120788 Name:香木「黃琮」<br>
+ID:120789 Name:香木「赤璋」<br>
+ID:120790 Name:「沉玉之旅」紀念冊<br>
+ID:120792 Name:奇特的鑰匙<br>
 ID:120796 Name:「射擊演練光學鏡片」<br>
 ID:120803 Name:招募說明<br>
 ID:120804 Name:救救我！<br>
 ID:120805 Name:布萊卡利雜貨店收據<br>
+ID:120806 Name:古老的石碑<br>
 ID:120807 Name:秋的禮物<br>
 ID:120808 Name:勒魯瓦家的包裹<br>
+ID:120811 Name:<br>
+ID:120812 Name:遺落的鑰匙·其一<br>
+ID:120813 Name:遺落的鑰匙·其二<br>
+ID:120814 Name:<br>
+ID:120841 Name:「懸練仙水」<br>
+ID:120842 Name:古老的玉盞<br>
+ID:120843 Name:誰人的帳本<br>
+ID:120844 Name:<br>
+ID:120845 Name:「祀瓏」<br>
+ID:120846 Name:<br>
+ID:120847 Name:<br>
+ID:120848 Name:<br>
+ID:120849 Name:<br>
+ID:120850 Name:<br>
+ID:120851 Name:赤璋輿圖<br>
+ID:120853 Name:古城垣鑰匙<br>
+ID:120854 Name:生鏽的鑰匙<br>
+ID:120857 Name:從「鵜鶘」嘴裡搶下的魚<br>
 ID:129001 Name:星間之淚<br>
 ID:130001 Name:「霓裳花」的種子<br>
 ID:130002 Name:「甜甜花」的種子<br>
@@ -8910,6 +9049,7 @@ ID:131033 Name:維護機關·水域清理者<br>
 ID:131034 Name:維護機關·勢態控制者<br>
 ID:131035 Name:維護機關·白金典藏型<br>
 ID:131036 Name:維護機關·澄金領隊型<br>
+ID:131037 Name:玉玉心羽鱸<br>
 ID:140001 Name:初始之翼<br>
 ID:140002 Name:守候之翼<br>
 ID:140003 Name:降臨之翼<br>
@@ -9059,6 +9199,12 @@ ID:141216 Name:旋曜玉帛·其一百一十六<br>
 ID:141217 Name:旋曜玉帛·其一百一十七<br>
 ID:141218 Name:旋曜玉帛·其一百一十八<br>
 ID:141219 Name:旋曜玉帛·其一百一十九<br>
+ID:141220 Name:旋曜玉帛·其一百二十<br>
+ID:141221 Name:旋曜玉帛·其一百二十一<br>
+ID:141222 Name:旋曜玉帛·其一百二十二<br>
+ID:141223 Name:旋曜玉帛·其一百二十三<br>
+ID:141224 Name:旋曜玉帛·其一百二十四<br>
+ID:141225 Name:旋曜玉帛·其一百二十五<br>
 ID:200001 Name:燈紙纖維<br>
 ID:200002 Name:燈芯絨材<br>
 ID:200003 Name:浮生石片<br>
@@ -9333,6 +9479,12 @@ ID:210183 Name:紀行·旋舞<br>
 ID:210184 Name:娜維婭·刺玫<br>
 ID:210185 Name:夏沃蕾·貳型<br>
 ID:210186 Name:紀行·時雕<br>
+ID:210187 Name:閒雲·鶴雲<br>
+ID:210188 Name:嘉明·文仔<br>
+ID:210189 Name:成就·仙谷<br>
+ID:210190 Name:沉玉·投瓏<br>
+ID:210191 Name:紀行·彩鷂<br>
+ID:210192 Name:專輯·閃耀的群星<br>
 ID:220001 Name:風神瞳共鳴石<br>
 ID:220002 Name:岩神瞳共鳴石<br>
 ID:220003 Name:岩之尋寶羅盤<br>
@@ -9561,6 +9713,10 @@ ID:330067 Name:艾爾海森<br>
 ID:330068 Name:鍍金旅團·熾沙敘事人<br>
 ID:330069 Name:雷音權現<br>
 ID:330070 Name:特瓦林<br>
+ID:330071 Name:托馬<br>
+ID:330072 Name:早柚<br>
+ID:330073 Name:無相之冰<br>
+ID:330074 Name:千年珍珠駿麟<br>
 ID:330500 Name:唯此一心<br>
 ID:330501 Name:冷血之劍<br>
 ID:330502 Name:吐納真定<br>
@@ -9632,6 +9788,10 @@ ID:330567 Name:魔蠍烈禍<br>
 ID:330568 Name:悲號回唱<br>
 ID:330569 Name:毀裂風渦<br>
 ID:330570 Name:晦朔千引<br>
+ID:330571 Name:僚佐的才巧<br>
+ID:330572 Name:偷懶的新方法<br>
+ID:330573 Name:嚴霜稜晶<br>
+ID:330574 Name:明珠固化<br>
 ID:331000 Name:魔導緒論<br>
 ID:331001 Name:祭禮殘章<br>
 ID:331002 Name:天空之卷<br>
@@ -9700,6 +9860,8 @@ ID:331064 Name:浮溯之玨<br>
 ID:331065 Name:來歆餘響<br>
 ID:331066 Name:靈光明爍之心<br>
 ID:331067 Name:花海甘露之光<br>
+ID:331068 Name:原木刀<br>
+ID:331069 Name:老兵的容顏<br>
 ID:332000 Name:璃月港口<br>
 ID:332001 Name:騎士團圖書館<br>
 ID:332002 Name:群玉閣<br>
@@ -9744,6 +9906,8 @@ ID:332040 Name:歐庇克萊歌劇院<br>
 ID:332041 Name:瑪梅赫<br>
 ID:332042 Name:化種匣<br>
 ID:332043 Name:留念鏡<br>
+ID:332044 Name:婕德<br>
+ID:332045 Name:西爾弗和邁勒斯<br>
 ID:333000 Name:元素共鳴：交織之冰<br>
 ID:333001 Name:元素共鳴：粉碎之冰<br>
 ID:333002 Name:元素共鳴：交織之水<br>
@@ -9808,6 +9972,9 @@ ID:333060 Name:野豬公主<br>
 ID:333061 Name:坍陷與契機<br>
 ID:333062 Name:浮爍的四葉印<br>
 ID:333063 Name:炸魚薯條<br>
+ID:333064 Name:機關鑄成之鏈<br>
+ID:333065 Name:淨覺花<br>
+ID:333066 Name:松茸釀肉捲<br>
 ID:334000 Name:甘雨<br>
 ID:334001 Name:凱亞<br>
 ID:334002 Name:重雲<br>
@@ -9879,6 +10046,10 @@ ID:334067 Name:艾爾海森<br>
 ID:334068 Name:鍍金旅團·熾沙敘事人<br>
 ID:334069 Name:雷音權現<br>
 ID:334070 Name:特瓦林<br>
+ID:334071 Name:托馬<br>
+ID:334072 Name:早柚<br>
+ID:334073 Name:無相之冰<br>
+ID:334074 Name:千年珍珠駿麟<br>
 ID:334500 Name:唯此一心<br>
 ID:334501 Name:冷血之劍<br>
 ID:334502 Name:吐納真定<br>
@@ -9950,6 +10121,10 @@ ID:334567 Name:魔蠍烈禍<br>
 ID:334568 Name:悲號回唱<br>
 ID:334569 Name:毀裂風渦<br>
 ID:334570 Name:晦朔千引<br>
+ID:334571 Name:僚佐的才巧<br>
+ID:334572 Name:偷懶的新方法<br>
+ID:334573 Name:嚴霜稜晶<br>
+ID:334574 Name:明珠固化<br>
 ID:335000 Name:魔導緒論<br>
 ID:335001 Name:祭禮殘章<br>
 ID:335002 Name:天空之卷<br>
@@ -10018,6 +10193,8 @@ ID:335064 Name:浮溯之玨<br>
 ID:335065 Name:來歆餘響<br>
 ID:335066 Name:靈光明爍之心<br>
 ID:335067 Name:花海甘露之光<br>
+ID:335068 Name:原木刀<br>
+ID:335069 Name:老兵的容顏<br>
 ID:336000 Name:璃月港口<br>
 ID:336001 Name:騎士團圖書館<br>
 ID:336002 Name:群玉閣<br>
@@ -10062,6 +10239,8 @@ ID:336040 Name:歐庇克萊歌劇院<br>
 ID:336041 Name:瑪梅赫<br>
 ID:336042 Name:化種匣<br>
 ID:336043 Name:留念鏡<br>
+ID:336044 Name:婕德<br>
+ID:336045 Name:西爾弗和邁勒斯<br>
 ID:337000 Name:元素共鳴：交織之冰<br>
 ID:337001 Name:元素共鳴：粉碎之冰<br>
 ID:337002 Name:元素共鳴：交織之水<br>
@@ -10126,6 +10305,9 @@ ID:337060 Name:野豬公主<br>
 ID:337061 Name:坍陷與契機<br>
 ID:337062 Name:浮爍的四葉印<br>
 ID:337063 Name:炸魚薯條<br>
+ID:337064 Name:機關鑄成之鏈<br>
+ID:337065 Name:淨覺花<br>
+ID:337066 Name:松茸釀肉捲<br>
 ID:339000 Name:原初<br>
 ID:339001 Name:蒙德<br>
 ID:339002 Name:璃月<br>
@@ -10174,6 +10356,9 @@ ID:340010 Name:花時來信<br>
 ID:340011 Name:葉隱芳名<br>
 ID:340012 Name:琪花星燭<br>
 ID:340013 Name:帆影游風<br>
+ID:340014 Name:冷花幽露<br>
+ID:340015 Name:玄玉瑤芳<br>
+ID:340016 Name:雨化竹身<br>
 ID:350001 Name:冒險家的臨時營地<br>
 ID:350002 Name:遠駐前哨的生活<br>
 ID:350003 Name:自在的岩石與草木<br>
@@ -10313,6 +10498,11 @@ ID:380438 Name:「你好！歡迎！」<br>
 ID:380439 Name:「亮亮貝殼」<br>
 ID:380440 Name:禁限地燈—「鐵鎚」<br>
 ID:380441 Name:禁限地燈—「暗光」<br>
+ID:380444 Name:工巧魚燈-「無往不鯉」<br>
+ID:380445 Name:工巧魚燈-「利是鬧春」<br>
+ID:380446 Name:商埠地燈-「一縷幽香」<br>
+ID:380447 Name:商埠路燈-「好事成雙」<br>
+ID:380448 Name:秀谷石燈-「常亮燭火」<br>
 ID:380504 Name:「花葉百相之光」<br>
 ID:380505 Name:「別宮的旋流垂光」<br>
 ID:381101 Name:極北樺木折角櫃檯<br>
@@ -10596,6 +10786,20 @@ ID:390113 Name:孔雀木「不染」櫥櫃<br>
 ID:390114 Name:夢見木「露隱」衣櫃<br>
 ID:390115 Name:夢見木「禮待」著物架<br>
 ID:390116 Name:梨園台榭-「雲翰風致」<br>
+ID:390117 Name:秀谷商肆-「茶引閒邃」<br>
+ID:390118 Name:秀谷戲臺-「雲海興波」<br>
+ID:390119 Name:秀谷遊廊-「遠始為容」<br>
+ID:390120 Name:秀谷遊廊-「本固枝榮」<br>
+ID:390121 Name:秀谷芳榭-「明煦天光」<br>
+ID:390122 Name:秀谷石坊-「豐兆往返」<br>
+ID:390123 Name:秀谷涼亭-「晴雨皆宜」<br>
+ID:390124 Name:秀谷望樓-「候望謹守」<br>
+ID:390125 Name:秀谷良居-「巍巍若山」<br>
+ID:390126 Name:秀谷良居-「深谷靜暇」<br>
+ID:390127 Name:秀谷良居-「繁簡由心」<br>
+ID:390128 Name:秀谷良居-「專於一心」<br>
+ID:390129 Name:秀谷良居-「茗鄉田舍」<br>
+ID:390130 Name:秀谷良居-「寸尺之樓」<br>
 ID:390201 Name:多重拱門的蒙德建築<br>
 ID:390202 Name:懸挑閣樓的蒙德民居<br>
 ID:390203 Name:不懼潮濕的蒙德公寓<br>
@@ -10831,6 +11035,16 @@ ID:391249 Name:院墅廊道-「摩拉分割」<br>
 ID:391250 Name:院墅廊道-「流形轉角」<br>
 ID:391251 Name:院墅拱門-「榮光時刻」<br>
 ID:391252 Name:院墅圍牆-「一角風光」<br>
+ID:391253 Name:秀谷院門-「若市門庭」<br>
+ID:391254 Name:秀谷院門-「過門見山」<br>
+ID:391255 Name:秀谷月洞-「通幽紈扇」<br>
+ID:391256 Name:秀谷牆隅-「如聚波瀾」<br>
+ID:391257 Name:秀谷石壁-「玉帶懸江」<br>
+ID:391258 Name:秀谷石壁-「柳暗花遮」<br>
+ID:391259 Name:秀谷石壁-「鯉貫鳶羽」<br>
+ID:391260 Name:秀谷山牆-「折風阻火」<br>
+ID:391261 Name:秀谷山牆-「闢雨留光」<br>
+ID:391262 Name:秀谷石階-「礎石之功」<br>
 ID:392107 Name:鑄石地基-「運開時泰」<br>
 ID:392606 Name:外景傑構-「煙空棧道」<br>
 ID:392607 Name:外景傑構-「樹梢信步」<br>
@@ -11016,6 +11230,16 @@ ID:393433 Name:「禁限之堡的重載」<br>
 ID:393434 Name:區域標示—「上行」<br>
 ID:393435 Name:區域標示—「下行」<br>
 ID:393436 Name:「白淞街鎮的門架」<br>
+ID:393439 Name:鎮宅鼓石-「肅音震響」<br>
+ID:393441 Name:舞獸戲服-「嗷嗷威猊」<br>
+ID:393442 Name:舞獸玩偶-「懶懶困猊」<br>
+ID:393443 Name:芳宴錦扆-「蝶飛魚躍」<br>
+ID:393444 Name:芳宴錦扆-「鳶噰雀囀」<br>
+ID:393448 Name:吉慶紙鳶-「連年有餘」<br>
+ID:393449 Name:吉慶紙鳶-「諸事順遂」<br>
+ID:393450 Name:吉慶紙鳶-「翾翾蝶舞」<br>
+ID:393451 Name:吉慶紙鳶-「亨通財運」<br>
+ID:393452 Name:垂香木雨檐告示牌<br>
 ID:393511 Name:書報架-「自由取閱」<br>
 ID:393512 Name:書報架-「快速瀏覽」<br>
 ID:393513 Name:書報架-「聚焦效應」<br>
@@ -11044,6 +11268,7 @@ ID:394207 Name:梨園賓位-「長樂同座」<br>
 ID:394208 Name:悠悠哉哉不知死線之椅<br>
 ID:394209 Name:「迴廊的悠然時光」<br>
 ID:394210 Name:「迴廊的晚風合奏」<br>
+ID:394211 Name:香茗座椅-「清風蘧蘧」<br>
 ID:394301 Name:丘丘雙層警戒台<br>
 ID:394302 Name:開放式松木櫥櫃<br>
 ID:394303 Name:重型杉木鍛造桌<br>
@@ -11063,6 +11288,7 @@ ID:394317 Name:業果木陳列桌<br>
 ID:394318 Name:「迴廊的無垢圓桌」<br>
 ID:394319 Name:生產用貨架-「基礎型」<br>
 ID:394320 Name:生產用貨架-「改造型」<br>
+ID:394321 Name:香茗方桌-「四方迎客」<br>
 ID:394401 Name:酒肆貨櫃-「會須百杯飲」<br>
 ID:394402 Name:抗浪結構雙層貨盤<br>
 ID:394403 Name:「花海的搖籃」<br>
@@ -11161,6 +11387,7 @@ ID:20050103 Name:純水精靈<br>
 ID:20050201 Name:純水之豬<br>
 ID:20050202 Name:純水之豬（強化）<br>
 ID:20050203 Name:幻形豕獸·水<br>
+ID:20050204 Name:幻形豕獸·水<br>
 ID:20050281 Name:幻形豕獸·水<br>
 ID:20050301 Name:純水之鶴<br>
 ID:20050302 Name:幻形鶴·水<br>
@@ -11233,6 +11460,7 @@ ID:21010481 Name:射手丘丘人<br>
 ID:21010482 Name:射手丘丘人<br>
 ID:21010501 Name:火箭丘丘人<br>
 ID:21010502 Name:Test_Hilichurl Pyro arquero variado<br>
+ID:21010503 Name:火箭丘丘人<br>
 ID:21010581 Name:火箭丘丘人<br>
 ID:21010582 Name:火箭丘丘人<br>
 ID:21010601 Name:爆彈丘丘人<br>
@@ -11262,6 +11490,7 @@ ID:21011481 Name:冰盾丘丘人<br>
 ID:21011501 Name:奇怪的丘丘人空手<br>
 ID:21011601 Name:雷彈丘丘人<br>
 ID:21011602 Name:雷彈丘丘人-強攻強化<br>
+ID:21011603 Name:雷彈丘丘人<br>
 ID:21011681 Name:雷彈丘丘人<br>
 ID:21020101 Name:木盾丘丘暴徒<br>
 ID:21020102 Name:木盾丘丘暴徒（塔防）<br>
@@ -11269,6 +11498,7 @@ ID:21020181 Name:木盾丘丘暴徒<br>
 ID:21020201 Name:火斧丘丘暴徒<br>
 ID:21020202 Name:火斧丘丘暴徒<br>
 ID:21020203 Name:火斧丘丘暴徒（塔防）<br>
+ID:21020204 Name:火斧丘丘暴徒<br>
 ID:21020281 Name:火斧丘丘暴徒<br>
 ID:21020282 Name:火斧丘丘暴徒<br>
 ID:21020299 Name:火斧丘丘暴徒<br>
@@ -11299,6 +11529,7 @@ ID:21020882 Name:丘丘雷兜王<br>
 ID:21030101 Name:水丘丘薩滿<br>
 ID:21030102 Name:水丘丘薩滿（塔防）<br>
 ID:21030103 Name:Test_Samachurl Hydro curación en movimiento<br>
+ID:21030104 Name:水丘丘薩滿<br>
 ID:21030181 Name:水丘丘薩滿<br>
 ID:21030201 Name:草丘丘薩滿<br>
 ID:21030202 Name:草丘丘薩滿（塔防）<br>
@@ -11325,6 +11556,7 @@ ID:21030601 Name:雷丘丘薩滿<br>
 ID:21030602 Name:雷丘丘薩滿（塔防）<br>
 ID:21030603 Name:雷丘丘薩滿-支援強化<br>
 ID:21030681 Name:雷丘丘薩滿<br>
+ID:21030701 Name:丘丘薩滿BOSS<br>
 ID:21040101 Name:丘丘風行遊俠<br>
 ID:21040181 Name:丘丘風行遊俠<br>
 ID:21040182 Name:丘丘風行遊俠<br>
@@ -11594,6 +11826,7 @@ ID:25010226 Name:盜寶團·斥候<br>
 ID:25010227 Name:盜寶團·斥候<br>
 ID:25010228 Name:盜寶團·斥候<br>
 ID:25010229 Name:盜寶團·斥候<br>
+ID:25010230 Name:盜寶團·斥候<br>
 ID:25010281 Name:盜寶團·斥候<br>
 ID:25010301 Name:盜寶團·火之藥劑師<br>
 ID:25010302 Name:盜寶團·火之藥劑師<br>
@@ -11632,6 +11865,7 @@ ID:25020207 Name:盜寶團·神射手<br>
 ID:25020208 Name:盜寶團·神射手<br>
 ID:25020209 Name:盜寶團·神射手<br>
 ID:25020210 Name:盜寶團·神射手<br>
+ID:25020211 Name:盜寶團·神射手<br>
 ID:25020281 Name:盜寶團·神射手<br>
 ID:25030101 Name:「卡門」<br>
 ID:25030102 Name:盜寶團·「卡門」<br>
@@ -11648,6 +11882,7 @@ ID:25040102 Name:盜寶團·「大姐頭」<br>
 ID:25040103 Name:盜寶團·「大姐頭」<br>
 ID:25040104 Name:盜寶團·「大姐頭」<br>
 ID:25040105 Name:盜寶團·「大姐頭」<br>
+ID:25040106 Name:盜寶團·「大姐頭」<br>
 ID:25050101 Name:千岩軍士兵<br>
 ID:25050201 Name:千岩軍教頭<br>
 ID:25050301 Name:幕府足輕<br>
@@ -11672,12 +11907,14 @@ ID:25060109 Name:盜寶團·拳術家<br>
 ID:25060110 Name:盜寶團·拳術家<br>
 ID:25060111 Name:盜寶團·拳術家<br>
 ID:25060112 Name:盜寶團·拳術家<br>
+ID:25060113 Name:盜寶團·拳術家<br>
 ID:25060181 Name:盜寶團·拳術家<br>
 ID:25060201 Name:<br>
 ID:25070101 Name:盜寶團·粉碎者<br>
 ID:25070102 Name:盜寶團·粉碎者<br>
 ID:25070103 Name:盜寶團·粉碎者<br>
 ID:25070104 Name:盜寶團·粉碎者<br>
+ID:25070105 Name:盜寶團·粉碎者<br>
 ID:25070181 Name:盜寶團·粉碎者<br>
 ID:25070201 Name:盜寶團·「瓦倫斯坦」<br>
 ID:25070202 Name:盜寶團·「瓦倫斯坦」<br>
@@ -11833,6 +12070,10 @@ ID:26040185 Name:岩龍蜥<br>
 ID:26040186 Name:岩龍蜥<br>
 ID:26040187 Name:岩龍蜥<br>
 ID:26040188 Name:岩龍蜥<br>
+ID:26040201 Name:赤璋巡岳府君·移即<br>
+ID:26040202 Name:赤璋巡岳府君·移即<br>
+ID:26040301 Name:赤璋巡岳府君·天虞<br>
+ID:26040302 Name:赤璋巡岳府君·天虞<br>
 ID:26050101 Name:古岩龍蜥-水<br>
 ID:26050201 Name:古岩龍蜥-火<br>
 ID:26050301 Name:古岩龍蜥-冰<br>
@@ -11955,6 +12196,10 @@ ID:26162401 Name:地方傳奇·大天使海兔<br>
 ID:26162501 Name:地方傳奇·帽子水母<br>
 ID:26170101 Name:鐵甲熔火帝皇<br>
 ID:26180101 Name:千年珍珠駿麟<br>
+ID:26190101 Name:隱山猊獸<br>
+ID:26190102 Name:隱山猊獸<br>
+ID:26190103 Name:隱山猊獸<br>
+ID:26190201 Name:玄文獸<br>
 ID:28010101 Name:黃金蟹<br>
 ID:28010102 Name:太陽蟹<br>
 ID:28010103 Name:海藍蟹<br>
@@ -12008,6 +12253,7 @@ ID:28020316 Name:<br>
 ID:28020317 Name:<br>
 ID:28020318 Name:<br>
 ID:28020319 Name:<br>
+ID:28020320 Name:<br>
 ID:28020401 Name:北地犬<br>
 ID:28020402 Name:巡林犬<br>
 ID:28020403 Name:柴犬<br>
@@ -12050,10 +12296,14 @@ ID:28020903 Name:<br>
 ID:28020904 Name:<br>
 ID:28020905 Name:<br>
 ID:28021001 Name:<br>
+ID:28021002 Name:<br>
+ID:28021011 Name:<br>
+ID:28021012 Name:<br>
 ID:28021101 Name:<br>
 ID:28021102 Name:<br>
 ID:28021103 Name:<br>
 ID:28021201 Name:<br>
+ID:28022101 Name:<br>
 ID:28030101 Name:藍翎鷺<br>
 ID:28030102 Name:菫䴉<br>
 ID:28030103 Name:<br>
@@ -12093,16 +12343,22 @@ ID:28030409 Name:<br>
 ID:28030410 Name:<br>
 ID:28030501 Name:赤喙鴨<br>
 ID:28030502 Name:翠冠鴨<br>
+ID:28030503 Name:沉金鴨<br>
 ID:28030504 Name:<br>
 ID:28030505 Name:<br>
+ID:28030506 Name:<br>
 ID:28030601 Name:<br>
 ID:28030602 Name:<br>
+ID:28030603 Name:<br>
 ID:28030604 Name:<br>
 ID:28030605 Name:<br>
+ID:28030606 Name:<br>
 ID:28030607 Name:<br>
 ID:28030608 Name:<br>
+ID:28030609 Name:<br>
 ID:28030610 Name:<br>
 ID:28030611 Name:<br>
+ID:28030612 Name:<br>
 ID:28030701 Name:<br>
 ID:28030702 Name:<br>
 ID:28030703 Name:<br>
@@ -12160,6 +12416,7 @@ ID:28040902 Name:<br>
 ID:28040903 Name:<br>
 ID:28041001 Name:<br>
 ID:28041002 Name:<br>
+ID:28041003 Name:<br>
 ID:28041101 Name:<br>
 ID:28041102 Name:<br>
 ID:28041103 Name:<br>
@@ -12184,6 +12441,7 @@ ID:28050221 Name:<br>
 ID:28050222 Name:<br>
 ID:28050223 Name:<br>
 ID:28050301 Name:<br>
+ID:28050302 Name:<br>
 ID:28050401 Name:<br>
 ID:28050501 Name:<br>
 ID:28050502 Name:<br>
@@ -12300,6 +12558,7 @@ ID:28220604 Name:<br>
 ID:28220605 Name:<br>
 ID:28220701 Name:Kitsune doméstico<br>
 ID:28220901 Name:Perro samurái doméstico<br>
+ID:28222101 Name:<br>
 ID:28230101 Name:家園藍翎鷺<br>
 ID:28230102 Name:Ibis violeta doméstico<br>
 ID:28230104 Name:<br>
@@ -12316,6 +12575,7 @@ ID:28230403 Name:Pinzón polar doméstico<br>
 ID:28230404 Name:Pinzón esmeralda doméstico<br>
 ID:28230601 Name:<br>
 ID:28230602 Name:<br>
+ID:28230603 Name:<br>
 ID:28230701 Name:<br>
 ID:28230702 Name:<br>
 ID:28230703 Name:<br>
@@ -12356,6 +12616,7 @@ ID:28240902 Name:<br>
 ID:28240903 Name:<br>
 ID:28241001 Name:<br>
 ID:28241002 Name:<br>
+ID:28241003 Name:<br>
 ID:28241101 Name:<br>
 ID:28241102 Name:<br>
 ID:28241103 Name:<br>
@@ -12369,6 +12630,7 @@ ID:28250105 Name:<br>
 ID:28250106 Name:<br>
 ID:28250107 Name:<br>
 ID:28250301 Name:<br>
+ID:28250302 Name:<br>
 ID:28250401 Name:<br>
 ID:28250701 Name:<br>
 ID:29010101 Name:風魔龍 特瓦林<br>
@@ -12432,12 +12694,15 @@ ID:34060901 Name:壓制特化型機關·荒<br>
 ID:35010201 Name:盜寶團·斥候<br>
 ID:35010202 Name:盜寶團·斥候<br>
 ID:35010203 Name:盜寶團·斥候<br>
+ID:35010204 Name:盜寶團·斥候<br>
 ID:35010602 Name:盜寶團·冰之藥劑師<br>
 ID:35020201 Name:盜寶團·神射手<br>
 ID:35020202 Name:盜寶團·神射手<br>
+ID:35040101 Name:盜寶團·「大姐頭」<br>
 ID:35060101 Name:盜寶團·拳術家<br>
 ID:35060102 Name:盜寶團·拳術家<br>
 ID:35060103 Name:盜寶團·拳術家<br>
+ID:35070101 Name:盜寶團·粉碎者<br>
 ID:35110101 Name:厄靈·岩之魔蜥<br>
 ID:35110102 Name:厄靈·岩之魔蜥<br>
 ID:35110103 Name:厄靈·岩之魔蜥<br>
@@ -12495,3 +12760,4 @@ ID:36091091 Name:伸縮雷蕈獸<br>
 ID:36091092 Name:伸縮雷蕈獸<br>
 ID:38050590 Name:<br>
 ID:38050591 Name:<br>
+ID:38060502 Name:<br>
