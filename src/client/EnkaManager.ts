@@ -33,7 +33,7 @@ export interface EnkaData {
  */
 export class EnkaManager {
   private static enkaUidURL = 'https://enka.network/api/uid/'
-  private static defaultOption: RequestInit = {
+  private static defaultFetchOption: RequestInit = {
     headers: {
       'user-agent': 'Mozilla/5.0',
     },
@@ -71,24 +71,20 @@ export class EnkaManager {
     this.clearCacheOverNextShowCaseDate()
     if (uid < 100000000 || uid > 999999999)
       throw new EnkaManagerError(`The UID format is not correct(${uid})`)
-    const url = EnkaManager.enkaUidURL + `${uid}`
-    const previousData = this.cache.get(uid)
+    const cachedData = this.cache.get(uid)
     if (
-      previousData &&
-      previousData.avatarInfoList &&
-      new Date().getTime() < previousData.nextShowCaseDate.getTime()
-    ) {
-      return new Promise<EnkaData>((resolve) => {
-        resolve(previousData)
-      })
-    }
-    const mergedFetchOption = fetchOption
-      ? merge.withOptions(
-          { mergeArrays: false },
-          EnkaManager.defaultOption,
-          fetchOption,
-        )
-      : EnkaManager.defaultOption
+      cachedData &&
+      cachedData.avatarInfoList &&
+      new Date().getTime() < cachedData.nextShowCaseDate.getTime()
+    )
+      return cachedData
+
+    const mergedFetchOption = merge.withOptions(
+      { mergeArrays: false },
+      EnkaManager.defaultFetchOption,
+      fetchOption ?? {},
+    )
+    const url = EnkaManager.enkaUidURL + `${uid}`
     const res = await fetch(url, mergedFetchOption)
     if (!res.ok) throw new EnkaNetworkError(res)
 
@@ -101,7 +97,7 @@ export class EnkaManager {
           (avatarInfo) => new AvatarInfo(avatarInfo),
         ) ?? [],
       nextShowCaseDate: new Date(
-        new Date().getTime() + (result.ttl || 60) * 1000,
+        new Date().getTime() + (result.ttl ?? 60) * 1000,
       ),
     }
     this.cache.set(enkaData.uid, enkaData)

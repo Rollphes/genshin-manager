@@ -12,6 +12,54 @@ import { ClientOption, TextMapLanguage } from '@/types'
  * @description This is the main body of `Genshin-Manager` where cache information is stored
  */
 export class Client extends AssetCacheManager {
+  private static defaultOption: ClientOption = {
+    fetchOption: {
+      headers: {
+        'user-agent': 'Mozilla/5.0',
+      },
+    },
+    downloadLanguages: [
+      'EN',
+      'RU',
+      'VI',
+      'TH',
+      'PT',
+      'KR',
+      'JP',
+      'ID',
+      'FR',
+      'ES',
+      'DE',
+      'CHT',
+      'CHS',
+    ],
+    defaultImageBaseUrl: 'https://api.ambr.top/assets/UI',
+    defaultAudioBaseUrl: 'https://api.ambr.top/assets/Audio',
+    imageBaseUrlByRegex: {
+      'https://enka.network/ui': [
+        /^UI_(EquipIcon|NameCardPic|RelicIcon|AvatarIcon_Side|NameCardIcon|Costume)_/,
+        /^UI_AvatarIcon_(.+)_Card$/, //TODO: Add Card Icon
+        /^UI_AvatarIcon_(.+)_Circle/,
+      ],
+      'https://res.cloudinary.com/genshin/image/upload/sprites': [
+        /^Eff_UI_Talent_/,
+        /^UI_(TowerPic|TowerBlessing|GcgIcon|Gcg_Cardtable|Gcg_CardBack)_/,
+      ],
+      'https://api.ambr.top/assets/UI/monster': [
+        /^UI_(MonsterIcon|AnimalIcon)_/,
+      ],
+      'https://api.ambr.top/assets/UI/gcg': [/^UI_Gcg_CardFace_/],
+    },
+    audioBaseUrlByRegex: {},
+    defaultLanguage: 'EN',
+    showFetchCacheLog: true,
+    autoFetchLatestAssetsByCron: '0 0 0 * * 3', //Every Wednesday 00:00:00
+    autoCacheImage: true,
+    autoCacheAudio: true,
+    autoFixTextMap: true,
+    autoFixExcelBin: true,
+    assetCacheFolderPath: path.resolve(__dirname, '..', '..', 'cache'),
+  }
   public readonly option: ClientOption
 
   /**
@@ -19,68 +67,18 @@ export class Client extends AssetCacheManager {
    * @param option Client option
    */
   constructor(option?: Partial<ClientOption>) {
-    const defaultOption: ClientOption = {
-      fetchOption: {
-        headers: {
-          'user-agent': 'Mozilla/5.0',
-        },
-      },
-      downloadLanguages: [
-        'EN',
-        'RU',
-        'VI',
-        'TH',
-        'PT',
-        'KR',
-        'JP',
-        'ID',
-        'FR',
-        'ES',
-        'DE',
-        'CHT',
-        'CHS',
-      ],
-      defaultImageBaseUrl: 'https://api.ambr.top/assets/UI',
-      defaultAudioBaseUrl: 'https://api.ambr.top/assets/Audio',
-      imageBaseUrlByRegex: {
-        'https://enka.network/ui': [
-          /^UI_(EquipIcon|NameCardPic|RelicIcon|AvatarIcon_Side|NameCardIcon|Costume)_/,
-          /^UI_AvatarIcon_(.+)_Card$/, //TODO: Add Card Icon
-          /^UI_AvatarIcon_(.+)_Circle/,
-        ],
-        'https://res.cloudinary.com/genshin/image/upload/sprites': [
-          /^Eff_UI_Talent_/,
-          /^UI_(TowerPic|TowerBlessing|GcgIcon|Gcg_Cardtable|Gcg_CardBack)_/,
-        ],
-        'https://api.ambr.top/assets/UI/monster': [
-          /^UI_(MonsterIcon|AnimalIcon)_/,
-        ],
-        'https://api.ambr.top/assets/UI/gcg': [/^UI_Gcg_CardFace_/],
-      },
-      audioBaseUrlByRegex: {},
-      defaultLanguage: 'EN',
-      showFetchCacheLog: true,
-      autoFetchLatestAssetsByCron: '0 0 0 * * 3', //Every Wednesday 00:00:00
-      autoCacheImage: true,
-      autoCacheAudio: true,
-      autoFixTextMap: true,
-      autoFixExcelBin: true,
-      assetCacheFolderPath: path.resolve(__dirname, '..', '..', 'cache'),
-    }
-    const mergeOption = option
-      ? (merge.withOptions(
-          { mergeArrays: false },
-          defaultOption,
-          option,
-        ) as ClientOption)
-      : defaultOption
+    const mergeOption = merge.withOptions(
+      { mergeArrays: false },
+      Client.defaultOption,
+      option ?? {},
+    ) as ClientOption
 
-    if (!mergeOption.downloadLanguages.includes(mergeOption.defaultLanguage)) {
-      mergeOption.downloadLanguages = [
+    mergeOption.downloadLanguages = [
+      ...new Set([
         mergeOption.defaultLanguage,
         ...mergeOption.downloadLanguages,
-      ]
-    }
+      ]),
+    ]
 
     if (!mergeOption.autoFetchLatestAssetsByCron) {
       mergeOption.autoFixTextMap = false
@@ -128,7 +126,9 @@ export class Client extends AssetCacheManager {
         void Client.updateCache()
       })
     }
-    ImageAssets.deploy(this.option)
-    AudioAssets.deploy(this.option)
+    await Promise.all([
+      ImageAssets.deploy(this.option),
+      AudioAssets.deploy(this.option),
+    ])
   }
 }
