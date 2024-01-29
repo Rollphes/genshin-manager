@@ -25,14 +25,6 @@ export class NoticeManager {
   private static readonly getListUrl: string =
     'https://sg-hk4e-api.hoyoverse.com/common/hk4e_global/announcement/api/getAnnList'
   /**
-   * Default fetch option
-   */
-  private static readonly defaultFetchOption: RequestInit = {
-    headers: {
-      'user-agent': `genshin-manager/${process.env.npm_package_version}`,
-    },
-  }
-  /**
    * Default url params
    */
   private static readonly defaultUrlParams: UrlParams = {
@@ -50,17 +42,6 @@ export class NoticeManager {
     uid: '888888888',
   }
 
-  /**
-   * Fetch option
-   * @default
-   * ```ts
-   * {
-   * headers: {
-   *   'user-agent': 'genshin-manager/x.x.x',
-   * },
-   * ```
-   */
-  public fetchOption: RequestInit
   /**
    * Language of notices
    */
@@ -80,16 +61,13 @@ export class NoticeManager {
   /**
    * Create a NoticeManager
    * @param language Language of notices
-   * @param fetchOption Fetch option
    * @param urlParams Url params
    */
   constructor(
     language: keyof typeof NoticeLanguage,
-    fetchOption?: RequestInit,
     urlParams?: Partial<UrlParams>,
   ) {
     this.language = language
-    this.fetchOption = fetchOption ?? NoticeManager.defaultFetchOption
     this.urlParams = merge.withOptions(
       { mergeArrays: false },
       NoticeManager.defaultUrlParams,
