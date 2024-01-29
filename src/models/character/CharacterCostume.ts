@@ -37,6 +37,10 @@ export class CharacterCostume {
    * Costume art
    */
   public readonly art: ImageAssets
+  /**
+   * Costume card
+   */
+  public readonly card: ImageAssets
 
   /**
    * Create a Costume
@@ -72,6 +76,7 @@ export class CharacterCostume {
         ? 'UI_Costume_' + avatarTag
         : 'UI_Gacha_AvatarImg_' + avatarTag,
     )
+    this.card = new ImageAssets('UI_AvatarIcon_' + avatarTag + '_Card')
   }
 
   /**
