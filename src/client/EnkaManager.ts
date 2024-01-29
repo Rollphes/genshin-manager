@@ -41,7 +41,7 @@ export class EnkaManager {
    */
   private static readonly defaultFetchOption: RequestInit = {
     headers: {
-      'user-agent': 'Mozilla/5.0',
+      'user-agent': `genshin-manager/${process.env.npm_package_version}`,
     },
   }
 
@@ -60,7 +60,7 @@ export class EnkaManager {
   /**
    * Fetch EnkaData from enka.network
    * @param uid genshin uid
-   * @param fetchOption fetch option (default: { headers: { 'user-agent': 'Mozilla/5.0' } })
+   * @param fetchOption fetch option (default: { headers: { 'user-agent': 'genshin-manager/x.x.x' } })
    * @returns cached EnkaData
    * @example
    * ```ts

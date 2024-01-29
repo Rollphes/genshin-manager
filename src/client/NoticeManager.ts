@@ -29,7 +29,7 @@ export class NoticeManager {
    */
   private static readonly defaultFetchOption: RequestInit = {
     headers: {
-      'user-agent': 'Mozilla/5.0',
+      'user-agent': `genshin-manager/${process.env.npm_package_version}`,
     },
   }
   /**
@@ -56,7 +56,7 @@ export class NoticeManager {
    * ```ts
    * {
    * headers: {
-   *   'user-agent': 'Mozilla/5.0',
+   *   'user-agent': 'genshin-manager/x.x.x',
    * },
    * ```
    */

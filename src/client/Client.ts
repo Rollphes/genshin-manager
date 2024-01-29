@@ -18,7 +18,7 @@ export class Client extends AssetCacheManager {
   private static readonly defaultOption: ClientOption = {
     fetchOption: {
       headers: {
-        'user-agent': 'Mozilla/5.0',
+        'user-agent': `genshin-manager/${process.env.npm_package_version}`,
       },
     },
     downloadLanguages: [

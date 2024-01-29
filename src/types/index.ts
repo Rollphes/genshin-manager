@@ -12,7 +12,7 @@ export interface ClientOption {
    * @default
    * ```ts
    * {
-   *   'user-agent': 'Mozilla/5.0',
+   *   'user-agent': 'genshin-manager/x.x.x',
    * }
    * ```
    */
