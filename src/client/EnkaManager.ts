@@ -2,8 +2,8 @@ import { merge } from 'ts-deepmerge'
 
 import { EnkaManagerError } from '@/errors/EnkaManagerError'
 import { EnkaNetworkError } from '@/errors/EnkaNetWorkError'
-import { AvatarInfo } from '@/models/enka/AvatarInfo'
-import { PlayerInfo } from '@/models/enka/PlayerInfo'
+import { CharacterDetail } from '@/models/enka/CharacterDetail'
+import { PlayerDetail } from '@/models/enka/PlayerDetail'
 import { APIEnkaData } from '@/types/EnkaTypes'
 
 /**
@@ -15,13 +15,13 @@ export interface EnkaData {
    */
   uid: number
   /**
-   * playerInfo
+   * player detail
    */
-  playerInfo: PlayerInfo
+  playerDetail: PlayerDetail
   /**
-   * avatarInfoList
+   * character details
    */
-  avatarInfoList: AvatarInfo[] //TODO:List
+  characterDetails: CharacterDetail[]
   /**
    * nextShowCaseDate
    */
@@ -80,7 +80,7 @@ export class EnkaManager {
     const cachedData = this.cache.get(uid)
     if (
       cachedData &&
-      cachedData.avatarInfoList &&
+      cachedData.characterDetails &&
       new Date().getTime() < cachedData.nextShowCaseDate.getTime()
     )
       return cachedData
@@ -97,10 +97,10 @@ export class EnkaManager {
     const result = (await res.json()) as APIEnkaData
     const enkaData: EnkaData = {
       uid: uid,
-      playerInfo: new PlayerInfo(result.playerInfo),
-      avatarInfoList:
+      playerDetail: new PlayerDetail(result.playerInfo),
+      characterDetails:
         result.avatarInfoList?.map(
-          (avatarInfo) => new AvatarInfo(avatarInfo),
+          (avatarInfo) => new CharacterDetail(avatarInfo),
         ) ?? [],
       nextShowCaseDate: new Date(
         new Date().getTime() + (result.ttl ?? 60) * 1000,

@@ -17,7 +17,7 @@ import {
 /**
  * Class of the character obtained from EnkaNetwork
  */
-export class AvatarInfo {
+export class CharacterDetail {
   /**
    * Character id
    */
@@ -92,7 +92,7 @@ export class AvatarInfo {
   public readonly setBonus: SetBonus
 
   /**
-   * Create a AvatarInfo
+   * Create a CharacterDetail
    * @param data Data from EnkaNetwork
    */
   constructor(data: APIAvatarInfo) {

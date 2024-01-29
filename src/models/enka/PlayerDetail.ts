@@ -1,11 +1,11 @@
-import { ShowAvatarInfo } from '@/models/enka/ShowAvatarInfo'
+import { CharacterPreview } from '@/models/enka/CharacterPreview'
 import { Material } from '@/models/Material'
 import { ProfilePicture } from '@/models/ProfilePicture'
 import { APIPlayerInfo } from '@/types/EnkaTypes'
 /**
  * Class of player obtained from EnkaNetwork
  */
-export class PlayerInfo {
+export class PlayerDetail {
   /**
    * Player Nickname
    */
@@ -39,20 +39,20 @@ export class PlayerInfo {
    */
   public readonly towerLevelIndex: number
   /**
-   * List of Character Costume and Level
+   * Character previews
    */
-  public readonly showAvatarInfoList: ShowAvatarInfo[] //TODO:List
+  public readonly characterPreviews: CharacterPreview[]
   /**
-   * List of NameCard
+   * Show NameCards
    */
-  public readonly showNameCardList: Material[] //TODO:List
+  public readonly showNameCards: Material[]
   /**
    * Player Profile Picture
    */
   public readonly profilePicture: ProfilePicture
 
   /**
-   * Create a PlayerInfo
+   * Create a PlayerDetail
    * @param data Data from EnkaNetwork
    */
   constructor(data: APIPlayerInfo) {
@@ -64,10 +64,10 @@ export class PlayerInfo {
     this.finishAchievementNum = data.finishAchievementNum || 0
     this.towerFloorIndex = data.towerFloorIndex || 0
     this.towerLevelIndex = data.towerLevelIndex || 0
-    this.showAvatarInfoList = data.showAvatarInfoList
-      ? data.showAvatarInfoList.map((v) => new ShowAvatarInfo(v))
+    this.characterPreviews = data.showAvatarInfoList
+      ? data.showAvatarInfoList.map((v) => new CharacterPreview(v))
       : []
-    this.showNameCardList = data.showNameCardIdList
+    this.showNameCards = data.showNameCardIdList
       ? data.showNameCardIdList.map((id) => new Material(id))
       : []
 

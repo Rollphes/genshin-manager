@@ -25,9 +25,9 @@ import { CharacterStatusManager } from '@/models/character/CharacterStatusManage
 import { CharacterStory } from '@/models/character/CharacterStory'
 import { CharacterVoice } from '@/models/character/CharacterVoice'
 import { DailyFarming } from '@/models/DailyFarming'
-import { AvatarInfo } from '@/models/enka/AvatarInfo'
-import { PlayerInfo } from '@/models/enka/PlayerInfo'
-import { ShowAvatarInfo } from '@/models/enka/ShowAvatarInfo'
+import { CharacterDetail } from '@/models/enka/CharacterDetail'
+import { CharacterPreview } from '@/models/enka/CharacterPreview'
+import { PlayerDetail } from '@/models/enka/PlayerDetail'
 import { Material } from '@/models/Material'
 import { Monster } from '@/models/Monster'
 import { Notice } from '@/models/Notice'
@@ -82,9 +82,9 @@ export {
   CharacterSkill,
   CharacterInherentSkill,
   CharacterConstellation,
-  AvatarInfo,
-  PlayerInfo,
-  ShowAvatarInfo,
+  CharacterDetail,
+  PlayerDetail,
+  CharacterPreview,
   Material,
   Weapon,
   WeaponAscension,
