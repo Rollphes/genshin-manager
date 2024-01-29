@@ -137,6 +137,7 @@ async function main() {
         await costume.sideIcon.fetchBuffer().catch((e) => console.log(e))
         await costume.icon.fetchBuffer().catch((e) => console.log(e))
         await costume.art.fetchBuffer().catch((e) => console.log(e))
+        await costume.card.fetchBuffer().catch((e) => console.log(e))
       }
 
       const inherentSkillIds =
