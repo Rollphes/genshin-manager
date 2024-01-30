@@ -66,7 +66,7 @@ export class Client extends AssetCacheManager {
   public readonly option: ClientOption
 
   /**
-   * Create a client
+   * Create a Client
    * @param option Client option
    */
   constructor(option?: Partial<ClientOption>) {

@@ -4,7 +4,7 @@ import { ExcelBinOutputs, TextMapLanguage } from '@/types'
  * Error thrown when the assets are not found
  */
 export class AssetsNotFoundError extends Error {
-  public readonly id?: string | number
+  public readonly id: string | number | undefined
   public readonly key: keyof (typeof ExcelBinOutputs & typeof TextMapLanguage)
   public readonly name: string
 

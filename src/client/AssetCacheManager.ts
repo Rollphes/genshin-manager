@@ -140,6 +140,8 @@ export abstract class AssetCacheManager {
     new Set()
   /**
    * Cached text map
+   * @key ExcelBinOutput name
+   * @value Cached excel bin output
    */
   private static cachedExcelBinOutput: Map<
     keyof typeof ExcelBinOutputs,
@@ -149,7 +151,7 @@ export abstract class AssetCacheManager {
   /**
    * Create a AssetCacheManager
    * @param option Client option
-   * @param children import modules
+   * @param children Import modules
    */
   constructor(option: ClientOption, children: Module[]) {
     AssetCacheManager.option = option
@@ -242,7 +244,7 @@ export abstract class AssetCacheManager {
   }
 
   /**
-   * search hashes in CachedTextMap by value
+   * Search hashes in CachedTextMap by value
    * @deprecated This method is deprecated because it is used to pass data to each class
    * @param searchValue Search value
    * @returns Hashes
@@ -256,7 +258,7 @@ export abstract class AssetCacheManager {
   }
 
   /**
-   * search key in CachedExcelBinOutput by text hashes
+   * Search key in CachedExcelBinOutput by text hashes
    * @deprecated This method is deprecated because it is used to pass data to each class
    * @param key ExcelBinOutput name
    * @param textHashes Text hashes
@@ -498,7 +500,7 @@ export abstract class AssetCacheManager {
 
   /**
    * Create ExcelBinOutput Keys to cache
-   * @param children import modules
+   * @param children Import modules
    */
   private static createExcelBinOutputKeys(children?: Module[]): void {
     this.excelBinOutputKeys.clear()
@@ -585,7 +587,7 @@ export abstract class AssetCacheManager {
    * Fetch asset folder from gitlab
    * @param FolderPath Folder path
    * @param files File names
-   * @param isRetry Retry
+   * @param isRetry Is Retry
    */
   private static async fetchAssetFolder(
     FolderPath: string,
@@ -626,7 +628,7 @@ export abstract class AssetCacheManager {
   }
 
   /**
-   * download json file from url and write to downloadFilePath
+   * Download json file from url and write to downloadFilePath
    * @param url URL
    * @param downloadFilePath Download file path
    */

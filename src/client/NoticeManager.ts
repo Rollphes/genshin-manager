@@ -11,7 +11,7 @@ import {
 } from '@/types/GetAnnTypes'
 
 /**
- * Class that manages notices
+ * Class for fetching notices from mihoyo
  */
 export class NoticeManager {
   /**
@@ -54,14 +54,14 @@ export class NoticeManager {
   public notices = new Map<number, Notice>()
 
   /**
-   * Url params
+   * URL params
    */
   private urlParams: UrlParams
 
   /**
    * Create a NoticeManager
    * @param language Language of notices
-   * @param urlParams Url params
+   * @param urlParams URL params
    */
   constructor(
     language: keyof typeof NoticeLanguage,

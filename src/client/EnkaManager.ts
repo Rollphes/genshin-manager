@@ -58,8 +58,8 @@ export class EnkaManager {
 
   /**
    * Cache of EnkaData
-   * @key uid
-   * @value cached EnkaData
+   * @key UID
+   * @value Cached EnkaData
    */
   private readonly cache: Map<number, EnkaData> = new Map()
 
@@ -72,7 +72,7 @@ export class EnkaManager {
    * @description The data fetched by this method is stored as a temporary cache.
    *    The storage period depends on ttl.
    * @param uid UID
-   * @param fetchOption fetch option
+   * @param fetchOption Fetch option
    * @returns EnkaData
    */
   public async fetchAll(
@@ -88,7 +88,7 @@ export class EnkaManager {
    * @description The data fetched by this method is stored as a temporary cache.
    *    The storage period depends on ttl.
    * @param uid UID
-   * @param fetchOption fetch option
+   * @param fetchOption Fetch option
    * @returns PlayerDetail
    */
   public async fetchPlayerDetail(
@@ -112,8 +112,8 @@ export class EnkaManager {
   /**
    * Fetch EnkaAccount from enka.network
    * @description Data fetched by this method is not stored as a temporary cache.
-   * @param username username
-   * @param fetchOption fetch option
+   * @param username Username
+   * @param fetchOption Fetch option
    * @returns EnkaAccount
    */
   public async fetchEnkaAccount(
@@ -135,8 +135,8 @@ export class EnkaManager {
   /**
    * Fetch GenshinAccounts from enka.network
    * @description Data fetched by this method is not stored as a temporary cache.
-   * @param username username
-   * @param fetchOption fetch option
+   * @param username Username
+   * @param fetchOption Fetch option
    * @returns GenshinAccounts
    */
   public async fetchGenshinAccounts(
@@ -179,7 +179,7 @@ export class EnkaManager {
    * Fetch UIDEndPoint from URL
    * @param uid UID
    * @param url URL
-   * @param fetchOption fetch option
+   * @param fetchOption Fetch option
    * @returns EnkaData
    */
   private async fetchUID(
