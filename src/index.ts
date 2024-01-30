@@ -27,6 +27,9 @@ import { CharacterVoice } from '@/models/character/CharacterVoice'
 import { DailyFarming } from '@/models/DailyFarming'
 import { CharacterDetail } from '@/models/enka/CharacterDetail'
 import { CharacterPreview } from '@/models/enka/CharacterPreview'
+import { EnkaAccount } from '@/models/enka/EnkaAccount'
+import { EnkaBuild } from '@/models/enka/EnkaBuild'
+import { GenshinAccount } from '@/models/enka/GenshinAccount'
 import { PlayerDetail } from '@/models/enka/PlayerDetail'
 import { Material } from '@/models/Material'
 import { Monster } from '@/models/Monster'
@@ -98,6 +101,9 @@ export {
   Notice,
   ProfilePicture,
   DailyFarming,
+  EnkaAccount,
+  GenshinAccount,
+  EnkaBuild,
 }
 export { convertToUTC }
 export {
