@@ -185,7 +185,7 @@ export interface APIAvatarInfo {
    */
   skillDepotId: number
   /**
-   * List of Unlocked Skill Ids
+   * List of Unlocked Skill IDs
    */
   inherentProudSkillList: number[]
   /**

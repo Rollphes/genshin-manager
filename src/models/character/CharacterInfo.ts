@@ -9,7 +9,7 @@ import {
 import { JsonObject } from '@/utils/JsonParser'
 
 /**
- * Class that summarizes IDs and other information related to the character
+ * Class of information about the character.
  */
 export class CharacterInfo {
   /**

@@ -85,9 +85,9 @@ export class TowerLevel {
 
   /**
    * Find tower level ID by group ID and index
-   * @param groupId LevelGroupId
+   * @param groupId LevelGroup ID
    * @param index LevelIndex (1-3)
-   * @returns levelId
+   * @returns level ID
    */
   public static findTowerLevelIdByGroupIdAndIndex(
     groupId: number,

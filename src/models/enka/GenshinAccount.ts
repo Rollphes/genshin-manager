@@ -27,15 +27,15 @@ export class GenshinAccount {
    */
   public readonly livePublic: boolean
   /**
-   * is the account verified
+   * Is the account verified
    */
   public readonly verified: boolean
   /**
-   * playerDetail
+   * PlayerDetail
    */
   public readonly playerDetail: PlayerDetail
   /**
-   * builds
+   * Builds
    */
   public readonly builds: EnkaBuild[][]
   /**

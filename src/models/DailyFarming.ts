@@ -18,7 +18,7 @@ export class DailyFarming {
    */
   public readonly weaponMaterialIds: number[]
   /**
-   * Create an DailyFarming
+   * Create a DailyFarming
    * @description 0: Sunday, 1: Monday, 2: Tuesday, 3: Wednesday, 4: Thursday, 5: Friday, 6: Saturday
    * @param dayOfWeek day-of-week (0-6)
    */

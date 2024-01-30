@@ -96,7 +96,7 @@ export class Artifact {
   public readonly icon: ImageAssets
 
   /**
-   * Create an Artifact
+   * Create a Artifact
    * @param artifactId Artifact ID
    * @param mainPropId Main stat ID from ReliquaryMainPropExcelConfigData.json. Default: 10001
    * @param level Artifact level (0-20). Default: 0
@@ -224,7 +224,7 @@ export class Artifact {
   }
 
   /**
-   * Get sub stat properties from appendPropIds
+   * Get sub stat properties from appendProp IDs
    * @param appendPropIds Artifact sub stat IDs
    * @returns Sub stat properties
    */

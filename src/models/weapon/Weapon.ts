@@ -171,7 +171,7 @@ export class Weapon {
 
   /**
    * Get weapon ID by name
-   * @param name weapon name
+   * @param name Weapon name
    * @returns Weapon ID
    */
   public static getWeaponIdByName(name: string): number[] {

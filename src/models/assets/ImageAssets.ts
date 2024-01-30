@@ -92,7 +92,7 @@ export class ImageAssets {
   }
 
   /**
-   * Create an ImageAssets instance from the image URL
+   * Create a ImageAssets instance from the image URL
    * @param url Image URL
    * @returns ImageAssets instance
    */

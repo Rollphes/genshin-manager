@@ -50,7 +50,7 @@ export class CharacterVoice {
 
   /**
    * Create a CharacterVoice
-   * @param fetterId fetter ID in the voice
+   * @param fetterId Fetter ID in the voice
    * @param cv CV language
    */
   constructor(fetterId: number, cv: CVType) {

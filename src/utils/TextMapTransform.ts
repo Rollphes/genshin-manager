@@ -13,7 +13,7 @@ export class TextMapTransform extends Transform {
   private firstFlag: boolean = true
 
   /**
-   * Create TextMapTransform
+   * Create a TextMapTransform
    * @param language Language
    * @param filterSet Filter set
    */

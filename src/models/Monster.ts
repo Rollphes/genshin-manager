@@ -54,7 +54,7 @@ export class Monster {
 
   /**
    * Create a Monster
-   * @param monsterId monsterId
+   * @param monsterId monster ID
    * @param level monsterLevel (1-100). Default: 1
    * @param playerCount Number of players (1-4). Default: 1
    */
@@ -165,9 +165,9 @@ export class Monster {
   }
 
   /**
-   * find monsterId by describeId
-   * @param describeId describeId
-   * @returns monsterId
+   * find monster ID by describe ID
+   * @param describeId Describe ID
+   * @returns monster ID
    */
   public static findMonsterIdByDescribeId(describeId: number): number {
     const convertId = describeId.toString().padStart(5, '0')

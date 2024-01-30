@@ -6,7 +6,7 @@ import { ContentList, DataList, NoticeLanguage } from '@/types/GetAnnTypes'
 import { convertToUTC } from '@/utils/convertToUTC'
 
 /**
- * Class that summarizes information about a notice in game
+ * Class for compiling in-game announcement information
  */
 export class Notice {
   /**
@@ -183,7 +183,7 @@ export class Notice {
 
   /**
    * Convert t tag to region time
-   * @param text text
+   * @param text Text
    * @returns Converted text
    */
   private convertLocalDate(text: string): string {

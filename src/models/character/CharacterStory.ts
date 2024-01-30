@@ -27,7 +27,7 @@ export class CharacterStory {
 
   /**
    * Create a CharacterStories
-   * @param fetterId fetter ID in the story
+   * @param fetterId Fetter ID in the story
    */
   constructor(fetterId: number) {
     this.fetterId = fetterId

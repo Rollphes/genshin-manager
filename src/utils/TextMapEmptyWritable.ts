@@ -7,7 +7,7 @@ export class TextMapEmptyWritable extends Writable {
   private buffer: Buffer = Buffer.from('')
 
   /**
-   * Create TextMapEmptyWritable
+   * Create a TextMapEmptyWritable
    * @param chunk Buffer
    * @param encoding Encoding
    * @param callback Callback

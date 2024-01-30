@@ -69,6 +69,13 @@ export class CharacterBaseStats {
     this.stats = this.calculateStatus(avatarJson, propGrowCurves, ascension)
   }
 
+  /**
+   * Calculate character's status
+   * @param avatarJson Avatar json
+   * @param propGrowCurves Prop grow curves
+   * @param ascension Character ascension
+   * @returns Character's status
+   */
   private calculateStatus(
     avatarJson: JsonObject,
     propGrowCurves: JsonObject[],
