@@ -23,6 +23,14 @@ export class CharacterDetail {
    */
   public readonly id: number
   /**
+   * Character default costume ID
+   */
+  public readonly defaultCostumeId: number
+  /**
+   * Character Depot ID
+   */
+  public readonly depotId: number
+  /**
    * Character name
    */
   public readonly name: string
@@ -98,6 +106,8 @@ export class CharacterDetail {
   constructor(data: APIAvatarInfo) {
     const characterInfo = new CharacterInfo(data.avatarId, data.skillDepotId)
     this.id = characterInfo.id
+    this.defaultCostumeId = characterInfo.defaultCostumeId
+    this.depotId = characterInfo.depotId
     this.name = characterInfo.name
     this.element = characterInfo.element
     this.rarity = characterInfo.rarity
