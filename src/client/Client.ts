@@ -36,9 +36,9 @@ export class Client extends AssetCacheManager {
       'CHT',
       'CHS',
     ],
-    defaultImageBaseUrl: 'https://api.ambr.top/assets/UI',
-    defaultAudioBaseUrl: 'https://api.ambr.top/assets/Audio',
-    imageBaseUrlByRegex: {
+    defaultImageBaseURL: 'https://api.ambr.top/assets/UI',
+    defaultAudioBaseURL: 'https://api.ambr.top/assets/Audio',
+    imageBaseURLByRegex: {
       'https://enka.network/ui': [
         /^UI_(EquipIcon|NameCardPic|RelicIcon|AvatarIcon_Side|NameCardIcon|Costume)_/,
         /^UI_AvatarIcon_(.+)_Card$/,
@@ -53,7 +53,7 @@ export class Client extends AssetCacheManager {
       ],
       'https://api.ambr.top/assets/UI/gcg': [/^UI_Gcg_CardFace_/],
     },
-    audioBaseUrlByRegex: {},
+    audioBaseURLByRegex: {},
     defaultLanguage: 'EN',
     showFetchCacheLog: true,
     autoFetchLatestAssetsByCron: '0 0 0 * * 3', //Every Wednesday 00:00:00

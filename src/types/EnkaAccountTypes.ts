@@ -1,11 +1,5 @@
 import { APIAvatarInfo, APIPlayerInfo } from '@/types/EnkaTypes'
 
-//TODO: remove memo
-//https://enka.network/api/profile/Algoinde/ : APIOwner
-//https://enka.network/api/profile/Algoinde/hoyos/ : {[hash: string]: APIGameAccount}
-//https://enka.network/api/profile/Algoinde/hoyos/4Wjv2e/ : APIGameAccount
-//https://enka.network/api/profile/Algoinde/hoyos/4Wjv2e/builds/ : {[characterId: string]: APIBuild}
-
 /**
  * Enka API GameAccount type
  */
@@ -15,11 +9,11 @@ export interface APIGameAccount {
    */
   uid: number
   /**
-   * Is the uid public
+   * Is the UID public
    */
   uid_public: boolean
   /**
-   * Is the uid public
+   * Is the UID public
    */
   public: boolean
   /**

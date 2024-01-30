@@ -19,7 +19,7 @@ import {
  */
 export class CharacterDetail {
   /**
-   * Character id
+   * Character ID
    */
   public readonly id: number
   /**

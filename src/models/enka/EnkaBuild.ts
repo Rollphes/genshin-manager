@@ -6,7 +6,7 @@ import { APIBuild } from '@/types/EnkaAccountTypes'
  */
 export class EnkaBuild {
   /**
-   * Build id
+   * Build ID
    */
   public readonly id: number
   /**

@@ -19,7 +19,7 @@ export class GenshinAccount {
    */
   public readonly region: string
   /**
-   * Is the uid public
+   * Is the UID public
    */
   public readonly uidPublic: boolean
   /**

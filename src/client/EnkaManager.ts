@@ -14,27 +14,27 @@ import { APIEnkaData, APIOwner } from '@/types/EnkaTypes'
  */
 export interface EnkaData {
   /**
-   * uid
+   * UID
    */
   uid: number
   /**
-   * player detail
+   * Player detail
    */
   playerDetail: PlayerDetail
   /**
-   * character details
+   * Character details
    */
   characterDetails: CharacterDetail[]
   /**
-   * uid owner Enka Account
+   * UID owner Enka Account
    */
   owner?: EnkaAccount
   /**
-   * nextShowCaseDate
+   * NextShowCaseDate
    */
   nextShowCaseDate: Date
   /**
-   * enkaNetwork URL
+   * EnkaNetwork URL
    */
   url: string
 }
@@ -120,13 +120,13 @@ export class EnkaManager {
     username: string,
     fetchOption?: RequestInit,
   ): Promise<EnkaAccount> {
-    const getOwnerUrl = `${EnkaManager.enkaBaseURL}/api/profile/${username}`
+    const getOwnerURL = `${EnkaManager.enkaBaseURL}/api/profile/${username}`
     const mergedFetchOption = merge.withOptions(
       { mergeArrays: false },
       EnkaManager.defaultFetchOption,
       fetchOption ?? {},
     )
-    const ownerRes = await fetch(getOwnerUrl, mergedFetchOption)
+    const ownerRes = await fetch(getOwnerURL, mergedFetchOption)
     if (!ownerRes.ok) throw new EnkaNetworkError(ownerRes)
     const owner = (await ownerRes.json()) as APIOwner
     return new EnkaAccount(owner, EnkaManager.enkaBaseURL)
@@ -143,13 +143,13 @@ export class EnkaManager {
     username: string,
     fetchOption?: RequestInit,
   ): Promise<GenshinAccount[]> {
-    const getGameAccountsUrl = `${EnkaManager.enkaBaseURL}/api/profile/${username}/hoyos`
+    const getGameAccountsURL = `${EnkaManager.enkaBaseURL}/api/profile/${username}/hoyos`
     const mergedFetchOption = merge.withOptions(
       { mergeArrays: false },
       EnkaManager.defaultFetchOption,
       fetchOption ?? {},
     )
-    const gameAccountsRes = await fetch(getGameAccountsUrl, mergedFetchOption)
+    const gameAccountsRes = await fetch(getGameAccountsURL, mergedFetchOption)
     if (!gameAccountsRes.ok) throw new EnkaNetworkError(gameAccountsRes)
     const gameAccounts = (await gameAccountsRes.json()) as {
       [hash: string]: APIGameAccount
@@ -159,8 +159,8 @@ export class EnkaManager {
         .sort((a, b) => a.order - b.order)
         .filter((account) => account.hoyo_type === 0)
         .map(async (account) => {
-          const getBuildsUrl = `${EnkaManager.enkaBaseURL}/api/profile/${username}/hoyos/${account.hash}/builds`
-          const buildsRes = await fetch(getBuildsUrl, mergedFetchOption)
+          const getBuildsURL = `${EnkaManager.enkaBaseURL}/api/profile/${username}/hoyos/${account.hash}/builds`
+          const buildsRes = await fetch(getBuildsURL, mergedFetchOption)
           if (!buildsRes.ok) throw new EnkaNetworkError(buildsRes)
           const builds = (await buildsRes.json()) as {
             [characterId: string]: APIBuild[]

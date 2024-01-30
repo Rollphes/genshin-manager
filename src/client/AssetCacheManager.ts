@@ -39,7 +39,7 @@ export abstract class AssetCacheManager {
    */
   public static cachedTextMap: Map<string, string> = new Map()
 
-  private static readonly gitRemoteAPIUrl: string =
+  private static readonly gitRemoteAPIURL: string =
     'https://gitlab.com/api/v4/projects/53216109/repository/commits?per_page=1'
   private static readonly gitRemoteRawBaseURL: string =
     'https://gitlab.com/Dimbreath/AnimeGameData/-/raw'
@@ -224,7 +224,7 @@ export abstract class AssetCacheManager {
   }
 
   /**
-   * Check if cached excel bin output exists by id
+   * Check if cached excel bin output exists by ID
    * @deprecated This method is deprecated because it is used to pass data to each class
    * @param key ExcelBinOutput name
    * @param id ID of character, etc
@@ -486,7 +486,7 @@ export abstract class AssetCacheManager {
         ) as GitLabAPIResponse[])
       : null
 
-    await this.downloadJsonFile(this.gitRemoteAPIUrl, this.commitFilePath)
+    await this.downloadJsonFile(this.gitRemoteAPIURL, this.commitFilePath)
 
     const newCommits = JSON.parse(
       await fsPromises.readFile(this.commitFilePath, {
@@ -628,7 +628,7 @@ export abstract class AssetCacheManager {
   }
 
   /**
-   * Download json file from url and write to downloadFilePath
+   * Download json file from URL and write to downloadFilePath
    * @param url URL
    * @param downloadFilePath Download file path
    */

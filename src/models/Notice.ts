@@ -95,7 +95,7 @@ export class Notice {
     this.subtitle = annContent.subtitle
       .replace(/<br.*?>/g, '\n')
       .replace(/\r/g, '')
-    this.banner = ImageAssets.fromUrl(annContent.banner)
+    this.banner = ImageAssets.fromURL(annContent.banner)
 
     const unescapedContent = unescape(annContent.content)
     this.$ = load(unescapedContent)
@@ -119,9 +119,9 @@ export class Notice {
       this.eventEnd = new Date(timeStrings[timeStrings.length - 1])
     }
 
-    const rewardImgUrl = this.$('img').attr('src')
-    this.rewardImg = rewardImgUrl
-      ? ImageAssets.fromUrl(rewardImgUrl)
+    const rewardImgURL = this.$('img').attr('src')
+    this.rewardImg = rewardImgURL
+      ? ImageAssets.fromURL(rewardImgURL)
       : undefined
 
     this.lang = annContent.lang
@@ -129,7 +129,7 @@ export class Notice {
     this.type = annList.type
     this.typeLabel = annList.type_label
     this.tag = Number(annList.tag_label)
-    this.tagIcon = ImageAssets.fromUrl(annList.tag_icon)
+    this.tagIcon = ImageAssets.fromURL(annList.tag_icon)
     this.version = annList.remind_ver
   }
 

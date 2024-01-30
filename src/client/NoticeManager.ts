@@ -7,7 +7,7 @@ import {
   APIGetAnnContent,
   APIGetAnnList,
   NoticeLanguage,
-  UrlParams,
+  URLParams as URLParams,
 } from '@/types/GetAnnTypes'
 
 /**
@@ -17,17 +17,17 @@ export class NoticeManager {
   /**
    * URL of getAnnContent
    */
-  private static readonly getContentUrl: string =
+  private static readonly getContentURL: string =
     'https://sg-hk4e-api-static.hoyoverse.com/common/hk4e_global/announcement/api/getAnnContent'
   /**
    * URL of getAnnList
    */
-  private static readonly getListUrl: string =
+  private static readonly getListURL: string =
     'https://sg-hk4e-api.hoyoverse.com/common/hk4e_global/announcement/api/getAnnList'
   /**
-   * Default url params
+   * Default URL params
    */
-  private static readonly defaultUrlParams: UrlParams = {
+  private static readonly defaultURLParams: URLParams = {
     game: 'hk4e',
     game_biz: 'hk4e_global',
     lang: 'en',
@@ -56,7 +56,7 @@ export class NoticeManager {
   /**
    * URL params
    */
-  private urlParams: UrlParams
+  private urlParams: URLParams
 
   /**
    * Create a NoticeManager
@@ -65,14 +65,14 @@ export class NoticeManager {
    */
   constructor(
     language: keyof typeof NoticeLanguage,
-    urlParams?: Partial<UrlParams>,
+    urlParams?: Partial<URLParams>,
   ) {
     this.language = language
     this.urlParams = merge.withOptions(
       { mergeArrays: false },
-      NoticeManager.defaultUrlParams,
+      NoticeManager.defaultURLParams,
       urlParams ?? {},
-    ) as UrlParams
+    ) as URLParams
   }
 
   /**
@@ -110,7 +110,7 @@ export class NoticeManager {
     lang?: keyof typeof NoticeLanguage,
   ): Promise<APIGetAnnContent> {
     return (await this._getAnn(
-      NoticeManager.getContentUrl,
+      NoticeManager.getContentURL,
       lang,
     )) as APIGetAnnContent
   }
@@ -120,12 +120,12 @@ export class NoticeManager {
    * @returns AnnList
    */
   private async getAnnList(): Promise<APIGetAnnList> {
-    return (await this._getAnn(NoticeManager.getListUrl)) as APIGetAnnList
+    return (await this._getAnn(NoticeManager.getListURL)) as APIGetAnnList
   }
 
   /**
    * Get Ann
-   * @param urlText Url
+   * @param urlText URL
    * @param lang Language of notices
    * @returns Ann
    */
@@ -136,7 +136,7 @@ export class NoticeManager {
     const url = new URL(urlText)
     Object.keys(this.urlParams).forEach((key) => {
       if (key === 'lang') url.searchParams.append(key, lang ?? this.language)
-      else url.searchParams.append(key, this.urlParams[key as keyof UrlParams])
+      else url.searchParams.append(key, this.urlParams[key as keyof URLParams])
     })
     const res = await fetch(url.toString())
     if (!res.ok) throw new AnnError(res)

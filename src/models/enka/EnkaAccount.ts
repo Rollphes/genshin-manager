@@ -5,7 +5,7 @@ import { APIOwner } from '@/types/EnkaTypes'
  */
 export class EnkaAccount {
   /**
-   * Account id
+   * Account ID
    */
   public readonly id: number
   /**

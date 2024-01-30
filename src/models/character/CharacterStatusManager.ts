@@ -170,8 +170,8 @@ export class CharacterStatusManager {
 
   /**
    * Get StatProperty from fightPropData
-   * @param id FightPropId
-   * @param defaultValue Default value if fightPropData[id] is undefined
+   * @param id FightProp ID
+   * @param defaultValue Default value if fightPropData[ID] is undefined
    * @returns StatProperty
    */
   private getStatProperty(

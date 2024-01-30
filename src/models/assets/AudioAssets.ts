@@ -9,13 +9,13 @@ import { ClientOption } from '@/types'
 import { ReadableStreamWrapper } from '@/utils/ReadableStreamWrapper'
 
 /**
- * Class that summarizes information about an audio
+ * Class for compiling information about audio
  */
 export class AudioAssets {
   /**
-   * Audio base url of mihoyo
+   * Audio base URL of mihoyo
    */
-  private static readonly audioBaseUrlMihoyo =
+  private static readonly audioBaseURLMihoyo =
     'https://upload-os-bbs.mihoyo.com/game_record/genshin'
 
   /**
@@ -23,13 +23,13 @@ export class AudioAssets {
    */
   private static fetchOption: RequestInit
   /**
-   * Audio base url by regex
+   * Audio base URL by regex
    */
-  private static audioBaseUrlByRegex: { [url: string]: RegExp[] }
+  private static audioBaseURLByRegex: { [url: string]: RegExp[] }
   /**
-   * Default audio base url
+   * Default audio base URL
    */
-  private static defaultAudioBaseUrl: string
+  private static defaultAudioBaseURL: string
   /**
    * Whether to cache the audio
    */
@@ -43,11 +43,11 @@ export class AudioAssets {
    */
   public readonly name: string
   /**
-   * Audio base url
+   * Audio base URL
    */
-  public readonly audioBaseUrl: string
+  public readonly audioBaseURL: string
   /**
-   * Audio url
+   * Audio URL
    */
   public readonly url: string
   /**
@@ -55,28 +55,28 @@ export class AudioAssets {
    */
   public readonly cv?: CVType
   /**
-   * Character id
+   * Character ID
    */
   public readonly characterId?: number
   /**
-   * Audio url of mihoyo
+   * Audio URL of mihoyo
    */
-  public readonly mihoyoUrl: string
+  public readonly mihoyoURL: string
 
   /**
    * Classes for handling audios
-   * @param name audio name
-   * @param cv audio cv
-   * @param characterId character id
+   * @param name Audio name
+   * @param cv Audio cv
+   * @param characterId Character ID
    */
   constructor(name: string, cv?: CVType, characterId?: number) {
     this.name = name
     this.cv = cv
     this.characterId = characterId
-    this.audioBaseUrl =
-      Object.keys(AudioAssets.audioBaseUrlByRegex).find((url) =>
-        AudioAssets.audioBaseUrlByRegex[url].some((regex) => regex.test(name)),
-      ) ?? AudioAssets.defaultAudioBaseUrl
+    this.audioBaseURL =
+      Object.keys(AudioAssets.audioBaseURLByRegex).find((url) =>
+        AudioAssets.audioBaseURLByRegex[url].some((regex) => regex.test(name)),
+      ) ?? AudioAssets.defaultAudioBaseURL
 
     const cvPath = cv === undefined ? '' : `/${cv}`
     const characterIdPath = characterId === undefined ? '' : `/${characterId}`
@@ -84,12 +84,12 @@ export class AudioAssets {
     this.url =
       name === ''
         ? ''
-        : `${this.audioBaseUrl}${cvPath}${characterIdPath}/${name}.ogg`
+        : `${this.audioBaseURL}${cvPath}${characterIdPath}/${name}.ogg`
 
-    this.mihoyoUrl =
+    this.mihoyoURL =
       name === ''
         ? ''
-        : `${AudioAssets.audioBaseUrlMihoyo}${cvPath}${characterIdPath}/${name}.ogg`
+        : `${AudioAssets.audioBaseURLMihoyo}${cvPath}${characterIdPath}/${name}.ogg`
   }
 
   /**
@@ -98,8 +98,8 @@ export class AudioAssets {
    */
   public static deploy(option: ClientOption): void {
     this.fetchOption = option.fetchOption
-    this.audioBaseUrlByRegex = option.audioBaseUrlByRegex
-    this.defaultAudioBaseUrl = option.defaultAudioBaseUrl
+    this.audioBaseURLByRegex = option.audioBaseURLByRegex
+    this.defaultAudioBaseURL = option.defaultAudioBaseURL
     this.autoCacheAudio = option.autoCacheAudio
     this.audioFolderPath = path.resolve(option.assetCacheFolderPath, 'Audios')
     if (!fs.existsSync(this.audioFolderPath)) fs.mkdirSync(this.audioFolderPath)
@@ -107,7 +107,7 @@ export class AudioAssets {
 
   /**
    * Fetch audio buffer
-   * @returns audio buffer
+   * @returns Audio buffer
    */
   public async fetchBuffer(): Promise<Buffer> {
     if (!this.url) throw new AudioNotFoundError(this.name, this.url)
@@ -140,8 +140,8 @@ export class AudioAssets {
 
   /**
    * Fetch audio stream
-   * @param highWaterMark highWaterMark
-   * @returns audio stream
+   * @param highWaterMark HighWaterMark
+   * @returns Audio stream
    */
   public async fetchStream(highWaterMark?: number): Promise<fs.ReadStream> {
     if (!this.url) throw new AudioNotFoundError(this.name, this.url)

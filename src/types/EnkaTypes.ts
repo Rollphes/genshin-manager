@@ -281,7 +281,7 @@ export interface APIEnkaData {
    */
   ttl?: number
   /**
-   * uid
+   * UID
    */
   uid: number
 }

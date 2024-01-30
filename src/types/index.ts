@@ -26,17 +26,17 @@ export interface ClientOption {
    */
   downloadLanguages: (keyof typeof TextMapLanguage)[]
   /**
-   * default image base url
+   * default image base URL
    * @default 'https://api.ambr.top/assets/UI'
    */
-  defaultImageBaseUrl: string
+  defaultImageBaseURL: string
   /**
-   * default audio base url
+   * default audio base URL
    * @default 'https://api.ambr.top/assets/Audio'
    */
-  defaultAudioBaseUrl: string
+  defaultAudioBaseURL: string
   /**
-   * image base url by regex
+   * image base URL by regex
    * @default
    * ```ts
    * {
@@ -56,7 +56,7 @@ export interface ClientOption {
    *  },
    * ```
    */
-  imageBaseUrlByRegex: { [url: string]: RegExp[] }
+  imageBaseURLByRegex: { [url: string]: RegExp[] }
   /**
    * audio base url by regex
    * @default
@@ -64,7 +64,7 @@ export interface ClientOption {
    * {}
    * ```
    */
-  audioBaseUrlByRegex: { [url: string]: RegExp[] }
+  audioBaseURLByRegex: { [url: string]: RegExp[] }
   /**
    * default language
    * @default 'EN'
