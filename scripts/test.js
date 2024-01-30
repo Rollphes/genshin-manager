@@ -77,7 +77,7 @@ async function main() {
       break
     case 'EnkaNetwork':
       console.log('Running test of EnkaNetwork...')
-      await new EnkaManager().fetch(800802278)
+      await new EnkaManager().fetchAll(800802278)
       console.log('EnkaNetwork test passed!')
       break
     case 'findMonsterIdByDescribeId':
