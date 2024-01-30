@@ -27,7 +27,7 @@ export class CharacterStory {
 
   /**
    * Create a CharacterStories
-   * @param fetterId fetter ID in the story
+   * @param fetterId Fetter ID in the story
    */
   constructor(fetterId: number) {
     this.fetterId = fetterId
@@ -59,7 +59,7 @@ export class CharacterStory {
    * Get all Fetter IDs in the story
    * @returns All Fetter IDs in the story
    */
-  public static getAllFetterIds(): number[] {
+  public static get allFetterIds(): number[] {
     const fetterStoriesJson = Object.values(
       Client._getCachedExcelBinOutputByName('FetterStoryExcelConfigData'),
     )

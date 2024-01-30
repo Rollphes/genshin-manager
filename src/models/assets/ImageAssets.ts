@@ -7,31 +7,36 @@ import { ImageNotFoundError } from '@/errors/ImageNotFoundError'
 import { ClientOption } from '@/types'
 import { ReadableStreamWrapper } from '@/utils/ReadableStreamWrapper'
 
-const imageBaseUrlMihoyo =
-  'https://upload-os-bbs.mihoyo.com/game_record/genshin'
-
-const imageTypes: { [type: string]: RegExp[] } = {
-  character_side_icon: [/^UI_AvatarIcon_Side_(.+)$/],
-  character_icon: [/^UI_AvatarIcon_(.+)$/],
-  equip: [/^UI_EquipIcon_(.+?)(_Awaken)?$/, /^UI_RelicIcon_(.+)$/],
-}
-
 /**
- * Class that summarizes information about an image
+ * Class for compiling information about iamge
  */
 export class ImageAssets {
+  /**
+   * Image base URL of mihoyo
+   */
+  private static readonly imageBaseURLMihoyo =
+    'https://upload-os-bbs.mihoyo.com/game_record/genshin'
+  /**
+   * Image types
+   */
+  private static readonly imageTypes: { [type: string]: RegExp[] } = {
+    character_side_icon: [/^UI_AvatarIcon_Side_(.+)$/],
+    character_icon: [/^UI_AvatarIcon_(.+)$/],
+    equip: [/^UI_EquipIcon_(.+?)(_Awaken)?$/, /^UI_RelicIcon_(.+)$/],
+  }
+
   /**
    * Fetch option
    */
   private static fetchOption: RequestInit
   /**
-   * Image base url by regex
+   * Image base URL by regex
    */
-  private static imageBaseUrlByRegex: { [url: string]: RegExp[] }
+  private static imageBaseURLByRegex: { [url: string]: RegExp[] }
   /**
-   * Default image base url
+   * Default image base URL
    */
-  private static defaultImageBaseUrl: string
+  private static defaultImageBaseURL: string
   /**
    * Whether to cache the image
    */
@@ -45,11 +50,11 @@ export class ImageAssets {
    */
   public readonly name: string
   /**
-   * Image base url
+   * Image base URL
    */
-  public readonly imageBaseUrl: string
+  public readonly imageBaseURL: string
   /**
-   * Image url
+   * Image URL
    */
   public readonly url: string
   /**
@@ -57,39 +62,41 @@ export class ImageAssets {
    */
   public readonly imageType: string | null
   /**
-   * Image url of mihoyo
+   * Image URL of mihoyo
    */
-  public readonly mihoyoUrl: string
+  public readonly mihoyoURL: string
 
   /**
    * Classes for handling images
-   * @param name image name
-   * @param url image url(Basically, no need to specify)
+   * @param name Image name
+   * @param url Image URL(Basically, no need to specify)
    */
   constructor(name: string, url?: string) {
     this.name = name
-    this.imageBaseUrl =
-      Object.keys(ImageAssets.imageBaseUrlByRegex).find((url) =>
-        ImageAssets.imageBaseUrlByRegex[url].some((regex) => regex.test(name)),
-      ) ?? ImageAssets.defaultImageBaseUrl
+    this.imageBaseURL =
+      Object.keys(ImageAssets.imageBaseURLByRegex).find((url) =>
+        ImageAssets.imageBaseURLByRegex[url].some((regex) => regex.test(name)),
+      ) ?? ImageAssets.defaultImageBaseURL
 
-    this.url = url ? url : name === '' ? '' : `${this.imageBaseUrl}/${name}.png`
+    this.url = url ? url : name === '' ? '' : `${this.imageBaseURL}/${name}.png`
 
     this.imageType =
-      Object.keys(imageTypes).find((type) =>
-        imageTypes[type].some((regex) => regex.test(name)),
+      Object.keys(ImageAssets.imageTypes).find((type) =>
+        ImageAssets.imageTypes[type].some((regex) => regex.test(name)),
       ) ?? null
 
-    this.mihoyoUrl =
-      name === '' || !this.imageType ? '' : `${imageBaseUrlMihoyo}/${name}.png`
+    this.mihoyoURL =
+      name === '' || !this.imageType
+        ? ''
+        : `${ImageAssets.imageBaseURLMihoyo}/${name}.png`
   }
 
   /**
-   * Create an ImageAssets instance from the image url
-   * @param url image url
+   * Create a ImageAssets instance from the image URL
+   * @param url Image URL
    * @returns ImageAssets instance
    */
-  public static fromUrl(url: string): ImageAssets {
+  public static fromURL(url: string): ImageAssets {
     const name = path.basename(url, '.png')
     return new ImageAssets(name, url)
   }
@@ -100,8 +107,8 @@ export class ImageAssets {
    */
   public static deploy(option: ClientOption): void {
     this.fetchOption = option.fetchOption
-    this.imageBaseUrlByRegex = option.imageBaseUrlByRegex
-    this.defaultImageBaseUrl = option.defaultImageBaseUrl
+    this.imageBaseURLByRegex = option.imageBaseURLByRegex
+    this.defaultImageBaseURL = option.defaultImageBaseURL
     this.autoCacheImage = option.autoCacheImage
     this.imageFolderPath = path.resolve(option.assetCacheFolderPath, 'Images')
     if (!fs.existsSync(this.imageFolderPath)) fs.mkdirSync(this.imageFolderPath)
@@ -118,7 +125,7 @@ export class ImageAssets {
 
   /**
    * Fetch image buffer
-   * @returns image buffer
+   * @returns Image buffer
    */
   public async fetchBuffer(): Promise<Buffer> {
     if (!this.url) throw new ImageNotFoundError(this.name, this.url)
@@ -145,8 +152,8 @@ export class ImageAssets {
 
   /**
    * Fetch image stream
-   * @param highWaterMark highWaterMark
-   * @returns image stream
+   * @param highWaterMark HighWaterMark
+   * @returns Image stream
    */
   public async fetchStream(highWaterMark?: number): Promise<fs.ReadStream> {
     if (!this.url) throw new ImageNotFoundError(this.name, this.url)

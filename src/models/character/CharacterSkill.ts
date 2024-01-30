@@ -33,10 +33,10 @@ export class CharacterSkill {
    */
   public readonly extraLevel: number
   /**
-   * Skill param description list
+   * Skill param descriptions
    * @returns (`${description}|${param}`)[]
    */
-  public readonly paramDescList: string[] = []
+  public readonly paramDescriptions: string[] = []
 
   /**
    * Create a Skill
@@ -66,13 +66,13 @@ export class CharacterSkill {
       'ProudSkillExcelConfigData',
       proudSkillGroupId,
     )[this.level] as JsonObject
-    const paramList = proudSkillJson.paramList as number[]
+    const params = proudSkillJson.paramList as number[]
     ;(proudSkillJson.paramDescList as number[]).forEach((paramDescHash) => {
       const paramDesc = (
         Client.cachedTextMap.get(String(paramDescHash)) || ''
       ).replace(/|/g, '')
       if (paramDesc === '') return
-      this.paramDescList.push(
+      this.paramDescriptions.push(
         paramDesc.replace(/\{param.*?\}/g, (paramTag) => {
           const paramId = paramTag.match(/(?<=param).*?(?=:)/g)?.[0]
           const replaceTag = paramTag.match(/(?<=:).*?(?=})/g)?.[0]
@@ -80,7 +80,7 @@ export class CharacterSkill {
           const fixedIndex = +(replaceTag.match(/(?<=F)./g)?.[0] ?? '0')
           const isInt = replaceTag.includes('I')
           const isPercent = replaceTag.includes('P')
-          const paramValue = paramList[+paramId - 1]
+          const paramValue = params[+paramId - 1]
 
           if (isInt) return `${Math.floor(paramValue)}`
           if (isPercent) return `${(paramValue * 100).toFixed(fixedIndex)}%`
@@ -94,8 +94,8 @@ export class CharacterSkill {
    * Get all skill IDs
    * @returns All skill IDs
    */
-  public static getAllSkillIds(): number[] {
-    const characterIds = CharacterInfo.getAllCharacterIds()
+  public static get allSkillIds(): number[] {
+    const characterIds = CharacterInfo.allCharacterIds
     return characterIds.flatMap((characterId) => {
       return new CharacterInfo(characterId).skillOrder
     })

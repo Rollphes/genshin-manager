@@ -1,4 +1,4 @@
-# GameVersion 4.3.0
+# GameVersion 4.4.0
 ## CharacterId
 ID:10000002 Name:Kamisato Ayaka<br>
 ID:10000003 Name:Jean<br>
@@ -78,6 +78,8 @@ ID:10000088 Name:Charlotte<br>
 ID:10000089 Name:Furina<br>
 ID:10000090 Name:Chevreuse<br>
 ID:10000091 Name:Navia<br>
+ID:10000092 Name:Gaming<br>
+ID:10000093 Name:Xianyun<br>
 ## CostumeId
 ID:200200 Name:ชุดเกราะอันโชติช่วง<br>
 ID:200201 Name:สารเมื่อยามดอกไม้ผลิบาน<br>
@@ -101,6 +103,7 @@ ID:202200 Name:กวีแห่งสายลม<br>
 ID:202300 Name:เชฟผู้ร้อนแรง<br>
 ID:202400 Name:นักล่าฝ่าเกลียวคลื่น<br>
 ID:202500 Name:ชุดไหมสุดละมุน<br>
+ID:202501 Name:ไผ่พิรุณ<br>
 ID:202600 Name:ข้ามฟ้าพันราตรี<br>
 ID:202700 Name:ลวดลายแห่งหยกงาม<br>
 ID:202701 Name:กล้วยไม้อนธการ<br>
@@ -115,6 +118,7 @@ ID:203400 Name:กุหลาบงามใต้คมเหล็ก<br>
 ID:203500 Name:ซอมบี้น้อยแดนน้ำแข็ง<br>
 ID:203600 Name:นักปราบวิญญาณร้าย<br>
 ID:203700 Name:กิเลนแห่งหยาดน้ำค้าง<br>
+ID:203701 Name:บุปผาสนธยา<br>
 ID:203800 Name:ผู้รู้ครอบจักรวาล<br>
 ID:203900 Name:ค็อกเทลแสนหวาน<br>
 ID:204100 Name:ดวงดาวแห่งชีวิตที่แปรผัน<br>
@@ -143,6 +147,7 @@ ID:206000 Name:เร้นราตรี<br>
 ID:206100 Name:ละครร้อยบุปผา<br>
 ID:206200 Name:ชุดที่คล่องแคล่วของนักล่า<br>
 ID:206300 Name:เชือกแดงแห่งพันธนาการ<br>
+ID:206301 Name:หยาดน้ำค้างเยือกแข็ง<br>
 ID:206400 Name:เมฆไหมด้ายหมอก<br>
 ID:206500 Name:รองหัวหน้าโอนิแห่ง Arataki<br>
 ID:206600 Name:ม่านไหมในภวังค์<br>
@@ -171,6 +176,8 @@ ID:208800 Name:\"ทุกสิ่งล้วนปรากฏอยู่ห
 ID:208900 Name:นักแสดงสวมมงกุฎ<br>
 ID:209000 Name:ศัสตราแห่งผู้พิทักษ์<br>
 ID:209100 Name:ซาลอนกำมะหยี่สีทอง<br>
+ID:209200 Name:สายรุ้งพันลี้<br>
+ID:209300 Name:การมาเยือนของมิตรรัก<br>
 ## SkillId
 ID:10024 Name:โจมตีปกติ: Kamisato Art - Kabuki<br>
 ID:10018 Name:Kamisato Art: Hyouka<br>
@@ -402,6 +409,12 @@ ID:10905 Name:Ring of Bursting Grenades<br>
 ID:10911 Name:โจมตีปกติ: Blunt Refusal<br>
 ID:10912 Name:Ceremonial Crystalshot<br>
 ID:10915 Name:As the Sunlit Sky's Singing Salute<br>
+ID:10921 Name:โจมตีปกติ: Stellar Rend<br>
+ID:10922 Name:Bestial Ascent<br>
+ID:10925 Name:Suanni's Gilded Dance<br>
+ID:10931 Name:โจมตีปกติ: Word of Wind and Flower<br>
+ID:10932 Name:White Clouds at Dawn<br>
+ID:10935 Name:Stars Gather at Dusk<br>
 ## InherentSkillId
 ID:221 Name:Amatsumi Kunitsumi Sanctification<br>
 ID:222 Name:Kanten Senmyou Blessing<br>
@@ -632,6 +645,12 @@ ID:9023 Name:Double Time March<br>
 ID:9121 Name:Undisclosed Distribution Channels<br>
 ID:9122 Name:Mutual Assistance Network<br>
 ID:9123 Name:Painstaking Transaction<br>
+ID:9221 Name:Dance of Amity<br>
+ID:9222 Name:Air of Prosperity<br>
+ID:9223 Name:The Striding Beast<br>
+ID:9321 Name:Galefeather Pursuit<br>
+ID:9322 Name:Consider, the Adeptus in Her Realm<br>
+ID:9323 Name:Crane Form<br>
 ## ConstellationId
 ID:21 Name:Snowswept Sakura<br>
 ID:22 Name:Blizzard Blade Seki no To<br>
@@ -1119,6 +1138,18 @@ ID:913 Name:Businesswoman's Broad Vision<br>
 ID:914 Name:The Oathsworn Never Capitulate<br>
 ID:915 Name:Negotiator's Resolute Negotiations<br>
 ID:916 Name:The Flexible Finesse of the Spina's President<br>
+ID:921 Name:Bringer of Blessing<br>
+ID:922 Name:Plum Blossoms Underfoot<br>
+ID:923 Name:Awakening Spirit<br>
+ID:924 Name:Soar Across Mountains<br>
+ID:925 Name:Evil-Daunting Roar<br>
+ID:926 Name:To Tame All Beasts<br>
+ID:931 Name:Purifying Wind<br>
+ID:932 Name:Aloof From the World<br>
+ID:933 Name:Creations of Star and Moon<br>
+ID:934 Name:Mystery Millet Gourmet<br>
+ID:935 Name:Astride Rose-Colored Clouds<br>
+ID:936 Name:They Call Her Cloud Retainer<br>
 ## ArtifactId
 ID:20002 Name:Initiate's Feather<br>
 ID:20004 Name:Initiate's Flower<br>
@@ -5001,6 +5032,7 @@ ID:14511 Name:A Thousand Floating Dreams<br>
 ID:14512 Name:Tulaytullah's Remembrance<br>
 ID:14513 Name:Cashflow Supervision<br>
 ID:14514 Name:Tome of the Eternal Flow<br>
+ID:14515 Name:Crane's Echoing Call<br>
 ID:15101 Name:Hunter's Bow<br>
 ID:15201 Name:Seasoned Hunter's Bow<br>
 ID:15301 Name:Raven Bow<br>
@@ -5109,6 +5141,7 @@ ID:165 Name:<br>
 ID:166 Name:\"ตราของ Thelxie\"<br>
 ID:167 Name:ตั๋วภาพยนตร์<br>
 ID:168 Name:Ancient Iron Coin<br>
+ID:169 Name:ความสนุกของเทศกาล<br>
 ID:170 Name:ภาพยนตร์แสนสนุก<br>
 ID:201 Name:Primogem<br>
 ID:202 Name:Mora<br>
@@ -5218,6 +5251,8 @@ ID:1088 Name:Charlotte<br>
 ID:1089 Name:Furina<br>
 ID:1090 Name:Chevreuse<br>
 ID:1091 Name:Navia<br>
+ID:1092 Name:Gaming<br>
+ID:1093 Name:Xianyun<br>
 ID:1102 Name:ดวงดาวแห่งชีวิตของ Kamisato Ayaka<br>
 ID:1103 Name:ดวงดาวแห่งชีวิตของ Jean<br>
 ID:1105 Name:ดวงดาวแห่งชีวิตของนักผจญภัย (ชาย)<br>
@@ -5243,7 +5278,7 @@ ID:1134 Name:ดวงดาวแห่งชีวิตของ Noelle<br>
 ID:1135 Name:ดวงดาวแห่งชีวิตของ Qiqi<br>
 ID:1136 Name:ดวงดาวแห่งชีวิตของ Chongyun<br>
 ID:1137 Name:ดวงดาวแห่งชีวิตของ Ganyu<br>
-ID:1138 Name:กลุ่มดาวของ Albedo<br>
+ID:1138 Name:ดวงดาวแห่งชีวิตของ Albedo<br>
 ID:1139 Name:ดวงดาวแห่งชีวิตของ Diona<br>
 ID:1141 Name:ดวงดาวแห่งชีวิตของ Mona<br>
 ID:1142 Name:ดวงดาวแห่งชีวิตของ Keqing<br>
@@ -5296,6 +5331,8 @@ ID:1188 Name:ดวงดาวแห่งชีวิตของ Charlotte<br
 ID:1189 Name:ดวงดาวแห่งชีวิตของ Furina<br>
 ID:1190 Name:ดวงดาวแห่งชีวิตของ Chevreuse<br>
 ID:1191 Name:ดวงดาวแห่งชีวิตของ Navia<br>
+ID:1192 Name:ดวงดาวแห่งชีวิตของ Gaming<br>
+ID:1193 Name:ดวงดาวแห่งชีวิตของ Xianyun<br>
 ID:1201 Name:BP อัศวิน-ฉบับร่าง<br>
 ID:1202 Name:พรแห่งดวงจันทร์-ดวงจันทร์ดวงใหม่<br>
 ID:1301 Name:ปากกาตั้งชื่อ<br>
@@ -6301,6 +6338,8 @@ ID:101237 Name:Lumitoile<br>
 ID:101238 Name:Lakelight Lily<br>
 ID:101239 Name:Subdetection Unit<br>
 ID:101240 Name:Spring of the First Dewdrop<br>
+ID:101241 Name:Clearwater Jade<br>
+ID:101242 Name:Chenyu Adeptea<br>
 ID:101301 Name:ไม้เบิร์ช<br>
 ID:101302 Name:ไม้ Cuihua<br>
 ID:101303 Name:ไม้สน<br>
@@ -6559,7 +6598,7 @@ ID:101742 Name:Grilled Tiger Fish หอมกรุ่น<br>
 ID:101743 Name:Crab Roe Tofu หอมกรุ่น<br>
 ID:101744 Name:Golden Crab หอมกรุ่น<br>
 ID:101745 Name:Jewelry Soup หอมกรุ่น<br>
-ID:101746 Name:Salted Pork Soup หอมกรุ่น<br>
+ID:101746 Name:Bamboo Shoot Soup หอมกรุ่น<br>
 ID:101747 Name:Noodles with Mountain Delicacies หอมกรุ่น<br>
 ID:101748 Name:Mora Meat หอมกรุ่น<br>
 ID:101749 Name:Stir-Fried Fish Noodles หอมกรุ่น<br>
@@ -6945,6 +6984,7 @@ ID:107022 Name:ขนนกแสงวิสุทธิ์<br>
 ID:107023 Name:Hydroculus<br>
 ID:107024 Name:หีบคูปองลับ<br>
 ID:107025 Name:Fontaine Shrine of Depths Key<br>
+ID:107026 Name:ปลาคาร์ปวิญญาณ<br>
 ID:108000 Name:เมนู<br>
 ID:108001 Name:Fisherman's Toast รสประหลาด<br>
 ID:108002 Name:Fisherman's Toast<br>
@@ -7097,9 +7137,9 @@ ID:108148 Name:Pop's Teas<br>
 ID:108149 Name:Wolfhook Juice<br>
 ID:108150 Name:Berry & Mint Burst<br>
 ID:108151 Name:Apple Cider<br>
-ID:108152 Name:Salted Pork Soup รสประหลาด<br>
-ID:108153 Name:Salted Pork Soup<br>
-ID:108154 Name:Salted Pork Soup แสนอร่อย<br>
+ID:108152 Name:Bamboo Shoot Soup รสประหลาด<br>
+ID:108153 Name:Bamboo Shoot Soup<br>
+ID:108154 Name:Bamboo Shoot Soup แสนอร่อย<br>
 ID:108155 Name:Triple-Layered Consommé รสประหลาด<br>
 ID:108156 Name:Triple-Layered Consommé<br>
 ID:108157 Name:Triple-Layered Consommé แสนอร่อย<br>
@@ -7423,7 +7463,7 @@ ID:108474 Name:Halvamazd<br>
 ID:108475 Name:Samosa รสประหลาด<br>
 ID:108476 Name:Samosa<br>
 ID:108477 Name:Samosa แสนอร่อย<br>
-ID:108478 Name:Coconut Charcoal Cake สูตรลับโบราณ<br>
+ID:108478 Name:Charcoal-Baked Ajilenakh สูตรลับโบราณ<br>
 ID:108479 Name:Shimi Chazuke<br>
 ID:108480 Name:Sabz Meat Stew รสประหลาด<br>
 ID:108481 Name:Sabz Meat Stew<br>
@@ -7569,6 +7609,47 @@ ID:108620 Name:\"Pick What You Like!\"<br>
 ID:108621 Name:Fontinalia Mousse รสประหลาด<br>
 ID:108622 Name:Fontinalia Mousse<br>
 ID:108623 Name:Fontinalia Mousse แสนอร่อย<br>
+ID:108624 Name:The Palace Jewels รสประหลาด<br>
+ID:108625 Name:The Palace Jewels<br>
+ID:108626 Name:The Palace Jewels แสนอร่อย<br>
+ID:108627 Name:Trembling Strings and Rushing Reeds รสประหลาด<br>
+ID:108628 Name:Trembling Strings and Rushing Reeds<br>
+ID:108629 Name:Trembling Strings and Rushing Reeds แสนอร่อย<br>
+ID:108630 Name:Humbly Enough รสประหลาด<br>
+ID:108631 Name:Humbly Enough<br>
+ID:108632 Name:Humbly Enough แสนอร่อย<br>
+ID:108633 Name:Right at Home รสประหลาด<br>
+ID:108634 Name:Right at Home<br>
+ID:108635 Name:Right at Home แสนอร่อย<br>
+ID:108636 Name:Eight-Treasure Duck รสประหลาด<br>
+ID:108637 Name:Eight-Treasure Duck<br>
+ID:108638 Name:Eight-Treasure Duck แสนอร่อย<br>
+ID:108639 Name:Deep-Fried Doublecrisp รสประหลาด<br>
+ID:108640 Name:Deep-Fried Doublecrisp<br>
+ID:108641 Name:Deep-Fried Doublecrisp แสนอร่อย<br>
+ID:108642 Name:Braised Meatballs รสประหลาด<br>
+ID:108643 Name:Braised Meatballs<br>
+ID:108644 Name:Braised Meatballs แสนอร่อย<br>
+ID:108645 Name:Honey Char Siu รสประหลาด<br>
+ID:108646 Name:Honey Char Siu<br>
+ID:108647 Name:Honey Char Siu แสนอร่อย<br>
+ID:108648 Name:Fine Tea, Full Moon รสประหลาด<br>
+ID:108649 Name:Fine Tea, Full Moon<br>
+ID:108650 Name:Fine Tea, Full Moon แสนอร่อย<br>
+ID:108651 Name:Jadevein Tea Eggs รสประหลาด<br>
+ID:108652 Name:Jadevein Tea Eggs<br>
+ID:108653 Name:Jadevein Tea Eggs แสนอร่อย<br>
+ID:108654 Name:Tea-Smoked Squab รสประหลาด<br>
+ID:108655 Name:Tea-Smoked Squab<br>
+ID:108656 Name:Tea-Smoked Squab แสนอร่อย<br>
+ID:108657 Name:Guhua Fish & Lamb Soup รสประหลาด<br>
+ID:108658 Name:Guhua Fish & Lamb Soup<br>
+ID:108659 Name:Guhua Fish & Lamb Soup แสนอร่อย<br>
+ID:108660 Name:Chenyu Brew รสประหลาด<br>
+ID:108661 Name:Chenyu Brew<br>
+ID:108662 Name:Chenyu Brew แสนอร่อย<br>
+ID:108663 Name:Encompassing Gladness<br>
+ID:108664 Name:Yummy Yum Cha<br>
 ID:109000 Name:Cooking Ingredients<br>
 ID:109101 Name:สูตรอาหาร: Chicken-Mushroom Skewer<br>
 ID:109102 Name:สูตรอาหาร: Fisherman's Toast<br>
@@ -7611,7 +7692,7 @@ ID:109421 Name:สูตรอาหาร: Golden Shrimp Balls<br>
 ID:109422 Name:สูตรอาหาร: Qingce Stir Fry<br>
 ID:109423 Name:สูตรอาหาร: Come and Get It<br>
 ID:109424 Name:สูตรอาหาร: Noodles with Mountain Delicacies<br>
-ID:109425 Name:สูตรอาหาร: Salted Pork Soup<br>
+ID:109425 Name:สูตรอาหาร: Bamboo Shoot Soup<br>
 ID:109426 Name:สูตรอาหาร: Triple-Layered Consommé<br>
 ID:109427 Name:สูตรอาหาร: Tianshu Meat<br>
 ID:109428 Name:สูตรอาหาร: Lotus Flower Crisp<br>
@@ -7747,6 +7828,19 @@ ID:109557 Name:สูตรอาหาร: Blubber Profiterole<br>
 ID:109558 Name:สูตรอาหาร: Feast-O's<br>
 ID:109559 Name:สูตรอาหาร: Rainbow Macarons<br>
 ID:109560 Name:สูตรอาหาร: Fontinalia Mousse<br>
+ID:109561 Name:สูตรอาหาร: The Palace Jewels<br>
+ID:109562 Name:สูตรอาหาร: Trembling Strings and Rushing Reeds<br>
+ID:109563 Name:สูตรอาหาร: Humbly Enough<br>
+ID:109564 Name:สูตรอาหาร: Right at Home<br>
+ID:109565 Name:สูตรอาหาร: Eight-Treasure Duck<br>
+ID:109566 Name:สูตรอาหาร: Deep-Fried Doublecrisp<br>
+ID:109567 Name:สูตรอาหาร: Braised Meatballs<br>
+ID:109568 Name:สูตรอาหาร: Honey Char Siu<br>
+ID:109569 Name:สูตรอาหาร: Fine Tea, Full Moon<br>
+ID:109570 Name:สูตรอาหาร: Jadevein Tea Eggs<br>
+ID:109571 Name:สูตรอาหาร: Tea-Smoked Squab<br>
+ID:109572 Name:สูตรอาหาร: Guhua Fish & Lamb Soup<br>
+ID:109573 Name:สูตรอาหาร: Chenyu Brew<br>
 ID:110000 Name:ไอเทมจากการสร้าง<br>
 ID:110001 Name:Flour<br>
 ID:110002 Name:Cream<br>
@@ -7881,6 +7975,9 @@ ID:112091 Name:Alien Life Core<br>
 ID:112092 Name:Old Operative's Pocket Watch<br>
 ID:112093 Name:Operative's Standard Pocket Watch<br>
 ID:112094 Name:Operative's Constancy<br>
+ID:112095 Name:Feathery Fin<br>
+ID:112096 Name:Lunar Fin<br>
+ID:112097 Name:Chasmlight Fin<br>
 ID:113001 Name:Hurricane Seed<br>
 ID:113002 Name:Lightning Prism<br>
 ID:113003 Name:Dvalin's Plume<br>
@@ -7938,6 +8035,7 @@ ID:113054 Name:Lightless Silk String<br>
 ID:113055 Name:Lightless Eye of the Maelstrom<br>
 ID:113056 Name:Lightless Mass<br>
 ID:113057 Name:Water That Failed To Transcend<br>
+ID:113058 Name:Cloudseam Scale<br>
 ID:114001 Name:Tile of Decarabian's Tower<br>
 ID:114002 Name:Debris of Decarabian's City<br>
 ID:114003 Name:Fragment of Decarabian's Epic<br>
@@ -8037,6 +8135,7 @@ ID:115038 Name:ของขวัญสุดประณีต<br>
 ID:115039 Name:ของขวัญสุดอลังการ<br>
 ID:115040 Name:Midlander Billet Trove<br>
 ID:115041 Name:เมโลดี้ดังก้อง<br>
+ID:115042 Name:แพ็กคอสตูมแบบกำหนดเอง<br>
 ID:116001 Name:EXP BP<br>
 ID:116002 Name:กล่อง BP<br>
 ID:116003 Name:BP เลือก 1 ใน 3 แพ็กเกจทดสอบ<br>
@@ -8502,6 +8601,9 @@ ID:120421 Name:ชุดนิทานห่านปีกหิมะ (III)<b
 ID:120422 Name:สองทหารเสือ (I)<br>
 ID:120423 Name:สองทหารเสือ (II)<br>
 ID:120424 Name:สองทหารเสือ (III)<br>
+ID:120425 Name:นักท่องเวลา (I)<br>
+ID:120426 Name:นักท่องเวลา (II)<br>
+ID:120427 Name:นักท่องเวลา (III)<br>
 ID:120428 Name:ของขวัญ \"จากลา\"<br>
 ID:120429 Name:\"การพบกันที่สวยงาม\"<br>
 ID:120430 Name:<br>
@@ -8689,6 +8791,11 @@ ID:120611 Name:ชิ้นส่วนแข็งตัวเครื่อ�
 ID:120612 Name:\"รายงานพิเศษ\"<br>
 ID:120613 Name:\"รายงานพิเศษ\"<br>
 ID:120614 Name:บันทึกเบาะแสป้อมปราการ Meropide<br>
+ID:120615 Name:ภาพวาด - สระบงกชใต้แสงจันทร์<br>
+ID:120616 Name:ภาพวาด - แขกผู้มาเยือน Qiaoying<br>
+ID:120617 Name:ภาพวาด - หยกงามใต้น้ำนิ่ง<br>
+ID:120618 Name:ภาพวาด - Mt. Xuanlian<br>
+ID:120619 Name:คู่มือทิวทัศน์หุบเขา Chenyu<br>
 ID:120620 Name:ประกาศ<br>
 ID:120621 Name:บทเพลงของ Liam<br>
 ID:120622 Name:การหายตัวไปของ Rocky Avildsen<br>
@@ -8784,6 +8891,7 @@ ID:120720 Name:ตราสัญลักษณ์อันเก่าซอ�
 ID:120721 Name:\"บุคลิก\"<br>
 ID:120722 Name:\"สมบัติ\" ที่เปิดแล้ว<br>
 ID:120723 Name:ดาบศักดิ์สิทธิ์ Narzissenkreuz<br>
+ID:120724 Name:กิ่งไม้ของต้นไม้โบราณ<br>
 ID:120725 Name:บันทึกของ Aurelie (2)<br>
 ID:120726 Name:\"การเริ่มต้นของชีวิตใหม่\"<br>
 ID:120727 Name:<br>
@@ -8811,6 +8919,10 @@ ID:120750 Name:เซ็ตดำน้ำ<br>
 ID:120751 Name:ถุงเงินที่จมลงไปในน้ำ<br>
 ID:120752 Name:<br>
 ID:120753 Name:ข้อความประหลาด<br>
+ID:120754 Name:กุญแจสำรองโถง Wangshan<br>
+ID:120755 Name:เมนูพิเศษของ Paimon<br>
+ID:120757 Name:ถุง Mora<br>
+ID:120758 Name:เครื่องมือขุดเจาะของ Woliu<br>
 ID:120759 Name:ของขวัญจาก Autumn<br>
 ID:120760 Name:คริสตัลสีพิเศษลึกลับ<br>
 ID:120761 Name:คำอธิบายการรับสมัครงาน<br>
@@ -8821,6 +8933,7 @@ ID:120765 Name:บันทึก<br>
 ID:120766 Name:แนะนำ<br>
 ID:120767 Name:หนังสือนิทาน<br>
 ID:120768 Name:บันทึก<br>
+ID:120769 Name:ไข่มุกวิญญาณปลาคาร์ป<br>
 ID:120770 Name:ใบรับรอง<br>
 ID:120771 Name:ใบรับรอง<br>
 ID:120772 Name:ใบรับรอง<br>
@@ -8836,12 +8949,38 @@ ID:120781 Name:ข้อความที่ตัดตอนมา<br>
 ID:120782 Name:ข้อความที่ตัดตอนมา<br>
 ID:120783 Name:ไดอารี่ของใครบางคน<br>
 ID:120784 Name:บันทึก<br>
+ID:120785 Name:แกนกลางของกลไกโบราณสถาน<br>
+ID:120786 Name:ชิ้นส่วนหยก - ซ้าย<br>
+ID:120787 Name:ชิ้นส่วนหยก - ขวา<br>
+ID:120788 Name:ไม้หอม \"Huangcong\"<br>
+ID:120789 Name:ไม้หอม \"Chizhang\"<br>
+ID:120790 Name:อัลบั้มที่ระลึก \"เส้นทางแห่ง Chenyu\"<br>
+ID:120792 Name:กุญแจประหลาด<br>
 ID:120796 Name:\"เลนส์สายตาฝึกยิง\"<br>
 ID:120803 Name:คำอธิบายการรับสมัครงาน<br>
 ID:120804 Name:ช่วยฉันด้วย!<br>
 ID:120805 Name:ใบเสร็จจากร้านขายของชำ Bracari<br>
+ID:120806 Name:แผ่นศิลาจารึกโบราณ<br>
 ID:120807 Name:ของขวัญจาก Autumn<br>
 ID:120808 Name:พัสดุของครอบครัว Leroy<br>
+ID:120811 Name:<br>
+ID:120812 Name:กุญแจที่หายไป (I)<br>
+ID:120813 Name:กุญแจที่หายไป (II)<br>
+ID:120814 Name:<br>
+ID:120841 Name:\"น้ำทิพย์ Xuanlian\"<br>
+ID:120842 Name:ถ้วยหยกโบราณ<br>
+ID:120843 Name:สมุดบัญชีแยกประเภทของใครสักคน<br>
+ID:120844 Name:<br>
+ID:120845 Name:\"หยกปฏิญาณ\"<br>
+ID:120846 Name:<br>
+ID:120847 Name:<br>
+ID:120848 Name:<br>
+ID:120849 Name:<br>
+ID:120850 Name:<br>
+ID:120851 Name:แผนที่ Chizhang<br>
+ID:120853 Name:กุญแจกำแพงเมืองโบราณ<br>
+ID:120854 Name:กุญแจขึ้นสนิม<br>
+ID:120857 Name:ปลาที่แย่งออกมาจากปากของ \"นกกระทุง\"<br>
 ID:129001 Name:น้ำตาแห่งดวงดาว<br>
 ID:130001 Name:Silk Flower Seed<br>
 ID:130002 Name:Sweet Flower Seed<br>
@@ -8910,6 +9049,7 @@ ID:131033 Name:จักรกลบำรุงรักษา - ผู้ท�
 ID:131034 Name:จักรกลบำรุงรักษา - ผู้ควบคุมสถานการณ์<br>
 ID:131035 Name:จักรกลบำรุงรักษา - รุ่นแพลทินัมคลาสสิก<br>
 ID:131036 Name:จักรกลบำรุงรักษา - ผู้นำทองอร่าม<br>
+ID:131037 Name:Jade Heartfeather Bass<br>
 ID:140001 Name:Wings of First Flight<br>
 ID:140002 Name:Wings of Companionship<br>
 ID:140003 Name:Wings of Descension<br>
@@ -9059,6 +9199,12 @@ ID:141216 Name:Radiant Spincrystal 116<br>
 ID:141217 Name:Radiant Spincrystal 117<br>
 ID:141218 Name:Radiant Spincrystal 118<br>
 ID:141219 Name:Radiant Spincrystal 119<br>
+ID:141220 Name:Radiant Spincrystal 120<br>
+ID:141221 Name:Radiant Spincrystal 121<br>
+ID:141222 Name:Radiant Spincrystal 122<br>
+ID:141223 Name:Radiant Spincrystal 123<br>
+ID:141224 Name:Radiant Spincrystal 124<br>
+ID:141225 Name:Radiant Spincrystal 125<br>
 ID:200001 Name:Lantern Fiber<br>
 ID:200002 Name:Wick Material<br>
 ID:200003 Name:Plaustrite Shard<br>
@@ -9333,6 +9479,12 @@ ID:210183 Name:บันทึก - หมุนระบำ<br>
 ID:210184 Name:Navia - กุหลาบหนาม<br>
 ID:210185 Name:Chevreuse - ประเภท II<br>
 ID:210186 Name:บันทึก - สลักเวลา<br>
+ID:210187 Name:Xianyun - กระเรียนเมฆา<br>
+ID:210188 Name:Gaming - Man Chai<br>
+ID:210189 Name:สำเร็จ - หุบเขาแห่งเซียน<br>
+ID:210190 Name:Chenyu - โยนหยก<br>
+ID:210191 Name:บันทึก - วิหคสีสัน<br>
+ID:210192 Name:อัลบั้ม - The Stellar Moments<br>
 ID:220001 Name:Anemoculus Resonance Stone<br>
 ID:220002 Name:Geoculus Resonance Stone<br>
 ID:220003 Name:Geo Treasure Compass<br>
@@ -9561,6 +9713,10 @@ ID:330067 Name:Alhaitham<br>
 ID:330068 Name:Eremite Scorching Loremaster<br>
 ID:330069 Name:Thunder Manifestation<br>
 ID:330070 Name:Dvalin<br>
+ID:330071 Name:Thoma<br>
+ID:330072 Name:Sayu<br>
+ID:330073 Name:Cryo Hypostasis<br>
+ID:330074 Name:Millennial Pearl Seahorse<br>
 ID:330500 Name:Undivided Heart<br>
 ID:330501 Name:Cold-Blooded Strike<br>
 ID:330502 Name:Steady Breathing<br>
@@ -9632,6 +9788,10 @@ ID:330567 Name:Scorpocalypse<br>
 ID:330568 Name:Grieving Echo<br>
 ID:330569 Name:Rending Vortex<br>
 ID:330570 Name:Lunar Cycles Unending<br>
+ID:330571 Name:A Subordinate's Skills<br>
+ID:330572 Name:Skiving: New and Improved<br>
+ID:330573 Name:Sternfrost Prism<br>
+ID:330574 Name:Pearl Solidification<br>
 ID:331000 Name:Magic Guide<br>
 ID:331001 Name:Sacrificial Fragments<br>
 ID:331002 Name:Skyward Atlas<br>
@@ -9700,6 +9860,8 @@ ID:331064 Name:Flowing Rings<br>
 ID:331065 Name:Echoes of an Offering<br>
 ID:331066 Name:Heart of Khvarena's Brilliance<br>
 ID:331067 Name:Vourukasha's Glow<br>
+ID:331068 Name:Sapwood Blade<br>
+ID:331069 Name:Veteran's Visage<br>
 ID:332000 Name:Liyue Harbor Wharf<br>
 ID:332001 Name:Knights of Favonius Library<br>
 ID:332002 Name:Jade Chamber<br>
@@ -9744,6 +9906,8 @@ ID:332040 Name:Opera Epiclese<br>
 ID:332041 Name:Mamere<br>
 ID:332042 Name:Seed Dispensary<br>
 ID:332043 Name:Memento Lens<br>
+ID:332044 Name:Jeht<br>
+ID:332045 Name:Silver and Melus<br>
 ID:333000 Name:Elemental Resonance: Woven Ice<br>
 ID:333001 Name:Elemental Resonance: Shattering Ice<br>
 ID:333002 Name:Elemental Resonance: Woven Waters<br>
@@ -9808,6 +9972,9 @@ ID:333060 Name:The Boar Princess<br>
 ID:333061 Name:Falls and Fortune<br>
 ID:333062 Name:Flickering Four-Leaf Sigil<br>
 ID:333063 Name:Fish and Chips<br>
+ID:333064 Name:Machine Assembly Line<br>
+ID:333065 Name:Sunyata Flower<br>
+ID:333066 Name:Matsutake Meat Roll<br>
 ID:334000 Name:Ganyu<br>
 ID:334001 Name:Kaeya<br>
 ID:334002 Name:Chongyun<br>
@@ -9879,6 +10046,10 @@ ID:334067 Name:Alhaitham<br>
 ID:334068 Name:Eremite Scorching Loremaster<br>
 ID:334069 Name:Thunder Manifestation<br>
 ID:334070 Name:Dvalin<br>
+ID:334071 Name:Thoma<br>
+ID:334072 Name:Sayu<br>
+ID:334073 Name:Cryo Hypostasis<br>
+ID:334074 Name:Millennial Pearl Seahorse<br>
 ID:334500 Name:Undivided Heart<br>
 ID:334501 Name:Cold-Blooded Strike<br>
 ID:334502 Name:Steady Breathing<br>
@@ -9950,6 +10121,10 @@ ID:334567 Name:Scorpocalypse<br>
 ID:334568 Name:Grieving Echo<br>
 ID:334569 Name:Rending Vortex<br>
 ID:334570 Name:Lunar Cycles Unending<br>
+ID:334571 Name:A Subordinate's Skills<br>
+ID:334572 Name:Skiving: New and Improved<br>
+ID:334573 Name:Sternfrost Prism<br>
+ID:334574 Name:Pearl Solidification<br>
 ID:335000 Name:Magic Guide<br>
 ID:335001 Name:Sacrificial Fragments<br>
 ID:335002 Name:Skyward Atlas<br>
@@ -10018,6 +10193,8 @@ ID:335064 Name:Flowing Rings<br>
 ID:335065 Name:Echoes of an Offering<br>
 ID:335066 Name:Heart of Khvarena's Brilliance<br>
 ID:335067 Name:Vourukasha's Glow<br>
+ID:335068 Name:Sapwood Blade<br>
+ID:335069 Name:Veteran's Visage<br>
 ID:336000 Name:Liyue Harbor Wharf<br>
 ID:336001 Name:Knights of Favonius Library<br>
 ID:336002 Name:Jade Chamber<br>
@@ -10062,6 +10239,8 @@ ID:336040 Name:Opera Epiclese<br>
 ID:336041 Name:Mamere<br>
 ID:336042 Name:Seed Dispensary<br>
 ID:336043 Name:Memento Lens<br>
+ID:336044 Name:Jeht<br>
+ID:336045 Name:Silver and Melus<br>
 ID:337000 Name:Elemental Resonance: Woven Ice<br>
 ID:337001 Name:Elemental Resonance: Shattering Ice<br>
 ID:337002 Name:Elemental Resonance: Woven Waters<br>
@@ -10126,6 +10305,9 @@ ID:337060 Name:The Boar Princess<br>
 ID:337061 Name:Falls and Fortune<br>
 ID:337062 Name:Flickering Four-Leaf Sigil<br>
 ID:337063 Name:Fish and Chips<br>
+ID:337064 Name:Machine Assembly Line<br>
+ID:337065 Name:Sunyata Flower<br>
+ID:337066 Name:Matsutake Meat Roll<br>
 ID:339000 Name:แรกเริ่ม<br>
 ID:339001 Name:Mondstadt<br>
 ID:339002 Name:Liyue<br>
@@ -10174,6 +10356,9 @@ ID:340010 Name:สารเมื่อยามดอกไม้ผลิบ�
 ID:340011 Name:นามแห่งความภักดี<br>
 ID:340012 Name:ประกายดาวสะพรั่ง<br>
 ID:340013 Name:เงานาวาล่องลม<br>
+ID:340014 Name:หยาดน้ำค้างเยือกแข็ง<br>
+ID:340015 Name:บุปผาสนธยา<br>
+ID:340016 Name:ไผ่พิรุณ<br>
 ID:350001 Name:แคมป์ชั่วคราวของนักผจญภัย<br>
 ID:350002 Name:ชีวิตที่ด่านหน้า<br>
 ID:350003 Name:หินและต้นไม้แสนอิสระ<br>
@@ -10313,6 +10498,11 @@ ID:380438 Name:\"สวัสดี! ยินดีต้อนรับ!\"<br>
 ID:380439 Name:\"เปลือกหอยเรืองรอง\"<br>
 ID:380440 Name:โคมไฟตั้งพื้น - \"ค้อนเหล็ก\"<br>
 ID:380441 Name:โคมไฟตั้งพื้น - \"แสงไฟสลัว\"<br>
+ID:380444 Name:โคมไฟปลาประดิษฐ์ - \"ปลาคาร์ปทั่วทิศ\"<br>
+ID:380445 Name:โคมไฟปลาประดิษฐ์ - \"กำไรใบไม้ผลิ\"<br>
+ID:380446 Name:โคมไฟตั้งพื้นเมืองท่า - \"กลิ่นหอมอบอวล\"<br>
+ID:380447 Name:ไฟถนนเมืองท่า - \"เรื่องดีมาเป็นคู่\"<br>
+ID:380448 Name:โคมไฟหินหุบเขา -\"แสงเทียนฉายนิรันดร์\"<br>
 ID:380504 Name:\"กลีบดอกทอแสง\"<br>
 ID:380505 Name:\"โคมไฟระย้าของวิหาร\"<br>
 ID:381101 Name:เคาน์เตอร์ไม้เบิร์ชเข้ามุม<br>
@@ -10596,6 +10786,20 @@ ID:390113 Name:ตู้เก็บเครื่องปรุง \"Fusen\" 
 ID:390114 Name:ตู้เสื้อผ้าไม้ Yumemiru \"มิดชิด\"<br>
 ID:390115 Name:ชั้นแขวนชุดกิโมโนไม้ Yumemiru \"เคารพบูชา\"<br>
 ID:390116 Name:เวที Pear Orchard - \"สไตล์ Yun-Han\"<br>
+ID:390117 Name:ร้านค้าหุบเขา - \"น้ำชาผ่อนคลาย\"<br>
+ID:390118 Name:เวทีหุบเขา - \"คลื่นทะเลเมฆ\"<br>
+ID:390119 Name:ระเบียงหุบเขา - \"มองไกลจักประจักษ์\"<br>
+ID:390120 Name:ระเบียงหุบเขา - \"รากฐานมั่นคง\"<br>
+ID:390121 Name:ศาลาหุบเขา - \"แสงอันอบอุ่น\"<br>
+ID:390122 Name:ซุ้มประตูหินหุบเขา - \"หวนคืนความสมบูรณ์\"<br>
+ID:390123 Name:เพิงสวนหุบเขา - \"ฝนตกแดดออก\"<br>
+ID:390124 Name:หอสังเกตการณ์หุบเขา - \"เฝ้าสังเกตการณ์\"<br>
+ID:390125 Name:ครัวเรือนหุบเขา - \"ทิวเขาสูงตระหง่าน\"<br>
+ID:390126 Name:ครัวเรือนหุบเขา - \"หุบเขาลึกเงียบสงบ\"<br>
+ID:390127 Name:ครัวเรือนหุบเขา - \"ทำใจให้สงบ\"<br>
+ID:390128 Name:ครัวเรือนหุบเขา - \"ตั้งจิตมุ่งมั่น\"<br>
+ID:390129 Name:ครัวเรือนหุบเขา - \"บ้านไร่กำเนิดชา\"<br>
+ID:390130 Name:ครัวเรือนหุบเขา - \"หน่วยวัดอาคาร\"<br>
 ID:390201 Name:อาคาร Mondstadt แบบหลายคูหา<br>
 ID:390202 Name:อาคารพื้นเมือง Mondstadt ใต้หลังคาสูง<br>
 ID:390203 Name:อพาร์ตเมนต์ Mondstadt ที่ไม่อับชื้น<br>
@@ -10831,6 +11035,16 @@ ID:391249 Name:ระเบียงคฤหาสน์ - \"เส้นแบ
 ID:391250 Name:ระเบียงคฤหาสน์ - \"มุมแมนิโฟลด์\"<br>
 ID:391251 Name:ซุ้มประตูคฤหาสน์ - \"ช่วงเวลาแห่งความรุ่งโรจน์\"<br>
 ID:391252 Name:รั้วล้อมคฤหาสน์ - \"มุมหนึ่งของทิวทัศน์\"<br>
+ID:391253 Name:ประตูลานหุบเขา - \"ประตูเปิดรับแขก\"<br>
+ID:391254 Name:ประตูลานหุบเขา - \"ผ่านประตูชื่นชมคีรี\"<br>
+ID:391255 Name:หุบเขาถ้ำจันทร์ - \"พัดกลมเงียบสงบ\"<br>
+ID:391256 Name:กำแพงหุบเขา - \"ดุดันดั่งคลื่นวารี\"<br>
+ID:391257 Name:กำแพงหินหุบเขา - \"คงคาร้อยหยก\"<br>
+ID:391258 Name:กำแพงหินหุบเขา - \"ม่านหลิวเย้ยบุปผา\"<br>
+ID:391259 Name:กำแพงหินหุบเขา - \"ปลาคาร์ปหางเหยี่ยว\"<br>
+ID:391260 Name:หุบเขาหน้าจั่ว - \"คุมวายุดับอัคคี\"<br>
+ID:391261 Name:หุบเขาหน้าจั่ว - \"ไล่ฝนรับแสง\"<br>
+ID:391262 Name:บันไดหินหุบเขา - \"หินแกร่งเป็นรากฐาน\"<br>
 ID:392107 Name:\"ฐานรากหินหล่อ - ช่วงเวลาแห่งโชค\"<br>
 ID:392606 Name:โครงสร้างภายนอก - \"สะพานแขวนควันกลางอากาศ\"<br>
 ID:392607 Name:โครงสร้างภายนอก - \"เยื้องย่างบนยอดไม้\"<br>
@@ -11016,6 +11230,16 @@ ID:393433 Name:\"ภาระของป้อมปราการต้อง
 ID:393434 Name:ป้ายประจำโซน - \"ขึ้น\"<br>
 ID:393435 Name:ป้ายประจำโซน - \"ลง\"<br>
 ID:393436 Name:\"กรอบประตูเมือง Poisson\"<br>
+ID:393439 Name:กลองหินคุ้มภัย - \"คำรามสั่นสะท้าน\"<br>
+ID:393441 Name:ชุดการแสดงวูซู - \"Suanni แผดคำราม\"<br>
+ID:393442 Name:ตุ๊กตาวูซู - \"Suanni ง่วงเหงา\"<br>
+ID:393443 Name:ม่านผ้าทองานฉลอง - \"ผีเสื้อบินปลากระโดด\"<br>
+ID:393444 Name:ม่านผ้าทองานฉลอง - \"วิหคเหินประสานเสียง\"<br>
+ID:393448 Name:ว่าวกระดาษมงคล - \"มั่งคั่งตลอดปี\"<br>
+ID:393449 Name:ว่าวกระดาษมงคล - \"สมหวังทุกประการ\"<br>
+ID:393450 Name:ว่าวกระดาษมงคล - \"ผีเสื้อเริงระบำ\"<br>
+ID:393451 Name:ว่าวกระดาษมงคล - \"โชคลาภเจริญรุ่งเรือง\"<br>
+ID:393452 Name:ป้ายประกาศชายคาไม้หอม<br>
 ID:393511 Name:ชั้นวางหนังสือ - \"อ่านอิสระ\"<br>
 ID:393512 Name:ชั้นวางหนังสือ - \"อ่านอย่างรวดเร็ว\"<br>
 ID:393513 Name:ชั้นวางหนังสือ - \"ดึงดูดความสนใจ\"<br>
@@ -11044,6 +11268,7 @@ ID:394207 Name:ที่นั่ง Pear Orchard - \"ร่วมนั่ง�
 ID:394208 Name:เก้าอี้สุดชิลที่ไม่รู้ร้อนรู้หนาวกับเดดไลน์<br>
 ID:394209 Name:\"ช่วงผ่อนคลายแสนสุขในย่าน\"<br>
 ID:394210 Name:\"บทเพลงสายลมอัสดงในย่าน\"<br>
+ID:394211 Name:เก้าอี้ชาหอม - \"พลิ้วไหวดั่งสายลม\"<br>
 ID:394301 Name:ป้อมรักษาการณ์ Hilichurl สองชั้น<br>
 ID:394302 Name:ตู้ไม้สนแบบเปิดโล่ง<br>
 ID:394303 Name:โต๊ะตีเหล็กจากไม้สนหนาม<br>
@@ -11063,6 +11288,7 @@ ID:394317 Name:โต๊ะจัดแสดงไม้ Karmaphala<br>
 ID:394318 Name:\"โต๊ะกลมไร้มลทินในย่าน\"<br>
 ID:394319 Name:ชั้นวางสินค้า - \"รุ่นพื้นฐาน\"<br>
 ID:394320 Name:ชั้นวางสินค้า - \"รุ่นปรับปรุง\"<br>
+ID:394321 Name:โต๊ะชาหอมเหลี่ยม - \"ต้อนรับมิตรทั่วสารทิศ\"<br>
 ID:394401 Name:ตู้โชว์ไวน์ - \"เครื่องดื่มที่รู้ใจนับร้อยแก้ว\"<br>
 ID:394402 Name:พาเลทวางของสองชั้น<br>
 ID:394403 Name:ตะกร้าทุ่งดอกไม้<br>
@@ -11161,6 +11387,7 @@ ID:20050103 Name:Oceanid<br>
 ID:20050201 Name:Oceanid Boar<br>
 ID:20050202 Name:Oceanid Boar (เสริมพลัง)<br>
 ID:20050203 Name:Hydro Mimic Boar<br>
+ID:20050204 Name:Hydro Mimic Boar<br>
 ID:20050281 Name:Hydro Mimic Boar<br>
 ID:20050301 Name:Oceanid Crane<br>
 ID:20050302 Name:Hydro Mimic Crane<br>
@@ -11233,6 +11460,7 @@ ID:21010481 Name:Hilichurl Shooter<br>
 ID:21010482 Name:Hilichurl Shooter<br>
 ID:21010501 Name:Pyro Hilichurl Shooter<br>
 ID:21010502 Name:Test_Varied Pyro Hilichurl Shooter<br>
+ID:21010503 Name:Pyro Hilichurl Shooter<br>
 ID:21010581 Name:Pyro Hilichurl Shooter<br>
 ID:21010582 Name:Pyro Hilichurl Shooter<br>
 ID:21010601 Name:Hilichurl Grenadier<br>
@@ -11262,6 +11490,7 @@ ID:21011481 Name:Ice Shield Hilichurl Guard<br>
 ID:21011501 Name:Hilichurl สุดแปลกที่ไร้อาวุธ<br>
 ID:21011601 Name:Electro Hilichurl Grenadier<br>
 ID:21011602 Name:Electro Hilichurl Grenadier - เสริมการโจมตี<br>
+ID:21011603 Name:Electro Hilichurl Grenadier<br>
 ID:21011681 Name:Electro Hilichurl Grenadier<br>
 ID:21020101 Name:Wooden Shieldwall Mitachurl<br>
 ID:21020102 Name:Wooden Shieldwall Mitachurl (Mechanicus)<br>
@@ -11269,6 +11498,7 @@ ID:21020181 Name:Wooden Shieldwall Mitachurl<br>
 ID:21020201 Name:Blazing Axe Mitachurl<br>
 ID:21020202 Name:Blazing Axe Mitachurl<br>
 ID:21020203 Name:Blazing Axe Mitachurl (Mechanicus)<br>
+ID:21020204 Name:Blazing Axe Mitachurl<br>
 ID:21020281 Name:Blazing Axe Mitachurl<br>
 ID:21020282 Name:Blazing Axe Mitachurl<br>
 ID:21020299 Name:Blazing Axe Mitachurl<br>
@@ -11299,6 +11529,7 @@ ID:21020882 Name:Thunderhelm Lawachurl<br>
 ID:21030101 Name:Hydro Samachurl<br>
 ID:21030102 Name:Hydro Samachurl (Mechanicus)<br>
 ID:21030103 Name:Test_Movement Healing Hydro Samachurl<br>
+ID:21030104 Name:Hydro Samachurl<br>
 ID:21030181 Name:Hydro Samachurl<br>
 ID:21030201 Name:Dendro Samachurl<br>
 ID:21030202 Name:Dendro Samachurl (Mechanicus)<br>
@@ -11325,6 +11556,7 @@ ID:21030601 Name:Electro Samachurl<br>
 ID:21030602 Name:Electro Samachurl (Mechanicus)<br>
 ID:21030603 Name:Electro Samachurl - เสริมการสนับสนุน<br>
 ID:21030681 Name:Electro Samachurl<br>
+ID:21030701 Name:Samachurl Boss<br>
 ID:21040101 Name:Anemo Hilichurl Rogue<br>
 ID:21040181 Name:Anemo Hilichurl Rogue<br>
 ID:21040182 Name:Anemo Hilichurl Rogue<br>
@@ -11594,6 +11826,7 @@ ID:25010226 Name:กองโจรล่าสมบัติ - Scout<br>
 ID:25010227 Name:กองโจรล่าสมบัติ - Scout<br>
 ID:25010228 Name:กองโจรล่าสมบัติ - Scout<br>
 ID:25010229 Name:กองโจรล่าสมบัติ - Scout<br>
+ID:25010230 Name:กองโจรล่าสมบัติ - Scout<br>
 ID:25010281 Name:กองโจรล่าสมบัติ - Scout<br>
 ID:25010301 Name:กองโจรล่าสมบัติ - Pyro Potioneer<br>
 ID:25010302 Name:กองโจรล่าสมบัติ - Pyro Potioneer<br>
@@ -11632,6 +11865,7 @@ ID:25020207 Name:กองโจรล่าสมบัติ - Marksman<br>
 ID:25020208 Name:กองโจรล่าสมบัติ - Marksman<br>
 ID:25020209 Name:กองโจรล่าสมบัติ - Marksman<br>
 ID:25020210 Name:กองโจรล่าสมบัติ - Marksman<br>
+ID:25020211 Name:กองโจรล่าสมบัติ - Marksman<br>
 ID:25020281 Name:กองโจรล่าสมบัติ - Marksman<br>
 ID:25030101 Name:\"Carmen\"<br>
 ID:25030102 Name:กองโจรล่าสมบัติ - Carmen<br>
@@ -11648,6 +11882,7 @@ ID:25040102 Name:กองโจรล่าสมบัติ - Boss<br>
 ID:25040103 Name:กองโจรล่าสมบัติ - Boss<br>
 ID:25040104 Name:กองโจรล่าสมบัติ - Boss<br>
 ID:25040105 Name:กองโจรล่าสมบัติ - Boss<br>
+ID:25040106 Name:กองโจรล่าสมบัติ - Boss<br>
 ID:25050101 Name:Millelith Soldier<br>
 ID:25050201 Name:Millelith Sergeant<br>
 ID:25050301 Name:Shogunate Infantry<br>
@@ -11672,12 +11907,14 @@ ID:25060109 Name:กองโจรล่าสมบัติ - Pugilist<br>
 ID:25060110 Name:กองโจรล่าสมบัติ - Pugilist<br>
 ID:25060111 Name:กองโจรล่าสมบัติ - Pugilist<br>
 ID:25060112 Name:กองโจรล่าสมบัติ - Pugilist<br>
+ID:25060113 Name:กองโจรล่าสมบัติ - Pugilist<br>
 ID:25060181 Name:กองโจรล่าสมบัติ - Pugilist<br>
 ID:25060201 Name:<br>
 ID:25070101 Name:กองโจรล่าสมบัติ - Crusher<br>
 ID:25070102 Name:กองโจรล่าสมบัติ - Crusher<br>
 ID:25070103 Name:กองโจรล่าสมบัติ - Crusher<br>
 ID:25070104 Name:กองโจรล่าสมบัติ - Crusher<br>
+ID:25070105 Name:กองโจรล่าสมบัติ - Crusher<br>
 ID:25070181 Name:กองโจรล่าสมบัติ - Crusher<br>
 ID:25070201 Name:กองโจรล่าสมบัติ - Wallenstein<br>
 ID:25070202 Name:กองโจรล่าสมบัติ - Wallenstein<br>
@@ -11833,6 +12070,10 @@ ID:26040185 Name:Geovishap<br>
 ID:26040186 Name:Geovishap<br>
 ID:26040187 Name:Geovishap<br>
 ID:26040188 Name:Geovishap<br>
+ID:26040201 Name:Ruler of the Chizhang Mountains: Yiji<br>
+ID:26040202 Name:Ruler of the Chizhang Mountains: Yiji<br>
+ID:26040301 Name:Ruler of the Chizhang Mountains: Tianyu<br>
+ID:26040302 Name:Ruler of the Chizhang Mountains: Tianyu<br>
 ID:26050101 Name:Primo Geovishap - น้ำ<br>
 ID:26050201 Name:Primo Geovishap - ไฟ<br>
 ID:26050301 Name:Primo Geovishap - น้ำแข็ง<br>
@@ -11955,6 +12196,10 @@ ID:26162401 Name:ตำนานท้องถิ่น - Cherubic Sea Hare<br>
 ID:26162501 Name:ตำนานท้องถิ่น - Hat Jellyfish<br>
 ID:26170101 Name:Emperor of Fire and Iron<br>
 ID:26180101 Name:Millennial Pearl Seahorse<br>
+ID:26190101 Name:Solitary Suanni<br>
+ID:26190102 Name:Solitary Suanni<br>
+ID:26190103 Name:Solitary Suanni<br>
+ID:26190201 Name:อสูรเสวียนเหวิน<br>
 ID:28010101 Name:Golden Crab<br>
 ID:28010102 Name:Sun Crab<br>
 ID:28010103 Name:Ocean Crab<br>
@@ -12008,6 +12253,7 @@ ID:28020316 Name:<br>
 ID:28020317 Name:<br>
 ID:28020318 Name:<br>
 ID:28020319 Name:<br>
+ID:28020320 Name:<br>
 ID:28020401 Name:Northland Hound<br>
 ID:28020402 Name:Forest-Patrol Hound<br>
 ID:28020403 Name:Shiba<br>
@@ -12050,10 +12296,14 @@ ID:28020903 Name:<br>
 ID:28020904 Name:<br>
 ID:28020905 Name:<br>
 ID:28021001 Name:<br>
+ID:28021002 Name:<br>
+ID:28021011 Name:<br>
+ID:28021012 Name:<br>
 ID:28021101 Name:<br>
 ID:28021102 Name:<br>
 ID:28021103 Name:<br>
 ID:28021201 Name:<br>
+ID:28022101 Name:<br>
 ID:28030101 Name:Azure Crane<br>
 ID:28030102 Name:Violet Ibis<br>
 ID:28030103 Name:<br>
@@ -12093,16 +12343,22 @@ ID:28030409 Name:<br>
 ID:28030410 Name:<br>
 ID:28030501 Name:Scarletbeak Duck<br>
 ID:28030502 Name:Emerald Duck<br>
+ID:28030503 Name:Golden Duck<br>
 ID:28030504 Name:<br>
 ID:28030505 Name:<br>
+ID:28030506 Name:<br>
 ID:28030601 Name:<br>
 ID:28030602 Name:<br>
+ID:28030603 Name:<br>
 ID:28030604 Name:<br>
 ID:28030605 Name:<br>
+ID:28030606 Name:<br>
 ID:28030607 Name:<br>
 ID:28030608 Name:<br>
+ID:28030609 Name:<br>
 ID:28030610 Name:<br>
 ID:28030611 Name:<br>
+ID:28030612 Name:<br>
 ID:28030701 Name:<br>
 ID:28030702 Name:<br>
 ID:28030703 Name:<br>
@@ -12160,6 +12416,7 @@ ID:28040902 Name:<br>
 ID:28040903 Name:<br>
 ID:28041001 Name:<br>
 ID:28041002 Name:<br>
+ID:28041003 Name:<br>
 ID:28041101 Name:<br>
 ID:28041102 Name:<br>
 ID:28041103 Name:<br>
@@ -12184,6 +12441,7 @@ ID:28050221 Name:<br>
 ID:28050222 Name:<br>
 ID:28050223 Name:<br>
 ID:28050301 Name:<br>
+ID:28050302 Name:<br>
 ID:28050401 Name:<br>
 ID:28050501 Name:<br>
 ID:28050502 Name:<br>
@@ -12300,6 +12558,7 @@ ID:28220604 Name:<br>
 ID:28220605 Name:<br>
 ID:28220701 Name:Domestic Kitsune<br>
 ID:28220901 Name:Domestic Samurai Dog<br>
+ID:28222101 Name:<br>
 ID:28230101 Name:Domestic Azure Crane<br>
 ID:28230102 Name:Domestic Violet Ibis<br>
 ID:28230104 Name:<br>
@@ -12316,6 +12575,7 @@ ID:28230403 Name:Domestic Snow Finch<br>
 ID:28230404 Name:Domestic Emerald Finch<br>
 ID:28230601 Name:<br>
 ID:28230602 Name:<br>
+ID:28230603 Name:<br>
 ID:28230701 Name:<br>
 ID:28230702 Name:<br>
 ID:28230703 Name:<br>
@@ -12356,6 +12616,7 @@ ID:28240902 Name:<br>
 ID:28240903 Name:<br>
 ID:28241001 Name:<br>
 ID:28241002 Name:<br>
+ID:28241003 Name:<br>
 ID:28241101 Name:<br>
 ID:28241102 Name:<br>
 ID:28241103 Name:<br>
@@ -12369,6 +12630,7 @@ ID:28250105 Name:<br>
 ID:28250106 Name:<br>
 ID:28250107 Name:<br>
 ID:28250301 Name:<br>
+ID:28250302 Name:<br>
 ID:28250401 Name:<br>
 ID:28250701 Name:<br>
 ID:29010101 Name:Stormterror Dvalin<br>
@@ -12432,12 +12694,15 @@ ID:34060901 Name:จักรกลปราบปราม - สสาร<br>
 ID:35010201 Name:กองโจรล่าสมบัติ - Scout<br>
 ID:35010202 Name:กองโจรล่าสมบัติ - Scout<br>
 ID:35010203 Name:กองโจรล่าสมบัติ - Scout<br>
+ID:35010204 Name:กองโจรล่าสมบัติ - Scout<br>
 ID:35010602 Name:กองโจรล่าสมบัติ - Cryo Potioneer<br>
 ID:35020201 Name:กองโจรล่าสมบัติ - Marksman<br>
 ID:35020202 Name:กองโจรล่าสมบัติ - Marksman<br>
+ID:35040101 Name:กองโจรล่าสมบัติ - Boss<br>
 ID:35060101 Name:กองโจรล่าสมบัติ - Pugilist<br>
 ID:35060102 Name:กองโจรล่าสมบัติ - Pugilist<br>
 ID:35060103 Name:กองโจรล่าสมบัติ - Pugilist<br>
+ID:35070101 Name:กองโจรล่าสมบัติ - Crusher<br>
 ID:35110101 Name:Spirit of Omen: Stone Drake<br>
 ID:35110102 Name:Spirit of Omen: Stone Drake<br>
 ID:35110103 Name:Spirit of Omen: Stone Drake<br>
@@ -12495,3 +12760,4 @@ ID:36091091 Name:Stretchy Electro Fungus<br>
 ID:36091092 Name:Stretchy Electro Fungus<br>
 ID:38050590 Name:<br>
 ID:38050591 Name:<br>
+ID:38060502 Name:<br>

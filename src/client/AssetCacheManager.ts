@@ -39,22 +39,14 @@ export abstract class AssetCacheManager {
    */
   public static cachedTextMap: Map<string, string> = new Map()
 
-  private static option: ClientOption
-  private static gitRemoteAPIUrl: string =
+  private static readonly gitRemoteAPIURL: string =
     'https://gitlab.com/api/v4/projects/53216109/repository/commits?per_page=1'
-  private static gitRemoteRawBaseURL: string =
+  private static readonly gitRemoteRawBaseURL: string =
     'https://gitlab.com/Dimbreath/AnimeGameData/-/raw'
-  private static nowCommitId: string
-  private static commitFilePath: string
-  private static excelBinOutputFolderPath: string
-  private static textMapFolderPath: string
-
-  private static childrenModule: Module[]
-
   /**
    * Map to cache ExcelBinOutput for each class
    */
-  private static excelBinOutputMapUseModel: {
+  private static readonly excelBinOutputMapUseModel: {
     [className: string]: Array<keyof typeof ExcelBinOutputs>
   } = {
     CharacterInfo: [
@@ -64,7 +56,7 @@ export abstract class AssetCacheManager {
       'AvatarSkillExcelConfigData',
       'ProudSkillExcelConfigData',
     ],
-    CharacterStatus: [
+    CharacterBaseStats: [
       'AvatarExcelConfigData',
       'AvatarPromoteExcelConfigData',
       'AvatarCurveExcelConfigData',
@@ -137,12 +129,19 @@ export abstract class AssetCacheManager {
     DailyFarming: ['DungeonEntryExcelConfigData'],
   }
 
-  private static textHashList: Set<number> = new Set()
-  private static excelBinOutputKeyList: Set<keyof typeof ExcelBinOutputs> =
+  private static option: ClientOption
+  private static nowCommitId: string
+  private static commitFilePath: string
+  private static excelBinOutputFolderPath: string
+  private static textMapFolderPath: string
+  private static childrenModule: Module[]
+  private static textHashes: Set<number> = new Set()
+  private static excelBinOutputKeys: Set<keyof typeof ExcelBinOutputs> =
     new Set()
-
   /**
    * Cached text map
+   * @key ExcelBinOutput name
+   * @value Cached excel bin output
    */
   private static cachedExcelBinOutput: Map<
     keyof typeof ExcelBinOutputs,
@@ -152,7 +151,7 @@ export abstract class AssetCacheManager {
   /**
    * Create a AssetCacheManager
    * @param option Client option
-   * @param children import modules
+   * @param children Import modules
    */
   constructor(option: ClientOption, children: Module[]) {
     AssetCacheManager.option = option
@@ -225,7 +224,7 @@ export abstract class AssetCacheManager {
   }
 
   /**
-   * Check if cached excel bin output exists by id
+   * Check if cached excel bin output exists by ID
    * @deprecated This method is deprecated because it is used to pass data to each class
    * @param key ExcelBinOutput name
    * @param id ID of character, etc
@@ -245,7 +244,7 @@ export abstract class AssetCacheManager {
   }
 
   /**
-   * search hashes in CachedTextMap by value
+   * Search hashes in CachedTextMap by value
    * @deprecated This method is deprecated because it is used to pass data to each class
    * @param searchValue Search value
    * @returns Hashes
@@ -259,7 +258,7 @@ export abstract class AssetCacheManager {
   }
 
   /**
-   * search key in CachedExcelBinOutput by text hashes
+   * Search key in CachedExcelBinOutput by text hashes
    * @deprecated This method is deprecated because it is used to pass data to each class
    * @param key ExcelBinOutput name
    * @param textHashes Text hashes
@@ -296,7 +295,7 @@ export abstract class AssetCacheManager {
     ) {
       if (this.option.showFetchCacheLog)
         console.log('GenshinManager: New Assets found. Update Assets.')
-      this.createExcelBinOutputKeyList()
+      this.createExcelBinOutputKeys()
       await this.fetchAssetFolder(
         this.excelBinOutputFolderPath,
         Object.values(ExcelBinOutputs),
@@ -305,19 +304,19 @@ export abstract class AssetCacheManager {
         await this.updateCache()
         return
       }
-      this.createTextHashList()
+      this.createTextHashes()
       const textMapFileNames = this.option.downloadLanguages.map(
         (key) => TextMapLanguage[key],
       )
       await this.fetchAssetFolder(this.textMapFolderPath, textMapFileNames)
       if (this.option.showFetchCacheLog)
         console.log('GenshinManager: Set cache.')
-      this.createExcelBinOutputKeyList(this.childrenModule)
+      this.createExcelBinOutputKeys(this.childrenModule)
       if (await this.setExcelBinOutputToCache()) {
         await this.updateCache()
         return
       }
-      this.createTextHashList()
+      this.createTextHashes()
       if (await this.setTextMapToCache(this.option.defaultLanguage)) {
         await this.updateCache()
         return
@@ -325,12 +324,12 @@ export abstract class AssetCacheManager {
     } else {
       if (this.option.showFetchCacheLog)
         console.log('GenshinManager: No new Asset found. Set cache.')
-      this.createExcelBinOutputKeyList(this.childrenModule)
+      this.createExcelBinOutputKeys(this.childrenModule)
       if (await this.setExcelBinOutputToCache()) {
         await this.updateCache()
         return
       }
-      this.createTextHashList()
+      this.createTextHashes()
       if (await this.setTextMapToCache(this.option.defaultLanguage)) {
         await this.updateCache()
         return
@@ -346,7 +345,7 @@ export abstract class AssetCacheManager {
    */
   protected static async setExcelBinOutputToCache(): Promise<boolean> {
     this.cachedExcelBinOutput.clear()
-    for (const key of this.excelBinOutputKeyList) {
+    for (const key of this.excelBinOutputKeys) {
       const filename = ExcelBinOutputs[key]
       const selectedExcelBinOutputPath = path.join(
         this.excelBinOutputFolderPath,
@@ -443,7 +442,7 @@ export abstract class AssetCacheManager {
       fs.createReadStream(selectedTextMapPath, {
         highWaterMark: 1 * 1024 * 1024,
       }),
-      new TextMapTransform(language, this.textHashList),
+      new TextMapTransform(language, this.textHashes),
       eventEmitter,
     ).catch(async (error) => {
       if (error instanceof TextMapFormatError) {
@@ -487,7 +486,7 @@ export abstract class AssetCacheManager {
         ) as GitLabAPIResponse[])
       : null
 
-    await this.downloadJsonFile(this.gitRemoteAPIUrl, this.commitFilePath)
+    await this.downloadJsonFile(this.gitRemoteAPIURL, this.commitFilePath)
 
     const newCommits = JSON.parse(
       await fsPromises.readFile(this.commitFilePath, {
@@ -500,13 +499,13 @@ export abstract class AssetCacheManager {
   }
 
   /**
-   * Create ExcelBinOutput Key List to cache
-   * @param children import modules
+   * Create ExcelBinOutput Keys to cache
+   * @param children Import modules
    */
-  private static createExcelBinOutputKeyList(children?: Module[]): void {
-    this.excelBinOutputKeyList.clear()
+  private static createExcelBinOutputKeys(children?: Module[]): void {
+    this.excelBinOutputKeys.clear()
     if (!children) {
-      this.excelBinOutputKeyList = new Set(
+      this.excelBinOutputKeys = new Set(
         Object.keys(ExcelBinOutputs).map(
           (key) => key as keyof typeof ExcelBinOutputs,
         ),
@@ -514,8 +513,8 @@ export abstract class AssetCacheManager {
     } else {
       getClassNamesRecursive(children).forEach((className) => {
         if (this.excelBinOutputMapUseModel[className]) {
-          this.excelBinOutputKeyList = new Set([
-            ...this.excelBinOutputKeyList,
+          this.excelBinOutputKeys = new Set([
+            ...this.excelBinOutputKeys,
             ...this.excelBinOutputMapUseModel[className],
           ])
         }
@@ -524,10 +523,10 @@ export abstract class AssetCacheManager {
   }
 
   /**
-   * Create TextHash List to cache
+   * Create TextHashes to cache
    */
-  private static createTextHashList(): void {
-    this.textHashList.clear()
+  private static createTextHashes(): void {
+    this.textHashes.clear()
     this.cachedExcelBinOutput.forEach((excelBin) => {
       ;(Object.values(excelBin.get() as JsonObject) as JsonObject[]).forEach(
         (obj) => {
@@ -536,22 +535,22 @@ export abstract class AssetCacheManager {
             Object.keys(obj).forEach((key) => {
               if (/TextMapHash/g.exec(key)) {
                 const hash = obj[key] as number
-                this.textHashList.add(hash)
+                this.textHashes.add(hash)
               }
               if (key === 'paramDescList') {
-                const hashList = obj[key] as number[]
-                hashList.forEach((hash) => this.textHashList.add(hash))
+                const hashes = obj[key] as number[]
+                hashes.forEach((hash) => this.textHashes.add(hash))
               }
             })
           })
           Object.keys(obj).forEach((key) => {
             if (/TextMapHash/g.exec(key)) {
               const hash = obj[key] as number
-              this.textHashList.add(hash)
+              this.textHashes.add(hash)
             }
             if (key === 'tips') {
-              const hashList = obj[key] as number[]
-              hashList.forEach((hash) => this.textHashList.add(hash))
+              const hashes = obj[key] as number[]
+              hashes.forEach((hash) => this.textHashes.add(hash))
             }
           })
         },
@@ -567,9 +566,9 @@ export abstract class AssetCacheManager {
     language: keyof typeof TextMapLanguage,
   ): Promise<void> {
     const textMapFileName = TextMapLanguage[language]
-    this.createExcelBinOutputKeyList()
+    this.createExcelBinOutputKeys()
     await this.setExcelBinOutputToCache()
-    this.createTextHashList()
+    this.createTextHashes()
     await this.fetchAssetFolder(this.textMapFolderPath, [textMapFileName], true)
   }
 
@@ -588,7 +587,7 @@ export abstract class AssetCacheManager {
    * Fetch asset folder from gitlab
    * @param FolderPath Folder path
    * @param files File names
-   * @param isRetry Retry
+   * @param isRetry Is Retry
    */
   private static async fetchAssetFolder(
     FolderPath: string,
@@ -629,7 +628,7 @@ export abstract class AssetCacheManager {
   }
 
   /**
-   * download json file from url and write to downloadFilePath
+   * Download json file from URL and write to downloadFilePath
    * @param url URL
    * @param downloadFilePath Download file path
    */
@@ -648,7 +647,7 @@ export abstract class AssetCacheManager {
     if ('TextMap' === path.basename(path.dirname(downloadFilePath))) {
       await pipeline(
         new ReadableStreamWrapper(res.body.getReader()),
-        new TextMapTransform(language, this.textHashList),
+        new TextMapTransform(language, this.textHashes),
         writeStream,
       )
     } else {

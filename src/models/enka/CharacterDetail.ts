@@ -4,9 +4,10 @@ import { CharacterConstellation } from '@/models/character/CharacterConstellatio
 import { CharacterCostume } from '@/models/character/CharacterCostume'
 import { CharacterInfo } from '@/models/character/CharacterInfo'
 import { CharacterSkill } from '@/models/character/CharacterSkill'
-import { FightProp } from '@/models/FightProp'
+import { CharacterStatusManager } from '@/models/character/CharacterStatusManager'
 import { SetBonus } from '@/models/SetBonus'
 import { Weapon } from '@/models/weapon/Weapon'
+import { BodyType, Element, WeaponType } from '@/types'
 import {
   APIAvatarInfo,
   APIReliquaryEquip,
@@ -16,7 +17,31 @@ import {
 /**
  * Class of the character obtained from EnkaNetwork
  */
-export class AvatarInfo extends CharacterInfo {
+export class CharacterDetail {
+  /**
+   * Character ID
+   */
+  public readonly id: number
+  /**
+   * Character name
+   */
+  public readonly name: string
+  /**
+   * Character element
+   */
+  public readonly element: Element | undefined
+  /**
+   * Character rarity
+   */
+  public readonly rarity: number
+  /**
+   * Character body type
+   */
+  public readonly bodyType: BodyType
+  /**
+   * Character weapon type
+   */
+  public readonly weaponType: WeaponType
   /**
    * Character costume
    */
@@ -26,6 +51,10 @@ export class AvatarInfo extends CharacterInfo {
    */
   public readonly level: number
   /**
+   * Character max level
+   */
+  public readonly maxLevel: number
+  /**
    * Character level XP
    */
   public readonly levelXp: number
@@ -34,17 +63,17 @@ export class AvatarInfo extends CharacterInfo {
    */
   public readonly ascension: number
   /**
-   * Character constellation list
+   * Character constellations
    */
-  public readonly constellationList: CharacterConstellation[]
+  public readonly constellations: CharacterConstellation[]
   /**
-   * Character skill list
+   * Character skills
    */
   public readonly skills: CharacterSkill[]
   /**
-   * Character fight prop
+   * Character combat status
    */
-  public readonly fightProp: FightProp
+  public readonly combatStatus: CharacterStatusManager
   /**
    * Weapon equipped by Character
    */
@@ -63,22 +92,31 @@ export class AvatarInfo extends CharacterInfo {
   public readonly setBonus: SetBonus
 
   /**
-   * Create a AvatarInfo
+   * Create a CharacterDetail
    * @param data Data from EnkaNetwork
    */
   constructor(data: APIAvatarInfo) {
-    super(data.avatarId, data.skillDepotId)
-    this.costume = new CharacterCostume(data.costumeId ?? this.defaultCostumeId)
+    const characterInfo = new CharacterInfo(data.avatarId, data.skillDepotId)
+    this.id = characterInfo.id
+    this.name = characterInfo.name
+    this.element = characterInfo.element
+    this.rarity = characterInfo.rarity
+    this.bodyType = characterInfo.bodyType
+    this.weaponType = characterInfo.weaponType
+    this.maxLevel = characterInfo.maxLevel
+    this.costume = new CharacterCostume(
+      data.costumeId ?? characterInfo.defaultCostumeId,
+    )
     this.level = +(data.propMap[4001].val || 0)
     this.levelXp = +(data.propMap[1001].val || 0)
     this.ascension = +(data.propMap[1002].val || 0)
-    this.constellationList =
-      this.constellationIds.map((id) => {
+    this.constellations =
+      characterInfo.constellationIds.map((id) => {
         return new CharacterConstellation(id, !data.talentIdList?.includes(id))
       }) || []
 
-    this.skills = this.skillOrder.map((id) => {
-      const proudId = this.proudMap.get(id)
+    this.skills = characterInfo.skillOrder.map((id) => {
+      const proudId = characterInfo.proudMap.get(id)
       const extraLevel =
         proudId && data.proudSkillExtraLevelMap
           ? data.proudSkillExtraLevelMap[proudId]
@@ -86,7 +124,7 @@ export class AvatarInfo extends CharacterInfo {
       return new CharacterSkill(id, data.skillLevelMap[id] || 0, extraLevel)
     })
 
-    this.fightProp = new FightProp(data.fightPropMap)
+    this.combatStatus = new CharacterStatusManager(data.fightPropMap)
     const weaponData = data.equipList.find(
       (equip): equip is APIWeaponEquip => equip.flat.itemType === 'ITEM_WEAPON',
     )

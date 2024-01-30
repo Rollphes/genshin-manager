@@ -45,10 +45,21 @@ export class StatProperty {
   }
 
   /**
+   * Get value text
+   * @returns Value text
+   */
+  public get valueText(): string {
+    const fix = this.isPercent ? 1 : 0
+    const fixedValue = +this.multipliedValue.toFixed(fix)
+    const formattedValue = new Intl.NumberFormat().format(fixedValue)
+    return `${formattedValue}${this.isPercent ? '%' : ''}`
+  }
+
+  /**
    * Get multiplied value
    * @returns Multiplied value
    */
-  public getMultipliedValue(): number {
+  public get multipliedValue(): number {
     return this.cleanUp(this.value * (this.isPercent ? 100 : 1))
   }
 

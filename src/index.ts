@@ -14,20 +14,23 @@ import { Artifact } from '@/models/Artifact'
 import { AudioAssets } from '@/models/assets/AudioAssets'
 import { ImageAssets } from '@/models/assets/ImageAssets'
 import { CharacterAscension } from '@/models/character/CharacterAscension'
+import { CharacterBaseStats } from '@/models/character/CharacterBaseStats'
 import { CharacterConstellation } from '@/models/character/CharacterConstellation'
 import { CharacterCostume } from '@/models/character/CharacterCostume'
 import { CharacterInfo } from '@/models/character/CharacterInfo'
 import { CharacterInherentSkill } from '@/models/character/CharacterInherentSkill'
 import { CharacterProfile } from '@/models/character/CharacterProfile'
 import { CharacterSkill } from '@/models/character/CharacterSkill'
-import { CharacterStatus } from '@/models/character/CharacterStatus'
+import { CharacterStatusManager } from '@/models/character/CharacterStatusManager'
 import { CharacterStory } from '@/models/character/CharacterStory'
 import { CharacterVoice } from '@/models/character/CharacterVoice'
 import { DailyFarming } from '@/models/DailyFarming'
-import { AvatarInfo } from '@/models/enka/AvatarInfo'
-import { PlayerInfo } from '@/models/enka/PlayerInfo'
-import { ShowAvatarInfo } from '@/models/enka/ShowAvatarInfo'
-import { FightProp } from '@/models/FightProp'
+import { CharacterDetail } from '@/models/enka/CharacterDetail'
+import { CharacterPreview } from '@/models/enka/CharacterPreview'
+import { EnkaAccount } from '@/models/enka/EnkaAccount'
+import { EnkaBuild } from '@/models/enka/EnkaBuild'
+import { GenshinAccount } from '@/models/enka/GenshinAccount'
+import { PlayerDetail } from '@/models/enka/PlayerDetail'
 import { Material } from '@/models/Material'
 import { Monster } from '@/models/Monster'
 import { Notice } from '@/models/Notice'
@@ -75,16 +78,16 @@ export {
   CharacterStory,
   CharacterVoice,
   CharacterAscension,
-  CharacterStatus,
+  CharacterBaseStats,
   CharacterCostume,
-  FightProp,
+  CharacterStatusManager,
   CharacterProfile,
   CharacterSkill,
   CharacterInherentSkill,
   CharacterConstellation,
-  AvatarInfo,
-  PlayerInfo,
-  ShowAvatarInfo,
+  CharacterDetail,
+  PlayerDetail,
+  CharacterPreview,
   Material,
   Weapon,
   WeaponAscension,
@@ -98,6 +101,9 @@ export {
   Notice,
   ProfilePicture,
   DailyFarming,
+  EnkaAccount,
+  GenshinAccount,
+  EnkaBuild,
 }
 export { convertToUTC }
 export {

@@ -185,7 +185,7 @@ export interface APIAvatarInfo {
    */
   skillDepotId: number
   /**
-   * List of Unlocked Skill Ids
+   * List of Unlocked Skill IDs
    */
   inherentProudSkillList: number[]
   /**
@@ -212,6 +212,54 @@ export interface APIAvatarInfo {
 }
 
 /**
+ * Enka API Owner type
+ */
+export interface APIOwner {
+  /**
+   * Hash
+   */
+  hash?: string
+  /**
+   * User Name
+   */
+  username: string
+  /**
+   * Profile
+   */
+  profile: APIProfile
+  /**
+   * Enka Network Account ID
+   */
+  id: number
+}
+
+/**
+ * Enka API PlayerDetail type
+ */
+export interface APIProfile {
+  /**
+   * biography
+   */
+  bio: string
+  /**
+   * level
+   */
+  level: number
+  /**
+   * signup state
+   */
+  signup_state: number
+  /**
+   * profile picture
+   */
+  avatar: string | null
+  /**
+   * profile picture #2?
+   */
+  image_url: string
+}
+
+/**
  * EnkaNetWork response type
  * @link https://enka.network/api/uid/:uid
  */
@@ -225,11 +273,15 @@ export interface APIEnkaData {
    */
   avatarInfoList?: APIAvatarInfo[]
   /**
+   * Owner Info
+   */
+  owner?: APIOwner
+  /**
    * TTL
    */
   ttl?: number
   /**
-   * uid
+   * UID
    */
   uid: number
 }

@@ -13,6 +13,14 @@ import { JsonObject } from '@/utils/JsonParser'
  */
 export class Weapon {
   /**
+   * Black weapon IDs
+   */
+  private static readonly blackWeaponIds = [
+    10002, 10003, 10004, 10005, 10006, 10008, 11411, 11508, 12304, 12508, 12509,
+    13304, 13503, 14306, 14411, 14508, 15306, 20001,
+  ]
+
+  /**
    * Weapon name
    */
   public readonly name: string
@@ -41,6 +49,10 @@ export class Weapon {
    */
   public readonly level: number
   /**
+   * Weapon max level
+   */
+  public readonly maxLevel: number
+  /**
    * Weapon promote level
    */
   public readonly promoteLevel: number
@@ -57,9 +69,9 @@ export class Weapon {
    */
   public readonly rarity: number
   /**
-   * Weapon status
+   * Weapon stats
    */
-  public readonly status: StatProperty[]
+  public readonly stats: StatProperty[]
   /**
    * Whether the weapon is awakened
    */
@@ -85,9 +97,12 @@ export class Weapon {
     this.id = weaponId
     this.level = level
 
-    const maxLevel = Weapon.getMaxLevelByWeaponId(this.id)
-    if (this.level < 1 || this.level > maxLevel)
-      throw new OutOfRangeError('level', this.level, 1, maxLevel)
+    const maxPromoteLevel =
+      WeaponAscension.getMaxPromoteLevelByWeaponId(weaponId)
+    const maxAscension = new WeaponAscension(this.id, maxPromoteLevel)
+    this.maxLevel = maxAscension.unlockMaxLevel
+    if (this.level < 1 || this.level > this.maxLevel)
+      throw new OutOfRangeError('level', this.level, 1, this.maxLevel)
 
     this.isAscended = isAscended
     this.refinementRank = refinementRank
@@ -109,7 +124,6 @@ export class Weapon {
     )
 
     const ascension = new WeaponAscension(this.id, this.promoteLevel)
-
     const refinement = new WeaponRefinement(this.id, this.refinementRank)
     this.skillName = refinement.skillName
     this.skillDescription = refinement.skillDescription
@@ -124,7 +138,7 @@ export class Weapon {
 
     const weaponPropJsonArray = weaponJson.weaponProp as JsonObject[]
 
-    this.status = weaponPropJsonArray
+    this.stats = weaponPropJsonArray
       .map((weaponPropJson) => {
         if (!weaponPropJson.initValue || !weaponPropJson.propType) return
         return this.getStatPropertyByJson(
@@ -146,22 +160,18 @@ export class Weapon {
    * Get all weapon IDs
    * @returns All weapon IDs
    */
-  public static getAllWeaponIds(): number[] {
-    const blackList = [
-      10002, 10003, 10004, 10005, 10006, 10008, 11411, 11508, 12304, 12508,
-      12509, 13304, 13503, 14306, 14411, 14508, 15306, 20001,
-    ]
+  public static get allWeaponIds(): number[] {
     const weaponDatas = Object.values(
       Client._getCachedExcelBinOutputByName('WeaponExcelConfigData'),
     )
     return weaponDatas
-      .filter((data) => !blackList.includes(data.id as number))
+      .filter((data) => !Weapon.blackWeaponIds.includes(data.id as number))
       .map((data) => data.id as number)
   }
 
   /**
    * Get weapon ID by name
-   * @param name weapon name
+   * @param name Weapon name
    * @returns Weapon ID
    */
   public static getWeaponIdByName(name: string): number[] {
@@ -170,18 +180,6 @@ export class Weapon {
       'WeaponExcelConfigData',
       hashes,
     ).map((k) => +k)
-  }
-
-  /**
-   * Get max level by weapon ID
-   * @param weaponId Weapon ID
-   * @returns Max level
-   */
-  public static getMaxLevelByWeaponId(weaponId: number): number {
-    const maxPromoteLevel =
-      WeaponAscension.getMaxPromoteLevelByWeaponId(weaponId)
-    const ascension = new WeaponAscension(weaponId, maxPromoteLevel)
-    return ascension.unlockMaxLevel
   }
 
   /**

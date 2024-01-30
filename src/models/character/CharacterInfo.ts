@@ -9,7 +9,7 @@ import {
 import { JsonObject } from '@/utils/JsonParser'
 
 /**
- * Class that summarizes IDs and other information related to the character
+ * Class of information about the character.
  */
 export class CharacterInfo {
   /**
@@ -24,6 +24,10 @@ export class CharacterInfo {
    * Character name
    */
   public readonly name: string
+  /**
+   * Character max level
+   */
+  public readonly maxLevel: number = 90
   /**
    * Skill depot ID
    */
@@ -154,7 +158,7 @@ export class CharacterInfo {
    * Get all character IDs
    * @returns All character IDs
    */
-  public static getAllCharacterIds(): number[] {
+  public static get allCharacterIds(): number[] {
     const avatarDatas = Object.values(
       Client._getCachedExcelBinOutputByName('AvatarExcelConfigData'),
     )

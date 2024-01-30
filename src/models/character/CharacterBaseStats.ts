@@ -7,9 +7,9 @@ import { calculatePromoteLevel } from '@/utils/calculatePromoteLevel'
 import { JsonObject } from '@/utils/JsonParser'
 
 /**
- * Class of character's status
+ * Class of character's base stats
  */
-export class CharacterStatus {
+export class CharacterBaseStats {
   /**
    * Character ID
    */
@@ -27,12 +27,12 @@ export class CharacterStatus {
    */
   public readonly isAscended: boolean
   /**
-   * Character status
+   * Character stats
    */
-  public readonly status: StatProperty[]
+  public readonly stats: StatProperty[]
 
   /**
-   * Create a Character
+   * Create a character's base stats
    * @param characterId Character ID
    * @param level Character level (1-90). Default: 1
    * @param isAscended Character is ascended (true or false). Default: false
@@ -66,9 +66,16 @@ export class CharacterStatus {
 
     const propGrowCurves = avatarJson.propGrowCurves as JsonObject[]
 
-    this.status = this.calculateStatus(avatarJson, propGrowCurves, ascension)
+    this.stats = this.calculateStatus(avatarJson, propGrowCurves, ascension)
   }
 
+  /**
+   * Calculate character's status
+   * @param avatarJson Avatar json
+   * @param propGrowCurves Prop grow curves
+   * @param ascension Character ascension
+   * @returns Character's status
+   */
   private calculateStatus(
     avatarJson: JsonObject,
     propGrowCurves: JsonObject[],

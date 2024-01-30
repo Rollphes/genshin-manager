@@ -42,32 +42,32 @@ async function main() {
   switch (testType) {
     case 'AllId':
       console.log('Running test of class has AllId method...')
-      CharacterInfo.getAllCharacterIds().forEach((id) => new CharacterInfo(id))
-      CharacterCostume.getAllCostumeIds().forEach(
+      CharacterInfo.allCharacterIds.forEach((id) => new CharacterInfo(id))
+      CharacterCostume.allCostumeIds.forEach(
         (id) => new CharacterCostume(id),
       )
-      CharacterProfile.getAllCharacterIds().forEach(
+      CharacterProfile.allCharacterIds.forEach(
         (id) => new CharacterProfile(id),
       )
-      CharacterSkill.getAllSkillIds().forEach((id) => new CharacterSkill(id))
-      CharacterInherentSkill.getAllInherentSkillIds().forEach(
+      CharacterSkill.allSkillIds.forEach((id) => new CharacterSkill(id))
+      CharacterInherentSkill.allInherentSkillIds.forEach(
         (id) => new CharacterInherentSkill(id),
       )
-      CharacterConstellation.getAllConstellationIds().forEach(
+      CharacterConstellation.allConstellationIds.forEach(
         (id) => new CharacterConstellation(id),
       )
-      CharacterStory.getAllFetterIds().forEach((id) => new CharacterStory(id))
-      CharacterVoice.getAllFetterIds().forEach((id) => new CharacterVoice(id))
-      Artifact.getAllArtifactIds().forEach((id) => new Artifact(id, 10001))
-      Material.getAllMaterialIds().forEach((id) => new Material(id))
-      Weapon.getAllWeaponIds().forEach((id) => new Weapon(id))
-      TowerSchedule.getAllTowerScheduleIds().forEach(
+      CharacterStory.allFetterIds.forEach((id) => new CharacterStory(id))
+      CharacterVoice.allFetterIds.forEach((id) => new CharacterVoice(id))
+      Artifact.allArtifactIds.forEach((id) => new Artifact(id, 10001))
+      Material.allMaterialIds.forEach((id) => new Material(id))
+      Weapon.allWeaponIds.forEach((id) => new Weapon(id))
+      TowerSchedule.allTowerScheduleIds.forEach(
         (id) => new TowerSchedule(id),
       )
-      TowerFloor.getAllTowerFloorIds().forEach((id) => new TowerFloor(id))
-      TowerLevel.getAllTowerLevelIds().forEach((id) => new TowerLevel(id, 12))
-      Monster.getAllMonsterIds().forEach((id) => new Monster(id))
-      ProfilePicture.getAllProfilePictureIds().forEach(
+      TowerFloor.allTowerFloorIds.forEach((id) => new TowerFloor(id))
+      TowerLevel.allTowerLevelIds.forEach((id) => new TowerLevel(id, 12))
+      Monster.allMonsterIds.forEach((id) => new Monster(id))
+      ProfilePicture.allProfilePictureIds.forEach(
         (id) => new ProfilePicture(id),
       )
       for (let i = 0; i < 7; i++) {
@@ -77,13 +77,13 @@ async function main() {
       break
     case 'EnkaNetwork':
       console.log('Running test of EnkaNetwork...')
-      await new EnkaManager().fetch(800802278)
+      await new EnkaManager().fetchAll(800802278)
       console.log('EnkaNetwork test passed!')
       break
     case 'findMonsterIdByDescribeId':
       console.log('Running test of findMonsterIdByDescribeId...')
       console.log('step 1:Spiral Abyss Schedule test...')
-      TowerSchedule.getAllTowerScheduleIds().map((id) => new TowerSchedule(id))
+      TowerSchedule.allTowerScheduleIds.map((id) => new TowerSchedule(id))
       console.log('step 2:MonsterDescribeExcelConfigData keys test...')
       const describeIds = Object.keys(
         Client._getCachedExcelBinOutputByName('MonsterDescribeExcelConfigData'),
@@ -96,13 +96,13 @@ async function main() {
       break
     case 'Image':
       console.log('Running test of Image...')
-      const artifactIds = await Artifact.getAllArtifactIds()
+      const artifactIds = await Artifact.allArtifactIds
       for (const id of artifactIds) {
         const artifact = new Artifact(id, 10001)
         await artifact.icon.fetchBuffer().catch((e) => console.log(e))
       }
 
-      const materialIds = await Material.getAllMaterialIds()
+      const materialIds = await Material.allMaterialIds
       for (const id of materialIds) {
         const material = new Material(id)
         await material.icon.fetchBuffer().catch((e) => console.log(e))
@@ -111,60 +111,61 @@ async function main() {
         }
       }
 
-      const monsterIds = await Monster.getAllMonsterIds()
+      const monsterIds = await Monster.allMonsterIds
       for (const id of monsterIds) {
         const monster = new Monster(id)
         if (monster.icon === undefined) continue
         await monster.icon.fetchBuffer().catch((e) => console.log(e))
       }
 
-      const profilePictureIds = await ProfilePicture.getAllProfilePictureIds()
+      const profilePictureIds = await ProfilePicture.allProfilePictureIds
       for (const id of profilePictureIds) {
         const profilePicture = new ProfilePicture(id)
         await profilePicture.icon.fetchBuffer().catch((e) => console.log(e))
       }
 
       const constellationIds =
-        await CharacterConstellation.getAllConstellationIds()
+        await CharacterConstellation.allConstellationIds
       for (const id of constellationIds) {
         const constellation = new CharacterConstellation(id)
         await constellation.icon.fetchBuffer().catch((e) => console.log(e))
       }
 
-      const costumeIds = await CharacterCostume.getAllCostumeIds()
+      const costumeIds = await CharacterCostume.allCostumeIds
       for (const id of costumeIds) {
         const costume = new CharacterCostume(id)
         await costume.sideIcon.fetchBuffer().catch((e) => console.log(e))
         await costume.icon.fetchBuffer().catch((e) => console.log(e))
         await costume.art.fetchBuffer().catch((e) => console.log(e))
+        await costume.card.fetchBuffer().catch((e) => console.log(e))
       }
 
       const inherentSkillIds =
-        await CharacterInherentSkill.getAllInherentSkillIds()
+        await CharacterInherentSkill.allInherentSkillIds
       for (const id of inherentSkillIds) {
         const inherentSkill = new CharacterInherentSkill(id)
         await inherentSkill.icon.fetchBuffer().catch((e) => console.log(e))
       }
 
-      const skillIds = await CharacterSkill.getAllSkillIds()
+      const skillIds = await CharacterSkill.allSkillIds
       for (const id of skillIds) {
         const skill = new CharacterSkill(id)
         await skill.icon.fetchBuffer().catch((e) => console.log(e))
       }
 
-      const towerFloorIds = await TowerFloor.getAllTowerFloorIds()
+      const towerFloorIds = await TowerFloor.allTowerFloorIds
       for (const id of towerFloorIds) {
         const towerFloor = new TowerFloor(id)
         await towerFloor.bgImage.fetchBuffer().catch((e) => console.log(e))
       }
 
-      const towerScheduleIds = await TowerSchedule.getAllTowerScheduleIds()
+      const towerScheduleIds = await TowerSchedule.allTowerScheduleIds
       for (const id of towerScheduleIds) {
         const towerSchedule = new TowerSchedule(id)
         await towerSchedule.icon.fetchBuffer().catch((e) => console.log(e))
       }
 
-      const weaponIds = await Weapon.getAllWeaponIds()
+      const weaponIds = await Weapon.allWeaponIds
       for (const id of weaponIds) {
         const weapon = new Weapon(id)
         await weapon.icon.fetchBuffer().catch((e) => console.log(e))
@@ -174,7 +175,7 @@ async function main() {
       break
     case 'Audio':
       console.log('Running test of Audio...')
-      const voiceIds = await CharacterVoice.getAllFetterIds()
+      const voiceIds = await CharacterVoice.allFetterIds
       await Promise.all(
         ['JP', 'EN', 'CHS', 'KR'].map(async (cv) => {
           for (const id of voiceIds) {

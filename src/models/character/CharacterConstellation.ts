@@ -43,11 +43,12 @@ export class CharacterConstellation {
       Client.cachedTextMap.get(String(talentJson.descTextMapHash)) || ''
     this.icon = new ImageAssets(talentJson.icon as string)
   }
+
   /**
    * Get all constellation IDs
    * @returns All constellation IDs
    */
-  public static getAllConstellationIds(): number[] {
+  public static get allConstellationIds(): number[] {
     const talentDatas = Object.values(
       Client._getCachedExcelBinOutputByName('AvatarTalentExcelConfigData'),
     )

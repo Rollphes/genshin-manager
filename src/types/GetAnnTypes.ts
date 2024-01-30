@@ -3,7 +3,7 @@ import { Region, ValueOf } from '@/types'
 /**
  * URL params for getAnn
  */
-export interface UrlParams {
+export interface URLParams {
   /**
    * Game ID
    * @default 'hk4e'
@@ -20,7 +20,7 @@ export interface UrlParams {
    */
   lang: keyof typeof NoticeLanguage
   /**
-   * Auth appid
+   * Auth app ID
    * @default 'announcement'
    */
   auth_appid: string

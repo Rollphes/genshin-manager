@@ -6,7 +6,7 @@ import { ContentList, DataList, NoticeLanguage } from '@/types/GetAnnTypes'
 import { convertToUTC } from '@/utils/convertToUTC'
 
 /**
- * Class that summarizes information about a notice in game
+ * Class for compiling in-game announcement information
  */
 export class Notice {
   /**
@@ -76,31 +76,31 @@ export class Notice {
 
   /**
    * Create a Notice
-   * @param list AnnList
-   * @param content AnnContent
-   * @param enContent AnnContent(lang=en)
+   * @param annList AnnList
+   * @param annContent AnnContent
+   * @param enAnnContent AnnContent(lang=en)
    * @param region Region
    */
   constructor(
-    list: DataList,
-    content: ContentList,
-    enContent: ContentList,
+    annList: DataList,
+    annContent: ContentList,
+    enAnnContent: ContentList,
     region: Region,
   ) {
     this.region = region
-    if (list.ann_id !== content.ann_id) throw new Error('ID mismatch')
-    this.id = list.ann_id
+    if (annList.ann_id !== annContent.ann_id) throw new Error('ID mismatch')
+    this.id = annList.ann_id
 
-    this.title = content.title
-    this.subtitle = content.subtitle
+    this.title = annContent.title
+    this.subtitle = annContent.subtitle
       .replace(/<br.*?>/g, '\n')
       .replace(/\r/g, '')
-    this.banner = ImageAssets.fromUrl(content.banner)
+    this.banner = ImageAssets.fromURL(annContent.banner)
 
-    const unescapedContent = unescape(content.content)
+    const unescapedContent = unescape(annContent.content)
     this.$ = load(unescapedContent)
 
-    const unescapedEnContent = unescape(enContent.content)
+    const unescapedEnContent = unescape(enAnnContent.content)
     this._en$ = load(unescapedEnContent)
 
     const timeStrings = this.convertLocalDate(
@@ -119,18 +119,18 @@ export class Notice {
       this.eventEnd = new Date(timeStrings[timeStrings.length - 1])
     }
 
-    const rewardImgUrl = this.$('img').attr('src')
-    this.rewardImg = rewardImgUrl
-      ? ImageAssets.fromUrl(rewardImgUrl)
+    const rewardImgURL = this.$('img').attr('src')
+    this.rewardImg = rewardImgURL
+      ? ImageAssets.fromURL(rewardImgURL)
       : undefined
 
-    this.lang = content.lang
+    this.lang = annContent.lang
 
-    this.type = list.type
-    this.typeLabel = list.type_label
-    this.tag = Number(list.tag_label)
-    this.tagIcon = ImageAssets.fromUrl(list.tag_icon)
-    this.version = list.remind_ver
+    this.type = annList.type
+    this.typeLabel = annList.type_label
+    this.tag = Number(annList.tag_label)
+    this.tagIcon = ImageAssets.fromURL(annList.tag_icon)
+    this.version = annList.remind_ver
   }
 
   /**
@@ -138,7 +138,7 @@ export class Notice {
    * @warning This method does not exclude table tags
    * @returns Notice all text
    */
-  public getText(): string {
+  public get text(): string {
     return this.convertLocalDate(
       this.$('p')
         .map((i, el) => this.$(el).text())
@@ -152,7 +152,7 @@ export class Notice {
    * @description However, this method should only be used when `eventStart` or `eventEnd` cannot be obtained
    * @returns Event duration
    */
-  public getEventDuration(): string | undefined {
+  public get eventDuration(): string | undefined {
     if (this.tag === 2) {
       return this.convertLocalDate(
         this.$('td')
@@ -183,7 +183,7 @@ export class Notice {
 
   /**
    * Convert t tag to region time
-   * @param text text
+   * @param text Text
    * @returns Converted text
    */
   private convertLocalDate(text: string): string {

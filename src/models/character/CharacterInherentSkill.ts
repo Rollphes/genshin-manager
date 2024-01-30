@@ -62,8 +62,8 @@ export class CharacterInherentSkill {
    * Get all inherent skill IDs
    * @returns All inherent skill IDs
    */
-  public static getAllInherentSkillIds(): number[] {
-    const characterIds = CharacterInfo.getAllCharacterIds()
+  public static get allInherentSkillIds(): number[] {
+    const characterIds = CharacterInfo.allCharacterIds
     return characterIds.flatMap((characterId) => {
       return new CharacterInfo(characterId).inherentSkillOrder
     })

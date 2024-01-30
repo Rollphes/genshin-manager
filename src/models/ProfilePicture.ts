@@ -81,7 +81,7 @@ export class ProfilePicture {
    * Get all profile picture IDs
    * @returns Profile picture IDs
    */
-  public static getAllProfilePictureIds(): number[] {
+  public static get allProfilePictureIds(): number[] {
     return Object.keys(
       Client._getCachedExcelBinOutputByName('ProfilePictureExcelConfigData'),
     ).map((id) => Number(id))

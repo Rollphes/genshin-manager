@@ -44,9 +44,9 @@ export class Monster {
    */
   public readonly icon: ImageAssets | undefined
   /**
-   * Monster status
+   * Monster stats
    */
-  public readonly status: StatProperty[] = []
+  public readonly stats: StatProperty[] = []
   /**
    * Monster type
    */
@@ -54,7 +54,7 @@ export class Monster {
 
   /**
    * Create a Monster
-   * @param monsterId monsterId
+   * @param monsterId monster ID
    * @param level monsterLevel (1-100). Default: 1
    * @param playerCount Number of players (1-4). Default: 1
    */
@@ -122,7 +122,7 @@ export class Monster {
       monsterJson.defenseBase as number | undefined,
       playerCount,
     )
-    this.status = [
+    this.stats = [
       new StatProperty(FightProps[1], hpBase),
       new StatProperty(FightProps[4], attackBase),
       new StatProperty(FightProps[7], defenseBase),
@@ -158,16 +158,16 @@ export class Monster {
    * Get all monster IDs
    * @returns All monster IDs
    */
-  public static getAllMonsterIds(): number[] {
+  public static get allMonsterIds(): number[] {
     return Object.keys(
       Client._getCachedExcelBinOutputByName('MonsterExcelConfigData'),
     ).map((id) => Number(id))
   }
 
   /**
-   * find monsterId by describeId
-   * @param describeId describeId
-   * @returns monsterId
+   * find monster ID by describe ID
+   * @param describeId Describe ID
+   * @returns monster ID
    */
   public static findMonsterIdByDescribeId(describeId: number): number {
     const convertId = describeId.toString().padStart(5, '0')

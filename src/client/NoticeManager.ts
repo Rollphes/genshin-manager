@@ -7,52 +7,27 @@ import {
   APIGetAnnContent,
   APIGetAnnList,
   NoticeLanguage,
-  UrlParams,
+  URLParams as URLParams,
 } from '@/types/GetAnnTypes'
+
 /**
- * Class that manages notices
+ * Class for fetching notices from mihoyo
  */
 export class NoticeManager {
   /**
-   * Fetch option
-   * @default
-   * ```ts
-   * {
-   * headers: {
-   *   'user-agent': 'Mozilla/5.0',
-   * },
-   * ```
+   * URL of getAnnContent
    */
-  public fetchOption: RequestInit = {
-    headers: {
-      'user-agent': 'Mozilla/5.0',
-    },
-  }
-  /**
-   * Language of notices
-   */
-  public language: keyof typeof NoticeLanguage
-  /**
-   * Notices
-   * @key Notice ID
-   * @value Notice
-   */
-  public notices = new Map<number, Notice>()
-
-  /**
-   * getAnnContent url
-   */
-  private getContentUrl: string =
+  private static readonly getContentURL: string =
     'https://sg-hk4e-api-static.hoyoverse.com/common/hk4e_global/announcement/api/getAnnContent'
   /**
-   * getAnnlist url
+   * URL of getAnnList
    */
-  private getListUrl: string =
+  private static readonly getListURL: string =
     'https://sg-hk4e-api.hoyoverse.com/common/hk4e_global/announcement/api/getAnnList'
   /**
-   * Url params
+   * Default URL params
    */
-  private urlParams: UrlParams = {
+  private static readonly defaultURLParams: URLParams = {
     game: 'hk4e',
     game_biz: 'hk4e_global',
     lang: 'en',
@@ -68,25 +43,36 @@ export class NoticeManager {
   }
 
   /**
+   * Language of notices
+   */
+  public language: keyof typeof NoticeLanguage
+  /**
+   * Notices
+   * @key Notice ID
+   * @value Notice
+   */
+  public notices = new Map<number, Notice>()
+
+  /**
+   * URL params
+   */
+  private urlParams: URLParams
+
+  /**
    * Create a NoticeManager
    * @param language Language of notices
-   * @param fetchOption Fetch option
-   * @param urlParams Url params
+   * @param urlParams URL params
    */
   constructor(
     language: keyof typeof NoticeLanguage,
-    fetchOption?: RequestInit,
-    urlParams?: Partial<UrlParams>,
+    urlParams?: Partial<URLParams>,
   ) {
-    this.fetchOption = fetchOption ?? this.fetchOption
     this.language = language
-    this.urlParams = urlParams
-      ? (merge.withOptions(
-          { mergeArrays: false },
-          this.urlParams,
-          urlParams,
-        ) as UrlParams)
-      : this.urlParams
+    this.urlParams = merge.withOptions(
+      { mergeArrays: false },
+      NoticeManager.defaultURLParams,
+      urlParams ?? {},
+    ) as URLParams
   }
 
   /**
@@ -123,7 +109,10 @@ export class NoticeManager {
   private async getAnnContent(
     lang?: keyof typeof NoticeLanguage,
   ): Promise<APIGetAnnContent> {
-    return (await this._getAnn(this.getContentUrl, lang)) as APIGetAnnContent
+    return (await this._getAnn(
+      NoticeManager.getContentURL,
+      lang,
+    )) as APIGetAnnContent
   }
 
   /**
@@ -131,12 +120,12 @@ export class NoticeManager {
    * @returns AnnList
    */
   private async getAnnList(): Promise<APIGetAnnList> {
-    return (await this._getAnn(this.getListUrl)) as APIGetAnnList
+    return (await this._getAnn(NoticeManager.getListURL)) as APIGetAnnList
   }
 
   /**
    * Get Ann
-   * @param urlText Url
+   * @param urlText URL
    * @param lang Language of notices
    * @returns Ann
    */
@@ -147,7 +136,7 @@ export class NoticeManager {
     const url = new URL(urlText)
     Object.keys(this.urlParams).forEach((key) => {
       if (key === 'lang') url.searchParams.append(key, lang ?? this.language)
-      else url.searchParams.append(key, this.urlParams[key as keyof UrlParams])
+      else url.searchParams.append(key, this.urlParams[key as keyof URLParams])
     })
     const res = await fetch(url.toString())
     if (!res.ok) throw new AnnError(res)

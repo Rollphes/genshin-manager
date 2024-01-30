@@ -4,7 +4,7 @@ import { FightProps } from '@/types'
 /**
  * Class of Character's Combat Properties
  */
-export class FightProp {
+export class CharacterStatusManager {
   public readonly healthBase: StatProperty
   public readonly healthFlat: StatProperty
   public readonly healthPercent: StatProperty
@@ -62,10 +62,11 @@ export class FightProp {
   public readonly attack: StatProperty
   public readonly defense: StatProperty
   public readonly speed: StatProperty
+  public readonly statProperties: StatProperty[] = []
   private readonly fightPropData: { [key in number]: number | undefined }
 
   /**
-   * Create a FightProp
+   * Create a CharacterStatusManager
    * @param fightPropData FightPropMap from EnkaNetwork and other sources
    */
   constructor(fightPropData: { [key in number]: number | undefined }) {
@@ -161,12 +162,16 @@ export class FightProp {
     this.attack = this.getStatProperty(2001)
     this.defense = this.getStatProperty(2002)
     this.speed = this.getStatProperty(2003)
+
+    this.statProperties = Object.values(this).filter(
+      (value): value is StatProperty => value instanceof StatProperty,
+    )
   }
 
   /**
    * Get StatProperty from fightPropData
-   * @param id FightPropId
-   * @param defaultValue Default value if fightPropData[id] is undefined
+   * @param id FightProp ID
+   * @param defaultValue Default value if fightPropData[ID] is undefined
    * @returns StatProperty
    */
   private getStatProperty(

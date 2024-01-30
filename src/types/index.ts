@@ -12,13 +12,13 @@ export interface ClientOption {
    * @default
    * ```ts
    * {
-   *   'user-agent': 'Mozilla/5.0',
+   *   'user-agent': 'genshin-manager/x.x.x',
    * }
    * ```
    */
   fetchOption: RequestInit
   /**
-   * download languages option
+   * List of TextMaps to download when new assets are found.
    * @default
    * ```ts
    * ['EN','RU','VI','TH','PT','KR','JP','ID','FR','ES','DE','CHT','CHS']
@@ -26,17 +26,17 @@ export interface ClientOption {
    */
   downloadLanguages: (keyof typeof TextMapLanguage)[]
   /**
-   * default image base url
+   * default image base URL
    * @default 'https://api.ambr.top/assets/UI'
    */
-  defaultImageBaseUrl: string
+  defaultImageBaseURL: string
   /**
-   * default Audio base url
+   * default audio base URL
    * @default 'https://api.ambr.top/assets/Audio'
    */
-  defaultAudioBaseUrl: string
+  defaultAudioBaseURL: string
   /**
-   * image base url by regex
+   * image base URL by regex
    * @default
    * ```ts
    * {
@@ -56,7 +56,7 @@ export interface ClientOption {
    *  },
    * ```
    */
-  imageBaseUrlByRegex: { [url: string]: RegExp[] }
+  imageBaseURLByRegex: { [url: string]: RegExp[] }
   /**
    * audio base url by regex
    * @default
@@ -64,7 +64,7 @@ export interface ClientOption {
    * {}
    * ```
    */
-  audioBaseUrlByRegex: { [url: string]: RegExp[] }
+  audioBaseURLByRegex: { [url: string]: RegExp[] }
   /**
    * default language
    * @default 'EN'
@@ -359,7 +359,7 @@ export const FightProps = {
 } as const
 
 /**
- * FightPropType
+ * FightProp type
  */
 export type FightPropType = ValueOf<typeof FightProps>
 
@@ -374,7 +374,7 @@ export type WeaponType =
   | 'WEAPON_SWORD_ONE_HAND'
 
 /**
- * Type of character's profile picture
+ * Character's profile picture type
  */
 export type ProfilePictureType =
   | 'PROFILE_PICTURE_UNLOCK_BY_AVATAR'
@@ -401,7 +401,7 @@ export type BodyType =
 
 /**
  * Monster type
- * @CODEX_SUBTYPE_ELEMENT_LIFE is original reason: Element lifeforms does not have a subType
+ * @description `CODEX_SUBTYPE_ELEMENT_LIFE` is original (reason:Element lifeforms does not have a subType)
  */
 export type CodexType =
   | 'CODEX_SUBTYPE_ELEMENT_LIFE'

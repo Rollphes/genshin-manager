@@ -5,14 +5,14 @@ import { APIShowAvatarInfo } from '@/types/EnkaTypes'
 /**
  * Class of the character preview obtained from EnkaNetwork
  */
-export class ShowAvatarInfo extends CharacterCostume {
+export class CharacterPreview extends CharacterCostume {
   /**
    * Character level
    */
   public readonly level: number
 
   /**
-   * Create a ShowAvatarInfo
+   * Create a character preview
    * @param data Data from EnkaNetwork
    */
   constructor(data: APIShowAvatarInfo) {

@@ -16,7 +16,7 @@ export class Artifact {
   /**
    * Max level map of artifacts by rarity
    */
-  private static maxLevelMap: { [rarity: number]: number } = {
+  private static readonly maxLevelMap: { [rarity: number]: number } = {
     1: 5,
     2: 5,
     3: 12,
@@ -26,15 +26,17 @@ export class Artifact {
   /**
    * IDs of set bonuses that can be activated with one artifact
    */
-  private static oneSetBonusIds: number[] = [15009, 15010, 15011, 15012, 15013]
+  private static readonly oneSetBonusIds: number[] = [
+    15009, 15010, 15011, 15012, 15013,
+  ]
   /**
    * IDs of set bonuses that cannot be obtained
    */
-  private static blackSetIds: number[] = [15000, 15004, 15012]
+  private static readonly blackSetIds: number[] = [15000, 15004, 15012]
   /**
    * IDs of artifacts that cannot be obtained
    */
-  private static blackArtifactIds: number[] = [
+  private static readonly blackArtifactIds: number[] = [
     23300, 23301, 23302, 23303, 23304, 23305, 23306, 23307, 23308, 23309, 23310,
     23311, 23312, 23313, 23314, 23315, 23316, 23317, 23318, 23329, 23330, 23334,
     23335, 23336, 23337, 23338, 23339, 23340,
@@ -81,30 +83,30 @@ export class Artifact {
    */
   public readonly mainStat: StatProperty
   /**
-   * Artifact sub stat list
+   * Artifact sub stats
    */
   public readonly subStats: StatProperty[]
   /**
-   * Artifact sub stat ID list
+   * Artifact sub stats
    */
-  public readonly appendPropList: ArtifactAffixAppendProp[]
+  public readonly appendProps: ArtifactAffixAppendProp[]
   /**
    * Artifact icon
    */
   public readonly icon: ImageAssets
 
   /**
-   * Create an Artifact
+   * Create a Artifact
    * @param artifactId Artifact ID
    * @param mainPropId Main stat ID from ReliquaryMainPropExcelConfigData.json. Default: 10001
    * @param level Artifact level (0-20). Default: 0
-   * @param appendPropIdList Artifact sub stat ID list
+   * @param appendPropIds Artifact sub stat IDs
    */
   constructor(
     artifactId: number,
     mainPropId: number = 10001,
     level: number = 0,
-    appendPropIdList: number[] = [],
+    appendPropIds: number[] = [],
   ) {
     this.id = artifactId
     this.level = level
@@ -177,8 +179,8 @@ export class Artifact {
       artifactMainJson.propType as FightPropType,
       mainValue,
     )
-    this.subStats = this.getSubStatProperties(appendPropIdList)
-    this.appendPropList = appendPropIdList.map((propId) => {
+    this.subStats = this.getSubStatProperties(appendPropIds)
+    this.appendProps = appendPropIds.map((propId) => {
       const artifactAffixJson = Client._getJsonFromCachedExcelBinOutput(
         'ReliquaryAffixExcelConfigData',
         propId,
@@ -196,7 +198,7 @@ export class Artifact {
    * Get all artifact IDs
    * @returns All artifact IDs
    */
-  public static getAllArtifactIds(): number[] {
+  public static get allArtifactIds(): number[] {
     const artifactDatas = Object.values(
       Client._getCachedExcelBinOutputByName('ReliquaryExcelConfigData'),
     )
@@ -222,13 +224,13 @@ export class Artifact {
   }
 
   /**
-   * Get sub stat properties from appendPropIdList
-   * @param appendPropIdList Artifact sub stat ID list
+   * Get sub stat properties from appendProp IDs
+   * @param appendPropIds Artifact sub stat IDs
    * @returns Sub stat properties
    */
-  private getSubStatProperties(appendPropIdList: number[]): StatProperty[] {
+  private getSubStatProperties(appendPropIds: number[]): StatProperty[] {
     const result: Partial<{ [key in FightPropType]: number }> = {}
-    appendPropIdList.forEach((propId) => {
+    appendPropIds.forEach((propId) => {
       const artifactAffixJson = Client._getJsonFromCachedExcelBinOutput(
         'ReliquaryAffixExcelConfigData',
         propId,
