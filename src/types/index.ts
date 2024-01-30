@@ -359,7 +359,7 @@ export const FightProps = {
 } as const
 
 /**
- * FightPropType
+ * FightProp type
  */
 export type FightPropType = ValueOf<typeof FightProps>
 
@@ -374,7 +374,7 @@ export type WeaponType =
   | 'WEAPON_SWORD_ONE_HAND'
 
 /**
- * Type of character's profile picture
+ * Character's profile picture type
  */
 export type ProfilePictureType =
   | 'PROFILE_PICTURE_UNLOCK_BY_AVATAR'
@@ -401,7 +401,7 @@ export type BodyType =
 
 /**
  * Monster type
- * @CODEX_SUBTYPE_ELEMENT_LIFE is original reason: Element lifeforms does not have a subType
+ * @description `CODEX_SUBTYPE_ELEMENT_LIFE` is original (reason:Element lifeforms does not have a subType)
  */
 export type CodexType =
   | 'CODEX_SUBTYPE_ELEMENT_LIFE'

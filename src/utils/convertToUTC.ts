@@ -3,7 +3,7 @@ import { Region, TimeZonesPerRegion } from '@/types'
 /**
  * Convert the date string to UTC
  * @param dateString Date string
- * @param region Game Region
+ * @param region Game region
  * @returns UTC date
  */
 export function convertToUTC(dateString: string, region: Region): Date {
