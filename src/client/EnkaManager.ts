@@ -188,7 +188,7 @@ export class EnkaManager {
     fetchOption?: RequestInit,
   ): Promise<EnkaData> {
     this.clearCacheOverNextShowCaseDate()
-    if (uid < 100000000 || uid > 999999999)
+    if (!/1?\d{9}/.test(String(uid)))
       throw new EnkaManagerError(`The UID format is not correct(${uid})`)
     const cachedData = this.cache.get(uid)
     if (
