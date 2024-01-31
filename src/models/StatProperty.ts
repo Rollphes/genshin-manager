@@ -51,7 +51,9 @@ export class StatProperty {
   public get valueText(): string {
     const fix = this.isPercent ? 1 : 0
     const fixedValue = +this.multipliedValue.toFixed(fix)
-    const formattedValue = new Intl.NumberFormat().format(fixedValue)
+    const formattedValue = new Intl.NumberFormat().format(
+      fixedValue === 0 ? 0 : fixedValue,
+    )
     return `${formattedValue}${this.isPercent ? '%' : ''}`
   }
 
