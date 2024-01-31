@@ -131,10 +131,10 @@ await client.deploy()
 
 const enkaManager = new EnkaManager()
 
-const enkaData = await enkaManager.fetch(800802278)
+const enkaData = await enkaManager.fetchAll(800802278)
 console.log(enkaData.uid)
-console.log(enkaData.playerInfo)
-console.log(enkaData.avatarInfoList)
+console.log(enkaData.playerDetail)
+console.log(enkaData.characterDetails)
 console.log(enkaData.nextShowCaseDate)
 ```
 
@@ -170,7 +170,7 @@ const weapon = new Weapon(13501)
 console.log(weapon.name) // output: 護摩の杖
 ```
 
-examples will be added in the future.
+You can see the examples, please check [Examples](https://github.com/Rollphes/genshin-manager/tree/main/examples)
 
 For more information, please check [Documentation](https://rollphes.github.io/genshin-manager/index.html).
 
