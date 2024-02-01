@@ -41,7 +41,7 @@ export interface ClientOption {
    * ```ts
    * {
    *    'https://enka.network/ui': [
-   *      /^UI_(EquipIcon|NameCardPic|RelicIcon|AvatarIcon_Side|NameCardIcon|Costume)_/,
+   *      /^UI_(EquipIcon|NameCardPic|RelicIcon|AvatarIcon|AvatarIcon_Side|NameCardIcon|Costume)_/,
    *      /^UI_AvatarIcon_(.+)_Card$/,
    *      /^UI_AvatarIcon_(.+)_Circle/,
    *    ],
