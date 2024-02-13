@@ -23,12 +23,12 @@ async function main() {
     })
 
     console.log(weapon.name)
-    console.log(`- Description: ${weapon.description.replace(/\n/g, '\n ')}`)
+    console.log(`- Description: ${weapon.description}`)
     console.log(`- Rarity: ${weapon.rarity}`)
     console.log(`- WeaponType: ${weapon.type}`)
     console.log(`- Skill Name: ${weapon.skillName}`)
     console.log(
-      `- Skill Description(rank:${weapon.refinementRank}): ${(weapon.skillDescription ?? '').replace(/\n/g, '\n ')}`,
+      `- Skill Description(rank:${weapon.refinementRank}): ${(weapon.skillDescription ?? '')}`,
     )
     console.log(`- Base Stats (LV.${weapon.level})`)
     console.log(stats.join('\n'))
