@@ -33,7 +33,7 @@ async function main() {
       : '???'
 
     console.log(characterInfo.name)
-    console.log(`- Detail: ${profile.detail.replace(/\n/g, '\n ')}`)
+    console.log(`- Detail: ${profile.detail}`)
     console.log(`- Rarity: ${characterInfo.rarity}`)
     console.log(`- Element: ${characterInfo.element}`)
     console.log(`- WeaponType: ${characterInfo.weaponType}`)
