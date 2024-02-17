@@ -9,28 +9,29 @@ import { JsonObject } from '@/utils/JsonParser'
  * @returns Promote level (0-6)
  */
 export function calculatePromoteLevel(
-  promotesJson: JsonObject,
-  level: number,
-  isAscended: boolean,
+    promotesJson: JsonObject,
+    level: number,
+    isAscended: boolean,
 ): number {
-  if (level < 1 || level > 90) throw new OutOfRangeError('level', level, 1, 90)
-  const maxPromoteLevel = Math.max(
-    ...(Object.values(promotesJson) as JsonObject[]).map(
-      (promote) => (promote.promoteLevel ?? 0) as number,
-    ),
-  )
-  const beforePromoteLevels = (Object.values(promotesJson) as JsonObject[])
-    .filter((promote) => (promote.unlockMaxLevel as number) < level)
-    .map((promote) => ((promote.promoteLevel ?? 0) as number) + 1)
+    if (level < 1 || level > 90)
+        throw new OutOfRangeError('level', level, 1, 90)
+    const maxPromoteLevel = Math.max(
+        ...(Object.values(promotesJson) as JsonObject[]).map(
+            (promote) => (promote.promoteLevel ?? 0) as number,
+        ),
+    )
+    const beforePromoteLevels = (Object.values(promotesJson) as JsonObject[])
+        .filter((promote) => (promote.unlockMaxLevel as number) < level)
+        .map((promote) => ((promote.promoteLevel ?? 0) as number) + 1)
 
-  const afterPromoteLevels = (Object.values(promotesJson) as JsonObject[])
-    .filter((promote) => (promote.unlockMaxLevel as number) <= level)
-    .map((promote) => ((promote.promoteLevel ?? 0) as number) + 1)
+    const afterPromoteLevels = (Object.values(promotesJson) as JsonObject[])
+        .filter((promote) => (promote.unlockMaxLevel as number) <= level)
+        .map((promote) => ((promote.promoteLevel ?? 0) as number) + 1)
 
-  const beforePromoteLevelByLevel = Math.max(...beforePromoteLevels, 0)
-  const afterPromoteLevelByLevel = Math.max(...afterPromoteLevels, 0)
+    const beforePromoteLevelByLevel = Math.max(...beforePromoteLevels, 0)
+    const afterPromoteLevelByLevel = Math.max(...afterPromoteLevels, 0)
 
-  return isAscended
-    ? Math.min(afterPromoteLevelByLevel, maxPromoteLevel)
-    : beforePromoteLevelByLevel
+    return isAscended
+        ? Math.min(afterPromoteLevelByLevel, maxPromoteLevel)
+        : beforePromoteLevelByLevel
 }
