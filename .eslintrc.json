@@ -90,8 +90,7 @@
             "error",
             {
                 "singleQuote": true,
-                "semi": false,
-                "tabWidth": 4
+                "semi": false
             }
         ],
         "simple-import-sort/imports": "error",
