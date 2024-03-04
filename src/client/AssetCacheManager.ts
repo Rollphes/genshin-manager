@@ -244,40 +244,26 @@ export abstract class AssetCacheManager {
   }
 
   /**
-   * Search hashes in CachedTextMap by value
-   * @deprecated This method is deprecated because it is used to pass data to each class
-   * @param searchValue Search value
-   * @returns Hashes
-   */
-  public static _searchHashInCachedTextMapByValue(
-    searchValue: string,
-  ): string[] {
-    return Array.from(this.cachedTextMap)
-      .filter(([, value]) => value === searchValue)
-      .map(([key]) => key)
-  }
-
-  /**
-   * Search key in CachedExcelBinOutput by text hashes
+   * Search ID in CachedExcelBinOutput by text
    * @deprecated This method is deprecated because it is used to pass data to each class
    * @param key ExcelBinOutput name
-   * @param textHashes Text hashes
-   * @returns Keys
+   * @param text Text
+   * @returns IDs
    */
-  public static _searchKeyInExcelBinOutputByTextHashes(
+  public static _searchIdInExcelBinOutByText(
     key: keyof typeof ExcelBinOutputs,
-    textHashes: string[],
+    text: string,
   ): string[] {
     return Object.entries(this._getCachedExcelBinOutputByName(key))
-      .filter(([, avatarData]) =>
-        Object.keys(avatarData).some((key) => {
-          if (/TextMapHash/g.exec(key)) {
-            const hash = avatarData[key] as number
-            return textHashes.includes(String(hash))
+      .filter(([, json]) =>
+        Object.keys(json).some((jsonKey) => {
+          if (/TextMapHash/g.exec(jsonKey)) {
+            const hash = json[jsonKey] as number
+            return this.cachedTextMap.get(String(hash)) === text
           }
         }),
       )
-      .map(([key]) => key)
+      .map(([id]) => id)
   }
 
   /**

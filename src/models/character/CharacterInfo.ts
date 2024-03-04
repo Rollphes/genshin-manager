@@ -173,10 +173,9 @@ export class CharacterInfo {
    * @returns Character ID
    */
   public static getCharacterIdByName(name: string): number[] {
-    const hashes = Client._searchHashInCachedTextMapByValue(name)
-    return Client._searchKeyInExcelBinOutputByTextHashes(
+    return Client._searchIdInExcelBinOutByText(
       'AvatarExcelConfigData',
-      hashes,
+      name,
     ).map((k) => +k)
   }
 

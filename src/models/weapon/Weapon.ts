@@ -176,10 +176,9 @@ export class Weapon {
    * @returns Weapon ID
    */
   public static getWeaponIdByName(name: string): number[] {
-    const hashes = Client._searchHashInCachedTextMapByValue(name)
-    return Client._searchKeyInExcelBinOutputByTextHashes(
+    return Client._searchIdInExcelBinOutByText(
       'WeaponExcelConfigData',
-      hashes,
+      name,
     ).map((k) => +k)
   }
 
