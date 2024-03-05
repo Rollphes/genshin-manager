@@ -39,6 +39,7 @@ export class WeaponRefinement {
     this.refinementRank = refinementRank
     if (this.refinementRank < 1 || this.refinementRank > 5)
       throw new OutOfRangeError('refinementRank', this.refinementRank, 1, 5)
+
     const weaponJson = Client._getJsonFromCachedExcelBinOutput(
       'WeaponExcelConfigData',
       this.id,

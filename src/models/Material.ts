@@ -74,10 +74,9 @@ export class Material {
    * @returns Material ID
    */
   public static getMaterialIdByName(name: string): number[] {
-    const hashes = Client._searchHashInCachedTextMapByValue(name)
-    return Client._searchKeyInExcelBinOutputByTextHashes(
+    return Client._searchIdInExcelBinOutByText(
       'MaterialExcelConfigData',
-      hashes,
+      name,
     ).map((k) => +k)
   }
 }

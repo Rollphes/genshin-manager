@@ -108,6 +108,7 @@ export class Weapon {
     this.refinementRank = refinementRank
     if (this.refinementRank < 1 || this.refinementRank > 5)
       throw new OutOfRangeError('refinementRank', this.refinementRank, 1, 5)
+
     const weaponJson = Client._getJsonFromCachedExcelBinOutput(
       'WeaponExcelConfigData',
       this.id,
@@ -175,10 +176,9 @@ export class Weapon {
    * @returns Weapon ID
    */
   public static getWeaponIdByName(name: string): number[] {
-    const hashes = Client._searchHashInCachedTextMapByValue(name)
-    return Client._searchKeyInExcelBinOutputByTextHashes(
+    return Client._searchIdInExcelBinOutByText(
       'WeaponExcelConfigData',
-      hashes,
+      name,
     ).map((k) => +k)
   }
 

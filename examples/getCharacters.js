@@ -33,6 +33,7 @@ async function main() {
       : '???'
 
     console.log(characterInfo.name)
+    console.log(`- Detail: ${profile.detail}`)
     console.log(`- Rarity: ${characterInfo.rarity}`)
     console.log(`- Element: ${characterInfo.element}`)
     console.log(`- WeaponType: ${characterInfo.weaponType}`)
@@ -51,6 +52,7 @@ void main()
 
 /** Sample output:
 Kamisato Ayaka
+- Detail: Daughter of the Yashiro Commission's Kamisato Clan. Dignified and elegant, as well as wise and strong.
 - Rarity: 5
 - Element: Cryo
 - WeaponType: WEAPON_SWORD_ONE_HAND
@@ -62,10 +64,11 @@ Kamisato Ayaka
  - Base HP: 12,858
  - Base ATK: 342
  - Base DEF: 784
- - CRIT Rate: 5%
+ - CRIT Rate: 5.0%
  - CRIT DMG: 88.4%
-- Icon URL: https://api.ambr.top/assets/UI/UI_AvatarIcon_Ayaka.png
+- Icon URL: https://enka.network/ui/UI_AvatarIcon_Ayaka.png
 Jean
+- Detail: The righteous and rigorous Dandelion Knight, and Acting Grand Master of Mondstadt's Knights of Favonius.
 - Rarity: 5
 - Element: Anemo
 - WeaponType: WEAPON_SWORD_ONE_HAND
@@ -77,11 +80,12 @@ Jean
  - Base HP: 14,695
  - Base ATK: 239
  - Base DEF: 769
- - CRIT Rate: 5%
- - CRIT DMG: 50%
- - Healing Bonus: 22.1%
-- Icon URL: https://api.ambr.top/assets/UI/UI_AvatarIcon_Qin.png
+ - CRIT Rate: 5.0%
+ - CRIT DMG: 50.0%
+ - Healing Bonus: 22.2%
+- Icon URL: https://enka.network/ui/UI_AvatarIcon_Qin.png
 Traveler
+- Detail: A traveler from another world who had their only kin taken away, forcing them to embark on a journey to find The Seven.
 - Rarity: 5
 - Element: undefined
 - WeaponType: WEAPON_SWORD_ONE_HAND
@@ -93,11 +97,12 @@ Traveler
  - Base HP: 10,875
  - Base ATK: 212
  - Base DEF: 683
- - CRIT Rate: 5%
- - CRIT DMG: 50%
- - ATK: 24%
-- Icon URL: https://api.ambr.top/assets/UI/UI_AvatarIcon_PlayerBoy.png
+ - CRIT Rate: 5.0%
+ - CRIT DMG: 50.0%
+ - ATK: 24.0%
+- Icon URL: https://enka.network/ui/UI_AvatarIcon_PlayerBoy.png
 Lisa
+- Detail: The languid but knowledgeable Librarian of the Knights of Favonius, deemed by Sumeru Akademiya to be their most distinguished graduate in the past two centuries.
 - Rarity: 4
 - Element: Electro
 - WeaponType: WEAPON_CATALYST
@@ -109,11 +114,12 @@ Lisa
  - Base HP: 9,570
  - Base ATK: 232
  - Base DEF: 573
- - CRIT Rate: 5%
- - CRIT DMG: 50%
+ - CRIT Rate: 5.0%
+ - CRIT DMG: 50.0%
  - Elemental Mastery: 96
-- Icon URL: https://api.ambr.top/assets/UI/UI_AvatarIcon_Lisa.png
+- Icon URL: https://enka.network/ui/UI_AvatarIcon_Lisa.png
 Traveler
+- Detail: A traveler from another world who had their only kin taken away, forcing them to embark on a journey to find The Seven.
 - Rarity: 5
 - Element: undefined
 - WeaponType: WEAPON_SWORD_ONE_HAND
@@ -125,11 +131,12 @@ Traveler
  - Base HP: 10,875
  - Base ATK: 212
  - Base DEF: 683
- - CRIT Rate: 5%
- - CRIT DMG: 50%
- - ATK: 24%
-- Icon URL: https://api.ambr.top/assets/UI/UI_AvatarIcon_PlayerGirl.png
+ - CRIT Rate: 5.0%
+ - CRIT DMG: 50.0%
+ - ATK: 24.0%
+- Icon URL: https://enka.network/ui/UI_AvatarIcon_PlayerGirl.png
 Barbara
+- Detail: Every citizen of Mondstadt adores Barbara. She learned the word \"idol\" from a magazine.
 - Rarity: 4
 - Element: Hydro
 - WeaponType: WEAPON_CATALYST
@@ -141,11 +148,12 @@ Barbara
  - Base HP: 9,787
  - Base ATK: 159
  - Base DEF: 669
- - CRIT Rate: 5%
- - CRIT DMG: 50%
- - HP: 24%
-- Icon URL: https://api.ambr.top/assets/UI/UI_AvatarIcon_Barbara.png
+ - CRIT Rate: 5.0%
+ - CRIT DMG: 50.0%
+ - HP: 24.0%
+- Icon URL: https://enka.network/ui/UI_AvatarIcon_Barbara.png
 Kaeya
+- Detail: An accomplished swordsman and a strategic thinker in the Knights of Favonius, rumored to hail from beyond Mondstadt.
 - Rarity: 4
 - Element: Cryo
 - WeaponType: WEAPON_SWORD_ONE_HAND
@@ -157,11 +165,12 @@ Kaeya
  - Base HP: 11,636
  - Base ATK: 223
  - Base DEF: 792
- - CRIT Rate: 5%
- - CRIT DMG: 50%
+ - CRIT Rate: 5.0%
+ - CRIT DMG: 50.0%
  - Energy Recharge: 26.7%
-- Icon URL: https://api.ambr.top/assets/UI/UI_AvatarIcon_Kaeya.png
+- Icon URL: https://enka.network/ui/UI_AvatarIcon_Kaeya.png
 Diluc
+- Detail: The tycoon of a winery empire in Mondstadt, unmatched in every possible way.
 - Rarity: 5
 - Element: Pyro
 - WeaponType: WEAPON_CLAYMORE
@@ -174,9 +183,10 @@ Diluc
  - Base ATK: 335
  - Base DEF: 784
  - CRIT Rate: 24.2%
- - CRIT DMG: 50%
-- Icon URL: https://api.ambr.top/assets/UI/UI_AvatarIcon_Diluc.png
+ - CRIT DMG: 50.0%
+- Icon URL: https://enka.network/ui/UI_AvatarIcon_Diluc.png
 Razor
+- Detail: A boy who lives among the wolves in Wolvendom of Mondstadt, away from human civilization. As agile as lightning.
 - Rarity: 4
 - Element: Electro
 - WeaponType: WEAPON_CLAYMORE
@@ -188,11 +198,12 @@ Razor
  - Base HP: 11,962
  - Base ATK: 234
  - Base DEF: 751
- - CRIT Rate: 5%
- - CRIT DMG: 50%
- - Physical DMG Bonus: 30%
-- Icon URL: https://api.ambr.top/assets/UI/UI_AvatarIcon_Razor.png
+ - CRIT Rate: 5.0%
+ - CRIT DMG: 50.0%
+ - Physical DMG Bonus: 30.0%
+- Icon URL: https://enka.network/ui/UI_AvatarIcon_Razor.png
 Amber
+- Detail: Always energetic and full of life, Amber's the best — albeit only — Outrider of the Knights of Favonius.
 - Rarity: 4
 - Element: Pyro
 - WeaponType: WEAPON_BOW
@@ -204,11 +215,12 @@ Amber
  - Base HP: 9,461
  - Base ATK: 223
  - Base DEF: 601
- - CRIT Rate: 5%
- - CRIT DMG: 50%
- - ATK: 24%
-- Icon URL: https://api.ambr.top/assets/UI/UI_AvatarIcon_Ambor.png
+ - CRIT Rate: 5.0%
+ - CRIT DMG: 50.0%
+ - ATK: 24.0%
+- Icon URL: https://enka.network/ui/UI_AvatarIcon_Ambor.png
 Venti
+- Detail: One of the many bards of Mondstadt, who freely wanders the city's streets and alleys.
 - Rarity: 5
 - Element: Anemo
 - WeaponType: WEAPON_BOW
@@ -220,11 +232,12 @@ Venti
  - Base HP: 10,531
  - Base ATK: 263
  - Base DEF: 669
- - CRIT Rate: 5%
- - CRIT DMG: 50%
- - Energy Recharge: 32%
-- Icon URL: https://api.ambr.top/assets/UI/UI_AvatarIcon_Venti.png
+ - CRIT Rate: 5.0%
+ - CRIT DMG: 50.0%
+ - Energy Recharge: 32.0%
+- Icon URL: https://enka.network/ui/UI_AvatarIcon_Venti.png
 Xiangling
+- Detail: A renowned chef from Liyue. She's extremely passionate about cooking and excels at making her signature hot and spicy dishes.
 - Rarity: 4
 - Element: Pyro
 - WeaponType: WEAPON_POLE
@@ -236,11 +249,12 @@ Xiangling
  - Base HP: 10,875
  - Base ATK: 225
  - Base DEF: 669
- - CRIT Rate: 5%
- - CRIT DMG: 50%
+ - CRIT Rate: 5.0%
+ - CRIT DMG: 50.0%
  - Elemental Mastery: 96
-- Icon URL: https://api.ambr.top/assets/UI/UI_AvatarIcon_Xiangling.png
+- Icon URL: https://enka.network/ui/UI_AvatarIcon_Xiangling.png
 Beidou
+- Detail: Captain of her crew, The Crux. She's quite an unbound and forthright woman.
 - Rarity: 4
 - Element: Electro
 - WeaponType: WEAPON_CLAYMORE
@@ -252,11 +266,12 @@ Beidou
  - Base HP: 13,050
  - Base ATK: 225
  - Base DEF: 648
- - CRIT Rate: 5%
- - CRIT DMG: 50%
- - Electro DMG Bonus: 24%
-- Icon URL: https://api.ambr.top/assets/UI/UI_AvatarIcon_Beidou.png
+ - CRIT Rate: 5.0%
+ - CRIT DMG: 50.0%
+ - Electro DMG Bonus: 24.0%
+- Icon URL: https://enka.network/ui/UI_AvatarIcon_Beidou.png
 Xingqiu
+- Detail: A young man carrying a longsword who is frequently seen at book booths. He has a chivalrous heart and yearns for justice and fairness for all.
 - Rarity: 4
 - Element: Hydro
 - WeaponType: WEAPON_SWORD_ONE_HAND
@@ -268,11 +283,12 @@ Xingqiu
  - Base HP: 10,222
  - Base ATK: 202
  - Base DEF: 758
- - CRIT Rate: 5%
- - CRIT DMG: 50%
- - ATK: 24%
-- Icon URL: https://api.ambr.top/assets/UI/UI_AvatarIcon_Xingqiu.png
+ - CRIT Rate: 5.0%
+ - CRIT DMG: 50.0%
+ - ATK: 24.0%
+- Icon URL: https://enka.network/ui/UI_AvatarIcon_Xingqiu.png
 Xiao
+- Detail: A yaksha adeptus who defends Liyue. Also heralded as the \"Conqueror of Demons\" and \"Vigilant Yaksha.\"
 - Rarity: 5
 - Element: Anemo
 - WeaponType: WEAPON_POLE
@@ -285,9 +301,10 @@ Xiao
  - Base ATK: 349
  - Base DEF: 799
  - CRIT Rate: 24.2%
- - CRIT DMG: 50%
-- Icon URL: https://api.ambr.top/assets/UI/UI_AvatarIcon_Xiao.png
+ - CRIT DMG: 50.0%
+- Icon URL: https://enka.network/ui/UI_AvatarIcon_Xiao.png
 Ningguang
+- Detail: The Tianquan of the Liyue Qixing. Her wealth is unsurpassed in all of Teyvat.
 - Rarity: 4
 - Element: Geo
 - WeaponType: WEAPON_CATALYST
@@ -299,11 +316,12 @@ Ningguang
  - Base HP: 9,787
  - Base ATK: 212
  - Base DEF: 573
- - CRIT Rate: 5%
- - CRIT DMG: 50%
- - Geo DMG Bonus: 24%
-- Icon URL: https://api.ambr.top/assets/UI/UI_AvatarIcon_Ningguang.png
+ - CRIT Rate: 5.0%
+ - CRIT DMG: 50.0%
+ - Geo DMG Bonus: 24.0%
+- Icon URL: https://enka.network/ui/UI_AvatarIcon_Ningguang.png
 Klee
+- Detail: An explosives expert and a regular at the Knights of Favonius's confinement room. Also known as Fleeing Sunlight.
 - Rarity: 5
 - Element: Pyro
 - WeaponType: WEAPON_CATALYST
@@ -315,11 +333,12 @@ Klee
  - Base HP: 10,287
  - Base ATK: 311
  - Base DEF: 615
- - CRIT Rate: 5%
- - CRIT DMG: 50%
+ - CRIT Rate: 5.0%
+ - CRIT DMG: 50.0%
  - Pyro DMG Bonus: 28.8%
-- Icon URL: https://api.ambr.top/assets/UI/UI_AvatarIcon_Klee.png
+- Icon URL: https://enka.network/ui/UI_AvatarIcon_Klee.png
 Zhongli
+- Detail: A mysterious expert contracted by the Wangsheng Funeral Parlor. Extremely knowledgeable in all things.
 - Rarity: 5
 - Element: Geo
 - WeaponType: WEAPON_POLE
@@ -331,11 +350,12 @@ Zhongli
  - Base HP: 14,695
  - Base ATK: 251
  - Base DEF: 738
- - CRIT Rate: 5%
- - CRIT DMG: 50%
+ - CRIT Rate: 5.0%
+ - CRIT DMG: 50.0%
  - Geo DMG Bonus: 28.8%
-- Icon URL: https://api.ambr.top/assets/UI/UI_AvatarIcon_Zhongli.png
+- Icon URL: https://enka.network/ui/UI_AvatarIcon_Zhongli.png
 Fischl
+- Detail: A mysterious girl who calls herself \"Prinzessin der Verurteilung\" and travels with a night raven named Oz.
 - Rarity: 4
 - Element: Electro
 - WeaponType: WEAPON_BOW
@@ -347,11 +367,12 @@ Fischl
  - Base HP: 9,189
  - Base ATK: 244
  - Base DEF: 594
- - CRIT Rate: 5%
- - CRIT DMG: 50%
- - ATK: 24%
-- Icon URL: https://api.ambr.top/assets/UI/UI_AvatarIcon_Fischl.png
+ - CRIT Rate: 5.0%
+ - CRIT DMG: 50.0%
+ - ATK: 24.0%
+- Icon URL: https://enka.network/ui/UI_AvatarIcon_Fischl.png
 Bennett
+- Detail: A good-natured adventurer from Mondstadt who's unfortunately extremely unlucky.
 - Rarity: 4
 - Element: Pyro
 - WeaponType: WEAPON_SWORD_ONE_HAND
@@ -363,11 +384,12 @@ Bennett
  - Base HP: 12,397
  - Base ATK: 191
  - Base DEF: 771
- - CRIT Rate: 5%
- - CRIT DMG: 50%
+ - CRIT Rate: 5.0%
+ - CRIT DMG: 50.0%
  - Energy Recharge: 26.7%
-- Icon URL: https://api.ambr.top/assets/UI/UI_AvatarIcon_Bennett.png
+- Icon URL: https://enka.network/ui/UI_AvatarIcon_Bennett.png
 Tartaglia
+- Detail: No. 11 of The Harbingers, also known as \"Childe.\" His name is highly feared on the battlefield.
 - Rarity: 5
 - Element: Hydro
 - WeaponType: WEAPON_BOW
@@ -379,11 +401,12 @@ Tartaglia
  - Base HP: 13,103
  - Base ATK: 301
  - Base DEF: 815
- - CRIT Rate: 5%
- - CRIT DMG: 50%
+ - CRIT Rate: 5.0%
+ - CRIT DMG: 50.0%
  - Hydro DMG Bonus: 28.8%
-- Icon URL: https://api.ambr.top/assets/UI/UI_AvatarIcon_Tartaglia.png
+- Icon URL: https://enka.network/ui/UI_AvatarIcon_Tartaglia.png
 Noelle
+- Detail: A maid who faithfully serves the Knights of Favonius. She dreams of joining their ranks someday.
 - Rarity: 4
 - Element: Geo
 - WeaponType: WEAPON_CLAYMORE
@@ -395,11 +418,12 @@ Noelle
  - Base HP: 12,071
  - Base ATK: 191
  - Base DEF: 799
- - CRIT Rate: 5%
- - CRIT DMG: 50%
- - DEF: 30%
-- Icon URL: https://api.ambr.top/assets/UI/UI_AvatarIcon_Noel.png
+ - CRIT Rate: 5.0%
+ - CRIT DMG: 50.0%
+ - DEF: 30.0%
+- Icon URL: https://enka.network/ui/UI_AvatarIcon_Noel.png
 Qiqi
+- Detail: An apprentice and herb gatherer at Bubu Pharmacy. An undead with a bone-white complexion, she seldom has much in the way of words or emotion.
 - Rarity: 5
 - Element: Cryo
 - WeaponType: WEAPON_SWORD_ONE_HAND
@@ -411,11 +435,12 @@ Qiqi
  - Base HP: 12,368
  - Base ATK: 287
  - Base DEF: 922
- - CRIT Rate: 5%
- - CRIT DMG: 50%
- - Healing Bonus: 22.1%
-- Icon URL: https://api.ambr.top/assets/UI/UI_AvatarIcon_Qiqi.png
+ - CRIT Rate: 5.0%
+ - CRIT DMG: 50.0%
+ - Healing Bonus: 22.2%
+- Icon URL: https://enka.network/ui/UI_AvatarIcon_Qiqi.png
 Chongyun
+- Detail: A young exorcist from a family of exorcists. He does everything he can to suppress his abundance of yang energy.
 - Rarity: 4
 - Element: Cryo
 - WeaponType: WEAPON_CLAYMORE
@@ -427,11 +452,12 @@ Chongyun
  - Base HP: 10,984
  - Base ATK: 223
  - Base DEF: 648
- - CRIT Rate: 5%
- - CRIT DMG: 50%
- - ATK: 24%
-- Icon URL: https://api.ambr.top/assets/UI/UI_AvatarIcon_Chongyun.png
+ - CRIT Rate: 5.0%
+ - CRIT DMG: 50.0%
+ - ATK: 24.0%
+- Icon URL: https://enka.network/ui/UI_AvatarIcon_Chongyun.png
 Ganyu
+- Detail: The secretary at Yuehai Pavilion. The blood of the qilin, an illuminated beast, flows within her veins.
 - Rarity: 5
 - Element: Cryo
 - WeaponType: WEAPON_BOW
@@ -443,10 +469,11 @@ Ganyu
  - Base HP: 9,797
  - Base ATK: 335
  - Base DEF: 630
- - CRIT Rate: 5%
+ - CRIT Rate: 5.0%
  - CRIT DMG: 88.4%
-- Icon URL: https://api.ambr.top/assets/UI/UI_AvatarIcon_Ganyu.png
+- Icon URL: https://enka.network/ui/UI_AvatarIcon_Ganyu.png
 Albedo
+- Detail: A genius known as the Kreideprinz, he is the Chief Alchemist and Captain of the Investigation Team of the Knights of Favonius.
 - Rarity: 5
 - Element: Geo
 - WeaponType: WEAPON_SWORD_ONE_HAND
@@ -458,11 +485,12 @@ Albedo
  - Base HP: 13,226
  - Base ATK: 251
  - Base DEF: 876
- - CRIT Rate: 5%
- - CRIT DMG: 50%
+ - CRIT Rate: 5.0%
+ - CRIT DMG: 50.0%
  - Geo DMG Bonus: 28.8%
-- Icon URL: https://api.ambr.top/assets/UI/UI_AvatarIcon_Albedo.png
+- Icon URL: https://enka.network/ui/UI_AvatarIcon_Albedo.png
 Diona
+- Detail: A young lady who has inherited trace amounts of non-human blood. She is the incredibly popular bartender of the Cat's Tail tavern.
 - Rarity: 4
 - Element: Cryo
 - WeaponType: WEAPON_BOW
@@ -474,11 +502,12 @@ Diona
  - Base HP: 9,570
  - Base ATK: 212
  - Base DEF: 601
- - CRIT Rate: 5%
- - CRIT DMG: 50%
- - Cryo DMG Bonus: 24%
-- Icon URL: https://api.ambr.top/assets/UI/UI_AvatarIcon_Diona.png
+ - CRIT Rate: 5.0%
+ - CRIT DMG: 50.0%
+ - Cryo DMG Bonus: 24.0%
+- Icon URL: https://enka.network/ui/UI_AvatarIcon_Diona.png
 Mona
+- Detail: A mysterious young astrologer who proclaims herself to be \"Astrologist Mona Megistus,\" and who possesses abilities to match the title. Erudite, but prideful.
 - Rarity: 5
 - Element: Hydro
 - WeaponType: WEAPON_CATALYST
@@ -490,11 +519,12 @@ Mona
  - Base HP: 10,409
  - Base ATK: 287
  - Base DEF: 653
- - CRIT Rate: 5%
- - CRIT DMG: 50%
- - Energy Recharge: 32%
-- Icon URL: https://api.ambr.top/assets/UI/UI_AvatarIcon_Mona.png
+ - CRIT Rate: 5.0%
+ - CRIT DMG: 50.0%
+ - Energy Recharge: 32.0%
+- Icon URL: https://enka.network/ui/UI_AvatarIcon_Mona.png
 Keqing
+- Detail: The Yuheng of the Liyue Qixing. Keqing has much to say about Rex Lapis's unilateral approach to policymaking in Liyue — but in truth, gods admire skeptics such as her quite a lot.
 - Rarity: 5
 - Element: Electro
 - WeaponType: WEAPON_SWORD_ONE_HAND
@@ -506,10 +536,11 @@ Keqing
  - Base HP: 13,103
  - Base ATK: 323
  - Base DEF: 799
- - CRIT Rate: 5%
+ - CRIT Rate: 5.0%
  - CRIT DMG: 88.4%
-- Icon URL: https://api.ambr.top/assets/UI/UI_AvatarIcon_Keqing.png
+- Icon URL: https://enka.network/ui/UI_AvatarIcon_Keqing.png
 Sucrose
+- Detail: An alchemist filled with curiosity about all things. She researches bio-alchemy.
 - Rarity: 4
 - Element: Anemo
 - WeaponType: WEAPON_CATALYST
@@ -521,11 +552,12 @@ Sucrose
  - Base HP: 9,244
  - Base ATK: 170
  - Base DEF: 703
- - CRIT Rate: 5%
- - CRIT DMG: 50%
- - Anemo DMG Bonus: 24%
-- Icon URL: https://api.ambr.top/assets/UI/UI_AvatarIcon_Sucrose.png
+ - CRIT Rate: 5.0%
+ - CRIT DMG: 50.0%
+ - Anemo DMG Bonus: 24.0%
+- Icon URL: https://enka.network/ui/UI_AvatarIcon_Sucrose.png
 Xinyan
+- Detail: Liyue's sole rock 'n' roll musician. She rebels against ossified prejudices using her music and passionate singing.
 - Rarity: 4
 - Element: Pyro
 - WeaponType: WEAPON_CLAYMORE
@@ -537,11 +569,12 @@ Xinyan
  - Base HP: 11,201
  - Base ATK: 249
  - Base DEF: 799
- - CRIT Rate: 5%
- - CRIT DMG: 50%
- - ATK: 24%
-- Icon URL: https://api.ambr.top/assets/UI/UI_AvatarIcon_Xinyan.png
+ - CRIT Rate: 5.0%
+ - CRIT DMG: 50.0%
+ - ATK: 24.0%
+- Icon URL: https://enka.network/ui/UI_AvatarIcon_Xinyan.png
 Rosaria
+- Detail: A sister of the church, though you wouldn't know it if it weren't for her attire. Known for her sharp, cold words and manner, she often works alone.
 - Rarity: 4
 - Element: Cryo
 - WeaponType: WEAPON_POLE
@@ -553,11 +586,12 @@ Rosaria
  - Base HP: 12,289
  - Base ATK: 240
  - Base DEF: 710
- - CRIT Rate: 5%
- - CRIT DMG: 50%
- - ATK: 24%
-- Icon URL: https://api.ambr.top/assets/UI/UI_AvatarIcon_Rosaria.png
+ - CRIT Rate: 5.0%
+ - CRIT DMG: 50.0%
+ - ATK: 24.0%
+- Icon URL: https://enka.network/ui/UI_AvatarIcon_Rosaria.png
 Hu Tao
+- Detail: The 77th Director of the Wangsheng Funeral Parlor. She took over the business at a rather young age.
 - Rarity: 5
 - Element: Pyro
 - WeaponType: WEAPON_POLE
@@ -569,10 +603,11 @@ Hu Tao
  - Base HP: 15,552
  - Base ATK: 106
  - Base DEF: 876
- - CRIT Rate: 5%
+ - CRIT Rate: 5.0%
  - CRIT DMG: 88.4%
-- Icon URL: https://api.ambr.top/assets/UI/UI_AvatarIcon_Hutao.png
+- Icon URL: https://enka.network/ui/UI_AvatarIcon_Hutao.png
 Kaedehara Kazuha
+- Detail: A wandering samurai from Inazuma who is currently with Liyue's Crux Fleet. A gentle and carefree soul whose heart hides a great many burdens from the past.
 - Rarity: 5
 - Element: Anemo
 - WeaponType: WEAPON_SWORD_ONE_HAND
@@ -584,11 +619,12 @@ Kaedehara Kazuha
  - Base HP: 13,348
  - Base ATK: 297
  - Base DEF: 807
- - CRIT Rate: 5%
- - CRIT DMG: 50%
+ - CRIT Rate: 5.0%
+ - CRIT DMG: 50.0%
  - Elemental Mastery: 115
-- Icon URL: https://api.ambr.top/assets/UI/UI_AvatarIcon_Kazuha.png
+- Icon URL: https://enka.network/ui/UI_AvatarIcon_Kazuha.png
 Yanfei
+- Detail: A well-known legal adviser active in Liyue Harbor. A brilliant young lady in whose veins runs the blood of an illuminated beast.
 - Rarity: 4
 - Element: Pyro
 - WeaponType: WEAPON_CATALYST
@@ -600,11 +636,12 @@ Yanfei
  - Base HP: 9,352
  - Base ATK: 240
  - Base DEF: 587
- - CRIT Rate: 5%
- - CRIT DMG: 50%
- - Pyro DMG Bonus: 24%
-- Icon URL: https://api.ambr.top/assets/UI/UI_AvatarIcon_Feiyan.png
+ - CRIT Rate: 5.0%
+ - CRIT DMG: 50.0%
+ - Pyro DMG Bonus: 24.0%
+- Icon URL: https://enka.network/ui/UI_AvatarIcon_Feiyan.png
 Yoimiya
+- Detail: Owner of Naganohara Fireworks. Known as the \"Queen of the Summer Festival,\" she excels in her craft of creating fireworks that symbolize people's hopes and dreams.
 - Rarity: 5
 - Element: Pyro
 - WeaponType: WEAPON_BOW
@@ -617,9 +654,10 @@ Yoimiya
  - Base ATK: 323
  - Base DEF: 615
  - CRIT Rate: 24.2%
- - CRIT DMG: 50%
-- Icon URL: https://api.ambr.top/assets/UI/UI_AvatarIcon_Yoimiya.png
+ - CRIT DMG: 50.0%
+- Icon URL: https://enka.network/ui/UI_AvatarIcon_Yoimiya.png
 Thoma
+- Detail: The Kamisato Clan's housekeeper. A well-known \"fixer\" in Inazuma.
 - Rarity: 4
 - Element: Pyro
 - WeaponType: WEAPON_POLE
@@ -631,11 +669,12 @@ Thoma
  - Base HP: 10,331
  - Base ATK: 202
  - Base DEF: 751
- - CRIT Rate: 5%
- - CRIT DMG: 50%
- - ATK: 24%
-- Icon URL: https://api.ambr.top/assets/UI/UI_AvatarIcon_Tohma.png
+ - CRIT Rate: 5.0%
+ - CRIT DMG: 50.0%
+ - ATK: 24.0%
+- Icon URL: https://enka.network/ui/UI_AvatarIcon_Tohma.png
 Eula
+- Detail: The Spindrift Knight, a scion of the old aristocracy, and the Captain of the Knights of Favonius Reconnaissance Company. The reason for which a descendant of the ancient nobles might join the Knights remains a great mystery in Mondstadt to this very day.
 - Rarity: 5
 - Element: Cryo
 - WeaponType: WEAPON_CLAYMORE
@@ -647,10 +686,11 @@ Eula
  - Base HP: 13,226
  - Base ATK: 342
  - Base DEF: 751
- - CRIT Rate: 5%
+ - CRIT Rate: 5.0%
  - CRIT DMG: 88.4%
-- Icon URL: https://api.ambr.top/assets/UI/UI_AvatarIcon_Eula.png
+- Icon URL: https://enka.network/ui/UI_AvatarIcon_Eula.png
 Raiden Shogun
+- Detail: Her Excellency, the Almighty Narukami Ogosho, who promised the people of Inazuma an unchanging Eternity.
 - Rarity: 5
 - Element: Electro
 - WeaponType: WEAPON_POLE
@@ -662,11 +702,12 @@ Raiden Shogun
  - Base HP: 12,907
  - Base ATK: 337
  - Base DEF: 789
- - CRIT Rate: 5%
- - CRIT DMG: 50%
- - Energy Recharge: 32%
-- Icon URL: https://api.ambr.top/assets/UI/UI_AvatarIcon_Shougun.png
+ - CRIT Rate: 5.0%
+ - CRIT DMG: 50.0%
+ - Energy Recharge: 32.0%
+- Icon URL: https://enka.network/ui/UI_AvatarIcon_Shougun.png
 Sayu
+- Detail: A pint-sized ninja attached to the Shuumatsuban, who always seems to be lacking sleep.
 - Rarity: 4
 - Element: Anemo
 - WeaponType: WEAPON_CLAYMORE
@@ -678,11 +719,12 @@ Sayu
  - Base HP: 11,854
  - Base ATK: 244
  - Base DEF: 745
- - CRIT Rate: 5%
- - CRIT DMG: 50%
+ - CRIT Rate: 5.0%
+ - CRIT DMG: 50.0%
  - Elemental Mastery: 96
-- Icon URL: https://api.ambr.top/assets/UI/UI_AvatarIcon_Sayu.png
+- Icon URL: https://enka.network/ui/UI_AvatarIcon_Sayu.png
 Sangonomiya Kokomi
+- Detail: The Divine Priestess of Watatsumi Island. All of the island's affairs are at this young lady's fingertips.
 - Rarity: 5
 - Element: Hydro
 - WeaponType: WEAPON_CATALYST
@@ -694,11 +736,12 @@ Sangonomiya Kokomi
  - Base HP: 13,471
  - Base ATK: 234
  - Base DEF: 657
- - CRIT Rate: 5%
- - CRIT DMG: 50%
+ - CRIT Rate: 5.0%
+ - CRIT DMG: 50.0%
  - Hydro DMG Bonus: 28.8%
-- Icon URL: https://api.ambr.top/assets/UI/UI_AvatarIcon_Kokomi.png
+- Icon URL: https://enka.network/ui/UI_AvatarIcon_Kokomi.png
 Gorou
+- Detail: The great general of Watatsumi Island's forces. He is deeply trusted by his subordinates.
 - Rarity: 4
 - Element: Geo
 - WeaponType: WEAPON_BOW
@@ -710,11 +753,12 @@ Gorou
  - Base HP: 9,570
  - Base ATK: 183
  - Base DEF: 648
- - CRIT Rate: 5%
- - CRIT DMG: 50%
- - Geo DMG Bonus: 24%
-- Icon URL: https://api.ambr.top/assets/UI/UI_AvatarIcon_Gorou.png
+ - CRIT Rate: 5.0%
+ - CRIT DMG: 50.0%
+ - Geo DMG Bonus: 24.0%
+- Icon URL: https://enka.network/ui/UI_AvatarIcon_Gorou.png
 Kujou Sara
+- Detail: A general of the Tenryou Commission. Bold, decisive, and skilled in battle.
 - Rarity: 4
 - Element: Electro
 - WeaponType: WEAPON_BOW
@@ -726,11 +770,12 @@ Kujou Sara
  - Base HP: 9,570
  - Base ATK: 195
  - Base DEF: 628
- - CRIT Rate: 5%
- - CRIT DMG: 50%
- - ATK: 24%
-- Icon URL: https://api.ambr.top/assets/UI/UI_AvatarIcon_Sara.png
+ - CRIT Rate: 5.0%
+ - CRIT DMG: 50.0%
+ - ATK: 24.0%
+- Icon URL: https://enka.network/ui/UI_AvatarIcon_Sara.png
 Arataki Itto
+- Detail: The first and greatest head of the Arataki Gang, famed throughout Inazuma City's Hanamizaka... Wait, what? You've never heard of them? Are you trying to be funny here?
 - Rarity: 5
 - Element: Geo
 - WeaponType: WEAPON_CLAYMORE
@@ -743,9 +788,10 @@ Arataki Itto
  - Base ATK: 227
  - Base DEF: 959
  - CRIT Rate: 24.2%
- - CRIT DMG: 50%
-- Icon URL: https://api.ambr.top/assets/UI/UI_AvatarIcon_Itto.png
+ - CRIT DMG: 50.0%
+- Icon URL: https://enka.network/ui/UI_AvatarIcon_Itto.png
 Yae Miko
+- Detail: Lady Guuji of the Grand Narukami Shrine. Also serves as the editor-in-chief of Yae Publishing House. Unimaginable intelligence and cunning are hidden under her beautiful appearance.
 - Rarity: 5
 - Element: Electro
 - WeaponType: WEAPON_CATALYST
@@ -758,9 +804,10 @@ Yae Miko
  - Base ATK: 340
  - Base DEF: 569
  - CRIT Rate: 24.2%
- - CRIT DMG: 50%
-- Icon URL: https://api.ambr.top/assets/UI/UI_AvatarIcon_Yae.png
+ - CRIT DMG: 50.0%
+- Icon URL: https://enka.network/ui/UI_AvatarIcon_Yae.png
 Shikanoin Heizou
+- Detail: A young prodigy detective from the Tenryou Commission. His senses are sharp and his thoughts are clear.
 - Rarity: 4
 - Element: Anemo
 - WeaponType: WEAPON_CATALYST
@@ -772,11 +819,12 @@ Shikanoin Heizou
  - Base HP: 10,657
  - Base ATK: 225
  - Base DEF: 684
- - CRIT Rate: 5%
- - CRIT DMG: 50%
- - Anemo DMG Bonus: 24%
-- Icon URL: https://api.ambr.top/assets/UI/UI_AvatarIcon_Heizo.png
+ - CRIT Rate: 5.0%
+ - CRIT DMG: 50.0%
+ - Anemo DMG Bonus: 24.0%
+- Icon URL: https://enka.network/ui/UI_AvatarIcon_Heizo.png
 Yelan
+- Detail: A mysterious person who claims to work for the Ministry of Civil Affairs, but is a \"non-entity\" on the Ministry of Civil Affairs' list.
 - Rarity: 5
 - Element: Hydro
 - WeaponType: WEAPON_BOW
@@ -789,9 +837,10 @@ Yelan
  - Base ATK: 244
  - Base DEF: 548
  - CRIT Rate: 24.2%
- - CRIT DMG: 50%
-- Icon URL: https://api.ambr.top/assets/UI/UI_AvatarIcon_Yelan.png
+ - CRIT DMG: 50.0%
+- Icon URL: https://enka.network/ui/UI_AvatarIcon_Yelan.png
 Kirara
+- Detail: A courier for Komaniya Express, a delivery company in Inazuma. A nekomata who loves her job and human society.
 - Rarity: 4
 - Element: Dendro
 - WeaponType: WEAPON_SWORD_ONE_HAND
@@ -803,11 +852,12 @@ Kirara
  - Base HP: 12,180
  - Base ATK: 223
  - Base DEF: 546
- - CRIT Rate: 5%
- - CRIT DMG: 50%
- - HP: 24%
-- Icon URL: https://api.ambr.top/assets/UI/UI_AvatarIcon_Momoka.png
+ - CRIT Rate: 5.0%
+ - CRIT DMG: 50.0%
+ - HP: 24.0%
+- Icon URL: https://enka.network/ui/UI_AvatarIcon_Momoka.png
 Aloy
+- Detail: Formerly an outcast, now a hunter of unparalleled skill. Ready to do the right thing at any time.
 - Rarity: 0
 - Element: Cryo
 - WeaponType: WEAPON_BOW
@@ -819,11 +869,12 @@ Aloy
  - Base HP: 10,899
  - Base ATK: 234
  - Base DEF: 676
- - CRIT Rate: 5%
- - CRIT DMG: 50%
+ - CRIT Rate: 5.0%
+ - CRIT DMG: 50.0%
  - Cryo DMG Bonus: 28.8%
-- Icon URL: https://api.ambr.top/assets/UI/UI_AvatarIcon_Aloy.png
+- Icon URL: https://enka.network/ui/UI_AvatarIcon_Aloy.png
 Shenhe
+- Detail: An adepti disciple with a most unusual air about her. Having spent much time cultivating in isolation in Liyue's mountains, she has become every bit as cool and distant as the adepti themselves.
 - Rarity: 5
 - Element: Cryo
 - WeaponType: WEAPON_POLE
@@ -835,11 +886,12 @@ Shenhe
  - Base HP: 12,993
  - Base ATK: 304
  - Base DEF: 830
- - CRIT Rate: 5%
- - CRIT DMG: 50%
+ - CRIT Rate: 5.0%
+ - CRIT DMG: 50.0%
  - ATK: 28.8%
-- Icon URL: https://api.ambr.top/assets/UI/UI_AvatarIcon_Shenhe.png
+- Icon URL: https://enka.network/ui/UI_AvatarIcon_Shenhe.png
 Yun Jin
+- Detail: A renowned Liyue opera singer who is skilled in both playwriting and singing. Her style is one-of-a-kind, exquisite and delicate, much like the person herself.
 - Rarity: 4
 - Element: Geo
 - WeaponType: WEAPON_POLE
@@ -851,11 +903,12 @@ Yun Jin
  - Base HP: 10,657
  - Base ATK: 191
  - Base DEF: 734
- - CRIT Rate: 5%
- - CRIT DMG: 50%
+ - CRIT Rate: 5.0%
+ - CRIT DMG: 50.0%
  - Energy Recharge: 26.7%
-- Icon URL: https://api.ambr.top/assets/UI/UI_AvatarIcon_Yunjin.png
+- Icon URL: https://enka.network/ui/UI_AvatarIcon_Yunjin.png
 Kuki Shinobu
+- Detail: The capable and reliable Arataki Gang deputy leader - Please note: capable and reliable are not appellations for the \"Arataki Gang,\" but for their deputy leader in specific.
 - Rarity: 4
 - Element: Electro
 - WeaponType: WEAPON_SWORD_ONE_HAND
@@ -867,11 +920,12 @@ Kuki Shinobu
  - Base HP: 12,289
  - Base ATK: 212
  - Base DEF: 751
- - CRIT Rate: 5%
- - CRIT DMG: 50%
- - HP: 24%
-- Icon URL: https://api.ambr.top/assets/UI/UI_AvatarIcon_Shinobu.png
+ - CRIT Rate: 5.0%
+ - CRIT DMG: 50.0%
+ - HP: 24.0%
+- Icon URL: https://enka.network/ui/UI_AvatarIcon_Shinobu.png
 Kamisato Ayato
+- Detail: The young but highly accomplished head of the Yashiro Commission's Kamisato Clan. Cultured and polite, he is a man of many ways and means.
 - Rarity: 5
 - Element: Hydro
 - WeaponType: WEAPON_SWORD_ONE_HAND
@@ -883,10 +937,11 @@ Kamisato Ayato
  - Base HP: 13,715
  - Base ATK: 299
  - Base DEF: 769
- - CRIT Rate: 5%
+ - CRIT Rate: 5.0%
  - CRIT DMG: 88.4%
-- Icon URL: https://api.ambr.top/assets/UI/UI_AvatarIcon_Ayato.png
+- Icon URL: https://enka.network/ui/UI_AvatarIcon_Ayato.png
 Collei
+- Detail: A trainee ranger active in Avidya Forest. Behind her enthusiastic words and actions hides a slightly introverted personality.
 - Rarity: 4
 - Element: Dendro
 - WeaponType: WEAPON_BOW
@@ -898,11 +953,12 @@ Collei
  - Base HP: 9,787
  - Base ATK: 200
  - Base DEF: 601
- - CRIT Rate: 5%
- - CRIT DMG: 50%
- - ATK: 24%
-- Icon URL: https://api.ambr.top/assets/UI/UI_AvatarIcon_Collei.png
+ - CRIT Rate: 5.0%
+ - CRIT DMG: 50.0%
+ - ATK: 24.0%
+- Icon URL: https://enka.network/ui/UI_AvatarIcon_Collei.png
 Dori
+- Detail: An elusive merchant who has a fondness for glittering Mora.
 - Rarity: 4
 - Element: Electro
 - WeaponType: WEAPON_CLAYMORE
@@ -914,11 +970,12 @@ Dori
  - Base HP: 12,397
  - Base ATK: 223
  - Base DEF: 723
- - CRIT Rate: 5%
- - CRIT DMG: 50%
- - HP: 24%
-- Icon URL: https://api.ambr.top/assets/UI/UI_AvatarIcon_Dori.png
+ - CRIT Rate: 5.0%
+ - CRIT DMG: 50.0%
+ - HP: 24.0%
+- Icon URL: https://enka.network/ui/UI_AvatarIcon_Dori.png
 Tighnari
+- Detail: A young researcher well-versed in botany who currently serves as a Forest Watcher in Avidya Forest. He is a straight shooter with a warm heart — and a dab hand at guiding even the dullest of pupils.
 - Rarity: 5
 - Element: Dendro
 - WeaponType: WEAPON_BOW
@@ -930,11 +987,12 @@ Tighnari
  - Base HP: 10,850
  - Base ATK: 268
  - Base DEF: 630
- - CRIT Rate: 5%
- - CRIT DMG: 50%
+ - CRIT Rate: 5.0%
+ - CRIT DMG: 50.0%
  - Dendro DMG Bonus: 28.8%
-- Icon URL: https://api.ambr.top/assets/UI/UI_AvatarIcon_Tighnari.png
+- Icon URL: https://enka.network/ui/UI_AvatarIcon_Tighnari.png
 Nilou
+- Detail: The star of the Zubayr Theater. She is full of warmth and innocence, and her dances are lively and elegant.
 - Rarity: 5
 - Element: Hydro
 - WeaponType: WEAPON_SWORD_ONE_HAND
@@ -946,11 +1004,12 @@ Nilou
  - Base HP: 15,185
  - Base ATK: 230
  - Base DEF: 729
- - CRIT Rate: 5%
- - CRIT DMG: 50%
+ - CRIT Rate: 5.0%
+ - CRIT DMG: 50.0%
  - HP: 28.8%
-- Icon URL: https://api.ambr.top/assets/UI/UI_AvatarIcon_Nilou.png
+- Icon URL: https://enka.network/ui/UI_AvatarIcon_Nilou.png
 Cyno
+- Detail: The General Mahamatra in charge of supervising the researchers of the Akademiya. It is said that when he gets down to work, the General Mahamatra is even more efficient than the \"Great Vayuvyastra\" made by the Kshahrewar.
 - Rarity: 5
 - Element: Electro
 - WeaponType: WEAPON_POLE
@@ -962,10 +1021,11 @@ Cyno
  - Base HP: 12,491
  - Base ATK: 318
  - Base DEF: 859
- - CRIT Rate: 5%
+ - CRIT Rate: 5.0%
  - CRIT DMG: 88.4%
-- Icon URL: https://api.ambr.top/assets/UI/UI_AvatarIcon_Cyno.png
+- Icon URL: https://enka.network/ui/UI_AvatarIcon_Cyno.png
 Candace
+- Detail: A descendant of King Deshret with an amber left eye. The defender of Aaru Village.
 - Rarity: 4
 - Element: Hydro
 - WeaponType: WEAPON_POLE
@@ -977,11 +1037,12 @@ Candace
  - Base HP: 10,875
  - Base ATK: 212
  - Base DEF: 683
- - CRIT Rate: 5%
- - CRIT DMG: 50%
- - HP: 24%
-- Icon URL: https://api.ambr.top/assets/UI/UI_AvatarIcon_Candace.png
+ - CRIT Rate: 5.0%
+ - CRIT DMG: 50.0%
+ - HP: 24.0%
+- Icon URL: https://enka.network/ui/UI_AvatarIcon_Candace.png
 Nahida
+- Detail: A caged bird secluded within the confines of the Sanctuary of Surasthana who can only see the world in her dreams.
 - Rarity: 5
 - Element: Dendro
 - WeaponType: WEAPON_CATALYST
@@ -993,11 +1054,12 @@ Nahida
  - Base HP: 10,360
  - Base ATK: 299
  - Base DEF: 630
- - CRIT Rate: 5%
- - CRIT DMG: 50%
+ - CRIT Rate: 5.0%
+ - CRIT DMG: 50.0%
  - Elemental Mastery: 115
-- Icon URL: https://api.ambr.top/assets/UI/UI_AvatarIcon_Nahida.png
+- Icon URL: https://enka.network/ui/UI_AvatarIcon_Nahida.png
 Layla
+- Detail: A Rtawahist student who specializes in Theoretical Astrology. Heavily prone to somnambulism and locked in a grinding war with sleep deprivation, the problem of restful slumber is a most troubling one to her.
 - Rarity: 4
 - Element: Cryo
 - WeaponType: WEAPON_SWORD_ONE_HAND
@@ -1009,11 +1071,12 @@ Layla
  - Base HP: 11,092
  - Base ATK: 217
  - Base DEF: 655
- - CRIT Rate: 5%
- - CRIT DMG: 50%
- - HP: 24%
-- Icon URL: https://api.ambr.top/assets/UI/UI_AvatarIcon_Layla.png
+ - CRIT Rate: 5.0%
+ - CRIT DMG: 50.0%
+ - HP: 24.0%
+- Icon URL: https://enka.network/ui/UI_AvatarIcon_Layla.png
 Wanderer
+- Detail: A wayfaring figure whose identity is a mystery. He dresses like a mountain ascetic, but he certainly does not act the part.
 - Rarity: 5
 - Element: Anemo
 - WeaponType: WEAPON_CATALYST
@@ -1026,9 +1089,10 @@ Wanderer
  - Base ATK: 328
  - Base DEF: 607
  - CRIT Rate: 24.2%
- - CRIT DMG: 50%
-- Icon URL: https://api.ambr.top/assets/UI/UI_AvatarIcon_Wanderer.png
+ - CRIT DMG: 50.0%
+- Icon URL: https://enka.network/ui/UI_AvatarIcon_Wanderer.png
 Faruzan
+- Detail: A researcher from \"one hundred years ago.\" She enjoys self-identifying as everyone's senior, and has significant knowledge of ancient scripts and machines of all kinds.
 - Rarity: 4
 - Element: Anemo
 - WeaponType: WEAPON_BOW
@@ -1040,11 +1104,12 @@ Faruzan
  - Base HP: 9,570
  - Base ATK: 196
  - Base DEF: 628
- - CRIT Rate: 5%
- - CRIT DMG: 50%
- - ATK: 24%
-- Icon URL: https://api.ambr.top/assets/UI/UI_AvatarIcon_Faruzan.png
+ - CRIT Rate: 5.0%
+ - CRIT DMG: 50.0%
+ - ATK: 24.0%
+- Icon URL: https://enka.network/ui/UI_AvatarIcon_Faruzan.png
 Yaoyao
+- Detail: Streetward Rambler's youngest disciple. A gentle and caring \"little adult.\"
 - Rarity: 4
 - Element: Dendro
 - WeaponType: WEAPON_POLE
@@ -1056,11 +1121,12 @@ Yaoyao
  - Base HP: 12,289
  - Base ATK: 212
  - Base DEF: 751
- - CRIT Rate: 5%
- - CRIT DMG: 50%
- - HP: 24%
-- Icon URL: https://api.ambr.top/assets/UI/UI_AvatarIcon_Yaoyao.png
+ - CRIT Rate: 5.0%
+ - CRIT DMG: 50.0%
+ - HP: 24.0%
+- Icon URL: https://enka.network/ui/UI_AvatarIcon_Yaoyao.png
 Alhaitham
+- Detail: The current scribe of the Sumeru Akademiya, a man endowed with extraordinary intelligence and talent. He lives free — free from the searching eyes of ordinary people, anyway.
 - Rarity: 5
 - Element: Dendro
 - WeaponType: WEAPON_SWORD_ONE_HAND
@@ -1072,11 +1138,12 @@ Alhaitham
  - Base HP: 13,348
  - Base ATK: 313
  - Base DEF: 782
- - CRIT Rate: 5%
- - CRIT DMG: 50%
+ - CRIT Rate: 5.0%
+ - CRIT DMG: 50.0%
  - Dendro DMG Bonus: 28.8%
-- Icon URL: https://api.ambr.top/assets/UI/UI_AvatarIcon_Alhatham.png
+- Icon URL: https://enka.network/ui/UI_AvatarIcon_Alhatham.png
 Dehya
+- Detail: A member of the Eremites, a mercenary organization that roams the sands of Sumeru. Valiant and powerful, she enjoys great fame amongst her fellow Eremites.
 - Rarity: 5
 - Element: Pyro
 - WeaponType: WEAPON_CLAYMORE
@@ -1088,11 +1155,12 @@ Dehya
  - Base HP: 15,675
  - Base ATK: 265
  - Base DEF: 628
- - CRIT Rate: 5%
- - CRIT DMG: 50%
+ - CRIT Rate: 5.0%
+ - CRIT DMG: 50.0%
  - HP: 28.8%
-- Icon URL: https://api.ambr.top/assets/UI/UI_AvatarIcon_Dehya.png
+- Icon URL: https://enka.network/ui/UI_AvatarIcon_Dehya.png
 Mika
+- Detail: A young knight born to an ordinary family. He serves as a Front-Line Surveyor in his Company. He is a low-key and cautious character.
 - Rarity: 4
 - Element: Cryo
 - WeaponType: WEAPON_POLE
@@ -1104,11 +1172,12 @@ Mika
  - Base HP: 12,506
  - Base ATK: 223
  - Base DEF: 713
- - CRIT Rate: 5%
- - CRIT DMG: 50%
- - HP: 24%
-- Icon URL: https://api.ambr.top/assets/UI/UI_AvatarIcon_Mika.png
+ - CRIT Rate: 5.0%
+ - CRIT DMG: 50.0%
+ - HP: 24.0%
+- Icon URL: https://enka.network/ui/UI_AvatarIcon_Mika.png
 Kaveh
+- Detail: A renowned architect from Sumeru who perhaps cares a bit too much about too many things. He is an aesthete troubled by reality.
 - Rarity: 4
 - Element: Dendro
 - WeaponType: WEAPON_CLAYMORE
@@ -1120,11 +1189,12 @@ Kaveh
  - Base HP: 11,962
  - Base ATK: 234
  - Base DEF: 751
- - CRIT Rate: 5%
- - CRIT DMG: 50%
+ - CRIT Rate: 5.0%
+ - CRIT DMG: 50.0%
  - Elemental Mastery: 96
-- Icon URL: https://api.ambr.top/assets/UI/UI_AvatarIcon_Kaveh.png
+- Icon URL: https://enka.network/ui/UI_AvatarIcon_Kaveh.png
 Baizhu
+- Detail: The owner of Bubu Pharmacy, who is rarely seen without the white snake named Changsheng. His medicinal knowledge is encyclopedic, and his personal intrigues subtle.
 - Rarity: 5
 - Element: Dendro
 - WeaponType: WEAPON_CATALYST
@@ -1136,11 +1206,12 @@ Baizhu
  - Base HP: 13,348
  - Base ATK: 193
  - Base DEF: 500
- - CRIT Rate: 5%
- - CRIT DMG: 50%
+ - CRIT Rate: 5.0%
+ - CRIT DMG: 50.0%
  - HP: 28.8%
-- Icon URL: https://api.ambr.top/assets/UI/UI_AvatarIcon_Baizhuer.png
+- Icon URL: https://enka.network/ui/UI_AvatarIcon_Baizhuer.png
 Lynette
+- Detail: A magic assistant of few words, her emotions are as inscrutable as any cat's.
 - Rarity: 4
 - Element: Anemo
 - WeaponType: WEAPON_SWORD_ONE_HAND
@@ -1152,11 +1223,12 @@ Lynette
  - Base HP: 12,397
  - Base ATK: 232
  - Base DEF: 712
- - CRIT Rate: 5%
- - CRIT DMG: 50%
- - Anemo DMG Bonus: 24%
-- Icon URL: https://api.ambr.top/assets/UI/UI_AvatarIcon_Linette.png
+ - CRIT Rate: 5.0%
+ - CRIT DMG: 50.0%
+ - Anemo DMG Bonus: 24.0%
+- Icon URL: https://enka.network/ui/UI_AvatarIcon_Linette.png
 Lyney
+- Detail: A famed Fontainian magician who possesses great stage presence as well as gift of the gab. Audiences are enthralled by his exquisite skills, and they hang on to his every clever word.
 - Rarity: 5
 - Element: Pyro
 - WeaponType: WEAPON_BOW
@@ -1169,9 +1241,10 @@ Lyney
  - Base ATK: 318
  - Base DEF: 538
  - CRIT Rate: 24.2%
- - CRIT DMG: 50%
-- Icon URL: https://api.ambr.top/assets/UI/UI_AvatarIcon_Liney.png
+ - CRIT DMG: 50.0%
+- Icon URL: https://enka.network/ui/UI_AvatarIcon_Liney.png
 Freminet
+- Detail: A reserved young man who is well-versed in diving. Beneath his distant, icy demeanor lies a pure heart bereft of all flaws.
 - Rarity: 4
 - Element: Cryo
 - WeaponType: WEAPON_CLAYMORE
@@ -1183,11 +1256,12 @@ Freminet
  - Base HP: 12,071
  - Base ATK: 255
  - Base DEF: 708
- - CRIT Rate: 5%
- - CRIT DMG: 50%
- - ATK: 24%
-- Icon URL: https://api.ambr.top/assets/UI/UI_AvatarIcon_Freminet.png
+ - CRIT Rate: 5.0%
+ - CRIT DMG: 50.0%
+ - ATK: 24.0%
+- Icon URL: https://enka.network/ui/UI_AvatarIcon_Freminet.png
 Wriothesley
+- Detail: Duke of the Fortress of Meropide, Lord Incognito of the murky depths.
 - Rarity: 5
 - Element: Cryo
 - WeaponType: WEAPON_CATALYST
@@ -1199,10 +1273,11 @@ Wriothesley
  - Base HP: 13,593
  - Base ATK: 311
  - Base DEF: 763
- - CRIT Rate: 5%
+ - CRIT Rate: 5.0%
  - CRIT DMG: 88.4%
-- Icon URL: https://api.ambr.top/assets/UI/UI_AvatarIcon_Wriothesley.png
+- Icon URL: https://enka.network/ui/UI_AvatarIcon_Wriothesley.png
 Neuvillette
+- Detail: The Chief Justice of Fontaine, known as the Iudex, is renowned for his unassailable impartiality.
 - Rarity: 5
 - Element: Hydro
 - WeaponType: WEAPON_CATALYST
@@ -1214,10 +1289,11 @@ Neuvillette
  - Base HP: 14,695
  - Base ATK: 208
  - Base DEF: 576
- - CRIT Rate: 5%
+ - CRIT Rate: 5.0%
  - CRIT DMG: 88.4%
-- Icon URL: https://api.ambr.top/assets/UI/UI_AvatarIcon_Neuvillette.png
+- Icon URL: https://enka.network/ui/UI_AvatarIcon_Neuvillette.png
 Charlotte
+- Detail: Indefatigable reporter of The Steambird, constantly on the hunt for the \"truth.\"
 - Rarity: 4
 - Element: Cryo
 - WeaponType: WEAPON_CATALYST
@@ -1229,11 +1305,12 @@ Charlotte
  - Base HP: 10,766
  - Base ATK: 173
  - Base DEF: 546
- - CRIT Rate: 5%
- - CRIT DMG: 50%
- - ATK: 24%
-- Icon URL: https://api.ambr.top/assets/UI/UI_AvatarIcon_Charlotte.png
+ - CRIT Rate: 5.0%
+ - CRIT DMG: 50.0%
+ - ATK: 24.0%
+- Icon URL: https://enka.network/ui/UI_AvatarIcon_Charlotte.png
 Furina
+- Detail: The absolute focus of the stage of judgment, until the final applause sounds.
 - Rarity: 5
 - Element: Hydro
 - WeaponType: WEAPON_SWORD_ONE_HAND
@@ -1246,9 +1323,10 @@ Furina
  - Base ATK: 244
  - Base DEF: 696
  - CRIT Rate: 24.2%
- - CRIT DMG: 50%
-- Icon URL: https://api.ambr.top/assets/UI/UI_AvatarIcon_Furina.png
+ - CRIT DMG: 50.0%
+- Icon URL: https://enka.network/ui/UI_AvatarIcon_Furina.png
 Chevreuse
+- Detail: The captain of the Special Security and Surveillance Patrol, who wears justice as an ever-present seal upon her heart. Her musket shall only ever point at the guilty.
 - Rarity: 4
 - Element: Pyro
 - WeaponType: WEAPON_POLE
@@ -1260,11 +1338,12 @@ Chevreuse
  - Base HP: 11,962
  - Base ATK: 193
  - Base DEF: 605
- - CRIT Rate: 5%
- - CRIT DMG: 50%
- - HP: 24%
-- Icon URL: https://api.ambr.top/assets/UI/UI_AvatarIcon_Chevreuse.png
+ - CRIT Rate: 5.0%
+ - CRIT DMG: 50.0%
+ - HP: 24.0%
+- Icon URL: https://enka.network/ui/UI_AvatarIcon_Chevreuse.png
 Navia
+- Detail: The current President of Spina di Rosula, who is lovely, dutiful, and a great boss.
 - Rarity: 5
 - Element: Geo
 - WeaponType: WEAPON_CLAYMORE
@@ -1276,10 +1355,11 @@ Navia
  - Base HP: 12,650
  - Base ATK: 352
  - Base DEF: 793
- - CRIT Rate: 5%
+ - CRIT Rate: 5.0%
  - CRIT DMG: 88.4%
-- Icon URL: https://api.ambr.top/assets/UI/UI_AvatarIcon_Navia.png
+- Icon URL: https://enka.network/ui/UI_AvatarIcon_Navia.png
 Gaming
+- Detail: Guard of the Sword and Strongbox Secure Transport Agency, and the head of the \"Mighty Mythical Beasts\" Wushou troupe.
 - Rarity: 4
 - Element: Pyro
 - WeaponType: WEAPON_CLAYMORE
@@ -1291,11 +1371,12 @@ Gaming
  - Base HP: 11,419
  - Base ATK: 302
  - Base DEF: 703
- - CRIT Rate: 5%
- - CRIT DMG: 50%
- - ATK: 24%
-- Icon URL: https://api.ambr.top/assets/UI/UI_AvatarIcon_Gaming.png
+ - CRIT Rate: 5.0%
+ - CRIT DMG: 50.0%
+ - ATK: 24.0%
+- Icon URL: https://enka.network/ui/UI_AvatarIcon_Gaming.png
 Xianyun
+- Detail: One of the Mighty and Illuminated Adepti of Jueyun, known as \"Cloud Retainer.\" Expert in all kinds of mechanical contraptions, her heart now turns towards the affairs of the mortal world, through which she walks under the name \"Xianyun.\"
 - Rarity: 5
 - Element: Anemo
 - WeaponType: WEAPON_CATALYST
@@ -1307,8 +1388,8 @@ Xianyun
  - Base HP: 10,409
  - Base ATK: 335
  - Base DEF: 573
- - CRIT Rate: 5%
- - CRIT DMG: 50%
+ - CRIT Rate: 5.0%
+ - CRIT DMG: 50.0%
  - ATK: 28.8%
-- Icon URL: https://api.ambr.top/assets/UI/UI_AvatarIcon_Liuyun.png
+- Icon URL: https://enka.network/ui/UI_AvatarIcon_Liuyun.png
 */
