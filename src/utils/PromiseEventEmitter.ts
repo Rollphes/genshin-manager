@@ -9,7 +9,7 @@ type DefaultEventMap = [never]
 
 type Key<K, E, T> = T extends DefaultEventMap
   ? string | symbol
-  : (K & E) | keyof T
+  : (K | E) | keyof T
 type AnyRest = [...args: unknown[]]
 type Args<K, T> = T extends DefaultEventMap
   ? AnyRest
