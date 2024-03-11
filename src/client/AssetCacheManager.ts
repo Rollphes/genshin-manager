@@ -1,4 +1,5 @@
 import * as cliProgress from 'cli-progress'
+import EventEmitter from 'events'
 import fs from 'fs'
 import * as fsPromises from 'fs/promises'
 import Module from 'module'
@@ -12,6 +13,7 @@ import { ClientOption, ExcelBinOutputs, TextMapLanguage } from '@/types'
 import { getClassNamesRecursive } from '@/utils/getClassNamesRecursive'
 import { JsonObject, JsonParser } from '@/utils/JsonParser'
 import { ObjectKeyDecoder } from '@/utils/ObjectKeyDecoder'
+import { EventMap, PromiseEventEmitter } from '@/utils/PromiseEventEmitter'
 import { ReadableStreamWrapper } from '@/utils/ReadableStreamWrapper'
 import { TextMapEmptyWritable } from '@/utils/TextMapEmptyWritable'
 import { TextMapTransform } from '@/utils/TextMapTransform'
@@ -27,17 +29,33 @@ interface GitLabAPIResponse {
   web_url: string
 }
 
+interface AssetCacheManagerEventMap {
+  BEGIN_UPDATE_CACHE: [version: string]
+  END_UPDATE_CACHE: [version: string]
+  BEGIN_UPDATE_ASSETS: [version: string]
+  END_UPDATE_ASSETS: [version: string]
+}
+
 /**
  * Class for managing cached assets
  * @abstract
  */
-export abstract class AssetCacheManager {
+export abstract class AssetCacheManager<
+  T extends EventMap<T>,
+  E extends keyof T,
+> extends PromiseEventEmitter<T, E> {
   /**
    * Cached text map
    * @key Text hash
    * @value Text
    */
   public static cachedTextMap: Map<string, string> = new Map()
+
+  /**
+   * Asset event emitter
+   */
+  protected static _assetEventEmitter: EventEmitter<AssetCacheManagerEventMap> =
+    new EventEmitter<AssetCacheManagerEventMap>()
 
   private static readonly gitRemoteAPIURL: string =
     'https://gitlab.com/api/v4/projects/53216109/repository/commits?per_page=1'
@@ -154,6 +172,7 @@ export abstract class AssetCacheManager {
    * @param children Import modules
    */
   constructor(option: ClientOption, children: Module[]) {
+    super()
     AssetCacheManager.option = option
     AssetCacheManager.childrenModule = children
     AssetCacheManager.commitFilePath = path.resolve(
@@ -280,6 +299,7 @@ export abstract class AssetCacheManager {
     const nowVersionText = await this.getNowAssetVersion()
     if (!nowVersionText) return
     if (newVersionText && this.option.autoFetchLatestAssetsByCron) {
+      this._assetEventEmitter.emit('BEGIN_UPDATE_ASSETS', newVersionText)
       if (this.option.showFetchCacheLog) {
         console.log(
           `GenshinManager: New Asset found. Update Assets. GameVersion: ${newVersionText}`,
@@ -297,6 +317,7 @@ export abstract class AssetCacheManager {
         (key) => TextMapLanguage[key],
       )
       await this.fetchAssetFolder(this.textMapFolderPath, textMapFileNames)
+      this._assetEventEmitter.emit('END_UPDATE_ASSETS', newVersionText)
       if (this.option.showFetchCacheLog)
         console.log('GenshinManager: Set cache.')
     } else {
@@ -306,12 +327,14 @@ export abstract class AssetCacheManager {
         )
       }
     }
+    this._assetEventEmitter.emit('BEGIN_UPDATE_CACHE', nowVersionText)
     this.createExcelBinOutputKeys(this.childrenModule)
     // eslint-disable-next-line no-empty
     while (await this.setExcelBinOutputToCache()) {}
     this.createTextHashes()
     // eslint-disable-next-line no-empty
     while (await this.setTextMapToCache(this.option.defaultLanguage)) {}
+    this._assetEventEmitter.emit('END_UPDATE_CACHE', nowVersionText)
 
     if (this.option.showFetchCacheLog)
       console.log('GenshinManager: Finish update cache and set cache.')

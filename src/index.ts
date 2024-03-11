@@ -1,4 +1,5 @@
 import { Client } from '@/client/Client'
+import { ClientEvents } from '@/client/Client'
 import { EnkaData, EnkaManager } from '@/client/EnkaManager'
 import { NoticeManager } from '@/client/NoticeManager'
 import { AnnContentNotFoundError } from '@/errors/AnnContentNotFoundError'
@@ -107,6 +108,7 @@ export {
 }
 export { convertToUTC }
 export {
+  ClientEvents,
   ClientOption,
   EnkaData,
   Element,
