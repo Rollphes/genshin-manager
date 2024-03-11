@@ -14,7 +14,7 @@ import { ClientOption, TextMapLanguage } from '@/types'
 export enum ClientEvents {
   /**
    * When the cache update starts, fires
-   * @event beginUpdateCache
+   * @event BEGIN_UPDATE_CACHE
    * @listener
    * | param | type | description |
    * | --- | --- | --- |
@@ -23,7 +23,7 @@ export enum ClientEvents {
   BEGIN_UPDATE_CACHE = 'BEGIN_UPDATE_CACHE',
   /**
    * When the cache update ends, fires
-   * @event endUpdateCache
+   * @event END_UPDATE_CACHE
    * @listener
    * | param | type | description |
    * | --- | --- | --- |
@@ -32,7 +32,7 @@ export enum ClientEvents {
   END_UPDATE_CACHE = 'END_UPDATE_CACHE',
   /**
    * When the assets update starts, fires
-   * @event beginUpdateAssets
+   * @event BEGIN_UPDATE_ASSETS
    * @listener
    * | param | type | description |
    * | --- | --- | --- |
@@ -41,7 +41,7 @@ export enum ClientEvents {
   BEGIN_UPDATE_ASSETS = 'BEGIN_UPDATE_ASSETS',
   /**
    * When the assets update ends, fires
-   * @event endUpdateAssets
+   * @event END_UPDATE_ASSETS
    * @listener
    * | param | type | description |
    * | --- | --- | --- |
