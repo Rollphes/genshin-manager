@@ -274,22 +274,24 @@ export abstract class AssetCacheManager {
    * ```
    */
   protected static async updateCache(): Promise<void> {
-    console.log('GenshinManager: Start update cache.')
-    if (
-      (await this.checkGitUpdate()) &&
-      this.option.autoFetchLatestAssetsByCron
-    ) {
-      if (this.option.showFetchCacheLog)
-        console.log('GenshinManager: New Assets found. Update Assets.')
+    if (this.option.showFetchCacheLog)
+      console.log('GenshinManager: Start update cache.')
+    const newVersionText = await this.checkGitUpdate()
+    const nowVersionText = await this.getNowAssetVersion()
+    if (!nowVersionText) return
+    if (newVersionText && this.option.autoFetchLatestAssetsByCron) {
+      if (this.option.showFetchCacheLog) {
+        console.log(
+          `GenshinManager: New Asset found. Update Assets. GameVersion: ${newVersionText}`,
+        )
+      }
       this.createExcelBinOutputKeys()
       await this.fetchAssetFolder(
         this.excelBinOutputFolderPath,
         Object.values(ExcelBinOutputs),
       )
-      if (await this.setExcelBinOutputToCache()) {
-        await this.updateCache()
-        return
-      }
+      // eslint-disable-next-line no-empty
+      while (await this.setExcelBinOutputToCache()) {}
       this.createTextHashes()
       const textMapFileNames = this.option.downloadLanguages.map(
         (key) => TextMapLanguage[key],
@@ -297,30 +299,20 @@ export abstract class AssetCacheManager {
       await this.fetchAssetFolder(this.textMapFolderPath, textMapFileNames)
       if (this.option.showFetchCacheLog)
         console.log('GenshinManager: Set cache.')
-      this.createExcelBinOutputKeys(this.childrenModule)
-      if (await this.setExcelBinOutputToCache()) {
-        await this.updateCache()
-        return
-      }
-      this.createTextHashes()
-      if (await this.setTextMapToCache(this.option.defaultLanguage)) {
-        await this.updateCache()
-        return
-      }
     } else {
-      if (this.option.showFetchCacheLog)
-        console.log('GenshinManager: No new Asset found. Set cache.')
-      this.createExcelBinOutputKeys(this.childrenModule)
-      if (await this.setExcelBinOutputToCache()) {
-        await this.updateCache()
-        return
-      }
-      this.createTextHashes()
-      if (await this.setTextMapToCache(this.option.defaultLanguage)) {
-        await this.updateCache()
-        return
+      if (this.option.showFetchCacheLog) {
+        console.log(
+          `GenshinManager: No new Asset found. Set cache. GameVersion: ${nowVersionText}`,
+        )
       }
     }
+    this.createExcelBinOutputKeys(this.childrenModule)
+    // eslint-disable-next-line no-empty
+    while (await this.setExcelBinOutputToCache()) {}
+    this.createTextHashes()
+    // eslint-disable-next-line no-empty
+    while (await this.setTextMapToCache(this.option.defaultLanguage)) {}
+
     if (this.option.showFetchCacheLog)
       console.log('GenshinManager: Finish update cache and set cache.')
   }
@@ -451,9 +443,9 @@ export abstract class AssetCacheManager {
 
   /**
    * Check gitlab for new commits
-   * @returns New commits found
+   * @returns New assets version text or undefined
    */
-  private static async checkGitUpdate(): Promise<boolean> {
+  private static async checkGitUpdate(): Promise<undefined | string> {
     await Promise.all(
       [
         this.option.assetCacheFolderPath,
@@ -481,7 +473,34 @@ export abstract class AssetCacheManager {
     ) as GitLabAPIResponse[]
 
     this.nowCommitId = newCommits[0].id
-    return oldCommits && newCommits[0].id === oldCommits[0].id ? false : true
+    if (oldCommits && newCommits[0].id === oldCommits[0].id) {
+      return undefined
+    } else {
+      const versionTexts = /OSRELWin(\d+\.\d+\.\d+)_/.exec(newCommits[0].title)
+      if (!versionTexts || versionTexts.length < 2) return '?.?.?'
+      return versionTexts[1]
+    }
+  }
+
+  /**
+   * Get Now Assets version text
+   * @returns Now assets version text or undefined
+   */
+  private static async getNowAssetVersion(): Promise<string | undefined> {
+    const oldCommits = fs.existsSync(this.commitFilePath)
+      ? (JSON.parse(
+          await fsPromises.readFile(this.commitFilePath, {
+            encoding: 'utf8',
+          }),
+        ) as GitLabAPIResponse[])
+      : null
+    if (oldCommits) {
+      const versionTexts = /OSRELWin(\d+\.\d+\.\d+)_/.exec(oldCommits[0].title)
+      if (!versionTexts || versionTexts.length < 2) return '?.?.?'
+      return versionTexts[1]
+    } else {
+      return undefined
+    }
   }
 
   /**
