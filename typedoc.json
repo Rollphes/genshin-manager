@@ -1,0 +1,11 @@
+{
+  "entryPoints": ["src"],
+  "out": "docs",
+  "disableSources": true,
+  "visibilityFilters": {
+    "protected": false,
+    "private": false,
+    "inherited": false,
+    "external": false
+  },
+}

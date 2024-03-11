@@ -15,7 +15,7 @@
     "lint": "eslint .",
     "create-release": "gh release create v%npm_package_version% -t v%npm_package_version% -n \"## Bug Fixes\" --draft",
     "prepublishOnly": "npm run build && npm run create-release",
-    "docs": "typedoc --disableSources --out docs src",
+    "docs": "typedoc",
     "install": "node scripts/install.js",
     "build": "node -e \"if (fs.existsSync('./dist')) fs.rmSync('./dist', {recursive: true});\" && tsc -p tsconfig.json && tsc-alias -p tsconfig.json",
     "test": "ts-node -r tsconfig-paths/register ./src/test/index.ts",
@@ -58,7 +58,8 @@
   "devDependencies": {
     "@types/cheerio": "^0.22.35",
     "@types/cli-progress": "^3.11.5",
-    "@types/node": "^20.11.24",
+    "@types/html-escaper": "^3.0.2",
+    "@types/node": "^20.11.25",
     "@types/node-cron": "^3.0.11",
     "@typescript-eslint/eslint-plugin": "^7.1.1",
     "@typescript-eslint/parser": "^7.1.1",
@@ -71,7 +72,7 @@
     "ts-node": "^10.9.2",
     "tsc-alias": "^1.8.8",
     "tsconfig-paths": "^4.2.0",
-    "typedoc": "^0.25.10",
+    "typedoc": "^0.25.11",
     "typescript": "^5.3.3"
   }
 }
