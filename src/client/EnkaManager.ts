@@ -8,6 +8,7 @@ import { GenshinAccount } from '@/models/enka/GenshinAccount'
 import { PlayerDetail } from '@/models/enka/PlayerDetail'
 import { APIBuild, APIGameAccount } from '@/types/EnkaAccountTypes'
 import { APIEnkaData, APIOwner } from '@/types/EnkaTypes'
+import { PromiseEventEmitter } from '@/utils/PromiseEventEmitter'
 
 /**
  * cached EnkaData type
@@ -40,9 +41,32 @@ export interface EnkaData {
 }
 
 /**
+ * EnkaManager events
+ * @see {@link EnkaManager}
+ */
+export enum EnkaManagerEvents {
+  /**
+   * When new data is added to the cache, fires
+   * @event GET_NEW_ENKA_DATA
+   * @listener
+   * | param | type | description |
+   * | --- | --- | --- |
+   * | data | {@link EnkaData} | New data added to the cache |
+   */
+  GET_NEW_ENKA_DATA = 'GET_NEW_ENKA_DATA',
+}
+
+interface EnkaManagerEventMap {
+  GET_NEW_ENKA_DATA: [data: EnkaData]
+}
+
+/**
  * Class for fetching EnkaData from enka.network
  */
-export class EnkaManager {
+export class EnkaManager extends PromiseEventEmitter<
+  EnkaManagerEventMap,
+  EnkaManagerEvents
+> {
   /**
    * URL of enka.network
    */
@@ -66,7 +90,10 @@ export class EnkaManager {
   /**
    * Create a EnkaManager
    */
-  constructor() {}
+  constructor() {
+    super()
+  }
+
   /**
    * Fetch All from enka.network
    * @description The data fetched by this method is stored as a temporary cache.
@@ -223,6 +250,7 @@ export class EnkaManager {
       url: `${EnkaManager.enkaBaseURL}/u/${uid}`,
     }
     this.cache.set(enkaData.uid, enkaData)
+    this.emit(EnkaManagerEvents.GET_NEW_ENKA_DATA, enkaData)
     return enkaData
   }
 }
