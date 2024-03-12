@@ -1,5 +1,10 @@
 import { Client, ClientEvents } from '@/client/Client'
-import { EnkaData, EnkaManager, EnkaManagerEvents } from '@/client/EnkaManager'
+import {
+  EnkaData,
+  EnkaManager,
+  EnkaManagerEvents,
+  EnkaStatus,
+} from '@/client/EnkaManager'
 import { NoticeManager, NoticeManagerEvents } from '@/client/NoticeManager'
 import { AnnContentNotFoundError } from '@/errors/AnnContentNotFoundError'
 import { AnnError } from '@/errors/AnnError'
@@ -8,6 +13,7 @@ import { AudioNotFoundError } from '@/errors/AudioNotFoundError'
 import { BodyNotFoundError } from '@/errors/BodyNotFoundError'
 import { EnkaManagerError } from '@/errors/EnkaManagerError'
 import { EnkaNetworkError } from '@/errors/EnkaNetWorkError'
+import { EnkaNetWorkStatusError } from '@/errors/EnkaNetWorkStatusError'
 import { ImageNotFoundError } from '@/errors/ImageNotFoundError'
 import { TextMapFormatError } from '@/errors/TextMapFormatError'
 import { Artifact } from '@/models/Artifact'
@@ -71,6 +77,7 @@ export {
   AudioNotFoundError,
   ImageNotFoundError,
   TextMapFormatError,
+  EnkaNetWorkStatusError,
   Artifact,
   AudioAssets,
   ImageAssets,
@@ -112,6 +119,7 @@ export {
   NoticeManagerEvents,
   ClientOption,
   EnkaData,
+  EnkaStatus,
   Element,
   ArtifactType,
   AssocType,

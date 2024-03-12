@@ -1,0 +1,4663 @@
+{
+  "collection": {
+    "2024-03-12T15:33": {
+      "now": "2024-03-12T15:33",
+      "hsr": {
+        "time": {
+          "asia": 156,
+          "cht": 0,
+          "euro": 8,
+          "usa": 26
+        },
+        "ping": {
+          "asia": 351,
+          "cht": 322,
+          "euro": 81,
+          "usa": 156
+        },
+        "nodes": {
+          "asia": 666,
+          "euro": 2762,
+          "usa": 2741
+        }
+      },
+      "gi": {
+        "time": {
+          "asia": 1002,
+          "cht": 0,
+          "euro": 86,
+          "usa": 96
+        },
+        "ping": {
+          "asia": 317,
+          "cht": 318,
+          "euro": 67,
+          "usa": 233
+        },
+        "nodes": {
+          "asia": 1230,
+          "euro": 1992,
+          "usa": 495
+        },
+        "underruns": {}
+      },
+      "gg": {
+        "time": {
+          "bilibili": 4,
+          "china": 694
+        },
+        "ping": {
+          "bilibili": 44,
+          "china": 44
+        },
+        "nodes": {
+          "bilibili": 1241,
+          "china": 4736
+        },
+        "underruns": {
+          "china": "5"
+        }
+      },
+      "pingu": {
+        "cdn": {
+          "ms": 30,
+          "status": 200
+        },
+        "main": {
+          "ms": 133,
+          "status": 200
+        },
+        "api": {
+          "ms": 239,
+          "status": 200
+        },
+        "fox": {
+          "ms": 299,
+          "status": 200
+        }
+      }
+    },
+    "2024-03-12T15:34": {
+      "now": "2024-03-12T15:34",
+      "hsr": {
+        "time": {
+          "asia": 102,
+          "cht": 0,
+          "euro": 17,
+          "usa": 31
+        },
+        "ping": {
+          "asia": 341,
+          "cht": 322,
+          "euro": 75,
+          "usa": 173
+        },
+        "nodes": {
+          "asia": 671,
+          "euro": 2763,
+          "usa": 2726
+        }
+      },
+      "gi": {
+        "time": {
+          "asia": 858,
+          "cht": 0,
+          "euro": 107,
+          "usa": 89
+        },
+        "ping": {
+          "asia": 325,
+          "cht": 318,
+          "euro": 51,
+          "usa": 151
+        },
+        "nodes": {
+          "asia": 1247,
+          "euro": 1928,
+          "usa": 487
+        },
+        "underruns": {
+          "usa": "1"
+        }
+      },
+      "gg": {
+        "time": {
+          "bilibili": 3,
+          "china": 276
+        },
+        "ping": {
+          "bilibili": 39,
+          "china": 47
+        },
+        "nodes": {
+          "bilibili": 1222,
+          "china": 4563
+        },
+        "underruns": {
+          "china": "1"
+        }
+      },
+      "pingu": {
+        "cdn": {
+          "ms": 42,
+          "status": 200
+        },
+        "main": {
+          "ms": 132,
+          "status": 200
+        },
+        "api": {
+          "ms": 253,
+          "status": 200
+        },
+        "fox": {
+          "ms": 996,
+          "status": 200
+        }
+      }
+    },
+    "2024-03-12T15:35": {
+      "now": "2024-03-12T15:35",
+      "hsr": {
+        "time": {
+          "asia": 98,
+          "cht": 0,
+          "euro": 17,
+          "usa": 25
+        },
+        "ping": {
+          "asia": 341,
+          "cht": 322,
+          "euro": 63,
+          "usa": 157
+        },
+        "nodes": {
+          "asia": 670,
+          "euro": 2684,
+          "usa": 2670
+        }
+      },
+      "gi": {
+        "time": {
+          "asia": 784,
+          "cht": 0,
+          "euro": 78,
+          "usa": 137
+        },
+        "ping": {
+          "asia": 438,
+          "cht": 318,
+          "euro": 100,
+          "usa": 164
+        },
+        "nodes": {
+          "asia": 1230,
+          "euro": 2005,
+          "usa": 502
+        },
+        "underruns": {}
+      },
+      "gg": {
+        "time": {
+          "bilibili": 10,
+          "china": 383
+        },
+        "ping": {
+          "bilibili": 34,
+          "china": 35
+        },
+        "nodes": {
+          "bilibili": 1232,
+          "china": 4720
+        },
+        "underruns": {
+          "china": "1"
+        }
+      },
+      "pingu": {
+        "cdn": {
+          "ms": 25,
+          "status": 200
+        },
+        "main": {
+          "ms": 158,
+          "status": 200
+        },
+        "api": {
+          "ms": 258,
+          "status": 200
+        },
+        "fox": {
+          "ms": 206,
+          "status": 200
+        }
+      }
+    },
+    "2024-03-12T15:36": {
+      "now": "2024-03-12T15:36",
+      "hsr": {
+        "time": {
+          "asia": 79,
+          "cht": 0,
+          "euro": 33,
+          "usa": 31
+        },
+        "ping": {
+          "asia": 328,
+          "cht": 322,
+          "euro": 53,
+          "usa": 152
+        },
+        "nodes": {
+          "asia": 686,
+          "euro": 2697,
+          "usa": 2730
+        }
+      },
+      "gi": {
+        "time": {
+          "asia": 937,
+          "cht": 0,
+          "euro": 77,
+          "usa": 82
+        },
+        "ping": {
+          "asia": 322,
+          "cht": 318,
+          "euro": 48,
+          "usa": 155
+        },
+        "nodes": {
+          "asia": 1240,
+          "euro": 1923,
+          "usa": 497
+        },
+        "underruns": {
+          "asia": "1"
+        }
+      },
+      "gg": {
+        "time": {
+          "bilibili": 12,
+          "china": 321
+        },
+        "ping": {
+          "bilibili": 71,
+          "china": 69
+        },
+        "nodes": {
+          "bilibili": 1217,
+          "china": 4671
+        },
+        "underruns": {}
+      },
+      "pingu": {
+        "cdn": {
+          "ms": 35,
+          "status": 200
+        },
+        "main": {
+          "ms": 153,
+          "status": 200
+        },
+        "api": {
+          "ms": 301,
+          "status": 200
+        },
+        "fox": {
+          "ms": 270,
+          "status": 200
+        }
+      }
+    },
+    "2024-03-12T15:37": {
+      "now": "2024-03-12T15:37",
+      "hsr": {
+        "time": {
+          "asia": 168,
+          "cht": 0,
+          "euro": 14,
+          "usa": 28
+        },
+        "ping": {
+          "asia": 325,
+          "cht": 322,
+          "euro": 56,
+          "usa": 151
+        },
+        "nodes": {
+          "asia": 663,
+          "euro": 2684,
+          "usa": 2768
+        }
+      },
+      "gi": {
+        "time": {
+          "asia": 936,
+          "cht": 0,
+          "euro": 123,
+          "usa": 121
+        },
+        "ping": {
+          "asia": 426,
+          "cht": 318,
+          "euro": 51,
+          "usa": 163
+        },
+        "nodes": {
+          "asia": 1249,
+          "euro": 1966,
+          "usa": 504
+        },
+        "underruns": {}
+      },
+      "gg": {
+        "time": {
+          "bilibili": 11,
+          "china": 617
+        },
+        "ping": {
+          "bilibili": 37,
+          "china": 29
+        },
+        "nodes": {
+          "bilibili": 1246,
+          "china": 4669
+        },
+        "underruns": {
+          "china": "3"
+        }
+      },
+      "pingu": {
+        "cdn": {
+          "ms": 31,
+          "status": 200
+        },
+        "main": {
+          "ms": 114,
+          "status": 200
+        },
+        "api": {
+          "ms": 282,
+          "status": 200
+        },
+        "fox": {
+          "ms": 200,
+          "status": 200
+        }
+      }
+    },
+    "2024-03-12T15:38": {
+      "now": "2024-03-12T15:38",
+      "hsr": {
+        "time": {
+          "asia": 81,
+          "cht": 0,
+          "euro": 20,
+          "usa": 51
+        },
+        "ping": {
+          "asia": 315,
+          "cht": 322,
+          "euro": 49,
+          "usa": 146
+        },
+        "nodes": {
+          "asia": 661,
+          "euro": 2765,
+          "usa": 2660
+        }
+      },
+      "gi": {
+        "time": {
+          "asia": 948,
+          "cht": 0,
+          "euro": 59,
+          "usa": 78
+        },
+        "ping": {
+          "asia": 342,
+          "cht": 318,
+          "euro": 50,
+          "usa": 150
+        },
+        "nodes": {
+          "asia": 1249,
+          "euro": 1959,
+          "usa": 503
+        },
+        "underruns": {}
+      },
+      "gg": {
+        "time": {
+          "bilibili": 10,
+          "china": 505
+        },
+        "ping": {
+          "bilibili": 54,
+          "china": 58
+        },
+        "nodes": {
+          "bilibili": 1206,
+          "china": 4679
+        },
+        "underruns": {
+          "china": "1"
+        }
+      },
+      "pingu": {
+        "cdn": {
+          "ms": 39,
+          "status": 200
+        },
+        "main": {
+          "ms": 139,
+          "status": 200
+        },
+        "api": {
+          "ms": 221,
+          "status": 200
+        },
+        "fox": {
+          "ms": 406,
+          "status": 200
+        }
+      }
+    },
+    "2024-03-12T15:39": {
+      "now": "2024-03-12T15:39",
+      "hsr": {
+        "time": {
+          "asia": 145,
+          "cht": 0,
+          "euro": 25,
+          "usa": 21
+        },
+        "ping": {
+          "asia": 312,
+          "cht": 322,
+          "euro": 44,
+          "usa": 141
+        },
+        "nodes": {
+          "asia": 666,
+          "euro": 2710,
+          "usa": 2653
+        }
+      },
+      "gi": {
+        "time": {
+          "asia": 1194,
+          "cht": 0,
+          "euro": 101,
+          "usa": 227
+        },
+        "ping": {
+          "asia": 315,
+          "cht": 318,
+          "euro": 43,
+          "usa": 139
+        },
+        "nodes": {
+          "asia": 1220,
+          "euro": 2009,
+          "usa": 488
+        },
+        "underruns": {
+          "asia": "2",
+          "usa": "1"
+        }
+      },
+      "gg": {
+        "time": {
+          "bilibili": 14,
+          "china": 596
+        },
+        "ping": {
+          "bilibili": 38,
+          "china": 46
+        },
+        "nodes": {
+          "bilibili": 1248,
+          "china": 4655
+        },
+        "underruns": {
+          "china": "3"
+        }
+      },
+      "pingu": {
+        "cdn": {
+          "ms": 34,
+          "status": 200
+        },
+        "main": {
+          "ms": 140,
+          "status": 200
+        },
+        "api": {
+          "ms": 289,
+          "status": 200
+        },
+        "fox": {
+          "ms": 215,
+          "status": 200
+        }
+      }
+    },
+    "2024-03-12T15:40": {
+      "now": "2024-03-12T15:40",
+      "hsr": {
+        "time": {
+          "asia": 95,
+          "cht": 0,
+          "euro": 20,
+          "usa": 19
+        },
+        "ping": {
+          "asia": 310,
+          "cht": 322,
+          "euro": 44,
+          "usa": 141
+        },
+        "nodes": {
+          "asia": 682,
+          "euro": 2711,
+          "usa": 2713
+        }
+      },
+      "gi": {
+        "time": {
+          "asia": 857,
+          "cht": 0,
+          "euro": 65,
+          "usa": 96
+        },
+        "ping": {
+          "asia": 392,
+          "cht": 318,
+          "euro": 47,
+          "usa": 127
+        },
+        "nodes": {
+          "asia": 1247,
+          "euro": 1960,
+          "usa": 481
+        },
+        "underruns": {}
+      },
+      "gg": {
+        "time": {
+          "bilibili": 11,
+          "china": 366
+        },
+        "ping": {
+          "bilibili": 24,
+          "china": 31
+        },
+        "nodes": {
+          "bilibili": 1209,
+          "china": 4706
+        },
+        "underruns": {
+          "china": "1"
+        }
+      },
+      "pingu": {
+        "cdn": {
+          "ms": 27,
+          "status": 200
+        },
+        "main": {
+          "ms": 144,
+          "status": 200
+        },
+        "api": {
+          "ms": 257,
+          "status": 200
+        },
+        "fox": {
+          "ms": 450,
+          "status": 200
+        }
+      }
+    },
+    "2024-03-12T15:41": {
+      "now": "2024-03-12T15:41",
+      "hsr": {
+        "time": {
+          "asia": 103,
+          "cht": 0,
+          "euro": 21,
+          "usa": 44
+        },
+        "ping": {
+          "asia": 311,
+          "cht": 322,
+          "euro": 34,
+          "usa": 167
+        },
+        "nodes": {
+          "asia": 663,
+          "euro": 2761,
+          "usa": 2657
+        }
+      },
+      "gi": {
+        "time": {
+          "asia": 1140,
+          "cht": 0,
+          "euro": 178,
+          "usa": 374
+        },
+        "ping": {
+          "asia": 323,
+          "cht": 318,
+          "euro": 48,
+          "usa": 178
+        },
+        "nodes": {
+          "asia": 1208,
+          "euro": 1973,
+          "usa": 495
+        },
+        "underruns": {
+          "asia": "1",
+          "usa": "2"
+        }
+      },
+      "gg": {
+        "time": {
+          "bilibili": 16,
+          "china": 431
+        },
+        "ping": {
+          "bilibili": 54,
+          "china": 61
+        },
+        "nodes": {
+          "bilibili": 1224,
+          "china": 4675
+        },
+        "underruns": {}
+      },
+      "pingu": {
+        "cdn": {
+          "ms": 35,
+          "status": 200
+        },
+        "main": {
+          "ms": 139,
+          "status": 200
+        },
+        "api": {
+          "ms": 259,
+          "status": 200
+        },
+        "fox": {
+          "ms": 202,
+          "status": 200
+        }
+      }
+    },
+    "2024-03-12T15:42": {
+      "now": "2024-03-12T15:42",
+      "hsr": {
+        "time": {
+          "asia": 101,
+          "cht": 0,
+          "euro": 23,
+          "usa": 42
+        },
+        "ping": {
+          "asia": 313,
+          "cht": 322,
+          "euro": 53,
+          "usa": 172
+        },
+        "nodes": {
+          "asia": 664,
+          "euro": 2681,
+          "usa": 2705
+        }
+      },
+      "gi": {
+        "time": {
+          "asia": 1130,
+          "cht": 0,
+          "euro": 91,
+          "usa": 101
+        },
+        "ping": {
+          "asia": 414,
+          "cht": 318,
+          "euro": 123,
+          "usa": 152
+        },
+        "nodes": {
+          "asia": 1225,
+          "euro": 1999,
+          "usa": 501
+        },
+        "underruns": {
+          "usa": "1"
+        }
+      },
+      "gg": {
+        "time": {
+          "bilibili": 10,
+          "china": 717
+        },
+        "ping": {
+          "bilibili": 45,
+          "china": 49
+        },
+        "nodes": {
+          "bilibili": 1235,
+          "china": 4569
+        },
+        "underruns": {
+          "china": "1"
+        }
+      },
+      "pingu": {
+        "cdn": {
+          "ms": 31,
+          "status": 200
+        },
+        "main": {
+          "ms": 133,
+          "status": 200
+        },
+        "api": {
+          "ms": 245,
+          "status": 200
+        },
+        "fox": {
+          "ms": 912,
+          "status": 200
+        }
+      }
+    },
+    "2024-03-12T15:43": {
+      "now": "2024-03-12T15:43",
+      "hsr": {
+        "time": {
+          "asia": 73,
+          "cht": 0,
+          "euro": 17,
+          "usa": 30
+        },
+        "ping": {
+          "asia": 345,
+          "cht": 322,
+          "euro": 65,
+          "usa": 162
+        },
+        "nodes": {
+          "asia": 685,
+          "euro": 2702,
+          "usa": 2732
+        }
+      },
+      "gi": {
+        "time": {
+          "asia": 1035,
+          "cht": 0,
+          "euro": 72,
+          "usa": 239
+        },
+        "ping": {
+          "asia": 316,
+          "cht": 318,
+          "euro": 57,
+          "usa": 151
+        },
+        "nodes": {
+          "asia": 1212,
+          "euro": 1929,
+          "usa": 493
+        },
+        "underruns": {}
+      },
+      "gg": {
+        "time": {
+          "bilibili": 9,
+          "china": 614
+        },
+        "ping": {
+          "bilibili": 31,
+          "china": 68
+        },
+        "nodes": {
+          "bilibili": 1215,
+          "china": 4772
+        },
+        "underruns": {
+          "china": "2"
+        }
+      },
+      "pingu": {
+        "cdn": {
+          "ms": 60,
+          "status": 200
+        },
+        "main": {
+          "ms": 125,
+          "status": 200
+        },
+        "api": {
+          "ms": 273,
+          "status": 200
+        },
+        "fox": {
+          "ms": 303,
+          "status": 200
+        }
+      }
+    },
+    "2024-03-12T15:44": {
+      "now": "2024-03-12T15:44",
+      "hsr": {
+        "time": {
+          "asia": 103,
+          "cht": 0,
+          "euro": 29,
+          "usa": 27
+        },
+        "ping": {
+          "asia": 321,
+          "cht": 322,
+          "euro": 47,
+          "usa": 142
+        },
+        "nodes": {
+          "asia": 665,
+          "euro": 2651,
+          "usa": 2680
+        }
+      },
+      "gi": {
+        "time": {
+          "asia": 838,
+          "cht": 0,
+          "euro": 105,
+          "usa": 66
+        },
+        "ping": {
+          "asia": 351,
+          "cht": 318,
+          "euro": 40,
+          "usa": 156
+        },
+        "nodes": {
+          "asia": 1227,
+          "euro": 1956,
+          "usa": 487
+        },
+        "underruns": {}
+      },
+      "gg": {
+        "time": {
+          "bilibili": 6,
+          "china": 342
+        },
+        "ping": {
+          "bilibili": 19,
+          "china": 26
+        },
+        "nodes": {
+          "bilibili": 1205,
+          "china": 4768
+        },
+        "underruns": {
+          "china": "1"
+        }
+      },
+      "pingu": {
+        "cdn": {
+          "ms": 35,
+          "status": 200
+        },
+        "main": {
+          "ms": 127,
+          "status": 200
+        },
+        "api": {
+          "ms": 236,
+          "status": 200
+        },
+        "fox": {
+          "ms": 706,
+          "status": 200
+        }
+      }
+    },
+    "2024-03-12T15:45": {
+      "now": "2024-03-12T15:45",
+      "hsr": {
+        "time": {
+          "asia": 129,
+          "cht": 0,
+          "euro": 28,
+          "usa": 37
+        },
+        "ping": {
+          "asia": 316,
+          "cht": 322,
+          "euro": 56,
+          "usa": 145
+        },
+        "nodes": {
+          "asia": 682,
+          "euro": 2749,
+          "usa": 2659
+        }
+      },
+      "gi": {
+        "time": {
+          "asia": 962,
+          "cht": 0,
+          "euro": 105,
+          "usa": 497
+        },
+        "ping": {
+          "asia": 318,
+          "cht": 318,
+          "euro": 37,
+          "usa": 160
+        },
+        "nodes": {
+          "asia": 1244,
+          "euro": 2000,
+          "usa": 481
+        },
+        "underruns": {
+          "usa": "3"
+        }
+      },
+      "gg": {
+        "time": {
+          "bilibili": 9,
+          "china": 267
+        },
+        "ping": {
+          "bilibili": 48,
+          "china": 53
+        },
+        "nodes": {
+          "bilibili": 1211,
+          "china": 4601
+        },
+        "underruns": {}
+      },
+      "pingu": {
+        "cdn": {
+          "ms": 28,
+          "status": 200
+        },
+        "main": {
+          "ms": 143,
+          "status": 200
+        },
+        "api": {
+          "ms": 229,
+          "status": 200
+        },
+        "fox": {
+          "ms": 350,
+          "status": 200
+        }
+      }
+    },
+    "2024-03-12T15:46": {
+      "now": "2024-03-12T15:46",
+      "hsr": {
+        "time": {
+          "asia": 131,
+          "cht": 0,
+          "euro": 32,
+          "usa": 44
+        },
+        "ping": {
+          "asia": 309,
+          "cht": 322,
+          "euro": 44,
+          "usa": 138
+        },
+        "nodes": {
+          "asia": 687,
+          "euro": 2641,
+          "usa": 2733
+        }
+      },
+      "gi": {
+        "time": {
+          "asia": 972,
+          "cht": 0,
+          "euro": 99,
+          "usa": 120
+        },
+        "ping": {
+          "asia": 316,
+          "cht": 318,
+          "euro": 46,
+          "usa": 238
+        },
+        "nodes": {
+          "asia": 1222,
+          "euro": 1938,
+          "usa": 501
+        },
+        "underruns": {}
+      },
+      "gg": {
+        "time": {
+          "bilibili": 26,
+          "china": 642
+        },
+        "ping": {
+          "bilibili": 23,
+          "china": 20
+        },
+        "nodes": {
+          "bilibili": 1216,
+          "china": 4707
+        },
+        "underruns": {
+          "china": "2"
+        }
+      },
+      "pingu": {
+        "cdn": {
+          "ms": 42,
+          "status": 200
+        },
+        "main": {
+          "ms": 134,
+          "status": 200
+        },
+        "api": {
+          "ms": 240,
+          "status": 200
+        },
+        "fox": {
+          "ms": 632,
+          "status": 200
+        }
+      }
+    },
+    "2024-03-12T15:47": {
+      "now": "2024-03-12T15:47",
+      "hsr": {
+        "time": {
+          "asia": 125,
+          "cht": 0,
+          "euro": 11,
+          "usa": 18
+        },
+        "ping": {
+          "asia": 342,
+          "cht": 322,
+          "euro": 66,
+          "usa": 150
+        },
+        "nodes": {
+          "asia": 670,
+          "euro": 2684,
+          "usa": 2675
+        }
+      },
+      "gi": {
+        "time": {
+          "asia": 798,
+          "cht": 0,
+          "euro": 108,
+          "usa": 106
+        },
+        "ping": {
+          "asia": 319,
+          "cht": 318,
+          "euro": 69,
+          "usa": 303
+        },
+        "nodes": {
+          "asia": 1251,
+          "euro": 1964,
+          "usa": 487
+        },
+        "underruns": {}
+      },
+      "gg": {
+        "time": {
+          "bilibili": 8,
+          "china": 477
+        },
+        "ping": {
+          "bilibili": 53,
+          "china": 54
+        },
+        "nodes": {
+          "bilibili": 1204,
+          "china": 4605
+        },
+        "underruns": {
+          "china": "1"
+        }
+      },
+      "pingu": {
+        "cdn": {
+          "ms": 33,
+          "status": 200
+        },
+        "main": {
+          "ms": 133,
+          "status": 200
+        },
+        "api": {
+          "ms": 251,
+          "status": 200
+        },
+        "fox": {
+          "ms": 223,
+          "status": 200
+        }
+      }
+    },
+    "2024-03-12T15:48": {
+      "now": "2024-03-12T15:48",
+      "hsr": {
+        "time": {
+          "asia": 132,
+          "cht": 0,
+          "euro": 23,
+          "usa": 42
+        },
+        "ping": {
+          "asia": 313,
+          "cht": 322,
+          "euro": 73,
+          "usa": 142
+        },
+        "nodes": {
+          "asia": 691,
+          "euro": 2756,
+          "usa": 2768
+        }
+      },
+      "gi": {
+        "time": {
+          "asia": 900,
+          "cht": 0,
+          "euro": 67,
+          "usa": 350
+        },
+        "ping": {
+          "asia": 316,
+          "cht": 318,
+          "euro": 66,
+          "usa": 152
+        },
+        "nodes": {
+          "asia": 1218,
+          "euro": 1934,
+          "usa": 493
+        },
+        "underruns": {
+          "usa": "2"
+        }
+      },
+      "gg": {
+        "time": {
+          "bilibili": 5,
+          "china": 528
+        },
+        "ping": {
+          "bilibili": 51,
+          "china": 40
+        },
+        "nodes": {
+          "bilibili": 1201,
+          "china": 4698
+        },
+        "underruns": {
+          "china": "1"
+        }
+      },
+      "pingu": {
+        "cdn": {
+          "ms": 30,
+          "status": 200
+        },
+        "main": {
+          "ms": 152,
+          "status": 200
+        },
+        "api": {
+          "ms": 316,
+          "status": 200
+        },
+        "fox": {
+          "ms": 318,
+          "status": 200
+        }
+      }
+    },
+    "2024-03-12T15:49": {
+      "now": "2024-03-12T15:49",
+      "hsr": {
+        "time": {
+          "asia": 74,
+          "cht": 0,
+          "euro": 19,
+          "usa": 36
+        },
+        "ping": {
+          "asia": 322,
+          "cht": 322,
+          "euro": 61,
+          "usa": 149
+        },
+        "nodes": {
+          "asia": 692,
+          "euro": 2765,
+          "usa": 2697
+        }
+      },
+      "gi": {
+        "time": {
+          "asia": 958,
+          "cht": 0,
+          "euro": 67,
+          "usa": 104
+        },
+        "ping": {
+          "asia": 307,
+          "cht": 318,
+          "euro": 56,
+          "usa": 167
+        },
+        "nodes": {
+          "asia": 1234,
+          "euro": 2003,
+          "usa": 498
+        },
+        "underruns": {
+          "asia": "1"
+        }
+      },
+      "gg": {
+        "time": {
+          "bilibili": 13,
+          "china": 596
+        },
+        "ping": {
+          "bilibili": 39,
+          "china": 59
+        },
+        "nodes": {
+          "bilibili": 1236,
+          "china": 4573
+        },
+        "underruns": {
+          "china": "3"
+        }
+      },
+      "pingu": {
+        "cdn": {
+          "ms": 54,
+          "status": 200
+        },
+        "main": {
+          "ms": 137,
+          "status": 200
+        },
+        "api": {
+          "ms": 265,
+          "status": 200
+        },
+        "fox": {
+          "ms": 192,
+          "status": 200
+        }
+      }
+    },
+    "2024-03-12T15:50": {
+      "now": "2024-03-12T15:50",
+      "hsr": {
+        "time": {
+          "asia": 92,
+          "cht": 0,
+          "euro": 14,
+          "usa": 30
+        },
+        "ping": {
+          "asia": 338,
+          "cht": 322,
+          "euro": 55,
+          "usa": 151
+        },
+        "nodes": {
+          "asia": 682,
+          "euro": 2653,
+          "usa": 2690
+        }
+      },
+      "gi": {
+        "time": {
+          "asia": 873,
+          "cht": 0,
+          "euro": 85,
+          "usa": 395
+        },
+        "ping": {
+          "asia": 290,
+          "cht": 318,
+          "euro": 41,
+          "usa": 135
+        },
+        "nodes": {
+          "asia": 1251,
+          "euro": 1921,
+          "usa": 498
+        },
+        "underruns": {
+          "usa": "2"
+        }
+      },
+      "gg": {
+        "time": {
+          "bilibili": 120,
+          "china": 378
+        },
+        "ping": {
+          "bilibili": 57,
+          "china": 39
+        },
+        "nodes": {
+          "bilibili": 1203,
+          "china": 4679
+        },
+        "underruns": {
+          "china": "1"
+        }
+      },
+      "pingu": {
+        "cdn": {
+          "ms": 35,
+          "status": 200
+        },
+        "main": {
+          "ms": 179,
+          "status": 200
+        },
+        "api": {
+          "ms": 238,
+          "status": 200
+        },
+        "fox": {
+          "ms": 298,
+          "status": 200
+        }
+      }
+    },
+    "2024-03-12T15:51": {
+      "now": "2024-03-12T15:51",
+      "hsr": {
+        "time": {
+          "asia": 64,
+          "cht": 0,
+          "euro": 30,
+          "usa": 43
+        },
+        "ping": {
+          "asia": 325,
+          "cht": 322,
+          "euro": 60,
+          "usa": 147
+        },
+        "nodes": {
+          "asia": 684,
+          "euro": 2642,
+          "usa": 2743
+        }
+      },
+      "gi": {
+        "time": {
+          "asia": 964,
+          "cht": 0,
+          "euro": 326,
+          "usa": 387
+        },
+        "ping": {
+          "asia": 316,
+          "cht": 318,
+          "euro": 68,
+          "usa": 140
+        },
+        "nodes": {
+          "asia": 1235,
+          "euro": 1965,
+          "usa": 481
+        },
+        "underruns": {
+          "usa": "2"
+        }
+      },
+      "gg": {
+        "time": {
+          "bilibili": 5,
+          "china": 513
+        },
+        "ping": {
+          "bilibili": 57,
+          "china": 141
+        },
+        "nodes": {
+          "bilibili": 1231,
+          "china": 4670
+        },
+        "underruns": {
+          "china": "2"
+        }
+      },
+      "pingu": {
+        "cdn": {
+          "ms": 34,
+          "status": 200
+        },
+        "main": {
+          "ms": 126,
+          "status": 200
+        },
+        "api": {
+          "ms": 248,
+          "status": 200
+        },
+        "fox": {
+          "ms": 371,
+          "status": 200
+        }
+      }
+    },
+    "2024-03-12T15:52": {
+      "now": "2024-03-12T15:52",
+      "hsr": {
+        "time": {
+          "asia": 133,
+          "cht": 0,
+          "euro": 31,
+          "usa": 45
+        },
+        "ping": {
+          "asia": 345,
+          "cht": 322,
+          "euro": 58,
+          "usa": 151
+        },
+        "nodes": {
+          "asia": 674,
+          "euro": 2772,
+          "usa": 2735
+        }
+      },
+      "gi": {
+        "time": {
+          "asia": 681,
+          "cht": 0,
+          "euro": 145,
+          "usa": 130
+        },
+        "ping": {
+          "asia": 403,
+          "cht": 318,
+          "euro": 167,
+          "usa": 263
+        },
+        "nodes": {
+          "asia": 1259,
+          "euro": 1923,
+          "usa": 498
+        },
+        "underruns": {
+          "usa": "1"
+        }
+      },
+      "gg": {
+        "time": {
+          "bilibili": 4,
+          "china": 252
+        },
+        "ping": {
+          "bilibili": 52,
+          "china": 30
+        },
+        "nodes": {
+          "bilibili": 1257,
+          "china": 4591
+        },
+        "underruns": {
+          "china": "1"
+        }
+      },
+      "pingu": {
+        "cdn": {
+          "ms": 46,
+          "status": 200
+        },
+        "main": {
+          "ms": 127,
+          "status": 200
+        },
+        "api": {
+          "ms": 272,
+          "status": 200
+        },
+        "fox": {
+          "ms": 186,
+          "status": 200
+        }
+      }
+    },
+    "2024-03-12T15:53": {
+      "now": "2024-03-12T15:53",
+      "hsr": {
+        "time": {
+          "asia": 92,
+          "cht": 0,
+          "euro": 34,
+          "usa": 51
+        },
+        "ping": {
+          "asia": 319,
+          "cht": 322,
+          "euro": 65,
+          "usa": 146
+        },
+        "nodes": {
+          "asia": 693,
+          "euro": 2642,
+          "usa": 2734
+        }
+      },
+      "gi": {
+        "time": {
+          "asia": 918,
+          "cht": 0,
+          "euro": 52,
+          "usa": 471
+        },
+        "ping": {
+          "asia": 284,
+          "cht": 318,
+          "euro": 39,
+          "usa": 147
+        },
+        "nodes": {
+          "asia": 1243,
+          "euro": 1953,
+          "usa": 486
+        },
+        "underruns": {
+          "asia": "1"
+        }
+      },
+      "gg": {
+        "time": {
+          "bilibili": 17,
+          "china": 281
+        },
+        "ping": {
+          "bilibili": 58,
+          "china": 32
+        },
+        "nodes": {
+          "bilibili": 1247,
+          "china": 4614
+        },
+        "underruns": {
+          "china": "1"
+        }
+      },
+      "pingu": {
+        "cdn": {
+          "ms": 33,
+          "status": 200
+        },
+        "main": {
+          "ms": 125,
+          "status": 200
+        },
+        "api": {
+          "ms": 262,
+          "status": 200
+        },
+        "fox": {
+          "ms": 306,
+          "status": 200
+        }
+      }
+    },
+    "2024-03-12T15:54": {
+      "now": "2024-03-12T15:54",
+      "hsr": {
+        "time": {
+          "asia": 130,
+          "cht": 0,
+          "euro": 28,
+          "usa": 41
+        },
+        "ping": {
+          "asia": 323,
+          "cht": 322,
+          "euro": 41,
+          "usa": 172
+        },
+        "nodes": {
+          "asia": 672,
+          "euro": 2767,
+          "usa": 2683
+        }
+      },
+      "gi": {
+        "time": {
+          "asia": 882,
+          "cht": 0,
+          "euro": 66,
+          "usa": 170
+        },
+        "ping": {
+          "asia": 443,
+          "cht": 318,
+          "euro": 136,
+          "usa": 229
+        },
+        "nodes": {
+          "asia": 1240,
+          "euro": 1965,
+          "usa": 491
+        },
+        "underruns": {}
+      },
+      "gg": {
+        "time": {
+          "bilibili": 6,
+          "china": 484
+        },
+        "ping": {
+          "bilibili": 61,
+          "china": 15
+        },
+        "nodes": {
+          "bilibili": 1254,
+          "china": 4680
+        },
+        "underruns": {
+          "china": "2"
+        }
+      },
+      "pingu": {
+        "cdn": {
+          "ms": 26,
+          "status": 200
+        },
+        "main": {
+          "ms": 63,
+          "status": 200
+        },
+        "api": {
+          "ms": 294,
+          "status": 200
+        },
+        "fox": {
+          "ms": 170,
+          "status": 200
+        }
+      }
+    },
+    "2024-03-12T15:55": {
+      "now": "2024-03-12T15:55",
+      "hsr": {
+        "time": {
+          "asia": 59,
+          "cht": 0,
+          "euro": 22,
+          "usa": 37
+        },
+        "ping": {
+          "asia": 331,
+          "cht": 322,
+          "euro": 54,
+          "usa": 161
+        },
+        "nodes": {
+          "asia": 692,
+          "euro": 2741,
+          "usa": 2758
+        }
+      },
+      "gi": {
+        "time": {
+          "asia": 1073,
+          "cht": 0,
+          "euro": 90,
+          "usa": 36
+        },
+        "ping": {
+          "asia": 328,
+          "cht": 318,
+          "euro": 42,
+          "usa": 139
+        },
+        "nodes": {
+          "asia": 1237,
+          "euro": 1986,
+          "usa": 496
+        },
+        "underruns": {}
+      },
+      "gg": {
+        "time": {
+          "bilibili": 3,
+          "china": 381
+        },
+        "ping": {
+          "bilibili": 95,
+          "china": 50
+        },
+        "nodes": {
+          "bilibili": 1225,
+          "china": 4739
+        },
+        "underruns": {
+          "china": "1"
+        }
+      },
+      "pingu": {
+        "cdn": {
+          "ms": 37,
+          "status": 200
+        },
+        "main": {
+          "ms": 133,
+          "status": 200
+        },
+        "api": {
+          "ms": 282,
+          "status": 200
+        },
+        "fox": {
+          "ms": 299,
+          "status": 200
+        }
+      }
+    },
+    "2024-03-12T15:56": {
+      "now": "2024-03-12T15:56",
+      "hsr": {
+        "time": {
+          "asia": 104,
+          "cht": 0,
+          "euro": 34,
+          "usa": 36
+        },
+        "ping": {
+          "asia": 318,
+          "cht": 322,
+          "euro": 64,
+          "usa": 128
+        },
+        "nodes": {
+          "asia": 692,
+          "euro": 2652,
+          "usa": 2679
+        }
+      },
+      "gi": {
+        "time": {
+          "asia": 813,
+          "cht": 0,
+          "euro": 66,
+          "usa": 126
+        },
+        "ping": {
+          "asia": 421,
+          "cht": 318,
+          "euro": 103,
+          "usa": 149
+        },
+        "nodes": {
+          "asia": 1207,
+          "euro": 1948,
+          "usa": 496
+        },
+        "underruns": {}
+      },
+      "gg": {
+        "time": {
+          "bilibili": 5,
+          "china": 380
+        },
+        "ping": {
+          "bilibili": 24,
+          "china": 63
+        },
+        "nodes": {
+          "bilibili": 1235,
+          "china": 4701
+        },
+        "underruns": {
+          "china": "2"
+        }
+      },
+      "pingu": {
+        "cdn": {
+          "ms": 28,
+          "status": 200
+        },
+        "main": {
+          "ms": 144,
+          "status": 200
+        },
+        "api": {
+          "ms": 269,
+          "status": 200
+        },
+        "fox": {
+          "ms": 512,
+          "status": 200
+        }
+      }
+    },
+    "2024-03-12T15:57": {
+      "now": "2024-03-12T15:57",
+      "hsr": {
+        "time": {
+          "asia": 100,
+          "cht": 0,
+          "euro": 24,
+          "usa": 48
+        },
+        "ping": {
+          "asia": 346,
+          "cht": 322,
+          "euro": 59,
+          "usa": 128
+        },
+        "nodes": {
+          "asia": 680,
+          "euro": 2752,
+          "usa": 2726
+        }
+      },
+      "gi": {
+        "time": {
+          "asia": 1370,
+          "cht": 0,
+          "euro": 79,
+          "usa": 253
+        },
+        "ping": {
+          "asia": 341,
+          "cht": 318,
+          "euro": 59,
+          "usa": 189
+        },
+        "nodes": {
+          "asia": 1200,
+          "euro": 1977,
+          "usa": 492
+        },
+        "underruns": {
+          "asia": "3",
+          "usa": "1"
+        }
+      },
+      "gg": {
+        "time": {
+          "bilibili": 19,
+          "china": 375
+        },
+        "ping": {
+          "bilibili": 57,
+          "china": 41
+        },
+        "nodes": {
+          "bilibili": 1237,
+          "china": 4671
+        },
+        "underruns": {
+          "china": "1"
+        }
+      },
+      "pingu": {
+        "cdn": {
+          "ms": 34,
+          "status": 200
+        },
+        "main": {
+          "ms": 169,
+          "status": 200
+        },
+        "api": {
+          "ms": 241,
+          "status": 200
+        },
+        "fox": {
+          "ms": 249,
+          "status": 200
+        }
+      }
+    },
+    "2024-03-12T15:58": {
+      "now": "2024-03-12T15:58",
+      "hsr": {
+        "time": {
+          "asia": 55,
+          "cht": 0,
+          "euro": 10,
+          "usa": 44
+        },
+        "ping": {
+          "asia": 332,
+          "cht": 322,
+          "euro": 72,
+          "usa": 142
+        },
+        "nodes": {
+          "asia": 680,
+          "euro": 2759,
+          "usa": 2772
+        }
+      },
+      "gi": {
+        "time": {
+          "asia": 1355,
+          "cht": 0,
+          "euro": 37,
+          "usa": 114
+        },
+        "ping": {
+          "asia": 328,
+          "cht": 318,
+          "euro": 59,
+          "usa": 190
+        },
+        "nodes": {
+          "asia": 1215,
+          "euro": 1963,
+          "usa": 502
+        },
+        "underruns": {
+          "asia": "3"
+        }
+      },
+      "gg": {
+        "time": {
+          "bilibili": 11,
+          "china": 181
+        },
+        "ping": {
+          "bilibili": 39,
+          "china": 52
+        },
+        "nodes": {
+          "bilibili": 1203,
+          "china": 4750
+        },
+        "underruns": {}
+      },
+      "pingu": {
+        "cdn": {
+          "ms": 38,
+          "status": 200
+        },
+        "main": {
+          "ms": 131,
+          "status": 200
+        },
+        "api": {
+          "ms": 261,
+          "status": 200
+        },
+        "fox": {
+          "ms": 243,
+          "status": 200
+        }
+      }
+    },
+    "2024-03-12T15:59": {
+      "now": "2024-03-12T15:59",
+      "hsr": {
+        "time": {
+          "asia": 131,
+          "cht": 0,
+          "euro": 31,
+          "usa": 46
+        },
+        "ping": {
+          "asia": 326,
+          "cht": 322,
+          "euro": 46,
+          "usa": 170
+        },
+        "nodes": {
+          "asia": 674,
+          "euro": 2668,
+          "usa": 2768
+        }
+      },
+      "gi": {
+        "time": {
+          "asia": 789,
+          "cht": 0,
+          "euro": 95,
+          "usa": 108
+        },
+        "ping": {
+          "asia": 326,
+          "cht": 318,
+          "euro": 48,
+          "usa": 161
+        },
+        "nodes": {
+          "asia": 1219,
+          "euro": 1947,
+          "usa": 489
+        },
+        "underruns": {}
+      },
+      "gg": {
+        "time": {
+          "bilibili": 8,
+          "china": 266
+        },
+        "ping": {
+          "bilibili": 26,
+          "china": 63
+        },
+        "nodes": {
+          "bilibili": 1206,
+          "china": 4696
+        },
+        "underruns": {
+          "china": "1"
+        }
+      },
+      "pingu": {
+        "cdn": {
+          "ms": 34,
+          "status": 200
+        },
+        "main": {
+          "ms": 129,
+          "status": 200
+        },
+        "api": {
+          "ms": 349,
+          "status": 200
+        },
+        "fox": {
+          "ms": 282,
+          "status": 200
+        }
+      }
+    },
+    "2024-03-12T16:00": {
+      "now": "2024-03-12T16:00",
+      "hsr": {
+        "time": {
+          "asia": 123,
+          "cht": 0,
+          "euro": 9,
+          "usa": 36
+        },
+        "ping": {
+          "asia": 321,
+          "cht": 322,
+          "euro": 68,
+          "usa": 206
+        },
+        "nodes": {
+          "asia": 674,
+          "euro": 2676,
+          "usa": 2720
+        }
+      },
+      "gi": {
+        "time": {
+          "asia": 836,
+          "cht": 0,
+          "euro": 104,
+          "usa": 384
+        },
+        "ping": {
+          "asia": 345,
+          "cht": 318,
+          "euro": 67,
+          "usa": 132
+        },
+        "nodes": {
+          "asia": 1231,
+          "euro": 2015,
+          "usa": 492
+        },
+        "underruns": {
+          "usa": "2"
+        }
+      },
+      "gg": {
+        "time": {
+          "bilibili": 12,
+          "china": 297
+        },
+        "ping": {
+          "bilibili": 59,
+          "china": 61
+        },
+        "nodes": {
+          "bilibili": 1208,
+          "china": 4606
+        },
+        "underruns": {}
+      },
+      "pingu": {
+        "cdn": {
+          "ms": 26,
+          "status": 200
+        },
+        "main": {
+          "ms": 73,
+          "status": 200
+        },
+        "api": {
+          "ms": 239,
+          "status": 200
+        },
+        "fox": {
+          "ms": 272,
+          "status": 200
+        }
+      }
+    },
+    "2024-03-12T16:01": {
+      "now": "2024-03-12T16:01",
+      "hsr": {
+        "time": {
+          "asia": 84,
+          "cht": 0,
+          "euro": 19,
+          "usa": 49
+        },
+        "ping": {
+          "asia": 393,
+          "cht": 322,
+          "euro": 54,
+          "usa": 130
+        },
+        "nodes": {
+          "asia": 681,
+          "euro": 2697,
+          "usa": 2763
+        }
+      },
+      "gi": {
+        "time": {
+          "asia": 1290,
+          "cht": 0,
+          "euro": 207,
+          "usa": 465
+        },
+        "ping": {
+          "asia": 322,
+          "cht": 318,
+          "euro": 43,
+          "usa": 164
+        },
+        "nodes": {
+          "asia": 1202,
+          "euro": 1973,
+          "usa": 491
+        },
+        "underruns": {
+          "asia": "4",
+          "usa": "1"
+        }
+      },
+      "gg": {
+        "time": {
+          "bilibili": 115,
+          "china": 175
+        },
+        "ping": {
+          "bilibili": 40,
+          "china": 49
+        },
+        "nodes": {
+          "bilibili": 1228,
+          "china": 4757
+        },
+        "underruns": {}
+      },
+      "pingu": {
+        "cdn": {
+          "ms": 29,
+          "status": 200
+        },
+        "main": {
+          "ms": 138,
+          "status": 200
+        },
+        "api": {
+          "ms": 290,
+          "status": 200
+        },
+        "fox": {
+          "ms": 181,
+          "status": 200
+        }
+      }
+    },
+    "2024-03-12T16:02": {
+      "now": "2024-03-12T16:02",
+      "hsr": {
+        "time": {
+          "asia": 115,
+          "cht": 0,
+          "euro": 18,
+          "usa": 35
+        },
+        "ping": {
+          "asia": 336,
+          "cht": 322,
+          "euro": 56,
+          "usa": 167
+        },
+        "nodes": {
+          "asia": 680,
+          "euro": 2709,
+          "usa": 2752
+        }
+      },
+      "gi": {
+        "time": {
+          "asia": 1166,
+          "cht": 0,
+          "euro": 87,
+          "usa": 113
+        },
+        "ping": {
+          "asia": 306,
+          "cht": 318,
+          "euro": 36,
+          "usa": 243
+        },
+        "nodes": {
+          "asia": 1208,
+          "euro": 1958,
+          "usa": 486
+        },
+        "underruns": {
+          "asia": "1"
+        }
+      },
+      "gg": {
+        "time": {
+          "bilibili": 13,
+          "china": 261
+        },
+        "ping": {
+          "bilibili": 27,
+          "china": 33
+        },
+        "nodes": {
+          "bilibili": 1227,
+          "china": 4784
+        },
+        "underruns": {}
+      },
+      "pingu": {
+        "cdn": {
+          "ms": 34,
+          "status": 200
+        },
+        "main": {
+          "ms": 135,
+          "status": 200
+        },
+        "api": {
+          "ms": 256,
+          "status": 200
+        },
+        "fox": {
+          "ms": 1047,
+          "status": 200
+        }
+      }
+    },
+    "2024-03-12T16:03": {
+      "now": "2024-03-12T16:03",
+      "hsr": {
+        "time": {
+          "asia": 57,
+          "cht": 0,
+          "euro": 27,
+          "usa": 52
+        },
+        "ping": {
+          "asia": 330,
+          "cht": 322,
+          "euro": 75,
+          "usa": 144
+        },
+        "nodes": {
+          "asia": 672,
+          "euro": 2674,
+          "usa": 2731
+        }
+      },
+      "gi": {
+        "time": {
+          "asia": 908,
+          "cht": 0,
+          "euro": 104,
+          "usa": 282
+        },
+        "ping": {
+          "asia": 334,
+          "cht": 318,
+          "euro": 65,
+          "usa": 164
+        },
+        "nodes": {
+          "asia": 1206,
+          "euro": 1978,
+          "usa": 489
+        },
+        "underruns": {
+          "usa": "1"
+        }
+      },
+      "gg": {
+        "time": {
+          "bilibili": 10,
+          "china": 155
+        },
+        "ping": {
+          "bilibili": 43,
+          "china": 34
+        },
+        "nodes": {
+          "bilibili": 1228,
+          "china": 4649
+        },
+        "underruns": {}
+      },
+      "pingu": {
+        "cdn": {
+          "ms": 28,
+          "status": 200
+        },
+        "main": {
+          "ms": 81,
+          "status": 200
+        },
+        "api": {
+          "ms": 228,
+          "status": 200
+        },
+        "fox": {
+          "ms": 183,
+          "status": 200
+        }
+      }
+    },
+    "2024-03-12T16:04": {
+      "now": "2024-03-12T16:04",
+      "hsr": {
+        "time": {
+          "asia": 76,
+          "cht": 0,
+          "euro": 11,
+          "usa": 53
+        },
+        "ping": {
+          "asia": 323,
+          "cht": 322,
+          "euro": 46,
+          "usa": 149
+        },
+        "nodes": {
+          "asia": 669,
+          "euro": 2723,
+          "usa": 2742
+        }
+      },
+      "gi": {
+        "time": {
+          "asia": 751,
+          "cht": 0,
+          "euro": 74,
+          "usa": 363
+        },
+        "ping": {
+          "asia": 310,
+          "cht": 318,
+          "euro": 30,
+          "usa": 132
+        },
+        "nodes": {
+          "asia": 1254,
+          "euro": 1934,
+          "usa": 481
+        },
+        "underruns": {
+          "usa": "1"
+        }
+      },
+      "gg": {
+        "time": {
+          "bilibili": 12,
+          "china": 504
+        },
+        "ping": {
+          "bilibili": 53,
+          "china": 30
+        },
+        "nodes": {
+          "bilibili": 1209,
+          "china": 4717
+        },
+        "underruns": {
+          "china": "4"
+        }
+      },
+      "pingu": {
+        "cdn": {
+          "ms": 55,
+          "status": 200
+        },
+        "main": {
+          "ms": 124,
+          "status": 200
+        },
+        "api": {
+          "ms": 227,
+          "status": 200
+        },
+        "fox": {
+          "ms": 466,
+          "status": 200
+        }
+      }
+    },
+    "2024-03-12T16:05": {
+      "now": "2024-03-12T16:05",
+      "hsr": {
+        "time": {
+          "asia": 140,
+          "cht": 0,
+          "euro": 19,
+          "usa": 30
+        },
+        "ping": {
+          "asia": 330,
+          "cht": 322,
+          "euro": 47,
+          "usa": 180
+        },
+        "nodes": {
+          "asia": 665,
+          "euro": 2744,
+          "usa": 2751
+        }
+      },
+      "gi": {
+        "time": {
+          "asia": 878,
+          "cht": 0,
+          "euro": 86,
+          "usa": 94
+        },
+        "ping": {
+          "asia": 345,
+          "cht": 318,
+          "euro": 227,
+          "usa": 136
+        },
+        "nodes": {
+          "asia": 1253,
+          "euro": 1923,
+          "usa": 495
+        },
+        "underruns": {}
+      },
+      "gg": {
+        "time": {
+          "bilibili": 8,
+          "china": 1555
+        },
+        "ping": {
+          "bilibili": 41,
+          "china": 58
+        },
+        "nodes": {
+          "bilibili": 1226,
+          "china": 4656
+        },
+        "underruns": {
+          "china": "10"
+        }
+      },
+      "pingu": {
+        "cdn": {
+          "ms": 34,
+          "status": 200
+        },
+        "main": {
+          "ms": 130,
+          "status": 200
+        },
+        "api": {
+          "ms": 281,
+          "status": 200
+        },
+        "fox": {
+          "ms": 369,
+          "status": 200
+        }
+      }
+    },
+    "2024-03-12T16:06": {
+      "now": "2024-03-12T16:06",
+      "hsr": {
+        "time": {
+          "asia": 72,
+          "cht": 0,
+          "euro": 34,
+          "usa": 45
+        },
+        "ping": {
+          "asia": 327,
+          "cht": 322,
+          "euro": 42,
+          "usa": 149
+        },
+        "nodes": {
+          "asia": 670,
+          "euro": 2703,
+          "usa": 2643
+        }
+      },
+      "gi": {
+        "time": {
+          "asia": 728,
+          "cht": 0,
+          "euro": 74,
+          "usa": 124
+        },
+        "ping": {
+          "asia": 287,
+          "cht": 318,
+          "euro": 38,
+          "usa": 147
+        },
+        "nodes": {
+          "asia": 1214,
+          "euro": 1954,
+          "usa": 485
+        },
+        "underruns": {
+          "asia": "1"
+        }
+      },
+      "gg": {
+        "ping": {
+          "bilibili": 51,
+          "china": 37
+        },
+        "nodes": {
+          "bilibili": 1236,
+          "china": 4691
+        },
+        "underruns": {}
+      },
+      "pingu": {
+        "cdn": {
+          "ms": 27,
+          "status": 200
+        },
+        "main": {
+          "ms": 140,
+          "status": 200
+        },
+        "api": {
+          "ms": 286,
+          "status": 200
+        },
+        "fox": {
+          "ms": 279,
+          "status": 200
+        }
+      }
+    },
+    "2024-03-12T16:07": {
+      "now": "2024-03-12T16:07",
+      "hsr": {
+        "time": {
+          "asia": 94,
+          "cht": 0,
+          "euro": 31,
+          "usa": 53
+        },
+        "ping": {
+          "asia": 335,
+          "cht": 322,
+          "euro": 67,
+          "usa": 151
+        },
+        "nodes": {
+          "asia": 664,
+          "euro": 2669,
+          "usa": 2727
+        }
+      },
+      "gi": {
+        "time": {
+          "asia": 1311,
+          "cht": 0,
+          "euro": 89,
+          "usa": 96
+        },
+        "ping": {
+          "asia": 313,
+          "cht": 318,
+          "euro": 47,
+          "usa": 181
+        },
+        "nodes": {
+          "asia": 1242,
+          "euro": 1991,
+          "usa": 502
+        },
+        "underruns": {
+          "asia": "1"
+        }
+      },
+      "gg": {
+        "time": {
+          "bilibili": 3,
+          "china": 242
+        },
+        "ping": {
+          "bilibili": 48,
+          "china": 51
+        },
+        "nodes": {
+          "bilibili": 1223,
+          "china": 4582
+        },
+        "underruns": {
+          "china": "1"
+        }
+      },
+      "pingu": {
+        "cdn": {
+          "ms": 32,
+          "status": 200
+        },
+        "main": {
+          "ms": 69,
+          "status": 200
+        },
+        "api": {
+          "ms": 275,
+          "status": 200
+        },
+        "fox": {
+          "ms": 1079,
+          "status": 200
+        }
+      }
+    },
+    "2024-03-12T16:08": {
+      "now": "2024-03-12T16:08",
+      "hsr": {
+        "time": {
+          "asia": 71,
+          "cht": 0,
+          "euro": 27,
+          "usa": 48
+        },
+        "ping": {
+          "asia": 324,
+          "cht": 322,
+          "euro": 80,
+          "usa": 164
+        },
+        "nodes": {
+          "asia": 681,
+          "euro": 2655,
+          "usa": 2713
+        }
+      },
+      "gi": {
+        "time": {
+          "asia": 840,
+          "cht": 0,
+          "euro": 85,
+          "usa": 128
+        },
+        "ping": {
+          "asia": 303,
+          "cht": 318,
+          "euro": 55,
+          "usa": 134
+        },
+        "nodes": {
+          "asia": 1230,
+          "euro": 1938,
+          "usa": 496
+        },
+        "underruns": {}
+      },
+      "gg": {
+        "time": {
+          "bilibili": 15,
+          "china": 181
+        },
+        "ping": {
+          "bilibili": 38,
+          "china": 52
+        },
+        "nodes": {
+          "bilibili": 1218,
+          "china": 4574
+        },
+        "underruns": {}
+      },
+      "pingu": {
+        "cdn": {
+          "ms": 40,
+          "status": 200
+        },
+        "main": {
+          "ms": 158,
+          "status": 200
+        },
+        "api": {
+          "ms": 317,
+          "status": 200
+        },
+        "fox": {
+          "ms": 285,
+          "status": 200
+        }
+      }
+    },
+    "2024-03-12T16:09": {
+      "now": "2024-03-12T16:09",
+      "hsr": {
+        "time": {
+          "asia": 90,
+          "cht": 0,
+          "euro": 35,
+          "usa": 61
+        },
+        "ping": {
+          "asia": 309,
+          "cht": 322,
+          "euro": 58,
+          "usa": 148
+        },
+        "nodes": {
+          "asia": 673,
+          "euro": 2645,
+          "usa": 2690
+        }
+      },
+      "gi": {
+        "time": {
+          "asia": 825,
+          "cht": 0,
+          "euro": 107,
+          "usa": 166
+        },
+        "ping": {
+          "asia": 382,
+          "cht": 318,
+          "euro": 199,
+          "usa": 156
+        },
+        "nodes": {
+          "asia": 1227,
+          "euro": 1986,
+          "usa": 492
+        },
+        "underruns": {
+          "usa": "3"
+        }
+      },
+      "gg": {
+        "time": {
+          "bilibili": 8,
+          "china": 353
+        },
+        "ping": {
+          "bilibili": 54,
+          "china": 57
+        },
+        "nodes": {
+          "bilibili": 1205,
+          "china": 4786
+        },
+        "underruns": {}
+      },
+      "pingu": {
+        "cdn": {
+          "ms": 30,
+          "status": 200
+        },
+        "main": {
+          "ms": 150,
+          "status": 200
+        },
+        "api": {
+          "ms": 375,
+          "status": 200
+        },
+        "fox": {
+          "ms": 280,
+          "status": 200
+        }
+      }
+    },
+    "2024-03-12T16:10": {
+      "now": "2024-03-12T16:10",
+      "hsr": {
+        "time": {
+          "asia": 112,
+          "cht": 0,
+          "euro": 42,
+          "usa": 38
+        },
+        "ping": {
+          "asia": 345,
+          "cht": 322,
+          "euro": 40,
+          "usa": 217
+        },
+        "nodes": {
+          "asia": 679,
+          "euro": 2718,
+          "usa": 2658
+        }
+      },
+      "gi": {
+        "time": {
+          "asia": 1016,
+          "cht": 0,
+          "euro": 91,
+          "usa": 421
+        },
+        "ping": {
+          "asia": 319,
+          "cht": 318,
+          "euro": 56,
+          "usa": 157
+        },
+        "nodes": {
+          "asia": 1213,
+          "euro": 1933,
+          "usa": 484
+        },
+        "underruns": {}
+      },
+      "gg": {
+        "time": {
+          "bilibili": 118,
+          "china": 297
+        },
+        "ping": {
+          "bilibili": 43,
+          "china": 37
+        },
+        "nodes": {
+          "bilibili": 1229,
+          "china": 4767
+        },
+        "underruns": {
+          "china": "1"
+        }
+      },
+      "pingu": {
+        "cdn": {
+          "ms": 99,
+          "status": 200
+        },
+        "main": {
+          "ms": 167,
+          "status": 200
+        },
+        "api": {
+          "ms": 271,
+          "status": 200
+        },
+        "fox": {
+          "ms": 396,
+          "status": 200
+        }
+      }
+    },
+    "2024-03-12T16:11": {
+      "now": "2024-03-12T16:11",
+      "hsr": {
+        "time": {
+          "asia": 75,
+          "cht": 0,
+          "euro": 33,
+          "usa": 32
+        },
+        "ping": {
+          "asia": 349,
+          "cht": 322,
+          "euro": 64,
+          "usa": 142
+        },
+        "nodes": {
+          "asia": 692,
+          "euro": 2720,
+          "usa": 2677
+        }
+      },
+      "gi": {
+        "time": {
+          "asia": 767,
+          "cht": 0,
+          "euro": 417,
+          "usa": 122
+        },
+        "ping": {
+          "asia": 334,
+          "cht": 318,
+          "euro": 58,
+          "usa": 159
+        },
+        "nodes": {
+          "asia": 1216,
+          "euro": 1933,
+          "usa": 503
+        },
+        "underruns": {
+          "asia": "1",
+          "usa": "2"
+        }
+      },
+      "gg": {
+        "time": {
+          "bilibili": 14,
+          "china": 259
+        },
+        "ping": {
+          "bilibili": 44,
+          "china": 42
+        },
+        "nodes": {
+          "bilibili": 1222,
+          "china": 4589
+        },
+        "underruns": {}
+      },
+      "pingu": {
+        "cdn": {
+          "ms": 29,
+          "status": 200
+        },
+        "main": {
+          "ms": 145,
+          "status": 200
+        },
+        "api": {
+          "ms": 266,
+          "status": 200
+        },
+        "fox": {
+          "ms": 209,
+          "status": 200
+        }
+      }
+    },
+    "2024-03-12T16:12": {
+      "now": "2024-03-12T16:12",
+      "hsr": {
+        "time": {
+          "asia": 66,
+          "cht": 0,
+          "euro": 29,
+          "usa": 57
+        },
+        "ping": {
+          "asia": 311,
+          "cht": 322,
+          "euro": 64,
+          "usa": 151
+        },
+        "nodes": {
+          "asia": 671,
+          "euro": 2683,
+          "usa": 2664
+        }
+      },
+      "gi": {
+        "time": {
+          "asia": 868,
+          "cht": 0,
+          "euro": 80,
+          "usa": 194
+        },
+        "ping": {
+          "asia": 318,
+          "cht": 318,
+          "euro": 41,
+          "usa": 132
+        },
+        "nodes": {
+          "asia": 1230,
+          "euro": 1940,
+          "usa": 498
+        },
+        "underruns": {
+          "usa": "2"
+        }
+      },
+      "gg": {
+        "time": {
+          "bilibili": 14,
+          "china": 1004
+        },
+        "ping": {
+          "bilibili": 55,
+          "china": 45
+        },
+        "nodes": {
+          "bilibili": 1231,
+          "china": 4697
+        },
+        "underruns": {
+          "china": "8"
+        }
+      },
+      "pingu": {
+        "cdn": {
+          "ms": 27,
+          "status": 200
+        },
+        "main": {
+          "ms": 141,
+          "status": 200
+        },
+        "api": {
+          "ms": 245,
+          "status": 200
+        },
+        "fox": {
+          "ms": 311,
+          "status": 200
+        }
+      }
+    },
+    "2024-03-12T16:13": {
+      "now": "2024-03-12T16:13",
+      "hsr": {
+        "time": {
+          "asia": 96,
+          "cht": 0,
+          "euro": 35,
+          "usa": 30
+        },
+        "ping": {
+          "asia": 371,
+          "cht": 322,
+          "euro": 87,
+          "usa": 171
+        },
+        "nodes": {
+          "asia": 669,
+          "euro": 2641,
+          "usa": 2772
+        }
+      },
+      "gi": {
+        "time": {
+          "asia": 1051,
+          "cht": 0,
+          "euro": 150,
+          "usa": 151
+        },
+        "ping": {
+          "asia": 352,
+          "cht": 318,
+          "euro": 50,
+          "usa": 165
+        },
+        "nodes": {
+          "asia": 1248,
+          "euro": 1930,
+          "usa": 481
+        },
+        "underruns": {
+          "asia": "1"
+        }
+      },
+      "gg": {
+        "time": {
+          "bilibili": 7,
+          "china": 152
+        },
+        "ping": {
+          "bilibili": 90,
+          "china": 26
+        },
+        "nodes": {
+          "bilibili": 1243,
+          "china": 4659
+        },
+        "underruns": {}
+      },
+      "pingu": {
+        "cdn": {
+          "ms": 28,
+          "status": 200
+        },
+        "main": {
+          "ms": 183,
+          "status": 200
+        },
+        "api": {
+          "ms": 295,
+          "status": 200
+        },
+        "fox": {
+          "ms": 189,
+          "status": 200
+        }
+      }
+    },
+    "2024-03-12T16:14": {
+      "now": "2024-03-12T16:14",
+      "hsr": {
+        "time": {
+          "asia": 70,
+          "cht": 0,
+          "euro": 35,
+          "usa": 33
+        },
+        "ping": {
+          "asia": 316,
+          "cht": 322,
+          "euro": 71,
+          "usa": 146
+        },
+        "nodes": {
+          "asia": 678,
+          "euro": 2685,
+          "usa": 2758
+        }
+      },
+      "gi": {
+        "time": {
+          "asia": 874,
+          "cht": 0,
+          "euro": 96,
+          "usa": 55
+        },
+        "ping": {
+          "asia": 327,
+          "cht": 318,
+          "euro": 75,
+          "usa": 185
+        },
+        "nodes": {
+          "asia": 1239,
+          "euro": 1988,
+          "usa": 502
+        },
+        "underruns": {}
+      },
+      "gg": {
+        "time": {
+          "bilibili": 2,
+          "china": 139
+        },
+        "ping": {
+          "bilibili": 60,
+          "china": 23
+        },
+        "nodes": {
+          "bilibili": 1227,
+          "china": 4607
+        },
+        "underruns": {}
+      },
+      "pingu": {
+        "cdn": {
+          "ms": 29,
+          "status": 200
+        },
+        "main": {
+          "ms": 154,
+          "status": 200
+        },
+        "api": {
+          "ms": 265,
+          "status": 200
+        },
+        "fox": {
+          "ms": 406,
+          "status": 200
+        }
+      }
+    },
+    "2024-03-12T16:15": {
+      "now": "2024-03-12T16:15",
+      "hsr": {
+        "time": {
+          "asia": 135,
+          "cht": 0,
+          "euro": 32,
+          "usa": 44
+        },
+        "ping": {
+          "asia": 324,
+          "cht": 322,
+          "euro": 76,
+          "usa": 157
+        },
+        "nodes": {
+          "asia": 663,
+          "euro": 2671,
+          "usa": 2732
+        }
+      },
+      "gi": {
+        "time": {
+          "asia": 826,
+          "cht": 0,
+          "euro": 119,
+          "usa": 389
+        },
+        "ping": {
+          "asia": 306,
+          "cht": 318,
+          "euro": 51,
+          "usa": 129
+        },
+        "nodes": {
+          "asia": 1203,
+          "euro": 2005,
+          "usa": 482
+        },
+        "underruns": {
+          "usa": "2"
+        }
+      },
+      "gg": {
+        "time": {
+          "bilibili": 6,
+          "china": 381
+        },
+        "ping": {
+          "bilibili": 54,
+          "china": 24
+        },
+        "nodes": {
+          "bilibili": 1244,
+          "china": 4623
+        },
+        "underruns": {
+          "china": "1"
+        }
+      },
+      "pingu": {
+        "cdn": {
+          "ms": 25,
+          "status": 200
+        },
+        "main": {
+          "ms": 129,
+          "status": 200
+        },
+        "api": {
+          "ms": 300,
+          "status": 200
+        },
+        "fox": {
+          "ms": 311,
+          "status": 200
+        }
+      }
+    },
+    "2024-03-12T16:16": {
+      "now": "2024-03-12T16:16",
+      "hsr": {
+        "time": {
+          "asia": 53,
+          "cht": 0,
+          "euro": 40,
+          "usa": 38
+        },
+        "ping": {
+          "asia": 350,
+          "cht": 322,
+          "euro": 78,
+          "usa": 147
+        },
+        "nodes": {
+          "asia": 674,
+          "euro": 2753,
+          "usa": 2648
+        }
+      },
+      "gi": {
+        "time": {
+          "asia": 1032,
+          "cht": 0,
+          "euro": 125,
+          "usa": 403
+        },
+        "ping": {
+          "asia": 315,
+          "cht": 318,
+          "euro": 56,
+          "usa": 142
+        },
+        "nodes": {
+          "asia": 1214,
+          "euro": 1954,
+          "usa": 488
+        },
+        "underruns": {
+          "usa": "2"
+        }
+      },
+      "gg": {
+        "time": {
+          "bilibili": 12,
+          "china": 313
+        },
+        "ping": {
+          "bilibili": 42,
+          "china": 52
+        },
+        "nodes": {
+          "bilibili": 1239,
+          "china": 4742
+        },
+        "underruns": {
+          "china": "1"
+        }
+      },
+      "pingu": {
+        "cdn": {
+          "ms": 44,
+          "status": 200
+        },
+        "main": {
+          "ms": 151,
+          "status": 200
+        },
+        "api": {
+          "ms": 300,
+          "status": 200
+        },
+        "fox": {
+          "ms": 334,
+          "status": 200
+        }
+      }
+    },
+    "2024-03-12T16:17": {
+      "now": "2024-03-12T16:17",
+      "hsr": {
+        "time": {
+          "asia": 89,
+          "cht": 0,
+          "euro": 39,
+          "usa": 58
+        },
+        "ping": {
+          "asia": 314,
+          "cht": 322,
+          "euro": 60,
+          "usa": 142
+        },
+        "nodes": {
+          "asia": 682,
+          "euro": 2762,
+          "usa": 2659
+        }
+      },
+      "gi": {
+        "time": {
+          "asia": 709,
+          "cht": 0,
+          "euro": 146,
+          "usa": 144
+        },
+        "ping": {
+          "asia": 308,
+          "cht": 318,
+          "euro": 77,
+          "usa": 164
+        },
+        "nodes": {
+          "asia": 1208,
+          "euro": 2000,
+          "usa": 500
+        },
+        "underruns": {
+          "usa": "1"
+        }
+      },
+      "gg": {
+        "time": {
+          "bilibili": 10,
+          "china": 451
+        },
+        "ping": {
+          "bilibili": 42,
+          "china": 26
+        },
+        "nodes": {
+          "bilibili": 1257,
+          "china": 4643
+        },
+        "underruns": {
+          "china": "4"
+        }
+      },
+      "pingu": {
+        "cdn": {
+          "ms": 24,
+          "status": 200
+        },
+        "main": {
+          "ms": 125,
+          "status": 200
+        },
+        "api": {
+          "ms": 248,
+          "status": 200
+        },
+        "fox": {
+          "ms": 180,
+          "status": 200
+        }
+      }
+    },
+    "2024-03-12T16:18": {
+      "now": "2024-03-12T16:18",
+      "hsr": {
+        "time": {
+          "asia": 148,
+          "cht": 0,
+          "euro": 43,
+          "usa": 50
+        },
+        "ping": {
+          "asia": 327,
+          "cht": 322,
+          "euro": 50,
+          "usa": 152
+        },
+        "nodes": {
+          "asia": 674,
+          "euro": 2642,
+          "usa": 2711
+        }
+      },
+      "gi": {
+        "time": {
+          "asia": 947,
+          "cht": 0,
+          "euro": 98,
+          "usa": 260
+        },
+        "ping": {
+          "asia": 323,
+          "cht": 318,
+          "euro": 77,
+          "usa": 133
+        },
+        "nodes": {
+          "asia": 1239,
+          "euro": 1981,
+          "usa": 495
+        },
+        "underruns": {
+          "asia": "1",
+          "usa": "1"
+        }
+      },
+      "gg": {
+        "time": {
+          "bilibili": 9,
+          "china": 270
+        },
+        "ping": {
+          "bilibili": 24,
+          "china": 24
+        },
+        "nodes": {
+          "bilibili": 1246,
+          "china": 4583
+        },
+        "underruns": {}
+      },
+      "pingu": {
+        "cdn": {
+          "ms": 33,
+          "status": 200
+        },
+        "main": {
+          "ms": 135,
+          "status": 200
+        },
+        "api": {
+          "ms": 230,
+          "status": 200
+        },
+        "fox": {
+          "ms": 282,
+          "status": 200
+        }
+      }
+    },
+    "2024-03-12T16:19": {
+      "now": "2024-03-12T16:19",
+      "hsr": {
+        "time": {
+          "asia": 111,
+          "cht": 0,
+          "euro": 37,
+          "usa": 35
+        },
+        "ping": {
+          "asia": 341,
+          "cht": 322,
+          "euro": 86,
+          "usa": 167
+        },
+        "nodes": {
+          "asia": 678,
+          "euro": 2726,
+          "usa": 2689
+        }
+      },
+      "gi": {
+        "time": {
+          "asia": 962,
+          "cht": 0,
+          "euro": 114,
+          "usa": 184
+        },
+        "ping": {
+          "asia": 338,
+          "cht": 318,
+          "euro": 67,
+          "usa": 162
+        },
+        "nodes": {
+          "asia": 1252,
+          "euro": 2010,
+          "usa": 485
+        },
+        "underruns": {
+          "usa": "1"
+        }
+      },
+      "gg": {
+        "time": {
+          "bilibili": 6,
+          "china": 380
+        },
+        "ping": {
+          "bilibili": 48,
+          "china": 55
+        },
+        "nodes": {
+          "bilibili": 1214,
+          "china": 4702
+        },
+        "underruns": {
+          "china": "2"
+        }
+      },
+      "pingu": {
+        "cdn": {
+          "ms": 31,
+          "status": 200
+        },
+        "main": {
+          "ms": 138,
+          "status": 200
+        },
+        "api": {
+          "ms": 257,
+          "status": 200
+        },
+        "fox": {
+          "ms": 269,
+          "status": 200
+        }
+      }
+    },
+    "2024-03-12T16:20": {
+      "now": "2024-03-12T16:20",
+      "hsr": {
+        "time": {
+          "asia": 98,
+          "cht": 0,
+          "euro": 39,
+          "usa": 39
+        },
+        "ping": {
+          "asia": 341,
+          "cht": 322,
+          "euro": 111,
+          "usa": 152
+        },
+        "nodes": {
+          "asia": 669,
+          "euro": 2740,
+          "usa": 2641
+        }
+      },
+      "gi": {
+        "time": {
+          "asia": 859,
+          "cht": 0,
+          "euro": 132,
+          "usa": 344
+        },
+        "ping": {
+          "asia": 348,
+          "cht": 318,
+          "euro": 72,
+          "usa": 142
+        },
+        "nodes": {
+          "asia": 1207,
+          "euro": 1945,
+          "usa": 493
+        },
+        "underruns": {
+          "usa": "2"
+        }
+      },
+      "gg": {
+        "time": {
+          "bilibili": 122,
+          "china": 355
+        },
+        "ping": {
+          "bilibili": 44,
+          "china": 53
+        },
+        "nodes": {
+          "bilibili": 1229,
+          "china": 4733
+        },
+        "underruns": {
+          "china": "1"
+        }
+      },
+      "pingu": {
+        "cdn": {
+          "ms": 31,
+          "status": 200
+        },
+        "main": {
+          "ms": 136,
+          "status": 200
+        },
+        "api": {
+          "ms": 277,
+          "status": 200
+        },
+        "fox": {
+          "ms": 388,
+          "status": 200
+        }
+      }
+    },
+    "2024-03-12T16:21": {
+      "now": "2024-03-12T16:21",
+      "hsr": {
+        "time": {
+          "asia": 96,
+          "cht": 0,
+          "euro": 19,
+          "usa": 52
+        },
+        "ping": {
+          "asia": 334,
+          "cht": 322,
+          "euro": 55,
+          "usa": 166
+        },
+        "nodes": {
+          "asia": 677,
+          "euro": 2677,
+          "usa": 2667
+        }
+      },
+      "gi": {
+        "time": {
+          "asia": 1166,
+          "cht": 0,
+          "euro": 199,
+          "usa": 577
+        },
+        "ping": {
+          "asia": 344,
+          "cht": 318,
+          "euro": 73,
+          "usa": 141
+        },
+        "nodes": {
+          "asia": 1218,
+          "euro": 1933,
+          "usa": 499
+        },
+        "underruns": {
+          "asia": "3",
+          "usa": "3"
+        }
+      },
+      "gg": {
+        "time": {
+          "bilibili": 9,
+          "china": 682
+        },
+        "ping": {
+          "bilibili": 25,
+          "china": 41
+        },
+        "nodes": {
+          "bilibili": 1232,
+          "china": 4646
+        },
+        "underruns": {
+          "china": "3"
+        }
+      },
+      "pingu": {
+        "cdn": {
+          "ms": 30,
+          "status": 200
+        },
+        "main": {
+          "ms": 160,
+          "status": 200
+        },
+        "api": {
+          "ms": 254,
+          "status": 200
+        },
+        "fox": {
+          "ms": 311,
+          "status": 200
+        }
+      }
+    },
+    "2024-03-12T16:22": {
+      "now": "2024-03-12T16:22",
+      "hsr": {
+        "time": {
+          "asia": 153,
+          "cht": 0,
+          "euro": 19,
+          "usa": 25
+        },
+        "ping": {
+          "asia": 313,
+          "cht": 322,
+          "euro": 72,
+          "usa": 158
+        },
+        "nodes": {
+          "asia": 664,
+          "euro": 2660,
+          "usa": 2692
+        }
+      },
+      "gi": {
+        "time": {
+          "asia": 1263,
+          "cht": 0,
+          "euro": 152,
+          "usa": 272
+        },
+        "ping": {
+          "asia": 311,
+          "cht": 318,
+          "euro": 31,
+          "usa": 130
+        },
+        "nodes": {
+          "asia": 1259,
+          "euro": 2004,
+          "usa": 500
+        },
+        "underruns": {
+          "usa": "2"
+        }
+      },
+      "gg": {
+        "time": {
+          "bilibili": 11,
+          "china": 314
+        },
+        "ping": {
+          "bilibili": 33,
+          "china": 48
+        },
+        "nodes": {
+          "bilibili": 1252,
+          "china": 4573
+        },
+        "underruns": {
+          "china": "1"
+        }
+      },
+      "pingu": {
+        "cdn": {
+          "ms": 34,
+          "status": 200
+        },
+        "main": {
+          "ms": 133,
+          "status": 200
+        },
+        "api": {
+          "ms": 271,
+          "status": 200
+        },
+        "fox": {
+          "ms": 307,
+          "status": 200
+        }
+      }
+    },
+    "2024-03-12T16:23": {
+      "now": "2024-03-12T16:23",
+      "hsr": {
+        "time": {
+          "asia": 93,
+          "cht": 0,
+          "euro": 13,
+          "usa": 37
+        },
+        "ping": {
+          "asia": 326,
+          "cht": 322,
+          "euro": 75,
+          "usa": 151
+        },
+        "nodes": {
+          "asia": 668,
+          "euro": 2649,
+          "usa": 2675
+        }
+      },
+      "gi": {
+        "time": {
+          "asia": 575,
+          "cht": 0,
+          "euro": 86,
+          "usa": 535
+        },
+        "ping": {
+          "asia": 346,
+          "cht": 318,
+          "euro": 75,
+          "usa": 139
+        },
+        "nodes": {
+          "asia": 1255,
+          "euro": 1987,
+          "usa": 486
+        },
+        "underruns": {
+          "usa": "3"
+        }
+      },
+      "gg": {
+        "time": {
+          "bilibili": 20,
+          "china": 171
+        },
+        "ping": {
+          "bilibili": 29,
+          "china": 59
+        },
+        "nodes": {
+          "bilibili": 1252,
+          "china": 4773
+        },
+        "underruns": {}
+      },
+      "pingu": {
+        "cdn": {
+          "ms": 32,
+          "status": 200
+        },
+        "main": {
+          "ms": 141,
+          "status": 200
+        },
+        "api": {
+          "ms": 246,
+          "status": 200
+        },
+        "fox": {
+          "ms": 289,
+          "status": 200
+        }
+      }
+    },
+    "2024-03-12T16:24": {
+      "now": "2024-03-12T16:24",
+      "hsr": {
+        "time": {
+          "asia": 145,
+          "cht": 0,
+          "euro": 15,
+          "usa": 42
+        },
+        "ping": {
+          "asia": 351,
+          "cht": 322,
+          "euro": 77,
+          "usa": 165
+        },
+        "nodes": {
+          "asia": 691,
+          "euro": 2684,
+          "usa": 2640
+        }
+      },
+      "gi": {
+        "time": {
+          "asia": 741,
+          "cht": 0,
+          "euro": 127,
+          "usa": 137
+        },
+        "ping": {
+          "asia": 308,
+          "cht": 318,
+          "euro": 39,
+          "usa": 149
+        },
+        "nodes": {
+          "asia": 1237,
+          "euro": 2016,
+          "usa": 485
+        },
+        "underruns": {}
+      },
+      "gg": {
+        "time": {
+          "bilibili": 11,
+          "china": 319
+        },
+        "ping": {
+          "bilibili": 26,
+          "china": 59
+        },
+        "nodes": {
+          "bilibili": 1230,
+          "china": 4656
+        },
+        "underruns": {
+          "china": "1"
+        }
+      },
+      "pingu": {
+        "cdn": {
+          "ms": 38,
+          "status": 200
+        },
+        "main": {
+          "ms": 142,
+          "status": 200
+        },
+        "api": {
+          "ms": 269,
+          "status": 200
+        },
+        "fox": {
+          "ms": 270,
+          "status": 200
+        }
+      }
+    },
+    "2024-03-12T16:25": {
+      "now": "2024-03-12T16:25",
+      "hsr": {
+        "time": {
+          "asia": 97,
+          "cht": 0,
+          "euro": 39,
+          "usa": 28
+        },
+        "ping": {
+          "asia": 312,
+          "cht": 322,
+          "euro": 51,
+          "usa": 125
+        },
+        "nodes": {
+          "asia": 666,
+          "euro": 2759,
+          "usa": 2671
+        }
+      },
+      "gi": {
+        "time": {
+          "asia": 864,
+          "cht": 0,
+          "euro": 99,
+          "usa": 122
+        },
+        "ping": {
+          "asia": 323,
+          "cht": 318,
+          "euro": 52,
+          "usa": 248
+        },
+        "nodes": {
+          "asia": 1249,
+          "euro": 2015,
+          "usa": 495
+        },
+        "underruns": {}
+      },
+      "gg": {
+        "time": {
+          "bilibili": 11,
+          "china": 289
+        },
+        "ping": {
+          "bilibili": 41,
+          "china": 102
+        },
+        "nodes": {
+          "bilibili": 1242,
+          "china": 4774
+        },
+        "underruns": {
+          "china": "1"
+        }
+      },
+      "pingu": {
+        "cdn": {
+          "ms": 92,
+          "status": 200
+        },
+        "main": {
+          "ms": 139,
+          "status": 200
+        },
+        "api": {
+          "ms": 332,
+          "status": 200
+        },
+        "fox": {
+          "ms": 337,
+          "status": 200
+        }
+      }
+    },
+    "2024-03-12T16:26": {
+      "now": "2024-03-12T16:26",
+      "hsr": {
+        "time": {
+          "asia": 104,
+          "cht": 0,
+          "euro": 31,
+          "usa": 36
+        },
+        "ping": {
+          "asia": 303,
+          "cht": 322,
+          "euro": 29,
+          "usa": 176
+        },
+        "nodes": {
+          "asia": 671,
+          "euro": 2724,
+          "usa": 2707
+        }
+      },
+      "gi": {
+        "time": {
+          "asia": 598,
+          "cht": 0,
+          "euro": 76,
+          "usa": 137
+        },
+        "ping": {
+          "asia": 303,
+          "cht": 318,
+          "euro": 34,
+          "usa": 238
+        },
+        "nodes": {
+          "asia": 1219,
+          "euro": 1950,
+          "usa": 497
+        },
+        "underruns": {}
+      },
+      "gg": {
+        "time": {
+          "bilibili": 15,
+          "china": 325
+        },
+        "ping": {
+          "bilibili": 55,
+          "china": 33
+        },
+        "nodes": {
+          "bilibili": 1203,
+          "china": 4582
+        },
+        "underruns": {}
+      },
+      "pingu": {
+        "cdn": {
+          "ms": 28,
+          "status": 200
+        },
+        "main": {
+          "ms": 74,
+          "status": 200
+        },
+        "api": {
+          "ms": 253,
+          "status": 200
+        },
+        "fox": {
+          "ms": 257,
+          "status": 200
+        }
+      }
+    },
+    "2024-03-12T16:27": {
+      "now": "2024-03-12T16:27",
+      "hsr": {
+        "time": {
+          "asia": 106,
+          "cht": 0,
+          "euro": 16,
+          "usa": 72
+        },
+        "ping": {
+          "asia": 333,
+          "cht": 322,
+          "euro": 64,
+          "usa": 170
+        },
+        "nodes": {
+          "asia": 663,
+          "euro": 2650,
+          "usa": 2753
+        }
+      },
+      "gi": {
+        "time": {
+          "asia": 710,
+          "cht": 0,
+          "euro": 89,
+          "usa": 237
+        },
+        "ping": {
+          "asia": 319,
+          "cht": 318,
+          "euro": 73,
+          "usa": 171
+        },
+        "nodes": {
+          "asia": 1234,
+          "euro": 1971,
+          "usa": 497
+        },
+        "underruns": {
+          "usa": "1"
+        }
+      },
+      "gg": {
+        "time": {
+          "bilibili": 16,
+          "china": 365
+        },
+        "ping": {
+          "bilibili": 54,
+          "china": 41
+        },
+        "nodes": {
+          "bilibili": 1256,
+          "china": 4631
+        },
+        "underruns": {
+          "china": "2"
+        }
+      },
+      "pingu": {
+        "cdn": {
+          "ms": 30,
+          "status": 200
+        },
+        "main": {
+          "ms": 146,
+          "status": 200
+        },
+        "api": {
+          "ms": 263,
+          "status": 200
+        },
+        "fox": {
+          "ms": 228,
+          "status": 200
+        }
+      }
+    },
+    "2024-03-12T16:28": {
+      "now": "2024-03-12T16:28",
+      "hsr": {
+        "time": {
+          "asia": 92,
+          "cht": 0,
+          "euro": 27,
+          "usa": 20
+        },
+        "ping": {
+          "asia": 308,
+          "cht": 322,
+          "euro": 68,
+          "usa": 173
+        },
+        "nodes": {
+          "asia": 687,
+          "euro": 2694,
+          "usa": 2754
+        }
+      },
+      "gi": {
+        "time": {
+          "asia": 783,
+          "cht": 0,
+          "euro": 91,
+          "usa": 88
+        },
+        "ping": {
+          "asia": 316,
+          "cht": 318,
+          "euro": 45,
+          "usa": 143
+        },
+        "nodes": {
+          "asia": 1251,
+          "euro": 2007,
+          "usa": 494
+        },
+        "underruns": {}
+      },
+      "gg": {
+        "time": {
+          "bilibili": 3,
+          "china": 109
+        },
+        "ping": {
+          "bilibili": 32,
+          "china": 56
+        },
+        "nodes": {
+          "bilibili": 1247,
+          "china": 4629
+        },
+        "underruns": {}
+      },
+      "pingu": {
+        "cdn": {
+          "ms": 38,
+          "status": 200
+        },
+        "main": {
+          "ms": 182,
+          "status": 200
+        },
+        "api": {
+          "ms": 282,
+          "status": 200
+        },
+        "fox": {
+          "ms": 472,
+          "status": 200
+        }
+      }
+    },
+    "2024-03-12T16:29": {
+      "now": "2024-03-12T16:29",
+      "hsr": {
+        "time": {
+          "asia": 56,
+          "cht": 0,
+          "euro": 15,
+          "usa": 37
+        },
+        "ping": {
+          "asia": 325,
+          "cht": 322,
+          "euro": 62,
+          "usa": 145
+        },
+        "nodes": {
+          "asia": 677,
+          "euro": 2641,
+          "usa": 2749
+        }
+      },
+      "gi": {
+        "time": {
+          "asia": 737,
+          "cht": 0,
+          "euro": 108,
+          "usa": 233
+        },
+        "ping": {
+          "asia": 295,
+          "cht": 318,
+          "euro": 42,
+          "usa": 130
+        },
+        "nodes": {
+          "asia": 1205,
+          "euro": 1982,
+          "usa": 483
+        },
+        "underruns": {
+          "usa": "2"
+        }
+      },
+      "gg": {
+        "time": {
+          "bilibili": 4,
+          "china": 329
+        },
+        "ping": {
+          "bilibili": 36,
+          "china": 26
+        },
+        "nodes": {
+          "bilibili": 1243,
+          "china": 4779
+        },
+        "underruns": {
+          "china": "2"
+        }
+      },
+      "pingu": {
+        "cdn": {
+          "ms": 41,
+          "status": 200
+        },
+        "main": {
+          "ms": 67,
+          "status": 200
+        },
+        "api": {
+          "ms": 261,
+          "status": 200
+        },
+        "fox": {
+          "ms": 207,
+          "status": 200
+        }
+      }
+    },
+    "2024-03-12T16:30": {
+      "now": "2024-03-12T16:30",
+      "hsr": {
+        "time": {
+          "asia": 79,
+          "cht": 0,
+          "euro": 44,
+          "usa": 54
+        },
+        "ping": {
+          "asia": 315,
+          "cht": 322,
+          "euro": 48,
+          "usa": 133
+        },
+        "nodes": {
+          "asia": 674,
+          "euro": 2739,
+          "usa": 2654
+        }
+      },
+      "gi": {
+        "time": {
+          "asia": 754,
+          "cht": 0,
+          "euro": 96,
+          "usa": 205
+        },
+        "ping": {
+          "asia": 296,
+          "cht": 318,
+          "euro": 40,
+          "usa": 247
+        },
+        "nodes": {
+          "asia": 1223,
+          "euro": 1952,
+          "usa": 480
+        },
+        "underruns": {
+          "usa": "1"
+        }
+      },
+      "gg": {
+        "time": {
+          "bilibili": 115,
+          "china": 269
+        },
+        "ping": {
+          "bilibili": 54,
+          "china": 47
+        },
+        "nodes": {
+          "bilibili": 1243,
+          "china": 4594
+        },
+        "underruns": {}
+      },
+      "pingu": {
+        "cdn": {
+          "ms": 46,
+          "status": 200
+        },
+        "main": {
+          "ms": 136,
+          "status": 200
+        },
+        "api": {
+          "ms": 260,
+          "status": 200
+        },
+        "fox": {
+          "ms": 293,
+          "status": 200
+        }
+      }
+    },
+    "2024-03-12T16:31": {
+      "now": "2024-03-12T16:31",
+      "hsr": {
+        "time": {
+          "asia": 121,
+          "cht": 0,
+          "euro": 23,
+          "usa": 42
+        },
+        "ping": {
+          "asia": 331,
+          "cht": 322,
+          "euro": 45,
+          "usa": 149
+        },
+        "nodes": {
+          "asia": 674,
+          "euro": 2703,
+          "usa": 2686
+        }
+      },
+      "gi": {
+        "time": {
+          "asia": 811,
+          "cht": 0,
+          "euro": 100,
+          "usa": 408
+        },
+        "ping": {
+          "asia": 305,
+          "cht": 318,
+          "euro": 58,
+          "usa": 156
+        },
+        "nodes": {
+          "asia": 1211,
+          "euro": 2014,
+          "usa": 485
+        },
+        "underruns": {
+          "usa": "2"
+        }
+      },
+      "gg": {
+        "time": {
+          "bilibili": 11,
+          "china": 132
+        },
+        "ping": {
+          "bilibili": 36,
+          "china": 18
+        },
+        "nodes": {
+          "bilibili": 1240,
+          "china": 4562
+        },
+        "underruns": {}
+      },
+      "pingu": {
+        "cdn": {
+          "ms": 39,
+          "status": 200
+        },
+        "main": {
+          "ms": 146,
+          "status": 200
+        },
+        "api": {
+          "ms": 272,
+          "status": 200
+        },
+        "fox": {
+          "ms": 181,
+          "status": 200
+        }
+      }
+    },
+    "2024-03-12T16:32": {
+      "now": "2024-03-12T16:32",
+      "hsr": {
+        "time": {
+          "asia": 102,
+          "cht": 0,
+          "euro": 34,
+          "usa": 37
+        },
+        "ping": {
+          "asia": 320,
+          "cht": 322,
+          "euro": 73,
+          "usa": 160
+        },
+        "nodes": {
+          "asia": 661,
+          "euro": 2702,
+          "usa": 2642
+        }
+      },
+      "gi": {
+        "time": {
+          "asia": 789,
+          "cht": 0,
+          "euro": 87,
+          "usa": 89
+        },
+        "ping": {
+          "asia": 413,
+          "cht": 318,
+          "euro": 58,
+          "usa": 160
+        },
+        "nodes": {
+          "asia": 1256,
+          "euro": 2016,
+          "usa": 500
+        },
+        "underruns": {
+          "usa": "1"
+        }
+      },
+      "gg": {
+        "time": {
+          "bilibili": 4,
+          "china": 151
+        },
+        "ping": {
+          "bilibili": 23,
+          "china": 56
+        },
+        "nodes": {
+          "bilibili": 1251,
+          "china": 4636
+        },
+        "underruns": {}
+      },
+      "pingu": {
+        "cdn": {
+          "ms": 39,
+          "status": 200
+        },
+        "main": {
+          "ms": 88,
+          "status": 200
+        },
+        "api": {
+          "ms": 293,
+          "status": 200
+        },
+        "fox": {
+          "ms": 294,
+          "status": 200
+        }
+      }
+    }
+  }
+}

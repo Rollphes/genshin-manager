@@ -20,7 +20,7 @@ export class EnkaNetworkError extends Error {
    * @param res Response of EnkaNetwork request
    */
   constructor(res: Response) {
-    const message = enkaNetworkStatusMessages[res.status] ?? 'Unknown error'
+    const message = enkaNetworkStatusMessages[res.status] ?? res.statusText
     super(message)
 
     this.name = 'EnkaNetworkError'
