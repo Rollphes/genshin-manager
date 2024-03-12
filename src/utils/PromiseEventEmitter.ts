@@ -43,7 +43,7 @@ export abstract class PromiseEventEmitter<
   T extends EventMap<T>,
   E extends keyof T,
 > {
-  private emitter: EventEmitter<T>
+  private readonly emitter: EventEmitter<T>
 
   /**
    * Create a PromiseEventEmitter.

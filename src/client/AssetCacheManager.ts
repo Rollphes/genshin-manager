@@ -49,12 +49,12 @@ export abstract class AssetCacheManager<
    * @key Text hash
    * @value Text
    */
-  public static cachedTextMap: Map<string, string> = new Map()
+  public static readonly cachedTextMap: Map<string, string> = new Map()
 
   /**
    * Asset event emitter
    */
-  protected static _assetEventEmitter: EventEmitter<AssetCacheManagerEventMap> =
+  protected static readonly _assetEventEmitter: EventEmitter<AssetCacheManagerEventMap> =
     new EventEmitter<AssetCacheManagerEventMap>()
 
   private static readonly gitRemoteAPIURL: string =
@@ -146,6 +146,15 @@ export abstract class AssetCacheManager<
     ],
     DailyFarming: ['DungeonEntryExcelConfigData'],
   }
+  /**
+   * Cached text map
+   * @key ExcelBinOutput name
+   * @value Cached excel bin output
+   */
+  private static readonly cachedExcelBinOutput: Map<
+    keyof typeof ExcelBinOutputs,
+    JsonParser
+  > = new Map()
 
   private static option: ClientOption
   private static nowCommitId: string
@@ -156,15 +165,6 @@ export abstract class AssetCacheManager<
   private static textHashes: Set<number> = new Set()
   private static excelBinOutputKeys: Set<keyof typeof ExcelBinOutputs> =
     new Set()
-  /**
-   * Cached text map
-   * @key ExcelBinOutput name
-   * @value Cached excel bin output
-   */
-  private static cachedExcelBinOutput: Map<
-    keyof typeof ExcelBinOutputs,
-    JsonParser
-  > = new Map()
 
   /**
    * Create a AssetCacheManager

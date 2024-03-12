@@ -12,67 +12,67 @@ export class Notice {
   /**
    * Notice ID
    */
-  public id: number
+  public readonly id: number
   /**
    * Notice title
    */
-  public title: string
+  public readonly title: string
   /**
    * Notice subtitle
    */
-  public subtitle: string
+  public readonly subtitle: string
   /**
    * Notice banner
    */
-  public banner: ImageAssets
+  public readonly banner: ImageAssets
   /**
    * Notice content DOM(jQuery)
    * @warning This property does not exclude table tags
    */
-  public $: CheerioAPI
+  public readonly $: CheerioAPI
   /**
    * Notice type (1:event or 2:important)
    */
-  public type: number
+  public readonly type: number
   /**
    * Notice type label (event or important)
    */
-  public typeLabel: string
+  public readonly typeLabel: string
   /**
    * Notice tag (1:! 2:flag 3:star)
    */
-  public tag: number
+  public readonly tag: number
   /**
    * Notice tag icon
    */
-  public tagIcon: ImageAssets
+  public readonly tagIcon: ImageAssets
   /**
    * Event start time
    * @description If `undefined`, use getEventDuration()
    */
-  public eventStart: Date | undefined
+  public readonly eventStart: Date | undefined
   /**
    * Event end time
    * @description If `undefined`, use getEventDuration()
    */
-  public eventEnd: Date | undefined
+  public readonly eventEnd: Date | undefined
   /**
    * Reward image
    */
-  public rewardImg: ImageAssets | undefined
+  public readonly rewardImg: ImageAssets | undefined
   /**
    * Notice remind version
    */
-  public version: number
+  public readonly version: number
   /**
    * Notice language
    */
-  public lang: ValueOf<typeof NoticeLanguage>
+  public readonly lang: ValueOf<typeof NoticeLanguage>
   /**
    * Notice region
    */
-  public region: Region
-  private _en$: CheerioAPI
+  public readonly region: Region
+  private readonly _en$: CheerioAPI
 
   /**
    * Create a Notice

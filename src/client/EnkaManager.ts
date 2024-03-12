@@ -17,27 +17,27 @@ export interface EnkaData {
   /**
    * UID
    */
-  uid: number
+  readonly uid: number
   /**
    * Player detail
    */
-  playerDetail: PlayerDetail
+  readonly playerDetail: PlayerDetail
   /**
    * Character details
    */
-  characterDetails: CharacterDetail[]
+  readonly characterDetails: CharacterDetail[]
   /**
    * UID owner Enka Account
    */
-  owner?: EnkaAccount
+  readonly owner?: EnkaAccount
   /**
    * NextShowCaseDate
    */
-  nextShowCaseDate: Date
+  readonly nextShowCaseDate: Date
   /**
    * EnkaNetwork URL
    */
-  url: string
+  readonly url: string
 }
 
 /**

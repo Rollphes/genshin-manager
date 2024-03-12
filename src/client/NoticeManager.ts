@@ -45,18 +45,19 @@ export class NoticeManager {
   /**
    * Language of notices
    */
-  public language: keyof typeof NoticeLanguage
+  public readonly language: keyof typeof NoticeLanguage
+
   /**
    * Notices
    * @key Notice ID
    * @value Notice
    */
-  public notices = new Map<number, Notice>()
+  public readonly notices = new Map<number, Notice>()
 
   /**
    * URL params
    */
-  private urlParams: URLParams
+  private readonly urlParams: URLParams
 
   /**
    * Create a NoticeManager
