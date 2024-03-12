@@ -2,6 +2,7 @@ import { merge } from 'ts-deepmerge'
 
 import { AnnContentNotFoundError } from '@/errors/AnnContentNotFoundError'
 import { AnnError } from '@/errors/AnnError'
+import { OutOfRangeError } from '@/errors/OutOfRangeError'
 import { Notice } from '@/models/Notice'
 import {
   APIGetAnnContent,
@@ -9,11 +10,46 @@ import {
   NoticeLanguage,
   URLParams as URLParams,
 } from '@/types/GetAnnTypes'
+import { PromiseEventEmitter } from '@/utils/PromiseEventEmitter'
+
+export enum NoticeManagerEvents {
+  /**
+   * When a notice is added, fires
+   * @event ADD_NOTICE
+   * @listener
+   * | param | type | description |
+   * | --- | --- | --- |
+   * | notice | {@link Notice} | Added Notice |
+   */
+  ADD_NOTICE = 'ADD_NOTICE',
+  /**
+   * When a notice is removed, fires
+   * @event REMOVE_NOTICE
+   * @listener
+   * | param | type | description |
+   * | --- | --- | --- |
+   * | notice | {@link Notice} | Removed Notice |
+   */
+  REMOVE_NOTICE = 'REMOVE_NOTICE',
+}
+
+interface NoticeManagerEventMap {
+  ADD_NOTICE: [notice: Notice]
+  REMOVE_NOTICE: [notice: Notice]
+}
 
 /**
  * Class for fetching notices from mihoyo
  */
-export class NoticeManager {
+export class NoticeManager extends PromiseEventEmitter<
+  NoticeManagerEventMap,
+  NoticeManagerEvents
+> {
+  /**
+   * Minimum update interval(ms)
+   * @default 1 minute
+   */
+  private static readonly minUpdateInterval = 1000 * 60 * 1
   /**
    * URL of getAnnContent
    */
@@ -48,6 +84,11 @@ export class NoticeManager {
   public readonly language: keyof typeof NoticeLanguage
 
   /**
+   * Update interval(ms)
+   */
+  public readonly updateInterval: number | undefined
+
+  /**
    * Notices
    * @key Notice ID
    * @value Notice
@@ -62,18 +103,36 @@ export class NoticeManager {
   /**
    * Create a NoticeManager
    * @param language Language of notices
+   * @param updateInterval Update interval(ms) Min: 1 minute
    * @param urlParams URL params
    */
   constructor(
     language: keyof typeof NoticeLanguage,
+    updateInterval?: number,
     urlParams?: Partial<URLParams>,
   ) {
+    super()
     this.language = language
+    this.updateInterval = updateInterval
+    if (
+      this.updateInterval &&
+      (this.updateInterval < NoticeManager.minUpdateInterval ||
+        this.updateInterval > 2147483647)
+    ) {
+      throw new OutOfRangeError(
+        'level',
+        this.updateInterval,
+        NoticeManager.minUpdateInterval,
+        2147483647,
+      )
+    }
     this.urlParams = merge.withOptions(
       { mergeArrays: false },
       NoticeManager.defaultURLParams,
       urlParams ?? {},
     ) as URLParams
+    if (this.updateInterval)
+      void setInterval(() => void this.update(), this.updateInterval)
   }
 
   /**
@@ -83,9 +142,16 @@ export class NoticeManager {
     const annContent = await this.getAnnContent()
     const annEnContent = await this.getAnnContent('en')
     const annList = await this.getAnnList()
-    this.notices.clear()
-    annList.data.list.forEach((tab) => {
-      tab.list.forEach((data) => {
+    const annListDatas = annList.data.list.flatMap((tab) => tab.list)
+    const annListIds = annListDatas.map((data) => data.ann_id)
+    this.notices.forEach((notice, id) => {
+      if (!annListIds.includes(id)) {
+        this.emit(NoticeManagerEvents.REMOVE_NOTICE, notice)
+        this.notices.delete(id)
+      }
+    })
+    annListDatas.forEach((data) => {
+      if (!this.notices.has(data.ann_id)) {
         const content = annContent.data.list.find(
           (content) => content.ann_id === data.ann_id,
         )
@@ -94,11 +160,15 @@ export class NoticeManager {
         )
         if (!content || !enContent)
           throw new AnnContentNotFoundError(data.ann_id)
-        this.notices.set(
-          data.ann_id,
-          new Notice(data, content, enContent, this.urlParams.region),
+        const notice = new Notice(
+          data,
+          content,
+          enContent,
+          this.urlParams.region,
         )
-      })
+        this.emit(NoticeManagerEvents.ADD_NOTICE, notice)
+        this.notices.set(data.ann_id, notice)
+      }
     })
   }
 
