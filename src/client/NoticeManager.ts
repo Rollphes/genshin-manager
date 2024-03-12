@@ -12,6 +12,10 @@ import {
 } from '@/types/GetAnnTypes'
 import { PromiseEventEmitter } from '@/utils/PromiseEventEmitter'
 
+/**
+ * NoticeManager events
+ * @see {@link NoticeManager}
+ */
 export enum NoticeManagerEvents {
   /**
    * When a notice is added, fires
