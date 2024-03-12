@@ -234,11 +234,11 @@ export class EnkaManager extends PromiseEventEmitter<
 
     const obj = (await statusRes.json()) as APIStatus
     if (!obj.nodes[1]?.data)
-      throw new EnkaNetWorkStatusError("Can't fetch status data.") //TODO: fix error message
+      throw new EnkaNetWorkStatusError("Can't fetch status data.")
 
     const result = this.devalue(obj.nodes[1].data, 0)
     if (typeof result !== 'object')
-      throw new EnkaNetWorkStatusError('Status is not object') //TODO: fix error message
+      throw new EnkaNetWorkStatusError('Status is not object')
 
     return result
   }
