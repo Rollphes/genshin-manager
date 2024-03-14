@@ -8,18 +8,9 @@ import { EnkaAccount } from '@/models/enka/EnkaAccount'
 import { GenshinAccount } from '@/models/enka/GenshinAccount'
 import { PlayerDetail } from '@/models/enka/PlayerDetail'
 import { APIBuild, APIGameAccount } from '@/types/EnkaAccountTypes'
-import { APIStatus } from '@/types/EnkaStatusTypes'
+import { APIEnkaStatus } from '@/types/EnkaStatusTypes'
 import { APIEnkaData, APIOwner } from '@/types/EnkaTypes'
 import { PromiseEventEmitter } from '@/utils/PromiseEventEmitter'
-
-/**
- * EnkaStatus type
- * @description This is a parse of status.enka.network.
- * @see look at example: status.json
- */
-export interface EnkaStatus {
-  [key: string]: string | number | EnkaStatus
-}
 
 /**
  * cached EnkaData type
@@ -218,12 +209,14 @@ export class EnkaManager extends PromiseEventEmitter<
   }
 
   /**
-   * Fetch Status from status.enka.network
+   * Fetch Status from 1 hour ago to now
    * @param fetchOption Fetch option
-   * @returns Status object
+   * @returns Status from 1 hour ago to now
    */
-  public async fetchStatus(fetchOption?: RequestInit): Promise<EnkaStatus> {
-    const getStatusURL = `${EnkaManager.enkaStatusBaseURL}/__data.json`
+  public async fetchAllStatus(fetchOption?: RequestInit): Promise<{
+    [dateText: string]: APIEnkaStatus
+  }> {
+    const getStatusURL = `${EnkaManager.enkaStatusBaseURL}/api/status`
     const mergedFetchOption = merge.withOptions(
       { mergeArrays: false },
       EnkaManager.defaultFetchOption,
@@ -232,15 +225,29 @@ export class EnkaManager extends PromiseEventEmitter<
     const statusRes = await fetch(getStatusURL, mergedFetchOption)
     if (!statusRes.ok) throw new EnkaNetWorkStatusError(statusRes)
 
-    const obj = (await statusRes.json()) as APIStatus
-    if (!obj.nodes[1]?.data)
-      throw new EnkaNetWorkStatusError("Can't fetch status data.")
+    return (await statusRes.json()) as {
+      [dateText: string]: APIEnkaStatus
+    }
+  }
 
-    const result = this.devalue(obj.nodes[1].data, 0)
-    if (typeof result !== 'object')
-      throw new EnkaNetWorkStatusError('Status is not object')
+  /**
+   * Fetch now Status
+   * @param fetchOption Fetch option
+   * @returns Now status
+   */
+  public async fetchNowStatus(
+    fetchOption?: RequestInit,
+  ): Promise<APIEnkaStatus> {
+    const getStatusURL = `${EnkaManager.enkaStatusBaseURL}/api/now`
+    const mergedFetchOption = merge.withOptions(
+      { mergeArrays: false },
+      EnkaManager.defaultFetchOption,
+      fetchOption ?? {},
+    )
+    const statusRes = await fetch(getStatusURL, mergedFetchOption)
+    if (!statusRes.ok) throw new EnkaNetWorkStatusError(statusRes)
 
-    return result
+    return (await statusRes.json()) as APIEnkaStatus
   }
 
   /**
@@ -293,27 +300,5 @@ export class EnkaManager extends PromiseEventEmitter<
     this.cache.set(enkaData.uid, enkaData)
     this.emit(EnkaManagerEvents.GET_NEW_ENKA_DATA, enkaData)
     return enkaData
-  }
-
-  /**
-   * Devalue APIStatus
-   * @param data APIStatus
-   * @param index start index
-   * @returns EnkaStatus | number | string
-   */
-  private devalue(
-    data: Array<number | { [key: string]: number } | string>,
-    index: number,
-  ): EnkaStatus | number | string {
-    const nestedObject: EnkaStatus = {}
-
-    const item = data[index]
-    if (typeof item === 'object') {
-      for (const [key, value] of Object.entries(item))
-        nestedObject[key] = this.devalue(data, value)
-    } else if (typeof item === 'string' || typeof item === 'number') {
-      return item
-    }
-    return nestedObject
   }
 }

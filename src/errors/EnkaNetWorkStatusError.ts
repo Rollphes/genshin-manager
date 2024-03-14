@@ -1,31 +1,23 @@
 /**
- * Error thrown when the EnkaNetwork status request fails or response damage
+ * Error thrown when the EnkaNetwork status request fails
  */
 export class EnkaNetWorkStatusError extends Error {
   public readonly name: string
-  public readonly statusCode: number | undefined
-  public readonly statusMessage: string | undefined
-  public readonly url: string | undefined
+  public readonly statusCode: number
+  public readonly statusMessage: string
+  public readonly url: string
 
   /**
    * Create a EnkaNetworkStatusError
-   * @param reason Response of status.enka.network or error message
+   * @param reason Response of status.enka.network
    */
-  constructor(reason: Response | string) {
-    if (reason instanceof Response) {
-      const message = reason.statusText
-      super(message)
+  constructor(reason: Response) {
+    const message = reason.statusText
+    super(message)
 
-      this.name = 'EnkaNetworkStatusError'
-      this.statusCode = reason.status
-      this.statusMessage = reason.statusText
-      this.url = reason.url
-    } else {
-      super(reason)
-      this.name = 'EnkaNetworkStatusError'
-      this.statusCode = undefined
-      this.statusMessage = undefined
-      this.url = undefined
-    }
+    this.name = 'EnkaNetworkStatusError'
+    this.statusCode = reason.status
+    this.statusMessage = reason.statusText
+    this.url = reason.url
   }
 }

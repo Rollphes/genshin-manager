@@ -1,10 +1,5 @@
 import { Client, ClientEvents } from '@/client/Client'
-import {
-  EnkaData,
-  EnkaManager,
-  EnkaManagerEvents,
-  EnkaStatus,
-} from '@/client/EnkaManager'
+import { EnkaData, EnkaManager, EnkaManagerEvents } from '@/client/EnkaManager'
 import { NoticeManager, NoticeManagerEvents } from '@/client/NoticeManager'
 import { AnnContentNotFoundError } from '@/errors/AnnContentNotFoundError'
 import { AnnError } from '@/errors/AnnError'
@@ -64,6 +59,13 @@ import {
   Region,
   WeaponType,
 } from '@/types'
+import {
+  APIEnkaPing,
+  APIEnkaPingu,
+  APIEnkaRegion,
+  APIEnkaStat,
+  APIEnkaStatus,
+} from '@/types/EnkaStatusTypes'
 import { convertToUTC } from '@/utils/convertToUTC'
 export {
   Client,
@@ -119,7 +121,6 @@ export {
   NoticeManagerEvents,
   ClientOption,
   EnkaData,
-  EnkaStatus,
   Element,
   ArtifactType,
   AssocType,
@@ -133,4 +134,9 @@ export {
   QualityType,
   CodexType,
   CVType,
+  APIEnkaStatus,
+  APIEnkaRegion,
+  APIEnkaStat,
+  APIEnkaPingu,
+  APIEnkaPing,
 }
