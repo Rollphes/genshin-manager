@@ -67,9 +67,9 @@ export class CharacterDetail {
    */
   public readonly levelXp: number
   /**
-   * Character ascension
+   * Character promote level (ascension)
    */
-  public readonly ascension: number
+  public readonly promoteLevel: number
   /**
    * Character constellations
    */
@@ -119,7 +119,7 @@ export class CharacterDetail {
     )
     this.level = +(data.propMap[4001].val || 0)
     this.levelXp = +(data.propMap[1001].val || 0)
-    this.ascension = +(data.propMap[1002].val || 0)
+    this.promoteLevel = +(data.propMap[1002].val || 0)
     this.constellations =
       characterInfo.constellationIds.map((id) => {
         return new CharacterConstellation(id, !data.talentIdList?.includes(id))
