@@ -1,6 +1,7 @@
-import { Client } from '@/client/Client'
-import { EnkaData, EnkaManager } from '@/client/EnkaManager'
-import { NoticeManager } from '@/client/NoticeManager'
+// This file outputs classes and other information to be provided to this library users.
+import { Client, ClientEvents } from '@/client/Client'
+import { EnkaData, EnkaManager, EnkaManagerEvents } from '@/client/EnkaManager'
+import { NoticeManager, NoticeManagerEvents } from '@/client/NoticeManager'
 import { AnnContentNotFoundError } from '@/errors/AnnContentNotFoundError'
 import { AnnError } from '@/errors/AnnError'
 import { AssetsNotFoundError } from '@/errors/AssetsNotFoundError'
@@ -8,6 +9,7 @@ import { AudioNotFoundError } from '@/errors/AudioNotFoundError'
 import { BodyNotFoundError } from '@/errors/BodyNotFoundError'
 import { EnkaManagerError } from '@/errors/EnkaManagerError'
 import { EnkaNetworkError } from '@/errors/EnkaNetWorkError'
+import { EnkaNetWorkStatusError } from '@/errors/EnkaNetWorkStatusError'
 import { ImageNotFoundError } from '@/errors/ImageNotFoundError'
 import { TextMapFormatError } from '@/errors/TextMapFormatError'
 import { Artifact } from '@/models/Artifact'
@@ -55,7 +57,6 @@ import {
   MaterialType,
   ProfilePictureType,
   QualityType,
-  Region,
   WeaponType,
 } from '@/types'
 import { convertToUTC } from '@/utils/convertToUTC'
@@ -71,6 +72,7 @@ export {
   AudioNotFoundError,
   ImageNotFoundError,
   TextMapFormatError,
+  EnkaNetWorkStatusError,
   Artifact,
   AudioAssets,
   ImageAssets,
@@ -107,6 +109,9 @@ export {
 }
 export { convertToUTC }
 export {
+  ClientEvents,
+  EnkaManagerEvents,
+  NoticeManagerEvents,
   ClientOption,
   EnkaData,
   Element,
@@ -116,10 +121,11 @@ export {
   MaterialType,
   FightPropType,
   WeaponType,
-  Region,
   ProfilePictureType,
   BodyType,
   QualityType,
   CodexType,
   CVType,
 }
+export * from '@/types/enkaNetwork'
+export * from '@/types/sg-hk4e-api'

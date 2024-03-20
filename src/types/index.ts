@@ -131,23 +131,6 @@ export const ElementKeys = {
 export type Element = ValueOf<typeof ElementKeys>
 
 /**
- * Time difference per region (hour)
- */
-export const TimeZonesPerRegion = {
-  cn_gf01: +8,
-  cn_qd01: +8,
-  os_usa: -5,
-  os_euro: +1,
-  os_asia: +8,
-  os_cht: +8,
-} as const
-
-/**
- * Region type
- */
-export type Region = keyof typeof TimeZonesPerRegion
-
-/**
  * Character voice type
  */
 export type CVType = keyof Omit<

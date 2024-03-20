@@ -1,6 +1,6 @@
 import { EnkaBuild } from '@/models/enka/EnkaBuild'
 import { PlayerDetail } from '@/models/enka/PlayerDetail'
-import { APIBuild, APIGameAccount } from '@/types/EnkaAccountTypes'
+import { APIBuild, APIGameAccount } from '@/types/enkaNetwork'
 
 /**
  * Class of GenshinAccount
@@ -42,6 +42,10 @@ export class GenshinAccount {
    * EnkaNetwork URL
    */
   public readonly url: string
+  /**
+   * Data from EnkaNetwork
+   */
+  public readonly data: APIGameAccount
 
   /**
    * Create a GenshinAccount
@@ -73,5 +77,6 @@ export class GenshinAccount {
         .sort((a, b) => a.order - b.order)
         .map((data) => new EnkaBuild(data, this.url)),
     )
+    this.data = gameAccountData
   }
 }

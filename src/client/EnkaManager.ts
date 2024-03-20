@@ -2,12 +2,19 @@ import { merge } from 'ts-deepmerge'
 
 import { EnkaManagerError } from '@/errors/EnkaManagerError'
 import { EnkaNetworkError } from '@/errors/EnkaNetWorkError'
+import { EnkaNetWorkStatusError } from '@/errors/EnkaNetWorkStatusError'
 import { CharacterDetail } from '@/models/enka/CharacterDetail'
 import { EnkaAccount } from '@/models/enka/EnkaAccount'
 import { GenshinAccount } from '@/models/enka/GenshinAccount'
 import { PlayerDetail } from '@/models/enka/PlayerDetail'
-import { APIBuild, APIGameAccount } from '@/types/EnkaAccountTypes'
-import { APIEnkaData, APIOwner } from '@/types/EnkaTypes'
+import {
+  APIBuild,
+  APIEnkaStatus,
+  APIGameAccount,
+  APIOwner,
+} from '@/types/enkaNetwork'
+import { APIEnkaData } from '@/types/enkaNetwork/EnkaTypes'
+import { PromiseEventEmitter } from '@/utils/PromiseEventEmitter'
 
 /**
  * cached EnkaData type
@@ -16,37 +23,64 @@ export interface EnkaData {
   /**
    * UID
    */
-  uid: number
+  readonly uid: number
   /**
    * Player detail
    */
-  playerDetail: PlayerDetail
+  readonly playerDetail: PlayerDetail
   /**
    * Character details
    */
-  characterDetails: CharacterDetail[]
+  readonly characterDetails: CharacterDetail[]
   /**
    * UID owner Enka Account
    */
-  owner?: EnkaAccount
+  readonly owner?: EnkaAccount
   /**
    * NextShowCaseDate
    */
-  nextShowCaseDate: Date
+  readonly nextShowCaseDate: Date
   /**
    * EnkaNetwork URL
    */
-  url: string
+  readonly url: string
+}
+
+/**
+ * EnkaManager events
+ * @see {@link EnkaManager}
+ */
+export enum EnkaManagerEvents {
+  /**
+   * When new data is added to the cache, fires
+   * @event GET_NEW_ENKA_DATA
+   * @listener
+   * | param | type | description |
+   * | --- | --- | --- |
+   * | data | {@link EnkaData} | New data added to the cache |
+   */
+  GET_NEW_ENKA_DATA = 'GET_NEW_ENKA_DATA',
+}
+
+interface EnkaManagerEventMap {
+  GET_NEW_ENKA_DATA: [data: EnkaData]
 }
 
 /**
  * Class for fetching EnkaData from enka.network
  */
-export class EnkaManager {
+export class EnkaManager extends PromiseEventEmitter<
+  EnkaManagerEventMap,
+  EnkaManagerEvents
+> {
   /**
    * URL of enka.network
    */
   private static readonly enkaBaseURL = 'https://enka.network'
+  /**
+   * URL of status.enka.network
+   */
+  private static readonly enkaStatusBaseURL = 'http://status.enka.network'
   /**
    * Default fetch option
    */
@@ -66,7 +100,10 @@ export class EnkaManager {
   /**
    * Create a EnkaManager
    */
-  constructor() {}
+  constructor() {
+    super()
+  }
+
   /**
    * Fetch All from enka.network
    * @description The data fetched by this method is stored as a temporary cache.
@@ -112,7 +149,7 @@ export class EnkaManager {
   /**
    * Fetch EnkaAccount from enka.network
    * @description Data fetched by this method is not stored as a temporary cache.
-   * @param username Username
+   * @param username Enka Account Username
    * @param fetchOption Fetch option
    * @returns EnkaAccount
    */
@@ -135,7 +172,7 @@ export class EnkaManager {
   /**
    * Fetch GenshinAccounts from enka.network
    * @description Data fetched by this method is not stored as a temporary cache.
-   * @param username Username
+   * @param username Enka Account Username
    * @param fetchOption Fetch option
    * @returns GenshinAccounts
    */
@@ -173,6 +210,48 @@ export class EnkaManager {
           )
         }),
     )
+  }
+
+  /**
+   * Fetch Status from 1 hour ago to now
+   * @param fetchOption Fetch option
+   * @returns Status from 1 hour ago to now
+   */
+  public async fetchAllStatus(fetchOption?: RequestInit): Promise<{
+    [dateText: string]: APIEnkaStatus
+  }> {
+    const getStatusURL = `${EnkaManager.enkaStatusBaseURL}/api/status`
+    const mergedFetchOption = merge.withOptions(
+      { mergeArrays: false },
+      EnkaManager.defaultFetchOption,
+      fetchOption ?? {},
+    )
+    const statusRes = await fetch(getStatusURL, mergedFetchOption)
+    if (!statusRes.ok) throw new EnkaNetWorkStatusError(statusRes)
+
+    return (await statusRes.json()) as {
+      [dateText: string]: APIEnkaStatus
+    }
+  }
+
+  /**
+   * Fetch now Status
+   * @param fetchOption Fetch option
+   * @returns Now status
+   */
+  public async fetchNowStatus(
+    fetchOption?: RequestInit,
+  ): Promise<APIEnkaStatus> {
+    const getStatusURL = `${EnkaManager.enkaStatusBaseURL}/api/now`
+    const mergedFetchOption = merge.withOptions(
+      { mergeArrays: false },
+      EnkaManager.defaultFetchOption,
+      fetchOption ?? {},
+    )
+    const statusRes = await fetch(getStatusURL, mergedFetchOption)
+    if (!statusRes.ok) throw new EnkaNetWorkStatusError(statusRes)
+
+    return (await statusRes.json()) as APIEnkaStatus
   }
 
   /**
@@ -223,6 +302,7 @@ export class EnkaManager {
       url: `${EnkaManager.enkaBaseURL}/u/${uid}`,
     }
     this.cache.set(enkaData.uid, enkaData)
+    this.emit(EnkaManagerEvents.GET_NEW_ENKA_DATA, enkaData)
     return enkaData
   }
 }

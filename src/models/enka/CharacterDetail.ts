@@ -12,7 +12,7 @@ import {
   APIAvatarInfo,
   APIReliquaryEquip,
   APIWeaponEquip,
-} from '@/types/EnkaTypes'
+} from '@/types/enkaNetwork'
 
 /**
  * Class of the character obtained from EnkaNetwork
@@ -67,9 +67,9 @@ export class CharacterDetail {
    */
   public readonly levelXp: number
   /**
-   * Character ascension
+   * Character promote level (ascension)
    */
-  public readonly ascension: number
+  public readonly promoteLevel: number
   /**
    * Character constellations
    */
@@ -98,6 +98,10 @@ export class CharacterDetail {
    * Character set bonus
    */
   public readonly setBonus: SetBonus
+  /**
+   * Data from EnkaNetwork
+   */
+  public readonly data: APIAvatarInfo
 
   /**
    * Create a CharacterDetail
@@ -119,7 +123,7 @@ export class CharacterDetail {
     )
     this.level = +(data.propMap[4001].val || 0)
     this.levelXp = +(data.propMap[1001].val || 0)
-    this.ascension = +(data.propMap[1002].val || 0)
+    this.promoteLevel = +(data.propMap[1002].val || 0)
     this.constellations =
       characterInfo.constellationIds.map((id) => {
         return new CharacterConstellation(id, !data.talentIdList?.includes(id))
@@ -136,7 +140,7 @@ export class CharacterDetail {
 
     this.combatStatus = new CharacterStatusManager(data.fightPropMap)
     const weaponData = data.equipList.find(
-      (equip): equip is APIWeaponEquip => equip.flat.itemType === 'ITEM_WEAPON',
+      (equip): equip is APIWeaponEquip => 'weapon' in equip,
     )
     if (!weaponData) throw new EnkaManagerError('Weapon not found.')
     const affixMap = weaponData.weapon.affixMap
@@ -148,8 +152,7 @@ export class CharacterDetail {
       (affixMap ? affixMap[weaponData.itemId + 100000] : 0) + 1,
     )
     const artifactDatas = data.equipList.filter(
-      (equip): equip is APIReliquaryEquip =>
-        equip.flat.itemType === 'ITEM_RELIQUARY',
+      (equip): equip is APIReliquaryEquip => 'reliquary' in equip,
     )
     this.artifacts = artifactDatas.map(
       (data) =>
@@ -162,5 +165,7 @@ export class CharacterDetail {
     )
     this.friendShipLevel = data.fetterInfo.expLevel
     this.setBonus = new SetBonus(this.artifacts)
+
+    this.data = data
   }
 }

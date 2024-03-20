@@ -1,4 +1,5 @@
 import * as cliProgress from 'cli-progress'
+import EventEmitter from 'events'
 import fs from 'fs'
 import * as fsPromises from 'fs/promises'
 import Module from 'module'
@@ -12,6 +13,7 @@ import { ClientOption, ExcelBinOutputs, TextMapLanguage } from '@/types'
 import { getClassNamesRecursive } from '@/utils/getClassNamesRecursive'
 import { JsonObject, JsonParser } from '@/utils/JsonParser'
 import { ObjectKeyDecoder } from '@/utils/ObjectKeyDecoder'
+import { EventMap, PromiseEventEmitter } from '@/utils/PromiseEventEmitter'
 import { ReadableStreamWrapper } from '@/utils/ReadableStreamWrapper'
 import { TextMapEmptyWritable } from '@/utils/TextMapEmptyWritable'
 import { TextMapTransform } from '@/utils/TextMapTransform'
@@ -27,17 +29,33 @@ interface GitLabAPIResponse {
   web_url: string
 }
 
+interface AssetCacheManagerEventMap {
+  BEGIN_UPDATE_CACHE: [version: string]
+  END_UPDATE_CACHE: [version: string]
+  BEGIN_UPDATE_ASSETS: [version: string]
+  END_UPDATE_ASSETS: [version: string]
+}
+
 /**
  * Class for managing cached assets
  * @abstract
  */
-export abstract class AssetCacheManager {
+export abstract class AssetCacheManager<
+  T extends EventMap<T>,
+  E extends keyof T,
+> extends PromiseEventEmitter<T, E> {
   /**
    * Cached text map
    * @key Text hash
    * @value Text
    */
-  public static cachedTextMap: Map<string, string> = new Map()
+  public static readonly cachedTextMap: Map<string, string> = new Map()
+
+  /**
+   * Asset event emitter
+   */
+  protected static readonly _assetEventEmitter: EventEmitter<AssetCacheManagerEventMap> =
+    new EventEmitter<AssetCacheManagerEventMap>()
 
   private static readonly gitRemoteAPIURL: string =
     'https://gitlab.com/api/v4/projects/53216109/repository/commits?per_page=1'
@@ -128,6 +146,15 @@ export abstract class AssetCacheManager {
     ],
     DailyFarming: ['DungeonEntryExcelConfigData'],
   }
+  /**
+   * Cached text map
+   * @key ExcelBinOutput name
+   * @value Cached excel bin output
+   */
+  private static readonly cachedExcelBinOutput: Map<
+    keyof typeof ExcelBinOutputs,
+    JsonParser
+  > = new Map()
 
   private static option: ClientOption
   private static nowCommitId: string
@@ -138,15 +165,6 @@ export abstract class AssetCacheManager {
   private static textHashes: Set<number> = new Set()
   private static excelBinOutputKeys: Set<keyof typeof ExcelBinOutputs> =
     new Set()
-  /**
-   * Cached text map
-   * @key ExcelBinOutput name
-   * @value Cached excel bin output
-   */
-  private static cachedExcelBinOutput: Map<
-    keyof typeof ExcelBinOutputs,
-    JsonParser
-  > = new Map()
 
   /**
    * Create a AssetCacheManager
@@ -154,6 +172,7 @@ export abstract class AssetCacheManager {
    * @param children Import modules
    */
   constructor(option: ClientOption, children: Module[]) {
+    super()
     AssetCacheManager.option = option
     AssetCacheManager.childrenModule = children
     AssetCacheManager.commitFilePath = path.resolve(
@@ -274,53 +293,49 @@ export abstract class AssetCacheManager {
    * ```
    */
   protected static async updateCache(): Promise<void> {
-    console.log('GenshinManager: Start update cache.')
-    if (
-      (await this.checkGitUpdate()) &&
-      this.option.autoFetchLatestAssetsByCron
-    ) {
-      if (this.option.showFetchCacheLog)
-        console.log('GenshinManager: New Assets found. Update Assets.')
+    if (this.option.showFetchCacheLog)
+      console.log('GenshinManager: Start update cache.')
+    const newVersionText = await this.checkGitUpdate()
+    const nowVersionText = await this.getNowAssetVersion()
+    if (!nowVersionText) return
+    if (newVersionText && this.option.autoFetchLatestAssetsByCron) {
+      this._assetEventEmitter.emit('BEGIN_UPDATE_ASSETS', newVersionText)
+      if (this.option.showFetchCacheLog) {
+        console.log(
+          `GenshinManager: New Asset found. Update Assets. GameVersion: ${newVersionText}`,
+        )
+      }
       this.createExcelBinOutputKeys()
       await this.fetchAssetFolder(
         this.excelBinOutputFolderPath,
         Object.values(ExcelBinOutputs),
       )
-      if (await this.setExcelBinOutputToCache()) {
-        await this.updateCache()
-        return
-      }
+      // eslint-disable-next-line no-empty
+      while (await this.setExcelBinOutputToCache()) {}
       this.createTextHashes()
       const textMapFileNames = this.option.downloadLanguages.map(
         (key) => TextMapLanguage[key],
       )
       await this.fetchAssetFolder(this.textMapFolderPath, textMapFileNames)
+      this._assetEventEmitter.emit('END_UPDATE_ASSETS', newVersionText)
       if (this.option.showFetchCacheLog)
         console.log('GenshinManager: Set cache.')
-      this.createExcelBinOutputKeys(this.childrenModule)
-      if (await this.setExcelBinOutputToCache()) {
-        await this.updateCache()
-        return
-      }
-      this.createTextHashes()
-      if (await this.setTextMapToCache(this.option.defaultLanguage)) {
-        await this.updateCache()
-        return
-      }
     } else {
-      if (this.option.showFetchCacheLog)
-        console.log('GenshinManager: No new Asset found. Set cache.')
-      this.createExcelBinOutputKeys(this.childrenModule)
-      if (await this.setExcelBinOutputToCache()) {
-        await this.updateCache()
-        return
-      }
-      this.createTextHashes()
-      if (await this.setTextMapToCache(this.option.defaultLanguage)) {
-        await this.updateCache()
-        return
+      if (this.option.showFetchCacheLog) {
+        console.log(
+          `GenshinManager: No new Asset found. Set cache. GameVersion: ${nowVersionText}`,
+        )
       }
     }
+    this._assetEventEmitter.emit('BEGIN_UPDATE_CACHE', nowVersionText)
+    this.createExcelBinOutputKeys(this.childrenModule)
+    // eslint-disable-next-line no-empty
+    while (await this.setExcelBinOutputToCache()) {}
+    this.createTextHashes()
+    // eslint-disable-next-line no-empty
+    while (await this.setTextMapToCache(this.option.defaultLanguage)) {}
+    this._assetEventEmitter.emit('END_UPDATE_CACHE', nowVersionText)
+
     if (this.option.showFetchCacheLog)
       console.log('GenshinManager: Finish update cache and set cache.')
   }
@@ -451,9 +466,9 @@ export abstract class AssetCacheManager {
 
   /**
    * Check gitlab for new commits
-   * @returns New commits found
+   * @returns New assets version text or undefined
    */
-  private static async checkGitUpdate(): Promise<boolean> {
+  private static async checkGitUpdate(): Promise<undefined | string> {
     await Promise.all(
       [
         this.option.assetCacheFolderPath,
@@ -481,7 +496,34 @@ export abstract class AssetCacheManager {
     ) as GitLabAPIResponse[]
 
     this.nowCommitId = newCommits[0].id
-    return oldCommits && newCommits[0].id === oldCommits[0].id ? false : true
+    if (oldCommits && newCommits[0].id === oldCommits[0].id) {
+      return undefined
+    } else {
+      const versionTexts = /OSRELWin(\d+\.\d+\.\d+)_/.exec(newCommits[0].title)
+      if (!versionTexts || versionTexts.length < 2) return '?.?.?'
+      return versionTexts[1]
+    }
+  }
+
+  /**
+   * Get Now Assets version text
+   * @returns Now assets version text or undefined
+   */
+  private static async getNowAssetVersion(): Promise<string | undefined> {
+    const oldCommits = fs.existsSync(this.commitFilePath)
+      ? (JSON.parse(
+          await fsPromises.readFile(this.commitFilePath, {
+            encoding: 'utf8',
+          }),
+        ) as GitLabAPIResponse[])
+      : null
+    if (oldCommits) {
+      const versionTexts = /OSRELWin(\d+\.\d+\.\d+)_/.exec(oldCommits[0].title)
+      if (!versionTexts || versionTexts.length < 2) return '?.?.?'
+      return versionTexts[1]
+    } else {
+      return undefined
+    }
   }
 
   /**

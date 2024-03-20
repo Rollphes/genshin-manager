@@ -8,10 +8,60 @@ import { ImageAssets } from '@/models/assets/ImageAssets'
 import { ClientOption, TextMapLanguage } from '@/types'
 
 /**
+ * Client events
+ * @see {@link Client}
+ */
+export enum ClientEvents {
+  /**
+   * When the cache update starts, fires
+   * @event BEGIN_UPDATE_CACHE
+   * @listener
+   * | param | type | description |
+   * | --- | --- | --- |
+   * | version | string | Game version of assets to cache |
+   */
+  BEGIN_UPDATE_CACHE = 'BEGIN_UPDATE_CACHE',
+  /**
+   * When the cache update ends, fires
+   * @event END_UPDATE_CACHE
+   * @listener
+   * | param | type | description |
+   * | --- | --- | --- |
+   * | version | string | Game version of assets to cache |
+   */
+  END_UPDATE_CACHE = 'END_UPDATE_CACHE',
+  /**
+   * When the assets update starts, fires
+   * @event BEGIN_UPDATE_ASSETS
+   * @listener
+   * | param | type | description |
+   * | --- | --- | --- |
+   * | version | string | Game version of new assets |
+   */
+  BEGIN_UPDATE_ASSETS = 'BEGIN_UPDATE_ASSETS',
+  /**
+   * When the assets update ends, fires
+   * @event END_UPDATE_ASSETS
+   * @listener
+   * | param | type | description |
+   * | --- | --- | --- |
+   * | version | string | Game version of new assets |
+   */
+  END_UPDATE_ASSETS = 'END_UPDATE_ASSETS',
+}
+
+interface ClientEventMap {
+  BEGIN_UPDATE_CACHE: [version: string]
+  END_UPDATE_CACHE: [version: string]
+  BEGIN_UPDATE_ASSETS: [version: string]
+  END_UPDATE_ASSETS: [version: string]
+}
+
+/**
  * Class of the client
  * @description This is the main body of `Genshin-Manager` where cache information is stored
  */
-export class Client extends AssetCacheManager {
+export class Client extends AssetCacheManager<ClientEventMap, ClientEvents> {
   /**
    * Default option
    */
@@ -89,7 +139,11 @@ export class Client extends AssetCacheManager {
     }
 
     if (!module.parent) throw new Error('module.parent is undefined.')
-
+    Object.values(ClientEvents).forEach((event) => {
+      Client._assetEventEmitter.on(event, (version) => {
+        this.emit(event, version)
+      })
+    })
     super(mergeOption, module.parent.children)
     this.option = mergeOption
   }
@@ -126,7 +180,9 @@ export class Client extends AssetCacheManager {
     await Client.updateCache()
     if (this.option.autoFetchLatestAssetsByCron) {
       cron.schedule(this.option.autoFetchLatestAssetsByCron, () => {
-        void Client.updateCache()
+        void (async (): Promise<void> => {
+          await Client.updateCache()
+        })()
       })
     }
     await Promise.all([

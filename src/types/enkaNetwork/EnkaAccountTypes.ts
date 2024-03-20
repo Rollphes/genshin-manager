@@ -1,4 +1,4 @@
-import { APIAvatarInfo, APIPlayerInfo } from '@/types/EnkaTypes'
+import { APIAvatarInfo, APIPlayerInfo } from '@/types/enkaNetwork/EnkaTypes'
 
 /**
  * Enka API GameAccount type

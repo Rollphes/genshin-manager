@@ -1,8 +1,9 @@
-import { CheerioAPI, load } from 'cheerio'
+import cheerio from 'cheerio'
 
 import { ImageAssets } from '@/models/assets/ImageAssets'
-import { Region, ValueOf } from '@/types'
-import { ContentList, DataList, NoticeLanguage } from '@/types/GetAnnTypes'
+import { ValueOf } from '@/types'
+import { NoticeLanguage, Region } from '@/types/sg-hk4e-api'
+import { ContentList, DataList } from '@/types/sg-hk4e-api/response'
 import { convertToUTC } from '@/utils/convertToUTC'
 
 /**
@@ -12,67 +13,67 @@ export class Notice {
   /**
    * Notice ID
    */
-  public id: number
+  public readonly id: number
   /**
    * Notice title
    */
-  public title: string
+  public readonly title: string
   /**
    * Notice subtitle
    */
-  public subtitle: string
+  public readonly subtitle: string
   /**
    * Notice banner
    */
-  public banner: ImageAssets
+  public readonly banner: ImageAssets
   /**
    * Notice content DOM(jQuery)
    * @warning This property does not exclude table tags
    */
-  public $: CheerioAPI
+  public readonly $: cheerio.Root
   /**
    * Notice type (1:event or 2:important)
    */
-  public type: number
+  public readonly type: number
   /**
    * Notice type label (event or important)
    */
-  public typeLabel: string
+  public readonly typeLabel: string
   /**
    * Notice tag (1:! 2:flag 3:star)
    */
-  public tag: number
+  public readonly tag: number
   /**
    * Notice tag icon
    */
-  public tagIcon: ImageAssets
+  public readonly tagIcon: ImageAssets
   /**
    * Event start time
    * @description If `undefined`, use getEventDuration()
    */
-  public eventStart: Date | undefined
+  public readonly eventStart: Date | undefined
   /**
    * Event end time
    * @description If `undefined`, use getEventDuration()
    */
-  public eventEnd: Date | undefined
+  public readonly eventEnd: Date | undefined
   /**
    * Reward image
    */
-  public rewardImg: ImageAssets | undefined
+  public readonly rewardImg: ImageAssets | undefined
   /**
    * Notice remind version
    */
-  public version: number
+  public readonly version: number
   /**
    * Notice language
    */
-  public lang: ValueOf<typeof NoticeLanguage>
+  public readonly lang: ValueOf<typeof NoticeLanguage>
   /**
    * Notice region
    */
-  public region: Region
-  private _en$: CheerioAPI
+  public readonly region: Region
+  private readonly _en$: cheerio.Root
 
   /**
    * Create a Notice
@@ -98,15 +99,15 @@ export class Notice {
     this.banner = ImageAssets.fromURL(annContent.banner)
 
     const unescapedContent = unescape(annContent.content)
-    this.$ = load(unescapedContent)
+    this.$ = cheerio.load(unescapedContent)
 
     const unescapedEnContent = unescape(enAnnContent.content)
-    this._en$ = load(unescapedEnContent)
+    this._en$ = cheerio.load(unescapedEnContent)
 
     const timeStrings = this.convertLocalDate(
       this._en$('p')
-        .map((i, el) => this._en$(el).text())
-        .get()
+        .toArray()
+        .map((el) => this._en$(el).text())
         .filter((str) => !/shop|reword|Shop|Reword/g.test(str))
         .join('\n')
         .split(/\n(?=〓)/g)
@@ -156,8 +157,8 @@ export class Notice {
     if (this.tag === 2) {
       return this.convertLocalDate(
         this.$('td')
-          .map((i, el) => this.$(el).text())
-          .get()[3]
+          .toArray()
+          .map((el) => this.$(el).text())[3]
           .replace('~', ' ~')
           .replace('—', ' — ')
           .replace('-', ' -'),

@@ -7,8 +7,8 @@ import { TextMapLanguage } from '@/types'
  * TextMapTransform
  */
 export class TextMapTransform extends Transform {
-  private language: keyof typeof TextMapLanguage
-  private filterSet: Set<number>
+  private readonly language: keyof typeof TextMapLanguage
+  private readonly filterSet: Set<number>
   private buffer: Buffer = Buffer.from('')
   private firstFlag: boolean = true
 

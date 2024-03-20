@@ -23,7 +23,7 @@ export type JsonArray = JsonValue[]
  * Class of json parser
  */
 export class JsonParser {
-  private json: JsonObject | JsonArray
+  private readonly json: JsonObject | JsonArray
 
   /**
    * Create a JsonParser
