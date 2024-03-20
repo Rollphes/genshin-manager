@@ -4,12 +4,8 @@ import { AnnContentNotFoundError } from '@/errors/AnnContentNotFoundError'
 import { AnnError } from '@/errors/AnnError'
 import { OutOfRangeError } from '@/errors/OutOfRangeError'
 import { Notice } from '@/models/Notice'
-import {
-  APIGetAnnContent,
-  APIGetAnnList,
-  NoticeLanguage,
-  URLParams as URLParams,
-} from '@/types/GetAnnTypes'
+import { NoticeLanguage, URLParams as URLParams } from '@/types/sg-hk4e-api'
+import { APIGetAnnContent, APIGetAnnList } from '@/types/sg-hk4e-api/response'
 import { PromiseEventEmitter } from '@/utils/PromiseEventEmitter'
 
 /**

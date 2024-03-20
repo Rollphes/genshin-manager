@@ -1,4 +1,4 @@
-import { APIOwner } from '@/types/EnkaTypes'
+import { APIOwner } from '@/types/enkaNetwork'
 
 /**
  * Class of Enka Account
@@ -36,6 +36,10 @@ export class EnkaAccount {
    * Enkanetwork URL
    */
   public readonly url: string
+  /**
+   * Data from EnkaNetwork
+   */
+  public readonly data: APIOwner
 
   /**
    * Create a EnkaAccount
@@ -51,5 +55,6 @@ export class EnkaAccount {
     this.avatar = ownerData.profile.avatar ?? undefined
     this.imageURL = ownerData.profile.image_url
     this.url = `${enkaBaseURL}/u/${this.username}`
+    this.data = ownerData
   }
 }

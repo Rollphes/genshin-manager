@@ -1,5 +1,5 @@
 import { CharacterDetail } from '@/models/enka/CharacterDetail'
-import { APIBuild } from '@/types/EnkaAccountTypes'
+import { APIBuild } from '@/types/enkaNetwork'
 
 /**
  * Class of Enka Build
@@ -45,6 +45,10 @@ export class EnkaBuild {
    * EnkaNetwork URL
    */
   public readonly url: string
+  /**
+   * Data from EnkaNetwork
+   */
+  public readonly data: APIBuild
 
   /**
    * Create a EnkaBuild
@@ -62,5 +66,6 @@ export class EnkaBuild {
     this.isAdaptiveColor = data.settings.adaptiveColor ?? false
     this.honkardWidth = data.settings.honkardWidth ?? 0
     this.url = `${genshinAccountURL}/${this.characterDetail.id}/${this.id}`
+    this.data = data
   }
 }

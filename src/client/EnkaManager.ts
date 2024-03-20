@@ -7,9 +7,13 @@ import { CharacterDetail } from '@/models/enka/CharacterDetail'
 import { EnkaAccount } from '@/models/enka/EnkaAccount'
 import { GenshinAccount } from '@/models/enka/GenshinAccount'
 import { PlayerDetail } from '@/models/enka/PlayerDetail'
-import { APIBuild, APIGameAccount } from '@/types/EnkaAccountTypes'
-import { APIEnkaStatus } from '@/types/EnkaStatusTypes'
-import { APIEnkaData, APIOwner } from '@/types/EnkaTypes'
+import {
+  APIBuild,
+  APIEnkaStatus,
+  APIGameAccount,
+  APIOwner,
+} from '@/types/enkaNetwork'
+import { APIEnkaData } from '@/types/enkaNetwork/EnkaTypes'
 import { PromiseEventEmitter } from '@/utils/PromiseEventEmitter'
 
 /**

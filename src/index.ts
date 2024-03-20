@@ -56,16 +56,8 @@ import {
   MaterialType,
   ProfilePictureType,
   QualityType,
-  Region,
   WeaponType,
 } from '@/types'
-import {
-  APIEnkaPing,
-  APIEnkaPingu,
-  APIEnkaRegion,
-  APIEnkaStat,
-  APIEnkaStatus,
-} from '@/types/EnkaStatusTypes'
 import { convertToUTC } from '@/utils/convertToUTC'
 export {
   Client,
@@ -128,15 +120,9 @@ export {
   MaterialType,
   FightPropType,
   WeaponType,
-  Region,
   ProfilePictureType,
   BodyType,
   QualityType,
   CodexType,
   CVType,
-  APIEnkaStatus,
-  APIEnkaRegion,
-  APIEnkaStat,
-  APIEnkaPingu,
-  APIEnkaPing,
 }

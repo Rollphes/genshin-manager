@@ -1,8 +1,9 @@
 import { CheerioAPI, load } from 'cheerio'
 
 import { ImageAssets } from '@/models/assets/ImageAssets'
-import { Region, ValueOf } from '@/types'
-import { ContentList, DataList, NoticeLanguage } from '@/types/GetAnnTypes'
+import { ValueOf } from '@/types'
+import { NoticeLanguage, Region } from '@/types/sg-hk4e-api'
+import { ContentList, DataList } from '@/types/sg-hk4e-api/response'
 import { convertToUTC } from '@/utils/convertToUTC'
 
 /**

@@ -1,7 +1,7 @@
 import { CharacterPreview } from '@/models/enka/CharacterPreview'
 import { Material } from '@/models/Material'
 import { ProfilePicture } from '@/models/ProfilePicture'
-import { APIPlayerInfo } from '@/types/EnkaTypes'
+import { APIPlayerInfo } from '@/types/enkaNetwork'
 /**
  * Class of player obtained from EnkaNetwork
  */
@@ -50,6 +50,10 @@ export class PlayerDetail {
    * Player Profile Picture
    */
   public readonly profilePicture: ProfilePicture
+  /**
+   * Data from EnkaNetwork
+   */
+  public readonly data: APIPlayerInfo
 
   /**
    * Create a PlayerDetail
@@ -82,5 +86,6 @@ export class PlayerDetail {
       ) as number
     }
     this.profilePicture = new ProfilePicture(profilePictureId || 10000005)
+    this.data = data
   }
 }

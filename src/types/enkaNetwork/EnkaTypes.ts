@@ -1,5 +1,3 @@
-import { ArtifactType, FightPropType } from '@/types'
-
 /**
  * Enka API ShowAvatarInfo type
  */
@@ -68,56 +66,68 @@ export interface APIPlayerInfo {
   profilePicture?: APIProfilePicture
 }
 
-interface APIProfilePicture {
+/**
+ * Enka API ProfilePicture type
+ */
+export interface APIProfilePicture {
+  /**
+   * Character ID
+   */
   avatarId?: number
+  /**
+   * Profile Picture ID
+   */
   id?: number //ProfilePicture ID
+  /**
+   * Costume ID
+   */
   costumeId?: number
 }
 
-interface APIPropMap {
-  type: number
-  ival: string
+/**
+ * Enka API PropMap type
+ */
+export interface APIPropMap {
+  /**
+   * Property value
+   */
   val?: string
 }
 
-interface APIReliquary {
+/**
+ * Enka API Reliquary type
+ */
+export interface APIReliquary {
+  /**
+   * Level
+   */
   level: number
+  /**
+   * Main Property ID
+   */
   mainPropId: number
+  /**
+   * Append Property ID List
+   */
   appendPropIdList?: number[]
 }
 
-interface APIWeapon {
+/**
+ * Enka API Weapon type
+ */
+export interface APIWeapon {
+  /**
+   * Level
+   */
   level: number
+  /**
+   * Refinement Level
+   */
   promoteLevel?: number
+  /**
+   * Affix Map
+   */
   affixMap?: { [key in string]: number }
-}
-
-interface APIReliquaryFlat {
-  nameTextMapHash: string
-  setNameTextMapHash: string
-  rankLevel: number
-  reliquaryMainstat: APIReliquaryMainstat
-  reliquarySubstats?: APIItemStats[]
-  itemType: 'ITEM_RELIQUARY'
-  icon: string
-  equipType: ArtifactType
-}
-interface APIWeaponFlat {
-  nameTextMapHash: string
-  rankLevel: number
-  weaponStats: APIItemStats[]
-  itemType: 'ITEM_WEAPON'
-  icon: string
-}
-
-interface APIItemStats {
-  appendPropId: FightPropType
-  statValue: number
-}
-
-interface APIReliquaryMainstat {
-  mainPropId: FightPropType
-  statValue: number
 }
 
 /**
@@ -132,10 +142,6 @@ export interface APIReliquaryEquip {
    * Artifact Base Info
    */
   reliquary: APIReliquary
-  /**
-   * Detailed Info of Artifact
-   */
-  flat: APIReliquaryFlat
 }
 /**
  * Enka API WeaponEquip type
@@ -149,10 +155,6 @@ export interface APIWeaponEquip {
    * Weapon Base Info
    */
   weapon: APIWeapon
-  /**
-   * Detailed Info of Weapon
-   */
-  flat: APIWeaponFlat
 }
 
 /**
@@ -184,10 +186,6 @@ export interface APIAvatarInfo {
    * Character Skill Set ID
    */
   skillDepotId: number
-  /**
-   * List of Unlocked Skill IDs
-   */
-  inherentProudSkillList: number[]
   /**
    * Map of Skill Levels
    */

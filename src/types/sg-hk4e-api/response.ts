@@ -1,71 +1,5 @@
-import { Region, ValueOf } from '@/types'
-
-/**
- * URL params for getAnn
- */
-export interface URLParams {
-  /**
-   * Game ID
-   * @default 'hk4e'
-   */
-  game: string
-  /**
-   * Game biz
-   * @default 'hk4e_global'
-   */
-  game_biz: string
-  /**
-   * Language
-   * @default 'en'
-   */
-  lang: keyof typeof NoticeLanguage
-  /**
-   * Auth app ID
-   * @default 'announcement'
-   */
-  auth_appid: string
-  /**
-   * Bundle ID
-   * @default 'hk4e_global'
-   */
-  bundle_id: string
-  /**
-   * Channel ID
-   * @default '1'
-   */
-  channel_id: string
-  /**
-   * Level
-   * @default '60'
-   */
-  level: string
-  /**
-   * Platform
-   * @default 'pc'
-   */
-  platform: string
-  /**
-   * Region
-   * @default 'os_asia'
-   */
-  region: Region
-  /**
-   * SDK presentation style
-   * @default 'fullscreen'
-   */
-  sdk_presentation_style: string
-  /**
-   * SDK screen transparent
-   * @default 'true'
-   */
-  sdk_screen_transparent: string
-  /**
-   * UID
-   * @default '888888888'
-   */
-  uid: string
-}
-
+import { ValueOf } from '@/types'
+import { NoticeLanguage } from '@/types/sg-hk4e-api'
 /**
  * GetAnnContent response
  */
@@ -253,25 +187,6 @@ export interface DataList {
    */
   extra_remind: number
 }
-
-/**
- * language code map for getAnn
- */
-export const NoticeLanguage = {
-  en: 'en-us',
-  ru: 'ru-ru',
-  vi: 'vi-vn',
-  th: 'th-th',
-  pt: 'pt-br',
-  ko: 'ko-kr',
-  ja: 'ja-jp',
-  id: 'id-id',
-  fr: 'fr-fr',
-  es: 'es-es',
-  de: 'de-de',
-  'zh-tw': 'zh-tw',
-  'zh-cn': 'zh-cn',
-} as const
 
 //Tab
 interface TypeList {
