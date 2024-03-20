@@ -1,4 +1,4 @@
-import { CheerioAPI, load } from 'cheerio'
+import cheerio from 'cheerio'
 
 import { ImageAssets } from '@/models/assets/ImageAssets'
 import { ValueOf } from '@/types'
@@ -30,7 +30,7 @@ export class Notice {
    * Notice content DOM(jQuery)
    * @warning This property does not exclude table tags
    */
-  public readonly $: CheerioAPI
+  public readonly $: cheerio.Root
   /**
    * Notice type (1:event or 2:important)
    */
@@ -73,7 +73,7 @@ export class Notice {
    * Notice region
    */
   public readonly region: Region
-  private readonly _en$: CheerioAPI
+  private readonly _en$: cheerio.Root
 
   /**
    * Create a Notice
@@ -99,15 +99,15 @@ export class Notice {
     this.banner = ImageAssets.fromURL(annContent.banner)
 
     const unescapedContent = unescape(annContent.content)
-    this.$ = load(unescapedContent)
+    this.$ = cheerio.load(unescapedContent)
 
     const unescapedEnContent = unescape(enAnnContent.content)
-    this._en$ = load(unescapedEnContent)
+    this._en$ = cheerio.load(unescapedEnContent)
 
     const timeStrings = this.convertLocalDate(
       this._en$('p')
-        .map((i, el) => this._en$(el).text())
-        .get()
+        .toArray()
+        .map((el) => this._en$(el).text())
         .filter((str) => !/shop|reword|Shop|Reword/g.test(str))
         .join('\n')
         .split(/\n(?=〓)/g)
@@ -157,8 +157,8 @@ export class Notice {
     if (this.tag === 2) {
       return this.convertLocalDate(
         this.$('td')
-          .map((i, el) => this.$(el).text())
-          .get()[3]
+          .toArray()
+          .map((el) => this.$(el).text())[3]
           .replace('~', ' ~')
           .replace('—', ' — ')
           .replace('-', ' -'),
