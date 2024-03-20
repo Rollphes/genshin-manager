@@ -1,7 +1,6 @@
 {
   "$schema": "https://typedoc.org/schema.json",
-  "entryPoints": ["./src/index.ts"],
-  "entryPointStrategy": "expand",
+  "entryPoints": ["src"],
   "out": "docs",
   "disableSources": true,
   "visibilityFilters": {
@@ -9,5 +8,5 @@
     "private": false,
     "inherited": false,
     "external": false
-  },
+  }
 }

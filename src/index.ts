@@ -1,3 +1,4 @@
+// This file outputs classes and other information to be provided to this library users.
 import { Client, ClientEvents } from '@/client/Client'
 import { EnkaData, EnkaManager, EnkaManagerEvents } from '@/client/EnkaManager'
 import { NoticeManager, NoticeManagerEvents } from '@/client/NoticeManager'
@@ -126,3 +127,5 @@ export {
   CodexType,
   CVType,
 }
+export * from '@/types/enkaNetwork'
+export * from '@/types/sg-hk4e-api'
