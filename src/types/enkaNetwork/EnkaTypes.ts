@@ -23,7 +23,7 @@ export interface APIPlayerInfo {
   /**
    * Player Nickname
    */
-  nickname: string
+  nickname?: string
   /**
    * Player Adventure Level
    */

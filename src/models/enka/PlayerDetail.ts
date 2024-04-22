@@ -60,7 +60,7 @@ export class PlayerDetail {
    * @param data Data from EnkaNetwork
    */
   constructor(data: APIPlayerInfo) {
-    this.nickname = data.nickname
+    this.nickname = data.nickname || ''
     this.level = data.level
     this.signature = data.signature || ''
     this.worldLevel = data.worldLevel || 0
