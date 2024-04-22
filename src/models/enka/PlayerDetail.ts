@@ -79,13 +79,13 @@ export class PlayerDetail {
     if (data.profilePicture && data.profilePicture.id) {
       profilePictureId = data.profilePicture.id
     } else {
-      profilePictureId = ProfilePicture.findProfilePictureIdByInfoId(
+      profilePictureId = ProfilePicture.findProfilePictureIdByUnlockParam(
         data.profilePicture?.costumeId ??
           data.profilePicture?.avatarId ??
           10000005,
       ) as number
     }
-    this.profilePicture = new ProfilePicture(profilePictureId || 10000005)
+    this.profilePicture = new ProfilePicture(profilePictureId || 1)
     this.data = data
   }
 }
