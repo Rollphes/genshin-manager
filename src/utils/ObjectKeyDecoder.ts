@@ -55,14 +55,6 @@ export class ObjectKeyDecoder {
       this.replaceDatas.push(
         new ReplaceData(
           Object.entries(dummyProfilePicture).find(
-            ([, v]) => v === 320001,
-          )?.[0] as string,
-          'infoId',
-        ),
-      )
-      this.replaceDatas.push(
-        new ReplaceData(
-          Object.entries(dummyProfilePicture).find(
             ([, v]) => v === 'PROFILE_PICTURE_UNLOCK_BY_ITEM',
           )?.[0] as string,
           'type',

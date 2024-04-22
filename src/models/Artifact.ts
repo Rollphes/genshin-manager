@@ -129,7 +129,7 @@ export class Artifact {
         'ReliquarySetExcelConfigData',
         this.setId,
       )
-      const equipAffixId = (setJson.EquipAffixId as number) * 10 + 0
+      const equipAffixId = (setJson.equipAffixId as number) * 10 + 0
       const equipAffixJson = Client._getJsonFromCachedExcelBinOutput(
         'EquipAffixExcelConfigData',
         equipAffixId,

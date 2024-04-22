@@ -32,6 +32,11 @@ export class ProfilePicture {
    */
   public readonly materialId?: number
   /**
+   * Quest ID
+   * @description Exists only if type is `PROFILE_PICTURE_UNLOCK_BY_PARENT_QUEST`
+   */
+  public readonly questId?: number
+  /**
    * Profile picture icon
    */
   public readonly icon: ImageAssets
@@ -47,30 +52,23 @@ export class ProfilePicture {
       this.id,
     )
 
-    const infoId = profilePictureJson.infoId as number
-    const cachedAvatar = Client._getCachedExcelBinOutputByName(
-      'AvatarExcelConfigData',
-    )
-    const cachedCostume = Client._getCachedExcelBinOutputByName(
-      'AvatarCostumeExcelConfigData',
-    )
-    const cachedMaterial = Client._getCachedExcelBinOutputByName(
-      'MaterialExcelConfigData',
-    )
-    if (String(infoId) in cachedAvatar) {
-      this.characterId = infoId
-      const characterInfo = new CharacterInfo(infoId)
-      this.costumeId = characterInfo.defaultCostumeId
-    } else if (String(infoId) in cachedCostume) {
-      this.costumeId = infoId
-      const costume = new CharacterCostume(infoId)
-      this.characterId = costume.characterId
-    } else if (String(infoId) in cachedMaterial) {
-      this.materialId = infoId
-    } else {
-      throw new Error(
-        `ProfilePictureId ${this.id} has invalid infoId ${infoId}`,
-      )
+    const unlockParam = profilePictureJson.unlockParam as number
+
+    switch (profilePictureJson.type) {
+      case 'PROFILE_PICTURE_UNLOCK_BY_AVATAR':
+        this.characterId = unlockParam
+        this.costumeId = new CharacterInfo(unlockParam).defaultCostumeId
+        break
+      case 'PROFILE_PICTURE_UNLOCK_BY_COSTUME':
+        this.costumeId = unlockParam
+        this.characterId = new CharacterCostume(unlockParam).characterId
+        break
+      case 'PROFILE_PICTURE_UNLOCK_BY_ITEM':
+        this.materialId = unlockParam
+        break
+      case 'PROFILE_PICTURE_UNLOCK_BY_PARENT_QUEST':
+        this.questId = unlockParam
+        break
     }
 
     this.icon = new ImageAssets(profilePictureJson.iconPath as string)
