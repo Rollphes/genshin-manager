@@ -87,17 +87,17 @@ export class ProfilePicture {
 
   /**
    * Find profile picture ID by info ID
-   * @param infoId Costume ID or Character ID or Material ID
+   * @param unlockParam Costume ID or Character ID or Material ID or Quest ID
    * @returns Profile picture ID
    */
-  public static findProfilePictureIdByInfoId(
-    infoId: number,
+  public static findProfilePictureIdByUnlockParam(
+    unlockParam: number,
   ): number | undefined {
     const profilePictureDatas = Object.values(
       Client._getCachedExcelBinOutputByName('ProfilePictureExcelConfigData'),
     )
     const profilePictureData = profilePictureDatas.find(
-      (data) => data.infoId === infoId,
+      (data) => data.unlockParam === unlockParam,
     )
     if (!profilePictureData) return
     return profilePictureData.id as number
