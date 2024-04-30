@@ -23,6 +23,7 @@ import { CharacterInfo } from '@/models/character/CharacterInfo'
 import { CharacterInherentSkill } from '@/models/character/CharacterInherentSkill'
 import { CharacterProfile } from '@/models/character/CharacterProfile'
 import { CharacterSkill } from '@/models/character/CharacterSkill'
+import { CharacterSkillAscension } from '@/models/character/CharacterSkillAscension'
 import { CharacterStatusManager } from '@/models/character/CharacterStatusManager'
 import { CharacterStory } from '@/models/character/CharacterStory'
 import { CharacterVoice } from '@/models/character/CharacterVoice'
@@ -85,6 +86,7 @@ export {
   CharacterStatusManager,
   CharacterProfile,
   CharacterSkill,
+  CharacterSkillAscension,
   CharacterInherentSkill,
   CharacterConstellation,
   CharacterDetail,
