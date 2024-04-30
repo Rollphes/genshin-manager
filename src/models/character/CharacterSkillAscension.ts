@@ -68,12 +68,17 @@ export class CharacterSkillAscension {
         (costItem) => costItem.id !== undefined && costItem.count !== undefined,
       )
     this.costMora = (proudSkillJson.coinCost as number | undefined) ?? 0
-    this.addProps = (proudSkillJson.addProps as JsonObject[]).map(
-      (addProp) =>
-        new StatProperty(
-          addProp.propType as FightPropType,
-          (addProp.value ?? 0) as number,
-        ),
-    )
+    this.addProps = (proudSkillJson.addProps as JsonObject[])
+      .filter(
+        (addProp) =>
+          addProp.propType !== undefined && addProp.value !== undefined,
+      )
+      .map(
+        (addProp) =>
+          new StatProperty(
+            addProp.propType as FightPropType,
+            (addProp.value ?? 0) as number,
+          ),
+      )
   }
 }
