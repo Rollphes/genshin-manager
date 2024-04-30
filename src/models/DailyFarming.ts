@@ -89,7 +89,7 @@ export class DailyFarming {
       (d) => d.type === 'DUNGEN_ENTRY_TYPE_WEAPON_PROMOTE',
     )
 
-    for (let i = 0; i < (dayOfWeek === 0 ? 3 : 0); i++) {
+    for (let i = 0; i < (dayOfWeek === 0 ? 3 : 1); i++) {
       ;[...weaponDomains, ...skillDomains].forEach((domain) => {
         const materialIds = (domain.descriptionCycleRewardList as number[][])[
           dayOfWeek === 0 ? i : rewardDateIndex
