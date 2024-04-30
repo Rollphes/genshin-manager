@@ -1,4 +1,4 @@
-# GameVersion 4.4.0
+# GameVersion 4.6.0
 ## CharacterId
 ID:10000002 Name:Kamisato Ayaka<br>
 ID:10000003 Name:Jean<br>
@@ -80,6 +80,8 @@ ID:10000090 Name:Chevreuse<br>
 ID:10000091 Name:Navia<br>
 ID:10000092 Name:Gaming<br>
 ID:10000093 Name:Xianyun<br>
+ID:10000094 Name:Chiori<br>
+ID:10000096 Name:Arlecchino<br>
 ## CostumeId
 ID:200200 Name:Glitzernde Ausstrahlung<br>
 ID:200201 Name:Botschaft der Blütezeit<br>
@@ -178,6 +180,8 @@ ID:209000 Name:Muskete der Gerechtigkeit<br>
 ID:209100 Name:Salon des gelben Samts<br>
 ID:209200 Name:Riesenhafter Regenbogen<br>
 ID:209300 Name:Erhabenes Omen eines Gasts<br>
+ID:209400 Name:Gezupfte Yamabuki-Pracht<br>
+ID:209600 Name:Mondlicht<br>
 ## SkillId
 ID:10024 Name:Standardangriff: Kamisato-Stil – Naname<br>
 ID:10018 Name:Kamisato-Stil – Hyouka<br>
@@ -415,6 +419,12 @@ ID:10925 Name:Der Suanni vergoldeter Tanz<br>
 ID:10931 Name:Standardangriff: Lied des Windes und der Blume<br>
 ID:10932 Name:Weiße Wolken der Morgenröte<br>
 ID:10935 Name:Sich versammelnde Sterne der Dämmerung<br>
+ID:10941 Name:Standardangriff: Webende Klinge<br>
+ID:10942 Name:Streichelnde Hasode<br>
+ID:10945 Name:Doppelklinge – Hiyoku<br>
+ID:10961 Name:Standardangriff: Einladung zur Enthauptung<br>
+ID:10962 Name:Alles wird zu Staub<br>
+ID:10965 Name:Aufgehen des Mondes des Verderbens<br>
 ## InherentSkillId
 ID:221 Name:Amatsumi-Kunitsumi-Weihe<br>
 ID:222 Name:Kanten-Senmyou-Segen<br>
@@ -651,6 +661,12 @@ ID:9223 Name:Schreitende Bestie<br>
 ID:9321 Name:Im glückverheißenden Zephir schwankende Frostfedern<br>
 ID:9322 Name:Siehe, die Adeptin in ihrem Reich<br>
 ID:9323 Name:Flink wie ein Kranich<br>
+ID:9421 Name:Mode nach Maß<br>
+ID:9422 Name:Vollendete Muster<br>
+ID:9423 Name:Bezaubernde Silhouette<br>
+ID:9621 Name:Nur Qualen vergelten<br>
+ID:9622 Name:Kraft allein schützt<br>
+ID:9623 Name:Nur der Mond des Verderbens weiß<br>
 ## ConstellationId
 ID:21 Name:Verschneite Sakura<br>
 ID:22 Name:Sturmklinge Seki no To<br>
@@ -1150,6 +1166,18 @@ ID:933 Name:Schöpfung von Stern und Mond<br>
 ID:934 Name:Mysteriöser Hirse-Gourmet<br>
 ID:935 Name:Wanderin über den rosigen Wolken<br>
 ID:936 Name:Die mit den Wolken tanzt<br>
+ID:941 Name:Sechs Pfade der Seidigkeit<br>
+ID:942 Name:Fünffarbige Färbung<br>
+ID:943 Name:Vier Brokatverzierungen<br>
+ID:944 Name:Drei Rituale der Schneiderei<br>
+ID:945 Name:Zwei seidene Federn<br>
+ID:946 Name:Verfolgung des einen Prinzips<br>
+ID:961 Name:„Jeden Groll und alle Schulden werde ich begleichen ...“<br>
+ID:962 Name:„Jede Belohnung und Vergeltung wird von mir vergeben ...“<br>
+ID:963 Name:„Du wirst Teil unserer Familie werden ...“<br>
+ID:964 Name:„Von nun an müsst ihr euch gegenseitig lieben und beschützen ...“<br>
+ID:965 Name:„Allein sind wir so gut wie tot ...“<br>
+ID:966 Name:„Von nun an werden wir gemeinsam ein neues Leben führen.“<br>
 ## ArtifactId
 ID:20002 Name:Novizenfeder<br>
 ID:20004 Name:Novizenblume<br>
@@ -1543,7 +1571,7 @@ ID:23695 Name:Ouvertüre zum Goldenen Zeitalter<br>
 ID:23696 Name:Treiben goldener Nächte<br>
 ID:23697 Name:Des Goldvogels fallende Feder<br>
 ID:23698 Name:Belohnung der Goldtruppe<br>
-ID:23699 Name:Variation der Goldpartitur<br>
+ID:23699 Name:Ouvertüre zum Goldenen Zeitalter<br>
 ID:23700 Name:Ouvertüre zum Goldenen Zeitalter<br>
 ID:23701 Name:Versprochener Traum vergangener Tage<br>
 ID:23702 Name:Aufkeimende Gedanken vergangener Tage<br>
@@ -1565,6 +1593,26 @@ ID:23717 Name:Ehrlicher Federkiel<br>
 ID:23718 Name:Mitfühlender Damenhut<br>
 ID:23719 Name:Selbstloser Blumenschmuck<br>
 ID:23720 Name:Treue Sanduhr<br>
+ID:23721 Name:Rhapsodie des sprudelnden Ichors<br>
+ID:23722 Name:Nächtliches Grübeln der uralten See<br>
+ID:23723 Name:Reigen vereinzelter Launen<br>
+ID:23724 Name:Vorspiel der harmonischen Sinfonie<br>
+ID:23725 Name:Rätsel der Wendung des Schicksals<br>
+ID:23726 Name:Rhapsodie des sprudelnden Ichors<br>
+ID:23727 Name:Nächtliches Grübeln der uralten See<br>
+ID:23728 Name:Reigen vereinzelter Launen<br>
+ID:23729 Name:Vorspiel der harmonischen Sinfonie<br>
+ID:23730 Name:Rätsel der Wendung des Schicksals<br>
+ID:23731 Name:Weinflasche der Planung<br>
+ID:23732 Name:Verblasste Smaragdschwanzfeder<br>
+ID:23733 Name:Kronenlose Krone<br>
+ID:23734 Name:Helle Blüte dunkler Früchte<br>
+ID:23735 Name:Augenblick des Erfolgs<br>
+ID:23736 Name:Weinflasche der Planung<br>
+ID:23737 Name:Verblasste Smaragdschwanzfeder<br>
+ID:23738 Name:Kronenlose Krone<br>
+ID:23739 Name:Helle Blüte dunkler Früchte<br>
+ID:23740 Name:Augenblick des Erfolgs<br>
 ID:24101 Name:Rausch des Gladiators<br>
 ID:24102 Name:Zuflucht des Gladiators<br>
 ID:24103 Name:Verzierter Helm<br>
@@ -1975,6 +2023,46 @@ ID:34543 Name:Selbstloser Blumenschmuck<br>
 ID:34544 Name:Selbstloser Blumenschmuck<br>
 ID:34553 Name:Treue Sanduhr<br>
 ID:34554 Name:Treue Sanduhr<br>
+ID:35412 Name:Rhapsodie des sprudelnden Ichors<br>
+ID:35413 Name:Rhapsodie des sprudelnden Ichors<br>
+ID:35422 Name:Nächtliches Grübeln der uralten See<br>
+ID:35423 Name:Nächtliches Grübeln der uralten See<br>
+ID:35432 Name:Reigen vereinzelter Launen<br>
+ID:35433 Name:Reigen vereinzelter Launen<br>
+ID:35442 Name:Vorspiel der harmonischen Sinfonie<br>
+ID:35443 Name:Vorspiel der harmonischen Sinfonie<br>
+ID:35452 Name:Rätsel der Wendung des Schicksals<br>
+ID:35453 Name:Rätsel der Wendung des Schicksals<br>
+ID:35513 Name:Rhapsodie des sprudelnden Ichors<br>
+ID:35514 Name:Rhapsodie des sprudelnden Ichors<br>
+ID:35523 Name:Nächtliches Grübeln der uralten See<br>
+ID:35524 Name:Nächtliches Grübeln der uralten See<br>
+ID:35533 Name:Reigen vereinzelter Launen<br>
+ID:35534 Name:Reigen vereinzelter Launen<br>
+ID:35543 Name:Vorspiel der harmonischen Sinfonie<br>
+ID:35544 Name:Vorspiel der harmonischen Sinfonie<br>
+ID:35553 Name:Rätsel der Wendung des Schicksals<br>
+ID:35554 Name:Rätsel der Wendung des Schicksals<br>
+ID:36412 Name:Weinflasche der Planung<br>
+ID:36413 Name:Weinflasche der Planung<br>
+ID:36422 Name:Verblasste Smaragdschwanzfeder<br>
+ID:36423 Name:Verblasste Smaragdschwanzfeder<br>
+ID:36432 Name:Kronenlose Krone<br>
+ID:36433 Name:Kronenlose Krone<br>
+ID:36442 Name:Helle Blüte dunkler Früchte<br>
+ID:36443 Name:Helle Blüte dunkler Früchte<br>
+ID:36452 Name:Augenblick des Erfolgs<br>
+ID:36453 Name:Augenblick des Erfolgs<br>
+ID:36513 Name:Weinflasche der Planung<br>
+ID:36514 Name:Weinflasche der Planung<br>
+ID:36523 Name:Verblasste Smaragdschwanzfeder<br>
+ID:36524 Name:Verblasste Smaragdschwanzfeder<br>
+ID:36533 Name:Kronenlose Krone<br>
+ID:36534 Name:Kronenlose Krone<br>
+ID:36543 Name:Helle Blüte dunkler Früchte<br>
+ID:36544 Name:Helle Blüte dunkler Früchte<br>
+ID:36553 Name:Augenblick des Erfolgs<br>
+ID:36554 Name:Augenblick des Erfolgs<br>
 ID:51110 Name:Kelch der Fremde<br>
 ID:51111 Name:Kelch der Fremde<br>
 ID:51112 Name:Kelch der Fremde<br>
@@ -4928,6 +5016,7 @@ ID:11510 Name:Haran Geppaku Futsu<br>
 ID:11511 Name:Khaj-Nisut-Schlüssel<br>
 ID:11512 Name:Licht der schneidenden Blätter<br>
 ID:11513 Name:Pracht des stillen Wassers<br>
+ID:11514 Name:Uraku Misugiri<br>
 ID:12101 Name:Übungsgroßschwert<br>
 ID:12201 Name:Söldnerzweihänder<br>
 ID:12301 Name:Eiserner Schatten<br>
@@ -4986,6 +5075,7 @@ ID:13417 Name:Monddurchbohrer<br>
 ID:13419 Name:Spitze der klingenden Winde<br>
 ID:13424 Name:Ballade der Fjorde<br>
 ID:13425 Name:Rechtmäßige Belohnung<br>
+ID:13426 Name:Dialoge der Weisen der Wüste<br>
 ID:13427 Name:Erkundungsbohrer<br>
 ID:13501 Name:Homa-Stab<br>
 ID:13502 Name:Himmelsgrat<br>
@@ -4995,6 +5085,7 @@ ID:13506 Name:Göttermörder<br>
 ID:13507 Name:Ende des Unheils<br>
 ID:13509 Name:Grasschnittstrahl<br>
 ID:13511 Name:Stab der roten Sande<br>
+ID:13512 Name:Form des scharlachroten Mondes<br>
 ID:14101 Name:Aufzeichnungen eines Lehrlings<br>
 ID:14201 Name:Taschenzauberbuch<br>
 ID:14301 Name:Magieführer<br>
@@ -5143,6 +5234,8 @@ ID:167 Name:Theaterkarten<br>
 ID:168 Name:Antike Eisenmünze<br>
 ID:169 Name:Festlichkeit<br>
 ID:170 Name:Filmisches Vergnügen<br>
+ID:171 Name:Finanzmittel<br>
+ID:172 Name:„Regenbogen-Ticket“<br>
 ID:201 Name:Urgestein<br>
 ID:202 Name:Mora<br>
 ID:203 Name:Schöpfungskristall<br>
@@ -5253,6 +5346,8 @@ ID:1090 Name:Chevreuse<br>
 ID:1091 Name:Navia<br>
 ID:1092 Name:Gaming<br>
 ID:1093 Name:Xianyun<br>
+ID:1094 Name:Chiori<br>
+ID:1096 Name:Arlecchino<br>
 ID:1102 Name:Stella Fortuna von Kamisato Ayaka<br>
 ID:1103 Name:Stella Fortuna von Jean<br>
 ID:1105 Name:Stella Fortuna des Reisenden<br>
@@ -5294,7 +5389,7 @@ ID:1151 Name:Stella Fortuna von Eula<br>
 ID:1152 Name:Stella Fortuna von Shougun Raiden<br>
 ID:1153 Name:Stella Fortuna von Sayu<br>
 ID:1154 Name:Stella Fortuna von Sangonomiya Kokomi<br>
-ID:1155 Name:Gorous Stella Fortuna<br>
+ID:1155 Name:Stella Fortuna von Gorou<br>
 ID:1156 Name:Stella Fortuna von Kujou Sara<br>
 ID:1157 Name:Stella Fortuna von Arataki Itto<br>
 ID:1158 Name:Stella Fortuna von Yae Miko<br>
@@ -5333,6 +5428,8 @@ ID:1190 Name:Stella Fortuna von Chevreuse<br>
 ID:1191 Name:Stella Fortuna von Navia<br>
 ID:1192 Name:Stella Fortuna von Gaming<br>
 ID:1193 Name:Stella Fortuna von Xianyun<br>
+ID:1194 Name:Stella Fortuna von Chiori<br>
+ID:1196 Name:Stella Fortuna von Arlecchino<br>
 ID:1201 Name:Gnostiker-Erlebnispass – Erste Aufzeichnungen<br>
 ID:1202 Name:Mondsegen – Neumond<br>
 ID:1301 Name:Umschreibungspinsel<br>
@@ -7650,6 +7747,15 @@ ID:108661 Name:Chenyu-Aufguss<br>
 ID:108662 Name:Leckerer Chenyu-Aufguss<br>
 ID:108663 Name:Allumfassende Freude<br>
 ID:108664 Name:Zeit für ein Tässchen Tee<br>
+ID:108665 Name:Misslungenes extra-fleischiges Sushi<br>
+ID:108666 Name:Extra-fleischiges Sushi<br>
+ID:108667 Name:Leckeres extra-fleischiges Sushi<br>
+ID:108668 Name:„Modenschau“<br>
+ID:108669 Name:Rock-’n’-Roll-Kloßmilch<br>
+ID:108670 Name:Misslungenes Blasen-Soufflé<br>
+ID:108671 Name:Blasen-Soufflé<br>
+ID:108672 Name:Leckeres Blasen-Soufflé<br>
+ID:108674 Name:Spuren von Herdfeuer<br>
 ID:109000 Name:Objekt für Rezepte<br>
 ID:109101 Name:Rezept: Spieß mit Pilzen und Hühnchen<br>
 ID:109102 Name:Rezept: Fischerschnitte<br>
@@ -7841,6 +7947,8 @@ ID:109570 Name:Rezept: Jadegemusterte Tee-Eier<br>
 ID:109571 Name:Rezept: Teegeräuchertes Täubchen<br>
 ID:109572 Name:Rezept: Guhua-Fisch mit Lammsuppe<br>
 ID:109573 Name:Rezept: Chenyu-Aufguss<br>
+ID:109574 Name:Rezept: Extra-fleischiges Sushi<br>
+ID:109575 Name:Rezept: Blasen-Soufflé<br>
 ID:110000 Name:Hergestelltes Produkt<br>
 ID:110001 Name:Mehl<br>
 ID:110002 Name:Sahne<br>
@@ -7978,6 +8086,9 @@ ID:112094 Name:Beständigkeit der Dienerin<br>
 ID:112095 Name:Federflosse<br>
 ID:112096 Name:Mondlichtflosse<br>
 ID:112097 Name:Abgrundlichtflosse<br>
+ID:112098 Name:Verwitterter Schwertgriff<br>
+ID:112099 Name:Zersplitterter Schwertgriff<br>
+ID:112100 Name:Schwelender Schwertgriff<br>
 ID:113001 Name:Orkansamen<br>
 ID:113002 Name:Blitzprisma<br>
 ID:113003 Name:Schwanzfeder des Ostwinds<br>
@@ -8036,6 +8147,10 @@ ID:113055 Name:Aphotisches Auge des Wirbels<br>
 ID:113056 Name:Aphotische Masse<br>
 ID:113057 Name:Nicht transzendiertes Wasser<br>
 ID:113058 Name:Wolkennaht-Schuppenpanzer<br>
+ID:113059 Name:Fragment einer goldenen Melodie<br>
+ID:113060 Name:Schwelende Kerze<br>
+ID:113061 Name:Seidene Feder<br>
+ID:113062 Name:Ablehnung und Urteilsspruch<br>
 ID:114001 Name:Decarabians zerbrochener Ziegel<br>
 ID:114002 Name:Decarabians zerbröckelter Wall<br>
 ID:114003 Name:Decarabians Palastfragment<br>
@@ -8168,6 +8283,8 @@ ID:117014 Name:Rätselhafte Artefaktkiste – Rang 2<br>
 ID:117015 Name:Rätselhafte Artefaktkiste – Rang 1<br>
 ID:117016 Name:Rätselhafte Artefaktkiste – Rang 2<br>
 ID:117017 Name:Rätselhafte Artefaktkiste – Rang 1<br>
+ID:117018 Name:Rätselhafte Artefaktkiste – Rang 2<br>
+ID:117019 Name:Rätselhafte Artefaktkiste – Rang 1<br>
 ID:118001 Name:#Torte für {F#die Reisende}{M#den Reisenden}<br>
 ID:118002 Name:#Torte für {F#die Reisende}{M#den Reisenden}<br>
 ID:118003 Name:#Torte für {F#die Reisende}{M#den Reisenden}<br>
@@ -8955,18 +9072,55 @@ ID:120787 Name:Jade-Bruchstück – Rechts<br>
 ID:120788 Name:Duftendes Holz „Huangcong“<br>
 ID:120789 Name:Duftendes Holz „Chizhang“<br>
 ID:120790 Name:Gedenkalbum zu „Reisen in Chenyu“<br>
+ID:120791 Name:Uralte autoharmonische Musikbox<br>
 ID:120792 Name:Eigenartiger Schlüssel<br>
+ID:120793 Name:Leere Partitur<br>
+ID:120794 Name:Uralte Partitur<br>
+ID:120795 Name:Zurückgelassenes Zauberbuch<br>
 ID:120796 Name:„Optische Linse der Schusspraxis“<br>
+ID:120797 Name:Perinheri – Band I<br>
+ID:120798 Name:Perinheri – Band II<br>
+ID:120799 Name:Anecdota Septentrionalis – Band I<br>
+ID:120800 Name:Anecdota Septentrionalis – Band II<br>
+ID:120801 Name:Anecdota Septentrionalis – Band III<br>
 ID:120803 Name:Arbeitsplatzbeschreibung<br>
 ID:120804 Name:Bitte hilf mir!<br>
 ID:120805 Name:Bestätigung von Bracaris Gemischtwarenladen<br>
 ID:120806 Name:Uralte Steintafel<br>
 ID:120807 Name:Autumns Geschenk<br>
 ID:120808 Name:Paket für die Leroy-Familie<br>
+ID:120809 Name:„Chioriya-Boutique“: Hinter modischer Kleidung versteckte Dunkelheit<br>
+ID:120810 Name:Liebliches Lumitoile<br>
 ID:120811 Name:<br>
 ID:120812 Name:Zurückgelassener Schlüssel I<br>
 ID:120813 Name:Zurückgelassener Schlüssel II<br>
 ID:120814 Name:<br>
+ID:120815 Name:Erweiterung des Anbaubereichs I<br>
+ID:120816 Name:Erweiterung des Anbaubereichs II<br>
+ID:120817 Name:Erweiterung des Anbaubereichs III<br>
+ID:120818 Name:Erweiterung des Anbaubereichs IV<br>
+ID:120819 Name:Erweiterung des Anbaubereichs V<br>
+ID:120820 Name:Erweiterung des Anbaubereichs VI<br>
+ID:120821 Name:Verbesserter Alchimiekessel I<br>
+ID:120822 Name:Verbesserter Alchimiekessel II<br>
+ID:120823 Name:Verbesserter Alchimiekessel III<br>
+ID:120824 Name:Verbesserter Alchimiekessel IV<br>
+ID:120825 Name:Kantige Tropfenflasche<br>
+ID:120826 Name:Wunderherz-Flasche<br>
+ID:120827 Name:Stillwasserbucht-Flasche<br>
+ID:120828 Name:Prächtige Juwelenflasche<br>
+ID:120829 Name:Pummelmieze-Flasche<br>
+ID:120830 Name:Duft der Windmühlenaster<br>
+ID:120831 Name:Strahlend wie ein Kristallschmetterling<br>
+ID:120832 Name:Perfektes Geschenkband<br>
+ID:120833 Name:Himbeerrote Flugfeder<br>
+ID:120834 Name:Golden vergoldet und Smaragd<br>
+ID:120835 Name:Ladendeko – „Erblühende Moral“<br>
+ID:120836 Name:Ladendeko – „Atmosphäre in voller Blüte“<br>
+ID:120837 Name:Ladendeko – „Hochwirksame Tränke“<br>
+ID:120838 Name:Ladendeko – „Wundertränke“<br>
+ID:120839 Name:Ladendeko – „Prismatische Effekte“<br>
+ID:120840 Name:Finanzexpansionsvertrag<br>
 ID:120841 Name:„Gesegnetes Wasser des Bergs Xuanlian“<br>
 ID:120842 Name:Uralter Jadebecher<br>
 ID:120843 Name:Jemandes Geschäftsbuch<br>
@@ -8978,9 +9132,50 @@ ID:120848 Name:<br>
 ID:120849 Name:<br>
 ID:120850 Name:<br>
 ID:120851 Name:Chizhang-Landkarte<br>
+ID:120852 Name:Mini-Phonograph<br>
 ID:120853 Name:Schlüssel der antiken Mauer<br>
 ID:120854 Name:Verrosteter Schlüssel<br>
+ID:120855 Name:Bezaubernde Beryllmuschel<br>
+ID:120856 Name:Romantische Romaritime-Blume<br>
 ID:120857 Name:Aus Pelikanschnabel ergatterter „Fisch“<br>
+ID:120860 Name:<br>
+ID:120861 Name:Einladung von der Arataki-Bande<br>
+ID:120864 Name:„Felix Felicium“<br>
+ID:120868 Name:Nachricht von Shikanoin Heizou<br>
+ID:120869 Name:Akten von „Welpenvereinigung“<br>
+ID:120870 Name:Lynettes Briefumschlag<br>
+ID:120872 Name:Vervollständigte Partitur<br>
+ID:120873 Name:Zerrissene Partiturseite I<br>
+ID:120874 Name:Ein vollkommen gewöhnlicher Zweig<br>
+ID:120875 Name:Erweiterung des Anbaubereichs VII<br>
+ID:120876 Name:Alchimeter<br>
+ID:120877 Name:Offizielles Skript<br>
+ID:120878 Name:„Ursprüngliches Skript“<br>
+ID:120879 Name:Manuskript<br>
+ID:120880 Name:„Ich wurde als Onikabuto wiedergeboren ... und stellte die Welt auf den Kopf“<br>
+ID:120881 Name:Rätselhafter Brief<br>
+ID:120882 Name:Cynos Brief<br>
+ID:120883 Name:Beschädigte Partitur<br>
+ID:120910 Name:Vervollständigte Partitur<br>
+ID:120911 Name:Ruggieros Notizen II<br>
+ID:120917 Name:Zerrissene Partiturseite II<br>
+ID:120933 Name:Uralte Steleninschrift<br>
+ID:120934 Name:Uralte Steleninschrift<br>
+ID:120935 Name:Notizen eines Harmosten II<br>
+ID:120936 Name:Uralte Steleninschrift<br>
+ID:120937 Name:Uralte Steleninschrift<br>
+ID:120938 Name:Uralte Steleninschrift<br>
+ID:120940 Name:Zerfleddertes Logbuch<br>
+ID:120941 Name:Ruggieros Notizen I<br>
+ID:120942 Name:Jemandes Notizen<br>
+ID:120943 Name:Ruggieros Notizen III<br>
+ID:120944 Name:Untersuchung über die Barbaren des Nordens<br>
+ID:120945 Name:Notizen eines Harmosten I<br>
+ID:120946 Name:Alte Inschrift<br>
+ID:120947 Name:Uralter Zettel<br>
+ID:120948 Name:Uralter Zettel<br>
+ID:120949 Name:Uralter Zettel<br>
+ID:120950 Name:Uralter Zettel<br>
 ID:129001 Name:Tränen zwischen den Sternen<br>
 ID:130001 Name:Seidenblumensamen<br>
 ID:130002 Name:Zuckerblumensamen<br>
@@ -9205,6 +9400,11 @@ ID:141222 Name:Strahlender Drehkristall CXXII<br>
 ID:141223 Name:Strahlender Drehkristall CXXIII<br>
 ID:141224 Name:Strahlender Drehkristall CXXIV<br>
 ID:141225 Name:Strahlender Drehkristall CXXV<br>
+ID:141226 Name:Strahlender Drehkristall CXXVI<br>
+ID:141227 Name:Strahlender Drehkristall CXXVII<br>
+ID:141228 Name:Strahlender Drehkristall CXXVIII<br>
+ID:141229 Name:Strahlender Drehkristall CXXIX<br>
+ID:141230 Name:Strahlender Drehkristall CXXX<br>
 ID:200001 Name:Laternenpapierfasern<br>
 ID:200002 Name:Laternenfüllung<br>
 ID:200003 Name:Plaustritbröckchen<br>
@@ -9228,6 +9428,7 @@ ID:200116 Name:Martens Universalschutzmittel<br>
 ID:200117 Name:Löwenzahn-Lesezeichen<br>
 ID:200118 Name:Aufsteigender Heiliger Kelch<br>
 ID:200119 Name:„Megamagisch-unbesiegbarer hell-glänzender Kristall“<br>
+ID:200120 Name:„König des Landes“<br>
 ID:200201 Name:Falkentanz<br>
 ID:200202 Name:Eisenflügel<br>
 ID:200203 Name:Windquell<br>
@@ -9485,6 +9686,13 @@ ID:210189 Name:Errungenschaft – Adeptental<br>
 ID:210190 Name:Chenyu – Regenjade-Ritus<br>
 ID:210191 Name:Erlebnispass – Drachenpracht<br>
 ID:210192 Name:Album – The Stellar Moments<br>
+ID:210193 Name:Chiori – Spektakuläre Ärmel<br>
+ID:210194 Name:Erlebnispass – Scheidekunst<br>
+ID:210195 Name:Arlecchino – Edikt<br>
+ID:210196 Name:Fontaine – Abstimmung<br>
+ID:210197 Name:Errungenschaft – Walbändiger<br>
+ID:210198 Name:Fontaine – Tauwasserbrunnen<br>
+ID:210199 Name:Erlebnispass – Rock ’n’ Roll<br>
 ID:220001 Name:Anemoculus-Resonanzstein<br>
 ID:220002 Name:Geoculus-Resonanzstein<br>
 ID:220003 Name:Geo-Schatzkompass<br>
@@ -9578,6 +9786,8 @@ ID:220093 Name:„Spezial-Analyse-Zoomobjektiv“<br>
 ID:220094 Name:Fotoapparat für grafische Proben<br>
 ID:220095 Name:„Schatz suchende Seelie“<br>
 ID:220096 Name:Miniseelie – Prachtvoller Glanz<br>
+ID:220097 Name:Nachtwindhorn<br>
+ID:220098 Name:„Indikator des Schicksals“<br>
 ID:221001 Name:Erläuterung: Anemoculus-Resonanzstein<br>
 ID:221002 Name:Erläuterung: Geoculus-Resonanzstein<br>
 ID:221003 Name:Bauplan: Geo-Schatzkompass<br>
@@ -9717,6 +9927,14 @@ ID:330071 Name:Thoma<br>
 ID:330072 Name:Sayu<br>
 ID:330073 Name:Kryo-Hypostase<br>
 ID:330074 Name:Millenniums-Perlenseepferd<br>
+ID:330075 Name:Charlotte<br>
+ID:330076 Name:Neuvillette<br>
+ID:330077 Name:Kirara<br>
+ID:330078 Name:Fatui – Elektro-Cicin-Zauberin<br>
+ID:330079 Name:Kuki Shinobu<br>
+ID:330080 Name:Faruzan<br>
+ID:330081 Name:Abgrundbote – Reißender Strom<br>
+ID:330082 Name:Kaiser von Feuer und Eisen<br>
 ID:330500 Name:Eintracht<br>
 ID:330501 Name:Grausames Schwert<br>
 ID:330502 Name:Atemtechnik<br>
@@ -9792,6 +10010,14 @@ ID:330571 Name:Beflissener Assistent<br>
 ID:330572 Name:Profischwänzen<br>
 ID:330573 Name:Wildfrost-Prisma<br>
 ID:330574 Name:Perlenverhärtung<br>
+ID:330575 Name:Gleichgewicht von Sachlichkeit und Sensation<br>
+ID:330576 Name:Erbe des Relikts der uralten See<br>
+ID:330577 Name:Unzählige Sehenswürdigkeiten<br>
+ID:330578 Name:Flackern des Elektro-Cicins<br>
+ID:330579 Name:Verzicht auf Weichheit<br>
+ID:330580 Name:Wundersamer Pfad der Wahrheit<br>
+ID:330581 Name:Pulsierende Unterströmung<br>
+ID:330582 Name:Glühender Panzer<br>
 ID:331000 Name:Magieführer<br>
 ID:331001 Name:Opferrituale<br>
 ID:331002 Name:Himmelsatlas<br>
@@ -9862,6 +10088,10 @@ ID:331066 Name:Herz khvarenaischer Brillianz<br>
 ID:331067 Name:Licht der Vourukasha-Oase<br>
 ID:331068 Name:Stammklinge<br>
 ID:331069 Name:Antlitz eines Veteranen<br>
+ID:331070 Name:Lehre des ewigen Flusses<br>
+ID:331071 Name:Belohnung der Goldtruppe<br>
+ID:331072 Name:Rechtmäßige Belohnung<br>
+ID:331073 Name:Amethystkrone<br>
 ID:332000 Name:Hafen von Liyue<br>
 ID:332001 Name:Ordensbibliothek<br>
 ID:332002 Name:Jadegemach<br>
@@ -9908,6 +10138,11 @@ ID:332042 Name:Saatschachtel<br>
 ID:332043 Name:Souvenirlinse<br>
 ID:332044 Name:Jeht<br>
 ID:332045 Name:Silver und Melus<br>
+ID:332046 Name:Fort Méropide<br>
+ID:332047 Name:Lumenstein-Katalysator<br>
+ID:332048 Name:Seirai<br>
+ID:332049 Name:Taroumaru<br>
+ID:332050 Name:Weißer Handschuh und Fischer<br>
 ID:333000 Name:Elementarer Einklang – Gebündeltes Eis<br>
 ID:333001 Name:Elementarer Einklang – Zerspringendes Eis<br>
 ID:333002 Name:Elementarer Einklang – Gebündeltes Wasser<br>
@@ -9975,6 +10210,10 @@ ID:333063 Name:Fisch und Pommes<br>
 ID:333064 Name:Maschinelle Fertigungsstrecke<br>
 ID:333065 Name:Sunyata-Blume<br>
 ID:333066 Name:Mit Matsutake gefüllte Fleischröllchen<br>
+ID:333067 Name:Tag des Widerstands – Augenblick zerplatzter Träume<br>
+ID:333068 Name:Kontrollierte, gezielte Gefahrenentlastungs-Detonation<br>
+ID:333069 Name:Schatzsuche im Meer<br>
+ID:333070 Name:Regenbogen-Macarons<br>
 ID:334000 Name:Ganyu<br>
 ID:334001 Name:Kaeya<br>
 ID:334002 Name:Chongyun<br>
@@ -10050,6 +10289,14 @@ ID:334071 Name:Thoma<br>
 ID:334072 Name:Sayu<br>
 ID:334073 Name:Kryo-Hypostase<br>
 ID:334074 Name:Millenniums-Perlenseepferd<br>
+ID:334075 Name:Charlotte<br>
+ID:334076 Name:Neuvillette<br>
+ID:334077 Name:Kirara<br>
+ID:334078 Name:Fatui – Elektro-Cicin-Zauberin<br>
+ID:334079 Name:Kuki Shinobu<br>
+ID:334080 Name:Faruzan<br>
+ID:334081 Name:Abgrundbote – Reißender Strom<br>
+ID:334082 Name:Kaiser von Feuer und Eisen<br>
 ID:334500 Name:Eintracht<br>
 ID:334501 Name:Grausames Schwert<br>
 ID:334502 Name:Atemtechnik<br>
@@ -10125,6 +10372,14 @@ ID:334571 Name:Beflissener Assistent<br>
 ID:334572 Name:Profischwänzen<br>
 ID:334573 Name:Wildfrost-Prisma<br>
 ID:334574 Name:Perlenverhärtung<br>
+ID:334575 Name:Gleichgewicht von Sachlichkeit und Sensation<br>
+ID:334576 Name:Erbe des Relikts der uralten See<br>
+ID:334577 Name:Unzählige Sehenswürdigkeiten<br>
+ID:334578 Name:Flackern des Elektro-Cicins<br>
+ID:334579 Name:Verzicht auf Weichheit<br>
+ID:334580 Name:Wundersamer Pfad der Wahrheit<br>
+ID:334581 Name:Pulsierende Unterströmung<br>
+ID:334582 Name:Glühender Panzer<br>
 ID:335000 Name:Magieführer<br>
 ID:335001 Name:Opferrituale<br>
 ID:335002 Name:Himmelsatlas<br>
@@ -10195,6 +10450,10 @@ ID:335066 Name:Herz khvarenaischer Brillianz<br>
 ID:335067 Name:Licht der Vourukasha-Oase<br>
 ID:335068 Name:Stammklinge<br>
 ID:335069 Name:Antlitz eines Veteranen<br>
+ID:335070 Name:Lehre des ewigen Flusses<br>
+ID:335071 Name:Belohnung der Goldtruppe<br>
+ID:335072 Name:Rechtmäßige Belohnung<br>
+ID:335073 Name:Amethystkrone<br>
 ID:336000 Name:Hafen von Liyue<br>
 ID:336001 Name:Ordensbibliothek<br>
 ID:336002 Name:Jadegemach<br>
@@ -10241,6 +10500,11 @@ ID:336042 Name:Saatschachtel<br>
 ID:336043 Name:Souvenirlinse<br>
 ID:336044 Name:Jeht<br>
 ID:336045 Name:Silver und Melus<br>
+ID:336046 Name:Fort Méropide<br>
+ID:336047 Name:Lumenstein-Katalysator<br>
+ID:336048 Name:Seirai<br>
+ID:336049 Name:Taroumaru<br>
+ID:336050 Name:Weißer Handschuh und Fischer<br>
 ID:337000 Name:Elementarer Einklang – Gebündeltes Eis<br>
 ID:337001 Name:Elementarer Einklang – Zerspringendes Eis<br>
 ID:337002 Name:Elementarer Einklang – Gebündeltes Wasser<br>
@@ -10308,6 +10572,10 @@ ID:337063 Name:Fisch und Pommes<br>
 ID:337064 Name:Maschinelle Fertigungsstrecke<br>
 ID:337065 Name:Sunyata-Blume<br>
 ID:337066 Name:Mit Matsutake gefüllte Fleischröllchen<br>
+ID:337067 Name:Tag des Widerstands – Augenblick zerplatzter Träume<br>
+ID:337068 Name:Kontrollierte, gezielte Gefahrenentlastungs-Detonation<br>
+ID:337069 Name:Schatzsuche im Meer<br>
+ID:337070 Name:Regenbogen-Macarons<br>
 ID:339000 Name:Anbeginn<br>
 ID:339001 Name:Mondstadt<br>
 ID:339002 Name:Liyue<br>
@@ -10332,6 +10600,7 @@ ID:339024 Name:Fort Méropide<br>
 ID:339025 Name:Drachengrat – Spurensuche<br>
 ID:339026 Name:Drachengrat – Krone<br>
 ID:339027 Name:Große Kluft – Solides Eisen<br>
+ID:339028 Name:Große Kluft – Blauer Kristall<br>
 ID:339500 Name:Mondstadt<br>
 ID:339501 Name:Liyue<br>
 ID:339502 Name:Inazuma<br>
@@ -10503,6 +10772,8 @@ ID:380445 Name:Kunstvolle Fischlaterne – „Frühlingsgewinne“<br>
 ID:380446 Name:Hafen-Bodenlampe – „Ein zarter Duft“<br>
 ID:380447 Name:Hafen-Straßenlaterne – „Gutes kommt selten allein“<br>
 ID:380448 Name:Tal-Steinlampe – „Immerwährendes Licht“<br>
+ID:380449 Name:„Mostseebrise“<br>
+ID:380450 Name:Straßenlaterne in der Stadt der Musik – „Licht für sichere Wege“<br>
 ID:380504 Name:„Mannigfaltiges Licht der Blütenblätter“<br>
 ID:380505 Name:„Schimmernder Lichtwirbel des äußeren Palasts“<br>
 ID:381101 Name:Klappbare Theke aus nordischer Birke<br>
@@ -10568,6 +10839,8 @@ ID:381330 Name:„Hingabe der Maison Cardinalice“<br>
 ID:381331 Name:„Sicherer und stabiler Arbeitsplatz am Dreh- und Angelpunkt“<br>
 ID:381332 Name:„Gemütliche Atempause am Dreh- und Angelpunkt“<br>
 ID:381333 Name:„Muße täglicher Zusammenkunft“<br>
+ID:381334 Name:Teestuben-Langtisch – „Erinnerung an die gute alte Zeit“<br>
+ID:381335 Name:Teestuben-Utensil – „Qualitees-Prüfung“<br>
 ID:381401 Name:Brisenbelüftetes Bett<br>
 ID:381402 Name:Bett der Wolkenträume<br>
 ID:381403 Name:Bett „Sakura-Traum“ aus Yumemiru-Holz<br>
@@ -10583,6 +10856,8 @@ ID:381504 Name:Wüstenkamin – „Wohlig warm“<br>
 ID:381505 Name:Wüstenlesetisch – „Gewissenhaftigkeit“<br>
 ID:381506 Name:„Zeuge der Tavernenangelegenheiten“<br>
 ID:381507 Name:„Festliche Zeit des improvisatorischen Spiels“<br>
+ID:381508 Name:Teestuben-Herd – „Feuer und Flamme fürs Kochen“<br>
+ID:381509 Name:Teestuben-Herd – „Fein gedämpft, zart geröstet“<br>
 ID:382101 Name:Weiches Foyersofa<br>
 ID:382102 Name:„Klarer blauer Nachmittag“<br>
 ID:382103 Name:„Unerschütterliche Entschlossenheit“<br>
@@ -10605,6 +10880,7 @@ ID:382121 Name:„Die Wonne des Zusammenseins und des Trinkens“<br>
 ID:382122 Name:Stuhl „Verhaltensregeln für Zuschauer“ aus Platanenholz<br>
 ID:382123 Name:Stuhl „Respektvolle Haltung“ aus Lindenholz<br>
 ID:382124 Name:„Ein Moment der Ruhe am Dreh- und Angelpunkt“<br>
+ID:382125 Name:Teestuben-Bank – „Einfacher Sitz“<br>
 ID:382201 Name:Steinherd aus dem Norden<br>
 ID:382202 Name:Kiefer-Faltwand – „Blähende Segel“<br>
 ID:382203 Name:Hartholz-Leinwand – „Morgennebel in Jueyun“<br>
@@ -10658,6 +10934,11 @@ ID:382256 Name:„Synergien“-Leiter aus Platanenholz<br>
 ID:382257 Name:„Robuste“ Frachtkiste aus Platanenholz<br>
 ID:382258 Name:„Bürde in der verbotenen Festung“<br>
 ID:382259 Name:Standard-Notenpult – „Exakt abgestimmt“<br>
+ID:382261 Name:„Frische Knospen von Berg und Wasser“<br>
+ID:382262 Name:Teestuben-Utensil – „Trockenlager“<br>
+ID:382263 Name:Teestuben-Utensil – „Klarer Blick“<br>
+ID:382265 Name:Restaurant-Geländer – „Frische Minzblätter“<br>
+ID:382266 Name:Restaurant-Geländer – „Bogen der perfekten Aussicht“<br>
 ID:382301 Name:Teppich (Mondstadt) – „Rotglühende Begeisterung“<br>
 ID:382302 Name:Teppich (Mondstadt) – „Unermüdliche Suche“<br>
 ID:382303 Name:Gasthausteppich – „Zuhause auf Reisen“<br>
@@ -10672,6 +10953,7 @@ ID:382311 Name:Tavernenteppich – „Leidenschaftliches Kartenspiel“<br>
 ID:382312 Name:Tavernenteppich – „Durchdachtes Kartenspiel“<br>
 ID:382313 Name:Restaurant-Teppich – „Dialog über Gleichheit“<br>
 ID:382314 Name:Restaurant-Teppich – „Wie ein Bad in einer Brise“<br>
+ID:382315 Name:Fontaine-Teppich – „Gerecht und quadratisch“<br>
 ID:383101 Name:Zuverlässige tragbare Lampe<br>
 ID:383102 Name:Lampe vom Liuli-Pavillon aus Dürrsandholz<br>
 ID:383103 Name:Rundhimmellaterne – „Duftende Brillanz“<br>
@@ -10683,6 +10965,7 @@ ID:383109 Name:„Licht am Ort der Gelehrsamkeit“<br>
 ID:383110 Name:„Kerze des Wachmanns“<br>
 ID:383111 Name:„Kerze des Zuhörers“<br>
 ID:383112 Name:Gusseiserne Mehrzweckdekolampe<br>
+ID:383113 Name:Einfache Laterne – „Aus regionalen Materialien“<br>
 ID:383201 Name:Blumenarrangement – „Himmelblaue Ruhe“<br>
 ID:383202 Name:Topfpflanze – „Kristalline Brise“<br>
 ID:383203 Name:Blumenarrangement – „Ausbreitende Morgendämmerung“<br>
@@ -10736,6 +11019,8 @@ ID:383358 Name:Kompakter Luftversorgungsapparat<br>
 ID:383359 Name:„Stabile Korridor-Aufbewahrung“<br>
 ID:383360 Name:Vorrichtungsmodell – „Versierte Vernunft“<br>
 ID:383361 Name:Universal-Notizenhalter<br>
+ID:383401 Name:Teestuben-Utensil – „Aufs Miligramm genau“<br>
+ID:383402 Name:„Sanfter Tee in roter Tonkanne“<br>
 ID:383501 Name:„Erhabenheit am Ort der Gelehrsamkeit“<br>
 ID:383502 Name:„Durststillender Duft“<br>
 ID:383504 Name:„Die Kunst sauberes Wasser zu bewahren“<br>
@@ -10769,6 +11054,7 @@ ID:384215 Name:Wüstenwanddekoration – „Feuerfedern“<br>
 ID:384216 Name:„Die Sorgen des Waldhütermeisters“<br>
 ID:384217 Name:Athel-Angriffsschild mit Metallrahmen<br>
 ID:384218 Name:Hängelampe für den Innenbereich – „Gelbe Meeresszenerie“<br>
+ID:384219 Name:Mecha-Luminaire – „Stille Nacht des Nachsinnens“<br>
 ID:384501 Name:„Moment des Nachklangs“<br>
 ID:390101 Name:Strohhütte<br>
 ID:390102 Name:Strohlager<br>
@@ -10800,6 +11086,8 @@ ID:390127 Name:Tal-Wohnsitz – „Simple Komplexität“<br>
 ID:390128 Name:Tal-Wohnsitz – „Zielstrebigkeit“<br>
 ID:390129 Name:Tal-Wohnsitz – „Beschauliches Landleben“<br>
 ID:390130 Name:Tal-Wohnsitz – „Genau vermessenes Gebäude“<br>
+ID:390131 Name:Tal-Wohnsitz – „Kategorisiert“<br>
+ID:390132 Name:„Rauchig-köstliche Hafenaromen“<br>
 ID:390201 Name:Gebäude mit mehreren Bögen (Mondstadt)<br>
 ID:390202 Name:Wohnhaus mit überhängender Mansarde (Mondstadt)<br>
 ID:390203 Name:Angenehm trockene Wohnung (Mondstadt)<br>
@@ -10840,6 +11128,7 @@ ID:390329 Name:„Des Wandelgangs reiche Auswahl“<br>
 ID:390330 Name:„Des Wandelgangs Leitlinie der Pünktlichkeit“<br>
 ID:390331 Name:„Sofortige Notunterkunft“<br>
 ID:390332 Name:„Die Frische Poissons“<br>
+ID:390333 Name:Hütte in der Stadt der Musik – „Mardouce“<br>
 ID:390401 Name:Hütte des Hilichurl-Vorpostens<br>
 ID:390402 Name:Halle des Hilichurl-Anführers<br>
 ID:390501 Name:„Östlich von Bishui“<br>
@@ -10863,6 +11152,7 @@ ID:390520 Name:„Tschu-Tschu-Express-Rastplatz“<br>
 ID:390521 Name:„Beispiel: Paradies-Projekt“<br>
 ID:390522 Name:„Prototyp: Paradiesgebäude“<br>
 ID:390523 Name:„Paradies-Festzelt“<br>
+ID:390524 Name:„Ort der alchimistischen Strategeme“<br>
 ID:390601 Name:„Schrein des Rituals“<br>
 ID:390602 Name:„Schrein der Reinigung“<br>
 ID:390603 Name:Hohes Gebäude (Inazuma) – „Ein Herz und eine Seele“<br>
@@ -10953,6 +11243,10 @@ ID:390822 Name:„Kleiner Steinkrebs“<br>
 ID:390823 Name:„Wiederkehr der Pankration-Kraft“<br>
 ID:390824 Name:„Weisheit der Straßen Poissons“<br>
 ID:390825 Name:„Einfaches Heim Poissons“<br>
+ID:390826 Name:„Glockenläuten in der Stadt des Musizierens“<br>
+ID:390827 Name:„Friedliche Wohnhäuser in der Stadt des Musizierens“<br>
+ID:390828 Name:„Werkstatt in der Stadt des Musizierens“<br>
+ID:390829 Name:„Originelles Wohnhaus in der Stadt des Musizierens“<br>
 ID:391101 Name:Springbrunnen mit Blumen- und Vogelmuster<br>
 ID:391102 Name:Hilichurl-Spiralaussichtsturm<br>
 ID:391103 Name:Einfache Hilichurl-Strohhütte<br>
@@ -11123,6 +11417,8 @@ ID:393203 Name:Holzfass zum Transport von Erde<br>
 ID:393204 Name:„Dämmerung erwartende Kiefern“<br>
 ID:393213 Name:„Des Wandelgangs wohlduftende Verstrickung“<br>
 ID:393214 Name:„Kostbares Indigo“<br>
+ID:393215 Name:„Reinheit der Inspiration“<br>
+ID:393216 Name:„Heilsamer Duft“<br>
 ID:393301 Name:Tannenholz-Regal<br>
 ID:393302 Name:Tannenholz-Waffenständer<br>
 ID:393303 Name:Hartholz-Waffenständer<br>
@@ -11240,11 +11536,25 @@ ID:393449 Name:Festlicher Papierdrachen – „Alles läuft reibungslos“<br>
 ID:393450 Name:Festlicher Papierdrachen – „Koketter Schmetterlingstanz“<br>
 ID:393451 Name:Festlicher Papierdrachen – „Reichtum und Wohlstand“<br>
 ID:393452 Name:Anschlagtafel mit Regengiebel aus duftendem Zedernholz<br>
+ID:393453 Name:Geschickt gefertigter Kessel – „In Bitterkeit geboren“<br>
+ID:393454 Name:„Quelle der Harmonie“<br>
+ID:393455 Name:„Wütendes Horn der Legion“<br>
+ID:393456 Name:„Ringelnatter im Verborgenen“<br>
+ID:393457 Name:„Leier wie ein Spiegel“<br>
+ID:393458 Name:„Glänzender Ruhm“<br>
 ID:393511 Name:Bücher- und Zeitschriftenregal – „Zur freien Verfügung“<br>
 ID:393512 Name:Bücher- und Zeitschriftenregal – „Schnelle Übersicht“<br>
 ID:393513 Name:Bücher- und Zeitschriftenregal – „Fokuseffekt“<br>
+ID:393514 Name:Raffiniertes Schränkchen – „Geregelt und ordentlich“<br>
+ID:393515 Name:Raffiniertes Regal – „Heiße Verkaufsstrategie“<br>
 ID:393601 Name:Geistwolkenbecken<br>
 ID:393602 Name:„Kristallklares Aquarium“<br>
+ID:393911 Name:„Lagerung und Transport der Teeernte“<br>
+ID:393912 Name:„Der Teeernte Inspiration zur Fischerei“<br>
+ID:393913 Name:„Multifunktionswerkzeug zur Teeernte“<br>
+ID:393914 Name:„Der Teeernte Formel zu vollsten Aromen“<br>
+ID:393915 Name:„Der Teeernte sonnengetrockneter Duft“<br>
+ID:393916 Name:Briefkasten „Aufbewahrung“ aus Platanenholz<br>
 ID:394101 Name:Verwitterter Bambuszaun<br>
 ID:394102 Name:Stabiler Kiefernzaun<br>
 ID:394103 Name:Hilichurl-Holzzaun<br>
@@ -11259,6 +11569,8 @@ ID:394111 Name:Blumenbeet „Sanzai“ aus Otogi-Holz<br>
 ID:394112 Name:„Barriere der gerechten Vorsehung“<br>
 ID:394113 Name:Standard-Geländer – „Ordnung und Symmetrie“<br>
 ID:394114 Name:Standard-Geländer – „Verstreute Strukturen“<br>
+ID:394115 Name:Türrahmen „Sanfte Melodie“ aus Platanenholz<br>
+ID:394116 Name:Zaun „Wellen“ aus Platanenholz<br>
 ID:394201 Name:Glatte Holzbank<br>
 ID:394202 Name:Glatte Steinbank<br>
 ID:394203 Name:Googol-Stuhl<br>
@@ -11269,6 +11581,9 @@ ID:394208 Name:Chefsessel „Deadline? Welche Deadline?“<br>
 ID:394209 Name:„Des Wandelgangs Gemütlichkeit“<br>
 ID:394210 Name:„Des Wandelgangs abendliches Ensemblespiel“<br>
 ID:394211 Name:Teestuhl – „Ein angenehmes Lüftchen“<br>
+ID:394212 Name:Teedorf-Steinhocker – „Sicher, platzsparend, robust“<br>
+ID:394213 Name:Sitzbank „Verborgene Melodie“ aus Platanenholz<br>
+ID:394214 Name:Klappstuhl „Einfaches Falten“ aus Platanenholz<br>
 ID:394301 Name:Zweistöckiger Hilichurl-Wachturm<br>
 ID:394302 Name:Türloser Kiefernschrank<br>
 ID:394303 Name:Massiver Schmiedetisch aus Tannenholz<br>
@@ -11289,6 +11604,9 @@ ID:394318 Name:„Des Wandelgangs Rundtisch“<br>
 ID:394319 Name:Produktionsregal – „Basismodell“<br>
 ID:394320 Name:Produktionsregal – „Umgebaut“<br>
 ID:394321 Name:Ecktisch für duftenden Tee – „Herzliches Willkommen“<br>
+ID:394322 Name:Teedorf-Steintisch – „Eleganz und Gemächlichkeit“<br>
+ID:394323 Name:Langtisch „Gravierte Erinnerungen“ aus Platanenholz<br>
+ID:394324 Name:Rundtisch „Gemeinsames Gläschen“ aus Platanenholz<br>
 ID:394401 Name:Weinladen-Theke – „Nach Herzenslust“<br>
 ID:394402 Name:Resistente Doppelstockpalette<br>
 ID:394403 Name:„Wiege im Blumenmeer“<br>
@@ -11299,118 +11617,125 @@ ID:394503 Name:Steinbodenbelag – „Doppelte Geschwindigkeit und Sicherheit“
 ID:394504 Name:Grüne Felder – „Keksstraße“<br>
 ID:394505 Name:Steinbodenbelag – „Großartiger Aufbau“<br>
 ID:394506 Name:Tränenstein – „Perspektivische Theorie“<br>
+ID:394601 Name:Steinstatue mit Schwert – „Wächter der Ewigkeit“<br>
 ## MonsterId
 ID:20010101 Name:Dendro-Schleim<br>
 ID:20010201 Name:Großer Dendro-Schleim<br>
 ID:20010202 Name:Großer Dendro-Schleim<br>
 ID:20010301 Name:Anemo-Schleim<br>
-ID:20010302 Name:Anemo-Schleim (Theater der Vorrichtungen)<br>
+ID:20010302 Name:Anemo-Schleim<br>
 ID:20010381 Name:Anemo-Schleim<br>
 ID:20010401 Name:Großer Anemo-Schleim<br>
-ID:20010402 Name:Großer Anemo-Schleim (Theater der Vorrichtungen)<br>
+ID:20010402 Name:Großer Anemo-Schleim<br>
 ID:20010403 Name:Großer Anemo-Schleim<br>
 ID:20010481 Name:Großer Anemo-Schleim<br>
 ID:20010501 Name:Elektro-Schleim<br>
-ID:20010502 Name:Elektro-Schleim (Theater der Vorrichtungen)<br>
+ID:20010502 Name:Elektro-Schleim<br>
 ID:20010503 Name:Elektro-Schleim<br>
+ID:20010504 Name:Elektro-Schleim<br>
 ID:20010581 Name:Elektro-Schleim<br>
 ID:20010601 Name:Großer Elektro-Schleim<br>
-ID:20010602 Name:Großer Elektro-Schleim (Theater der Vorrichtungen)<br>
+ID:20010602 Name:Großer Elektro-Schleim<br>
 ID:20010604 Name:Großer Elektro-Schleim<br>
 ID:20010605 Name:Großer Elektro-Schleim<br>
+ID:20010606 Name:Großer Elektro-Schleim<br>
 ID:20010681 Name:Großer Elektro-Schleim<br>
 ID:20010701 Name:Mutierter Elektro-Schleim<br>
 ID:20010702 Name:Mutierter Elektro-Schleim<br>
-ID:20010703 Name:Mutierter Elektro-Schleim (Theater der Vorrichtungen)<br>
+ID:20010703 Name:Mutierter Elektro-Schleim<br>
 ID:20010801 Name:Kryo-Schleim<br>
-ID:20010802 Name:Kryo-Schleim (Aktion auf dem Drachengrat)<br>
-ID:20010803 Name:Kryo-Schleim (Theater der Vorrichtungen)<br>
+ID:20010802 Name:Kryo-Schleim<br>
+ID:20010803 Name:Kryo-Schleim<br>
+ID:20010804 Name:Kryo-Schleim<br>
 ID:20010881 Name:Kryo-Schleim<br>
 ID:20010901 Name:Großer Kryo-Schleim<br>
-ID:20010902 Name:Großer Kryo-Schleim (Aktion auf dem Drachengrat)<br>
-ID:20010903 Name:Großer Kryo-Schleim (Theater der Vorrichtungen)<br>
+ID:20010902 Name:Großer Kryo-Schleim<br>
+ID:20010903 Name:Großer Kryo-Schleim<br>
 ID:20010904 Name:Großer Kryo-Schleim<br>
 ID:20010905 Name:Großer Kryo-Schleim<br>
+ID:20010906 Name:Großer Kryo-Schleim<br>
 ID:20010981 Name:Großer Kryo-Schleim<br>
 ID:20011001 Name:Hydro-Schleim<br>
-ID:20011002 Name:Hydro-Schleim (Theater der Vorrichtungen)<br>
+ID:20011002 Name:Hydro-Schleim<br>
 ID:20011081 Name:Hydro-Schleim<br>
 ID:20011101 Name:Großer Hydro-Schleim<br>
-ID:20011102 Name:Großer Hydro-Schleim (Theater der Vorrichtungen)<br>
+ID:20011102 Name:Großer Hydro-Schleim<br>
 ID:20011103 Name:Großer Hydro-Schleim<br>
 ID:20011181 Name:Großer Hydro-Schleim<br>
 ID:20011201 Name:Pyro-Schleim<br>
 ID:20011202 Name:Pyro-Schleim<br>
-ID:20011203 Name:Pyro-Schleim (Theater der Vorrichtungen)<br>
+ID:20011203 Name:Pyro-Schleim<br>
 ID:20011204 Name:Pyro-Schleim<br>
 ID:20011205 Name:Pyro-Schleim<br>
+ID:20011207 Name:Pyro-Schleim<br>
 ID:20011281 Name:Pyro-Schleim<br>
 ID:20011301 Name:Großer Pyro-Schleim<br>
-ID:20011302 Name:Großer Pyro-Schleim (Theater der Vorrichtungen)<br>
+ID:20011302 Name:Großer Pyro-Schleim<br>
 ID:20011304 Name:Großer Pyro-Schleim<br>
 ID:20011305 Name:Großer Pyro-Schleim<br>
 ID:20011306 Name:Großer Pyro-Schleim<br>
+ID:20011307 Name:Großer Pyro-Schleim<br>
 ID:20011381 Name:Großer Pyro-Schleim<br>
 ID:20011401 Name:Geo-Schleim<br>
-ID:20011402 Name:Geo-Schleim (Theater der Vorrichtungen)<br>
+ID:20011402 Name:Geo-Schleim<br>
 ID:20011481 Name:Geo-Schleim<br>
 ID:20011501 Name:Großer Geo-Schleim<br>
 ID:20011502 Name:Großer Geo-Schleim<br>
-ID:20011503 Name:Großer Geo-Schleim (Theater der Vorrichtungen)<br>
+ID:20011503 Name:Großer Geo-Schleim<br>
 ID:20011581 Name:Großer Geo-Schleim<br>
-ID:20011601 Name:Hydro-Hypostase – Beschwörung (große Abspaltung)<br>
-ID:20011701 Name:Hydro-Hypostase – Beschwörung (kleine Abspaltung)<br>
-ID:20011801 Name:Hydro-Hypostase – Beschwörung (Selbstzerstörung)<br>
-ID:20011901 Name:Hydro-Hypostase – Beschwörung (Regeneration)<br>
+ID:20011601 Name:Hydro-Hypostase – Beschwörung<br>
+ID:20011701 Name:Hydro-Hypostase – Beschwörung<br>
+ID:20011801 Name:Hydro-Hypostase – Beschwörung<br>
+ID:20011901 Name:Hydro-Hypostase – Beschwörung<br>
 ID:20012001 Name:<br>
 ID:20012101 Name:<br>
 ID:20012201 Name:<br>
 ID:20020101 Name:Auge des Sturms<br>
-ID:20040101 Name:Elektro-Hypostase Alep<br>
-ID:20040102 Name:Elektro-Hypostase Alep (Aktion)<br>
+ID:20040101 Name:Elektro-Hypostase<br>
+ID:20040102 Name:Elektro-Hypostase<br>
 ID:20040181 Name:Elektro-Hypostase<br>
-ID:20040201 Name:Anemo-Hypostase Beth<br>
-ID:20040202 Name:Anemo-Hypostase Beth (Aktion)<br>
-ID:20040301 Name:Geo-Hypostase Gimel<br>
-ID:20040302 Name:Geo-Hypostase Gimel (Aktion)<br>
+ID:20040201 Name:Anemo-Hypostase<br>
+ID:20040202 Name:Anemo-Hypostase<br>
+ID:20040301 Name:Geo-Hypostase<br>
+ID:20040302 Name:Geo-Hypostase<br>
 ID:20040401 Name:Hydro-Hypostase<br>
 ID:20040402 Name:Hydro-Hypostase<br>
-ID:20040501 Name:Kryo-Hypostase Daleth<br>
+ID:20040501 Name:Kryo-Hypostase<br>
 ID:20040502 Name:Kryo-Hypostase<br>
-ID:20040601 Name:Pyro-Hypostase Ayin<br>
+ID:20040601 Name:Pyro-Hypostase<br>
 ID:20040602 Name:Pyro-Hypostase<br>
 ID:20040701 Name:Dendro-Hypostase<br>
 ID:20040702 Name:Dendro-Hypostase<br>
 ID:20050101 Name:Okeanide<br>
-ID:20050102 Name:Okeanide (Hauptkörper)<br>
+ID:20050102 Name:Okeanide<br>
 ID:20050103 Name:Okeanide<br>
-ID:20050201 Name:Okeanidenschwein<br>
-ID:20050202 Name:Okeanidenschwein (verstärkt)<br>
+ID:20050201 Name:Hydro-Mimenschwein<br>
+ID:20050202 Name:Hydro-Mimenschwein<br>
 ID:20050203 Name:Hydro-Mimenschwein<br>
 ID:20050204 Name:Hydro-Mimenschwein<br>
 ID:20050281 Name:Hydro-Mimenschwein<br>
-ID:20050301 Name:Okeanidenkranich<br>
+ID:20050301 Name:Hydro-Mimenkranich<br>
 ID:20050302 Name:Hydro-Mimenkranich<br>
 ID:20050381 Name:Hydro-Mimenkranich<br>
-ID:20050401 Name:Okeanidenkrebs<br>
-ID:20050402 Name:Okeanidenkrebs (verstärkt)<br>
+ID:20050401 Name:Hydro-Mimenkrebs<br>
+ID:20050402 Name:Hydro-Mimenkrebs<br>
 ID:20050403 Name:Hydro-Mimenkrebs<br>
 ID:20050481 Name:Hydro-Mimenkrebs<br>
-ID:20050501 Name:Okeanidenfink<br>
+ID:20050501 Name:Hydro-Mimenfink<br>
 ID:20050502 Name:Hydro-Mimenfink<br>
 ID:20050581 Name:Hydro-Mimenfink<br>
-ID:20050601 Name:Okeanidenente<br>
-ID:20050602 Name:Okeanidenente (Landente)<br>
+ID:20050601 Name:Hydro-Mimenkreatur<br>
+ID:20050602 Name:Hydro-Mimenkreatur<br>
 ID:20050603 Name:Hydro-Mimenkreatur<br>
 ID:20050681 Name:Hydro-Mimenkreatur<br>
-ID:20050701 Name:Okeanidenratte<br>
-ID:20050702 Name:Okeanidenratte (verstärkt)<br>
+ID:20050701 Name:Hydro-Mimenhörnchen<br>
+ID:20050702 Name:Hydro-Mimenhörnchen<br>
 ID:20050703 Name:Hydro-Mimenhörnchen<br>
 ID:20050781 Name:Hydro-Mimenhörnchen<br>
-ID:20050801 Name:Okeanidenfrosch<br>
+ID:20050801 Name:Hydro-Mimenfrosch<br>
 ID:20050802 Name:Hydro-Mimenfrosch<br>
 ID:20050881 Name:Hydro-Mimenfrosch<br>
-ID:20050901 Name:Okeanidenadler<br>
+ID:20050901 Name:Hydro-Mimenadler<br>
 ID:20051001 Name:Wasser spaltender Okeanospuk<br>
 ID:20051002 Name:Wasser spaltender Okeanospuk<br>
 ID:20051003 Name:Wasser spaltender Okeanospuk<br>
@@ -11440,7 +11765,7 @@ ID:20060781 Name:Dendro-Gespenst<br>
 ID:20070101 Name:Verkörperung des Donners<br>
 ID:20070102 Name:Verkörperung des Donners<br>
 ID:21010101 Name:Hilichurl<br>
-ID:21010102 Name:Hilichurl (Theater der Vorrichtungen)<br>
+ID:21010102 Name:Hilichurl<br>
 ID:21010103 Name:Hilichurl<br>
 ID:21010104 Name:Hilichurl<br>
 ID:21010105 Name:Hilichurl<br>
@@ -11450,16 +11775,16 @@ ID:21010202 Name:Hilichurl-Kämpfer<br>
 ID:21010281 Name:Hilichurl-Kämpfer<br>
 ID:21010299 Name:Hilichurl-Kämpfer<br>
 ID:21010301 Name:Hilichurl mit Holzschild<br>
-ID:21010302 Name:Hilichurl mit Holzschild (Theater der Vorrichtungen)<br>
+ID:21010302 Name:Hilichurl mit Holzschild<br>
 ID:21010381 Name:Hilichurl mit Holzschild<br>
 ID:21010401 Name:Hilichurl-Schütze<br>
-ID:21010402 Name:Test_Hilichurl arquero variado<br>
+ID:21010402 Name:Hilichurl-Schütze<br>
 ID:21010403 Name:Hilichurl-Schütze<br>
 ID:21010404 Name:Hilichurl-Schütze<br>
 ID:21010481 Name:Hilichurl-Schütze<br>
 ID:21010482 Name:Hilichurl-Schütze<br>
 ID:21010501 Name:Pyro-Hilichurl-Schütze<br>
-ID:21010502 Name:Test_Hilichurl Pyro arquero variado<br>
+ID:21010502 Name:Pyro-Hilichurl-Schütze<br>
 ID:21010503 Name:Pyro-Hilichurl-Schütze<br>
 ID:21010581 Name:Pyro-Hilichurl-Schütze<br>
 ID:21010582 Name:Pyro-Hilichurl-Schütze<br>
@@ -11467,94 +11792,94 @@ ID:21010601 Name:Hilichurl-Grenadier<br>
 ID:21010603 Name:Hilichurl-Grenadier<br>
 ID:21010681 Name:Hilichurl-Grenadier<br>
 ID:21010701 Name:Hilichurl-Berserker<br>
-ID:21010702 Name:Hilichurl-Berserker (Theater der Vorrichtungen)<br>
+ID:21010702 Name:Hilichurl-Berserker<br>
 ID:21010781 Name:Hilichurl-Berserker<br>
 ID:21010901 Name:Kryo-Hilichurl-Schütze<br>
-ID:21010902 Name:Test_Hilichurl Cryo arquero variado<br>
+ID:21010902 Name:Kryo-Hilichurl-Schütze<br>
 ID:21010981 Name:Kryo-Hilichurl-Schütze<br>
 ID:21010982 Name:Kryo-Hilichurl-Schütze<br>
 ID:21011001 Name:Elektro-Hilichurl-Schütze<br>
-ID:21011002 Name:Test_Hilichurl Electro arquero variado<br>
+ID:21011002 Name:Elektro-Hilichurl-Schütze<br>
 ID:21011081 Name:Elektro-Hilichurl-Schütze<br>
 ID:21011082 Name:Elektro-Hilichurl-Schütze<br>
 ID:21011201 Name:Hilichurl mit Steinschild<br>
-ID:21011202 Name:Hilichurl mit Steinschild (Theater der Vorrichtungen)<br>
+ID:21011202 Name:Hilichurl mit Steinschild<br>
 ID:21011281 Name:Hilichurl mit Steinschild<br>
 ID:21011301 Name:Kryo-Hilichurl-Grenadier<br>
-ID:21011302 Name:Kryo-Hilichurl-Grenadier – Verstärkter Angriff<br>
+ID:21011302 Name:Kryo-Hilichurl-Grenadier<br>
 ID:21011381 Name:Kryo-Hilichurl-Grenadier<br>
 ID:21011401 Name:Hilichurl mit Eisschild<br>
-ID:21011402 Name:Hilichurl mit Eisschild (Theater der Vorrichtungen)<br>
-ID:21011403 Name:Hilichurl con Escudo Cryo - Espinadragón<br>
+ID:21011402 Name:Hilichurl mit Eisschild<br>
+ID:21011403 Name:Hilichurl mit Eisschild<br>
 ID:21011481 Name:Hilichurl mit Eisschild<br>
-ID:21011501 Name:Merkwürdiger unbewaffneter Hilichurl<br>
+ID:21011501 Name:Merkwürdiger Hilichurl<br>
 ID:21011601 Name:Elektro-Hilichurl-Grenadier<br>
-ID:21011602 Name:Elektro-Hilichurl-Grenadier–VerstärkterAngriff<br>
+ID:21011602 Name:Elektro-Hilichurl-Grenadier<br>
 ID:21011603 Name:Elektro-Hilichurl-Grenadier<br>
 ID:21011681 Name:Elektro-Hilichurl-Grenadier<br>
 ID:21020101 Name:Mitachurl mit Holzschild<br>
-ID:21020102 Name:Mitachurl mit Holzschild (Theater der Vorrichtungen)<br>
+ID:21020102 Name:Mitachurl mit Holzschild<br>
 ID:21020181 Name:Mitachurl mit Holzschild<br>
 ID:21020201 Name:Mitachurl mit Feueraxt<br>
 ID:21020202 Name:Mitachurl mit Feueraxt<br>
-ID:21020203 Name:Mitachurl mit Feueraxt (Theater der Vorrichtungen)<br>
+ID:21020203 Name:Mitachurl mit Feueraxt<br>
 ID:21020204 Name:Mitachurl mit Feueraxt<br>
 ID:21020281 Name:Mitachurl mit Feueraxt<br>
 ID:21020282 Name:Mitachurl mit Feueraxt<br>
 ID:21020299 Name:Mitachurl mit Feueraxt<br>
 ID:21020301 Name:Mitachurl mit Steinschild<br>
-ID:21020302 Name:Mitachurl mit Steinschild (Theater der Vorrichtungen)<br>
+ID:21020302 Name:Mitachurl mit Steinschild<br>
 ID:21020381 Name:Mitachurl mit Steinschild<br>
 ID:21020382 Name:Mitachurl mit Steinschild<br>
 ID:21020401 Name:Frostarm-Lawachurl<br>
-ID:21020402 Name:Frostarm-Lawachurl (Theater der Vorrichtungen)<br>
+ID:21020402 Name:Frostarm-Lawachurl<br>
 ID:21020481 Name:Frostarm-Lawachurl<br>
 ID:21020482 Name:Frostarm-Lawachurl<br>
 ID:21020501 Name:Steinhaut-Lawachurl<br>
-ID:21020502 Name:Steinhaut-Lawachurl (Theater der Vorrichtungen)<br>
+ID:21020502 Name:Steinhaut-Lawachurl<br>
 ID:21020581 Name:Steinhaut-Lawachurl<br>
 ID:21020601 Name:Mitachurl mit Eisschild<br>
-ID:21020602 Name:Mitachurl mit Eisschild (Theater der Vorrichtungen)<br>
+ID:21020602 Name:Mitachurl mit Eisschild<br>
 ID:21020681 Name:Mitachurl mit Eisschild<br>
 ID:21020701 Name:Mitachurl mit Blitzaxt<br>
-ID:21020702 Name:Mitachurl mit Blitzaxt (Theater der Vorrichtungen)<br>
-ID:21020703 Name:Mitachurl mit Blitzaxt – Verstärkter Angriff<br>
+ID:21020702 Name:Mitachurl mit Blitzaxt<br>
+ID:21020703 Name:Mitachurl mit Blitzaxt<br>
 ID:21020704 Name:Mitachurl mit Blitzaxt<br>
 ID:21020781 Name:Mitachurl mit Blitzaxt<br>
 ID:21020782 Name:Mitachurl mit Blitzaxt<br>
 ID:21020801 Name:Blitzhelm-Lawachurl<br>
-ID:21020802 Name:Blitzhelm-Lawachurl (Theater der Vorrichtungen)<br>
+ID:21020802 Name:Blitzhelm-Lawachurl<br>
 ID:21020881 Name:Blitzhelm-Lawachurl<br>
 ID:21020882 Name:Blitzhelm-Lawachurl<br>
 ID:21030101 Name:Hydro-Samachurl<br>
-ID:21030102 Name:Hydro-Samachurl (Theater der Vorrichtungen)<br>
-ID:21030103 Name:Test_Samachurl Hydro curación en movimiento<br>
+ID:21030102 Name:Hydro-Samachurl<br>
+ID:21030103 Name:Hydro-Samachurl<br>
 ID:21030104 Name:Hydro-Samachurl<br>
 ID:21030181 Name:Hydro-Samachurl<br>
 ID:21030201 Name:Dendro-Samachurl<br>
-ID:21030202 Name:Dendro-Samachurl (Theater der Vorrichtungen)<br>
+ID:21030202 Name:Dendro-Samachurl<br>
 ID:21030203 Name:Dendro-Samachurl<br>
 ID:21030281 Name:Dendro-Samachurl<br>
 ID:21030282 Name:Dendro-Samachurl<br>
 ID:21030301 Name:Anemo-Samachurl<br>
-ID:21030302 Name:Anemo-Samachurl (Theater der Vorrichtungen)<br>
-ID:21030303 Name:Test_Samachurl Anemo campos de viento fortalecido<br>
+ID:21030302 Name:Anemo-Samachurl<br>
+ID:21030303 Name:Anemo-Samachurl<br>
 ID:21030304 Name:Anemo-Samachurl<br>
 ID:21030381 Name:Anemo-Samachurl<br>
 ID:21030382 Name:Anemo-Samachurl<br>
 ID:21030383 Name:Anemo-Samachurl<br>
 ID:21030401 Name:Geo-Samachurl<br>
 ID:21030402 Name:Geo-Samachurl<br>
-ID:21030403 Name:Geo-Samachurl (Theater der Vorrichtungen)<br>
+ID:21030403 Name:Geo-Samachurl<br>
 ID:21030481 Name:Geo-Samachurl<br>
 ID:21030482 Name:Geo-Samachurl<br>
 ID:21030501 Name:Kryo-Samachurl<br>
-ID:21030502 Name:Kryo-Samachurl (Theater der Vorrichtungen)<br>
+ID:21030502 Name:Kryo-Samachurl<br>
 ID:21030581 Name:Kryo-Samachurl<br>
 ID:21030582 Name:Kryo-Samachurl<br>
 ID:21030601 Name:Elektro-Samachurl<br>
-ID:21030602 Name:Elektro-Samachurl (Theater der Vorrichtungen)<br>
-ID:21030603 Name:Elektro-Samachurl – Verstärkte Unterstützung<br>
+ID:21030602 Name:Elektro-Samachurl<br>
+ID:21030603 Name:Elektro-Samachurl<br>
 ID:21030681 Name:Elektro-Samachurl<br>
 ID:21030701 Name:Samachurl-Boss<br>
 ID:21040101 Name:Hilichurl-Anemo-Läufer<br>
@@ -11564,30 +11889,30 @@ ID:21040201 Name:Hilichurl-Hydro-Läufer<br>
 ID:21040281 Name:Hilichurl-Hydro-Läufer<br>
 ID:21040282 Name:Hilichurl-Hydro-Läufer<br>
 ID:22010101 Name:Pyro-Abgrundmagier<br>
-ID:22010102 Name:Test_Mago del Abismo Pyro escudo fortalecido<br>
-ID:22010103 Name:Test_Mago del Abismo Pyro teletransporte fortalecido<br>
-ID:22010104 Name:Test_进攻强化火深渊法师<br>
-ID:22010105 Name:Pyro-Abgrundmagier (Theater der Vorrichtungen)<br>
+ID:22010102 Name:Pyro-Abgrundmagier<br>
+ID:22010103 Name:Pyro-Abgrundmagier<br>
+ID:22010104 Name:Pyro-Abgrundmagier<br>
+ID:22010105 Name:Pyro-Abgrundmagier<br>
 ID:22010201 Name:Kryo-Abgrundmagier<br>
-ID:22010202 Name:Test_Mago del Abismo Cryo escudo fortalecido<br>
-ID:22010203 Name:Test_Mago del Abismo Cryo teletransporte fortalecido<br>
-ID:22010204 Name:Test_进攻强化冰深渊法师<br>
-ID:22010205 Name:Kryo-Abgrundmagier (Theater der Vorrichtungen)<br>
+ID:22010202 Name:Kryo-Abgrundmagier<br>
+ID:22010203 Name:Kryo-Abgrundmagier<br>
+ID:22010204 Name:Kryo-Abgrundmagier<br>
+ID:22010205 Name:Kryo-Abgrundmagier<br>
 ID:22010301 Name:Hydro-Abgrundmagier<br>
-ID:22010302 Name:Test_Mago del Abismo Hydro escudo fortalecido<br>
-ID:22010303 Name:Test_Mago del Abismo Hydro teletransporte fortalecido<br>
-ID:22010304 Name:Test_进攻强化水深渊法师<br>
-ID:22010305 Name:Hydro-Abgrundmagier (Theater der Vorrichtungen)<br>
+ID:22010302 Name:Hydro-Abgrundmagier<br>
+ID:22010303 Name:Hydro-Abgrundmagier<br>
+ID:22010304 Name:Hydro-Abgrundmagier<br>
+ID:22010305 Name:Hydro-Abgrundmagier<br>
 ID:22010401 Name:Elektro-Abgrundmagier<br>
-ID:22010402 Name:Elektro-Abgrundmagier (Theater der Vorrichtungen)<br>
-ID:22010403 Name:Elektro-Abgrundmagier – Verstärkte Verteidigung<br>
-ID:22010404 Name:Elektro-Abgrundmagier – Verstärkter Angriff<br>
-ID:22020101 Name:Abgrundbote – Reißender Strom (Verschwinden)<br>
-ID:22020102 Name:Abgrundbote – Reißender Strom (Standardmonster)<br>
+ID:22010402 Name:Elektro-Abgrundmagier<br>
+ID:22010403 Name:Elektro-Abgrundmagier<br>
+ID:22010404 Name:Elektro-Abgrundmagier<br>
+ID:22020101 Name:Abgrundbote – Reißender Strom<br>
+ID:22020102 Name:Abgrundbote – Reißender Strom<br>
 ID:22020103 Name:Abgrundbote – Reißender Strom<br>
 ID:22020201 Name:Abgrundbote – Frostfall<br>
-ID:22030101 Name:Abgrundsänger – Lila Blitze (Verschwinden)<br>
-ID:22030102 Name:Abgrundsänger – Lila Blitze (Standardmonster)<br>
+ID:22030101 Name:Abgrundsänger – Lila Blitze<br>
+ID:22030102 Name:Abgrundsänger – Lila Blitze<br>
 ID:22030103 Name:Abgrundsänger – Lila Blitze<br>
 ID:22030201 Name:Abgrundsänger – Abgrundflammen<br>
 ID:22030202 Name:Abgrundsänger – Abgrundflammen<br>
@@ -11599,7 +11924,7 @@ ID:22050101 Name:Felsenfressender Garm<br>
 ID:22050102 Name:Felsenfressender Garm<br>
 ID:22050201 Name:Donnerfressender Garm<br>
 ID:22050202 Name:Donnerfressender Garm<br>
-ID:22060101 Name:Rey Acechador Dorado<br>
+ID:22060101 Name:Goldener Garmfürst<br>
 ID:22070101 Name:Hülle der Finsternis – Standarte<br>
 ID:22070102 Name:Hülle der Finsternis – Standarte<br>
 ID:22070201 Name:Hülle der Finsternis – Formationszerstörer<br>
@@ -11629,12 +11954,12 @@ ID:23010301 Name:Fatui-Plänkler – Elektro-Hammer-Stürmer<br>
 ID:23010401 Name:Fatui-Plänkler – Geo-Boten-Freischärler<br>
 ID:23010501 Name:Fatui-Plänkler – Anemo-Faust-Stürmer<br>
 ID:23010601 Name:Fatui-Plänkler – Pyro-Kanonen-Freischärler<br>
-ID:23020101 Name:Schuldeneintreiber der Fatui<br>
+ID:23020101 Name:Fatui – Pyro-Schuldeneintreiber<br>
 ID:23020102 Name:Fatui – Pyro-Schuldeneintreiber<br>
-ID:23030101 Name:Elektro-Cicin-Zauberin der Fatui<br>
+ID:23030101 Name:Fatui – Elektro-Cicin-Zauberin<br>
 ID:23030102 Name:Fatui – Elektro-Cicin-Zauberin<br>
 ID:23040101 Name:Fatui – Kryo-Cicin-Zauberin<br>
-ID:23040102 Name:Kryo-Cicin-Zauberin der Fatui – Verstärkter Angriff<br>
+ID:23040102 Name:Fatui – Kryo-Cicin-Zauberin<br>
 ID:23050101 Name:Fatui – Spiegeljungfrau<br>
 ID:23060101 Name:Fatui – Frostdienerin<br>
 ID:23060201 Name:Fatui – Winddienerin<br>
@@ -11643,41 +11968,41 @@ ID:23060302 Name:Altgediente Fatui – Frostdienerin<br>
 ID:23060401 Name:Altgediente Fatui – Winddienerin<br>
 ID:23060402 Name:Altgediente Fatui – Winddienerin<br>
 ID:24010101 Name:Ruinenwächter<br>
-ID:24010102 Name:Ruinenwächter (Theater der Vorrichtungen)<br>
+ID:24010102 Name:Ruinenwächter<br>
 ID:24010108 Name:Ruinenwächter<br>
 ID:24010109 Name:Ruinenwächter<br>
 ID:24010181 Name:Ruinenwächter<br>
 ID:24010182 Name:Ruinenwächter<br>
 ID:24010201 Name:Ruinenjäger<br>
-ID:24010202 Name:Ruinenjäger (Theater der Vorrichtungen)<br>
+ID:24010202 Name:Ruinenjäger<br>
 ID:24010281 Name:Ruinenjäger<br>
 ID:24010301 Name:Ruinenkoloss<br>
-ID:24010302 Name:Ruinenkoloss (Theater der Vorrichtungen)<br>
-ID:24010303 Name:Ruinenkoloss (Erzschürfen)<br>
+ID:24010302 Name:Ruinenkoloss<br>
+ID:24010303 Name:Ruinenkoloss<br>
 ID:24010304 Name:Ruinenkoloss<br>
 ID:24010305 Name:Ruinenkoloss<br>
 ID:24010381 Name:Ruinenkoloss<br>
 ID:24010382 Name:Ruinenkoloss<br>
 ID:24010401 Name:Ruinenschlange<br>
 ID:24020101 Name:Ruinenkreuzer<br>
-ID:24020102 Name:Ruinenkreuzer (geschwächt)<br>
-ID:24020103 Name:Ruinenkreuzer (verstärkt)<br>
+ID:24020102 Name:Ruinenkreuzer<br>
+ID:24020103 Name:Ruinenkreuzer<br>
 ID:24020181 Name:Ruinenkreuzer<br>
 ID:24020201 Name:Ruinenzerstörer<br>
-ID:24020202 Name:Ruinenzerstörer (geschwächt)<br>
-ID:24020203 Name:Ruinenzerstörer (verstärkt)<br>
+ID:24020202 Name:Ruinenzerstörer<br>
+ID:24020203 Name:Ruinenzerstörer<br>
 ID:24020281 Name:Ruinenzerstörer<br>
 ID:24020301 Name:Ruinenschützer<br>
-ID:24020302 Name:Ruinenschützer (geschwächt)<br>
-ID:24020303 Name:Ruinenschützer (verstärkt)<br>
+ID:24020302 Name:Ruinenschützer<br>
+ID:24020303 Name:Ruinenschützer<br>
 ID:24020304 Name:Ruinenschützer<br>
 ID:24020381 Name:Ruinenschützer<br>
 ID:24020401 Name:Ruinenspäher<br>
-ID:24020402 Name:Ruinenspäher (geschwächt)<br>
-ID:24020403 Name:Ruinenspäher (verstärkt)<br>
+ID:24020402 Name:Ruinenspäher<br>
+ID:24020403 Name:Ruinenspäher<br>
 ID:24020481 Name:Ruinenspäher<br>
 ID:24021101 Name:Anordnung immerwährender Vorrichtungen<br>
-ID:24021102 Name:Anordnung immerwährender Vorrichtungen (Nur für die Aktion von Inazuma)<br>
+ID:24021102 Name:Anordnung immerwährender Vorrichtungen<br>
 ID:24021181 Name:Anordnung immerwährender Vorrichtungen<br>
 ID:24030101 Name:Ruinendrache – Himmelswächter<br>
 ID:24030181 Name:Ruinendrache – Himmelswächter<br>
@@ -11792,13 +12117,13 @@ ID:24920101 Name:Automaton – Kleiner Schleimballon<br>
 ID:24920201 Name:Automaton – Großer Schleimballon<br>
 ID:24920301 Name:Automaton – Pilzbestie-Ballon<br>
 ID:24990101 Name:<br>
-ID:25010101 Name:„Liuliu“<br>
-ID:25010102 Name:Geheimnisvolle Person<br>
+ID:25010101 Name:Schatzräuber – „Liuliu“<br>
+ID:25010102 Name:Schatzräuber – „Liuliu“<br>
 ID:25010103 Name:Schatzräuber – „Liuliu“<br>
 ID:25010104 Name:Schatzräuber – „Liuliu“<br>
 ID:25010105 Name:Schatzräuber – „Liuliu“<br>
 ID:25010106 Name:Schatzräuber – „Liuliu“<br>
-ID:25010201 Name:Späher der Schatzräuber<br>
+ID:25010201 Name:Schatzräuber – Späher<br>
 ID:25010203 Name:Schatzräuber – Späher<br>
 ID:25010204 Name:Schatzräuber – Späher<br>
 ID:25010205 Name:Schatzräuber – Späher<br>
@@ -11827,6 +12152,7 @@ ID:25010227 Name:Schatzräuber – Späher<br>
 ID:25010228 Name:Schatzräuber – Späher<br>
 ID:25010229 Name:Schatzräuber – Späher<br>
 ID:25010230 Name:Schatzräuber – Späher<br>
+ID:25010231 Name:Schatzräuber – Späher<br>
 ID:25010281 Name:Schatzräuber – Späher<br>
 ID:25010301 Name:Schatzräuber – Pyro-Tränkemischer<br>
 ID:25010302 Name:Schatzräuber – Pyro-Tränkemischer<br>
@@ -11847,17 +12173,19 @@ ID:25010601 Name:Schatzräuber – Kryo-Tränkemischer<br>
 ID:25010602 Name:Schatzräuber – Kryo-Tränkemischer<br>
 ID:25010603 Name:Schatzräuber – Kryo-Tränkemischer<br>
 ID:25010604 Name:Schatzräuber – Kryo-Tränkemischer<br>
+ID:25010605 Name:Schatzräuber – Kryo-Tränkemischer<br>
 ID:25010681 Name:Schatzräuber – Kryo-Tränkemischer<br>
 ID:25010701 Name:Schatzräuber – Handlanger<br>
 ID:25010702 Name:Schatzräuber – Handlanger<br>
 ID:25010781 Name:Schatzräuber – Handlanger<br>
 ID:25010801 Name:<br>
-ID:25020101 Name:„Komischer Vogel“<br>
+ID:25020101 Name:Schatzräuber – „Komischer Vogel“<br>
 ID:25020102 Name:Schatzräuber – „Komischer Vogel“<br>
 ID:25020103 Name:Schatzräuber – „Komischer Vogel“<br>
 ID:25020104 Name:Schatzräuber – „Komischer Vogel“<br>
 ID:25020105 Name:Schatzräuber – „Komischer Vogel“<br>
-ID:25020201 Name:Scharfschütze der Schatzräuber<br>
+ID:25020106 Name:Schatzräuber – „Komischer Vogel“<br>
+ID:25020201 Name:Schatzräuber – Scharfschütze<br>
 ID:25020204 Name:Schatzräuber – Scharfschütze<br>
 ID:25020205 Name:Schatzräuber – Scharfschütze<br>
 ID:25020206 Name:Schatzräuber – Scharfschütze<br>
@@ -11867,17 +12195,17 @@ ID:25020209 Name:Schatzräuber – Scharfschütze<br>
 ID:25020210 Name:Schatzräuber – Scharfschütze<br>
 ID:25020211 Name:Schatzräuber – Scharfschütze<br>
 ID:25020281 Name:Schatzräuber – Scharfschütze<br>
-ID:25030101 Name:„Carmen“<br>
+ID:25030101 Name:Schatzräuber – „Carmen“<br>
 ID:25030102 Name:Schatzräuber – „Carmen“<br>
 ID:25030103 Name:Schatzräuber – „Carmen“<br>
-ID:25030201 Name:Totengräber der Schatzräuber<br>
+ID:25030201 Name:Schatzräuber – Totengräber<br>
 ID:25030202 Name:Schatzräuber – Totengräber<br>
 ID:25030281 Name:Schatzräuber – Totengräber<br>
-ID:25030301 Name:Ruderer der Schatzräuber<br>
+ID:25030301 Name:Schatzräuber – Seemann<br>
 ID:25030302 Name:Schatzräuber – Seemann<br>
 ID:25030303 Name:Schatzräuber – Seemann<br>
 ID:25030381 Name:Schatzräuber – Seemann<br>
-ID:25040101 Name:„Chefin“<br>
+ID:25040101 Name:Schatzräuber – „Chefin“<br>
 ID:25040102 Name:Schatzräuber – „Chefin“<br>
 ID:25040103 Name:Schatzräuber – „Chefin“<br>
 ID:25040104 Name:Schatzräuber – „Chefin“<br>
@@ -11885,11 +12213,11 @@ ID:25040105 Name:Schatzräuber – „Chefin“<br>
 ID:25040106 Name:Schatzräuber – „Chefin“<br>
 ID:25050101 Name:Millelithensoldat<br>
 ID:25050201 Name:Millelithenausbilder<br>
-ID:25050301 Name:Bakufu-Soldat<br>
+ID:25050301 Name:Bakufu-Ashigaru<br>
 ID:25050401 Name:Bakufu-Truppenführer<br>
 ID:25050402 Name:Bakufu-Truppenführer<br>
 ID:25050501 Name:Sangonomiya-Kohorte<br>
-ID:25050502 Name:(test)心海个人线反抗军足轻<br>
+ID:25050502 Name:Sangonomiya-Kohorte<br>
 ID:25050503 Name:Sangonomiya-Kohorte<br>
 ID:25050601 Name:<br>
 ID:25050602 Name:<br>
@@ -11918,40 +12246,40 @@ ID:25070105 Name:Schatzräuber – Schläger<br>
 ID:25070181 Name:Schatzräuber – Schläger<br>
 ID:25070201 Name:Schatzräuber Wallenstein<br>
 ID:25070202 Name:Schatzräuber Wallenstein<br>
-ID:25080101 Name:Rounin<br>
+ID:25080101 Name:Nobushi – Jintouban<br>
 ID:25080181 Name:Nobushi – Jintouban<br>
-ID:25080201 Name:Rounin – Sanzoku<br>
+ID:25080201 Name:Nobushi – Hitsukeban<br>
 ID:25080202 Name:Nobushi – Hitsukeban<br>
 ID:25080281 Name:Nobushi – Hitsukeban<br>
-ID:25080301 Name:Rounin – Anbu<br>
+ID:25080301 Name:Nobushi – Kikouban<br>
 ID:25080381 Name:Nobushi – Kikouban<br>
-ID:25080401 Name:Bakufu-Samurai<br>
+ID:25080401 Name:Yoriki-Samurai<br>
 ID:25080402 Name:Yoriki-Samurai<br>
 ID:25080403 Name:Yoriki-Samurai<br>
 ID:25080404 Name:Yoriki-Samurai<br>
 ID:25080405 Name:Yoriki-Samurai<br>
-ID:25090101 Name:Marionetten-Shougun<br>
-ID:25090102 Name:Marionetten-Shougun – Wind-Bunshin<br>
-ID:25090103 Name:Marionetten-Shougun – Eis-Bunshin<br>
-ID:25090104 Name:Marionetten-Shougun – Masken-Bunshin<br>
+ID:25090101 Name:Maguu Kenki<br>
+ID:25090102 Name:Maguu Kenki<br>
+ID:25090103 Name:Maguu Kenki<br>
+ID:25090104 Name:Maguu Kenki<br>
 ID:25090105 Name:Maguu Kenki<br>
 ID:25090106 Name:Maguu Kenki<br>
-ID:25090201 Name:General Títere - Clon de viento (con ícono)<br>
-ID:25090301 Name:General Títere - Clon de hielo (con ícono)<br>
-ID:25090401 Name:General Títere - Clon enmascarado (con ícono)<br>
-ID:25100101 Name:Elektro-Kairagi<br>
+ID:25090201 Name:Maguu Kenki – Einsamer Sturm<br>
+ID:25090301 Name:Maguu Kenki – Galoppierender Frost<br>
+ID:25090401 Name:Maguu Kenki – Maske des Schreckens<br>
+ID:25100101 Name:Kairagi – Galoppierender Blitz<br>
 ID:25100102 Name:Kairagi – Galoppierender Blitz<br>
 ID:25100181 Name:Kairagi – Galoppierender Blitz<br>
 ID:25100182 Name:Kairagi – Galoppierender Blitz<br>
 ID:25100183 Name:Kairagi – Galoppierender Blitz<br>
-ID:25100201 Name:Pyro-Kairagi<br>
+ID:25100201 Name:Kairagi – Sengende Macht<br>
 ID:25100202 Name:Kairagi – Sengende Macht<br>
 ID:25100281 Name:Kairagi – Sengende Macht<br>
 ID:25100282 Name:Kairagi – Sengende Macht<br>
 ID:25100283 Name:Kairagi – Sengende Macht<br>
-ID:25100301 Name:Donnergeist-Kairagi<br>
+ID:25100301 Name:Ochimusha – Zauberblitz<br>
 ID:25100302 Name:Ochimusha – Zauberblitz<br>
-ID:25100401 Name:Feuergeist-Kairagi<br>
+ID:25100401 Name:Ochimusha – Böse Flamme<br>
 ID:25110101 Name:Geist – Felsechse<br>
 ID:25110102 Name:Geist – Felsechse<br>
 ID:25110201 Name:Geist – Windmilan<br>
@@ -12042,26 +12370,27 @@ ID:25410381 Name:Goldbrigade – Erzählerin der Sengenden Sande<br>
 ID:25410382 Name:Goldbrigade – Erzählerin der Sengenden Sande<br>
 ID:25410401 Name:Goldbrigade – Blumentänzerin<br>
 ID:25410481 Name:Goldbrigade – Blumentänzerin<br>
-ID:26010101 Name:Kryo-Vaniloqua<br>
-ID:26010102 Name:Kryo-Vaniloqua (Aktion auf dem Drachengrat)<br>
-ID:26010103 Name:Megaflora Cryo grande (evento 2.3)<br>
+ID:26010101 Name:Gigantische Kryo-Vaniloqua<br>
+ID:26010102 Name:Gigantische Kryo-Vaniloqua<br>
+ID:26010103 Name:Gigantische Kryo-Vaniloqua<br>
 ID:26010104 Name:Gigantische Kryo-Vaniloqua<br>
-ID:26010201 Name:Pyro-Vaniloqua<br>
+ID:26010201 Name:Gigantische Pyro-Vaniloqua<br>
 ID:26010301 Name:Elektro-Vaniloqua<br>
 ID:26020101 Name:Fluxeisbaum<br>
-ID:26020102 Name:Fluxeisbaum (Aktion auf dem Drachengrat)<br>
+ID:26020102 Name:Fluxeisbaum<br>
 ID:26020181 Name:Fluxeisbaum<br>
 ID:26020201 Name:Fluxfeuerbaum<br>
+ID:26020202 Name:Fluxfeuerbaum<br>
 ID:26020281 Name:Fluxfeuerbaum<br>
 ID:26020301 Name:Fluxblitzbaum<br>
 ID:26020381 Name:Fluxblitzbaum<br>
 ID:26030101 Name:Junge Geo-Drachenechse<br>
 ID:26030181 Name:Junge Geo-Drachenechse<br>
-ID:26040101 Name:Geo-Drachenechse – Hydro<br>
-ID:26040102 Name:Geo-Drachenechse – Pyro<br>
-ID:26040103 Name:Geo-Drachenechse – Kryo<br>
-ID:26040104 Name:Geo-Drachenechse – Elektro<br>
-ID:26040105 Name:Geo-Drachenechse – Hydro (Theater der Vorrichtungen)<br>
+ID:26040101 Name:Geo-Drachenechse<br>
+ID:26040102 Name:Geo-Drachenechse<br>
+ID:26040103 Name:Geo-Drachenechse<br>
+ID:26040104 Name:Geo-Drachenechse<br>
+ID:26040105 Name:Geo-Drachenechse<br>
 ID:26040181 Name:Geo-Drachenechse<br>
 ID:26040182 Name:Geo-Drachenechse<br>
 ID:26040183 Name:Geo-Drachenechse<br>
@@ -12074,11 +12403,12 @@ ID:26040201 Name:Streifenherrscher der Berge von Chizhang – Yiji<br>
 ID:26040202 Name:Streifenherrscher der Berge von Chizhang – Yiji<br>
 ID:26040301 Name:Streifenherrscher der Berge von Chizhang – Tianyu<br>
 ID:26040302 Name:Streifenherrscher der Berge von Chizhang – Tianyu<br>
-ID:26050101 Name:Alte Geo-Drachenechse – Hydro<br>
-ID:26050201 Name:Alte Geo-Drachenechse – Pyro<br>
-ID:26050301 Name:Alte Geo-Drachenechse – Kryo<br>
-ID:26050401 Name:Alte Geo-Drachenechse – Elektro<br>
-ID:26050501 Name:Alte Geo-Drachenechse (Aktion)<br>
+ID:26050101 Name:Alte Geo-Drachenechse<br>
+ID:26050201 Name:Alte Geo-Drachenechse<br>
+ID:26050301 Name:Alte Geo-Drachenechse<br>
+ID:26050401 Name:Alte Geo-Drachenechse<br>
+ID:26050501 Name:<br>
+ID:26050502 Name:<br>
 ID:26050601 Name:Tiefsee-Drachenechse – Urtyp<br>
 ID:26050681 Name:Tiefsee-Drachenechse – Urtyp<br>
 ID:26050682 Name:Tiefsee-Drachenechse – Urtyp<br>
@@ -12097,6 +12427,8 @@ ID:26051082 Name:Junge Tiefsee-Drachenechse – Eisbeißer<br>
 ID:26051101 Name:Junge Tiefsee-Drachenechse – Donnerverschlinger<br>
 ID:26051181 Name:Junge Tiefsee-Drachenechse – Donnerverschlinger<br>
 ID:26051182 Name:Junge Tiefsee-Drachenechse – Donnerverschlinger<br>
+ID:26051201 Name:Tiefsee-Drachenechse – Urtyp<br>
+ID:26051202 Name:Tiefsee-Drachenechse – Urtyp<br>
 ID:26060101 Name:Elektro-Cicin<br>
 ID:26060201 Name:Hydro-Cicin<br>
 ID:26060301 Name:Kryo-Cicin<br>
@@ -12148,6 +12480,7 @@ ID:26100301 Name:Rotgeier heiliger Knochen<br>
 ID:26100401 Name:Skorpion heiliger Knochen<br>
 ID:26100501 Name:Flugschlange heiliger Knochen<br>
 ID:26110101 Name:Gefiederte Pilzbestie<br>
+ID:26110102 Name:Gefiederte Pilzbestie<br>
 ID:26110181 Name:Gefiederte Pilzbestie<br>
 ID:26120101 Name:Geflügelter Dendro-Pilz<br>
 ID:26120181 Name:Geflügelter Dendro-Pilz<br>
@@ -12160,6 +12493,11 @@ ID:26120401 Name:Laufender Geo-Pilz<br>
 ID:26120481 Name:Laufender Geo-Pilz<br>
 ID:26120482 Name:Laufender Geo-Pilz<br>
 ID:26130101 Name:Setekh Wenut<br>
+ID:26140101 Name:Golem-Anführer<br>
+ID:26140102 Name:Golem-Anführer<br>
+ID:26140103 Name:Golem-Anführer<br>
+ID:26140104 Name:Golem-Anführer<br>
+ID:26140201 Name:Golem-Wächter<br>
 ID:26151001 Name:Jäger-Schwertrochen<br>
 ID:26151002 Name:Jäger-Schwertrochen<br>
 ID:26151101 Name:Jäger-Schwertrochen<br>
@@ -12196,49 +12534,50 @@ ID:26162401 Name:Lokallegende – Meereshase<br>
 ID:26162501 Name:Lokallegende – Hutqualle<br>
 ID:26170101 Name:Kaiser von Feuer und Eisen<br>
 ID:26180101 Name:Millenniums-Perlenseepferd<br>
+ID:26180102 Name:Millenniums-Perlenseepferd<br>
 ID:26190101 Name:Ausgestiegene Suanni<br>
 ID:26190102 Name:Ausgestiegene Suanni<br>
 ID:26190103 Name:Ausgestiegene Suanni<br>
 ID:26190201 Name:Xuanwen-Bestie<br>
-ID:28010101 Name:Goldkrebs<br>
-ID:28010102 Name:Sonnenkrebs<br>
-ID:28010103 Name:Seekrebs<br>
-ID:28010104 Name:Shougun-Krebs<br>
-ID:28010105 Name:Hellroter Krebs<br>
-ID:28010106 Name:Krebs<br>
-ID:28010201 Name:Blauhornechse<br>
-ID:28010202 Name:Rothornechse<br>
-ID:28010203 Name:Grünhornechse<br>
-ID:28010204 Name:Dämmerlurch<br>
-ID:28010205 Name:Goldlurch<br>
-ID:28010206 Name:Sonnenlurch<br>
-ID:28010207 Name:Markechse<br>
+ID:28010101 Name:<br>
+ID:28010102 Name:<br>
+ID:28010103 Name:<br>
+ID:28010104 Name:<br>
+ID:28010105 Name:<br>
+ID:28010106 Name:<br>
+ID:28010201 Name:<br>
+ID:28010202 Name:<br>
+ID:28010203 Name:<br>
+ID:28010204 Name:<br>
+ID:28010205 Name:<br>
+ID:28010206 Name:<br>
+ID:28010207 Name:<br>
 ID:28010208 Name:<br>
-ID:28010301 Name:Frosch<br>
-ID:28010302 Name:Sumpffrosch<br>
-ID:28010303 Name:Blauer Frosch<br>
+ID:28010301 Name:<br>
+ID:28010302 Name:<br>
+ID:28010303 Name:<br>
 ID:28010304 Name:<br>
-ID:28010401 Name:（test）摇曳鳗01<br>
+ID:28010401 Name:<br>
 ID:28010402 Name:<br>
-ID:28010403 Name:（test）摇曳鳗03<br>
+ID:28010403 Name:<br>
 ID:28010404 Name:<br>
-ID:28020101 Name:Schneefuchs<br>
-ID:28020102 Name:Rotfuchs<br>
-ID:28020103 Name:Gebefreudiger Schneefuchs<br>
-ID:28020104 Name:Freigiebiger Schneefuchs<br>
+ID:28020101 Name:<br>
+ID:28020102 Name:<br>
+ID:28020103 Name:<br>
+ID:28020104 Name:<br>
 ID:28020105 Name:<br>
 ID:28020106 Name:<br>
 ID:28020107 Name:<br>
 ID:28020108 Name:<br>
 ID:28020109 Name:<br>
 ID:28020110 Name:<br>
-ID:28020201 Name:Eichhörnchen<br>
+ID:28020201 Name:<br>
 ID:28020202 Name:<br>
-ID:28020301 Name:Waldschwein<br>
-ID:28020302 Name:Waldschweinferkel<br>
-ID:28020303 Name:Schneeschwein<br>
-ID:28020304 Name:„Großer Schnee-Eber“<br>
-ID:28020305 Name:Gefrorenes Schneeschwein<br>
+ID:28020301 Name:<br>
+ID:28020302 Name:<br>
+ID:28020303 Name:<br>
+ID:28020304 Name:<br>
+ID:28020305 Name:<br>
 ID:28020306 Name:<br>
 ID:28020307 Name:<br>
 ID:28020308 Name:<br>
@@ -12254,12 +12593,12 @@ ID:28020317 Name:<br>
 ID:28020318 Name:<br>
 ID:28020319 Name:<br>
 ID:28020320 Name:<br>
-ID:28020401 Name:Nordischer Hund<br>
-ID:28020402 Name:Waldhatzhund<br>
-ID:28020403 Name:Shiba<br>
-ID:28020404 Name:Schwarzrücken-Jagdhund<br>
-ID:28020405 Name:Shiba<br>
-ID:28020406 Name:Sabueso del Norte (evento de perros, campo de visión aumentado)<br>
+ID:28020401 Name:<br>
+ID:28020402 Name:<br>
+ID:28020403 Name:<br>
+ID:28020404 Name:<br>
+ID:28020405 Name:<br>
+ID:28020406 Name:<br>
 ID:28020407 Name:<br>
 ID:28020408 Name:<br>
 ID:28020409 Name:<br>
@@ -12267,31 +12606,39 @@ ID:28020410 Name:<br>
 ID:28020411 Name:<br>
 ID:28020412 Name:<br>
 ID:28020413 Name:<br>
-ID:28020501 Name:Saphir<br>
-ID:28020502 Name:Grünäugige Katze<br>
-ID:28020503 Name:Graue Katze<br>
-ID:28020504 Name:Nordische Katze<br>
-ID:28020505 Name:Tigerstreifenkatze<br>
-ID:28020506 Name:Kammerjägerkatze<br>
-ID:28020507 Name:Schwarze Katze<br>
-ID:28020508 Name:Saphir<br>
-ID:28020509 Name:Gato de nieve gris (evento de perros, campo de visión aumentado)<br>
+ID:28020501 Name:<br>
+ID:28020502 Name:<br>
+ID:28020503 Name:<br>
+ID:28020504 Name:<br>
+ID:28020505 Name:<br>
+ID:28020506 Name:<br>
+ID:28020507 Name:<br>
+ID:28020508 Name:<br>
+ID:28020509 Name:<br>
 ID:28020510 Name:<br>
 ID:28020511 Name:<br>
 ID:28020512 Name:<br>
 ID:28020513 Name:<br>
-ID:28020601 Name:Schneemarder<br>
-ID:28020602 Name:Rotschwanzmarder<br>
-ID:28020603 Name:Stiefelmarder<br>
-ID:28020604 Name:Maskenmarder<br>
+ID:28020514 Name:<br>
+ID:28020521 Name:<br>
+ID:28020522 Name:<br>
+ID:28020523 Name:<br>
+ID:28020524 Name:<br>
+ID:28020525 Name:<br>
+ID:28020526 Name:<br>
+ID:28020527 Name:<br>
+ID:28020601 Name:<br>
+ID:28020602 Name:<br>
+ID:28020603 Name:<br>
+ID:28020604 Name:<br>
 ID:28020605 Name:<br>
-ID:28020701 Name:Kitsune<br>
-ID:28020702 Name:Kitsune (evento de perros, campo de visión aumentado)<br>
-ID:28020801 Name:Bakedanuki<br>
+ID:28020701 Name:<br>
+ID:28020702 Name:<br>
+ID:28020801 Name:<br>
 ID:28020802 Name:<br>
 ID:28020803 Name:<br>
-ID:28020901 Name:Perro samurái (patrulla)<br>
-ID:28020902 Name:Perro samurái (combate)<br>
+ID:28020901 Name:<br>
+ID:28020902 Name:<br>
 ID:28020903 Name:<br>
 ID:28020904 Name:<br>
 ID:28020905 Name:<br>
@@ -12304,46 +12651,46 @@ ID:28021102 Name:<br>
 ID:28021103 Name:<br>
 ID:28021201 Name:<br>
 ID:28022101 Name:<br>
-ID:28030101 Name:Blauer Kranich<br>
-ID:28030102 Name:Lila Ibis<br>
+ID:28030101 Name:<br>
+ID:28030102 Name:<br>
 ID:28030103 Name:<br>
 ID:28030104 Name:<br>
 ID:28030105 Name:<br>
 ID:28030106 Name:<br>
 ID:28030107 Name:<br>
-ID:28030201 Name:Gelber Falke<br>
-ID:28030202 Name:Grauer Falke<br>
-ID:28030203 Name:Steinmilan<br>
-ID:28030204 Name:Weißer Falke<br>
-ID:28030301 Name:Weiße Taube<br>
-ID:28030302 Name:Glaskronentaube<br>
-ID:28030303 Name:Graue Taube<br>
-ID:28030304 Name:Rote Taube<br>
-ID:28030305 Name:Schwarze Taube<br>
-ID:28030306 Name:Krähe<br>
-ID:28030307 Name:Weiße Taube<br>
-ID:28030308 Name:Glaskronentaube<br>
-ID:28030309 Name:Graue Taube<br>
-ID:28030310 Name:Rote Taube<br>
-ID:28030311 Name:Schwarze Taube<br>
+ID:28030201 Name:<br>
+ID:28030202 Name:<br>
+ID:28030203 Name:<br>
+ID:28030204 Name:<br>
+ID:28030301 Name:<br>
+ID:28030302 Name:<br>
+ID:28030303 Name:<br>
+ID:28030304 Name:<br>
+ID:28030305 Name:<br>
+ID:28030306 Name:<br>
+ID:28030307 Name:<br>
+ID:28030308 Name:<br>
+ID:28030309 Name:<br>
+ID:28030310 Name:<br>
+ID:28030311 Name:<br>
 ID:28030312 Name:<br>
 ID:28030313 Name:<br>
 ID:28030314 Name:<br>
 ID:28030315 Name:<br>
 ID:28030316 Name:<br>
-ID:28030401 Name:Roter Fink<br>
-ID:28030402 Name:Gelber Fink<br>
-ID:28030403 Name:Schneefink<br>
-ID:28030404 Name:Türkiser Fink<br>
+ID:28030401 Name:<br>
+ID:28030402 Name:<br>
+ID:28030403 Name:<br>
+ID:28030404 Name:<br>
 ID:28030405 Name:<br>
 ID:28030406 Name:<br>
 ID:28030407 Name:<br>
 ID:28030408 Name:<br>
 ID:28030409 Name:<br>
 ID:28030410 Name:<br>
-ID:28030501 Name:Rotschnabelente<br>
-ID:28030502 Name:Grünhauptente<br>
-ID:28030503 Name:Goldente<br>
+ID:28030501 Name:<br>
+ID:28030502 Name:<br>
+ID:28030503 Name:<br>
 ID:28030504 Name:<br>
 ID:28030505 Name:<br>
 ID:28030506 Name:<br>
@@ -12375,35 +12722,35 @@ ID:28030713 Name:<br>
 ID:28030714 Name:<br>
 ID:28030715 Name:<br>
 ID:28030716 Name:<br>
-ID:28040101 Name:Schwarzrückenbarsch<br>
-ID:28040102 Name:Blauflossenbarsch<br>
-ID:28040103 Name:Goldbarsch<br>
-ID:28040104 Name:Schwarzrückenbarsch<br>
-ID:28040105 Name:Schwarzrückenbarsch<br>
-ID:28040106 Name:Blauflossenbarsch<br>
-ID:28040107 Name:Goldbarsch<br>
+ID:28040101 Name:<br>
+ID:28040102 Name:<br>
+ID:28040103 Name:<br>
+ID:28040104 Name:<br>
+ID:28040105 Name:<br>
+ID:28040106 Name:<br>
+ID:28040107 Name:<br>
 ID:28040108 Name:<br>
-ID:28040201 Name:Medaka<br>
-ID:28040202 Name:Glasmedaka<br>
-ID:28040203 Name:Zuckerblumen-Medaka<br>
-ID:28040204 Name:Aizen-Medaka<br>
-ID:28040205 Name:Dämmerfänger<br>
-ID:28040206 Name:Kristallfisch<br>
-ID:28040301 Name:Lungenstichling<br>
-ID:28040302 Name:Kampfstichling<br>
-ID:28040303 Name:Giftstichling<br>
-ID:28040304 Name:Akai Maou<br>
-ID:28040305 Name:Schneekönig<br>
-ID:28040401 Name:Goldener Koi<br>
-ID:28040402 Name:Rost-Koi<br>
-ID:28040501 Name:Brauner Schmetterlingsfisch<br>
-ID:28040502 Name:Lila Schmetterlingsfisch<br>
-ID:28040503 Name:Teefarbiger Schmetterlingsfisch<br>
-ID:28040504 Name:Langlebiger Kaiserfisch<br>
-ID:28040505 Name:Raimei-Kaiserfisch<br>
-ID:28040506 Name:Mondflosse<br>
-ID:28040601 Name:Kugelfisch<br>
-ID:28040602 Name:Bitterer Kugelfisch<br>
+ID:28040201 Name:<br>
+ID:28040202 Name:<br>
+ID:28040203 Name:<br>
+ID:28040204 Name:<br>
+ID:28040205 Name:<br>
+ID:28040206 Name:<br>
+ID:28040301 Name:<br>
+ID:28040302 Name:<br>
+ID:28040303 Name:<br>
+ID:28040304 Name:<br>
+ID:28040305 Name:<br>
+ID:28040401 Name:<br>
+ID:28040402 Name:<br>
+ID:28040501 Name:<br>
+ID:28040502 Name:<br>
+ID:28040503 Name:<br>
+ID:28040504 Name:<br>
+ID:28040505 Name:<br>
+ID:28040506 Name:<br>
+ID:28040601 Name:<br>
+ID:28040602 Name:<br>
 ID:28040701 Name:<br>
 ID:28040702 Name:<br>
 ID:28040703 Name:<br>
@@ -12422,21 +12769,21 @@ ID:28041102 Name:<br>
 ID:28041103 Name:<br>
 ID:28041104 Name:<br>
 ID:28041105 Name:<br>
-ID:28050101 Name:Anemo-Kristallschmetterling<br>
-ID:28050102 Name:Geo-Kristallschmetterling<br>
-ID:28050103 Name:Kryo-Kristallschmetterling<br>
-ID:28050104 Name:Elektro-Kristallschmetterling<br>
+ID:28050101 Name:<br>
+ID:28050102 Name:<br>
+ID:28050103 Name:<br>
+ID:28050104 Name:<br>
 ID:28050105 Name:<br>
 ID:28050106 Name:<br>
 ID:28050107 Name:<br>
 ID:28050108 Name:<br>
-ID:28050201 Name:Anfänger-Schatzmarder<br>
-ID:28050202 Name:Hortender Schatzmarder<br>
-ID:28050203 Name:Goldener Schatzmarder<br>
+ID:28050201 Name:<br>
+ID:28050202 Name:<br>
+ID:28050203 Name:<br>
 ID:28050204 Name:<br>
-ID:28050211 Name:Anfänger-Schatzmarder<br>
-ID:28050212 Name:Hortender Schatzmarder<br>
-ID:28050213 Name:Goldener Schatzmarder<br>
+ID:28050211 Name:<br>
+ID:28050212 Name:<br>
+ID:28050213 Name:<br>
 ID:28050221 Name:<br>
 ID:28050222 Name:<br>
 ID:28050223 Name:<br>
@@ -12509,70 +12856,78 @@ ID:28070302 Name:<br>
 ID:28070401 Name:<br>
 ID:28070402 Name:<br>
 ID:28070601 Name:<br>
-ID:28210101 Name:Cangrejo dorado doméstico<br>
-ID:28210102 Name:Cangrejo solar doméstico<br>
-ID:28210103 Name:Cangrejo oceánico doméstico<br>
-ID:28210104 Name:Cangrejo general doméstico<br>
-ID:28210105 Name:Cangrejo rojizo doméstico<br>
-ID:28210201 Name:Lagarto cornudo azul doméstico<br>
-ID:28210202 Name:Lagarto cornudo rojo doméstico<br>
-ID:28210203 Name:Lagarto cornudo verde doméstico<br>
-ID:28210204 Name:Locha del anochecer doméstica<br>
-ID:28210205 Name:Locha dorada doméstica<br>
-ID:28210206 Name:Locha soleada doméstica<br>
-ID:28210207 Name:Lagarto de médula doméstico<br>
+ID:28210101 Name:<br>
+ID:28210102 Name:<br>
+ID:28210103 Name:<br>
+ID:28210104 Name:<br>
+ID:28210105 Name:<br>
+ID:28210201 Name:<br>
+ID:28210202 Name:<br>
+ID:28210203 Name:<br>
+ID:28210204 Name:<br>
+ID:28210205 Name:<br>
+ID:28210206 Name:<br>
+ID:28210207 Name:<br>
 ID:28210208 Name:<br>
-ID:28210301 Name:Rana doméstica<br>
-ID:28210302 Name:Rana de barro doméstica<br>
-ID:28210303 Name:Rana azul doméstica<br>
+ID:28210301 Name:<br>
+ID:28210302 Name:<br>
+ID:28210303 Name:<br>
 ID:28210304 Name:<br>
-ID:28210401 Name:Anguila adornada doméstica<br>
+ID:28210401 Name:<br>
 ID:28210402 Name:<br>
-ID:28210403 Name:Anguila de aleta roja doméstica<br>
+ID:28210403 Name:<br>
 ID:28210404 Name:<br>
-ID:28220101 Name:Zorro de nieve doméstico<br>
-ID:28220102 Name:Zorro carmesí doméstico<br>
+ID:28220101 Name:<br>
+ID:28220102 Name:<br>
 ID:28220108 Name:<br>
-ID:28220201 Name:Ardilla doméstica<br>
-ID:28220301 Name:Waldschwein (Haustier)<br>
-ID:28220303 Name:Jabalí de las nieves doméstico<br>
+ID:28220201 Name:<br>
+ID:28220301 Name:<br>
+ID:28220303 Name:<br>
 ID:28220313 Name:<br>
 ID:28220314 Name:<br>
-ID:28220401 Name:Nordischer Hund (Haustier)<br>
-ID:28220402 Name:Waldhatzhund (Haustier)<br>
-ID:28220403 Name:Shiba (Haustier)<br>
-ID:28220404 Name:Schwarzrücken-Jagdhund (Haustier)<br>
+ID:28220401 Name:<br>
+ID:28220402 Name:<br>
+ID:28220403 Name:<br>
+ID:28220404 Name:<br>
 ID:28220405 Name:<br>
 ID:28220406 Name:<br>
 ID:28220407 Name:<br>
-ID:28220501 Name:Saphir (heimisch)<br>
-ID:28220502 Name:Grünäugige Katze (Haustier)<br>
-ID:28220503 Name:Gato de nieve gris doméstico<br>
-ID:28220504 Name:Nordische Katze (Haustier)<br>
-ID:28220505 Name:Tigerstreifenkatze (Haustier)<br>
-ID:28220506 Name:Kammerjägerkatze (Haustier)<br>
-ID:28220601 Name:Hurón de las nieves doméstico<br>
-ID:28220602 Name:Hurón de cola roja doméstico<br>
-ID:28220603 Name:Hurón con botas doméstico<br>
+ID:28220501 Name:<br>
+ID:28220502 Name:<br>
+ID:28220503 Name:<br>
+ID:28220504 Name:<br>
+ID:28220505 Name:<br>
+ID:28220506 Name:<br>
+ID:28220507 Name:<br>
+ID:28220521 Name:<br>
+ID:28220522 Name:<br>
+ID:28220523 Name:<br>
+ID:28220524 Name:<br>
+ID:28220525 Name:<br>
+ID:28220526 Name:<br>
+ID:28220527 Name:<br>
+ID:28220601 Name:<br>
+ID:28220602 Name:<br>
+ID:28220603 Name:<br>
 ID:28220604 Name:<br>
 ID:28220605 Name:<br>
-ID:28220701 Name:Kitsune doméstico<br>
-ID:28220901 Name:Perro samurái doméstico<br>
+ID:28220701 Name:<br>
+ID:28220901 Name:<br>
 ID:28222101 Name:<br>
-ID:28230101 Name:Blauer Kranich (Haustier)<br>
-ID:28230102 Name:Ibis violeta doméstico<br>
+ID:28230101 Name:<br>
+ID:28230102 Name:<br>
 ID:28230104 Name:<br>
-ID:28230301 Name:Paloma blanca doméstica<br>
-ID:28230302 Name:Paloma coronada doméstica<br>
-ID:28230303 Name:Paloma alagrís doméstica<br>
-ID:28230304 Name:Paloma carmesí doméstica<br>
-ID:28230305 Name:Paloma azabache doméstica<br>
-ID:28230306 Name:Cuervo doméstico<br>
+ID:28230301 Name:<br>
+ID:28230302 Name:<br>
+ID:28230303 Name:<br>
+ID:28230304 Name:<br>
+ID:28230305 Name:<br>
+ID:28230306 Name:<br>
 ID:28230313 Name:<br>
-ID:28230401 Name:Pinzón carmesí doméstico<br>
-ID:28230402 Name:Pinzón dorado doméstico<br>
-ID:28230403 Name:Pinzón polar doméstico<br>
-ID:28230404 Name:Pinzón esmeralda doméstico<br>
+ID:28230401 Name:<br>
+ID:28230402 Name:<br>
+ID:28230403 Name:<br>
+ID:28230404 Name:<br>
 ID:28230601 Name:<br>
 ID:28230602 Name:<br>
 ID:28230603 Name:<br>
@@ -12584,27 +12939,27 @@ ID:28230705 Name:<br>
 ID:28230706 Name:<br>
 ID:28230707 Name:<br>
 ID:28230708 Name:<br>
-ID:28240201 Name:Medaka (Haustier)<br>
-ID:28240202 Name:Glasmedaka (Haustier)<br>
-ID:28240203 Name:Zuckerblumen-Medaka (Haustier)<br>
-ID:28240204 Name:Aizen-Medaka (Haustier)<br>
-ID:28240205 Name:Dämmerfänger (Haustier)<br>
-ID:28240206 Name:Kristallfisch (Haustier)<br>
-ID:28240301 Name:Lungenstichling (Haustier)<br>
-ID:28240302 Name:Kampfstichling (Haustier)<br>
-ID:28240303 Name:Giftstichling (Haustier)<br>
-ID:28240304 Name:Akai Maou (Haustier)<br>
-ID:28240305 Name:Schneekönig (Haustier)<br>
-ID:28240401 Name:Goldener Koi (Haustier)<br>
-ID:28240402 Name:Rost-Koi (Haustier)<br>
-ID:28240501 Name:Brauner Schmetterlingsfisch (Haustier)<br>
-ID:28240502 Name:Lila Schmetterlingsfisch (Haustier)<br>
-ID:28240503 Name:Teefarbiger Schmetterlingsfisch (Haustier)<br>
-ID:28240504 Name:Langlebiger Kaiserfisch (Haustier)<br>
-ID:28240505 Name:Raimei-Kaiserfisch (Haustier)<br>
-ID:28240506 Name:Mondflosse (Haustier)<br>
-ID:28240601 Name:Kugelfisch (Haustier)<br>
-ID:28240602 Name:Bitterer Kugelfisch (Haustier)<br>
+ID:28240201 Name:<br>
+ID:28240202 Name:<br>
+ID:28240203 Name:<br>
+ID:28240204 Name:<br>
+ID:28240205 Name:<br>
+ID:28240206 Name:<br>
+ID:28240301 Name:<br>
+ID:28240302 Name:<br>
+ID:28240303 Name:<br>
+ID:28240304 Name:<br>
+ID:28240305 Name:<br>
+ID:28240401 Name:<br>
+ID:28240402 Name:<br>
+ID:28240501 Name:<br>
+ID:28240502 Name:<br>
+ID:28240503 Name:<br>
+ID:28240504 Name:<br>
+ID:28240505 Name:<br>
+ID:28240506 Name:<br>
+ID:28240601 Name:<br>
+ID:28240602 Name:<br>
 ID:28240701 Name:<br>
 ID:28240702 Name:<br>
 ID:28240801 Name:<br>
@@ -12622,10 +12977,10 @@ ID:28241102 Name:<br>
 ID:28241103 Name:<br>
 ID:28241104 Name:<br>
 ID:28241105 Name:<br>
-ID:28250101 Name:Cristalóptero Anemo doméstico<br>
-ID:28250102 Name:Cristalóptero Geo doméstico<br>
-ID:28250103 Name:Cristalóptero Cryo doméstico<br>
-ID:28250104 Name:Cristalóptero Electro doméstico<br>
+ID:28250101 Name:<br>
+ID:28250102 Name:<br>
+ID:28250103 Name:<br>
+ID:28250104 Name:<br>
 ID:28250105 Name:<br>
 ID:28250106 Name:<br>
 ID:28250107 Name:<br>
@@ -12633,29 +12988,29 @@ ID:28250301 Name:<br>
 ID:28250302 Name:<br>
 ID:28250401 Name:<br>
 ID:28250701 Name:<br>
-ID:29010101 Name:Sturmschrecken Dvalin<br>
-ID:29010102 Name:Sturmschrecken Dvalin<br>
-ID:29010103 Name:Sturmschrecken<br>
-ID:29010104 Name:Sturmschrecken Dvalin<br>
-ID:29020101 Name:Boreas, Wolf des Nordens<br>
-ID:29020102 Name:Andrius, Herr von Wolfenlauf<br>
-ID:29030101 Name:Der Letzte unter den Elf der Fatui – Der Graf<br>
-ID:29030102 Name:Teuflisches Auge aktiv – Der Graf<br>
+ID:29010101 Name:Furchterregender Sturmschrecken<br>
+ID:29010102 Name:Furchterregender Sturmschrecken<br>
+ID:29010103 Name:Furchterregender Sturmschrecken<br>
+ID:29010104 Name:Furchterregender Sturmschrecken<br>
+ID:29020101 Name:Großer Wolfskönig des Nordens, Herr von Wolfenlauf<br>
+ID:29020102 Name:Großer Wolfskönig des Nordens, Herr von Wolfenlauf<br>
+ID:29030101 Name:„Der Graf“<br>
+ID:29030102 Name:„Der Graf“<br>
 ID:29030103 Name:„Der Graf“<br>
-ID:29030104 Name:Der Letzte unter den Elf der Fatui – Der Graf<br>
-ID:29030105 Name:Teuflisches Auge aktiv – Der Graf<br>
-ID:29030106 Name:Der Graf<br>
+ID:29030104 Name:„Der Graf“<br>
+ID:29030105 Name:„Der Graf“<br>
+ID:29030106 Name:„Der Graf“<br>
 ID:29040101 Name:Azhdaha<br>
 ID:29040102 Name:Azhdaha<br>
 ID:29040103 Name:Azhdaha<br>
 ID:29040104 Name:Azhdaha<br>
 ID:29040111 Name:Azhdaha<br>
 ID:29050101 Name:La Signora<br>
-ID:29050102 Name:Hexe der glimmenden Glut<br>
+ID:29050102 Name:La Signora<br>
 ID:29050103 Name:La Signora<br>
-ID:29050104 Name:Hexe der glimmenden Glut<br>
+ID:29050104 Name:La Signora<br>
 ID:29060101 Name:Shougun Raiden<br>
-ID:29060102 Name:Raiden Ei<br>
+ID:29060102 Name:Shougun Raiden<br>
 ID:29060201 Name:Magatsu Mitake Narukami no Mikoto<br>
 ID:29060202 Name:Magatsu Mitake Narukami no Mikoto<br>
 ID:29060203 Name:Magatsu Mitake Narukami no Mikoto<br>
@@ -12683,6 +13038,10 @@ ID:29090102 Name:Sternenverschlingender Narwal<br>
 ID:29090201 Name:<br>
 ID:29090202 Name:<br>
 ID:29090304 Name:<br>
+ID:29100101 Name:„Arlecchino“<br>
+ID:29100102 Name:„Arlecchino“<br>
+ID:29100103 Name:„Arlecchino“<br>
+ID:29100104 Name:„Arlecchino“<br>
 ID:30050501 Name:Hydro-Mimenfink<br>
 ID:30050601 Name:Hydro-Mimenkreatur<br>
 ID:30050701 Name:Hydro-Mimenhörnchen<br>
