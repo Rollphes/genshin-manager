@@ -1,4 +1,5 @@
 import { Client } from '@/client/Client'
+import { OutOfRangeError } from '@/errors/OutOfRangeError'
 import {
   BodyType,
   Element,
@@ -135,13 +136,14 @@ export class CharacterInfo {
       (constId) => constId !== 0,
     )
 
-    this.skillOrder.forEach((skillId) => {
+    this.skillOrder = this.skillOrder.filter((skillId) => {
       const skillJson = Client._getJsonFromCachedExcelBinOutput(
         'AvatarSkillExcelConfigData',
         skillId,
       )
       const proudId = skillJson.proudSkillGroupId as number | undefined
       if (proudId) this.proudMap.set(skillId, proudId)
+      return proudId !== undefined
     })
 
     const qualityMap: { [key in QualityType]: number } = {
@@ -184,9 +186,10 @@ export class CharacterInfo {
    * @param characterId Character ID
    * @returns skill depot IDs
    */
-  public static getTravelerSkillDepotIds(
-    characterId: 10000005 | 10000007,
-  ): number[] {
+  public static getTravelerSkillDepotIds(characterId: number): number[] {
+    if (![10000005, 10000007].includes(characterId))
+      throw new OutOfRangeError('characterId', characterId, 10000005, 10000007)
+
     const avatarData = Client._getJsonFromCachedExcelBinOutput(
       'AvatarExcelConfigData',
       characterId,

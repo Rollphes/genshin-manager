@@ -1,9 +1,37 @@
 import { Client } from '@/client/Client'
 import { OutOfRangeError } from '@/errors/OutOfRangeError'
+import { CharacterInfo } from '@/models/character/CharacterInfo'
 import { CharacterSkill } from '@/models/character/CharacterSkill'
 import { CharacterSkillAscension } from '@/models/character/CharacterSkillAscension'
 import { Weapon } from '@/models/weapon/Weapon'
 import { WeaponAscension } from '@/models/weapon/WeaponAscension'
+
+/**
+ * Domain data
+ */
+export interface DomainData {
+  /**
+   * Domain name
+   */
+  readonly name: string
+  /**
+   * Domain description
+   */
+  readonly description: string
+  /**
+   * Reward Item IDs (material IDs)
+   */
+  readonly materialIds: number[]
+  /**
+   * CharacterInfos to use Reward Item.
+   */
+  readonly characterInfos: CharacterInfo[]
+  /**
+   * Weapon ID to use Reward Item.
+   */
+  readonly weaponIds: number[]
+}
+
 /**
  * Class of materials available on specified days of the week
  */
@@ -34,13 +62,7 @@ export class DailyFarming {
   /**
    * Domains
    */
-  public readonly domains: {
-    name: string
-    description: string
-    materialIds: number[]
-    characterIds: number[]
-    weaponIds: number[]
-  }[] = []
+  public readonly domains: DomainData[] = []
 
   /**
    * Create a DailyFarming
@@ -91,7 +113,7 @@ export class DailyFarming {
         description:
           Client.cachedTextMap.get(String(domain.descTextMapHash)) || '',
         materialIds: materialIds,
-        characterIds: this.getCharacterIdsByMaterialIds(materialIds),
+        characterInfos: this.getCharacterInfoByMaterialIds(materialIds),
         weaponIds: this.getWeaponIdsByMaterialIds(materialIds),
       })
     })
@@ -104,19 +126,37 @@ export class DailyFarming {
     )
   }
 
-  private getCharacterIdsByMaterialIds(materialIds: number[]): number[] {
-    const result = new Set<number>()
+  private getCharacterInfoByMaterialIds(
+    materialIds: number[],
+  ): CharacterInfo[] {
+    const result: CharacterInfo[] = []
+    const skillIds = new Set<number>()
     CharacterSkill.allSkillIds.forEach((skillId) => {
       for (let skillLevel = 1; skillLevel <= 10; skillLevel++) {
         const skillAscension = new CharacterSkillAscension(skillId, skillLevel)
         const costMaterialIds = skillAscension.costItems.map((item) => item.id)
-        if (costMaterialIds.some((id) => materialIds.includes(id))) {
-          result.add(skillId)
-          break
-        }
+        if (costMaterialIds.some((id) => materialIds.includes(id)))
+          skillIds.add(skillId)
       }
     })
-    return Array.from(result)
+
+    CharacterInfo.allCharacterIds.forEach((characterId) => {
+      if ([10000005, 10000007].includes(characterId)) {
+        CharacterInfo.getTravelerSkillDepotIds(characterId).forEach(
+          (skillDepotId) => {
+            const character = new CharacterInfo(characterId, skillDepotId)
+            if (character.skillOrder.some((skillId) => skillIds.has(skillId)))
+              result.push(character)
+          },
+        )
+      } else {
+        const character = new CharacterInfo(characterId)
+        if (character.skillOrder.some((skillId) => skillIds.has(skillId)))
+          result.push(character)
+      }
+    })
+
+    return result
   }
 
   private getWeaponIdsByMaterialIds(materialIds: number[]): number[] {

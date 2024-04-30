@@ -27,7 +27,7 @@ import { CharacterSkillAscension } from '@/models/character/CharacterSkillAscens
 import { CharacterStatusManager } from '@/models/character/CharacterStatusManager'
 import { CharacterStory } from '@/models/character/CharacterStory'
 import { CharacterVoice } from '@/models/character/CharacterVoice'
-import { DailyFarming } from '@/models/DailyFarming'
+import { DailyFarming, DomainData } from '@/models/DailyFarming'
 import { CharacterDetail } from '@/models/enka/CharacterDetail'
 import { CharacterPreview } from '@/models/enka/CharacterPreview'
 import { EnkaAccount } from '@/models/enka/EnkaAccount'
@@ -128,6 +128,7 @@ export {
   QualityType,
   CodexType,
   CVType,
+  DomainData,
 }
 export * from '@/types/enkaNetwork'
 export * from '@/types/sg-hk4e-api'
