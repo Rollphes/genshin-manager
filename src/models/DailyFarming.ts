@@ -89,34 +89,36 @@ export class DailyFarming {
       (d) => d.type === 'DUNGEN_ENTRY_TYPE_WEAPON_PROMOTE',
     )
 
-    ;[...weaponDomains, ...skillDomains].forEach((domain) => {
-      const materialIds = (domain.descriptionCycleRewardList as number[][])[
-        rewardDateIndex
-      ]
+    for (let i = 0; i < (dayOfWeek === 0 ? 3 : 0); i++) {
+      ;[...weaponDomains, ...skillDomains].forEach((domain) => {
+        const materialIds = (domain.descriptionCycleRewardList as number[][])[
+          dayOfWeek === 0 ? i : rewardDateIndex
+        ]
 
-      const nameTextId = Object.keys(DailyFarming.replaceTextMapIdMap).includes(
-        String(domain.dungeonEntryId),
-      )
-        ? DailyFarming.replaceTextMapIdMap[domain.dungeonEntryId as number]
-        : `UI_DUNGEON_ENTRY_${domain.dungeonEntryId as number}`
+        const nameTextId = Object.keys(
+          DailyFarming.replaceTextMapIdMap,
+        ).includes(String(domain.dungeonEntryId))
+          ? DailyFarming.replaceTextMapIdMap[domain.dungeonEntryId as number]
+          : `UI_DUNGEON_ENTRY_${domain.dungeonEntryId as number}`
 
-      const manualTextJson = Client._getJsonFromCachedExcelBinOutput(
-        'ManualTextMapConfigData',
-        nameTextId,
-      )
+        const manualTextJson = Client._getJsonFromCachedExcelBinOutput(
+          'ManualTextMapConfigData',
+          nameTextId,
+        )
 
-      this.domains.push({
-        name:
-          Client.cachedTextMap.get(
-            String(manualTextJson.textMapContentTextMapHash),
-          ) || '',
-        description:
-          Client.cachedTextMap.get(String(domain.descTextMapHash)) || '',
-        materialIds: materialIds,
-        characterInfos: this.getCharacterInfoByMaterialIds(materialIds),
-        weaponIds: this.getWeaponIdsByMaterialIds(materialIds),
+        this.domains.push({
+          name:
+            Client.cachedTextMap.get(
+              String(manualTextJson.textMapContentTextMapHash),
+            ) || '',
+          description:
+            Client.cachedTextMap.get(String(domain.descTextMapHash)) || '',
+          materialIds: materialIds,
+          characterInfos: this.getCharacterInfoByMaterialIds(materialIds),
+          weaponIds: this.getWeaponIdsByMaterialIds(materialIds),
+        })
       })
-    })
+    }
 
     this.talentBookIds = skillDomains.flatMap(
       (d) => (d.descriptionCycleRewardList as number[][])[rewardDateIndex],
