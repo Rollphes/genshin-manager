@@ -65,6 +65,14 @@ export class CharacterInherentSkill {
   public static get allInherentSkillIds(): number[] {
     const characterIds = CharacterInfo.allCharacterIds
     return characterIds.flatMap((characterId) => {
+      if ([10000005, 10000007].includes(characterId)) {
+        return CharacterInfo.getTravelerSkillDepotIds(characterId).flatMap(
+          (skillDepotId) => {
+            return new CharacterInfo(characterId, skillDepotId)
+              .inherentSkillOrder
+          },
+        )
+      }
       return new CharacterInfo(characterId).inherentSkillOrder
     })
   }
