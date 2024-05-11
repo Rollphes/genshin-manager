@@ -134,7 +134,7 @@ export class ImageAssets {
       ImageAssets.imageFolderPath,
       `${this.name}.png`,
     )
-    if (fs.existsSync(imageCachePath)) {
+    if (fs.existsSync(imageCachePath) && !this.isPNGCorrupted(imageCachePath)) {
       return await fsPromises.readFile(imageCachePath)
     } else {
       const res = await fetch(this.url, ImageAssets.fetchOption)
@@ -162,7 +162,7 @@ export class ImageAssets {
       ImageAssets.imageFolderPath,
       `${this.name}.png`,
     )
-    if (fs.existsSync(imageCachePath)) {
+    if (fs.existsSync(imageCachePath) && !this.isPNGCorrupted(imageCachePath)) {
       return fs.createReadStream(imageCachePath, {
         highWaterMark: highWaterMark,
       })
@@ -183,6 +183,51 @@ export class ImageAssets {
       return fs.createReadStream(imageCachePath, {
         highWaterMark: highWaterMark,
       })
+    }
+  }
+
+  /**
+   * Check if the PNG file is corrupted
+   * @warning This function is not perfect, so it may not be able to detect all corrupted files. because it only checks the PNG signature and IEnd chunk.
+   * @param filePath File path
+   * @returns is PNG file corrupted
+   */
+  private isPNGCorrupted(filePath: string): boolean {
+    try {
+      const stats = fs.statSync(filePath)
+      const fileSize = stats.size
+
+      const pngSignature = Buffer.from([137, 80, 78, 71, 13, 10, 26, 10]) // PNG signature
+      const pngIEndSignature = Buffer.from([73, 69, 78, 68]) // PNG IEnd Chunk Type
+
+      const signatureBuffer = Buffer.alloc(pngSignature.length) // PNG signature
+      const iEndBuffer = Buffer.alloc(8) // PNG IEnd Chunk Type and CRC
+
+      if (fileSize < signatureBuffer.length + iEndBuffer.length) return true
+
+      const fd = fs.openSync(filePath, 'r')
+
+      fs.readSync(fd, signatureBuffer, 0, signatureBuffer.length, 0)
+
+      fs.readSync(
+        fd,
+        iEndBuffer,
+        0,
+        iEndBuffer.length,
+        fileSize - iEndBuffer.length,
+      )
+      const iEndSignatureBuffer = iEndBuffer.slice(0, pngIEndSignature.length)
+
+      fs.closeSync(fd)
+
+      if (
+        !pngSignature.equals(signatureBuffer) ||
+        !pngIEndSignature.equals(iEndSignatureBuffer)
+      )
+        return true
+      return false
+    } catch (e) {
+      return true
     }
   }
 }
