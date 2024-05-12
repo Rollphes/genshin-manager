@@ -120,7 +120,7 @@ export class AudioAssets {
       ...cvPaths,
       `${this.name}.ogg`,
     )
-    if (fs.existsSync(audioCachePath)) {
+    if (fs.existsSync(audioCachePath) && !this.isOGGCorrupted(audioCachePath)) {
       return await fsPromises.readFile(audioCachePath)
     } else {
       const res = await fetch(this.url, AudioAssets.fetchOption)
@@ -154,7 +154,7 @@ export class AudioAssets {
       ...cvPaths,
       `${this.name}.ogg`,
     )
-    if (fs.existsSync(audioCachePath)) {
+    if (fs.existsSync(audioCachePath) && !this.isOGGCorrupted(audioCachePath)) {
       return fs.createReadStream(audioCachePath, {
         highWaterMark: highWaterMark,
       })
@@ -176,6 +176,26 @@ export class AudioAssets {
       return fs.createReadStream(audioCachePath, {
         highWaterMark: highWaterMark,
       })
+    }
+  }
+
+  /**
+   * Check if the OGG file is corrupted
+   * @warning This function is not perfect, it may not be able to detect all corrupted OGG files. because it only checks the last OggS header.
+   * @param filePath File path
+   * @returns is OGG file corrupted
+   */
+  private isOGGCorrupted(filePath: string): boolean {
+    const data = fs.readFileSync(filePath) // There is no footer in the ogg file, so all the data has to be read in.
+    const lastIndex = data.lastIndexOf('OggS')
+
+    if (lastIndex !== -1) {
+      const headerType = data.readUInt8(lastIndex + 5)
+
+      if (headerType === 4) return false
+      else return true
+    } else {
+      return true
     }
   }
 }
