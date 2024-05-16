@@ -3,6 +3,7 @@
 /cache
 /dist/test
 /src/test
+/docs
 /handbooks
 /examples
 /.vscode
@@ -14,3 +15,4 @@
 .prettierrc
 .prettierignore
 tsconfig.json
+typedoc.json
