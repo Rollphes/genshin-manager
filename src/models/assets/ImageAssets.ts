@@ -14,7 +14,7 @@ export class ImageAssets {
   /**
    * Image base URL of mihoyo
    */
-  private static readonly imageBaseURLMihoyo =
+  private static readonly IMAGE_BASE_URL_MIHOYO =
     'https://upload-os-bbs.mihoyo.com/game_record/genshin'
   /**
    * Image types
@@ -88,7 +88,7 @@ export class ImageAssets {
     this.mihoyoURL =
       name === '' || !this.imageType
         ? ''
-        : `${ImageAssets.imageBaseURLMihoyo}/${name}.png`
+        : `${ImageAssets.IMAGE_BASE_URL_MIHOYO}/${name}.png`
   }
 
   /**

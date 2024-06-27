@@ -49,16 +49,16 @@ export class NoticeManager extends PromiseEventEmitter<
    * Minimum update interval(ms)
    * @default 1 minute
    */
-  private static readonly minUpdateInterval = 1000 * 60 * 1
+  private static readonly MIN_UPDATE_INTERVAL = 1000 * 60 * 1
   /**
    * URL of getAnnContent
    */
-  private static readonly getContentURL: string =
+  private static readonly GIT_CONTENT_URL: string =
     'https://sg-hk4e-api-static.hoyoverse.com/common/hk4e_global/announcement/api/getAnnContent'
   /**
    * URL of getAnnList
    */
-  private static readonly getListURL: string =
+  private static readonly GIT_LIST_URL: string =
     'https://sg-hk4e-api.hoyoverse.com/common/hk4e_global/announcement/api/getAnnList'
   /**
    * Default URL params
@@ -116,13 +116,13 @@ export class NoticeManager extends PromiseEventEmitter<
     this.updateInterval = updateInterval
     if (
       this.updateInterval &&
-      (this.updateInterval < NoticeManager.minUpdateInterval ||
+      (this.updateInterval < NoticeManager.MIN_UPDATE_INTERVAL ||
         this.updateInterval > 2147483647)
     ) {
       throw new OutOfRangeError(
         'level',
         this.updateInterval,
-        NoticeManager.minUpdateInterval,
+        NoticeManager.MIN_UPDATE_INTERVAL,
         2147483647,
       )
     }
@@ -181,7 +181,7 @@ export class NoticeManager extends PromiseEventEmitter<
     lang?: keyof typeof NoticeLanguage,
   ): Promise<APIGetAnnContent> {
     return (await this._getAnn(
-      NoticeManager.getContentURL,
+      NoticeManager.GIT_CONTENT_URL,
       lang,
     )) as APIGetAnnContent
   }
@@ -191,7 +191,7 @@ export class NoticeManager extends PromiseEventEmitter<
    * @returns AnnList
    */
   private async getAnnList(): Promise<APIGetAnnList> {
-    return (await this._getAnn(NoticeManager.getListURL)) as APIGetAnnList
+    return (await this._getAnn(NoticeManager.GIT_LIST_URL)) as APIGetAnnList
   }
 
   /**

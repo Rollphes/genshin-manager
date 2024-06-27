@@ -41,11 +41,11 @@ export class CharacterSkillAscension {
   /**
    * Create a character skill ascension
    * @param skillId Skill ID
-   * @param Level skill level (1-15). Default: 1
+   * @param level skill level (1-15). Default: 1
    */
-  constructor(skillId: number, Level: number = 1) {
+  constructor(skillId: number, level: number = 1) {
     this.id = skillId
-    this.level = Level
+    this.level = level
     if (this.level < 1 || this.level > 15)
       throw new OutOfRangeError('level', this.level, 1, 15)
     const skillJson = Client._getJsonFromCachedExcelBinOutput(

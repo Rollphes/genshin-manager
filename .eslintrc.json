@@ -62,7 +62,7 @@
     ],
     "jsdoc/check-tag-names": "off",
     "no-unused-vars": "off",
-    "@typescript-eslint/no-unused-vars": ["error"],
+    "@typescript-eslint/no-unused-vars": "error",
     "@typescript-eslint/member-ordering": "warn",
     "@typescript-eslint/explicit-member-accessibility": [
       "error",
@@ -78,6 +78,73 @@
       }
     ],
     "@typescript-eslint/explicit-function-return-type": "error",
+    "@typescript-eslint/naming-convention": [
+      "error",
+      {
+        "selector": "default",
+        "format": ["camelCase"],
+        "leadingUnderscore": "allow"
+      },
+      {
+        "selector": "import",
+        "format": ["camelCase", "PascalCase"]
+      },
+      {
+        "selector": "variable",
+        "format": ["camelCase"],
+        "leadingUnderscore": "allow",
+        "trailingUnderscore": "allow"
+      },
+      {
+        "selector": "variable",
+        "modifiers": ["const", "global"],
+        "types": ["boolean", "number", "string"],
+        "format": ["UPPER_CASE"]
+      },
+      {
+        "selector": "variable",
+        "modifiers": ["const", "global", "exported"],
+        "types": ["boolean", "number", "string", "array", "function"],
+        "format": ["camelCase"]
+      },
+      {
+        "selector": "variable",
+        "modifiers": ["const", "global", "exported"],
+        "format": ["camelCase", "PascalCase"]
+      },
+      {
+        "selector": "property",
+        "modifiers": ["requiresQuotes"],
+        "format": null
+      },
+      {
+        "selector": "property",
+        "modifiers": ["static", "readonly"],
+        "types": ["boolean", "number", "string"],
+        "format": ["UPPER_CASE"]
+      },
+      {
+        "selector": "typeLike",
+        "format": ["PascalCase"]
+      },
+      {
+        "selector": "objectLiteralProperty",
+        "format": null
+      },
+      {
+        "selector": "enumMember",
+        "format": ["UPPER_CASE"]
+      },
+      {
+        "selector": "typeProperty",
+        "format": ["camelCase", "snake_case", "UPPER_CASE"]
+      },
+      {
+        "selector": "function",
+        "modifiers": ["exported"],
+        "format": ["camelCase", "PascalCase"]
+      }
+    ],
     "complexity": ["error"],
     "curly": ["error", "multi-or-nest", "consistent"],
     "dot-notation": "error",
@@ -85,7 +152,7 @@
     "no-new": "error",
     "no-param-reassign": "error",
     "no-throw-literal": "error",
-    "func-style": ["warn", "declaration", { "allowArrowFunctions": true }],
+    "func-style": ["warn", "declaration"],
     "prettier/prettier": [
       "error",
       {
