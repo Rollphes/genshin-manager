@@ -5,7 +5,7 @@ import { StatProperty } from '@/models/StatProperty'
 import { CodexType, FightProps } from '@/types'
 import { JsonObject } from '@/utils/JsonParser'
 
-const StatusBonusMonsterAtMultiPlay = {
+const statusBonusMonsterAtMultiPlay = {
   FIGHT_PROP_BASE_HP: [1.0, 1.5, 2.0, 2.5],
   FIGHT_PROP_BASE_ATTACK: [1.0, 1.1, 1.25, 1.4],
   FIGHT_PROP_BASE_DEFENSE: [1.0, 1.0, 1.0, 1.0],
@@ -95,14 +95,14 @@ export class Monster {
         Client._getCachedExcelBinOutputByName('AnimalCodexExcelConfigData'),
       ).includes(String(monsterJson.describeId as number))
     ) {
-      const AnimalCodexJson = Client._getJsonFromCachedExcelBinOutput(
+      const animalCodexJson = Client._getJsonFromCachedExcelBinOutput(
         'AnimalCodexExcelConfigData',
         monsterJson.describeId as number,
       )
       this.description =
-        Client.cachedTextMap.get(String(AnimalCodexJson.descTextMapHash)) || ''
+        Client.cachedTextMap.get(String(animalCodexJson.descTextMapHash)) || ''
       this.codexType =
-        (AnimalCodexJson.subType as CodexType | undefined) ??
+        (animalCodexJson.subType as CodexType | undefined) ??
         'CODEX_SUBTYPE_ELEMENT_LIFE'
     }
 
@@ -198,8 +198,8 @@ export class Monster {
     const bonusValue =
       propGrowCurve.type === undefined
         ? 1.0
-        : StatusBonusMonsterAtMultiPlay[
-            propGrowCurve.type as keyof typeof StatusBonusMonsterAtMultiPlay
+        : statusBonusMonsterAtMultiPlay[
+            propGrowCurve.type as keyof typeof statusBonusMonsterAtMultiPlay
           ][playerCount - 1]
     if (
       propGrowCurve.growCurve === undefined ||

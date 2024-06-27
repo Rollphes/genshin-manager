@@ -76,11 +76,11 @@ export class EnkaManager extends PromiseEventEmitter<
   /**
    * URL of enka.network
    */
-  private static readonly enkaBaseURL = 'https://enka.network'
+  private static readonly ENKA_BASE_URL = 'https://enka.network'
   /**
    * URL of status.enka.network
    */
-  private static readonly enkaStatusBaseURL = 'http://status.enka.network'
+  private static readonly ENKA_STATUS_BASE_URL = 'http://status.enka.network'
   /**
    * Default fetch option
    */
@@ -116,7 +116,7 @@ export class EnkaManager extends PromiseEventEmitter<
     uid: number,
     fetchOption?: RequestInit,
   ): Promise<EnkaData> {
-    const url = `${EnkaManager.enkaBaseURL}/api/uid/${uid}`
+    const url = `${EnkaManager.ENKA_BASE_URL}/api/uid/${uid}`
     return await this.fetchUID(uid, url, fetchOption)
   }
 
@@ -132,7 +132,7 @@ export class EnkaManager extends PromiseEventEmitter<
     uid: number,
     fetchOption?: RequestInit,
   ): Promise<PlayerDetail> {
-    const url = `${EnkaManager.enkaBaseURL}/api/uid/${uid}/?info`
+    const url = `${EnkaManager.ENKA_BASE_URL}/api/uid/${uid}/?info`
     return (await this.fetchUID(uid, url, fetchOption)).playerDetail
   }
 
@@ -157,7 +157,7 @@ export class EnkaManager extends PromiseEventEmitter<
     username: string,
     fetchOption?: RequestInit,
   ): Promise<EnkaAccount> {
-    const getOwnerURL = `${EnkaManager.enkaBaseURL}/api/profile/${username}`
+    const getOwnerURL = `${EnkaManager.ENKA_BASE_URL}/api/profile/${username}`
     const mergedFetchOption = merge.withOptions(
       { mergeArrays: false },
       EnkaManager.defaultFetchOption,
@@ -166,7 +166,7 @@ export class EnkaManager extends PromiseEventEmitter<
     const ownerRes = await fetch(getOwnerURL, mergedFetchOption)
     if (!ownerRes.ok) throw new EnkaNetworkError(ownerRes)
     const owner = (await ownerRes.json()) as APIOwner
-    return new EnkaAccount(owner, EnkaManager.enkaBaseURL)
+    return new EnkaAccount(owner, EnkaManager.ENKA_BASE_URL)
   }
 
   /**
@@ -180,7 +180,7 @@ export class EnkaManager extends PromiseEventEmitter<
     username: string,
     fetchOption?: RequestInit,
   ): Promise<GenshinAccount[]> {
-    const getGameAccountsURL = `${EnkaManager.enkaBaseURL}/api/profile/${username}/hoyos`
+    const getGameAccountsURL = `${EnkaManager.ENKA_BASE_URL}/api/profile/${username}/hoyos`
     const mergedFetchOption = merge.withOptions(
       { mergeArrays: false },
       EnkaManager.defaultFetchOption,
@@ -196,7 +196,7 @@ export class EnkaManager extends PromiseEventEmitter<
         .sort((a, b) => a.order - b.order)
         .filter((account) => account.hoyo_type === 0)
         .map(async (account) => {
-          const getBuildsURL = `${EnkaManager.enkaBaseURL}/api/profile/${username}/hoyos/${account.hash}/builds`
+          const getBuildsURL = `${EnkaManager.ENKA_BASE_URL}/api/profile/${username}/hoyos/${account.hash}/builds`
           const buildsRes = await fetch(getBuildsURL, mergedFetchOption)
           if (!buildsRes.ok) throw new EnkaNetworkError(buildsRes)
           const builds = (await buildsRes.json()) as {
@@ -206,7 +206,7 @@ export class EnkaManager extends PromiseEventEmitter<
             account,
             builds,
             username,
-            EnkaManager.enkaBaseURL,
+            EnkaManager.ENKA_BASE_URL,
           )
         }),
     )
@@ -220,7 +220,7 @@ export class EnkaManager extends PromiseEventEmitter<
   public async fetchAllStatus(fetchOption?: RequestInit): Promise<{
     [dateText: string]: APIEnkaStatus
   }> {
-    const getStatusURL = `${EnkaManager.enkaStatusBaseURL}/api/status`
+    const getStatusURL = `${EnkaManager.ENKA_STATUS_BASE_URL}/api/status`
     const mergedFetchOption = merge.withOptions(
       { mergeArrays: false },
       EnkaManager.defaultFetchOption,
@@ -242,7 +242,7 @@ export class EnkaManager extends PromiseEventEmitter<
   public async fetchNowStatus(
     fetchOption?: RequestInit,
   ): Promise<APIEnkaStatus> {
-    const getStatusURL = `${EnkaManager.enkaStatusBaseURL}/api/now`
+    const getStatusURL = `${EnkaManager.ENKA_STATUS_BASE_URL}/api/now`
     const mergedFetchOption = merge.withOptions(
       { mergeArrays: false },
       EnkaManager.defaultFetchOption,
@@ -294,12 +294,12 @@ export class EnkaManager extends PromiseEventEmitter<
           (avatarInfo) => new CharacterDetail(avatarInfo),
         ) ?? [],
       owner: result.owner
-        ? new EnkaAccount(result.owner, EnkaManager.enkaBaseURL)
+        ? new EnkaAccount(result.owner, EnkaManager.ENKA_BASE_URL)
         : undefined,
       nextShowCaseDate: new Date(
         new Date().getTime() + (result.ttl ?? 60) * 1000,
       ),
-      url: `${EnkaManager.enkaBaseURL}/u/${uid}`,
+      url: `${EnkaManager.ENKA_BASE_URL}/u/${uid}`,
     }
     this.cache.set(enkaData.uid, enkaData)
     this.emit(EnkaManagerEvents.GET_NEW_ENKA_DATA, enkaData)

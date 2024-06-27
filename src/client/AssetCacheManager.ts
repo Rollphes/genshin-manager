@@ -57,9 +57,9 @@ export abstract class AssetCacheManager<
   protected static readonly _assetEventEmitter: EventEmitter<AssetCacheManagerEventMap> =
     new EventEmitter<AssetCacheManagerEventMap>()
 
-  private static readonly gitRemoteAPIURL: string =
+  private static readonly GIT_REMOTE_API_URL: string =
     'https://gitlab.com/api/v4/projects/53216109/repository/commits?per_page=1'
-  private static readonly gitRemoteRawBaseURL: string =
+  private static readonly GIT_REMOTE_RAW_BASE_URL: string =
     'https://gitlab.com/Dimbreath/AnimeGameData/-/raw'
   /**
    * Map to cache ExcelBinOutput for each class
@@ -470,8 +470,8 @@ export abstract class AssetCacheManager<
         this.option.assetCacheFolderPath,
         this.excelBinOutputFolderPath,
         this.textMapFolderPath,
-      ].map(async (FolderPath) => {
-        if (!fs.existsSync(FolderPath)) await fsPromises.mkdir(FolderPath)
+      ].map(async (folderPath) => {
+        if (!fs.existsSync(folderPath)) await fsPromises.mkdir(folderPath)
       }),
     )
 
@@ -483,7 +483,7 @@ export abstract class AssetCacheManager<
         ) as GitLabAPIResponse[])
       : null
 
-    await this.downloadJsonFile(this.gitRemoteAPIURL, this.commitFilePath)
+    await this.downloadJsonFile(this.GIT_REMOTE_API_URL, this.commitFilePath)
 
     const newCommits = JSON.parse(
       await fsPromises.readFile(this.commitFilePath, {
@@ -609,22 +609,22 @@ export abstract class AssetCacheManager<
 
   /**
    * Fetch asset folder from gitlab
-   * @param FolderPath Folder path
+   * @param folderPath Folder path
    * @param files File names
    * @param isRetry Is Retry
    */
   private static async fetchAssetFolder(
-    FolderPath: string,
+    folderPath: string,
     files: string[],
     isRetry = false,
   ): Promise<void> {
     if (!isRetry) {
-      await fsPromises.rmdir(FolderPath, { recursive: true })
-      await fsPromises.mkdir(FolderPath)
+      await fsPromises.rmdir(folderPath, { recursive: true })
+      await fsPromises.mkdir(folderPath)
     }
     const gitFolderName = path.relative(
       this.option.assetCacheFolderPath,
-      FolderPath,
+      folderPath,
     )
     const consoleFolderName = gitFolderName.slice(0, 8)
     const progressBar = this.option.showFetchCacheLog
@@ -638,12 +638,12 @@ export abstract class AssetCacheManager<
     await Promise.all(
       files.map(async (fileName) => {
         const url = [
-          this.gitRemoteRawBaseURL,
+          this.GIT_REMOTE_RAW_BASE_URL,
           this.nowCommitId,
           gitFolderName,
           fileName,
         ].join('/')
-        const filePath = path.join(FolderPath, fileName)
+        const filePath = path.join(folderPath, fileName)
         await this.downloadJsonFile(url, filePath)
         if (progressBar) progressBar.increment()
       }),
