@@ -40,7 +40,7 @@ export class Notice {
    */
   public readonly typeLabel: string
   /**
-   * Notice tag (1:! 2:flag 3:star)
+   * Notice tag (1:! 2:star 3:flag)
    */
   public readonly tag: number
   /**
@@ -91,6 +91,12 @@ export class Notice {
     this.region = region
     if (annList.ann_id !== annContent.ann_id) throw new Error('ID mismatch')
     this.id = annList.ann_id
+    this.lang = annContent.lang
+    this.type = annList.type
+    this.typeLabel = annList.type_label
+    this.tag = Number(annList.tag_label)
+    this.tagIcon = ImageAssets.fromURL(annList.tag_icon)
+    this.version = annList.remind_ver
 
     this.title = annContent.title
     this.subtitle = annContent.subtitle
@@ -114,7 +120,11 @@ export class Notice {
         .find((text) => /〓.*?(Time|Duration|Wish).*?〓/g.test(text)) ?? '',
     ).match(/\d{4}\/\d{2}\/\d{2} \d{2}:\d{2}/g)
 
-    if (timeStrings && timeStrings?.length >= 2) {
+    if (
+      timeStrings &&
+      timeStrings?.length >= 2 &&
+      !(this.tag === 3 && this.$('td').toArray().length)
+    ) {
       timeStrings.sort((a, b) => new Date(a).getTime() - new Date(b).getTime())
       this.eventStart = new Date(timeStrings[0])
       this.eventEnd = new Date(timeStrings[timeStrings.length - 1])
@@ -124,14 +134,6 @@ export class Notice {
     this.rewardImg = rewardImgURL
       ? ImageAssets.fromURL(rewardImgURL)
       : undefined
-
-    this.lang = annContent.lang
-
-    this.type = annList.type
-    this.typeLabel = annList.type_label
-    this.tag = Number(annList.tag_label)
-    this.tagIcon = ImageAssets.fromURL(annList.tag_icon)
-    this.version = annList.remind_ver
   }
 
   /**
@@ -164,6 +166,35 @@ export class Notice {
           .replace('-', ' -'),
       )
     }
+    if (this.$('td').toArray().length) {
+      const enTdList = this._en$('td')
+        .toArray()
+        .filter((el): el is cheerio.TagElement => el.type === 'tag')
+      const tdList = this.$('td')
+        .toArray()
+        .filter((el): el is cheerio.TagElement => el.type === 'tag')
+
+      const startTimeColWidth = enTdList.find((el) =>
+        /Start Time/g.test(this._en$(el).text()),
+      )?.attribs['data-colwidth']
+      const endTimeColWidth = enTdList.find((el) =>
+        /End Time/g.test(this._en$(el).text()),
+      )?.attribs['data-colwidth']
+
+      if (startTimeColWidth && endTimeColWidth) {
+        const startTimeRows = tdList.filter(
+          (el) => el.attribs['data-colwidth'] === startTimeColWidth,
+        )
+        const endTimeRows = tdList.filter(
+          (el) => el.attribs['data-colwidth'] === endTimeColWidth,
+        )
+
+        const startTime = this.$(startTimeRows[1]).text()
+        const endTime = this.$(endTimeRows[endTimeRows.length - 1]).text()
+        return `${this.convertLocalDate(startTime)} ~ ${this.convertLocalDate(endTime)}`
+      }
+    }
+
     const textBlocks = this.$('p')
       .map((i, el) => this.$(el).text())
       .get()
