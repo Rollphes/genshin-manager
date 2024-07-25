@@ -1,4 +1,4 @@
-# GameVersion 4.7.0
+# GameVersion 4.8.0
 ## CharacterId
 ID:10000002 Name:Kamisato Ayaka<br>
 ID:10000003 Name:Jean<br>
@@ -85,6 +85,7 @@ ID:10000095 Name:Sigewinne<br>
 ID:10000096 Name:Arlecchino<br>
 ID:10000097 Name:Sethos<br>
 ID:10000098 Name:Clorinde<br>
+ID:10000099 Name:Emilie<br>
 ## CostumeId
 ID:200200 Name:Flawless Radiance<br>
 ID:200201 Name:Springbloom Missive<br>
@@ -150,6 +151,7 @@ ID:205800 Name:Miko's Instruction<br>
 ID:205900 Name:Spirited Valor<br>
 ID:206000 Name:The Waning Point<br>
 ID:206100 Name:Floral Dance<br>
+ID:206101 Name:Phantom in Boots<br>
 ID:206200 Name:Machine Hunter<br>
 ID:206300 Name:The World's Shackles<br>
 ID:206301 Name:Frostflower Dew<br>
@@ -160,6 +162,7 @@ ID:206700 Name:A New Leaf<br>
 ID:206800 Name:I Love Mora<br>
 ID:206900 Name:Woodland Song<br>
 ID:207000 Name:Neither Flower Nor Mist<br>
+ID:207001 Name:Breeze of Sabaa<br>
 ID:207100 Name:Heart of the Scales<br>
 ID:207200 Name:Desert and Night<br>
 ID:207300 Name:For All Knowledge, a Verse<br>
@@ -188,6 +191,7 @@ ID:209500 Name:Sweetness of the Sea<br>
 ID:209600 Name:Moonglare<br>
 ID:209700 Name:Golden Sandstrider<br>
 ID:209800 Name:Sword of Honor<br>
+ID:209900 Name:Ambrosial Verdance<br>
 ## SkillId
 ID:10024 Name:Normal Attack: Kamisato Art - Kabuki<br>
 ID:10018 Name:Kamisato Art: Hyouka<br>
@@ -470,6 +474,9 @@ ID:10975 Name:Secret Rite: Twilight Shadowpiercer<br>
 ID:10981 Name:Normal Attack: Oath of Hunting Shadows<br>
 ID:10982 Name:Hunter's Vigil<br>
 ID:10985 Name:Last Lightfall<br>
+ID:10991 Name:Normal Attack: Shadow-Hunting Spear (Custom)<br>
+ID:10992 Name:Fragrance Extraction<br>
+ID:10995 Name:Aromatic Explication<br>
 ## InherentSkillId
 ID:221 Name:Amatsumi Kunitsumi Sanctification<br>
 ID:222 Name:Kanten Senmyou Blessing<br>
@@ -741,6 +748,9 @@ ID:9723 Name:Thoth's Revelation<br>
 ID:9821 Name:Dark-Shattering Flame<br>
 ID:9822 Name:Lawful Remuneration<br>
 ID:9823 Name:Night Vigil's Harvest<br>
+ID:9921 Name:Lingering Fragrance<br>
+ID:9922 Name:Rectification<br>
+ID:9923 Name:Headspace Capture<br>
 ## ConstellationId
 ID:21 Name:Snowswept Sakura<br>
 ID:22 Name:Blizzard Blade Seki no To<br>
@@ -1270,6 +1280,12 @@ ID:983 Name:\"I Pledge to Remember the Oath of Daylight\"<br>
 ID:984 Name:\"To Enshrine Tears, Life, and Love\"<br>
 ID:985 Name:\"Holding Dawn's Coming as My Votive\"<br>
 ID:986 Name:\"And So Shall I Never Despair\"<br>
+ID:991 Name:Light Fragrance Leaching<br>
+ID:992 Name:Lakelight Top Note<br>
+ID:993 Name:Exquisite Essence<br>
+ID:994 Name:Lumidouce Heart Note<br>
+ID:995 Name:Puredew Aroma<br>
+ID:996 Name:Marcotte Sillage<br>
 ## ArtifactId
 ID:20002 Name:Initiate's Feather<br>
 ID:20004 Name:Initiate's Flower<br>
@@ -5179,6 +5195,7 @@ ID:13507 Name:Calamity Queller<br>
 ID:13509 Name:Engulfing Lightning<br>
 ID:13511 Name:Staff of the Scarlet Sands<br>
 ID:13512 Name:Crimson Moon's Semblance<br>
+ID:13513 Name:Lumidouce Elegy<br>
 ID:14101 Name:Apprentice's Notes<br>
 ID:14201 Name:Pocket Grimoire<br>
 ID:14301 Name:Magic Guide<br>
@@ -5332,6 +5349,9 @@ ID:170 Name:Film for Fun<br>
 ID:171 Name:Dana<br>
 ID:172 Name:Iridescence Tour Ticket<br>
 ID:173 Name:Kemajuan Analisis<br>
+ID:174 Name:Excerpts of Bliss<br>
+ID:175 Name:Kunci Echo<br>
+ID:176 Name:Starsail Coin<br>
 ID:201 Name:Primogem<br>
 ID:202 Name:Mora<br>
 ID:203 Name:Genesis Crystal<br>
@@ -5448,6 +5468,7 @@ ID:1095 Name:Sigewinne<br>
 ID:1096 Name:Arlecchino<br>
 ID:1097 Name:Sethos<br>
 ID:1098 Name:Clorinde<br>
+ID:1099 Name:Emilie<br>
 ID:1102 Name:Kamisato Ayaka's Stella Fortuna<br>
 ID:1103 Name:Jean's Stella Fortuna<br>
 ID:1105 Name:Traveler (Male)'s Stella Fortuna<br>
@@ -5533,6 +5554,7 @@ ID:1195 Name:Sigewinne's Stella Fortuna<br>
 ID:1196 Name:Arlecchino's Stella Fortuna<br>
 ID:1197 Name:Sethos's Stella Fortuna<br>
 ID:1198 Name:Clorinde's Stella Fortuna<br>
+ID:1199 Name:Emilie's Stella Fortuna<br>
 ID:1201 Name:Gnostic Hymn - Old Notes<br>
 ID:1202 Name:Blessing of the Welkin Moon - New Moon<br>
 ID:1301 Name:An Appellative Stroke<br>
@@ -7185,6 +7207,7 @@ ID:107023 Name:Hydroculus<br>
 ID:107024 Name:Kotak Voucher<br>
 ID:107025 Name:Fontaine Shrine of Depths Key<br>
 ID:107026 Name:Spirit Carp<br>
+ID:107029 Name:Jubilant Feather<br>
 ID:108000 Name:Masakan<br>
 ID:108001 Name:Suspicious Fisherman's Toast<br>
 ID:108002 Name:Fisherman's Toast<br>
@@ -7865,6 +7888,17 @@ ID:108676 Name:Bulle Sauce Duck Breast<br>
 ID:108677 Name:Delicious Bulle Sauce Duck Breast<br>
 ID:108678 Name:\"Tagged and Bagged\"<br>
 ID:108679 Name:Super-Dee-Duper Delicious Meat Roll<br>
+ID:108680 Name:Suspicious Fricassee de Poulet<br>
+ID:108681 Name:Fricassee de Poulet<br>
+ID:108682 Name:Delicious Fricassee de Poulet<br>
+ID:108683 Name:A Fragrant Feast of Flavors<br>
+ID:108684 Name:Suspicious Blubbercream<br>
+ID:108685 Name:Blubbercream<br>
+ID:108686 Name:Delicious Blubbercream<br>
+ID:108687 Name:Suspicious Crisp Croissant Combo<br>
+ID:108688 Name:Crisp Croissant Combo<br>
+ID:108689 Name:Delicious Crisp Croissant Combo<br>
+ID:108690 Name:A Magical Mix<br>
 ID:109000 Name:Bahan Resep<br>
 ID:109101 Name:Resep: Chicken-Mushroom Skewer<br>
 ID:109102 Name:Resep: Fisherman's Toast<br>
@@ -8059,6 +8093,9 @@ ID:109573 Name:Resep: Chenyu Brew<br>
 ID:109574 Name:Resep: Mega-Meaty Sushi<br>
 ID:109575 Name:Resep: Bulle Souffle<br>
 ID:109576 Name:Resep: Bulle Sauce Duck Breast<br>
+ID:109577 Name:Resep: Fricassee de Poulet<br>
+ID:109578 Name:Resep: Blubbercream<br>
+ID:109579 Name:Resep: Crisp Croissant Combo<br>
 ID:110000 Name:Hasil Craft<br>
 ID:110001 Name:Flour<br>
 ID:110002 Name:Cream<br>
@@ -9250,6 +9287,8 @@ ID:120856 Name:Romaritime Flower Indah<br>
 ID:120857 Name:Ikan yang Direbut dari Mulut Burung Pelikan<br>
 ID:120860 Name:<br>
 ID:120861 Name:Undangan dari Geng Arataki<br>
+ID:120862 Name:Sumpah Saksi<br>
+ID:120863 Name:Kunci Roda Gigi Agung<br>
 ID:120864 Name:Felix Felicium<br>
 ID:120865 Name:Transoceanic Pearl Pekat<br>
 ID:120866 Name:Ekstrak Tainted Hydro Phantasm<br>
@@ -9268,12 +9307,25 @@ ID:120880 Name:\"Terlahir Kembali Sebagai Onikabuto ... Dan Menggulingkan Dunia\
 ID:120881 Name:Surat Misterius<br>
 ID:120882 Name:Surat Cyno<br>
 ID:120883 Name:Partitur yang Rusak<br>
+ID:120888 Name:Lampu Jarak Jauh Brickstacks<br>
+ID:120889 Name:Tanduk Naga yang \"Seperti Senjata\"<br>
+ID:120890 Name:Sisik Naga Jahat<br>
 ID:120891 Name:Kesaksian Penjahat<br>
 ID:120892 Name:Catatan Rawat<br>
+ID:120893 Name:Bintang yang Berserakan<br>
 ID:120894 Name:Foto Grup dari Waktu yang Tidak Diketahui<br>
 ID:120910 Name:Partitur yang Sudah Diperbaiki<br>
 ID:120911 Name:Catatan Ruggiero: II<br>
 ID:120917 Name:Halaman dari Partitur yang Hilang: II<br>
+ID:120918 Name:Kapak Spesial<br>
+ID:120919 Name:Manuskrip Seorang Dewi (I)<br>
+ID:120920 Name:Manuskrip Seorang Dewi (II)<br>
+ID:120921 Name:Manuskrip Seorang Dewi (III)<br>
+ID:120922 Name:Wujud Keberanian<br>
+ID:120923 Name:Wujud Pengetahuan<br>
+ID:120924 Name:Wujud Empati<br>
+ID:120925 Name:\"Obat Rahasia\"<br>
+ID:120926 Name:Tombak Pengawal<br>
 ID:120928 Name:Foto Grup dari Waktu yang Tidak Diketahui<br>
 ID:120931 Name:\"Peta Harta Karun\" dengan Lokasi Gudang Harta<br>
 ID:120932 Name:Album Karakter \"Marechaussee Hunter: Hari Penghakiman\"<br>
@@ -9318,6 +9370,13 @@ ID:120999 Name:Kantor Meong (V)<br>
 ID:121000 Name:Kantor Meong (VI)<br>
 ID:121001 Name:Kantor Meong (VII)<br>
 ID:121002 Name:Kantor Meong (VIII)<br>
+ID:121007 Name:\"Matahari Terbenam yang Abadi\"<br>
+ID:121008 Name:\"Naga yang Tidak Bisa Terbang\"<br>
+ID:121009 Name:\"Bulan yang Hanya Bersinar di Malam Hari\"<br>
+ID:121010 Name:\"Air Ajaib\"<br>
+ID:121016 Name:Buku Gambar \"Si Naga Jahat\"<br>
+ID:121017 Name:Mimpi Ibu Kota Kuno<br>
+ID:121018 Name:Naskah yang Belum Selesai<br>
 ID:129001 Name:Air Mata di Lautan Bintang<br>
 ID:130001 Name:Silk Flower Seed<br>
 ID:130002 Name:Sweet Flower Seed<br>
@@ -9400,6 +9459,7 @@ ID:140010 Name:Wings of the Forest<br>
 ID:140011 Name:Wings of the Starlit Feast<br>
 ID:140012 Name:Wings of Merciful, Wrathful Waters<br>
 ID:140013 Name:Wings of Transient Dreams<br>
+ID:140014 Name:Wings of Delicacies<br>
 ID:141001 Name:Radiant Spincrystal 1<br>
 ID:141002 Name:Radiant Spincrystal 2<br>
 ID:141003 Name:Radiant Spincrystal 3<br>
@@ -9801,9 +9861,9 @@ ID:210161 Name:Catatan Perjalanan: Mahkota Kemuliaan<br>
 ID:210162 Name:Kirara: Neko Box<br>
 ID:210163 Name:Catatan Perjalanan: Rahasia Pemanggil<br>
 ID:210164 Name:Catatan Perjalanan: Warna-Warni Pencahayaan<br>
-ID:210165 Name:Lyney: Dari Semu<br>
-ID:210166 Name:Lynette: Menjadi Nyata<br>
-ID:210167 Name:Freminet: Melangkah Maju<br>
+ID:210165 Name:Lyney: Pretense<br>
+ID:210166 Name:Lynette: Earnestness<br>
+ID:210167 Name:Freminet: Progress<br>
 ID:210168 Name:Fontaine: Penghakiman<br>
 ID:210169 Name:Achievement: Pada Jalurnya<br>
 ID:210170 Name:Achievement: Mengembara dan Berkelana<br>
@@ -9841,6 +9901,14 @@ ID:210201 Name:Sigewinne: Treatment<br>
 ID:210202 Name:Sethos: Ba Fragment<br>
 ID:210203 Name:Achievement: Halaman Puisi<br>
 ID:210204 Name:Catatan Perjalanan: Teater Kaleidoskop<br>
+ID:210205 Name:Emilie: Base Note<br>
+ID:210206 Name:Catatan Perjalanan: Siluet Rekayasa<br>
+ID:210207 Name:Perayaan: Feast (II)<br>
+ID:215001 Name:Echo: Dandelion Knight<br>
+ID:215002 Name:Echo: Icy Resurrection<br>
+ID:215003 Name:Echo: Eclipsing Star<br>
+ID:215004 Name:Echo: Cat Upon the Eaves<br>
+ID:215005 Name:Echo: Dark Side of Dawn<br>
 ID:220001 Name:Anemoculus Resonance Stone<br>
 ID:220002 Name:Geoculus Resonance Stone<br>
 ID:220003 Name:Geo Treasure Compass<br>
@@ -9936,6 +10004,10 @@ ID:220095 Name:Treasure-Seeking Seelie<br>
 ID:220096 Name:Mini Seelie: Brilliance<br>
 ID:220097 Name:Nightwind Horn<br>
 ID:220098 Name:Fateometer<br>
+ID:220099 Name:Jocund Letters<br>
+ID:220100 Name:Joyous Letters<br>
+ID:220101 Name:\"Yelena\"<br>
+ID:220102 Name:Asagiri's Dedicated Fontaine Kamera<br>
 ID:221001 Name:Panduan: Anemoculus Resonance Stone<br>
 ID:221002 Name:Panduan: Geoculus Resonance Stone<br>
 ID:221003 Name:Diagram: Geo Treasure Compass<br>
@@ -10003,8 +10075,12 @@ ID:318001 Name:Bersuka Ria<br>
 ID:318002 Name:Tampilan Elegan<br>
 ID:318003 Name:Siap Berperang<br>
 ID:318004 Name:Tampilan Serius<br>
+ID:318009 Name:Waktu Santai<br>
+ID:318011 Name:Negosiasi Ketat<br>
 ID:318013 Name:Waktu Santai<br>
 ID:318015 Name:Waktu Santai<br>
+ID:318017 Name:Penuh Percaya Diri<br>
+ID:318018 Name:Waktu Santai<br>
 ID:320001 Name:<br>
 ID:330000 Name:Ganyu<br>
 ID:330001 Name:Kaeya<br>
@@ -10098,6 +10174,9 @@ ID:330088 Name:All-Devouring Narwhal<br>
 ID:330089 Name:Consecrated Scorpion<br>
 ID:330090 Name:Consecrated Flying Serpent<br>
 ID:330091 Name:Guardian of Apep's Oasis<br>
+ID:330092 Name:Chevreuse<br>
+ID:330093 Name:Navia<br>
+ID:330094 Name:Frost Operative<br>
 ID:330500 Name:Undivided Heart<br>
 ID:330501 Name:Cold-Blooded Strike<br>
 ID:330502 Name:Steady Breathing<br>
@@ -10190,6 +10269,9 @@ ID:330588 Name:Lightless Feeding<br>
 ID:330589 Name:Fatal Fulmination<br>
 ID:330590 Name:Deathly Cyclone<br>
 ID:330591 Name:A Thousand Young<br>
+ID:330592 Name:Vanguard's Coordinated Tactics<br>
+ID:330593 Name:Undisclosed Distribution Channels<br>
+ID:330594 Name:Rimeflow Rapier<br>
 ID:331000 Name:Magic Guide<br>
 ID:331001 Name:Sacrificial Fragments<br>
 ID:331002 Name:Skyward Atlas<br>
@@ -10271,6 +10353,9 @@ ID:331077 Name:Splendor of Tranquil Waters<br>
 ID:331078 Name:Marechaussee Hunter<br>
 ID:331079 Name:Golden Troupe<br>
 ID:331080 Name:Flower of Paradise Lost<br>
+ID:331081 Name:\"Ultimate Overlord's Mega Magic Sword\"<br>
+ID:331082 Name:Prospector's Drill<br>
+ID:331083 Name:Gladiator's Triumphus<br>
 ID:332000 Name:Liyue Harbor Wharf<br>
 ID:332001 Name:Knights of Favonius Library<br>
 ID:332002 Name:Jade Chamber<br>
@@ -10326,6 +10411,7 @@ ID:332051 Name:The Mausoleum of King Deshret<br>
 ID:332052 Name:Central Laboratory Ruins<br>
 ID:332053 Name:Sir Arthur<br>
 ID:332054 Name:Kusava<br>
+ID:332055 Name:Serene<br>
 ID:333000 Name:Resonansi Elemental: Woven Ice<br>
 ID:333001 Name:Resonansi Elemental: Shattering Ice<br>
 ID:333002 Name:Resonansi Elemental: Woven Waters<br>
@@ -10400,6 +10486,8 @@ ID:333070 Name:Rainbow Macarons<br>
 ID:333071 Name:Vicious Ancient Battle<br>
 ID:333072 Name:Water and Justice<br>
 ID:333073 Name:Countdown to the Show: 3<br>
+ID:333074 Name:\"I'd Rather Lose Money Myself...\"<br>
+ID:333075 Name:Tada!<br>
 ID:334000 Name:Ganyu<br>
 ID:334001 Name:Kaeya<br>
 ID:334002 Name:Chongyun<br>
@@ -10492,6 +10580,9 @@ ID:334088 Name:All-Devouring Narwhal<br>
 ID:334089 Name:Consecrated Scorpion<br>
 ID:334090 Name:Consecrated Flying Serpent<br>
 ID:334091 Name:Guardian of Apep's Oasis<br>
+ID:334092 Name:Chevreuse<br>
+ID:334093 Name:Navia<br>
+ID:334094 Name:Frost Operative<br>
 ID:334500 Name:Undivided Heart<br>
 ID:334501 Name:Cold-Blooded Strike<br>
 ID:334502 Name:Steady Breathing<br>
@@ -10584,6 +10675,9 @@ ID:334588 Name:Lightless Feeding<br>
 ID:334589 Name:Fatal Fulmination<br>
 ID:334590 Name:Deathly Cyclone<br>
 ID:334591 Name:A Thousand Young<br>
+ID:334592 Name:Vanguard's Coordinated Tactics<br>
+ID:334593 Name:Undisclosed Distribution Channels<br>
+ID:334594 Name:Rimeflow Rapier<br>
 ID:335000 Name:Magic Guide<br>
 ID:335001 Name:Sacrificial Fragments<br>
 ID:335002 Name:Skyward Atlas<br>
@@ -10665,6 +10759,9 @@ ID:335077 Name:Splendor of Tranquil Waters<br>
 ID:335078 Name:Marechaussee Hunter<br>
 ID:335079 Name:Golden Troupe<br>
 ID:335080 Name:Flower of Paradise Lost<br>
+ID:335081 Name:\"Ultimate Overlord's Mega Magic Sword\"<br>
+ID:335082 Name:Prospector's Drill<br>
+ID:335083 Name:Gladiator's Triumphus<br>
 ID:336000 Name:Liyue Harbor Wharf<br>
 ID:336001 Name:Knights of Favonius Library<br>
 ID:336002 Name:Jade Chamber<br>
@@ -10720,6 +10817,7 @@ ID:336051 Name:The Mausoleum of King Deshret<br>
 ID:336052 Name:Central Laboratory Ruins<br>
 ID:336053 Name:Sir Arthur<br>
 ID:336054 Name:Kusava<br>
+ID:336055 Name:Serene<br>
 ID:337000 Name:Resonansi Elemental: Woven Ice<br>
 ID:337001 Name:Resonansi Elemental: Shattering Ice<br>
 ID:337002 Name:Resonansi Elemental: Woven Waters<br>
@@ -10794,6 +10892,8 @@ ID:337070 Name:Rainbow Macarons<br>
 ID:337071 Name:Vicious Ancient Battle<br>
 ID:337072 Name:Water and Justice<br>
 ID:337073 Name:Countdown to the Show: 3<br>
+ID:337074 Name:\"I'd Rather Lose Money Myself...\"<br>
+ID:337075 Name:Tada!<br>
 ID:339000 Name:Origin<br>
 ID:339001 Name:Mondstadt<br>
 ID:339002 Name:Liyue<br>
@@ -10819,6 +10919,8 @@ ID:339025 Name:Dragonspine: Traces<br>
 ID:339026 Name:Dragonspine: Crown<br>
 ID:339027 Name:The Chasm: Solid Iron<br>
 ID:339028 Name:The Chasm: Blue Crystal<br>
+ID:339029 Name:Fonta<br>
+ID:339030 Name:The Chasm: Crown<br>
 ID:339500 Name:Mondstadt<br>
 ID:339501 Name:Liyue<br>
 ID:339502 Name:Inazuma<br>
@@ -10846,6 +10948,8 @@ ID:340013 Name:Sailwind Shadow<br>
 ID:340014 Name:Frostflower Dew<br>
 ID:340015 Name:Twilight Blossom<br>
 ID:340016 Name:Bamboo Rain<br>
+ID:340017 Name:Breeze of Sabaa<br>
+ID:340018 Name:Phantom in Boots<br>
 ID:350001 Name:Kemah Petualang<br>
 ID:350002 Name:Kehidupan di Perbatasan<br>
 ID:350003 Name:Bebatuan & Tanaman<br>
@@ -10992,6 +11096,7 @@ ID:380447 Name:Lampu Lantai Pelabuhan: Hal Baik Selalu Berpasangan<br>
 ID:380448 Name:Lampu Batu Lembah: Lilin Terang<br>
 ID:380449 Name:\"Cahaya Danau Cider\"<br>
 ID:380450 Name:Lampu Jalan Kota Musik: Cahaya Keamanan<br>
+ID:380451 Name:Buah Hutan Bersinar<br>
 ID:380504 Name:Iluminasi Berbunga<br>
 ID:380505 Name:Lampu Melengkung Istana<br>
 ID:381101 Name:Konter Lipat Kayu Birch<br>
@@ -11372,6 +11477,12 @@ ID:390521 Name:Sampel Proyek Taman Bermain<br>
 ID:390522 Name:Sampel Bangunan Taman Bermain<br>
 ID:390523 Name:Tenda Perayaan Taman Bermain<br>
 ID:390524 Name:\"Situs Peningkatan Strategi\"<br>
+ID:390525 Name:Rumah Seru Metropole: Pemain Trompet<br>
+ID:390526 Name:Rumah Seru Metropole: Pemain Simbal<br>
+ID:390527 Name:Rumah Seru Metropole: Konduktor<br>
+ID:390528 Name:Unit Bum-Bum<br>
+ID:390529 Name:Unit Ding-Dong<br>
+ID:390530 Name:Gubuk Hutan Ajaib<br>
 ID:390601 Name:Kuil Ritual<br>
 ID:390602 Name:Kuil Penyuci<br>
 ID:390603 Name:Rumah Mewah Inazuma: Satu Kesatuan<br>
@@ -11500,6 +11611,9 @@ ID:391137 Name:Derek Tipe-05 Pelabuhan Lumidouce<br>
 ID:391138 Name:Unit Pengiriman Cairan Standar<br>
 ID:391139 Name:Palet Pengiriman Standar<br>
 ID:391140 Name:Palet Pengiriman Besar<br>
+ID:391143 Name:Lokomotif Penghancur Ombak<br>
+ID:391144 Name:Mobil Rehat Zzz<br>
+ID:391145 Name:Mobil Kargo Penuh Barang<br>
 ID:391201 Name:Gerbang Adeptus<br>
 ID:391202 Name:Gerbang Halaman Utama dari Kayu Betula<br>
 ID:391203 Name:Ujung Pagar Halaman Utama dengan Ukiran<br>
@@ -11631,6 +11745,10 @@ ID:393179 Name:Model Kit: Perbaikan<br>
 ID:393180 Name:Model Kit: Jangkar Pemecah Batu<br>
 ID:393181 Name:\"Target Tinju Benteng Terlarang\"<br>
 ID:393185 Name:Meriam Bubu yang Ditingkatkan<br>
+ID:393186 Name:Model Origami: Lompat-Lompatan<br>
+ID:393187 Name:Model Origami: Si Tambun<br>
+ID:393188 Name:Model Origami: Wuuuuush!<br>
+ID:393189 Name:Model Origami: Si Keras<br>
 ID:393201 Name:Pot Tanaman: Hamparan Hijau<br>
 ID:393202 Name:Taman Bunga Penahan Air<br>
 ID:393203 Name:Gentong Tanah Kotor<br>
@@ -11763,6 +11881,7 @@ ID:393456 Name:\"Ular Tersembunyi\"<br>
 ID:393457 Name:\"Puisi Lira Seperti Cermin\"<br>
 ID:393458 Name:\"Kemuliaan yang Berkilau\"<br>
 ID:393459 Name:Lonceng Angin Kota Musik: Bisikan Ketilang<br>
+ID:393460 Name:Penjaga Penangkap Angin yang Rajin<br>
 ID:393511 Name:Rak Buku: Baca dengan Bebas<br>
 ID:393512 Name:Rak Buku: Tinjauan Cepat<br>
 ID:393513 Name:Rak Buku: Efek Fokus<br>
@@ -11793,6 +11912,10 @@ ID:394113 Name:Pagar Standar: Teratur dan Simetris<br>
 ID:394114 Name:Pagar Standar: Struktur Tersebar<br>
 ID:394115 Name:Kusen Pintu Kayu Mallow: Melodi Lembut<br>
 ID:394116 Name:Pagar Kayu Mallow: Gelombang Pasang<br>
+ID:394117 Name:Keindahan Hutan Purba<br>
+ID:394118 Name:Jendela Nubuat<br>
+ID:394119 Name:Gerbang Bintang<br>
+ID:394120 Name:Pilar Musik Taman Galaksi<br>
 ID:394201 Name:Bangku Kayu Panjang yang Mulus<br>
 ID:394202 Name:Bangku Batu Panjang yang Mulus<br>
 ID:394203 Name:Kursi Googol<br>
@@ -11820,7 +11943,7 @@ ID:394311 Name:Meja Googol<br>
 ID:394312 Name:Meja Yumemiru Panjang<br>
 ID:394313 Name:Meja Persegi \"Rakushi\" dari Otogi<br>
 ID:394315 Name:Kursi Kebun Pir: Wewangian Teh di Tengah Alunan Melodi<br>
-ID:394316 Name:Aksesoris Kebun Pir - Hadir dan Dengarkan<br>
+ID:394316 Name:Aksesori Kebun Pir - Hadir dan Dengarkan<br>
 ID:394317 Name:Meja Pajangan Karmaphala<br>
 ID:394318 Name:\"Meja Bundar Bersih di Koridor Panjang\"<br>
 ID:394319 Name:Rak Produksi: Bentuk Dasar<br>
@@ -11829,6 +11952,7 @@ ID:394321 Name:Meja Teh: Menyambut Tamu<br>
 ID:394322 Name:Meja Batu Desa Teh: Santai yang Sudah Tradisi<br>
 ID:394323 Name:Meja Panjang Kayu Mallow: Kenangan Terukir<br>
 ID:394324 Name:Meja Bundar Kayu Mallow: Minum Bersama<br>
+ID:394325 Name:Pesta Pora Hutan<br>
 ID:394401 Name:Rak Toko Anggur: Sepuas Hati<br>
 ID:394402 Name:Palet Kayu 2 Tingkat<br>
 ID:394403 Name:\"Lahirnya Lautan Bunga\"<br>
@@ -11841,6 +11965,8 @@ ID:394505 Name:Fondasi Batu: Desain Maha karya<br>
 ID:394506 Name:Bata Berlinang Air mata: \"Teori Perspektif\"<br>
 ID:394601 Name:Patung Berpedang: Pengawal Abadi<br>
 ID:394602 Name:Patung Berpedang: Estetika Ketidakutuhan<br>
+ID:394603 Name:Kanopi Penampungan Semilir Sepoi-Sepoi<br>
+ID:394604 Name:Tanda Stasiun Kereta Api Sesuai Jadwal<br>
 ## MonsterId
 ID:20010101 Name:Dendro Slime<br>
 ID:20010201 Name:Large Dendro Slime<br>

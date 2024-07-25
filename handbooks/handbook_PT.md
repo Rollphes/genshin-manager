@@ -1,4 +1,4 @@
-# GameVersion 4.7.0
+# GameVersion 4.8.0
 ## CharacterId
 ID:10000002 Name:Kamisato Ayaka<br>
 ID:10000003 Name:Jean<br>
@@ -85,6 +85,7 @@ ID:10000095 Name:Sigewinne<br>
 ID:10000096 Name:Arlecchino<br>
 ID:10000097 Name:Sethos<br>
 ID:10000098 Name:Clorinde<br>
+ID:10000099 Name:Emilie<br>
 ## CostumeId
 ID:200200 Name:Flor Brilhante<br>
 ID:200201 Name:Missiva da Floração<br>
@@ -150,6 +151,7 @@ ID:205800 Name:Instrução de Miko<br>
 ID:205900 Name:Ar Marcial<br>
 ID:206000 Name:Momento de Extinção<br>
 ID:206100 Name:Dança Floral<br>
+ID:206101 Name:Beleza Errante<br>
 ID:206200 Name:Caçadora de Máquinas<br>
 ID:206300 Name:As Algemas Mundanas<br>
 ID:206301 Name:Orvalho das Flores Congeladas<br>
@@ -160,6 +162,7 @@ ID:206700 Name:Folha Nova<br>
 ID:206800 Name:Eu Amo Mora<br>
 ID:206900 Name:Melodia da Floresta<br>
 ID:207000 Name:Nem Flor Nem Névoa<br>
+ID:207001 Name:Suspiro do Acrídio<br>
 ID:207100 Name:Coração das Balanças<br>
 ID:207200 Name:Deserto e Noite<br>
 ID:207300 Name:Por Todo o Conhecimento, um Verso<br>
@@ -188,6 +191,7 @@ ID:209500 Name:Doces Matizes Oceânicas<br>
 ID:209600 Name:Luz do Luar<br>
 ID:209700 Name:Andarilho das Areias Douradas<br>
 ID:209800 Name:Espada da Honra<br>
+ID:209900 Name:Erva Aromática Esplendorosa<br>
 ## SkillId
 ID:10024 Name:Arte Kamisato: Naname<br>
 ID:10018 Name:Arte Kamisato: Hyouka<br>
@@ -470,6 +474,9 @@ ID:10975 Name:Ritual Secreto: Perfura-Sombra do Crepúsculo<br>
 ID:10981 Name:Ataque Normal: Juramento do Marechalato<br>
 ID:10982 Name:Patrulha na Escuridão<br>
 ID:10985 Name:Queda da Luz<br>
+ID:10991 Name:Ataque Normal: Lança do Marechalato (Modificado)<br>
+ID:10992 Name:Extração de Fragrância<br>
+ID:10995 Name:Apresentação Aromática<br>
 ## InherentSkillId
 ID:221 Name:Amatsutsumi Kunitsutsumi Chinshi<br>
 ID:222 Name:Bênção de Kanten Senmyou<br>
@@ -741,6 +748,9 @@ ID:9723 Name:Revelação Refletida<br>
 ID:9821 Name:Chama Dispersadora da Escuridão<br>
 ID:9822 Name:Recompensa Legal<br>
 ID:9823 Name:Recompensa da Patrulha Noturna<br>
+ID:9921 Name:Fragrância Residual<br>
+ID:9922 Name:Retificação<br>
+ID:9923 Name:Captura do Espaço<br>
 ## ConstellationId
 ID:21 Name:Sosai Sumizome Sakura<br>
 ID:22 Name:Lâmina da Nevasca Seki no To<br>
@@ -1270,6 +1280,12 @@ ID:983 Name:\"Jamais Esquecerei o Juramento do Dia\"<br>
 ID:984 Name:\"Lembrarei as Lágrimas, a Vida e o Amor\"<br>
 ID:985 Name:\"Lembrarei da Chegada do Amanhecer\"<br>
 ID:986 Name:\"E Assim Nunca me Desesperarei\"<br>
+ID:991 Name:Análise de Fragrância Leve<br>
+ID:992 Name:Harmonia de Luzes<br>
+ID:993 Name:Fragrâncias Reunidas<br>
+ID:994 Name:Aroma Lumidouce<br>
+ID:995 Name:Aroma do Orvalho Puro<br>
+ID:996 Name:Fragrância da Marcotte<br>
 ## ArtifactId
 ID:20002 Name:Pena do Iniciante<br>
 ID:20004 Name:Flor do Novato<br>
@@ -5179,6 +5195,7 @@ ID:13507 Name:Subjugadora de Calamidades<br>
 ID:13509 Name:Luz do Cortador de Grama<br>
 ID:13511 Name:Báculo das Areias Escarlates<br>
 ID:13512 Name:Semblante da Lua Carmesim<br>
+ID:13513 Name:Elegia Lumidouce<br>
 ID:14101 Name:Anotações do Aprendiz<br>
 ID:14201 Name:Grimório de Bolso<br>
 ID:14301 Name:Guia de Magia<br>
@@ -5332,6 +5349,9 @@ ID:170 Name:Filmes Divertidos<br>
 ID:171 Name:Fundos<br>
 ID:172 Name:Ingressos do Tour Iridescente<br>
 ID:173 Name:Progresso de Análise<br>
+ID:174 Name:Excertos de Alegria<br>
+ID:175 Name:Chave da Viagem<br>
+ID:176 Name:Moeda Estrela-Velejante<br>
 ID:201 Name:Gema Essencial<br>
 ID:202 Name:Mora<br>
 ID:203 Name:Cristal Gênesis<br>
@@ -5448,6 +5468,7 @@ ID:1095 Name:Sigewinne<br>
 ID:1096 Name:Arlecchino<br>
 ID:1097 Name:Sethos<br>
 ID:1098 Name:Clorinde<br>
+ID:1099 Name:Emilie<br>
 ID:1102 Name:Stella Fortuna de Kamisato Ayaka<br>
 ID:1103 Name:Stella Fortuna de Jean<br>
 ID:1105 Name:Stella Fortuna do Viajante<br>
@@ -5533,6 +5554,7 @@ ID:1195 Name:Stella Fortuna de Sigewinne<br>
 ID:1196 Name:Stella Fortuna de Arlecchino<br>
 ID:1197 Name:Stella Fortuna de Sethos<br>
 ID:1198 Name:Stella Fortuna de Clorinde<br>
+ID:1199 Name:Stella Fortuna de Emilie<br>
 ID:1201 Name:Canção do Gnóstico - Anotações Antigas<br>
 ID:1202 Name:Bênção da Lua Nova - Lua Nova<br>
 ID:1301 Name:Pena de Apelação<br>
@@ -7185,6 +7207,7 @@ ID:107023 Name:Hydroculus<br>
 ID:107024 Name:Caixa Misteriosa de Cupons<br>
 ID:107025 Name:Chave do Santuário das Profundezas de Fontaine<br>
 ID:107026 Name:Carpa Espiritual<br>
+ID:107029 Name:Penas Jubilantes<br>
 ID:108000 Name:Prato<br>
 ID:108001 Name:Torrada do Pescador Estranha<br>
 ID:108002 Name:Torrada do Pescador<br>
@@ -7865,6 +7888,17 @@ ID:108676 Name:Peito de Pato ao Molho Bulle<br>
 ID:108677 Name:Peito de Pato ao Molho Bulle Delicioso<br>
 ID:108678 Name:\"Caçado e Capturado\"<br>
 ID:108679 Name:Rolinho de Carne Mega Gostoso<br>
+ID:108680 Name:Fricassee de Poulet Estranho<br>
+ID:108681 Name:Fricassee de Poulet<br>
+ID:108682 Name:Fricassee de Poulet Delicioso<br>
+ID:108683 Name:Banquete de Sabores<br>
+ID:108684 Name:Sorvete Rotundo Estranho<br>
+ID:108685 Name:Sorvete Rotundo<br>
+ID:108686 Name:Sorvete Rotundo Delicioso<br>
+ID:108687 Name:Combo de Croissant Crocante Estranho<br>
+ID:108688 Name:Combo de Croissant Crocante<br>
+ID:108689 Name:Combo de Croissant Crocante Delicioso<br>
+ID:108690 Name:Uma Mistura Mágica<br>
 ID:109000 Name:Ingredientes<br>
 ID:109101 Name:Receita: Espeto de Frango com Cogumelos<br>
 ID:109102 Name:Receita: Torrada do Pescador<br>
@@ -8059,6 +8093,9 @@ ID:109573 Name:Receita: Chá do Orvalho de Jade<br>
 ID:109574 Name:Receita: Sushi Supercarnudo<br>
 ID:109575 Name:Receita: Suflê de Bulle<br>
 ID:109576 Name:Receita: Peito de Pato ao Molho Bulle<br>
+ID:109577 Name:Receita: Fricassee de Poulet<br>
+ID:109578 Name:Receita: Sorvete Rotundo<br>
+ID:109579 Name:Receita: Combo de Croissant Crocante<br>
 ID:110000 Name:Produtos Combinados<br>
 ID:110001 Name:Farinha<br>
 ID:110002 Name:Creme<br>
@@ -9250,6 +9287,8 @@ ID:120856 Name:Flor Rociomarinha Arrebatadora<br>
 ID:120857 Name:Peixe da Boca de um Pelicano<br>
 ID:120860 Name:<br>
 ID:120861 Name:Convite da Gangue Arataki<br>
+ID:120862 Name:Pacto de Testemunhas<br>
+ID:120863 Name:Mecanismo Glorioso<br>
 ID:120864 Name:Desejos de Boa Sorte<br>
 ID:120865 Name:Pérola Transoceânica Concentrada<br>
 ID:120866 Name:Extrato de Fantasma Hydro Corrompido<br>
@@ -9268,12 +9307,25 @@ ID:120880 Name:\"Eu Reencarnei como um Onikabuto... E Virei o Mundo de Ponta-Cab
 ID:120881 Name:Carta Misteriosa<br>
 ID:120882 Name:Carta de Cyno<br>
 ID:120883 Name:Partitura Danificada<br>
+ID:120888 Name:Lanterna de Deja<br>
+ID:120889 Name:Um Chifre de Dragão como uma Arma<br>
+ID:120890 Name:Escama do Dragão Maligno<br>
 ID:120891 Name:Testemunho do Criminoso<br>
 ID:120892 Name:Nota de Rawat<br>
+ID:120893 Name:Estrela Dispersa<br>
 ID:120894 Name:Foto em Grupo de um Tempo Desconhecido<br>
 ID:120910 Name:Partitura Reparada<br>
 ID:120911 Name:Notas de Ruggiero (II)<br>
 ID:120917 Name:Páginas de uma Partitura Perdida II<br>
+ID:120918 Name:Picareta Especial<br>
+ID:120919 Name:Manuscrito da Deusa I<br>
+ID:120920 Name:Manuscrito da Deusa II<br>
+ID:120921 Name:Manuscrito da Deusa III<br>
+ID:120922 Name:Forma da Coragem<br>
+ID:120923 Name:Forma da Sabedoria<br>
+ID:120924 Name:Forma da Empatia<br>
+ID:120925 Name:\"Elixir Secreto\"<br>
+ID:120926 Name:Lança de Guarda<br>
 ID:120928 Name:Foto em Grupo de um Tempo Desconhecido<br>
 ID:120931 Name:\"Mapa do Tesouro\" Com a Localização do Cofre<br>
 ID:120932 Name:Álbum de Personagem \"Caçador das Sombras: Dia do Julgamento\"<br>
@@ -9318,6 +9370,13 @@ ID:120999 Name:Escritório de Gatos V<br>
 ID:121000 Name:Escritório de Gatos VI<br>
 ID:121001 Name:Escritório de Gatos VII<br>
 ID:121002 Name:Escritório de Gatos VIII<br>
+ID:121007 Name:\"Um Pôr-do-Sol Que Jamais Se Põe\"<br>
+ID:121008 Name:\"Um Dragão Incapaz de Voar\"<br>
+ID:121009 Name:\"Uma Lua Que Brilha Apenas À Noite\"<br>
+ID:121010 Name:Tônico Mágico<br>
+ID:121016 Name:Livro Ilustrado do Dragão Maligno<br>
+ID:121017 Name:Sonhos Fantásticos da Cidade Antiga<br>
+ID:121018 Name:Um Manuscrito Incompleto<br>
 ID:129001 Name:Lágrima das Estrelas<br>
 ID:130001 Name:Semente de Flor de Seda<br>
 ID:130002 Name:Semente de Flor Doce<br>
@@ -9400,6 +9459,7 @@ ID:140010 Name:Asas da Floresta<br>
 ID:140011 Name:Asas da Festa das Estrelas<br>
 ID:140012 Name:Asas das Águas Tormentosas<br>
 ID:140013 Name:Asas dos Sonhos Passageiros<br>
+ID:140014 Name:Asas de Iguarias<br>
 ID:141001 Name:Cristal Rodopiante Radiante 1<br>
 ID:141002 Name:Cristal Rodopiante Radiante 2<br>
 ID:141003 Name:Cristal Rodopiante Radiante 3<br>
@@ -9841,6 +9901,14 @@ ID:210201 Name:Sigewinne: Tratamento<br>
 ID:210202 Name:Sethos: Fragmentos de Ba<br>
 ID:210203 Name:Conquista: Páginas Poéticas<br>
 ID:210204 Name:Passe de Batalha: Teatro Caleidoscópico<br>
+ID:210205 Name:Emilie - Nota de Fundo<br>
+ID:210206 Name:Passe de Batalha: Simulação<br>
+ID:210207 Name:Celebração - Banquete II<br>
+ID:215001 Name:Eco: Cavaleira de Dandelion<br>
+ID:215002 Name:Eco: Ressurreição Gélida<br>
+ID:215003 Name:Eco: Estrela em Eclipse<br>
+ID:215004 Name:Eco: Gatinha dos Beirais<br>
+ID:215005 Name:Eco: O Lado Negro do Alvorecer<br>
 ID:220001 Name:Pedra de Ressonância de Anemoculus<br>
 ID:220002 Name:Pedra de Ressonância de Geoculus<br>
 ID:220003 Name:Bússola de Tesouros Geo<br>
@@ -9936,6 +10004,10 @@ ID:220095 Name:Seelie dos Tesouros<br>
 ID:220096 Name:Mini Seelie - Brilhante<br>
 ID:220097 Name:Corneta Vento Noturno<br>
 ID:220098 Name:\"Destinador\"<br>
+ID:220099 Name:Carta Alegre<br>
+ID:220100 Name:Carta Jocosa<br>
+ID:220101 Name:\"Yelena\"<br>
+ID:220102 Name:Aparelho Fotográfico Especial de Fontaine de Asagiri<br>
 ID:221001 Name:Instruções: Pedra de Ressonância de Anemoculus<br>
 ID:221002 Name:Instruções: Pedra de Ressonância de Geoculus<br>
 ID:221003 Name:Diagrama: Bússola de Tesouros Geo<br>
@@ -10003,8 +10075,12 @@ ID:318001 Name:Encorajamento Animado<br>
 ID:318002 Name:Aparência Elegante<br>
 ID:318003 Name:Pronto Para Batalha<br>
 ID:318004 Name:Aparência Solene<br>
+ID:318009 Name:Tempo de Lazer<br>
+ID:318011 Name:Negociações Cuidadosas<br>
 ID:318013 Name:Tempo de Lazer<br>
 ID:318015 Name:Tempo de Lazer<br>
+ID:318017 Name:Repleto de Confiança<br>
+ID:318018 Name:Tempo de Lazer<br>
 ID:320001 Name:<br>
 ID:330000 Name:Ganyu<br>
 ID:330001 Name:Kaeya<br>
@@ -10098,6 +10174,9 @@ ID:330088 Name:Baleia Devoradora<br>
 ID:330089 Name:Escorpião da Ossada Sagrada<br>
 ID:330090 Name:Cobra Voadora da Ossada Sagrada<br>
 ID:330091 Name:Guardião do Oásis de Apep<br>
+ID:330092 Name:Chevreuse<br>
+ID:330093 Name:Navia<br>
+ID:330094 Name:Fatui Oficial do Gelo<br>
 ID:330500 Name:Com Todo Coração<br>
 ID:330501 Name:Espada do Sangue Frio<br>
 ID:330502 Name:Respiração Constante<br>
@@ -10190,6 +10269,9 @@ ID:330588 Name:Predação Sem Luz<br>
 ID:330589 Name:Fulminação Fatal<br>
 ID:330590 Name:Ciclone Mortal<br>
 ID:330591 Name:Crias Infinitas<br>
+ID:330592 Name:Táticas de Combate Coordenado<br>
+ID:330593 Name:Canal de Corrente Desconhecida<br>
+ID:330594 Name:Lâmina do Gelo<br>
 ID:331000 Name:Guia de Magia<br>
 ID:331001 Name:Memórias de Sacrifício<br>
 ID:331002 Name:Atlas Celestial<br>
@@ -10271,6 +10353,9 @@ ID:331077 Name:Esplendor das Águas Silenciosas<br>
 ID:331078 Name:Caçador das Sombras<br>
 ID:331079 Name:Trupe Dourada<br>
 ID:331080 Name:Flor do Paraíso Perdido<br>
+ID:331081 Name:Mega Ultra Espada Mágica do Soberano<br>
+ID:331082 Name:Broca do Prospector<br>
+ID:331083 Name:Triunfo do Gladiador<br>
 ID:332000 Name:Porto de Liyue<br>
 ID:332001 Name:Biblioteca dos Cavaleiros de Favonius<br>
 ID:332002 Name:Câmara de Jade<br>
@@ -10326,6 +10411,7 @@ ID:332051 Name:Mausoléu do Rei Deshret<br>
 ID:332052 Name:Ruínas do Laboratório Central<br>
 ID:332053 Name:Monsieur Arthur<br>
 ID:332054 Name:Kusava<br>
+ID:332055 Name:Serene<br>
 ID:333000 Name:Ressonância Elemental: Entrelaçamento Cryo<br>
 ID:333001 Name:Ressonância Elemental: Impacto de Cryo<br>
 ID:333002 Name:Ressonância Elemental: Entrelaçamento Hydro<br>
@@ -10400,6 +10486,8 @@ ID:333070 Name:Macaron Arco-Íris<br>
 ID:333071 Name:Antiga Batalha Sangrenta<br>
 ID:333072 Name:Água e Justiça<br>
 ID:333073 Name:Contagem Regressiva até o Show: 3<br>
+ID:333074 Name:\"Aquele Garoto vai Fazer uma Fortuna...\"<br>
+ID:333075 Name:Tadá~!<br>
 ID:334000 Name:Ganyu<br>
 ID:334001 Name:Kaeya<br>
 ID:334002 Name:Chongyun<br>
@@ -10492,6 +10580,9 @@ ID:334088 Name:Baleia Devoradora<br>
 ID:334089 Name:Escorpião da Ossada Sagrada<br>
 ID:334090 Name:Cobra Voadora da Ossada Sagrada<br>
 ID:334091 Name:Guardião do Oásis de Apep<br>
+ID:334092 Name:Chevreuse<br>
+ID:334093 Name:Navia<br>
+ID:334094 Name:Fatui Oficial do Gelo<br>
 ID:334500 Name:Com Todo Coração<br>
 ID:334501 Name:Espada do Sangue Frio<br>
 ID:334502 Name:Respiração Constante<br>
@@ -10584,6 +10675,9 @@ ID:334588 Name:Predação Sem Luz<br>
 ID:334589 Name:Fulminação Fatal<br>
 ID:334590 Name:Ciclone Mortal<br>
 ID:334591 Name:Crias Infinitas<br>
+ID:334592 Name:Táticas de Combate Coordenado<br>
+ID:334593 Name:Canal de Corrente Desconhecida<br>
+ID:334594 Name:Lâmina do Gelo<br>
 ID:335000 Name:Guia de Magia<br>
 ID:335001 Name:Memórias de Sacrifício<br>
 ID:335002 Name:Atlas Celestial<br>
@@ -10665,6 +10759,9 @@ ID:335077 Name:Esplendor das Águas Silenciosas<br>
 ID:335078 Name:Caçador das Sombras<br>
 ID:335079 Name:Trupe Dourada<br>
 ID:335080 Name:Flor do Paraíso Perdido<br>
+ID:335081 Name:Mega Ultra Espada Mágica do Soberano<br>
+ID:335082 Name:Broca do Prospector<br>
+ID:335083 Name:Triunfo do Gladiador<br>
 ID:336000 Name:Porto de Liyue<br>
 ID:336001 Name:Biblioteca dos Cavaleiros de Favonius<br>
 ID:336002 Name:Câmara de Jade<br>
@@ -10720,6 +10817,7 @@ ID:336051 Name:Mausoléu do Rei Deshret<br>
 ID:336052 Name:Ruínas do Laboratório Central<br>
 ID:336053 Name:Monsieur Arthur<br>
 ID:336054 Name:Kusava<br>
+ID:336055 Name:Serene<br>
 ID:337000 Name:Ressonância Elemental: Entrelaçamento Cryo<br>
 ID:337001 Name:Ressonância Elemental: Impacto de Cryo<br>
 ID:337002 Name:Ressonância Elemental: Entrelaçamento Hydro<br>
@@ -10794,6 +10892,8 @@ ID:337070 Name:Macaron Arco-Íris<br>
 ID:337071 Name:Antiga Batalha Sangrenta<br>
 ID:337072 Name:Água e Justiça<br>
 ID:337073 Name:Contagem Regressiva até o Show: 3<br>
+ID:337074 Name:\"Aquele Garoto vai Fazer uma Fortuna...\"<br>
+ID:337075 Name:Tadá~!<br>
 ID:339000 Name:Primordial<br>
 ID:339001 Name:Mondstadt<br>
 ID:339002 Name:Liyue<br>
@@ -10819,6 +10919,8 @@ ID:339025 Name:Espinha do Dragão - Investigação<br>
 ID:339026 Name:Espinha do Dragão - Diadema<br>
 ID:339027 Name:Despenhadeiro - Metal Sólido<br>
 ID:339028 Name:Despenhadeiro - Cristal Índigo<br>
+ID:339029 Name:Fonta<br>
+ID:339030 Name:Despenhadeiro - Diadema<br>
 ID:339500 Name:Mondstadt<br>
 ID:339501 Name:Liyue<br>
 ID:339502 Name:Inazuma<br>
@@ -10846,6 +10948,8 @@ ID:340013 Name:Sombra da Vela Tremulante<br>
 ID:340014 Name:Orvalho das Flores Congeladas<br>
 ID:340015 Name:Fragrância Preciosa do Jade Preto<br>
 ID:340016 Name:Bambu da Chuva<br>
+ID:340017 Name:Suspiro do Acrídio<br>
+ID:340018 Name:Beleza Errante<br>
 ID:350001 Name:Acampamento Temporário do Aventureiro<br>
 ID:350002 Name:Vida na Fronteira<br>
 ID:350003 Name:Rochas e Plantas<br>
@@ -10992,6 +11096,7 @@ ID:380447 Name:Poste de Luz do Porto: Boas Coisas Vêm Acompanhadas<br>
 ID:380448 Name:Lamparina de Pedra do Vale: Luz Esplendorosa<br>
 ID:380449 Name:Lago de Sidra<br>
 ID:380450 Name:Lanterna de Estrada Amigável: \"Luz Instantânea\"<br>
+ID:380451 Name:Frutos Reluzentes da Floresta<br>
 ID:380504 Name:Luz Floral<br>
 ID:380505 Name:Luz Reluzente do Anexo<br>
 ID:381101 Name:Balcão Dobrável de Vidoeiro do Norte<br>
@@ -11372,6 +11477,12 @@ ID:390521 Name:Exemplo da \"Engenharia\" do Parque de Diversões<br>
 ID:390522 Name:Exemplo da \"Construção\" do Parque de Diversões<br>
 ID:390523 Name:Tenda de Celebração do Parque de Diversões<br>
 ID:390524 Name:Local da Alquimia Engenhosa<br>
+ID:390525 Name:Casa do Castelo Real: Sopra Trompetes<br>
+ID:390526 Name:Casa do Castelo Real: Tamboreiro<br>
+ID:390527 Name:Casa do Castelo Real: Maestro<br>
+ID:390528 Name:Unidade Boom-Boom<br>
+ID:390529 Name:Unidade Ding-Dong<br>
+ID:390530 Name:Cabana Mágica da Floresta<br>
 ID:390601 Name:Santuário do Ritual<br>
 ID:390602 Name:Santuário da Purificação<br>
 ID:390603 Name:Mansão de Inazuma: Como Um<br>
@@ -11500,6 +11611,9 @@ ID:391137 Name:Guindaste Tipo-05 do Porto Lumidouce<br>
 ID:391138 Name:Unidade de Transporte de Fluidos Padrão<br>
 ID:391139 Name:Palete de Transporte Padrão<br>
 ID:391140 Name:Palete de Transporte Grande<br>
+ID:391143 Name:Carroça do Vento Flamejante<br>
+ID:391144 Name:Carruagem do Ronco<br>
+ID:391145 Name:Carroça de Mercadorias Lotada<br>
 ID:391201 Name:Portão do Adeptus<br>
 ID:391202 Name:Portão de Vidoeiro do Pátio Principal<br>
 ID:391203 Name:Extremidade de Parede do Pátio Esculpida<br>
@@ -11631,6 +11745,10 @@ ID:393179 Name:Modelo Mecânico: Reparo<br>
 ID:393180 Name:Modelo Mecânico: Âncora Destruidora de Rochas<br>
 ID:393181 Name:\"Alvo de Boxe da Fortaleza Proibida\"<br>
 ID:393185 Name:Canhão Crocodilo Explosivo Melhorado<br>
+ID:393186 Name:Modelo Origami: Saltitante<br>
+ID:393187 Name:Modelo Origami: Redondinho<br>
+ID:393188 Name:Modelo Origami: Vuuuuush!<br>
+ID:393189 Name:Modelo Origami: Mais Duro Possível<br>
 ID:393201 Name:Planta em Vaso: \"Vastidão Verdejante\"<br>
 ID:393202 Name:Canteiros de Flores que Retêm Água<br>
 ID:393203 Name:Barril para Transportar Terra<br>
@@ -11763,6 +11881,7 @@ ID:393456 Name:\"Serpente Escondida\"<br>
 ID:393457 Name:\"Poema de Lira Como um Espelho\"<br>
 ID:393458 Name:\"Glória do Andarilho\"<br>
 ID:393459 Name:Sinos da Brisa da Cidade da Música: \"Passarinhos Cantarolando\"<br>
+ID:393460 Name:Guarda Pontual<br>
 ID:393511 Name:Prateleira de Livros: Leitura Livre<br>
 ID:393512 Name:Prateleira de Livros: Olhada Rápida<br>
 ID:393513 Name:Prateleira de Livros: Efeito Focado<br>
@@ -11793,6 +11912,10 @@ ID:394113 Name:Barreira Padrão: Ordem e Simetria<br>
 ID:394114 Name:Barreira Padrão: Estrutura Dispersa<br>
 ID:394115 Name:Moldura de Porta de Madeira de Malva: \"Melodia Gentil\"<br>
 ID:394116 Name:Cerca de Madeira de Malva: \"Maré\"<br>
+ID:394117 Name:Beleza Originária da Floresta<br>
+ID:394118 Name:Janela da Profecia<br>
+ID:394119 Name:\"Portal do Céu Estrelado\"<br>
+ID:394120 Name:\"Pilar Estrelar do Jardim\"<br>
 ID:394201 Name:Banco de Madeira Liso<br>
 ID:394202 Name:Banco de Pedra Liso<br>
 ID:394203 Name:Cadeira Googol<br>
@@ -11829,6 +11952,7 @@ ID:394321 Name:Mesa de Chá Quadrada: Recepção Amigável<br>
 ID:394322 Name:Mesa de Pedra da Vila do Chá: Passatempo Culto<br>
 ID:394323 Name:Mesa Longa de Madeira de Malva: \"Reminiscência Entalhada\"<br>
 ID:394324 Name:Mesa Redonda de Madeira de Malva: \"Bebidas Compartilhadas\"<br>
+ID:394325 Name:Encontro na Floresta<br>
 ID:394401 Name:Balcão de Loja de Vinhos: \"Para Alegrar Seu Coração\"<br>
 ID:394402 Name:Palete Cru de Dois Andares<br>
 ID:394403 Name:\"Berço das Flores do Mar\"<br>
@@ -11841,6 +11965,8 @@ ID:394505 Name:Fundações de Pedra: Criação Deslumbrante<br>
 ID:394506 Name:Tijolo de Pedra da Lágrima \"Teoria da Transparência\"<br>
 ID:394601 Name:Estátua de Pedra: \"Guarda Eterno\"<br>
 ID:394602 Name:Estátua com Espada: \"Estética da Incompletude\"<br>
+ID:394603 Name:Telhado Livre do Ponto<br>
+ID:394604 Name:Placa do Ponto Pontual<br>
 ## MonsterId
 ID:20010101 Name:Slime Dendro<br>
 ID:20010201 Name:Grande Slime Dendro<br>
