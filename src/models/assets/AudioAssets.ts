@@ -15,7 +15,7 @@ export class AudioAssets {
   /**
    * Audio base URL of mihoyo
    */
-  private static readonly audioBaseURLMihoyo =
+  private static readonly AUDIO_BASE_URL_MIHOYO =
     'https://upload-os-bbs.mihoyo.com/game_record/genshin'
 
   /**
@@ -89,7 +89,7 @@ export class AudioAssets {
     this.mihoyoURL =
       name === ''
         ? ''
-        : `${AudioAssets.audioBaseURLMihoyo}${cvPath}${characterIdPath}/${name}.ogg`
+        : `${AudioAssets.AUDIO_BASE_URL_MIHOYO}${cvPath}${characterIdPath}/${name}.ogg`
   }
 
   /**
