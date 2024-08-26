@@ -1,4 +1,4 @@
-import cheerio from 'cheerio'
+import * as cheerio from 'cheerio'
 
 import { ImageAssets } from '@/models/assets/ImageAssets'
 import { ValueOf } from '@/types'
