@@ -1,6 +1,6 @@
 {
   "name": "genshin-manager",
-  "version": "1.2.7",
+  "version": "1.2.8",
   "homepage": "https://rollphes.github.io/genshin-manager/",
   "bugs": "https://github.com/Rollphes/genshin-manager/issues",
   "main": "dist/index.js",
@@ -48,7 +48,7 @@
   "author": "Rollphes",
   "license": "MIT",
   "dependencies": {
-    "cheerio": "^1.0.0-rc.12",
+    "cheerio": "^1.0.0",
     "cli-progress": "^3.12.0",
     "fs-extra": "^11.2.0",
     "node-cron": "^3.0.3",
@@ -59,20 +59,20 @@
     "@types/cheerio": "^0.22.35",
     "@types/cli-progress": "^3.11.6",
     "@types/html-escaper": "^3.0.2",
-    "@types/node": "^20.14.12",
+    "@types/node": "^22.5.0",
     "@types/node-cron": "^3.0.11",
-    "@typescript-eslint/eslint-plugin": "^7.17.0",
-    "@typescript-eslint/parser": "^7.17.0",
+    "@typescript-eslint/eslint-plugin": "^8.2.0",
+    "@typescript-eslint/parser": "^8.2.0",
     "eslint": "^8.57.0",
     "eslint-config-prettier": "^9.1.0",
-    "eslint-plugin-jsdoc": "^48.8.3",
+    "eslint-plugin-jsdoc": "^50.2.2",
     "eslint-plugin-prettier": "^5.2.1",
     "eslint-plugin-simple-import-sort": "^12.1.1",
     "prettier": "^3.3.3",
     "ts-node": "^10.9.2",
     "tsc-alias": "^1.8.10",
     "tsconfig-paths": "^4.2.0",
-    "typedoc": "^0.26.5",
-    "typescript": "^5.5.2"
+    "typedoc": "^0.26.6",
+    "typescript": "^5.5.4"
   }
 }
