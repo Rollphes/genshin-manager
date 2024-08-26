@@ -22,16 +22,6 @@ class ReplaceData {
  */
 export class ObjectKeyDecoder {
   /**
-   * character IDs that are not included in the character
-   */
-  private static readonly characterBlackIds: number[] = [
-    10000001, 11000008, 11000009, 11000010, 11000011, 11000013, 11000017,
-    11000018, 11000019, 11000025, 11000026, 11000027, 11000028, 11000030,
-    11000031, 11000032, 11000033, 11000034, 11000035, 11000036, 11000037,
-    11000038, 11000039, 11000040, 11000041, 11000042, 11000043, 11000044,
-    11000045,
-  ]
-  /**
    * object key replace data
    */
   private readonly replaceDatas: ReplaceData[] = []
@@ -150,7 +140,7 @@ export class ObjectKeyDecoder {
           cacheObject[obj.setId as string] = obj
           break
         case 'AvatarExcelConfigData':
-          if (ObjectKeyDecoder.characterBlackIds.includes(obj.id as number))
+          if ((obj.id as number) > 11000000 || (obj.id as number) === 10000001)
             break
           cacheObject[obj.id as string] = obj
           break
