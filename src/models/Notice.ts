@@ -167,21 +167,20 @@ export class Notice {
       )
     }
     if (this.$('td').toArray().length) {
-      const enTdList = this._en$('td')
-        .toArray()
-        .filter((el): el is cheerio.TagElement => el.type === 'tag')
+      const trFirst = this.$('tr').first()
       const tdList = this.$('td')
         .toArray()
         .filter((el): el is cheerio.TagElement => el.type === 'tag')
 
-      const startTimeColWidth = enTdList.find((el) =>
-        /Start Time/g.test(this._en$(el).text()),
-      )?.attribs['data-colwidth']
-      const endTimeColWidth = enTdList.find((el) =>
-        /End Time/g.test(this._en$(el).text()),
-      )?.attribs['data-colwidth']
+      const colWidths = this.$(trFirst)
+        .children()
+        .toArray()
+        .filter((el): el is cheerio.TagElement => el.type === 'tag')
+        .map((el) => el.attribs['data-colwidth'])
 
-      if (startTimeColWidth && endTimeColWidth) {
+      if (colWidths.length > 2) {
+        const startTimeColWidth = colWidths[colWidths.length - 2]
+        const endTimeColWidth = colWidths[colWidths.length - 1]
         const startTimeRows = tdList.filter(
           (el) => el.attribs['data-colwidth'] === startTimeColWidth,
         )
@@ -220,7 +219,7 @@ export class Notice {
    */
   private convertLocalDate(text: string): string {
     return text
-      .replace(/(?<=<t class="(t_lc|t_gl)">)(.*?)(?=<\/t>)/g, ($1) =>
+      .replace(/(?<=<t class="(t_lc|t_gl)".*?>)(.*?)(?=<\/t>)/g, ($1) =>
         convertToUTC($1, this.region).toLocaleString('ja-JP', {
           year: 'numeric',
           month: '2-digit',
@@ -229,6 +228,6 @@ export class Notice {
           minute: '2-digit',
         }),
       )
-      .replace(/<t class="(t_lc|t_gl)">|<\/t>/g, '')
+      .replace(/<t class="(t_lc|t_gl).*?">|<\/t>/g, '')
   }
 }
