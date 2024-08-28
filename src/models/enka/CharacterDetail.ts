@@ -72,6 +72,8 @@ export class CharacterDetail {
   public readonly promoteLevel: number
   /**
    * Character constellations
+   * @warn This value is not affected by isShowCharacterPreviewConstellation
+   * @see {@link PlayerDetail.isShowCharacterPreviewConstellation}
    */
   public readonly constellations: CharacterConstellation[]
   /**
