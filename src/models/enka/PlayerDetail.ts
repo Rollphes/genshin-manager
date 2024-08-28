@@ -63,7 +63,7 @@ export class PlayerDetail {
    */
   public readonly theaterActIndex: number
   /**
-   * Number of supporting cast members for Imaginarium Theater
+   * Imaginarium Theater Mode Index (5:easy, 6:hard...)
    */
   public readonly theaterModeIndex: number
   /**
