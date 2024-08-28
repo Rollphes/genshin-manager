@@ -14,6 +14,14 @@ export interface APIShowAvatarInfo {
    * Character costume ID
    */
   costumeId?: number
+  /**
+   * Character element ID
+   */
+  energyType?: number
+  /**
+   * Character constellation Count
+   */
+  talentLevel?: number
 }
 
 /**
@@ -53,6 +61,10 @@ export interface APIPlayerInfo {
    */
   towerLevelIndex?: number
   /**
+   * Abyss Star Index
+   */
+  towerStarIndex?: number
+  /**
    * List of Character IDs and Levels
    */
   showAvatarInfoList?: APIShowAvatarInfo[]
@@ -64,6 +76,26 @@ export interface APIPlayerInfo {
    * Profile Picture
    */
   profilePicture?: APIProfilePicture
+  /**
+   * Show Avatar Talent
+   */
+  isShowAvatarTalent?: boolean
+  /**
+   * Number of characters with max friendship level
+   */
+  fetterCount?: number
+  /**
+   * Imaginarium Theater Act Index
+   */
+  theaterActIndex?: number
+  /**
+   * Number of supporting cast members for Imaginarium Theater
+   */
+  theaterModeIndex?: number
+  /**
+   * Imaginarium Theater Star Index
+   */
+  theaterStarIndex?: number
 }
 
 /**

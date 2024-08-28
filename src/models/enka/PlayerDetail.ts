@@ -39,6 +39,10 @@ export class PlayerDetail {
    */
   public readonly towerLevelIndex: number
   /**
+   * Abyss Star Index
+   */
+  public readonly towerStarIndex: number
+  /**
    * Character previews
    */
   public readonly characterPreviews: CharacterPreview[]
@@ -50,6 +54,26 @@ export class PlayerDetail {
    * Player Profile Picture
    */
   public readonly profilePicture: ProfilePicture
+  /**
+   * Number of characters with max friendship level
+   */
+  public readonly maxFriendshipCharactersCount: number
+  /**
+   * Imaginarium Theater Act Index
+   */
+  public readonly theaterActIndex: number
+  /**
+   * Number of supporting cast members for Imaginarium Theater
+   */
+  public readonly theaterModeIndex: number
+  /**
+   * Imaginarium Theater Star Index
+   */
+  public readonly theaterStarIndex: number
+  /**
+   * Show Character Preview Constellation
+   */
+  public readonly isShowCharacterPreviewConstellation: boolean
   /**
    * Data from EnkaNetwork
    */
@@ -68,6 +92,7 @@ export class PlayerDetail {
     this.finishAchievementNum = data.finishAchievementNum || 0
     this.towerFloorIndex = data.towerFloorIndex || 0
     this.towerLevelIndex = data.towerLevelIndex || 0
+    this.towerStarIndex = data.towerStarIndex || 0
     this.characterPreviews = data.showAvatarInfoList
       ? data.showAvatarInfoList.map((v) => new CharacterPreview(v))
       : []
@@ -86,6 +111,11 @@ export class PlayerDetail {
       ) as number
     }
     this.profilePicture = new ProfilePicture(profilePictureId || 1)
+    this.maxFriendshipCharactersCount = data.fetterCount || 0
+    this.theaterActIndex = data.theaterActIndex || 0
+    this.theaterModeIndex = data.theaterModeIndex || 0
+    this.theaterStarIndex = data.theaterStarIndex || 0
+    this.isShowCharacterPreviewConstellation = data.isShowAvatarTalent || false
     this.data = data
   }
 }
