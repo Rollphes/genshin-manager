@@ -368,7 +368,7 @@ export abstract class AssetCacheManager<
       stream.on('data', (chunk) => (text += chunk as string))
       const setCachePromiseResult = await new Promise<void>(
         (resolve, reject) => {
-          stream.on('error', () => reject())
+          stream.on('error', (error) => reject(error))
           stream.on('end', () => {
             this.cachedExcelBinOutput.set(key, new JsonParser(text))
             resolve()
