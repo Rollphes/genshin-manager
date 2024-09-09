@@ -1,6 +1,6 @@
 {
   "name": "genshin-manager",
-  "version": "1.3.1",
+  "version": "1.3.2",
   "homepage": "https://rollphes.github.io/genshin-manager/",
   "bugs": "https://github.com/Rollphes/genshin-manager/issues",
   "main": "dist/index.js",
@@ -59,10 +59,10 @@
     "@types/cheerio": "^0.22.35",
     "@types/cli-progress": "^3.11.6",
     "@types/html-escaper": "^3.0.2",
-    "@types/node": "^22.5.0",
+    "@types/node": "^22.5.4",
     "@types/node-cron": "^3.0.11",
-    "@typescript-eslint/eslint-plugin": "^8.2.0",
-    "@typescript-eslint/parser": "^8.2.0",
+    "@typescript-eslint/eslint-plugin": "^8.4.0",
+    "@typescript-eslint/parser": "^8.4.0",
     "eslint": "^8.57.0",
     "eslint-config-prettier": "^9.1.0",
     "eslint-plugin-jsdoc": "^50.2.2",
@@ -72,7 +72,7 @@
     "ts-node": "^10.9.2",
     "tsc-alias": "^1.8.10",
     "tsconfig-paths": "^4.2.0",
-    "typedoc": "^0.26.6",
+    "typedoc": "^0.26.7",
     "typescript": "^5.5.4"
   }
 }
