@@ -62,7 +62,7 @@ export class Monster {
     this.id = monsterId
     this.level = level
     if (this.level < 1 || this.level > 100)
-      throw new OutOfRangeError('level', this.level, 1, 100)
+      throw new OutOfRangeError('level', this.level, 1, 200)
     if (playerCount < 1 || playerCount > 4)
       throw new OutOfRangeError('playerCount', playerCount, 1, 4)
 

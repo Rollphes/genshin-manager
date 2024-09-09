@@ -161,6 +161,7 @@ export type AssocType =
   | 'ASSOC_TYPE_MONDSTADT'
   | 'ASSOC_TYPE_RANGER'
   | 'ASSOC_TYPE_SUMERU'
+  | 'ASSOC_TYPE_NATLAN'
 
 /**
  * Item type
