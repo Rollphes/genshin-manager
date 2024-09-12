@@ -86,8 +86,8 @@ export class Client extends AssetCacheManager<ClientEventMap, ClientEvents> {
       'CHT',
       'CHS',
     ],
-    defaultImageBaseURL: 'https://api.ambr.top/assets/UI',
-    defaultAudioBaseURL: 'https://api.ambr.top/assets/Audio',
+    defaultImageBaseURL: 'https://gi.yatta.top/assets/UI',
+    defaultAudioBaseURL: 'https://gi.yatta.top/assets/Audio',
     imageBaseURLByRegex: {
       'https://enka.network/ui': [
         /^UI_(EquipIcon|NameCardPic|RelicIcon|AvatarIcon|AvatarIcon_Side|NameCardIcon|Costume)_/,
@@ -98,10 +98,10 @@ export class Client extends AssetCacheManager<ClientEventMap, ClientEvents> {
         /^Eff_UI_Talent_/,
         /^UI_(TowerPic|TowerBlessing|GcgIcon|Gcg_Cardtable|Gcg_CardBack)_/,
       ],
-      'https://api.ambr.top/assets/UI/monster': [
+      'https://gi.yatta.top/assets/UI/monster': [
         /^UI_(MonsterIcon|AnimalIcon)_/,
       ],
-      'https://api.ambr.top/assets/UI/gcg': [/^UI_Gcg_CardFace_/],
+      'https://gi.yatta.top/assets/UI/gcg': [/^UI_Gcg_CardFace_/],
     },
     audioBaseURLByRegex: {},
     defaultLanguage: 'EN',
