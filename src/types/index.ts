@@ -27,12 +27,12 @@ export interface ClientOption {
   downloadLanguages: (keyof typeof TextMapLanguage)[]
   /**
    * default image base URL
-   * @default 'https://api.ambr.top/assets/UI'
+   * @default 'https://gi.yatta.top/assets/UI'
    */
   defaultImageBaseURL: string
   /**
    * default audio base URL
-   * @default 'https://api.ambr.top/assets/Audio'
+   * @default 'https://gi.yatta.top/assets/Audio'
    */
   defaultAudioBaseURL: string
   /**
@@ -49,10 +49,10 @@ export interface ClientOption {
    *      /^Eff_UI_Talent_/,
    *      /^UI_(TowerPic|TowerBlessing|GcgIcon|Gcg_Cardtable|Gcg_CardBack)_/,
    *    ],
-   *    'https://api.ambr.top/assets/UI/monster': [
+   *    'https://gi.yatta.top/assets/UI/monster': [
    *      /^UI_(MonsterIcon|AnimalIcon)_/,
    *    ],
-   *    'https://api.ambr.top/assets/UI/gcg': [/^UI_Gcg_CardFace_/],
+   *    'https://gi.yatta.top/assets/UI/gcg': [/^UI_Gcg_CardFace_/],
    *  },
    * ```
    */
