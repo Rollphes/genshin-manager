@@ -12,7 +12,7 @@ export interface ClientOption {
    * @default
    * ```ts
    * {
-   *   'user-agent': 'genshin-manager/x.x.x',
+   *   'user-agent': 'genshin-manager@x.x.x',
    * }
    * ```
    */
@@ -41,9 +41,10 @@ export interface ClientOption {
    * ```ts
    * {
    *    'https://enka.network/ui': [
-   *      /^UI_(EquipIcon|NameCardPic|RelicIcon|AvatarIcon|AvatarIcon_Side|NameCardIcon|Costume)_/,
+   *      /^UI_(EquipIcon|NameCardPic|RelicIcon|AvatarIcon|AvatarIcon_Side|NameCardIcon|Costume|Talent|Gacha_AvatarImg)_/,
    *      /^UI_AvatarIcon_(.+)_Card$/,
    *      /^UI_AvatarIcon_(.+)_Circle/,
+   *      /^Skill_/,
    *    ],
    *    'https://res.cloudinary.com/genshin/image/upload/sprites': [
    *      /^Eff_UI_Talent_/,

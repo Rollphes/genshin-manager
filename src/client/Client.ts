@@ -68,7 +68,7 @@ export class Client extends AssetCacheManager<ClientEventMap, ClientEvents> {
   private static readonly defaultOption: ClientOption = {
     fetchOption: {
       headers: {
-        'user-agent': `genshin-manager/${process.env.npm_package_version}`,
+        'user-agent': `genshin-manager@${process.env.npm_package_version}`,
       },
     },
     downloadLanguages: [
@@ -90,9 +90,10 @@ export class Client extends AssetCacheManager<ClientEventMap, ClientEvents> {
     defaultAudioBaseURL: 'https://gi.yatta.top/assets/Audio',
     imageBaseURLByRegex: {
       'https://enka.network/ui': [
-        /^UI_(EquipIcon|NameCardPic|RelicIcon|AvatarIcon|AvatarIcon_Side|NameCardIcon|Costume)_/,
+        /^UI_(EquipIcon|NameCardPic|RelicIcon|AvatarIcon|AvatarIcon_Side|NameCardIcon|Costume|Talent|Gacha_AvatarImg)_/,
         /^UI_AvatarIcon_(.+)_Card$/,
         /^UI_AvatarIcon_(.+)_Circle/,
+        /^Skill_/,
       ],
       'https://res.cloudinary.com/genshin/image/upload/sprites': [
         /^Eff_UI_Talent_/,
