@@ -11,6 +11,17 @@ import { convertToUTC } from '@/utils/convertToUTC'
  */
 export class Notice {
   /**
+   * Date and time format options
+   */
+  private static dateTimeFormatOptions: Intl.DateTimeFormatOptions = {
+    year: 'numeric',
+    month: '2-digit',
+    day: '2-digit',
+    hour: '2-digit',
+    minute: '2-digit',
+  }
+
+  /**
    * Notice ID
    */
   public readonly id: number
@@ -110,20 +121,23 @@ export class Notice {
     const unescapedEnContent = unescape(enAnnContent.content)
     this._en$ = cheerio.load(unescapedEnContent)
 
-    const timeStrings = this.convertLocalDate(
-      this._en$('p')
-        .toArray()
-        .map((el) => this._en$(el).text())
-        .filter((str) => !/shop|reword|Shop|Reword/g.test(str))
-        .join('\n')
-        .split(/\n(?=〓)/g)
-        .find((text) => /〓.*?(Time|Duration|Wish).*?〓/g.test(text)) ?? '',
-    ).match(/\d{4}\/\d{2}\/\d{2} \d{2}:\d{2}/g)
+    let durationResult = ''
+    let nextElement = this.$(this.durationTitleElement).next()
+
+    while (nextElement.length && !nextElement.text().includes('〓')) {
+      if (!/shop|reword|Shop|Reword/g.test(nextElement.text()))
+        durationResult += `${nextElement.text()}\n`
+      nextElement = nextElement.next()
+    }
+
+    const timeStrings = this.convertLocalDate(durationResult.trim()).match(
+      /\d{4}\/\d{2}\/\d{2} \d{2}:\d{2}/g,
+    )
 
     if (
       timeStrings &&
       timeStrings?.length >= 2 &&
-      !(this.tag === 3 && this.$('td').toArray().length)
+      !(this.tag === 3 && !this.$(this.durationTitleElement).next().is('p'))
     ) {
       timeStrings.sort((a, b) => new Date(a).getTime() - new Date(b).getTime())
       this.eventStart = new Date(timeStrings[0])
@@ -152,10 +166,12 @@ export class Notice {
 
   /**
    * Get the duration of the event
-   * @description However, this method should only be used when `eventStart` or `eventEnd` cannot be obtained
    * @returns Event duration
    */
   public get eventDuration(): string | undefined {
+    if (this.eventStart && this.eventEnd)
+      return `${this.eventStart.toLocaleDateString('ja-JP', Notice.dateTimeFormatOptions)} ~ ${this.eventEnd.toLocaleDateString('ja-JP', Notice.dateTimeFormatOptions)}`
+
     if (this.tag === 2) {
       return this.convertLocalDate(
         this.$('td')
@@ -166,7 +182,8 @@ export class Notice {
           .replace('-', ' -'),
       )
     }
-    if (this.$('td').toArray().length) {
+
+    if (!this.$(this.durationTitleElement).next().is('p')) {
       const trFirst = this.$('tr').first()
       const tdList = this.$('td')
         .toArray()
@@ -194,39 +211,42 @@ export class Notice {
       }
     }
 
-    const textBlocks = this.$('p')
-      .map((i, el) => this.$(el).text())
-      .get()
-      .join('\n')
-      .split(/\n(?=〓)/g)
-    const enTextBlocks = this._en$('p')
-      .map((i, el) => this._en$(el).text())
-      .get()
-      .join('\n')
-      .split(/\n(?=〓)/g)
+    let durationResult = ''
+    let nextElement = this.$(this.durationTitleElement).next()
 
-    const index = enTextBlocks.findIndex((text) =>
-      /〓.*?(Time|Duration|Wish).*?〓/g.test(text),
-    )
-    if (index === -1) return
-    return this.convertLocalDate(textBlocks[index].replace(/〓.*?〓\s*\n/g, ''))
+    while (nextElement.length && !nextElement.text().includes('〓')) {
+      durationResult += `${nextElement.text()}\n`
+      nextElement = nextElement.next()
+    }
+
+    if (durationResult.trim() === '') return undefined
+
+    return this.convertLocalDate(durationResult.trim())
+  }
+
+  private get durationTitleElement(): cheerio.Element | undefined {
+    const durationTitleElementIndex = this._en$('p')
+      .toArray()
+      .findIndex((el) =>
+        /〓.*?(Time|Duration|Wish).*?〓/g.test(this._en$(el).text()),
+      )
+    if (durationTitleElementIndex === -1) return undefined
+    return this.$('p').toArray()[durationTitleElementIndex]
   }
 
   /**
    * Convert t tag to region time
+   * @warning t tags work fine when inserted with text() content because the original is \&gt; or \&lt;.
    * @param text Text
    * @returns Converted text
    */
   private convertLocalDate(text: string): string {
     return text
       .replace(/(?<=<t class="(t_lc|t_gl)".*?>)(.*?)(?=<\/t>)/g, ($1) =>
-        convertToUTC($1, this.region).toLocaleString('ja-JP', {
-          year: 'numeric',
-          month: '2-digit',
-          day: '2-digit',
-          hour: '2-digit',
-          minute: '2-digit',
-        }),
+        convertToUTC($1, this.region).toLocaleString(
+          'ja-JP',
+          Notice.dateTimeFormatOptions,
+        ),
       )
       .replace(/<t class="(t_lc|t_gl).*?">|<\/t>/g, '')
   }
