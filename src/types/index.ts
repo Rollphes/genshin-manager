@@ -41,10 +41,10 @@ export interface ClientOption {
    * ```ts
    * {
    *    'https://enka.network/ui': [
-   *      /^UI_(EquipIcon|NameCardPic|RelicIcon|AvatarIcon|AvatarIcon_Side|NameCardIcon|Costume|Talent|Gacha_AvatarImg)_/,
+   *      /^UI_(AvatarIcon_Side|Costume)_/,
    *      /^UI_AvatarIcon_(.+)_Card$/,
    *      /^UI_AvatarIcon_(.+)_Circle/,
-   *      /^Skill_/,
+   *      /^UI_NameCardPic_(.+)_Alpha/,,
    *    ],
    *    'https://res.cloudinary.com/genshin/image/upload/sprites': [
    *      /^Eff_UI_Talent_/,
@@ -54,6 +54,8 @@ export interface ClientOption {
    *      /^UI_(MonsterIcon|AnimalIcon)_/,
    *    ],
    *    'https://gi.yatta.top/assets/UI/gcg': [/^UI_Gcg_CardFace_/],
+   *    'https://gi.yatta.top/assets/UI/reliquary': [/^UI_RelicIcon_/],
+   *    'https://gi.yatta.top/assets/UI/namecard': [/^UI_NameCard/],
    *  },
    * ```
    */
