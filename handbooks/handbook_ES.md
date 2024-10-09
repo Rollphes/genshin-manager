@@ -1,4 +1,4 @@
-# GameVersion 5.0.0
+# GameVersion 5.1.0
 ## CharacterId
 ID:10000002 Name:Kamisato Ayaka<br>
 ID:10000003 Name:Jean<br>
@@ -89,6 +89,8 @@ ID:10000099 Name:Émilie<br>
 ID:10000100 Name:Kachina<br>
 ID:10000101 Name:Kinich<br>
 ID:10000102 Name:Mualani<br>
+ID:10000103 Name:Xilonen<br>
+ID:10000901 Name:Mavuika (prueba)<br>
 ## CostumeId
 ID:200200 Name:Lustre de la perfección<br>
 ID:200201 Name:Misiva de la florescencia<br>
@@ -198,6 +200,8 @@ ID:209900 Name:Verdor insólito<br>
 ID:210000 Name:Picos naranjas y rocas espiraladas<br>
 ID:210100 Name:Arte en ocho bits<br>
 ID:210200 Name:Peces voladores, olas de calor y caracolas<br>
+ID:210300 Name:Desfiladero oropuro<br>
+ID:290100 Name:Modelo predeterminado<br>
 ## SkillId
 ID:10024 Name:Ataque Normal: Estilo Kamisato - Elegancia<br>
 ID:10018 Name:Estilo Kamisato: Flor del hielo<br>
@@ -492,6 +496,12 @@ ID:11015 Name:Alabado sea el todopoderoso Señor de los Dragones<br>
 ID:30000 Name:Ataque Normal: Refrescamiento<br>
 ID:30002 Name:Escualosurf rompeolas<br>
 ID:30007 Name:Misil acuaexplosivo<br>
+ID:11031 Name:Ataque Normal: Cacería de Ehécatl<br>
+ID:11032 Name:Mezcla de la yohual<br>
+ID:11035 Name:¡Al ritmo del ocelote!<br>
+ID:10231 Name:Ataque Normal: Kung-fu pasta<br>
+ID:10232 Name:Ataque de Guoba<br>
+ID:10235 Name:Pyronado<br>
 ## InherentSkillId
 ID:221 Name:Supresión de lo impuro<br>
 ID:222 Name:Edicto helado<br>
@@ -778,6 +788,13 @@ ID:10221 Name:Peciglobo antitérmico de agua dulce<br>
 ID:10222 Name:¡La mejor guía de Natlan!<br>
 ID:10223 Name:Gracia de la noche: Control del oleaje<br>
 ID:10225 Name:¡La clave es seguir sonriendo!<br>
+ID:10321 Name:Eco de Netotiliztli<br>
+ID:10322 Name:Recubrimiento armado portátil<br>
+ID:10323 Name:Gracia de la noche: Bendición forjallamas<br>
+ID:10325 Name:Gira del Tepeilhuitl<br>
+ID:2321 Name:Fuego cruzado<br>
+ID:2322 Name:¡Cuidado, que pica!<br>
+ID:2323 Name:Chef de cocina<br>
 ## ConstellationId
 ID:21 Name:Cerezo de escarcha<br>
 ID:22 Name:Pasaje níveo<br>
@@ -1331,6 +1348,12 @@ ID:1023 Name:Surfeando en el mar de la alegría<br>
 ID:1024 Name:Tiburón devorapeciglobos<br>
 ID:1025 Name:¡Escualotablas de surf a la venta!<br>
 ID:1026 Name:Espíritu del Pueblo de los Manantiales<br>
+ID:1031 Name:Letargo vacacional<br>
+ID:1032 Name:Quinteto de Chiucue<br>
+ID:1033 Name:Bucle del tonalpohualli<br>
+ID:1034 Name:Trance de las suchitl<br>
+ID:1035 Name:Transición de Tlaltecuhtli<br>
+ID:1036 Name:Procesión de la noche perpetua<br>
 ## ArtifactId
 ID:20002 Name:Pluma del Principiante<br>
 ID:20004 Name:Flor del Principiante<br>
@@ -5217,6 +5240,7 @@ ID:11426 Name:Vado del Río Ceniciento<br>
 ID:11427 Name:Sable de la Dársena<br>
 ID:11428 Name:Espada Cruz de los Narcisos<br>
 ID:11429 Name:Espada Cruz de los Narcisos<br>
+ID:11430 Name:Hueso Recio<br>
 ID:11431 Name:Flauta de Ezpitzal<br>
 ID:11501 Name:Aquila Favonia<br>
 ID:11502 Name:Hoja Afilada Celestial<br>
@@ -5232,6 +5256,7 @@ ID:11512 Name:Clorofilo Refulgente<br>
 ID:11513 Name:Fulgor de las Aguas Calmas<br>
 ID:11514 Name:Cortatelones de Urakusai<br>
 ID:11515 Name:Expiadora<br>
+ID:11516 Name:Himno de las Cumbres<br>
 ID:12101 Name:Gran Espada del Guerrero<br>
 ID:12201 Name:Espada del Mercenario<br>
 ID:12301 Name:Sombra Férrea<br>
@@ -5260,6 +5285,7 @@ ID:12424 Name:Garrote del Diálogo<br>
 ID:12425 Name:Sombra de la Marea<br>
 ID:12426 Name:Superespada Mágica Suprema<br>
 ID:12427 Name:Motosierra Transportable<br>
+ID:12430 Name:Gancho del Triunfo<br>
 ID:12431 Name:Terragitador<br>
 ID:12501 Name:Orgullo Celestial<br>
 ID:12502 Name:Lápida del Lobo<br>
@@ -5294,6 +5320,7 @@ ID:13424 Name:Balada de los Fiordos<br>
 ID:13425 Name:Retribución de la Justicia<br>
 ID:13426 Name:Discusión de los Sabios del Desierto<br>
 ID:13427 Name:Taladradora de Prospección<br>
+ID:13430 Name:Púa Sustentamontañas<br>
 ID:13431 Name:Estela Iridiscente<br>
 ID:13501 Name:Báculo de Homa<br>
 ID:13502 Name:Púa Celestial<br>
@@ -5466,6 +5493,7 @@ ID:174 Name:Extracto jubiloso<br>
 ID:175 Name:Llave epopéyica<br>
 ID:176 Name:Moneda viajestelar<br>
 ID:177 Name:Reflexión materializada<br>
+ID:178 Name:Fiebre festiva<br>
 ID:201 Name:Protogema<br>
 ID:202 Name:Mora<br>
 ID:203 Name:Cristal génesis<br>
@@ -5726,9 +5754,11 @@ ID:3022 Name:Lisa<br>
 ID:4100 Name:Kachina<br>
 ID:4101 Name:Kinich<br>
 ID:4102 Name:Mualani<br>
+ID:4103 Name:Xilonen<br>
 ID:5100 Name:Stella Fortuna de Kachina<br>
 ID:5101 Name:Stella Fortuna de Kinich<br>
 ID:5102 Name:Stella Fortuna de Mualani<br>
+ID:5103 Name:Stella Fortuna de Xilonen<br>
 ID:100001 Name:Manzana<br>
 ID:100002 Name:Solsettia<br>
 ID:100003 Name:Pedazo de papel<br>
@@ -8048,7 +8078,7 @@ ID:108679 Name:Shawarma supremo<br>
 ID:108680 Name:Fricasé de pollo extraño<br>
 ID:108681 Name:Fricasé de pollo<br>
 ID:108682 Name:Fricasé de pollo delicioso<br>
-ID:108683 Name:Fragrante banquete de sabores<br>
+ID:108683 Name:Fragante banquete de sabores<br>
 ID:108684 Name:Helado abotargado extraño<br>
 ID:108685 Name:Helado abotargado<br>
 ID:108686 Name:Helado abotorgado delicioso<br>
@@ -8116,6 +8146,13 @@ ID:108750 Name:Pastelito de manzana delicioso<br>
 ID:108751 Name:Delicias de viaje extrañas<br>
 ID:108752 Name:Delicias de viaje<br>
 ID:108753 Name:Delicias de viaje deliciosas<br>
+ID:108754 Name:Anticuchos extraños<br>
+ID:108755 Name:Anticuchos<br>
+ID:108756 Name:Anticuchos deliciosos<br>
+ID:108757 Name:Xocoatl extraño<br>
+ID:108758 Name:Xocoatl<br>
+ID:108759 Name:Xocoatl delicioso<br>
+ID:108760 Name:Caramelos de leche afrutados<br>
 ID:109000 Name:Ingredientes<br>
 ID:109101 Name:Receta: brocheta de champiñones y pollo<br>
 ID:109102 Name:Receta: tostada del pescador<br>
@@ -8332,6 +8369,8 @@ ID:109596 Name:Receta: pan de frijoles con camarones fritos<br>
 ID:109597 Name:Receta: estofado de carne flameante<br>
 ID:109598 Name:Receta: pastelito de manzana<br>
 ID:109599 Name:Receta: delicias de viaje<br>
+ID:109600 Name:Receta: anticuchos<br>
+ID:109601 Name:Receta: xocoatl<br>
 ID:110000 Name:Objeto sintetizado<br>
 ID:110001 Name:Harina<br>
 ID:110002 Name:Crema batida<br>
@@ -8553,6 +8592,7 @@ ID:113062 Name:Veredicto negativo<br>
 ID:113063 Name:Piedra angular piroastral<br>
 ID:113064 Name:Sello de la bendición vinculante<br>
 ID:113065 Name:Flamigranada muy madura<br>
+ID:113066 Name:Núcleo fuentenigmático con grabados de oro<br>
 ID:114001 Name:Fragmento de azulejo de Decarabian<br>
 ID:114002 Name:Escombro de la ciudad de Decarabian<br>
 ID:114003 Name:Fragmento de epopeya de Decarabian<br>
@@ -9699,7 +9739,7 @@ ID:121021 Name:Carta dañada<br>
 ID:121022 Name:Paquete abollado<br>
 ID:121023 Name:Carta rasgada<br>
 ID:121024 Name:Paquete de Acat<br>
-ID:121025 Name:Carta de Chanka<br>
+ID:121025 Name:Carta de Chanca<br>
 ID:121026 Name:Paquete de Imix<br>
 ID:121027 Name:Carta de Tirda<br>
 ID:121028 Name:Mapa del primer jefe<br>
@@ -9740,11 +9780,17 @@ ID:121062 Name:Crónicas de Hanan Pacha (II)<br>
 ID:121063 Name:Crónicas de Hanan Pacha (III)<br>
 ID:121064 Name:La historia de Qoyllor y Ukuku<br>
 ID:121065 Name:El Gran Rey del Volcán y las Sombragujas<br>
+ID:121068 Name:Crónica del Peregrinaje<br>
+ID:121069 Name:<br>
+ID:121070 Name:Ejemplar viejo de «Téquil el audaz»<br>
+ID:121071 Name:Ejemplar completamente nuevo de «Téquil el audaz»<br>
 ID:121074 Name:Registro con caligrafía artística<br>
 ID:121075 Name:Registro de revisión y reparación<br>
 ID:121076 Name:Diario de un soldado de guardia<br>
 ID:121077 Name:Partitura incompleta<br>
 ID:121078 Name:Notas abandonadas en un campamento<br>
+ID:121085 Name:Perla de flogistabeja escarlata<br>
+ID:121119 Name:Imagen confiscada<br>
 ID:129001 Name:Lágrima estelar<br>
 ID:130001 Name:Semilla de flor de seda<br>
 ID:130002 Name:Semilla de flor dulce<br>
@@ -10301,11 +10347,15 @@ ID:210215 Name:Natlan - Retorno del fuego<br>
 ID:210216 Name:Logro - Señora de la Noche<br>
 ID:210217 Name:PB - Fuego primigenio<br>
 ID:210218 Name:Celebración - Dulce y crujiente<br>
+ID:210219 Name:Xilonen - Ritmo<br>
+ID:210220 Name:PB - Sabzeruz<br>
 ID:215001 Name:Estela: Caballera de Dandelion<br>
 ID:215002 Name:Estela: La Resurrección del Hielo<br>
 ID:215003 Name:Estela: La Estrella en Eclipse<br>
 ID:215004 Name:Estela: La Gata en los Aleros<br>
 ID:215005 Name:Estela: El Amanecer Oscuro<br>
+ID:215006 Name:Estela: El Vagabundo del Reino Mortal<br>
+ID:215007 Name:Estela: La Conductora del Trueno<br>
 ID:220001 Name:Roca de resonancia de anemóculus<br>
 ID:220002 Name:Roca de resonancia de geóculus<br>
 ID:220003 Name:Brújula buscatesoros Geo<br>
@@ -10501,6 +10551,10 @@ ID:318023 Name:Concierto improvisado<br>
 ID:318024 Name:Tiempo de ocio<br>
 ID:318025 Name:Negociando<br>
 ID:318026 Name:Apariencia elegante<br>
+ID:318027 Name:Actuación virtuosa<br>
+ID:318028 Name:Apariencia elegante<br>
+ID:318029 Name:Listo para atacar<br>
+ID:318030 Name:Prepárate para la batalla<br>
 ID:320001 Name:<br>
 ID:330000 Name:Ganyu<br>
 ID:330001 Name:Kaeya<br>
@@ -10600,6 +10654,9 @@ ID:330094 Name:Soldado Fatui - Senescal Cryo<br>
 ID:330095 Name:Fréminet<br>
 ID:330096 Name:Xianyun<br>
 ID:330097 Name:Hilichurl Errabundo Hydro<br>
+ID:330098 Name:Chiori<br>
+ID:330099 Name:Bardo del Abismo - Trueno púrpura<br>
+ID:330100 Name:Eremita Danzacróbata<br>
 ID:330500 Name:Corazón indiviso<br>
 ID:330501 Name:Espada de sangre fría<br>
 ID:330502 Name:Respiración inalterable<br>
@@ -10698,6 +10755,9 @@ ID:330594 Name:Estoque flujoescarcha<br>
 ID:330595 Name:Resolución del alba<br>
 ID:330596 Name:Custodia de las nubes<br>
 ID:330597 Name:Slime Hydro escolta<br>
+ID:330598 Name:Tintura polícroma<br>
+ID:330599 Name:Trueno estentóreo<br>
+ID:330600 Name:Mordisco serpentino<br>
 ID:331000 Name:Guía Mágica<br>
 ID:331001 Name:Memorias de Sacrificios<br>
 ID:331002 Name:Pergamino Celestial<br>
@@ -10785,6 +10845,9 @@ ID:331083 Name:Triunfo del Gladiador<br>
 ID:331084 Name:Raya Depredadora cromática<br>
 ID:331085 Name:Yumkasaurio<br>
 ID:331086 Name:Koholasaurio<br>
+ID:331087 Name:Motosierra Transportable<br>
+ID:331088 Name:Sombrero del Director<br>
+ID:331089 Name:Tepetlisaurio<br>
 ID:332000 Name:Puerto de Liyue<br>
 ID:332001 Name:Biblioteca de los Caballeros de Favonius<br>
 ID:332002 Name:Cámara de Jade<br>
@@ -10843,6 +10906,7 @@ ID:332054 Name:Kusava<br>
 ID:332055 Name:Serene<br>
 ID:332056 Name:Arena Sacrofuego<br>
 ID:332057 Name:Atea<br>
+ID:332058 Name:Escenario Tepetl<br>
 ID:333000 Name:Consonancia elemental: Hielo entrelazado<br>
 ID:333001 Name:Consonancia elemental: Hielo fragmentado<br>
 ID:333002 Name:Consonancia elemental: Agua entrelazada<br>
@@ -10921,6 +10985,8 @@ ID:333074 Name:“Prefiero perder mi propio dinero...”<br>
 ID:333075 Name:¡Tachán!<br>
 ID:333076 Name:Banquete sáurico<br>
 ID:333077 Name:Edicto de absolución<br>
+ID:333078 Name:Hora del té de Los Eremitas<br>
+ID:333079 Name:Sauriogalletas<br>
 ID:334000 Name:Ganyu<br>
 ID:334001 Name:Kaeya<br>
 ID:334002 Name:Chongyun<br>
@@ -11019,6 +11085,9 @@ ID:334094 Name:Soldado Fatui - Senescal Cryo<br>
 ID:334095 Name:Fréminet<br>
 ID:334096 Name:Xianyun<br>
 ID:334097 Name:Hilichurl Errabundo Hydro<br>
+ID:334098 Name:Chiori<br>
+ID:334099 Name:Bardo del Abismo - Trueno púrpura<br>
+ID:334100 Name:Eremita Danzacróbata<br>
 ID:334500 Name:Corazón indiviso<br>
 ID:334501 Name:Espada de sangre fría<br>
 ID:334502 Name:Respiración inalterable<br>
@@ -11117,6 +11186,9 @@ ID:334594 Name:Estoque flujoescarcha<br>
 ID:334595 Name:Resolución del alba<br>
 ID:334596 Name:Custodia de las nubes<br>
 ID:334597 Name:Slime Hydro escolta<br>
+ID:334598 Name:Tintura polícroma<br>
+ID:334599 Name:Trueno estentóreo<br>
+ID:334600 Name:Mordisco serpentino<br>
 ID:335000 Name:Guía Mágica<br>
 ID:335001 Name:Memorias de Sacrificios<br>
 ID:335002 Name:Pergamino Celestial<br>
@@ -11204,6 +11276,9 @@ ID:335083 Name:Triunfo del Gladiador<br>
 ID:335084 Name:Raya Depredadora cromática<br>
 ID:335085 Name:Yumkasaurio<br>
 ID:335086 Name:Koholasaurio<br>
+ID:335087 Name:Motosierra Transportable<br>
+ID:335088 Name:Sombrero del Director<br>
+ID:335089 Name:Tepetlisaurio<br>
 ID:336000 Name:Puerto de Liyue<br>
 ID:336001 Name:Biblioteca de los Caballeros de Favonius<br>
 ID:336002 Name:Cámara de Jade<br>
@@ -11262,6 +11337,7 @@ ID:336054 Name:Kusava<br>
 ID:336055 Name:Serene<br>
 ID:336056 Name:Arena Sacrofuego<br>
 ID:336057 Name:Atea<br>
+ID:336058 Name:Escenario Tepetl<br>
 ID:337000 Name:Consonancia elemental: Hielo entrelazado<br>
 ID:337001 Name:Consonancia elemental: Hielo fragmentado<br>
 ID:337002 Name:Consonancia elemental: Agua entrelazada<br>
@@ -11340,6 +11416,8 @@ ID:337074 Name:“Prefiero perder mi propio dinero...”<br>
 ID:337075 Name:¡Tachán!<br>
 ID:337076 Name:Banquete sáurico<br>
 ID:337077 Name:Edicto de absolución<br>
+ID:337078 Name:Hora del té de Los Eremitas<br>
+ID:337079 Name:Sauriogalletas<br>
 ID:339000 Name:Origen<br>
 ID:339001 Name:Mondstadt<br>
 ID:339002 Name:Liyue<br>
@@ -11368,6 +11446,7 @@ ID:339028 Name:La Sima: cristal azul<br>
 ID:339029 Name:Fonta<br>
 ID:339030 Name:La Sima: corona de oro<br>
 ID:339031 Name:Natlan<br>
+ID:339032 Name:Enkanomiya: Noche infinita<br>
 ID:339500 Name:Mondstadt<br>
 ID:339501 Name:Liyue<br>
 ID:339502 Name:Inazuma<br>
@@ -11563,6 +11642,9 @@ ID:381110 Name:Mesita de noche de madera radiante: Convalecencia<br>
 ID:381111 Name:Cómoda compartimentada de madera de tamarisco<br>
 ID:381112 Name:Estantería para cerámica de madera de tamarisco<br>
 ID:381113 Name:Armario de madera de malvavisco: Versión pesada<br>
+ID:381114 Name:Distribución por niveles del mercado<br>
+ID:381115 Name:Tejido bordado del mercado<br>
+ID:381116 Name:Estantería de madera de duraznococotero: Apoyo simétrico<br>
 ID:381201 Name:Estantería de biblioteca de dos pisos<br>
 ID:381202 Name:Estantería exquisita de liquidámbar<br>
 ID:381203 Name:Estantería económica de liquidámbar<br>
@@ -11615,6 +11697,10 @@ ID:381332 Name:Momento de relax en la central<br>
 ID:381333 Name:El placer de los encuentros cotidianos<br>
 ID:381334 Name:Mesa larga del Taller de Té: Nostalgia<br>
 ID:381335 Name:Utensilio del Taller de Té: Revisión de calité<br>
+ID:381336 Name:Escudo redondo monópodo<br>
+ID:381337 Name:Escudo de torreta cuadrúpedo<br>
+ID:381338 Name:Silencioso sin nombre<br>
+ID:381339 Name:Incontables servicios<br>
 ID:381401 Name:Cama baja suave como la brisa<br>
 ID:381402 Name:Cama sueños de nubes<br>
 ID:381403 Name:Cama de madera onírica: Sueños de cerezo<br>
@@ -11655,6 +11741,9 @@ ID:382122 Name:Butaca de madera de malvavisco: Protocolo de asistencia<br>
 ID:382123 Name:Silla con respaldo de madera de tilo silvestre: Asiento rígido<br>
 ID:382124 Name:Descanso momentáneo en la central<br>
 ID:382125 Name:Banco del Taller de Té: Asiento sencillo<br>
+ID:382126 Name:Silla con respaldo de la Arena: Banquete ardiente<br>
+ID:382127 Name:Banco curvado de la Arena<br>
+ID:382128 Name:Taburete redondo de la Arena: Comida rápida<br>
 ID:382201 Name:Chimenea de piedra del norte<br>
 ID:382202 Name:Biombo de pino: Velas ondulantes<br>
 ID:382203 Name:Pantalla de madera noble: Niebla matinal en Jueyun<br>
@@ -11713,6 +11802,9 @@ ID:382262 Name:Utensilio del Taller de Té: Almacenamiento en seco<br>
 ID:382263 Name:Utensilio del Taller de Té: Clara vista<br>
 ID:382265 Name:Valla de hotel: Brotes de menta<br>
 ID:382266 Name:Valla de hotel: Vista de arco diáfana<br>
+ID:382268 Name:Verduras frescas del mercado<br>
+ID:382269 Name:Itinerante<br>
+ID:382270 Name:La distancia con el fuego<br>
 ID:382301 Name:Alfombra de Mondstadt: Ardor carmesí<br>
 ID:382302 Name:Alfombra de Mondstadt: Búsqueda incansable<br>
 ID:382303 Name:Alfombra de posada: Como en casa<br>
@@ -11729,6 +11821,10 @@ ID:382313 Name:Alfombra de bistró: En términos de igualdad<br>
 ID:382314 Name:Alfombra de bistró: Bañado por la brisa<br>
 ID:382315 Name:Alfombra de Fontaine: Plana y cuadrada<br>
 ID:382316 Name:Resplandor apagado<br>
+ID:382318 Name:Alfombra de la lasitud: Descargar<br>
+ID:382401 Name:Jarrón colorido: Nacido de las llamas<br>
+ID:382402 Name:Figura bípeda: Tambaleante<br>
+ID:382403 Name:Figura cuadrúpeda: Estable<br>
 ID:383101 Name:Lámpara portátil inapagable<br>
 ID:383102 Name:Lámpara de pie de avellano del Pabellón Liuli<br>
 ID:383103 Name:Linterna Tianyuan: Brillo fragante<br>
@@ -11741,6 +11837,8 @@ ID:383110 Name:Fulgor del incursionista<br>
 ID:383111 Name:Veladora del oyente<br>
 ID:383112 Name:Aleación refulgente<br>
 ID:383113 Name:Lámpara sencilla: Materiales locales<br>
+ID:383114 Name:Lámpara de mesa de flogisto: Abundancia<br>
+ID:383115 Name:Lámpara de suelo de flogisto: Conveniencia<br>
 ID:383201 Name:Arreglo floral: Tranquilidad celeste<br>
 ID:383202 Name:Maceta: Brisa cristalina<br>
 ID:383203 Name:Arreglo floral: Aurora floreciente<br>
@@ -11796,12 +11894,22 @@ ID:383360 Name:Modelo de mecanismo: Lógica aparente<br>
 ID:383361 Name:Soporte para notas universal<br>
 ID:383401 Name:Utensilio del Taller de Té: Peso de hoja<br>
 ID:383402 Name:Té con cuerpo en tetera de arcilla<br>
+ID:383403 Name:Modelo de plato: Esencial<br>
+ID:383404 Name:Modelo de plato: Una elección sencilla<br>
+ID:383405 Name:Festejando en el mercado<br>
+ID:383406 Name:Rastreavientos<br>
+ID:383407 Name:Lanzamiento de jabalina inminente<br>
+ID:383408 Name:Hacia mayores alturas<br>
+ID:383409 Name:Navegando aguas tranquilas<br>
 ID:383501 Name:Desvelo del emplazamiento del saber<br>
 ID:383502 Name:Fragancia del resarcimiento<br>
 ID:383504 Name:El arte de preservar el agua<br>
 ID:383505 Name:Jarrón floral: Aguamarina<br>
 ID:383506 Name:Jarrón floral: Florecimiento albugíneo<br>
 ID:383507 Name:Jarrón floral: Reflejo del arte<br>
+ID:383508 Name:Ecos de la orilla<br>
+ID:383509 Name:Héroe imbatible<br>
+ID:383510 Name:Montaña de fuegos artificiales<br>
 ID:384101 Name:Paisaje: Casa de campo<br>
 ID:384102 Name:Paisaje: Nubes distantes<br>
 ID:384103 Name:Paisaje: Precipicio sin nombre<br>
@@ -11830,6 +11938,7 @@ ID:384216 Name:Muestras de un guarda forestal<br>
 ID:384217 Name:Escudo de combate de madera de tamarisco<br>
 ID:384218 Name:Lámpara interior: Ocaso marino<br>
 ID:384219 Name:Mecaluminaria: Contemplación nocturna<br>
+ID:384220 Name:Lámpara de pared de flogisto: Guía<br>
 ID:384501 Name:Momento inolvidable<br>
 ID:390101 Name:Cabaña de paja<br>
 ID:390102 Name:Puesto de paja<br>
@@ -12799,6 +12908,14 @@ ID:22110301 Name:Protofisurador Sobrecrecido Gigante<br>
 ID:22110302 Name:Protofisurador Sobrecrecido Gigante<br>
 ID:22110402 Name:Protofisurador Sobrecrecido<br>
 ID:22110403 Name:Protofisurador Sobrecrecido<br>
+ID:22120201 Name:Licopodio Abismático<br>
+ID:22120301 Name:Guardián de las Ruinas Abismático<br>
+ID:22120401 Name:Hilichurl Errabundo Anemo Abismático<br>
+ID:22120501 Name:Autómata Fuentenigma Abismático - Rastreador<br>
+ID:22120601 Name:Mitachurl con Hacha Electro Abismático<br>
+ID:22120701 Name:Tepetlisaurio Abismático<br>
+ID:22120801 Name:Koholasaurio Abismático<br>
+ID:22120901 Name:Yumkasaurio Abismático<br>
 ID:23010101 Name:Soldado Fatui - Guardia con Cañón Cryo<br>
 ID:23010201 Name:Soldado Fatui - Guardia con Cañón Hydro<br>
 ID:23010301 Name:Soldado Fatui - Electromartillador de Vanguardia<br>
@@ -12965,6 +13082,7 @@ ID:24070301 Name:Suite Criocéfiro<br>
 ID:24080101 Name:Generador de Campo Experimental<br>
 ID:24080102 Name:Generador de Campo Experimental<br>
 ID:24090101 Name:Autómata Fuentenigma - Rastreador<br>
+ID:24090201 Name:Autómata Fuentenigma - Máquina configuracional<br>
 ID:24810101 Name:Pirotorreta Básica<br>
 ID:24810190 Name:Pirotorreta Básica<br>
 ID:24810191 Name:Pirotorreta Básica<br>
@@ -13615,8 +13733,8 @@ ID:28021101 Name:<br>
 ID:28021102 Name:<br>
 ID:28021103 Name:<br>
 ID:28021201 Name:<br>
-ID:28021301 Name:<br>
-ID:28021302 Name:<br>
+ID:28021301 Name:Tortuga ondulada aguerrida<br>
+ID:28021302 Name:Tortuga ondulada aguerrida<br>
 ID:28022001 Name:<br>
 ID:28022002 Name:<br>
 ID:28022101 Name:<br>
@@ -13821,6 +13939,7 @@ ID:28050512 Name:<br>
 ID:28050701 Name:<br>
 ID:28050801 Name:<br>
 ID:28050802 Name:<br>
+ID:28050803 Name:<br>
 ID:28050901 Name:<br>
 ID:28050902 Name:<br>
 ID:28050903 Name:<br>
@@ -14094,6 +14213,10 @@ ID:31020290 Name:Mitachurl con Hacha de Fuego<br>
 ID:31030190 Name:Samachurl Hydro<br>
 ID:31040101 Name:Hilichurl Errabundo Anemo<br>
 ID:32110201 Name:Protofisurador Quebrantarrocas<br>
+ID:33010301 Name:Soldado Fatui - Electromartillador de Vanguardia<br>
+ID:33010401 Name:Soldado Fatui - Guerrillero Geo<br>
+ID:33010501 Name:Soldado Fatui - Boxeador Anemo de Vanguardia<br>
+ID:33010601 Name:Soldado Fatui - Guerrillero con Cañón Pyro<br>
 ID:34010190 Name:Guardián de las Ruinas<br>
 ID:34060101 Name:Mecarrastreador - Ousía<br>
 ID:34060102 Name:Mecarrastreador - Ousía<br>
@@ -14118,12 +14241,15 @@ ID:35010390 Name:Ladrón de Tesoros - Maestro de Pociones Pyro<br>
 ID:35010602 Name:Ladrón de Tesoros - Maestro de Pociones Cryo<br>
 ID:35020201 Name:Ladrón de Tesoros - Ballestero<br>
 ID:35020202 Name:Ladrón de Tesoros - Ballestero<br>
+ID:35020203 Name:Ladrón de Tesoros - Ballestero<br>
 ID:35040101 Name:Ladrón de Tesoros - Jefa<br>
 ID:35040102 Name:Ladrón de Tesoros - Jefa<br>
+ID:35040103 Name:Ladrón de Tesoros - Jefa<br>
 ID:35060101 Name:Ladrón de Tesoros - Boxeador<br>
 ID:35060102 Name:Ladrón de Tesoros - Boxeador<br>
 ID:35060103 Name:Ladrón de Tesoros - Boxeador<br>
 ID:35070101 Name:Ladrón de Tesoros - Aplastador<br>
+ID:35070102 Name:Ladrón de Tesoros - Aplastador<br>
 ID:35080390 Name:Nobushi - Astucia<br>
 ID:35100190 Name:Samurái Kairagi - Rayo danzarín<br>
 ID:35100290 Name:Samurái Kairagi - Amenaza ígnea<br>
@@ -14136,6 +14262,7 @@ ID:35210101 Name:Eremita Hachera<br>
 ID:35210102 Name:Eremita Hachera<br>
 ID:35210103 Name:Eremita Hachera<br>
 ID:35210104 Name:Eremita Hachera<br>
+ID:35210105 Name:Eremita Hachera<br>
 ID:35210201 Name:Eremita Ballestero<br>
 ID:35210202 Name:Eremita Ballestero<br>
 ID:35210203 Name:Eremita Ballestero<br>
@@ -14143,6 +14270,7 @@ ID:35210301 Name:Eremita Alabardero<br>
 ID:35210302 Name:Eremita Alabardero<br>
 ID:35210303 Name:Eremita Alabardero<br>
 ID:35210304 Name:Eremita Alabardero<br>
+ID:35210305 Name:Eremita Alabardero<br>
 ID:35210401 Name:Eremita Rompefilas<br>
 ID:35210402 Name:Eremita Rompefilas<br>
 ID:35210501 Name:Eremita Espadachín<br>
@@ -14153,11 +14281,40 @@ ID:35310290 Name:Eremita Congelafuegos<br>
 ID:35310301 Name:Eremita Invocatruenos<br>
 ID:35410101 Name:Eremita Hechizarrocas<br>
 ID:35410201 Name:Eremita Cazavientos<br>
+ID:35501102 Name:Guerrera Forjarenas - Interrogadora<br>
 ID:35501201 Name:Guerrera Rauda - Buscapistas<br>
+ID:35501202 Name:Guerrera Rauda - Buscapistas<br>
 ID:35502201 Name:Guerrero Flujoafilado - Serrasálmido<br>
+ID:35502202 Name:Guerrero Flujoafilado - Serrasálmido<br>
+ID:35502203 Name:Guerrero Flujoafilado - Serrasálmido<br>
+ID:35503101 Name:Guerrero Raudo - Mensajero Filopesado<br>
 ID:35504101 Name:Guerrero Forjarenas - Quebrantaescudos<br>
+ID:35504102 Name:Guerrero Forjarenas - Quebrantaescudos<br>
+ID:35505102 Name:Guerrero Forjarenas - Lanzajabalinas<br>
+ID:35510101 Name:Soldado Tepetlisaurio - Aplastacristales<br>
+ID:35510301 Name:Soldado Yumkasaurio - Aserrahojas<br>
 ID:35510401 Name:Soldado Yumkasaurio - Artillera celeste<br>
 ID:35510501 Name:Soldado Koholasaurio - Caminaolas<br>
+ID:35510502 Name:Soldado Koholasaurio - Caminaolas<br>
+ID:35550201 Name:<br>
+ID:35550202 Name:<br>
+ID:35550203 Name:<br>
+ID:35550204 Name:<br>
+ID:35550205 Name:<br>
+ID:35550206 Name:<br>
+ID:35550207 Name:<br>
+ID:35550208 Name:<br>
+ID:35550301 Name:<br>
+ID:35550302 Name:<br>
+ID:35550303 Name:<br>
+ID:35550401 Name:<br>
+ID:35550402 Name:<br>
+ID:35550403 Name:<br>
+ID:35550501 Name:<br>
+ID:35550502 Name:<br>
+ID:35550503 Name:<br>
+ID:35550601 Name:<br>
+ID:35550701 Name:Jefe de la tribu de los Tepetlisaurios<br>
 ID:36030190 Name:Cría de Dragarto Geo<br>
 ID:36050601 Name:Dragarto de las Profundidades Primordial<br>
 ID:36060190 Name:Cicin Electro<br>
@@ -14196,8 +14353,13 @@ ID:36091092 Name:Flexihongo Electro<br>
 ID:36160390 Name:Caballito Burbumarino Macho<br>
 ID:36200201 Name:Tepetlisaurio<br>
 ID:36200202 Name:Tepetlisaurio<br>
+ID:36200203 Name:Tepetlisaurio<br>
 ID:36210201 Name:Koholasaurio<br>
+ID:36210202 Name:Koholasaurio<br>
+ID:36220101 Name:Cría de Yumkasaurio<br>
 ID:36220201 Name:Yumkasaurio<br>
+ID:36220202 Name:Yumkasaurio<br>
+ID:38022001 Name:<br>
 ID:38050590 Name:<br>
 ID:38050591 Name:<br>
 ID:38060502 Name:<br>
