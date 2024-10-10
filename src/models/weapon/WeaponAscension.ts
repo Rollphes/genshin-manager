@@ -42,6 +42,10 @@ export class WeaponAscension {
    */
   public readonly unlockMaxLevel: number
 
+  static {
+    Client._addExcelBinOutputKeyFromClassPrototype(this.prototype)
+  }
+
   /**
    * Create a weapon ascension
    * @param weaponId Weapon ID

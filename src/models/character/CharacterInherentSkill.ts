@@ -30,6 +30,10 @@ export class CharacterInherentSkill {
    */
   public readonly addProps: StatProperty[]
 
+  static {
+    Client._addExcelBinOutputKeyFromClassPrototype(this.prototype)
+  }
+
   /**
    * Create a Inherent Skill
    * @param inherentSkillId Inherent Skill ID
@@ -42,9 +46,9 @@ export class CharacterInherentSkill {
       proudSkillGroupId,
     )[1] as JsonObject
     this.name =
-      Client.cachedTextMap.get(String(proudSkillJson.nameTextMapHash)) || ''
+      Client._cachedTextMap.get(String(proudSkillJson.nameTextMapHash)) || ''
     this.description =
-      Client.cachedTextMap.get(String(proudSkillJson.descTextMapHash)) || ''
+      Client._cachedTextMap.get(String(proudSkillJson.descTextMapHash)) || ''
     this.icon = new ImageAssets(proudSkillJson.icon as string)
     this.addProps = (proudSkillJson.addProps as JsonObject[])
       .map((addProp) =>

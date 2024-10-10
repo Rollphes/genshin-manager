@@ -24,6 +24,10 @@ export class SetBonus {
    */
   public readonly fourSetBonus: Artifact[]
 
+  static {
+    Client._addExcelBinOutputKeyFromClassPrototype(this.prototype)
+  }
+
   /**
    * Create a SetBonus
    * @param artifacts Artifacts equipped by the character

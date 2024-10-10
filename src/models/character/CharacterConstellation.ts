@@ -25,6 +25,10 @@ export class CharacterConstellation {
    */
   public readonly locked: boolean
 
+  static {
+    Client._addExcelBinOutputKeyFromClassPrototype(this.prototype)
+  }
+
   /**
    * Create a Constellation
    * @param constellationId Constellation ID
@@ -38,9 +42,9 @@ export class CharacterConstellation {
       this.id,
     )
     this.name =
-      Client.cachedTextMap.get(String(talentJson.nameTextMapHash)) || ''
+      Client._cachedTextMap.get(String(talentJson.nameTextMapHash)) || ''
     this.description =
-      Client.cachedTextMap.get(String(talentJson.descTextMapHash)) || ''
+      Client._cachedTextMap.get(String(talentJson.descTextMapHash)) || ''
     this.icon = new ImageAssets(talentJson.icon as string)
   }
 

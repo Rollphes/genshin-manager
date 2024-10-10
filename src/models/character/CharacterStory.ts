@@ -25,6 +25,10 @@ export class CharacterStory {
    */
   public readonly tips: string[]
 
+  static {
+    Client._addExcelBinOutputKeyFromClassPrototype(this.prototype)
+  }
+
   /**
    * Create a CharacterStories
    * @param fetterId Fetter ID in the story
@@ -37,21 +41,23 @@ export class CharacterStory {
     )
     this.characterId = fetterStoryJson.avatarId as number
     this.title =
-      Client.cachedTextMap.get(String(fetterStoryJson.storyTitleTextMapHash)) ||
-      Client.cachedTextMap.get(
+      Client._cachedTextMap.get(
+        String(fetterStoryJson.storyTitleTextMapHash),
+      ) ||
+      Client._cachedTextMap.get(
         String(fetterStoryJson.storyTitle2TextMapHash),
       ) ||
       ''
     this.content =
-      Client.cachedTextMap.get(
+      Client._cachedTextMap.get(
         String(fetterStoryJson.storyContextTextMapHash),
       ) ||
-      Client.cachedTextMap.get(
+      Client._cachedTextMap.get(
         String(fetterStoryJson.storyContext2TextMapHash),
       ) ||
       ''
     this.tips = (fetterStoryJson.tips as number[])
-      .map((tip) => Client.cachedTextMap.get(String(tip)))
+      .map((tip) => Client._cachedTextMap.get(String(tip)))
       .filter((tip): tip is string => tip !== undefined)
   }
 

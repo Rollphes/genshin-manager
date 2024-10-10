@@ -52,6 +52,10 @@ export class Monster {
    */
   public readonly codexType: CodexType | undefined
 
+  static {
+    Client._addExcelBinOutputKeyFromClassPrototype(this.prototype)
+  }
+
   /**
    * Create a Monster
    * @param monsterId monster ID
@@ -72,7 +76,7 @@ export class Monster {
     )
     this.internalName = monsterJson.monsterName as string
     this.name =
-      Client.cachedTextMap.get(String(monsterJson.nameTextMapHash)) || ''
+      Client._cachedTextMap.get(String(monsterJson.nameTextMapHash)) || ''
     const describeId = +String(this.id).slice(1, 6)
     if (
       Object.keys(
@@ -84,8 +88,9 @@ export class Monster {
         describeId,
       )
       this.describeName =
-        Client.cachedTextMap.get(String(monsterDescribeJson.nameTextMapHash)) ||
-        ''
+        Client._cachedTextMap.get(
+          String(monsterDescribeJson.nameTextMapHash),
+        ) || ''
       this.icon = new ImageAssets(monsterDescribeJson.icon as string)
     }
 
@@ -100,7 +105,7 @@ export class Monster {
         monsterJson.describeId as number,
       )
       this.description =
-        Client.cachedTextMap.get(String(animalCodexJson.descTextMapHash)) || ''
+        Client._cachedTextMap.get(String(animalCodexJson.descTextMapHash)) || ''
       this.codexType =
         (animalCodexJson.subType as CodexType | undefined) ??
         'CODEX_SUBTYPE_ELEMENT_LIFE'

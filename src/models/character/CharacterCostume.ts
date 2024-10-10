@@ -42,6 +42,10 @@ export class CharacterCostume {
    */
   public readonly card: ImageAssets
 
+  static {
+    Client._addExcelBinOutputKeyFromClassPrototype(this.prototype)
+  }
+
   /**
    * Create a Costume
    * @param costumeId Costume ID
@@ -59,9 +63,9 @@ export class CharacterCostume {
     )
 
     this.name =
-      Client.cachedTextMap.get(String(costumeJson.nameTextMapHash)) || ''
+      Client._cachedTextMap.get(String(costumeJson.nameTextMapHash)) || ''
     this.description =
-      Client.cachedTextMap.get(String(costumeJson.descTextMapHash)) || ''
+      Client._cachedTextMap.get(String(costumeJson.descTextMapHash)) || ''
     this.quality = (costumeJson.quality as number) || 0
     const sideIconName =
       costumeJson.quality && typeof avatarJson != 'undefined'

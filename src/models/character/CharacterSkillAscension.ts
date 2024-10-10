@@ -38,6 +38,10 @@ export class CharacterSkillAscension {
    */
   public readonly addProps: StatProperty[]
 
+  static {
+    Client._addExcelBinOutputKeyFromClassPrototype(this.prototype)
+  }
+
   /**
    * Create a character skill ascension
    * @param skillId Skill ID

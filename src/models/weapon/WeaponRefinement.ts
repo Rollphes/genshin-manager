@@ -29,6 +29,10 @@ export class WeaponRefinement {
    */
   public readonly addProps: StatProperty[]
 
+  static {
+    Client._addExcelBinOutputKeyFromClassPrototype(this.prototype)
+  }
+
   /**
    * Create a weapon refinement
    * @param weaponId Weapon ID
@@ -57,9 +61,9 @@ export class WeaponRefinement {
         skillAffix,
       )
       this.skillName =
-        Client.cachedTextMap.get(String(equipAffixJson.nameTextMapHash)) || ''
+        Client._cachedTextMap.get(String(equipAffixJson.nameTextMapHash)) || ''
       this.skillDescription =
-        Client.cachedTextMap.get(String(equipAffixJson.descTextMapHash)) || ''
+        Client._cachedTextMap.get(String(equipAffixJson.descTextMapHash)) || ''
       this.addProps = (equipAffixJson.addProps as JsonObject[])
         .filter((addProp) => addProp.propType !== undefined)
         .map(

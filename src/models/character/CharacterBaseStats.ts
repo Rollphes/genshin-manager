@@ -31,6 +31,10 @@ export class CharacterBaseStats {
    */
   public readonly stats: StatProperty[]
 
+  static {
+    Client._addExcelBinOutputKeyFromClassPrototype(this.prototype)
+  }
+
   /**
    * Create a character's base stats
    * @param characterId Character ID

@@ -41,6 +41,10 @@ export class TowerSchedule {
    */
   public readonly buffDescriptions: string[]
 
+  static {
+    Client._addExcelBinOutputKeyFromClassPrototype(this.prototype)
+  }
+
   /**
    * Create a TowerSchedule
    * @param scheduleId Spiral Abyss Schedule ID
@@ -58,14 +62,15 @@ export class TowerSchedule {
       'os_cht',
     )
     this.description =
-      Client.cachedTextMap.get(String(towerScheduleJson.descTextMapHash)) || ''
+      Client._cachedTextMap.get(String(towerScheduleJson.descTextMapHash)) || ''
     this.icon = new ImageAssets(towerScheduleJson.icon as string)
     this.floors = (schedules[0].floorList as number[]).map(
       (floorId) => new TowerFloor(floorId),
     )
     this.buffName =
-      Client.cachedTextMap.get(String(towerScheduleJson.buffnameTextMapHash)) ||
-      ''
+      Client._cachedTextMap.get(
+        String(towerScheduleJson.buffnameTextMapHash),
+      ) || ''
 
     const dungeonLevelEntity = Client._getCachedExcelBinOutputByName(
       'DungeonLevelEntityConfigData',
@@ -77,7 +82,7 @@ export class TowerSchedule {
       )
       .map(
         (dungeonLevelEntityJson) =>
-          Client.cachedTextMap.get(
+          Client._cachedTextMap.get(
             String(dungeonLevelEntityJson.descTextMapHash),
           ) || '',
       )

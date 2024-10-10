@@ -38,6 +38,10 @@ export class CharacterSkill {
    */
   public readonly paramDescriptions: string[] = []
 
+  static {
+    Client._addExcelBinOutputKeyFromClassPrototype(this.prototype)
+  }
+
   /**
    * Create a Skill
    * @param skillId Skill ID
@@ -51,9 +55,9 @@ export class CharacterSkill {
       this.id,
     )
     this.name =
-      Client.cachedTextMap.get(String(skillJson.nameTextMapHash)) || ''
+      Client._cachedTextMap.get(String(skillJson.nameTextMapHash)) || ''
     this.description =
-      Client.cachedTextMap.get(String(skillJson.descTextMapHash)) || ''
+      Client._cachedTextMap.get(String(skillJson.descTextMapHash)) || ''
     this.icon = new ImageAssets(skillJson.skillIcon as string)
     this.extraLevel = extraLevel
     this.level = level + this.extraLevel
@@ -69,7 +73,7 @@ export class CharacterSkill {
     const params = proudSkillJson.paramList as number[]
     ;(proudSkillJson.paramDescList as number[]).forEach((paramDescHash) => {
       const paramDesc = (
-        Client.cachedTextMap.get(String(paramDescHash)) || ''
+        Client._cachedTextMap.get(String(paramDescHash)) || ''
       ).replace(/|/g, '')
       if (paramDesc === '') return
       this.paramDescriptions.push(

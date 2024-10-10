@@ -41,6 +41,10 @@ export class ProfilePicture {
    */
   public readonly icon: ImageAssets
 
+  static {
+    Client._addExcelBinOutputKeyFromClassPrototype(this.prototype)
+  }
+
   /**
    * Create a ProfilePicture
    * @param profilePictureId Profile picture ID

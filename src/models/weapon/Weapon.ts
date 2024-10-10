@@ -81,6 +81,10 @@ export class Weapon {
    */
   public readonly icon: ImageAssets
 
+  static {
+    Client._addExcelBinOutputKeyFromClassPrototype(this.prototype)
+  }
+
   /**
    * Create a Weapon
    * @param weaponId Weapon ID
@@ -130,9 +134,9 @@ export class Weapon {
     this.skillDescription = refinement.skillDescription
 
     this.name =
-      Client.cachedTextMap.get(String(weaponJson.nameTextMapHash)) || ''
+      Client._cachedTextMap.get(String(weaponJson.nameTextMapHash)) || ''
     this.description =
-      Client.cachedTextMap.get(String(weaponJson.descTextMapHash)) || ''
+      Client._cachedTextMap.get(String(weaponJson.descTextMapHash)) || ''
     this.type = weaponJson.weaponType as WeaponType
 
     this.rarity = weaponJson.rankLevel as number
