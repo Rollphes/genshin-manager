@@ -8,7 +8,7 @@ import { ClientOption } from '@/types'
 import { ReadableStreamWrapper } from '@/utils/ReadableStreamWrapper'
 
 /**
- * Class for compiling information about iamge
+ * Class for compiling information about image
  */
 export class ImageAssets {
   /**
