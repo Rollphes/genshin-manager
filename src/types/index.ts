@@ -44,7 +44,8 @@ export interface ClientOption {
    *      /^UI_(AvatarIcon_Side|Costume)_/,
    *      /^UI_AvatarIcon_(.+)_Card$/,
    *      /^UI_AvatarIcon_(.+)_Circle/,
-   *      /^UI_NameCardPic_(.+)_Alpha/,,
+   *      /^UI_NameCardPic_(.+)_Alpha/,
+   *      /^UI_EquipIcon_(.+)_Awaken/,
    *    ],
    *    'https://res.cloudinary.com/genshin/image/upload/sprites': [
    *      /^Eff_UI_Talent_/,
