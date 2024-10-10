@@ -117,7 +117,7 @@ export class ImageAssets {
       'UI_Gacha_AvatarImg_PlayerGirl.png',
     ].forEach((imgName) => {
       fs.copyFileSync(
-        path.resolve(option.assetCacheFolderPath, '..', 'img', imgName),
+        path.resolve(__dirname, '..', '..', '..', 'img', imgName),
         path.resolve(option.assetCacheFolderPath, 'Images', imgName),
       )
     })
