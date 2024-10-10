@@ -8,7 +8,7 @@ import { ClientOption } from '@/types'
 import { ReadableStreamWrapper } from '@/utils/ReadableStreamWrapper'
 
 /**
- * Class for compiling information about iamge
+ * Class for compiling information about image
  */
 export class ImageAssets {
   /**
@@ -117,7 +117,7 @@ export class ImageAssets {
       'UI_Gacha_AvatarImg_PlayerGirl.png',
     ].forEach((imgName) => {
       fs.copyFileSync(
-        path.resolve(option.assetCacheFolderPath, '..', 'img', imgName),
+        path.resolve(__dirname, '..', '..', '..', 'img', imgName),
         path.resolve(option.assetCacheFolderPath, 'Images', imgName),
       )
     })
