@@ -31,6 +31,10 @@ export class TowerLevel {
    */
   public readonly secondMonsters: Monster[]
 
+  static {
+    Client._addExcelBinOutputKeyFromClassPrototype(this.prototype)
+  }
+
   /**
    * Create a TowerLevel
    * @param levelId Spiral Abyss Level ID

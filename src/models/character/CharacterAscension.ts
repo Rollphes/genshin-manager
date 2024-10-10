@@ -42,6 +42,10 @@ export class CharacterAscension {
    */
   public readonly unlockMaxLevel: number
 
+  static {
+    Client._addExcelBinOutputKeyFromClassPrototype(this.prototype)
+  }
+
   /**
    * Create a character ascension
    * @param characterId Character ID

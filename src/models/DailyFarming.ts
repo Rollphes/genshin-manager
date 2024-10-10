@@ -64,6 +64,10 @@ export class DailyFarming {
    */
   public readonly domains: DomainData[] = []
 
+  static {
+    Client._addExcelBinOutputKeyFromClassPrototype(this.prototype)
+  }
+
   /**
    * Create a DailyFarming
    * @description 0: Sunday, 1: Monday, 2: Tuesday, 3: Wednesday, 4: Thursday, 5: Friday, 6: Saturday
@@ -108,11 +112,11 @@ export class DailyFarming {
 
         this.domains.push({
           name:
-            Client.cachedTextMap.get(
+            Client._cachedTextMap.get(
               String(manualTextJson.textMapContentTextMapHash),
             ) || '',
           description:
-            Client.cachedTextMap.get(String(domain.descTextMapHash)) || '',
+            Client._cachedTextMap.get(String(domain.descTextMapHash)) || '',
           materialIds: materialIds,
           characterInfos: this.getCharacterInfoByMaterialIds(materialIds),
           weaponIds: this.getWeaponIdsByMaterialIds(materialIds),

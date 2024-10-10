@@ -141,14 +141,22 @@ export class Client extends AssetCacheManager<ClientEventMap, ClientEvents> {
       mergeOption.autoFixExcelBin = false
     }
 
-    if (!module.parent) throw new Error('module.parent is undefined.')
     Object.values(ClientEvents).forEach((event) => {
       Client._assetEventEmitter.on(event, (version) => {
         this.emit(event, version)
       })
     })
-    super(mergeOption, module.parent.children)
+    super(mergeOption)
     this.option = mergeOption
+  }
+
+  /**
+   * Cached game version
+   * @returns Cached game version
+   * @example `5.1.0`
+   */
+  public get gameVersion(): string | undefined {
+    return AssetCacheManager.gameVersion
   }
 
   /**

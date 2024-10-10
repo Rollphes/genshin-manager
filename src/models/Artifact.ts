@@ -95,6 +95,10 @@ export class Artifact {
    */
   public readonly icon: ImageAssets
 
+  static {
+    Client._addExcelBinOutputKeyFromClassPrototype(this.prototype)
+  }
+
   /**
    * Create a Artifact
    * @param artifactId Artifact ID
@@ -116,9 +120,9 @@ export class Artifact {
     )
     this.type = artifactJson.equipType as ArtifactType
     this.name =
-      Client.cachedTextMap.get(String(artifactJson.nameTextMapHash)) || ''
+      Client._cachedTextMap.get(String(artifactJson.nameTextMapHash)) || ''
     this.description =
-      Client.cachedTextMap.get(String(artifactJson.descTextMapHash)) || ''
+      Client._cachedTextMap.get(String(artifactJson.descTextMapHash)) || ''
     this.rarity = artifactJson.rankLevel as number
     this.setId = artifactJson.setId as number | undefined
     const maxLevel = Artifact.maxLevelMap[this.rarity]
@@ -135,13 +139,13 @@ export class Artifact {
         equipAffixId,
       )
 
-      this.setName = Client.cachedTextMap.get(
+      this.setName = Client._cachedTextMap.get(
         String(equipAffixJson.nameTextMapHash),
       )
 
       if (Artifact.oneSetBonusIds.includes(this.setId)) {
         this.setDescriptions[1] = equipAffixJson
-          ? Client.cachedTextMap.get(String(equipAffixJson.descTextMapHash))
+          ? Client._cachedTextMap.get(String(equipAffixJson.descTextMapHash))
           : undefined
       } else {
         const equipAffixJsonBy2pc = Client._getJsonFromCachedExcelBinOutput(
@@ -149,7 +153,7 @@ export class Artifact {
           equipAffixId,
         )
         this.setDescriptions[2] = equipAffixJsonBy2pc
-          ? Client.cachedTextMap.get(
+          ? Client._cachedTextMap.get(
               String(equipAffixJsonBy2pc.descTextMapHash),
             )
           : undefined
@@ -159,7 +163,7 @@ export class Artifact {
           equipAffixId + 1,
         )
         this.setDescriptions[4] = equipAffixJsonBy4pc
-          ? Client.cachedTextMap.get(
+          ? Client._cachedTextMap.get(
               String(equipAffixJsonBy4pc.descTextMapHash),
             )
           : undefined

@@ -48,6 +48,10 @@ export class CharacterVoice {
    */
   public readonly audio: AudioAssets
 
+  static {
+    Client._addExcelBinOutputKeyFromClassPrototype(this.prototype)
+  }
+
   /**
    * Create a CharacterVoice
    * @param fetterId Fetter ID in the voice
@@ -65,14 +69,15 @@ export class CharacterVoice {
     this.characterId = fetterVoiceJson.avatarId as number
     this.type = fetterVoiceJson.type as number
     this.title =
-      Client.cachedTextMap.get(String(fetterVoiceJson.voiceTitleTextMapHash)) ||
-      ''
+      Client._cachedTextMap.get(
+        String(fetterVoiceJson.voiceTitleTextMapHash),
+      ) || ''
     this.content =
-      Client.cachedTextMap.get(
+      Client._cachedTextMap.get(
         String(fetterVoiceJson.voiceFileTextTextMapHash),
       ) || ''
     this.tips = (fetterVoiceJson.tips as number[])
-      .map((tip) => Client.cachedTextMap.get(String(tip)))
+      .map((tip) => Client._cachedTextMap.get(String(tip)))
       .filter((tip): tip is string => tip !== undefined)
     this.audio = new AudioAssets(
       fetterVoiceJson.voiceFile as string,

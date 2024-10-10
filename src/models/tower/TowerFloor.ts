@@ -31,6 +31,10 @@ export class TowerFloor {
    */
   public readonly buffDescriptions: string[]
 
+  static {
+    Client._addExcelBinOutputKeyFromClassPrototype(this.prototype)
+  }
+
   /**
    * Create a TowerFloor
    * @param floorId Spiral Abyss Floor ID
@@ -62,7 +66,7 @@ export class TowerFloor {
       )
       .map(
         (dungeonLevelEntityJson) =>
-          Client.cachedTextMap.get(
+          Client._cachedTextMap.get(
             String(dungeonLevelEntityJson.descTextMapHash),
           ) || '',
       )

@@ -1,8 +1,6 @@
 import * as cliProgress from 'cli-progress'
 import EventEmitter from 'events'
 import fs from 'fs'
-import * as fsPromises from 'fs/promises'
-import Module from 'module'
 import * as path from 'path'
 import { pipeline } from 'stream/promises'
 
@@ -10,7 +8,6 @@ import { AssetsNotFoundError } from '@/errors/AssetsNotFoundError'
 import { BodyNotFoundError } from '@/errors/BodyNotFoundError'
 import { TextMapFormatError } from '@/errors/TextMapFormatError'
 import { ClientOption, ExcelBinOutputs, TextMapLanguage } from '@/types'
-import { getClassNamesRecursive } from '@/utils/getClassNamesRecursive'
 import { JsonObject, JsonParser } from '@/utils/JsonParser'
 import { ObjectKeyDecoder } from '@/utils/ObjectKeyDecoder'
 import { EventMap, PromiseEventEmitter } from '@/utils/PromiseEventEmitter'
@@ -46,13 +43,15 @@ export abstract class AssetCacheManager<
 > extends PromiseEventEmitter<T, E> {
   /**
    * Cached text map
+   * @deprecated This property is deprecated because it is used to pass data to each class
    * @key Text hash
    * @value Text
    */
-  public static readonly cachedTextMap: Map<string, string> = new Map()
+  public static readonly _cachedTextMap: Map<string, string> = new Map()
 
   /**
    * Asset event emitter
+   * @deprecated This property is deprecated because it is used to pass data to each class
    */
   protected static readonly _assetEventEmitter: EventEmitter<AssetCacheManagerEventMap> =
     new EventEmitter<AssetCacheManagerEventMap>()
@@ -61,87 +60,6 @@ export abstract class AssetCacheManager<
     'https://gitlab.com/api/v4/projects/53216109/repository/commits?per_page=1'
   private static readonly GIT_REMOTE_RAW_BASE_URL: string =
     'https://gitlab.com/Dimbreath/AnimeGameData/-/raw'
-  /**
-   * Map to cache ExcelBinOutput for each class
-   */
-  private static readonly excelBinOutputMapUseModel: {
-    [className: string]: Array<keyof typeof ExcelBinOutputs>
-  } = {
-    CharacterInfo: [
-      'AvatarCostumeExcelConfigData',
-      'AvatarExcelConfigData',
-      'AvatarSkillDepotExcelConfigData',
-      'AvatarSkillExcelConfigData',
-      'ProudSkillExcelConfigData',
-    ],
-    CharacterBaseStats: [
-      'AvatarExcelConfigData',
-      'AvatarPromoteExcelConfigData',
-      'AvatarCurveExcelConfigData',
-    ],
-    CharacterStory: ['FetterStoryExcelConfigData'],
-    CharacterVoice: ['FettersExcelConfigData'],
-    CharacterAscension: [
-      'AvatarExcelConfigData',
-      'AvatarPromoteExcelConfigData',
-    ],
-    CharacterCostume: ['AvatarCostumeExcelConfigData', 'AvatarExcelConfigData'],
-    CharacterProfile: ['FetterInfoExcelConfigData'],
-    Material: ['MaterialExcelConfigData'],
-    CharacterConstellation: [
-      'AvatarTalentExcelConfigData',
-      'AvatarSkillDepotExcelConfigData',
-    ],
-    CharacterSkill: [
-      'AvatarSkillExcelConfigData',
-      'ProudSkillExcelConfigData',
-      'AvatarExcelConfigData',
-    ],
-    CharacterSkillAscension: [
-      'AvatarSkillExcelConfigData',
-      'ProudSkillExcelConfigData',
-    ],
-    CharacterInherentSkill: [
-      'ProudSkillExcelConfigData',
-      'AvatarSkillDepotExcelConfigData',
-      'AvatarExcelConfigData',
-    ],
-    StatProperty: ['ManualTextMapConfigData'],
-    Weapon: [
-      'WeaponExcelConfigData',
-      'WeaponPromoteExcelConfigData',
-      'WeaponCurveExcelConfigData',
-    ],
-    WeaponAscension: ['WeaponExcelConfigData', 'WeaponPromoteExcelConfigData'],
-    WeaponRefinement: ['WeaponExcelConfigData', 'EquipAffixExcelConfigData'],
-    Artifact: [
-      'ReliquaryExcelConfigData',
-      'ReliquarySetExcelConfigData',
-      'EquipAffixExcelConfigData',
-      'ReliquaryMainPropExcelConfigData',
-      'ReliquaryLevelExcelConfigData',
-      'ReliquaryAffixExcelConfigData',
-    ],
-    TowerSchedule: [
-      'TowerScheduleExcelConfigData',
-      'DungeonLevelEntityConfigData',
-    ],
-    TowerFloor: ['TowerFloorExcelConfigData', 'DungeonLevelEntityConfigData'],
-    TowerLevel: ['TowerLevelExcelConfigData'],
-    Monster: [
-      'MonsterExcelConfigData',
-      'MonsterDescribeExcelConfigData',
-      'MonsterCurveExcelConfigData',
-      'AnimalCodexExcelConfigData',
-    ],
-    ProfilePicture: [
-      'ProfilePictureExcelConfigData',
-      'AvatarCostumeExcelConfigData',
-      'AvatarExcelConfigData',
-      'MaterialExcelConfigData',
-    ],
-    DailyFarming: ['DungeonEntryExcelConfigData'],
-  }
   /**
    * Cached text map
    * @key ExcelBinOutput name
@@ -154,23 +72,22 @@ export abstract class AssetCacheManager<
 
   private static option: ClientOption
   private static nowCommitId: string
+
   private static commitFilePath: string
   private static excelBinOutputFolderPath: string
   private static textMapFolderPath: string
-  private static childrenModule: Module[]
+
   private static textHashes: Set<number> = new Set()
-  private static excelBinOutputKeys: Set<keyof typeof ExcelBinOutputs> =
+  private static useExcelBinOutputKeys: Set<keyof typeof ExcelBinOutputs> =
     new Set()
 
   /**
    * Create a AssetCacheManager
    * @param option Client option
-   * @param children Import modules
    */
-  constructor(option: ClientOption, children: Module[]) {
+  constructor(option: ClientOption) {
     super()
     AssetCacheManager.option = option
-    AssetCacheManager.childrenModule = children
     AssetCacheManager.commitFilePath = path.resolve(
       AssetCacheManager.option.assetCacheFolderPath,
       'commits.json',
@@ -189,6 +106,66 @@ export abstract class AssetCacheManager<
       AssetCacheManager.option.assetCacheFolderPath,
       'TextMap',
     )
+  }
+
+  /**
+   * Assets game version text
+   * @returns Assets game version text or undefined
+   */
+  protected static get gameVersion(): string | undefined {
+    const oldCommits = fs.existsSync(this.commitFilePath)
+      ? (JSON.parse(
+          fs.readFileSync(this.commitFilePath, {
+            encoding: 'utf8',
+          }),
+        ) as GitLabAPIResponse[])
+      : null
+    if (oldCommits) {
+      const versionTexts = /OSRELWin(\d+\.\d+\.\d+)_/.exec(oldCommits[0].title)
+      if (!versionTexts || versionTexts.length < 2) return '?.?.?'
+      return versionTexts[1]
+    } else {
+      return undefined
+    }
+  }
+
+  /**
+   * Create ExcelBinOutput Keys to cache
+   * @returns All ExcelBinOutput Keys
+   */
+  private static get excelBinOutputAllKeys(): Set<
+    keyof typeof ExcelBinOutputs
+  > {
+    return new Set(
+      Object.keys(ExcelBinOutputs).map(
+        (key) => key as keyof typeof ExcelBinOutputs,
+      ),
+    )
+  }
+
+  /**
+   * Add ExcelBinOutput Key from Class Prototype to AssetCacheManager
+   * @deprecated This method is deprecated because it is used to pass data to each class
+   * @param classPrototype Class Prototype
+   */
+  public static _addExcelBinOutputKeyFromClassPrototype(
+    classPrototype: unknown,
+  ): void {
+    const targetOrigin = classPrototype as Record<
+      string,
+      (...args: unknown[]) => unknown
+    >
+    const methodSource = targetOrigin.constructor.toString()
+
+    const keys = Object.keys(ExcelBinOutputs)
+    const matches = [
+      ...methodSource.matchAll(
+        new RegExp(`(?<=("|\`|'))(${keys.join('|')})(?=("|\`|'))`, 'g'),
+      ),
+    ]
+    matches
+      .map((match) => match[0] as keyof typeof ExcelBinOutputs)
+      .forEach((key) => this.useExcelBinOutputKeys.add(key))
   }
 
   /**
@@ -274,7 +251,7 @@ export abstract class AssetCacheManager<
         Object.keys(json).some((jsonKey) => {
           if (/TextMapHash/g.exec(jsonKey)) {
             const hash = json[jsonKey] as number
-            return this.cachedTextMap.get(String(hash)) === text
+            return this._cachedTextMap.get(String(hash)) === text
           }
         }),
       )
@@ -282,67 +259,15 @@ export abstract class AssetCacheManager<
   }
 
   /**
-   * Update cache
-   * @example
-   * ```ts
-   * await Client.updateCache()
-   * ```
-   */
-  protected static async updateCache(): Promise<void> {
-    if (this.option.showFetchCacheLog)
-      console.log('GenshinManager: Start update cache.')
-    const newVersionText = await this.checkGitUpdate()
-    const nowVersionText = await this.getNowAssetVersion()
-    if (!nowVersionText) return
-    if (newVersionText && this.option.autoFetchLatestAssetsByCron) {
-      this._assetEventEmitter.emit('BEGIN_UPDATE_ASSETS', newVersionText)
-      if (this.option.showFetchCacheLog) {
-        console.log(
-          `GenshinManager: New Asset found. Update Assets. GameVersion: ${newVersionText}`,
-        )
-      }
-      this.createExcelBinOutputKeys()
-      await this.fetchAssetFolder(
-        this.excelBinOutputFolderPath,
-        Object.values(ExcelBinOutputs),
-      )
-      // eslint-disable-next-line no-empty
-      while (await this.setExcelBinOutputToCache()) {}
-      this.createTextHashes()
-      const textMapFileNames = this.option.downloadLanguages.map(
-        (key) => TextMapLanguage[key],
-      )
-      await this.fetchAssetFolder(this.textMapFolderPath, textMapFileNames)
-      this._assetEventEmitter.emit('END_UPDATE_ASSETS', newVersionText)
-      if (this.option.showFetchCacheLog)
-        console.log('GenshinManager: Set cache.')
-    } else {
-      if (this.option.showFetchCacheLog) {
-        console.log(
-          `GenshinManager: No new Asset found. Set cache. GameVersion: ${nowVersionText}`,
-        )
-      }
-    }
-    this._assetEventEmitter.emit('BEGIN_UPDATE_CACHE', nowVersionText)
-    this.createExcelBinOutputKeys(this.childrenModule)
-    // eslint-disable-next-line no-empty
-    while (await this.setExcelBinOutputToCache()) {}
-    this.createTextHashes()
-    // eslint-disable-next-line no-empty
-    while (await this.setTextMapToCache(this.option.defaultLanguage)) {}
-    this._assetEventEmitter.emit('END_UPDATE_CACHE', nowVersionText)
-
-    if (this.option.showFetchCacheLog)
-      console.log('GenshinManager: Finish update cache and set cache.')
-  }
-
-  /**
    * Set excel bin output to cache
+   * @param keys ExcelBinOutput names
    * @returns Returns true if an error occurs
    */
-  protected static async setExcelBinOutputToCache(): Promise<boolean> {
+  protected static async setExcelBinOutputToCache(
+    keys: Set<keyof typeof ExcelBinOutputs>,
+  ): Promise<boolean> {
     this.cachedExcelBinOutput.clear()
-    for (const key of this.excelBinOutputKeys) {
+    for (const key of keys) {
       const filename = ExcelBinOutputs[key]
       const selectedExcelBinOutputPath = path.join(
         this.excelBinOutputFolderPath,
@@ -432,7 +357,7 @@ export abstract class AssetCacheManager<
     const eventEmitter = new TextMapEmptyWritable()
 
     eventEmitter.on('data', ({ key, value }) =>
-      this.cachedTextMap.set(key as string, value as string),
+      this._cachedTextMap.set(key as string, value as string),
     )
 
     const pipelinePromiseResult = await pipeline(
@@ -461,23 +386,73 @@ export abstract class AssetCacheManager<
   }
 
   /**
+   * Update cache
+   * @example
+   * ```ts
+   * await Client.updateCache()
+   * ```
+   */
+  protected static async updateCache(): Promise<void> {
+    if (this.option.showFetchCacheLog)
+      console.log('GenshinManager: Start update cache.')
+    const newVersionText = await this.checkGitUpdate()
+    if (!this.gameVersion) return
+    if (newVersionText && this.option.autoFetchLatestAssetsByCron) {
+      this._assetEventEmitter.emit('BEGIN_UPDATE_ASSETS', newVersionText)
+      if (this.option.showFetchCacheLog) {
+        console.log(
+          `GenshinManager: New Asset found. Update Assets. GameVersion: ${newVersionText}`,
+        )
+      }
+      await this.fetchAssetFolder(
+        this.excelBinOutputFolderPath,
+        Object.values(ExcelBinOutputs),
+      )
+      // eslint-disable-next-line no-empty
+      while (await this.setExcelBinOutputToCache(this.excelBinOutputAllKeys)) {}
+      this.createTextHashes()
+      const textMapFileNames = this.option.downloadLanguages.map(
+        (key) => TextMapLanguage[key],
+      )
+      await this.fetchAssetFolder(this.textMapFolderPath, textMapFileNames)
+      this._assetEventEmitter.emit('END_UPDATE_ASSETS', newVersionText)
+      if (this.option.showFetchCacheLog)
+        console.log('GenshinManager: Set cache.')
+    } else {
+      if (this.option.showFetchCacheLog) {
+        console.log(
+          `GenshinManager: No new Asset found. Set cache. GameVersion: ${this.gameVersion}`,
+        )
+      }
+    }
+    this._assetEventEmitter.emit('BEGIN_UPDATE_CACHE', this.gameVersion)
+    // eslint-disable-next-line no-empty
+    while (await this.setExcelBinOutputToCache(this.useExcelBinOutputKeys)) {}
+    this.createTextHashes()
+    // eslint-disable-next-line no-empty
+    while (await this.setTextMapToCache(this.option.defaultLanguage)) {}
+    this._assetEventEmitter.emit('END_UPDATE_CACHE', this.gameVersion)
+
+    if (this.option.showFetchCacheLog)
+      console.log('GenshinManager: Finish update cache and set cache.')
+  }
+
+  /**
    * Check gitlab for new commits
    * @returns New assets version text or undefined
    */
   private static async checkGitUpdate(): Promise<undefined | string> {
-    await Promise.all(
-      [
-        this.option.assetCacheFolderPath,
-        this.excelBinOutputFolderPath,
-        this.textMapFolderPath,
-      ].map(async (folderPath) => {
-        if (!fs.existsSync(folderPath)) await fsPromises.mkdir(folderPath)
-      }),
-    )
+    ;[
+      this.option.assetCacheFolderPath,
+      this.excelBinOutputFolderPath,
+      this.textMapFolderPath,
+    ].map((folderPath) => {
+      if (!fs.existsSync(folderPath)) fs.mkdirSync(folderPath)
+    })
 
     const oldCommits = fs.existsSync(this.commitFilePath)
       ? (JSON.parse(
-          await fsPromises.readFile(this.commitFilePath, {
+          fs.readFileSync(this.commitFilePath, {
             encoding: 'utf8',
           }),
         ) as GitLabAPIResponse[])
@@ -486,7 +461,7 @@ export abstract class AssetCacheManager<
     await this.downloadJsonFile(this.GIT_REMOTE_API_URL, this.commitFilePath)
 
     const newCommits = JSON.parse(
-      await fsPromises.readFile(this.commitFilePath, {
+      fs.readFileSync(this.commitFilePath, {
         encoding: 'utf8',
       }),
     ) as GitLabAPIResponse[]
@@ -498,51 +473,6 @@ export abstract class AssetCacheManager<
       const versionTexts = /OSRELWin(\d+\.\d+\.\d+)_/.exec(newCommits[0].title)
       if (!versionTexts || versionTexts.length < 2) return '?.?.?'
       return versionTexts[1]
-    }
-  }
-
-  /**
-   * Get Now Assets version text
-   * @returns Now assets version text or undefined
-   */
-  private static async getNowAssetVersion(): Promise<string | undefined> {
-    const oldCommits = fs.existsSync(this.commitFilePath)
-      ? (JSON.parse(
-          await fsPromises.readFile(this.commitFilePath, {
-            encoding: 'utf8',
-          }),
-        ) as GitLabAPIResponse[])
-      : null
-    if (oldCommits) {
-      const versionTexts = /OSRELWin(\d+\.\d+\.\d+)_/.exec(oldCommits[0].title)
-      if (!versionTexts || versionTexts.length < 2) return '?.?.?'
-      return versionTexts[1]
-    } else {
-      return undefined
-    }
-  }
-
-  /**
-   * Create ExcelBinOutput Keys to cache
-   * @param children Import modules
-   */
-  private static createExcelBinOutputKeys(children?: Module[]): void {
-    this.excelBinOutputKeys.clear()
-    if (!children) {
-      this.excelBinOutputKeys = new Set(
-        Object.keys(ExcelBinOutputs).map(
-          (key) => key as keyof typeof ExcelBinOutputs,
-        ),
-      )
-    } else {
-      getClassNamesRecursive(children).forEach((className) => {
-        if (this.excelBinOutputMapUseModel[className]) {
-          this.excelBinOutputKeys = new Set([
-            ...this.excelBinOutputKeys,
-            ...this.excelBinOutputMapUseModel[className],
-          ])
-        }
-      })
     }
   }
 
@@ -590,8 +520,7 @@ export abstract class AssetCacheManager<
     language: keyof typeof TextMapLanguage,
   ): Promise<void> {
     const textMapFileName = TextMapLanguage[language]
-    this.createExcelBinOutputKeys()
-    await this.setExcelBinOutputToCache()
+    await this.setExcelBinOutputToCache(this.excelBinOutputAllKeys)
     this.createTextHashes()
     await this.fetchAssetFolder(this.textMapFolderPath, [textMapFileName], true)
   }
@@ -619,8 +548,8 @@ export abstract class AssetCacheManager<
     isRetry = false,
   ): Promise<void> {
     if (!isRetry) {
-      await fsPromises.rmdir(folderPath, { recursive: true })
-      await fsPromises.mkdir(folderPath)
+      fs.rmdirSync(folderPath, { recursive: true })
+      fs.mkdirSync(folderPath)
     }
     const gitFolderName = path.relative(
       this.option.assetCacheFolderPath,

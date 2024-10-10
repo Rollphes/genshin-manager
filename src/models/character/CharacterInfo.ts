@@ -69,6 +69,10 @@ export class CharacterInfo {
    */
   public readonly bodyType: BodyType
 
+  static {
+    Client._addExcelBinOutputKeyFromClassPrototype(this.prototype)
+  }
+
   /**
    * Create a CharacterInfo
    * @param characterId Character ID
@@ -106,7 +110,7 @@ export class CharacterInfo {
       : undefined
 
     this.name =
-      Client.cachedTextMap.get(String(avatarJson.nameTextMapHash)) || ''
+      Client._cachedTextMap.get(String(avatarJson.nameTextMapHash)) || ''
 
     this.element = skillJson
       ? ElementKeys[skillJson.costElemType as keyof typeof ElementKeys]

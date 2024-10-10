@@ -21,6 +21,10 @@ export class StatProperty {
    */
   public readonly value: number
 
+  static {
+    Client._addExcelBinOutputKeyFromClassPrototype(this.prototype)
+  }
+
   /**
    * Create a StatProperty
    * @param type FightPropType
@@ -35,7 +39,7 @@ export class StatProperty {
     )
 
     this.name =
-      Client.cachedTextMap.get(
+      Client._cachedTextMap.get(
         String(manualTextJson.textMapContentTextMapHash),
       ) || ''
 
