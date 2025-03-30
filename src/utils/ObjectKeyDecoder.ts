@@ -51,6 +51,27 @@ export class ObjectKeyDecoder {
         ),
       )
     }
+
+    // Replace key of WeaponPromoteExcelConfigData (add promoteLevel)
+    if (Client._hasCachedExcelBinOutputByName('WeaponPromoteExcelConfigData')) {
+      const weaponPromoteDataArray = Object.values(
+        Client._getCachedExcelBinOutputByName('WeaponPromoteExcelConfigData'),
+      )
+
+      const sampleWeaponPromoteData = weaponPromoteDataArray.find(
+        (data) =>
+          data.weaponPromoteId === 11101 && data.requiredPlayerLevel === 15,
+      ) as JsonObject
+
+      this.replaceDatas.push(
+        new ReplaceData(
+          Object.entries(sampleWeaponPromoteData).find(
+            ([, v]) => v === 1,
+          )?.[0] as string,
+          'promoteLevel',
+        ),
+      )
+    }
   }
 
   /**
