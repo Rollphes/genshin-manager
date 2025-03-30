@@ -81,15 +81,10 @@ export class DailyFarming {
     const dungeons = Object.values(
       Client._getCachedExcelBinOutputByName('DungeonEntryExcelConfigData'),
     )
-    const domains = dungeons.filter(
-      (dungeon) =>
-        dungeon.isDailyRefresh !== undefined &&
-        (dungeon.isDailyRefresh as boolean),
-    )
-    const skillDomains = domains.filter(
+    const skillDomains = dungeons.filter(
       (d) => d.type === 'DUNGEN_ENTRY_TYPE_AVATAR_TALENT',
     )
-    const weaponDomains = domains.filter(
+    const weaponDomains = dungeons.filter(
       (d) => d.type === 'DUNGEN_ENTRY_TYPE_WEAPON_PROMOTE',
     )
 
