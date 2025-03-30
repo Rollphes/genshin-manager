@@ -52,7 +52,9 @@ export class CharacterInherentSkill {
     this.icon = new ImageAssets(proudSkillJson.icon as string)
     this.addProps = (proudSkillJson.addProps as JsonObject[])
       .map((addProp) =>
-        addProp.propType !== undefined && addProp.value !== undefined
+        addProp.propType !== undefined &&
+        addProp.propType !== 'FIGHT_PROP_NONE' &&
+        addProp.value !== undefined
           ? new StatProperty(
               addProp.propType as FightPropType,
               (addProp.value ?? 0) as number,

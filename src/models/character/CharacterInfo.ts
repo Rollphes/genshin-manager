@@ -84,7 +84,7 @@ export class CharacterInfo {
       Client._getCachedExcelBinOutputByName('AvatarCostumeExcelConfigData'),
     )
     const defaultCostumeData = costumeDatas.find(
-      (k) => k.characterId === this.id && !('quality' in k),
+      (k) => k.characterId === this.id && k.quality === 0,
     ) as JsonObject
     this.defaultCostumeId = defaultCostumeData.skinId as number
 
@@ -126,7 +126,7 @@ export class CharacterInfo {
       (skillId): skillId is number => skillId !== 0 && skillId !== undefined,
     )
     ;(depotJson.inherentProudSkillOpens as JsonObject[]).forEach((k) => {
-      if (k.proudSkillGroupId === undefined) return
+      if (k.proudSkillGroupId === undefined || k.proudSkillGroupId === 0) return
       const proudSkillJson = Client._getJsonFromCachedExcelBinOutput(
         'ProudSkillExcelConfigData',
         k.proudSkillGroupId as number,

@@ -1,4 +1,4 @@
-# GameVersion 5.1.0
+# GameVersion 5.5.0
 ## CharacterId
 ID:10000002 Name:Kamisato Ayaka<br>
 ID:10000003 Name:Jean<br>
@@ -90,7 +90,16 @@ ID:10000100 Name:Kachina<br>
 ID:10000101 Name:Kinich<br>
 ID:10000102 Name:Mualani<br>
 ID:10000103 Name:Xilonen<br>
+ID:10000104 Name:Chasca<br>
+ID:10000105 Name:Ororon<br>
+ID:10000106 Name:Mavuika<br>
+ID:10000107 Name:Citlali<br>
+ID:10000108 Name:Lan Yan<br>
+ID:10000109 Name:Yumemizuki Mizuki<br>
+ID:10000110 Name:Iansan<br>
+ID:10000111 Name:Varesa<br>
 ID:10000901 Name:Mavuika (Uji Coba)<br>
+ID:10000902 Name:Hu Tao (Uji Coba)<br>
 ## CostumeId
 ID:200200 Name:Flawless Radiance<br>
 ID:200201 Name:Springbloom Missive<br>
@@ -112,6 +121,7 @@ ID:202100 Name:5-Star Outrider<br>
 ID:202101 Name:100% Outrider<br>
 ID:202200 Name:Breezy Ode<br>
 ID:202300 Name:Red Pepper and Turmeric<br>
+ID:202301 Name:New Year's Cheer<br>
 ID:202400 Name:Rolling Waves<br>
 ID:202500 Name:Azure Silk<br>
 ID:202501 Name:Bamboo Rain<br>
@@ -141,6 +151,7 @@ ID:204400 Name:Ardent Soul<br>
 ID:204500 Name:Executor's Thorns<br>
 ID:204501 Name:To the Church's Free Spirit<br>
 ID:204600 Name:Plum Blossom Bouquet<br>
+ID:204601 Name:Cherries Snow-Laden<br>
 ID:204700 Name:Falling Leaves<br>
 ID:204800 Name:Golden Rule<br>
 ID:204900 Name:Goldfish Firecracker<br>
@@ -201,7 +212,16 @@ ID:210000 Name:Tawny Peaks, Spired Rock<br>
 ID:210100 Name:Eight-Bit Artistry<br>
 ID:210200 Name:Flying Fish, Heat Waves, and Moon Scallop<br>
 ID:210300 Name:Gold-Draped Gorge<br>
+ID:210400 Name:Tlalocan's Night Phantom<br>
+ID:210500 Name:Batwing Iris<br>
+ID:210600 Name:Undying Sun<br>
+ID:210700 Name:Dawnseer<br>
+ID:210800 Name:Argent Chimes<br>
+ID:210900 Name:Dawnbreath Dreambelle<br>
+ID:211000 Name:Warrior's Bonegarb<br>
+ID:211100 Name:Sugar Rush<br>
 ID:290100 Name:Nama Kostum<br>
+ID:290200 Name:Nama Kostum<br>
 ## SkillId
 ID:10024 Name:Normal Attack: Kamisato Art - Kabuki<br>
 ID:10018 Name:Kamisato Art: Hyouka<br>
@@ -210,12 +230,16 @@ ID:10031 Name:Normal Attack: Favonius Bladework<br>
 ID:10033 Name:Gale Blade<br>
 ID:10034 Name:Dandelion Breeze<br>
 ID:100540 Name:Normal Attack: Past Memories<br>
+ID:100541 Name:Normal Attack: Foreign Blaze<br>
+ID:10097 Name:Flowfire Blade<br>
+ID:10098 Name:Plains Scorcher<br>
 ID:100542 Name:Normal Attack: Foreign Stream<br>
 ID:10087 Name:Aquacrest Saber<br>
 ID:10088 Name:Rising Waters<br>
 ID:100543 Name:Normal Attack: Foreign Ironwind<br>
 ID:10067 Name:Palm Fortex<br>
 ID:10068 Name:Gust Surge<br>
+ID:100544 Name:<br>
 ID:100545 Name:Normal Attack: Foreign Rockblade<br>
 ID:10077 Name:Starfell Sword<br>
 ID:10078 Name:Wake of Earth<br>
@@ -229,12 +253,16 @@ ID:10060 Name:Normal Attack: Lightning Touch<br>
 ID:10061 Name:Violet Arc<br>
 ID:10062 Name:Lightning Rose<br>
 ID:100550 Name:Normal Attack: Past Memories<br>
+ID:100551 Name:Normal Attack: Foreign Blaze<br>
+ID:10097 Name:Flowfire Blade<br>
+ID:10098 Name:Plains Scorcher<br>
 ID:100552 Name:Normal Attack: Foreign Stream<br>
 ID:10087 Name:Aquacrest Saber<br>
 ID:10088 Name:Rising Waters<br>
 ID:100553 Name:Normal Attack: Foreign Ironwind<br>
 ID:10067 Name:Palm Fortex<br>
 ID:10068 Name:Gust Surge<br>
+ID:100554 Name:<br>
 ID:100555 Name:Normal Attack: Foreign Rockblade<br>
 ID:10077 Name:Starfell Sword<br>
 ID:10078 Name:Wake of Earth<br>
@@ -499,9 +527,36 @@ ID:30007 Name:Boomsharka-laka<br>
 ID:11031 Name:Normal Attack: Ehecatl's Roar<br>
 ID:11032 Name:Yohual's Scratch<br>
 ID:11035 Name:Ocelotlicue Point!<br>
+ID:11041 Name:Normal Attack: Phantom Feather Flurry<br>
+ID:11042 Name:Spirit Reins, Shadow Hunt<br>
+ID:11045 Name:Soul Reaper's Fatal Round<br>
+ID:30501 Name:Normal Attack: Spiritvessel Snapshot<br>
+ID:30502 Name:Night's Sling<br>
+ID:30505 Name:Dark Voices Echo<br>
+ID:11061 Name:Normal Attack: Flames Weave Life<br>
+ID:11062 Name:The Named Moment<br>
+ID:11065 Name:Hour of Burning Skies<br>
+ID:11071 Name:Normal Attack: Shadow-Stealing Spirit Vessel<br>
+ID:11072 Name:Dawnfrost Darkstar<br>
+ID:11075 Name:Edict of Entwined Splendor<br>
+ID:11081 Name:Normal Attack: Black Pheasant Strides on Water<br>
+ID:11082 Name:Swallow-Wisp Pinion Dance<br>
+ID:11085 Name:Lustrous Moonrise<br>
+ID:11091 Name:Normal Attack: Pure Heart, Pure Dreams<br>
+ID:11092 Name:Aisa Utamakura Pilgrimage<br>
+ID:11095 Name:Anraku Secret Spring Therapy<br>
+ID:11101 Name:Normal Attack: Weighted Spike<br>
+ID:11102 Name:Thunderbolt Rush<br>
+ID:11105 Name:The Three Principles of Power<br>
+ID:11111 Name:Normal Attack: By the Horns<br>
+ID:11112 Name:Riding the Night-Rainbow<br>
+ID:11115 Name:Guardian Vent!<br>
 ID:10231 Name:Normal Attack: Dough-Fu<br>
 ID:10232 Name:Guoba Attack<br>
 ID:10235 Name:Pyronado<br>
+ID:10461 Name:Normal Attack: Secret Spear of Wangsheng<br>
+ID:10462 Name:Guide to Afterlife<br>
+ID:10463 Name:Spirit Soother<br>
 ## InherentSkillId
 ID:221 Name:Amatsumi Kunitsumi Sanctification<br>
 ID:222 Name:Kanten Senmyou Blessing<br>
@@ -509,6 +564,8 @@ ID:223 Name:Fruits of Shinsa<br>
 ID:321 Name:Wind Companion<br>
 ID:322 Name:Let the Wind Lead<br>
 ID:323 Name:Guiding Breeze<br>
+ID:521 Name:True Flame of Incineration<br>
+ID:522 Name:Embers Unspent<br>
 ID:621 Name:Spotless Waters<br>
 ID:622 Name:Clear Waters<br>
 ID:721 Name:Slitting Wind<br>
@@ -522,6 +579,8 @@ ID:1122 Name:Verdant Luxury<br>
 ID:421 Name:Induced Aftershock<br>
 ID:422 Name:Static Electricity Field<br>
 ID:423 Name:General Pharmaceutics<br>
+ID:521 Name:True Flame of Incineration<br>
+ID:522 Name:Embers Unspent<br>
 ID:621 Name:Spotless Waters<br>
 ID:622 Name:Clear Waters<br>
 ID:721 Name:Slitting Wind<br>
@@ -792,9 +851,42 @@ ID:10321 Name:Netotiliztli's Echoes<br>
 ID:10322 Name:Portable Armored Sheath<br>
 ID:10323 Name:Night Realm's Gift: Blessing of Forge-Fire<br>
 ID:10325 Name:Tour of Tepeilhuitl<br>
+ID:10421 Name:Bullet Trick<br>
+ID:10422 Name:Intent to Cover<br>
+ID:10423 Name:Night Realm's Gift: Everburning Heart<br>
+ID:10425 Name:Mediation's True Meaning<br>
+ID:10521 Name:Nightshade Synesthesia<br>
+ID:10522 Name:Aspect Catalyst<br>
+ID:10523 Name:Night Realm's Gift: Flowing Fog, Spritely Shadows<br>
+ID:10525 Name:The Art of Skinchanging<br>
+ID:10621 Name:Gift of Flaming Flowers<br>
+ID:10622 Name:\"Kiongozi\"<br>
+ID:10623 Name:Night Realm's Gift: Exhaust Mode<br>
+ID:10625 Name:Night-Shattering Radiance<br>
+ID:10721 Name:Mamaloaco's Frigid Rain<br>
+ID:10722 Name:Itzpapalotl's Star Garments<br>
+ID:10723 Name:Night Realm's Gift: Smoke, Mirrors, and the Flowing Winds<br>
+ID:10725 Name:Songs of Profound Mystery<br>
+ID:10821 Name:Four Sealing Divination Charms<br>
+ID:10822 Name:Skyfeather Evil-Subduing Charm<br>
+ID:10823 Name:Thought and Intent, Like Silken Scent<br>
+ID:10921 Name:Bright Moon's Restless Voice<br>
+ID:10922 Name:Thoughts by Day Bring Dreams by Night<br>
+ID:10923 Name:All Ailments Banished<br>
+ID:11021 Name:Enhanced Resistance Training<br>
+ID:11022 Name:Kinetic Energy Gradient Test<br>
+ID:11023 Name:Night Realm's Gift: Hard Work and Drive<br>
+ID:11025 Name:Caloric Balancing Plan<br>
+ID:11121 Name:Tag-Team Triple Jump!<br>
+ID:11122 Name:The Hero Twice-Returned!<br>
+ID:11123 Name:Night Realm's Gift: A Torch That Incinerates Evil<br>
+ID:11125 Name:Blazing Heart, Singular Advance!<br>
 ID:2321 Name:Crossfire<br>
 ID:2322 Name:Beware, It's Super Hot!<br>
 ID:2323 Name:Chef de Cuisine<br>
+ID:4621 Name:Flutter By<br>
+ID:4622 Name:Sanguine Rouge<br>
+ID:4623 Name:The More the Merrier<br>
 ## ConstellationId
 ID:21 Name:Snowswept Sakura<br>
 ID:22 Name:Blizzard Blade Seki no To<br>
@@ -814,6 +906,12 @@ ID:43 Name:Resonant Thunder<br>
 ID:44 Name:Plasma Eruption<br>
 ID:45 Name:Electrocute<br>
 ID:46 Name:Pulsating Witch<br>
+ID:51 Name:Starfire's Flowing Light<br>
+ID:52 Name:Ever-Lit Candle<br>
+ID:53 Name:Relayed Beacon<br>
+ID:54 Name:Ravaging Flame<br>
+ID:55 Name:The Fire Inextinguishable<br>
+ID:56 Name:The Sacred Flame Imperishable<br>
 ID:61 Name:Swelling Lake<br>
 ID:62 Name:Trickling Purity<br>
 ID:63 Name:Turbulent Ripples<br>
@@ -1354,6 +1452,54 @@ ID:1033 Name:Tonalpohualli's Loop<br>
 ID:1034 Name:Suchitl's Trance<br>
 ID:1035 Name:Tlaltecuhtli's Crossfade<br>
 ID:1036 Name:Imperishable Night Carnival<br>
+ID:1041 Name:Cylinder, the Restless Roulette<br>
+ID:1042 Name:Muzzle, the Searing Smoke<br>
+ID:1043 Name:Reins, her Careful Control<br>
+ID:1044 Name:Sparks, the Sudden Shot<br>
+ID:1045 Name:Brim, the Sandshadow's Silhouette<br>
+ID:1046 Name:Showdown, the Glory of Battle<br>
+ID:1051 Name:Trails Amidst the Forest Fog<br>
+ID:1052 Name:King Bee of the Hidden Honeyed Wine<br>
+ID:1053 Name:Roosting Bat's Spiritcage<br>
+ID:1054 Name:As the Mysteries of the Night Wind<br>
+ID:1055 Name:A Gift For the Soul<br>
+ID:1056 Name:Ode to Deep Springs<br>
+ID:1061 Name:The Night-Lord's Explication<br>
+ID:1062 Name:The Ashen Price<br>
+ID:1063 Name:The Burning Sun<br>
+ID:1064 Name:The Leader's Resolve<br>
+ID:1065 Name:The Meaning of Truth<br>
+ID:1066 Name:\"Humanity's Name\" Unfettered<br>
+ID:1071 Name:Radiant Blades of Centzon Mimixcoah<br>
+ID:1072 Name:Heart Devourer's Travail<br>
+ID:1073 Name:Cloud Serpent's Feathered Crown<br>
+ID:1074 Name:Death Defier's Spirit Skull<br>
+ID:1075 Name:Nemontemi's Hex<br>
+ID:1076 Name:Teoiztac's Secret Pact<br>
+ID:1081 Name:\"As One Might Stride Betwixt the Clouds\"<br>
+ID:1082 Name:\"Dance Vestments Billow Like Rainbow Jade\"<br>
+ID:1083 Name:\"On White Wings Pierce Through Cloud and Fog\"<br>
+ID:1084 Name:\"With Drakefalcon's Blood-Pearls Adorned\"<br>
+ID:1085 Name:\"Having Met You, My Heart is Gladdened\"<br>
+ID:1086 Name:\"Let Us Away on Sylphic Wing, the Silvered Ornaments to Ring\"<br>
+ID:1091 Name:In Mist-Like Waters<br>
+ID:1092 Name:Your Echo I Meet in Dreams<br>
+ID:1093 Name:Till Dawn's Moon Ends Night<br>
+ID:1094 Name:Buds Warm Lucid Springs<br>
+ID:1095 Name:As Setting Moon Brings Year's End<br>
+ID:1096 Name:The Heart Lingers Long<br>
+ID:1101 Name:Starting's Never Easy<br>
+ID:1102 Name:Laziness is the Enemy!<br>
+ID:1103 Name:Scientific Diet Planning<br>
+ID:1104 Name:Slow and Steady Wins the Race<br>
+ID:1105 Name:We Can Push it Further!<br>
+ID:1106 Name:Teachings of the Collective of Plenty<br>
+ID:1111 Name:Undying Passion<br>
+ID:1112 Name:Beyond the Edge of Light<br>
+ID:1113 Name:Unbowed Resolve<br>
+ID:1114 Name:The Courage to Press On<br>
+ID:1115 Name:Thoughts Floating on the Warm Breeze<br>
+ID:1116 Name:A Hero of Justice's Triumph<br>
 ## ArtifactId
 ID:20002 Name:Initiate's Feather<br>
 ID:20004 Name:Initiate's Flower<br>
@@ -1795,7 +1941,7 @@ ID:23743 Name:Demon-Warrior's Feather Mask<br>
 ID:23744 Name:Beast Tamer's Talisman<br>
 ID:23745 Name:Mystic's Gold Dial<br>
 ID:23746 Name:Wandering Scholar's Claw Cup<br>
-ID:23747 Name:Mountain Ranger's Marker<br>
+ID:23747 Name:Wandering Scholar's Claw Cup<br>
 ID:23748 Name:Demon-Warrior's Feather Mask<br>
 ID:23749 Name:Beast Tamer's Talisman<br>
 ID:23750 Name:Mystic's Gold Dial<br>
@@ -1809,6 +1955,26 @@ ID:23757 Name:Root of the Spirit-Marrow<br>
 ID:23758 Name:Crown of the Saints<br>
 ID:23759 Name:Reckoning of the Xenogenic<br>
 ID:23760 Name:Myths of the Night Realm<br>
+ID:23761 Name:A Horn Unwinded<br>
+ID:23762 Name:Nightingale's Tail Feather<br>
+ID:23763 Name:Dyed Tassel<br>
+ID:23764 Name:Lightkeeper's Pledge<br>
+ID:23765 Name:Undying One's Mourning Bell<br>
+ID:23766 Name:A Horn Unwinded<br>
+ID:23767 Name:Nightingale's Tail Feather<br>
+ID:23768 Name:Dyed Tassel<br>
+ID:23769 Name:Lightkeeper's Pledge<br>
+ID:23770 Name:Undying One's Mourning Bell<br>
+ID:23771 Name:Deep Gallery's Bestowed Banquet<br>
+ID:23772 Name:Deep Gallery's Distant Pact<br>
+ID:23773 Name:Deep Gallery's Lost Crown<br>
+ID:23774 Name:Deep Gallery's Echoing Song<br>
+ID:23775 Name:Deep Gallery's Moment of Oblivion<br>
+ID:23776 Name:Deep Gallery's Bestowed Banquet<br>
+ID:23777 Name:Deep Gallery's Distant Pact<br>
+ID:23778 Name:Deep Gallery's Lost Crown<br>
+ID:23779 Name:Deep Gallery's Echoing Song<br>
+ID:23780 Name:Deep Gallery's Moment of Oblivion<br>
 ID:24101 Name:Gladiator's Intoxication<br>
 ID:24102 Name:Gladiator's Destiny<br>
 ID:24103 Name:Ornate Kabuto<br>
@@ -2299,6 +2465,46 @@ ID:38543 Name:Reckoning of the Xenogenic<br>
 ID:38544 Name:Reckoning of the Xenogenic<br>
 ID:38553 Name:Myths of the Night Realm<br>
 ID:38554 Name:Myths of the Night Realm<br>
+ID:39412 Name:A Horn Unwinded<br>
+ID:39413 Name:A Horn Unwinded<br>
+ID:39422 Name:Nightingale's Tail Feather<br>
+ID:39423 Name:Nightingale's Tail Feather<br>
+ID:39432 Name:Dyed Tassel<br>
+ID:39433 Name:Dyed Tassel<br>
+ID:39442 Name:Lightkeeper's Pledge<br>
+ID:39443 Name:Lightkeeper's Pledge<br>
+ID:39452 Name:Undying One's Mourning Bell<br>
+ID:39453 Name:Undying One's Mourning Bell<br>
+ID:39513 Name:A Horn Unwinded<br>
+ID:39514 Name:A Horn Unwinded<br>
+ID:39523 Name:Nightingale's Tail Feather<br>
+ID:39524 Name:Nightingale's Tail Feather<br>
+ID:39533 Name:Dyed Tassel<br>
+ID:39534 Name:Dyed Tassel<br>
+ID:39543 Name:Lightkeeper's Pledge<br>
+ID:39544 Name:Lightkeeper's Pledge<br>
+ID:39553 Name:Undying One's Mourning Bell<br>
+ID:39554 Name:Undying One's Mourning Bell<br>
+ID:40412 Name:Deep Gallery's Bestowed Banquet<br>
+ID:40413 Name:Deep Gallery's Bestowed Banquet<br>
+ID:40422 Name:Deep Gallery's Distant Pact<br>
+ID:40423 Name:Deep Gallery's Distant Pact<br>
+ID:40432 Name:Deep Gallery's Lost Crown<br>
+ID:40433 Name:Deep Gallery's Lost Crown<br>
+ID:40442 Name:Deep Gallery's Echoing Song<br>
+ID:40443 Name:Deep Gallery's Echoing Song<br>
+ID:40452 Name:Deep Gallery's Moment of Oblivion<br>
+ID:40453 Name:Deep Gallery's Moment of Oblivion<br>
+ID:40513 Name:Deep Gallery's Bestowed Banquet<br>
+ID:40514 Name:Deep Gallery's Bestowed Banquet<br>
+ID:40523 Name:Deep Gallery's Distant Pact<br>
+ID:40524 Name:Deep Gallery's Distant Pact<br>
+ID:40533 Name:Deep Gallery's Lost Crown<br>
+ID:40534 Name:Deep Gallery's Lost Crown<br>
+ID:40543 Name:Deep Gallery's Echoing Song<br>
+ID:40544 Name:Deep Gallery's Echoing Song<br>
+ID:40553 Name:Deep Gallery's Moment of Oblivion<br>
+ID:40554 Name:Deep Gallery's Moment of Oblivion<br>
 ID:51110 Name:Goblet of the Sojourner<br>
 ID:51111 Name:Goblet of the Sojourner<br>
 ID:51112 Name:Goblet of the Sojourner<br>
@@ -5242,6 +5448,7 @@ ID:11428 Name:Sword of Narzissenkreuz<br>
 ID:11429 Name:Sword of Narzissenkreuz<br>
 ID:11430 Name:Sturdy Bone<br>
 ID:11431 Name:Flute of Ezpitzal<br>
+ID:11432 Name:Calamity of Eshu<br>
 ID:11501 Name:Aquila Favonia<br>
 ID:11502 Name:Skyward Blade<br>
 ID:11503 Name:Freedom-Sworn<br>
@@ -5297,6 +5504,7 @@ ID:12510 Name:Redhorn Stonethresher<br>
 ID:12511 Name:Beacon of the Reed Sea<br>
 ID:12512 Name:Verdict<br>
 ID:12513 Name:Fang of the Mountain King<br>
+ID:12514 Name:A Thousand Blazing Suns<br>
 ID:13101 Name:Beginner's Protector<br>
 ID:13201 Name:Iron Point<br>
 ID:13301 Name:White Tassel<br>
@@ -5322,6 +5530,7 @@ ID:13426 Name:Dialogues of the Desert Sages<br>
 ID:13427 Name:Prospector's Drill<br>
 ID:13430 Name:Mountain-Bracing Bolt<br>
 ID:13431 Name:Footprint of the Rainbow<br>
+ID:13432 Name:Tamayuratei no Ohanashi<br>
 ID:13501 Name:Staff of Homa<br>
 ID:13502 Name:Skyward Spine<br>
 ID:13504 Name:Vortex Vanquisher<br>
@@ -5359,6 +5568,7 @@ ID:14424 Name:Sacrificial Jade<br>
 ID:14425 Name:Flowing Purity<br>
 ID:14426 Name:Ballad of the Boundless Blue<br>
 ID:14427 Name:Ash-Graven Drinking Horn<br>
+ID:14430 Name:Waveriding Whirl<br>
 ID:14431 Name:Ring of Yaxche<br>
 ID:14501 Name:Skyward Atlas<br>
 ID:14502 Name:Lost Prayer to the Sacred Winds<br>
@@ -5373,6 +5583,9 @@ ID:14513 Name:Cashflow Supervision<br>
 ID:14514 Name:Tome of the Eternal Flow<br>
 ID:14515 Name:Crane's Echoing Call<br>
 ID:14516 Name:Surf's Up<br>
+ID:14517 Name:Starcaller's Watch<br>
+ID:14518 Name:Sunny Morning Sleep-In<br>
+ID:14519 Name:Vivid Notions<br>
 ID:15101 Name:Hunter's Bow<br>
 ID:15201 Name:Seasoned Hunter's Bow<br>
 ID:15301 Name:Raven Bow<br>
@@ -5403,6 +5616,7 @@ ID:15424 Name:Scion of the Blazing Sun<br>
 ID:15425 Name:Song of Stillness<br>
 ID:15426 Name:Cloudforged<br>
 ID:15427 Name:Range Gauge<br>
+ID:15430 Name:Flower-Wreathed Feathers<br>
 ID:15431 Name:Chain Breaker<br>
 ID:15501 Name:Skyward Harp<br>
 ID:15502 Name:Amos' Bow<br>
@@ -5416,6 +5630,7 @@ ID:15509 Name:Thundering Pulse<br>
 ID:15511 Name:Hunter's Path<br>
 ID:15512 Name:The First Great Magic<br>
 ID:15513 Name:Silvershower Heartstrings<br>
+ID:15514 Name:Astral Vulture's Crimson Plumage<br>
 ## MaterialId
 ID:101 Name:Character EXP<br>
 ID:102 Name:Adventure EXP<br>
@@ -5494,12 +5709,16 @@ ID:175 Name:Kunci Echo<br>
 ID:176 Name:Starsail Coin<br>
 ID:177 Name:Colorful Contemplation<br>
 ID:178 Name:Festive Fervor<br>
+ID:179 Name:Incense Ashcrystal<br>
+ID:180 Name:Festive Fever<br>
+ID:181 Name:Festival Stamp<br>
 ID:201 Name:Primogem<br>
 ID:202 Name:Mora<br>
 ID:203 Name:Genesis Crystal<br>
 ID:204 Name:Realm Currency<br>
 ID:205 Name:<br>
 ID:206 Name:Toy Medal<br>
+ID:207 Name:Repertoire Coin<br>
 ID:210 Name:Original Resin<br>
 ID:211 Name:Original Essence<br>
 ID:221 Name:Masterless Starglitter<br>
@@ -5521,6 +5740,9 @@ ID:318 Name:EXP Reputasi Fontaine<br>
 ID:319 Name:EXP Reputasi \"Tirai Daun\"<br>
 ID:320 Name:EXP Reputasi \"Warga Mata Air\"<br>
 ID:321 Name:EXP Reputasi \"Putra-Putri Gema\"<br>
+ID:322 Name:EXP Reputasi \"Bunga Bersayap\"<br>
+ID:323 Name:EXP Reputasi \"Penguasa Angin Malam\"<br>
+ID:324 Name:EXP Reputasi \"Berlimpah Jaya\"<br>
 ID:911 Name:Memory of Eternal Flames<br>
 ID:912 Name:Memory of Running Stream<br>
 ID:913 Name:Memory of Flourishing Green<br>
@@ -5728,6 +5950,7 @@ ID:2028 Name:Item Quest - Atomic Energy Orb Pouch<br>
 ID:2029 Name:Item Quest - Atomic Energy Orb Pouch<br>
 ID:2030 Name:Phlogiston Energy Orb<br>
 ID:2031 Name:Phlogiston Energy Orb (Dijatuhkan secara terpisah)<br>
+ID:2032 Name:Phlogiston Energy Orb (Jarak Dekat)<br>
 ID:2800 Name:<br>
 ID:3001 Name:테스트 랜덤 보물상자<br>
 ID:3002 Name:테스트 고정 보물상자<br>
@@ -5755,10 +5978,26 @@ ID:4100 Name:Kachina<br>
 ID:4101 Name:Kinich<br>
 ID:4102 Name:Mualani<br>
 ID:4103 Name:Xilonen<br>
+ID:4104 Name:Chasca<br>
+ID:4105 Name:Ororon<br>
+ID:4106 Name:Mavuika<br>
+ID:4107 Name:Citlali<br>
+ID:4108 Name:Lan Yan<br>
+ID:4109 Name:Yumemizuki Mizuki<br>
+ID:4110 Name:Iansan<br>
+ID:4111 Name:Varesa<br>
 ID:5100 Name:Kachina's Stella Fortuna<br>
 ID:5101 Name:Kinich's Stella Fortuna<br>
 ID:5102 Name:Mualani's Stella Fortuna<br>
 ID:5103 Name:Xilonen's Stella Fortuna<br>
+ID:5104 Name:Chasca's Stella Fortuna<br>
+ID:5105 Name:Ororon's Stella Fortuna<br>
+ID:5106 Name:Mavuika's Stella Fortuna<br>
+ID:5107 Name:Citlali's Stella Fortuna<br>
+ID:5108 Name:Lan Yan's Stella Fortuna<br>
+ID:5109 Name:Yumemizuki Mizuki's Stella Fortuna<br>
+ID:5110 Name:Iansan's Stella Fortuna<br>
+ID:5111 Name:Varesa's Stella Fortuna<br>
 ID:100001 Name:Apple<br>
 ID:100002 Name:Sunsettia<br>
 ID:100003 Name:Lembaran Kertas<br>
@@ -5960,6 +6199,7 @@ ID:100243 Name:Cincin Nephrite<br>
 ID:100244 Name:Golden Crab Lezat<br>
 ID:100245 Name:Tentang Gunung dan Laut<br>
 ID:100246 Name:Naskah \"Hyakunin Ikki: Pertempuran Terbesar\"<br>
+ID:100247 Name:Fischl Dictionary: Die Neuauflage der Prinzessin<br>
 ID:100301 Name:Kunci Merah Wyatt<br>
 ID:100302 Name:Kunci Hitam Wyatt<br>
 ID:100303 Name:Kantong Koin<br>
@@ -6733,6 +6973,11 @@ ID:101248 Name:Brilliant Chrysanthemum<br>
 ID:101249 Name:Quenepa Berry<br>
 ID:101250 Name:Saurian Claw Succulent<br>
 ID:101251 Name:Embercore Flower<br>
+ID:101252 Name:Glowing Hornshroom<br>
+ID:101253 Name:Withering Purpurbloom<br>
+ID:101254 Name:Skysplit Gembloom<br>
+ID:101255 Name:Dracolite<br>
+ID:101256 Name:Red Berryshroom<br>
 ID:101301 Name:Birch Wood<br>
 ID:101302 Name:Cuihua Wood<br>
 ID:101303 Name:Pine Wood<br>
@@ -8153,6 +8398,59 @@ ID:108757 Name:Suspicious Xocoatl<br>
 ID:108758 Name:Xocoatl<br>
 ID:108759 Name:Delicious Xocoatl<br>
 ID:108760 Name:Fruit-Flavored Milk Candies<br>
+ID:108761 Name:Suspicious Surf, Turf, and Perch<br>
+ID:108762 Name:Surf, Turf, and Perch<br>
+ID:108763 Name:Delicious Surf, Turf, and Perch<br>
+ID:108764 Name:Suspicious Volcano Cake<br>
+ID:108765 Name:Volcano Cake<br>
+ID:108766 Name:Delicious Volcano Cake<br>
+ID:108767 Name:Suspicious Grainfruit Wrap<br>
+ID:108768 Name:Grainfruit Wrap<br>
+ID:108769 Name:Delicious Grainfruit Wrap<br>
+ID:108770 Name:Suspicious Mystique Soup<br>
+ID:108771 Name:Mystique Soup<br>
+ID:108772 Name:Delicious Mystique Soup<br>
+ID:108773 Name:Suspicious Sing Your Heart Out<br>
+ID:108774 Name:Sing Your Heart Out<br>
+ID:108775 Name:Delicious Sing Your Heart Out<br>
+ID:108776 Name:Honey-Glazed Ceviche<br>
+ID:108777 Name:Moment of Respite<br>
+ID:108778 Name:Suspicious Magmic Ode<br>
+ID:108779 Name:Magmic Ode<br>
+ID:108780 Name:Delicious Magmic Ode<br>
+ID:108781 Name:Suspicious Qingxin Flower Cake<br>
+ID:108782 Name:Qingxin Flower Cake<br>
+ID:108783 Name:Delicious Qingxin Flower Cake<br>
+ID:108784 Name:Suspicious Drunken Plums in Snow<br>
+ID:108785 Name:Drunken Plums in Snow<br>
+ID:108786 Name:Delicious Drunken Plums in Snow<br>
+ID:108787 Name:Hymn of Gathered Flame<br>
+ID:108788 Name:Jade-Cut Flowers<br>
+ID:108789 Name:Secret Art<br>
+ID:108790 Name:Suspicious Bathhouse Manjuu<br>
+ID:108791 Name:Bathhouse Manjuu<br>
+ID:108792 Name:Delicious Bathhouse Manjuu<br>
+ID:108793 Name:Dreams of Healing<br>
+ID:108794 Name:Suspicious Cheesy Crab Hotpot<br>
+ID:108795 Name:Cheesy Crab Hotpot<br>
+ID:108796 Name:Delicious Cheesy Crab Hotpot<br>
+ID:108797 Name:Suspicious Fruits Aplenty<br>
+ID:108798 Name:Fruits Aplenty<br>
+ID:108799 Name:Delicious Fruits Aplenty<br>
+ID:108800 Name:Suspicious Puffed Grainfruit Bars<br>
+ID:108801 Name:Puffed Grainfruit Bars<br>
+ID:108802 Name:Delicious Puffed Grainfruit Bars<br>
+ID:108803 Name:Suspicious Magma Eggs<br>
+ID:108804 Name:Magma Eggs<br>
+ID:108805 Name:Delicious Magma Eggs<br>
+ID:108806 Name:Suspicious Cheesy Mushroom Skewer<br>
+ID:108807 Name:Cheesy Mushroom Skewer<br>
+ID:108808 Name:Delicious Cheesy Mushroom Skewer<br>
+ID:108809 Name:Gold-Standard Healthy Meal<br>
+ID:108810 Name:Mt. Mushroom (Porsi Seorang)<br>
+ID:108811 Name:Suspicious Harvest's Boon<br>
+ID:108812 Name:Harvest's Boon<br>
+ID:108813 Name:Delicious Harvest's Boon<br>
 ID:109000 Name:Bahan Resep<br>
 ID:109101 Name:Resep: Chicken-Mushroom Skewer<br>
 ID:109102 Name:Resep: Fisherman's Toast<br>
@@ -8371,6 +8669,21 @@ ID:109598 Name:Resep: Golden Apple Strips<br>
 ID:109599 Name:Resep: Delights of Wondrous Wanderings<br>
 ID:109600 Name:Resep: BBQ Beef Heart Skewers<br>
 ID:109601 Name:Resep: Xocoatl<br>
+ID:109602 Name:Resep: Surf, Turf, and Perch<br>
+ID:109603 Name:Resep: Volcano Cake<br>
+ID:109604 Name:Resep: Grainfruit Wrap<br>
+ID:109605 Name:Resep: Mystique Soup<br>
+ID:109606 Name:Resep: Sing Your Heart Out<br>
+ID:109607 Name:Resep: Magmic Ode<br>
+ID:109608 Name:Resep: Qingxin Flower Cake<br>
+ID:109609 Name:Resep: Drunken Plums in Snow<br>
+ID:109610 Name:Resep: Bathhouse Manjuu<br>
+ID:109611 Name:Resep: Magma Eggs<br>
+ID:109612 Name:Resep: Puffed Grainfruit Bars<br>
+ID:109613 Name:Resep: Cheesy Mushroom Skewer<br>
+ID:109614 Name:Resep: Fruits Aplenty<br>
+ID:109615 Name:Resep: Harvest's Boon<br>
+ID:109616 Name:Resep: Cheesy Crab Hotpot<br>
 ID:110000 Name:Hasil Craft<br>
 ID:110001 Name:Flour<br>
 ID:110002 Name:Cream<br>
@@ -8412,6 +8725,8 @@ ID:111029 Name:\"Pure Water\"<br>
 ID:111030 Name:Sour Bait<br>
 ID:111031 Name:Flashing Maintenance Mek Bait<br>
 ID:111032 Name:Strength Tonic<br>
+ID:111033 Name:Spinelgrain Bait<br>
+ID:111034 Name:Emberglow Bait<br>
 ID:112001 Name:Primordial Essence<br>
 ID:112002 Name:Slime Condensate<br>
 ID:112003 Name:Slime Secretions<br>
@@ -8527,6 +8842,12 @@ ID:112112 Name:Ignited Seeing Eye<br>
 ID:112113 Name:Axis of the Secret Source<br>
 ID:112114 Name:Sheath of the Secret Source<br>
 ID:112115 Name:Heart of the Secret Source<br>
+ID:112116 Name:Refractive Bud<br>
+ID:112117 Name:Bewildering Broadleaf<br>
+ID:112118 Name:Illusory Leafcoil<br>
+ID:112119 Name:Cold-Cracked Shellshard<br>
+ID:112120 Name:Warm Back-Shell<br>
+ID:112121 Name:Blazing Prismshell<br>
 ID:113001 Name:Hurricane Seed<br>
 ID:113002 Name:Lightning Prism<br>
 ID:113003 Name:Dvalin's Plume<br>
@@ -8593,6 +8914,12 @@ ID:113063 Name:The Cornerstone of Stars and Flames<br>
 ID:113064 Name:Mark of the Binding Blessing<br>
 ID:113065 Name:Overripe Flamegranate<br>
 ID:113066 Name:Gold-Inscribed Secret Source Core<br>
+ID:113067 Name:Ensnaring Gaze<br>
+ID:113068 Name:Eroded Horn<br>
+ID:113069 Name:Eroded Sunfire<br>
+ID:113070 Name:Eroded Scale-Feather<br>
+ID:113071 Name:Talisman of the Enigmatic Land<br>
+ID:113072 Name:Sparkless Statue Core<br>
 ID:114001 Name:Tile of Decarabian's Tower<br>
 ID:114002 Name:Debris of Decarabian's City<br>
 ID:114003 Name:Fragment of Decarabian's Epic<br>
@@ -8745,6 +9072,8 @@ ID:117018 Name:Domain Reliquary: Tier II<br>
 ID:117019 Name:Domain Reliquary: Tier I<br>
 ID:117020 Name:Domain Reliquary: Tier II<br>
 ID:117021 Name:Domain Reliquary: Tier I<br>
+ID:117022 Name:Domain Reliquary: Tier II<br>
+ID:117023 Name:Domain Reliquary: Tier I<br>
 ID:118001 Name:Cake for Traveler<br>
 ID:118002 Name:Cake for Traveler<br>
 ID:118003 Name:Cake for Traveler<br>
@@ -9637,6 +9966,21 @@ ID:120891 Name:Kesaksian Penjahat<br>
 ID:120892 Name:Catatan Rawat<br>
 ID:120893 Name:Bintang yang Berserakan<br>
 ID:120894 Name:Foto Grup dari Waktu yang Tidak Diketahui<br>
+ID:120895 Name:Catatan Pengrajin (II)<br>
+ID:120896 Name:Catatan Raja Suci (I)<br>
+ID:120897 Name:Catatan Raja Suci (II)<br>
+ID:120898 Name:Catatan Raja Suci (III)<br>
+ID:120899 Name:Catatan Raja Suci (V)<br>
+ID:120900 Name:Catatan Raja Suci (VI)<br>
+ID:120901 Name:Catatan Pengrajin Tak Bernama<br>
+ID:120902 Name:<br>
+ID:120903 Name:<br>
+ID:120904 Name:<br>
+ID:120905 Name:<br>
+ID:120906 Name:<br>
+ID:120907 Name:<br>
+ID:120908 Name:<br>
+ID:120909 Name:<br>
 ID:120910 Name:Partitur yang Sudah Diperbaiki<br>
 ID:120911 Name:Catatan Ruggiero: II<br>
 ID:120912 Name:Green Obsidian Fragment<br>
@@ -9678,6 +10022,9 @@ ID:120947 Name:Secarik Kertas Kuno<br>
 ID:120948 Name:Secarik Kertas Kuno<br>
 ID:120949 Name:Secarik Kertas Kuno<br>
 ID:120950 Name:Secarik Kertas Kuno<br>
+ID:120951 Name:Kunci yang Berkarat Karena Air<br>
+ID:120952 Name:Pecahan Batu Giok Kuno<br>
+ID:120953 Name:Jantung Naga yang Sempurna<br>
 ID:120954 Name:Catatan Produksi<br>
 ID:120955 Name:Catatan Eksperimen<br>
 ID:120956 Name:Sour Sauce Kipper Segar<br>
@@ -9700,6 +10047,12 @@ ID:120974 Name:Album Karakter \"Marechaussee Hunter: Hari Penghakiman\"<br>
 ID:120975 Name:Album Karakter \"Marechaussee Hunter: Hari Penghakiman\"<br>
 ID:120976 Name:Album Karakter \"Marechaussee Hunter: Hari Penghakiman\"<br>
 ID:120977 Name:Album Karakter \"Marechaussee Hunter: Hari Penghakiman\"<br>
+ID:120978 Name:<br>
+ID:120979 Name:<br>
+ID:120980 Name:<br>
+ID:120981 Name:<br>
+ID:120982 Name:<br>
+ID:120983 Name:<br>
 ID:120984 Name:\"Uthabiti\"<br>
 ID:120985 Name:<br>
 ID:120986 Name:Tali Kait yang Dibuat Khusus<br>
@@ -9721,6 +10074,7 @@ ID:121001 Name:Kantor Meong (VII)<br>
 ID:121002 Name:Kantor Meong (VIII)<br>
 ID:121003 Name:Batu Retak Bergrafiti<br>
 ID:121004 Name:Giok Malam yang Hancur<br>
+ID:121005 Name:Kunci Batu Api Kuno<br>
 ID:121006 Name:Api Persaingan<br>
 ID:121007 Name:\"Matahari Terbenam yang Abadi\"<br>
 ID:121008 Name:\"Naga yang Tidak Bisa Terbang\"<br>
@@ -9730,13 +10084,14 @@ ID:121011 Name:Kesaksian Ogun<br>
 ID:121012 Name:Kesaksian Pampa<br>
 ID:121013 Name:Bon Pembelian Belalang Pelahap<br>
 ID:121014 Name:Kesaksian Anela<br>
+ID:121015 Name:Kunci dari Platform Balon Udara<br>
 ID:121016 Name:Buku Gambar \"Si Naga Jahat\"<br>
 ID:121017 Name:Mimpi Ibu Kota Kuno<br>
 ID:121018 Name:Naskah yang Belum Selesai<br>
 ID:121019 Name:Paket yang Hilang<br>
 ID:121020 Name:Paket yang Rusak<br>
 ID:121021 Name:Surat yang Rusak<br>
-ID:121022 Name:Paket yang Bentuknya Berantakan<br>
+ID:121022 Name:Paket yang Agak Berantakan<br>
 ID:121023 Name:Surat yang Sobek<br>
 ID:121024 Name:Paket Acat<br>
 ID:121025 Name:Surat Chanca<br>
@@ -9780,18 +10135,163 @@ ID:121062 Name:Catatan Hanan Pacha (II)<br>
 ID:121063 Name:Catatan Hanan Pacha (III)<br>
 ID:121064 Name:Kisah Qoyllor dan Ukuku<br>
 ID:121065 Name:Raja Gunung Berapi dan Paku Bayangan<br>
+ID:121066 Name:<br>
+ID:121067 Name:Kunci yang Penuh Karat<br>
 ID:121068 Name:Hikayat Ziarah<br>
-ID:121069 Name:<br>
+ID:121069 Name:Hikayat Ziarah<br>
 ID:121070 Name:\"Tequil Si Pemberani\" yang Agak Usang<br>
 ID:121071 Name:\"Tequil Si Pemberani\" yang Baru dan Rapi<br>
+ID:121072 Name:Pyrophosphorite<br>
+ID:121073 Name:Sampel Pewarna<br>
 ID:121074 Name:Catatan dengan Sentuhan Goresan Kuas<br>
 ID:121075 Name:Catatan Pemeriksaan dan Perbaikan<br>
 ID:121076 Name:Diari Perkemahan<br>
 ID:121077 Name:Naskah yang Belum Selesai<br>
 ID:121078 Name:Catatan yang Ditinggalkan di Kemah<br>
+ID:121079 Name:Tulisan Petualang Tanpa Nama<br>
+ID:121080 Name:Tulisan Petualang Tanpa Nama<br>
+ID:121081 Name:Tulisan Petualang Tanpa Nama<br>
+ID:121082 Name:<br>
+ID:121083 Name:Obat Saurian yang Ampuh<br>
+ID:121084 Name:Obat Saurian yang Lezat<br>
 ID:121085 Name:Mutiara Madu Phlogiston Merah<br>
+ID:121086 Name:Buku Harian Tua<br>
+ID:121087 Name:Mahakarya Magnifico<br>
+ID:121088 Name:Api Senja Musim Gugur (I)<br>
+ID:121089 Name:Api Senja Musim Gugur (II)<br>
+ID:121090 Name:Api Senja Musim Gugur (III)<br>
+ID:121091 Name:Sumber Air Giok Tersembunyi (I)<br>
+ID:121092 Name:Sumber Air Giok Tersembunyi (II)<br>
+ID:121093 Name:Cerita Malam Gunung Lingmeng (I)<br>
+ID:121094 Name:Cerita Malam Gunung Lingmeng (II)<br>
+ID:121095 Name:Cerita Malam Gunung Lingmeng (III)<br>
+ID:121096 Name:Kisah Kuntur<br>
+ID:121097 Name:Fragmen Senjata yang Misterius: Wadah Panah<br>
+ID:121098 Name:Gulungan Iktomi: Peta<br>
+ID:121099 Name:Catatan Tepal yang Hancur<br>
+ID:121100 Name:<br>
+ID:121101 Name:Kunci yang Ditemukan di Samping Podium \"Tantangan Batu Berwarna\"<br>
+ID:121102 Name:Seni Rahasia Grilled Fish in Mint Sauce<br>
+ID:121103 Name:Purple Obsidian Fragment<br>
+ID:121104 Name:Purple Obsidian Ring<br>
+ID:121105 Name:Crimson Obsidian Fragment<br>
+ID:121106 Name:Crimson Obsidian Ring<br>
+ID:121107 Name:Sunset-Blue Obsidian Fragment<br>
+ID:121108 Name:Sunset-Blue Obsidian Ring<br>
+ID:121115 Name:Pengumuman<br>
+ID:121116 Name:Undangan Kejuaraan Meluncur dari Sekolah Penerbangan Pakpaka<br>
+ID:121117 Name:<br>
+ID:121118 Name:<br>
 ID:121119 Name:Foto yang Diambil<br>
+ID:121120 Name:Flammabomb Wood di Sekitar<br>
+ID:121121 Name:Ashen Aratiku Wood di Sekitar<br>
+ID:121122 Name:Tulisan Petualang Tanpa Nama<br>
+ID:121123 Name:Kunci yang Bergigi Halus<br>
+ID:121124 Name:Kunci yang Bergigi Lurus<br>
+ID:121125 Name:Kunci yang Bergigi Berantakan<br>
+ID:121126 Name:Saputangan dari Citlali<br>
+ID:121127 Name:Gulungan Tenun Pencatat Legenda<br>
+ID:121128 Name:\"Shogun Mahakuasa: Terlahir Kembali Sebagai Raiden Dengan Kekuatan Tak Terbatas\" Edisi Pertama<br>
+ID:121129 Name:\"Ayo dong Kitsune Guuji, Kamu Cantik deh\" Edisi Mewah Terbatas<br>
+ID:121130 Name:Saputangan dan Kunci Citlali<br>
+ID:121131 Name:Catatan Dukun (I)<br>
+ID:121132 Name:Catatan Pengelana Gunung<br>
+ID:121133 Name:Catatan Imam Tak Bernama<br>
+ID:121134 Name:Catatan Pelajar Keliling<br>
+ID:121135 Name:Catatan Raja Suci (VII)<br>
+ID:121136 Name:Catatan Milik Entah Siapa<br>
+ID:121137 Name:Catatan Raja Suci (VIII)<br>
+ID:121138 Name:Catatan Raja Suci (IX)<br>
+ID:121139 Name:Catatan Dukun (II)<br>
+ID:121140 Name:Catatan Peninggalan Seseorang (I)<br>
+ID:121141 Name:Catatan Peninggalan Seseorang (II)<br>
+ID:121142 Name:Catatan Peninggalan Seseorang (III)<br>
+ID:121143 Name:Catatan Peninggalan Seseorang (IV)<br>
+ID:121144 Name:Catatan Peninggalan Seseorang (V)<br>
+ID:121145 Name:Cakram Emas Ultimatum<br>
+ID:121146 Name:Catatan Helka<br>
+ID:121147 Name:\"Kartu Ucapan\" dari Paimon<br>
+ID:121148 Name:\"Bukti Keberanian\"<br>
+ID:121149 Name:Surat Kenang-Kenangan Spesial<br>
+ID:121150 Name:\"Bukti Keberanian\"<br>
+ID:121151 Name:Surat Kenang-Kenangan Spesial<br>
+ID:121152 Name:Naskah yang Belum Selesai<br>
+ID:121153 Name:Perekaman Secret Source Sentinel<br>
+ID:121154 Name:Catatan Pengembara Tanpa Nama: I<br>
+ID:121155 Name:Catatan Pengembara Tanpa Nama: II<br>
+ID:121156 Name:Catatan Pengembara Tanpa Nama: III<br>
+ID:121157 Name:Catatan Pengembara Tanpa Nama: IV<br>
+ID:121158 Name:Catatan Pengembara Tanpa Nama: V<br>
+ID:121159 Name:Undangan dari Miko<br>
+ID:121160 Name:Kupon Khusus Aisa Bathhouse<br>
+ID:121161 Name:Sehelai Mimpi Indah<br>
+ID:121162 Name:Pesan dari Tempat Ujian Pengeluaran Jiwa<br>
+ID:121163 Name:Boneka Rotan: Hu Tao<br>
+ID:121164 Name:Hu Tao: Ranting Plum<br>
+ID:121165 Name:Zhongli: Koin Rex<br>
+ID:121166 Name:Boneka Rotan<br>
+ID:121167 Name:Tulisan Petualang Tanpa Nama<br>
+ID:121168 Name:Saurus Crackers: Tatankasaurus<br>
+ID:121169 Name:Saurus Crackers: Qucusaurus<br>
+ID:121170 Name:Saurus Crackers: Yumkasaurus<br>
+ID:121171 Name:Saurus Crackers: Iktomisaurus<br>
+ID:121172 Name:Saurus Crackers: Koholasaurus<br>
+ID:121173 Name:Saurus Crackers: Tepetlisaurus<br>
+ID:121174 Name:<br>
+ID:121175 Name:Benda yang Dulunya Adalah \"Ehecatl\"<br>
+ID:121176 Name:Undangan Khusus Aisa Bathhouse<br>
+ID:121177 Name:Mysterious Gift<br>
+ID:121178 Name:Kisah Rahasia di Inazuma (I)<br>
+ID:121179 Name:Kisah Rahasia di Inazuma (II)<br>
+ID:121180 Name:Manusia Lithin (I)<br>
+ID:121181 Name:Manusia Lithin (II)<br>
+ID:121182 Name:Manusia Lithin (III)<br>
+ID:121183 Name:Berryshroom Hijau<br>
+ID:121184 Name:Izin ke Hati Kudus<br>
+ID:121185 Name:Unit Phlogiston<br>
+ID:121186 Name:Daftar Peringkat<br>
+ID:121187 Name:Daftar Peringkat<br>
+ID:121188 Name:Foto Kenang-Kenangan<br>
+ID:121189 Name:Foto Kenang-Kenangan<br>
+ID:121190 Name:Foto Kenang-Kenangan<br>
+ID:121191 Name:Foto Kenang-Kenangan<br>
+ID:121192 Name:Laporan Eksperimen \"Alat Pengonversi Phlogiston\"<br>
+ID:121193 Name:Catatan Peneliti<br>
+ID:121194 Name:Surat Tanpa Nama<br>
+ID:121195 Name:Surat untuk Kak Anna<br>
+ID:121196 Name:\"Kelimpahan Perpaduan: Pilihan Remix DJ\"<br>
+ID:121197 Name:Kamera<br>
+ID:121199 Name:Kompore yang Licik (I)<br>
+ID:121200 Name:Kompore yang Licik (II)<br>
+ID:121201 Name:Kompore yang Licik (III)<br>
+ID:121202 Name:Serangan Pertama Sundjatta (I)<br>
+ID:121203 Name:Serangan Pertama Sundjatta (II)<br>
+ID:121204 Name:Serangan Pertama Sundjatta (III)<br>
+ID:121205 Name:Akhir Rangi Nui<br>
+ID:121206 Name:Coquitao Tanpa Kepala (I)<br>
+ID:121207 Name:Coquitao Tanpa Kepala (II)<br>
+ID:121208 Name:Buku Lima Jalur Mata Air<br>
+ID:121209 Name:Foto dengan Rekan Perjalanan<br>
+ID:121210 Name:Foto dengan Rekan Perjalanan<br>
+ID:121211 Name:Peringatan Bahaya<br>
+ID:121212 Name:Catatan tentang \"Menciptakan Pelayan Naga Sumber ....\"<br>
+ID:121213 Name:Catatan tentang \"Manusia ... dan Para Insan Luar Biasa\"<br>
+ID:121214 Name:Catatan tentang \"Korosi dan Kondisi Fisik\"<br>
+ID:121215 Name:Catatan tentang \"Mungkin Ini Harus Dihapus\" ....<br>
+ID:121216 Name:Peninggalan Ukiran Cahaya (I)<br>
+ID:121217 Name:Peninggalan Ukiran Cahaya (II)<br>
+ID:121218 Name:Peninggalan Ukiran Cahaya (III)<br>
+ID:121219 Name:Peninggalan Ukiran Cahaya (IV)<br>
+ID:121220 Name:Chamber of Deliberation - Catatan Dewan Konsensus Pemimpin Tertinggi<br>
+ID:121221 Name:Chamber of Deliberation - Catatan Dewan Konsensus Pemimpin Tertinggi<br>
+ID:121222 Name:Chamber of Deliberation - Catatan Dewan Konsensus Pemimpin Tertinggi<br>
+ID:121223 Name:Ukiran Tempat Pembuatan Patung Naga Sumber<br>
+ID:121224 Name:Catatan Eksperimen Sarang Pengembangbiakan<br>
+ID:121225 Name:Catatan yang Ditinggalkan Si \"Pencuri Api\"<br>
+ID:121226 Name:Surat yang Sudah Rusak<br>
+ID:121227 Name:Hadiah Bounty yang Sudah Rusak<br>
 ID:129001 Name:Air Mata di Lautan Bintang<br>
+ID:129002 Name:Marga Kuno Obsidian<br>
 ID:130001 Name:Silk Flower Seed<br>
 ID:130002 Name:Sweet Flower Seed<br>
 ID:130003 Name:Cecilia Seed<br>
@@ -9829,6 +10329,8 @@ ID:130034 Name:Saurian Claw Succulent Seed<br>
 ID:130035 Name:Quenepa Berry Seed<br>
 ID:130036 Name:Brilliant Chrysanthemum Seed<br>
 ID:130037 Name:Sprayfeather Gill Seed<br>
+ID:130038 Name:Glowing Hornshroom Spore<br>
+ID:130039 Name:Skysplit Gembloom Seed<br>
 ID:131000 Name:Medaka<br>
 ID:131001 Name:Glaze Medaka<br>
 ID:131002 Name:Sweet-Flower Medaka<br>
@@ -9866,6 +10368,14 @@ ID:131034 Name:Maintenance Mek: Situation Controller<br>
 ID:131035 Name:Maintenance Mek: Platinum Collection<br>
 ID:131036 Name:Maintenance Mek: Gold Leader<br>
 ID:131037 Name:Jade Heartfeather Bass<br>
+ID:131038 Name:Floral Fighting Rapidfish<br>
+ID:131039 Name:Diving Fighting Rapidfish<br>
+ID:131040 Name:Magma Fighting Rapidfish<br>
+ID:131041 Name:Greenwave Sunfish<br>
+ID:131042 Name:Dusk Sunfish<br>
+ID:131043 Name:Phony Phlogiston Unihornfish<br>
+ID:131044 Name:Pseudoshark Unihornfish<br>
+ID:131045 Name:Secret Source Scout Sweeper<br>
 ID:140001 Name:Wings of First Flight<br>
 ID:140002 Name:Wings of Companionship<br>
 ID:140003 Name:Wings of Descension<br>
@@ -9881,6 +10391,7 @@ ID:140012 Name:Wings of Merciful, Wrathful Waters<br>
 ID:140013 Name:Wings of Transient Dreams<br>
 ID:140014 Name:Wings of Delicacies<br>
 ID:140015 Name:Wings of Soaring Flame<br>
+ID:140016 Name:Wings of Fate's Course Intertwined<br>
 ID:141001 Name:Radiant Spincrystal 1<br>
 ID:141002 Name:Radiant Spincrystal 2<br>
 ID:141003 Name:Radiant Spincrystal 3<br>
@@ -10038,6 +10549,18 @@ ID:141237 Name:Radiant Spincrystal 137<br>
 ID:141238 Name:Radiant Spincrystal 138<br>
 ID:141239 Name:Radiant Spincrystal 139<br>
 ID:141240 Name:Radiant Spincrystal 140<br>
+ID:141241 Name:Radiant Spincrystal 141<br>
+ID:141242 Name:Radiant Spincrystal 142<br>
+ID:141243 Name:Radiant Spincrystal 143<br>
+ID:141244 Name:Radiant Spincrystal 144<br>
+ID:141245 Name:Radiant Spincrystal 145<br>
+ID:141246 Name:Radiant Spincrystal 146<br>
+ID:141247 Name:Radiant Spincrystal 147<br>
+ID:141248 Name:Radiant Spincrystal 148<br>
+ID:141249 Name:Radiant Spincrystal 149<br>
+ID:141250 Name:Radiant Spincrystal 150<br>
+ID:141251 Name:Radiant Spincrystal 151<br>
+ID:141252 Name:Radiant Spincrystal 152<br>
 ID:200001 Name:Lantern Fiber<br>
 ID:200002 Name:Wick Material<br>
 ID:200003 Name:Plaustrite Shard<br>
@@ -10064,6 +10587,8 @@ ID:200119 Name:Super-Duper Invincible Shining Sparkly Magic Crystal<br>
 ID:200120 Name:\"Exalted Earth\"<br>
 ID:200121 Name:Cam and Cables of Law<br>
 ID:200122 Name:\"The Sea's Silent Shade\"<br>
+ID:200123 Name:Shuttle of Odara<br>
+ID:200124 Name:Smoldering Phosphorescent Flame<br>
 ID:200201 Name:Falcon's Dance<br>
 ID:200202 Name:Steelwing<br>
 ID:200203 Name:Galespring<br>
@@ -10133,6 +10658,7 @@ ID:200903 Name:Narukawa Ukai<br>
 ID:200904 Name:Moonstringer<br>
 ID:200905 Name:Serendipity<br>
 ID:200906 Name:Wavepiercer<br>
+ID:200907 Name:Flowhorn Flounderfinder<br>
 ID:210001 Name:Genshin Impact: Dunia Baru<br>
 ID:210002 Name:Catatan Perjalanan: Mengejar Angin<br>
 ID:210003 Name:Amber: Bunny<br>
@@ -10349,6 +10875,26 @@ ID:210217 Name:Catatan Perjalanan: Api Purbakala<br>
 ID:210218 Name:Perayaan: Renyah dan Manis<br>
 ID:210219 Name:Xilonen: Cue Point<br>
 ID:210220 Name:Catatan Perjalanan: Sabzeruz<br>
+ID:210221 Name:Chasca: Fully Loaded<br>
+ID:210222 Name:Ororon: Nightshade<br>
+ID:210223 Name:Natlan: Fleeting Dreams<br>
+ID:210224 Name:Achievement: Tekad Bertarung<br>
+ID:210225 Name:Catatan Perjalanan: Penenun Roh<br>
+ID:210226 Name:Mavuika: Sun-Crowned<br>
+ID:210227 Name:Citlali: Opalstar<br>
+ID:210228 Name:Lan Yan: Silver Swallow<br>
+ID:210229 Name:Achievement: Melihat Segalanya<br>
+ID:210230 Name:Achievement: Nyala Api<br>
+ID:210231 Name:Achievement: Repertoire<br>
+ID:210232 Name:Catatan Perjalanan: Api yang Baru<br>
+ID:210233 Name:Yumemizuki Mizuki: Nightmare Devourer<br>
+ID:210234 Name:Perayaan: Panas Membara<br>
+ID:210235 Name:Catatan Perjalanan: Mimpi Ajaib<br>
+ID:210236 Name:Varesa: Powerhouse<br>
+ID:210237 Name:Iansan: Unyielding<br>
+ID:210238 Name:Natlan: Tatapan Naga<br>
+ID:210239 Name:Achievement: Kedamaian yang Tenang<br>
+ID:210240 Name:Catatan Perjalanan: Kemuliaan Merekah<br>
 ID:215001 Name:Echo: Dandelion Knight<br>
 ID:215002 Name:Echo: Icy Resurrection<br>
 ID:215003 Name:Echo: Eclipsing Star<br>
@@ -10356,6 +10902,10 @@ ID:215004 Name:Echo: Cat Upon the Eaves<br>
 ID:215005 Name:Echo: Dark Side of Dawn<br>
 ID:215006 Name:Echo: Vago Mundo<br>
 ID:215007 Name:Echo: Driving Thunder<br>
+ID:215008 Name:Echo: Plenilune Gaze<br>
+ID:215009 Name:Echo: Scarlet Leaves Pursue Wild Waves<br>
+ID:215010 Name:Echo: Windborne Bard<br>
+ID:215011 Name:Echo: Flame-Mane<br>
 ID:220001 Name:Anemoculus Resonance Stone<br>
 ID:220002 Name:Geoculus Resonance Stone<br>
 ID:220003 Name:Geo Treasure Compass<br>
@@ -10436,7 +10986,7 @@ ID:220080 Name:Search Compass<br>
 ID:220081 Name:<br>
 ID:220082 Name:Flowing Joyspar<br>
 ID:220083 Name:Felicitous Joyspar<br>
-ID:220084 Name:Gurita Mini<br>
+ID:220084 Name:Itty Bitty Octobaby<br>
 ID:220085 Name:Inscribed Mirror<br>
 ID:220086 Name:Hydroculus Resonance Stone<br>
 ID:220087 Name:Hydro Treasure Compass<br>
@@ -10462,6 +11012,10 @@ ID:220106 Name:Kaboom Box<br>
 ID:220107 Name:Graffiti Kamera<br>
 ID:220108 Name:Paimon's Kamera<br>
 ID:220109 Name:Artifact Transmuter<br>
+ID:220110 Name:Kumpulan Melodi Anggun<br>
+ID:220111 Name:Djem Djem Drum<br>
+ID:220112 Name:Ukulele<br>
+ID:220113 Name:Inscribed Mirror<br>
 ID:221001 Name:Panduan: Anemoculus Resonance Stone<br>
 ID:221002 Name:Panduan: Geoculus Resonance Stone<br>
 ID:221003 Name:Diagram: Geo Treasure Compass<br>
@@ -10512,9 +11066,12 @@ ID:221061 Name:Resep: Pure Water<br>
 ID:221062 Name:Resep: Strength Tonic<br>
 ID:221063 Name:Panduan Membuat: Pyroculus Resonance Stone<br>
 ID:221064 Name:Diagram: Pyro Treasure Compass<br>
+ID:221065 Name:Resep: Spinelgrain Bait<br>
+ID:221066 Name:Resep: Emberglow Bait<br>
 ID:222001 Name:Silken Print<br>
 ID:222002 Name:Buah Sejati Kealamian<br>
 ID:222003 Name:\"Swirling Scene in a Bottle\"<br>
+ID:222004 Name:Scroll of the Fiery Firmament<br>
 ID:223001 Name:The Mountain Clouds Let Down Golden Rain<br>
 ID:223002 Name:The Silver Night is Full of Stars<br>
 ID:223003 Name:The Gloom Paints the Cold Blooms<br>
@@ -10555,6 +11112,90 @@ ID:318027 Name:Penampilan Virtuoso<br>
 ID:318028 Name:Tampilan Elegan<br>
 ID:318029 Name:Sudah Siap Nih<br>
 ID:318030 Name:Siap Berperang<br>
+ID:318031 Name:Tampilan Formal<br>
+ID:318032 Name:Waktu Santai<br>
+ID:318033 Name:Menyingkirkan Kebisingan<br>
+ID:318034 Name:Partner Sempurna<br>
+ID:318035 Name:Masa-Masa Bahagia<br>
+ID:318036 Name:Tampilan Serius<br>
+ID:318037 Name:Konsentrasi Penuh<br>
+ID:318038 Name:Melanjutkan Tesis<br>
+ID:318039 Name:Bersuka Ria<br>
+ID:318040 Name:Sudah Siap Nih<br>
+ID:318041 Name:Waktu Doa<br>
+ID:318042 Name:Sambutan Elegan<br>
+ID:318043 Name:Bersuka Ria<br>
+ID:318044 Name:Waktu Santai<br>
+ID:318045 Name:Sudah Siap Nih<br>
+ID:318046 Name:Negosiasi Tulus<br>
+ID:318047 Name:Survei Sekitar<br>
+ID:318048 Name:Penampilan Tenang<br>
+ID:318049 Name:Waktu Santai<br>
+ID:318050 Name:Waktunya Pertunjukan<br>
+ID:318051 Name:Tampilan Elegan<br>
+ID:318052 Name:Konsentrasi Penuh<br>
+ID:318053 Name:Penampilan Elegan<br>
+ID:318054 Name:Lindungi Kepala<br>
+ID:318055 Name:Bersuka Ria<br>
+ID:318056 Name:Sapaan Ramah<br>
+ID:318057 Name:Sesuai Perintahku<br>
+ID:318058 Name:Siap Berperang<br>
+ID:318059 Name:Negosiasi Tenang<br>
+ID:318060 Name:Persiapan Teknik<br>
+ID:318061 Name:Tampilan Elegan<br>
+ID:318062 Name:Siap Berperang<br>
+ID:318063 Name:Kembang Api Aromatik<br>
+ID:318064 Name:Tampilan Elegan<br>
+ID:318065 Name:Konsentrasi Penuh<br>
+ID:318066 Name:Duel Dimulai<br>
+ID:318067 Name:Tampilan Serius<br>
+ID:318068 Name:Melihat dengan Gembira<br>
+ID:318069 Name:Ssst!<br>
+ID:318070 Name:Salam Ramah<br>
+ID:318071 Name:Siap Berperang<br>
+ID:318072 Name:Waktu Santai<br>
+ID:318073 Name:Konsentrasi Penuh<br>
+ID:318074 Name:Postur Elegan<br>
+ID:318075 Name:Aura Jenderal<br>
+ID:318076 Name:Melodi Indah Senar<br>
+ID:318077 Name:Kemuliaan Prinzessin<br>
+ID:318078 Name:Istirahat Sejenak<br>
+ID:318079 Name:Waktu Membaca<br>
+ID:318080 Name:Hewan Bahagia Siap Lompat<br>
+ID:318081 Name:Bombonanza<br>
+ID:318082 Name:Waktu Santai<br>
+ID:318083 Name:Penuh Percaya Diri<br>
+ID:318084 Name:Agak Ngantuk<br>
+ID:318085 Name:Penuh Percaya Diri<br>
+ID:318086 Name:Siap Berperang<br>
+ID:318087 Name:Trik Guuji<br>
+ID:318088 Name:Waktu Pertunjukan<br>
+ID:318089 Name:Waktunya Bersinar<br>
+ID:318090 Name:Pengamatan Cermat<br>
+ID:318091 Name:Bekerja Santai<br>
+ID:318092 Name:Istirahat Sejenak<br>
+ID:318093 Name:Tampilan Bebas<br>
+ID:318094 Name:Konsentrasi Penuh<br>
+ID:318095 Name:Membaca dengan Teliti<br>
+ID:318096 Name:Penuh Percaya Diri<br>
+ID:318097 Name:Mengamati Bintang<br>
+ID:318098 Name:Sekilas Pandang<br>
+ID:318099 Name:Waktu Santai<br>
+ID:318100 Name:Waktu Santai<br>
+ID:319001 Name:Fantastical Marvel<br>
+ID:319002 Name:Meditation on Floating Dreams<br>
+ID:319003 Name:Hidden Jade Star<br>
+ID:319004 Name:Dappled Shadows Reflecting Red<br>
+ID:319005 Name:Oracle of Reason<br>
+ID:319006 Name:Lingering Feast<br>
+ID:319007 Name:Azure Icefang<br>
+ID:319008 Name:Wind and Freedom<br>
+ID:319009 Name:Stone and Contracts<br>
+ID:319010 Name:Thunder and Eternity<br>
+ID:319011 Name:Nature and Wisdom<br>
+ID:319012 Name:Water and Justice<br>
+ID:319013 Name:Fire and War<br>
+ID:319014 Name:Ode to Azure Skies<br>
 ID:320001 Name:<br>
 ID:330000 Name:Ganyu<br>
 ID:330001 Name:Kaeya<br>
@@ -10657,6 +11298,15 @@ ID:330097 Name:Hydro Hilichurl Rogue<br>
 ID:330098 Name:Chiori<br>
 ID:330099 Name:Abyss Lector: Violet Lightning<br>
 ID:330100 Name:Eremite Floral Ring-Dancer<br>
+ID:330101 Name:Rosaria<br>
+ID:330102 Name:Sigewinne<br>
+ID:330103 Name:Golden Wolflord<br>
+ID:330104 Name:Mualani<br>
+ID:330105 Name:Clorinde<br>
+ID:330106 Name:Arlecchino<br>
+ID:330107 Name:Kinich<br>
+ID:330108 Name:Kachina<br>
+ID:330109 Name:Emilie<br>
 ID:330500 Name:Undivided Heart<br>
 ID:330501 Name:Cold-Blooded Strike<br>
 ID:330502 Name:Steady Breathing<br>
@@ -10758,6 +11408,15 @@ ID:330597 Name:Hydrodart Slime<br>
 ID:330598 Name:In Five Colors Dyed<br>
 ID:330599 Name:Chain Lightning Cascade<br>
 ID:330600 Name:Spirit Serpent's Swirl<br>
+ID:330601 Name:Divine Retribution<br>
+ID:330602 Name:Requires Appropriate Rest<br>
+ID:330603 Name:Beastly Corrosion<br>
+ID:330604 Name:Night Realm's Gift: Crests and Troughs<br>
+ID:330605 Name:Dark-Shattering Flame<br>
+ID:330606 Name:All Reprisals and Arrears, Mine to Bear<br>
+ID:330607 Name:Night Realm's Gift: Repaid in Full<br>
+ID:330608 Name:Night Realm's Gift: Heart of Unity<br>
+ID:330609 Name:Marcotte Sillage<br>
 ID:331000 Name:Magic Guide<br>
 ID:331001 Name:Sacrificial Fragments<br>
 ID:331002 Name:Skyward Atlas<br>
@@ -10848,6 +11507,12 @@ ID:331086 Name:Koholasaurus<br>
 ID:331087 Name:Portable Power Saw<br>
 ID:331088 Name:Conductor's Top Hat<br>
 ID:331089 Name:Tepetlisaurus<br>
+ID:331090 Name:Flowing Purity<br>
+ID:331091 Name:Maiden's Fading Beauty<br>
+ID:331092 Name:Iktomisaurus<br>
+ID:331093 Name:Demon-Warrior's Feather Mask<br>
+ID:331094 Name:Qucusaurus<br>
+ID:331095 Name:Waverider<br>
 ID:332000 Name:Liyue Harbor Wharf<br>
 ID:332001 Name:Knights of Favonius Library<br>
 ID:332002 Name:Jade Chamber<br>
@@ -10907,6 +11572,10 @@ ID:332055 Name:Serene<br>
 ID:332056 Name:Stadium of the Sacred Flame<br>
 ID:332057 Name:Atea<br>
 ID:332058 Name:Stage Tepetl<br>
+ID:332059 Name:\"Scions of the Canopy\"<br>
+ID:332060 Name:\"People of the Springs\"<br>
+ID:332061 Name:\"Flower-Feather Clan\"<br>
+ID:332062 Name:\"Masters of the Night-Wind\"<br>
 ID:333000 Name:Resonansi Elemental: Woven Ice<br>
 ID:333001 Name:Resonansi Elemental: Shattering Ice<br>
 ID:333002 Name:Resonansi Elemental: Woven Waters<br>
@@ -10987,6 +11656,15 @@ ID:333076 Name:Saurian Dining Buddies<br>
 ID:333077 Name:Edict of Absolution<br>
 ID:333078 Name:Eremite Teatime<br>
 ID:333079 Name:Saurus Crackers<br>
+ID:333080 Name:Ultimate Surfing Buddy!<br>
+ID:333081 Name:Glittering Gemstones<br>
+ID:333082 Name:Pilgrimage of the Return of the Sacred Flame<br>
+ID:333083 Name:Abundant Phlogiston<br>
+ID:333084 Name:Puff Pops<br>
+ID:333085 Name:Little Tepetlisaurus — Treasure Hunter at Large<br>
+ID:333086 Name:Hot Spring O'Clock<br>
+ID:333087 Name:In the Name of the Extreme<br>
+ID:333088 Name:Mystique Soup<br>
 ID:334000 Name:Ganyu<br>
 ID:334001 Name:Kaeya<br>
 ID:334002 Name:Chongyun<br>
@@ -11088,6 +11766,15 @@ ID:334097 Name:Hydro Hilichurl Rogue<br>
 ID:334098 Name:Chiori<br>
 ID:334099 Name:Abyss Lector: Violet Lightning<br>
 ID:334100 Name:Eremite Floral Ring-Dancer<br>
+ID:334101 Name:Rosaria<br>
+ID:334102 Name:Sigewinne<br>
+ID:334103 Name:Golden Wolflord<br>
+ID:334104 Name:Mualani<br>
+ID:334105 Name:Clorinde<br>
+ID:334106 Name:Arlecchino<br>
+ID:334107 Name:Kinich<br>
+ID:334108 Name:Kachina<br>
+ID:334109 Name:Emilie<br>
 ID:334500 Name:Undivided Heart<br>
 ID:334501 Name:Cold-Blooded Strike<br>
 ID:334502 Name:Steady Breathing<br>
@@ -11189,6 +11876,15 @@ ID:334597 Name:Hydrodart Slime<br>
 ID:334598 Name:In Five Colors Dyed<br>
 ID:334599 Name:Chain Lightning Cascade<br>
 ID:334600 Name:Spirit Serpent's Swirl<br>
+ID:334601 Name:Divine Retribution<br>
+ID:334602 Name:Requires Appropriate Rest<br>
+ID:334603 Name:Beastly Corrosion<br>
+ID:334604 Name:Night Realm's Gift: Crests and Troughs<br>
+ID:334605 Name:Dark-Shattering Flame<br>
+ID:334606 Name:All Reprisals and Arrears, Mine to Bear<br>
+ID:334607 Name:Night Realm's Gift: Repaid in Full<br>
+ID:334608 Name:Night Realm's Gift: Heart of Unity<br>
+ID:334609 Name:Marcotte Sillage<br>
 ID:335000 Name:Magic Guide<br>
 ID:335001 Name:Sacrificial Fragments<br>
 ID:335002 Name:Skyward Atlas<br>
@@ -11279,6 +11975,12 @@ ID:335086 Name:Koholasaurus<br>
 ID:335087 Name:Portable Power Saw<br>
 ID:335088 Name:Conductor's Top Hat<br>
 ID:335089 Name:Tepetlisaurus<br>
+ID:335090 Name:Flowing Purity<br>
+ID:335091 Name:Maiden's Fading Beauty<br>
+ID:335092 Name:Iktomisaurus<br>
+ID:335093 Name:Demon-Warrior's Feather Mask<br>
+ID:335094 Name:Qucusaurus<br>
+ID:335095 Name:Waverider<br>
 ID:336000 Name:Liyue Harbor Wharf<br>
 ID:336001 Name:Knights of Favonius Library<br>
 ID:336002 Name:Jade Chamber<br>
@@ -11338,6 +12040,10 @@ ID:336055 Name:Serene<br>
 ID:336056 Name:Stadium of the Sacred Flame<br>
 ID:336057 Name:Atea<br>
 ID:336058 Name:Stage Tepetl<br>
+ID:336059 Name:\"Scions of the Canopy\"<br>
+ID:336060 Name:\"People of the Springs\"<br>
+ID:336061 Name:\"Flower-Feather Clan\"<br>
+ID:336062 Name:\"Masters of the Night-Wind\"<br>
 ID:337000 Name:Resonansi Elemental: Woven Ice<br>
 ID:337001 Name:Resonansi Elemental: Shattering Ice<br>
 ID:337002 Name:Resonansi Elemental: Woven Waters<br>
@@ -11418,6 +12124,15 @@ ID:337076 Name:Saurian Dining Buddies<br>
 ID:337077 Name:Edict of Absolution<br>
 ID:337078 Name:Eremite Teatime<br>
 ID:337079 Name:Saurus Crackers<br>
+ID:337080 Name:Ultimate Surfing Buddy!<br>
+ID:337081 Name:Glittering Gemstones<br>
+ID:337082 Name:Pilgrimage of the Return of the Sacred Flame<br>
+ID:337083 Name:Abundant Phlogiston<br>
+ID:337084 Name:Puff Pops<br>
+ID:337085 Name:Little Tepetlisaurus — Treasure Hunter at Large<br>
+ID:337086 Name:Hot Spring O'Clock<br>
+ID:337087 Name:In the Name of the Extreme<br>
+ID:337088 Name:Mystique Soup<br>
 ID:339000 Name:Origin<br>
 ID:339001 Name:Mondstadt<br>
 ID:339002 Name:Liyue<br>
@@ -11447,11 +12162,14 @@ ID:339029 Name:Fonta<br>
 ID:339030 Name:The Chasm: Crown<br>
 ID:339031 Name:Natlan<br>
 ID:339032 Name:Enkanomiya: Evernight<br>
+ID:339033 Name:Enkanomiya : Crown<br>
+ID:339034 Name:Fonta: Sweet Sakura<br>
 ID:339500 Name:Mondstadt<br>
 ID:339501 Name:Liyue<br>
 ID:339502 Name:Inazuma<br>
 ID:339503 Name:Sumeru<br>
 ID:339504 Name:Fontaine<br>
+ID:339505 Name:Natlan<br>
 ID:339901 Name:Lencana Pemain Pemula<br>
 ID:339902 Name:Lencana Pemain Tingkat Tinggi<br>
 ID:339903 Name:Lencana Pemain Ahli<br>
@@ -11476,6 +12194,8 @@ ID:340015 Name:Twilight Blossom<br>
 ID:340016 Name:Bamboo Rain<br>
 ID:340017 Name:Breeze of Sabaa<br>
 ID:340018 Name:Phantom in Boots<br>
+ID:340019 Name:Cherries Snow-Laden<br>
+ID:340020 Name:New Year's Cheer<br>
 ID:350001 Name:Kemah Petualang<br>
 ID:350002 Name:Kehidupan di Perbatasan<br>
 ID:350003 Name:Bebatuan & Tanaman<br>
@@ -11560,21 +12280,37 @@ ID:350083 Name:Poisson yang Sederhana<br>
 ID:350084 Name:Kilau Merusea di Dalam Air<br>
 ID:350085 Name:Maju Sekuat Tenaga di Benteng Terlarang<br>
 ID:350086 Name:Warna Berbintik Bangsa Air<br>
+ID:350087 Name:Berpikir Sebelum Berucap<br>
+ID:350088 Name:Pesta Kemenangan di Stadion<br>
+ID:350089 Name:Terlelap Dalam Rangkulan Mimpi<br>
+ID:350090 Name:Pernak-Pernik Populer di Pasar<br>
+ID:350091 Name:Tercipta Dari Kobaran Api Terpanas<br>
+ID:350092 Name:Petualangan Kita, Jalan Kita<br>
+ID:350093 Name:Semangat Putra-Putri Gema<br>
+ID:350094 Name:Kesantaian Warga Mata Air<br>
+ID:350095 Name:Kepraktisan Tirai Daun<br>
+ID:350096 Name:Perjalanan Bunga Bersayap<br>
+ID:350097 Name:Ketentraman Penguasa Angin Malam<br>
+ID:350098 Name:Pawai Gagah Berlimpah Jaya<br>
+ID:350099 Name:Partner dan Rumah<br>
 ID:380101 Name:Tembok Kayu Dengan Tepi Atap Giok<br>
 ID:380102 Name:Dinding Lengkung dari Kayu Gelap<br>
 ID:380103 Name:Dinding Kubah Kayu Maple<br>
 ID:380104 Name:Dinding Ukiran Brightwood Sederhana<br>
 ID:380105 Name:Mosaik Emas Istana<br>
+ID:380106 Name:Kanvas Trendi Menara Megah<br>
 ID:380201 Name:Ubin dari Kayu Aras<br>
 ID:380202 Name:Ubin Kotak-Kotak Berwarna<br>
 ID:380203 Name:Lantai Maple Coklat<br>
 ID:380204 Name:Lantai Brightwood Gelap<br>
 ID:380205 Name:Ubin Sekilat Cermin di Istana<br>
+ID:380206 Name:Lantai Kompetisi Menara Megah<br>
 ID:380301 Name:Langit-Langit Kotak-Kotak dari Kayu Aras<br>
 ID:380302 Name:Langit-Langit Motif Kotak-Kotak<br>
 ID:380303 Name:Plafon Persegi Kayu Maple<br>
 ID:380304 Name:Langit-Langit Ukiran Brightwood<br>
 ID:380305 Name:Kubah Tak Bernoda Istana<br>
+ID:380306 Name:Langit-langit Bercahaya Menara Megah<br>
 ID:380401 Name:Lampu Gantung Lilin 2 Lapis<br>
 ID:380402 Name:Lentera 8 Sisi: \"Hari Keberuntungan\"<br>
 ID:380403 Name:Lentera 6 Sisi: \"Persahabatan Harmonis\"<br>
@@ -11627,8 +12363,12 @@ ID:380452 Name:Lampu Jalan \"Penari\" Flammabomb Wood<br>
 ID:380453 Name:Lampu Jalan \"Bagus\" Ashen Aratiku Wood<br>
 ID:380454 Name:Lampu Jalan \"Tombak\" White Chestnut Oak Wood<br>
 ID:380455 Name:Lampu Lantai \"Senja\" White Chestnut Oak Wood<br>
+ID:380456 Name:Lampu Jalan Phlogiston: \"Jalan di Depan\"<br>
+ID:380457 Name:Lampu Lantai Phlogiston: \"Lapis Tiga\"<br>
+ID:380458 Name:Lampu Lantai Phlogiston: \"Jalan Pulang\"<br>
 ID:380504 Name:Iluminasi Berbunga<br>
 ID:380505 Name:Lampu Melengkung Istana<br>
+ID:380506 Name:Anglo Menyala Menara Megah<br>
 ID:381101 Name:Konter Lipat Kayu Birch<br>
 ID:381102 Name:Rak Terbuka Kayu Fir<br>
 ID:381103 Name:Rak Gabungan Kayu Fir<br>
@@ -11645,6 +12385,7 @@ ID:381113 Name:Lemari Baju \"Multi Model\" Kayu Mallow<br>
 ID:381114 Name:\"Persebaran Pasar\"<br>
 ID:381115 Name:\"Tekstil Mewah Pasar\"<br>
 ID:381116 Name:Rak \"Penunjang\" dari Peach Palm Wood<br>
+ID:381117 Name:Renungan Pasar yang Tertata<br>
 ID:381201 Name:Rak Buku Perpustakaan 2 Lapis<br>
 ID:381202 Name:Rak Buku Indah dari Kayu Cuihua<br>
 ID:381203 Name:Rak Buku Ekonomis dari Kayu Cuihua<br>
@@ -11701,6 +12442,7 @@ ID:381336 Name:\"Perisai Bundar Berkaki Tunggal\"<br>
 ID:381337 Name:\"Perisai Menara Berkaki Empat\"<br>
 ID:381338 Name:\"Mereka yang Tak Dikenal\"<br>
 ID:381339 Name:\"Layanan yang Tak Terhitung\"<br>
+ID:381340 Name:Strategi Penjualan di Pasar<br>
 ID:381401 Name:Ranjang Sesejuk Angin<br>
 ID:381402 Name:Ranjang Selembut Awan<br>
 ID:381403 Name:Ranjang Kayu Yumemiru: Sakura Terlelap<br>
@@ -11709,6 +12451,7 @@ ID:381405 Name:Ranjang kayu Ephiphany: Ketenangan<br>
 ID:381406 Name:Sofa \"Jamuan\" dari Adhigama Wood<br>
 ID:381407 Name:Kasur Kayu Linden yang \"Kokoh\"<br>
 ID:381408 Name:Ranjang Kayu Linden \"Tidur Lelap\"<br>
+ID:381409 Name:Ranjang Batu: Tidur Nyenyak<br>
 ID:381501 Name:Konter Penerima Tamu dari Kayu Pinus<br>
 ID:381502 Name:Konter Kedai Teh: Toshimaru<br>
 ID:381503 Name:Platform Batu Gurun: Kokoh<br>
@@ -11805,6 +12548,7 @@ ID:382266 Name:Pagar Hotel: Lengkung Pandang Sempurna<br>
 ID:382268 Name:\"Sayuran Segar dari Pasar\"<br>
 ID:382269 Name:\"Pengembara di Jalan\"<br>
 ID:382270 Name:\"Jarak Antara Dia dan Api\"<br>
+ID:382271 Name:Oven Serbaguna Portabel<br>
 ID:382301 Name:Karpet Mondstadt: Semangat Membara<br>
 ID:382302 Name:Karpet Mondstadt: Pencarian Tanpa Henti<br>
 ID:382303 Name:Karpet Tavern: Jauh dari Rumah<br>
@@ -11822,6 +12566,7 @@ ID:382314 Name:Karpet Restoran: \"Bermandikan Embusan Angin\"<br>
 ID:382315 Name:Karpet Fontaine: Persegi Panjang Sempurna<br>
 ID:382316 Name:\"Perasaan Senang yang Memudar\"<br>
 ID:382318 Name:Karpet Kelelahan: \"Lepaskan Beban\"<br>
+ID:382319 Name:Karpet Pasar: Semangat dan Kehangatan<br>
 ID:382401 Name:Pot Berwarna-Warni: \"Lahir dari Api\"<br>
 ID:382402 Name:Boneka Kayu Dua Kaki: \"Bergoyang\"<br>
 ID:382403 Name:Boneka Kayu Empat Kaki: \"Kestabilan\"<br>
@@ -11839,6 +12584,7 @@ ID:383112 Name:Lampu Besi Dua Arah<br>
 ID:383113 Name:Lampu Sederhana: Bahan dari Sumber Setempat<br>
 ID:383114 Name:Lampu Meja Phlogiston: \"Berat yang Pas\"<br>
 ID:383115 Name:Lampu Lantai Phlogiston: \"Murah dan Praktis\"<br>
+ID:383116 Name:Lampu Jinjing Phlogiston: Pelindung Hujan<br>
 ID:383201 Name:Karangan Bunga: Biru yang Tenang<br>
 ID:383202 Name:Pot Tanaman: Angin Sepoi-Sepoi<br>
 ID:383203 Name:Karangan Bunga: Fajar Menyingsing<br>
@@ -11892,6 +12638,7 @@ ID:383358 Name:Perangkat Suplai Udara Ringkas<br>
 ID:383359 Name:\"Penyimpanan Stabil Koridor\"<br>
 ID:383360 Name:Model Kit: Perubahan yang Wajar<br>
 ID:383361 Name:Penyangga Catatan Universal<br>
+ID:383382 Name:\"Semoga Mimpimu Indah\"<br>
 ID:383401 Name:Peralatan Kedai Teh: Tak Seringan Debu<br>
 ID:383402 Name:\"Teh Lembut dalam Teko Tanah Liat Merah\"<br>
 ID:383403 Name:Model Hidangan: \"Tak Tergantikan\"<br>
@@ -11901,6 +12648,7 @@ ID:383406 Name:\"Pengejar Angin\"<br>
 ID:383407 Name:\"Lembing yang Siap Dilemparkan\"<br>
 ID:383408 Name:\"Lebih Tinggi Lagi\"<br>
 ID:383409 Name:\"Berlayar di Perairan yang Tenang\"<br>
+ID:383410 Name:Model Hidangan: \"Saurus Crackers\"<br>
 ID:383501 Name:\"Kesadaran dari Tanah Kebijaksanaan\"<br>
 ID:383502 Name:\"Aroma Pemulihan\"<br>
 ID:383504 Name:\"Seni Menghemat Air Bersih\"<br>
@@ -12014,6 +12762,11 @@ ID:390331 Name:\"Tenda Kerja Sementara Instan\"<br>
 ID:390332 Name:\"Produk Musiman Poisson\"<br>
 ID:390333 Name:Pondok Kota Musik: Suara Harmonis<br>
 ID:390335 Name:Metode Pemasaran dan Perdagangan<br>
+ID:390336 Name:Gubuk Anyaman: Indigo yang Tercerahkan<br>
+ID:390337 Name:Gubuk Anyaman: Garis Berirama<br>
+ID:390338 Name:Keindahan Alam Api Suci<br>
+ID:390339 Name:Ornamen Menakjubkan Alam Api Suci<br>
+ID:390340 Name:Perpaduan Istimewa Alam Api Suci<br>
 ID:390401 Name:Pondok Pos Hilichurl<br>
 ID:390402 Name:Aula Pemimpin Hilichurl<br>
 ID:390501 Name:\"Awan di Timur Bishui\"<br>
@@ -12157,6 +12910,21 @@ ID:390915 Name:Rumah Mata Air: Gelombang Pasang<br>
 ID:390916 Name:Sayap Mata Air<br>
 ID:390917 Name:Kapal Mata Air<br>
 ID:390918 Name:Rumah Mata Air: Pilihan Terbaik<br>
+ID:390919 Name:Arsitektur Penguasa Angin Malam: Kebutuhan Transaksi<br>
+ID:390920 Name:Arsitektur Penguasa Angin Malam: Fondasi Teknik Rahasia<br>
+ID:390921 Name:Gubuk Penguasa Angin Malam: Hidup Sederhana<br>
+ID:390922 Name:Tempat Tinggal Bunga Bersayap: Mengejar Kesederhanaan<br>
+ID:390923 Name:Tempat Tinggal Bunga Bersayap: Logika Penerbangan<br>
+ID:390924 Name:Bangunan Sederhana Bunga Bersayap: Rencana Penanggulangan<br>
+ID:390925 Name:Istal Bunga Bersayap: Peristirahatan Saurian<br>
+ID:390926 Name:Platform \"Cakar Raksasa\" Ashen Aratiku Wood<br>
+ID:390927 Name:Ziarah Api<br>
+ID:390928 Name:Villa Kelimpahan: \"Kiat Pergudangan\"<br>
+ID:390929 Name:Villa Kelimpahan: \"Kebutuhan Sehari-hari\"<br>
+ID:390930 Name:Pondok Kelimpahan: \"Pilihan Permanen\"<br>
+ID:390931 Name:Pondok Kelimpahan: \"Pilihan Sementara\"<br>
+ID:390932 Name:\"Tanah Beribu Persaingan\"<br>
+ID:390933 Name:\"Tanah Beribu Pengawal\"<br>
 ID:391101 Name:Air Mancur Bunga & Burung<br>
 ID:391102 Name:Menara Jaga Melingkar Hilichurl<br>
 ID:391103 Name:Pondok Jerami Hilichurl<br>
@@ -12195,6 +12963,8 @@ ID:391143 Name:Lokomotif Penghancur Ombak<br>
 ID:391144 Name:Mobil Rehat Zzz<br>
 ID:391145 Name:Mobil Kargo Penuh Barang<br>
 ID:391146 Name:Penghakiman Adil<br>
+ID:391147 Name:Awal Mula Penerbangan<br>
+ID:391148 Name:Balon \"Peringatan\" Bunga Bersayap<br>
 ID:391201 Name:Gerbang Adeptus<br>
 ID:391202 Name:Gerbang Halaman Utama dari Kayu Betula<br>
 ID:391203 Name:Ujung Pagar Halaman Utama dengan Ukiran<br>
@@ -12253,6 +13023,17 @@ ID:391259 Name:Dinding Lembah: Karper Menembus Layang-layang<br>
 ID:391260 Name:Atap Pelana Lembah: Tekad Gigih<br>
 ID:391261 Name:Atap Pelana Lembah: Optimisme<br>
 ID:391262 Name:Pijakan Batu Lembah: Batu Fondasi<br>
+ID:391263 Name:Portal Hunian: Misi Suci<br>
+ID:391264 Name:Dinding Hunian: Perjalanan Melalui Seni<br>
+ID:391265 Name:Dinding Hunian: Garis Panduan<br>
+ID:391266 Name:Dinding Hunian: Distorsi Perspektif<br>
+ID:391267 Name:Dinding Hunian: Panel Grafiti<br>
+ID:391268 Name:Tangga Stadion Ratusan Penempaan<br>
+ID:391269 Name:Pilar Penjaga: Ribuan Prajurit<br>
+ID:391270 Name:Pilar Penjaga: Ratusan Shaman<br>
+ID:391271 Name:Pilar Penjaga: Berjuta Percikan<br>
+ID:391272 Name:Pilar Penjaga: Pahlawan Agung<br>
+ID:391273 Name:Tangga \"Minimalis\" Ashen Aratiku Wood<br>
 ID:392107 Name:Fondasi Batu: Waktu Penuh Keberuntungan<br>
 ID:392606 Name:Struktur Penciptaan Ruang: Jalan Kehampaan<br>
 ID:392607 Name:Struktur Penciptaan Ruang: Langkah Puncak Pohon<br>
@@ -12338,6 +13119,9 @@ ID:393213 Name:\"Aroma Menggoda di Koridor Panjang\"<br>
 ID:393214 Name:\"Ungu Pekat\"<br>
 ID:393215 Name:\"Inspirasi Putih Bersih\"<br>
 ID:393216 Name:\"Aroma yang Menyembuhkan\"<br>
+ID:393217 Name:Agave Awet Muda<br>
+ID:393218 Name:Sayap Manis<br>
+ID:393219 Name:\"Akar Kokoh\"<br>
 ID:393301 Name:Rak Kayu Fir<br>
 ID:393302 Name:Rak Senjata Kayu Fir<br>
 ID:393303 Name:Rak Senjata Kayu Keras<br>
@@ -12466,6 +13250,13 @@ ID:393460 Name:Penjaga Penangkap Angin yang Rajin<br>
 ID:393461 Name:Lukisan Nanatzcayan<br>
 ID:393462 Name:Perselisihan Tak Berujung<br>
 ID:393463 Name:Bendera Huitztlan<br>
+ID:393472 Name:\"Kantong Ekor Angin Gunung\"<br>
+ID:393473 Name:\"Aspirasi Tak Berujung\"<br>
+ID:393474 Name:\"Lukisan Tlalocan\"<br>
+ID:393475 Name:Papan Kayu: Pengalaman Khayalan<br>
+ID:393476 Name:Layar Lipat Musim Semi: Sedikit Sentuhan Merah<br>
+ID:393477 Name:Layar Lipat Musim Semi: Semerbak Harum di Udara<br>
+ID:393483 Name:\"Lukisan Kekuatan dan Keberanian\"<br>
 ID:393511 Name:Rak Buku: Baca dengan Bebas<br>
 ID:393512 Name:Rak Buku: Tinjauan Cepat<br>
 ID:393513 Name:Rak Buku: Efek Fokus<br>
@@ -12474,6 +13265,7 @@ ID:393515 Name:Rak yang Dibuat dengan Terampil: Strategi Panas untuk Berjualan<b
 ID:393516 Name:Sistem Sortir dan Distribusi Kurir<br>
 ID:393601 Name:\"Kolam Renungan Awan\"<br>
 ID:393602 Name:Akuarium Kayu Cahaya<br>
+ID:393603 Name:\"Kolam Lava Cair\"<br>
 ID:393911 Name:\"Tumpukan dan Transportasi Panen Teh\"<br>
 ID:393912 Name:\"Inspirasi Perikanan Panen Teh\"<br>
 ID:393913 Name:\"Alat Multi Panen Teh\"<br>
@@ -12481,6 +13273,23 @@ ID:393914 Name:\"Cara Memanen Wewangian Teh\"<br>
 ID:393915 Name:\"Memanen Wewangian Teh yang Dijemur\"<br>
 ID:393916 Name:Kotak Pesan Kayu Mallow: Penyimpanan<br>
 ID:393917 Name:Model Kit: Mode Musikal Standar<br>
+ID:393918 Name:Model Peramal: Pemintal Roh<br>
+ID:393919 Name:Model Peramal: Pembakar Dupa<br>
+ID:393920 Name:\"Penengah yang Diam\"<br>
+ID:393921 Name:Gentong Serbaguna Diikat Tali<br>
+ID:393922 Name:\"Wadah Pemurnian dan Ketenangan\"<br>
+ID:393923 Name:\"Roh dan Segel\"<br>
+ID:393924 Name:\"Jalan Kita\"<br>
+ID:393925 Name:\"Pemikiran Lapar\"<br>
+ID:393926 Name:Obor Permanen: Pengejaran Kemenangan<br>
+ID:393927 Name:Emas Hitam Wilayah Api<br>
+ID:393928 Name:Ziarah Penempaan<br>
+ID:393929 Name:Puncak Warna dan Rona<br>
+ID:393930 Name:Percikan Warna dan Rona<br>
+ID:393931 Name:Renungan Warna dan Rona<br>
+ID:393932 Name:\"Seni Transportasi\"<br>
+ID:393933 Name:Obor Tetap: \"Pengamanan\"<br>
+ID:393934 Name:Obor Tetap: Ekstremitas<br>
 ID:394101 Name:Pagar Bambu Lapuk<br>
 ID:394102 Name:Pagar Kokoh Kayu Pinus<br>
 ID:394103 Name:Pagar Kayu Hilichurl<br>
@@ -12504,6 +13313,10 @@ ID:394120 Name:Pilar Musik Taman Galaksi<br>
 ID:394121 Name:Pertahanan Tequemecan<br>
 ID:394122 Name:Pancang Coatepec Mountain<br>
 ID:394123 Name:Pagar Mata Air<br>
+ID:394124 Name:Pagar Tali Tebing Quahuacan<br>
+ID:394125 Name:Pagar Kandang: Batas yang Sederhana<br>
+ID:394126 Name:Pintu Kandang: Struktur Fondasi<br>
+ID:394127 Name:\"Tanah Beribu Pembatas\"<br>
 ID:394201 Name:Bangku Kayu Panjang yang Mulus<br>
 ID:394202 Name:Bangku Batu Panjang yang Mulus<br>
 ID:394203 Name:Kursi Googol<br>
@@ -12519,6 +13332,7 @@ ID:394213 Name:Bangku Kayu Mallow: Melodi Tersembunyi<br>
 ID:394214 Name:Kursi Kayu Mallow: Lipatan Sederhana<br>
 ID:394215 Name:Permata Biru Mata Air<br>
 ID:394216 Name:Nyanyian Gelombang Mata Air<br>
+ID:394217 Name:Bangku Batu Vulkanik \"Sejajar\"<br>
 ID:394301 Name:Menara Penjaga 2 Lapis Hilichurl<br>
 ID:394302 Name:Rak Cangkir Terbuka dari Kayu Pinus<br>
 ID:394303 Name:Meja Tempa Berat dari Kayu Fir<br>
@@ -12545,6 +13359,7 @@ ID:394324 Name:Meja Bundar Kayu Mallow: Minum Bersama<br>
 ID:394325 Name:Pesta Pora Hutan<br>
 ID:394326 Name:Meja Panjang Kurir: Edisi Kurir<br>
 ID:394327 Name:Meja Rendah \"Warna Asli\" White Chestnut Oak Wood<br>
+ID:394328 Name:Meja Pasar: Layaknya Sediakala<br>
 ID:394401 Name:Rak Toko Anggur: Sepuas Hati<br>
 ID:394402 Name:Palet Kayu 2 Tingkat<br>
 ID:394403 Name:\"Lahirnya Lautan Bunga\"<br>
@@ -12564,25 +13379,47 @@ ID:394606 Name:Menunggangi Bara Api<br>
 ID:394607 Name:Pengiriman Kilat Kurir<br>
 ID:394608 Name:Layanan Kurir Khusus<br>
 ID:394609 Name:\"Jalan Hidup Ekstrem\"<br>
+ID:394610 Name:Pagar Tezcatepetonco: Perjalanan Matahari<br>
+ID:394611 Name:Pagar Tezcatepetonco: Jalur Penjelajahan<br>
+ID:394612 Name:Target Kayu: \"Perencanaan Latihan\"<br>
+ID:394613 Name:\"Sisa Api Kota Bara\"<br>
+ID:394614 Name:Tujuan Kita<br>
+ID:394615 Name:Senantiasa Menemani<br>
+ID:394616 Name:Memberikan Kesaksian<br>
+ID:394617 Name:Pusaka dan Pernak-Pernik Pasar<br>
+ID:394618 Name:Rahasia Tetap Sehat Jasmani<br>
+ID:394619 Name:Jaminan Kesuburan<br>
+ID:394620 Name:Cahaya Bersinar Kota Bara<br>
+ID:394621 Name:Penggiling Batu Kandang: Pembuat Pangan<br>
+ID:394622 Name:Alas Rumput Kandang: Ranjang Darurat<br>
+ID:394623 Name:\"Kekuatan Saurian\"<br>
+ID:394624 Name:Rak Barbel: Beban Terberat<br>
+ID:394625 Name:\"Aturan Penyimpanan\"<br>
+ID:394626 Name:\"Mesin Pembesar Grainfruit\"<br>
 ## MonsterId
 ID:20010101 Name:Dendro Slime<br>
 ID:20010201 Name:Large Dendro Slime<br>
 ID:20010202 Name:Large Dendro Slime<br>
 ID:20010301 Name:Anemo Slime<br>
 ID:20010302 Name:Anemo Slime<br>
+ID:20010303 Name:Anemo Slime<br>
 ID:20010381 Name:Anemo Slime<br>
 ID:20010401 Name:Large Anemo Slime<br>
 ID:20010402 Name:Large Anemo Slime<br>
 ID:20010403 Name:Large Anemo Slime<br>
+ID:20010404 Name:Large Anemo Slime<br>
 ID:20010481 Name:Large Anemo Slime<br>
 ID:20010501 Name:Electro Slime<br>
 ID:20010502 Name:Electro Slime<br>
 ID:20010503 Name:Electro Slime<br>
 ID:20010504 Name:Electro Slime<br>
+ID:20010505 Name:Electro Slime<br>
 ID:20010581 Name:Electro Slime<br>
 ID:20010590 Name:Electro Slime<br>
+ID:20010591 Name:Electro Slime<br>
 ID:20010601 Name:Large Electro Slime<br>
 ID:20010602 Name:Large Electro Slime<br>
+ID:20010603 Name:Large Electro Slime<br>
 ID:20010604 Name:Large Electro Slime<br>
 ID:20010605 Name:Large Electro Slime<br>
 ID:20010606 Name:Large Electro Slime<br>
@@ -12590,10 +13427,14 @@ ID:20010681 Name:Large Electro Slime<br>
 ID:20010701 Name:Mutant Electro Slime<br>
 ID:20010702 Name:Mutant Electro Slime<br>
 ID:20010703 Name:Mutant Electro Slime<br>
+ID:20010704 Name:Mutant Electro Slime<br>
+ID:20010791 Name:Mutant Electro Slime<br>
 ID:20010801 Name:Cryo Slime<br>
 ID:20010802 Name:Cryo Slime<br>
 ID:20010803 Name:Cryo Slime<br>
 ID:20010804 Name:Cryo Slime<br>
+ID:20010805 Name:Cryo Slime<br>
+ID:20010806 Name:Cryo Slime<br>
 ID:20010881 Name:Cryo Slime<br>
 ID:20010901 Name:Large Cryo Slime<br>
 ID:20010902 Name:Large Cryo Slime<br>
@@ -12602,13 +13443,16 @@ ID:20010904 Name:Large Cryo Slime<br>
 ID:20010905 Name:Large Cryo Slime<br>
 ID:20010906 Name:Large Cryo Slime<br>
 ID:20010981 Name:Large Cryo Slime<br>
+ID:20010991 Name:Large Cryo Slime<br>
 ID:20011001 Name:Hydro Slime<br>
 ID:20011002 Name:Hydro Slime<br>
 ID:20011081 Name:Hydro Slime<br>
+ID:20011090 Name:Hydro Slime<br>
 ID:20011101 Name:Large Hydro Slime<br>
 ID:20011102 Name:Large Hydro Slime<br>
 ID:20011103 Name:Large Hydro Slime<br>
 ID:20011181 Name:Large Hydro Slime<br>
+ID:20011191 Name:Large Hydro Slime<br>
 ID:20011201 Name:Pyro Slime<br>
 ID:20011202 Name:Pyro Slime<br>
 ID:20011203 Name:Pyro Slime<br>
@@ -12617,12 +13461,14 @@ ID:20011205 Name:Pyro Slime<br>
 ID:20011207 Name:Pyro Slime<br>
 ID:20011281 Name:Pyro Slime<br>
 ID:20011290 Name:Pyro Slime<br>
+ID:20011291 Name:Pyro Slime<br>
 ID:20011301 Name:Large Pyro Slime<br>
 ID:20011302 Name:Large Pyro Slime<br>
 ID:20011304 Name:Large Pyro Slime<br>
 ID:20011305 Name:Large Pyro Slime<br>
 ID:20011306 Name:Large Pyro Slime<br>
 ID:20011307 Name:Large Pyro Slime<br>
+ID:20011308 Name:Large Pyro Slime<br>
 ID:20011381 Name:Large Pyro Slime<br>
 ID:20011401 Name:Geo Slime<br>
 ID:20011402 Name:Geo Slime<br>
@@ -12639,6 +13485,7 @@ ID:20012001 Name:<br>
 ID:20012101 Name:<br>
 ID:20012201 Name:<br>
 ID:20020101 Name:Eye of the Storm<br>
+ID:20020191 Name:Eye of the Storm<br>
 ID:20040101 Name:Electro Hypostasis<br>
 ID:20040102 Name:Electro Hypostasis<br>
 ID:20040181 Name:Electro Hypostasis<br>
@@ -12673,6 +13520,7 @@ ID:20050501 Name:Hydro Mimic Finch<br>
 ID:20050502 Name:Hydro Mimic Finch<br>
 ID:20050581 Name:Hydro Mimic Finch<br>
 ID:20050590 Name:Hydro Mimic Finch<br>
+ID:20050591 Name:Hydro Mimic Finch<br>
 ID:20050601 Name:Hydro Mimic Mallard<br>
 ID:20050602 Name:Hydro Mimic Mallard<br>
 ID:20050603 Name:Hydro Mimic Mallard<br>
@@ -12692,7 +13540,9 @@ ID:20051101 Name:Tainted Water-Spouting Phantasm<br>
 ID:20051102 Name:Tainted Water-Spouting Phantasm<br>
 ID:20051103 Name:Tainted Water-Spouting Phantasm<br>
 ID:20051201 Name:Hydro Tulpa<br>
+ID:20051202 Name:Hydro Tulpa<br>
 ID:20051301 Name:Half-Tulpa<br>
+ID:20051302 Name:Half-Tulpa<br>
 ID:20051401 Name:Veteran Tainted Water-Splitting Phantasm<br>
 ID:20051501 Name:Veteran Tainted Water-Spouting Phantasm<br>
 ID:20051601 Name:Hydro Tulpa<br>
@@ -12706,11 +13556,14 @@ ID:20060382 Name:Anemo Specter<br>
 ID:20060401 Name:Cryo Specter<br>
 ID:20060481 Name:Cryo Specter<br>
 ID:20060490 Name:Cryo Specter<br>
+ID:20060491 Name:Cryo Specter<br>
 ID:20060501 Name:Electro Specter<br>
 ID:20060581 Name:Electro Specter<br>
+ID:20060591 Name:Electro Specter<br>
 ID:20060601 Name:Pyro Specter<br>
 ID:20060681 Name:Pyro Specter<br>
 ID:20060690 Name:Pyro Specter<br>
+ID:20060691 Name:Pyro Specter<br>
 ID:20060701 Name:Dendro Specter<br>
 ID:20060781 Name:Dendro Specter<br>
 ID:20070101 Name:Thunder Manifestation<br>
@@ -12720,14 +13573,20 @@ ID:21010102 Name:Hilichurl<br>
 ID:21010103 Name:Hilichurl<br>
 ID:21010104 Name:Hilichurl<br>
 ID:21010105 Name:Hilichurl<br>
+ID:21010106 Name:Hilichurl<br>
+ID:21010107 Name:Hilichurl<br>
 ID:21010181 Name:Hilichurl<br>
 ID:21010201 Name:Hilichurl Fighter<br>
 ID:21010202 Name:Hilichurl Fighter<br>
+ID:21010203 Name:Hilichurl Fighter<br>
+ID:21010204 Name:Hilichurl Fighter<br>
 ID:21010281 Name:Hilichurl Fighter<br>
 ID:21010290 Name:Hilichurl Fighter<br>
+ID:21010291 Name:Hilichurl Fighter<br>
 ID:21010299 Name:Hilichurl Fighter<br>
 ID:21010301 Name:Wooden Shield Hilichurl Guard<br>
 ID:21010302 Name:Wooden Shield Hilichurl Guard<br>
+ID:21010303 Name:Wooden Shield Hilichurl Guard<br>
 ID:21010381 Name:Wooden Shield Hilichurl Guard<br>
 ID:21010401 Name:Hilichurl Shooter<br>
 ID:21010402 Name:Hilichurl Shooter<br>
@@ -12740,22 +13599,26 @@ ID:21010502 Name:Pyro Hilichurl Shooter<br>
 ID:21010503 Name:Pyro Hilichurl Shooter<br>
 ID:21010581 Name:Pyro Hilichurl Shooter<br>
 ID:21010582 Name:Pyro Hilichurl Shooter<br>
+ID:21010591 Name:Pyro Hilichurl Shooter<br>
 ID:21010601 Name:Hilichurl Grenadier<br>
 ID:21010603 Name:Hilichurl Grenadier<br>
 ID:21010681 Name:Hilichurl Grenadier<br>
 ID:21010701 Name:Hilichurl Berserker<br>
 ID:21010702 Name:Hilichurl Berserker<br>
+ID:21010703 Name:Hilichurl Berserker<br>
 ID:21010781 Name:Hilichurl Berserker<br>
 ID:21010901 Name:Cryo Hilichurl Shooter<br>
 ID:21010902 Name:Cryo Hilichurl Shooter<br>
 ID:21010981 Name:Cryo Hilichurl Shooter<br>
 ID:21010982 Name:Cryo Hilichurl Shooter<br>
 ID:21010990 Name:Cryo Hilichurl Shooter<br>
+ID:21010991 Name:Cryo Hilichurl Shooter<br>
 ID:21011001 Name:Electro Hilichurl Shooter<br>
 ID:21011002 Name:Electro Hilichurl Shooter<br>
 ID:21011081 Name:Electro Hilichurl Shooter<br>
 ID:21011082 Name:Electro Hilichurl Shooter<br>
 ID:21011090 Name:Electro Hilichurl Shooter<br>
+ID:21011091 Name:Electro Hilichurl Shooter<br>
 ID:21011201 Name:Rock Shield Hilichurl Guard<br>
 ID:21011202 Name:Rock Shield Hilichurl Guard<br>
 ID:21011281 Name:Rock Shield Hilichurl Guard<br>
@@ -12773,14 +13636,17 @@ ID:21011603 Name:Electro Hilichurl Grenadier<br>
 ID:21011681 Name:Electro Hilichurl Grenadier<br>
 ID:21020101 Name:Wooden Shieldwall Mitachurl<br>
 ID:21020102 Name:Wooden Shieldwall Mitachurl<br>
+ID:21020103 Name:Wooden Shieldwall Mitachurl<br>
 ID:21020181 Name:Wooden Shieldwall Mitachurl<br>
 ID:21020201 Name:Blazing Axe Mitachurl<br>
 ID:21020202 Name:Blazing Axe Mitachurl<br>
 ID:21020203 Name:Blazing Axe Mitachurl<br>
 ID:21020204 Name:Blazing Axe Mitachurl<br>
+ID:21020205 Name:Blazing Axe Mitachurl<br>
 ID:21020281 Name:Blazing Axe Mitachurl<br>
 ID:21020282 Name:Blazing Axe Mitachurl<br>
 ID:21020290 Name:Blazing Axe Mitachurl<br>
+ID:21020291 Name:Blazing Axe Mitachurl<br>
 ID:21020299 Name:Blazing Axe Mitachurl<br>
 ID:21020301 Name:Rock Shieldwall Mitachurl<br>
 ID:21020302 Name:Rock Shieldwall Mitachurl<br>
@@ -12788,10 +13654,13 @@ ID:21020381 Name:Rock Shieldwall Mitachurl<br>
 ID:21020382 Name:Rock Shieldwall Mitachurl<br>
 ID:21020401 Name:Frostarm Lawachurl<br>
 ID:21020402 Name:Frostarm Lawachurl<br>
+ID:21020403 Name:Frostarm Lawachurl<br>
 ID:21020481 Name:Frostarm Lawachurl<br>
 ID:21020482 Name:Frostarm Lawachurl<br>
+ID:21020491 Name:Frostarm Lawachurl<br>
 ID:21020501 Name:Stonehelm, Hilichurl Chieftain<br>
 ID:21020502 Name:Stonehelm, Hilichurl Chieftain<br>
+ID:21020503 Name:Stonehelm, Hilichurl Chieftain<br>
 ID:21020581 Name:Stonehelm, Hilichurl Chieftain<br>
 ID:21020601 Name:Ice Shieldwall Mitachurl<br>
 ID:21020602 Name:Ice Shieldwall Mitachurl<br>
@@ -12800,10 +13669,14 @@ ID:21020701 Name:Crackling Axe Mitachurl<br>
 ID:21020702 Name:Crackling Axe Mitachurl<br>
 ID:21020703 Name:Crackling Axe Mitachurl<br>
 ID:21020704 Name:Crackling Axe Mitachurl<br>
+ID:21020705 Name:Crackling Axe Mitachurl<br>
+ID:21020706 Name:Crackling Axe Mitachurl<br>
 ID:21020781 Name:Crackling Axe Mitachurl<br>
 ID:21020782 Name:Crackling Axe Mitachurl<br>
+ID:21020791 Name:Crackling Axe Mitachurl<br>
 ID:21020801 Name:Thunderhelm Lawachurl<br>
 ID:21020802 Name:Thunderhelm Lawachurl<br>
+ID:21020803 Name:Thunderhelm Lawachurl<br>
 ID:21020881 Name:Thunderhelm Lawachurl<br>
 ID:21020882 Name:Thunderhelm Lawachurl<br>
 ID:21030101 Name:Hydro Samachurl<br>
@@ -12812,6 +13685,7 @@ ID:21030103 Name:Hydro Samachurl<br>
 ID:21030104 Name:Hydro Samachurl<br>
 ID:21030181 Name:Hydro Samachurl<br>
 ID:21030190 Name:Hydro Samachurl<br>
+ID:21030191 Name:Hydro Samachurl<br>
 ID:21030201 Name:Dendro Samachurl<br>
 ID:21030202 Name:Dendro Samachurl<br>
 ID:21030203 Name:Dendro Samachurl<br>
@@ -12824,6 +13698,7 @@ ID:21030304 Name:Anemo Samachurl<br>
 ID:21030381 Name:Anemo Samachurl<br>
 ID:21030382 Name:Anemo Samachurl<br>
 ID:21030383 Name:Anemo Samachurl<br>
+ID:21030391 Name:Anemo Samachurl<br>
 ID:21030401 Name:Geo Samachurl<br>
 ID:21030402 Name:Geo Samachurl<br>
 ID:21030403 Name:Geo Samachurl<br>
@@ -12844,16 +13719,20 @@ ID:21040182 Name:Anemo Hilichurl Rogue<br>
 ID:21040201 Name:Hydro Hilichurl Rogue<br>
 ID:21040281 Name:Hydro Hilichurl Rogue<br>
 ID:21040282 Name:Hydro Hilichurl Rogue<br>
+ID:21040291 Name:Hydro Hilichurl Rogue<br>
 ID:22010101 Name:Pyro Abyss Mage<br>
 ID:22010102 Name:Pyro Abyss Mage<br>
 ID:22010103 Name:Pyro Abyss Mage<br>
 ID:22010104 Name:Pyro Abyss Mage<br>
 ID:22010105 Name:Pyro Abyss Mage<br>
+ID:22010106 Name:Pyro Abyss Mage<br>
 ID:22010201 Name:Cryo Abyss Mage<br>
 ID:22010202 Name:Cryo Abyss Mage<br>
 ID:22010203 Name:Cryo Abyss Mage<br>
 ID:22010204 Name:Cryo Abyss Mage<br>
 ID:22010205 Name:Cryo Abyss Mage<br>
+ID:22010206 Name:Cryo Abyss Mage<br>
+ID:22010207 Name:Cryo Abyss Mage<br>
 ID:22010301 Name:Hydro Abyss Mage<br>
 ID:22010302 Name:Hydro Abyss Mage<br>
 ID:22010303 Name:Hydro Abyss Mage<br>
@@ -12863,6 +13742,7 @@ ID:22010401 Name:Electro Abyss Mage<br>
 ID:22010402 Name:Electro Abyss Mage<br>
 ID:22010403 Name:Electro Abyss Mage<br>
 ID:22010404 Name:Electro Abyss Mage<br>
+ID:22010405 Name:Electro Abyss Mage<br>
 ID:22020101 Name:Abyss Herald: Wicked Torrents<br>
 ID:22020102 Name:Abyss Herald: Wicked Torrents<br>
 ID:22020103 Name:Abyss Herald: Wicked Torrents<br>
@@ -12877,10 +13757,12 @@ ID:22040102 Name:Rockfond Rifthound Whelp<br>
 ID:22040103 Name:Rockfond Rifthound Whelp<br>
 ID:22040201 Name:Thundercraven Rifthound Whelp<br>
 ID:22040202 Name:Thundercraven Rifthound Whelp<br>
+ID:22040203 Name:Thundercraven Rifthound Whelp<br>
 ID:22050101 Name:Rockfond Rifthound<br>
 ID:22050102 Name:Rockfond Rifthound<br>
 ID:22050201 Name:Thundercraven Rifthound<br>
 ID:22050202 Name:Thundercraven Rifthound<br>
+ID:22050203 Name:Thundercraven Rifthound<br>
 ID:22060101 Name:Golden Wolflord<br>
 ID:22060102 Name:Golden Wolflord<br>
 ID:22070101 Name:Shadowy Husk: Standard Bearer<br>
@@ -12908,6 +13790,7 @@ ID:22110301 Name:Large Overgrown Breacher Primus<br>
 ID:22110302 Name:Large Overgrown Breacher Primus<br>
 ID:22110402 Name:Overgrown Breacher Primus<br>
 ID:22110403 Name:Overgrown Breacher Primus<br>
+ID:22120101 Name:Tenebrous Papilla: Type I<br>
 ID:22120201 Name:Tenebrous Mimiflora<br>
 ID:22120301 Name:Tenebrous Mimesis - Ruin Guard<br>
 ID:22120401 Name:Tenebrous Mimesis - Anemo Hilichurl Rogue<br>
@@ -12916,6 +13799,17 @@ ID:22120601 Name:Tenebrous Mimesis - Crackling Axe Mitachurl<br>
 ID:22120701 Name:Tenebrous Mimesis: Tepetlisaurus<br>
 ID:22120801 Name:Tenebrous Mimesis: Koholasaurus<br>
 ID:22120901 Name:Tenebrous Mimesis: Yumkasaurus<br>
+ID:22121001 Name:Tenebrous Mimesis - Tepetlisaurus Warrior: Shard Striker<br>
+ID:22121101 Name:Tenebrous Mimesis - Tepetlisaurus Warrior: Rockbreaker Blade<br>
+ID:22121201 Name:Tenebrous Mimesis - Yumkasaurus Warrior: Flowing Skyfire<br>
+ID:22121301 Name:Tenebrous Mimesis - Qucusaurus Warrior: Heartstar Hammer<br>
+ID:22121302 Name:Tenebrous Mimesis - Qucusaurus Warrior: Heartstar Hammer<br>
+ID:22121401 Name:Tenebrous Mimesis - Qucusaurus Warrior: Blazing Sky<br>
+ID:22121501 Name:Tenebrous Mimesis - Iktomisaurus Warrior: Icy Tidebearer<br>
+ID:22121601 Name:Tenebrous Papilla: Type II<br>
+ID:22121701 Name:Tenebrous Papilla: Type III<br>
+ID:22121801 Name:Tenebrous Mimesis: Geovishap Hatchling<br>
+ID:22121901 Name:Tenebrous Mimesis: Tatankasaurus<br>
 ID:23010101 Name:Fatui Skirmisher - Cryogunner Legionnaire<br>
 ID:23010201 Name:Fatui Skirmisher - Hydrogunner Legionnaire<br>
 ID:23010301 Name:Fatui Skirmisher - Electrohammer Vanguard<br>
@@ -12945,11 +13839,14 @@ ID:23060401 Name:Veteran Wind Operative<br>
 ID:23060402 Name:Veteran Wind Operative<br>
 ID:24010101 Name:Ruin Guard<br>
 ID:24010102 Name:Ruin Guard<br>
+ID:24010103 Name:Ruin Guard<br>
 ID:24010108 Name:Ruin Guard<br>
 ID:24010109 Name:Ruin Guard<br>
+ID:24010110 Name:Ruin Guard<br>
 ID:24010181 Name:Ruin Guard<br>
 ID:24010182 Name:Ruin Guard<br>
 ID:24010190 Name:Ruin Guard<br>
+ID:24010191 Name:Ruin Guard<br>
 ID:24010201 Name:Ruin Hunter<br>
 ID:24010202 Name:Ruin Hunter<br>
 ID:24010281 Name:Ruin Hunter<br>
@@ -12958,6 +13855,7 @@ ID:24010302 Name:Ruin Grader<br>
 ID:24010303 Name:Ruin Grader<br>
 ID:24010304 Name:Ruin Grader<br>
 ID:24010305 Name:Ruin Grader<br>
+ID:24010306 Name:Ruin Grader<br>
 ID:24010381 Name:Ruin Grader<br>
 ID:24010382 Name:Ruin Grader<br>
 ID:24010401 Name:Ruin Serpent<br>
@@ -12988,6 +13886,7 @@ ID:24030281 Name:Ruin Drake: Earthguard<br>
 ID:24030301 Name:Aeonblight Drake<br>
 ID:24030302 Name:Aeonblight Drake<br>
 ID:24030381 Name:Aeonblight Drake<br>
+ID:24030401 Name:Battle-Hardened Ruin Drake: Earthguard<br>
 ID:24040101 Name:Primal Construct: Repulsor<br>
 ID:24040181 Name:Primal Construct: Repulsor<br>
 ID:24040201 Name:Primal Construct: Reshaper<br>
@@ -13016,6 +13915,7 @@ ID:24060901 Name:Suppression Specialist Mek - Ousia<br>
 ID:24060902 Name:Suppression Specialist Mek - Ousia<br>
 ID:24060903 Name:Suppression Specialist Mek - Ousia<br>
 ID:24060990 Name:Suppression Specialist Mek - Ousia<br>
+ID:24060991 Name:Suppression Specialist Mek - Ousia<br>
 ID:24061001 Name:Annihilation Specialist Mek - Ousia<br>
 ID:24061002 Name:Annihilation Specialist Mek - Ousia<br>
 ID:24061101 Name:Area Alert Mek - Ousia<br>
@@ -13046,6 +13946,7 @@ ID:24065602 Name:Deepwater Assault Mek: Pneuma<br>
 ID:24065701 Name:Nimble Harvester Mek - Pneuma<br>
 ID:24065702 Name:Nimble Harvester Mek - Pneuma<br>
 ID:24065790 Name:Nimble Harvester Mek - Pneuma<br>
+ID:24065791 Name:Nimble Harvester Mek - Pneuma<br>
 ID:24065801 Name:Assault Specialist Mek - Pneuma<br>
 ID:24065802 Name:Assault Specialist Mek - Pneuma<br>
 ID:24065803 Name:Assault Specialist Mek - Pneuma<br>
@@ -13082,7 +13983,12 @@ ID:24070301 Name:Icewind Suite<br>
 ID:24080101 Name:Experimental Field Generator<br>
 ID:24080102 Name:Experimental Field Generator<br>
 ID:24090101 Name:Secret Source Automaton: Hunter-Seeker<br>
+ID:24090102 Name:Secret Source Automaton: Hunter-Seeker<br>
 ID:24090201 Name:Secret Source Automaton: Configuration Device<br>
+ID:24090202 Name:Secret Source Automaton: Configuration Device<br>
+ID:24090301 Name:<br>
+ID:24090302 Name:<br>
+ID:24090401 Name:<br>
 ID:24810101 Name:Basic Defensive Pyro Tower<br>
 ID:24810190 Name:Basic Defensive Pyro Tower<br>
 ID:24810191 Name:Basic Defensive Pyro Tower<br>
@@ -13144,13 +14050,16 @@ ID:25010228 Name:Treasure Hoarder - Scout<br>
 ID:25010229 Name:Treasure Hoarder - Scout<br>
 ID:25010230 Name:Treasure Hoarder - Scout<br>
 ID:25010231 Name:Treasure Hoarder - Scout<br>
+ID:25010232 Name:Treasure Hoarder - Scout<br>
 ID:25010281 Name:Treasure Hoarder - Scout<br>
+ID:25010291 Name:Treasure Hoarder - Scout<br>
 ID:25010301 Name:Treasure Hoarder: Pyro Potioneer<br>
 ID:25010302 Name:Treasure Hoarder: Pyro Potioneer<br>
 ID:25010303 Name:Treasure Hoarder: Pyro Potioneer<br>
 ID:25010304 Name:Treasure Hoarder: Pyro Potioneer<br>
 ID:25010381 Name:Treasure Hoarder: Pyro Potioneer<br>
 ID:25010390 Name:Treasure Hoarder: Pyro Potioneer<br>
+ID:25010391 Name:Treasure Hoarder: Pyro Potioneer<br>
 ID:25010401 Name:Treasure Hoarder: Hydro Potioneer<br>
 ID:25010402 Name:Treasure Hoarder: Hydro Potioneer<br>
 ID:25010403 Name:Treasure Hoarder: Hydro Potioneer<br>
@@ -13173,6 +14082,7 @@ ID:25010681 Name:Treasure Hoarder: Cryo Potioneer<br>
 ID:25010701 Name:Treasure Hoarder: Handyman<br>
 ID:25010702 Name:Treasure Hoarder: Handyman<br>
 ID:25010781 Name:Treasure Hoarder: Handyman<br>
+ID:25010791 Name:Treasure Hoarder: Handyman<br>
 ID:25010801 Name:<br>
 ID:25020101 Name:Treasure Hoarder - Raptor<br>
 ID:25020102 Name:Treasure Hoarder - Raptor<br>
@@ -13190,6 +14100,8 @@ ID:25020208 Name:Treasure Hoarder - Marksman<br>
 ID:25020209 Name:Treasure Hoarder - Marksman<br>
 ID:25020210 Name:Treasure Hoarder - Marksman<br>
 ID:25020211 Name:Treasure Hoarder - Marksman<br>
+ID:25020212 Name:Treasure Hoarder - Marksman<br>
+ID:25020213 Name:Treasure Hoarder - Marksman<br>
 ID:25020281 Name:Treasure Hoarder - Marksman<br>
 ID:25030101 Name:Treasure Hoarder - Carmen<br>
 ID:25030102 Name:Treasure Hoarder - Carmen<br>
@@ -13243,13 +14155,17 @@ ID:25070181 Name:Treasure Hoarder - Crusher<br>
 ID:25070201 Name:Treasure Hoarder: Wallenstein<br>
 ID:25070202 Name:Treasure Hoarder: Wallenstein<br>
 ID:25080101 Name:Nobushi: Jintouban<br>
+ID:25080102 Name:Nobushi: Jintouban<br>
 ID:25080181 Name:Nobushi: Jintouban<br>
 ID:25080201 Name:Nobushi: Hitsukeban<br>
 ID:25080202 Name:Nobushi: Hitsukeban<br>
+ID:25080203 Name:Nobushi: Hitsukeban<br>
 ID:25080281 Name:Nobushi: Hitsukeban<br>
 ID:25080301 Name:Nobushi: Kikouban<br>
+ID:25080302 Name:Nobushi: Kikouban<br>
 ID:25080381 Name:Nobushi: Kikouban<br>
 ID:25080390 Name:Nobushi: Kikouban<br>
+ID:25080391 Name:Nobushi: Kikouban<br>
 ID:25080401 Name:Yoriki Samurai<br>
 ID:25080402 Name:Yoriki Samurai<br>
 ID:25080403 Name:Yoriki Samurai<br>
@@ -13266,24 +14182,31 @@ ID:25090301 Name:Maguu Kenki: Galloping Frost<br>
 ID:25090401 Name:Makai Kenki: Mask of Terror<br>
 ID:25100101 Name:Kairagi: Dancing Thunder<br>
 ID:25100102 Name:Kairagi: Dancing Thunder<br>
+ID:25100103 Name:Kairagi: Dancing Thunder<br>
 ID:25100181 Name:Kairagi: Dancing Thunder<br>
 ID:25100182 Name:Kairagi: Dancing Thunder<br>
 ID:25100183 Name:Kairagi: Dancing Thunder<br>
 ID:25100190 Name:Kairagi: Dancing Thunder<br>
+ID:25100191 Name:Kairagi: Dancing Thunder<br>
 ID:25100201 Name:Kairagi: Fiery Might<br>
 ID:25100202 Name:Kairagi: Fiery Might<br>
+ID:25100203 Name:Kairagi: Fiery Might<br>
 ID:25100281 Name:Kairagi: Fiery Might<br>
 ID:25100282 Name:Kairagi: Fiery Might<br>
 ID:25100283 Name:Kairagi: Fiery Might<br>
 ID:25100290 Name:Kairagi: Fiery Might<br>
+ID:25100291 Name:Kairagi: Fiery Might<br>
 ID:25100301 Name:Ochimusha: Ensorcelled Thunder<br>
 ID:25100302 Name:Ochimusha: Ensorcelled Thunder<br>
+ID:25100303 Name:Ochimusha: Ensorcelled Thunder<br>
 ID:25100401 Name:Ochimusha: Cankered Flame<br>
 ID:25110101 Name:Spirit of Omen: Stone Drake<br>
 ID:25110102 Name:Spirit of Omen: Stone Drake<br>
 ID:25110201 Name:Spirit of Omen: Wind Glede<br>
 ID:25110202 Name:Spirit of Omen: Wind Glede<br>
+ID:25110291 Name:Spirit of Omen: Wind Glede<br>
 ID:25110301 Name:Spirit of Omen: Pyro Scorpion<br>
+ID:25110391 Name:Spirit of Omen: Pyro Scorpion<br>
 ID:25110401 Name:Spirit of Omen: Dendro Spirit-Serpent<br>
 ID:25210101 Name:Eremite Axe Vanguard<br>
 ID:25210102 Name:Eremite Axe Vanguard<br>
@@ -13348,11 +14271,13 @@ ID:25310102 Name:Eremite Desert Clearwater<br>
 ID:25310181 Name:Eremite Desert Clearwater<br>
 ID:25310182 Name:Eremite Desert Clearwater<br>
 ID:25310190 Name:Eremite Desert Clearwater<br>
+ID:25310191 Name:Eremite Desert Clearwater<br>
 ID:25310201 Name:Eremite Sunfrost<br>
 ID:25310202 Name:Eremite Sunfrost<br>
 ID:25310281 Name:Eremite Sunfrost<br>
 ID:25310282 Name:Eremite Sunfrost<br>
 ID:25310290 Name:Eremite Sunfrost<br>
+ID:25310291 Name:Eremite Sunfrost<br>
 ID:25310301 Name:Eremite Daythunder<br>
 ID:25310381 Name:Eremite Daythunder<br>
 ID:25310382 Name:Eremite Daythunder<br>
@@ -13364,36 +14289,62 @@ ID:25410201 Name:Eremite Galehunter<br>
 ID:25410202 Name:Eremite Galehunter<br>
 ID:25410281 Name:Eremite Galehunter<br>
 ID:25410282 Name:Eremite Galehunter<br>
+ID:25410291 Name:Eremite Galehunter<br>
 ID:25410301 Name:Eremite Scorching Loremaster<br>
 ID:25410302 Name:Eremite Scorching Loremaster<br>
 ID:25410303 Name:Eremite Scorching Loremaster<br>
 ID:25410381 Name:Eremite Scorching Loremaster<br>
 ID:25410382 Name:Eremite Scorching Loremaster<br>
+ID:25410391 Name:Eremite Scorching Loremaster<br>
 ID:25410401 Name:Eremite Floral Ring-Dancer<br>
 ID:25410481 Name:Eremite Floral Ring-Dancer<br>
 ID:25500101 Name:Flowing Blade Skirmisher<br>
 ID:25500102 Name:Flowing Blade Skirmisher<br>
+ID:25500201 Name:Winged Warrior: Skysoarer<br>
+ID:25500202 Name:Winged Warrior: Skysoarer<br>
+ID:25500203 Name:Winged Warrior: Skysoarer<br>
 ID:25501101 Name:Forged Sand Interrogator<br>
 ID:25501102 Name:Forged Sand Interrogator<br>
 ID:25501103 Name:Forged Sand Interrogator<br>
 ID:25501201 Name:Swiftstep Seeker<br>
 ID:25501202 Name:Swiftstep Seeker<br>
 ID:25501203 Name:Swiftstep Seeker<br>
+ID:25501301 Name:Winged Warrior: Feathershedder<br>
+ID:25501302 Name:Winged Warrior: Feathershedder<br>
+ID:25501303 Name:Winged Warrior: Feathershedder<br>
+ID:25501401 Name:Spiritspeaker Warrior: Determinator<br>
+ID:25501402 Name:Spiritspeaker Warrior: Determinator<br>
+ID:25501403 Name:Spiritspeaker Warrior: Determinator<br>
 ID:25502101 Name:Swiftstep Storm Scout<br>
 ID:25502102 Name:Swiftstep Storm Scout<br>
 ID:25502103 Name:Swiftstep Storm Scout<br>
 ID:25502201 Name:Flowing Blade Grease-Saw<br>
 ID:25502202 Name:Flowing Blade Grease-Saw<br>
+ID:25502301 Name:Spiritspeaker Warrior: Psychokinetic<br>
+ID:25502302 Name:Spiritspeaker Warrior: Psychokinetic<br>
+ID:25502303 Name:Spiritspeaker Warrior: Psychokinetic<br>
+ID:25502401 Name:Ferocious Warrior: Human Ram<br>
+ID:25502402 Name:Ferocious Warrior: Human Ram<br>
 ID:25503101 Name:Swiftstep Armed Courier<br>
 ID:25503102 Name:Swiftstep Armed Courier<br>
 ID:25503103 Name:Swiftstep Armed Courier<br>
+ID:25503201 Name:Spiritspeaker Warrior: Contemplator<br>
+ID:25503202 Name:Spiritspeaker Warrior: Contemplator<br>
+ID:25503203 Name:Spiritspeaker Warrior: Contemplator<br>
 ID:25504101 Name:Forged Sand Shieldbreaker<br>
 ID:25504102 Name:Forged Sand Shieldbreaker<br>
 ID:25504103 Name:Forged Sand Shieldbreaker<br>
+ID:25504201 Name:Winged Warrior: Skymaster<br>
+ID:25504202 Name:Winged Warrior: Skymaster<br>
+ID:25504203 Name:Winged Warrior: Skymaster<br>
+ID:25504301 Name:Ferocious Warrior: Wrestler<br>
+ID:25504302 Name:Ferocious Warrior: Wrestler<br>
 ID:25505101 Name:Forged Sand Javelineer<br>
 ID:25505102 Name:Forged Sand Javelineer<br>
 ID:25505201 Name:Flowing Blade Harpoon-Thrower<br>
 ID:25505202 Name:Flowing Blade Harpoon-Thrower<br>
+ID:25505301 Name:Ferocious Warrior: Grappler<br>
+ID:25505302 Name:Ferocious Warrior: Grappler<br>
 ID:25510101 Name:Tepetlisaurus Warrior: Shard Striker<br>
 ID:25510102 Name:Tepetlisaurus Warrior: Shard Striker<br>
 ID:25510201 Name:Tepetlisaurus Warrior: Rockbreaker Blade<br>
@@ -13402,24 +14353,48 @@ ID:25510203 Name:Tepetlisaurus Warrior: Rockbreaker Blade<br>
 ID:25510301 Name:Yumkasaurus Warrior: Whirling Leaves<br>
 ID:25510401 Name:Yumkasaurus Warrior: Flowing Skyfire<br>
 ID:25510402 Name:Yumkasaurus Warrior: Flowing Skyfire<br>
+ID:25510403 Name:Yumkasaurus Warrior: Flowing Skyfire<br>
 ID:25510501 Name:Koholasaurus Warrior: Waveshuttler<br>
 ID:25510502 Name:Koholasaurus Warrior: Waveshuttler<br>
+ID:25510503 Name:Koholasaurus Warrior: Waveshuttler<br>
 ID:25510601 Name:Koholasaurus Warrior: Reefsplitter<br>
 ID:25510602 Name:Koholasaurus Warrior: Reefsplitter<br>
+ID:25510701 Name:Qucusaurus Warrior: Heartstar Hammer<br>
+ID:25510702 Name:Qucusaurus Warrior: Heartstar Hammer<br>
+ID:25510801 Name:Qucusaurus Warrior: Blazing Sky<br>
+ID:25510802 Name:Qucusaurus Warrior: Blazing Sky<br>
+ID:25510901 Name:Iktomisaurus Warrior: Icy Tidebearer<br>
+ID:25510902 Name:Iktomisaurus Warrior: Icy Tidebearer<br>
+ID:25511001 Name:Iktomisaurus Warrior: Cryocrystal Cannon<br>
+ID:25511002 Name:Iktomisaurus Warrior: Cryocrystal Cannon<br>
+ID:25511101 Name:Tatankasaurus Warrior: Skybreaker<br>
+ID:25511201 Name:Tatankasaurus Warrior: Spiritlight Chaser<br>
 ID:25515101 Name:Veteran Tepetlisaurus Warrior: Rockbreaker Blade<br>
 ID:25515201 Name:Veteran Koholasaurus Warrior: Waveshuttler<br>
 ID:25515202 Name:Veteran Koholasaurus Warrior: Waveshuttler<br>
 ID:25515301 Name:Veteran Yumkasaurus Warrior: Flowing Skyfire<br>
 ID:25515401 Name:???<br>
+ID:25515501 Name:Battle-Hardened Iktomisaurus Warrior: Cryocrystal Cannon<br>
+ID:25515601 Name:Veteran Tatankasaurus Warrior: Spiritlight Chaser<br>
 ID:25516101 Name:???<br>
+ID:25516201 Name:<br>
+ID:25520101 Name:Wayward Hermetic Spiritspeaker<br>
+ID:25520102 Name:Wayward Hermetic Spiritspeaker<br>
 ID:25550101 Name:<br>
+ID:25550102 Name:<br>
+ID:25550103 Name:<br>
 ID:25550201 Name:<br>
 ID:25550202 Name:<br>
+ID:25550203 Name:<br>
+ID:25550204 Name:<br>
+ID:25550205 Name:<br>
 ID:25550301 Name:<br>
 ID:25550401 Name:<br>
 ID:25550402 Name:<br>
 ID:25550403 Name:<br>
 ID:25550501 Name:<br>
+ID:25550502 Name:<br>
+ID:25550503 Name:<br>
 ID:25550601 Name:<br>
 ID:25550701 Name:Tepetlisaurus Tribe Chief<br>
 ID:26010101 Name:Cryo Whopperflower<br>
@@ -13439,6 +14414,7 @@ ID:26020381 Name:Electro Regisvine<br>
 ID:26030101 Name:Geovishap Hatchling<br>
 ID:26030181 Name:Geovishap Hatchling<br>
 ID:26030190 Name:Geovishap Hatchling<br>
+ID:26030191 Name:Geovishap Hatchling<br>
 ID:26040101 Name:Geovishap<br>
 ID:26040102 Name:Geovishap<br>
 ID:26040103 Name:Geovishap<br>
@@ -13484,14 +14460,17 @@ ID:26051201 Name:Battle-Hardened Primordial Bathysmal Vishap<br>
 ID:26051202 Name:Battle-Hardened Primordial Bathysmal Vishap<br>
 ID:26060101 Name:Electro Cicin<br>
 ID:26060190 Name:Electro Cicin<br>
+ID:26060191 Name:Electro Cicin<br>
 ID:26060201 Name:Hydro Cicin<br>
 ID:26060290 Name:Hydro Cicin<br>
+ID:26060291 Name:Hydro Cicin<br>
 ID:26060301 Name:Cryo Cicin<br>
 ID:26080101 Name:Beisht<br>
 ID:26090101 Name:Floating Hydro Fungus<br>
 ID:26090181 Name:Floating Hydro Fungus<br>
 ID:26090190 Name:Floating Hydro Fungus<br>
 ID:26090191 Name:Floating Hydro Fungus<br>
+ID:26090192 Name:Floating Hydro Fungus<br>
 ID:26090201 Name:Floating Dendro Fungus<br>
 ID:26090202 Name:Floating Dendro Fungus<br>
 ID:26090281 Name:Floating Dendro Fungus<br>
@@ -13502,6 +14481,7 @@ ID:26090381 Name:Floating Anemo Fungus<br>
 ID:26090390 Name:Floating Anemo Fungus<br>
 ID:26090391 Name:Floating Anemo Fungus<br>
 ID:26090393 Name:Floating Anemo Fungus<br>
+ID:26090394 Name:Floating Anemo Fungus<br>
 ID:26090401 Name:Whirling Electro Fungus<br>
 ID:26090481 Name:Whirling Electro Fungus<br>
 ID:26090490 Name:Whirling Electro Fungus<br>
@@ -13533,7 +14513,9 @@ ID:26091091 Name:Stretchy Electro Fungus<br>
 ID:26100101 Name:Consecrated Horned Crocodile<br>
 ID:26100201 Name:Consecrated Fanged Beast<br>
 ID:26100301 Name:Consecrated Red Vulture<br>
+ID:26100391 Name:Consecrated Red Vulture<br>
 ID:26100401 Name:Consecrated Scorpion<br>
+ID:26100491 Name:Consecrated Scorpion<br>
 ID:26100501 Name:Consecrated Flying Serpent<br>
 ID:26110101 Name:Jadeplume Terrorshroom<br>
 ID:26110102 Name:Jadeplume Terrorshroom<br>
@@ -13542,6 +14524,7 @@ ID:26120101 Name:Winged Dendroshroom<br>
 ID:26120181 Name:Winged Dendroshroom<br>
 ID:26120201 Name:Winged Cryoshroom<br>
 ID:26120281 Name:Winged Cryoshroom<br>
+ID:26120291 Name:Winged Cryoshroom<br>
 ID:26120301 Name:Grounded Hydroshroom<br>
 ID:26120381 Name:Grounded Hydroshroom<br>
 ID:26120382 Name:Grounded Hydroshroom<br>
@@ -13553,6 +14536,7 @@ ID:26140101 Name:Legatus Golem<br>
 ID:26140102 Name:Legatus Golem<br>
 ID:26140103 Name:Legatus Golem<br>
 ID:26140104 Name:Legatus Golem<br>
+ID:26140105 Name:Legatus Golem<br>
 ID:26140201 Name:Praetorian Golem<br>
 ID:26151001 Name:Hunter's Ray<br>
 ID:26151002 Name:Hunter's Ray<br>
@@ -13579,17 +14563,20 @@ ID:26157101 Name:Angelic Sea Hare<br>
 ID:26157201 Name:Angelic Sea Hare<br>
 ID:26160101 Name:Sternshield Crab<br>
 ID:26160102 Name:Sternshield Crab<br>
+ID:26160191 Name:Sternshield Crab<br>
 ID:26160201 Name:Cherubic Sea Hare<br>
 ID:26160202 Name:Cherubic Sea Hare<br>
 ID:26160301 Name:Bubbler Seahorse<br>
 ID:26160302 Name:Bubbler Seahorse<br>
 ID:26160390 Name:Bubbler Seahorse<br>
+ID:26160391 Name:Bubbler Seahorse<br>
 ID:26162101 Name:Local Legend: Armored Crab<br>
 ID:26162201 Name:Local Legend: Hunter's Ray<br>
 ID:26162301 Name:Local Legend: Blubberbeast<br>
 ID:26162401 Name:Legenda Lokal: Cherubic Sea Hare<br>
 ID:26162501 Name:Legenda Lokal: Hat Jellyfish<br>
 ID:26170101 Name:Emperor of Fire and Iron<br>
+ID:26170102 Name:Emperor of Fire and Iron<br>
 ID:26180101 Name:Millennial Pearl Seahorse<br>
 ID:26180102 Name:Millennial Pearl Seahorse<br>
 ID:26190101 Name:Solitary Suanni<br>
@@ -13599,6 +14586,7 @@ ID:26190201 Name:Xuanwen Beast<br>
 ID:26200101 Name:Tepetlisaurus Whelp<br>
 ID:26200201 Name:Tepetlisaurus<br>
 ID:26200202 Name:Tepetlisaurus<br>
+ID:26208103 Name:Tepetlisaurus Whelp<br>
 ID:26210101 Name:Koholasaurus Whelp<br>
 ID:26210201 Name:Koholasaurus<br>
 ID:26210202 Name:Koholasaurus<br>
@@ -13608,8 +14596,23 @@ ID:26220202 Name:Yumkasaurus<br>
 ID:26220301 Name:Gluttonous Yumkasaurus Mountain King<br>
 ID:26220302 Name:Gluttonous Yumkasaurus Mountain King<br>
 ID:26220303 Name:Gluttonous Yumkasaurus Mountain King<br>
+ID:26230101 Name:Qucusaurus Chick<br>
+ID:26230201 Name:Qucusaurus<br>
+ID:26230202 Name:Qucusaurus<br>
+ID:26230204 Name:Qucusaurus<br>
 ID:26230301 Name:Goldflame Qucusaurus Tyrant<br>
 ID:26230302 Name:Goldflame Qucusaurus Tyrant<br>
+ID:26230303 Name:Goldflame Qucusaurus Tyrant<br>
+ID:26230304 Name:Goldflame Qucusaurus Tyrant<br>
+ID:26240101 Name:Iktomisaurus Chick<br>
+ID:26240102 Name:Iktomisaurus Chick<br>
+ID:26240201 Name:Iktomisaurus<br>
+ID:26240202 Name:Iktomisaurus<br>
+ID:26240301 Name:Battle-Hardened Iktomisaurus<br>
+ID:26250101 Name:Tatankasaurus Whelp<br>
+ID:26250201 Name:Tatankasaurus<br>
+ID:26250301 Name:Battle-Hardened Tatankasaurus<br>
+ID:26250302 Name:Battle-Hardened Tatankasaurus<br>
 ID:26260101 Name:Rock-Cavernous Wayob Manifestation<br>
 ID:26260103 Name:Rock-Cavernous Wayob Manifestation<br>
 ID:26260201 Name:Flow-Inverted Wayob Manifestation<br>
@@ -13619,9 +14622,25 @@ ID:26260303 Name:Foliar-Swift Wayob Manifestation<br>
 ID:26260401 Name:Battle-Hardened Rock-Cavernous Wayob Manifestation<br>
 ID:26260501 Name:Battle-Hardened Flow-Inverted Wayob Manifestation<br>
 ID:26260601 Name:Battle-Hardened Foliar-Swift Wayob Manifestation<br>
+ID:26260701 Name:Battle-Hardened Burning-Aflame Wayob Manifestation<br>
+ID:26260801 Name:Biting-Cold: Wayob Manifestation<br>
+ID:26260802 Name:Biting-Cold: Wayob Manifestation<br>
+ID:26260803 Name:Biting-Cold: Wayob Manifestation<br>
+ID:26260901 Name:Burning-Aflame Wayob Manifestation<br>
+ID:26260902 Name:Burning-Aflame Wayob Manifestation<br>
+ID:26261001 Name:Battle-Hardened Biting-Cold: Wayob Manifestation<br>
+ID:26261002 Name:Battle-Hardened Biting-Cold: Wayob Manifestation<br>
+ID:26261101 Name:Thundering Wayob Manifestation<br>
+ID:26261102 Name:Thundering Wayob Manifestation<br>
+ID:26261201 Name:Battle-Hardened Thundering Wayob Manifestation<br>
 ID:26270101 Name:Fluid Avatar of Lava<br>
 ID:26270201 Name:Eroding Avatar of Lava<br>
 ID:26270202 Name:Eroding Avatar of Lava<br>
+ID:26270301 Name:Lava Dragon Statue<br>
+ID:26270302 Name:Lava Dragon Statue<br>
+ID:26270401 Name:<br>
+ID:26290101 Name:Furnace Shell Mountain Weasel<br>
+ID:26290102 Name:Furnace Shell Mountain Weasel<br>
 ID:28010101 Name:<br>
 ID:28010102 Name:<br>
 ID:28010103 Name:<br>
@@ -13676,6 +14695,8 @@ ID:28020317 Name:<br>
 ID:28020318 Name:<br>
 ID:28020319 Name:<br>
 ID:28020320 Name:<br>
+ID:28020321 Name:<br>
+ID:28020322 Name:<br>
 ID:28020401 Name:<br>
 ID:28020402 Name:<br>
 ID:28020403 Name:<br>
@@ -13727,6 +14748,7 @@ ID:28020904 Name:<br>
 ID:28020905 Name:<br>
 ID:28021001 Name:<br>
 ID:28021002 Name:<br>
+ID:28021003 Name:<br>
 ID:28021011 Name:<br>
 ID:28021012 Name:<br>
 ID:28021101 Name:<br>
@@ -13772,6 +14794,9 @@ ID:28022501 Name:<br>
 ID:28022502 Name:<br>
 ID:28022601 Name:Battle-Hardened Capybara<br>
 ID:28022602 Name:Battle-Hardened Capybara<br>
+ID:28022701 Name:<br>
+ID:28022801 Name:<br>
+ID:28022802 Name:<br>
 ID:28030101 Name:<br>
 ID:28030102 Name:<br>
 ID:28030103 Name:<br>
@@ -13781,6 +14806,7 @@ ID:28030106 Name:<br>
 ID:28030107 Name:<br>
 ID:28030108 Name:<br>
 ID:28030109 Name:<br>
+ID:28030110 Name:<br>
 ID:28030201 Name:<br>
 ID:28030202 Name:<br>
 ID:28030203 Name:<br>
@@ -13811,6 +14837,7 @@ ID:28030407 Name:<br>
 ID:28030408 Name:<br>
 ID:28030409 Name:<br>
 ID:28030410 Name:<br>
+ID:28030411 Name:<br>
 ID:28030501 Name:<br>
 ID:28030502 Name:<br>
 ID:28030503 Name:<br>
@@ -13819,6 +14846,7 @@ ID:28030505 Name:<br>
 ID:28030506 Name:<br>
 ID:28030507 Name:<br>
 ID:28030508 Name:<br>
+ID:28030509 Name:<br>
 ID:28030601 Name:<br>
 ID:28030602 Name:<br>
 ID:28030603 Name:<br>
@@ -13855,6 +14883,9 @@ ID:28030901 Name:<br>
 ID:28030902 Name:<br>
 ID:28030903 Name:<br>
 ID:28030904 Name:<br>
+ID:28030905 Name:<br>
+ID:28031001 Name:<br>
+ID:28031002 Name:<br>
 ID:28040101 Name:<br>
 ID:28040102 Name:<br>
 ID:28040103 Name:<br>
@@ -13902,6 +14933,14 @@ ID:28041102 Name:<br>
 ID:28041103 Name:<br>
 ID:28041104 Name:<br>
 ID:28041105 Name:<br>
+ID:28041201 Name:<br>
+ID:28041202 Name:<br>
+ID:28041203 Name:<br>
+ID:28041301 Name:<br>
+ID:28041302 Name:<br>
+ID:28041401 Name:<br>
+ID:28041402 Name:<br>
+ID:28041501 Name:<br>
 ID:28050101 Name:<br>
 ID:28050102 Name:<br>
 ID:28050103 Name:<br>
@@ -14026,6 +15065,7 @@ ID:28220301 Name:<br>
 ID:28220303 Name:<br>
 ID:28220313 Name:<br>
 ID:28220314 Name:<br>
+ID:28220321 Name:<br>
 ID:28220401 Name:<br>
 ID:28220402 Name:<br>
 ID:28220403 Name:<br>
@@ -14065,6 +15105,7 @@ ID:28222305 Name:<br>
 ID:28222306 Name:<br>
 ID:28222401 Name:<br>
 ID:28222501 Name:<br>
+ID:28222701 Name:<br>
 ID:28230101 Name:<br>
 ID:28230102 Name:<br>
 ID:28230104 Name:<br>
@@ -14080,6 +15121,7 @@ ID:28230401 Name:<br>
 ID:28230402 Name:<br>
 ID:28230403 Name:<br>
 ID:28230404 Name:<br>
+ID:28230405 Name:<br>
 ID:28230601 Name:<br>
 ID:28230602 Name:<br>
 ID:28230603 Name:<br>
@@ -14132,6 +15174,15 @@ ID:28241102 Name:<br>
 ID:28241103 Name:<br>
 ID:28241104 Name:<br>
 ID:28241105 Name:<br>
+ID:28241201 Name:<br>
+ID:28241202 Name:<br>
+ID:28241203 Name:<br>
+ID:28241301 Name:<br>
+ID:28241302 Name:<br>
+ID:28241401 Name:<br>
+ID:28241402 Name:<br>
+ID:28241403 Name:<br>
+ID:28241501 Name:<br>
 ID:28250101 Name:<br>
 ID:28250102 Name:<br>
 ID:28250103 Name:<br>
@@ -14198,31 +15249,60 @@ ID:29100101 Name:The Knave<br>
 ID:29100102 Name:The Knave<br>
 ID:29100103 Name:The Knave<br>
 ID:29100104 Name:The Knave<br>
+ID:29110101 Name:Lord of Eroded Primal Fire<br>
+ID:29110102 Name:Lord of Eroded Primal Fire<br>
 ID:30010590 Name:Electro Slime<br>
+ID:30010591 Name:Electro Slime<br>
+ID:30010791 Name:Mutant Electro Slime<br>
+ID:30010805 Name:Cryo Slime<br>
+ID:30010991 Name:Large Cryo Slime<br>
+ID:30011190 Name:Large Hydro Slime<br>
+ID:30011191 Name:Large Hydro Slime<br>
 ID:30011290 Name:Pyro Slime<br>
+ID:30011291 Name:Pyro Slime<br>
+ID:30020191 Name:Eye of the Storm<br>
 ID:30050501 Name:Hydro Mimic Finch<br>
 ID:30050590 Name:Hydro Mimic Finch<br>
+ID:30050591 Name:Hydro Mimic Finch<br>
 ID:30050601 Name:Hydro Mimic Mallard<br>
 ID:30050701 Name:Hydro Mimic Squirrel<br>
 ID:30060490 Name:Cryo Specter<br>
+ID:30060491 Name:Cryo Specter<br>
+ID:30060591 Name:Electro Specter<br>
 ID:30060690 Name:Pyro Specter<br>
+ID:30060691 Name:Pyro Specter<br>
 ID:31010290 Name:Hilichurl Fighter<br>
+ID:31010291 Name:Hilichurl Fighter<br>
+ID:31010299 Name:Hilichurl Fighter<br>
+ID:31010591 Name:Pyro Hilichurl Shooter<br>
 ID:31010990 Name:Cryo Hilichurl Shooter<br>
+ID:31010991 Name:Cryo Hilichurl Shooter<br>
 ID:31011090 Name:Electro Hilichurl Shooter<br>
+ID:31011091 Name:Electro Hilichurl Shooter<br>
 ID:31020290 Name:Blazing Axe Mitachurl<br>
+ID:31020291 Name:Blazing Axe Mitachurl<br>
+ID:31020491 Name:Frostarm Lawachurl<br>
+ID:31020791 Name:Crackling Axe Mitachurl<br>
 ID:31030190 Name:Hydro Samachurl<br>
+ID:31030191 Name:Hydro Samachurl<br>
+ID:31030391 Name:Anemo Samachurl<br>
 ID:31040101 Name:Anemo Hilichurl Rogue<br>
+ID:31040291 Name:Hydro Hilichurl Rogue<br>
 ID:32110201 Name:Shatterstone Breacher Primus<br>
 ID:33010301 Name:Fatui Skirmisher - Electrohammer Vanguard<br>
 ID:33010401 Name:Fatui Skirmisher - Geochanter Bracer<br>
 ID:33010501 Name:Fatui Skirmisher - Anemoboxer Vanguard<br>
 ID:33010601 Name:Fatui Skirmisher - Pyroslinger Bracer<br>
 ID:34010190 Name:Ruin Guard<br>
+ID:34010191 Name:Ruin Guard<br>
 ID:34060101 Name:Recon Log Mek - Ousia<br>
 ID:34060102 Name:Recon Log Mek - Ousia<br>
 ID:34060901 Name:Suppression Specialist Mek - Ousia<br>
 ID:34060990 Name:Suppression Specialist Mek - Ousia<br>
+ID:34060991 Name:Suppression Specialist Mek - Ousia<br>
 ID:34065790 Name:Nimble Harvester Mek - Pneuma<br>
+ID:34065791 Name:Nimble Harvester Mek - Pneuma<br>
+ID:34090101 Name:Secret Source Automaton: Hunter-Seeker<br>
 ID:34810190 Name:Basic Defensive Pyro Tower<br>
 ID:34810191 Name:Basic Defensive Pyro Tower<br>
 ID:34810390 Name:Basic Defensive Electro Tower<br>
@@ -14237,8 +15317,11 @@ ID:35010201 Name:Treasure Hoarder - Scout<br>
 ID:35010202 Name:Treasure Hoarder - Scout<br>
 ID:35010203 Name:Treasure Hoarder - Scout<br>
 ID:35010204 Name:Treasure Hoarder - Scout<br>
+ID:35010291 Name:Treasure Hoarder - Scout<br>
 ID:35010390 Name:Treasure Hoarder: Pyro Potioneer<br>
+ID:35010391 Name:Treasure Hoarder: Pyro Potioneer<br>
 ID:35010602 Name:Treasure Hoarder: Cryo Potioneer<br>
+ID:35010791 Name:Treasure Hoarder: Handyman<br>
 ID:35020201 Name:Treasure Hoarder - Marksman<br>
 ID:35020202 Name:Treasure Hoarder - Marksman<br>
 ID:35020203 Name:Treasure Hoarder - Marksman<br>
@@ -14251,13 +15334,20 @@ ID:35060103 Name:Treasure Hoarder - Pugilist<br>
 ID:35070101 Name:Treasure Hoarder - Crusher<br>
 ID:35070102 Name:Treasure Hoarder - Crusher<br>
 ID:35080390 Name:Nobushi: Kikouban<br>
+ID:35080391 Name:Nobushi: Kikouban<br>
+ID:35100101 Name:Kairagi: Dancing Thunder<br>
 ID:35100190 Name:Kairagi: Dancing Thunder<br>
+ID:35100191 Name:Kairagi: Dancing Thunder<br>
+ID:35100201 Name:Kairagi: Fiery Might<br>
 ID:35100290 Name:Kairagi: Fiery Might<br>
+ID:35100291 Name:Kairagi: Fiery Might<br>
 ID:35110101 Name:Spirit of Omen: Stone Drake<br>
 ID:35110102 Name:Spirit of Omen: Stone Drake<br>
 ID:35110103 Name:Spirit of Omen: Stone Drake<br>
 ID:35110201 Name:Spirit of Omen: Wind Glede<br>
+ID:35110291 Name:Spirit of Omen: Wind Glede<br>
 ID:35110301 Name:Spirit of Omen: Pyro Scorpion<br>
+ID:35110391 Name:Spirit of Omen: Pyro Scorpion<br>
 ID:35210101 Name:Eremite Axe Vanguard<br>
 ID:35210102 Name:Eremite Axe Vanguard<br>
 ID:35210103 Name:Eremite Axe Vanguard<br>
@@ -14277,25 +15367,50 @@ ID:35210501 Name:Eremite Sword-Dancer<br>
 ID:35210502 Name:Eremite Sword-Dancer<br>
 ID:35310101 Name:Eremite Desert Clearwater<br>
 ID:35310190 Name:Eremite Desert Clearwater<br>
+ID:35310191 Name:Eremite Desert Clearwater<br>
 ID:35310290 Name:Eremite Sunfrost<br>
+ID:35310291 Name:Eremite Sunfrost<br>
 ID:35310301 Name:Eremite Daythunder<br>
 ID:35410101 Name:Eremite Stone Enchanter<br>
 ID:35410201 Name:Eremite Galehunter<br>
+ID:35410291 Name:Eremite Galehunter<br>
+ID:35410391 Name:Eremite Scorching Loremaster<br>
+ID:35500101 Name:Flowing Blade Skirmisher<br>
+ID:35500102 Name:Flowing Blade Skirmisher<br>
+ID:35500201 Name:Winged Warrior: Skysoarer<br>
 ID:35501102 Name:Forged Sand Interrogator<br>
+ID:35501103 Name:Forged Sand Interrogator<br>
 ID:35501201 Name:Swiftstep Seeker<br>
 ID:35501202 Name:Swiftstep Seeker<br>
+ID:35501203 Name:Swiftstep Seeker<br>
+ID:35501204 Name:Swiftstep Seeker<br>
+ID:35501205 Name:Swiftstep Seeker<br>
+ID:35501301 Name:Winged Warrior: Feathershedder<br>
+ID:35501302 Name:Winged Warrior: Feathershedder<br>
+ID:35501401 Name:Spiritspeaker Warrior: Determinator<br>
+ID:35502101 Name:Swiftstep Storm Scout<br>
+ID:35502102 Name:Swiftstep Storm Scout<br>
 ID:35502201 Name:Flowing Blade Grease-Saw<br>
 ID:35502202 Name:Flowing Blade Grease-Saw<br>
 ID:35502203 Name:Flowing Blade Grease-Saw<br>
+ID:35502204 Name:Flowing Blade Grease-Saw<br>
+ID:35502205 Name:Flowing Blade Grease-Saw<br>
+ID:35502301 Name:Spiritspeaker Warrior: Psychokinetic<br>
+ID:35502302 Name:Spiritspeaker Warrior: Psychokinetic<br>
 ID:35503101 Name:Swiftstep Armed Courier<br>
+ID:35503201 Name:Spiritspeaker Warrior: Contemplator<br>
 ID:35504101 Name:Forged Sand Shieldbreaker<br>
 ID:35504102 Name:Forged Sand Shieldbreaker<br>
+ID:35504103 Name:Forged Sand Shieldbreaker<br>
+ID:35504201 Name:Winged Warrior: Skymaster<br>
 ID:35505102 Name:Forged Sand Javelineer<br>
 ID:35510101 Name:Tepetlisaurus Warrior: Shard Striker<br>
 ID:35510301 Name:Yumkasaurus Warrior: Whirling Leaves<br>
 ID:35510401 Name:Yumkasaurus Warrior: Flowing Skyfire<br>
 ID:35510501 Name:Koholasaurus Warrior: Waveshuttler<br>
 ID:35510502 Name:Koholasaurus Warrior: Waveshuttler<br>
+ID:35510701 Name:Qucusaurus Warrior: Heartstar Hammer<br>
+ID:35510902 Name:Iktomisaurus Warrior: Icy Tidebearer<br>
 ID:35550201 Name:<br>
 ID:35550202 Name:<br>
 ID:35550203 Name:<br>
@@ -14304,6 +15419,7 @@ ID:35550205 Name:<br>
 ID:35550206 Name:<br>
 ID:35550207 Name:<br>
 ID:35550208 Name:<br>
+ID:35550209 Name:<br>
 ID:35550301 Name:<br>
 ID:35550302 Name:<br>
 ID:35550303 Name:<br>
@@ -14316,12 +15432,16 @@ ID:35550503 Name:<br>
 ID:35550601 Name:<br>
 ID:35550701 Name:Tepetlisaurus Tribe Chief<br>
 ID:36030190 Name:Geovishap Hatchling<br>
+ID:36030191 Name:Geovishap Hatchling<br>
 ID:36050601 Name:Primordial Bathysmal Vishap<br>
 ID:36060190 Name:Electro Cicin<br>
+ID:36060191 Name:Electro Cicin<br>
 ID:36060290 Name:Hydro Cicin<br>
+ID:36060291 Name:Hydro Cicin<br>
 ID:36090190 Name:Floating Hydro Fungus<br>
 ID:36090191 Name:Floating Hydro Fungus<br>
 ID:36090192 Name:Floating Hydro Fungus<br>
+ID:36090193 Name:Floating Hydro Fungus<br>
 ID:36090290 Name:Floating Dendro Fungus<br>
 ID:36090291 Name:Floating Dendro Fungus<br>
 ID:36090292 Name:Floating Dendro Fungus<br>
@@ -14329,6 +15449,7 @@ ID:36090390 Name:Floating Anemo Fungus<br>
 ID:36090391 Name:Floating Anemo Fungus<br>
 ID:36090392 Name:Floating Anemo Fungus<br>
 ID:36090393 Name:Floating Anemo Fungus<br>
+ID:36090394 Name:Floating Anemo Fungus<br>
 ID:36090490 Name:Whirling Electro Fungus<br>
 ID:36090491 Name:Whirling Electro Fungus<br>
 ID:36090492 Name:Whirling Electro Fungus<br>
@@ -14350,7 +15471,12 @@ ID:36090992 Name:Stretchy Geo Fungus<br>
 ID:36091090 Name:Stretchy Electro Fungus<br>
 ID:36091091 Name:Stretchy Electro Fungus<br>
 ID:36091092 Name:Stretchy Electro Fungus<br>
+ID:36100391 Name:Consecrated Red Vulture<br>
+ID:36100491 Name:Consecrated Scorpion<br>
+ID:36120291 Name:Winged Cryoshroom<br>
+ID:36160191 Name:Sternshield Crab<br>
 ID:36160390 Name:Bubbler Seahorse<br>
+ID:36160391 Name:Bubbler Seahorse<br>
 ID:36200201 Name:Tepetlisaurus<br>
 ID:36200202 Name:Tepetlisaurus<br>
 ID:36200203 Name:Tepetlisaurus<br>
@@ -14359,7 +15485,17 @@ ID:36210202 Name:Koholasaurus<br>
 ID:36220101 Name:Yumkasaurus Whelp<br>
 ID:36220201 Name:Yumkasaurus<br>
 ID:36220202 Name:Yumkasaurus<br>
+ID:36230201 Name:Qucusaurus<br>
+ID:36230202 Name:Qucusaurus<br>
+ID:36230203 Name:Qucusaurus<br>
+ID:36240201 Name:Iktomisaurus<br>
+ID:36260801 Name:Biting-Cold: Wayob Manifestation<br>
+ID:36260802 Name:Biting-Cold: Wayob Manifestation<br>
+ID:36260803 Name:Biting-Cold: Wayob Manifestation<br>
 ID:38022001 Name:<br>
 ID:38050590 Name:<br>
 ID:38050591 Name:<br>
+ID:38050592 Name:<br>
+ID:38050593 Name:<br>
 ID:38060502 Name:<br>
+ID:39060101 Name:Raiden Shogun<br>

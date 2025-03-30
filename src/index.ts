@@ -39,9 +39,6 @@ import { Monster } from '@/models/Monster'
 import { Notice } from '@/models/Notice'
 import { ProfilePicture } from '@/models/ProfilePicture'
 import { StatProperty } from '@/models/StatProperty'
-import { TowerFloor } from '@/models/tower/TowerFloor'
-import { TowerLevel } from '@/models/tower/TowerLevel'
-import { TowerSchedule } from '@/models/tower/TowerSchedule'
 import { Weapon } from '@/models/weapon/Weapon'
 import { WeaponAscension } from '@/models/weapon/WeaponAscension'
 import { WeaponRefinement } from '@/models/weapon/WeaponRefinement'
@@ -97,9 +94,6 @@ export {
   WeaponAscension,
   WeaponRefinement,
   StatProperty,
-  TowerFloor,
-  TowerLevel,
-  TowerSchedule,
   Monster,
   NoticeManager,
   Notice,

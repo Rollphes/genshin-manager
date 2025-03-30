@@ -181,6 +181,7 @@ export class Monster {
       21104: 22110403,
       30604: 23060201,
       90903: 29090304,
+      62081: 26208103,
     }
     return Object.keys(exceptionIds).includes(String(describeId))
       ? exceptionIds[+describeId]
@@ -201,13 +202,15 @@ export class Monster {
   ): number {
     if (!propGrowCurve) return initValue
     const bonusValue =
-      propGrowCurve.type === undefined
+      propGrowCurve.type === undefined ||
+      propGrowCurve.type === 'FIGHT_PROP_NONE'
         ? 1.0
         : statusBonusMonsterAtMultiPlay[
             propGrowCurve.type as keyof typeof statusBonusMonsterAtMultiPlay
           ][playerCount - 1]
     if (
       propGrowCurve.growCurve === undefined ||
+      propGrowCurve.growCurve === 'GROW_CURVE_NONE' ||
       propGrowCurve.growCurve === 'GROW_CURVE_DEFENDING' //Skip GROW_CURVE_DEFENDING as it does not exist in the 4.0 data
     )
       return initValue * bonusValue
