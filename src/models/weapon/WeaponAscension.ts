@@ -87,7 +87,9 @@ export class WeaponAscension {
     this.addProps = (weaponPromoteJson.addProps as JsonObject[])
       .filter(
         (addProp) =>
-          addProp.propType !== undefined && addProp.value !== undefined,
+          addProp.propType !== undefined &&
+          addProp.propType !== 'FIGHT_PROP_NONE' &&
+          addProp.value !== undefined,
       )
       .map(
         (addProp) =>
