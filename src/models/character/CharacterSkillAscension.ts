@@ -57,6 +57,12 @@ export class CharacterSkillAscension {
       this.id,
     )
     const proudSkillGroupId = skillJson.proudSkillGroupId as number
+    if (proudSkillGroupId === 0) {
+      this.costItems = []
+      this.costMora = 0
+      this.addProps = []
+      return
+    }
     const proudSkillJson = Client._getJsonFromCachedExcelBinOutput(
       'ProudSkillExcelConfigData',
       proudSkillGroupId,
