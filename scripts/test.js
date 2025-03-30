@@ -18,9 +18,6 @@ const { CharacterVoice } = require('../dist/models/character/CharacterVoice.js')
 const { Artifact } = require('../dist/models/Artifact.js')
 const { Material } = require('../dist/models/Material.js')
 const { Weapon } = require('../dist/models/weapon/Weapon.js')
-const { TowerSchedule } = require('../dist/models/tower/TowerSchedule.js')
-const { TowerFloor } = require('../dist/models/tower/TowerFloor.js')
-const { TowerLevel } = require('../dist/models/tower/TowerLevel.js')
 const { Monster } = require('../dist/models/Monster.js')
 const { ProfilePicture } = require('../dist/models/ProfilePicture.js')
 const { DailyFarming } = require('../dist/models/DailyFarming.js')
@@ -61,11 +58,6 @@ async function main() {
       Artifact.allArtifactIds.forEach((id) => new Artifact(id, 10001))
       Material.allMaterialIds.forEach((id) => new Material(id))
       Weapon.allWeaponIds.forEach((id) => new Weapon(id))
-      TowerSchedule.allTowerScheduleIds.forEach(
-        (id) => new TowerSchedule(id),
-      )
-      TowerFloor.allTowerFloorIds.forEach((id) => new TowerFloor(id))
-      TowerLevel.allTowerLevelIds.forEach((id) => new TowerLevel(id, 12))
       Monster.allMonsterIds.forEach((id) => new Monster(id))
       ProfilePicture.allProfilePictureIds.forEach(
         (id) => new ProfilePicture(id),
@@ -82,9 +74,7 @@ async function main() {
       break
     case 'findMonsterIdByDescribeId':
       console.log('Running test of findMonsterIdByDescribeId...')
-      console.log('step 1:Spiral Abyss Schedule test...')
-      TowerSchedule.allTowerScheduleIds.map((id) => new TowerSchedule(id))
-      console.log('step 2:MonsterDescribeExcelConfigData keys test...')
+      console.log('step 1:MonsterDescribeExcelConfigData keys test...')
       const describeIds = Object.keys(
         Client._getCachedExcelBinOutputByName('MonsterDescribeExcelConfigData'),
       )
@@ -151,18 +141,6 @@ async function main() {
       for (const id of skillIds) {
         const skill = new CharacterSkill(id)
         await skill.icon.fetchBuffer().catch((e) => console.log(e))
-      }
-
-      const towerFloorIds = await TowerFloor.allTowerFloorIds
-      for (const id of towerFloorIds) {
-        const towerFloor = new TowerFloor(id)
-        await towerFloor.bgImage.fetchBuffer().catch((e) => console.log(e))
-      }
-
-      const towerScheduleIds = await TowerSchedule.allTowerScheduleIds
-      for (const id of towerScheduleIds) {
-        const towerSchedule = new TowerSchedule(id)
-        await towerSchedule.icon.fetchBuffer().catch((e) => console.log(e))
       }
 
       const weaponIds = await Weapon.allWeaponIds

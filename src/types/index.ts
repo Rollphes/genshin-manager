@@ -226,7 +226,7 @@ export type MaterialType =
  * FightProp Map
  */
 export const FightProps = {
-  // 0: 'FIGHT_PROP_NONE',
+  0: 'FIGHT_PROP_NONE',
   1: 'FIGHT_PROP_BASE_HP',
   2: 'FIGHT_PROP_HP',
   3: 'FIGHT_PROP_HP_PERCENT',
@@ -409,19 +409,19 @@ export type CodexType =
  * TextMap language type
  */
 export const TextMapLanguage = {
-  EN: 'TextMapEN.json',
-  RU: 'TextMapRU.json',
-  VI: 'TextMapVI.json',
-  TH: 'TextMapTH.json',
-  PT: 'TextMapPT.json',
-  KR: 'TextMapKR.json',
-  JP: 'TextMapJP.json',
-  ID: 'TextMapID.json',
-  FR: 'TextMapFR.json',
-  ES: 'TextMapES.json',
-  DE: 'TextMapDE.json',
-  CHT: 'TextMapCHT.json',
-  CHS: 'TextMapCHS.json',
+  EN: ['TextMapEN.json'],
+  RU: ['TextMapRU.json'],
+  VI: ['TextMapVI.json'],
+  TH: ['TextMapTH_0.json', 'TextMapTH_1.json'],
+  PT: ['TextMapPT.json'],
+  KR: ['TextMapKR.json'],
+  JP: ['TextMapJP.json'],
+  ID: ['TextMapID.json'],
+  FR: ['TextMapFR.json'],
+  ES: ['TextMapES.json'],
+  DE: ['TextMapDE.json'],
+  CHT: ['TextMapCHT.json'],
+  CHS: ['TextMapCHS.json'],
 } as const
 
 /**

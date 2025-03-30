@@ -65,7 +65,11 @@ export class WeaponRefinement {
       this.skillDescription =
         Client._cachedTextMap.get(String(equipAffixJson.descTextMapHash)) || ''
       this.addProps = (equipAffixJson.addProps as JsonObject[])
-        .filter((addProp) => addProp.propType !== undefined)
+        .filter(
+          (addProp) =>
+            addProp.propType !== undefined &&
+            addProp.propType !== 'FIGHT_PROP_NONE',
+        )
         .map(
           (addProp) =>
             new StatProperty(

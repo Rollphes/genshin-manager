@@ -336,53 +336,55 @@ export abstract class AssetCacheManager<
     language: keyof typeof TextMapLanguage,
   ): Promise<boolean> {
     //Since the timing of loading into the cache is the last, unnecessary cache is not loaded, and therefore clearing the cache is not necessary.
-    const selectedTextMapPath = path.join(
-      this.textMapFolderPath,
-      `TextMap${language}.json`,
-    )
-    if (!fs.existsSync(selectedTextMapPath)) {
-      if (this.option.autoFixTextMap) {
-        if (this.option.showFetchCacheLog) {
-          console.log(
-            `GenshinManager: TextMap${language}.json not found. Re downloading...`,
-          )
-        }
-        await this.reDownloadTextMap(language)
-        return true
-      } else {
-        throw new AssetsNotFoundError(language)
-      }
-    }
-
-    const eventEmitter = new TextMapEmptyWritable()
-
-    eventEmitter.on('data', ({ key, value }) =>
-      this._cachedTextMap.set(key as string, value as string),
-    )
-
-    const pipelinePromiseResult = await pipeline(
-      fs.createReadStream(selectedTextMapPath, {
-        highWaterMark: 1 * 1024 * 1024,
-      }),
-      new TextMapTransform(language, this.textHashes),
-      eventEmitter,
-    ).catch(async (error) => {
-      if (error instanceof TextMapFormatError) {
-        if (this.option.autoFixTextMap) {
-          if (this.option.showFetchCacheLog) {
-            console.log(
-              `GenshinManager: TextMap${language}.json format error. Re downloading...`,
-            )
+    const results = await Promise.all(
+      TextMapLanguage[language].map(async (fileName) => {
+        const selectedTextMapPath = path.join(this.textMapFolderPath, fileName)
+        if (!fs.existsSync(selectedTextMapPath)) {
+          if (this.option.autoFixTextMap) {
+            if (this.option.showFetchCacheLog) {
+              console.log(
+                `GenshinManager: ${fileName} not found. Re downloading...`,
+              )
+            }
+            await this.reDownloadTextMap(language)
+            return true
+          } else {
+            throw new AssetsNotFoundError(language)
           }
-          await this.reDownloadTextMap(language)
-          return true
-        } else {
-          throw error
         }
-      }
-    })
-    if (pipelinePromiseResult) return true
-    return false
+
+        const eventEmitter = new TextMapEmptyWritable()
+
+        eventEmitter.on('data', ({ key, value }) =>
+          this._cachedTextMap.set(key as string, value as string),
+        )
+
+        const pipelinePromiseResult = await pipeline(
+          fs.createReadStream(selectedTextMapPath, {
+            highWaterMark: 1 * 1024 * 1024,
+          }),
+          new TextMapTransform(language, this.textHashes),
+          eventEmitter,
+        ).catch(async (error) => {
+          if (error instanceof TextMapFormatError) {
+            if (this.option.autoFixTextMap) {
+              if (this.option.showFetchCacheLog) {
+                console.log(
+                  `GenshinManager: TextMap${language}.json format error. Re downloading...`,
+                )
+              }
+              await this.reDownloadTextMap(language)
+              return true
+            } else {
+              throw error
+            }
+          }
+        })
+        if (pipelinePromiseResult) return true
+        return false
+      }),
+    )
+    return results.every((result) => result === true)
   }
 
   /**
@@ -411,9 +413,9 @@ export abstract class AssetCacheManager<
       // eslint-disable-next-line no-empty
       while (await this.setExcelBinOutputToCache(this.excelBinOutputAllKeys)) {}
       this.createTextHashes()
-      const textMapFileNames = this.option.downloadLanguages.map(
-        (key) => TextMapLanguage[key],
-      )
+      const textMapFileNames = this.option.downloadLanguages
+        .map((key) => TextMapLanguage[key])
+        .flat()
       await this.fetchAssetFolder(this.textMapFolderPath, textMapFileNames)
       this._assetEventEmitter.emit('END_UPDATE_ASSETS', newVersionText)
       if (this.option.showFetchCacheLog)
@@ -519,10 +521,14 @@ export abstract class AssetCacheManager<
   private static async reDownloadTextMap(
     language: keyof typeof TextMapLanguage,
   ): Promise<void> {
-    const textMapFileName = TextMapLanguage[language]
+    const textMapFileNames = TextMapLanguage[language]
     await this.setExcelBinOutputToCache(this.excelBinOutputAllKeys)
     this.createTextHashes()
-    await this.fetchAssetFolder(this.textMapFolderPath, [textMapFileName], true)
+    await this.fetchAssetFolder(
+      this.textMapFolderPath,
+      [...textMapFileNames],
+      true,
+    )
   }
 
   /**
