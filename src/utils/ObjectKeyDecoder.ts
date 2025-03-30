@@ -52,7 +52,7 @@ export class ObjectKeyDecoder {
       )
     }
 
-    // Replace key of WeaponPromoteExcelConfigData (add promoteLevel)
+    // Replace key of WeaponPromoteExcelConfigData (add promoteLevel & unlockMaxLevel)
     if (Client._hasCachedExcelBinOutputByName('WeaponPromoteExcelConfigData')) {
       const weaponPromoteDataArray = Object.values(
         Client._getCachedExcelBinOutputByName('WeaponPromoteExcelConfigData'),
@@ -69,6 +69,44 @@ export class ObjectKeyDecoder {
             ([, v]) => v === 1,
           )?.[0] as string,
           'promoteLevel',
+        ),
+      )
+
+      this.replaceDatas.push(
+        new ReplaceData(
+          Object.entries(sampleWeaponPromoteData).find(
+            ([, v]) => v === 40,
+          )?.[0] as string,
+          'unlockMaxLevel',
+        ),
+      )
+    }
+
+    // Replace key of AvatarPromoteExcelConfigData (add promoteLevel & unlockMaxLevel)
+    if (Client._hasCachedExcelBinOutputByName('AvatarPromoteExcelConfigData')) {
+      const avatarPromoteDataArray = Object.values(
+        Client._getCachedExcelBinOutputByName('AvatarPromoteExcelConfigData'),
+      )
+
+      const sampleAvatarPromoteData = avatarPromoteDataArray.find(
+        (data) => data.avatarPromoteId === 2 && data.requiredPlayerLevel === 15,
+      ) as JsonObject
+
+      this.replaceDatas.push(
+        new ReplaceData(
+          Object.entries(sampleAvatarPromoteData).find(
+            ([, v]) => v === 1,
+          )?.[0] as string,
+          'promoteLevel',
+        ),
+      )
+
+      this.replaceDatas.push(
+        new ReplaceData(
+          Object.entries(sampleAvatarPromoteData).find(
+            ([, v]) => v === 40,
+          )?.[0] as string,
+          'unlockMaxLevel',
         ),
       )
     }
