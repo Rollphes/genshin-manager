@@ -75,7 +75,9 @@ export class CharacterSkillAscension {
     this.addProps = (proudSkillJson.addProps as JsonObject[])
       .filter(
         (addProp) =>
-          addProp.propType !== undefined && addProp.value !== undefined,
+          addProp.propType !== undefined &&
+          addProp.propType !== 'FIGHT_PROP_NONE' &&
+          addProp.value !== undefined,
       )
       .map(
         (addProp) =>
