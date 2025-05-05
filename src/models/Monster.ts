@@ -182,6 +182,7 @@ export class Monster {
       30604: 23060201,
       90903: 29090304,
       62081: 26208103,
+      91220: 29122000,
     }
     return Object.keys(exceptionIds).includes(String(describeId))
       ? exceptionIds[+describeId]
