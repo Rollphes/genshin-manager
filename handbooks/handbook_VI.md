@@ -1,4 +1,4 @@
-# GameVersion 5.5.0
+# GameVersion 5.6.0
 ## CharacterId
 ID:10000002 Name:Kamisato Ayaka<br>
 ID:10000003 Name:Jean<br>
@@ -98,6 +98,8 @@ ID:10000108 Name:Lan Yan<br>
 ID:10000109 Name:Yumemizuki Mizuki<br>
 ID:10000110 Name:Iansan<br>
 ID:10000111 Name:Varesa<br>
+ID:10000112 Name:Escoffier<br>
+ID:10000113 Name:Ifa<br>
 ID:10000901 Name:Mavuika (Thử Nghiệm)<br>
 ID:10000902 Name:Hu Tao (Dùng thử)<br>
 ## CostumeId
@@ -220,341 +222,349 @@ ID:210800 Name:Chuông Bạc Lung Linh<br>
 ID:210900 Name:Giấc Mơ Bồng Bềnh<br>
 ID:211000 Name:Xương Dũng Sĩ<br>
 ID:211100 Name:Niềm Vui Ngọt Ngào<br>
+ID:211200 Name:Bánh Kem Tuyết Mật<br>
+ID:211300 Name:Đôi Cánh Canh Gác<br>
 ID:290100 Name:Thời Trang Mặc Định<br>
 ID:290200 Name:Thời Trang Mặc Định<br>
 ## SkillId
-ID:10024 Name:Tấn Công Thường - Trường Phái Kamisato: Naname<br>
+ID:10024 Name:Trường Phái Kamisato - Kabuki<br>
 ID:10018 Name:Trường Phái Kamisato - Hyouka<br>
 ID:10019 Name:Trường Phái Kamisato - Soumetsu<br>
-ID:10031 Name:Tấn Công Thường - Tây Phong Kiếm Thuật<br>
+ID:10031 Name:Tây Phong Kiếm Thuật<br>
 ID:10033 Name:Gió Cuộn Kiếm<br>
 ID:10034 Name:Gió Bồ Công Anh<br>
-ID:100540 Name:Tấn Công Thường: Hồi Ức Cái Chết<br>
-ID:100541 Name:Tấn Công Thường - Ngọn Lửa Dị Bang<br>
+ID:100540 Name:Hồi Ức Cái Chết<br>
+ID:100541 Name:Ngọn Lửa Dị Bang<br>
 ID:10097 Name:Lưu Hỏa Kiếm<br>
 ID:10098 Name:Chước Hỏa Liêu Nguyên<br>
-ID:100542 Name:Tấn Công Thường - Dòng Nước Dị Bang<br>
+ID:100542 Name:Dòng Nước Dị Bang<br>
 ID:10087 Name:Thủy Văn Kiếm<br>
 ID:10088 Name:Dòng Chảy Cuồn Cuộn<br>
-ID:100543 Name:Tấn Công Thường: Gió Sắt Nơi Xa<br>
+ID:100543 Name:Gió Sắt Dị Bang<br>
 ID:10067 Name:Kiếm Gió Lốc<br>
 ID:10068 Name:Khuấy Động Gió Tàn<br>
 ID:100544 Name:<br>
-ID:100545 Name:Tấn Công Thường: Đỉnh Núi Đá<br>
+ID:100545 Name:Đỉnh Núi Dị Bang<br>
 ID:10077 Name:Kiếm Sao Băng<br>
 ID:10078 Name:Sóng Đá Trùng Điệp<br>
-ID:100546 Name:Tấn Công Thường - Tiếng Sấm Dị Bang<br>
+ID:100546 Name:Tiếng Sấm Dị Bang<br>
 ID:10602 Name:Lôi Ảnh Kiếm<br>
 ID:10605 Name:Xung Điện Sấm Rền<br>
-ID:100547 Name:Tấn Công Thường - Xén Cỏ Dị Bang<br>
+ID:100547 Name:Xén Cỏ Dị Bang<br>
 ID:10117 Name:Thảo Duyên Kiếm<br>
 ID:10118 Name:Yển Thảo Nhược Hóa<br>
-ID:10060 Name:Tấn Công Thường: Sấm Sét Cảm Ứng<br>
+ID:10060 Name:Sấm Sét Cảm Ứng<br>
 ID:10061 Name:Sấm Giội<br>
 ID:10062 Name:Tường Vi Sấm Sét<br>
-ID:100550 Name:Tấn Công Thường: Hồi Ức Cái Chết<br>
-ID:100551 Name:Tấn Công Thường - Ngọn Lửa Dị Bang<br>
+ID:100550 Name:Hồi Ức Cái Chết<br>
+ID:100551 Name:Ngọn Lửa Dị Bang<br>
 ID:10097 Name:Lưu Hỏa Kiếm<br>
 ID:10098 Name:Chước Hỏa Liêu Nguyên<br>
-ID:100552 Name:Tấn Công Thường - Dòng Nước Dị Bang<br>
+ID:100552 Name:Dòng Nước Dị Bang<br>
 ID:10087 Name:Thủy Văn Kiếm<br>
 ID:10088 Name:Dòng Chảy Cuồn Cuộn<br>
-ID:100553 Name:Tấn Công Thường: Gió Sắt Nơi Xa<br>
+ID:100553 Name:Gió Sắt Dị Bang<br>
 ID:10067 Name:Kiếm Gió Lốc<br>
 ID:10068 Name:Khuấy Động Gió Tàn<br>
 ID:100554 Name:<br>
-ID:100555 Name:Tấn Công Thường: Đỉnh Núi Đá<br>
+ID:100555 Name:Đỉnh Núi Dị Bang<br>
 ID:10077 Name:Kiếm Sao Băng<br>
 ID:10078 Name:Sóng Đá Trùng Điệp<br>
-ID:100556 Name:Tấn Công Thường - Tiếng Sấm Dị Bang<br>
+ID:100556 Name:Tiếng Sấm Dị Bang<br>
 ID:10602 Name:Lôi Ảnh Kiếm<br>
 ID:10605 Name:Xung Điện Sấm Rền<br>
-ID:100557 Name:Tấn Công Thường - Xén Cỏ Dị Bang<br>
+ID:100557 Name:Xén Cỏ Dị Bang<br>
 ID:10117 Name:Thảo Duyên Kiếm<br>
 ID:10118 Name:Yển Thảo Nhược Hóa<br>
-ID:10070 Name:Tấn Công Thường: Giọng Ca Của Nước<br>
+ID:10070 Name:Giọng Ca Của Nước<br>
 ID:10071 Name:Buổi Diễn, Bắt Đầu♪<br>
 ID:10072 Name:Kỳ Tích Vinh Diệu♪<br>
-ID:10073 Name:Tấn Công Thường: Nghi Lễ Kiếm Thuật<br>
+ID:10073 Name:Nghi Lễ Kiếm Thuật<br>
 ID:10074 Name:Đột Kích Băng Giá<br>
 ID:10075 Name:Vũ Điệu Giá Rét<br>
-ID:10160 Name:Tấn Công Thường: Kiếm Tôi Luyện<br>
+ID:10160 Name:Kiếm Tôi Luyện<br>
 ID:10161 Name:Lưỡi Đao Rực Lửa<br>
 ID:10165 Name:Bình Minh<br>
-ID:10201 Name:Tấn Công Thường: Nanh Thép<br>
+ID:10201 Name:Nanh Thép<br>
 ID:10202 Name:Vuốt Và Sấm<br>
 ID:10203 Name:Răng Sét<br>
-ID:10041 Name:Tấn Công Thường: Xạ Thủ Thần<br>
+ID:10041 Name:Xạ Thủ Thần<br>
 ID:10032 Name:Con Rối Nổ<br>
 ID:10017 Name:Mưa Tên<br>
-ID:10221 Name:Tấn Công Thường: Xạ Thuật Của Thần<br>
+ID:10221 Name:Xạ Thuật Của Thần<br>
 ID:10224 Name:Bài Ca Trời Cao<br>
 ID:10225 Name:Bài Thơ Thần Gió<br>
-ID:10231 Name:Tấn Công Thường: Tài Nghệ Làm Bánh<br>
+ID:10231 Name:Tài Nghệ Làm Bánh<br>
 ID:10232 Name:Guoba Xuất Kích<br>
 ID:10235 Name:Bánh Xe Lửa<br>
-ID:10241 Name:Tấn Công Thường: Đại Dương<br>
+ID:10241 Name:Đại Dương<br>
 ID:10242 Name:Bắt Sóng<br>
 ID:10245 Name:Chước Lôi<br>
-ID:10381 Name:Tấn Công Thường: Cổ Hoa Kiếm Pháp<br>
+ID:10381 Name:Cổ Hoa Kiếm Pháp<br>
 ID:10382 Name:Cổ Hoa Kiếm - Họa Vũ Lung Sơn<br>
 ID:10385 Name:Cổ Hoa Kiếm - Tài Vũ Lưu Hồng<br>
-ID:10261 Name:Tấn Công Thường - Cuốn Quét Bụi Trần<br>
+ID:10261 Name:Cuốn Quét Bụi Trần<br>
 ID:10262 Name:Đôi Bánh Xe Gió<br>
 ID:10265 Name:Vũ Điệu Trừ Yêu<br>
-ID:10271 Name:Tấn Công Thường - Ngàn Vàng Lấp Lánh<br>
+ID:10271 Name:Ngàn Vàng Lấp Lánh<br>
 ID:10272 Name:Vách Toàn Cơ<br>
 ID:10274 Name:Thiên Quyền Băng Ngọc<br>
-ID:10291 Name:Tấn Công Thường - Bằng Bằng<br>
+ID:10291 Name:Bằng Bằng<br>
 ID:10292 Name:Bom Nảy<br>
 ID:10295 Name:Tia Lửa Mãnh Liệt<br>
-ID:10301 Name:Tấn Công Thường - Mưa Đá<br>
+ID:10301 Name:Mưa Đá<br>
 ID:10302 Name:Tâm Trái Đất<br>
 ID:10303 Name:Thiên Tinh<br>
-ID:10311 Name:Tấn Công Thường - Mũi Tên Diệt Ác<br>
+ID:10311 Name:Mũi Tên Diệt Ác<br>
 ID:10312 Name:Cánh Chim Đêm<br>
 ID:10313 Name:Ảo Ảnh Bóng Đêm<br>
-ID:10321 Name:Tấn Công Thường: Kiếm May Mắn<br>
+ID:10321 Name:Kiếm May Mắn<br>
 ID:10322 Name:Nhiệt Tình Quá Độ<br>
 ID:10323 Name:Hành Trình Kỳ Diệu<br>
-ID:10331 Name:Tấn Công Thường: Chém Mưa<br>
+ID:10331 Name:Chém Mưa<br>
 ID:10332 Name:Trang Phục Ma Vương - Thủy Triều<br>
 ID:10333 Name:Kỹ năng Thượng Thừa - Ánh Sáng Tận Diệt<br>
-ID:10341 Name:Tấn Công Thường: Tây Phong Kiếm Thuật - Hầu Gái<br>
+ID:10341 Name:Tây Phong Kiếm Thuật - Hầu Gái<br>
 ID:10342 Name:Giáp Hộ Tâm<br>
 ID:10343 Name:Quét Sạch<br>
-ID:10351 Name:Tấn Công Thường - Vân Lai Cổ Kiếm Pháp<br>
+ID:10351 Name:Vân Lai Cổ Kiếm Pháp<br>
 ID:10352 Name:Tiên pháp - Hàn Bệnh Quỷ Sai<br>
 ID:10353 Name:Tiên Pháp - Cứu Khổ Độ Ách<br>
-ID:10401 Name:Tấn Công Thường - Bốn Cách Diệt Tà<br>
+ID:10401 Name:Bốn Cách Diệt Tà<br>
 ID:10402 Name:Linh Đao - Sương Bạc Trùng Điệp<br>
 ID:10403 Name:Linh Đao - Vân Khai Tinh Lạc<br>
-ID:10371 Name:Tấn Công Thường - Lưu Thiên Xạ Thuật<br>
+ID:10371 Name:Lưu Thiên Xạ Thuật<br>
 ID:10372 Name:Sơn Trạch Lân Tích<br>
 ID:10373 Name:Thiên Hoa Hạ Phàm<br>
-ID:10386 Name:Tấn Công Thường - Tây Phong Kiếm Thuật - Bạch<br>
+ID:10386 Name:Tây Phong Kiếm Thuật - Bạch<br>
 ID:10387 Name:Thuật Sáng Thế - Chế Tạo Mặt Trời<br>
 ID:10388 Name:Chiêu Giáng Sinh - Sóng Vỗ Đại Lục<br>
-ID:10391 Name:Tấn Công Thường - Xạ Thuật Thợ Săn<br>
+ID:10391 Name:Xạ Thuật Thợ Săn<br>
 ID:10392 Name:Móng Mèo Lạnh Giá<br>
 ID:10395 Name:Đặc Chế Mãnh Liệt<br>
-ID:10411 Name:Tấn Công Thường - Điểm Hóa Nhân Quả<br>
+ID:10411 Name:Điểm Hóa Nhân Quả<br>
 ID:10412 Name:Ảo Vọng Dưới Nước<br>
 ID:10415 Name:Quỹ Đạo Tinh Mệnh<br>
-ID:10421 Name:Tấn Công Thường - Vân Lai Kiếm Pháp<br>
+ID:10421 Name:Vân Lai Kiếm Pháp<br>
 ID:10422 Name:Tinh Đẩu Quy Vị<br>
 ID:10425 Name:Tuần Du Thiên Nhai<br>
-ID:10431 Name:Tấn Công Thường - Gió Thần Sáng Tạo<br>
+ID:10431 Name:Gió Thần Sáng Tạo<br>
 ID:10432 Name:Gió Thần Sáng Tạo 6308<br>
 ID:10435 Name:Cấm-Gió Thần Sáng Tạo-75 Loại 2<br>
-ID:10441 Name:Tấn Công Thường - Viêm Vũ<br>
+ID:10441 Name:Viêm Vũ<br>
 ID:10442 Name:Khuấy Động Nhiệt Huyết<br>
 ID:10443 Name:Cung Đàn Ngỗ Ngược<br>
-ID:10451 Name:Tấn công thường - Thương Thuật Giáo Hội<br>
+ID:10451 Name:Thương Thuật Giáo Hội<br>
 ID:10452 Name:Lời Cáo Tội<br>
 ID:10453 Name:Thánh Lễ Cuối Cùng<br>
-ID:10461 Name:Tấn Công Thường - Thương Pháp Bí Truyền Vãng Sinh<br>
+ID:10461 Name:Thương Pháp Bí Truyền Vãng Sinh<br>
 ID:10462 Name:Điệp Dẫn Lai Sinh<br>
 ID:10463 Name:An Thần Bí Pháp<br>
-ID:10471 Name:Tấn Công Thường - Kiếm Thuật Garyuu<br>
+ID:10471 Name:Kiếm Thuật Garyuu<br>
 ID:10472 Name:Chihayaburu<br>
 ID:10475 Name:Kazuha Nhất Đao Trảm<br>
-ID:10481 Name:Tấn Công Thường - Hỏa Ấn<br>
+ID:10481 Name:Hỏa Ấn<br>
 ID:10482 Name:Sắc Lệnh Đã Ký<br>
 ID:10485 Name:Khế Ước Đã Định<br>
-ID:10491 Name:Tấn Công Thường - Khói Lửa Chiến Đấu<br>
+ID:10491 Name:Khói Lửa Chiến Đấu<br>
 ID:10492 Name:Điệu Nhảy Niwabi Cháy Bỏng<br>
 ID:10495 Name:Cỏ Ryuukin<br>
-ID:10501 Name:Tấn Công Thường - Ngọn Thương Dũng Mãnh<br>
+ID:10501 Name:Ngọn Thương Dũng Mãnh<br>
 ID:10502 Name:Liệt Hỏa Hộ Mệnh<br>
 ID:10505 Name:Chiến Giáp Rực Cháy<br>
-ID:10511 Name:Tấn Công Thường: Tây Phong Kiếm - Tông Thất<br>
+ID:10511 Name:Tây Phong Kiếm - Tông Thất<br>
 ID:10512 Name:Lốc Xoáy Băng Hàn<br>
 ID:10515 Name:Thanh Kiếm Sóng Nước<br>
-ID:10521 Name:Tấn Công Thường - Cội Nguồn<br>
+ID:10521 Name:Cội Nguồn<br>
 ID:10522 Name:Thần Biến - Ánh Chớp Tà Ác<br>
 ID:10525 Name:Bí Kỹ - Mộng Tưởng Chân Thuyết<br>
-ID:10531 Name:Tấn Công Thường - Lưỡi Đao Ninja - Shuumatsuban<br>
+ID:10531 Name:Lưỡi Đao Ninja - Shuumatsuban<br>
 ID:10532 Name:Trường Phái Yoohoo - Fuuin Lăn Tròn<br>
 ID:10535 Name:Trường Phái Yoohoo - Mujina Bối Rối<br>
-ID:10541 Name:Tấn Công Thường: Hình Dạng Nước Trong<br>
+ID:10541 Name:Hình Dạng Nước Trong<br>
 ID:10542 Name:Lời Thề Kurage<br>
 ID:10545 Name:Nghi Lễ Nereid<br>
-ID:10551 Name:Tấn Công Thường - Mũi Tên Cào Xé<br>
+ID:10551 Name:Mũi Tên Cào Xé<br>
 ID:10552 Name:Trận Hình Phòng Thủ - Inuzaka<br>
 ID:10555 Name:Chiến Pháp Đột Kích - Juuga<br>
-ID:10561 Name:Tấn Công Thường - Cung Thuật Tengu<br>
+ID:10561 Name:Cung Thuật Tengu<br>
 ID:10562 Name:Bão Sét Tengu<br>
 ID:10565 Name:Bí Thức - Koukou Sendou<br>
-ID:10571 Name:Tấn Công Thường - Huyền Thoại Đấm Nhau<br>
+ID:10571 Name:Huyền Thoại Đấm Nhau<br>
 ID:10572 Name:Tuyệt Kỹ Masatsu - Akaushi Công Phá!<br>
 ID:10575 Name:Siêu Cấp Quỷ Vương - Itto Giáng Lâm!<br>
-ID:10581 Name:Tấn Công Thường - Hồ Linh Thực Tội Thức<br>
+ID:10581 Name:Hồ Linh Thực Tội Thức<br>
 ID:10582 Name:Thần Chú Yakan - Sesshou Sakura<br>
 ID:10585 Name:Đại Bí Pháp - Tenko Kenshin<br>
-ID:10591 Name:Tấn Công Thường - Võ Thuật Fudou<br>
+ID:10591 Name:Võ Thuật Fudou<br>
 ID:10592 Name:Lục Tâm Quyền<br>
 ID:10595 Name:Tụ Phong Cước<br>
-ID:10606 Name:Tấn Công Thường - Mũi Tên Lén Lút<br>
+ID:10606 Name:Mũi Tên Lén Lút<br>
 ID:10607 Name:Dây Sinh Mệnh Quanh Quẩn<br>
 ID:10610 Name:Xúc Xắc Toan Tính<br>
-ID:10611 Name:Tấn Công Thường - Cào Rách Hộp<br>
+ID:10611 Name:Cào Rách Hộp<br>
 ID:10612 Name:Mèo Tung Cước<br>
 ID:10615 Name:Bí Pháp - Chuyển Phát Đặc Biệt<br>
-ID:10621 Name:Tấn Công Thường - Bắn Chớp Nhoáng<br>
+ID:10621 Name:Bắn Chớp Nhoáng<br>
 ID:10622 Name:Băng Giá Hoang Dã<br>
 ID:10625 Name:Lời Tiên Tri Ánh Sáng<br>
-ID:10631 Name:Tấn Công Thường - Đạp Thần Nhiếp Đấu<br>
+ID:10631 Name:Đạp Thần Nhiếp Đấu<br>
 ID:10632 Name:Triệu Tướng Dịch Chú<br>
 ID:10635 Name:Thần Nữ Khiển Linh Quyết<br>
-ID:10641 Name:Tấn Công Thường - Phất Vân Xuất Thủ<br>
+ID:10641 Name:Phất Vân Xuất Thủ<br>
 ID:10642 Name:Toàn Vân Khai Tương<br>
 ID:10643 Name:Phá Chướng Kiến Tinh Nghi<br>
-ID:10651 Name:Tấn Công Thường - Lưỡi Kiếm Shinobu<br>
+ID:10651 Name:Lưỡi Kiếm Shinobu<br>
 ID:10652 Name:Vòng Cỏ Sấm Thánh Hóa<br>
 ID:10655 Name:Nghi Lễ Gyoei Narukami Kariyama<br>
-ID:10661 Name:Tấn Công Thường - Trường Phái Kamisato: Marobashi<br>
+ID:10661 Name:Trường Phái Kamisato: Marobashi<br>
 ID:10662 Name:Trường Phái Kamisato - Kyouka<br>
 ID:10665 Name:Trường Phái Kamisato - Suiyuu<br>
-ID:10671 Name:Tấn Công Thường - Mũi Tên Chúc Tụng<br>
+ID:10671 Name:Mũi Tên Chúc Tụng<br>
 ID:10672 Name:Xua Hoa Quét Lá<br>
 ID:10675 Name:Báu Vật Meo Meo<br>
-ID:10681 Name:Tấn Công Thường - Kiếm Vũ Kỳ Ảo (Cải Tiến)<br>
+ID:10681 Name:Kiếm Vũ Kỳ Ảo (Cải Tiến)<br>
 ID:10682 Name:Đèn Trấn Linh - Pháo Giải Trừ Phiền Não<br>
 ID:10685 Name:Alcazarzaray Tinh Xảo<br>
-ID:10691 Name:Tấn Công Thường - Phá Bỏ Chướng Ngại<br>
+ID:10691 Name:Phá Bỏ Chướng Ngại<br>
 ID:10692 Name:Hạt Giống Vijnana-Phala<br>
 ID:10695 Name:Dây Leo Sinh Trưởng<br>
-ID:10701 Name:Tấn Công Thường - Vũ Điệu Samser<br>
+ID:10701 Name:Vũ Điệu Samser<br>
 ID:10702 Name:Vũ Điệu Haftkarsvar<br>
 ID:10705 Name:Vũ Điệu Abzendegi - Viễn Mộng Linh Tuyền<br>
-ID:10711 Name:Tấn Công Thường - Thất Thánh Thương Thuật<br>
+ID:10711 Name:Thất Thánh Thương Thuật<br>
 ID:10712 Name:Nghi Thức Bí Ẩn - Dẫn Hồn Đáy Vực<br>
 ID:10715 Name:Nghi Thức Thần Thánh - Nhanh Như Sói<br>
-ID:10721 Name:Tấn Công Thường - Thương Thuật Lấp Lánh - Thế Thủ<br>
+ID:10721 Name:Thương Thuật Lấp Lánh - Thế Thủ<br>
 ID:10722 Name:Nghi Thức Thần Thánh - Vạc Trời Bảo Hộ<br>
 ID:10725 Name:Nghi Thức Thần Thánh - Thủy Triều Chìa Vôi<br>
-ID:10731 Name:Tấn Công Thường - Akara<br>
+ID:10731 Name:Akara<br>
 ID:10732 Name:Lắng Nghe Thế Gian<br>
 ID:10735 Name:Ảo Ảnh Tâm Can<br>
-ID:10741 Name:Tấn Công Thường - Kiếm Bức Xạ<br>
+ID:10741 Name:Kiếm Bức Xạ<br>
 ID:10742 Name:Đêm Ngon Giấc<br>
 ID:10745 Name:Giấc Mộng Giường Ánh Sao<br>
-ID:10751 Name:Tấn Công Thường - Cung Đàn Lay Chiến Kỳ<br>
+ID:10751 Name:Cung Đàn Lay Chiến Kỳ<br>
 ID:10752 Name:Hanega - Hùng Ca Gió Thoảng<br>
 ID:10755 Name:Kyougen - Thức Lạc Ngũ Phiên<br>
-ID:10761 Name:Tấn Công Thường - Tiễn Thuật Parthian<br>
+ID:10761 Name:Tiễn Thuật Parthian<br>
 ID:10762 Name:Phi Tưởng Phong Thiên<br>
 ID:10765 Name:Lối Đi Riêng Của Gió<br>
-ID:10771 Name:Tấn Công Thường - Điên Đảo Liên Hoàn Thương<br>
+ID:10771 Name:Điên Đảo Liên Hoàn Thương<br>
 ID:10772 Name:Máy Ném Củ Cải<br>
 ID:10775 Name:Mặt Trăng Giáng Ngọc<br>
-ID:10781 Name:Tấn Công Thường - Suy Luận Hồi Tố<br>
+ID:10781 Name:Suy Luận Hồi Tố<br>
 ID:10782 Name:Phổ Quát - Soạn Thảo Theo Mẫu<br>
 ID:10785 Name:Khu Vực - Xiềng Xích Cảnh Tượng<br>
-ID:10791 Name:Tấn Công Thường - Kiếm Thuật Quét Vàng<br>
+ID:10791 Name:Kiếm Thuật Quét Vàng<br>
 ID:10792 Name:Địa Ngục Nóng Chảy<br>
 ID:10795 Name:Sư Tử Lửa Ngấu Nghiến<br>
-ID:10801 Name:Tấn Công Thường - Tây Phong Thương Thuật - Kế Thừa<br>
+ID:10801 Name:Tây Phong Thương Thuật - Kế Thừa<br>
 ID:10802 Name:Sao Băng Lưu Chuyển<br>
 ID:10805 Name:Lông Vũ Chúc Tụng<br>
-ID:10811 Name:Tấn Công Thường - Thiết Lập Lực Quay<br>
+ID:10811 Name:Thiết Lập Lực Quay<br>
 ID:10812 Name:Nghệ Thuật Tinh Tế<br>
 ID:10815 Name:Mái Vòm Rực Rỡ<br>
-ID:10821 Name:Tấn Công Thường - Châm Cứu Mạ Vàng<br>
+ID:10821 Name:Châm Cứu Mạ Vàng<br>
 ID:10822 Name:Chẩn Đoán Phổ Quát<br>
 ID:10825 Name:Trị Liệu Toàn Thư<br>
-ID:10831 Name:Tấn Công Thường - Nghi Thức Tốc Hành<br>
+ID:10831 Name:Nghi Thức Tốc Hành<br>
 ID:10832 Name:Thủ Thuật Che Mắt<br>
 ID:10835 Name:Ảo Thuật - Biến Đổi Bất Ngờ<br>
-ID:10841 Name:Tấn Công Thường - Thủ Thuật Tráo Bài<br>
+ID:10841 Name:Thủ Thuật Tráo Bài<br>
 ID:10842 Name:Thủ Thuật Đánh Lạc Hướng<br>
 ID:10845 Name:Ảo Thuật Kinh Điển - Lữ Trình Kỳ Diệu<br>
-ID:10851 Name:Tấn Công Thường - Dòng Chảy Xoáy<br>
+ID:10851 Name:Dòng Chảy Xoáy<br>
 ID:10852 Name:Băng Giá Điều Áp<br>
 ID:10855 Name:Ảo Ảnh Công Phá<br>
-ID:10861 Name:Tấn Công Thường - Liệt Sương Quyền<br>
+ID:10861 Name:Liệt Sương Quyền<br>
 ID:10862 Name:Nanh Băng Càn Quét<br>
 ID:10865 Name:Hắc Kim Lang Cắn Xé<br>
-ID:10871 Name:Tấn Công Thường - Tĩnh Lặng Như Nước<br>
+ID:10871 Name:Tĩnh Lặng Như Nước<br>
 ID:10872 Name:Hoàn Trả Nước Mắt<br>
 ID:10875 Name:Về Với Thủy Triều<br>
-ID:10881 Name:Tấn Công Thường - Phối Màu Lạnh<br>
+ID:10881 Name:Phối Màu Lạnh<br>
 ID:10882 Name:Lấy Cảnh - Bố Cục Điểm Lạnh<br>
 ID:10885 Name:Ảnh Tĩnh - Xác Nhận Toàn Diện<br>
-ID:10891 Name:Tấn Công Thường - Lời Mời Độc Diễn<br>
+ID:10891 Name:Lời Mời Độc Diễn<br>
 ID:10892 Name:Salon Cô Độc<br>
 ID:10895 Name:Chúng Dân Reo Hò<br>
-ID:10901 Name:Tấn Công Thường - Lưỡi Lê Cải Tiến<br>
+ID:10901 Name:Lưỡi Lê Cải Tiến<br>
 ID:10902 Name:Đánh Chặn Nhanh Tầm Gần<br>
 ID:10905 Name:Bom Chùm Oanh Tạc<br>
-ID:10911 Name:Tấn Công Thường - Từ Chối Thẳng<br>
+ID:10911 Name:Từ Chối Thẳng<br>
 ID:10912 Name:Đạn Pha Lê Thanh Lịch<br>
 ID:10915 Name:Pháo Mừng Vang Trời<br>
-ID:10921 Name:Tấn Công Thường - Hái Sao<br>
+ID:10921 Name:Hái Sao<br>
 ID:10922 Name:Thụy Thú Thăng Thiên<br>
 ID:10925 Name:Kim Nghê Vũ Bùng Cháy<br>
-ID:10931 Name:Tấn Công Thường - Ngôn Từ Hoa Và Gió<br>
+ID:10931 Name:Ngôn Từ Hoa Và Gió<br>
 ID:10932 Name:Mây Trắng Bình Minh<br>
 ID:10935 Name:Hái Sao Chạng Vạng<br>
-ID:10941 Name:Tấn Công Thường - Lưỡi Đao Dệt Gấm<br>
+ID:10941 Name:Lưỡi Đao Dệt Gấm<br>
 ID:10942 Name:Hasode Lả Lướt<br>
 ID:10945 Name:Hiyoku - Song Đao Thức<br>
-ID:10951 Name:Tấn Công Thường - Trị Liệu Theo Mục Tiêu<br>
+ID:10951 Name:Trị Liệu Theo Mục Tiêu<br>
 ID:10952 Name:Trị Liệu Nảy Nảy Nảy<br>
 ID:10955 Name:Ống Tiêm Siêu Bão Hòa<br>
-ID:10961 Name:Tấn Công Thường - Lời Mời Trảm Thủ<br>
+ID:10961 Name:Lời Mời Trảm Thủ<br>
 ID:10962 Name:Vạn Vật Hóa Tro<br>
 ID:10965 Name:Ách Nguyệt Trỗi Dậy<br>
-ID:10971 Name:Tấn Công Thường - Tiễn Thuật Lau Sậy Hoàng Gia<br>
+ID:10971 Name:Tiễn Thuật Lau Sậy Hoàng Gia<br>
 ID:10972 Name:Nghi Thức Cổ - Tiếng Sấm Của Cát<br>
 ID:10975 Name:Nghi Thức Ẩn - Ánh Sáng Xuyên Bóng Tối<br>
-ID:10981 Name:Tấn Công Thường - Lời Thề Marechaussee<br>
+ID:10981 Name:Lời Thề Marechaussee<br>
 ID:10982 Name:Thanh Trừng Bóng Tối<br>
 ID:10985 Name:Tia Sáng Cuối Cùng<br>
-ID:10991 Name:Tấn Công Thường - Săn Bóng Tối (Cải Tiến)<br>
+ID:10991 Name:Săn Bóng Tối (Cải Tiến)<br>
 ID:10992 Name:Chiết Xuất Nước Hoa<br>
 ID:10995 Name:Trình Diễn Hương Thơm<br>
-ID:11001 Name:Tấn Công Thường - Vết Cắn Của Núi<br>
+ID:11001 Name:Vết Cắn Của Núi<br>
 ID:11002 Name:Mũi Khoan Quay Tròn, Xuất Kích!<br>
 ID:11005 Name:Đến Lúc Nghiêm Túc Rồi!<br>
-ID:11011 Name:Tấn Công Thường - Mặt Trời Đêm<br>
+ID:11011 Name:Mặt Trời Đêm<br>
 ID:11012 Name:Săn Mồi Trên Cao<br>
 ID:11015 Name:Kính Chào Thánh Long Toàn Năng<br>
-ID:30000 Name:Tấn Công Thường - Xử Lý Giảm Nhiệt<br>
+ID:30000 Name:Xử Lý Giảm Nhiệt<br>
 ID:30002 Name:Cá Mập Xuyên Sóng<br>
 ID:30007 Name:Cá Mập Nổ Dồn Dập<br>
-ID:11031 Name:Tấn Công Thường - Tiếng Hống Ehecatl<br>
+ID:11031 Name:Tiếng Hống Ehecatl<br>
 ID:11032 Name:Yohual Cào Xé<br>
 ID:11035 Name:Âm Điệu Ocelotlicue!<br>
-ID:11041 Name:Tấn Công Thường - Mưa Lông Vũ<br>
+ID:11041 Name:Mưa Lông Vũ<br>
 ID:11042 Name:Dây Cương Truy Ảnh<br>
 ID:11045 Name:Tập Kích Diệt Hồn<br>
-ID:30501 Name:Tấn Công Thường - Mũi Tên Linh Hồn<br>
+ID:30501 Name:Mũi Tên Linh Hồn<br>
 ID:30502 Name:Màn Đêm Trói Buộc<br>
 ID:30505 Name:Tiếng Vọng U Ám<br>
-ID:11061 Name:Tấn Công Thường - Lửa Đỏ Dệt Sinh Mệnh<br>
+ID:11061 Name:Lửa Đỏ Dệt Sinh Mệnh<br>
 ID:11062 Name:Thời Khắc Lưu Danh<br>
 ID:11065 Name:Biển Lửa Rợp Trời<br>
-ID:11071 Name:Tấn Công Thường - Hồn Đêm Bắt Ảnh<br>
+ID:11071 Name:Hồn Đêm Bắt Ảnh<br>
 ID:11072 Name:Sương Trú Hắc Tinh<br>
 ID:11075 Name:Sắc Lệnh Lộng Lẫy<br>
-ID:11081 Name:Tấn Công Thường - Huyền Loan Họa Thủy<br>
+ID:11081 Name:Huyền Loan Họa Thủy<br>
 ID:11082 Name:Vũ Điệu Phượng Hoàng<br>
 ID:11085 Name:Dây Đàn Đạp Trăng<br>
-ID:11091 Name:Tấn Công Thường - Giấc Mơ Thuần Khiết<br>
+ID:11091 Name:Giấc Mơ Thuần Khiết<br>
 ID:11092 Name:Hành Trình Aisa Utamakura<br>
 ID:11095 Name:Liệu Pháp Bí Truyền Anraku<br>
-ID:11101 Name:Tấn Công Thường - Mũi Nhọn Trọng Lượng<br>
+ID:11101 Name:Mũi Nhọn Trọng Lượng<br>
 ID:11102 Name:Tia Sấm Chớp Nhoáng<br>
 ID:11105 Name:Ba Nguyên Lý Sức Mạnh<br>
-ID:11111 Name:Tấn Công Thường - Cặp Sừng Càn Quét<br>
+ID:11111 Name:Cặp Sừng Càn Quét<br>
 ID:11112 Name:Cưỡi Cầu Vồng Đêm<br>
 ID:11115 Name:Tia Chớp Giáng Lâm<br>
-ID:10231 Name:Tấn Công Thường: Tài Nghệ Làm Bánh<br>
+ID:11121 Name:Tay Nghề Làm Bếp<br>
+ID:11122 Name:Nấu Với Lửa Nhỏ<br>
+ID:11125 Name:Tuyệt Kỹ Cắt Gọt<br>
+ID:11131 Name:Nghi Thức Khử Gió<br>
+ID:11132 Name:Ngừa Bệnh Từ Trên Không<br>
+ID:11135 Name:Khu Phức Hợp An Thần<br>
+ID:10231 Name:Tài Nghệ Làm Bánh<br>
 ID:10232 Name:Guoba Xuất Kích<br>
 ID:10235 Name:Bánh Xe Lửa<br>
-ID:10461 Name:Tấn Công Thường - Thương Pháp Bí Truyền Vãng Sinh<br>
+ID:10461 Name:Thương Pháp Bí Truyền Vãng Sinh<br>
 ID:10462 Name:Điệp Dẫn Lai Sinh<br>
 ID:10463 Name:An Thần Bí Pháp<br>
 ## InherentSkillId
@@ -881,6 +891,13 @@ ID:11121 Name:Ba Lần Nhảy Cao<br>
 ID:11122 Name:Anh Hùng Tái Xuất<br>
 ID:11123 Name:Món Quà Dạ Vực - Ánh Đuốc Diệt Ác<br>
 ID:11125 Name:Trái Tim Quả Cảm<br>
+ID:11221 Name:Món Ngon Còn Hơn Thuốc Bổ<br>
+ID:11222 Name:Đưa Cảm Hứng Vào Hương Vị<br>
+ID:11223 Name:Nấu Nướng Ngẫu Hứng Mọi Lúc<br>
+ID:11321 Name:Tầm Nhìn Của Thầy Thuốc<br>
+ID:11322 Name:Hiệp Định Hỗ Trợ Cứu Hộ<br>
+ID:11323 Name:Món Quà Dạ Vực - Tập Trung Cấp Cứu<br>
+ID:11325 Name:Băng Bó Chườm Nóng Chiến Thuật<br>
 ID:2321 Name:Hỏa Lực Đan Chéo<br>
 ID:2322 Name:Ớt Chỉ Thiên Cay Xè<br>
 ID:2323 Name:Đầu Bếp Vạn Dân Đường<br>
@@ -1500,6 +1517,18 @@ ID:1113 Name:Quyết Tâm Bất Khuất<br>
 ID:1114 Name:Dũng Cảm Xông Pha<br>
 ID:1115 Name:Tâm Niệm Ấm Áp<br>
 ID:1116 Name:Chính Nghĩa Khải Hoàn<br>
+ID:1121 Name:Vũ Điệu Trước Bữa Ăn<br>
+ID:1122 Name:Nghệ Thuật Hầm Thơm Ngon<br>
+ID:1123 Name:Ma Thuật Nướng Sốt Caramel<br>
+ID:1124 Name:Công Thức Hương Thảo Thần Bí<br>
+ID:1125 Name:Giao Hưởng Mùi Vị Ngàn Loại Sốt<br>
+ID:1126 Name:Tiệc Trà Rực Rỡ Sắc Màu<br>
+ID:1131 Name:Liều Thuốc Dây Leo Dự Phòng<br>
+ID:1132 Name:Đạn Cầu Nguyện Trợ Linh<br>
+ID:1133 Name:Bác Bỏ Đàm Phán Với Màn Đêm<br>
+ID:1134 Name:Hoán Vị Ứng Thể Phân Hủy<br>
+ID:1135 Name:Lời Thề Vạn Vật Chung Sống<br>
+ID:1136 Name:Lời Hứa Lông Vũ Che Chở<br>
 ## ArtifactId
 ID:20002 Name:Lông Vũ Sơ Cấp<br>
 ID:20004 Name:Hoa Sơ Cấp<br>
@@ -5541,6 +5570,7 @@ ID:13509 Name:Đoạn Thảo Trường Đao<br>
 ID:13511 Name:Quyền Trượng Cát Đỏ<br>
 ID:13512 Name:Hình Thái Xích Nguyệt<br>
 ID:13513 Name:Bi Ca Lumidouce<br>
+ID:13514 Name:Nhạc Sĩ Hương Thơm<br>
 ID:14101 Name:Nhật Ký Học Sinh<br>
 ID:14201 Name:Sổ Tay Ma Pháp<br>
 ID:14301 Name:Tóm Tắt Ma Pháp<br>
@@ -5618,6 +5648,7 @@ ID:15426 Name:Trúc Vân<br>
 ID:15427 Name:Máy Đo Cự Ly<br>
 ID:15430 Name:Lông Vũ Thêu Hoa<br>
 ID:15431 Name:Phá Xích<br>
+ID:15432 Name:Thanh Âm Lạnh Lẽo<br>
 ID:15501 Name:Cánh Thiên Không<br>
 ID:15502 Name:Cung Amos<br>
 ID:15503 Name:Tiếng Thở Dài Vô Tận<br>
@@ -5712,6 +5743,9 @@ ID:178 Name:Độ Náo Nhiệt Ngày Lễ<br>
 ID:179 Name:Tinh Thể Hương Hồn<br>
 ID:180 Name:Độ Náo Nhiệt<br>
 ID:181 Name:Ấn Lễ Hội<br>
+ID:182 Name:Đồ Ăn Vặt Vui Vẻ<br>
+ID:183 Name:Vốn<br>
+ID:184 Name:Điểm Hành Động<br>
 ID:201 Name:Nguyên Thạch<br>
 ID:202 Name:Mora<br>
 ID:203 Name:Đá Sáng Thế<br>
@@ -5986,6 +6020,8 @@ ID:4108 Name:Lan Yan<br>
 ID:4109 Name:Yumemizuki Mizuki<br>
 ID:4110 Name:Iansan<br>
 ID:4111 Name:Varesa<br>
+ID:4112 Name:Escoffier<br>
+ID:4113 Name:Ifa<br>
 ID:5100 Name:Chòm Sao Của Kachina<br>
 ID:5101 Name:Chòm Sao Của Kinich<br>
 ID:5102 Name:Chòm Sao Của Mualani<br>
@@ -5998,6 +6034,8 @@ ID:5108 Name:Chòm Sao Của Lan Yan<br>
 ID:5109 Name:Chòm Sao Của Yumemizuki Mizuki<br>
 ID:5110 Name:Chòm Sao Của Iansan<br>
 ID:5111 Name:Chòm Sao Của Varesa<br>
+ID:5112 Name:Chòm Sao Của Escoffier<br>
+ID:5113 Name:Chòm Sao Của Ifa<br>
 ID:100001 Name:Táo<br>
 ID:100002 Name:Quả Nhật Lạc<br>
 ID:100003 Name:Mảnh Giấy<br>
@@ -6514,7 +6552,7 @@ ID:100615 Name:Khảo sát tập quán Hilichurl (III)<br>
 ID:100616 Name:<br>
 ID:100617 Name:Cuốn Sơn Hải<br>
 ID:100618 Name:\"Chiếc Răng\" Kỳ Lạ<br>
-ID:100619 Name:Nanh Rồng có sinh mệnh<br>
+ID:100619 Name:Răng Rồng Hấp Thụ Sức Mạnh<br>
 ID:100620 Name:Chiếc Hộp Của Công Chúa<br>
 ID:100621 Name:Chiếc Hộp Của Tư Tế<br>
 ID:100622 Name:Chiếc Hộp Của Ký Giả<br>
@@ -8451,6 +8489,18 @@ ID:108810 Name:Dãy Núi Nấm (Suất Một Người)<br>
 ID:108811 Name:Món Quà Bội Thu Kỳ Lạ<br>
 ID:108812 Name:Món Quà Bội Thu<br>
 ID:108813 Name:Món Quà Bội Thu Ngon<br>
+ID:108814 Name:Bánh Kem Debord Nhỏ - Cải Tiến Kỳ Lạ<br>
+ID:108815 Name:Bánh Kem Debord Nhỏ - Cải Tiến<br>
+ID:108816 Name:Bánh Kem Debord Nhỏ - Cải Tiến Ngon<br>
+ID:108817 Name:Kẹo Vỏ Sò Kỳ Lạ<br>
+ID:108818 Name:Kẹo Vỏ Sò<br>
+ID:108819 Name:Kẹo Vỏ Sò Ngon<br>
+ID:108820 Name:Bánh Kem Debord - Lộng Lẫy<br>
+ID:108821 Name:\"Hỗ Trợ Tình Cảm\"<br>
+ID:108822 Name:Món Quà Cỏ Xanh<br>
+ID:108823 Name:Sóng Bạc Vẩy Cát<br>
+ID:108824 Name:Cung Điện Ánh Vàng<br>
+ID:108825 Name:Sương Mù Mùa Thu<br>
 ID:109000 Name:Đạo Cụ Công Thức<br>
 ID:109101 Name:Công Thức: Xiên Thịt Gà Nấm<br>
 ID:109102 Name:Công Thức: Bánh Người Cá<br>
@@ -8684,6 +8734,8 @@ ID:109613 Name:Công Thức: Xiên Nấm Phô Mai<br>
 ID:109614 Name:Công Thức: Nước Trái Cây Trù Phú<br>
 ID:109615 Name:Công Thức: Món Quà Bội Thu<br>
 ID:109616 Name:Công Thức: Lẩu Cua Phô Mai<br>
+ID:109617 Name:Công Thức: Bánh Kem Debord Nhỏ - Cải Tiến<br>
+ID:109618 Name:Công Thức: Kẹo Vỏ Sò<br>
 ID:110000 Name:Sản Phẩm Ghép<br>
 ID:110001 Name:Bột Mì<br>
 ID:110002 Name:Kem<br>
@@ -8920,6 +8972,10 @@ ID:113069 Name:Lửa Mặt Trời Ăn Mòn<br>
 ID:113070 Name:Lông Vảy Ăn Mòn<br>
 ID:113071 Name:Bùa Hộ Mệnh Của Vùng Đất Bí Ẩn<br>
 ID:113072 Name:Lõi Tượng Rồng Vô Tri<br>
+ID:113073 Name:Mẫu Vật Thăng Thần: Mã<br>
+ID:113074 Name:Mẫu Vật Thăng Thần: Xe<br>
+ID:113075 Name:Mẫu Vật Thăng Thần: Hậu<br>
+ID:113076 Name:Bộ Tụ Khí Bí Ẩn<br>
 ID:114001 Name:Ngói Vỡ Tháp Cô Vương<br>
 ID:114002 Name:Xác Tàu Tháp Cô Vương<br>
 ID:114003 Name:Mảnh Vỡ Tháp Cô Vương<br>
@@ -9034,6 +9090,7 @@ ID:115041 Name:Giai Điệu Âm Vang<br>
 ID:115042 Name:Hộp Quà Trang Phục<br>
 ID:115043 Name:Hộp Phôi Biên Giới<br>
 ID:115044 Name:Gói Chia Sẻ Trợ Giúp Thiên Phú<br>
+ID:115045 Name:Hộp Quà Trang Phục: Kỳ 2<br>
 ID:116001 Name:Kinh Nghiệm Nhật Ký Hành Trình<br>
 ID:116002 Name:Rương Báu Nhật Ký Hành Trình<br>
 ID:116003 Name:BP chọn 1 trong 3 Test gói quà<br>
@@ -10261,6 +10318,7 @@ ID:121194 Name:Lá Thư Nặc Danh<br>
 ID:121195 Name:Thư Gửi Chị Anna<br>
 ID:121196 Name:\"Hợp Nhất Tối Thượng: Tuyển Tập DJ Remix\"<br>
 ID:121197 Name:Máy Ảnh<br>
+ID:121198 Name:Cà Phê Giới Hạn Của Tiệm Lutece<br>
 ID:121199 Name:Kompore Xảo Quyệt I<br>
 ID:121200 Name:Kompore Xảo Quyệt II<br>
 ID:121201 Name:Kompore Xảo Quyệt III<br>
@@ -10290,6 +10348,16 @@ ID:121224 Name:Nhật Ký Thí Nghiệm Nuôi Dưỡng<br>
 ID:121225 Name:Ghi Chép \"Kẻ Trộm Lửa\" Để Lại<br>
 ID:121226 Name:Lá Thư Hư Hại<br>
 ID:121227 Name:Thưởng Thảo Phạt Hư Hại<br>
+ID:121228 Name:Bản Đồ Kỷ Niệm Công Viên Giải Trí Chevalmarin<br>
+ID:121229 Name:Bản Đồ Kỷ Niệm Công Viên Giải Trí Chevalmarin<br>
+ID:121230 Name:Bản Đồ Kỷ Niệm Công Viên Giải Trí Chevalmarin<br>
+ID:121232 Name:Bản Đồ Trong Ghi Chép<br>
+ID:121233 Name:Bản Đồ Thần Bí<br>
+ID:121234 Name:Quà Tặng Bí Ẩn Rực Rỡ<br>
+ID:121235 Name:Thư Không Rõ Nguồn Gốc<br>
+ID:121236 Name:Bản Đồ Kỷ Niệm Công Viên Giải Trí Chevalmarin<br>
+ID:121237 Name:Bản Đồ Kỷ Niệm Công Viên Giải Trí Chevalmarin<br>
+ID:121238 Name:Bản Đồ Kỷ Niệm Công Viên Giải Trí Chevalmarin<br>
 ID:129001 Name:Giọt Lệ Giữa Những Vì Sao<br>
 ID:129002 Name:Tên Cổ Obsidian<br>
 ID:130001 Name:Hạt giống Hoa Nghê Thường<br>
@@ -10589,6 +10657,7 @@ ID:200121 Name:Trục Đo Lường<br>
 ID:200122 Name:\"Sắc Biển Tĩnh Lặng\"<br>
 ID:200123 Name:Con Thoi Odara<br>
 ID:200124 Name:Đốm Lửa Âm Ỉ<br>
+ID:200125 Name:Bộ Hiệu Chỉnh Cung Tên<br>
 ID:200201 Name:Vũ Điệu Chim Ưng<br>
 ID:200202 Name:Cánh Thép<br>
 ID:200203 Name:Suối Nguồn Của Gió<br>
@@ -10895,6 +10964,9 @@ ID:210237 Name:Iansan - Không Ngừng Nghỉ<br>
 ID:210238 Name:Natlan - Ánh Nhìn Của Rồng<br>
 ID:210239 Name:Thành Tựu - Bình Yên<br>
 ID:210240 Name:Nhật Ký Hành Trình - Vinh Hoa<br>
+ID:210241 Name:Escoffier - Thú Vị<br>
+ID:210242 Name:Ifa - Người Anh Em<br>
+ID:210243 Name:Nhật Ký Hành Trình - Kịch Múa<br>
 ID:215001 Name:Vết Tích - Kỵ Sĩ Bồ Công Anh<br>
 ID:215002 Name:Vết Tích - Đêm Hồn Về Lạnh Giá<br>
 ID:215003 Name:Vết Tích - Yểm Nguyệt Thiên Quyền<br>
@@ -11182,6 +11254,14 @@ ID:318097 Name:Nhìn Ngắm Ánh Sao<br>
 ID:318098 Name:Nhạy Bén Nhìn Quanh<br>
 ID:318099 Name:Thời Gian Rảnh Rỗi<br>
 ID:318100 Name:Thời Gian Rảnh Rỗi<br>
+ID:318101 Name:Chờ Đợi Hành Động<br>
+ID:318102 Name:Sẵn Sàng Chiến Đấu<br>
+ID:318103 Name:Trò Chuyện Nhẹ Nhàng<br>
+ID:318104 Name:Thời Gian Rảnh Rỗi<br>
+ID:318105 Name:Thời Gian Rảnh Rỗi<br>
+ID:318106 Name:Đọc Kỹ<br>
+ID:318107 Name:Trầm Ngâm Suy Tư<br>
+ID:318108 Name:Thời Khắc Không Vui<br>
 ID:319001 Name:Ảo Kịch Tuyệt Ý<br>
 ID:319002 Name:Mơ Mộng Suy Tư<br>
 ID:319003 Name:Ngọc Ẩn Sao Trời<br>
@@ -11197,6 +11277,482 @@ ID:319012 Name:Thủy Công Lý<br>
 ID:319013 Name:Lửa Và Chiến Tranh<br>
 ID:319014 Name:Áng Thơ Trời Xanh<br>
 ID:320001 Name:<br>
+ID:326000 Name:Ganyu<br>
+ID:326001 Name:Kaeya<br>
+ID:326002 Name:Chongyun<br>
+ID:326003 Name:Kamisato Ayaka<br>
+ID:326004 Name:Xingqiu<br>
+ID:326005 Name:Mona<br>
+ID:326006 Name:Diluc<br>
+ID:326007 Name:Xiangling<br>
+ID:326008 Name:Bennett<br>
+ID:326009 Name:Amber<br>
+ID:326010 Name:Yoimiya<br>
+ID:326011 Name:Fischl<br>
+ID:326012 Name:Razor<br>
+ID:326013 Name:Keqing<br>
+ID:326014 Name:Sucrose<br>
+ID:326015 Name:Jean<br>
+ID:326016 Name:Ningguang<br>
+ID:326017 Name:Noelle<br>
+ID:326018 Name:Collei<br>
+ID:326019 Name:Tinh Linh Nước Trong - Rhodeia<br>
+ID:326020 Name:Fatui - Người Xử Lý Nợ Hỏa<br>
+ID:326021 Name:Maguu Kenki<br>
+ID:326022 Name:Vua Mũ Đá Hilichurl<br>
+ID:326023 Name:Diona<br>
+ID:326024 Name:Cyno<br>
+ID:326025 Name:Barbara<br>
+ID:326026 Name:Fatui - Thiếu Nữ Kính<br>
+ID:326027 Name:Nấm Thúy Linh<br>
+ID:326028 Name:Beidou<br>
+ID:326029 Name:Klee<br>
+ID:326030 Name:Eula<br>
+ID:326031 Name:Sangonomiya Kokomi<br>
+ID:326032 Name:Kujou Sara<br>
+ID:326033 Name:Kamisato Ayato<br>
+ID:326034 Name:Arataki Itto<br>
+ID:326035 Name:Tighnari<br>
+ID:326036 Name:Tartaglia<br>
+ID:326037 Name:Hu Tao<br>
+ID:326038 Name:Raiden Shogun<br>
+ID:326039 Name:Yae Miko<br>
+ID:326040 Name:Venti<br>
+ID:326041 Name:Xiao<br>
+ID:326042 Name:Zhongli<br>
+ID:326043 Name:Albedo<br>
+ID:326044 Name:Nahida<br>
+ID:326045 Name:Fatui - Thuật Sĩ Cicin Băng<br>
+ID:326046 Name:Học Sĩ Vực Sâu - Uyên Hỏa<br>
+ID:326047 Name:Lôi Nguyên Bản<br>
+ID:326048 Name:Shenhe<br>
+ID:326049 Name:Candace<br>
+ID:326050 Name:Yanfei<br>
+ID:326051 Name:Kaedehara Kazuha<br>
+ID:326052 Name:Qiqi<br>
+ID:326053 Name:Lisa<br>
+ID:326054 Name:Dehya<br>
+ID:326055 Name:Kẻ Lang Thang<br>
+ID:326056 Name:Yaoyao<br>
+ID:326057 Name:Nilou<br>
+ID:326058 Name:Dori<br>
+ID:326059 Name:Baizhu<br>
+ID:326060 Name:Signora<br>
+ID:326061 Name:Azhdaha<br>
+ID:326062 Name:Layla<br>
+ID:326063 Name:Yelan<br>
+ID:326064 Name:Lyney<br>
+ID:326065 Name:Lynette<br>
+ID:326066 Name:Gorou<br>
+ID:326067 Name:Alhaitham<br>
+ID:326068 Name:Eremite - Người Kể Chuyện Cát Nóng<br>
+ID:326069 Name:Thực Thể Sấm Sét<br>
+ID:326070 Name:Dvalin<br>
+ID:326071 Name:Thoma<br>
+ID:326072 Name:Sayu<br>
+ID:326073 Name:Băng Nguyên Bản<br>
+ID:326074 Name:Cá Ngựa Ngọc Trai Ngàn Năm<br>
+ID:326075 Name:Charlotte<br>
+ID:326076 Name:Neuvillette<br>
+ID:326077 Name:Kirara<br>
+ID:326078 Name:Fatui - Thuật Sĩ Cicin Lôi<br>
+ID:326079 Name:Kuki Shinobu<br>
+ID:326080 Name:Faruzan<br>
+ID:326081 Name:Sứ Đồ Vực Sâu - Kích Lưu<br>
+ID:326082 Name:Hoàng Đế Thép Lửa<br>
+ID:326083 Name:Wriothesley<br>
+ID:326084 Name:Furina<br>
+ID:326085 Name:Xinyan<br>
+ID:326086 Name:Yun Jin<br>
+ID:326087 Name:Kaveh<br>
+ID:326088 Name:Thôn Tinh Kình Ngư<br>
+ID:326089 Name:Bò Cạp Độc Thánh Hóa<br>
+ID:326090 Name:Rắn Bay Thánh Hóa<br>
+ID:326091 Name:Kẻ Thủ Hộ Của Ốc Đảo Apep<br>
+ID:326092 Name:Chevreuse<br>
+ID:326093 Name:Navia<br>
+ID:326094 Name:Fatui - Đặc Vụ Băng<br>
+ID:326095 Name:Freminet<br>
+ID:326096 Name:Xianyun<br>
+ID:326097 Name:Lãng Khách Hilichurl Thủy<br>
+ID:326098 Name:Chiori<br>
+ID:326099 Name:Học Sĩ Vực Sâu - Tử Điện<br>
+ID:326100 Name:Eremite - Diệp Luân Vũ Giả<br>
+ID:326101 Name:Rosaria<br>
+ID:326102 Name:Sigewinne<br>
+ID:326103 Name:Vua Thú Hoàng Kim<br>
+ID:326104 Name:Mualani<br>
+ID:326105 Name:Clorinde<br>
+ID:326106 Name:Arlecchino<br>
+ID:326107 Name:Kinich<br>
+ID:326108 Name:Kachina<br>
+ID:326109 Name:Emilie<br>
+ID:326110 Name:Sethos<br>
+ID:326111 Name:Xilonen<br>
+ID:326500 Name:Duy Thử Nhất Tâm<br>
+ID:326501 Name:Lãnh Huyết Kiếm<br>
+ID:326502 Name:Hơi Thở Bình Yên<br>
+ID:326503 Name:Lời Chúc Kanten Senmyou<br>
+ID:326504 Name:Mùi Hương Vương Vấn<br>
+ID:326505 Name:Tiên Tri Chìm Đắm<br>
+ID:326506 Name:Lòng Như Lửa Đốt<br>
+ID:326507 Name:Hỏa Lực Đan Chéo<br>
+ID:326508 Name:Tầm Nhìn Phiêu Lưu<br>
+ID:326509 Name:Toàn Lực Khai Hỏa<br>
+ID:326510 Name:Chòm Sao Băng Naganohara<br>
+ID:326511 Name:Ác Điểu Nuốt Sao<br>
+ID:326512 Name:Thức Tỉnh<br>
+ID:326513 Name:Sự Trừng Phạt Sấm Sét<br>
+ID:326514 Name:Thuyết Hỗn Loạn<br>
+ID:326515 Name:Lãnh Thổ Bồ Công Anh<br>
+ID:326516 Name:Kiếm Củi Ba Năm Thiêu Một Giờ<br>
+ID:326517 Name:Chi Viện Cứ Giao Cho Tôi<br>
+ID:326518 Name:Lá Khẽ Bay Nghiêng<br>
+ID:326519 Name:Trăm Sông Tuôn Chảy<br>
+ID:326520 Name:Đòi Lại Tất Cả<br>
+ID:326521 Name:Cơ Xảo Thần Thông<br>
+ID:326522 Name:Đúc Lại: Nón Nham<br>
+ID:326523 Name:Vuốt Mèo Lắc Đá<br>
+ID:326524 Name:Lạc Vũ Phán Quyết<br>
+ID:326525 Name:Mùa Huy Hoàng<br>
+ID:326526 Name:Lồng Kính<br>
+ID:326527 Name:Bào Tử Sinh Sôi<br>
+ID:326528 Name:Sấm Sét Đầy Trời<br>
+ID:326529 Name:Món Quà Bằng Bằng<br>
+ID:326530 Name:Lòng Hiếu Chiến Trỗi Dậy<br>
+ID:326531 Name:Rương Báu Tamakushi<br>
+ID:326532 Name:Bản Ngã<br>
+ID:326533 Name:Kyouka Fuushi<br>
+ID:326534 Name:Arataki Đệ Nhất<br>
+ID:326535 Name:Tầm Nhìn Sắc Sảo<br>
+ID:326536 Name:Cái Ôm Của Gió<br>
+ID:326537 Name:Hàng Ma - Hộ Pháp Dạ Xoa<br>
+ID:326538 Name:Xuy Kim Soạn Ngọc<br>
+ID:326539 Name:Lăng Kính Hút Năng Lượng<br>
+ID:326540 Name:Vong Huyền<br>
+ID:326541 Name:Tai Họa Vực Sâu - Bắn Nước<br>
+ID:326542 Name:Huyết Chi Táo Hỏa<br>
+ID:326543 Name:Ngàn Vạn Ước Nguyện<br>
+ID:326544 Name:Bóng Râm Đền Thần<br>
+ID:326545 Name:Sự Giáng Thế Của Thần<br>
+ID:326546 Name:Hạt Giống Ẩn Chứa Tri Thức<br>
+ID:326547 Name:Tia Lạnh Cicin Băng<br>
+ID:326548 Name:Tàn Lửa Bùng Lên<br>
+ID:326549 Name:Thủy Triều Dâng Trào<br>
+ID:326550 Name:Quyền Quyết Định Cuối Cùng<br>
+ID:326551 Name:Cảnh Vật Thì Thầm<br>
+ID:326552 Name:Khởi Tử Hồi Sinh<br>
+ID:326553 Name:Rung Động Của Ma Nữ<br>
+ID:326554 Name:Kiên Cường Chính Trực<br>
+ID:326555 Name:Gió Lốc Hão Huyền<br>
+ID:326556 Name:Thông Minh Nhân Hậu<br>
+ID:326557 Name:Mưa Hoa Trời Sao<br>
+ID:326558 Name:Bổ Sung Tùy Ý<br>
+ID:326559 Name:Tại Địa Vi Hóa<br>
+ID:326560 Name:Ánh Sáng Xá Tội<br>
+ID:326561 Name:Nắm Thế Chủ Động<br>
+ID:326562 Name:Pháo Tay Hạ Màn<br>
+ID:326563 Name:Lưỡi Kiếm Ảo Ảnh<br>
+ID:326564 Name:Chạy: Nhanh Nhẹn Như Gió<br>
+ID:326565 Name:Lẽ Phải<br>
+ID:326566 Name:Hoàn Trả Đau Thương<br>
+ID:326567 Name:Hiểm Họa Bò Cạp<br>
+ID:326568 Name:Tiếng Than Vang Vọng<br>
+ID:326569 Name:Gió Lốc Hủy Diệt<br>
+ID:326570 Name:Dẫn Lối Ngày Đêm<br>
+ID:326571 Name:Tài Cán Của Trợ Thủ<br>
+ID:326572 Name:Cách Lười Biếng Mới Mẻ<br>
+ID:326573 Name:Lăng Kính Sương Giá<br>
+ID:326574 Name:Ngọc Trai Kiên Cố<br>
+ID:326575 Name:Lấy Thú Vị Làm Lý Lẽ<br>
+ID:326576 Name:Di Sản Hậu Duệ Biển Xưa<br>
+ID:326577 Name:Lưu Lại Cảnh Sắc<br>
+ID:326578 Name:Cicin Lôi Nhấp Nháy<br>
+ID:326579 Name:Từ Bỏ Nhu Nhược<br>
+ID:326580 Name:Đường Chân Lý Kỳ Diệu<br>
+ID:326581 Name:Dòng Nước Ngầm Trào Dâng<br>
+ID:326582 Name:Thiết Giáp Nóng Chảy<br>
+ID:326583 Name:Trừng Trị Kẻ Hành Ác<br>
+ID:326584 Name:\"Cùng Nghe Ta Ca Tụng, Nâng Ly Rượu Tình Yêu!\"<br>
+ID:326585 Name:Khuấy Động Từ Địa Ngục<br>
+ID:326586 Name:Trang Hài Tịnh Cử<br>
+ID:326587 Name:Tính Nghệ Thuật Của Người Dự Toán<br>
+ID:326588 Name:Cắn Xé Tăm Tối<br>
+ID:326589 Name:Sấm Tụ Chết Chóc<br>
+ID:326590 Name:Gió Hú Chết Chóc<br>
+ID:326591 Name:Ngàn Vạn Hậu Duệ<br>
+ID:326592 Name:Chiến Thuật Phối Hợp Tiên Phong<br>
+ID:326593 Name:Kênh Phân Phối Ngầm<br>
+ID:326594 Name:Mũi Kiếm Lạnh Lẽo<br>
+ID:326595 Name:Thời Khắc Bừng Tỉnh Và Quyết Tâm<br>
+ID:326596 Name:Tri Thị Lưu Vân Tiên<br>
+ID:326597 Name:Bọt Nước Nhẹ Nhàng<br>
+ID:326598 Name:Năm Màu Thuốc Nhuộm<br>
+ID:326599 Name:Chuỗi Sét Dồn Dập<br>
+ID:326600 Name:Linh Xà Cuồng Quay<br>
+ID:326601 Name:Thay Trời Hành Đạo<br>
+ID:326602 Name:Nghỉ Ngơi Hợp Lý<br>
+ID:326603 Name:Dị Thú Ăn Mòn<br>
+ID:326604 Name:Món Quà Dạ Vực - Đỉnh Và Đáy Sóng<br>
+ID:326605 Name:Ngọn Lửa Xua Bóng Tối<br>
+ID:326606 Name:Tất Cả Thù Và Nợ Do Ta Tự Trả...<br>
+ID:326607 Name:Món Quà Dạ Vực - Hoàn Trả Đầy Đủ<br>
+ID:326608 Name:Món Quà Dạ Vực - Lõi Đoàn Kết<br>
+ID:326609 Name:Dư Hương Marcotte<br>
+ID:326610 Name:Sách Môn Đồ Của Tháp Mặt Trời<br>
+ID:326611 Name:Chuyến Du Hành Của Tepeilhuitl<br>
+ID:327000 Name:Tóm Tắt Ma Pháp<br>
+ID:327001 Name:Mảnh Chương Tế Lễ<br>
+ID:327002 Name:Quyển Thiên Không<br>
+ID:327003 Name:Cung Lông Quạ<br>
+ID:327004 Name:Cung Tế Lễ<br>
+ID:327005 Name:Cánh Thiên Không<br>
+ID:327006 Name:Kiếm Bạch Thiết<br>
+ID:327007 Name:Đại Kiếm Tế Lễ<br>
+ID:327008 Name:Đường Cùng Của Sói<br>
+ID:327009 Name:Thương Bạch Anh<br>
+ID:327010 Name:Thương Thiên Nham<br>
+ID:327011 Name:Xương Sống Thiên Không<br>
+ID:327012 Name:Kiếm Lữ Hành<br>
+ID:327013 Name:Kiếm Tế Lễ<br>
+ID:327014 Name:Phong Ưng Kiếm<br>
+ID:327015 Name:Khăn Nhà Mạo Hiểm<br>
+ID:327016 Name:Vòng Bạc May Mắn<br>
+ID:327017 Name:Khăn Thầy Thuốc<br>
+ID:327018 Name:Hoa Tai Con Bạc<br>
+ID:327019 Name:Nón Giáo Quan<br>
+ID:327020 Name:Vương Miện Kẻ Lưu Đày<br>
+ID:327021 Name:Tiếng Vọng Băng Vỡ Tuyết Rơi<br>
+ID:327022 Name:Dũng Sĩ Trong Băng Giá<br>
+ID:327023 Name:Mũ Đượm Rượu<br>
+ID:327024 Name:Trái Tim Trầm Luân<br>
+ID:327025 Name:Nón Ma Nữ Lo Lắng<br>
+ID:327026 Name:Diệm Liệt Ma Nữ Cháy Rực<br>
+ID:327027 Name:Vương Miện Gọi Sét<br>
+ID:327028 Name:Như Sấm Thịnh Nộ<br>
+ID:327029 Name:Nón Thợ Săn<br>
+ID:327030 Name:Bóng Hình Màu Xanh<br>
+ID:327031 Name:Mặt Nạ Huyền Thạch<br>
+ID:327032 Name:Phiến Đá Lâu Đời<br>
+ID:327033 Name:Vương Miện Của Nguyệt Quế<br>
+ID:327034 Name:Ký Ức Rừng Sâu<br>
+ID:327035 Name:Nón Hoa Mỹ<br>
+ID:327036 Name:Nón Nguyên Soái<br>
+ID:327037 Name:Tây Phong Kiếm<br>
+ID:327038 Name:Cung Amos<br>
+ID:327039 Name:Cõi Mộng Ngàn Đêm<br>
+ID:327040 Name:Tiếng Thở Dài Vô Tận<br>
+ID:327041 Name:Thiên Không Kiêu Ngạo<br>
+ID:327042 Name:Kiếm Chuông<br>
+ID:327043 Name:Giáo Nịnh Thần<br>
+ID:327044 Name:Đoạn Thảo Trường Đao<br>
+ID:327045 Name:Thiên Không Kiếm<br>
+ID:327046 Name:Dấu Ấn Ngăn Cách<br>
+ID:327047 Name:Thiên Nham Vững Chắc<br>
+ID:327048 Name:Diện Mạo Sấm Sét<br>
+ID:327049 Name:Thần Sa Vãng Sinh Lục<br>
+ID:327050 Name:Mặt Nạ Vô Thường<br>
+ID:327051 Name:Dòng Hồi Ức Bất Tận<br>
+ID:327052 Name:Quả Mọng<br>
+ID:327053 Name:Cận Vệ Nhà Vua<br>
+ID:327054 Name:Quán Nguyệt Thương<br>
+ID:327055 Name:Vương Miện Watatsumi<br>
+ID:327056 Name:Xà Cừ Đại Dương<br>
+ID:327057 Name:Hình Chiếu Vua Cát<br>
+ID:327058 Name:Điển Tích Tây Phong<br>
+ID:327059 Name:Hồi Ức Tulaytullah<br>
+ID:327060 Name:Hải Đăng Bờ Biển Lau<br>
+ID:327061 Name:Hòa Phác Diên<br>
+ID:327062 Name:Ánh Lá Phán Quyết<br>
+ID:327063 Name:Giấc Mộng Hoàng Kim<br>
+ID:327064 Name:Khuyên Tai Trôi Nổi<br>
+ID:327065 Name:Dư Âm Tế Lễ<br>
+ID:327066 Name:Trái Tim Khvarena Huy Hoàng<br>
+ID:327067 Name:Vầng Sáng Vourukasha<br>
+ID:327068 Name:Kiếm Gỗ<br>
+ID:327069 Name:Dung Nhan Của Lão Binh<br>
+ID:327070 Name:Nghi Thức Dòng Chảy Vĩnh Hằng<br>
+ID:327071 Name:Phần Thưởng Đoàn Kịch Hoàng Kim<br>
+ID:327072 Name:Thù Lao Của Chính Nghĩa<br>
+ID:327073 Name:Vương Miện Tử Tinh<br>
+ID:327074 Name:Quản Đốc Vàng Ròng<br>
+ID:327075 Name:Sông Cạn<br>
+ID:327076 Name:Vương Khí Rừng Sâu<br>
+ID:327077 Name:Sắc Nước Lộng Lẫy<br>
+ID:327078 Name:Thợ Săn Marechaussee<br>
+ID:327079 Name:Đoàn Kịch Hoàng Kim<br>
+ID:327080 Name:Đóa Hoa Trang Viên Thất Lạc<br>
+ID:327081 Name:\"Bá Vương Tối Thượng Siêu Cấp Ma Kiếm\"<br>
+ID:327082 Name:Mũi Khoan Thăm Dò<br>
+ID:327083 Name:Nón Giác Đấu Sĩ<br>
+ID:327084 Name:Cá Đuối Sát Thủ Dị Sắc<br>
+ID:327085 Name:Yumkasaurus<br>
+ID:327086 Name:Koholasaurus<br>
+ID:327087 Name:Máy Cưa Cầm Tay<br>
+ID:327088 Name:Nón Chỉ Huy<br>
+ID:327089 Name:Tepetlisaurus<br>
+ID:327090 Name:Dòng Chảy Tinh Khiết<br>
+ID:327091 Name:Nhan Sắc Của Thiếu Nữ<br>
+ID:327092 Name:Iktomisaurus<br>
+ID:327093 Name:Mặt Nạ Lông Của Chiến Sĩ Ma<br>
+ID:327094 Name:Qucusaurus<br>
+ID:327095 Name:Thuyền Gió<br>
+ID:327096 Name:Tatankasaurus<br>
+ID:328000 Name:Bến Cảng Liyue<br>
+ID:328001 Name:Thư Viện Đội Kỵ Sĩ<br>
+ID:328002 Name:Quần Ngọc Các<br>
+ID:328003 Name:Tửu Trang Dawn<br>
+ID:328004 Name:Nhà Trọ Vọng Thư<br>
+ID:328005 Name:Đại Giáo Đường Tây Phong<br>
+ID:328006 Name:Paimon<br>
+ID:328007 Name:Katheryne<br>
+ID:328008 Name:Timaeus<br>
+ID:328009 Name:Wagner<br>
+ID:328010 Name:Thầy Mao<br>
+ID:328011 Name:Tubby<br>
+ID:328012 Name:Timmie<br>
+ID:328013 Name:Liben<br>
+ID:328014 Name:Thường Cửu Gia<br>
+ID:328015 Name:Ellin<br>
+ID:328016 Name:Tian Miệng Sắt<br>
+ID:328017 Name:Liu Su<br>
+ID:328018 Name:Máy Biến Đổi Tham Số<br>
+ID:328019 Name:Túi Dinh Dưỡng Bỏ Túi<br>
+ID:328020 Name:Đền Narukami<br>
+ID:328021 Name:Thiên Thủ Các<br>
+ID:328022 Name:Sangonomiya<br>
+ID:328023 Name:Thành Sumeru<br>
+ID:328024 Name:Vanarana<br>
+ID:328025 Name:Rừng Chinju<br>
+ID:328026 Name:Hanachirusato<br>
+ID:328027 Name:Tiểu Đệ Kujirai<br>
+ID:328028 Name:Xudong<br>
+ID:328029 Name:Dunyarzad<br>
+ID:328030 Name:Rana<br>
+ID:328031 Name:Quạt Lông Đỏ<br>
+ID:328032 Name:Tiên Linh Tầm Bảo<br>
+ID:328033 Name:Lão Zhang<br>
+ID:328034 Name:Hoàng Kim Ốc<br>
+ID:328035 Name:Setaria<br>
+ID:328036 Name:Làng Gandharva<br>
+ID:328037 Name:Yayoi Nanatsuki<br>
+ID:328038 Name:Phế Tích Phong Long<br>
+ID:328039 Name:Liễu Rũ Trong Hồ<br>
+ID:328040 Name:Viện Ca Kịch Epiclese<br>
+ID:328041 Name:Mamere<br>
+ID:328042 Name:Hộp Hạt Giống<br>
+ID:328043 Name:Kính Kỷ Vật<br>
+ID:328044 Name:Jeht<br>
+ID:328045 Name:Silver Và Melus<br>
+ID:328046 Name:Pháo Đài Meropide<br>
+ID:328047 Name:Chất Xúc Tác Lưu Minh Thạch<br>
+ID:328048 Name:Đảo Seirai<br>
+ID:328049 Name:Taroumaru<br>
+ID:328050 Name:Găng Tay Trắng Và Ngư Dân<br>
+ID:328051 Name:Lăng Mộ Vua Deshret<br>
+ID:328052 Name:Di Tích Phòng Thí Nghiệm Trung Tâm<br>
+ID:328053 Name:Ngài Arthur<br>
+ID:328054 Name:Kusava<br>
+ID:328055 Name:Serene<br>
+ID:328056 Name:Đấu Trường Lửa Thánh<br>
+ID:328057 Name:Atea<br>
+ID:328058 Name:Sân Khấu Tepetl<br>
+ID:328059 Name:\"Dòng Dõi Vườn Treo\"<br>
+ID:328060 Name:\"Cư Dân Suối Nước\"<br>
+ID:328061 Name:\"Hội Hoa Vũ\"<br>
+ID:328062 Name:\"Chủ Nhân Gió Đêm\"<br>
+ID:328063 Name:\"Cộng Đồng Trù Phú\"<br>
+ID:329000 Name:Cộng Hưởng Nguyên Tố: Băng Giao Thoa<br>
+ID:329001 Name:Cộng Hưởng Nguyên Tố: Băng Vụn Vỡ<br>
+ID:329002 Name:Cộng Hưởng Nguyên Tố: Thủy Giao Thoa<br>
+ID:329003 Name:Cộng Hưởng Nguyên Tố: Thủy Trị Liệu<br>
+ID:329004 Name:Cộng Hưởng Nguyên Tố: Hỏa Giao Thoa<br>
+ID:329005 Name:Cộng Hưởng Nguyên Tố: Hỏa Nhiệt Tình<br>
+ID:329006 Name:Cộng Hưởng Nguyên Tố: Lôi Giao Thoa<br>
+ID:329007 Name:Cộng Hưởng Nguyên Tố: Lôi Mạnh Mẽ<br>
+ID:329008 Name:Cộng Hưởng Nguyên Tố: Phong Giao Thoa<br>
+ID:329009 Name:Cộng Hưởng Nguyên Tố: Phong Nhạy Bén<br>
+ID:329010 Name:Cộng Hưởng Nguyên Tố: Nham Giao Thoa<br>
+ID:329011 Name:Cộng Hưởng Nguyên Tố: Nham Kiên Định<br>
+ID:329012 Name:Cộng Hưởng Nguyên Tố: Thảo Giao Thoa<br>
+ID:329013 Name:Cộng Hưởng Nguyên Tố: Thảo Sinh Sôi<br>
+ID:329014 Name:Đồng Đội Tốt Nhất!<br>
+ID:329015 Name:Thời Gian Thay Ca<br>
+ID:329016 Name:Một Ném Càn Khôn<br>
+ID:329017 Name:Bàn Luận Chiến Lược<br>
+ID:329018 Name:Bổn Đại Gia Chưa Thua Đâu!<br>
+ID:329019 Name:Cứ Giao Cho Tôi!<br>
+ID:329020 Name:Khi Hạc Quay Về<br>
+ID:329021 Name:Trời Sao Dự Báo<br>
+ID:329022 Name:Thuật Vôi Trắng<br>
+ID:329023 Name:Tinh Thông Võ Thuật<br>
+ID:329024 Name:Lời Chúc Thần Bảo Dời Cung<br>
+ID:329025 Name:Thuật May Vá Cấp Tốc<br>
+ID:329026 Name:Tiễn Bạn Lên Đường<br>
+ID:329027 Name:Lời Thề Hộ Pháp<br>
+ID:329028 Name:Tiếng Gọi Của Vực Sâu<br>
+ID:329029 Name:Cơm Cháy Tuyệt Vân<br>
+ID:329030 Name:Tiên Nhảy Tường<br>
+ID:329031 Name:Bánh Hoa Sen<br>
+ID:329032 Name:Gà Xông Khói Phía Bắc<br>
+ID:329033 Name:Gà Nấu Hoa Ngọt<br>
+ID:329034 Name:Bánh Khoai Tây Mondstadt<br>
+ID:329035 Name:Pizza Nấm Rơm Nướng<br>
+ID:329036 Name:Thịt Rừng Cuộn Bạc Hà<br>
+ID:329037 Name:Phong Tự Do<br>
+ID:329038 Name:Nham Khế Ước<br>
+ID:329039 Name:Lôi Vĩnh Hằng<br>
+ID:329040 Name:Thảo Trí Tuệ<br>
+ID:329041 Name:Âm Mưu Của Fatui<br>
+ID:329042 Name:Chém Rơi<br>
+ID:329043 Name:Trọng Công Kích<br>
+ID:329044 Name:Vennessa Truyền Kỳ<br>
+ID:329045 Name:Sức Mạnh Tình Bạn<br>
+ID:329046 Name:Trứng Chiên Teyvat<br>
+ID:329047 Name:Sashimi<br>
+ID:329048 Name:Gà Nướng Tandoori<br>
+ID:329049 Name:Cua Phủ Bơ<br>
+ID:329050 Name:Sân Vườn Cổ Xưa<br>
+ID:329051 Name:Khế Ước Bàn Nham<br>
+ID:329052 Name:Giai Điệu Giấc Mơ<br>
+ID:329053 Name:Vũ Điệu Vui Vẻ<br>
+ID:329054 Name:Tàng Phong Nơi Nào<br>
+ID:329055 Name:Làn Gió Tự Do<br>
+ID:329056 Name:Đối Kháng!<br>
+ID:329057 Name:Bếp Lửa Của Mọi Nhà<br>
+ID:329058 Name:Bài Thơ Tiếng Nhạc<br>
+ID:329059 Name:Thời Khắc Phán Quyết<br>
+ID:329060 Name:Công Chúa Heo Rừng<br>
+ID:329061 Name:Cạm Bẫy Và Cơ Hội<br>
+ID:329062 Name:Ấn Bốn Lá Lơ Lửng<br>
+ID:329063 Name:Khoai Tây Chiên Cá<br>
+ID:329064 Name:Dây Chuyền Đúc Máy<br>
+ID:329065 Name:Hoa Sunyata<br>
+ID:329066 Name:Nhung Tùng Ủ Thịt Cuộn<br>
+ID:329067 Name:Ngày Kháng Chiến - Khoảnh Khắc Vỡ Mộng<br>
+ID:329068 Name:Nổ Định Hướng Có Kiểm Soát<br>
+ID:329069 Name:Tìm Kho Báu Dưới Biển<br>
+ID:329070 Name:Macaron Cầu Vồng<br>
+ID:329071 Name:Trận Huyết Chiến Ngày Cũ<br>
+ID:329072 Name:Thủy Công Lý<br>
+ID:329073 Name:Đếm Ngược Huyền Ảo: 3<br>
+ID:329074 Name:\"Coi Đồ Nhóc Đó Kiếm Tiền...\"<br>
+ID:329075 Name:Tada!<br>
+ID:329076 Name:Bữa Tiệc Của Đồng Đội Saurian<br>
+ID:329077 Name:Tuyên Bố Ân Xá<br>
+ID:329078 Name:Tiệc Trà Của Eremite<br>
+ID:329079 Name:Bánh Quy Saurus<br>
+ID:329080 Name:Bạn Lướt Sóng Đỉnh Cao!<br>
+ID:329081 Name:Đá Quý Lấp Lánh<br>
+ID:329082 Name:Nghi Lễ Hành Hương Về Lửa Thánh<br>
+ID:329083 Name:Phlogiston Dồi Dào<br>
+ID:329084 Name:Bôm Bốp<br>
+ID:329085 Name:Nhóc Tepetlisaur! Phát Hiện Kho Báu!<br>
+ID:329086 Name:Thời Khắc Suối Nước Nóng<br>
+ID:329087 Name:Với Danh Nghĩa Cực Hạn<br>
+ID:329088 Name:Súp Huyền Bí<br>
+ID:329089 Name:Nghệ Thuật Thiền Ngủ<br>
+ID:329090 Name:Bài Ca Vang Vọng<br>
 ID:330000 Name:Ganyu<br>
 ID:330001 Name:Kaeya<br>
 ID:330002 Name:Chongyun<br>
@@ -11307,6 +11863,8 @@ ID:330106 Name:Arlecchino<br>
 ID:330107 Name:Kinich<br>
 ID:330108 Name:Kachina<br>
 ID:330109 Name:Emilie<br>
+ID:330110 Name:Sethos<br>
+ID:330111 Name:Xilonen<br>
 ID:330500 Name:Duy Thử Nhất Tâm<br>
 ID:330501 Name:Lãnh Huyết Kiếm<br>
 ID:330502 Name:Hơi Thở Bình Yên<br>
@@ -11385,7 +11943,7 @@ ID:330574 Name:Ngọc Trai Kiên Cố<br>
 ID:330575 Name:Lấy Thú Vị Làm Lý Lẽ<br>
 ID:330576 Name:Di Sản Hậu Duệ Biển Xưa<br>
 ID:330577 Name:Lưu Lại Cảnh Sắc<br>
-ID:330578 Name:Cicin Lôi Lấp Lánh<br>
+ID:330578 Name:Cicin Lôi Nhấp Nháy<br>
 ID:330579 Name:Từ Bỏ Nhu Nhược<br>
 ID:330580 Name:Đường Chân Lý Kỳ Diệu<br>
 ID:330581 Name:Dòng Nước Ngầm Trào Dâng<br>
@@ -11404,7 +11962,7 @@ ID:330593 Name:Kênh Phân Phối Ngầm<br>
 ID:330594 Name:Mũi Kiếm Lạnh Lẽo<br>
 ID:330595 Name:Thời Khắc Bừng Tỉnh Và Quyết Tâm<br>
 ID:330596 Name:Tri Thị Lưu Vân Tiên<br>
-ID:330597 Name:Slime Phi Tiêu Nước<br>
+ID:330597 Name:Bọt Nước Nhẹ Nhàng<br>
 ID:330598 Name:Năm Màu Thuốc Nhuộm<br>
 ID:330599 Name:Chuỗi Sét Dồn Dập<br>
 ID:330600 Name:Linh Xà Cuồng Quay<br>
@@ -11417,6 +11975,8 @@ ID:330606 Name:Tất Cả Thù Và Nợ Do Ta Tự Trả...<br>
 ID:330607 Name:Món Quà Dạ Vực - Hoàn Trả Đầy Đủ<br>
 ID:330608 Name:Món Quà Dạ Vực - Lõi Đoàn Kết<br>
 ID:330609 Name:Dư Hương Marcotte<br>
+ID:330610 Name:Sách Môn Đồ Của Tháp Mặt Trời<br>
+ID:330611 Name:Chuyến Du Hành Của Tepeilhuitl<br>
 ID:331000 Name:Tóm Tắt Ma Pháp<br>
 ID:331001 Name:Mảnh Chương Tế Lễ<br>
 ID:331002 Name:Quyển Thiên Không<br>
@@ -11513,6 +12073,7 @@ ID:331092 Name:Iktomisaurus<br>
 ID:331093 Name:Mặt Nạ Lông Của Chiến Sĩ Ma<br>
 ID:331094 Name:Qucusaurus<br>
 ID:331095 Name:Thuyền Gió<br>
+ID:331096 Name:Tatankasaurus<br>
 ID:332000 Name:Bến Cảng Liyue<br>
 ID:332001 Name:Thư Viện Đội Kỵ Sĩ<br>
 ID:332002 Name:Quần Ngọc Các<br>
@@ -11576,6 +12137,7 @@ ID:332059 Name:\"Dòng Dõi Vườn Treo\"<br>
 ID:332060 Name:\"Cư Dân Suối Nước\"<br>
 ID:332061 Name:\"Hội Hoa Vũ\"<br>
 ID:332062 Name:\"Chủ Nhân Gió Đêm\"<br>
+ID:332063 Name:\"Cộng Đồng Trù Phú\"<br>
 ID:333000 Name:Cộng Hưởng Nguyên Tố: Băng Giao Thoa<br>
 ID:333001 Name:Cộng Hưởng Nguyên Tố: Băng Vụn Vỡ<br>
 ID:333002 Name:Cộng Hưởng Nguyên Tố: Thủy Giao Thoa<br>
@@ -11665,6 +12227,8 @@ ID:333085 Name:Nhóc Tepetlisaur! Phát Hiện Kho Báu!<br>
 ID:333086 Name:Thời Khắc Suối Nước Nóng<br>
 ID:333087 Name:Với Danh Nghĩa Cực Hạn<br>
 ID:333088 Name:Súp Huyền Bí<br>
+ID:333089 Name:Nghệ Thuật Thiền Ngủ<br>
+ID:333090 Name:Bài Ca Vang Vọng<br>
 ID:334000 Name:Ganyu<br>
 ID:334001 Name:Kaeya<br>
 ID:334002 Name:Chongyun<br>
@@ -11775,6 +12339,8 @@ ID:334106 Name:Arlecchino<br>
 ID:334107 Name:Kinich<br>
 ID:334108 Name:Kachina<br>
 ID:334109 Name:Emilie<br>
+ID:334110 Name:Sethos<br>
+ID:334111 Name:Xilonen<br>
 ID:334500 Name:Duy Thử Nhất Tâm<br>
 ID:334501 Name:Lãnh Huyết Kiếm<br>
 ID:334502 Name:Hơi Thở Bình Yên<br>
@@ -11853,7 +12419,7 @@ ID:334574 Name:Ngọc Trai Kiên Cố<br>
 ID:334575 Name:Lấy Thú Vị Làm Lý Lẽ<br>
 ID:334576 Name:Di Sản Hậu Duệ Biển Xưa<br>
 ID:334577 Name:Lưu Lại Cảnh Sắc<br>
-ID:334578 Name:Cicin Lôi Lấp Lánh<br>
+ID:334578 Name:Cicin Lôi Nhấp Nháy<br>
 ID:334579 Name:Từ Bỏ Nhu Nhược<br>
 ID:334580 Name:Đường Chân Lý Kỳ Diệu<br>
 ID:334581 Name:Dòng Nước Ngầm Trào Dâng<br>
@@ -11872,7 +12438,7 @@ ID:334593 Name:Kênh Phân Phối Ngầm<br>
 ID:334594 Name:Mũi Kiếm Lạnh Lẽo<br>
 ID:334595 Name:Thời Khắc Bừng Tỉnh Và Quyết Tâm<br>
 ID:334596 Name:Tri Thị Lưu Vân Tiên<br>
-ID:334597 Name:Slime Phi Tiêu Nước<br>
+ID:334597 Name:Bọt Nước Nhẹ Nhàng<br>
 ID:334598 Name:Năm Màu Thuốc Nhuộm<br>
 ID:334599 Name:Chuỗi Sét Dồn Dập<br>
 ID:334600 Name:Linh Xà Cuồng Quay<br>
@@ -11885,6 +12451,8 @@ ID:334606 Name:Tất Cả Thù Và Nợ Do Ta Tự Trả...<br>
 ID:334607 Name:Món Quà Dạ Vực - Hoàn Trả Đầy Đủ<br>
 ID:334608 Name:Món Quà Dạ Vực - Lõi Đoàn Kết<br>
 ID:334609 Name:Dư Hương Marcotte<br>
+ID:334610 Name:Sách Môn Đồ Của Tháp Mặt Trời<br>
+ID:334611 Name:Chuyến Du Hành Của Tepeilhuitl<br>
 ID:335000 Name:Tóm Tắt Ma Pháp<br>
 ID:335001 Name:Mảnh Chương Tế Lễ<br>
 ID:335002 Name:Quyển Thiên Không<br>
@@ -11981,6 +12549,7 @@ ID:335092 Name:Iktomisaurus<br>
 ID:335093 Name:Mặt Nạ Lông Của Chiến Sĩ Ma<br>
 ID:335094 Name:Qucusaurus<br>
 ID:335095 Name:Thuyền Gió<br>
+ID:335096 Name:Tatankasaurus<br>
 ID:336000 Name:Bến Cảng Liyue<br>
 ID:336001 Name:Thư Viện Đội Kỵ Sĩ<br>
 ID:336002 Name:Quần Ngọc Các<br>
@@ -12044,6 +12613,7 @@ ID:336059 Name:\"Dòng Dõi Vườn Treo\"<br>
 ID:336060 Name:\"Cư Dân Suối Nước\"<br>
 ID:336061 Name:\"Hội Hoa Vũ\"<br>
 ID:336062 Name:\"Chủ Nhân Gió Đêm\"<br>
+ID:336063 Name:\"Cộng Đồng Trù Phú\"<br>
 ID:337000 Name:Cộng Hưởng Nguyên Tố: Băng Giao Thoa<br>
 ID:337001 Name:Cộng Hưởng Nguyên Tố: Băng Vụn Vỡ<br>
 ID:337002 Name:Cộng Hưởng Nguyên Tố: Thủy Giao Thoa<br>
@@ -12133,6 +12703,8 @@ ID:337085 Name:Nhóc Tepetlisaur! Phát Hiện Kho Báu!<br>
 ID:337086 Name:Thời Khắc Suối Nước Nóng<br>
 ID:337087 Name:Với Danh Nghĩa Cực Hạn<br>
 ID:337088 Name:Súp Huyền Bí<br>
+ID:337089 Name:Nghệ Thuật Thiền Ngủ<br>
+ID:337090 Name:Bài Ca Vang Vọng<br>
 ID:339000 Name:Nguyên Sơ<br>
 ID:339001 Name:Mondstadt<br>
 ID:339002 Name:Liyue<br>
@@ -12164,6 +12736,7 @@ ID:339031 Name:Natlan<br>
 ID:339032 Name:Enkanomiya - Đêm Đen<br>
 ID:339033 Name:Enkanomiya - Vương Miện<br>
 ID:339034 Name:Fonta - Anh Đào Ngọt Ngào<br>
+ID:339035 Name:Biển Cát Đỏ: Đêm Dài<br>
 ID:339500 Name:Mondstadt<br>
 ID:339501 Name:Liyue<br>
 ID:339502 Name:Inazuma<br>
@@ -12386,6 +12959,7 @@ ID:381114 Name:Phân Bổ Ngoài Chợ<br>
 ID:381115 Name:Vải Nhuộm Sặc Sỡ Ngoài Chợ<br>
 ID:381116 Name:Tủ Gỗ Dừa Đào - Điểm Tựa<br>
 ID:381117 Name:Sự Suy Ngẫm Của Khu Chợ<br>
+ID:381118 Name:Cách Quảng Bá Của Xochicuicatl<br>
 ID:381201 Name:Kệ Sách Hai Tầng Thư Viện<br>
 ID:381202 Name:Kệ Sách Gỗ Tụy Hoa Tinh Xảo<br>
 ID:381203 Name:Kệ Sách Gỗ Tụy Hoa Kinh Tế<br>
@@ -12570,6 +13144,9 @@ ID:382319 Name:Thảm Chợ - Nhiệt Tình Và Ấm Áp<br>
 ID:382401 Name:Gốm Sắc Màu - Sinh Ra Từ Lửa<br>
 ID:382402 Name:Con Rối Hai Chân - Lắc Lư<br>
 ID:382403 Name:Con Rối Bốn Chân - Vững Chắc<br>
+ID:382404 Name:Mô Hình Máy Móc - Khuếch Đại Bùng Nổ<br>
+ID:382405 Name:Nhịp Điệu Đồng Đều<br>
+ID:382406 Name:Tiếng Hét Dũng Mãnh<br>
 ID:383101 Name:Đèn Treo Ánh Sáng Bất Tận<br>
 ID:383102 Name:Đèn Cao Gỗ Khước Sa Lưu Ly Đình<br>
 ID:383103 Name:Đèn Lồng Thiên Viên - Tỏa Sáng Rực Rỡ<br>
@@ -12687,6 +13264,8 @@ ID:384217 Name:Khiên Tấn Công Bằng Sắt Cứng Gỗ Sanh<br>
 ID:384218 Name:Đèn Trong Nhà - \"Hoàng Hôn Trên Biển\"<br>
 ID:384219 Name:Đèn Dây Cót - Đêm Yên Trầm Tư<br>
 ID:384220 Name:Đèn Treo Phlogiston - Dẫn Đường<br>
+ID:384221 Name:Phao Bơi Nhàn Nhã<br>
+ID:384222 Name:Phao Cứu Sinh Khẩn Cấp<br>
 ID:384501 Name:Thời Khắc Nhớ Nhung<br>
 ID:390101 Name:Nhà Tranh<br>
 ID:390102 Name:Kho Rơm<br>
@@ -12891,6 +13470,7 @@ ID:390826 Name:\"Tiếng Chuông Của Thị Trấn Âm Nhạc\"<br>
 ID:390827 Name:\"Bình Yên Của Thị Trấn Âm Nhạc\"<br>
 ID:390828 Name:\"Nhà Xưởng Của Thị Trấn Âm Nhạc\"<br>
 ID:390829 Name:\"Nhà Ở Của Thị Trấn Âm Nhạc\"<br>
+ID:390830 Name:Nhà Hát Kiệt Tác<br>
 ID:390900 Name:Nhà Đá Tiếng Vang - Xưởng Tiêu Chuẩn<br>
 ID:390901 Name:Nhà Đá Tiếng Vang - Thủ Lĩnh Đàn Saurian<br>
 ID:390902 Name:Nhà Đá Tiếng Vang - Ủng Dài<br>
@@ -13111,6 +13691,7 @@ ID:393186 Name:Mô Hình Giấy - Nhảy Nhót<br>
 ID:393187 Name:Mô Hình Giấy - Tròn Trịa<br>
 ID:393188 Name:Mô Hình Giấy - Vù Vù<br>
 ID:393189 Name:Mô Hình Giấy - Cứng Cáp<br>
+ID:393197 Name:Điêu Khắc Tinh Xảo<br>
 ID:393201 Name:Chậu Cây Xanh - Xanh Ngắt Mát Mẻ<br>
 ID:393202 Name:Bồn Hoa Giữ Nước<br>
 ID:393203 Name:Thùng Gỗ Chuyển Bùn Đất<br>
@@ -13257,6 +13838,8 @@ ID:393475 Name:Biển Hiệu Gỗ - Trải Nghiệm Kỳ Ảo<br>
 ID:393476 Name:Bình Phong Ngày Xuân - Nhất Điểm Hồng<br>
 ID:393477 Name:Bình Phong Ngày Xuân - Mãn Đình Phương<br>
 ID:393483 Name:Chân Dung Can Đảm Và Sức Mạnh<br>
+ID:393484 Name:Niềm Vui Tuôn Trào<br>
+ID:393485 Name:Bảng Hiệu - Phu Nhân Chevalmarin<br>
 ID:393511 Name:Kệ Sách Báo - \"Tự Do Lấy Đọc\"<br>
 ID:393512 Name:Kệ Sách Báo - \"Lướt Xem Nhanh\"<br>
 ID:393513 Name:Kệ Sách Báo - \"Hiệu Quả Tập Trung\"<br>
@@ -13403,6 +13986,7 @@ ID:20010202 Name:Slime Thảo Lớn<br>
 ID:20010301 Name:Slime Phong<br>
 ID:20010302 Name:Slime Phong<br>
 ID:20010303 Name:Slime Phong<br>
+ID:20010305 Name:Slime Phong<br>
 ID:20010381 Name:Slime Phong<br>
 ID:20010401 Name:Slime Phong Lớn<br>
 ID:20010402 Name:Slime Phong Lớn<br>
@@ -13453,6 +14037,7 @@ ID:20011102 Name:Slime Thủy Lớn<br>
 ID:20011103 Name:Slime Thủy Lớn<br>
 ID:20011181 Name:Slime Thủy Lớn<br>
 ID:20011191 Name:Slime Thủy Lớn<br>
+ID:20011193 Name:Slime Thủy Lớn<br>
 ID:20011201 Name:Slime Hỏa<br>
 ID:20011202 Name:Slime Hỏa<br>
 ID:20011203 Name:Slime Hỏa<br>
@@ -13658,6 +14243,7 @@ ID:21020403 Name:Vua Giáp Băng Hilichurl<br>
 ID:21020481 Name:Vua Giáp Băng Hilichurl<br>
 ID:21020482 Name:Vua Giáp Băng Hilichurl<br>
 ID:21020491 Name:Vua Giáp Băng Hilichurl<br>
+ID:21020492 Name:Vua Giáp Băng Hilichurl<br>
 ID:21020501 Name:Vua Mũ Đá Hilichurl<br>
 ID:21020502 Name:Vua Mũ Đá Hilichurl<br>
 ID:21020503 Name:Vua Mũ Đá Hilichurl<br>
@@ -13916,6 +14502,7 @@ ID:24060902 Name:Robot Áp Chế Chuyên Dụng - Ousia<br>
 ID:24060903 Name:Robot Áp Chế Chuyên Dụng - Ousia<br>
 ID:24060990 Name:Robot Áp Chế Chuyên Dụng - Ousia<br>
 ID:24060991 Name:Robot Áp Chế Chuyên Dụng - Ousia<br>
+ID:24060992 Name:Robot Áp Chế Chuyên Dụng - Ousia<br>
 ID:24061001 Name:Robot Hủy Diệt Chuyên Dụng - Ousia<br>
 ID:24061002 Name:Robot Hủy Diệt Chuyên Dụng - Ousia<br>
 ID:24061101 Name:Robot Cảnh Báo Khu Vực - Ousia<br>
@@ -13989,6 +14576,7 @@ ID:24090202 Name:Cỗ Máy Bí Ẩn - Thiết Bị Cấu Tạo<br>
 ID:24090301 Name:<br>
 ID:24090302 Name:<br>
 ID:24090401 Name:<br>
+ID:24090501 Name:Cỗ Máy Bí Ẩn - Thiết Bị Giám Sát<br>
 ID:24810101 Name:Tháp Hỏa Cơ Bản<br>
 ID:24810190 Name:Tháp Hỏa Cơ Bản<br>
 ID:24810191 Name:Tháp Hỏa Cơ Bản<br>
@@ -14010,8 +14598,11 @@ ID:24810990 Name:Tháp Phong Cơ Bản<br>
 ID:24810991 Name:Tháp Phong Cơ Bản<br>
 ID:24811001 Name:Tháp Phong Cao Cấp<br>
 ID:24811101 Name:Tháp Vật Lý<br>
+ID:24811201 Name:Điểm Bảo Vệ (Thi Đấu 5.6) (Phòng Thủ)<br>
+ID:24811202 Name:Điểm Bảo Vệ (Thi Đấu 5.6) (Phòng Thủ)<br>
 ID:24920101 Name:Cơ Quan Tự Động - Khí Cầu Slime Nhỏ<br>
 ID:24920201 Name:Cơ Quan Tự Động - Khí Cầu Slime To<br>
+ID:24920202 Name:Cơ Quan Tự Động - Khí Cầu Slime To<br>
 ID:24920301 Name:Cơ Quan Tự Động - Khí Cầu Nấm<br>
 ID:24990101 Name:<br>
 ID:25010101 Name:Đạo Bảo Đoàn - Liuliu<br>
@@ -14060,6 +14651,7 @@ ID:25010304 Name:Đạo Bảo Đoàn - Hỏa Dược Sư<br>
 ID:25010381 Name:Đạo Bảo Đoàn - Hỏa Dược Sư<br>
 ID:25010390 Name:Đạo Bảo Đoàn - Hỏa Dược Sư<br>
 ID:25010391 Name:Đạo Bảo Đoàn - Hỏa Dược Sư<br>
+ID:25010392 Name:Đạo Bảo Đoàn - Hỏa Dược Sư<br>
 ID:25010401 Name:Đạo Bảo Đoàn - Thủy Dược Sư<br>
 ID:25010402 Name:Đạo Bảo Đoàn - Thủy Dược Sư<br>
 ID:25010403 Name:Đạo Bảo Đoàn - Thủy Dược Sư<br>
@@ -14401,6 +14993,7 @@ ID:26010101 Name:Hoa Lừa Dối Băng Giá<br>
 ID:26010102 Name:Hoa Lừa Dối Băng Giá<br>
 ID:26010103 Name:Hoa Lừa Dối Băng Giá<br>
 ID:26010104 Name:Hoa Lừa Dối Băng Giá<br>
+ID:26010190 Name:Hoa Lừa Dối Băng Giá<br>
 ID:26010201 Name:Hoa Lừa Dối Rực Lửa<br>
 ID:26010301 Name:Hoa Lừa Dối - Lôi<br>
 ID:26020101 Name:Cây Cấp Đông<br>
@@ -14675,6 +15268,7 @@ ID:28020109 Name:<br>
 ID:28020110 Name:<br>
 ID:28020201 Name:<br>
 ID:28020202 Name:<br>
+ID:28020203 Name:<br>
 ID:28020301 Name:<br>
 ID:28020302 Name:<br>
 ID:28020303 Name:<br>
@@ -14838,6 +15432,7 @@ ID:28030408 Name:<br>
 ID:28030409 Name:<br>
 ID:28030410 Name:<br>
 ID:28030411 Name:<br>
+ID:28030412 Name:<br>
 ID:28030501 Name:<br>
 ID:28030502 Name:<br>
 ID:28030503 Name:<br>
@@ -15251,6 +15846,15 @@ ID:29100103 Name:Arlecchino<br>
 ID:29100104 Name:Arlecchino<br>
 ID:29110101 Name:Chúa Tể Lửa Nguồn Ăn Mòn<br>
 ID:29110102 Name:Chúa Tể Lửa Nguồn Ăn Mòn<br>
+ID:29120101 Name:Ván Cờ: Quân Vua<br>
+ID:29120102 Name:Ván Cờ: Quân Vua<br>
+ID:29120201 Name:Ván Cờ: Quân Hậu<br>
+ID:29120202 Name:Ván Cờ: Quân Hậu<br>
+ID:29121101 Name:Vua Thăng Thần<br>
+ID:29121102 Name:Vua Thăng Thần<br>
+ID:29121201 Name:Hậu Thăng Hoa<br>
+ID:29121202 Name:Hậu Thăng Hoa<br>
+ID:29122000 Name:Ván Cờ Trước Ngưỡng Cửa<br>
 ID:30010590 Name:Slime Lôi<br>
 ID:30010591 Name:Slime Lôi<br>
 ID:30010791 Name:Slime Lôi Biến Dị<br>
@@ -15264,17 +15868,21 @@ ID:30020191 Name:Mắt Bão<br>
 ID:30050501 Name:Khổng Tước Ma - Thủy<br>
 ID:30050590 Name:Khổng Tước Ma - Thủy<br>
 ID:30050591 Name:Khổng Tước Ma - Thủy<br>
+ID:30050592 Name:Khổng Tước Ma - Thủy<br>
 ID:30050601 Name:Thú Bơi Ma - Thủy<br>
 ID:30050701 Name:Sóc Ma - Thủy<br>
 ID:30060490 Name:Bóng Ma - Băng<br>
 ID:30060491 Name:Bóng Ma - Băng<br>
+ID:30060492 Name:Bóng Ma - Băng<br>
 ID:30060591 Name:Bóng Ma - Lôi<br>
 ID:30060690 Name:Bóng Ma - Hỏa<br>
 ID:30060691 Name:Bóng Ma - Hỏa<br>
 ID:31010290 Name:Hilichurl Chiến Sĩ<br>
 ID:31010291 Name:Hilichurl Chiến Sĩ<br>
+ID:31010292 Name:Hilichurl Chiến Sĩ<br>
 ID:31010299 Name:Hilichurl Chiến Sĩ<br>
 ID:31010591 Name:Hilichurl Hỏa Tiễn<br>
+ID:31010690 Name:Hilichurl Đạn Nổ<br>
 ID:31010990 Name:Hilichurl Băng Tiễn<br>
 ID:31010991 Name:Hilichurl Băng Tiễn<br>
 ID:31011090 Name:Hilichurl Lôi Tiễn<br>
@@ -15286,6 +15894,7 @@ ID:31020791 Name:Bạo Đồ Hilichurl Búa Lôi<br>
 ID:31030190 Name:Phù Thủy Hilichurl Thủy<br>
 ID:31030191 Name:Phù Thủy Hilichurl Thủy<br>
 ID:31030391 Name:Phù Thủy Hilichurl Phong<br>
+ID:31030690 Name:Phù Thủy Hilichurl Lôi<br>
 ID:31040101 Name:Lãng Khách Hilichurl Phong<br>
 ID:31040291 Name:Lãng Khách Hilichurl Thủy<br>
 ID:32110201 Name:Nguyên Thể Khe Nứt - Đá Vụn<br>
@@ -15295,6 +15904,7 @@ ID:33010501 Name:Đội Tiên Phong Fatui - Quân Tiên Phong Tay Đấm Phong<b
 ID:33010601 Name:Đội tiên phong Fatui - Quân du kích Hỏa<br>
 ID:34010190 Name:Thủ Vệ Di Tích<br>
 ID:34010191 Name:Thủ Vệ Di Tích<br>
+ID:34010192 Name:Thủ Vệ Di Tích<br>
 ID:34060101 Name:Robot Ghi Chép Trinh Sát - Ousia<br>
 ID:34060102 Name:Robot Ghi Chép Trinh Sát - Ousia<br>
 ID:34060901 Name:Robot Áp Chế Chuyên Dụng - Ousia<br>
@@ -15423,6 +16033,12 @@ ID:35550209 Name:<br>
 ID:35550301 Name:<br>
 ID:35550302 Name:<br>
 ID:35550303 Name:<br>
+ID:35550304 Name:<br>
+ID:35550305 Name:<br>
+ID:35550306 Name:<br>
+ID:35550307 Name:<br>
+ID:35550308 Name:<br>
+ID:35550309 Name:<br>
 ID:35550401 Name:<br>
 ID:35550402 Name:<br>
 ID:35550403 Name:<br>
@@ -15436,8 +16052,10 @@ ID:36030191 Name:Rồng Đất Nhỏ Nham<br>
 ID:36050601 Name:Rồng Biển Sâu - Nguyên Thủy<br>
 ID:36060190 Name:Cicin Lôi<br>
 ID:36060191 Name:Cicin Lôi<br>
+ID:36060192 Name:Cicin Lôi<br>
 ID:36060290 Name:Cicin Thủy<br>
 ID:36060291 Name:Cicin Thủy<br>
+ID:36060292 Name:Cicin Thủy<br>
 ID:36090190 Name:Nấm Quỷ Phù Du - Thủy<br>
 ID:36090191 Name:Nấm Quỷ Phù Du - Thủy<br>
 ID:36090192 Name:Nấm Quỷ Phù Du - Thủy<br>
@@ -15492,6 +16110,7 @@ ID:36240201 Name:Iktomisaurus<br>
 ID:36260801 Name:Hóa Thân Wayob - Băng Giá<br>
 ID:36260802 Name:Hóa Thân Wayob - Băng Giá<br>
 ID:36260803 Name:Hóa Thân Wayob - Băng Giá<br>
+ID:36270190 Name:Hóa Thân Dung Nham Nóng Chảy<br>
 ID:38022001 Name:<br>
 ID:38050590 Name:<br>
 ID:38050591 Name:<br>

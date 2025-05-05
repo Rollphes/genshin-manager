@@ -1,5 +1,5 @@
 const fs = require('fs')
-const { Client } = require('../dist/client/Client.js')
+const { Client, ClientEvents } = require('../dist/client/Client.js')
 const { CharacterInfo } = require('../dist/models/character/CharacterInfo.js')
 const {
   CharacterCostume,
@@ -44,14 +44,13 @@ async function main() {
       timeout: 0,
     },
   })
-  await client.deploy()
-  rl.question('What is the version of the game?:', async (answer) => {
+  client.on(ClientEvents.END_UPDATE_CACHE, async(version)=>{
     for (const lang of client.option.downloadLanguages) {
       await client.changeLanguage(lang)
       const filePath = `./handbooks/handbook_${lang}.md`
       console.log(`HandBook is being created... (Language: ${lang})`)
       //write version
-      fs.writeFileSync(filePath, `# GameVersion ${answer}\n`, {
+      fs.writeFileSync(filePath, `# GameVersion ${version}\n`, {
         encoding: 'utf-8',
       })
 
@@ -126,5 +125,6 @@ async function main() {
     rl.close()
     process.exit(0)
   })
+  await client.deploy()
 }
 void main()
