@@ -17,10 +17,13 @@ export class AssetsNotFoundError extends Error {
     key: keyof (typeof ExcelBinOutputs & typeof TextMapLanguage),
     id?: string | number,
   ) {
-    const dictionary = { ...ExcelBinOutputs, ...TextMapLanguage }
+    const dictionary = {
+      ...ExcelBinOutputs,
+      ...TextMapLanguage,
+    }
 
     super(
-      `${dictionary[key]} ${
+      `${dictionary[key].toString()} ${
         id ?? ''
       } was not found. Try to update cached assets with Client#deploy`,
     )

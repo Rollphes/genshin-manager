@@ -12,7 +12,7 @@ export class TextMapFormatError extends Error {
    */
   constructor(language: keyof typeof TextMapLanguage) {
     super(
-      `Invalid json format. Check if the "${TextMapLanguage[language]}" is correct`,
+      `Invalid json format. Check if the "${TextMapLanguage[language].join(', ')}" is correct`,
     )
 
     this.name = 'TextMapFormatError'
