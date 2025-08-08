@@ -1,4 +1,6 @@
 name: DataTest
+permissions:
+  contents: read
 
 on:
   schedule:
