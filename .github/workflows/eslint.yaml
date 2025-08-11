@@ -50,36 +50,46 @@ jobs:
         id: stats
         run: |
           echo "Generating ESLint error statistics..."
+
+          # Debug: Show raw ESLint output first
+          echo "Debug: Running npm run lint:unix..."
+          npm run lint:unix 2>/dev/null | head -5
           
           # Create formatted table for GitHub
           echo "## 📊 ESLint Error Statistics" > stats_table.md
           echo "" >> stats_table.md
           echo "| Count | Error Type |" >> stats_table.md
           echo "|-------|------------|" >> stats_table.md
+
+          # Debug: Test pattern matching step by step
+          echo "Debug: Testing pattern matching..."
+          lint_output=$(npm run lint:unix 2>/dev/null)
+          echo "Debug: Lines with [Error/: $(echo "$lint_output" | grep '\[Error/' | wc -l)"
           
-          # Generate stats from ESLint output with improved pattern matching
-          npm run lint:unix 2>/dev/null | \
-          grep -o '\[Error/[^]]*\]' | \
-          sed 's/\[Error\///g' | \
-          sed 's/\]//g' | \
+          # Generate stats using a more compatible approach
+          echo "$lint_output" | \
+          grep '\[Error/' | \
+          sed 's/.*\[Error\///g' | \
+          sed 's/\].*//g' | \
           sort | uniq -c | sort -nr | head -20 | \
-          while read count error_type; do
+          while read -r count error_type; do
             if [[ -n "$count" ]] && [[ -n "$error_type" ]]; then
+              echo "Debug: Adding entry: $count | $error_type"
               echo "| $count | \`$error_type\` |" >> stats_table.md
             fi
           done
-          
+
           # Check if any entries were added
           table_entries=$(grep -c "^| [0-9]" stats_table.md 2>/dev/null || echo "0")
           echo "Debug: Found $table_entries table entries"
-          
+
           if [ "$table_entries" -eq "0" ]; then
             echo "| - | No ESLint errors found |" >> stats_table.md
           fi
-          
+
           echo "" >> stats_table.md
           echo "💡 **Tip:** Run \`npm run lint:stats\` locally to see detailed error breakdown." >> stats_table.md
-          
+
           # Debug: Show final table content
           echo "📋 Final stats_table.md content:"
           cat stats_table.md
