@@ -1,22 +1,237 @@
 name: ESLint
 permissions:
   contents: read
+  issues: write
+  pull-requests: write
 
 on:
   push:
     branches:
       - main
+      - develop
+  pull_request:
+    branches:
+      - main
 
 jobs:
-  eslint:
+  # 1. ESLint実行とエラー統計生成
+  eslint-check:
+    name: Run ESLint and Generate Statistics
     runs-on: ubuntu-latest
+    outputs:
+      eslint_success: ${{ steps.eslint.outputs.eslint_success }}
+      has_errors: ${{ steps.eslint.outputs.eslint_success == 'false' }}
 
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+          cache: 'npm'
 
       - name: Install dependencies
         run: npm install --ignore-scripts
 
       - name: Run ESLint
-        run: npx eslint .
+        id: eslint
+        run: |
+          # Run ESLint and capture output
+          if npm run lint > eslint_output.txt 2>&1; then
+            echo "eslint_success=true" >> $GITHUB_OUTPUT
+            echo "ESLint passed successfully!"
+          else
+            echo "eslint_success=false" >> $GITHUB_OUTPUT
+            echo "ESLint found errors"
+          fi
+        continue-on-error: true
+
+      - name: Generate ESLint Statistics
+        if: steps.eslint.outputs.eslint_success == 'false'
+        id: stats
+        run: |
+          echo "Generating ESLint error statistics..."
+          npm run lint:stats > eslint_stats.txt 2>/dev/null || echo "No errors found" > eslint_stats.txt
+
+          # Create formatted table for GitHub
+          echo "## 📊 ESLint Error Statistics" > stats_table.md
+          echo "" >> stats_table.md
+          echo "| Count | Error Type |" >> stats_table.md
+          echo "|-------|------------|" >> stats_table.md
+
+          # Process stats and create table
+          if [ -s eslint_stats.txt ]; then
+            head -20 eslint_stats.txt | while read line; do
+              if [[ $line =~ ^[[:space:]]*([0-9]+)[[:space:]]+(.+)$ ]]; then
+                count="${BASH_REMATCH[1]}"
+                error_type="${BASH_REMATCH[2]}"
+                echo "| $count | \`$error_type\` |" >> stats_table.md
+              fi
+            done
+          else
+            echo "| 0 | No errors found |" >> stats_table.md
+          fi
+
+          echo "" >> stats_table.md
+          echo "**Total Error Count:** $(wc -l < eslint_stats.txt)" >> stats_table.md
+          echo "" >> stats_table.md
+          echo "💡 **Tip:** Run \`npm run lint:stats\` locally to see detailed error breakdown." >> stats_table.md
+
+      - name: Upload ESLint Results
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: eslint-results-${{ github.run_id }}
+          path: |
+            eslint_output.txt
+            eslint_stats.txt
+            stats_table.md
+          retention-days: 30
+
+  # 2. PRコメント投稿
+  comment-on-pr:
+    name: Comment on Pull Request
+    runs-on: ubuntu-latest
+    needs: eslint-check
+    if: github.event_name == 'pull_request' && needs.eslint-check.outputs.has_errors == 'true'
+
+    steps:
+      - name: Download ESLint Results
+        uses: actions/download-artifact@v4
+        with:
+          name: eslint-results-${{ github.run_id }}
+
+      - name: Comment on PR
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const fs = require('fs');
+
+            let statsContent = '';
+            try {
+              statsContent = fs.readFileSync('stats_table.md', 'utf8');
+            } catch (error) {
+              statsContent = '❌ **ESLint found errors but could not generate statistics.**';
+            }
+
+            const body = `🚨 **ESLint Check Failed**
+
+            ${statsContent}
+
+            ---
+
+            📝 **Next Steps:**
+            1. Fix the errors locally using \`npm run lint\`
+            2. Use \`npm run lint:stats\` to see error breakdown
+            3. Push your fixes to update this PR
+
+            🔧 **Common Commands:**
+            - \`npm run lint\` - Run ESLint
+            - \`npm run lint:unix\` - Unix format output
+            - \`npm run lint:stats\` - Error statistics`;
+
+            github.rest.issues.createComment({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: body
+            });
+
+  # 3. mainブランチでのIssue自動生成
+  create-issue:
+    name: Create Issue for Main Branch
+    runs-on: ubuntu-latest
+    needs: eslint-check
+    if: github.ref == 'refs/heads/main' && needs.eslint-check.outputs.has_errors == 'true'
+
+    steps:
+      - name: Download ESLint Results
+        uses: actions/download-artifact@v4
+        with:
+          name: eslint-results-${{ github.run_id }}
+
+      - name: Create Issue
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const fs = require('fs');
+
+            let statsContent = '';
+            try {
+              statsContent = fs.readFileSync('stats_table.md', 'utf8');
+            } catch (error) {
+              statsContent = '❌ **ESLint found errors but could not generate statistics.**';
+            }
+
+            const title = `🚨 ESLint errors detected in main branch`;
+            const body = `## ESLint Check Failed on Main Branch
+
+            **Commit:** ${context.sha}
+            **Workflow:** [${context.workflow}](${context.payload.repository.html_url}/actions/runs/${context.runId})
+
+            ${statsContent}
+
+            ---
+
+            ## 🔧 Action Required
+
+            The main branch has ESLint errors that need to be addressed:
+
+            1. **Create a hotfix branch:** \`git checkout -b hotfix/eslint-fixes\`
+            2. **Fix the errors:** Use \`npm run lint\` and \`npm run lint:stats\`
+            3. **Test locally:** Ensure all errors are resolved
+            4. **Create PR:** Submit a pull request with the fixes
+
+            ## 📊 Error Analysis
+
+            Use these commands to analyze and fix errors:
+            \`\`\`bash
+            npm run lint:stats  # See error breakdown
+            npm run lint:unix   # Unix format for CI tools
+            \`\`\`
+
+            ---
+
+            **Auto-generated by ESLint workflow** 🤖`;
+
+            // Check if similar issue already exists
+            const existingIssues = await github.rest.issues.listForRepo({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              state: 'open',
+              labels: 'eslint,automated'
+            });
+
+            const hasOpenEslintIssue = existingIssues.data.some(issue =>
+              issue.title.includes('ESLint errors detected in main branch')
+            );
+
+            if (!hasOpenEslintIssue) {
+              await github.rest.issues.create({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                title: title,
+                body: body,
+                labels: ['bug', 'eslint', 'automated', 'priority-high']
+              });
+            }
+
+  # 4. 最終結果の判定
+  eslint-result:
+    name: ESLint Final Result
+    runs-on: ubuntu-latest
+    needs: eslint-check
+    if: always()
+
+    steps:
+      - name: Check ESLint Result
+        run: |
+          if [ "${{ needs.eslint-check.outputs.eslint_success }}" == "true" ]; then
+            echo "✅ ESLint check passed successfully!"
+            exit 0
+          else
+            echo "❌ ESLint check failed. Please fix the errors and try again."
+            exit 1
+          fi
