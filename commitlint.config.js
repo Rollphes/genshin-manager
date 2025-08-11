@@ -1,5 +1,24 @@
 module.exports = {
   extends: [],
+  plugins: [
+    {
+      rules: {
+        'english-only': (parsed) => {
+          const { subject } = parsed;
+          if (!subject) return [true];
+          
+          // Check if subject contains only English characters, numbers, and basic punctuation
+          const englishOnlyPattern = /^[A-Za-z0-9\s\-_.,()\/\[\]]+$/;
+          const isValid = englishOnlyPattern.test(subject);
+          
+          return [
+            isValid,
+            isValid ? '' : 'Subject must contain only English characters, numbers, and basic punctuation'
+          ];
+        }
+      }
+    }
+  ],
   rules: {
     // Custom rules for [prefix] format
     'type-enum': [
@@ -33,6 +52,8 @@ module.exports = {
     'header-full-stop': [2, 'never', '.'], // No full stop at end of header
     'subject-full-stop': [2, 'never', '.'], // No full stop at end of subject
     'subject-case': [0], // Disable subject case checking
+    // English-only rule for commit subject
+    'english-only': [2, 'always'],
   },
   parserPreset: {
     parserOpts: {
