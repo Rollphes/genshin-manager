@@ -13,7 +13,6 @@ yarn-error.log
 yarn.lock
 
 /cache/*
-/src/test/*
 /src/test
 
 /dist
