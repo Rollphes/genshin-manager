@@ -47,7 +47,6 @@ jobs:
         continue-on-error: true
 
       - name: Generate ESLint Statistics
-        if: steps.eslint.outputs.eslint_success == 'false'
         id: stats
         run: |
           echo "Generating ESLint error statistics..."
@@ -58,18 +57,24 @@ jobs:
           echo "| Count | Error Type |" >> stats_table.md
           echo "|-------|------------|" >> stats_table.md
           
-          # Generate stats directly in the table
-          npm run lint:unix 2>/dev/null | awk -F'[][]' '/\[.*\]$/ {print $(NF-1)}' | sort | uniq -c | sort -nr | head -20 | while read count error_type; do
-            # Skip empty lines and warnings
-            if [[ -n "$count" ]] && [[ -n "$error_type" ]] && [[ ! "$error_type" =~ Warning ]]; then
+          # Generate stats from ESLint output with improved pattern matching
+          npm run lint:unix 2>/dev/null | \
+          grep -o '\[Error/[^]]*\]' | \
+          sed 's/\[Error\///g' | \
+          sed 's/\]//g' | \
+          sort | uniq -c | sort -nr | head -20 | \
+          while read count error_type; do
+            if [[ -n "$count" ]] && [[ -n "$error_type" ]]; then
               echo "| $count | \`$error_type\` |" >> stats_table.md
             fi
           done
           
-          # Fallback: if no entries were added, add a "processing" message
-          line_count=$(grep -c "| [0-9]" stats_table.md || echo "0")
-          if [ "$line_count" -eq "0" ]; then
-            echo "| - | Processing ESLint results... |" >> stats_table.md
+          # Check if any entries were added
+          table_entries=$(grep -c "^| [0-9]" stats_table.md 2>/dev/null || echo "0")
+          echo "Debug: Found $table_entries table entries"
+          
+          if [ "$table_entries" -eq "0" ]; then
+            echo "| - | No ESLint errors found |" >> stats_table.md
           fi
           
           echo "" >> stats_table.md
