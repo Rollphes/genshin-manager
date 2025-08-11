@@ -1,35 +1,30 @@
-# ===========================================
-# NPM Publish Ignore Configuration
-# ===========================================
-# このファイルは npm publish 時に除外するファイル・ディレクトリを指定します
-
 # ----- Development Dependencies -----
 /node_modules
 
 # ----- Source Code & Build Files -----
-/src                    # TypeScriptソースコード（distに変換済み）
-/cache                  # キャッシュファイル
-/dist/test             # テスト用ビルドファイル
-/src/test              # テストファイル
+/src
+/cache
+/dist/test
+/src/test
 
 # ----- Documentation & Examples -----
-/docs                  # API documentation
-/handbooks             # 多言語ハンドブック
-/examples              # サンプルコード
+/docs
+/handbooks
+/examples
 
 # ----- CI/CD & Development Tools -----
-/.github               # GitHub Actions workflows
-/.husky                # Git hooks
-/.vscode               # VS Code settings
+/.github
+/.husky
+/.vscode
 
 # ----- Configuration Files -----
-.eslintrc.json         # ESLint設定
-.eslint.config.js      # ESLint設定（新形式）
-.eslintignore          # ESLint除外設定
-.gitignore             # Git除外設定
-.prettierrc            # Prettier設定
-.prettierignore        # Prettier除外設定
-tsconfig.json          # TypeScript設定
-typedoc.json           # TypeDoc設定
-vitest.config.ts       # Vitest設定
-commitlint.config.js   # Commitlint設定
+.eslintrc.json
+.eslint.config.js
+.eslintignore
+.gitignore
+.prettierrc
+.prettierignore
+tsconfig.json
+typedoc.json
+vitest.config.ts
+commitlint.config.js
