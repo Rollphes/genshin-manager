@@ -4,7 +4,15 @@
   "homepage": "https://rollphes.github.io/genshin-manager/",
   "bugs": "https://github.com/Rollphes/genshin-manager/issues",
   "main": "dist/index.js",
+  "module": "dist/index.mjs",
   "types": "dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.js"
+    }
+  },
   "directories": {
     "examples": "examples",
     "lib": "src",
@@ -17,7 +25,7 @@
     "create-release": "gh release create v%npm_package_version% -t v%npm_package_version% -n \"## Bug Fixes\" --draft",
     "prepublishOnly": "npm run build && npm run create-release",
     "docs": "typedoc",
-    "build": "node -e \"if (fs.existsSync('./dist')) fs.rmSync('./dist', {recursive: true});\" && tsc -p tsconfig.json && tsc-alias -p tsconfig.json",
+    "build": "tsup",
     "my-test": "tsx ./src/test/index.ts",
     "test": "vitest",
     "test:watch": "vitest --watch",
@@ -71,7 +79,7 @@
     "eslint-plugin-simple-import-sort": "^12.1.1",
     "husky": "^9.1.7",
     "prettier": "^3.3.3",
-    "tsc-alias": "^1.8.10",
+    "tsup": "^8.5.0",
     "tsx": "^4.20.3",
     "typedoc": "^0.26.7",
     "typescript": "^5.6.2",
