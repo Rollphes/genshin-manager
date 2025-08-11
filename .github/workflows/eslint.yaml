@@ -52,55 +52,26 @@ jobs:
         run: |
           echo "Generating ESLint error statistics..."
           
-          # Try to generate stats, capture both stdout and stderr
-          if npm run lint:stats > eslint_stats.txt 2>&1; then
-            echo "✅ ESLint stats generated successfully"
-          else
-            echo "⚠️ ESLint stats generation failed, checking eslint_stats.txt content:"
-            cat eslint_stats.txt
-            echo "--- End of eslint_stats.txt ---"
-          fi
-          
-          # Debug: Show the actual content
-          echo "📊 Content of eslint_stats.txt:"
-          cat eslint_stats.txt
-          echo "--- End of content ---"
-          
           # Create formatted table for GitHub
           echo "## 📊 ESLint Error Statistics" > stats_table.md
           echo "" >> stats_table.md
           echo "| Count | Error Type |" >> stats_table.md
           echo "|-------|------------|" >> stats_table.md
           
-          # Process stats and create table (avoid subshell issues)
-          if [ -s eslint_stats.txt ]; then
-            # Use process substitution to avoid subshell
-            while IFS= read -r line || [ -n "$line" ]; do
-              # Skip warning lines and empty lines
-              if [[ $line =~ ^\s*$ ]] || [[ $line =~ Warning ]] || [[ $line =~ ^[^0-9] ]]; then
-                continue
-              fi
-              
-              # Match lines with error counts
-              if [[ $line =~ ^[[:space:]]*([0-9]+)[[:space:]]+(.+)$ ]]; then
-                count="${BASH_REMATCH[1]}"
-                error_type="${BASH_REMATCH[2]}"
-                echo "| $count | \`$error_type\` |" >> stats_table.md
-                echo "✅ Added: $count - $error_type"
-              else
-                echo "⚠️ No match for line: $line"
-              fi
-            done < eslint_stats.txt
-          else
-            echo "| 0 | No errors found |" >> stats_table.md
-            echo "⚠️ eslint_stats.txt is empty or doesn't exist"
+          # Generate stats directly in the table
+          npm run lint:unix 2>/dev/null | awk -F'[][]' '/\[.*\]$/ {print $(NF-1)}' | sort | uniq -c | sort -nr | head -20 | while read count error_type; do
+            # Skip empty lines and warnings
+            if [[ -n "$count" ]] && [[ -n "$error_type" ]] && [[ ! "$error_type" =~ Warning ]]; then
+              echo "| $count | \`$error_type\` |" >> stats_table.md
+            fi
+          done
+          
+          # Fallback: if no entries were added, add a "processing" message
+          line_count=$(grep -c "| [0-9]" stats_table.md || echo "0")
+          if [ "$line_count" -eq "0" ]; then
+            echo "| - | Processing ESLint results... |" >> stats_table.md
           fi
           
-          # Count actual errors (exclude warning lines)
-          error_count=$(grep -c "Error/" eslint_stats.txt 2>/dev/null || echo "0")
-          
-          echo "" >> stats_table.md
-          echo "**Total Error Count:** $error_count" >> stats_table.md
           echo "" >> stats_table.md
           echo "💡 **Tip:** Run \`npm run lint:stats\` locally to see detailed error breakdown." >> stats_table.md
           
@@ -146,19 +117,7 @@ jobs:
 
             const body = `🚨 **ESLint Check Failed**
 
-            ${statsContent}
-
-            ---
-
-            📝 **Next Steps:**
-            1. Fix the errors locally using \`npm run lint\`
-            2. Use \`npm run lint:stats\` to see error breakdown
-            3. Push your fixes to update this PR
-
-            🔧 **Common Commands:**
-            - \`npm run lint\` - Run ESLint
-            - \`npm run lint:unix\` - Unix format output
-            - \`npm run lint:stats\` - Error statistics`;
+            ${statsContent}`;
 
             github.rest.issues.createComment({
               issue_number: context.issue.number,
