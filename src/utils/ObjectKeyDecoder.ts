@@ -51,6 +51,122 @@ export class ObjectKeyDecoder {
         ),
       )
     }
+
+    // Replace key of WeaponPromoteExcelConfigData (add promoteLevel & unlockMaxLevel & costItems)
+    if (Client._hasCachedExcelBinOutputByName('WeaponPromoteExcelConfigData')) {
+      const weaponPromoteDataArray = Object.values(
+        Client._getCachedExcelBinOutputByName('WeaponPromoteExcelConfigData'),
+      )
+
+      const sampleWeaponPromoteData = weaponPromoteDataArray.find(
+        (data) =>
+          data.weaponPromoteId === 11101 && data.requiredPlayerLevel === 15,
+      ) as JsonObject
+
+      this.replaceDatas.push(
+        new ReplaceData(
+          Object.entries(sampleWeaponPromoteData).find(
+            ([, v]) => v === 1,
+          )?.[0] as string,
+          'promoteLevel',
+        ),
+      )
+
+      this.replaceDatas.push(
+        new ReplaceData(
+          Object.entries(sampleWeaponPromoteData).find(
+            ([, v]) => v === 40,
+          )?.[0] as string,
+          'unlockMaxLevel',
+        ),
+      )
+
+      this.replaceDatas.push(
+        new ReplaceData(
+          Object.entries(sampleWeaponPromoteData).find(
+            ([, v]) =>
+              Array.isArray(v) &&
+              v.some((item) => {
+                if (typeof item === 'object' && item !== null)
+                  return 'id' in item && 'count' in item
+
+                return false
+              }),
+          )?.[0] as string,
+          'costItems',
+        ),
+      )
+    }
+
+    // Replace key of AvatarPromoteExcelConfigData (add promoteLevel & unlockMaxLevel & costItems)
+    if (Client._hasCachedExcelBinOutputByName('AvatarPromoteExcelConfigData')) {
+      const avatarPromoteDataArray = Object.values(
+        Client._getCachedExcelBinOutputByName('AvatarPromoteExcelConfigData'),
+      )
+
+      const sampleAvatarPromoteData = avatarPromoteDataArray.find(
+        (data) => data.avatarPromoteId === 2 && data.requiredPlayerLevel === 15,
+      ) as JsonObject
+
+      this.replaceDatas.push(
+        new ReplaceData(
+          Object.entries(sampleAvatarPromoteData).find(
+            ([, v]) => v === 1,
+          )?.[0] as string,
+          'promoteLevel',
+        ),
+      )
+
+      this.replaceDatas.push(
+        new ReplaceData(
+          Object.entries(sampleAvatarPromoteData).find(
+            ([, v]) => v === 40,
+          )?.[0] as string,
+          'unlockMaxLevel',
+        ),
+      )
+
+      this.replaceDatas.push(
+        new ReplaceData(
+          Object.entries(sampleAvatarPromoteData).find(
+            ([, v]) =>
+              Array.isArray(v) &&
+              v.some((item) => {
+                if (typeof item === 'object' && item !== null)
+                  return 'id' in item && 'count' in item
+
+                return false
+              }),
+          )?.[0] as string,
+          'costItems',
+        ),
+      )
+    }
+
+    // Replace key of AvatarCurveExcelConfigData (add costItems)
+    if (Client._hasCachedExcelBinOutputByName('ProudSkillExcelConfigData')) {
+      const proudSkillDataArray = Object.values(
+        Client._getCachedExcelBinOutputByName('ProudSkillExcelConfigData'),
+      )
+
+      const sampleProudSkillData = proudSkillDataArray[0]
+
+      this.replaceDatas.push(
+        new ReplaceData(
+          Object.entries(sampleProudSkillData).find(
+            ([, v]) =>
+              Array.isArray(v) &&
+              v.some((item) => {
+                if (typeof item === 'object' && item !== null)
+                  return 'id' in item && 'count' in item
+
+                return false
+              }),
+          )?.[0] as string,
+          'costItems',
+        ),
+      )
+    }
   }
 
   /**
