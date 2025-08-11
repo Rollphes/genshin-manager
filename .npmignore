@@ -1,18 +1,30 @@
+# ----- Development Dependencies -----
 /node_modules
+
+# ----- Source Code & Build Files -----
 /src
 /cache
 /dist/test
 /src/test
+
+# ----- Documentation & Examples -----
 /docs
 /handbooks
 /examples
-/.vscode
-/.github
 
+# ----- CI/CD & Development Tools -----
+/.github
+/.husky
+/.vscode
+
+# ----- Configuration Files -----
 .eslintrc.json
+.eslint.config.js
 .eslintignore
 .gitignore
 .prettierrc
 .prettierignore
 tsconfig.json
 typedoc.json
+vitest.config.ts
+commitlint.config.js

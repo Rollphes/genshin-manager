@@ -70,11 +70,12 @@
     /* Advanced Options */
     "skipLibCheck": true /* Skip type checking of declaration files. */,
     "forceConsistentCasingInFileNames": true /* Disallow inconsistently-cased references to the same file. */,
-    "baseUrl": "./src",
+    "baseUrl": ".",
     "paths": {
-      "@/*": ["*"]
+      "@/*": ["./src/*"],
+      "@test/*": ["./test/*"]
     },
     "resolveJsonModule": true
   },
-  "exclude": ["node_modules", "./scripts/**/*", "./dist/**/*"]
+  "exclude": ["node_modules", "./dist/**/*"]
 }
