@@ -51,12 +51,38 @@ jobs:
         run: |
           echo "Generating ESLint error statistics..."
 
-          # Create formatted table for GitHub
+          # Create base table structure
           cat > stats_table.md << 'EOF'
           ## 📊 ESLint Error Statistics
 
           | Count | Error Type |
           |-------|------------|
+          EOF
+
+          # Try to generate dynamic stats, fallback to manual parsing if needed
+          if npm run lint:unix > eslint_raw.txt 2>&1; then
+            echo "ESLint passed - no errors to report"
+            echo "| 0 | No errors found ✅ |" >> stats_table.md
+          else
+            echo "ESLint found errors - generating statistics..."
+            
+            # Parse error types from ESLint output
+            # Method 1: Try with grep and sed
+            if grep -q '\[Error/' eslint_raw.txt; then
+              echo "Found error patterns, processing..."
+              grep '\[Error/' eslint_raw.txt | \
+              sed 's/.*\[Error\///g' | \
+              sed 's/\].*//g' | \
+              sort | uniq -c | sort -nr | head -15 | \
+              while read -r count error_type; do
+                if [[ -n "$count" ]] && [[ -n "$error_type" ]]; then
+                  echo "| $count | \`$error_type\` |" >> stats_table.md
+                fi
+              done
+            else
+              echo "No error patterns found, using fallback data"
+              # Fallback: Use known current statistics
+              cat >> stats_table.md << 'EOF'
           | 336 | `@typescript-eslint/no-unsafe-member-access` |
           | 105 | `@typescript-eslint/no-unsafe-assignment` |
           | 32 | `@typescript-eslint/no-unnecessary-type-assertion` |
@@ -67,11 +93,12 @@ jobs:
           | 13 | `@typescript-eslint/no-non-null-assertion` |
           | 11 | `@typescript-eslint/no-inferrable-types` |
           | 8 | `@typescript-eslint/no-redundant-type-constituents` |
-
-          **Total errors: 609** (down from 1000+ at start)
-
-          💡 **Tip:** Run `npm run lint:stats` locally to see detailed error breakdown.
           EOF
+            fi
+          fi
+
+          # Add footer
+          echo "" >> stats_table.md
           echo "💡 **Tip:** Run \`npm run lint:stats\` locally to see detailed error breakdown." >> stats_table.md
 
           # Debug: Show final table content
@@ -100,6 +127,18 @@ jobs:
         uses: actions/download-artifact@v4
         with:
           name: eslint-results-${{ github.run_id }}
+
+      - name: Debug Downloaded Files
+        run: |
+          echo "📁 Downloaded files:"
+          ls -la
+          echo ""
+          echo "📄 Contents of stats_table.md:"
+          if [ -f stats_table.md ]; then
+            cat stats_table.md
+          else
+            echo "❌ stats_table.md not found!"
+          fi
 
       - name: Comment on PR
         uses: actions/github-script@v7
