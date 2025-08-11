@@ -1,0 +1,51 @@
+permissions:
+  contents: read
+name: Version Check
+
+on:
+  pull_request:
+    branches: [main]
+
+jobs:
+  version-check:
+    name: Version Check
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout PR branch
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.head_ref }}
+
+      - name: Checkout main branch
+        uses: actions/checkout@v4
+        with:
+          ref: main
+          path: main-branch
+
+      - name: Compare package.json versions
+        run: |
+          PR_VERSION=$(node -p "require('./package.json').version")
+          MAIN_VERSION=$(node -p "require('./main-branch/package.json').version")
+
+          echo "PR version: $PR_VERSION"
+          echo "Main version: $MAIN_VERSION"
+
+          if [ "$PR_VERSION" = "$MAIN_VERSION" ]; then
+            echo "❌ Package version has not been updated!"
+            echo "Please update the version in package.json before merging to main."
+            exit 1
+          else
+            echo "✅ Package version has been updated from $MAIN_VERSION to $PR_VERSION"
+          fi
+
+      - name: Check if tag already exists
+        run: |
+          PR_VERSION=$(node -p "require('./package.json').version")
+
+          if git ls-remote --tags origin | grep -q "refs/tags/v$PR_VERSION$"; then
+            echo "❌ Tag v$PR_VERSION already exists in remote repository!"
+            echo "Please update the version to a new unique version before merging to main."
+            exit 1
+          else
+            echo "✅ Tag v$PR_VERSION does not exist, good to go!"
+          fi

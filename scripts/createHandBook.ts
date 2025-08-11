@@ -1,28 +1,17 @@
-const fs = require('fs')
-const { Client, ClientEvents } = require('../dist/client/Client.js')
-const { CharacterInfo } = require('../dist/models/character/CharacterInfo.js')
-const {
-  CharacterCostume,
-} = require('../dist/models/character/CharacterCostume.js')
-const { CharacterSkill } = require('../dist/models/character/CharacterSkill.js')
-const {
-  CharacterInherentSkill,
-} = require('../dist/models/character/CharacterInherentSkill.js')
-const {
-  CharacterConstellation,
-} = require('../dist/models/character/CharacterConstellation.js')
-const { Artifact } = require('../dist/models/Artifact.js')
-const { Material } = require('../dist/models/Material.js')
-const { Weapon } = require('../dist/models/weapon/Weapon.js')
-const readline = require('readline')
-const { Monster } = require('../dist/models/Monster.js')
+import fs from 'fs'
 
-const rl = readline.createInterface({
-  input: process.stdin,
-  output: process.stdout,
-})
+import { Client, ClientEvents } from '@/client/Client.js'
+import { Artifact } from '@/models/Artifact.js'
+import { CharacterConstellation } from '@/models/character/CharacterConstellation.js'
+import { CharacterCostume } from '@/models/character/CharacterCostume.js'
+import { CharacterInfo } from '@/models/character/CharacterInfo.js'
+import { CharacterInherentSkill } from '@/models/character/CharacterInherentSkill.js'
+import { CharacterSkill } from '@/models/character/CharacterSkill.js'
+import { Material } from '@/models/Material.js'
+import { Monster } from '@/models/Monster.js'
+import { Weapon } from '@/models/weapon/Weapon.js'
 
-async function main() {
+async function main(): Promise<void> {
   const client = new Client({
     downloadLanguages: [
       'EN',
@@ -40,11 +29,8 @@ async function main() {
       'CHS',
     ],
     defaultLanguage: 'EN',
-    fetchOptions: {
-      timeout: 0,
-    },
   })
-  client.on(ClientEvents.END_UPDATE_CACHE, async(version)=>{
+  client.on(ClientEvents.END_UPDATE_CACHE, async (version) => {
     for (const lang of client.option.downloadLanguages) {
       await client.changeLanguage(lang)
       const filePath = `./handbooks/handbook_${lang}.md`
@@ -122,7 +108,6 @@ async function main() {
 
       console.log(`HandBook is created! (Language: ${lang})`)
     }
-    rl.close()
     process.exit(0)
   })
   await client.deploy()

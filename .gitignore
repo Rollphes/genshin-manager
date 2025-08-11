@@ -10,12 +10,9 @@ yarn-error.log
 
 /.vscode
 
-package-lock.json
-
 yarn.lock
 
 /cache/*
-/src/test/*
 /src/test
 
 /dist
