@@ -24,10 +24,10 @@ jobs:
         run: |
           PR_VERSION=$(node -p "require('./package.json').version")
           MAIN_VERSION=$(node -p "require('./main-branch/package.json').version")
-          
+
           echo "PR version: $PR_VERSION"
           echo "Main version: $MAIN_VERSION"
-          
+
           if [ "$PR_VERSION" = "$MAIN_VERSION" ]; then
             echo "❌ Package version has not been updated!"
             echo "Please update the version in package.json before merging to main."
@@ -39,7 +39,7 @@ jobs:
       - name: Check if tag already exists
         run: |
           PR_VERSION=$(node -p "require('./package.json').version")
-          
+
           if git ls-remote --tags origin | grep -q "refs/tags/v$PR_VERSION$"; then
             echo "❌ Tag v$PR_VERSION already exists in remote repository!"
             echo "Please update the version to a new unique version before merging to main."

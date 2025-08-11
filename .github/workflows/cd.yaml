@@ -70,9 +70,9 @@ jobs:
           release_name: ${{ steps.package-version.outputs.tag }}
           body: |
             ${{ steps.generate-notes.outputs.result }}
-            
+
             ---
-            
+
             **Package published**: https://www.npmjs.com/package/genshin-manager/v/${{ steps.package-version.outputs.version }}
             **Documentation**: https://rollphes.github.io/genshin-manager/
           draft: true
