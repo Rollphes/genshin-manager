@@ -11,8 +11,11 @@
     "docs": "docs"
   },
   "scripts": {
-    "updateDoc": "npm run docs && git add docs && git commit -m \"[update]update docs\" && git push",
+    "prepare": "husky",
+    "updateDoc": "npm run docs && git add docs && git commit -m \"[docs]update docs\" && git push",
     "lint": "eslint .",
+    "commitlint": "commitlint --from=HEAD~1 --to=HEAD --verbose",
+    "commitlint:check": "commitlint --edit",
     "create-release": "gh release create v%npm_package_version% -t v%npm_package_version% -n \"## Bug Fixes\" --draft",
     "prepublishOnly": "npm run build && npm run create-release",
     "docs": "typedoc",
@@ -56,6 +59,8 @@
     "ts-deepmerge": "^7.0.1"
   },
   "devDependencies": {
+    "@commitlint/cli": "^19.8.1",
+    "@commitlint/config-conventional": "^19.8.1",
     "@types/cheerio": "^0.22.35",
     "@types/cli-progress": "^3.11.6",
     "@types/html-escaper": "^3.0.2",
@@ -68,6 +73,7 @@
     "eslint-plugin-jsdoc": "^50.3.0",
     "eslint-plugin-prettier": "^5.2.1",
     "eslint-plugin-simple-import-sort": "^12.1.1",
+    "husky": "^9.1.7",
     "prettier": "^3.3.3",
     "ts-node": "^10.9.2",
     "tsc-alias": "^1.8.10",
