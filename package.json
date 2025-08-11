@@ -14,13 +14,14 @@
     "prepare": "husky",
     "updateDoc": "npm run docs && git add docs && git commit -m \"[docs]update docs\" && git push",
     "lint": "eslint .",
-    "commitlint": "commitlint --from=HEAD~1 --to=HEAD --verbose",
-    "commitlint:check": "commitlint --edit",
     "create-release": "gh release create v%npm_package_version% -t v%npm_package_version% -n \"## Bug Fixes\" --draft",
     "prepublishOnly": "npm run build && npm run create-release",
     "docs": "typedoc",
     "build": "node -e \"if (fs.existsSync('./dist')) fs.rmSync('./dist', {recursive: true});\" && tsc -p tsconfig.json && tsc-alias -p tsconfig.json",
-    "test": "tsx ./src/test/index.ts",
+    "my-test": "tsx ./src/test/index.ts",
+    "test": "vitest",
+    "test:watch": "vitest --watch",
+    "coverage": "vitest run --coverage",
     "release-test": "tsx scripts/test.ts",
     "createHandBook": "tsx scripts/createHandBook.ts"
   },
@@ -73,6 +74,7 @@
     "tsc-alias": "^1.8.10",
     "tsx": "^4.20.3",
     "typedoc": "^0.26.7",
-    "typescript": "^5.6.2"
+    "typescript": "^5.6.2",
+    "vitest": "^3.2.4"
   }
 }
