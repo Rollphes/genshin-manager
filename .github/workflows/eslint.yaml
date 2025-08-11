@@ -14,7 +14,6 @@ on:
       - main
 
 jobs:
-  # 1. ESLint実行とエラー統計生成
   eslint-check:
     name: Run ESLint and Generate Statistics
     runs-on: ubuntu-latest
@@ -30,8 +29,6 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: '18'
-          # package-lock.jsonが存在しない場合はキャッシュを無効化
-          # cache: 'npm'
 
       - name: Install dependencies
         run: npm install --ignore-scripts
@@ -91,7 +88,6 @@ jobs:
             stats_table.md
           retention-days: 30
 
-  # 2. PRコメント投稿
   comment-on-pr:
     name: Comment on Pull Request
     runs-on: ubuntu-latest
@@ -140,7 +136,6 @@ jobs:
               body: body
             });
 
-  # 3. mainブランチでのIssue自動生成
   create-issue:
     name: Create Issue for Main Branch
     runs-on: ubuntu-latest
@@ -219,7 +214,6 @@ jobs:
               });
             }
 
-  # 4. 最終結果の判定
   eslint-result:
     name: ESLint Final Result
     runs-on: ubuntu-latest
