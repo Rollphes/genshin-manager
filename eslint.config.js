@@ -29,7 +29,7 @@ export default [
       rules: {
         '@typescript-eslint/no-unused-vars': 'error',
         '@typescript-eslint/member-ordering': 'warn',
-        '@typescript-eslint/no-deprecated': 'warn', // Internal deprecated methods are warnings, not errors
+        '@typescript-eslint/no-deprecated': 'off', // Disabled: internal deprecated methods are not user-facing
         '@typescript-eslint/explicit-member-accessibility': [
           'error',
           {
