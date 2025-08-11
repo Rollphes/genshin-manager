@@ -1,4 +1,6 @@
 import * as cheerio from 'cheerio'
+import { CheerioAPI } from 'cheerio'
+import { Element, isTag } from 'domhandler'
 
 import { ImageAssets } from '@/models/assets/ImageAssets'
 import { ValueOf } from '@/types'
@@ -41,7 +43,7 @@ export class Notice {
    * Notice content DOM(jQuery)
    * @warning This property does not exclude table tags
    */
-  public readonly $: cheerio.Root
+  public readonly $: CheerioAPI
   /**
    * Notice type (1:event or 2:important)
    */
@@ -84,7 +86,7 @@ export class Notice {
    * Notice region
    */
   public readonly region: Region
-  private readonly _en$: cheerio.Root
+  private readonly _en$: CheerioAPI
 
   /**
    * Create a Notice
@@ -187,12 +189,12 @@ export class Notice {
       const trFirst = this.$('tr').first()
       const tdList = this.$('td')
         .toArray()
-        .filter((el): el is cheerio.TagElement => el.type === 'tag')
+        .filter((el): el is Element => isTag(el))
 
       const colWidths = this.$(trFirst)
         .children()
         .toArray()
-        .filter((el): el is cheerio.TagElement => el.type === 'tag')
+        .filter((el): el is Element => isTag(el))
         .map((el) => el.attribs['data-colwidth'])
 
       if (colWidths.length > 2) {
