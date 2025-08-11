@@ -1,16 +1,17 @@
 import fs from 'fs'
-import { Client, ClientEvents } from '@/client/Client.js'
-import { CharacterInfo } from '@/models/character/CharacterInfo.js'
-import { CharacterCostume } from '@/models/character/CharacterCostume.js'
-import { CharacterSkill } from '@/models/character/CharacterSkill.js'
-import { CharacterInherentSkill } from '@/models/character/CharacterInherentSkill.js'
-import { CharacterConstellation } from '@/models/character/CharacterConstellation.js'
-import { Artifact } from '@/models/Artifact.js'
-import { Material } from '@/models/Material.js'
-import { Weapon } from '@/models/weapon/Weapon.js'
-import { Monster } from '@/models/Monster.js'
 
-async function main() {
+import { Client, ClientEvents } from '@/client/Client.js'
+import { Artifact } from '@/models/Artifact.js'
+import { CharacterConstellation } from '@/models/character/CharacterConstellation.js'
+import { CharacterCostume } from '@/models/character/CharacterCostume.js'
+import { CharacterInfo } from '@/models/character/CharacterInfo.js'
+import { CharacterInherentSkill } from '@/models/character/CharacterInherentSkill.js'
+import { CharacterSkill } from '@/models/character/CharacterSkill.js'
+import { Material } from '@/models/Material.js'
+import { Monster } from '@/models/Monster.js'
+import { Weapon } from '@/models/weapon/Weapon.js'
+
+async function main(): Promise<void> {
   const client = new Client({
     downloadLanguages: [
       'EN',
@@ -29,7 +30,7 @@ async function main() {
     ],
     defaultLanguage: 'EN',
   })
-  client.on(ClientEvents.END_UPDATE_CACHE, async(version)=>{
+  client.on(ClientEvents.END_UPDATE_CACHE, async (version) => {
     for (const lang of client.option.downloadLanguages) {
       await client.changeLanguage(lang)
       const filePath = `./handbooks/handbook_${lang}.md`
