@@ -120,9 +120,9 @@ export class Artifact {
     )
     this.type = artifactJson.equipType as ArtifactType
     this.name =
-      Client._cachedTextMap.get(String(artifactJson.nameTextMapHash)) || ''
+      Client._cachedTextMap.get(String(artifactJson.nameTextMapHash)) ?? ''
     this.description =
-      Client._cachedTextMap.get(String(artifactJson.descTextMapHash)) || ''
+      Client._cachedTextMap.get(String(artifactJson.descTextMapHash)) ?? ''
     this.rarity = artifactJson.rankLevel as number
     this.setId = artifactJson.setId as number | undefined
     const maxLevel = Artifact.maxLevelMap[this.rarity]

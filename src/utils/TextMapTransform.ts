@@ -10,7 +10,7 @@ export class TextMapTransform extends Transform {
   private readonly language: keyof typeof TextMapLanguage
   private readonly filterSet: Set<number>
   private buffer: Buffer = Buffer.from('')
-  private firstFlag: boolean = true
+  private firstFlag = true
 
   /**
    * Create a TextMapTransform
@@ -36,7 +36,7 @@ export class TextMapTransform extends Transform {
   ): void {
     const combinedBuffer = Buffer.concat([this.buffer, chunk])
     const lineBuffers = this.splitBuffer(combinedBuffer, Buffer.from('\n'))
-    this.buffer = lineBuffers.pop() || Buffer.from('')
+    this.buffer = lineBuffers.pop() ?? Buffer.from('')
 
     if (lineBuffers.length === 0) {
       callback()

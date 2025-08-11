@@ -46,9 +46,9 @@ export class CharacterInherentSkill {
       proudSkillGroupId,
     )[1] as JsonObject
     this.name =
-      Client._cachedTextMap.get(String(proudSkillJson.nameTextMapHash)) || ''
+      Client._cachedTextMap.get(String(proudSkillJson.nameTextMapHash)) ?? ''
     this.description =
-      Client._cachedTextMap.get(String(proudSkillJson.descTextMapHash)) || ''
+      Client._cachedTextMap.get(String(proudSkillJson.descTextMapHash)) ?? ''
     this.icon = new ImageAssets(proudSkillJson.icon as string)
     this.addProps = (proudSkillJson.addProps as JsonObject[])
       .map((addProp) =>

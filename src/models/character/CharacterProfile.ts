@@ -44,7 +44,7 @@ export class CharacterProfile {
   /**
    * Character Voice
    */
-  public readonly cv: { [key in CVType]: string }
+  public readonly cv: Record<CVType, string>
 
   static {
     Client._addExcelBinOutputKeyFromClassPrototype(this.prototype)
@@ -69,47 +69,47 @@ export class CharacterProfile {
     this.native =
       Client._cachedTextMap.get(
         String(fetterInfoJson.avatarNativeTextMapHash),
-      ) || ''
+      ) ?? ''
     this.vision =
       Client._cachedTextMap.get(
         String(fetterInfoJson.avatarVisionAfterTextMapHash),
-      ) ||
+      ) ??
       Client._cachedTextMap.get(
         String(fetterInfoJson.avatarVisionBeforTextMapHash),
-      ) ||
+      ) ??
       ''
     this.constellation =
       Client._cachedTextMap.get(
         String(fetterInfoJson.avatarConstellationAfterTextMapHash),
-      ) ||
+      ) ??
       Client._cachedTextMap.get(
         String(fetterInfoJson.avatarConstellationBeforTextMapHash),
-      ) ||
+      ) ??
       ''
     this.title =
       Client._cachedTextMap.get(
         String(fetterInfoJson.avatarTitleTextMapHash),
-      ) || ''
+      ) ?? ''
     this.detail =
       Client._cachedTextMap.get(
         String(fetterInfoJson.avatarDetailTextMapHash),
-      ) || ''
+      ) ?? ''
     this.assocType = fetterInfoJson.avatarAssocType as AssocType
     this.cv = {
       CHS:
         Client._cachedTextMap.get(
           String(fetterInfoJson.cvChineseTextMapHash),
-        ) || '',
+        ) ?? '',
       JP:
         Client._cachedTextMap.get(
           String(fetterInfoJson.cvJapaneseTextMapHash),
-        ) || '',
+        ) ?? '',
       EN:
         Client._cachedTextMap.get(
           String(fetterInfoJson.cvEnglishTextMapHash),
-        ) || '',
+        ) ?? '',
       KR:
-        Client._cachedTextMap.get(String(fetterInfoJson.cvKoreanTextMapHash)) ||
+        Client._cachedTextMap.get(String(fetterInfoJson.cvKoreanTextMapHash)) ??
         '',
     }
   }

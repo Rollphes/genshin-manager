@@ -43,18 +43,18 @@ export class CharacterStory {
     this.title =
       Client._cachedTextMap.get(
         String(fetterStoryJson.storyTitleTextMapHash),
-      ) ||
+      ) ??
       Client._cachedTextMap.get(
         String(fetterStoryJson.storyTitle2TextMapHash),
-      ) ||
+      ) ??
       ''
     this.content =
       Client._cachedTextMap.get(
         String(fetterStoryJson.storyContextTextMapHash),
-      ) ||
+      ) ??
       Client._cachedTextMap.get(
         String(fetterStoryJson.storyContext2TextMapHash),
-      ) ||
+      ) ??
       ''
     this.tips = (fetterStoryJson.tips as number[])
       .map((tip) => Client._cachedTextMap.get(String(tip)))

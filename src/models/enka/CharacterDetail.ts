@@ -123,9 +123,9 @@ export class CharacterDetail {
     this.costume = new CharacterCostume(
       data.costumeId ?? characterInfo.defaultCostumeId,
     )
-    this.level = +(data.propMap[4001].val || 0)
-    this.levelXp = +(data.propMap[1001].val || 0)
-    this.promoteLevel = +(data.propMap[1002].val || 0)
+    this.level = +(data.propMap[4001].val ?? 0)
+    this.levelXp = +(data.propMap[1001].val ?? 0)
+    this.promoteLevel = +(data.propMap[1002].val ?? 0)
     this.constellations =
       characterInfo.constellationIds.map((id) => {
         return new CharacterConstellation(id, !data.talentIdList?.includes(id))
@@ -137,7 +137,7 @@ export class CharacterDetail {
         proudId && data.proudSkillExtraLevelMap
           ? data.proudSkillExtraLevelMap[proudId]
           : 0
-      return new CharacterSkill(id, data.skillLevelMap[id] || 0, extraLevel)
+      return new CharacterSkill(id, data.skillLevelMap[id] ?? 0, extraLevel)
     })
 
     this.combatStatus = new CharacterStatusManager(data.fightPropMap)

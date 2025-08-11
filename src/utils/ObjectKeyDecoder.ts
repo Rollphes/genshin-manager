@@ -40,13 +40,13 @@ export class ObjectKeyDecoder {
 
       const dummyProfilePicture = profilePictureDataArray.find(
         (data) => data.id === 99999,
-      ) as JsonObject
+      )!
 
       this.replaceDatas.push(
         new ReplaceData(
           Object.entries(dummyProfilePicture).find(
             ([, v]) => v === 'PROFILE_PICTURE_UNLOCK_BY_ITEM',
-          )?.[0] as string,
+          )?.[0]!,
           'type',
         ),
       )
@@ -61,13 +61,13 @@ export class ObjectKeyDecoder {
       const sampleWeaponPromoteData = weaponPromoteDataArray.find(
         (data) =>
           data.weaponPromoteId === 11101 && data.requiredPlayerLevel === 15,
-      ) as JsonObject
+      )!
 
       this.replaceDatas.push(
         new ReplaceData(
           Object.entries(sampleWeaponPromoteData).find(
             ([, v]) => v === 1,
-          )?.[0] as string,
+          )?.[0]!,
           'promoteLevel',
         ),
       )
@@ -76,7 +76,7 @@ export class ObjectKeyDecoder {
         new ReplaceData(
           Object.entries(sampleWeaponPromoteData).find(
             ([, v]) => v === 40,
-          )?.[0] as string,
+          )?.[0]!,
           'unlockMaxLevel',
         ),
       )
@@ -92,7 +92,7 @@ export class ObjectKeyDecoder {
 
                 return false
               }),
-          )?.[0] as string,
+          )?.[0]!,
           'costItems',
         ),
       )
@@ -106,13 +106,13 @@ export class ObjectKeyDecoder {
 
       const sampleAvatarPromoteData = avatarPromoteDataArray.find(
         (data) => data.avatarPromoteId === 2 && data.requiredPlayerLevel === 15,
-      ) as JsonObject
+      )!
 
       this.replaceDatas.push(
         new ReplaceData(
           Object.entries(sampleAvatarPromoteData).find(
             ([, v]) => v === 1,
-          )?.[0] as string,
+          )?.[0]!,
           'promoteLevel',
         ),
       )
@@ -121,7 +121,7 @@ export class ObjectKeyDecoder {
         new ReplaceData(
           Object.entries(sampleAvatarPromoteData).find(
             ([, v]) => v === 40,
-          )?.[0] as string,
+          )?.[0]!,
           'unlockMaxLevel',
         ),
       )
@@ -137,7 +137,7 @@ export class ObjectKeyDecoder {
 
                 return false
               }),
-          )?.[0] as string,
+          )?.[0]!,
           'costItems',
         ),
       )
@@ -162,7 +162,7 @@ export class ObjectKeyDecoder {
 
                 return false
               }),
-          )?.[0] as string,
+          )?.[0]!,
           'costItems',
         ),
       )
@@ -178,7 +178,7 @@ export class ObjectKeyDecoder {
   public execute(
     jsonData: JsonParser,
     filename: keyof typeof ExcelBinOutputs,
-  ): { [key in string]: JsonValue } {
+  ): Record<string, JsonValue> {
     this.decode(jsonData)
     return this.setKey(jsonData, filename)
   }
@@ -209,9 +209,9 @@ export class ObjectKeyDecoder {
   private setKey(
     jsonData: JsonParser,
     filename: keyof typeof ExcelBinOutputs,
-  ): { [key in string]: JsonValue } {
+  ): Record<string, JsonValue> {
     const jsonArray = jsonData.get() as JsonArray
-    const cacheObject: { [key in string]: JsonValue } = {}
+    const cacheObject: Record<string, JsonValue> = {}
     // eslint-disable-next-line complexity
     jsonArray.forEach((json) => {
       const obj = json as JsonObject
@@ -227,7 +227,7 @@ export class ObjectKeyDecoder {
             const level = obj.level as number
             const value = (curve as JsonObject).value
             const type = (curve as JsonObject).type as string
-            if (!cacheObject[type]) cacheObject[type] = {}
+            cacheObject[type] ??= {}
             ;(cacheObject[type] as JsonObject)[level] = value
           })
           break
@@ -235,7 +235,7 @@ export class ObjectKeyDecoder {
           if (!cacheObject[obj.weaponPromoteId as string])
             cacheObject[obj.weaponPromoteId as string] = {}
           ;(cacheObject[obj.weaponPromoteId as string] as JsonObject)[
-            (!obj.promoteLevel ? 0 : obj.promoteLevel) as string
+            (obj.promoteLevel ?? 0) as string
           ] = obj
           break
         case 'ReliquaryLevelExcelConfigData':
@@ -245,9 +245,9 @@ export class ObjectKeyDecoder {
             const level = (obj.level as number) - 1
             const value = (prop as JsonObject).value
             const type = (prop as JsonObject).propType as string
-            if (!cacheObject[type]) cacheObject[type] = {}
+            cacheObject[type] ??= {}
             let cache = cacheObject[type] as JsonObject
-            if (!cache[rank]) cache[rank] = {}
+            cache[rank] ??= {}
             cache = cache[rank] as JsonObject
             cache[level] = value
           })
@@ -271,7 +271,7 @@ export class ObjectKeyDecoder {
             const level = obj.level as number
             const value = (curve as JsonObject).value ?? 0
             const type = (curve as JsonObject).type as string
-            if (!cacheObject[type]) cacheObject[type] = {}
+            cacheObject[type] ??= {}
             ;(cacheObject[type] as JsonObject)[level] = value
           })
           break
@@ -279,7 +279,7 @@ export class ObjectKeyDecoder {
           if (!cacheObject[obj.avatarPromoteId as string])
             cacheObject[obj.avatarPromoteId as string] = {}
           ;(cacheObject[obj.avatarPromoteId as string] as JsonObject)[
-            (!obj.promoteLevel ? 0 : obj.promoteLevel) as string
+            (obj.promoteLevel ?? 0) as string
           ] = obj
           break
         case 'ProudSkillExcelConfigData':
@@ -322,7 +322,7 @@ export class ObjectKeyDecoder {
             const level = obj.level as number
             const value = (curve as JsonObject).value ?? 0
             const type = (curve as JsonObject).type as string
-            if (!cacheObject[type]) cacheObject[type] = {}
+            cacheObject[type] ??= {}
             ;(cacheObject[type] as JsonObject)[level] = value
           })
           break

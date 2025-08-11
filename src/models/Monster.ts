@@ -76,7 +76,7 @@ export class Monster {
     )
     this.internalName = monsterJson.monsterName as string
     this.name =
-      Client._cachedTextMap.get(String(monsterJson.nameTextMapHash)) || ''
+      Client._cachedTextMap.get(String(monsterJson.nameTextMapHash)) ?? ''
     const describeId = +String(this.id).slice(1, 6)
     if (
       Object.keys(
@@ -90,7 +90,7 @@ export class Monster {
       this.describeName =
         Client._cachedTextMap.get(
           String(monsterDescribeJson.nameTextMapHash),
-        ) || ''
+        ) ?? ''
       this.icon = new ImageAssets(monsterDescribeJson.icon as string)
     }
 
@@ -105,7 +105,7 @@ export class Monster {
         monsterJson.describeId as number,
       )
       this.description =
-        Client._cachedTextMap.get(String(animalCodexJson.descTextMapHash)) || ''
+        Client._cachedTextMap.get(String(animalCodexJson.descTextMapHash)) ?? ''
       this.codexType =
         (animalCodexJson.subType as CodexType | undefined) ??
         'CODEX_SUBTYPE_ELEMENT_LIFE'

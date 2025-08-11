@@ -61,9 +61,9 @@ export class WeaponRefinement {
         skillAffix,
       )
       this.skillName =
-        Client._cachedTextMap.get(String(equipAffixJson.nameTextMapHash)) || ''
+        Client._cachedTextMap.get(String(equipAffixJson.nameTextMapHash)) ?? ''
       this.skillDescription =
-        Client._cachedTextMap.get(String(equipAffixJson.descTextMapHash)) || ''
+        Client._cachedTextMap.get(String(equipAffixJson.descTextMapHash)) ?? ''
       this.addProps = (equipAffixJson.addProps as JsonObject[])
         .filter(
           (addProp) =>

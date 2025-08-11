@@ -109,9 +109,9 @@ export class DailyFarming {
           name:
             Client._cachedTextMap.get(
               String(manualTextJson.textMapContentTextMapHash),
-            ) || '',
+            ) ?? '',
           description:
-            Client._cachedTextMap.get(String(domain.descTextMapHash)) || '',
+            Client._cachedTextMap.get(String(domain.descTextMapHash)) ?? '',
           materialIds: materialIds,
           characterInfos: this.getCharacterInfoByMaterialIds(materialIds),
           weaponIds: this.getWeaponIdsByMaterialIds(materialIds),

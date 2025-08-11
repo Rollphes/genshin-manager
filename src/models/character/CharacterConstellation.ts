@@ -42,9 +42,9 @@ export class CharacterConstellation {
       this.id,
     )
     this.name =
-      Client._cachedTextMap.get(String(talentJson.nameTextMapHash)) || ''
+      Client._cachedTextMap.get(String(talentJson.nameTextMapHash)) ?? ''
     this.description =
-      Client._cachedTextMap.get(String(talentJson.descTextMapHash)) || ''
+      Client._cachedTextMap.get(String(talentJson.descTextMapHash)) ?? ''
     this.icon = new ImageAssets(talentJson.icon as string)
   }
 

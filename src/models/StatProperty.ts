@@ -41,7 +41,7 @@ export class StatProperty {
     this.name =
       Client._cachedTextMap.get(
         String(manualTextJson.textMapContentTextMapHash),
-      ) || ''
+      ) ?? ''
 
     this.isPercent = percentFightPropType.includes(this.type)
 

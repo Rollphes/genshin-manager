@@ -50,9 +50,9 @@ export class Material {
       this.id,
     )
     this.name =
-      Client._cachedTextMap.get(String(materialJson.nameTextMapHash)) || ''
+      Client._cachedTextMap.get(String(materialJson.nameTextMapHash)) ?? ''
     this.description =
-      Client._cachedTextMap.get(String(materialJson.descTextMapHash)) || ''
+      Client._cachedTextMap.get(String(materialJson.descTextMapHash)) ?? ''
     this.icon = new ImageAssets(materialJson.icon as string)
     this.pictures = (materialJson.picPath as string[]).map(
       (v) => new ImageAssets(v),

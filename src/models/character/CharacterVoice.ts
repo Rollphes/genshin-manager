@@ -71,11 +71,11 @@ export class CharacterVoice {
     this.title =
       Client._cachedTextMap.get(
         String(fetterVoiceJson.voiceTitleTextMapHash),
-      ) || ''
+      ) ?? ''
     this.content =
       Client._cachedTextMap.get(
         String(fetterVoiceJson.voiceFileTextTextMapHash),
-      ) || ''
+      ) ?? ''
     this.tips = (fetterVoiceJson.tips as number[])
       .map((tip) => Client._cachedTextMap.get(String(tip)))
       .filter((tip): tip is string => tip !== undefined)
