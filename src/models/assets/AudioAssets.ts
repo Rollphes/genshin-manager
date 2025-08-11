@@ -25,7 +25,7 @@ export class AudioAssets {
   /**
    * Audio base URL by regex
    */
-  private static audioBaseURLByRegex: { [url: string]: RegExp[] }
+  private static audioBaseURLByRegex: Record<string, RegExp[]>
   /**
    * Default audio base URL
    */

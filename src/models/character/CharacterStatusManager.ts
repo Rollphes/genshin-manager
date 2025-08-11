@@ -63,13 +63,13 @@ export class CharacterStatusManager {
   public readonly defense: StatProperty
   public readonly speed: StatProperty
   public readonly statProperties: StatProperty[] = []
-  private readonly fightPropData: { [key in number]: number | undefined }
+  private readonly fightPropData: Record<number, number | undefined>
 
   /**
    * Create a CharacterStatusManager
    * @param fightPropData FightPropMap from EnkaNetwork and other sources
    */
-  constructor(fightPropData: { [key in number]: number | undefined }) {
+  constructor(fightPropData: Record<number, number | undefined>) {
     this.fightPropData = fightPropData
     this.healthBase = this.getStatProperty(1)
     this.healthFlat = this.getStatProperty(2)

@@ -12,7 +12,7 @@ export type JsonValue =
 /**
  * Type of Json object
  */
-export type JsonObject = { [key: string]: JsonValue }
+export type JsonObject = Record<string, JsonValue>
 
 /**
  * Type of Json array

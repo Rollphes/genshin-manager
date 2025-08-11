@@ -196,11 +196,11 @@ export abstract class AssetCacheManager<
    */
   public static _getCachedExcelBinOutputByName(
     key: keyof typeof ExcelBinOutputs,
-  ): { [key in string]: JsonObject } {
+  ): Record<string, JsonObject> {
     const excelBinOutput = this.cachedExcelBinOutput.get(key)
     if (!excelBinOutput) throw new AssetsNotFoundError(key)
 
-    return excelBinOutput.get() as { [key in string]: JsonObject }
+    return excelBinOutput.get() as Record<string, JsonObject>
   }
 
   /**

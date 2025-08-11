@@ -33,9 +33,9 @@ export class SetBonus {
    * @param artifacts Artifacts equipped by the character
    */
   constructor(artifacts: Artifact[]) {
-    const countIds: { [setId: string]: number } = {}
+    const countIds: Record<string, number> = {}
     const activeSetIds: string[] = []
-    const setBracers: { [setId: string]: Artifact } = {}
+    const setBracers: Record<string, Artifact> = {}
 
     artifacts.forEach((artifact) => {
       const setId = artifact.setId

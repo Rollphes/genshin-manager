@@ -39,7 +39,7 @@ export class DailyFarming {
   /**
    * Map of dungeon entry ID and text map ID
    */
-  private static readonly replaceTextMapIdMap: { [key in number]: string } = {
+  private static readonly replaceTextMapIdMap: Record<number, string> = {
     50: 'UI_DUNGEON_ENTRY_37',
     135: 'UI_DUNGEON_ENTRY_52',
     44: 'UI_DUNGEON_ENTRY_29',

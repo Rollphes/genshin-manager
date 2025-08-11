@@ -150,7 +150,7 @@ export class CharacterInfo {
       return proudId !== undefined
     })
 
-    const qualityMap: { [key in QualityType]: number } = {
+    const qualityMap: Record<QualityType, number> = {
       QUALITY_ORANGE: 5,
       QUALITY_PURPLE: 4,
       QUALITY_ORANGE_SP: 0,

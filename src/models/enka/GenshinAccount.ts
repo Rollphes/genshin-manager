@@ -56,7 +56,7 @@ export class GenshinAccount {
    */
   constructor(
     gameAccountData: APIGameAccount,
-    buildDatas: { [characterId: string]: APIBuild[] },
+    buildDatas: Record<string, APIBuild[]>,
     username: string,
     enkaBaseURL: string,
   ) {

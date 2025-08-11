@@ -85,7 +85,7 @@ export class CharacterBaseStats {
     propGrowCurves: JsonObject[],
     ascension: CharacterAscension,
   ): StatProperty[] {
-    const initValueObj: Partial<{ [key in FightPropType]: number }> = {
+    const initValueObj: Partial<Record<FightPropType, number>> = {
       FIGHT_PROP_BASE_HP: avatarJson.hpBase as number,
       FIGHT_PROP_BASE_ATTACK: avatarJson.attackBase as number,
       FIGHT_PROP_BASE_DEFENSE: avatarJson.defenseBase as number,

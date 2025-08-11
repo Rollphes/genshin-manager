@@ -177,7 +177,7 @@ export class Monster {
   public static findMonsterIdByDescribeId(describeId: number): number {
     const convertId = describeId.toString().padStart(5, '0')
     //Since some monsterId cannot be obtained by this method, the describeId is converted.
-    const exceptionIds: { [key in number]: number } = {
+    const exceptionIds: Record<number, number> = {
       21104: 22110403,
       30604: 23060201,
       90903: 29090304,

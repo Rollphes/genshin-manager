@@ -43,19 +43,19 @@ export interface APIEnkaStat {
   /**
    * response time (ms)
    */
-  time: Partial<{ [key in APIEnkaRegion]: number }>
+  time: Partial<Record<APIEnkaRegion, number>>
   /**
    * ping (ms)
    */
-  ping: Partial<{ [key in APIEnkaRegion]: number }>
+  ping: Partial<Record<APIEnkaRegion, number>>
   /**
    * request capacity (req/min)
    */
-  nodes: Partial<{ [key in APIEnkaRegion]: number }>
+  nodes: Partial<Record<APIEnkaRegion, number>>
   /**
    * underruns (fails)
    */
-  underruns: Partial<{ [key in APIEnkaRegion]: string }>
+  underruns: Partial<Record<APIEnkaRegion, string>>
 }
 
 /**

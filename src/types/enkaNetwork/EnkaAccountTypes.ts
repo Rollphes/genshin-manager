@@ -43,7 +43,7 @@ export interface APIGameAccount {
   /**
    * avatar order
    */
-  avatar_order: { [characterId: string]: number }
+  avatar_order: Record<string, number>
   /**
    * hoyo type (0: GI 1:HSR)
    */

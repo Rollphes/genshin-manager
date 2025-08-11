@@ -60,7 +60,7 @@ export interface ClientOption {
    *  },
    * ```
    */
-  imageBaseURLByRegex: { [url: string]: RegExp[] }
+  imageBaseURLByRegex: Record<string, RegExp[]>
   /**
    * audio base url by regex
    * @default
@@ -68,7 +68,7 @@ export interface ClientOption {
    * {}
    * ```
    */
-  audioBaseURLByRegex: { [url: string]: RegExp[] }
+  audioBaseURLByRegex: Record<string, RegExp[]>
   /**
    * default language
    * @default 'EN'

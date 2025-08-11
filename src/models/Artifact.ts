@@ -16,7 +16,7 @@ export class Artifact {
   /**
    * Max level map of artifacts by rarity
    */
-  private static readonly maxLevelMap: { [rarity: number]: number } = {
+  private static readonly maxLevelMap: Record<number, number> = {
     1: 5,
     2: 5,
     3: 12,
@@ -73,7 +73,7 @@ export class Artifact {
   /**
    * Artifact set description (index:1 = 1pc, 2 = 2pc , 4 = 4pc)
    */
-  public readonly setDescriptions: { [count: number]: string | undefined } = {}
+  public readonly setDescriptions: Record<number, string | undefined> = {}
   /**
    * Artifact rarity
    */
@@ -233,7 +233,7 @@ export class Artifact {
    * @returns Sub stat properties
    */
   private getSubStatProperties(appendPropIds: number[]): StatProperty[] {
-    const result: Partial<{ [key in FightPropType]: number }> = {}
+    const result: Partial<Record<FightPropType, number>> = {}
     appendPropIds.forEach((propId) => {
       const artifactAffixJson = Client._getJsonFromCachedExcelBinOutput(
         'ReliquaryAffixExcelConfigData',
