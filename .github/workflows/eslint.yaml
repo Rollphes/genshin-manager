@@ -51,33 +51,37 @@ jobs:
         run: |
           echo "Generating ESLint error statistics..."
 
-          # Debug: Show raw ESLint output first
-          echo "Debug: Running npm run lint:unix..."
-          npm run lint:unix 2>/dev/null | head -5
-          
           # Create formatted table for GitHub
           echo "## 📊 ESLint Error Statistics" > stats_table.md
           echo "" >> stats_table.md
           echo "| Count | Error Type |" >> stats_table.md
           echo "|-------|------------|" >> stats_table.md
 
-          # Debug: Test pattern matching step by step
-          echo "Debug: Testing pattern matching..."
-          lint_output=$(npm run lint:unix 2>/dev/null)
-          echo "Debug: Lines with [Error/: $(echo "$lint_output" | grep '\[Error/' | wc -l)"
+          # Direct approach: create temp file and process it
+          npm run lint:unix > eslint_raw.txt 2>&1 || true
           
-          # Generate stats using a more compatible approach
-          echo "$lint_output" | \
-          grep '\[Error/' | \
+          echo "Debug: Total lines in eslint output: $(wc -l < eslint_raw.txt)"
+          echo "Debug: Lines with [Error/: $(grep -c '\[Error/' eslint_raw.txt || echo 0)"
+          
+          # Extract error types and count them
+          grep '\[Error/' eslint_raw.txt | \
           sed 's/.*\[Error\///g' | \
           sed 's/\].*//g' | \
-          sort | uniq -c | sort -nr | head -20 | \
-          while read -r count error_type; do
-            if [[ -n "$count" ]] && [[ -n "$error_type" ]]; then
-              echo "Debug: Adding entry: $count | $error_type"
-              echo "| $count | \`$error_type\` |" >> stats_table.md
+          sort | uniq -c | sort -nr | head -15 > error_counts.txt
+          
+          echo "Debug: Generated error counts:"
+          cat error_counts.txt
+          
+          # Convert to markdown table
+          while read -r line; do
+            if [[ -n "$line" ]]; then
+              count=$(echo "$line" | awk '{print $1}')
+              error_type=$(echo "$line" | cut -d' ' -f2-)
+              if [[ -n "$count" ]] && [[ -n "$error_type" ]]; then
+                echo "| $count | \`$error_type\` |" >> stats_table.md
+              fi
             fi
-          done
+          done < error_counts.txt
 
           # Check if any entries were added
           table_entries=$(grep -c "^| [0-9]" stats_table.md 2>/dev/null || echo "0")
