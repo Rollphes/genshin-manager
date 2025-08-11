@@ -17,8 +17,8 @@ module.exports = {
         '[ci]',
         '[build]',
         '[chore]',
-        '[revert]'
-      ]
+        '[revert]',
+      ],
     ],
     'type-case': [0], // Disable type case checking
     'type-empty': [2, 'never'], // Type must not be empty
@@ -32,13 +32,13 @@ module.exports = {
     'footer-empty': [2, 'always'], // Footer must be empty (single line only)
     'header-full-stop': [2, 'never', '.'], // No full stop at end of header
     'subject-full-stop': [2, 'never', '.'], // No full stop at end of subject
-    'subject-case': [0] // Disable subject case checking
+    'subject-case': [0], // Disable subject case checking
   },
   parserPreset: {
     parserOpts: {
       // Custom parser to handle [prefix] format
       headerPattern: /^(\[[\w]+\])\s(.*)$/,
-      headerCorrespondence: ['type', 'subject']
-    }
-  }
-};
+      headerCorrespondence: ['type', 'subject'],
+    },
+  },
+}
