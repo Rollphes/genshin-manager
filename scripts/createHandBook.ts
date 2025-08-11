@@ -1,26 +1,14 @@
-const fs = require('fs')
-const { Client, ClientEvents } = require('../dist/client/Client.js')
-const { CharacterInfo } = require('../dist/models/character/CharacterInfo.js')
-const {
-  CharacterCostume,
-} = require('../dist/models/character/CharacterCostume.js')
-const { CharacterSkill } = require('../dist/models/character/CharacterSkill.js')
-const {
-  CharacterInherentSkill,
-} = require('../dist/models/character/CharacterInherentSkill.js')
-const {
-  CharacterConstellation,
-} = require('../dist/models/character/CharacterConstellation.js')
-const { Artifact } = require('../dist/models/Artifact.js')
-const { Material } = require('../dist/models/Material.js')
-const { Weapon } = require('../dist/models/weapon/Weapon.js')
-const readline = require('readline')
-const { Monster } = require('../dist/models/Monster.js')
-
-const rl = readline.createInterface({
-  input: process.stdin,
-  output: process.stdout,
-})
+import fs from 'fs'
+import { Client, ClientEvents } from '../dist/client/Client.js'
+import { CharacterInfo } from '../dist/models/character/CharacterInfo.js'
+import { CharacterCostume } from '../dist/models/character/CharacterCostume.js'
+import { CharacterSkill } from '../dist/models/character/CharacterSkill.js'
+import { CharacterInherentSkill } from '../dist/models/character/CharacterInherentSkill.js'
+import { CharacterConstellation } from '../dist/models/character/CharacterConstellation.js'
+import { Artifact } from '../dist/models/Artifact.js'
+import { Material } from '../dist/models/Material.js'
+import { Weapon } from '../dist/models/weapon/Weapon.js'
+import { Monster } from '../dist/models/Monster.js'
 
 async function main() {
   const client = new Client({
@@ -40,9 +28,6 @@ async function main() {
       'CHS',
     ],
     defaultLanguage: 'EN',
-    fetchOptions: {
-      timeout: 0,
-    },
   })
   client.on(ClientEvents.END_UPDATE_CACHE, async(version)=>{
     for (const lang of client.option.downloadLanguages) {
@@ -122,7 +107,6 @@ async function main() {
 
       console.log(`HandBook is created! (Language: ${lang})`)
     }
-    rl.close()
     process.exit(0)
   })
   await client.deploy()

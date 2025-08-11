@@ -20,9 +20,9 @@
     "prepublishOnly": "npm run build && npm run create-release",
     "docs": "typedoc",
     "build": "node -e \"if (fs.existsSync('./dist')) fs.rmSync('./dist', {recursive: true});\" && tsc -p tsconfig.json && tsc-alias -p tsconfig.json",
-    "test": "ts-node -r tsconfig-paths/register ./src/test/index.ts",
-    "release-test": "node scripts/test.js",
-    "createHandBook": "node scripts/createHandBook.js"
+    "test": "tsx ./src/test/index.ts",
+    "release-test": "tsx scripts/test.ts",
+    "createHandBook": "tsx scripts/createHandBook.ts"
   },
   "engines": {
     "node": ">=18.0.0"
@@ -52,7 +52,6 @@
   "dependencies": {
     "cheerio": "^1.0.0",
     "cli-progress": "^3.12.0",
-    "fs-extra": "^11.2.0",
     "node-cron": "^3.0.3",
     "path": "^0.12.7",
     "ts-deepmerge": "^7.0.1"
@@ -74,9 +73,9 @@
     "eslint-plugin-simple-import-sort": "^12.1.1",
     "husky": "^9.1.7",
     "prettier": "^3.3.3",
-    "ts-node": "^10.9.2",
     "tsc-alias": "^1.8.10",
     "tsconfig-paths": "^4.2.0",
+    "tsx": "^4.20.3",
     "typedoc": "^0.26.7",
     "typescript": "^5.6.2"
   }

@@ -76,5 +76,5 @@
     },
     "resolveJsonModule": true
   },
-  "exclude": ["node_modules", "./scripts/**/*", "./dist/**/*"]
+  "exclude": ["node_modules", "./dist/**/*"]
 }

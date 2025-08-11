@@ -1,28 +1,19 @@
-const { Client } = require('../dist/client/Client.js')
-const { CharacterInfo } = require('../dist/models/character/CharacterInfo.js')
-const {
-  CharacterCostume,
-} = require('../dist/models/character/CharacterCostume.js')
-const {
-  CharacterProfile,
-} = require('../dist/models/character/CharacterProfile.js')
-const { CharacterSkill } = require('../dist/models/character/CharacterSkill.js')
-const {
-  CharacterInherentSkill,
-} = require('../dist/models/character/CharacterInherentSkill.js')
-const {
-  CharacterConstellation,
-} = require('../dist/models/character/CharacterConstellation.js')
-const { CharacterStory } = require('../dist/models/character/CharacterStory.js')
-const { CharacterVoice } = require('../dist/models/character/CharacterVoice.js')
-const { Artifact } = require('../dist/models/Artifact.js')
-const { Material } = require('../dist/models/Material.js')
-const { Weapon } = require('../dist/models/weapon/Weapon.js')
-const { Monster } = require('../dist/models/Monster.js')
-const { ProfilePicture } = require('../dist/models/ProfilePicture.js')
-const { DailyFarming } = require('../dist/models/DailyFarming.js')
-
-const { EnkaManager } = require('../dist/client/EnkaManager.js')
+import { Client } from '../dist/client/Client.js'
+import { CharacterInfo } from '../dist/models/character/CharacterInfo.js'
+import { CharacterCostume } from '../dist/models/character/CharacterCostume.js'
+import { CharacterProfile } from '../dist/models/character/CharacterProfile.js'
+import { CharacterSkill } from '../dist/models/character/CharacterSkill.js'
+import { CharacterInherentSkill } from '../dist/models/character/CharacterInherentSkill.js'
+import { CharacterConstellation } from '../dist/models/character/CharacterConstellation.js'
+import { CharacterStory } from '../dist/models/character/CharacterStory.js'
+import { CharacterVoice } from '../dist/models/character/CharacterVoice.js'
+import { Artifact } from '../dist/models/Artifact.js'
+import { Material } from '../dist/models/Material.js'
+import { Weapon } from '../dist/models/weapon/Weapon.js'
+import { Monster } from '../dist/models/Monster.js'
+import { ProfilePicture } from '../dist/models/ProfilePicture.js'
+import { DailyFarming } from '../dist/models/DailyFarming.js'
+import { EnkaManager } from '../dist/client/EnkaManager.js'
 
 const testType = process.env.npm_config_test_type
 
@@ -30,9 +21,6 @@ async function main() {
   const client = new Client({
     downloadLanguages: ['EN'],
     defaultLanguage: 'EN',
-    fetchOptions: {
-      timeout: 0,
-    },
   })
   await client.deploy()
   console.log(`testType:${testType}`)
@@ -54,7 +42,7 @@ async function main() {
         (id) => new CharacterConstellation(id),
       )
       CharacterStory.allFetterIds.forEach((id) => new CharacterStory(id))
-      CharacterVoice.allFetterIds.forEach((id) => new CharacterVoice(id))
+      CharacterVoice.allFetterIds.forEach((id) => new CharacterVoice(id, 'EN'))
       Artifact.allArtifactIds.forEach((id) => new Artifact(id, 10001))
       Material.allMaterialIds.forEach((id) => new Material(id))
       Weapon.allWeaponIds.forEach((id) => new Weapon(id))
@@ -79,7 +67,7 @@ async function main() {
         Client._getCachedExcelBinOutputByName('MonsterDescribeExcelConfigData'),
       )
       describeIds.map((id) => {
-        const monsterId = Monster.findMonsterIdByDescribeId(id)
+        const monsterId = Monster.findMonsterIdByDescribeId(Number(id))
         new Monster(monsterId)
       })
       console.log('findMonsterIdByDescribeId test passed!')
@@ -157,7 +145,7 @@ async function main() {
       await Promise.all(
         ['JP', 'EN', 'CHS', 'KR'].map(async (cv) => {
           for (const id of voiceIds) {
-            const voice = new CharacterVoice(id, cv)
+            const voice = new CharacterVoice(id, cv as 'EN' | 'KR' | 'JP' | 'CHS')
             await voice.audio.fetchBuffer().catch((e) => console.log(e))
           }
         }),
