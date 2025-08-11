@@ -205,6 +205,6 @@ export default [
     },
   },
   {
-    ignores: ['dist/', 'node_modules/', '*.config.mjs'],
+    ignores: ['dist/', 'node_modules/', '*.config.js'],
   },
 ]

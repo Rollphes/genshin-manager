@@ -188,9 +188,7 @@ export class EnkaManager extends PromiseEventEmitter<
     )
     const gameAccountsRes = await fetch(getGameAccountsURL, mergedFetchOption)
     if (!gameAccountsRes.ok) throw new EnkaNetworkError(gameAccountsRes)
-    const gameAccounts = (await gameAccountsRes.json()) as {
-      [hash: string]: APIGameAccount
-    }
+    const gameAccounts = (await gameAccountsRes.json()) as Record<string, APIGameAccount>
     return await Promise.all(
       Object.values(gameAccounts)
         .sort((a, b) => a.order - b.order)
@@ -199,9 +197,7 @@ export class EnkaManager extends PromiseEventEmitter<
           const getBuildsURL = `${EnkaManager.ENKA_BASE_URL}/api/profile/${username}/hoyos/${account.hash}/builds`
           const buildsRes = await fetch(getBuildsURL, mergedFetchOption)
           if (!buildsRes.ok) throw new EnkaNetworkError(buildsRes)
-          const builds = (await buildsRes.json()) as {
-            [characterId: string]: APIBuild[]
-          }
+          const builds = (await buildsRes.json()) as Record<string, APIBuild[]>
           return new GenshinAccount(
             account,
             builds,
@@ -217,9 +213,7 @@ export class EnkaManager extends PromiseEventEmitter<
    * @param fetchOption Fetch option
    * @returns Status from 1 hour ago to now
    */
-  public async fetchAllStatus(fetchOption?: RequestInit): Promise<{
-    [dateText: string]: APIEnkaStatus
-  }> {
+  public async fetchAllStatus(fetchOption?: RequestInit): Promise<Record<string, APIEnkaStatus>> {
     const getStatusURL = `${EnkaManager.ENKA_STATUS_BASE_URL}/api/status`
     const mergedFetchOption = merge.withOptions(
       { mergeArrays: false },
@@ -229,9 +223,7 @@ export class EnkaManager extends PromiseEventEmitter<
     const statusRes = await fetch(getStatusURL, mergedFetchOption)
     if (!statusRes.ok) throw new EnkaNetWorkStatusError(statusRes)
 
-    return (await statusRes.json()) as {
-      [dateText: string]: APIEnkaStatus
-    }
+    return (await statusRes.json()) as Record<string, APIEnkaStatus>
   }
 
   /**

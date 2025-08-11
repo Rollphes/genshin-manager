@@ -62,7 +62,7 @@ export class Monster {
    * @param level monsterLevel (1-100). Default: 1
    * @param playerCount Number of players (1-4). Default: 1
    */
-  constructor(monsterId: number, level: number = 1, playerCount: number = 1) {
+  constructor(monsterId: number, level = 1, playerCount = 1) {
     this.id = monsterId
     this.level = level
     if (this.level < 1 || this.level > 100)
@@ -198,8 +198,8 @@ export class Monster {
    */
   private getStatValueByJson(
     propGrowCurve: JsonObject | undefined,
-    initValue: number = 0,
-    playerCount: number = 1,
+    initValue = 0,
+    playerCount = 1,
   ): number {
     if (!propGrowCurve) return initValue
     const bonusValue =

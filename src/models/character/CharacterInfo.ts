@@ -54,7 +54,7 @@ export class CharacterInfo {
    * @key Skill ID
    * @value Proud ID
    */
-  public readonly proudMap: Map<number, number> = new Map()
+  public readonly proudMap = new Map<number, number>()
   /**
    * Rarity
    * @warn aloy is treated as 0 because it is special
@@ -85,7 +85,7 @@ export class CharacterInfo {
     )
     const defaultCostumeData = costumeDatas.find(
       (k) => k.characterId === this.id && k.quality === 0,
-    ) as JsonObject
+    )
     this.defaultCostumeId = defaultCostumeData.skinId as number
 
     const avatarJson = Client._getJsonFromCachedExcelBinOutput(
@@ -130,7 +130,7 @@ export class CharacterInfo {
       const proudSkillJson = Client._getJsonFromCachedExcelBinOutput(
         'ProudSkillExcelConfigData',
         k.proudSkillGroupId as number,
-      )[1] as JsonObject
+      )[1]
       if (!proudSkillJson) return
       if (proudSkillJson.isHideLifeProudSkill) return
       this.inherentSkillOrder.push(k.proudSkillGroupId as number)

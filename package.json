@@ -12,7 +12,12 @@
   },
   "scripts": {
     "updateDoc": "npm run docs && git add docs && git commit -m \"[update]update docs\" && git push",
-    "lint": "eslint .",
+    "lint": "eslint . --format unix",
+    "lint:plain": "eslint .",
+    "lint:errors": "npm run lint | grep ': error:'",
+    "lint:warnings": "npm run lint | grep ': warning:'",
+    "lint:count": "npm run lint | grep -E '(error|warning)' | wc -l",
+    "lint:summary": "npm run lint | tail -3",
     "create-release": "gh release create v%npm_package_version% -t v%npm_package_version% -n \"## Bug Fixes\" --draft",
     "prepublishOnly": "npm run build && npm run create-release",
     "docs": "typedoc",
@@ -56,6 +61,7 @@
     "ts-deepmerge": "^7.0.1"
   },
   "devDependencies": {
+    "@eslint/js": "^9.27.0",
     "@types/cheerio": "^1.0.0",
     "@types/cli-progress": "^3.11.6",
     "@types/html-escaper": "^3.0.2",
@@ -63,16 +69,18 @@
     "@types/node-cron": "^3.0.11",
     "@typescript-eslint/eslint-plugin": "^8.7.0",
     "@typescript-eslint/parser": "^8.7.0",
-    "@eslint/js": "^9.27.0",
     "eslint": "^9.27.0",
-		"eslint-config-prettier": "^10.1.5",
-		"eslint-plugin-prettier": "^5.4.0",
-		"eslint-plugin-simple-import-sort": "^12.1.1",
+    "eslint-config-prettier": "^10.1.5",
+    "eslint-formatter-unix": "^8.40.0",
+    "eslint-plugin-jsdoc": "^52.0.4",
+    "eslint-plugin-prettier": "^5.4.0",
+    "eslint-plugin-simple-import-sort": "^12.1.1",
     "prettier": "^3.3.3",
     "ts-node": "^10.9.2",
     "tsc-alias": "^1.8.10",
     "tsconfig-paths": "^4.2.0",
     "typedoc": "^0.28.10",
-    "typescript": "^5.6.2"
+    "typescript": "^5.6.2",
+    "typescript-eslint": "^8.39.0"
   }
 }

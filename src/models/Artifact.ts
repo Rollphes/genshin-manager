@@ -108,8 +108,8 @@ export class Artifact {
    */
   constructor(
     artifactId: number,
-    mainPropId: number = 10001,
-    level: number = 0,
+    mainPropId = 10001,
+    level = 0,
     appendPropIds: number[] = [],
   ) {
     this.id = artifactId
@@ -173,12 +173,10 @@ export class Artifact {
       'ReliquaryMainPropExcelConfigData',
       mainPropId,
     )
-    const mainValue = (
-      Client._getJsonFromCachedExcelBinOutput(
-        'ReliquaryLevelExcelConfigData',
-        artifactMainJson.propType as string,
-      )[this.rarity] as JsonObject
-    )[this.level] as number
+    const mainValue = Client._getJsonFromCachedExcelBinOutput(
+      'ReliquaryLevelExcelConfigData',
+      artifactMainJson.propType as string,
+    )[this.rarity][this.level] as number
     this.mainStat = new StatProperty(
       artifactMainJson.propType as FightPropType,
       mainValue,
@@ -248,7 +246,7 @@ export class Artifact {
     return Object.keys(result).map((key) => {
       return new StatProperty(
         key as FightPropType,
-        result[key as FightPropType] as number,
+        result[key as FightPropType]!,
       )
     })
   }
