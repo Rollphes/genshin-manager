@@ -59,15 +59,33 @@ jobs:
           |-------|------------|
           EOF
 
-          # Try to generate dynamic stats, fallback to manual parsing if needed
-          if npm run lint:unix > eslint_raw.txt 2>&1; then
-            echo "ESLint passed - no errors to report"
-            echo "| 0 | No errors found ✅ |" >> stats_table.md
-          else
-            echo "ESLint found errors - generating statistics..."
+          # Generate dynamic stats from npm run lint:stats
+          echo "Running npm run lint:stats..."
+          if npm run lint:stats > error_stats.txt 2>&1; then
+            echo "lint:stats succeeded, processing output..."
+            cat error_stats.txt
             
-            # Parse error types from ESLint output
-            # Method 1: Try with grep and sed
+            # Convert lint:stats output to markdown table
+            while read -r line; do
+              if [[ -n "$line" ]]; then
+                count=$(echo "$line" | awk '{print $1}')
+                error_type=$(echo "$line" | awk '{$1=""; print $0}' | sed 's/^ *//')
+                if [[ -n "$count" ]] && [[ -n "$error_type" ]]; then
+                  echo "| $count | \`$error_type\` |" >> stats_table.md
+                fi
+              fi
+            done < error_stats.txt
+          else
+            echo "lint:stats failed, checking direct lint:unix output..."
+            npm run lint:unix > eslint_raw.txt 2>&1 || true
+            
+            echo "Raw eslint output (first 10 lines):"
+            head -10 eslint_raw.txt
+            
+            echo "Lines with [Error/:"
+            grep '\[Error/' eslint_raw.txt | head -5
+            
+            # Parse error types from raw ESLint output
             if grep -q '\[Error/' eslint_raw.txt; then
               echo "Found error patterns, processing..."
               grep '\[Error/' eslint_raw.txt | \
@@ -80,20 +98,7 @@ jobs:
                 fi
               done
             else
-              echo "No error patterns found, using fallback data"
-              # Fallback: Use known current statistics
-              cat >> stats_table.md << 'EOF'
-          | 336 | `@typescript-eslint/no-unsafe-member-access` |
-          | 105 | `@typescript-eslint/no-unsafe-assignment` |
-          | 32 | `@typescript-eslint/no-unnecessary-type-assertion` |
-          | 19 | `@typescript-eslint/restrict-template-expressions` |
-          | 18 | `@typescript-eslint/no-unsafe-argument` |
-          | 16 | `@typescript-eslint/no-unused-vars` |
-          | 13 | `@typescript-eslint/no-unnecessary-condition` |
-          | 13 | `@typescript-eslint/no-non-null-assertion` |
-          | 11 | `@typescript-eslint/no-inferrable-types` |
-          | 8 | `@typescript-eslint/no-redundant-type-constituents` |
-          EOF
+              echo "| - | No ESLint errors found or parsing failed |" >> stats_table.md
             fi
           fi
 
@@ -114,6 +119,8 @@ jobs:
             eslint_output.txt
             eslint_stats.txt
             stats_table.md
+            error_stats.txt
+            eslint_raw.txt
           retention-days: 30
 
   comment-on-pr:
@@ -147,15 +154,32 @@ jobs:
             const fs = require('fs');
 
             let statsContent = '';
+            let rawStatsContent = '';
+            
             try {
               statsContent = fs.readFileSync('stats_table.md', 'utf8');
             } catch (error) {
               statsContent = '❌ **ESLint found errors but could not generate statistics.**';
             }
 
+            try {
+              rawStatsContent = fs.readFileSync('error_stats.txt', 'utf8');
+            } catch (error) {
+              rawStatsContent = 'Raw stats not available';
+            }
+
             const body = `🚨 **ESLint Check Failed**
 
-            ${statsContent}`;
+            ${statsContent}
+
+            <details>
+            <summary>🔍 Debug: Raw lint:stats output</summary>
+
+            \`\`\`
+            ${rawStatsContent}
+            \`\`\`
+
+            </details>`;
 
             github.rest.issues.createComment({
               issue_number: context.issue.number,
