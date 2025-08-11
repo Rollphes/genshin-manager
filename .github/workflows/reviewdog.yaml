@@ -1,0 +1,175 @@
+name: ReviewDog
+
+on: [pull_request]
+
+jobs:
+  reviewdog-eslint:
+    name: ESLint with reviewdog
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      pull-requests: write
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '20.x'
+        cache: 'npm'
+
+    - name: Install dependencies
+      run: npm ci
+
+    - name: Run ESLint with reviewdog
+      uses: reviewdog/action-eslint@v1
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        filter_mode: diff_context
+        fail_level: error
+        eslint_flags: '.'
+
+  reviewdog-typescript:
+    name: TypeScript with reviewdog
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      pull-requests: write
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '20.x'
+        cache: 'npm'
+
+    - name: Install dependencies
+      run: npm ci
+
+    - name: Setup reviewdog
+      uses: reviewdog/action-setup@v1
+      with:
+        reviewdog_version: latest
+
+    - name: Run TypeScript type check with reviewdog
+      env:
+        REVIEWDOG_GITHUB_API_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      run: |
+        npx tsc --noEmit --pretty false | reviewdog -efm="%f(%l,%c): error TS%n: %m" -name="TypeScript" -reporter=github-pr-check -level=error
+
+  eslint-summary:
+    name: ESLint Summary Report
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '20.x'
+        cache: 'npm'
+
+    - name: Install dependencies
+      run: npm ci
+
+    - name: Run ESLint and generate summary
+      run: |
+        echo "## 📋 ESLint Analysis Report" >> $GITHUB_STEP_SUMMARY
+        echo "" >> $GITHUB_STEP_SUMMARY
+
+        # Run ESLint and generate summary
+        if npm run lint 2>&1; then
+          echo "✅ **No ESLint errors found!**" >> $GITHUB_STEP_SUMMARY
+        else
+          echo "❌ **ESLint errors detected**" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "<details>" >> $GITHUB_STEP_SUMMARY
+          echo "<summary>View ESLint output</summary>" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo '```' >> $GITHUB_STEP_SUMMARY
+          npm run lint 2>&1 || true >> $GITHUB_STEP_SUMMARY
+          echo '```' >> $GITHUB_STEP_SUMMARY
+          echo "</details>" >> $GITHUB_STEP_SUMMARY
+          exit 1
+        fi
+
+  typescript-check:
+    name: TypeScript Type Check
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '20.x'
+        cache: 'npm'
+
+    - name: Install dependencies
+      run: npm ci
+
+    - name: Run TypeScript type check
+      run: |
+        echo "## 🔍 TypeScript Type Check Report" >> $GITHUB_STEP_SUMMARY
+        echo "" >> $GITHUB_STEP_SUMMARY
+
+        if npx tsc --noEmit; then
+          echo "✅ **No TypeScript type errors found!**" >> $GITHUB_STEP_SUMMARY
+        else
+          echo "❌ **TypeScript type errors detected**" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "<details>" >> $GITHUB_STEP_SUMMARY
+          echo "<summary>View TypeScript errors</summary>" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo '```' >> $GITHUB_STEP_SUMMARY
+          npx tsc --noEmit 2>&1 || true >> $GITHUB_STEP_SUMMARY
+          echo '```' >> $GITHUB_STEP_SUMMARY
+          echo "</details>" >> $GITHUB_STEP_SUMMARY
+          exit 1
+        fi
+
+  code-quality-summary:
+    name: Code Quality Summary
+    runs-on: ubuntu-latest
+    needs: [reviewdog-eslint, reviewdog-typescript, eslint-summary, typescript-check]
+    if: always()
+
+    steps:
+    - name: Generate final summary
+      run: |
+        echo "## 🎯 Static Analysis Summary" >> $GITHUB_STEP_SUMMARY
+        echo "" >> $GITHUB_STEP_SUMMARY
+
+        # Check job results
+        reviewdog_eslint_status="${{ needs.reviewdog-eslint.result }}"
+        reviewdog_typescript_status="${{ needs.reviewdog-typescript.result }}"
+        eslint_status="${{ needs.eslint-summary.result }}"
+        typescript_status="${{ needs.typescript-check.result }}"
+
+        if [[ "$reviewdog_eslint_status" == "success" && "$reviewdog_typescript_status" == "success" && "$eslint_status" == "success" && "$typescript_status" == "success" ]]; then
+          echo "🎉 **All static analysis checks passed!**" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "- ✅ reviewdog ESLint analysis" >> $GITHUB_STEP_SUMMARY
+          echo "- ✅ reviewdog TypeScript analysis" >> $GITHUB_STEP_SUMMARY
+          echo "- ✅ ESLint summary check" >> $GITHUB_STEP_SUMMARY
+          echo "- ✅ TypeScript type check" >> $GITHUB_STEP_SUMMARY
+        else
+          echo "⚠️ **Some static analysis checks failed**" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "- $([ "$reviewdog_eslint_status" == "success" ] && echo "✅" || echo "❌") reviewdog ESLint analysis" >> $GITHUB_STEP_SUMMARY
+          echo "- $([ "$reviewdog_typescript_status" == "success" ] && echo "✅" || echo "❌") reviewdog TypeScript analysis" >> $GITHUB_STEP_SUMMARY
+          echo "- $([ "$eslint_status" == "success" ] && echo "✅" || echo "❌") ESLint summary check" >> $GITHUB_STEP_SUMMARY
+          echo "- $([ "$typescript_status" == "success" ] && echo "✅" || echo "❌") TypeScript type check" >> $GITHUB_STEP_SUMMARY
+        fi
+
+        echo "" >> $GITHUB_STEP_SUMMARY
+        echo "💡 **Tip**: Check the individual job logs for detailed information about any issues."
