@@ -64,7 +64,7 @@ jobs:
           if npm run lint:stats > error_stats.txt 2>&1; then
             echo "lint:stats succeeded, processing output..."
             cat error_stats.txt
-            
+
             # Convert lint:stats output to markdown table
             while read -r line; do
               if [[ -n "$line" ]]; then
@@ -78,13 +78,13 @@ jobs:
           else
             echo "lint:stats failed, checking direct lint:unix output..."
             npm run lint:unix > eslint_raw.txt 2>&1 || true
-            
+
             echo "Raw eslint output (first 10 lines):"
             head -10 eslint_raw.txt
-            
+
             echo "Lines with [Error/:"
             grep '\[Error/' eslint_raw.txt | head -5
-            
+
             # Parse error types from raw ESLint output
             if grep -q '\[Error/' eslint_raw.txt; then
               echo "Found error patterns, processing..."
@@ -155,7 +155,7 @@ jobs:
 
             let statsContent = '';
             let rawStatsContent = '';
-            
+
             try {
               statsContent = fs.readFileSync('stats_table.md', 'utf8');
             } catch (error) {
