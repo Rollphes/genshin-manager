@@ -108,7 +108,7 @@ export class PlayerDetail {
         data.profilePicture?.costumeId ??
           data.profilePicture?.avatarId ??
           10000005,
-      )!
+      )
     }
     this.profilePicture = new ProfilePicture(profilePictureId || 1)
     this.maxFriendshipCharactersCount = data.fetterCount ?? 0

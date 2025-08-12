@@ -40,7 +40,8 @@ export class ObjectKeyDecoder {
 
       const dummyProfilePicture = profilePictureDataArray.find(
         (data) => data.id === 99999,
-      )!
+      )
+      if (!dummyProfilePicture) throw new Error('dummyProfilePicture not found')
 
       const dummyProfilePictureEntry = Object.entries(dummyProfilePicture).find(
         ([, v]) => v === 'PROFILE_PICTURE_UNLOCK_BY_ITEM',
@@ -65,7 +66,9 @@ export class ObjectKeyDecoder {
       const sampleWeaponPromoteData = weaponPromoteDataArray.find(
         (data) =>
           data.weaponPromoteId === 11101 && data.requiredPlayerLevel === 15,
-      )!
+      )
+      if (!sampleWeaponPromoteData)
+        throw new Error('sampleWeaponPromoteData not found')
 
       const promoteLevelEntry = Object.entries(sampleWeaponPromoteData).find(
         ([, v]) => v === 1,
@@ -114,7 +117,9 @@ export class ObjectKeyDecoder {
 
       const sampleAvatarPromoteData = avatarPromoteDataArray.find(
         (data) => data.avatarPromoteId === 2 && data.requiredPlayerLevel === 15,
-      )!
+      )
+      if (!sampleAvatarPromoteData)
+        throw new Error('sampleAvatarPromoteData not found')
 
       const promoteLevelEntry = Object.entries(sampleAvatarPromoteData).find(
         ([, v]) => v === 1,
@@ -201,10 +206,9 @@ export class ObjectKeyDecoder {
   private decode(jsonData: JsonParser): JsonParser {
     const jsonArray = jsonData.get() as JsonArray
     jsonArray.forEach((v) => {
-      const obj = v
+      const json = v as JsonObject
       this.replaceDatas.forEach((replaceData) => {
-        if (obj[replaceData.oldKey] !== undefined)
-          obj[replaceData.newKey] = obj[replaceData.oldKey]
+        json[replaceData.newKey] = json[replaceData.oldKey]
       })
     })
     return jsonData
@@ -223,133 +227,149 @@ export class ObjectKeyDecoder {
     const jsonArray = jsonData.get() as JsonArray
     const cacheObject: Record<string, JsonValue> = {}
     // eslint-disable-next-line complexity
-    jsonArray.forEach((json) => {
-      const obj = json
+    jsonArray.forEach((obj) => {
+      const json = obj as JsonObject
       switch (filename) {
         case 'ManualTextMapConfigData':
-          cacheObject[obj.textMapId as string] = Object.assign(obj, {
-            textMapContentTextMapHash: (obj.textMapContent ??
-              obj.textMapContentTextMapHash) as string,
+          cacheObject[json.textMapId as string] = Object.assign(json, {
+            textMapContentTextMapHash: (json.textMapContent ??
+              json.textMapContentTextMapHash) as string,
           })
           break
         case 'WeaponCurveExcelConfigData':
-          ;(obj.curveInfos as JsonArray).forEach((curve) => {
-            const level = obj.level as number
+          ;(json.curveInfos as JsonArray).forEach((obj) => {
+            const curve = obj as JsonObject
+            const level = json.level as number
             const value = curve.value
             const type = curve.type as string
             cacheObject[type] ??= {}
-            cacheObject[type][level] = value
+            ;(cacheObject[type] as Record<string, JsonValue>)[level] = value
           })
           break
         case 'WeaponPromoteExcelConfigData':
-          if (!cacheObject[obj.weaponPromoteId as string])
-            cacheObject[obj.weaponPromoteId as string] = {}
-          cacheObject[obj.weaponPromoteId as string][
-            (obj.promoteLevel ?? 0) as string
-          ] = obj
+          if (!cacheObject[json.weaponPromoteId as string])
+            cacheObject[json.weaponPromoteId as string] = {}
+          ;(
+            cacheObject[json.weaponPromoteId as string] as Record<
+              string,
+              JsonValue
+            >
+          )[(json.promoteLevel ?? 0) as string] = json
           break
         case 'ReliquaryLevelExcelConfigData':
-          ;(obj.addProps as JsonArray).forEach((prop) => {
-            if (!obj.rank) return
-            const rank = obj.rank as number
-            const level = (obj.level as number) - 1
+          ;(json.addProps as JsonArray).forEach((obj) => {
+            const prop = obj as JsonObject
+            if (!json.rank) return
+            const rank = json.rank as number
+            const level = (json.level as number) - 1
             const value = prop.value
             const type = prop.propType as string
             cacheObject[type] ??= {}
-            let cache = cacheObject[type]
+            let cache = cacheObject[type] as Record<string, JsonValue>
             cache[rank] ??= {}
-            cache = cache[rank]
+            cache = cache[rank] as Record<string, JsonValue>
             cache[level] = value
           })
           break
         case 'ReliquarySetExcelConfigData':
-          cacheObject[obj.setId as string] = obj
+          cacheObject[json.setId as string] = json
           break
         case 'AvatarExcelConfigData':
-          if ((obj.id as number) > 11000000 || (obj.id as number) === 10000001)
+          if (
+            (json.id as number) > 11000000 ||
+            (json.id as number) === 10000001
+          )
             break
-          cacheObject[obj.id as string] = obj
+          cacheObject[json.id as string] = json
           break
         case 'AvatarCostumeExcelConfigData':
-          cacheObject[obj.skinId as string] = obj
+          cacheObject[json.skinId as string] = json
           break
         case 'AvatarTalentExcelConfigData':
-          cacheObject[obj.talentId as string] = obj
+          cacheObject[json.talentId as string] = json
           break
         case 'AvatarCurveExcelConfigData':
-          ;(obj.curveInfos as JsonArray).forEach((curve) => {
-            const level = obj.level as number
+          ;(json.curveInfos as JsonArray).forEach((obj) => {
+            const curve = obj as JsonObject
+            const level = json.level as number
             const value = curve.value ?? 0
             const type = curve.type as string
             cacheObject[type] ??= {}
-            cacheObject[type][level] = value
+            ;(cacheObject[type] as Record<string, JsonValue>)[level] = value
           })
           break
         case 'AvatarPromoteExcelConfigData':
-          if (!cacheObject[obj.avatarPromoteId as string])
-            cacheObject[obj.avatarPromoteId as string] = {}
-          cacheObject[obj.avatarPromoteId as string][
-            (obj.promoteLevel ?? 0) as string
-          ] = obj
+          if (!cacheObject[json.avatarPromoteId as string])
+            cacheObject[json.avatarPromoteId as string] = {}
+          ;(
+            cacheObject[json.avatarPromoteId as string] as Record<
+              string,
+              JsonValue
+            >
+          )[(json.promoteLevel ?? 0) as string] = json
           break
         case 'ProudSkillExcelConfigData':
-          if (!cacheObject[obj.proudSkillGroupId as string])
-            cacheObject[obj.proudSkillGroupId as string] = {}
-          cacheObject[obj.proudSkillGroupId as string][
-            (obj.proudSkillId as number) % 100
-          ] = obj
+          if (!cacheObject[json.proudSkillGroupId as string])
+            cacheObject[json.proudSkillGroupId as string] = {}
+          ;(
+            cacheObject[json.proudSkillGroupId as string] as Record<
+              string,
+              JsonValue
+            >
+          )[(json.proudSkillId as number) % 100] = json
           break
         case 'FetterInfoExcelConfigData':
-          cacheObject[obj.avatarId as string] = obj
+          cacheObject[json.avatarId as string] = json
           break
         case 'EquipAffixExcelConfigData':
-          cacheObject[obj.affixId as string] = obj
+          cacheObject[json.affixId as string] = json
           break
         case 'TowerScheduleExcelConfigData':
-          cacheObject[obj.scheduleId as string] = obj
+          cacheObject[json.scheduleId as string] = json
           break
         case 'TowerFloorExcelConfigData':
-          cacheObject[obj.floorId as string] = obj
+          cacheObject[json.floorId as string] = json
           break
         case 'TowerLevelExcelConfigData':
-          cacheObject[obj.levelId as string] = obj
+          cacheObject[json.levelId as string] = json
           break
         case 'DungeonLevelEntityConfigData':
-          if (obj.show !== true) break //Because the same id exists. Added as a temporary workaround
-          cacheObject[obj.clientId as string] = obj
+          if (json.show !== true) break //Because the same id exists. Added as a temporary workaround
+          cacheObject[json.clientId as string] = json
           break
         case 'MonsterExcelConfigData':
-          cacheObject[obj.id as string] = obj
+          cacheObject[json.id as string] = json
           break
         case 'MonsterDescribeExcelConfigData':
-          cacheObject[obj.id as string] = obj
+          cacheObject[json.id as string] = json
           break
         case 'AnimalCodexExcelConfigData':
-          cacheObject[obj.describeId as string] = obj
+          cacheObject[json.describeId as string] = json
           break
         case 'MonsterCurveExcelConfigData':
-          ;(obj.curveInfos as JsonArray).forEach((curve) => {
-            const level = obj.level as number
+          ;(json.curveInfos as JsonArray).forEach((obj) => {
+            const curve = obj as JsonObject
+            const level = json.level as number
             const value = curve.value ?? 0
             const type = curve.type as string
             cacheObject[type] ??= {}
-            cacheObject[type][level] = value
+            ;(cacheObject[type] as Record<string, JsonValue>)[level] = value
           })
           break
         case 'FetterStoryExcelConfigData':
-          cacheObject[obj.fetterId as string] = obj
+          cacheObject[json.fetterId as string] = json
           break
 
         case 'DungeonEntryExcelConfigData':
-          cacheObject[obj.id as string] = obj
+          cacheObject[json.id as string] = json
           break
 
         case 'FettersExcelConfigData':
-          cacheObject[obj.fetterId as string] = obj
+          cacheObject[json.fetterId as string] = json
           break
 
         default:
-          cacheObject[obj.id as string] = obj
+          cacheObject[json.id as string] = json
           break
       }
     })

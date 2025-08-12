@@ -181,7 +181,7 @@ export abstract class AssetCacheManager<
     const excelBinOutput = this.cachedExcelBinOutput.get(key)
     if (!excelBinOutput) throw new AssetsNotFoundError(key)
 
-    const json = excelBinOutput.get(String(id))
+    const json = excelBinOutput.get(String(id)) as JsonObject | undefined
     if (!json) throw new AssetsNotFoundError(key, id)
 
     return json
@@ -485,31 +485,36 @@ export abstract class AssetCacheManager<
   private static createTextHashes(): void {
     this.textHashes.clear()
     this.cachedExcelBinOutput.forEach((excelBin) => {
-      Object.values(excelBin.get()).forEach((obj) => {
-        Object.values(obj).forEach((value) => {
-          const obj = value as JsonObject
-          Object.keys(obj).forEach((key) => {
-            if (/TextMapHash/g.exec(key)) {
-              const hash = obj[key] as number
-              this.textHashes.add(hash)
-            }
-            if (key === 'paramDescList') {
-              const hashes = obj[key] as number[]
-              hashes.forEach((hash) => this.textHashes.add(hash))
-            }
-          })
-        })
-        Object.keys(obj).forEach((key) => {
-          if (/TextMapHash/g.exec(key)) {
-            const hash = obj[key] as number
-            this.textHashes.add(hash)
+      const excelBinData = excelBin.get()
+      if (excelBinData && typeof excelBinData === 'object') {
+        Object.values(excelBinData).forEach((obj) => {
+          if (obj && typeof obj === 'object') {
+            Object.values(obj).forEach((value) => {
+              const obj = value as JsonObject
+              Object.keys(obj).forEach((key) => {
+                if (/TextMapHash/g.exec(key)) {
+                  const hash = obj[key] as number
+                  this.textHashes.add(hash)
+                }
+                if (key === 'paramDescList') {
+                  const hashes = obj[key] as number[]
+                  hashes.forEach((hash) => this.textHashes.add(hash))
+                }
+              })
+            })
+            Object.keys(obj).forEach((key) => {
+              if (/TextMapHash/g.exec(key)) {
+                const hash = (obj as JsonObject)[key] as number
+                this.textHashes.add(hash)
+              }
+              if (key === 'tips') {
+                const hashes = (obj as JsonObject)[key] as number[]
+                hashes.forEach((hash) => this.textHashes.add(hash))
+              }
+            })
           }
-          if (key === 'tips') {
-            const hashes = obj[key] as number[]
-            hashes.forEach((hash) => this.textHashes.add(hash))
-          }
         })
-      })
+      }
     })
   }
 

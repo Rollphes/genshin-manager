@@ -3,7 +3,6 @@ import { OutOfRangeError } from '@/errors/OutOfRangeError'
 import { ImageAssets } from '@/models/assets/ImageAssets'
 import { StatProperty } from '@/models/StatProperty'
 import { ArtifactType, FightPropType } from '@/types'
-import { JsonObject } from '@/utils/JsonParser'
 interface ArtifactAffixAppendProp {
   id: number
   type: FightPropType
@@ -246,7 +245,7 @@ export class Artifact {
     return Object.keys(result).map((key) => {
       return new StatProperty(
         key as FightPropType,
-        result[key as FightPropType]!,
+        result[key as FightPropType] ?? 0,
       )
     })
   }

@@ -5,18 +5,7 @@ import { CharacterSkill } from '@/models/character/CharacterSkill'
 import { CharacterSkillAscension } from '@/models/character/CharacterSkillAscension'
 import { Weapon } from '@/models/weapon/Weapon'
 import { WeaponAscension } from '@/models/weapon/WeaponAscension'
-
-/**
- * Dungeon entry config data type
- */
-interface DungeonEntryExcelConfigData {
-  // TODO: temporary type
-  [key: string]: unknown
-  dungeonEntryId: number
-  type: string
-  descriptionCycleRewardList: number[][]
-  descTextMapHash: number
-}
+import { JsonArray } from '@/utils/JsonParser'
 
 /**
  * Domain data
@@ -92,7 +81,7 @@ export class DailyFarming {
     const rewardDateIndex = dayOfWeek === 0 ? 3 : (dayOfWeek - 1) % 3
     const dungeons = Object.values(
       Client._getCachedExcelBinOutputByName('DungeonEntryExcelConfigData'),
-    ) as DungeonEntryExcelConfigData[]
+    )
     const skillDomains = dungeons.filter(
       (d) => d.type === 'DUNGEN_ENTRY_TYPE_AVATAR_TALENT',
     )
@@ -102,10 +91,10 @@ export class DailyFarming {
 
     for (let i = 0; i < (dayOfWeek === 0 ? 3 : 1); i++) {
       ;[...weaponDomains, ...skillDomains].forEach((domain) => {
+        const descriptionCycleRewardList =
+          domain.descriptionCycleRewardList as JsonArray
         const materialIds =
-          domain.descriptionCycleRewardList[
-            dayOfWeek === 0 ? i : rewardDateIndex
-          ]
+          descriptionCycleRewardList[dayOfWeek === 0 ? i : rewardDateIndex]
 
         const nameTextId = Object.keys(
           DailyFarming.replaceTextMapIdMap,
