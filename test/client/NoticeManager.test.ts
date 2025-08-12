@@ -41,6 +41,10 @@ describe('NoticeManager Basic Functionality', () => {
   let mockFetch: MockedFunction<typeof fetch>
 
   beforeAll(async () => {
+    // Client deployment is already handled in test/setup.ts
+    // GitLab mock server is also set up there using cached data
+
+    // Deploy Client using the GitLab mock server
     const client = new Client({
       defaultLanguage: 'EN',
       downloadLanguages: ['EN'],

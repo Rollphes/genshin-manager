@@ -26,7 +26,10 @@ describe('EnkaManager Basic Functionality', () => {
   let mockFetch: MockedFunction<typeof fetch>
 
   beforeAll(async () => {
-    // Use real fetch for Client deployment
+    // Client deployment is already handled in test/setup.ts
+    // GitLab mock server is also set up there using cached data
+
+    // Deploy Client using the GitLab mock server
     const client = new Client({
       defaultLanguage: 'EN',
       downloadLanguages: ['EN'],
@@ -36,7 +39,7 @@ describe('EnkaManager Basic Functionality', () => {
 
   beforeEach(() => {
     vi.clearAllMocks()
-    // Mock fetch for EnkaManager API calls
+    // Mock fetch for EnkaManager API calls only
     global.fetch = vi.fn()
     mockFetch = fetch as MockedFunction<typeof fetch>
     enkaManager = new EnkaManager()
