@@ -12,7 +12,9 @@ export class OutOfRangeError extends Error {
    * @param max Maximum value
    */
   constructor(message: string, inputValue: number, min: number, max: number) {
-    super(`${message}: ${inputValue} is out of range [${min} ~ ${max}]`)
+    super(
+      `${message}: ${String(inputValue)} is out of range [${String(min)} ~ ${String(max)}]`,
+    )
     this.name = 'OutOfRangeError'
   }
 }

@@ -86,7 +86,7 @@ export class EnkaManager extends PromiseEventEmitter<
    */
   private static readonly defaultFetchOption: RequestInit = {
     headers: {
-      'user-agent': `genshin-manager/${process.env.npm_package_version}`,
+      'user-agent': `genshin-manager/${process.env.npm_package_version ?? 'unknown'}`,
     },
   }
 
@@ -109,7 +109,7 @@ export class EnkaManager extends PromiseEventEmitter<
     uid: number,
     fetchOption?: RequestInit,
   ): Promise<EnkaData> {
-    const url = `${EnkaManager.ENKA_BASE_URL}/api/uid/${uid}`
+    const url = `${EnkaManager.ENKA_BASE_URL}/api/uid/${String(uid)}`
     return await this.fetchUID(uid, url, fetchOption)
   }
 
@@ -125,7 +125,7 @@ export class EnkaManager extends PromiseEventEmitter<
     uid: number,
     fetchOption?: RequestInit,
   ): Promise<PlayerDetail> {
-    const url = `${EnkaManager.ENKA_BASE_URL}/api/uid/${uid}/?info`
+    const url = `${EnkaManager.ENKA_BASE_URL}/api/uid/${String(uid)}/?info`
     return (await this.fetchUID(uid, url, fetchOption)).playerDetail
   }
 
@@ -257,8 +257,11 @@ export class EnkaManager extends PromiseEventEmitter<
     fetchOption?: RequestInit,
   ): Promise<EnkaData> {
     this.clearCacheOverNextShowCaseDate()
-    if (!/1?\d{9}/.test(String(uid)))
-      throw new EnkaManagerError(`The UID format is not correct(${uid})`)
+    if (!/1?\d{9}/.test(String(uid))) {
+      throw new EnkaManagerError(
+        `The UID format is not correct(${String(uid)})`,
+      )
+    }
     const cachedData = this.cache.get(uid)
     if (
       cachedData?.characterDetails &&
@@ -288,7 +291,7 @@ export class EnkaManager extends PromiseEventEmitter<
       nextShowCaseDate: new Date(
         new Date().getTime() + (result.ttl ?? 60) * 1000,
       ),
-      url: `${EnkaManager.ENKA_BASE_URL}/u/${uid}`,
+      url: `${EnkaManager.ENKA_BASE_URL}/u/${String(uid)}`,
     }
     this.cache.set(enkaData.uid, enkaData)
     this.emit(EnkaManagerEvents.GET_NEW_ENKA_DATA, enkaData)

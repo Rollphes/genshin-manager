@@ -90,9 +90,9 @@ export class CharacterSkill {
           const isPercent = replaceTag.includes('P')
           const paramValue = params[+paramId - 1]
 
-          if (isInt) return `${Math.floor(paramValue)}`
+          if (isInt) return String(Math.floor(paramValue))
           if (isPercent) return `${(paramValue * 100).toFixed(fixedIndex)}%`
-          return `${paramValue.toFixed(fixedIndex)}`
+          return paramValue.toFixed(fixedIndex)
         }),
       )
     })

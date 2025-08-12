@@ -7,6 +7,18 @@ import { Weapon } from '@/models/weapon/Weapon'
 import { WeaponAscension } from '@/models/weapon/WeaponAscension'
 
 /**
+ * Dungeon entry config data type
+ * TODO: temporary type
+ */
+interface DungeonEntryExcelConfigData {
+  [key: string]: unknown
+  dungeonEntryId: number
+  type: string
+  descriptionCycleRewardList: number[][]
+  descTextMapHash: number
+}
+
+/**
  * Domain data
  */
 export interface DomainData {
@@ -80,7 +92,7 @@ export class DailyFarming {
     const rewardDateIndex = dayOfWeek === 0 ? 3 : (dayOfWeek - 1) % 3
     const dungeons = Object.values(
       Client._getCachedExcelBinOutputByName('DungeonEntryExcelConfigData'),
-    )
+    ) as DungeonEntryExcelConfigData[]
     const skillDomains = dungeons.filter(
       (d) => d.type === 'DUNGEN_ENTRY_TYPE_AVATAR_TALENT',
     )
@@ -90,15 +102,16 @@ export class DailyFarming {
 
     for (let i = 0; i < (dayOfWeek === 0 ? 3 : 1); i++) {
       ;[...weaponDomains, ...skillDomains].forEach((domain) => {
-        const materialIds = (domain.descriptionCycleRewardList as number[][])[
-          dayOfWeek === 0 ? i : rewardDateIndex
-        ]
+        const materialIds =
+          domain.descriptionCycleRewardList[
+            dayOfWeek === 0 ? i : rewardDateIndex
+          ]
 
         const nameTextId = Object.keys(
           DailyFarming.replaceTextMapIdMap,
         ).includes(String(domain.dungeonEntryId))
-          ? DailyFarming.replaceTextMapIdMap[domain.dungeonEntryId as number]
-          : `UI_DUNGEON_ENTRY_${domain.dungeonEntryId as number}`
+          ? DailyFarming.replaceTextMapIdMap[domain.dungeonEntryId]
+          : `UI_DUNGEON_ENTRY_${String(domain.dungeonEntryId)}`
 
         const manualTextJson = Client._getJsonFromCachedExcelBinOutput(
           'ManualTextMapConfigData',
@@ -120,10 +133,10 @@ export class DailyFarming {
     }
 
     this.talentBookIds = skillDomains.flatMap(
-      (d) => (d.descriptionCycleRewardList as number[][])[rewardDateIndex],
+      (d) => d.descriptionCycleRewardList[rewardDateIndex],
     )
     this.weaponMaterialIds = weaponDomains.flatMap(
-      (d) => (d.descriptionCycleRewardList as number[][])[rewardDateIndex],
+      (d) => d.descriptionCycleRewardList[rewardDateIndex],
     )
   }
 

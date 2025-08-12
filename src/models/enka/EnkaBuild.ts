@@ -65,7 +65,7 @@ export class EnkaBuild {
     this.customArtURL = data.image ?? data.settings.artSource ?? undefined
     this.isAdaptiveColor = data.settings.adaptiveColor ?? false
     this.honkardWidth = data.settings.honkardWidth ?? 0
-    this.url = `${genshinAccountURL}/${this.characterDetail.id}/${this.id}`
+    this.url = `${genshinAccountURL}/${String(this.characterDetail.id)}/${String(this.id)}`
     this.data = data
   }
 }

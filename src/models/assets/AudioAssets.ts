@@ -79,7 +79,8 @@ export class AudioAssets {
       ) ?? AudioAssets.defaultAudioBaseURL
 
     const cvPath = cv === undefined ? '' : `/${cv}`
-    const characterIdPath = characterId === undefined ? '' : `/${characterId}`
+    const characterIdPath =
+      characterId === undefined ? '' : `/${String(characterId)}`
 
     this.url =
       name === ''
@@ -114,7 +115,7 @@ export class AudioAssets {
 
     const cvPaths: string[] = []
     if (this.cv !== undefined) cvPaths.push(this.cv)
-    if (this.characterId !== undefined) cvPaths.push(`${this.characterId}`)
+    if (this.characterId !== undefined) cvPaths.push(String(this.characterId))
     const audioCachePath = path.resolve(
       AudioAssets.audioFolderPath,
       ...cvPaths,
@@ -148,7 +149,7 @@ export class AudioAssets {
 
     const cvPaths: string[] = []
     if (this.cv !== undefined) cvPaths.push(this.cv)
-    if (this.characterId !== undefined) cvPaths.push(`${this.characterId}`)
+    if (this.characterId !== undefined) cvPaths.push(String(this.characterId))
     const audioCachePath = path.resolve(
       AudioAssets.audioFolderPath,
       ...cvPaths,
