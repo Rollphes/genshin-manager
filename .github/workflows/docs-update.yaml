@@ -62,11 +62,13 @@ jobs:
         echo "commit-sha=$commit_sha" >> $GITHUB_OUTPUT
 
         # Try to get GitHub username from commit
-        github_user=$(gh api "repos/${{ github.repository }}/commits/$commit_sha" --jq '.author.login' 2>/dev/null || echo "")
-        if [ -n "$github_user" ]; then
+        github_user=$(gh api "repos/${{ github.repository }}/commits/$commit_sha" --jq '.author.login // empty' 2>/dev/null || echo "")
+        if [ -n "$github_user" ] && [ "$github_user" != "null" ]; then
           echo "github-user=$github_user" >> $GITHUB_OUTPUT
+          echo "📝 Found GitHub user: $github_user"
         else
           echo "github-user=" >> $GITHUB_OUTPUT
+          echo "📝 GitHub user not found for commit author: $author (email: $author_email)"
         fi
       env:
         GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
