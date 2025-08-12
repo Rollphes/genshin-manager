@@ -40,21 +40,21 @@ export class CharacterStory {
       fetterId,
     )
     this.characterId = fetterStoryJson.avatarId as number
+    const storyTitleTextMapHash =
+      fetterStoryJson.storyTitleTextMapHash as number
+    const storyTitle2TextMapHash =
+      fetterStoryJson.storyTitle2TextMapHash as number
+    const storyContextTextMapHash =
+      fetterStoryJson.storyContextTextMapHash as number
+    const storyContext2TextMapHash =
+      fetterStoryJson.storyContext2TextMapHash as number
     this.title =
-      Client._cachedTextMap.get(
-        String(fetterStoryJson.storyTitleTextMapHash),
-      ) ??
-      Client._cachedTextMap.get(
-        String(fetterStoryJson.storyTitle2TextMapHash),
-      ) ??
+      Client._cachedTextMap.get(String(storyTitleTextMapHash)) ??
+      Client._cachedTextMap.get(String(storyTitle2TextMapHash)) ??
       ''
     this.content =
-      Client._cachedTextMap.get(
-        String(fetterStoryJson.storyContextTextMapHash),
-      ) ??
-      Client._cachedTextMap.get(
-        String(fetterStoryJson.storyContext2TextMapHash),
-      ) ??
+      Client._cachedTextMap.get(String(storyContextTextMapHash)) ??
+      Client._cachedTextMap.get(String(storyContext2TextMapHash)) ??
       ''
     this.tips = (fetterStoryJson.tips as number[])
       .map((tip) => Client._cachedTextMap.get(String(tip)))

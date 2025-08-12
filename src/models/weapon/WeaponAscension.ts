@@ -51,7 +51,7 @@ export class WeaponAscension {
    * @param weaponId Weapon ID
    * @param promoteLevel Weapon promote level (0-6). Default: 0
    */
-  constructor(weaponId: number, promoteLevel: number = 0) {
+  constructor(weaponId: number, promoteLevel = 0) {
     this.id = weaponId
     this.promoteLevel = promoteLevel
     const maxPromoteLevel = WeaponAscension.getMaxPromoteLevelByWeaponId(
@@ -74,15 +74,15 @@ export class WeaponAscension {
       weaponJson.weaponPromoteId as number,
     )[this.promoteLevel] as JsonObject
     this.costItems = (weaponPromoteJson.costItems as JsonObject[])
+      .filter(
+        (costItem) => costItem.id !== undefined && costItem.count !== undefined,
+      )
       .map((costItem) => {
         return {
           id: costItem.id as number,
           count: costItem.count as number,
         }
       })
-      .filter(
-        (costItem) => costItem.id !== undefined && costItem.count !== undefined,
-      )
     this.costMora = (weaponPromoteJson.coinCost as number | undefined) ?? 0
     this.addProps = (weaponPromoteJson.addProps as JsonObject[])
       .filter(

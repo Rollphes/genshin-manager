@@ -109,8 +109,8 @@ export class CharacterInfo {
         )
       : undefined
 
-    this.name =
-      Client._cachedTextMap.get(String(avatarJson.nameTextMapHash)) ?? ''
+    const nameTextMapHash = avatarJson.nameTextMapHash as number
+    this.name = Client._cachedTextMap.get(String(nameTextMapHash)) ?? ''
 
     this.element = skillJson
       ? ElementKeys[skillJson.costElemType as keyof typeof ElementKeys]

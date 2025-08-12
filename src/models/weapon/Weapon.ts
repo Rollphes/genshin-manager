@@ -94,9 +94,9 @@ export class Weapon {
    */
   constructor(
     weaponId: number,
-    level: number = 1,
-    isAscended: boolean = true,
-    refinementRank: number = 1,
+    level = 1,
+    isAscended = true,
+    refinementRank = 1,
   ) {
     this.id = weaponId
     this.level = level
@@ -133,10 +133,10 @@ export class Weapon {
     this.skillName = refinement.skillName
     this.skillDescription = refinement.skillDescription
 
-    this.name =
-      Client._cachedTextMap.get(String(weaponJson.nameTextMapHash)) ?? ''
-    this.description =
-      Client._cachedTextMap.get(String(weaponJson.descTextMapHash)) ?? ''
+    const nameTextMapHash = weaponJson.nameTextMapHash as number
+    const descTextMapHash = weaponJson.descTextMapHash as number
+    this.name = Client._cachedTextMap.get(String(nameTextMapHash)) ?? ''
+    this.description = Client._cachedTextMap.get(String(descTextMapHash)) ?? ''
     this.type = weaponJson.weaponType as WeaponType
 
     this.rarity = weaponJson.rankLevel as number
@@ -194,7 +194,7 @@ export class Weapon {
    */
   private getStatPropertyByJson(
     weaponPropJson: JsonObject,
-    addValue: number = 0,
+    addValue = 0,
   ): StatProperty {
     const curveValue = Client._getJsonFromCachedExcelBinOutput(
       'WeaponCurveExcelConfigData',

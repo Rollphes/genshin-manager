@@ -45,10 +45,10 @@ export class CharacterInherentSkill {
       'ProudSkillExcelConfigData',
       proudSkillGroupId,
     )[1] as JsonObject
-    this.name =
-      Client._cachedTextMap.get(String(proudSkillJson.nameTextMapHash)) ?? ''
-    this.description =
-      Client._cachedTextMap.get(String(proudSkillJson.descTextMapHash)) ?? ''
+    const nameTextMapHash = proudSkillJson.nameTextMapHash as number
+    const descTextMapHash = proudSkillJson.descTextMapHash as number
+    this.name = Client._cachedTextMap.get(String(nameTextMapHash)) ?? ''
+    this.description = Client._cachedTextMap.get(String(descTextMapHash)) ?? ''
     this.icon = new ImageAssets(proudSkillJson.icon as string)
     this.addProps = (proudSkillJson.addProps as JsonObject[])
       .map((addProp) =>

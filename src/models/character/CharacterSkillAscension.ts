@@ -47,7 +47,7 @@ export class CharacterSkillAscension {
    * @param skillId Skill ID
    * @param level skill level (1-15). Default: 1
    */
-  constructor(skillId: number, level: number = 1) {
+  constructor(skillId: number, level = 1) {
     this.id = skillId
     this.level = level
     if (this.level < 1 || this.level > 15)
@@ -68,15 +68,15 @@ export class CharacterSkillAscension {
       proudSkillGroupId,
     )[this.level] as JsonObject
     this.costItems = (proudSkillJson.costItems as JsonObject[])
+      .filter(
+        (costItem) => costItem.id !== undefined && costItem.count !== undefined,
+      )
       .map((costItem) => {
         return {
           id: costItem.id as number,
           count: costItem.count as number,
         }
       })
-      .filter(
-        (costItem) => costItem.id !== undefined && costItem.count !== undefined,
-      )
     this.costMora = (proudSkillJson.coinCost as number | undefined) ?? 0
     this.addProps = (proudSkillJson.addProps as JsonObject[])
       .filter(

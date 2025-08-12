@@ -118,10 +118,10 @@ export class Artifact {
       this.id,
     )
     this.type = artifactJson.equipType as ArtifactType
-    this.name =
-      Client._cachedTextMap.get(String(artifactJson.nameTextMapHash)) ?? ''
-    this.description =
-      Client._cachedTextMap.get(String(artifactJson.descTextMapHash)) ?? ''
+    const nameTextMapHash = artifactJson.nameTextMapHash as number
+    const descTextMapHash = artifactJson.descTextMapHash as number
+    this.name = Client._cachedTextMap.get(String(nameTextMapHash)) ?? ''
+    this.description = Client._cachedTextMap.get(String(descTextMapHash)) ?? ''
     this.rarity = artifactJson.rankLevel as number
     this.setId = artifactJson.setId as number | undefined
     const maxLevel = Artifact.maxLevelMap[this.rarity]
@@ -138,34 +138,34 @@ export class Artifact {
         equipAffixId,
       )
 
-      this.setName = Client._cachedTextMap.get(
-        String(equipAffixJson.nameTextMapHash),
-      )
+      const nameTextMapHash = equipAffixJson.nameTextMapHash as number
+      this.setName = Client._cachedTextMap.get(String(nameTextMapHash))
 
       if (Artifact.oneSetBonusIds.includes(this.setId)) {
-        this.setDescriptions[1] = equipAffixJson
-          ? Client._cachedTextMap.get(String(equipAffixJson.descTextMapHash))
-          : undefined
+        const descTextMapHash = equipAffixJson.descTextMapHash as number
+        this.setDescriptions[1] = Client._cachedTextMap.get(
+          String(descTextMapHash),
+        )
       } else {
         const equipAffixJsonBy2pc = Client._getJsonFromCachedExcelBinOutput(
           'EquipAffixExcelConfigData',
           equipAffixId,
         )
-        this.setDescriptions[2] = equipAffixJsonBy2pc
-          ? Client._cachedTextMap.get(
-              String(equipAffixJsonBy2pc.descTextMapHash),
-            )
-          : undefined
+        const descTextMapHashFor2pc =
+          equipAffixJsonBy2pc.descTextMapHash as number
+        this.setDescriptions[2] = Client._cachedTextMap.get(
+          String(descTextMapHashFor2pc),
+        )
 
         const equipAffixJsonBy4pc = Client._getJsonFromCachedExcelBinOutput(
           'EquipAffixExcelConfigData',
           equipAffixId + 1,
         )
-        this.setDescriptions[4] = equipAffixJsonBy4pc
-          ? Client._cachedTextMap.get(
-              String(equipAffixJsonBy4pc.descTextMapHash),
-            )
-          : undefined
+        const descTextMapHashFor4pc =
+          equipAffixJsonBy4pc.descTextMapHash as number
+        this.setDescriptions[4] = Client._cachedTextMap.get(
+          String(descTextMapHashFor4pc),
+        )
       }
     }
     const artifactMainJson = Client._getJsonFromCachedExcelBinOutput(

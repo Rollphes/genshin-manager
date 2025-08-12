@@ -68,14 +68,12 @@ export class CharacterVoice {
     this.showCostumeIds = fetterVoiceJson.showCostumeIds as number[]
     this.characterId = fetterVoiceJson.avatarId as number
     this.type = fetterVoiceJson.type as number
-    this.title =
-      Client._cachedTextMap.get(
-        String(fetterVoiceJson.voiceTitleTextMapHash),
-      ) ?? ''
-    this.content =
-      Client._cachedTextMap.get(
-        String(fetterVoiceJson.voiceFileTextTextMapHash),
-      ) ?? ''
+    const voiceTitleTextMapHash =
+      fetterVoiceJson.voiceTitleTextMapHash as number
+    const voiceFileTextMapHash = fetterVoiceJson.voiceFileTextMapHash as number
+
+    this.title = Client._cachedTextMap.get(String(voiceTitleTextMapHash)) ?? ''
+    this.content = Client._cachedTextMap.get(String(voiceFileTextMapHash)) ?? ''
     this.tips = (fetterVoiceJson.tips as number[])
       .map((tip) => Client._cachedTextMap.get(String(tip)))
       .filter((tip): tip is string => tip !== undefined)

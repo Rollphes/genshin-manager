@@ -66,51 +66,45 @@ export class CharacterProfile {
     this.birthDate = birthMonth
       ? new Date(0, birthMonth - 1, birthDay)
       : undefined
+    const avatarNativeTextMapHash =
+      fetterInfoJson.avatarNativeTextMapHash as number
+    const avatarVisionAfterTextMapHash =
+      fetterInfoJson.avatarVisionAfterTextMapHash as number
+    const avatarVisionBeforeTextMapHash =
+      fetterInfoJson.avatarVisionBeforTextMapHash as number
     this.native =
-      Client._cachedTextMap.get(
-        String(fetterInfoJson.avatarNativeTextMapHash),
-      ) ?? ''
+      Client._cachedTextMap.get(String(avatarNativeTextMapHash)) ?? ''
     this.vision =
-      Client._cachedTextMap.get(
-        String(fetterInfoJson.avatarVisionAfterTextMapHash),
-      ) ??
-      Client._cachedTextMap.get(
-        String(fetterInfoJson.avatarVisionBeforTextMapHash),
-      ) ??
+      Client._cachedTextMap.get(String(avatarVisionAfterTextMapHash)) ??
+      Client._cachedTextMap.get(String(avatarVisionBeforeTextMapHash)) ??
       ''
+    const avatarConstellationAfterTextMapHash =
+      fetterInfoJson.avatarConstellationAfterTextMapHash as number
+    const avatarConstellationBeforeTextMapHash =
+      fetterInfoJson.avatarConstellationBeforTextMapHash as number
     this.constellation =
-      Client._cachedTextMap.get(
-        String(fetterInfoJson.avatarConstellationAfterTextMapHash),
-      ) ??
-      Client._cachedTextMap.get(
-        String(fetterInfoJson.avatarConstellationBeforTextMapHash),
-      ) ??
+      Client._cachedTextMap.get(String(avatarConstellationAfterTextMapHash)) ??
+      Client._cachedTextMap.get(String(avatarConstellationBeforeTextMapHash)) ??
       ''
-    this.title =
-      Client._cachedTextMap.get(
-        String(fetterInfoJson.avatarTitleTextMapHash),
-      ) ?? ''
+
+    const avatarTitleTextMapHash =
+      fetterInfoJson.avatarTitleTextMapHash as number
+    const avatarDetailTextMapHash =
+      fetterInfoJson.avatarDetailTextMapHash as number
+    this.title = Client._cachedTextMap.get(String(avatarTitleTextMapHash)) ?? ''
     this.detail =
-      Client._cachedTextMap.get(
-        String(fetterInfoJson.avatarDetailTextMapHash),
-      ) ?? ''
+      Client._cachedTextMap.get(String(avatarDetailTextMapHash)) ?? ''
     this.assocType = fetterInfoJson.avatarAssocType as AssocType
+
+    const cvChineseTextMapHash = fetterInfoJson.cvChineseTextMapHash as number
+    const cvJapaneseTextMapHash = fetterInfoJson.cvJapaneseTextMapHash as number
+    const cvEnglishTextMapHash = fetterInfoJson.cvEnglishTextMapHash as number
+    const cvKoreanTextMapHash = fetterInfoJson.cvKoreanTextMapHash as number
     this.cv = {
-      CHS:
-        Client._cachedTextMap.get(
-          String(fetterInfoJson.cvChineseTextMapHash),
-        ) ?? '',
-      JP:
-        Client._cachedTextMap.get(
-          String(fetterInfoJson.cvJapaneseTextMapHash),
-        ) ?? '',
-      EN:
-        Client._cachedTextMap.get(
-          String(fetterInfoJson.cvEnglishTextMapHash),
-        ) ?? '',
-      KR:
-        Client._cachedTextMap.get(String(fetterInfoJson.cvKoreanTextMapHash)) ??
-        '',
+      CHS: Client._cachedTextMap.get(String(cvChineseTextMapHash)) ?? '',
+      JP: Client._cachedTextMap.get(String(cvJapaneseTextMapHash)) ?? '',
+      EN: Client._cachedTextMap.get(String(cvEnglishTextMapHash)) ?? '',
+      KR: Client._cachedTextMap.get(String(cvKoreanTextMapHash)) ?? '',
     }
   }
 

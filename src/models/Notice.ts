@@ -138,7 +138,7 @@ export class Notice {
 
     if (
       timeStrings &&
-      timeStrings?.length >= 2 &&
+      timeStrings.length >= 2 &&
       !(this.tag === 3 && !this.$(this.durationTitleElement).next().is('p'))
     ) {
       timeStrings.sort((a, b) => new Date(a).getTime() - new Date(b).getTime())

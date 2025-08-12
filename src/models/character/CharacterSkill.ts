@@ -48,16 +48,16 @@ export class CharacterSkill {
    * @param level Skill level (1-15). Default: 1
    * @param extraLevel Levels increased by constellation (0 or 3). Default: 0
    */
-  constructor(skillId: number, level: number = 1, extraLevel: number = 0) {
+  constructor(skillId: number, level = 1, extraLevel = 0) {
     this.id = skillId
     const skillJson = Client._getJsonFromCachedExcelBinOutput(
       'AvatarSkillExcelConfigData',
       this.id,
     )
-    this.name =
-      Client._cachedTextMap.get(String(skillJson.nameTextMapHash)) ?? ''
-    this.description =
-      Client._cachedTextMap.get(String(skillJson.descTextMapHash)) ?? ''
+    const nameTextMapHash = skillJson.nameTextMapHash as number
+    const descTextMapHash = skillJson.descTextMapHash as number
+    this.name = Client._cachedTextMap.get(String(nameTextMapHash)) ?? ''
+    this.description = Client._cachedTextMap.get(String(descTextMapHash)) ?? ''
     this.icon = new ImageAssets(skillJson.skillIcon as string)
     this.extraLevel = extraLevel
     this.level = level + this.extraLevel
