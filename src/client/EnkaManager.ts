@@ -95,7 +95,7 @@ export class EnkaManager extends PromiseEventEmitter<
    * @key UID
    * @value Cached EnkaData
    */
-  private readonly cache: Map<number, EnkaData> = new Map()
+  private readonly cache = new Map<number, EnkaData>()
 
   /**
    * Create a EnkaManager
@@ -188,7 +188,10 @@ export class EnkaManager extends PromiseEventEmitter<
     )
     const gameAccountsRes = await fetch(getGameAccountsURL, mergedFetchOption)
     if (!gameAccountsRes.ok) throw new EnkaNetworkError(gameAccountsRes)
-    const gameAccounts = (await gameAccountsRes.json()) as Record<string, APIGameAccount>
+    const gameAccounts = (await gameAccountsRes.json()) as Record<
+      string,
+      APIGameAccount
+    >
     return await Promise.all(
       Object.values(gameAccounts)
         .sort((a, b) => a.order - b.order)
@@ -213,7 +216,9 @@ export class EnkaManager extends PromiseEventEmitter<
    * @param fetchOption Fetch option
    * @returns Status from 1 hour ago to now
    */
-  public async fetchAllStatus(fetchOption?: RequestInit): Promise<Record<string, APIEnkaStatus>> {
+  public async fetchAllStatus(
+    fetchOption?: RequestInit,
+  ): Promise<Record<string, APIEnkaStatus>> {
     const getStatusURL = `${EnkaManager.ENKA_STATUS_BASE_URL}/api/status`
     const mergedFetchOption = merge.withOptions(
       { mergeArrays: false },
@@ -263,8 +268,7 @@ export class EnkaManager extends PromiseEventEmitter<
       throw new EnkaManagerError(`The UID format is not correct(${uid})`)
     const cachedData = this.cache.get(uid)
     if (
-      cachedData &&
-      cachedData.characterDetails &&
+      cachedData?.characterDetails &&
       new Date().getTime() < cachedData.nextShowCaseDate.getTime()
     )
       return cachedData
