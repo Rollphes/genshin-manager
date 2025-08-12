@@ -1,6 +1,0 @@
-/examples/*.js
-/scripts/**/*.js
-/docs/
-/dist/
-/src/test/
-commitlint.config.js
