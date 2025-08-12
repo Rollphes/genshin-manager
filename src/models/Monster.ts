@@ -62,6 +62,7 @@ export class Monster {
    * @param level monsterLevel (1-100). Default: 1
    * @param playerCount Number of players (1-4). Default: 1
    */
+  // eslint-disable-next-line complexity
   constructor(monsterId: number, level = 1, playerCount = 1) {
     this.id = monsterId
     this.level = level

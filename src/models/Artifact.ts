@@ -3,6 +3,7 @@ import { OutOfRangeError } from '@/errors/OutOfRangeError'
 import { ImageAssets } from '@/models/assets/ImageAssets'
 import { StatProperty } from '@/models/StatProperty'
 import { ArtifactType, FightPropType } from '@/types'
+import { JsonObject } from '@/utils/JsonParser'
 interface ArtifactAffixAppendProp {
   id: number
   type: FightPropType
@@ -172,10 +173,12 @@ export class Artifact {
       'ReliquaryMainPropExcelConfigData',
       mainPropId,
     )
-    const mainValue = Client._getJsonFromCachedExcelBinOutput(
+    const reliquaryLevelJson = Client._getJsonFromCachedExcelBinOutput(
       'ReliquaryLevelExcelConfigData',
       artifactMainJson.propType as string,
-    )[this.rarity][this.level] as number
+    )
+    const realityJson = reliquaryLevelJson[this.rarity] as JsonObject
+    const mainValue = realityJson[this.level] as number
     this.mainStat = new StatProperty(
       artifactMainJson.propType as FightPropType,
       mainValue,

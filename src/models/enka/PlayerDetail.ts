@@ -83,6 +83,7 @@ export class PlayerDetail {
    * Create a PlayerDetail
    * @param data Data from EnkaNetwork
    */
+  // eslint-disable-next-line complexity
   constructor(data: APIPlayerInfo) {
     this.nickname = data.nickname ?? ''
     this.level = data.level

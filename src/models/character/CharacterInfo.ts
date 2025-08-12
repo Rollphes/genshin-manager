@@ -86,6 +86,11 @@ export class CharacterInfo {
     const defaultCostumeData = costumeDatas.find(
       (k) => k.characterId === this.id && k.quality === 0,
     )
+    if (!defaultCostumeData) {
+      throw new Error(
+        `Default costume not found for character ${String(this.id)}`,
+      )
+    }
     this.defaultCostumeId = defaultCostumeData.skinId as number
 
     const avatarJson = Client._getJsonFromCachedExcelBinOutput(
@@ -130,7 +135,7 @@ export class CharacterInfo {
       const proudSkillJson = Client._getJsonFromCachedExcelBinOutput(
         'ProudSkillExcelConfigData',
         k.proudSkillGroupId as number,
-      )[1]
+      )[1] as JsonObject | undefined
       if (!proudSkillJson) return
       if (proudSkillJson.isHideLifeProudSkill) return
       this.inherentSkillOrder.push(k.proudSkillGroupId as number)
