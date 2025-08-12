@@ -25,10 +25,11 @@ export class MockResponse implements Partial<Response> {
     } = {},
   ) {
     this.data = data
-    this.ok = options.ok ?? true
     this.status = options.status ?? 200
     this.statusText = options.statusText ?? 'OK'
     this.url = options.url ?? 'https://test.com'
+    // Set ok based on status code if not explicitly provided
+    this.ok = options.ok ?? (this.status >= 200 && this.status < 300)
   }
 
   /**
