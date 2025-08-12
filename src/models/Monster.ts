@@ -185,7 +185,7 @@ export class Monster {
       91220: 29122000,
     }
     return Object.keys(exceptionIds).includes(String(describeId))
-      ? exceptionIds[+describeId]
+      ? exceptionIds[describeId]
       : Number(`2${convertId}01`)
   }
 

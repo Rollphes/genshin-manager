@@ -110,7 +110,7 @@ export class PlayerDetail {
           10000005,
       )
     }
-    this.profilePicture = new ProfilePicture(profilePictureId || 1)
+    this.profilePicture = new ProfilePicture(profilePictureId ?? 1)
     this.maxFriendshipCharactersCount = data.fetterCount ?? 0
     this.theaterActIndex = data.theaterActIndex ?? 0
     this.theaterModeIndex = data.theaterModeIndex ?? 0

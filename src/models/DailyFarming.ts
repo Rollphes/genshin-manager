@@ -93,27 +93,29 @@ export class DailyFarming {
       ;[...weaponDomains, ...skillDomains].forEach((domain) => {
         const descriptionCycleRewardList =
           domain.descriptionCycleRewardList as JsonArray
-        const materialIds =
-          descriptionCycleRewardList[dayOfWeek === 0 ? i : rewardDateIndex]
+        const materialIds = descriptionCycleRewardList[
+          dayOfWeek === 0 ? i : rewardDateIndex
+        ] as number[]
+        const dungeonEntryId = domain.dungeonEntryId as number
 
         const nameTextId = Object.keys(
           DailyFarming.replaceTextMapIdMap,
-        ).includes(String(domain.dungeonEntryId))
-          ? DailyFarming.replaceTextMapIdMap[domain.dungeonEntryId]
-          : `UI_DUNGEON_ENTRY_${String(domain.dungeonEntryId)}`
+        ).includes(String(dungeonEntryId))
+          ? DailyFarming.replaceTextMapIdMap[dungeonEntryId]
+          : `UI_DUNGEON_ENTRY_${String(dungeonEntryId)}`
 
         const manualTextJson = Client._getJsonFromCachedExcelBinOutput(
           'ManualTextMapConfigData',
           nameTextId,
         )
+        const textMapContentTextMapHash =
+          manualTextJson.textMapContentTextMapHash as number
+        const descTextMapHash = manualTextJson.descTextMapHash as number
 
         this.domains.push({
           name:
-            Client._cachedTextMap.get(
-              String(manualTextJson.textMapContentTextMapHash),
-            ) ?? '',
-          description:
-            Client._cachedTextMap.get(String(domain.descTextMapHash)) ?? '',
+            Client._cachedTextMap.get(String(textMapContentTextMapHash)) ?? '',
+          description: Client._cachedTextMap.get(String(descTextMapHash)) ?? '',
           materialIds: materialIds,
           characterInfos: this.getCharacterInfoByMaterialIds(materialIds),
           weaponIds: this.getWeaponIdsByMaterialIds(materialIds),
@@ -121,12 +123,16 @@ export class DailyFarming {
       })
     }
 
-    this.talentBookIds = skillDomains.flatMap(
-      (d) => d.descriptionCycleRewardList[rewardDateIndex],
-    )
-    this.weaponMaterialIds = weaponDomains.flatMap(
-      (d) => d.descriptionCycleRewardList[rewardDateIndex],
-    )
+    this.talentBookIds = skillDomains.flatMap((d) => {
+      const descriptionCycleRewardList =
+        d.descriptionCycleRewardList as number[][]
+      return descriptionCycleRewardList[rewardDateIndex]
+    })
+    this.weaponMaterialIds = weaponDomains.flatMap((d) => {
+      const descriptionCycleRewardList =
+        d.descriptionCycleRewardList as number[][]
+      return descriptionCycleRewardList[rewardDateIndex]
+    })
   }
 
   private getCharacterInfoByMaterialIds(

@@ -226,7 +226,7 @@ export class Notice {
     return this.convertLocalDate(durationResult.trim())
   }
 
-  private get durationTitleElement(): cheerio.Element | undefined {
+  private get durationTitleElement(): Element | undefined {
     const durationTitleElementIndex = this._en$('p')
       .toArray()
       .findIndex((el) =>
