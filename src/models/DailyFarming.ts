@@ -8,9 +8,9 @@ import { WeaponAscension } from '@/models/weapon/WeaponAscension'
 
 /**
  * Dungeon entry config data type
- * TODO: temporary type
  */
 interface DungeonEntryExcelConfigData {
+  // TODO: temporary type
   [key: string]: unknown
   dungeonEntryId: number
   type: string

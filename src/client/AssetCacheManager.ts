@@ -47,7 +47,7 @@ export abstract class AssetCacheManager<
    * @key Text hash
    * @value Text
    */
-  public static readonly _cachedTextMap: Map<string, string> = new Map()
+  public static readonly _cachedTextMap = new Map<string, string>()
 
   /**
    * Asset event emitter
@@ -65,10 +65,10 @@ export abstract class AssetCacheManager<
    * @key ExcelBinOutput name
    * @value Cached excel bin output
    */
-  private static readonly cachedExcelBinOutput: Map<
+  private static readonly cachedExcelBinOutput = new Map<
     keyof typeof ExcelBinOutputs,
     JsonParser
-  > = new Map()
+  >()
 
   private static option: ClientOption
   private static nowCommitId: string
@@ -77,9 +77,8 @@ export abstract class AssetCacheManager<
   private static excelBinOutputFolderPath: string
   private static textMapFolderPath: string
 
-  private static textHashes: Set<number> = new Set()
-  private static useExcelBinOutputKeys: Set<keyof typeof ExcelBinOutputs> =
-    new Set()
+  private static textHashes = new Set<number>()
+  private static useExcelBinOutputKeys = new Set<keyof typeof ExcelBinOutputs>()
 
   /**
    * Create a AssetCacheManager
@@ -182,7 +181,7 @@ export abstract class AssetCacheManager<
     const excelBinOutput = this.cachedExcelBinOutput.get(key)
     if (!excelBinOutput) throw new AssetsNotFoundError(key)
 
-    const json = excelBinOutput.get(String(id)) as JsonObject | undefined
+    const json = excelBinOutput.get(String(id))
     if (!json) throw new AssetsNotFoundError(key, id)
 
     return json
@@ -229,7 +228,7 @@ export abstract class AssetCacheManager<
     const excelBinOutput = this.cachedExcelBinOutput.get(key)
     if (!excelBinOutput) return false
 
-    const json = excelBinOutput.get(String(id)) as JsonObject | undefined
+    const json = excelBinOutput.get(String(id))
     if (!json) return false
 
     return true
@@ -293,13 +292,15 @@ export abstract class AssetCacheManager<
       stream.on('data', (chunk) => (text += chunk as string))
       const setCachePromiseResult = await new Promise<void>(
         (resolve, reject) => {
-          stream.on('error', (error) => reject(error))
+          stream.on('error', (error) => {
+            reject(error)
+          })
           stream.on('end', () => {
             this.cachedExcelBinOutput.set(key, new JsonParser(text))
             resolve()
           })
         },
-      ).catch(async (error) => {
+      ).catch(async (error: unknown) => {
         if (error instanceof SyntaxError) {
           if (this.option.autoFixExcelBin) {
             if (this.option.showFetchCacheLog) {
@@ -365,7 +366,7 @@ export abstract class AssetCacheManager<
           }),
           new TextMapTransform(language, this.textHashes),
           eventEmitter,
-        ).catch(async (error) => {
+        ).catch(async (error: unknown) => {
           if (error instanceof TextMapFormatError) {
             if (this.option.autoFixTextMap) {
               if (this.option.showFetchCacheLog) {
@@ -384,7 +385,7 @@ export abstract class AssetCacheManager<
         return false
       }),
     )
-    return results.every((result) => result === true)
+    return results.every(Boolean)
   }
 
   /**
@@ -484,33 +485,31 @@ export abstract class AssetCacheManager<
   private static createTextHashes(): void {
     this.textHashes.clear()
     this.cachedExcelBinOutput.forEach((excelBin) => {
-      ;(Object.values(excelBin.get() as JsonObject) as JsonObject[]).forEach(
-        (obj) => {
-          Object.values(obj).forEach((value) => {
-            const obj = value as JsonObject
-            Object.keys(obj).forEach((key) => {
-              if (/TextMapHash/g.exec(key)) {
-                const hash = obj[key] as number
-                this.textHashes.add(hash)
-              }
-              if (key === 'paramDescList') {
-                const hashes = obj[key] as number[]
-                hashes.forEach((hash) => this.textHashes.add(hash))
-              }
-            })
-          })
+      Object.values(excelBin.get()).forEach((obj) => {
+        Object.values(obj).forEach((value) => {
+          const obj = value as JsonObject
           Object.keys(obj).forEach((key) => {
             if (/TextMapHash/g.exec(key)) {
               const hash = obj[key] as number
               this.textHashes.add(hash)
             }
-            if (key === 'tips') {
+            if (key === 'paramDescList') {
               const hashes = obj[key] as number[]
               hashes.forEach((hash) => this.textHashes.add(hash))
             }
           })
-        },
-      )
+        })
+        Object.keys(obj).forEach((key) => {
+          if (/TextMapHash/g.exec(key)) {
+            const hash = obj[key] as number
+            this.textHashes.add(hash)
+          }
+          if (key === 'tips') {
+            const hashes = obj[key] as number[]
+            hashes.forEach((hash) => this.textHashes.add(hash))
+          }
+        })
+      })
     })
   }
 

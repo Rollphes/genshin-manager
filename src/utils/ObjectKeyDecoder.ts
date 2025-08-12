@@ -42,13 +42,17 @@ export class ObjectKeyDecoder {
         (data) => data.id === 99999,
       )!
 
+      const dummyProfilePictureEntry = Object.entries(dummyProfilePicture).find(
+        ([, v]) => v === 'PROFILE_PICTURE_UNLOCK_BY_ITEM',
+      )
+      if (!dummyProfilePictureEntry) {
+        throw new Error(
+          'PROFILE_PICTURE_UNLOCK_BY_ITEM key not found in dummyProfilePicture',
+        )
+      }
+
       this.replaceDatas.push(
-        new ReplaceData(
-          Object.entries(dummyProfilePicture).find(
-            ([, v]) => v === 'PROFILE_PICTURE_UNLOCK_BY_ITEM',
-          )?.[0]!,
-          'type',
-        ),
+        new ReplaceData(dummyProfilePictureEntry[0], 'type'),
       )
     }
 
@@ -63,39 +67,43 @@ export class ObjectKeyDecoder {
           data.weaponPromoteId === 11101 && data.requiredPlayerLevel === 15,
       )!
 
-      this.replaceDatas.push(
-        new ReplaceData(
-          Object.entries(sampleWeaponPromoteData).find(
-            ([, v]) => v === 1,
-          )?.[0]!,
-          'promoteLevel',
-        ),
+      const promoteLevelEntry = Object.entries(sampleWeaponPromoteData).find(
+        ([, v]) => v === 1,
       )
+      if (!promoteLevelEntry)
+        throw new Error('promoteLevel key not found in sampleWeaponPromoteData')
 
       this.replaceDatas.push(
-        new ReplaceData(
-          Object.entries(sampleWeaponPromoteData).find(
-            ([, v]) => v === 40,
-          )?.[0]!,
-          'unlockMaxLevel',
-        ),
+        new ReplaceData(promoteLevelEntry[0], 'promoteLevel'),
       )
+
+      const unlockMaxLevelEntry = Object.entries(sampleWeaponPromoteData).find(
+        ([, v]) => v === 40,
+      )
+      if (!unlockMaxLevelEntry) {
+        throw new Error(
+          'unlockMaxLevel key not found in sampleWeaponPromoteData',
+        )
+      }
 
       this.replaceDatas.push(
-        new ReplaceData(
-          Object.entries(sampleWeaponPromoteData).find(
-            ([, v]) =>
-              Array.isArray(v) &&
-              v.some((item) => {
-                if (typeof item === 'object' && item !== null)
-                  return 'id' in item && 'count' in item
-
-                return false
-              }),
-          )?.[0]!,
-          'costItems',
-        ),
+        new ReplaceData(unlockMaxLevelEntry[0], 'unlockMaxLevel'),
       )
+
+      const costItemsEntry = Object.entries(sampleWeaponPromoteData).find(
+        ([, v]) =>
+          Array.isArray(v) &&
+          v.some((item) => {
+            if (typeof item === 'object' && item !== null)
+              return 'id' in item && 'count' in item
+
+            return false
+          }),
+      )
+      if (!costItemsEntry)
+        throw new Error('costItems key not found in sampleWeaponPromoteData')
+
+      this.replaceDatas.push(new ReplaceData(costItemsEntry[0], 'costItems'))
     }
 
     // Replace key of AvatarPromoteExcelConfigData (add promoteLevel & unlockMaxLevel & costItems)
@@ -108,39 +116,43 @@ export class ObjectKeyDecoder {
         (data) => data.avatarPromoteId === 2 && data.requiredPlayerLevel === 15,
       )!
 
-      this.replaceDatas.push(
-        new ReplaceData(
-          Object.entries(sampleAvatarPromoteData).find(
-            ([, v]) => v === 1,
-          )?.[0]!,
-          'promoteLevel',
-        ),
+      const promoteLevelEntry = Object.entries(sampleAvatarPromoteData).find(
+        ([, v]) => v === 1,
       )
+      if (!promoteLevelEntry)
+        throw new Error('promoteLevel key not found in sampleAvatarPromoteData')
 
       this.replaceDatas.push(
-        new ReplaceData(
-          Object.entries(sampleAvatarPromoteData).find(
-            ([, v]) => v === 40,
-          )?.[0]!,
-          'unlockMaxLevel',
-        ),
+        new ReplaceData(promoteLevelEntry[0], 'promoteLevel'),
       )
+
+      const sampleAvatarPromoteDataEntry = Object.entries(
+        sampleAvatarPromoteData,
+      ).find(([, v]) => v === 40)
+      if (!sampleAvatarPromoteDataEntry) {
+        throw new Error(
+          'unlockMaxLevel key not found in sampleAvatarPromoteData',
+        )
+      }
 
       this.replaceDatas.push(
-        new ReplaceData(
-          Object.entries(sampleAvatarPromoteData).find(
-            ([, v]) =>
-              Array.isArray(v) &&
-              v.some((item) => {
-                if (typeof item === 'object' && item !== null)
-                  return 'id' in item && 'count' in item
-
-                return false
-              }),
-          )?.[0]!,
-          'costItems',
-        ),
+        new ReplaceData(sampleAvatarPromoteDataEntry[0], 'unlockMaxLevel'),
       )
+
+      const costItemsEntry = Object.entries(sampleAvatarPromoteData).find(
+        ([, v]) =>
+          Array.isArray(v) &&
+          v.some((item) => {
+            if (typeof item === 'object' && item !== null)
+              return 'id' in item && 'count' in item
+
+            return false
+          }),
+      )
+      if (!costItemsEntry)
+        throw new Error('costItems key not found in sampleAvatarPromoteData')
+
+      this.replaceDatas.push(new ReplaceData(costItemsEntry[0], 'costItems'))
     }
 
     // Replace key of AvatarCurveExcelConfigData (add costItems)
@@ -151,21 +163,19 @@ export class ObjectKeyDecoder {
 
       const sampleProudSkillData = proudSkillDataArray[0]
 
-      this.replaceDatas.push(
-        new ReplaceData(
-          Object.entries(sampleProudSkillData).find(
-            ([, v]) =>
-              Array.isArray(v) &&
-              v.some((item) => {
-                if (typeof item === 'object' && item !== null)
-                  return 'id' in item && 'count' in item
+      const costItemsEntry = Object.entries(sampleProudSkillData).find(
+        ([, v]) =>
+          Array.isArray(v) &&
+          v.some((item) => {
+            if (typeof item === 'object' && item !== null)
+              return 'id' in item && 'count' in item
 
-                return false
-              }),
-          )?.[0]!,
-          'costItems',
-        ),
+            return false
+          }),
       )
+      if (costItemsEntry)
+        this.replaceDatas.push(new ReplaceData(costItemsEntry[0], 'costItems'))
+      else throw new Error('costItems key not found in sampleProudSkillData')
     }
   }
 
@@ -191,7 +201,7 @@ export class ObjectKeyDecoder {
   private decode(jsonData: JsonParser): JsonParser {
     const jsonArray = jsonData.get() as JsonArray
     jsonArray.forEach((v) => {
-      const obj = v as JsonObject
+      const obj = v
       this.replaceDatas.forEach((replaceData) => {
         if (obj[replaceData.oldKey] !== undefined)
           obj[replaceData.newKey] = obj[replaceData.oldKey]
@@ -214,7 +224,7 @@ export class ObjectKeyDecoder {
     const cacheObject: Record<string, JsonValue> = {}
     // eslint-disable-next-line complexity
     jsonArray.forEach((json) => {
-      const obj = json as JsonObject
+      const obj = json
       switch (filename) {
         case 'ManualTextMapConfigData':
           cacheObject[obj.textMapId as string] = Object.assign(obj, {
@@ -225,16 +235,16 @@ export class ObjectKeyDecoder {
         case 'WeaponCurveExcelConfigData':
           ;(obj.curveInfos as JsonArray).forEach((curve) => {
             const level = obj.level as number
-            const value = (curve as JsonObject).value
-            const type = (curve as JsonObject).type as string
+            const value = curve.value
+            const type = curve.type as string
             cacheObject[type] ??= {}
-            ;(cacheObject[type] as JsonObject)[level] = value
+            cacheObject[type][level] = value
           })
           break
         case 'WeaponPromoteExcelConfigData':
           if (!cacheObject[obj.weaponPromoteId as string])
             cacheObject[obj.weaponPromoteId as string] = {}
-          ;(cacheObject[obj.weaponPromoteId as string] as JsonObject)[
+          cacheObject[obj.weaponPromoteId as string][
             (obj.promoteLevel ?? 0) as string
           ] = obj
           break
@@ -243,12 +253,12 @@ export class ObjectKeyDecoder {
             if (!obj.rank) return
             const rank = obj.rank as number
             const level = (obj.level as number) - 1
-            const value = (prop as JsonObject).value
-            const type = (prop as JsonObject).propType as string
+            const value = prop.value
+            const type = prop.propType as string
             cacheObject[type] ??= {}
-            let cache = cacheObject[type] as JsonObject
+            let cache = cacheObject[type]
             cache[rank] ??= {}
-            cache = cache[rank] as JsonObject
+            cache = cache[rank]
             cache[level] = value
           })
           break
@@ -269,23 +279,23 @@ export class ObjectKeyDecoder {
         case 'AvatarCurveExcelConfigData':
           ;(obj.curveInfos as JsonArray).forEach((curve) => {
             const level = obj.level as number
-            const value = (curve as JsonObject).value ?? 0
-            const type = (curve as JsonObject).type as string
+            const value = curve.value ?? 0
+            const type = curve.type as string
             cacheObject[type] ??= {}
-            ;(cacheObject[type] as JsonObject)[level] = value
+            cacheObject[type][level] = value
           })
           break
         case 'AvatarPromoteExcelConfigData':
           if (!cacheObject[obj.avatarPromoteId as string])
             cacheObject[obj.avatarPromoteId as string] = {}
-          ;(cacheObject[obj.avatarPromoteId as string] as JsonObject)[
+          cacheObject[obj.avatarPromoteId as string][
             (obj.promoteLevel ?? 0) as string
           ] = obj
           break
         case 'ProudSkillExcelConfigData':
           if (!cacheObject[obj.proudSkillGroupId as string])
             cacheObject[obj.proudSkillGroupId as string] = {}
-          ;(cacheObject[obj.proudSkillGroupId as string] as JsonObject)[
+          cacheObject[obj.proudSkillGroupId as string][
             (obj.proudSkillId as number) % 100
           ] = obj
           break
@@ -320,10 +330,10 @@ export class ObjectKeyDecoder {
         case 'MonsterCurveExcelConfigData':
           ;(obj.curveInfos as JsonArray).forEach((curve) => {
             const level = obj.level as number
-            const value = (curve as JsonObject).value ?? 0
-            const type = (curve as JsonObject).type as string
+            const value = curve.value ?? 0
+            const type = curve.type as string
             cacheObject[type] ??= {}
-            ;(cacheObject[type] as JsonObject)[level] = value
+            cacheObject[type][level] = value
           })
           break
         case 'FetterStoryExcelConfigData':
