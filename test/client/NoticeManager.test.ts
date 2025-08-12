@@ -36,22 +36,9 @@ const supportedLanguages: (keyof typeof NoticeLanguage)[] = [
   'zh-cn',
 ]
 
-// Mock AssetCacheManager to avoid API calls during testing
-vi.mock('@/client/AssetCacheManager', async () => {
-  const mockModule = await import(
-    '@test/__mocks__/client/MockAssetCacheManager.js'
-  )
-  return {
-    AssetCacheManager: mockModule.AssetCacheManager,
-  }
-})
-
-// Mock fetch globally for NoticeManager tests
-global.fetch = vi.fn()
-const mockFetch = fetch as MockedFunction<typeof fetch>
-
 describe('NoticeManager Basic Functionality', () => {
   let noticeManager: NoticeManager
+  let mockFetch: MockedFunction<typeof fetch>
 
   beforeAll(async () => {
     const client = new Client({
@@ -63,6 +50,10 @@ describe('NoticeManager Basic Functionality', () => {
 
   beforeEach(() => {
     vi.clearAllMocks()
+    // Mock fetch globally for NoticeManager tests
+    global.fetch = vi.fn()
+    mockFetch = fetch as MockedFunction<typeof fetch>
+    noticeManager = new NoticeManager('en')
   })
 
   describe('Initialization Tests', () => {
