@@ -40,26 +40,6 @@ A comprehensive Node.js library for accessing Genshin Impact game data through E
 npm install genshin-manager
 ```
 
-### Installation Options
-
-#### Install with specific language
-
-```bash
-npm install genshin-manager --download-language="JP"
-```
-
-#### Install with all languages
-
-```bash
-npm install genshin-manager --download-language="ALL"
-```
-
-#### Install without cache (if you already have cache files)
-
-```bash
-npm install genshin-manager --nocache=true
-```
-
 ### Supported Languages
 
 `EN`, `RU`, `VI`, `TH`, `PT`, `KR`, `JP`, `ID`, `FR`, `ES`, `DE`, `CHT`, `CHS`
