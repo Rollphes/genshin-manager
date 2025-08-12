@@ -98,13 +98,6 @@ export class EnkaManager extends PromiseEventEmitter<
   private readonly cache = new Map<number, EnkaData>()
 
   /**
-   * Create a EnkaManager
-   */
-  constructor() {
-    super()
-  }
-
-  /**
    * Fetch All from enka.network
    * @description The data fetched by this method is stored as a temporary cache.
    *    The storage period depends on ttl.
