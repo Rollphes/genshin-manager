@@ -35,10 +35,10 @@ jobs:
           cache-dependency-path: ${{ env.WORKING_DIRECTORY }}/package-lock.json
 
       - name: Install dependencies
-        run: npm ci
+        run: npm i
 
       - name: Run Vitest with coverage
-        run: npx vitest run --coverage.enabled
+        run: npx vitest run --coverage
 
       - name: Verify test results
         run: |
@@ -56,4 +56,5 @@ jobs:
         if: success()
         with:
           token: ${{ secrets.CODECOV_TOKEN }}
+          slug: Rollphes/genshin-manager
           fail_ci_if_error: false
