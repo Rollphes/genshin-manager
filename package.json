@@ -31,7 +31,6 @@
     "test": "vitest",
     "test:watch": "vitest --watch",
     "coverage": "vitest run --coverage",
-    "release-test": "tsx scripts/test.ts",
     "createHandBook": "tsx scripts/createHandBook.ts"
   },
   "engines": {
