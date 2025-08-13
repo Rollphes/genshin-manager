@@ -26,7 +26,9 @@ jobs:
           registry-url: 'https://registry.npmjs.org'
 
       - name: Install dependencies
-        run: npm ci
+        run: |
+          rm -rf node_modules package-lock.json
+          npm install
 
       - name: Get package version
         id: package-version
@@ -62,12 +64,10 @@ jobs:
           result-encoding: string
 
       - name: Create GitHub Release
-        uses: actions/create-release@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        uses: ncipollo/release-action@v1
         with:
-          tag_name: ${{ steps.package-version.outputs.tag }}
-          release_name: ${{ steps.package-version.outputs.tag }}
+          tag: ${{ steps.package-version.outputs.tag }}
+          name: ${{ steps.package-version.outputs.tag }}
           body: |
             ${{ steps.generate-notes.outputs.result }}
 
@@ -77,3 +77,4 @@ jobs:
             **Documentation**: https://rollphes.github.io/genshin-manager/
           draft: true
           prerelease: false
+          token: ${{ secrets.GITHUB_TOKEN }}
