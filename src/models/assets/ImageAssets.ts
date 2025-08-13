@@ -116,10 +116,27 @@ export class ImageAssets {
       'UI_Gacha_AvatarImg_PlayerBoy.png',
       'UI_Gacha_AvatarImg_PlayerGirl.png',
     ].forEach((imgName) => {
-      fs.copyFileSync(
-        path.resolve(__dirname, '..', '..', '..', 'img', imgName),
-        path.resolve(option.assetCacheFolderPath, 'Images', imgName),
+      const sourcePath = path.resolve(
+        __dirname,
+        '..',
+        '..',
+        '..',
+        'img',
+        imgName,
       )
+      const destinationPath = path.resolve(
+        option.assetCacheFolderPath,
+        'Images',
+        imgName,
+      )
+
+      if (!fs.existsSync(destinationPath)) {
+        try {
+          fs.copyFileSync(sourcePath, destinationPath)
+        } catch (error) {
+          if (!fs.existsSync(destinationPath)) throw error
+        }
+      }
     })
   }
 
