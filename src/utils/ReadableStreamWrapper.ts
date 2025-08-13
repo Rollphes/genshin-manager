@@ -20,9 +20,9 @@ export class ReadableStreamWrapper extends Readable {
       .read()
       .then(({ done, value }) => {
         if (done) this.push(null)
-        else if (value) this.push(Buffer.from(value))
+        else this.push(Buffer.from(value))
       })
-      .catch((err) => {
+      .catch((err: unknown) => {
         this.emit('error', err)
       })
   }

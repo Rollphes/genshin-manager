@@ -19,7 +19,7 @@ export class TextMapEmptyWritable extends Writable {
   ): void {
     const combinedBuffer = Buffer.concat([this.buffer, chunk])
     const lineBuffers = this.splitBuffer(combinedBuffer, Buffer.from('\n'))
-    this.buffer = lineBuffers.pop() || Buffer.from('')
+    this.buffer = lineBuffers.pop() ?? Buffer.from('')
 
     if (lineBuffers.length === 0) {
       callback()

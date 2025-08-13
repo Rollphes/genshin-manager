@@ -1,4 +1,4 @@
-import { Client } from '@/client/Client'
+import { AssetCacheManager } from '@/client/AssetCacheManager'
 import { ExcelBinOutputs } from '@/types'
 import {
   JsonArray,
@@ -32,140 +32,177 @@ export class ObjectKeyDecoder {
   constructor() {
     // Replace key of ProfilePictureExcelConfigData (add infoId&type)
     if (
-      Client._hasCachedExcelBinOutputByName('ProfilePictureExcelConfigData')
+      AssetCacheManager._hasCachedExcelBinOutputByName(
+        'ProfilePictureExcelConfigData',
+      )
     ) {
       const profilePictureDataArray = Object.values(
-        Client._getCachedExcelBinOutputByName('ProfilePictureExcelConfigData'),
+        AssetCacheManager._getCachedExcelBinOutputByName(
+          'ProfilePictureExcelConfigData',
+        ),
       )
 
       const dummyProfilePicture = profilePictureDataArray.find(
         (data) => data.id === 99999,
-      ) as JsonObject
+      )
+      if (!dummyProfilePicture) throw new Error('dummyProfilePicture not found')
+
+      const dummyProfilePictureEntry = Object.entries(dummyProfilePicture).find(
+        ([, v]) => v === 'PROFILE_PICTURE_UNLOCK_BY_ITEM',
+      )
+      if (!dummyProfilePictureEntry) {
+        throw new Error(
+          'PROFILE_PICTURE_UNLOCK_BY_ITEM key not found in dummyProfilePicture',
+        )
+      }
 
       this.replaceDatas.push(
-        new ReplaceData(
-          Object.entries(dummyProfilePicture).find(
-            ([, v]) => v === 'PROFILE_PICTURE_UNLOCK_BY_ITEM',
-          )?.[0] as string,
-          'type',
-        ),
+        new ReplaceData(dummyProfilePictureEntry[0], 'type'),
       )
     }
 
     // Replace key of WeaponPromoteExcelConfigData (add promoteLevel & unlockMaxLevel & costItems)
-    if (Client._hasCachedExcelBinOutputByName('WeaponPromoteExcelConfigData')) {
+    if (
+      AssetCacheManager._hasCachedExcelBinOutputByName(
+        'WeaponPromoteExcelConfigData',
+      )
+    ) {
       const weaponPromoteDataArray = Object.values(
-        Client._getCachedExcelBinOutputByName('WeaponPromoteExcelConfigData'),
+        AssetCacheManager._getCachedExcelBinOutputByName(
+          'WeaponPromoteExcelConfigData',
+        ),
       )
 
       const sampleWeaponPromoteData = weaponPromoteDataArray.find(
         (data) =>
           data.weaponPromoteId === 11101 && data.requiredPlayerLevel === 15,
-      ) as JsonObject
+      )
+      if (!sampleWeaponPromoteData)
+        throw new Error('sampleWeaponPromoteData not found')
+
+      const promoteLevelEntry = Object.entries(sampleWeaponPromoteData).find(
+        ([, v]) => v === 1,
+      )
+      if (!promoteLevelEntry)
+        throw new Error('promoteLevel key not found in sampleWeaponPromoteData')
 
       this.replaceDatas.push(
-        new ReplaceData(
-          Object.entries(sampleWeaponPromoteData).find(
-            ([, v]) => v === 1,
-          )?.[0] as string,
-          'promoteLevel',
-        ),
+        new ReplaceData(promoteLevelEntry[0], 'promoteLevel'),
       )
+
+      const unlockMaxLevelEntry = Object.entries(sampleWeaponPromoteData).find(
+        ([, v]) => v === 40,
+      )
+      if (!unlockMaxLevelEntry) {
+        throw new Error(
+          'unlockMaxLevel key not found in sampleWeaponPromoteData',
+        )
+      }
 
       this.replaceDatas.push(
-        new ReplaceData(
-          Object.entries(sampleWeaponPromoteData).find(
-            ([, v]) => v === 40,
-          )?.[0] as string,
-          'unlockMaxLevel',
-        ),
+        new ReplaceData(unlockMaxLevelEntry[0], 'unlockMaxLevel'),
       )
 
-      this.replaceDatas.push(
-        new ReplaceData(
-          Object.entries(sampleWeaponPromoteData).find(
-            ([, v]) =>
-              Array.isArray(v) &&
-              v.some((item) => {
-                if (typeof item === 'object' && item !== null)
-                  return 'id' in item && 'count' in item
+      const costItemsEntry = Object.entries(sampleWeaponPromoteData).find(
+        ([, v]) =>
+          Array.isArray(v) &&
+          v.some((item) => {
+            if (typeof item === 'object' && item !== null)
+              return 'id' in item && 'count' in item
 
-                return false
-              }),
-          )?.[0] as string,
-          'costItems',
-        ),
+            return false
+          }),
       )
+      if (!costItemsEntry)
+        throw new Error('costItems key not found in sampleWeaponPromoteData')
+
+      this.replaceDatas.push(new ReplaceData(costItemsEntry[0], 'costItems'))
     }
 
     // Replace key of AvatarPromoteExcelConfigData (add promoteLevel & unlockMaxLevel & costItems)
-    if (Client._hasCachedExcelBinOutputByName('AvatarPromoteExcelConfigData')) {
+    if (
+      AssetCacheManager._hasCachedExcelBinOutputByName(
+        'AvatarPromoteExcelConfigData',
+      )
+    ) {
       const avatarPromoteDataArray = Object.values(
-        Client._getCachedExcelBinOutputByName('AvatarPromoteExcelConfigData'),
+        AssetCacheManager._getCachedExcelBinOutputByName(
+          'AvatarPromoteExcelConfigData',
+        ),
       )
 
       const sampleAvatarPromoteData = avatarPromoteDataArray.find(
         (data) => data.avatarPromoteId === 2 && data.requiredPlayerLevel === 15,
-      ) as JsonObject
+      )
+      if (!sampleAvatarPromoteData)
+        throw new Error('sampleAvatarPromoteData not found')
+
+      const promoteLevelEntry = Object.entries(sampleAvatarPromoteData).find(
+        ([, v]) => v === 1,
+      )
+      if (!promoteLevelEntry)
+        throw new Error('promoteLevel key not found in sampleAvatarPromoteData')
 
       this.replaceDatas.push(
-        new ReplaceData(
-          Object.entries(sampleAvatarPromoteData).find(
-            ([, v]) => v === 1,
-          )?.[0] as string,
-          'promoteLevel',
-        ),
+        new ReplaceData(promoteLevelEntry[0], 'promoteLevel'),
       )
+
+      const sampleAvatarPromoteDataEntry = Object.entries(
+        sampleAvatarPromoteData,
+      ).find(([, v]) => v === 40)
+      if (!sampleAvatarPromoteDataEntry) {
+        throw new Error(
+          'unlockMaxLevel key not found in sampleAvatarPromoteData',
+        )
+      }
 
       this.replaceDatas.push(
-        new ReplaceData(
-          Object.entries(sampleAvatarPromoteData).find(
-            ([, v]) => v === 40,
-          )?.[0] as string,
-          'unlockMaxLevel',
-        ),
+        new ReplaceData(sampleAvatarPromoteDataEntry[0], 'unlockMaxLevel'),
       )
 
-      this.replaceDatas.push(
-        new ReplaceData(
-          Object.entries(sampleAvatarPromoteData).find(
-            ([, v]) =>
-              Array.isArray(v) &&
-              v.some((item) => {
-                if (typeof item === 'object' && item !== null)
-                  return 'id' in item && 'count' in item
+      const costItemsEntry = Object.entries(sampleAvatarPromoteData).find(
+        ([, v]) =>
+          Array.isArray(v) &&
+          v.some((item) => {
+            if (typeof item === 'object' && item !== null)
+              return 'id' in item && 'count' in item
 
-                return false
-              }),
-          )?.[0] as string,
-          'costItems',
-        ),
+            return false
+          }),
       )
+      if (!costItemsEntry)
+        throw new Error('costItems key not found in sampleAvatarPromoteData')
+
+      this.replaceDatas.push(new ReplaceData(costItemsEntry[0], 'costItems'))
     }
 
     // Replace key of AvatarCurveExcelConfigData (add costItems)
-    if (Client._hasCachedExcelBinOutputByName('ProudSkillExcelConfigData')) {
+    if (
+      AssetCacheManager._hasCachedExcelBinOutputByName(
+        'ProudSkillExcelConfigData',
+      )
+    ) {
       const proudSkillDataArray = Object.values(
-        Client._getCachedExcelBinOutputByName('ProudSkillExcelConfigData'),
+        AssetCacheManager._getCachedExcelBinOutputByName(
+          'ProudSkillExcelConfigData',
+        ),
       )
 
       const sampleProudSkillData = proudSkillDataArray[0]
 
-      this.replaceDatas.push(
-        new ReplaceData(
-          Object.entries(sampleProudSkillData).find(
-            ([, v]) =>
-              Array.isArray(v) &&
-              v.some((item) => {
-                if (typeof item === 'object' && item !== null)
-                  return 'id' in item && 'count' in item
+      const costItemsEntry = Object.entries(sampleProudSkillData).find(
+        ([, v]) =>
+          Array.isArray(v) &&
+          v.some((item) => {
+            if (typeof item === 'object' && item !== null)
+              return 'id' in item && 'count' in item
 
-                return false
-              }),
-          )?.[0] as string,
-          'costItems',
-        ),
+            return false
+          }),
       )
+      if (costItemsEntry)
+        this.replaceDatas.push(new ReplaceData(costItemsEntry[0], 'costItems'))
+      else throw new Error('costItems key not found in sampleProudSkillData')
     }
   }
 
@@ -178,7 +215,7 @@ export class ObjectKeyDecoder {
   public execute(
     jsonData: JsonParser,
     filename: keyof typeof ExcelBinOutputs,
-  ): { [key in string]: JsonValue } {
+  ): Record<string, JsonValue> {
     this.decode(jsonData)
     return this.setKey(jsonData, filename)
   }
@@ -191,10 +228,9 @@ export class ObjectKeyDecoder {
   private decode(jsonData: JsonParser): JsonParser {
     const jsonArray = jsonData.get() as JsonArray
     jsonArray.forEach((v) => {
-      const obj = v as JsonObject
+      const json = v as JsonObject
       this.replaceDatas.forEach((replaceData) => {
-        if (obj[replaceData.oldKey] !== undefined)
-          obj[replaceData.newKey] = obj[replaceData.oldKey]
+        json[replaceData.newKey] = json[replaceData.oldKey]
       })
     })
     return jsonData
@@ -209,137 +245,153 @@ export class ObjectKeyDecoder {
   private setKey(
     jsonData: JsonParser,
     filename: keyof typeof ExcelBinOutputs,
-  ): { [key in string]: JsonValue } {
+  ): Record<string, JsonValue> {
     const jsonArray = jsonData.get() as JsonArray
-    const cacheObject: { [key in string]: JsonValue } = {}
+    const cacheObject: Record<string, JsonValue> = {}
     // eslint-disable-next-line complexity
-    jsonArray.forEach((json) => {
-      const obj = json as JsonObject
+    jsonArray.forEach((obj) => {
+      const json = obj as JsonObject
       switch (filename) {
         case 'ManualTextMapConfigData':
-          cacheObject[obj.textMapId as string] = Object.assign(obj, {
-            textMapContentTextMapHash: (obj.textMapContent ??
-              obj.textMapContentTextMapHash) as string,
+          cacheObject[json.textMapId as string] = Object.assign(json, {
+            textMapContentTextMapHash: (json.textMapContent ??
+              json.textMapContentTextMapHash) as string,
           })
           break
         case 'WeaponCurveExcelConfigData':
-          ;(obj.curveInfos as JsonArray).forEach((curve) => {
-            const level = obj.level as number
-            const value = (curve as JsonObject).value
-            const type = (curve as JsonObject).type as string
-            if (!cacheObject[type]) cacheObject[type] = {}
-            ;(cacheObject[type] as JsonObject)[level] = value
+          ;(json.curveInfos as JsonArray).forEach((obj) => {
+            const curve = obj as JsonObject
+            const level = json.level as number
+            const value = curve.value
+            const type = curve.type as string
+            cacheObject[type] ??= {}
+            ;(cacheObject[type] as Record<string, JsonValue>)[level] = value
           })
           break
         case 'WeaponPromoteExcelConfigData':
-          if (!cacheObject[obj.weaponPromoteId as string])
-            cacheObject[obj.weaponPromoteId as string] = {}
-          ;(cacheObject[obj.weaponPromoteId as string] as JsonObject)[
-            (!obj.promoteLevel ? 0 : obj.promoteLevel) as string
-          ] = obj
+          if (!cacheObject[json.weaponPromoteId as string])
+            cacheObject[json.weaponPromoteId as string] = {}
+          ;(
+            cacheObject[json.weaponPromoteId as string] as Record<
+              string,
+              JsonValue
+            >
+          )[(json.promoteLevel ?? 0) as string] = json
           break
         case 'ReliquaryLevelExcelConfigData':
-          ;(obj.addProps as JsonArray).forEach((prop) => {
-            if (!obj.rank) return
-            const rank = obj.rank as number
-            const level = (obj.level as number) - 1
-            const value = (prop as JsonObject).value
-            const type = (prop as JsonObject).propType as string
-            if (!cacheObject[type]) cacheObject[type] = {}
-            let cache = cacheObject[type] as JsonObject
-            if (!cache[rank]) cache[rank] = {}
-            cache = cache[rank] as JsonObject
+          ;(json.addProps as JsonArray).forEach((obj) => {
+            const prop = obj as JsonObject
+            if (!json.rank) return
+            const rank = json.rank as number
+            const level = (json.level as number) - 1
+            const value = prop.value
+            const type = prop.propType as string
+            cacheObject[type] ??= {}
+            let cache = cacheObject[type] as Record<string, JsonValue>
+            cache[rank] ??= {}
+            cache = cache[rank] as Record<string, JsonValue>
             cache[level] = value
           })
           break
         case 'ReliquarySetExcelConfigData':
-          cacheObject[obj.setId as string] = obj
+          cacheObject[json.setId as string] = json
           break
         case 'AvatarExcelConfigData':
-          if ((obj.id as number) > 11000000 || (obj.id as number) === 10000001)
+          if (
+            (json.id as number) > 11000000 ||
+            (json.id as number) === 10000001
+          )
             break
-          cacheObject[obj.id as string] = obj
+          cacheObject[json.id as string] = json
           break
         case 'AvatarCostumeExcelConfigData':
-          cacheObject[obj.skinId as string] = obj
+          cacheObject[json.skinId as string] = json
           break
         case 'AvatarTalentExcelConfigData':
-          cacheObject[obj.talentId as string] = obj
+          cacheObject[json.talentId as string] = json
           break
         case 'AvatarCurveExcelConfigData':
-          ;(obj.curveInfos as JsonArray).forEach((curve) => {
-            const level = obj.level as number
-            const value = (curve as JsonObject).value ?? 0
-            const type = (curve as JsonObject).type as string
-            if (!cacheObject[type]) cacheObject[type] = {}
-            ;(cacheObject[type] as JsonObject)[level] = value
+          ;(json.curveInfos as JsonArray).forEach((obj) => {
+            const curve = obj as JsonObject
+            const level = json.level as number
+            const value = curve.value ?? 0
+            const type = curve.type as string
+            cacheObject[type] ??= {}
+            ;(cacheObject[type] as Record<string, JsonValue>)[level] = value
           })
           break
         case 'AvatarPromoteExcelConfigData':
-          if (!cacheObject[obj.avatarPromoteId as string])
-            cacheObject[obj.avatarPromoteId as string] = {}
-          ;(cacheObject[obj.avatarPromoteId as string] as JsonObject)[
-            (!obj.promoteLevel ? 0 : obj.promoteLevel) as string
-          ] = obj
+          if (!cacheObject[json.avatarPromoteId as string])
+            cacheObject[json.avatarPromoteId as string] = {}
+          ;(
+            cacheObject[json.avatarPromoteId as string] as Record<
+              string,
+              JsonValue
+            >
+          )[(json.promoteLevel ?? 0) as string] = json
           break
         case 'ProudSkillExcelConfigData':
-          if (!cacheObject[obj.proudSkillGroupId as string])
-            cacheObject[obj.proudSkillGroupId as string] = {}
-          ;(cacheObject[obj.proudSkillGroupId as string] as JsonObject)[
-            (obj.proudSkillId as number) % 100
-          ] = obj
+          if (!cacheObject[json.proudSkillGroupId as string])
+            cacheObject[json.proudSkillGroupId as string] = {}
+          ;(
+            cacheObject[json.proudSkillGroupId as string] as Record<
+              string,
+              JsonValue
+            >
+          )[(json.proudSkillId as number) % 100] = json
           break
         case 'FetterInfoExcelConfigData':
-          cacheObject[obj.avatarId as string] = obj
+          cacheObject[json.avatarId as string] = json
           break
         case 'EquipAffixExcelConfigData':
-          cacheObject[obj.affixId as string] = obj
+          cacheObject[json.affixId as string] = json
           break
         case 'TowerScheduleExcelConfigData':
-          cacheObject[obj.scheduleId as string] = obj
+          cacheObject[json.scheduleId as string] = json
           break
         case 'TowerFloorExcelConfigData':
-          cacheObject[obj.floorId as string] = obj
+          cacheObject[json.floorId as string] = json
           break
         case 'TowerLevelExcelConfigData':
-          cacheObject[obj.levelId as string] = obj
+          cacheObject[json.levelId as string] = json
           break
         case 'DungeonLevelEntityConfigData':
-          if (obj.show !== true) break //Because the same id exists. Added as a temporary workaround
-          cacheObject[obj.clientId as string] = obj
+          if (json.show !== true) break //Because the same id exists. Added as a temporary workaround
+          cacheObject[json.clientId as string] = json
           break
         case 'MonsterExcelConfigData':
-          cacheObject[obj.id as string] = obj
+          cacheObject[json.id as string] = json
           break
         case 'MonsterDescribeExcelConfigData':
-          cacheObject[obj.id as string] = obj
+          cacheObject[json.id as string] = json
           break
         case 'AnimalCodexExcelConfigData':
-          cacheObject[obj.describeId as string] = obj
+          cacheObject[json.describeId as string] = json
           break
         case 'MonsterCurveExcelConfigData':
-          ;(obj.curveInfos as JsonArray).forEach((curve) => {
-            const level = obj.level as number
-            const value = (curve as JsonObject).value ?? 0
-            const type = (curve as JsonObject).type as string
-            if (!cacheObject[type]) cacheObject[type] = {}
-            ;(cacheObject[type] as JsonObject)[level] = value
+          ;(json.curveInfos as JsonArray).forEach((obj) => {
+            const curve = obj as JsonObject
+            const level = json.level as number
+            const value = curve.value ?? 0
+            const type = curve.type as string
+            cacheObject[type] ??= {}
+            ;(cacheObject[type] as Record<string, JsonValue>)[level] = value
           })
           break
         case 'FetterStoryExcelConfigData':
-          cacheObject[obj.fetterId as string] = obj
+          cacheObject[json.fetterId as string] = json
           break
 
         case 'DungeonEntryExcelConfigData':
-          cacheObject[obj.id as string] = obj
+          cacheObject[json.id as string] = json
           break
 
         case 'FettersExcelConfigData':
-          cacheObject[obj.fetterId as string] = obj
+          cacheObject[json.fetterId as string] = json
           break
 
         default:
-          cacheObject[obj.id as string] = obj
+          cacheObject[json.id as string] = json
           break
       }
     })

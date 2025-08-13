@@ -37,11 +37,10 @@ export class StatProperty {
       'ManualTextMapConfigData',
       this.type,
     )
+    const textMapContentTextMapHash =
+      manualTextJson.textMapContentTextMapHash as string
 
-    this.name =
-      Client._cachedTextMap.get(
-        String(manualTextJson.textMapContentTextMapHash),
-      ) || ''
+    this.name = Client._cachedTextMap.get(textMapContentTextMapHash) ?? ''
 
     this.isPercent = percentFightPropType.includes(this.type)
 

@@ -62,11 +62,11 @@ export class CharacterCostume {
       this.characterId,
     )
 
-    this.name =
-      Client._cachedTextMap.get(String(costumeJson.nameTextMapHash)) || ''
-    this.description =
-      Client._cachedTextMap.get(String(costumeJson.descTextMapHash)) || ''
-    this.quality = (costumeJson.quality as number) || 0
+    const nameTextMapHash = costumeJson.nameTextMapHash as number
+    const descTextMapHash = costumeJson.descTextMapHash as number
+    this.name = Client._cachedTextMap.get(String(nameTextMapHash)) ?? ''
+    this.description = Client._cachedTextMap.get(String(descTextMapHash)) ?? ''
+    this.quality = costumeJson.quality as number
     const sideIconName =
       costumeJson.quality && typeof avatarJson != 'undefined'
         ? (costumeJson.sideIconName as string)

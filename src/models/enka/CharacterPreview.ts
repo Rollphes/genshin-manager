@@ -3,7 +3,7 @@ import { CharacterInfo } from '@/models/character/CharacterInfo'
 import { Element } from '@/types'
 import { APIShowAvatarInfo } from '@/types/enkaNetwork'
 
-const elementIdMap: { [id: number]: Element } = {
+const elementIdMap: Record<number, Element> = {
   1: 'Pyro',
   2: 'Hydro',
   3: 'Dendro',

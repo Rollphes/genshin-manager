@@ -86,7 +86,7 @@ export class EnkaManager extends PromiseEventEmitter<
    */
   private static readonly defaultFetchOption: RequestInit = {
     headers: {
-      'user-agent': `genshin-manager/${process.env.npm_package_version}`,
+      'user-agent': `genshin-manager/${process.env.npm_package_version ?? 'unknown'}`,
     },
   }
 
@@ -95,14 +95,7 @@ export class EnkaManager extends PromiseEventEmitter<
    * @key UID
    * @value Cached EnkaData
    */
-  private readonly cache: Map<number, EnkaData> = new Map()
-
-  /**
-   * Create a EnkaManager
-   */
-  constructor() {
-    super()
-  }
+  private readonly cache = new Map<number, EnkaData>()
 
   /**
    * Fetch All from enka.network
@@ -116,7 +109,7 @@ export class EnkaManager extends PromiseEventEmitter<
     uid: number,
     fetchOption?: RequestInit,
   ): Promise<EnkaData> {
-    const url = `${EnkaManager.ENKA_BASE_URL}/api/uid/${uid}`
+    const url = `${EnkaManager.ENKA_BASE_URL}/api/uid/${String(uid)}`
     return await this.fetchUID(uid, url, fetchOption)
   }
 
@@ -132,7 +125,7 @@ export class EnkaManager extends PromiseEventEmitter<
     uid: number,
     fetchOption?: RequestInit,
   ): Promise<PlayerDetail> {
-    const url = `${EnkaManager.ENKA_BASE_URL}/api/uid/${uid}/?info`
+    const url = `${EnkaManager.ENKA_BASE_URL}/api/uid/${String(uid)}/?info`
     return (await this.fetchUID(uid, url, fetchOption)).playerDetail
   }
 
@@ -188,9 +181,10 @@ export class EnkaManager extends PromiseEventEmitter<
     )
     const gameAccountsRes = await fetch(getGameAccountsURL, mergedFetchOption)
     if (!gameAccountsRes.ok) throw new EnkaNetworkError(gameAccountsRes)
-    const gameAccounts = (await gameAccountsRes.json()) as {
-      [hash: string]: APIGameAccount
-    }
+    const gameAccounts = (await gameAccountsRes.json()) as Record<
+      string,
+      APIGameAccount
+    >
     return await Promise.all(
       Object.values(gameAccounts)
         .sort((a, b) => a.order - b.order)
@@ -199,9 +193,7 @@ export class EnkaManager extends PromiseEventEmitter<
           const getBuildsURL = `${EnkaManager.ENKA_BASE_URL}/api/profile/${username}/hoyos/${account.hash}/builds`
           const buildsRes = await fetch(getBuildsURL, mergedFetchOption)
           if (!buildsRes.ok) throw new EnkaNetworkError(buildsRes)
-          const builds = (await buildsRes.json()) as {
-            [characterId: string]: APIBuild[]
-          }
+          const builds = (await buildsRes.json()) as Record<string, APIBuild[]>
           return new GenshinAccount(
             account,
             builds,
@@ -217,9 +209,9 @@ export class EnkaManager extends PromiseEventEmitter<
    * @param fetchOption Fetch option
    * @returns Status from 1 hour ago to now
    */
-  public async fetchAllStatus(fetchOption?: RequestInit): Promise<{
-    [dateText: string]: APIEnkaStatus
-  }> {
+  public async fetchAllStatus(
+    fetchOption?: RequestInit,
+  ): Promise<Record<string, APIEnkaStatus>> {
     const getStatusURL = `${EnkaManager.ENKA_STATUS_BASE_URL}/api/status`
     const mergedFetchOption = merge.withOptions(
       { mergeArrays: false },
@@ -229,9 +221,7 @@ export class EnkaManager extends PromiseEventEmitter<
     const statusRes = await fetch(getStatusURL, mergedFetchOption)
     if (!statusRes.ok) throw new EnkaNetWorkStatusError(statusRes)
 
-    return (await statusRes.json()) as {
-      [dateText: string]: APIEnkaStatus
-    }
+    return (await statusRes.json()) as Record<string, APIEnkaStatus>
   }
 
   /**
@@ -267,12 +257,14 @@ export class EnkaManager extends PromiseEventEmitter<
     fetchOption?: RequestInit,
   ): Promise<EnkaData> {
     this.clearCacheOverNextShowCaseDate()
-    if (!/1?\d{9}/.test(String(uid)))
-      throw new EnkaManagerError(`The UID format is not correct(${uid})`)
+    if (!/1?\d{9}/.test(String(uid))) {
+      throw new EnkaManagerError(
+        `The UID format is not correct(${String(uid)})`,
+      )
+    }
     const cachedData = this.cache.get(uid)
     if (
-      cachedData &&
-      cachedData.characterDetails &&
+      cachedData?.characterDetails &&
       new Date().getTime() < cachedData.nextShowCaseDate.getTime()
     )
       return cachedData
@@ -299,7 +291,7 @@ export class EnkaManager extends PromiseEventEmitter<
       nextShowCaseDate: new Date(
         new Date().getTime() + (result.ttl ?? 60) * 1000,
       ),
-      url: `${EnkaManager.ENKA_BASE_URL}/u/${uid}`,
+      url: `${EnkaManager.ENKA_BASE_URL}/u/${String(uid)}`,
     }
     this.cache.set(enkaData.uid, enkaData)
     this.emit(EnkaManagerEvents.GET_NEW_ENKA_DATA, enkaData)

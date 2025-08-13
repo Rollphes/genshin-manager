@@ -51,7 +51,7 @@ export class CharacterAscension {
    * @param characterId Character ID
    * @param promoteLevel Character promote level (0-6). Default: 0
    */
-  constructor(characterId: number, promoteLevel: number = 0) {
+  constructor(characterId: number, promoteLevel = 0) {
     this.id = characterId
     this.promoteLevel = promoteLevel
     const maxPromoteLevel = CharacterAscension.getMaxPromoteLevelByCharacterId(
@@ -74,15 +74,15 @@ export class CharacterAscension {
       avatarJson.avatarPromoteId as number,
     )[this.promoteLevel] as JsonObject
     this.costItems = (avatarPromoteJson.costItems as JsonObject[])
+      .filter(
+        (costItem) => costItem.id !== undefined && costItem.count !== undefined,
+      )
       .map((costItem) => {
         return {
           id: costItem.id as number,
           count: costItem.count as number,
         }
       })
-      .filter(
-        (costItem) => costItem.id !== undefined && costItem.count !== undefined,
-      )
     this.costMora = (avatarPromoteJson.scoinCost as number | undefined) ?? 0
     this.addProps = (avatarPromoteJson.addProps as JsonObject[]).map(
       (addProp) =>

@@ -19,7 +19,7 @@ export class ImageAssets {
   /**
    * Image types
    */
-  private static readonly imageTypes: { [type: string]: RegExp[] } = {
+  private static readonly imageTypes: Record<string, RegExp[]> = {
     character_side_icon: [/^UI_AvatarIcon_Side_(.+)$/],
     character_icon: [/^UI_AvatarIcon_(.+)$/],
     equip: [/^UI_EquipIcon_(.+?)(_Awaken)?$/, /^UI_RelicIcon_(.+)$/],
@@ -32,7 +32,7 @@ export class ImageAssets {
   /**
    * Image base URL by regex
    */
-  private static imageBaseURLByRegex: { [url: string]: RegExp[] }
+  private static imageBaseURLByRegex: Record<string, RegExp[]>
   /**
    * Default image base URL
    */
@@ -78,7 +78,7 @@ export class ImageAssets {
         ImageAssets.imageBaseURLByRegex[url].some((regex) => regex.test(name)),
       ) ?? ImageAssets.defaultImageBaseURL
 
-    this.url = url ? url : name === '' ? '' : `${this.imageBaseURL}/${name}.png`
+    this.url = url ?? (name === '' ? '' : `${this.imageBaseURL}/${name}.png`)
 
     this.imageType =
       Object.keys(ImageAssets.imageTypes).find((type) =>
@@ -116,10 +116,27 @@ export class ImageAssets {
       'UI_Gacha_AvatarImg_PlayerBoy.png',
       'UI_Gacha_AvatarImg_PlayerGirl.png',
     ].forEach((imgName) => {
-      fs.copyFileSync(
-        path.resolve(__dirname, '..', '..', '..', 'img', imgName),
-        path.resolve(option.assetCacheFolderPath, 'Images', imgName),
+      const sourcePath = path.resolve(
+        __dirname,
+        '..',
+        '..',
+        '..',
+        'img',
+        imgName,
       )
+      const destinationPath = path.resolve(
+        option.assetCacheFolderPath,
+        'Images',
+        imgName,
+      )
+
+      if (!fs.existsSync(destinationPath)) {
+        try {
+          fs.copyFileSync(sourcePath, destinationPath)
+        } catch (error) {
+          if (!fs.existsSync(destinationPath)) throw error
+        }
+      }
     })
   }
 

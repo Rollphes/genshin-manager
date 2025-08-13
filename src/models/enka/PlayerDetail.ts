@@ -83,16 +83,17 @@ export class PlayerDetail {
    * Create a PlayerDetail
    * @param data Data from EnkaNetwork
    */
+  // eslint-disable-next-line complexity
   constructor(data: APIPlayerInfo) {
-    this.nickname = data.nickname || ''
+    this.nickname = data.nickname ?? ''
     this.level = data.level
-    this.signature = data.signature || ''
-    this.worldLevel = data.worldLevel || 0
+    this.signature = data.signature ?? ''
+    this.worldLevel = data.worldLevel ?? 0
     this.nameCard = new Material(data.nameCardId)
-    this.finishAchievementNum = data.finishAchievementNum || 0
-    this.towerFloorIndex = data.towerFloorIndex || 0
-    this.towerLevelIndex = data.towerLevelIndex || 0
-    this.towerStarIndex = data.towerStarIndex || 0
+    this.finishAchievementNum = data.finishAchievementNum ?? 0
+    this.towerFloorIndex = data.towerFloorIndex ?? 0
+    this.towerLevelIndex = data.towerLevelIndex ?? 0
+    this.towerStarIndex = data.towerStarIndex ?? 0
     this.characterPreviews = data.showAvatarInfoList
       ? data.showAvatarInfoList.map((v) => new CharacterPreview(v))
       : []
@@ -101,21 +102,21 @@ export class PlayerDetail {
       : []
 
     let profilePictureId
-    if (data.profilePicture && data.profilePicture.id) {
+    if (data.profilePicture?.id) {
       profilePictureId = data.profilePicture.id
     } else {
       profilePictureId = ProfilePicture.findProfilePictureIdByUnlockParam(
         data.profilePicture?.costumeId ??
           data.profilePicture?.avatarId ??
           10000005,
-      ) as number
+      )
     }
-    this.profilePicture = new ProfilePicture(profilePictureId || 1)
-    this.maxFriendshipCharactersCount = data.fetterCount || 0
-    this.theaterActIndex = data.theaterActIndex || 0
-    this.theaterModeIndex = data.theaterModeIndex || 0
-    this.theaterStarIndex = data.theaterStarIndex || 0
-    this.isShowCharacterPreviewConstellation = data.isShowAvatarTalent || false
+    this.profilePicture = new ProfilePicture(profilePictureId ?? 1)
+    this.maxFriendshipCharactersCount = data.fetterCount ?? 0
+    this.theaterActIndex = data.theaterActIndex ?? 0
+    this.theaterModeIndex = data.theaterModeIndex ?? 0
+    this.theaterStarIndex = data.theaterStarIndex ?? 0
+    this.isShowCharacterPreviewConstellation = data.isShowAvatarTalent ?? false
     this.data = data
   }
 }

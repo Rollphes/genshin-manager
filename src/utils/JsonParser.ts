@@ -1,23 +1,24 @@
 /**
- * Type of Json value
+ * Type of Json primitive values
  */
-export type JsonValue =
-  | string
-  | number
-  | boolean
-  | null
-  | JsonObject
-  | JsonArray
+export type JsonPrimitive = string | number | boolean | null | undefined
 
 /**
  * Type of Json object
  */
-export type JsonObject = { [key: string]: JsonValue }
+export interface JsonObject {
+  [key: string]: JsonValue
+}
 
 /**
  * Type of Json array
  */
 export type JsonArray = JsonValue[]
+
+/**
+ * Type of Json value
+ */
+export type JsonValue = JsonPrimitive | JsonObject | JsonArray
 
 /**
  * Class of json parser

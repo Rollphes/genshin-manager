@@ -1,4 +1,3 @@
-/* eslint-disable jsdoc/require-returns */
 import { EventEmitter } from 'events'
 
 /**

@@ -48,16 +48,16 @@ export class CharacterSkill {
    * @param level Skill level (1-15). Default: 1
    * @param extraLevel Levels increased by constellation (0 or 3). Default: 0
    */
-  constructor(skillId: number, level: number = 1, extraLevel: number = 0) {
+  constructor(skillId: number, level = 1, extraLevel = 0) {
     this.id = skillId
     const skillJson = Client._getJsonFromCachedExcelBinOutput(
       'AvatarSkillExcelConfigData',
       this.id,
     )
-    this.name =
-      Client._cachedTextMap.get(String(skillJson.nameTextMapHash)) || ''
-    this.description =
-      Client._cachedTextMap.get(String(skillJson.descTextMapHash)) || ''
+    const nameTextMapHash = skillJson.nameTextMapHash as number
+    const descTextMapHash = skillJson.descTextMapHash as number
+    this.name = Client._cachedTextMap.get(String(nameTextMapHash)) ?? ''
+    this.description = Client._cachedTextMap.get(String(descTextMapHash)) ?? ''
     this.icon = new ImageAssets(skillJson.skillIcon as string)
     this.extraLevel = extraLevel
     this.level = level + this.extraLevel
@@ -77,7 +77,7 @@ export class CharacterSkill {
     const params = proudSkillJson.paramList as number[]
     ;(proudSkillJson.paramDescList as number[]).forEach((paramDescHash) => {
       const paramDesc = (
-        Client._cachedTextMap.get(String(paramDescHash)) || ''
+        Client._cachedTextMap.get(String(paramDescHash)) ?? ''
       ).replace(/|/g, '')
       if (paramDesc === '') return
       this.paramDescriptions.push(
@@ -90,9 +90,9 @@ export class CharacterSkill {
           const isPercent = replaceTag.includes('P')
           const paramValue = params[+paramId - 1]
 
-          if (isInt) return `${Math.floor(paramValue)}`
+          if (isInt) return String(Math.floor(paramValue))
           if (isPercent) return `${(paramValue * 100).toFixed(fixedIndex)}%`
-          return `${paramValue.toFixed(fixedIndex)}`
+          return paramValue.toFixed(fixedIndex)
         }),
       )
     })

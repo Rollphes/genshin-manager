@@ -2,12 +2,12 @@
  * Time difference per region (hour)
  */
 export const TimeZonesPerRegion = {
-  cn_gf01: +8,
-  cn_qd01: +8,
+  cn_gf01: 8,
+  cn_qd01: 8,
   os_usa: -5,
-  os_euro: +1,
-  os_asia: +8,
-  os_cht: +8,
+  os_euro: 1,
+  os_asia: 8,
+  os_cht: 8,
 } as const
 
 /**

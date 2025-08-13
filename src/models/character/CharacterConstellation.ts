@@ -34,17 +34,17 @@ export class CharacterConstellation {
    * @param constellationId Constellation ID
    * @param locked Whether the constellation is locked
    */
-  constructor(constellationId: number, locked: boolean = false) {
+  constructor(constellationId: number, locked = false) {
     this.id = constellationId
     this.locked = locked
     const talentJson = Client._getJsonFromCachedExcelBinOutput(
       'AvatarTalentExcelConfigData',
       this.id,
     )
-    this.name =
-      Client._cachedTextMap.get(String(talentJson.nameTextMapHash)) || ''
-    this.description =
-      Client._cachedTextMap.get(String(talentJson.descTextMapHash)) || ''
+    const nameTextMapHash = talentJson.nameTextMapHash as number
+    const descTextMapHash = talentJson.descTextMapHash as number
+    this.name = Client._cachedTextMap.get(String(nameTextMapHash)) ?? ''
+    this.description = Client._cachedTextMap.get(String(descTextMapHash)) ?? ''
     this.icon = new ImageAssets(talentJson.icon as string)
   }
 

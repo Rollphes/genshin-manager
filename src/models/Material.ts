@@ -49,10 +49,10 @@ export class Material {
       'MaterialExcelConfigData',
       this.id,
     )
-    this.name =
-      Client._cachedTextMap.get(String(materialJson.nameTextMapHash)) || ''
-    this.description =
-      Client._cachedTextMap.get(String(materialJson.descTextMapHash)) || ''
+    const nameTextMapHash = materialJson.nameTextMapHash as number
+    const descTextMapHash = materialJson.descTextMapHash as number
+    this.name = Client._cachedTextMap.get(String(nameTextMapHash)) ?? ''
+    this.description = Client._cachedTextMap.get(String(descTextMapHash)) ?? ''
     this.icon = new ImageAssets(materialJson.icon as string)
     this.pictures = (materialJson.picPath as string[]).map(
       (v) => new ImageAssets(v),

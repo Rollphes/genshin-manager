@@ -38,7 +38,7 @@ export class WeaponRefinement {
    * @param weaponId Weapon ID
    * @param refinementRank Weapon refinement rank (1-5). Default: 1
    */
-  constructor(weaponId: number, refinementRank: number = 1) {
+  constructor(weaponId: number, refinementRank = 1) {
     this.id = weaponId
     this.refinementRank = refinementRank
     if (this.refinementRank < 1 || this.refinementRank > 5)
@@ -60,10 +60,11 @@ export class WeaponRefinement {
         'EquipAffixExcelConfigData',
         skillAffix,
       )
-      this.skillName =
-        Client._cachedTextMap.get(String(equipAffixJson.nameTextMapHash)) || ''
+      const nameTextMapHash = equipAffixJson.nameTextMapHash as number
+      const descTextMapHash = equipAffixJson.descTextMapHash as number
+      this.skillName = Client._cachedTextMap.get(String(nameTextMapHash)) ?? ''
       this.skillDescription =
-        Client._cachedTextMap.get(String(equipAffixJson.descTextMapHash)) || ''
+        Client._cachedTextMap.get(String(descTextMapHash)) ?? ''
       this.addProps = (equipAffixJson.addProps as JsonObject[])
         .filter(
           (addProp) =>

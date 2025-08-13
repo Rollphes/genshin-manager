@@ -159,7 +159,7 @@ export interface APIWeapon {
   /**
    * Affix Map
    */
-  affixMap?: { [key in string]: number }
+  affixMap?: Record<string, number>
 }
 
 /**
@@ -204,7 +204,7 @@ export interface APIAvatarInfo {
   /**
    * Character Info Properties List
    */
-  propMap: { [key in number]: APIPropMap }
+  propMap: Record<number, APIPropMap>
   /**
    * List of Constellation IDs
    * @warn There is no data if 0 Constellation
@@ -213,7 +213,7 @@ export interface APIAvatarInfo {
   /**
    * Map of Character's Combat Properties
    */
-  fightPropMap: { [key in number]: number }
+  fightPropMap: Record<number, number>
   /**
    * Character Skill Set ID
    */
@@ -221,11 +221,11 @@ export interface APIAvatarInfo {
   /**
    * Map of Skill Levels
    */
-  skillLevelMap: { [key in string]: number }
+  skillLevelMap: Record<string, number>
   /**
    * Map of Skill Extra Levels
    */
-  proudSkillExtraLevelMap?: { [key in string]: number }
+  proudSkillExtraLevelMap?: Record<string, number>
   /**
    * List of Equipments: Weapon, Artifacts
    */

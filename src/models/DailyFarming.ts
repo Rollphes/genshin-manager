@@ -5,6 +5,7 @@ import { CharacterSkill } from '@/models/character/CharacterSkill'
 import { CharacterSkillAscension } from '@/models/character/CharacterSkillAscension'
 import { Weapon } from '@/models/weapon/Weapon'
 import { WeaponAscension } from '@/models/weapon/WeaponAscension'
+import { JsonArray } from '@/utils/JsonParser'
 
 /**
  * Domain data
@@ -39,7 +40,7 @@ export class DailyFarming {
   /**
    * Map of dungeon entry ID and text map ID
    */
-  private static readonly replaceTextMapIdMap: { [key in number]: string } = {
+  private static readonly replaceTextMapIdMap: Record<number, string> = {
     50: 'UI_DUNGEON_ENTRY_37',
     135: 'UI_DUNGEON_ENTRY_52',
     44: 'UI_DUNGEON_ENTRY_29',
@@ -90,28 +91,31 @@ export class DailyFarming {
 
     for (let i = 0; i < (dayOfWeek === 0 ? 3 : 1); i++) {
       ;[...weaponDomains, ...skillDomains].forEach((domain) => {
-        const materialIds = (domain.descriptionCycleRewardList as number[][])[
+        const descriptionCycleRewardList =
+          domain.descriptionCycleRewardList as JsonArray
+        const materialIds = descriptionCycleRewardList[
           dayOfWeek === 0 ? i : rewardDateIndex
-        ]
+        ] as number[]
+        const dungeonEntryId = domain.dungeonEntryId as number
 
         const nameTextId = Object.keys(
           DailyFarming.replaceTextMapIdMap,
-        ).includes(String(domain.dungeonEntryId))
-          ? DailyFarming.replaceTextMapIdMap[domain.dungeonEntryId as number]
-          : `UI_DUNGEON_ENTRY_${domain.dungeonEntryId as number}`
+        ).includes(String(dungeonEntryId))
+          ? DailyFarming.replaceTextMapIdMap[dungeonEntryId]
+          : `UI_DUNGEON_ENTRY_${String(dungeonEntryId)}`
 
         const manualTextJson = Client._getJsonFromCachedExcelBinOutput(
           'ManualTextMapConfigData',
           nameTextId,
         )
+        const textMapContentTextMapHash =
+          manualTextJson.textMapContentTextMapHash as number
+        const descTextMapHash = manualTextJson.descTextMapHash as number
 
         this.domains.push({
           name:
-            Client._cachedTextMap.get(
-              String(manualTextJson.textMapContentTextMapHash),
-            ) || '',
-          description:
-            Client._cachedTextMap.get(String(domain.descTextMapHash)) || '',
+            Client._cachedTextMap.get(String(textMapContentTextMapHash)) ?? '',
+          description: Client._cachedTextMap.get(String(descTextMapHash)) ?? '',
           materialIds: materialIds,
           characterInfos: this.getCharacterInfoByMaterialIds(materialIds),
           weaponIds: this.getWeaponIdsByMaterialIds(materialIds),
@@ -119,12 +123,16 @@ export class DailyFarming {
       })
     }
 
-    this.talentBookIds = skillDomains.flatMap(
-      (d) => (d.descriptionCycleRewardList as number[][])[rewardDateIndex],
-    )
-    this.weaponMaterialIds = weaponDomains.flatMap(
-      (d) => (d.descriptionCycleRewardList as number[][])[rewardDateIndex],
-    )
+    this.talentBookIds = skillDomains.flatMap((d) => {
+      const descriptionCycleRewardList =
+        d.descriptionCycleRewardList as number[][]
+      return descriptionCycleRewardList[rewardDateIndex]
+    })
+    this.weaponMaterialIds = weaponDomains.flatMap((d) => {
+      const descriptionCycleRewardList =
+        d.descriptionCycleRewardList as number[][]
+      return descriptionCycleRewardList[rewardDateIndex]
+    })
   }
 
   private getCharacterInfoByMaterialIds(

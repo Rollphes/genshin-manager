@@ -33,9 +33,9 @@ export class SetBonus {
    * @param artifacts Artifacts equipped by the character
    */
   constructor(artifacts: Artifact[]) {
-    const countIds: { [setId: string]: number } = {}
+    const countIds: Record<string, number> = {}
     const activeSetIds: string[] = []
-    const setBracers: { [setId: string]: Artifact } = {}
+    const setBracers: Record<string, Artifact> = {}
 
     artifacts.forEach((artifact) => {
       const setId = artifact.setId
@@ -52,26 +52,31 @@ export class SetBonus {
       }
     })
 
+    const filteredCountIds: Record<string, number> = {}
     Object.keys(countIds).forEach((setId) => {
       const count = countIds[setId]
-      if (SetBonus.oneSetBonusIds.includes(+setId)) countIds[setId] = 1
-      else if (count >= 4) countIds[setId] = 4
-      else if (count >= 2) countIds[setId] = 2
-      else delete countIds[setId]
-
-      activeSetIds.push(setId)
+      if (SetBonus.oneSetBonusIds.includes(+setId)) {
+        filteredCountIds[setId] = 1
+        activeSetIds.push(setId)
+      } else if (count >= 4) {
+        filteredCountIds[setId] = 4
+        activeSetIds.push(setId)
+      } else if (count >= 2) {
+        filteredCountIds[setId] = 2
+        activeSetIds.push(setId)
+      }
     })
 
     this.oneSetBonus = activeSetIds
-      .filter((setId) => countIds[setId] === 1)
+      .filter((setId) => filteredCountIds[setId] === 1)
       .map((setId) => setBracers[setId])
 
     this.twoSetBonus = activeSetIds
-      .filter((setId) => countIds[setId] === 2)
+      .filter((setId) => filteredCountIds[setId] === 2)
       .map((setId) => setBracers[setId])
 
     this.fourSetBonus = activeSetIds
-      .filter((setId) => countIds[setId] === 4)
+      .filter((setId) => filteredCountIds[setId] === 4)
       .map((setId) => setBracers[setId])
   }
 }

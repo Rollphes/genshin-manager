@@ -24,7 +24,7 @@ export class AssetsNotFoundError extends Error {
 
     super(
       `${dictionary[key].toString()} ${
-        id ?? ''
+        id !== undefined ? String(id) : ''
       } was not found. Try to update cached assets with Client#deploy`,
     )
 

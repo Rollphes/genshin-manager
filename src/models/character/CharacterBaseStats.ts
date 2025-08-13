@@ -41,11 +41,7 @@ export class CharacterBaseStats {
    * @param level Character level (1-90). Default: 1
    * @param isAscended Character is ascended (true or false). Default: false
    */
-  constructor(
-    characterId: number,
-    level: number = 1,
-    isAscended: boolean = false,
-  ) {
+  constructor(characterId: number, level = 1, isAscended = false) {
     this.id = characterId
     this.level = level
     if (this.level < 1 || this.level > 90)
@@ -85,7 +81,7 @@ export class CharacterBaseStats {
     propGrowCurves: JsonObject[],
     ascension: CharacterAscension,
   ): StatProperty[] {
-    const initValueObj: Partial<{ [key in FightPropType]: number }> = {
+    const initValueObj: Partial<Record<FightPropType, number>> = {
       FIGHT_PROP_BASE_HP: avatarJson.hpBase as number,
       FIGHT_PROP_BASE_ATTACK: avatarJson.attackBase as number,
       FIGHT_PROP_BASE_DEFENSE: avatarJson.defenseBase as number,
@@ -143,7 +139,7 @@ export class CharacterBaseStats {
   private getStatPropertyByJson(
     propGrowCurve: JsonObject,
     initValue: number,
-    addValue: number = 0,
+    addValue = 0,
   ): StatProperty {
     const curveValue = Client._getJsonFromCachedExcelBinOutput(
       'AvatarCurveExcelConfigData',

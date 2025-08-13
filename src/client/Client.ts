@@ -68,7 +68,7 @@ export class Client extends AssetCacheManager<ClientEventMap, ClientEvents> {
   private static readonly defaultOption: ClientOption = {
     fetchOption: {
       headers: {
-        'user-agent': `genshin-manager@${process.env.npm_package_version}`,
+        'user-agent': `genshin-manager@${process.env.npm_package_version ?? 'unknown'}`,
       },
     },
     downloadLanguages: [
@@ -197,9 +197,7 @@ export class Client extends AssetCacheManager<ClientEventMap, ClientEvents> {
         })()
       })
     }
-    await Promise.all([
-      ImageAssets.deploy(this.option),
-      AudioAssets.deploy(this.option),
-    ])
+    ImageAssets.deploy(this.option)
+    AudioAssets.deploy(this.option)
   }
 }

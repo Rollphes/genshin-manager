@@ -62,7 +62,8 @@ export class Monster {
    * @param level monsterLevel (1-100). Default: 1
    * @param playerCount Number of players (1-4). Default: 1
    */
-  constructor(monsterId: number, level: number = 1, playerCount: number = 1) {
+  // eslint-disable-next-line complexity
+  constructor(monsterId: number, level = 1, playerCount = 1) {
     this.id = monsterId
     this.level = level
     if (this.level < 1 || this.level > 100)
@@ -75,8 +76,8 @@ export class Monster {
       this.id,
     )
     this.internalName = monsterJson.monsterName as string
-    this.name =
-      Client._cachedTextMap.get(String(monsterJson.nameTextMapHash)) || ''
+    const nameTextMapHash = monsterJson.nameTextMapHash as number
+    this.name = Client._cachedTextMap.get(String(nameTextMapHash)) ?? ''
     const describeId = +String(this.id).slice(1, 6)
     if (
       Object.keys(
@@ -87,10 +88,9 @@ export class Monster {
         'MonsterDescribeExcelConfigData',
         describeId,
       )
+      const nameTextMapHash = monsterDescribeJson.nameTextMapHash as number
       this.describeName =
-        Client._cachedTextMap.get(
-          String(monsterDescribeJson.nameTextMapHash),
-        ) || ''
+        Client._cachedTextMap.get(String(nameTextMapHash)) ?? ''
       this.icon = new ImageAssets(monsterDescribeJson.icon as string)
     }
 
@@ -104,8 +104,9 @@ export class Monster {
         'AnimalCodexExcelConfigData',
         monsterJson.describeId as number,
       )
+      const descTextMapHash = animalCodexJson.descTextMapHash as number
       this.description =
-        Client._cachedTextMap.get(String(animalCodexJson.descTextMapHash)) || ''
+        Client._cachedTextMap.get(String(descTextMapHash)) ?? ''
       this.codexType =
         (animalCodexJson.subType as CodexType | undefined) ??
         'CODEX_SUBTYPE_ELEMENT_LIFE'
@@ -177,7 +178,7 @@ export class Monster {
   public static findMonsterIdByDescribeId(describeId: number): number {
     const convertId = describeId.toString().padStart(5, '0')
     //Since some monsterId cannot be obtained by this method, the describeId is converted.
-    const exceptionIds: { [key in number]: number } = {
+    const exceptionIds: Record<number, number> = {
       21104: 22110403,
       30604: 23060201,
       90903: 29090304,
@@ -185,7 +186,7 @@ export class Monster {
       91220: 29122000,
     }
     return Object.keys(exceptionIds).includes(String(describeId))
-      ? exceptionIds[+describeId]
+      ? exceptionIds[describeId]
       : Number(`2${convertId}01`)
   }
 
@@ -198,8 +199,8 @@ export class Monster {
    */
   private getStatValueByJson(
     propGrowCurve: JsonObject | undefined,
-    initValue: number = 0,
-    playerCount: number = 1,
+    initValue = 0,
+    playerCount = 1,
   ): number {
     if (!propGrowCurve) return initValue
     const bonusValue =
