@@ -35,10 +35,12 @@ jobs:
           cache-dependency-path: ${{ env.WORKING_DIRECTORY }}/package-lock.json
 
       - name: Install dependencies
-        run: npm i
+        run: |
+          rm -rf node_modules package-lock.json
+          npm install
 
       - name: Run Vitest with coverage
-        run: npx vitest run --coverage
+        run: npx vitest run --coverage.enabled
 
       - name: Verify test results
         run: |
@@ -51,10 +53,9 @@ jobs:
         with:
           working-directory: ${{ env.WORKING_DIRECTORY }}
 
-      - name: Upload coverage reports to Codecov (if available)
-        uses: codecov/codecov-action@v5
+      - name: Upload coverage reports to Codecov
+        uses: codecov/codecov-action@v4
         if: success()
         with:
           token: ${{ secrets.CODECOV_TOKEN }}
-          slug: Rollphes/genshin-manager
           fail_ci_if_error: false
