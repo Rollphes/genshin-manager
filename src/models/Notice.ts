@@ -1,12 +1,20 @@
 import * as cheerio from 'cheerio'
-import { CheerioAPI } from 'cheerio'
-import { Element, isTag } from 'domhandler'
+import { Element } from 'domhandler'
 
 import { ImageAssets } from '@/models/assets/ImageAssets'
 import { ValueOf } from '@/types'
 import { NoticeLanguage, Region } from '@/types/sg-hk4e-api'
 import { ContentList, DataList } from '@/types/sg-hk4e-api/response'
 import { convertToUTC } from '@/utils/convertToUTC'
+
+type CheerioAPI = ReturnType<typeof cheerio.load>
+
+/**
+ * Check if a node is a tag element
+ */
+function isCheerioElement(node: any): node is Element {
+  return node && node.type === 'tag'
+}
 
 /**
  * Class for compiling in-game announcement information
@@ -124,7 +132,10 @@ export class Notice {
     this._en$ = cheerio.load(unescapedEnContent)
 
     let durationResult = ''
-    let nextElement = this.$(this.durationTitleElement).next()
+    const durationElement = this.durationTitleElement
+    if (!durationElement) return
+
+    let nextElement = this.$(durationElement as any).next()
 
     while (nextElement.length && !nextElement.text().includes('〓')) {
       if (!/shop|reword|Shop|Reword/g.test(nextElement.text()))
@@ -139,7 +150,7 @@ export class Notice {
     if (
       timeStrings &&
       timeStrings.length >= 2 &&
-      !(this.tag === 3 && !this.$(this.durationTitleElement).next().is('p'))
+      !(this.tag === 3 && !this.$(durationElement as any).next().is('p'))
     ) {
       timeStrings.sort((a, b) => new Date(a).getTime() - new Date(b).getTime())
       this.eventStart = new Date(timeStrings[0])
@@ -185,16 +196,16 @@ export class Notice {
       )
     }
 
-    if (!this.$(this.durationTitleElement).next().is('p')) {
+    if (!this.$(this.durationTitleElement as any).next().is('p')) {
       const trFirst = this.$('tr').first()
       const tdList = this.$('td')
         .toArray()
-        .filter((el): el is Element => isTag(el))
+        .filter((el): el is Element => isCheerioElement(el))
 
       const colWidths = this.$(trFirst)
         .children()
         .toArray()
-        .filter((el): el is Element => isTag(el))
+        .filter((el): el is Element => isCheerioElement(el))
         .map((el) => el.attribs['data-colwidth'])
 
       if (colWidths.length > 2) {
@@ -214,7 +225,7 @@ export class Notice {
     }
 
     let durationResult = ''
-    let nextElement = this.$(this.durationTitleElement).next()
+    let nextElement = this.$(this.durationTitleElement as any).next()
 
     while (nextElement.length && !nextElement.text().includes('〓')) {
       durationResult += `${nextElement.text()}\n`
@@ -233,7 +244,7 @@ export class Notice {
         /〓.*?(Time|Duration|Wish).*?〓/g.test(this._en$(el).text()),
       )
     if (durationTitleElementIndex === -1) return undefined
-    return this.$('p').toArray()[durationTitleElementIndex]
+    return this.$('p').toArray()[durationTitleElementIndex] as Element
   }
 
   /**
