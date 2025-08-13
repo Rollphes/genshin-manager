@@ -8,6 +8,7 @@ import { AssetsNotFoundError } from '@/errors/AssetsNotFoundError'
 import { BodyNotFoundError } from '@/errors/BodyNotFoundError'
 import { TextMapFormatError } from '@/errors/TextMapFormatError'
 import { ClientOption, ExcelBinOutputs, TextMapLanguage } from '@/types'
+import { withFileLock } from '@/utils/fileLockManager'
 import { JsonObject, JsonParser } from '@/utils/JsonParser'
 import { ObjectKeyDecoder } from '@/utils/ObjectKeyDecoder'
 import { EventMap, PromiseEventEmitter } from '@/utils/PromiseEventEmitter'
@@ -112,18 +113,25 @@ export abstract class AssetCacheManager<
    * @returns Assets game version text or undefined
    */
   protected static get gameVersion(): string | undefined {
-    const oldCommits = fs.existsSync(this.commitFilePath)
-      ? (JSON.parse(
-          fs.readFileSync(this.commitFilePath, {
-            encoding: 'utf8',
-          }),
-        ) as GitLabAPIResponse[])
-      : null
-    if (oldCommits) {
+    if (!fs.existsSync(this.commitFilePath)) return undefined
+
+    try {
+      const fileContent = fs.readFileSync(this.commitFilePath, {
+        encoding: 'utf8',
+      })
+
+      if (fileContent.trim() === '') return undefined
+
+      const oldCommits = JSON.parse(fileContent) as GitLabAPIResponse[]
+
+      if (!Array.isArray(oldCommits) || oldCommits.length === 0)
+        return undefined
+
       const versionTexts = /OSRELWin(\d+\.\d+\.\d+)_/.exec(oldCommits[0].title)
       if (!versionTexts || versionTexts.length < 2) return '?.?.?'
       return versionTexts[1]
-    } else {
+    } catch (error) {
+      console.error('GenshinManager: Error reading commits.json:', error)
       return undefined
     }
   }
@@ -140,6 +148,21 @@ export abstract class AssetCacheManager<
         (key) => key as keyof typeof ExcelBinOutputs,
       ),
     )
+  }
+
+  /**
+   * Download json file from URL and write to downloadFilePath
+   * Prevents file conflicts through concurrent access control
+   * @param url URL
+   * @param downloadFilePath Download file path
+   */
+  public static async downloadJsonFile(
+    url: string,
+    downloadFilePath: string,
+  ): Promise<void> {
+    return withFileLock(downloadFilePath, async () => {
+      return this.downloadJsonFileInternal(url, downloadFilePath)
+    })
   }
 
   /**
@@ -453,29 +476,75 @@ export abstract class AssetCacheManager<
       if (!fs.existsSync(folderPath)) fs.mkdirSync(folderPath)
     })
 
-    const oldCommits = fs.existsSync(this.commitFilePath)
-      ? (JSON.parse(
-          fs.readFileSync(this.commitFilePath, {
-            encoding: 'utf8',
-          }),
-        ) as GitLabAPIResponse[])
-      : null
+    let oldCommits: GitLabAPIResponse[] | null = null
+
+    // Safe read of existing commits file with detailed error handling
+    if (fs.existsSync(this.commitFilePath)) {
+      try {
+        const oldFileContent = fs.readFileSync(this.commitFilePath, {
+          encoding: 'utf8',
+        })
+
+        if (oldFileContent.trim() === '') oldCommits = null
+        else oldCommits = JSON.parse(oldFileContent) as GitLabAPIResponse[]
+      } catch (error) {
+        console.error(
+          'GenshinManager: Error reading existing commits.json:',
+          error,
+        )
+        oldCommits = null
+      }
+    }
 
     await this.downloadJsonFile(this.GIT_REMOTE_API_URL, this.commitFilePath)
 
-    const fileContent = fs.readFileSync(this.commitFilePath, {
-      encoding: 'utf8',
-    })
+    // Safe read of new commits file with detailed error handling
+    try {
+      const fileContent = fs.readFileSync(this.commitFilePath, {
+        encoding: 'utf8',
+      })
 
-    const newCommits = JSON.parse(fileContent) as GitLabAPIResponse[]
+      if (fileContent.trim() === '') {
+        console.error('GenshinManager: Downloaded commits.json is empty!')
+        throw new Error('Downloaded commits file is empty')
+      }
 
-    this.nowCommitId = newCommits[0].id
-    if (oldCommits && newCommits[0].id === oldCommits[0].id) {
-      return undefined
-    } else {
-      const versionTexts = /OSRELWin(\d+\.\d+\.\d+)_/.exec(newCommits[0].title)
-      if (!versionTexts || versionTexts.length < 2) return '?.?.?'
-      return versionTexts[1]
+      const newCommits = JSON.parse(fileContent) as GitLabAPIResponse[]
+
+      if (!Array.isArray(newCommits) || newCommits.length === 0) {
+        console.error(
+          'GenshinManager: Downloaded commits.json contains invalid data structure!',
+        )
+        throw new Error('Downloaded commits file contains invalid data')
+      }
+
+      this.nowCommitId = newCommits[0].id
+      if (oldCommits && newCommits[0].id === oldCommits[0].id) {
+        return undefined
+      } else {
+        const versionTexts = /OSRELWin(\d+\.\d+\.\d+)_/.exec(
+          newCommits[0].title,
+        )
+        if (!versionTexts || versionTexts.length < 2) return '?.?.?'
+        return versionTexts[1]
+      }
+    } catch (error) {
+      console.error('GenshinManager: Error reading new commits.json:', error)
+      console.error('GenshinManager: File path:', this.commitFilePath)
+
+      try {
+        const fileContent = fs.readFileSync(this.commitFilePath, {
+          encoding: 'utf8',
+        })
+        console.error(
+          'GenshinManager: File content preview:',
+          fileContent.substring(0, 200),
+        )
+      } catch (readError) {
+        console.error('GenshinManager: Cannot read file for debug:', readError)
+      }
+
+      throw error
     }
   }
 
@@ -574,51 +643,129 @@ export abstract class AssetCacheManager<
       : undefined
 
     if (progressBar) progressBar.start(files.length, 0)
-    await Promise.all(
-      files.map(async (fileName) => {
-        const url = [
-          this.GIT_REMOTE_RAW_BASE_URL,
-          this.nowCommitId,
-          gitFolderName,
-          fileName,
-        ].join('/')
-        const filePath = path.join(folderPath, fileName)
-        await this.downloadJsonFile(url, filePath)
-        if (progressBar) progressBar.increment()
-      }),
-    )
+
+    // Limit concurrent downloads to reduce race conditions
+    const concurrentLimit = 3
+    const chunks: string[][] = []
+    for (let i = 0; i < files.length; i += concurrentLimit)
+      chunks.push(files.slice(i, i + concurrentLimit))
+
+    for (const chunk of chunks) {
+      await Promise.all(
+        chunk.map(async (fileName) => {
+          const url = [
+            this.GIT_REMOTE_RAW_BASE_URL,
+            this.nowCommitId,
+            gitFolderName,
+            fileName,
+          ].join('/')
+          const filePath = path.join(folderPath, fileName)
+          await this.downloadJsonFile(url, filePath)
+          if (progressBar) progressBar.increment()
+        }),
+      )
+      // Small delay between chunks to avoid overwhelming the server
+      if (chunks.indexOf(chunk) < chunks.length - 1)
+        await new Promise((resolve) => setTimeout(resolve, 100))
+    }
+
     if (progressBar) progressBar.stop()
   }
 
   /**
-   * Download json file from URL and write to downloadFilePath
+   * Internal download process executed within file lock
    * @param url URL
    * @param downloadFilePath Download file path
    */
-  private static async downloadJsonFile(
+  private static async downloadJsonFileInternal(
     url: string,
     downloadFilePath: string,
   ): Promise<void> {
-    const res = await fetch(url, this.option.fetchOption)
-    if (!res.body) throw new BodyNotFoundError(url)
-    const writeStream = fs.createWriteStream(downloadFilePath, {
-      highWaterMark: 1 * 1024 * 1024,
-    })
-    const language = path
-      .basename(downloadFilePath)
-      .split('.')[0]
-      .replace('TextMap', '') as keyof typeof TextMapLanguage
-    if ('TextMap' === path.basename(path.dirname(downloadFilePath))) {
-      await pipeline(
-        new ReadableStreamWrapper(res.body.getReader()),
-        new TextMapTransform(language, this.textHashes),
-        writeStream,
-      )
-    } else {
-      await pipeline(
-        new ReadableStreamWrapper(res.body.getReader()),
-        writeStream,
-      )
+    const maxRetries = 3
+    const baseDelay = 100 // ms
+
+    for (let attempt = 1; attempt <= maxRetries; attempt++) {
+      try {
+        const res = await fetch(url, this.option.fetchOption)
+        if (!res.body) throw new BodyNotFoundError(url)
+
+        const writeStream = fs.createWriteStream(downloadFilePath, {
+          highWaterMark: 1 * 1024 * 1024,
+        })
+
+        const language = path
+          .basename(downloadFilePath)
+          .split('.')[0]
+          .replace('TextMap', '') as keyof typeof TextMapLanguage
+
+        if ('TextMap' === path.basename(path.dirname(downloadFilePath))) {
+          await pipeline(
+            new ReadableStreamWrapper(res.body.getReader()),
+            new TextMapTransform(language, this.textHashes),
+            writeStream,
+          )
+        } else {
+          await pipeline(
+            new ReadableStreamWrapper(res.body.getReader()),
+            writeStream,
+          )
+        }
+
+        await new Promise((resolve) => setTimeout(resolve, 150))
+
+        if (!fs.existsSync(downloadFilePath))
+          throw new Error('File does not exist after download completion')
+
+        if (!fs.existsSync(downloadFilePath))
+          throw new Error('File disappeared between existence checks')
+
+        let fileStats: fs.Stats
+        try {
+          fileStats = fs.statSync(downloadFilePath)
+        } catch (error) {
+          if ((error as NodeJS.ErrnoException).code === 'ENOENT') {
+            throw new Error(
+              'File was removed by another process during concurrent access',
+            )
+          }
+          throw error
+        }
+
+        if (fileStats.size === 0)
+          throw new Error('File is empty after download')
+
+        if (
+          downloadFilePath.endsWith('.json') ||
+          downloadFilePath.includes('commits')
+        ) {
+          const testContent = fs.readFileSync(downloadFilePath, {
+            encoding: 'utf8',
+          })
+          if (testContent.trim() === '')
+            throw new Error('File content is empty after download')
+
+          if (testContent.length < 10) {
+            throw new Error(
+              'File content is suspiciously short, likely truncated',
+            )
+          }
+
+          JSON.parse(testContent)
+        }
+
+        return
+      } catch (error) {
+        if (attempt === maxRetries) throw error
+
+        const delay = baseDelay * Math.pow(2, attempt - 1)
+        await new Promise((resolve) => setTimeout(resolve, delay))
+
+        try {
+          if (fs.existsSync(downloadFilePath)) fs.unlinkSync(downloadFilePath)
+        } catch {
+          // Silent cleanup failure
+        }
+      }
     }
   }
 }

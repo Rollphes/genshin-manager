@@ -7,6 +7,7 @@ export default defineConfig({
     environment: 'node',
     globalSetup: ['./test/setup.ts'],
     testTimeout: 30000, // Extended timeout for GitLab API calls
+    cache: false, // Disable test cache to prevent race conditions
     poolOptions: {
       threads: {
         singleThread: true,
@@ -16,7 +17,12 @@ export default defineConfig({
       provider: 'v8',
       reporter: ['text', 'json', 'html'],
       include: ['src/**/*.{js,ts}'],
-      exclude: ['**/node_modules/**', '**/dist/**', '**/tests/**'],
+      exclude: [
+        '**/node_modules/**',
+        '**/dist/**',
+        '**/tests/**',
+        'src/test/**',
+      ],
     },
   },
   resolve: {

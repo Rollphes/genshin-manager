@@ -23,6 +23,16 @@ export async function setup(): Promise<void> {
   if (fs.existsSync(CACHE_DIR))
     fs.rmSync(CACHE_DIR, { recursive: true, force: true })
 
+  // Remove old test commits file if it exists
+  if (
+    !fs.existsSync(COMMIT_FILE_PATH) &&
+    fs.existsSync(TEST_COMMIT_FILE_PATH)
+  ) {
+    // If test temp file exists, remove it to avoid conflicts
+    fs.rmSync(TEST_COMMIT_FILE_PATH, { recursive: true, force: true })
+    console.log('🗑️ Global setup: Removed old test commits file')
+  }
+
   /**
    * Client instance with all supported languages for comprehensive test coverage.
    */
