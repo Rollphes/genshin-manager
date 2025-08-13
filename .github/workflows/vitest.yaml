@@ -40,8 +40,20 @@ jobs:
       - name: Run Vitest with coverage
         run: npx vitest run --coverage.enabled
 
+      - name: Verify test results
+        run: |
+          echo "✅ All tests passed successfully!"
+          echo "Test run completed with coverage collection."
+
       - name: Show coverage report
         uses: davelosert/vitest-coverage-report-action@v2
-        if: always()
+        if: success()
         with:
           working-directory: ${{ env.WORKING_DIRECTORY }}
+
+      - name: Upload coverage reports to Codecov (if available)
+        uses: codecov/codecov-action@v5
+        if: success()
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }}
+          fail_ci_if_error: false
