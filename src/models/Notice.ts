@@ -12,8 +12,13 @@ type CheerioAPI = ReturnType<typeof cheerio.load>
 /**
  * Check if a node is a tag element
  */
-function isCheerioElement(node: any): node is Element {
-  return node && node.type === 'tag'
+function isCheerioElement(node: unknown): node is Element {
+  return (
+    node !== null &&
+    typeof node === 'object' &&
+    'type' in node &&
+    (node as { type: string }).type === 'tag'
+  )
 }
 
 /**
@@ -135,7 +140,7 @@ export class Notice {
     const durationElement = this.durationTitleElement
     if (!durationElement) return
 
-    let nextElement = this.$(durationElement as any).next()
+    let nextElement = this.$(durationElement).next()
 
     while (nextElement.length && !nextElement.text().includes('〓')) {
       if (!/shop|reword|Shop|Reword/g.test(nextElement.text()))
@@ -150,7 +155,7 @@ export class Notice {
     if (
       timeStrings &&
       timeStrings.length >= 2 &&
-      !(this.tag === 3 && !this.$(durationElement as any).next().is('p'))
+      !(this.tag === 3 && !this.$(durationElement).next().is('p'))
     ) {
       timeStrings.sort((a, b) => new Date(a).getTime() - new Date(b).getTime())
       this.eventStart = new Date(timeStrings[0])
@@ -196,7 +201,7 @@ export class Notice {
       )
     }
 
-    if (!this.$(this.durationTitleElement as any).next().is('p')) {
+    if (!this.$(this.durationTitleElement).next().is('p')) {
       const trFirst = this.$('tr').first()
       const tdList = this.$('td')
         .toArray()
@@ -225,7 +230,7 @@ export class Notice {
     }
 
     let durationResult = ''
-    let nextElement = this.$(this.durationTitleElement as any).next()
+    let nextElement = this.$(this.durationTitleElement).next()
 
     while (nextElement.length && !nextElement.text().includes('〓')) {
       durationResult += `${nextElement.text()}\n`
@@ -244,7 +249,7 @@ export class Notice {
         /〓.*?(Time|Duration|Wish).*?〓/g.test(this._en$(el).text()),
       )
     if (durationTitleElementIndex === -1) return undefined
-    return this.$('p').toArray()[durationTitleElementIndex] as Element
+    return this.$('p').toArray()[durationTitleElementIndex]
   }
 
   /**
