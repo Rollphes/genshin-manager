@@ -7,6 +7,17 @@ export default defineConfig({
     environment: 'node',
     globalSetup: ['./test/setup.ts'],
     testTimeout: 30000, // Extended timeout for GitLab API calls
+    poolOptions: {
+      threads: {
+        singleThread: true,
+      },
+    },
+    coverage: {
+      provider: 'v8',
+      reporter: ['text', 'json', 'html'],
+      include: ['src/**/*.{js,ts}'],
+      exclude: ['**/node_modules/**', '**/dist/**', '**/tests/**'],
+    },
   },
   resolve: {
     alias: {

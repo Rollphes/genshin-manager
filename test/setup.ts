@@ -10,6 +10,8 @@ import { Client } from '@/client/Client'
 
 // Cache directory paths
 const CACHE_DIR = path.resolve(process.cwd(), 'cache')
+const COMMIT_FILE_PATH = path.resolve(CACHE_DIR, 'commits.json')
+const TEST_COMMIT_FILE_PATH = path.resolve(CACHE_DIR, 'commits_test_temp.json')
 
 /**
  * Deploys the Client with comprehensive language support for testing.
@@ -44,5 +46,12 @@ export async function setup(): Promise<void> {
   })
 
   await client.deploy()
+
+  // Create a temporary copy of commits.json for GitLab mock to avoid file access conflicts
+  if (fs.existsSync(COMMIT_FILE_PATH)) {
+    fs.copyFileSync(COMMIT_FILE_PATH, TEST_COMMIT_FILE_PATH)
+    console.log('📄 Global setup: Created test commits file copy')
+  }
+
   console.log('✅ Global setup: Client deployment completed')
 }

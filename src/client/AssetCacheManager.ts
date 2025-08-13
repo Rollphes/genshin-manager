@@ -467,9 +467,6 @@ export abstract class AssetCacheManager<
       encoding: 'utf8',
     })
 
-    if (!fileContent.trim())
-      throw new Error('Downloaded commits.json file is empty')
-
     const newCommits = JSON.parse(fileContent) as GitLabAPIResponse[]
 
     this.nowCommitId = newCommits[0].id
