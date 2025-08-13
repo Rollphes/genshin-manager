@@ -1,4 +1,4 @@
-import { Client } from '@/client/Client'
+import { AssetCacheManager } from '@/client/AssetCacheManager'
 import { ExcelBinOutputs } from '@/types'
 import {
   JsonArray,
@@ -32,10 +32,14 @@ export class ObjectKeyDecoder {
   constructor() {
     // Replace key of ProfilePictureExcelConfigData (add infoId&type)
     if (
-      Client._hasCachedExcelBinOutputByName('ProfilePictureExcelConfigData')
+      AssetCacheManager._hasCachedExcelBinOutputByName(
+        'ProfilePictureExcelConfigData',
+      )
     ) {
       const profilePictureDataArray = Object.values(
-        Client._getCachedExcelBinOutputByName('ProfilePictureExcelConfigData'),
+        AssetCacheManager._getCachedExcelBinOutputByName(
+          'ProfilePictureExcelConfigData',
+        ),
       )
 
       const dummyProfilePicture = profilePictureDataArray.find(
@@ -58,9 +62,15 @@ export class ObjectKeyDecoder {
     }
 
     // Replace key of WeaponPromoteExcelConfigData (add promoteLevel & unlockMaxLevel & costItems)
-    if (Client._hasCachedExcelBinOutputByName('WeaponPromoteExcelConfigData')) {
+    if (
+      AssetCacheManager._hasCachedExcelBinOutputByName(
+        'WeaponPromoteExcelConfigData',
+      )
+    ) {
       const weaponPromoteDataArray = Object.values(
-        Client._getCachedExcelBinOutputByName('WeaponPromoteExcelConfigData'),
+        AssetCacheManager._getCachedExcelBinOutputByName(
+          'WeaponPromoteExcelConfigData',
+        ),
       )
 
       const sampleWeaponPromoteData = weaponPromoteDataArray.find(
@@ -110,9 +120,15 @@ export class ObjectKeyDecoder {
     }
 
     // Replace key of AvatarPromoteExcelConfigData (add promoteLevel & unlockMaxLevel & costItems)
-    if (Client._hasCachedExcelBinOutputByName('AvatarPromoteExcelConfigData')) {
+    if (
+      AssetCacheManager._hasCachedExcelBinOutputByName(
+        'AvatarPromoteExcelConfigData',
+      )
+    ) {
       const avatarPromoteDataArray = Object.values(
-        Client._getCachedExcelBinOutputByName('AvatarPromoteExcelConfigData'),
+        AssetCacheManager._getCachedExcelBinOutputByName(
+          'AvatarPromoteExcelConfigData',
+        ),
       )
 
       const sampleAvatarPromoteData = avatarPromoteDataArray.find(
@@ -161,9 +177,15 @@ export class ObjectKeyDecoder {
     }
 
     // Replace key of AvatarCurveExcelConfigData (add costItems)
-    if (Client._hasCachedExcelBinOutputByName('ProudSkillExcelConfigData')) {
+    if (
+      AssetCacheManager._hasCachedExcelBinOutputByName(
+        'ProudSkillExcelConfigData',
+      )
+    ) {
       const proudSkillDataArray = Object.values(
-        Client._getCachedExcelBinOutputByName('ProudSkillExcelConfigData'),
+        AssetCacheManager._getCachedExcelBinOutputByName(
+          'ProudSkillExcelConfigData',
+        ),
       )
 
       const sampleProudSkillData = proudSkillDataArray[0]
