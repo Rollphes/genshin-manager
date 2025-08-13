@@ -61,7 +61,7 @@
   "dependencies": {
     "cheerio": "^1.0.0",
     "cli-progress": "^3.12.0",
-    "node-cron": "^3.0.3",
+    "node-cron": "^4.2.1",
     "ts-deepmerge": "^7.0.1"
   },
   "devDependencies": {
@@ -78,7 +78,7 @@
     "eslint": "^9.27.0",
     "eslint-config-prettier": "^10.1.5",
     "eslint-formatter-unix": "^8.40.0",
-    "eslint-plugin-jsdoc": "^52.0.4",
+    "eslint-plugin-jsdoc": "^54.0.0",
     "eslint-plugin-prettier": "^5.4.0",
     "eslint-plugin-simple-import-sort": "^12.1.1",
     "husky": "^9.1.7",
