@@ -1,12 +1,25 @@
 import * as cheerio from 'cheerio'
-import { CheerioAPI } from 'cheerio'
-import { Element, isTag } from 'domhandler'
+import { Element } from 'domhandler'
 
 import { ImageAssets } from '@/models/assets/ImageAssets'
 import { ValueOf } from '@/types'
 import { NoticeLanguage, Region } from '@/types/sg-hk4e-api'
 import { ContentList, DataList } from '@/types/sg-hk4e-api/response'
 import { convertToUTC } from '@/utils/convertToUTC'
+
+type CheerioAPI = ReturnType<typeof cheerio.load>
+
+/**
+ * Check if a node is a tag element
+ */
+function isCheerioElement(node: unknown): node is Element {
+  return (
+    node !== null &&
+    typeof node === 'object' &&
+    'type' in node &&
+    (node as { type: string }).type === 'tag'
+  )
+}
 
 /**
  * Class for compiling in-game announcement information
@@ -124,7 +137,10 @@ export class Notice {
     this._en$ = cheerio.load(unescapedEnContent)
 
     let durationResult = ''
-    let nextElement = this.$(this.durationTitleElement).next()
+    const durationElement = this.durationTitleElement
+    if (!durationElement) return
+
+    let nextElement = this.$(durationElement).next()
 
     while (nextElement.length && !nextElement.text().includes('〓')) {
       if (!/shop|reword|Shop|Reword/g.test(nextElement.text()))
@@ -139,7 +155,7 @@ export class Notice {
     if (
       timeStrings &&
       timeStrings.length >= 2 &&
-      !(this.tag === 3 && !this.$(this.durationTitleElement).next().is('p'))
+      !(this.tag === 3 && !this.$(durationElement).next().is('p'))
     ) {
       timeStrings.sort((a, b) => new Date(a).getTime() - new Date(b).getTime())
       this.eventStart = new Date(timeStrings[0])
@@ -189,12 +205,12 @@ export class Notice {
       const trFirst = this.$('tr').first()
       const tdList = this.$('td')
         .toArray()
-        .filter((el): el is Element => isTag(el))
+        .filter((el): el is Element => isCheerioElement(el))
 
       const colWidths = this.$(trFirst)
         .children()
         .toArray()
-        .filter((el): el is Element => isTag(el))
+        .filter((el): el is Element => isCheerioElement(el))
         .map((el) => el.attribs['data-colwidth'])
 
       if (colWidths.length > 2) {
