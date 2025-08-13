@@ -39,41 +39,21 @@ jobs:
           rm -rf node_modules package-lock.json
           npm install
 
-      - name: Run Vitest with coverage
-        id: vitest
-        run: npx vitest run --coverage.enabled --reporter=verbose
-        continue-on-error: true
+      - name: Run tests
+        run: npx vitest run --coverage
 
-      - name: Display test results
-        run: |
-          if [ "${{ steps.vitest.outcome }}" == "success" ]; then
-            echo "✅ All tests passed successfully!"
-            echo "Test run completed with coverage collection."
-          else
-            echo "❌ Tests failed! Check the output above for details."
-            echo "::error::Vitest tests failed"
-            exit 1
-          fi
-
-      - name: Show failed test details on failure
-        if: failure()
-        run: |
-          echo "🔍 Re-running failed tests with detailed output..."
-          npx vitest run --reporter=verbose --no-coverage 2>&1 || true
-          echo ""
-          echo "📊 Test summary:"
-          echo "- Check the test output above for specific failure details"
-          echo "- Failed tests will show assertion errors and stack traces"
-
-      - name: Show coverage report
-        uses: davelosert/vitest-coverage-report-action@v2
-        if: steps.vitest.outcome == 'success'
-        with:
-          working-directory: ${{ env.WORKING_DIRECTORY }}
-
-      - name: Upload coverage reports to Codecov
+      - name: Upload coverage to Codecov
+        if: success()
         uses: codecov/codecov-action@v4
-        if: steps.vitest.outcome == 'success'
         with:
           token: ${{ secrets.CODECOV_TOKEN }}
+          files: ./coverage/lcov.info
           fail_ci_if_error: false
+
+      - name: Report test failure
+        if: failure()
+        uses: davelosert/vitest-coverage-report-action@v2
+        with:
+          working-directory: ${{ env.WORKING_DIRECTORY }}
+          json-summary-path: ./coverage/coverage-summary.json
+          json-final-path: ./coverage/coverage-final.json
