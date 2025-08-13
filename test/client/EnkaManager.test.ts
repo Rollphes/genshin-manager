@@ -157,6 +157,35 @@ describe('EnkaManager Basic Functionality', () => {
       expect(result.hsr).toBeDefined()
     })
 
+    it('should successfully fetch all status data', async () => {
+      const mockAllStatusResponse = {
+        '2025-08-12T15:00': createEnkaStatusResponse(),
+        '2025-08-12T15:30': createEnkaStatusResponse(),
+        '2025-08-12T16:00': createEnkaStatusResponse(),
+      }
+
+      mockFetch.mockResolvedValueOnce(
+        new MockResponse(mockAllStatusResponse) as unknown as Response,
+      )
+
+      const result = await enkaManager.fetchAllStatus()
+
+      expect(mockFetch).toHaveBeenCalledTimes(1)
+      expect(mockFetch).toHaveBeenCalledWith(
+        'http://status.enka.network/api/status',
+        expect.objectContaining({
+          headers: {
+            'user-agent': expect.stringContaining('genshin-manager') as string,
+          },
+        }),
+      )
+      expect(result).toBeDefined()
+      expect(typeof result).toBe('object')
+      expect(Object.keys(result)).toHaveLength(3)
+      expect(result['2025-08-12T15:00']).toBeDefined()
+      expect(result['2025-08-12T15:00'].now).toBe('2025-08-12T15:06')
+    })
+
     it('should successfully fetch GenshinAccounts', async () => {
       const username = 'testuser'
       const mockGameAccountsResponse = createGenshinAccountsResponse()
@@ -407,6 +436,19 @@ describe('EnkaManager Basic Functionality', () => {
       mockFetch.mockResolvedValueOnce(mockErrorResponse as unknown as Response)
 
       await expect(enkaManager.fetchNowStatus()).rejects.toThrow(
+        EnkaNetWorkStatusError,
+      )
+    })
+
+    it('should throw EnkaNetWorkStatusError for all status API failure', async () => {
+      const mockErrorResponse = new MockResponse(
+        { error: 'Service unavailable' },
+        { status: 503, statusText: 'Service Unavailable' },
+      )
+
+      mockFetch.mockResolvedValueOnce(mockErrorResponse as unknown as Response)
+
+      await expect(enkaManager.fetchAllStatus()).rejects.toThrow(
         EnkaNetWorkStatusError,
       )
     })
