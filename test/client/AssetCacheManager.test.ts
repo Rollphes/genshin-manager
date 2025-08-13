@@ -1,3 +1,5 @@
+import { setupGitLabMock } from '@test/__mocks__/api/gitlab'
+import { EventEmitter } from 'events'
 import fs from 'fs'
 import path from 'path'
 import { beforeAll, beforeEach, describe, expect, it, vi } from 'vitest'
@@ -6,6 +8,9 @@ import { AssetCacheManager } from '@/client/AssetCacheManager'
 import { Client } from '@/client/Client'
 import { AssetsNotFoundError } from '@/errors/AssetsNotFoundError'
 import { ExcelBinOutputs } from '@/types'
+
+// Increase max listeners to prevent memory leak warnings during tests
+EventEmitter.defaultMaxListeners = 50
 
 interface GitLabCommit {
   id: string
@@ -18,8 +23,7 @@ describe('AssetCacheManager Basic Functionality', () => {
   let client: Client
 
   beforeAll(async () => {
-    // Client deployment is already handled in test/setup.ts
-    // GitLab mock server is also set up there using cached data
+    setupGitLabMock()
 
     // Deploy Client using the GitLab mock server
     client = new Client({

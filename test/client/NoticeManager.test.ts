@@ -1,9 +1,11 @@
+import { setupGitLabMock } from '@test/__mocks__/api/gitlab'
 import {
   createAnnContentResponse,
   createAnnListResponse,
   createDetailedAnnContentResponse,
 } from '@test/__mocks__/api/notice-manager'
 import { MockResponse } from '@test/__mocks__/utils'
+import { EventEmitter } from 'events'
 import {
   beforeAll,
   beforeEach,
@@ -18,6 +20,10 @@ import { Client } from '@/client/Client'
 import { NoticeManager, NoticeManagerEvents } from '@/client/NoticeManager'
 import { AnnContentNotFoundError } from '@/errors/AnnContentNotFoundError'
 import { AnnError } from '@/errors/AnnError'
+
+// Increase max listeners to prevent memory leak warnings during tests
+EventEmitter.defaultMaxListeners = 50
+
 import { OutOfRangeError } from '@/errors/OutOfRangeError'
 import { NoticeLanguage } from '@/types/sg-hk4e-api'
 const supportedLanguages: (keyof typeof NoticeLanguage)[] = [
@@ -41,8 +47,7 @@ describe('NoticeManager Basic Functionality', () => {
   let mockFetch: MockedFunction<typeof fetch>
 
   beforeAll(async () => {
-    // Client deployment is already handled in test/setup.ts
-    // GitLab mock server is also set up there using cached data
+    setupGitLabMock()
 
     // Deploy Client using the GitLab mock server
     const client = new Client({

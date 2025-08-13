@@ -463,11 +463,14 @@ export abstract class AssetCacheManager<
 
     await this.downloadJsonFile(this.GIT_REMOTE_API_URL, this.commitFilePath)
 
-    const newCommits = JSON.parse(
-      fs.readFileSync(this.commitFilePath, {
-        encoding: 'utf8',
-      }),
-    ) as GitLabAPIResponse[]
+    const fileContent = fs.readFileSync(this.commitFilePath, {
+      encoding: 'utf8',
+    })
+
+    if (!fileContent.trim())
+      throw new Error('Downloaded commits.json file is empty')
+
+    const newCommits = JSON.parse(fileContent) as GitLabAPIResponse[]
 
     this.nowCommitId = newCommits[0].id
     if (oldCommits && newCommits[0].id === oldCommits[0].id) {
@@ -606,7 +609,8 @@ export abstract class AssetCacheManager<
     })
     const language = path
       .basename(downloadFilePath)
-      .split('.')[0] as keyof typeof TextMapLanguage
+      .split('.')[0]
+      .replace('TextMap', '') as keyof typeof TextMapLanguage
     if ('TextMap' === path.basename(path.dirname(downloadFilePath))) {
       await pipeline(
         new ReadableStreamWrapper(res.body.getReader()),

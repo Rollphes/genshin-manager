@@ -4,7 +4,9 @@ import {
   createEnkaStatusResponse,
   createGenshinAccountsResponse,
 } from '@test/__mocks__/api/enka-manager'
+import { setupGitLabMock } from '@test/__mocks__/api/gitlab'
 import { MockResponse } from '@test/__mocks__/utils'
+import { EventEmitter } from 'events'
 import {
   beforeAll,
   beforeEach,
@@ -21,13 +23,15 @@ import { EnkaManagerError } from '@/errors/EnkaManagerError'
 import { EnkaNetworkError } from '@/errors/EnkaNetWorkError'
 import { EnkaNetWorkStatusError } from '@/errors/EnkaNetWorkStatusError'
 
+// Increase max listeners to prevent memory leak warnings during tests
+EventEmitter.defaultMaxListeners = 50
+
 describe('EnkaManager Basic Functionality', () => {
   let enkaManager: EnkaManager
   let mockFetch: MockedFunction<typeof fetch>
 
   beforeAll(async () => {
-    // Client deployment is already handled in test/setup.ts
-    // GitLab mock server is also set up there using cached data
+    setupGitLabMock()
 
     // Deploy Client using the GitLab mock server
     const client = new Client({
