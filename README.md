@@ -4,6 +4,8 @@
 	<p>
 		<a href="https://www.npmjs.com/package/genshin-manager"><img src="https://img.shields.io/npm/v/genshin-manager.svg?maxAge=3600" alt="npm version" /></a>
 		<a href="https://www.npmjs.com/package/genshin-manager"><img src="https://img.shields.io/npm/dt/genshin-manager.svg?maxAge=3600" alt="npm downloads" /></a>
+		<a href="https://github.com/Rollphes/genshin-manager/actions/workflows/vitest.yaml"><img src="https://github.com/Rollphes/genshin-manager/actions/workflows/vitest.yaml/badge.svg" alt="vitest" /></a>
+		<a href="https://codecov.io/github/Rollphes/genshin-manager"><img src="https://codecov.io/github/Rollphes/genshin-manager/graph/badge.svg?token=1EZB6HD61B" alt="codecov" /></a>
 		<a href="https://github.com/Rollphes/genshin-manager/actions/workflows/github-code-scanning/codeql"><img src="https://github.com/Rollphes/genshin-manager/actions/workflows/github-code-scanning/codeql/badge.svg"/></a>
         <a href="https://github.com/Rollphes/genshin-manager/actions/workflows/reviewdog.yaml"><img src="https://github.com/Rollphes/genshin-manager/actions/workflows/reviewdog.yaml/badge.svg"/></a>
     	<a href="https://github.com/Rollphes/genshin-manager/blob/main/LICENCE"><img src="https://img.shields.io/badge/License-MIT-yellow.svg"/></a>
