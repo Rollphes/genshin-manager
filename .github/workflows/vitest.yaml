@@ -5,9 +5,12 @@ name: Vitest
 on:
   pull_request:
     types: [opened, reopened, synchronize, ready_for_review]
+  schedule:
+    - cron: '0 15 * * 1' # every Monday at 15:00 UTC (0:00 JST)
+  workflow_dispatch:
 
 env:
-  WORKING_DIRECTORY: application
+  WORKING_DIRECTORY: .
 
 jobs:
   test:
