@@ -309,17 +309,29 @@ describe('AssetCacheManager Basic Functionality', () => {
     })
 
     it('should validate AssetsNotFoundError properties', () => {
+      let caughtError: unknown
+
+      expect(() => {
+        AssetCacheManager._getJsonFromCachedExcelBinOutput(
+          'AnimalCodexExcelConfigData' as keyof typeof ExcelBinOutputs,
+          '123',
+        )
+      }).toThrow()
+
       try {
         AssetCacheManager._getJsonFromCachedExcelBinOutput(
           'AnimalCodexExcelConfigData' as keyof typeof ExcelBinOutputs,
           '123',
         )
       } catch (error) {
-        expect(error).toBeInstanceOf(AssetsNotFoundError)
-        expect(error).toHaveProperty('key')
-        expect(error).toHaveProperty('id')
-        expect(error).toHaveProperty('name')
+        caughtError = error
       }
+
+      expect(caughtError).toBeInstanceOf(AssetsNotFoundError)
+      const assetError = caughtError as AssetsNotFoundError
+      expect(assetError).toHaveProperty('key')
+      expect(assetError).toHaveProperty('id')
+      expect(assetError).toHaveProperty('name')
     })
   })
 
@@ -362,12 +374,8 @@ describe('AssetCacheManager Basic Functionality', () => {
         operations.map(
           (operation) =>
             new Promise((resolve) => {
-              try {
-                const result = operation()
-                resolve(result)
-              } catch (error) {
-                resolve(error)
-              }
+              const result = operation()
+              resolve(result)
             }),
         ),
       )

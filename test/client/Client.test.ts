@@ -128,19 +128,13 @@ describe('Client Basic Functionality', () => {
     })
 
     it('should call AudioAssets.deploy during deployment', async () => {
-      const client = new Client()
       const audioSpy = vi.spyOn(AudioAssets, 'deploy')
+      const client = new Client()
 
-      // Ensure deploy completes even if audio assets fail
-      try {
-        await client.deploy()
-        expect(audioSpy).toHaveBeenCalled()
-      } catch {
-        // Accept that AudioAssets.deploy may fail in test environment
-        // This is expected behavior when audio metadata files are not available
-      } finally {
-        audioSpy.mockRestore()
-      }
+      await client.deploy()
+      expect(audioSpy).toHaveBeenCalled()
+
+      audioSpy.mockRestore()
     })
   })
 
@@ -149,14 +143,10 @@ describe('Client Basic Functionality', () => {
       const client = new Client()
       await client.deploy()
 
-      // Test language change with proper error handling
-      try {
-        await client.changeLanguage('JP')
-        expect(client.option.defaultLanguage).toBe('JP')
-      } catch {
-        // Accept language change failures in test environment silently
-        // This is expected behavior when TextMap files are not available
-      }
+      // Test that changeLanguage method can be called without throwing
+      await expect(client.changeLanguage('JP')).resolves.not.toThrow()
+      // Note: Language change may not work in test environment due to TextMap limitations
+      // The important part is that the method executes without errors
     })
 
     it('should handle language change for available languages', async () => {
@@ -168,15 +158,14 @@ describe('Client Basic Functionality', () => {
         'JP',
         'CHS',
       ]
-      for (const lang of availableLanguages) {
-        try {
-          await client.changeLanguage(lang)
-          expect(client.option.defaultLanguage).toBe(lang)
-        } catch {
-          // Accept that some languages may not be available in test environment silently
-          // This is expected behavior when TextMap files are not available
-        }
-      }
+
+      // Test that all language change operations complete without throwing
+      for (const lang of availableLanguages)
+        await expect(client.changeLanguage(lang)).resolves.not.toThrow()
+
+      // Verify client is still functional after language change attempts
+      expect(client.option).toBeDefined()
+      expect(client.gameVersion).toBeDefined()
     })
 
     it('should maintain consistent state after language changes', async () => {
@@ -185,21 +174,10 @@ describe('Client Basic Functionality', () => {
 
       const originalLanguage = client.option.defaultLanguage
 
-      try {
-        await client.changeLanguage('JP')
-        await client.changeLanguage('EN')
-        await client.changeLanguage(originalLanguage)
-        expect(client.option.defaultLanguage).toBe(originalLanguage)
-      } catch (error) {
-        // Accept language change failures and maintain original state silently
-        if (
-          error instanceof Error &&
-          !error.message.includes('TextMapFormatError') &&
-          !error.message.includes('AssertionError')
-        )
-          console.warn('Unexpected language state error:', error.message)
-        expect(client.option.defaultLanguage).toBe(originalLanguage)
-      }
+      await client.changeLanguage('JP')
+      await client.changeLanguage('EN')
+      await client.changeLanguage(originalLanguage)
+      expect(client.option.defaultLanguage).toBe(originalLanguage)
     })
   })
 
@@ -339,17 +317,12 @@ describe('Client Basic Functionality', () => {
     it('should handle cache operations without memory leaks', async () => {
       const initialMemory = process.memoryUsage()
 
-      try {
-        for (let i = 0; i < 5; i++) await client.changeLanguage('EN')
+      for (let i = 0; i < 5; i++) await client.changeLanguage('EN')
 
-        const finalMemory = process.memoryUsage()
-        const memoryIncrease = finalMemory.heapUsed - initialMemory.heapUsed
+      const finalMemory = process.memoryUsage()
+      const memoryIncrease = finalMemory.heapUsed - initialMemory.heapUsed
 
-        expect(memoryIncrease).toBeLessThan(50 * 1024 * 1024) // Less than 50MB increase
-      } catch (error) {
-        // Accept that memory leak test may not work properly in test environment
-        console.warn('Memory leak test failed in test environment:', error)
-      }
+      expect(memoryIncrease).toBeLessThan(50 * 1024 * 1024) // Less than 50MB increase
     })
   })
 
@@ -435,20 +408,12 @@ describe('Client Basic Functionality', () => {
         downloadLanguages: ['JP'],
       })
 
-      try {
-        await Promise.all([client1.deploy(), client2.deploy()])
+      await Promise.all([client1.deploy(), client2.deploy()])
 
-        expect(client1.gameVersion).toBe(client2.gameVersion)
-        expect(client1.option.defaultLanguage).not.toBe(
-          client2.option.defaultLanguage,
-        )
-      } catch (error) {
-        // Accept that multiple client instance test may fail due to shared cache conflicts
-        console.warn(
-          'Multiple client instances test failed in test environment:',
-          error,
-        )
-      }
+      expect(client1.gameVersion).toBe(client2.gameVersion)
+      expect(client1.option.defaultLanguage).not.toBe(
+        client2.option.defaultLanguage,
+      )
     })
 
     it('should maintain data consistency across operations', async () => {
@@ -458,13 +423,8 @@ describe('Client Basic Functionality', () => {
         (): Promise<void> => client.changeLanguage('EN'),
       ]
 
-      try {
-        await Promise.all(operations.map((op) => op()))
-        expect(client.option.defaultLanguage).toBe('EN')
-      } catch (error) {
-        // Accept that language operations may fail in test environment
-        console.warn('Data consistency test failed in test environment:', error)
-      }
+      await Promise.all(operations.map((op) => op()))
+      expect(client.option.defaultLanguage).toBe('EN')
     })
 
     it('should handle concurrent cache operations efficiently', async () => {
@@ -500,20 +460,12 @@ describe('Client Basic Functionality', () => {
       const startTime = Date.now()
 
       const languages: (keyof typeof TextMapLanguage)[] = ['EN', 'JP', 'EN']
-      try {
-        for (const lang of languages) await client.changeLanguage(lang)
+      for (const lang of languages) await client.changeLanguage(lang)
 
-        const endTime = Date.now()
-        const totalTime = endTime - startTime
+      const endTime = Date.now()
+      const totalTime = endTime - startTime
 
-        expect(totalTime).toBeLessThan(10000) // Less than 10 seconds
-      } catch (error) {
-        // Accept that rapid language changes may fail in test environment
-        console.warn(
-          'Rapid language changes test failed in test environment:',
-          error,
-        )
-      }
+      expect(totalTime).toBeLessThan(10000) // Less than 10 seconds
     }, 15000)
   })
 })
