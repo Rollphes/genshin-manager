@@ -112,18 +112,21 @@ export class ImageAssets {
     this.autoCacheImage = option.autoCacheImage
     this.imageFolderPath = path.resolve(option.assetCacheFolderPath, 'Images')
     if (!fs.existsSync(this.imageFolderPath)) fs.mkdirSync(this.imageFolderPath)
+    let packageImgDir: string
+    try {
+      packageImgDir = path.resolve(
+        path.dirname(require.resolve('genshin-manager/package.json')),
+        'img',
+      )
+    } catch {
+      packageImgDir = path.resolve(__dirname, '..', '..', '..', 'img')
+    }
+
     ;[
       'UI_Gacha_AvatarImg_PlayerBoy.png',
       'UI_Gacha_AvatarImg_PlayerGirl.png',
     ].forEach((imgName) => {
-      const sourcePath = path.resolve(
-        __dirname,
-        '..',
-        '..',
-        '..',
-        'img',
-        imgName,
-      )
+      const sourcePath = path.resolve(packageImgDir, imgName)
       const destinationPath = path.resolve(
         option.assetCacheFolderPath,
         'Images',
