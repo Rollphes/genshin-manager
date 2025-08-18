@@ -113,15 +113,11 @@ export class ImageAssets {
     this.imageFolderPath = path.resolve(option.assetCacheFolderPath, 'Images')
     if (!fs.existsSync(this.imageFolderPath))
       fs.mkdirSync(this.imageFolderPath, { recursive: true })
-    //
-    let packageFolderPath: string
-    try {
-      packageFolderPath = path.resolve(
-        path.dirname(require.resolve('genshin-manager/package.json')),
-      )
-    } catch {
-      packageFolderPath = path.resolve(__dirname, '..', '..', '..')
-    }
+    const packageFolderPath = __dirname
+      .replace(/\\/g, '/')
+      .includes('/node_modules/genshin-manager')
+      ? path.resolve(__dirname, '..')
+      : path.resolve(__dirname, '..', '..', '..')
 
     ;[
       'UI_Gacha_AvatarImg_PlayerBoy.png',
