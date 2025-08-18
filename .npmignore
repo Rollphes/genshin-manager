@@ -6,6 +6,8 @@
 /cache
 /dist/test
 /src/test
+/scripts
+/test
 
 # ----- Documentation & Examples -----
 /docs
@@ -19,12 +21,13 @@
 
 # ----- Configuration Files -----
 .eslintrc.json
-.eslint.config.js
+eslint.config.js
 .eslintignore
 .gitignore
 .prettierrc
 .prettierignore
 tsconfig.json
+tsup.config.ts
 typedoc.json
 vitest.config.ts
 commitlint.config.js
