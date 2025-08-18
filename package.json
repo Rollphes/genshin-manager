@@ -1,6 +1,6 @@
 {
   "name": "genshin-manager",
-  "version": "1.4.3-rc2",
+  "version": "1.4.3",
   "homepage": "https://rollphes.github.io/genshin-manager/",
   "bugs": "https://github.com/Rollphes/genshin-manager/issues",
   "main": "dist/index.js",
