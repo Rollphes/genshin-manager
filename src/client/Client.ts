@@ -115,7 +115,18 @@ export class Client extends AssetCacheManager<ClientEventMap, ClientEvents> {
     autoCacheAudio: true,
     autoFixTextMap: true,
     autoFixExcelBin: true,
-    assetCacheFolderPath: path.resolve(__dirname, '..', '..', 'cache'),
+    // __dirname = node_modules/genshin-manager/dist
+    // __dirname = src/client
+    assetCacheFolderPath: ((): string => {
+      try {
+        return path.resolve(
+          path.dirname(require.resolve('genshin-manager/package.json')),
+          'cache',
+        )
+      } catch {
+        return path.resolve(__dirname, '..', '..', 'cache')
+      }
+    })(),
   }
   public readonly option: ClientOption
 
