@@ -64,8 +64,8 @@ export class CharacterCostume {
 
     const nameTextMapHash = costumeJson.nameTextMapHash as number
     const descTextMapHash = costumeJson.descTextMapHash as number
-    this.name = Client._cachedTextMap.get(String(nameTextMapHash)) ?? ''
-    this.description = Client._cachedTextMap.get(String(descTextMapHash)) ?? ''
+    this.name = Client._cachedTextMap.get(nameTextMapHash) ?? ''
+    this.description = Client._cachedTextMap.get(descTextMapHash) ?? ''
     this.quality = costumeJson.quality as number
     const sideIconName =
       costumeJson.quality && typeof avatarJson != 'undefined'

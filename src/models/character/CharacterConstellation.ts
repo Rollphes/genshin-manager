@@ -43,8 +43,8 @@ export class CharacterConstellation {
     )
     const nameTextMapHash = talentJson.nameTextMapHash as number
     const descTextMapHash = talentJson.descTextMapHash as number
-    this.name = Client._cachedTextMap.get(String(nameTextMapHash)) ?? ''
-    this.description = Client._cachedTextMap.get(String(descTextMapHash)) ?? ''
+    this.name = Client._cachedTextMap.get(nameTextMapHash) ?? ''
+    this.description = Client._cachedTextMap.get(descTextMapHash) ?? ''
     this.icon = new ImageAssets(talentJson.icon as string)
   }
 

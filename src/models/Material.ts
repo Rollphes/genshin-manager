@@ -51,8 +51,8 @@ export class Material {
     )
     const nameTextMapHash = materialJson.nameTextMapHash as number
     const descTextMapHash = materialJson.descTextMapHash as number
-    this.name = Client._cachedTextMap.get(String(nameTextMapHash)) ?? ''
-    this.description = Client._cachedTextMap.get(String(descTextMapHash)) ?? ''
+    this.name = Client._cachedTextMap.get(nameTextMapHash) ?? ''
+    this.description = Client._cachedTextMap.get(descTextMapHash) ?? ''
     this.icon = new ImageAssets(materialJson.icon as string)
     this.pictures = (materialJson.picPath as string[]).map(
       (v) => new ImageAssets(v),

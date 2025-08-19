@@ -135,8 +135,8 @@ export class Weapon {
 
     const nameTextMapHash = weaponJson.nameTextMapHash as number
     const descTextMapHash = weaponJson.descTextMapHash as number
-    this.name = Client._cachedTextMap.get(String(nameTextMapHash)) ?? ''
-    this.description = Client._cachedTextMap.get(String(descTextMapHash)) ?? ''
+    this.name = Client._cachedTextMap.get(nameTextMapHash) ?? ''
+    this.description = Client._cachedTextMap.get(descTextMapHash) ?? ''
     this.type = weaponJson.weaponType as WeaponType
 
     this.rarity = weaponJson.rankLevel as number

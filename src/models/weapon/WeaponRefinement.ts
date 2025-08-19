@@ -62,9 +62,8 @@ export class WeaponRefinement {
       )
       const nameTextMapHash = equipAffixJson.nameTextMapHash as number
       const descTextMapHash = equipAffixJson.descTextMapHash as number
-      this.skillName = Client._cachedTextMap.get(String(nameTextMapHash)) ?? ''
-      this.skillDescription =
-        Client._cachedTextMap.get(String(descTextMapHash)) ?? ''
+      this.skillName = Client._cachedTextMap.get(nameTextMapHash) ?? ''
+      this.skillDescription = Client._cachedTextMap.get(descTextMapHash) ?? ''
       this.addProps = (equipAffixJson.addProps as JsonObject[])
         .filter(
           (addProp) =>

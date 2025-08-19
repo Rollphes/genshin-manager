@@ -72,28 +72,26 @@ export class CharacterProfile {
       fetterInfoJson.avatarVisionAfterTextMapHash as number
     const avatarVisionBeforeTextMapHash =
       fetterInfoJson.avatarVisionBeforTextMapHash as number
-    this.native =
-      Client._cachedTextMap.get(String(avatarNativeTextMapHash)) ?? ''
+    this.native = Client._cachedTextMap.get(avatarNativeTextMapHash) ?? ''
     this.vision =
-      Client._cachedTextMap.get(String(avatarVisionAfterTextMapHash)) ??
-      Client._cachedTextMap.get(String(avatarVisionBeforeTextMapHash)) ??
+      Client._cachedTextMap.get(avatarVisionAfterTextMapHash) ??
+      Client._cachedTextMap.get(avatarVisionBeforeTextMapHash) ??
       ''
     const avatarConstellationAfterTextMapHash =
       fetterInfoJson.avatarConstellationAfterTextMapHash as number
     const avatarConstellationBeforeTextMapHash =
       fetterInfoJson.avatarConstellationBeforTextMapHash as number
     this.constellation =
-      Client._cachedTextMap.get(String(avatarConstellationAfterTextMapHash)) ??
-      Client._cachedTextMap.get(String(avatarConstellationBeforeTextMapHash)) ??
+      Client._cachedTextMap.get(avatarConstellationAfterTextMapHash) ??
+      Client._cachedTextMap.get(avatarConstellationBeforeTextMapHash) ??
       ''
 
     const avatarTitleTextMapHash =
       fetterInfoJson.avatarTitleTextMapHash as number
     const avatarDetailTextMapHash =
       fetterInfoJson.avatarDetailTextMapHash as number
-    this.title = Client._cachedTextMap.get(String(avatarTitleTextMapHash)) ?? ''
-    this.detail =
-      Client._cachedTextMap.get(String(avatarDetailTextMapHash)) ?? ''
+    this.title = Client._cachedTextMap.get(avatarTitleTextMapHash) ?? ''
+    this.detail = Client._cachedTextMap.get(avatarDetailTextMapHash) ?? ''
     this.assocType = fetterInfoJson.avatarAssocType as AssocType
 
     const cvChineseTextMapHash = fetterInfoJson.cvChineseTextMapHash as number
@@ -101,10 +99,10 @@ export class CharacterProfile {
     const cvEnglishTextMapHash = fetterInfoJson.cvEnglishTextMapHash as number
     const cvKoreanTextMapHash = fetterInfoJson.cvKoreanTextMapHash as number
     this.cv = {
-      CHS: Client._cachedTextMap.get(String(cvChineseTextMapHash)) ?? '',
-      JP: Client._cachedTextMap.get(String(cvJapaneseTextMapHash)) ?? '',
-      EN: Client._cachedTextMap.get(String(cvEnglishTextMapHash)) ?? '',
-      KR: Client._cachedTextMap.get(String(cvKoreanTextMapHash)) ?? '',
+      CHS: Client._cachedTextMap.get(cvChineseTextMapHash) ?? '',
+      JP: Client._cachedTextMap.get(cvJapaneseTextMapHash) ?? '',
+      EN: Client._cachedTextMap.get(cvEnglishTextMapHash) ?? '',
+      KR: Client._cachedTextMap.get(cvKoreanTextMapHash) ?? '',
     }
   }
 
