@@ -113,9 +113,8 @@ export class DailyFarming {
         const descTextMapHash = manualTextJson.descTextMapHash as number
 
         this.domains.push({
-          name:
-            Client._cachedTextMap.get(String(textMapContentTextMapHash)) ?? '',
-          description: Client._cachedTextMap.get(String(descTextMapHash)) ?? '',
+          name: Client._cachedTextMap.get(textMapContentTextMapHash) ?? '',
+          description: Client._cachedTextMap.get(descTextMapHash) ?? '',
           materialIds: materialIds,
           characterInfos: this.getCharacterInfoByMaterialIds(materialIds),
           weaponIds: this.getWeaponIdsByMaterialIds(materialIds),

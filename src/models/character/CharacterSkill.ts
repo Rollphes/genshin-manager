@@ -56,8 +56,8 @@ export class CharacterSkill {
     )
     const nameTextMapHash = skillJson.nameTextMapHash as number
     const descTextMapHash = skillJson.descTextMapHash as number
-    this.name = Client._cachedTextMap.get(String(nameTextMapHash)) ?? ''
-    this.description = Client._cachedTextMap.get(String(descTextMapHash)) ?? ''
+    this.name = Client._cachedTextMap.get(nameTextMapHash) ?? ''
+    this.description = Client._cachedTextMap.get(descTextMapHash) ?? ''
     this.icon = new ImageAssets(skillJson.skillIcon as string)
     this.extraLevel = extraLevel
     this.level = level + this.extraLevel
@@ -77,7 +77,7 @@ export class CharacterSkill {
     const params = proudSkillJson.paramList as number[]
     ;(proudSkillJson.paramDescList as number[]).forEach((paramDescHash) => {
       const paramDesc = (
-        Client._cachedTextMap.get(String(paramDescHash)) ?? ''
+        Client._cachedTextMap.get(paramDescHash) ?? ''
       ).replace(/|/g, '')
       if (paramDesc === '') return
       this.paramDescriptions.push(

@@ -72,10 +72,10 @@ export class CharacterVoice {
       fetterVoiceJson.voiceTitleTextMapHash as number
     const voiceFileTextMapHash = fetterVoiceJson.voiceFileTextMapHash as number
 
-    this.title = Client._cachedTextMap.get(String(voiceTitleTextMapHash)) ?? ''
-    this.content = Client._cachedTextMap.get(String(voiceFileTextMapHash)) ?? ''
+    this.title = Client._cachedTextMap.get(voiceTitleTextMapHash) ?? ''
+    this.content = Client._cachedTextMap.get(voiceFileTextMapHash) ?? ''
     this.tips = (fetterVoiceJson.tips as number[])
-      .map((tip) => Client._cachedTextMap.get(String(tip)))
+      .map((tip) => Client._cachedTextMap.get(tip))
       .filter((tip): tip is string => tip !== undefined)
     this.audio = new AudioAssets(
       fetterVoiceJson.voiceFile as string,

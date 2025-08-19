@@ -49,15 +49,15 @@ export class CharacterStory {
     const storyContext2TextMapHash =
       fetterStoryJson.storyContext2TextMapHash as number
     this.title =
-      Client._cachedTextMap.get(String(storyTitleTextMapHash)) ??
-      Client._cachedTextMap.get(String(storyTitle2TextMapHash)) ??
+      Client._cachedTextMap.get(storyTitleTextMapHash) ??
+      Client._cachedTextMap.get(storyTitle2TextMapHash) ??
       ''
     this.content =
-      Client._cachedTextMap.get(String(storyContextTextMapHash)) ??
-      Client._cachedTextMap.get(String(storyContext2TextMapHash)) ??
+      Client._cachedTextMap.get(storyContextTextMapHash) ??
+      Client._cachedTextMap.get(storyContext2TextMapHash) ??
       ''
     this.tips = (fetterStoryJson.tips as number[])
-      .map((tip) => Client._cachedTextMap.get(String(tip)))
+      .map((tip) => Client._cachedTextMap.get(tip))
       .filter((tip): tip is string => tip !== undefined)
   }
 

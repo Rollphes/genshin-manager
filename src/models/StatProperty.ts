@@ -38,7 +38,7 @@ export class StatProperty {
       this.type,
     )
     const textMapContentTextMapHash =
-      manualTextJson.textMapContentTextMapHash as string
+      manualTextJson.textMapContentTextMapHash as number
 
     this.name = Client._cachedTextMap.get(textMapContentTextMapHash) ?? ''
 

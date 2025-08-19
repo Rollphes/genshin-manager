@@ -48,7 +48,7 @@ export abstract class AssetCacheManager<
    * @key Text hash
    * @value Text
    */
-  public static readonly _cachedTextMap = new Map<string, string>()
+  public static readonly _cachedTextMap = new Map<number, string>()
 
   /**
    * Asset event emitter
@@ -273,7 +273,7 @@ export abstract class AssetCacheManager<
         Object.keys(json).some((jsonKey) => {
           if (/TextMapHash/g.exec(jsonKey)) {
             const hash = json[jsonKey] as number
-            return this._cachedTextMap.get(String(hash)) === text
+            return this._cachedTextMap.get(hash) === text
           }
         }),
       )
@@ -380,7 +380,7 @@ export abstract class AssetCacheManager<
         const eventEmitter = new TextMapEmptyWritable()
 
         eventEmitter.on('data', ({ key, value }) =>
-          this._cachedTextMap.set(key as string, value as string),
+          this._cachedTextMap.set(+(key as string), value as string),
         )
 
         const pipelinePromiseResult = await pipeline(
