@@ -216,8 +216,7 @@ export class ObjectKeyDecoder {
     jsonData: JsonParser,
     filename: keyof typeof ExcelBinOutputs,
   ): Record<string, JsonValue> {
-    this.decode(jsonData)
-    return this.setKey(jsonData, filename)
+    return this.setKey(this.decode(jsonData), filename)
   }
 
   /**
@@ -230,7 +229,8 @@ export class ObjectKeyDecoder {
     jsonArray.forEach((v) => {
       const json = v as JsonObject
       this.replaceDatas.forEach((replaceData) => {
-        json[replaceData.newKey] = json[replaceData.oldKey]
+        const newValue = json[replaceData.oldKey]
+        if (newValue !== undefined) json[replaceData.newKey] = newValue
       })
     })
     return jsonData
