@@ -13,7 +13,7 @@ export function calculatePromoteLevel(
   level: number,
   isAscended: boolean,
 ): number {
-  if (level < 1 || level > 90) throw new OutOfRangeError('level', level, 1, 90)
+  if (level < 1 || level > 100) throw new OutOfRangeError('level', level, 1, 100)
   const maxPromoteLevel = Math.max(
     ...(Object.values(promotesJson) as JsonObject[]).map(
       (promote) => (promote.promoteLevel ?? 0) as number,

@@ -44,8 +44,8 @@ export class CharacterBaseStats {
   constructor(characterId: number, level = 1, isAscended = false) {
     this.id = characterId
     this.level = level
-    if (this.level < 1 || this.level > 90)
-      throw new OutOfRangeError('level', this.level, 1, 90)
+    if (this.level < 1 || this.level > 100)
+      throw new OutOfRangeError('level', this.level, 1, 100)
     this.isAscended = isAscended
     const avatarJson = Client._getJsonFromCachedExcelBinOutput(
       'AvatarExcelConfigData',

@@ -38,7 +38,7 @@ describe('EnkaNetwork Release Test', () => {
       userData.characterDetails.forEach((character) => {
         expect(character.id).toBeGreaterThan(0)
         expect(character.level).toBeGreaterThan(0)
-        expect(character.level).toBeLessThanOrEqual(90)
+        expect(character.level).toBeLessThanOrEqual(100)
         expect(character.promoteLevel).toBeGreaterThanOrEqual(0)
         expect(character.promoteLevel).toBeLessThanOrEqual(6)
       })
