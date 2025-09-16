@@ -166,6 +166,8 @@ export type AssocType =
   | 'ASSOC_TYPE_RANGER'
   | 'ASSOC_TYPE_SUMERU'
   | 'ASSOC_TYPE_NATLAN'
+  | 'ASSOC_TYPE_NODKRAI'
+  | 'ASSOC_TYPE_OMNI_SCOURGE'
 
 /**
  * Item type

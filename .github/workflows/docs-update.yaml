@@ -79,7 +79,7 @@ jobs:
         git config --local user.email "action@github.com"
         git config --local user.name "GitHub Action"
         git add docs/
-        git commit -m "[docs] auto-update documentation"
+        git commit -m "docs: auto-update documentation"
 
     - name: Push documentation updates
       if: steps.check-changes.outputs.has-changes == 'true'

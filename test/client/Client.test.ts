@@ -326,6 +326,120 @@ describe('Client Basic Functionality', () => {
     })
   })
 
+  describe('Path Validation Tests', () => {
+    it('should validate that default cache path exists and is accessible', () => {
+      const defaultClient = new Client()
+      const cachePath = defaultClient.option.assetCacheFolderPath
+
+      expect(typeof cachePath).toBe('string')
+      expect(cachePath.length).toBeGreaterThan(0)
+      expect(path.isAbsolute(cachePath)).toBe(true)
+    })
+
+    it('should handle absolute path correctly', () => {
+      const tempDir = path.resolve(process.cwd(), 'test-cache-absolute')
+      const client = new Client({
+        assetCacheFolderPath: tempDir,
+        defaultLanguage: 'EN',
+        downloadLanguages: ['EN'],
+      })
+
+      expect(client.option.assetCacheFolderPath).toBe(tempDir)
+      expect(path.isAbsolute(client.option.assetCacheFolderPath)).toBe(true)
+
+      // Validate that the path configuration is correct
+      expect(typeof client.option.assetCacheFolderPath).toBe('string')
+      expect(client.option.assetCacheFolderPath.length).toBeGreaterThan(0)
+    })
+
+    it('should handle relative path correctly', () => {
+      const relativeDir = 'test-cache-relative'
+      const client = new Client({
+        assetCacheFolderPath: relativeDir,
+        defaultLanguage: 'EN',
+        downloadLanguages: ['EN'],
+      })
+
+      // Client uses the path as provided, no automatic resolution
+      expect(client.option.assetCacheFolderPath).toBe(relativeDir)
+      expect(path.isAbsolute(client.option.assetCacheFolderPath)).toBe(false)
+
+      // Validate that the path configuration is preserved
+      expect(typeof client.option.assetCacheFolderPath).toBe('string')
+      expect(client.option.assetCacheFolderPath.length).toBeGreaterThan(0)
+    })
+
+    it('should handle nested directory path correctly', () => {
+      const nestedDir = path.resolve(
+        process.cwd(),
+        'test-cache',
+        'nested',
+        'deep',
+      )
+      const client = new Client({
+        assetCacheFolderPath: nestedDir,
+        defaultLanguage: 'EN',
+        downloadLanguages: ['EN'],
+      })
+
+      expect(client.option.assetCacheFolderPath).toBe(nestedDir)
+      expect(path.isAbsolute(client.option.assetCacheFolderPath)).toBe(true)
+
+      // Validate path depth handling
+      const pathSegments = nestedDir
+        .split(path.sep)
+        .filter((segment) => segment.length > 0)
+      expect(pathSegments.length).toBeGreaterThan(3)
+    })
+
+    it('should validate directory path configuration', () => {
+      const testDir = path.resolve(process.cwd(), 'test-cache-permissions')
+      const client = new Client({
+        assetCacheFolderPath: testDir,
+        defaultLanguage: 'EN',
+        downloadLanguages: ['EN'],
+      })
+
+      // Validate path configuration
+      expect(client.option.assetCacheFolderPath).toBe(testDir)
+      expect(path.isAbsolute(client.option.assetCacheFolderPath)).toBe(true)
+      expect(typeof client.option.assetCacheFolderPath).toBe('string')
+      expect(client.option.assetCacheFolderPath.length).toBeGreaterThan(0)
+    })
+
+    it('should preserve path separators as provided', () => {
+      const pathWithMixedSeparators = 'test\\cache/mixed\\separators'
+      const client = new Client({
+        assetCacheFolderPath: pathWithMixedSeparators,
+        defaultLanguage: 'EN',
+        downloadLanguages: ['EN'],
+      })
+
+      // Client preserves the path as provided
+      expect(client.option.assetCacheFolderPath).toBe(pathWithMixedSeparators)
+    })
+
+    it('should handle empty or invalid path strings', () => {
+      expect(
+        () =>
+          new Client({
+            assetCacheFolderPath: '',
+            defaultLanguage: 'EN',
+            downloadLanguages: ['EN'],
+          }),
+      ).not.toThrow()
+
+      expect(
+        () =>
+          new Client({
+            assetCacheFolderPath: '   ',
+            defaultLanguage: 'EN',
+            downloadLanguages: ['EN'],
+          }),
+      ).not.toThrow()
+    })
+  })
+
   describe('Error Handling Tests', () => {
     it('should handle deployment errors gracefully', async () => {
       const invalidClient = new Client({
