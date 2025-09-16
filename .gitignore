@@ -152,3 +152,8 @@ vite.config.ts.timestamp-*
 
 ## test
 src/test
+
+# Test cache directories
+test-cache*
+*-test-cache*
+cache-*-test
