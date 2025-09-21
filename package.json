@@ -22,6 +22,7 @@
     "prepare": "husky",
     "updateDoc": "npm run docs && git add docs && git commit -m \"[docs]update docs\" && git push",
     "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
     "lint:unix": "eslint . --format unix",
     "lint:stats": "npm run lint:unix | awk -F'[][]' '/\\[.*\\]$/ {print $(NF-1)}' | sort | uniq -c | sort -nr",
     "prepublishOnly": "npm run build",
