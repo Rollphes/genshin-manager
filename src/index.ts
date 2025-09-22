@@ -15,6 +15,7 @@ import { TextMapFormatError } from '@/errors/TextMapFormatError'
 import { Artifact } from '@/models/Artifact'
 import { AudioAssets } from '@/models/assets/AudioAssets'
 import { ImageAssets } from '@/models/assets/ImageAssets'
+import { Character } from '@/models/character/Character'
 import { CharacterAscension } from '@/models/character/CharacterAscension'
 import { CharacterBaseStats } from '@/models/character/CharacterBaseStats'
 import { CharacterConstellation } from '@/models/character/CharacterConstellation'
@@ -66,6 +67,7 @@ export {
   AudioAssets,
   AudioNotFoundError,
   BodyNotFoundError,
+  Character,
   CharacterAscension,
   CharacterBaseStats,
   CharacterConstellation,
