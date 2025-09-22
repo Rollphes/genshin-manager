@@ -42,6 +42,7 @@ import { ProfilePicture } from '@/models/ProfilePicture'
 import { StatProperty } from '@/models/StatProperty'
 import { Weapon } from '@/models/weapon/Weapon'
 import { WeaponAscension } from '@/models/weapon/WeaponAscension'
+import { WeaponInfo } from '@/models/weapon/WeaponInfo'
 import { WeaponRefinement } from '@/models/weapon/WeaponRefinement'
 import {
   ArtifactType,
@@ -103,6 +104,7 @@ export {
   TextMapFormatError,
   Weapon,
   WeaponAscension,
+  WeaponInfo,
   WeaponRefinement,
 }
 export { convertToUTC }

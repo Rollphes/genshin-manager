@@ -14,7 +14,7 @@ import { DailyFarming } from '@/models/DailyFarming'
 import { Material } from '@/models/Material'
 import { Monster } from '@/models/Monster'
 import { ProfilePicture } from '@/models/ProfilePicture'
-import { Weapon } from '@/models/weapon/Weapon'
+import { WeaponInfo } from '@/models/weapon/WeaponInfo'
 
 describe('AllId Release Test', () => {
   beforeAll(async () => {
@@ -137,12 +137,12 @@ describe('AllId Release Test', () => {
     })
   })
 
-  test('should instantiate all Weapon instances', () => {
-    const weaponIds = Weapon.allWeaponIds
+  test('should instantiate all WeaponInfo instances', () => {
+    const weaponIds = WeaponInfo.allWeaponIds
     expect(weaponIds.length).toBeGreaterThan(0)
 
     weaponIds.forEach((id) => {
-      const weapon = new Weapon(id)
+      const weapon = new WeaponInfo(id)
       expect(weapon).toBeDefined()
       expect(weapon.id).toBe(id)
     })

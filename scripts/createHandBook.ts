@@ -9,7 +9,7 @@ import { CharacterInherentSkill } from '@/models/character/CharacterInherentSkil
 import { CharacterSkill } from '@/models/character/CharacterSkill.js'
 import { Material } from '@/models/Material.js'
 import { Monster } from '@/models/Monster.js'
-import { Weapon } from '@/models/weapon/Weapon.js'
+import { WeaponInfo } from '@/models/weapon/WeaponInfo.js'
 
 async function main(): Promise<void> {
   const client = new Client({
@@ -84,8 +84,8 @@ async function main(): Promise<void> {
 
       //write weaponId
       fs.appendFileSync(filePath, `## WeaponId\n`)
-      Weapon.allWeaponIds.forEach((id) => {
-        const weapon = new Weapon(id)
+      WeaponInfo.allWeaponIds.forEach((id) => {
+        const weapon = new WeaponInfo(id)
         fs.appendFileSync(filePath, `ID:${id} Name:${weapon.name}<br>\n`)
       })
 
