@@ -14,10 +14,9 @@ import { vi } from 'vitest'
 
 /**
  * Create a successful image response with valid PNG data
- * @param url - The requested URL
  * @returns Mock Response with valid PNG data
  */
-export function createSuccessfulImageResponse(url: string): Response {
+export function createSuccessfulImageResponse(): Response {
   const stream = new ReadableStream({
     start(controller: ReadableStreamDefaultController): void {
       controller.enqueue(validPngData)
@@ -37,10 +36,9 @@ export function createSuccessfulImageResponse(url: string): Response {
 
 /**
  * Create a successful audio response with valid OGG data
- * @param url - The requested URL
  * @returns Mock Response with valid OGG data
  */
-export function createSuccessfulAudioResponse(url: string): Response {
+export function createSuccessfulAudioResponse(): Response {
   const stream = new ReadableStream({
     start(controller: ReadableStreamDefaultController): void {
       controller.enqueue(validOggData)
@@ -60,10 +58,9 @@ export function createSuccessfulAudioResponse(url: string): Response {
 
 /**
  * Create a corrupted image response with invalid PNG data
- * @param url - The requested URL
  * @returns Mock Response with corrupted PNG data
  */
-export function createCorruptedImageResponse(url: string): Response {
+export function createCorruptedImageResponse(): Response {
   const stream = new ReadableStream({
     start(controller: ReadableStreamDefaultController): void {
       controller.enqueue(corruptedPngData)
@@ -83,10 +80,9 @@ export function createCorruptedImageResponse(url: string): Response {
 
 /**
  * Create a corrupted audio response with invalid OGG data
- * @param url - The requested URL
  * @returns Mock Response with corrupted OGG data
  */
-export function createCorruptedAudioResponse(url: string): Response {
+export function createCorruptedAudioResponse(): Response {
   const stream = new ReadableStream({
     start(controller: ReadableStreamDefaultController): void {
       controller.enqueue(corruptedOggData)
@@ -106,10 +102,9 @@ export function createCorruptedAudioResponse(url: string): Response {
 
 /**
  * Create a 404 not found response
- * @param url - The requested URL
  * @returns Mock Response with 404 status
  */
-export function createNotFoundResponse(url: string): Response {
+export function createNotFoundResponse(): Response {
   return new Response(null, {
     status: 404,
     statusText: 'Not Found',
@@ -118,10 +113,9 @@ export function createNotFoundResponse(url: string): Response {
 
 /**
  * Create a network error response
- * @param url - The requested URL
  * @returns Mock Response with 500 status
  */
-export function createNetworkErrorResponse(url: string): Response {
+export function createNetworkErrorResponse(): Response {
   return new Response(null, {
     status: 500,
     statusText: 'Internal Server Error',
@@ -148,25 +142,25 @@ export function setupAssetMock(
 
     // Default behavior based on URL patterns
     if (urlString.includes('error') || urlString.includes('fail'))
-      return createNetworkErrorResponse(urlString)
+      return createNetworkErrorResponse()
 
     if (urlString.includes('notfound') || urlString.includes('404'))
-      return createNotFoundResponse(urlString)
+      return createNotFoundResponse()
 
     if (urlString.includes('corrupted-image'))
-      return createCorruptedImageResponse(urlString)
+      return createCorruptedImageResponse()
 
     if (urlString.includes('corrupted-audio'))
-      return createCorruptedAudioResponse(urlString)
+      return createCorruptedAudioResponse()
 
     if (urlString.endsWith('.png') || urlString.includes('image'))
-      return createSuccessfulImageResponse(urlString)
+      return createSuccessfulImageResponse()
 
     if (urlString.endsWith('.ogg') || urlString.includes('audio'))
-      return createSuccessfulAudioResponse(urlString)
+      return createSuccessfulAudioResponse()
 
     // Default to 404 for unknown URLs
-    return createNotFoundResponse(urlString)
+    return createNotFoundResponse()
   })
 }
 
