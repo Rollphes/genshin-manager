@@ -6,7 +6,7 @@ on:
 
 jobs:
   code-quality-check:
-    name: Code Quality Check (ESLint, TypeScript, TextLint)
+    name: Code Quality Check (ESLint, TypeScript)
     runs-on: ubuntu-latest
     if: github.event.pull_request.draft == false
     permissions:
