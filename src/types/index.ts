@@ -4,6 +4,33 @@
 export type ValueOf<T> = T[keyof T]
 
 /**
+ * Character upgrade plan interface
+ */
+export interface CharacterUpgradePlan {
+  /**
+   * Character level upgrade: [current, target] or undefined if no change
+   */
+  characterLevel?: [number, number]
+  /**
+   * Skill level upgrades
+   */
+  skillLevels?: {
+    /**
+     * Normal attack level: [current, target] or undefined if no change
+     */
+    normalAttack?: [number, number]
+    /**
+     * Elemental skill level: [current, target] or undefined if no change
+     */
+    elementalSkill?: [number, number]
+    /**
+     * Elemental burst level: [current, target] or undefined if no change
+     */
+    elementalBurst?: [number, number]
+  }
+}
+
+/**
  * Client option
  */
 export interface ClientOption {

@@ -1,0 +1,575 @@
+import { Client } from '@/client/Client'
+import { CharacterAscension } from '@/models/character/CharacterAscension'
+import { CharacterBaseStats } from '@/models/character/CharacterBaseStats'
+import { CharacterConstellation } from '@/models/character/CharacterConstellation'
+import { CharacterCostume } from '@/models/character/CharacterCostume'
+import { CharacterInfo } from '@/models/character/CharacterInfo'
+import { CharacterInherentSkill } from '@/models/character/CharacterInherentSkill'
+import { CharacterProfile } from '@/models/character/CharacterProfile'
+import { CharacterSkill } from '@/models/character/CharacterSkill'
+import { CharacterSkillAscension } from '@/models/character/CharacterSkillAscension'
+import { CharacterStory } from '@/models/character/CharacterStory'
+import { CharacterVoice } from '@/models/character/CharacterVoice'
+import { StatProperty } from '@/models/StatProperty'
+import { BodyType, CharacterUpgradePlan, Element, WeaponType } from '@/types'
+import { calculatePromoteLevel } from '@/utils/calculatePromoteLevel'
+
+/**
+ * Unified character class providing comprehensive access to all character data
+ */
+export class Character {
+  /**
+   * Character ID
+   */
+  public readonly id: number
+  /**
+   * Character level
+   */
+  public readonly level: number
+  /**
+   * Character is ascended
+   */
+  public readonly isAscended: boolean
+  /**
+   * Constellation level (0-6)
+   */
+  public readonly constellationLevel: number
+  /**
+   * Character info instance
+   */
+  private readonly info: CharacterInfo
+  /**
+   * Character base stats instance
+   */
+  private readonly baseStats: CharacterBaseStats
+  /**
+   * Character ascension instance
+   */
+  private readonly ascension: CharacterAscension
+
+  /**
+   * Create a Character
+   * @param characterId Character ID
+   * @param level Character level (1-90). Default: 1
+   * @param isAscended Character is ascended (true or false). Default: false
+   * @param constellationLevel Constellation level (0-6). Default: 0
+   * @param skillDepotId Skill depot ID (for travelers). Optional
+   */
+  constructor(
+    characterId: number,
+    level = 1,
+    isAscended = false,
+    constellationLevel = 0,
+    skillDepotId?: number,
+  ) {
+    this.id = characterId
+    this.level = level
+    this.isAscended = isAscended
+    this.constellationLevel = constellationLevel
+    this.info = new CharacterInfo(characterId, skillDepotId)
+    this.baseStats = new CharacterBaseStats(characterId, level, isAscended)
+    this.ascension = new CharacterAscension(
+      characterId,
+      this.baseStats.promoteLevel,
+    )
+  }
+
+  /**
+   * Character name
+   */
+  public get name(): string {
+    return this.info.name
+  }
+
+  /**
+   * Character max level
+   */
+  public get maxLevel(): number {
+    return this.info.maxLevel
+  }
+
+  /**
+   * Element of the character
+   */
+  public get element(): Element | undefined {
+    return this.info.element
+  }
+
+  /**
+   * Character rarity
+   */
+  public get rarity(): number {
+    return this.info.rarity
+  }
+
+  /**
+   * Weapon type
+   */
+  public get weaponType(): WeaponType {
+    return this.info.weaponType
+  }
+
+  /**
+   * Body type
+   */
+  public get bodyType(): BodyType {
+    return this.info.bodyType
+  }
+
+  /**
+   * Character promote level
+   */
+  public get promoteLevel(): number {
+    return this.baseStats.promoteLevel
+  }
+
+  /**
+   * Calculated character stats
+   */
+  public get stats(): StatProperty[] {
+    return this.baseStats.stats
+  }
+
+  /**
+   * Default costume ID
+   */
+  public get defaultCostumeId(): number {
+    return this.info.defaultCostumeId
+  }
+
+  /**
+   * Skill depot ID
+   */
+  public get depotId(): number {
+    return this.info.depotId
+  }
+
+  /**
+   * Skill order
+   */
+  public get skillOrder(): number[] {
+    return this.info.skillOrder
+  }
+
+  /**
+   * Inherent skill order
+   */
+  public get inherentSkillOrder(): number[] {
+    return this.info.inherentSkillOrder
+  }
+
+  /**
+   * Constellation IDs
+   */
+  public get constellationIds(): number[] {
+    return this.info.constellationIds
+  }
+
+  /**
+   * Map of skill ID and proud ID
+   */
+  public get proudMap(): Map<number, number> {
+    return this.info.proudMap
+  }
+
+  /**
+   * Character constellations
+   */
+  public get constellations(): CharacterConstellation[] {
+    return this.constellationIds.map(
+      (constId, index) =>
+        new CharacterConstellation(constId, index < this.constellationLevel),
+    )
+  }
+
+  /**
+   * Character inherent skills (passive talents)
+   */
+  public get inherentSkills(): CharacterInherentSkill[] {
+    return this.inherentSkillOrder.map(
+      (skillId) => new CharacterInherentSkill(skillId),
+    )
+  }
+
+  /**
+   * Character ascension materials
+   */
+  public get ascensionMaterials(): { id: number; count: number }[] {
+    return this.ascension.costItems
+  }
+
+  /**
+   * Character profile
+   */
+  public get profile(): CharacterProfile {
+    return new CharacterProfile(this.id)
+  }
+
+  /**
+   * Character stories
+   */
+  public get stories(): CharacterStory[] {
+    return CharacterStory.getAllFetterIdsByCharacterId(this.id).map(
+      (fetterId) => new CharacterStory(fetterId),
+    )
+  }
+
+  /**
+   * Character voices
+   */
+  public get voices(): CharacterVoice[] {
+    return CharacterVoice.getAllFetterIdsByCharacterId(this.id).map(
+      (fetterId) => new CharacterVoice(fetterId, 'JP'),
+    )
+  }
+
+  /**
+   * Character costumes
+   */
+  public get costumes(): CharacterCostume[] {
+    return CharacterCostume.allCostumeIds
+      .map((costumeId) => new CharacterCostume(costumeId))
+      .filter((costume) => costume.characterId === this.id)
+  }
+
+  /**
+   * Get all character IDs
+   * @returns All character IDs
+   */
+  public static getAllCharacterIds(): number[] {
+    return CharacterInfo.allCharacterIds
+  }
+
+  /**
+   * Get character ID by name
+   * @param name Character name
+   * @returns Character ID
+   */
+  public static getCharacterIdByName(name: string): number[] {
+    return CharacterInfo.getCharacterIdByName(name)
+  }
+
+  /**
+   * Get traveler skill depot IDs
+   * @param characterId Character ID
+   * @returns skill depot IDs
+   */
+  public static getTravelerSkillDepotIds(characterId: number): number[] {
+    return CharacterInfo.getTravelerSkillDepotIds(characterId)
+  }
+
+  /**
+   * Get normal attack skill
+   * @param skillLevel Skill level (1-15). Default: 1
+   * @returns Normal attack skill
+   */
+  public getNormalAttack(skillLevel = 1): CharacterSkill {
+    return this.getSkill(0, skillLevel)
+  }
+
+  /**
+   * Get elemental skill
+   * @param skillLevel Skill level (1-15). Default: 1
+   * @returns Elemental skill
+   */
+  public getElementalSkill(skillLevel = 1): CharacterSkill {
+    return this.getSkill(1, skillLevel)
+  }
+
+  /**
+   * Get elemental burst
+   * @param skillLevel Skill level (1-15). Default: 1
+   * @returns Elemental burst
+   */
+  public getElementalBurst(skillLevel = 1): CharacterSkill {
+    return this.getSkill(2, skillLevel)
+  }
+
+  /**
+   * Get normal attack upgrade materials for a specific level
+   * @param skillLevel Skill level (1-15)
+   * @returns Array of materials needed
+   */
+  public getNormalAttackMaterials(
+    skillLevel: number,
+  ): { id: number; count: number }[] {
+    return this.getSkillMaterials(0, skillLevel)
+  }
+
+  /**
+   * Get elemental skill upgrade materials for a specific level
+   * @param skillLevel Skill level (1-15)
+   * @returns Array of materials needed
+   */
+  public getElementalSkillMaterials(
+    skillLevel: number,
+  ): { id: number; count: number }[] {
+    return this.getSkillMaterials(1, skillLevel)
+  }
+
+  /**
+   * Get elemental burst upgrade materials for a specific level
+   * @param skillLevel Skill level (1-15)
+   * @returns Array of materials needed
+   */
+  public getElementalBurstMaterials(
+    skillLevel: number,
+  ): { id: number; count: number }[] {
+    return this.getSkillMaterials(2, skillLevel)
+  }
+
+  /**
+   * Get character summary information
+   * @returns Character summary object
+   */
+  public getSummary(): {
+    name: string
+    element: Element | undefined
+    weapon: WeaponType
+    rarity: number
+    level: string
+    constellation: string
+  } {
+    return {
+      name: this.name,
+      element: this.element,
+      weapon: this.weaponType,
+      rarity: this.rarity,
+      level: `${String(this.level)}/${String(this.isAscended ? this.ascension.unlockMaxLevel : this.ascension.unlockMaxLevel - 10)}`,
+      constellation: `C${String(this.constellationLevel)}`,
+    }
+  }
+
+  /**
+   * Check if character can ascend to next level
+   * @returns True if character can ascend
+   */
+  public canAscend(): boolean {
+    const maxPromoteLevel = CharacterAscension.getMaxPromoteLevelByCharacterId(
+      this.id,
+    )
+    return this.promoteLevel < maxPromoteLevel
+  }
+
+  /**
+   * Get required materials for next ascension
+   * @returns Array of materials needed for next ascension
+   */
+  public getNextAscensionMaterials(): { id: number; count: number }[] {
+    if (!this.canAscend()) return []
+    const nextAscension = new CharacterAscension(this.id, this.promoteLevel + 1)
+    return nextAscension.costItems
+  }
+
+  /**
+   * Get total materials needed from current to max level
+   * @returns Array of total materials needed
+   */
+  public getTotalAscensionMaterials(): { id: number; count: number }[] {
+    const maxPromoteLevel = CharacterAscension.getMaxPromoteLevelByCharacterId(
+      this.id,
+    )
+    const materialsMap = new Map<number, number>()
+
+    for (let i = this.promoteLevel + 1; i <= maxPromoteLevel; i++) {
+      const ascension = new CharacterAscension(this.id, i)
+      for (const item of ascension.costItems) {
+        const current = materialsMap.get(item.id) ?? 0
+        materialsMap.set(item.id, current + item.count)
+      }
+    }
+
+    return Array.from(materialsMap.entries()).map(([id, count]) => ({
+      id,
+      count,
+    }))
+  }
+
+  /**
+   * Calculate total materials needed for character upgrade plan
+   * @param plan Character upgrade plan specifying level and skill changes
+   * @returns Array of total materials needed
+   */
+  public calculateUpgradeMaterials(
+    plan: CharacterUpgradePlan,
+  ): { id: number; count: number }[] {
+    const materialsMap = new Map<number, number>()
+
+    // Character level materials
+    if (plan.characterLevel) {
+      const [currentLevel, targetLevel] = plan.characterLevel
+      const characterMaterials = this.calculateCharacterLevelMaterials(
+        currentLevel,
+        targetLevel,
+      )
+      for (const item of characterMaterials) {
+        const current = materialsMap.get(item.id) ?? 0
+        materialsMap.set(item.id, current + item.count)
+      }
+    }
+
+    // Skill materials
+    if (plan.skillLevels) {
+      if (plan.skillLevels.normalAttack) {
+        const [current, target] = plan.skillLevels.normalAttack
+        const skillMaterials = this.calculateSkillLevelMaterials(
+          0,
+          current,
+          target,
+        )
+        for (const item of skillMaterials) {
+          const currentCount = materialsMap.get(item.id) ?? 0
+          materialsMap.set(item.id, currentCount + item.count)
+        }
+      }
+
+      if (plan.skillLevels.elementalSkill) {
+        const [current, target] = plan.skillLevels.elementalSkill
+        const skillMaterials = this.calculateSkillLevelMaterials(
+          1,
+          current,
+          target,
+        )
+        for (const item of skillMaterials) {
+          const currentCount = materialsMap.get(item.id) ?? 0
+          materialsMap.set(item.id, currentCount + item.count)
+        }
+      }
+
+      if (plan.skillLevels.elementalBurst) {
+        const [current, target] = plan.skillLevels.elementalBurst
+        const skillMaterials = this.calculateSkillLevelMaterials(
+          2,
+          current,
+          target,
+        )
+        for (const item of skillMaterials) {
+          const currentCount = materialsMap.get(item.id) ?? 0
+          materialsMap.set(item.id, currentCount + item.count)
+        }
+      }
+    }
+
+    return Array.from(materialsMap.entries()).map(([id, count]) => ({
+      id,
+      count,
+    }))
+  }
+
+  /**
+   * Get a specific skill by index
+   * @param skillIndex Skill index (0: Normal Attack, 1: Elemental Skill, 2: Elemental Burst)
+   * @param skillLevel Skill level (1-15). Default: 1
+   * @returns Character skill
+   */
+  private getSkill(skillIndex: number, skillLevel = 1): CharacterSkill {
+    const skillId = this.skillOrder[skillIndex]
+    if (!skillId)
+      throw new Error(`Skill at index ${String(skillIndex)} not found`)
+
+    return new CharacterSkill(skillId, skillLevel, this.constellationLevel)
+  }
+
+  /**
+   * Get talent materials for a specific skill
+   * @param skillIndex Skill index (0: Normal Attack, 1: Elemental Skill, 2: Elemental Burst)
+   * @param skillLevel Skill level (1-15)
+   * @returns Array of materials needed
+   */
+  private getSkillMaterials(
+    skillIndex: number,
+    skillLevel: number,
+  ): { id: number; count: number }[] {
+    const skillId = this.skillOrder[skillIndex]
+    if (!skillId) return []
+    const proudId = this.proudMap.get(skillId)
+    if (!proudId) return []
+    const skillAscension = new CharacterSkillAscension(proudId, skillLevel)
+    return skillAscension.costItems
+  }
+
+  /**
+   * Calculate character level upgrade materials
+   * @param currentLevel Current character level
+   * @param targetLevel Target character level
+   * @returns Array of materials needed
+   */
+  private calculateCharacterLevelMaterials(
+    currentLevel: number,
+    targetLevel: number,
+  ): { id: number; count: number }[] {
+    const materialsMap = new Map<number, number>()
+
+    // Calculate promote levels for current and target
+    const avatarJson = Client._getJsonFromCachedExcelBinOutput(
+      'AvatarExcelConfigData',
+      this.id,
+    )
+    const avatarPromotesJson = Client._getJsonFromCachedExcelBinOutput(
+      'AvatarPromoteExcelConfigData',
+      avatarJson.avatarPromoteId as number,
+    )
+
+    const currentPromoteLevel = calculatePromoteLevel(
+      avatarPromotesJson,
+      currentLevel,
+      false,
+    )
+    const targetPromoteLevel = calculatePromoteLevel(
+      avatarPromotesJson,
+      targetLevel,
+      false,
+    )
+
+    // Add ascension materials
+    for (
+      let promoteLevel = currentPromoteLevel + 1;
+      promoteLevel <= targetPromoteLevel;
+      promoteLevel++
+    ) {
+      const ascension = new CharacterAscension(this.id, promoteLevel)
+      for (const item of ascension.costItems) {
+        const current = materialsMap.get(item.id) ?? 0
+        materialsMap.set(item.id, current + item.count)
+      }
+    }
+
+    return Array.from(materialsMap.entries()).map(([id, count]) => ({
+      id,
+      count,
+    }))
+  }
+
+  /**
+   * Calculate skill level upgrade materials
+   * @param skillIndex Skill index
+   * @param currentLevel Current skill level
+   * @param targetLevel Target skill level
+   * @returns Array of materials needed
+   */
+  private calculateSkillLevelMaterials(
+    skillIndex: number,
+    currentLevel: number,
+    targetLevel: number,
+  ): { id: number; count: number }[] {
+    const materialsMap = new Map<number, number>()
+    const skillId = this.skillOrder[skillIndex]
+    if (!skillId) return []
+
+    const proudId = this.proudMap.get(skillId)
+    if (!proudId) return []
+
+    for (let level = currentLevel + 1; level <= targetLevel; level++) {
+      const skillAscension = new CharacterSkillAscension(proudId, level)
+      for (const item of skillAscension.costItems) {
+        const current = materialsMap.get(item.id) ?? 0
+        materialsMap.set(item.id, current + item.count)
+      }
+    }
+
+    return Array.from(materialsMap.entries()).map(([id, count]) => ({
+      id,
+      count,
+    }))
+  }
+}

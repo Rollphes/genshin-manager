@@ -3,8 +3,8 @@ import { OutOfRangeError } from '@/errors/OutOfRangeError'
 import { CharacterInfo } from '@/models/character/CharacterInfo'
 import { CharacterSkill } from '@/models/character/CharacterSkill'
 import { CharacterSkillAscension } from '@/models/character/CharacterSkillAscension'
-import { Weapon } from '@/models/weapon/Weapon'
 import { WeaponAscension } from '@/models/weapon/WeaponAscension'
+import { WeaponInfo } from '@/models/weapon/WeaponInfo'
 import { JsonArray } from '@/utils/JsonParser'
 
 /**
@@ -169,7 +169,7 @@ export class DailyFarming {
 
   private getWeaponIdsByMaterialIds(materialIds: number[]): number[] {
     const result = new Set<number>()
-    Weapon.allWeaponIds.forEach((weaponId) => {
+    WeaponInfo.allWeaponIds.forEach((weaponId) => {
       const maxPromoteLevel =
         WeaponAscension.getMaxPromoteLevelByWeaponId(weaponId)
       for (

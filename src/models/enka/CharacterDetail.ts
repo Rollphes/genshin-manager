@@ -6,7 +6,7 @@ import { CharacterInfo } from '@/models/character/CharacterInfo'
 import { CharacterSkill } from '@/models/character/CharacterSkill'
 import { CharacterStatusManager } from '@/models/character/CharacterStatusManager'
 import { SetBonus } from '@/models/SetBonus'
-import { Weapon } from '@/models/weapon/Weapon'
+import { WeaponInfo } from '@/models/weapon/WeaponInfo'
 import { BodyType, Element, WeaponType } from '@/types'
 import {
   APIAvatarInfo,
@@ -87,7 +87,7 @@ export class CharacterDetail {
   /**
    * Weapon equipped by Character
    */
-  public readonly weapon: Weapon
+  public readonly weapon: WeaponInfo
   /**
    * Artifacts equipped by Character
    */
@@ -145,7 +145,7 @@ export class CharacterDetail {
     )
     if (!weaponData) throw new EnkaManagerError('Weapon not found.')
     const affixMap = weaponData.weapon.affixMap
-    this.weapon = new Weapon(
+    this.weapon = new WeaponInfo(
       weaponData.itemId,
       weaponData.weapon.level,
       [0, 20, 40, 50, 60, 70, 80, 90][weaponData.weapon.promoteLevel ?? 0] >=

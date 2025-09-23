@@ -15,6 +15,7 @@ import { TextMapFormatError } from '@/errors/TextMapFormatError'
 import { Artifact } from '@/models/Artifact'
 import { AudioAssets } from '@/models/assets/AudioAssets'
 import { ImageAssets } from '@/models/assets/ImageAssets'
+import { Character } from '@/models/character/Character'
 import { CharacterAscension } from '@/models/character/CharacterAscension'
 import { CharacterBaseStats } from '@/models/character/CharacterBaseStats'
 import { CharacterConstellation } from '@/models/character/CharacterConstellation'
@@ -41,6 +42,7 @@ import { ProfilePicture } from '@/models/ProfilePicture'
 import { StatProperty } from '@/models/StatProperty'
 import { Weapon } from '@/models/weapon/Weapon'
 import { WeaponAscension } from '@/models/weapon/WeaponAscension'
+import { WeaponInfo } from '@/models/weapon/WeaponInfo'
 import { WeaponRefinement } from '@/models/weapon/WeaponRefinement'
 import {
   ArtifactType,
@@ -66,6 +68,7 @@ export {
   AudioAssets,
   AudioNotFoundError,
   BodyNotFoundError,
+  Character,
   CharacterAscension,
   CharacterBaseStats,
   CharacterConstellation,
@@ -101,6 +104,7 @@ export {
   TextMapFormatError,
   Weapon,
   WeaponAscension,
+  WeaponInfo,
   WeaponRefinement,
 }
 export { convertToUTC }
