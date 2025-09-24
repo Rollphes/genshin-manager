@@ -63,6 +63,14 @@ export class Weapon {
   }
 
   /**
+   * Get all weapon IDs
+   * @returns All weapon IDs
+   */
+  public static get allWeaponIds(): number[] {
+    return WeaponInfo.allWeaponIds
+  }
+
+  /**
    * Weapon name
    */
   public get name(): string {
@@ -154,27 +162,10 @@ export class Weapon {
   }
 
   /**
-   * Get all weapon IDs
-   * @returns All weapon IDs
-   */
-  public static getAllWeaponIds(): number[] {
-    return WeaponInfo.allWeaponIds
-  }
-
-  /**
-   * Get weapon ID by name
-   * @param name Weapon name
-   * @returns Weapon ID
-   */
-  public static getWeaponIdByName(name: string): number[] {
-    return WeaponInfo.getWeaponIdByName(name)
-  }
-
-  /**
    * Get weapon summary information
    * @returns Weapon summary object
    */
-  public getSummary(): {
+  public get summary(): {
     name: string
     type: WeaponType
     rarity: number
@@ -194,7 +185,7 @@ export class Weapon {
    * Check if weapon can ascend to next level
    * @returns True if weapon can ascend
    */
-  public canAscend(): boolean {
+  public get isCanAscend(): boolean {
     const maxPromoteLevel = WeaponAscension.getMaxPromoteLevelByWeaponId(
       this.id,
     )
@@ -205,8 +196,8 @@ export class Weapon {
    * Get required materials for next ascension
    * @returns Array of materials needed for next ascension
    */
-  public getNextAscensionMaterials(): { id: number; count: number }[] {
-    if (!this.canAscend()) return []
+  public get nextAscensionMaterials(): { id: number; count: number }[] {
+    if (!this.isCanAscend) return []
     const nextAscension = new WeaponAscension(this.id, this.promoteLevel + 1)
     return nextAscension.costItems
   }
@@ -215,7 +206,7 @@ export class Weapon {
    * Get total materials needed from current to max level
    * @returns Array of total materials needed
    */
-  public getTotalAscensionMaterials(): { id: number; count: number }[] {
+  public get totalAscensionMaterials(): { id: number; count: number }[] {
     const maxPromoteLevel = WeaponAscension.getMaxPromoteLevelByWeaponId(
       this.id,
     )
@@ -239,7 +230,7 @@ export class Weapon {
    * Check if weapon can refine to next rank
    * @returns True if weapon can refine
    */
-  public canRefine(): boolean {
+  public get isCanRefine(): boolean {
     const maxRefinementRank = WeaponRefinement.getMaxRefinementRankByWeaponId(
       this.id,
     )
@@ -250,8 +241,17 @@ export class Weapon {
    * Get max refinement rank for this weapon
    * @returns Max refinement rank
    */
-  public getMaxRefinementRank(): number {
+  public get maxRefinementRank(): number {
     return WeaponRefinement.getMaxRefinementRankByWeaponId(this.id)
+  }
+
+  /**
+   * Get weapon ID by name
+   * @param name Weapon name
+   * @returns Weapon ID
+   */
+  public static getWeaponIdByName(name: string): number[] {
+    return WeaponInfo.getWeaponIdByName(name)
   }
 
   /**
