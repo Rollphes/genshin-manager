@@ -75,6 +75,14 @@ export class Character {
   }
 
   /**
+   * Get all character IDs
+   * @returns All character IDs
+   */
+  public static get allCharacterIds(): number[] {
+    return CharacterInfo.allCharacterIds
+  }
+
+  /**
    * Character name
    */
   public get name(): string {
@@ -233,11 +241,70 @@ export class Character {
   }
 
   /**
-   * Get all character IDs
-   * @returns All character IDs
+   * Check if character can ascend to next level
+   * @returns True if character can ascend
    */
-  public static getAllCharacterIds(): number[] {
-    return CharacterInfo.allCharacterIds
+  public get isCanAscend(): boolean {
+    const maxPromoteLevel = CharacterAscension.getMaxPromoteLevelByCharacterId(
+      this.id,
+    )
+    return this.promoteLevel < maxPromoteLevel
+  }
+
+  /**
+   * Get character summary information
+   * @returns Character summary object
+   */
+  public get summary(): {
+    name: string
+    element: Element | undefined
+    weapon: WeaponType
+    rarity: number
+    level: string
+    constellation: string
+  } {
+    return {
+      name: this.name,
+      element: this.element,
+      weapon: this.weaponType,
+      rarity: this.rarity,
+      level: `${String(this.level)}/${String(this.isAscended ? this.ascension.unlockMaxLevel : this.ascension.unlockMaxLevel - 10)}`,
+      constellation: `C${String(this.constellationLevel)}`,
+    }
+  }
+
+  /**
+   * Get required materials for next ascension
+   * @returns Array of materials needed for next ascension
+   */
+  public get nextAscensionMaterials(): { id: number; count: number }[] {
+    if (!this.isCanAscend) return []
+    const nextAscension = new CharacterAscension(this.id, this.promoteLevel + 1)
+    return nextAscension.costItems
+  }
+
+  /**
+   * Get total materials needed from current to max level
+   * @returns Array of total materials needed
+   */
+  public get totalAscensionMaterials(): { id: number; count: number }[] {
+    const maxPromoteLevel = CharacterAscension.getMaxPromoteLevelByCharacterId(
+      this.id,
+    )
+    const materialsMap = new Map<number, number>()
+
+    for (let i = this.promoteLevel + 1; i <= maxPromoteLevel; i++) {
+      const ascension = new CharacterAscension(this.id, i)
+      for (const item of ascension.costItems) {
+        const current = materialsMap.get(item.id) ?? 0
+        materialsMap.set(item.id, current + item.count)
+      }
+    }
+
+    return Array.from(materialsMap.entries()).map(([id, count]) => ({
+      id,
+      count,
+    }))
   }
 
   /**
@@ -316,73 +383,6 @@ export class Character {
     skillLevel: number,
   ): { id: number; count: number }[] {
     return this.getSkillMaterials(2, skillLevel)
-  }
-
-  /**
-   * Get character summary information
-   * @returns Character summary object
-   */
-  public getSummary(): {
-    name: string
-    element: Element | undefined
-    weapon: WeaponType
-    rarity: number
-    level: string
-    constellation: string
-  } {
-    return {
-      name: this.name,
-      element: this.element,
-      weapon: this.weaponType,
-      rarity: this.rarity,
-      level: `${String(this.level)}/${String(this.isAscended ? this.ascension.unlockMaxLevel : this.ascension.unlockMaxLevel - 10)}`,
-      constellation: `C${String(this.constellationLevel)}`,
-    }
-  }
-
-  /**
-   * Check if character can ascend to next level
-   * @returns True if character can ascend
-   */
-  public canAscend(): boolean {
-    const maxPromoteLevel = CharacterAscension.getMaxPromoteLevelByCharacterId(
-      this.id,
-    )
-    return this.promoteLevel < maxPromoteLevel
-  }
-
-  /**
-   * Get required materials for next ascension
-   * @returns Array of materials needed for next ascension
-   */
-  public getNextAscensionMaterials(): { id: number; count: number }[] {
-    if (!this.canAscend()) return []
-    const nextAscension = new CharacterAscension(this.id, this.promoteLevel + 1)
-    return nextAscension.costItems
-  }
-
-  /**
-   * Get total materials needed from current to max level
-   * @returns Array of total materials needed
-   */
-  public getTotalAscensionMaterials(): { id: number; count: number }[] {
-    const maxPromoteLevel = CharacterAscension.getMaxPromoteLevelByCharacterId(
-      this.id,
-    )
-    const materialsMap = new Map<number, number>()
-
-    for (let i = this.promoteLevel + 1; i <= maxPromoteLevel; i++) {
-      const ascension = new CharacterAscension(this.id, i)
-      for (const item of ascension.costItems) {
-        const current = materialsMap.get(item.id) ?? 0
-        materialsMap.set(item.id, current + item.count)
-      }
-    }
-
-    return Array.from(materialsMap.entries()).map(([id, count]) => ({
-      id,
-      count,
-    }))
   }
 
   /**
