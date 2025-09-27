@@ -2,7 +2,7 @@ import { Client } from '@/client/Client'
 import { OutOfRangeError } from '@/errors/OutOfRangeError'
 import { ImageAssets } from '@/models/assets/ImageAssets'
 import { CharacterInfo } from '@/models/character/CharacterInfo'
-import { JsonObject } from '@/utils/JsonParser'
+import { JsonObject } from '@/types/json'
 
 /**
  * Class of character's skill

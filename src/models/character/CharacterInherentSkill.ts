@@ -3,7 +3,7 @@ import { ImageAssets } from '@/models/assets/ImageAssets'
 import { CharacterInfo } from '@/models/character/CharacterInfo'
 import { StatProperty } from '@/models/StatProperty'
 import { FightPropType } from '@/types'
-import { JsonObject } from '@/utils/JsonParser'
+import { JsonObject } from '@/types/json'
 
 /**
  * Class of character's inherent skill

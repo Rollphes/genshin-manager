@@ -1,7 +1,30 @@
+import { JsonObject } from '@/types/json'
+
 /**
  * Type of value of object
  */
 export type ValueOf<T> = T[keyof T]
+
+/**
+ * Enhanced master file structure with recursive support
+ */
+export interface EncryptedKeyMasterFile {
+  /**
+   * Metadata
+   */
+  metadata: {
+    sourceFile: string
+    generatedAt: string
+  }
+  /**
+   * Primary key mapping template (decoded reference object with highest data density)
+   */
+  keyMappingTemplate: JsonObject
+  /**
+   * Alternative patterns for structural variations (optional, ordered by data density)
+   */
+  alternativePatterns?: JsonObject[]
+}
 
 /**
  * Character upgrade plan interface

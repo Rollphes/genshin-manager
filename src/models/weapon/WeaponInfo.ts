@@ -5,8 +5,8 @@ import { StatProperty } from '@/models/StatProperty'
 import { WeaponAscension } from '@/models/weapon/WeaponAscension'
 import { WeaponRefinement } from '@/models/weapon/WeaponRefinement'
 import { FightPropType, WeaponType } from '@/types'
+import { JsonObject } from '@/types/json'
 import { calculatePromoteLevel } from '@/utils/calculatePromoteLevel'
-import { JsonObject } from '@/utils/JsonParser'
 
 /**
  * Class of weapon info

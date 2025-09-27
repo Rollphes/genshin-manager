@@ -187,7 +187,7 @@ export class AudioAssets {
    * @returns is OGG file corrupted
    */
   private isOGGCorrupted(filePath: string): boolean {
-    const data = fs.readFileSync(filePath) // There is no footer in the ogg file, so all the data has to be read in.
+    const data = fs.readFileSync(filePath)
     const lastIndex = data.lastIndexOf('OggS')
 
     if (lastIndex !== -1) {

@@ -3,8 +3,8 @@ import { OutOfRangeError } from '@/errors/OutOfRangeError'
 import { CharacterAscension } from '@/models/character/CharacterAscension'
 import { StatProperty } from '@/models/StatProperty'
 import { FightPropType } from '@/types'
+import { JsonObject } from '@/types/json'
 import { calculatePromoteLevel } from '@/utils/calculatePromoteLevel'
-import { JsonObject } from '@/utils/JsonParser'
 
 /**
  * Class of character's base stats

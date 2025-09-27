@@ -395,7 +395,6 @@ export class Character {
   ): { id: number; count: number }[] {
     const materialsMap = new Map<number, number>()
 
-    // Character level materials
     if (plan.characterLevel) {
       const [currentLevel, targetLevel] = plan.characterLevel
       const characterMaterials = this.calculateCharacterLevelMaterials(
@@ -408,7 +407,6 @@ export class Character {
       }
     }
 
-    // Skill materials
     if (plan.skillLevels) {
       if (plan.skillLevels.normalAttack) {
         const [current, target] = plan.skillLevels.normalAttack
@@ -500,7 +498,6 @@ export class Character {
   ): { id: number; count: number }[] {
     const materialsMap = new Map<number, number>()
 
-    // Calculate promote levels for current and target
     const avatarJson = Client._getJsonFromCachedExcelBinOutput(
       'AvatarExcelConfigData',
       this.id,
@@ -521,7 +518,6 @@ export class Character {
       false,
     )
 
-    // Add ascension materials
     for (
       let promoteLevel = currentPromoteLevel + 1;
       promoteLevel <= targetPromoteLevel;

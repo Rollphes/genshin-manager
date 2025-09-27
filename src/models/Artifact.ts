@@ -3,7 +3,7 @@ import { OutOfRangeError } from '@/errors/OutOfRangeError'
 import { ImageAssets } from '@/models/assets/ImageAssets'
 import { StatProperty } from '@/models/StatProperty'
 import { ArtifactType, FightPropType } from '@/types'
-import { JsonObject } from '@/utils/JsonParser'
+import { JsonObject } from '@/types/json'
 interface ArtifactAffixAppendProp {
   id: number
   type: FightPropType

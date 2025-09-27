@@ -3,7 +3,7 @@ import { OutOfRangeError } from '@/errors/OutOfRangeError'
 import { ImageAssets } from '@/models/assets/ImageAssets'
 import { StatProperty } from '@/models/StatProperty'
 import { CodexType, FightProps } from '@/types'
-import { JsonObject } from '@/utils/JsonParser'
+import { JsonObject } from '@/types/json'
 
 const statusBonusMonsterAtMultiPlay = {
   FIGHT_PROP_BASE_HP: [1.0, 1.5, 2.0, 2.5],

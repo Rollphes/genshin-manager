@@ -2,7 +2,7 @@ import { Client } from '@/client/Client'
 import { OutOfRangeError } from '@/errors/OutOfRangeError'
 import { StatProperty } from '@/models/StatProperty'
 import { FightPropType } from '@/types'
-import { JsonObject } from '@/utils/JsonParser'
+import { JsonObject } from '@/types/json'
 
 /**
  * Class of weapon refinement

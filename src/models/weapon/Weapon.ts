@@ -276,7 +276,6 @@ export class Weapon {
   ): { id: number; count: number }[] {
     const materialsMap = new Map<number, number>()
 
-    // Calculate promote levels for current and target
     const weaponJson = Client._getJsonFromCachedExcelBinOutput(
       'WeaponExcelConfigData',
       this.id,
@@ -297,7 +296,6 @@ export class Weapon {
       false,
     )
 
-    // Add ascension materials
     for (
       let promoteLevel = currentPromoteLevel + 1;
       promoteLevel <= targetPromoteLevel;

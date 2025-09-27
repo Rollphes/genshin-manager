@@ -5,7 +5,7 @@ import { CharacterSkill } from '@/models/character/CharacterSkill'
 import { CharacterSkillAscension } from '@/models/character/CharacterSkillAscension'
 import { WeaponAscension } from '@/models/weapon/WeaponAscension'
 import { WeaponInfo } from '@/models/weapon/WeaponInfo'
-import { JsonArray } from '@/utils/JsonParser'
+import { JsonArray } from '@/types/json'
 
 /**
  * Domain data

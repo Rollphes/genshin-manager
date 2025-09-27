@@ -7,7 +7,7 @@ import {
   QualityType,
   WeaponType,
 } from '@/types'
-import { JsonObject } from '@/utils/JsonParser'
+import { JsonObject } from '@/types/json'
 
 /**
  * Class of information about the character.

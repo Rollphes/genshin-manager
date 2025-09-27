@@ -6,6 +6,7 @@ import { pipeline } from 'stream/promises'
 import { ImageNotFoundError } from '@/errors/ImageNotFoundError'
 import { ClientOption } from '@/types'
 import { ReadableStreamWrapper } from '@/utils/ReadableStreamWrapper'
+import { initImageFolderPath } from '@/utils/utilPath'
 
 /**
  * Class for compiling information about image
@@ -113,17 +114,11 @@ export class ImageAssets {
     this.imageFolderPath = path.resolve(option.assetCacheFolderPath, 'Images')
     if (!fs.existsSync(this.imageFolderPath))
       fs.mkdirSync(this.imageFolderPath, { recursive: true })
-    const packageFolderPath = __dirname
-      .replace(/\\/g, '/')
-      .includes('/node_modules/genshin-manager')
-      ? path.resolve(__dirname, '..')
-      : path.resolve(__dirname, '..', '..', '..')
-
     ;[
       'UI_Gacha_AvatarImg_PlayerBoy.png',
       'UI_Gacha_AvatarImg_PlayerGirl.png',
     ].forEach((imgName) => {
-      const sourcePath = path.resolve(packageFolderPath, 'img', imgName)
+      const sourcePath = path.resolve(initImageFolderPath, 'img', imgName)
       const destinationPath = path.resolve(this.imageFolderPath, imgName)
 
       if (!fs.existsSync(destinationPath)) {
