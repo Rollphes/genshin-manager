@@ -1,5 +1,5 @@
 import { OutOfRangeError } from '@/errors/OutOfRangeError'
-import { JsonObject } from '@/utils/JsonParser'
+import { JsonObject } from '@/types/json'
 
 /**
  * Calculate promote level

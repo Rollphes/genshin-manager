@@ -1,25 +1,6 @@
-/**
- * Type of Json primitive values
- */
-export type JsonPrimitive = string | number | boolean | null | undefined
+import type { JsonArray, JsonObject, JsonValue } from '@/types/json'
 
-/**
- * Type of Json object
- */
-export interface JsonObject {
-  [key: string]: JsonValue
-}
-
-/**
- * Type of Json array
- */
-export type JsonArray = JsonValue[]
-
-/**
- * Type of Json value
- */
-export type JsonValue = JsonPrimitive | JsonObject | JsonArray
-
+//TODO: 将来的に削除予定。型厳格化したい。削除したら上部の型はsrc/type/indexに移動(as あんま使いたくない)
 /**
  * Class of json parser
  */
