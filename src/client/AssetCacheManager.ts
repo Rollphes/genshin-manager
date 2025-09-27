@@ -8,13 +8,16 @@ import { AssetsNotFoundError } from '@/errors/AssetsNotFoundError'
 import { BodyNotFoundError } from '@/errors/BodyNotFoundError'
 import { TextMapFormatError } from '@/errors/TextMapFormatError'
 import { ClientOption, ExcelBinOutputs, TextMapLanguage } from '@/types'
+import { JsonArray, JsonObject } from '@/types/json'
+import { buildCacheStructure } from '@/utils/buildCacheStructure'
+import { EncryptedKeyDecoder } from '@/utils/EncryptedKeyDecoder'
 import { withFileLock } from '@/utils/fileLockManager'
-import { JsonObject, JsonParser } from '@/utils/JsonParser'
-import { ObjectKeyDecoder } from '@/utils/ObjectKeyDecoder'
+import { JsonParser } from '@/utils/JsonParser'
 import { EventMap, PromiseEventEmitter } from '@/utils/PromiseEventEmitter'
 import { ReadableStreamWrapper } from '@/utils/ReadableStreamWrapper'
 import { TextMapEmptyWritable } from '@/utils/TextMapEmptyWritable'
 import { TextMapTransform } from '@/utils/TextMapTransform'
+import { masterFileFolderPath } from '@/utils/utilPath'
 interface GitLabAPIResponse {
   id: string
   short_id: string
@@ -281,77 +284,6 @@ export abstract class AssetCacheManager<
   }
 
   /**
-   * Set excel bin output to cache
-   * @param keys ExcelBinOutput names
-   * @returns Returns true if an error occurs
-   */
-  protected static async setExcelBinOutputToCache(
-    keys: Set<keyof typeof ExcelBinOutputs>,
-  ): Promise<boolean> {
-    this.cachedExcelBinOutput.clear()
-    for (const key of keys) {
-      const filename = ExcelBinOutputs[key]
-      const selectedExcelBinOutputPath = path.join(
-        this.excelBinOutputFolderPath,
-        filename,
-      )
-      let text = ''
-      if (!fs.existsSync(selectedExcelBinOutputPath)) {
-        if (this.option.autoFixExcelBin) {
-          if (this.option.showFetchCacheLog) {
-            console.log(
-              `GenshinManager: ${filename} not found. Re downloading...`,
-            )
-          }
-          await this.reDownloadAllExcelBinOutput()
-          return true
-        } else {
-          throw new AssetsNotFoundError(key)
-        }
-      }
-      const stream = fs.createReadStream(selectedExcelBinOutputPath, {
-        highWaterMark: 1 * 1024 * 1024,
-      })
-      stream.on('data', (chunk) => (text += chunk as string))
-      const setCachePromiseResult = await new Promise<void>(
-        (resolve, reject) => {
-          stream.on('error', (error) => {
-            reject(error)
-          })
-          stream.on('end', () => {
-            this.cachedExcelBinOutput.set(key, new JsonParser(text))
-            resolve()
-          })
-        },
-      ).catch(async (error: unknown) => {
-        if (error instanceof SyntaxError) {
-          if (this.option.autoFixExcelBin) {
-            if (this.option.showFetchCacheLog) {
-              console.log(
-                `GenshinManager: ${filename} format error. Re downloading...`,
-              )
-            }
-            await this.reDownloadAllExcelBinOutput()
-            return true
-          } else {
-            throw error
-          }
-        }
-      })
-      if (setCachePromiseResult) return true
-    }
-
-    const decoder = new ObjectKeyDecoder()
-    this.cachedExcelBinOutput.forEach((v, k) => {
-      this.cachedExcelBinOutput.set(
-        k,
-        new JsonParser(JSON.stringify(decoder.execute(v, k))),
-      )
-    })
-    return false
-  }
-
-  /**
    * Change cached languages
    * @param language Country code
    * @returns Returns true if an error occurs
@@ -359,7 +291,6 @@ export abstract class AssetCacheManager<
   protected static async setTextMapToCache(
     language: keyof typeof TextMapLanguage,
   ): Promise<boolean> {
-    //Since the timing of loading into the cache is the last, unnecessary cache is not loaded, and therefore clearing the cache is not necessary.
     const results = await Promise.all(
       TextMapLanguage[language].map(async (fileName) => {
         const selectedTextMapPath = path.join(this.textMapFolderPath, fileName)
@@ -464,6 +395,129 @@ export abstract class AssetCacheManager<
   }
 
   /**
+   * Set excel bin output to cache
+   * @param keys ExcelBinOutput names
+   * @returns Returns true if an error occurs
+   */
+  protected static async setExcelBinOutputToCache(
+    keys: Set<keyof typeof ExcelBinOutputs>,
+  ): Promise<boolean> {
+    this.cachedExcelBinOutput.clear()
+    for (const key of keys) {
+      const filename = ExcelBinOutputs[key]
+      const selectedExcelBinOutputPath = path.join(
+        this.excelBinOutputFolderPath,
+        filename,
+      )
+      let text = ''
+      if (!fs.existsSync(selectedExcelBinOutputPath)) {
+        if (this.option.autoFixExcelBin) {
+          if (this.option.showFetchCacheLog) {
+            console.log(
+              `GenshinManager: ${filename} not found. Re downloading...`,
+            )
+          }
+          await this.reDownloadAllExcelBinOutput()
+          return true
+        } else {
+          throw new AssetsNotFoundError(key)
+        }
+      }
+      const stream = fs.createReadStream(selectedExcelBinOutputPath, {
+        highWaterMark: 1 * 1024 * 1024,
+      })
+      stream.on('data', (chunk) => (text += chunk as string))
+      const setCachePromiseResult = await new Promise<void>(
+        (resolve, reject) => {
+          stream.on('error', (error) => {
+            reject(error)
+          })
+          stream.on('end', () => {
+            this.cachedExcelBinOutput.set(key, new JsonParser(text))
+            resolve()
+          })
+        },
+      ).catch(async (error: unknown) => {
+        if (error instanceof SyntaxError) {
+          if (this.option.autoFixExcelBin) {
+            if (this.option.showFetchCacheLog) {
+              console.log(
+                `GenshinManager: ${filename} format error. Re downloading...`,
+              )
+            }
+            await this.reDownloadAllExcelBinOutput()
+            return true
+          } else {
+            throw error
+          }
+        }
+      })
+      if (setCachePromiseResult) return true
+    }
+
+    Array.from(this.cachedExcelBinOutput.entries()).map(
+      ([fileName, jsonParser]) => {
+        const rawJsonData = jsonParser.get() as JsonArray
+        const encryptedKeyDecodedData = this.applyEncryptedKeyDecoding(
+          rawJsonData,
+          fileName,
+        )
+
+        const finalProcessedData = buildCacheStructure(
+          new JsonParser(JSON.stringify(encryptedKeyDecodedData)),
+          fileName,
+        )
+
+        this.cachedExcelBinOutput.set(
+          fileName,
+          new JsonParser(JSON.stringify(finalProcessedData)),
+        )
+
+        if (this.option.showFetchCacheLog) {
+          const originalSize = Object.keys(rawJsonData).length
+          const finalSize = Object.keys(finalProcessedData).length
+          console.log(
+            `GenshinManager: ${fileName} processing complete (${String(originalSize)} → ${String(finalSize)} keys)`,
+          )
+        }
+      },
+    )
+
+    return false
+  }
+
+  /**
+   * Apply encrypted key decoding using EncryptedKeyDecoder
+   * Executes key decoding on raw JSON data
+   */
+  private static applyEncryptedKeyDecoding(
+    rawJsonData: JsonArray,
+    fileName: keyof typeof ExcelBinOutputs,
+  ): JsonArray {
+    const masterFilePath = path.join(
+      masterFileFolderPath,
+      `${fileName}.master.json`,
+    )
+
+    if (!fs.existsSync(masterFilePath)) throw new Error('Master file not found')
+
+    const encryptedKeyDecoder = new EncryptedKeyDecoder(masterFilePath)
+
+    const jsonObjectArray = Object.values(rawJsonData).filter(
+      (item): item is JsonObject =>
+        item !== null &&
+        item !== undefined &&
+        typeof item === 'object' &&
+        !Array.isArray(item),
+    )
+
+    const encryptedKeyDecodedArray =
+      encryptedKeyDecoder.execute(jsonObjectArray)
+
+    return encryptedKeyDecodedArray
+  }
+
+  /**
    * Check gitlab for new commits
    * @returns New assets version text or undefined
    */
@@ -478,7 +532,6 @@ export abstract class AssetCacheManager<
 
     let oldCommits: GitLabAPIResponse[] | null = null
 
-    // Safe read of existing commits file with detailed error handling
     if (fs.existsSync(this.commitFilePath)) {
       try {
         const oldFileContent = fs.readFileSync(this.commitFilePath, {
@@ -498,7 +551,6 @@ export abstract class AssetCacheManager<
 
     await this.downloadJsonFile(this.GIT_REMOTE_API_URL, this.commitFilePath)
 
-    // Safe read of new commits file with detailed error handling
     try {
       const fileContent = fs.readFileSync(this.commitFilePath, {
         encoding: 'utf8',
@@ -644,7 +696,6 @@ export abstract class AssetCacheManager<
 
     if (progressBar) progressBar.start(files.length, 0)
 
-    // Limit concurrent downloads to reduce race conditions
     const concurrentLimit = 3
     const chunks: string[][] = []
     for (let i = 0; i < files.length; i += concurrentLimit)
@@ -664,7 +715,6 @@ export abstract class AssetCacheManager<
           if (progressBar) progressBar.increment()
         }),
       )
-      // Small delay between chunks to avoid overwhelming the server
       if (chunks.indexOf(chunk) < chunks.length - 1)
         await new Promise((resolve) => setTimeout(resolve, 100))
     }
@@ -682,7 +732,7 @@ export abstract class AssetCacheManager<
     downloadFilePath: string,
   ): Promise<void> {
     const maxRetries = 3
-    const baseDelay = 100 // ms
+    const baseMsDelay = 100
 
     for (let attempt = 1; attempt <= maxRetries; attempt++) {
       try {
@@ -757,7 +807,7 @@ export abstract class AssetCacheManager<
       } catch (error) {
         if (attempt === maxRetries) throw error
 
-        const delay = baseDelay * Math.pow(2, attempt - 1)
+        const delay = baseMsDelay * Math.pow(2, attempt - 1)
         await new Promise((resolve) => setTimeout(resolve, delay))
 
         try {
