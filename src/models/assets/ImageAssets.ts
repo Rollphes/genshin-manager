@@ -118,7 +118,7 @@ export class ImageAssets {
       'UI_Gacha_AvatarImg_PlayerBoy.png',
       'UI_Gacha_AvatarImg_PlayerGirl.png',
     ].forEach((imgName) => {
-      const sourcePath = path.resolve(initImageFolderPath, 'img', imgName)
+      const sourcePath = path.resolve(initImageFolderPath, imgName)
       const destinationPath = path.resolve(this.imageFolderPath, imgName)
 
       if (!fs.existsSync(destinationPath)) {
