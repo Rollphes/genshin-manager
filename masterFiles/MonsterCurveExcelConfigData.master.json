@@ -1,0 +1,101 @@
+{
+  "metadata": {
+    "sourceFile": "MonsterCurveExcelConfigData.json",
+    "generatedAt": "2025-09-27T15:02:51.963Z"
+  },
+  "keyMappingTemplate": {
+    "curveInfos": [
+      {
+        "arith": "ARITH_MULTI",
+        "type": "GROW_CURVE_HP",
+        "value": 5.367859
+      },
+      {
+        "arith": "ARITH_MULTI",
+        "type": "GROW_CURVE_ATTACK",
+        "value": 2.02052
+      },
+      {
+        "arith": "ARITH_MULTI",
+        "type": "GROW_CURVE_DEFENSE",
+        "value": 1.01
+      },
+      {
+        "arith": "ARITH_ADD",
+        "type": "GROW_CURVE_STRIKE",
+        "value": 0
+      },
+      {
+        "arith": "ARITH_ADD",
+        "type": "GROW_CURVE_STRIKE_HURT",
+        "value": 0
+      },
+      {
+        "arith": "ARITH_ADD",
+        "type": "GROW_CURVE_ELEMENT",
+        "value": 0
+      },
+      {
+        "arith": "ARITH_MULTI",
+        "type": "GROW_CURVE_KILL_EXP",
+        "value": 1
+      },
+      {
+        "arith": "ARITH_MULTI",
+        "type": "GROW_CURVE_HP_LITTLEMONSTER",
+        "value": 1
+      },
+      {
+        "arith": "ARITH_MULTI",
+        "type": "GROW_CURVE_MHP",
+        "value": 1
+      },
+      {
+        "arith": "ARITH_MULTI",
+        "type": "GROW_CURVE_MATK",
+        "value": 1
+      },
+      {
+        "arith": "ARITH_MULTI",
+        "type": "GROW_CURVE_HP_2",
+        "value": 5.404888
+      },
+      {
+        "arith": "ARITH_MULTI",
+        "type": "GROW_CURVE_ATTACK_2",
+        "value": 2.020524
+      },
+      {
+        "arith": "ARITH_MULTI",
+        "type": "GROW_CURVE_HP_ENVIRONMENT",
+        "value": 17.165606
+      },
+      {
+        "arith": "ARITH_MULTI",
+        "type": "GROW_CURVE_ACTIVITY_ATTACK_1",
+        "value": 7.895132
+      },
+      {
+        "arith": "ARITH_MULTI",
+        "type": "GROW_CURVE_ACTIVITY_HP_1",
+        "value": 14.181971
+      },
+      {
+        "arith": "ARITH_MULTI",
+        "type": "GROW_CURVE_ACTIVITY_DEFENSE_2",
+        "value": 1
+      },
+      {
+        "arith": "ARITH_MULTI",
+        "type": "GROW_CURVE_ACTIVITY_ATTACK_2",
+        "value": 7.895132
+      },
+      {
+        "arith": "ARITH_MULTI",
+        "type": "GROW_CURVE_ACTIVITY_HP_2",
+        "value": 14.181971
+      }
+    ],
+    "level": 1
+  }
+}

@@ -1,0 +1,146 @@
+{
+  "metadata": {
+    "sourceFile": "ReliquaryExcelConfigData.json",
+    "generatedAt": "2025-09-27T15:02:53.321Z"
+  },
+  "keyMappingTemplate": {
+    "addPropLevels": [
+      5,
+      9,
+      13,
+      17,
+      21
+    ],
+    "appendPropDepotId": 101,
+    "appendPropNum": 0,
+    "baseConvExp": 420,
+    "descTextMapHash": 224592184,
+    "destroyReturnMaterial": [
+      202
+    ],
+    "destroyReturnMaterialCount": [
+      420
+    ],
+    "destroyRule": "DESTROY_RETURN_MATERIAL",
+    "dropable": false,
+    "equipType": "EQUIP_RING",
+    "gadgetId": 70600041,
+    "globalItemLimit": 0,
+    "icon": "UI_RelicIcon_10001_1",
+    "id": 51110,
+    "initialLockState": 0,
+    "itemType": "ITEM_RELIQUARY",
+    "mainPropDepotId": 5000,
+    "maxLevel": 5,
+    "nameTextMapHash": 3492048612,
+    "rank": 10,
+    "rankLevel": 1,
+    "setId": 10001,
+    "showPic": "Eff_UI_RelicIcon_10001_1",
+    "storyId": 180011,
+    "useLevel": 0,
+    "weight": 1
+  },
+  "alternativePatterns": [
+    {
+      "addPropLevels": [
+        5,
+        9,
+        13,
+        17,
+        21
+      ],
+      "appendPropDepotId": 101,
+      "appendPropNum": 1,
+      "baseConvExp": 420,
+      "descTextMapHash": 995552600,
+      "destroyReturnMaterial": [
+        202
+      ],
+      "destroyReturnMaterialCount": [
+        420
+      ],
+      "destroyRule": "DESTROY_RETURN_MATERIAL",
+      "dropable": false,
+      "equipType": "EQUIP_RING",
+      "gadgetId": 70600041,
+      "globalItemLimit": 0,
+      "icon": "UI_RelicIcon_10001_1",
+      "id": 51111,
+      "initialLockState": 0,
+      "itemType": "ITEM_RELIQUARY",
+      "mainPropDepotId": 5000,
+      "maxLevel": 5,
+      "nameTextMapHash": 1074568276,
+      "rank": 10,
+      "rankLevel": 1,
+      "setId": 10001,
+      "showPic": "Eff_UI_RelicIcon_10001_1",
+      "storyId": 180011,
+      "useLevel": 0,
+      "weight": 1
+    },
+    {
+      "addPropLevels": [
+        5,
+        9,
+        13,
+        17,
+        21
+      ],
+      "appendPropDepotId": 501,
+      "appendPropNum": 0,
+      "baseConvExp": 3780,
+      "descTextMapHash": 1827582000,
+      "destroyReturnMaterial": [],
+      "destroyReturnMaterialCount": [],
+      "destroyRule": "DESTROY_NONE",
+      "dropable": false,
+      "equipType": "EQUIP_RING",
+      "gadgetId": 70600045,
+      "globalItemLimit": 0,
+      "icon": "UI_RelicIcon_10001_1",
+      "id": 51510,
+      "initialLockState": 0,
+      "itemType": "ITEM_RELIQUARY",
+      "mainPropDepotId": 5000,
+      "maxLevel": 21,
+      "nameTextMapHash": 323343436,
+      "rank": 10,
+      "rankLevel": 5,
+      "setId": 10001,
+      "showPic": "Eff_UI_RelicIcon_10001_1",
+      "storyId": 180011,
+      "useLevel": 0,
+      "weight": 1
+    },
+    {
+      "addPropLevels": [],
+      "appendPropDepotId": 101,
+      "appendPropNum": 0,
+      "baseConvExp": 420,
+      "descTextMapHash": 1560367008,
+      "destroyReturnMaterial": [],
+      "destroyReturnMaterialCount": [],
+      "destroyRule": "DESTROY_NONE",
+      "dropable": false,
+      "equipType": "EQUIP_NECKLACE",
+      "gadgetId": 70600041,
+      "globalItemLimit": 0,
+      "icon": "UI_RelicIcon_10000_2",
+      "id": 20002,
+      "initialLockState": 0,
+      "itemType": "ITEM_RELIQUARY",
+      "mainPropDepotId": 2000,
+      "maxLevel": 1,
+      "nameTextMapHash": 3920301092,
+      "rank": 10,
+      "rankLevel": 1,
+      "setId": 0,
+      "showPic": "Eff_UI_RelicIcon_10000_2",
+      "storyId": 0,
+      "useLevel": 0,
+      "weight": 1
+    }
+  ]
+}

@@ -1,0 +1,296 @@
+{
+  "metadata": {
+    "sourceFile": "AvatarTalentExcelConfigData.json",
+    "generatedAt": "2025-09-27T15:02:48.332Z"
+  },
+  "keyMappingTemplate": {
+    "addProps": [
+      {
+        "propType": "FIGHT_PROP_NONE",
+        "value": 0
+      },
+      {
+        "propType": "FIGHT_PROP_NONE",
+        "value": 0
+      }
+    ],
+    "descTextMapHash": 194851991,
+    "icon": "UI_Talent_S_Ayaka_01",
+    "KAGDHDEIJMC": 0,
+    "mainCostItemCount": 1,
+    "mainCostItemId": 1102,
+    "nameTextMapHash": 3364696049,
+    "openConfig": "Ayaka_Constellation_1",
+    "paramList": [
+      0.5,
+      0.3,
+      0.1,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    "PMIFBDFEKBH": 0,
+    "prevTalent": 0,
+    "talentId": 21
+  },
+  "alternativePatterns": [
+    {
+      "addProps": [
+        {
+          "propType": "FIGHT_PROP_NONE",
+          "value": 0
+        },
+        {
+          "propType": "FIGHT_PROP_NONE",
+          "value": 0
+        }
+      ],
+      "descTextMapHash": 846522047,
+      "icon": "UI_Talent_S_Ayaka_02",
+      "KAGDHDEIJMC": 0,
+      "mainCostItemCount": 1,
+      "mainCostItemId": 1102,
+      "nameTextMapHash": 562006217,
+      "openConfig": "Ayaka_Constellation_2",
+      "paramList": [
+        0.2,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "PMIFBDFEKBH": 0,
+      "prevTalent": 21,
+      "talentId": 22
+    },
+    {
+      "addProps": [
+        {
+          "propType": "FIGHT_PROP_NONE",
+          "value": 0
+        },
+        {
+          "propType": "FIGHT_PROP_NONE",
+          "value": 0
+        }
+      ],
+      "descTextMapHash": 2503540655,
+      "icon": "UI_Talent_S_Ayaka_03",
+      "KAGDHDEIJMC": 0,
+      "mainCostItemCount": 1,
+      "mainCostItemId": 1102,
+      "nameTextMapHash": 2463454169,
+      "openConfig": "Ayaka_Constellation_4",
+      "paramList": [
+        0.3,
+        6,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "PMIFBDFEKBH": 0,
+      "prevTalent": 23,
+      "talentId": 24
+    },
+    {
+      "addProps": [
+        {
+          "propType": "FIGHT_PROP_NONE",
+          "value": 0
+        },
+        {
+          "propType": "FIGHT_PROP_NONE",
+          "value": 0
+        }
+      ],
+      "descTextMapHash": 544290319,
+      "icon": "UI_Talent_S_Qin_02",
+      "KAGDHDEIJMC": 0,
+      "mainCostItemCount": 1,
+      "mainCostItemId": 1103,
+      "nameTextMapHash": 573725673,
+      "openConfig": "Qin_Talent_2",
+      "paramList": [
+        0.15,
+        0.15,
+        15,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "PMIFBDFEKBH": 0,
+      "prevTalent": 31,
+      "talentId": 32
+    },
+    {
+      "addProps": [
+        {
+          "propType": "FIGHT_PROP_CHARGE_EFFICIENCY",
+          "value": 0.16
+        },
+        {
+          "propType": "FIGHT_PROP_NONE",
+          "value": 0
+        }
+      ],
+      "descTextMapHash": 1959927503,
+      "icon": "UI_Talent_S_PlayerWind_02",
+      "KAGDHDEIJMC": 0,
+      "mainCostItemCount": 1,
+      "mainCostItemId": 915,
+      "nameTextMapHash": 202198665,
+      "openConfig": "Player_Wind_Constellation_2",
+      "paramList": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "PMIFBDFEKBH": 0,
+      "prevTalent": 71,
+      "talentId": 72
+    },
+    {
+      "addProps": [
+        {
+          "propType": "FIGHT_PROP_NONE",
+          "value": 0
+        },
+        {
+          "propType": "FIGHT_PROP_NONE",
+          "value": 0
+        }
+      ],
+      "descTextMapHash": 2404048095,
+      "icon": "UI_Talent_S_PlayerElectric_02",
+      "KAGDHDEIJMC": 0,
+      "mainCostItemCount": 1,
+      "mainCostItemId": 914,
+      "nameTextMapHash": 23741097,
+      "openConfig": "Player_Electric_Constellation_2",
+      "paramList": [
+        8,
+        -0.15,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "PMIFBDFEKBH": 0,
+      "prevTalent": 101,
+      "talentId": 102
+    },
+    {
+      "addProps": [
+        {
+          "propType": "FIGHT_PROP_NONE",
+          "value": 0
+        },
+        {
+          "propType": "FIGHT_PROP_NONE",
+          "value": 0
+        }
+      ],
+      "descTextMapHash": 3591206935,
+      "icon": "UI_Talent_S_Diluc_02",
+      "KAGDHDEIJMC": 0,
+      "mainCostItemCount": 1,
+      "mainCostItemId": 1116,
+      "nameTextMapHash": 610672953,
+      "openConfig": "Diluc_Talent_2",
+      "paramList": [
+        0.1,
+        0.05,
+        10,
+        3,
+        1.5,
+        0,
+        0,
+        0
+      ],
+      "PMIFBDFEKBH": 0,
+      "prevTalent": 161,
+      "talentId": 162
+    },
+    {
+      "addProps": [
+        {
+          "propType": "FIGHT_PROP_NONE",
+          "value": 0
+        },
+        {
+          "propType": "FIGHT_PROP_NONE",
+          "value": 0
+        }
+      ],
+      "descTextMapHash": 452602631,
+      "icon": "UI_Talent_S_Mona_01",
+      "KAGDHDEIJMC": 0,
+      "mainCostItemCount": 1,
+      "mainCostItemId": 1141,
+      "nameTextMapHash": 3262519193,
+      "openConfig": "Mona_Talent_01",
+      "paramList": [
+        0.15,
+        0.15,
+        0.15,
+        0.15,
+        5,
+        8,
+        0,
+        0
+      ],
+      "PMIFBDFEKBH": 0,
+      "prevTalent": 0,
+      "talentId": 411
+    },
+    {
+      "addProps": [
+        {
+          "propType": "FIGHT_PROP_NONE",
+          "value": 0
+        },
+        {
+          "propType": "FIGHT_PROP_NONE",
+          "value": 0
+        }
+      ],
+      "descTextMapHash": 2439371303,
+      "icon": "UI_Talent_S_Furina_02",
+      "KAGDHDEIJMC": 0,
+      "mainCostItemCount": 1,
+      "mainCostItemId": 1189,
+      "nameTextMapHash": 3889320921,
+      "openConfig": "Furina_Constellation_2",
+      "paramList": [
+        10,
+        0.18,
+        1,
+        0.04,
+        2.9,
+        0.01,
+        0.25,
+        6
+      ],
+      "PMIFBDFEKBH": 0,
+      "prevTalent": 895,
+      "talentId": 896
+    }
+  ]
+}

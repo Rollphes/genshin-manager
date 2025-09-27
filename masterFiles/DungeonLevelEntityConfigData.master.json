@@ -1,0 +1,38 @@
+{
+  "metadata": {
+    "sourceFile": "DungeonLevelEntityConfigData.json",
+    "generatedAt": "2025-09-27T15:02:48.464Z"
+  },
+  "keyMappingTemplate": {
+    "abilityGroupName": "",
+    "clientId": 10000,
+    "descTextMapHash": 3109256178,
+    "id": 1,
+    "IEDIJALKDJO": "",
+    "levelConfigName": "Level_Avatar_DefenseDown",
+    "show": true,
+    "switchTitleTextMapHash": 797221129
+  },
+  "alternativePatterns": [
+    {
+      "abilityGroupName": "",
+      "clientId": 11156,
+      "descTextMapHash": 2355963490,
+      "id": 2036,
+      "IEDIJALKDJO": "LevelBuff_TowerBuff_TestFor53_3",
+      "levelConfigName": "",
+      "show": true,
+      "switchTitleTextMapHash": 667274945
+    },
+    {
+      "abilityGroupName": "",
+      "clientId": 11158,
+      "descTextMapHash": 93317682,
+      "id": 2038,
+      "IEDIJALKDJO": "",
+      "levelConfigName": "LevelEntity_Monster_HpUp_Lv3",
+      "show": false,
+      "switchTitleTextMapHash": 4199001217
+    }
+  ]
+}

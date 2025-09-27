@@ -1,0 +1,26 @@
+{
+  "metadata": {
+    "sourceFile": "ManualTextMapConfigData.json",
+    "generatedAt": "2025-09-27T15:02:50.526Z"
+  },
+  "keyMappingTemplate": {
+    "paramTypes": [
+      "TEXT_PARAM_NONE"
+    ],
+    "textMapContentTextMapHash": 3670537706,
+    "textMapId": "FightPropType"
+  },
+  "alternativePatterns": [
+    {
+      "paramTypes": [
+        "TEXT_PARAM_NONE",
+        "TEXT_PARAM_NONE",
+        "TEXT_PARAM_NONE",
+        "TEXT_PARAM_NONE",
+        "TEXT_PARAM_NONE"
+      ],
+      "textMapContentTextMapHash": 2265986372,
+      "textMapId": "NPC_EXPNAME_1072"
+    }
+  ]
+}

@@ -1,0 +1,101 @@
+{
+  "metadata": {
+    "sourceFile": "WeaponCurveExcelConfigData.json",
+    "generatedAt": "2025-09-27T15:02:53.418Z"
+  },
+  "keyMappingTemplate": {
+    "curveInfos": [
+      {
+        "arith": "ARITH_MULTI",
+        "type": "GROW_CURVE_ATTACK_101",
+        "value": 1
+      },
+      {
+        "arith": "ARITH_MULTI",
+        "type": "GROW_CURVE_ATTACK_102",
+        "value": 1
+      },
+      {
+        "arith": "ARITH_MULTI",
+        "type": "GROW_CURVE_ATTACK_103",
+        "value": 1
+      },
+      {
+        "arith": "ARITH_MULTI",
+        "type": "GROW_CURVE_ATTACK_104",
+        "value": 1
+      },
+      {
+        "arith": "ARITH_MULTI",
+        "type": "GROW_CURVE_ATTACK_105",
+        "value": 1
+      },
+      {
+        "arith": "ARITH_MULTI",
+        "type": "GROW_CURVE_CRITICAL_101",
+        "value": 1
+      },
+      {
+        "arith": "ARITH_MULTI",
+        "type": "GROW_CURVE_ATTACK_201",
+        "value": 1
+      },
+      {
+        "arith": "ARITH_MULTI",
+        "type": "GROW_CURVE_ATTACK_202",
+        "value": 1
+      },
+      {
+        "arith": "ARITH_MULTI",
+        "type": "GROW_CURVE_ATTACK_203",
+        "value": 1
+      },
+      {
+        "arith": "ARITH_MULTI",
+        "type": "GROW_CURVE_ATTACK_204",
+        "value": 1
+      },
+      {
+        "arith": "ARITH_MULTI",
+        "type": "GROW_CURVE_ATTACK_205",
+        "value": 1
+      },
+      {
+        "arith": "ARITH_MULTI",
+        "type": "GROW_CURVE_CRITICAL_201",
+        "value": 1
+      },
+      {
+        "arith": "ARITH_MULTI",
+        "type": "GROW_CURVE_ATTACK_301",
+        "value": 1
+      },
+      {
+        "arith": "ARITH_MULTI",
+        "type": "GROW_CURVE_ATTACK_302",
+        "value": 1
+      },
+      {
+        "arith": "ARITH_MULTI",
+        "type": "GROW_CURVE_ATTACK_303",
+        "value": 1
+      },
+      {
+        "arith": "ARITH_MULTI",
+        "type": "GROW_CURVE_ATTACK_304",
+        "value": 1
+      },
+      {
+        "arith": "ARITH_MULTI",
+        "type": "GROW_CURVE_ATTACK_305",
+        "value": 1
+      },
+      {
+        "arith": "ARITH_MULTI",
+        "type": "GROW_CURVE_CRITICAL_301",
+        "value": 1
+      }
+    ],
+    "level": 1
+  }
+}

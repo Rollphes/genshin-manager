@@ -1,0 +1,140 @@
+{
+  "metadata": {
+    "sourceFile": "TowerScheduleExcelConfigData.json",
+    "generatedAt": "2025-09-27T15:02:53.407Z"
+  },
+  "keyMappingTemplate": {
+    "ADOHEDEJHCO": 0,
+    "buffnameTextMapHash": 2483837807,
+    "closeTime": "2020-07-16 03:59:59",
+    "descTextMapHash": 3714385344,
+    "entranceFloorId": [
+      1001,
+      1002,
+      1003,
+      1004,
+      1005,
+      1006,
+      1007,
+      1008
+    ],
+    "GBMLAKGIEMO": [
+      {
+        "BCKABKPKFFG": 40,
+        "rewardId": 0
+      },
+      {
+        "BCKABKPKFFG": 60,
+        "rewardId": 0
+      },
+      {
+        "BCKABKPKFFG": 80,
+        "rewardId": 0
+      },
+      {
+        "BCKABKPKFFG": 100,
+        "rewardId": 0
+      },
+      {
+        "BCKABKPKFFG": 120,
+        "rewardId": 0
+      }
+    ],
+    "icon": "UI_TowerBlessing_1",
+    "LGJOAOLFLDM": 0,
+    "monthlyLevelConfigId": 1050,
+    "PAKFIFGANPN": [
+      {
+        "JFEBFCLGMOJ": "2020-07-01 00:00:00",
+        "NNDKHDAFINE": [
+          1009,
+          1010,
+          1011,
+          1012
+        ]
+      },
+      {
+        "JFEBFCLGMOJ": "",
+        "NNDKHDAFINE": []
+      },
+      {
+        "JFEBFCLGMOJ": "",
+        "NNDKHDAFINE": []
+      },
+      {
+        "JFEBFCLGMOJ": "",
+        "NNDKHDAFINE": []
+      }
+    ],
+    "rewardGroup": 1,
+    "scheduleId": 1
+  },
+  "alternativePatterns": [
+    {
+      "ADOHEDEJHCO": 0,
+      "buffnameTextMapHash": 678191111,
+      "closeTime": "2024-07-16 03:59:59",
+      "descTextMapHash": 3098441512,
+      "entranceFloorId": [
+        1001,
+        1002,
+        1003,
+        1004,
+        1005,
+        1006,
+        1007,
+        1008
+      ],
+      "GBMLAKGIEMO": [
+        {
+          "BCKABKPKFFG": 40,
+          "rewardId": 0
+        },
+        {
+          "BCKABKPKFFG": 60,
+          "rewardId": 0
+        },
+        {
+          "BCKABKPKFFG": 80,
+          "rewardId": 0
+        },
+        {
+          "BCKABKPKFFG": 100,
+          "rewardId": 0
+        },
+        {
+          "BCKABKPKFFG": 120,
+          "rewardId": 0
+        }
+      ],
+      "icon": "UI_TowerBlessing_85",
+      "LGJOAOLFLDM": 1,
+      "monthlyLevelConfigId": 1987,
+      "PAKFIFGANPN": [
+        {
+          "JFEBFCLGMOJ": "2024-06-16 04:00:00",
+          "NNDKHDAFINE": [
+            1064,
+            1065,
+            1080,
+            1081
+          ]
+        },
+        {
+          "JFEBFCLGMOJ": "",
+          "NNDKHDAFINE": []
+        },
+        {
+          "JFEBFCLGMOJ": "",
+          "NNDKHDAFINE": []
+        },
+        {
+          "JFEBFCLGMOJ": "",
+          "NNDKHDAFINE": []
+        }
+      ],
+      "rewardGroup": 9,
+      "scheduleId": 96
+    }
+  ]
+}

@@ -1,0 +1,346 @@
+{
+  "metadata": {
+    "sourceFile": "WeaponExcelConfigData.json",
+    "generatedAt": "2025-09-27T15:02:53.441Z"
+  },
+  "keyMappingTemplate": {
+    "AJIMOHCMNGI": "None",
+    "awakenCosts": [
+      500,
+      1000,
+      2000,
+      4000
+    ],
+    "awakenIcon": "UI_EquipIcon_Sword_Steel_Awaken",
+    "awakenLightMapTexture": "ART/Equip/AvatarEquip/Equip_Sword_Steel/Equip_Sword_Steel_OverrideTexture/Equip_Sword_Steel_02_Tex_Lightmap",
+    "awakenMaterial": 0,
+    "awakenTexture": "ART/Equip/AvatarEquip/Equip_Sword_Steel/Equip_Sword_Steel_OverrideTexture/Equip_Sword_Steel_02_Tex_Diffuse",
+    "descTextMapHash": 1214777829,
+    "destroyReturnMaterial": [
+      104011
+    ],
+    "destroyReturnMaterialCount": [
+      3
+    ],
+    "destroyRule": "DESTROY_RETURN_MATERIAL",
+    "dropable": false,
+    "ENKAHBLLDEE": 0,
+    "gachaCardNameHash": 7434030286633341000,
+    "gadgetId": 50011301,
+    "globalItemLimit": 0,
+    "icon": "UI_EquipIcon_Sword_Steel",
+    "id": 11301,
+    "initialLockState": 0,
+    "itemType": "ITEM_WEAPON",
+    "materialType": "WEAPON_MATERIAL_NONE",
+    "nameTextMapHash": 479076483,
+    "PKAJBJJLKBO": false,
+    "rank": 10,
+    "rankLevel": 3,
+    "skillAffix": [
+      111301,
+      0
+    ],
+    "storyId": 191301,
+    "unRotate": false,
+    "useLevel": 0,
+    "weaponBaseExp": 1800,
+    "weaponPromoteId": 11301,
+    "weaponProp": [
+      {
+        "initValue": 38.7413,
+        "propType": "FIGHT_PROP_BASE_ATTACK",
+        "type": "GROW_CURVE_ATTACK_101"
+      },
+      {
+        "initValue": 0.0766,
+        "propType": "FIGHT_PROP_ATTACK_PERCENT",
+        "type": "GROW_CURVE_CRITICAL_101"
+      }
+    ],
+    "weaponType": "WEAPON_SWORD_ONE_HAND",
+    "weight": 1
+  },
+  "alternativePatterns": [
+    {
+      "AJIMOHCMNGI": "None",
+      "awakenCosts": [
+        1000,
+        2000,
+        4000,
+        8000
+      ],
+      "awakenIcon": "UI_EquipIcon_Sword_Zephyrus_Awaken",
+      "awakenLightMapTexture": "ART/Equip/AvatarEquip/Equip_Sword_Zephyrus/Equip_Sword_Zephyrus_OverrideTexture/Equip_Sword_Zephyrus_02_Tex_Lightmap",
+      "awakenMaterial": 0,
+      "awakenTexture": "ART/Equip/AvatarEquip/Equip_Sword_Zephyrus/Equip_Sword_Zephyrus_OverrideTexture/Equip_Sword_Zephyrus_02_Tex_Diffuse",
+      "descTextMapHash": 1169620325,
+      "destroyReturnMaterial": [
+        0
+      ],
+      "destroyReturnMaterialCount": [
+        0
+      ],
+      "destroyRule": "DESTROY_NONE",
+      "dropable": false,
+      "ENKAHBLLDEE": 0,
+      "gachaCardNameHash": 2826103670021865000,
+      "gadgetId": 50011401,
+      "globalItemLimit": 0,
+      "icon": "UI_EquipIcon_Sword_Zephyrus",
+      "id": 11401,
+      "initialLockState": 2,
+      "itemType": "ITEM_WEAPON",
+      "materialType": "WEAPON_MATERIAL_NONE",
+      "nameTextMapHash": 2474354867,
+      "PKAJBJJLKBO": false,
+      "rank": 10,
+      "rankLevel": 4,
+      "skillAffix": [
+        111401,
+        0
+      ],
+      "storyId": 191401,
+      "unRotate": false,
+      "useLevel": 0,
+      "weaponBaseExp": 50000,
+      "weaponPromoteId": 11401,
+      "weaponProp": [
+        {
+          "initValue": 41.0671,
+          "propType": "FIGHT_PROP_BASE_ATTACK",
+          "type": "GROW_CURVE_ATTACK_204"
+        },
+        {
+          "initValue": 0.133333,
+          "propType": "FIGHT_PROP_CHARGE_EFFICIENCY",
+          "type": "GROW_CURVE_CRITICAL_201"
+        }
+      ],
+      "weaponType": "WEAPON_SWORD_ONE_HAND",
+      "weight": 1
+    },
+    {
+      "AJIMOHCMNGI": "None",
+      "awakenCosts": [
+        1000,
+        2000,
+        4000,
+        8000
+      ],
+      "awakenIcon": "UI_EquipIcon_Sword_Magnum_Awaken",
+      "awakenLightMapTexture": "ART/Equip/AvatarEquip/Equip_Sword_Magnum/Equip_Sword_Magnum_OverrideTexture/Equip_Sword_Magnum_02_Tex_Lightmap",
+      "awakenMaterial": 200103,
+      "awakenTexture": "ART/Equip/AvatarEquip/Equip_Sword_Magnum/Equip_Sword_Magnum_OverrideTexture/Equip_Sword_Magnum_02_Tex_Diffuse",
+      "descTextMapHash": 279012485,
+      "destroyReturnMaterial": [
+        0
+      ],
+      "destroyReturnMaterialCount": [
+        0
+      ],
+      "destroyRule": "DESTROY_NONE",
+      "dropable": false,
+      "ENKAHBLLDEE": 1,
+      "gachaCardNameHash": 17944186735592581000,
+      "gadgetId": 50011413,
+      "globalItemLimit": 0,
+      "icon": "UI_EquipIcon_Sword_Magnum",
+      "id": 11413,
+      "initialLockState": 2,
+      "itemType": "ITEM_WEAPON",
+      "materialType": "WEAPON_MATERIAL_NONE",
+      "nameTextMapHash": 2749853923,
+      "PKAJBJJLKBO": false,
+      "rank": 10,
+      "rankLevel": 4,
+      "skillAffix": [
+        111413,
+        0
+      ],
+      "storyId": 191413,
+      "unRotate": false,
+      "useLevel": 0,
+      "weaponBaseExp": 50000,
+      "weaponPromoteId": 11413,
+      "weaponProp": [
+        {
+          "initValue": 42.401,
+          "propType": "FIGHT_PROP_BASE_ATTACK",
+          "type": "GROW_CURVE_ATTACK_201"
+        },
+        {
+          "initValue": 0.1,
+          "propType": "FIGHT_PROP_CHARGE_EFFICIENCY",
+          "type": "GROW_CURVE_CRITICAL_201"
+        }
+      ],
+      "weaponType": "WEAPON_SWORD_ONE_HAND",
+      "weight": 1
+    },
+    {
+      "AJIMOHCMNGI": "None",
+      "awakenCosts": [
+        500,
+        1000,
+        2000,
+        4000
+      ],
+      "awakenIcon": "UI_EquipIcon_Claymore_Glaive_Awaken",
+      "awakenLightMapTexture": "ART/Equip/AvatarEquip/Equip_Claymore_Glaive/Equip_Claymore_Glaive_OverrideTexture/Equip_Claymore_Glaive_02_Tex_Lightmap",
+      "awakenMaterial": 0,
+      "awakenTexture": "ART/Equip/AvatarEquip/Equip_Claymore_Glaive/Equip_Claymore_Glaive_OverrideTexture/Equip_Claymore_Glaive_02_Tex_Diffuse",
+      "descTextMapHash": 1887050717,
+      "destroyReturnMaterial": [
+        104011
+      ],
+      "destroyReturnMaterialCount": [
+        3
+      ],
+      "destroyRule": "DESTROY_RETURN_MATERIAL",
+      "dropable": false,
+      "ENKAHBLLDEE": 0,
+      "gachaCardNameHash": 18902074258675024,
+      "gadgetId": 50012301,
+      "globalItemLimit": 0,
+      "icon": "UI_EquipIcon_Claymore_Glaive",
+      "id": 12301,
+      "initialLockState": 0,
+      "itemType": "ITEM_WEAPON",
+      "materialType": "WEAPON_MATERIAL_NONE",
+      "nameTextMapHash": 1479961579,
+      "PKAJBJJLKBO": false,
+      "rank": 10,
+      "rankLevel": 3,
+      "skillAffix": [
+        112301,
+        0
+      ],
+      "storyId": 192301,
+      "unRotate": false,
+      "useLevel": 0,
+      "weaponBaseExp": 1800,
+      "weaponPromoteId": 12301,
+      "weaponProp": [
+        {
+          "initValue": 38.7413,
+          "propType": "FIGHT_PROP_BASE_ATTACK",
+          "type": "GROW_CURVE_ATTACK_101"
+        },
+        {
+          "initValue": 0.0766,
+          "propType": "FIGHT_PROP_HP_PERCENT",
+          "type": "GROW_CURVE_CRITICAL_101"
+        }
+      ],
+      "weaponType": "WEAPON_CLAYMORE",
+      "weight": 1
+    },
+    {
+      "AJIMOHCMNGI": "None",
+      "awakenCosts": [],
+      "awakenIcon": "UI_EquipIcon_Sword_Blunt_Awaken",
+      "awakenLightMapTexture": "ART/Equip/AvatarEquip/Equip_Sword_Blunt/Equip_Sword_Blunt_OverrideTexture/Equip_Sword_Blunt_02_Tex_Lightmap",
+      "awakenMaterial": 0,
+      "awakenTexture": "ART/Equip/AvatarEquip/Equip_Sword_Blunt/Equip_Sword_Blunt_OverrideTexture/Equip_Sword_Blunt_02_Tex_Diffuse",
+      "descTextMapHash": 3807468957,
+      "destroyReturnMaterial": [
+        104011
+      ],
+      "destroyReturnMaterialCount": [
+        1
+      ],
+      "destroyRule": "DESTROY_RETURN_MATERIAL",
+      "dropable": false,
+      "ENKAHBLLDEE": 0,
+      "gachaCardNameHash": 5206550965894458000,
+      "gadgetId": 50011101,
+      "globalItemLimit": 0,
+      "icon": "UI_EquipIcon_Sword_Blunt",
+      "id": 11101,
+      "initialLockState": 0,
+      "itemType": "ITEM_WEAPON",
+      "materialType": "WEAPON_MATERIAL_NONE",
+      "nameTextMapHash": 2410593283,
+      "PKAJBJJLKBO": false,
+      "rank": 10,
+      "rankLevel": 1,
+      "skillAffix": [
+        0,
+        0
+      ],
+      "storyId": 191101,
+      "unRotate": false,
+      "useLevel": 0,
+      "weaponBaseExp": 600,
+      "weaponPromoteId": 11101,
+      "weaponProp": [
+        {
+          "initValue": 23.245,
+          "propType": "FIGHT_PROP_BASE_ATTACK",
+          "type": "GROW_CURVE_ATTACK_101"
+        },
+        {
+          "initValue": 0,
+          "propType": "FIGHT_PROP_NONE",
+          "type": "GROW_CURVE_CRITICAL_101"
+        }
+      ],
+      "weaponType": "WEAPON_SWORD_ONE_HAND",
+      "weight": 1
+    },
+    {
+      "AJIMOHCMNGI": "None",
+      "awakenCosts": [],
+      "awakenIcon": "UI_EquipIcon_Sword_Youtou_Awaken",
+      "awakenLightMapTexture": "ART/Equip/AvatarEquip/Equip_Sword_Youtou/Equip_Sword_Youtou_OverrideTexture/Equip_Sword_Youtou_02_Tex_Lightmap",
+      "awakenMaterial": 0,
+      "awakenTexture": "ART/Equip/AvatarEquip/Equip_Sword_Youtou/Equip_Sword_Youtou_OverrideTexture/Equip_Sword_Youtou_02_Tex_Diffuse",
+      "descTextMapHash": 2752898277,
+      "destroyReturnMaterial": [
+        0
+      ],
+      "destroyReturnMaterialCount": [
+        0
+      ],
+      "destroyRule": "DESTROY_NONE",
+      "dropable": false,
+      "ENKAHBLLDEE": 1,
+      "gachaCardNameHash": 4980559788864738000,
+      "gadgetId": 50011416,
+      "globalItemLimit": 0,
+      "icon": "UI_EquipIcon_Sword_Youtou",
+      "id": 11416,
+      "initialLockState": 2,
+      "itemType": "ITEM_WEAPON",
+      "materialType": "WEAPON_MATERIAL_NONE",
+      "nameTextMapHash": 1012170803,
+      "PKAJBJJLKBO": false,
+      "rank": 10,
+      "rankLevel": 4,
+      "skillAffix": [
+        111416,
+        0
+      ],
+      "storyId": 191416,
+      "unRotate": false,
+      "useLevel": 0,
+      "weaponBaseExp": 50000,
+      "weaponPromoteId": 11416,
+      "weaponProp": [
+        {
+          "initValue": 42.401,
+          "propType": "FIGHT_PROP_BASE_ATTACK",
+          "type": "GROW_CURVE_ATTACK_201"
+        },
+        {
+          "initValue": 0.09,
+          "propType": "FIGHT_PROP_ATTACK_PERCENT",
+          "type": "GROW_CURVE_CRITICAL_201"
+        }
+      ],
+      "weaponType": "WEAPON_SWORD_ONE_HAND",
+      "weight": 1
+    }
+  ]
+}

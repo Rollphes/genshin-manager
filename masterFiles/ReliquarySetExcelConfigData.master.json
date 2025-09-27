@@ -1,0 +1,102 @@
+{
+  "metadata": {
+    "sourceFile": "ReliquarySetExcelConfigData.json",
+    "generatedAt": "2025-09-27T15:02:53.347Z"
+  },
+  "keyMappingTemplate": {
+    "bagSortValue": 30,
+    "containsList": [
+      71340,
+      71320,
+      71350,
+      71310,
+      71330
+    ],
+    "DFGNDLNPOIJ": 5,
+    "disableFilter": 0,
+    "dungeonGroup": [
+      5122,
+      5123
+    ],
+    "equipAffixId": 214001,
+    "setIcon": "UI_RelicIcon_14001_4",
+    "setId": 14001,
+    "setNeedNum": [
+      2,
+      4
+    ],
+    "textList": [
+      1641249022,
+      3455611563
+    ]
+  },
+  "alternativePatterns": [
+    {
+      "bagSortValue": 4,
+      "containsList": [
+        51140,
+        51120,
+        51150,
+        51110,
+        51130
+      ],
+      "DFGNDLNPOIJ": 4,
+      "disableFilter": 0,
+      "dungeonGroup": [],
+      "equipAffixId": 210001,
+      "setIcon": "UI_RelicIcon_10001_4",
+      "setId": 10001,
+      "setNeedNum": [
+        2,
+        4
+      ],
+      "textList": [
+        3554068574,
+        3930680251
+      ]
+    },
+    {
+      "bagSortValue": 0,
+      "containsList": [
+        78340,
+        78320,
+        78350,
+        78310,
+        78330
+      ],
+      "DFGNDLNPOIJ": 5,
+      "disableFilter": 1,
+      "dungeonGroup": [],
+      "equipAffixId": 215004,
+      "setIcon": "UI_RelicIcon_15004_4",
+      "setId": 15004,
+      "setNeedNum": [
+        2,
+        4
+      ],
+      "textList": [
+        3786709222,
+        3239325019
+      ]
+    },
+    {
+      "bagSortValue": 16,
+      "containsList": [
+        83330
+      ],
+      "DFGNDLNPOIJ": 4,
+      "disableFilter": 0,
+      "dungeonGroup": [],
+      "equipAffixId": 215009,
+      "setIcon": "UI_RelicIcon_15009_3",
+      "setId": 15009,
+      "setNeedNum": [
+        1
+      ],
+      "textList": [
+        1600414334,
+        1178752179
+      ]
+    }
+  ]
+}

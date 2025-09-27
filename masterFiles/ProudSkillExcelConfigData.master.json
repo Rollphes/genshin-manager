@@ -1,0 +1,1968 @@
+{
+  "metadata": {
+    "sourceFile": "ProudSkillExcelConfigData.json",
+    "generatedAt": "2025-09-27T15:02:53.004Z"
+  },
+  "keyMappingTemplate": {
+    "addProps": [
+      {
+        "propType": "FIGHT_PROP_NONE",
+        "value": 0
+      },
+      {
+        "propType": "FIGHT_PROP_NONE",
+        "value": 0
+      }
+    ],
+    "breakLevel": 0,
+    "coinCost": 0,
+    "descTextMapHash": 3062891747,
+    "filterConds": [
+      "TALENT_FILTER_NONE",
+      "TALENT_FILTER_NONE"
+    ],
+    "HFOHLKDEJPO": "PROUD_SKILL_DISPLAY_DEFAULT",
+    "icon": "UI_Talent_Cook_ExtraFailedItem",
+    "isHideLifeProudSkill": false,
+    "costItems": [
+      {
+        "count": 0,
+        "id": 0
+      },
+      {
+        "count": 0,
+        "id": 0
+      },
+      {
+        "count": 0,
+        "id": 0
+      },
+      {
+        "count": 0,
+        "id": 0
+      }
+    ],
+    "level": 1,
+    "lifeEffectParams": [
+      "1800",
+      "1,2,3,4",
+      "1",
+      "3",
+      "1"
+    ],
+    "lifeEffectType": "PROUD_EFFECT_COOK_PROB_MULTI_OUTPUT",
+    "nameTextMapHash": 1749668397,
+    "OJAOOFGBGJI": {
+      "value": 190
+    },
+    "openConfig": "",
+    "paramDescList": [
+      3148177758,
+      954887710,
+      4101873919,
+      2593679375,
+      124414326,
+      3135454018,
+      1738078039,
+      3230970061,
+      1158560108,
+      954325239,
+      2593893380,
+      2410687947,
+      1099821711,
+      1525761299,
+      2839650534,
+      1085353741
+    ],
+    "paramList": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    "proudSkillGroupId": 4623,
+    "proudSkillId": 462301,
+    "proudSkillType": 2,
+    "unlockDescTextMapHash": 3313526698
+  },
+  "alternativePatterns": [
+    {
+      "addProps": [
+        {
+          "propType": "FIGHT_PROP_NONE",
+          "value": 0
+        },
+        {
+          "propType": "FIGHT_PROP_NONE",
+          "value": 0
+        }
+      ],
+      "breakLevel": 0,
+      "coinCost": 0,
+      "descTextMapHash": 3514609507,
+      "filterConds": [
+        "TALENT_FILTER_NONE",
+        "TALENT_FILTER_NONE"
+      ],
+      "HFOHLKDEJPO": "PROUD_SKILL_DISPLAY_DEFAULT",
+      "icon": "UI_Talent_S_Navia_07",
+      "isHideLifeProudSkill": false,
+      "KPCDDDCMLNB": [
+        {
+          "count": 0,
+          "id": 0
+        },
+        {
+          "count": 0,
+          "id": 0
+        },
+        {
+          "count": 0,
+          "id": 0
+        },
+        {
+          "count": 0,
+          "id": 0
+        }
+      ],
+      "level": 1,
+      "lifeEffectParams": [
+        "5",
+        "20",
+        "10000",
+        "0.25",
+        ""
+      ],
+      "lifeEffectType": "PROUD_EFFECT_EXPEDITION_EXTRA_OUTPUT",
+      "nameTextMapHash": 438270701,
+      "OJAOOFGBGJI": {
+        "value": 190
+      },
+      "openConfig": "Navia_PermanentSkill_3",
+      "paramDescList": [
+        1197852262,
+        569613886,
+        2026200943,
+        2126185679,
+        863563806,
+        3752452674,
+        4087153847,
+        1088633693,
+        2230342596,
+        524645959,
+        443800164,
+        2864357411,
+        73678159,
+        211263803,
+        2650097550,
+        235606477
+      ],
+      "paramList": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "proudSkillGroupId": 9123,
+      "proudSkillId": 912301,
+      "proudSkillType": 2,
+      "unlockDescTextMapHash": 3489412658
+    },
+    {
+      "addProps": [
+        {
+          "propType": "FIGHT_PROP_NONE",
+          "value": 0
+        },
+        {
+          "propType": "FIGHT_PROP_NONE",
+          "value": 0
+        }
+      ],
+      "breakLevel": 0,
+      "coinCost": 0,
+      "descTextMapHash": 779979035,
+      "filterConds": [
+        "TALENT_FILTER_NONE",
+        "TALENT_FILTER_NONE"
+      ],
+      "HFOHLKDEJPO": "PROUD_SKILL_DISPLAY_DEFAULT",
+      "icon": "UI_Talent_Combine_Weapon_Double",
+      "isHideLifeProudSkill": false,
+      "KPCDDDCMLNB": [
+        {
+          "count": 0,
+          "id": 0
+        },
+        {
+          "count": 0,
+          "id": 0
+        },
+        {
+          "count": 0,
+          "id": 0
+        },
+        {
+          "count": 0,
+          "id": 0
+        }
+      ],
+      "level": 1,
+      "lifeEffectParams": [
+        "1000",
+        "2",
+        "1",
+        "1",
+        ""
+      ],
+      "lifeEffectType": "PROUD_EFFECT_COMBINE_MULTIPLY_OUTPUT",
+      "nameTextMapHash": 447551629,
+      "OJAOOFGBGJI": {
+        "value": 190
+      },
+      "openConfig": "",
+      "paramDescList": [
+        3497978718,
+        19140022,
+        3765144391,
+        162630135,
+        2999753358,
+        3267047594,
+        2714797247,
+        2225815749,
+        950503644,
+        1357686735,
+        1353624196,
+        298817043,
+        656460775,
+        2231788027,
+        3300673470,
+        3275400997
+      ],
+      "paramList": [
+        0.1,
+        2,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "proudSkillGroupId": 223,
+      "proudSkillId": 22301,
+      "proudSkillType": 2,
+      "unlockDescTextMapHash": 271552698
+    },
+    {
+      "addProps": [
+        {
+          "propType": "FIGHT_PROP_NONE",
+          "value": 0
+        },
+        {
+          "propType": "FIGHT_PROP_NONE",
+          "value": 0
+        }
+      ],
+      "breakLevel": 1,
+      "coinCost": 0,
+      "descTextMapHash": 2636480403,
+      "filterConds": [
+        "TALENT_FILTER_NONE",
+        "TALENT_FILTER_NONE"
+      ],
+      "HFOHLKDEJPO": "PROUD_SKILL_DISPLAY_BREAK",
+      "icon": "UI_Talent_S_Ayaka_05",
+      "isHideLifeProudSkill": false,
+      "KPCDDDCMLNB": [
+        {
+          "count": 0,
+          "id": 0
+        },
+        {
+          "count": 0,
+          "id": 0
+        },
+        {
+          "count": 0,
+          "id": 0
+        },
+        {
+          "count": 0,
+          "id": 0
+        }
+      ],
+      "level": 1,
+      "lifeEffectParams": [
+        "",
+        "",
+        "",
+        "",
+        ""
+      ],
+      "lifeEffectType": "PROUD_EFFECT_NONE",
+      "nameTextMapHash": 894491949,
+      "OJAOOFGBGJI": {
+        "value": 190
+      },
+      "openConfig": "Ayaka_PermanentSkill_1",
+      "paramDescList": [
+        152847846,
+        1322816670,
+        3331707031,
+        2657445599,
+        3007345494,
+        1613477930,
+        134085471,
+        1485630485,
+        3005845460,
+        2790397015,
+        1950840068,
+        2478686659,
+        2050534855,
+        560949315,
+        1021858422,
+        3416554133
+      ],
+      "paramList": [
+        0.3,
+        6,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "proudSkillGroupId": 221,
+      "proudSkillId": 22101,
+      "proudSkillType": 2,
+      "unlockDescTextMapHash": 3594775618
+    },
+    {
+      "addProps": [
+        {
+          "propType": "FIGHT_PROP_NONE",
+          "value": 0
+        },
+        {
+          "propType": "FIGHT_PROP_NONE",
+          "value": 0
+        }
+      ],
+      "breakLevel": 4,
+      "coinCost": 0,
+      "descTextMapHash": 3965126451,
+      "filterConds": [
+        "TALENT_FILTER_NONE",
+        "TALENT_FILTER_NONE"
+      ],
+      "HFOHLKDEJPO": "PROUD_SKILL_DISPLAY_BREAK",
+      "icon": "UI_Talent_S_Ayaka_06",
+      "isHideLifeProudSkill": false,
+      "KPCDDDCMLNB": [
+        {
+          "count": 0,
+          "id": 0
+        },
+        {
+          "count": 0,
+          "id": 0
+        },
+        {
+          "count": 0,
+          "id": 0
+        },
+        {
+          "count": 0,
+          "id": 0
+        }
+      ],
+      "level": 1,
+      "lifeEffectParams": [
+        "",
+        "",
+        "",
+        "",
+        ""
+      ],
+      "lifeEffectType": "PROUD_EFFECT_NONE",
+      "nameTextMapHash": 93137789,
+      "OJAOOFGBGJI": {
+        "value": 190
+      },
+      "openConfig": "Ayaka_PermanentSkill_2",
+      "paramDescList": [
+        1085178006,
+        2597191054,
+        1837268583,
+        4257906775,
+        79154326,
+        269640490,
+        1248335343,
+        4153739717,
+        3668763356,
+        3122416527,
+        1625170732,
+        3842179187,
+        700306191,
+        3077342475,
+        3599109630,
+        455972541
+      ],
+      "paramList": [
+        10,
+        0.18,
+        10,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "proudSkillGroupId": 222,
+      "proudSkillId": 22201,
+      "proudSkillType": 2,
+      "unlockDescTextMapHash": 3682735922
+    },
+    {
+      "addProps": [
+        {
+          "propType": "FIGHT_PROP_NONE",
+          "value": 0
+        },
+        {
+          "propType": "FIGHT_PROP_NONE",
+          "value": 0
+        }
+      ],
+      "breakLevel": 0,
+      "coinCost": 0,
+      "descTextMapHash": 3536678267,
+      "filterConds": [
+        "TALENT_FILTER_NONE",
+        "TALENT_FILTER_NONE"
+      ],
+      "HFOHLKDEJPO": "PROUD_SKILL_DISPLAY_DEFAULT",
+      "icon": "Skill_A_01",
+      "isHideLifeProudSkill": false,
+      "KPCDDDCMLNB": [
+        {
+          "count": 0,
+          "id": 0
+        },
+        {
+          "count": 0,
+          "id": 0
+        },
+        {
+          "count": 0,
+          "id": 0
+        },
+        {
+          "count": 0,
+          "id": 0
+        }
+      ],
+      "level": 1,
+      "lifeEffectParams": [
+        "",
+        "",
+        "",
+        "",
+        ""
+      ],
+      "lifeEffectType": "PROUD_EFFECT_NONE",
+      "nameTextMapHash": 4236418557,
+      "OJAOOFGBGJI": {
+        "value": 190
+      },
+      "openConfig": "Ayaka_SkillUpgrade_1",
+      "paramDescList": [
+        3951510062,
+        57450630,
+        201874255,
+        3478606423,
+        2969828286,
+        3679510386,
+        2166877711,
+        231105125,
+        2913493548,
+        52626703,
+        1482802484,
+        12206299,
+        2551127895,
+        1393569755,
+        2769766078,
+        2667271997
+      ],
+      "paramList": [
+        0.457253,
+        0.486846,
+        0.626218,
+        0.226464,
+        0,
+        0,
+        0.781817,
+        0.55126,
+        20,
+        0.639324,
+        1.278377,
+        1.596762,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "proudSkillGroupId": 231,
+      "proudSkillId": 23101,
+      "proudSkillType": 3,
+      "unlockDescTextMapHash": 1075733882
+    },
+    {
+      "addProps": [
+        {
+          "propType": "FIGHT_PROP_NONE",
+          "value": 0
+        },
+        {
+          "propType": "FIGHT_PROP_NONE",
+          "value": 0
+        }
+      ],
+      "breakLevel": 2,
+      "coinCost": 12500,
+      "descTextMapHash": 256121251,
+      "filterConds": [
+        "TALENT_FILTER_NONE",
+        "TALENT_FILTER_NONE"
+      ],
+      "HFOHLKDEJPO": "PROUD_SKILL_DISPLAY_DEFAULT",
+      "icon": "Skill_A_01",
+      "isHideLifeProudSkill": false,
+      "KPCDDDCMLNB": [
+        {
+          "count": 3,
+          "id": 104323
+        },
+        {
+          "count": 6,
+          "id": 112044
+        },
+        {
+          "count": 0,
+          "id": 0
+        },
+        {
+          "count": 0,
+          "id": 0
+        }
+      ],
+      "level": 2,
+      "lifeEffectParams": [
+        "",
+        "",
+        "",
+        "",
+        ""
+      ],
+      "lifeEffectType": "PROUD_EFFECT_NONE",
+      "nameTextMapHash": 75643821,
+      "OJAOOFGBGJI": {
+        "value": 190
+      },
+      "openConfig": "Ayaka_SkillUpgrade_1",
+      "paramDescList": [
+        1781611046,
+        2591157526,
+        3447043223,
+        474479543,
+        3361943278,
+        863416434,
+        1037261087,
+        3062833173,
+        1052149444,
+        256994711,
+        2782249772,
+        3157802955,
+        3193854623,
+        3343030883,
+        3104304510,
+        3487313477
+      ],
+      "paramList": [
+        0.494472,
+        0.526473,
+        0.677189,
+        0.244897,
+        0,
+        0,
+        0.845454,
+        0.59613,
+        20,
+        0.691362,
+        1.382431,
+        1.726731,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "proudSkillGroupId": 231,
+      "proudSkillId": 23102,
+      "proudSkillType": 3,
+      "unlockDescTextMapHash": 782992594
+    },
+    {
+      "addProps": [
+        {
+          "propType": "FIGHT_PROP_NONE",
+          "value": 0
+        },
+        {
+          "propType": "FIGHT_PROP_NONE",
+          "value": 0
+        }
+      ],
+      "breakLevel": 5,
+      "coinCost": 120000,
+      "descTextMapHash": 1008783739,
+      "filterConds": [
+        "TALENT_FILTER_NONE",
+        "TALENT_FILTER_NONE"
+      ],
+      "HFOHLKDEJPO": "PROUD_SKILL_DISPLAY_DEFAULT",
+      "icon": "Skill_A_01",
+      "isHideLifeProudSkill": false,
+      "KPCDDDCMLNB": [
+        {
+          "count": 4,
+          "id": 104325
+        },
+        {
+          "count": 4,
+          "id": 112046
+        },
+        {
+          "count": 1,
+          "id": 113018
+        },
+        {
+          "count": 0,
+          "id": 0
+        }
+      ],
+      "level": 7,
+      "lifeEffectParams": [
+        "",
+        "",
+        "",
+        "",
+        ""
+      ],
+      "lifeEffectType": "PROUD_EFFECT_NONE",
+      "nameTextMapHash": 3118917709,
+      "OJAOOFGBGJI": {
+        "value": 190
+      },
+      "openConfig": "Ayaka_SkillUpgrade_1",
+      "paramDescList": [
+        4094928574,
+        273247878,
+        3241491183,
+        3547890823,
+        3651575782,
+        2428106802,
+        181896671,
+        1902885021,
+        1642370612,
+        1348854743,
+        1976225900,
+        74849267,
+        2956473687,
+        1699924443,
+        2058194622,
+        761947269
+      ],
+      "paramList": [
+        0.723098,
+        0.769896,
+        0.990298,
+        0.358129,
+        0,
+        0,
+        1.236362,
+        0.87176,
+        20,
+        1.011024,
+        2.02162,
+        2.525112,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "proudSkillGroupId": 231,
+      "proudSkillId": 23107,
+      "proudSkillType": 3,
+      "unlockDescTextMapHash": 3097606434
+    },
+    {
+      "addProps": [
+        {
+          "propType": "FIGHT_PROP_NONE",
+          "value": 0
+        },
+        {
+          "propType": "FIGHT_PROP_NONE",
+          "value": 0
+        }
+      ],
+      "breakLevel": 6,
+      "coinCost": 700000,
+      "descTextMapHash": 1151866155,
+      "filterConds": [
+        "TALENT_FILTER_NONE",
+        "TALENT_FILTER_NONE"
+      ],
+      "HFOHLKDEJPO": "PROUD_SKILL_DISPLAY_DEFAULT",
+      "icon": "Skill_A_01",
+      "isHideLifeProudSkill": false,
+      "KPCDDDCMLNB": [
+        {
+          "count": 16,
+          "id": 104325
+        },
+        {
+          "count": 12,
+          "id": 112046
+        },
+        {
+          "count": 2,
+          "id": 113018
+        },
+        {
+          "count": 1,
+          "id": 104319
+        }
+      ],
+      "level": 10,
+      "lifeEffectParams": [
+        "",
+        "",
+        "",
+        "",
+        ""
+      ],
+      "lifeEffectType": "PROUD_EFFECT_NONE",
+      "nameTextMapHash": 2344436805,
+      "OJAOOFGBGJI": {
+        "value": 190
+      },
+      "openConfig": "Ayaka_SkillUpgrade_1",
+      "paramDescList": [
+        3569892886,
+        3079203262,
+        2825349823,
+        1911879647,
+        2162758070,
+        1876037986,
+        437738607,
+        2215722461,
+        350541116,
+        2132379447,
+        1245804772,
+        79479779,
+        1617952271,
+        391226451,
+        1018870078,
+        795744517
+      ],
+      "paramList": [
+        0.903873,
+        0.96237,
+        1.237872,
+        0.447661,
+        0,
+        0,
+        1.545453,
+        1.0897,
+        20,
+        1.26378,
+        2.527025,
+        3.15639,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "proudSkillGroupId": 231,
+      "proudSkillId": 23110,
+      "proudSkillType": 3,
+      "unlockDescTextMapHash": 256964946
+    },
+    {
+      "addProps": [
+        {
+          "propType": "FIGHT_PROP_NONE",
+          "value": 0
+        },
+        {
+          "propType": "FIGHT_PROP_NONE",
+          "value": 0
+        }
+      ],
+      "breakLevel": 0,
+      "coinCost": 0,
+      "descTextMapHash": 968254195,
+      "filterConds": [
+        "TALENT_FILTER_NONE",
+        "TALENT_FILTER_NONE"
+      ],
+      "HFOHLKDEJPO": "PROUD_SKILL_DISPLAY_DEFAULT",
+      "icon": "Skill_E_Ayaka",
+      "isHideLifeProudSkill": false,
+      "KPCDDDCMLNB": [
+        {
+          "count": 0,
+          "id": 0
+        },
+        {
+          "count": 0,
+          "id": 0
+        },
+        {
+          "count": 0,
+          "id": 0
+        },
+        {
+          "count": 0,
+          "id": 0
+        }
+      ],
+      "level": 1,
+      "lifeEffectParams": [
+        "",
+        "",
+        "",
+        "",
+        ""
+      ],
+      "lifeEffectType": "PROUD_EFFECT_NONE",
+      "nameTextMapHash": 452495941,
+      "OJAOOFGBGJI": {
+        "value": 190
+      },
+      "openConfig": "Ayaka_SkillUpgrade_3",
+      "paramDescList": [
+        2155024582,
+        3459771278,
+        943160095,
+        1895378855,
+        4245812230,
+        677661682,
+        1290517063,
+        1857685229,
+        611524244,
+        2630449551,
+        937914900,
+        3412643027,
+        1440178567,
+        2172833251,
+        93286630,
+        3227790837
+      ],
+      "paramList": [
+        1.123,
+        1.6845,
+        5,
+        20,
+        80,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "proudSkillGroupId": 239,
+      "proudSkillId": 23901,
+      "proudSkillType": 3,
+      "unlockDescTextMapHash": 2416732146
+    },
+    {
+      "addProps": [
+        {
+          "propType": "FIGHT_PROP_NONE",
+          "value": 0
+        },
+        {
+          "propType": "FIGHT_PROP_NONE",
+          "value": 0
+        }
+      ],
+      "breakLevel": 0,
+      "coinCost": 0,
+      "descTextMapHash": 1334263035,
+      "filterConds": [
+        "TALENT_FILTER_NONE",
+        "TALENT_FILTER_NONE"
+      ],
+      "HFOHLKDEJPO": "PROUD_SKILL_DISPLAY_DEFAULT",
+      "icon": "Skill_A_01",
+      "isHideLifeProudSkill": false,
+      "KPCDDDCMLNB": [
+        {
+          "count": 0,
+          "id": 0
+        },
+        {
+          "count": 0,
+          "id": 0
+        },
+        {
+          "count": 0,
+          "id": 0
+        },
+        {
+          "count": 0,
+          "id": 0
+        }
+      ],
+      "level": 1,
+      "lifeEffectParams": [
+        "",
+        "",
+        "",
+        "",
+        ""
+      ],
+      "lifeEffectType": "PROUD_EFFECT_NONE",
+      "nameTextMapHash": 3614250693,
+      "OJAOOFGBGJI": {
+        "value": 190
+      },
+      "openConfig": "Qin_ProudSkill_1",
+      "paramDescList": [
+        1145595062,
+        3971813270,
+        3365627023,
+        3343389615,
+        3469207934,
+        1646535402,
+        1358027295,
+        3036863109,
+        923057108,
+        3863930327,
+        2528802276,
+        8659523,
+        1633230759,
+        2426891859,
+        4246534094,
+        1754996589
+      ],
+      "paramList": [
+        0.48332,
+        0.4558,
+        0.60286,
+        0.65876,
+        0.79206,
+        1.62024,
+        20,
+        0.639324,
+        1.278377,
+        1.596762,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "proudSkillGroupId": 331,
+      "proudSkillId": 33101,
+      "proudSkillType": 3,
+      "unlockDescTextMapHash": 1653955858
+    },
+    {
+      "addProps": [
+        {
+          "propType": "FIGHT_PROP_NONE",
+          "value": 0
+        },
+        {
+          "propType": "FIGHT_PROP_NONE",
+          "value": 0
+        }
+      ],
+      "breakLevel": 0,
+      "coinCost": 0,
+      "descTextMapHash": 3606893659,
+      "filterConds": [
+        "TALENT_FILTER_NONE",
+        "TALENT_FILTER_NONE"
+      ],
+      "HFOHLKDEJPO": "PROUD_SKILL_DISPLAY_DEFAULT",
+      "icon": "Skill_A_01",
+      "isHideLifeProudSkill": false,
+      "KPCDDDCMLNB": [
+        {
+          "count": 0,
+          "id": 0
+        },
+        {
+          "count": 0,
+          "id": 0
+        },
+        {
+          "count": 0,
+          "id": 0
+        },
+        {
+          "count": 0,
+          "id": 0
+        }
+      ],
+      "level": 1,
+      "lifeEffectParams": [
+        "",
+        "",
+        "",
+        "",
+        ""
+      ],
+      "lifeEffectType": "PROUD_EFFECT_NONE",
+      "nameTextMapHash": 1549934013,
+      "OJAOOFGBGJI": {
+        "value": 190
+      },
+      "openConfig": "PlayerBoy_Common_SkillUpgrade_1",
+      "paramDescList": [
+        103667430,
+        2729824750,
+        1423911055,
+        846647223,
+        3445419230,
+        607873546,
+        3017237783,
+        746904173,
+        67803476,
+        2907503775,
+        4061425732,
+        1376458371,
+        2296093727,
+        1854659323,
+        1971662054,
+        1981463213
+      ],
+      "paramList": [
+        0.44462,
+        0.4343,
+        0.52976,
+        0.58308,
+        0.70778,
+        0.559,
+        0.60716,
+        20,
+        0.639324,
+        1.278377,
+        1.596762,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "proudSkillGroupId": 730,
+      "proudSkillId": 73001,
+      "proudSkillType": 3,
+      "unlockDescTextMapHash": 696689210
+    },
+    {
+      "addProps": [
+        {
+          "propType": "FIGHT_PROP_NONE",
+          "value": 0
+        },
+        {
+          "propType": "FIGHT_PROP_NONE",
+          "value": 0
+        }
+      ],
+      "breakLevel": 0,
+      "coinCost": 0,
+      "descTextMapHash": 2977633803,
+      "filterConds": [
+        "TALENT_FILTER_NONE",
+        "TALENT_FILTER_NONE"
+      ],
+      "HFOHLKDEJPO": "PROUD_SKILL_DISPLAY_DEFAULT",
+      "icon": "Skill_A_01",
+      "isHideLifeProudSkill": false,
+      "KPCDDDCMLNB": [
+        {
+          "count": 0,
+          "id": 0
+        },
+        {
+          "count": 0,
+          "id": 0
+        },
+        {
+          "count": 0,
+          "id": 0
+        },
+        {
+          "count": 0,
+          "id": 0
+        }
+      ],
+      "level": 1,
+      "lifeEffectParams": [
+        "",
+        "",
+        "",
+        "",
+        ""
+      ],
+      "lifeEffectType": "PROUD_EFFECT_NONE",
+      "nameTextMapHash": 4268334181,
+      "OJAOOFGBGJI": {
+        "value": 190
+      },
+      "openConfig": "Beidou_ProudSkill_1",
+      "paramDescList": [
+        1461511646,
+        2248084446,
+        442759775,
+        3822639071,
+        2430134150,
+        4266944570,
+        2958822743,
+        1801311949,
+        1090934940,
+        3813032823,
+        223851860,
+        3795540851,
+        1532854391,
+        4163011395,
+        3196155454,
+        685850349
+      ],
+      "paramList": [
+        0.71122,
+        0.70864,
+        0.88322,
+        0.86516,
+        1.12144,
+        0.56244,
+        1.01824,
+        40,
+        5,
+        0.745878,
+        1.49144,
+        1.862889,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "proudSkillGroupId": 2431,
+      "proudSkillId": 243101,
+      "proudSkillType": 3,
+      "unlockDescTextMapHash": 460047322
+    },
+    {
+      "addProps": [
+        {
+          "propType": "FIGHT_PROP_NONE",
+          "value": 0
+        },
+        {
+          "propType": "FIGHT_PROP_NONE",
+          "value": 0
+        }
+      ],
+      "breakLevel": 0,
+      "coinCost": 0,
+      "descTextMapHash": 3691523875,
+      "filterConds": [
+        "TALENT_FILTER_NONE",
+        "TALENT_FILTER_NONE"
+      ],
+      "HFOHLKDEJPO": "PROUD_SKILL_DISPLAY_DEFAULT",
+      "icon": "Skill_A_03",
+      "isHideLifeProudSkill": false,
+      "KPCDDDCMLNB": [
+        {
+          "count": 0,
+          "id": 0
+        },
+        {
+          "count": 0,
+          "id": 0
+        },
+        {
+          "count": 0,
+          "id": 0
+        },
+        {
+          "count": 0,
+          "id": 0
+        }
+      ],
+      "level": 1,
+      "lifeEffectParams": [
+        "",
+        "",
+        "",
+        "",
+        ""
+      ],
+      "lifeEffectType": "PROUD_EFFECT_NONE",
+      "nameTextMapHash": 3855413109,
+      "OJAOOFGBGJI": {
+        "value": 190
+      },
+      "openConfig": "Xiao_SkillUpgrade_1",
+      "paramDescList": [
+        3920161582,
+        2996253830,
+        1974535599,
+        2841445711,
+        2683343094,
+        1627979434,
+        1244738711,
+        42532973,
+        621372404,
+        704698887,
+        3338592844,
+        1667003931,
+        1696627207,
+        238506163,
+        2086722782,
+        3476795181
+      ],
+      "paramList": [
+        0.27544,
+        0.27544,
+        0.56936,
+        0.68552,
+        0.37664,
+        0.37664,
+        0.71544,
+        0.95832,
+        1.21088,
+        25,
+        0.818335,
+        1.636323,
+        2.043855,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "proudSkillGroupId": 2631,
+      "proudSkillId": 263101,
+      "proudSkillType": 3,
+      "unlockDescTextMapHash": 1760108138
+    },
+    {
+      "addProps": [
+        {
+          "propType": "FIGHT_PROP_NONE",
+          "value": 0
+        },
+        {
+          "propType": "FIGHT_PROP_NONE",
+          "value": 0
+        }
+      ],
+      "breakLevel": 0,
+      "coinCost": 0,
+      "descTextMapHash": 1080549699,
+      "filterConds": [
+        "TALENT_FILTER_NONE",
+        "TALENT_FILTER_NONE"
+      ],
+      "HFOHLKDEJPO": "PROUD_SKILL_DISPLAY_DEFAULT",
+      "icon": "Skill_A_01",
+      "isHideLifeProudSkill": false,
+      "KPCDDDCMLNB": [
+        {
+          "count": 0,
+          "id": 0
+        },
+        {
+          "count": 0,
+          "id": 0
+        },
+        {
+          "count": 0,
+          "id": 0
+        },
+        {
+          "count": 0,
+          "id": 0
+        }
+      ],
+      "level": 1,
+      "lifeEffectParams": [
+        "",
+        "",
+        "",
+        "",
+        ""
+      ],
+      "lifeEffectType": "PROUD_EFFECT_NONE",
+      "nameTextMapHash": 4195596333,
+      "OJAOOFGBGJI": {
+        "value": 190
+      },
+      "openConfig": "Tartaglia_SkillUpgrade_1",
+      "paramDescList": [
+        2491650494,
+        1510678894,
+        2091118599,
+        153648663,
+        1142973702,
+        620358898,
+        2212336919,
+        4126243485,
+        1642482988,
+        2316712367,
+        3175146268,
+        2509348883,
+        355544111,
+        2184364163,
+        2174156558,
+        3143753861
+      ],
+      "paramList": [
+        0.4128,
+        0.46268,
+        0.55384,
+        0.57018,
+        0.60888,
+        0.72756,
+        0.4386,
+        1.24,
+        0.124,
+        0.62,
+        0.639324,
+        1.278377,
+        1.596762,
+        10,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "proudSkillGroupId": 3331,
+      "proudSkillId": 333101,
+      "proudSkillType": 3,
+      "unlockDescTextMapHash": 336868402
+    },
+    {
+      "addProps": [
+        {
+          "propType": "FIGHT_PROP_NONE",
+          "value": 0
+        },
+        {
+          "propType": "FIGHT_PROP_NONE",
+          "value": 0
+        }
+      ],
+      "breakLevel": 0,
+      "coinCost": 0,
+      "descTextMapHash": 376658467,
+      "filterConds": [
+        "TALENT_FILTER_NONE",
+        "TALENT_FILTER_NONE"
+      ],
+      "HFOHLKDEJPO": "PROUD_SKILL_DISPLAY_DEFAULT",
+      "icon": "Skill_S_Tartaglia_01",
+      "isHideLifeProudSkill": false,
+      "KPCDDDCMLNB": [
+        {
+          "count": 0,
+          "id": 0
+        },
+        {
+          "count": 0,
+          "id": 0
+        },
+        {
+          "count": 0,
+          "id": 0
+        },
+        {
+          "count": 0,
+          "id": 0
+        }
+      ],
+      "level": 1,
+      "lifeEffectParams": [
+        "",
+        "",
+        "",
+        "",
+        ""
+      ],
+      "lifeEffectType": "PROUD_EFFECT_NONE",
+      "nameTextMapHash": 1451749805,
+      "OJAOOFGBGJI": {
+        "value": 190
+      },
+      "openConfig": "Tartaglia_SkillUpgrade_2",
+      "paramDescList": [
+        64942902,
+        1175523510,
+        1183943335,
+        463217327,
+        273290358,
+        1871312034,
+        2573837935,
+        1442994053,
+        2044577332,
+        1559146279,
+        2441884532,
+        3613907915,
+        719967703,
+        148600619,
+        3058016310,
+        3906466181
+      ],
+      "paramList": [
+        0.72,
+        0.38872,
+        0.41624,
+        0.5633,
+        0.59942,
+        0.55298,
+        0.35432,
+        0.37668,
+        0.602,
+        0.71982,
+        0.602,
+        20,
+        30,
+        6,
+        36,
+        45,
+        0,
+        0,
+        0,
+        0
+      ],
+      "proudSkillGroupId": 3332,
+      "proudSkillId": 333201,
+      "proudSkillType": 3,
+      "unlockDescTextMapHash": 2032630682
+    },
+    {
+      "addProps": [
+        {
+          "propType": "FIGHT_PROP_NONE",
+          "value": 0
+        },
+        {
+          "propType": "FIGHT_PROP_NONE",
+          "value": 0
+        }
+      ],
+      "breakLevel": 0,
+      "coinCost": 0,
+      "descTextMapHash": 4054066251,
+      "filterConds": [
+        "TALENT_FILTER_NONE",
+        "TALENT_FILTER_NONE"
+      ],
+      "HFOHLKDEJPO": "PROUD_SKILL_DISPLAY_DEFAULT",
+      "icon": "Skill_A_02",
+      "isHideLifeProudSkill": false,
+      "KPCDDDCMLNB": [
+        {
+          "count": 0,
+          "id": 0
+        },
+        {
+          "count": 0,
+          "id": 0
+        },
+        {
+          "count": 0,
+          "id": 0
+        },
+        {
+          "count": 0,
+          "id": 0
+        }
+      ],
+      "level": 1,
+      "lifeEffectParams": [
+        "",
+        "",
+        "",
+        "",
+        ""
+      ],
+      "lifeEffectType": "PROUD_EFFECT_NONE",
+      "nameTextMapHash": 2921988597,
+      "OJAOOFGBGJI": {
+        "value": 190
+      },
+      "openConfig": "Diona_SkillUpgrade_1",
+      "paramDescList": [
+        2856778054,
+        3125228726,
+        2547346143,
+        1368456479,
+        3911423310,
+        3347160826,
+        3729467679,
+        1860508053,
+        1782410260,
+        3834623959,
+        3239450516,
+        1015550891,
+        762107911,
+        3312976259,
+        3823053558,
+        1827846069
+      ],
+      "paramList": [
+        0.3612,
+        0.3354,
+        0.4558,
+        0.43,
+        0.5375,
+        0,
+        0.4386,
+        1.24,
+        0.568288,
+        1.136335,
+        1.419344,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "proudSkillGroupId": 3931,
+      "proudSkillId": 393101,
+      "proudSkillType": 3,
+      "unlockDescTextMapHash": 2485263778
+    },
+    {
+      "addProps": [
+        {
+          "propType": "FIGHT_PROP_NONE",
+          "value": 0
+        },
+        {
+          "propType": "FIGHT_PROP_NONE",
+          "value": 0
+        }
+      ],
+      "breakLevel": 0,
+      "coinCost": 0,
+      "descTextMapHash": 1004305931,
+      "filterConds": [
+        "TALENT_FILTER_NONE",
+        "TALENT_FILTER_NONE"
+      ],
+      "HFOHLKDEJPO": "PROUD_SKILL_DISPLAY_DEFAULT",
+      "icon": "Skill_A_Catalyst_MD",
+      "isHideLifeProudSkill": false,
+      "KPCDDDCMLNB": [
+        {
+          "count": 0,
+          "id": 0
+        },
+        {
+          "count": 0,
+          "id": 0
+        },
+        {
+          "count": 0,
+          "id": 0
+        },
+        {
+          "count": 0,
+          "id": 0
+        }
+      ],
+      "level": 1,
+      "lifeEffectParams": [
+        "",
+        "",
+        "",
+        "",
+        ""
+      ],
+      "lifeEffectType": "PROUD_EFFECT_NONE",
+      "nameTextMapHash": 1338075117,
+      "OJAOOFGBGJI": {
+        "value": 190
+      },
+      "openConfig": "Feiyan_SkillUpgrade_1",
+      "paramDescList": [
+        1994690094,
+        3054667006,
+        1051027999,
+        3686376895,
+        773459830,
+        1067124914,
+        2615764295,
+        3612376749,
+        1923655724,
+        3172436087,
+        2318278556,
+        704114171,
+        1034652855,
+        3584283851,
+        209433454,
+        2433906405
+      ],
+      "paramList": [
+        0.583416,
+        0.521256,
+        0.760128,
+        0.982294,
+        1.15564,
+        1.328986,
+        1.502332,
+        1.675678,
+        2.5,
+        3,
+        3.5,
+        4,
+        4,
+        50,
+        0.15,
+        0.568288,
+        1.136335,
+        1.419344,
+        10,
+        10
+      ],
+      "proudSkillGroupId": 4831,
+      "proudSkillId": 483101,
+      "proudSkillType": 3,
+      "unlockDescTextMapHash": 4216787554
+    },
+    {
+      "addProps": [
+        {
+          "propType": "FIGHT_PROP_CRITICAL",
+          "value": -1
+        },
+        {
+          "propType": "FIGHT_PROP_HEAL_ADD",
+          "value": 0.25
+        }
+      ],
+      "breakLevel": 0,
+      "coinCost": 0,
+      "descTextMapHash": 1376470603,
+      "filterConds": [
+        "TALENT_FILTER_NONE",
+        "TALENT_FILTER_NONE"
+      ],
+      "HFOHLKDEJPO": "PROUD_SKILL_DISPLAY_DEFAULT",
+      "icon": "UI_Talent_S_Kokomi_07",
+      "isHideLifeProudSkill": false,
+      "KPCDDDCMLNB": [
+        {
+          "count": 0,
+          "id": 0
+        },
+        {
+          "count": 0,
+          "id": 0
+        },
+        {
+          "count": 0,
+          "id": 0
+        },
+        {
+          "count": 0,
+          "id": 0
+        }
+      ],
+      "level": 1,
+      "lifeEffectParams": [
+        "",
+        "",
+        "",
+        "",
+        ""
+      ],
+      "lifeEffectType": "PROUD_EFFECT_NONE",
+      "nameTextMapHash": 1396546717,
+      "OJAOOFGBGJI": {
+        "value": 190
+      },
+      "openConfig": "Kokomi_PermanentSkill_3",
+      "paramDescList": [
+        4056777574,
+        3996443326,
+        3781296855,
+        2753487119,
+        508569510,
+        404456250,
+        277443031,
+        1902484925,
+        3174513788,
+        901439583,
+        501623108,
+        4231074435,
+        1325893599,
+        3481328619,
+        3947048318,
+        3515112733
+      ],
+      "paramList": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "proudSkillGroupId": 5425,
+      "proudSkillId": 542501,
+      "proudSkillType": 2,
+      "unlockDescTextMapHash": 4018855626
+    },
+    {
+      "addProps": [
+        {
+          "propType": "FIGHT_PROP_NONE",
+          "value": 0
+        },
+        {
+          "propType": "FIGHT_PROP_NONE",
+          "value": 0
+        }
+      ],
+      "breakLevel": 0,
+      "coinCost": 0,
+      "descTextMapHash": 1988554475,
+      "filterConds": [
+        "TALENT_FILTER_NONE",
+        "TALENT_FILTER_NONE"
+      ],
+      "HFOHLKDEJPO": "PROUD_SKILL_DISPLAY_DEFAULT",
+      "icon": "Skill_S_Wriothesley_01",
+      "isHideLifeProudSkill": false,
+      "KPCDDDCMLNB": [
+        {
+          "count": 0,
+          "id": 0
+        },
+        {
+          "count": 0,
+          "id": 0
+        },
+        {
+          "count": 0,
+          "id": 0
+        },
+        {
+          "count": 0,
+          "id": 0
+        }
+      ],
+      "level": 1,
+      "lifeEffectParams": [
+        "",
+        "",
+        "",
+        "",
+        ""
+      ],
+      "lifeEffectType": "PROUD_EFFECT_NONE",
+      "nameTextMapHash": 1322236197,
+      "OJAOOFGBGJI": {
+        "value": 190
+      },
+      "openConfig": "Wriothesley_SkillUpgrade_2",
+      "paramDescList": [
+        3539321094,
+        3540618526,
+        1413379279,
+        874761639,
+        157415998,
+        2762992338,
+        1497188335,
+        814803261,
+        817103836,
+        2838569327,
+        4160405124,
+        2696509427,
+        2836644079,
+        2019821083,
+        1493792854,
+        2994660805
+      ],
+      "paramList": [
+        1.431695,
+        0.045,
+        10,
+        16,
+        0,
+        0,
+        0,
+        0.431695,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "proudSkillGroupId": 8632,
+      "proudSkillId": 863201,
+      "proudSkillType": 3,
+      "unlockDescTextMapHash": 949208922
+    }
+  ]
+}
