@@ -1,4 +1,5 @@
 import { JsonObject } from '@/types/json'
+import { LogLevel } from '@/utils/Logger'
 
 /**
  * Type of value of object
@@ -125,10 +126,10 @@ export interface ClientOption {
    */
   defaultLanguage: keyof typeof TextMapLanguage
   /**
-   * show fetch cache log
-   * @default true
+   * log level for the application
+   * @default LogLevel.NONE
    */
-  showFetchCacheLog: boolean
+  logLevel?: LogLevel
   /**
    * auto fetch latest assets by cron
    * @warn If this option is `undefined`, asset updates and initial setup are not executed

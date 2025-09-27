@@ -6,6 +6,7 @@ import { AssetCacheManager } from '@/client/AssetCacheManager'
 import { AudioAssets } from '@/models/assets/AudioAssets'
 import { ImageAssets } from '@/models/assets/ImageAssets'
 import { ClientOption, TextMapLanguage } from '@/types'
+import { LogLevel } from '@/utils/Logger'
 
 /**
  * Client events
@@ -109,7 +110,7 @@ export class Client extends AssetCacheManager<ClientEventMap, ClientEvents> {
     },
     audioBaseURLByRegex: {},
     defaultLanguage: 'EN',
-    showFetchCacheLog: true,
+    logLevel: LogLevel.NONE,
     autoFetchLatestAssetsByCron: '0 0 0 * * 3', //Every Wednesday 00:00:00
     autoCacheImage: true,
     autoCacheAudio: true,

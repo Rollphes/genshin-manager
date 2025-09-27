@@ -3,6 +3,7 @@ import path from 'path'
 
 import type { EncryptedKeyMasterFile } from '@/types'
 import type { JsonObject, JsonValue } from '@/types/json'
+import { logger, LogLevel } from '@/utils/Logger'
 import { masterFileFolderPath } from '@/utils/utilPath'
 
 /**
@@ -41,6 +42,8 @@ export function generateMasterFromJson(
   uniqueObjects: number
   skipped?: boolean
 } {
+  logger.configure({ level: LogLevel.DEBUG })
+
   const fileName = path.basename(inputPath, '.json')
   const outputPath = path.join(masterFileFolderPath, `${fileName}.master.json`)
 
@@ -51,10 +54,10 @@ export function generateMasterFromJson(
   if (!fs.existsSync(outputDir)) fs.mkdirSync(outputDir, { recursive: true })
 
   if (fs.existsSync(outputPath) && !force) {
-    console.log(`⚠️  Existing master file found: ${outputPath}`)
-    console.log('Generation skipped to protect manually adjusted files.')
-    console.log('To overwrite, specify the --force (-f) option.')
-    console.log(
+    logger.warn(`⚠️  Existing master file found: ${outputPath}`)
+    logger.warn('Generation skipped to protect manually adjusted files.')
+    logger.warn('To overwrite, specify the --force (-f) option.')
+    logger.warn(
       `\nExample: npx tsx scripts/generate-structural-master.ts -t ${fileName} -f`,
     )
     return {
@@ -68,7 +71,7 @@ export function generateMasterFromJson(
   }
 
   if (force && fs.existsSync(outputPath)) {
-    console.log(
+    logger.info(
       `🔄 --force option specified. Overwriting existing file: ${outputPath}`,
     )
   }
@@ -80,14 +83,14 @@ export function generateMasterFromJson(
     if (!Array.isArray(jsonData))
       throw new Error(`${fileName}.json must be an array of objects`)
 
-    console.log(`=== ${fileName} Simple Master Generation ===`)
+    logger.info(`=== ${fileName} Simple Master Generation ===`)
 
     const masterFile = createMasterStructure(inputPath, jsonData)
 
     fs.writeFileSync(outputPath, JSON.stringify(masterFile, null, 2))
 
-    console.log(`✅ Master file generated: ${outputPath}`)
-    console.log(`   Total objects: ${String(jsonData.length)}`)
+    logger.info(`✅ Master file generated: ${outputPath}`)
+    logger.info(`   Total objects: ${String(jsonData.length)}`)
 
     return {
       success: true,
@@ -97,7 +100,7 @@ export function generateMasterFromJson(
       uniqueObjects: jsonData.length,
     }
   } catch (error) {
-    console.error(`Error: Error occurred while processing ${fileName}:`, error)
+    logger.error(`Error: Error occurred while processing ${fileName}:`, error)
     throw error
   }
 }
@@ -140,7 +143,7 @@ function createMasterStructure(
  * @returns Array of master objects ordered by quality
  */
 function findOptimalMasterPatterns(jsonData: JsonObject[]): JsonObject[] {
-  console.log(`Number of objects to analyze: ${String(jsonData.length)}`)
+  logger.info(`Number of objects to analyze: ${String(jsonData.length)}`)
 
   const candidates = jsonData
   const masterCandidates: MasterCandidate[] = []
@@ -153,7 +156,7 @@ function findOptimalMasterPatterns(jsonData: JsonObject[]): JsonObject[] {
       dataDensity: densityAnalysis.density,
     })
 
-    console.log(
+    logger.debug(
       `Candidate ${String(masterCandidates.length)}: density ${densityAnalysis.density.toFixed(3)}`,
     )
   }
@@ -183,7 +186,7 @@ function findOptimalMasterPatterns(jsonData: JsonObject[]): JsonObject[] {
         const pathKey = firstNonEmptyPath.join(' -> ')
 
         if (!discoveredPaths.has(pathKey)) {
-          console.log(`  Diverse pattern found at path: ${pathKey}`)
+          logger.debug(`Diverse pattern found at path: ${pathKey}`)
           discoveredPaths.add(pathKey)
           hasNewDiversePattern = true
         }
@@ -193,7 +196,7 @@ function findOptimalMasterPatterns(jsonData: JsonObject[]): JsonObject[] {
     if (hasNewDiversePattern) selectedPatterns.push(candidate.object)
   }
 
-  console.log(`Total selected patterns: ${String(selectedPatterns.length)}`)
+  logger.info(`Total selected patterns: ${String(selectedPatterns.length)}`)
 
   return selectedPatterns
 }

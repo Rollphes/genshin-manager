@@ -9,6 +9,7 @@ import { Client, ClientEvents } from '@/client/Client'
 import { AudioAssets } from '@/models/assets/AudioAssets'
 import { ImageAssets } from '@/models/assets/ImageAssets'
 import { TextMapLanguage } from '@/types'
+import { LogLevel } from '@/utils/Logger'
 
 // Increase max listeners to prevent memory leak warnings during tests
 EventEmitter.defaultMaxListeners = 50
@@ -42,11 +43,11 @@ describe('Client Basic Functionality', () => {
       const customClient = new Client({
         defaultLanguage: 'JP',
         downloadLanguages: ['JP', 'EN'],
-        showFetchCacheLog: false,
+        logLevel: LogLevel.ERROR,
       })
       expect(customClient.option.defaultLanguage).toBe('JP')
       expect(customClient.option.downloadLanguages).toEqual(['JP', 'EN'])
-      expect(customClient.option.showFetchCacheLog).toBe(false)
+      expect(customClient.option.logLevel).toBe(LogLevel.ERROR)
     })
 
     it('should merge download languages with default language', () => {
@@ -476,7 +477,7 @@ describe('Client Basic Functionality', () => {
       const defaultClient = new Client()
 
       expect(defaultClient.option.defaultLanguage).toBe('EN')
-      expect(defaultClient.option.showFetchCacheLog).toBe(true)
+      expect(defaultClient.option.logLevel).toBe(LogLevel.NONE)
       expect(defaultClient.option.autoCacheImage).toBe(true)
       expect(defaultClient.option.autoCacheAudio).toBe(true)
       expect(defaultClient.option.autoFixTextMap).toBe(true)

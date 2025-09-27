@@ -13,6 +13,7 @@ import { buildCacheStructure } from '@/utils/buildCacheStructure'
 import { EncryptedKeyDecoder } from '@/utils/EncryptedKeyDecoder'
 import { withFileLock } from '@/utils/fileLockManager'
 import { JsonParser } from '@/utils/JsonParser'
+import { logger, LogLevel } from '@/utils/Logger'
 import { EventMap, PromiseEventEmitter } from '@/utils/PromiseEventEmitter'
 import { ReadableStreamWrapper } from '@/utils/ReadableStreamWrapper'
 import { TextMapEmptyWritable } from '@/utils/TextMapEmptyWritable'
@@ -91,6 +92,12 @@ export abstract class AssetCacheManager<
   constructor(option: ClientOption) {
     super()
     AssetCacheManager.option = option
+
+    // Configure logger with unified log level
+    const logLevel = option.logLevel ?? LogLevel.NONE
+
+    logger.configure({ level: logLevel })
+
     AssetCacheManager.commitFilePath = path.resolve(
       AssetCacheManager.option.assetCacheFolderPath,
       'commits.json',
@@ -134,7 +141,7 @@ export abstract class AssetCacheManager<
       if (!versionTexts || versionTexts.length < 2) return '?.?.?'
       return versionTexts[1]
     } catch (error) {
-      console.error('GenshinManager: Error reading commits.json:', error)
+      logger.error('GenshinManager: Error reading commits.json:', error)
       return undefined
     }
   }
@@ -296,11 +303,9 @@ export abstract class AssetCacheManager<
         const selectedTextMapPath = path.join(this.textMapFolderPath, fileName)
         if (!fs.existsSync(selectedTextMapPath)) {
           if (this.option.autoFixTextMap) {
-            if (this.option.showFetchCacheLog) {
-              console.log(
-                `GenshinManager: ${fileName} not found. Re downloading...`,
-              )
-            }
+            logger.info(
+              `GenshinManager: ${fileName} not found. Re downloading...`,
+            )
             await this.reDownloadTextMap(language)
             return true
           } else {
@@ -323,11 +328,9 @@ export abstract class AssetCacheManager<
         ).catch(async (error: unknown) => {
           if (error instanceof TextMapFormatError) {
             if (this.option.autoFixTextMap) {
-              if (this.option.showFetchCacheLog) {
-                console.log(
-                  `GenshinManager: TextMap${language}.json format error. Re downloading...`,
-                )
-              }
+              logger.info(
+                `GenshinManager: TextMap${language}.json format error. Re downloading...`,
+              )
               await this.reDownloadTextMap(language)
               return true
             } else {
@@ -350,17 +353,14 @@ export abstract class AssetCacheManager<
    * ```
    */
   protected static async updateCache(): Promise<void> {
-    if (this.option.showFetchCacheLog)
-      console.log('GenshinManager: Start update cache.')
+    logger.info('GenshinManager: Start update cache.')
     const newVersionText = await this.checkGitUpdate()
     if (!this.gameVersion) return
     if (newVersionText && this.option.autoFetchLatestAssetsByCron) {
       this._assetEventEmitter.emit('BEGIN_UPDATE_ASSETS', newVersionText)
-      if (this.option.showFetchCacheLog) {
-        console.log(
-          `GenshinManager: New Asset found. Update Assets. GameVersion: ${newVersionText}`,
-        )
-      }
+      logger.info(
+        `GenshinManager: New Asset found. Update Assets. GameVersion: ${newVersionText}`,
+      )
       await this.fetchAssetFolder(
         this.excelBinOutputFolderPath,
         Object.values(ExcelBinOutputs),
@@ -373,14 +373,11 @@ export abstract class AssetCacheManager<
         .flat()
       await this.fetchAssetFolder(this.textMapFolderPath, textMapFileNames)
       this._assetEventEmitter.emit('END_UPDATE_ASSETS', newVersionText)
-      if (this.option.showFetchCacheLog)
-        console.log('GenshinManager: Set cache.')
+      logger.info('GenshinManager: Set cache.')
     } else {
-      if (this.option.showFetchCacheLog) {
-        console.log(
-          `GenshinManager: No new Asset found. Set cache. GameVersion: ${this.gameVersion}`,
-        )
-      }
+      logger.info(
+        `GenshinManager: No new Asset found. Set cache. GameVersion: ${this.gameVersion}`,
+      )
     }
     this._assetEventEmitter.emit('BEGIN_UPDATE_CACHE', this.gameVersion)
     // eslint-disable-next-line no-empty
@@ -390,8 +387,7 @@ export abstract class AssetCacheManager<
     while (await this.setTextMapToCache(this.option.defaultLanguage)) {}
     this._assetEventEmitter.emit('END_UPDATE_CACHE', this.gameVersion)
 
-    if (this.option.showFetchCacheLog)
-      console.log('GenshinManager: Finish update cache and set cache.')
+    logger.info('GenshinManager: Finish update cache and set cache.')
   }
 
   /**
@@ -412,11 +408,9 @@ export abstract class AssetCacheManager<
       let text = ''
       if (!fs.existsSync(selectedExcelBinOutputPath)) {
         if (this.option.autoFixExcelBin) {
-          if (this.option.showFetchCacheLog) {
-            console.log(
-              `GenshinManager: ${filename} not found. Re downloading...`,
-            )
-          }
+          logger.info(
+            `GenshinManager: ${filename} not found. Re downloading...`,
+          )
           await this.reDownloadAllExcelBinOutput()
           return true
         } else {
@@ -440,11 +434,9 @@ export abstract class AssetCacheManager<
       ).catch(async (error: unknown) => {
         if (error instanceof SyntaxError) {
           if (this.option.autoFixExcelBin) {
-            if (this.option.showFetchCacheLog) {
-              console.log(
-                `GenshinManager: ${filename} format error. Re downloading...`,
-              )
-            }
+            logger.info(
+              `GenshinManager: ${filename} format error. Re downloading...`,
+            )
             await this.reDownloadAllExcelBinOutput()
             return true
           } else {
@@ -473,13 +465,9 @@ export abstract class AssetCacheManager<
           new JsonParser(JSON.stringify(finalProcessedData)),
         )
 
-        if (this.option.showFetchCacheLog) {
-          const originalSize = Object.keys(rawJsonData).length
-          const finalSize = Object.keys(finalProcessedData).length
-          console.log(
-            `GenshinManager: ${fileName} processing complete (${String(originalSize)} → ${String(finalSize)} keys)`,
-          )
-        }
+        logger.debug(
+          `GenshinManager: ${fileName} processing complete (${String(Object.keys(rawJsonData).length)} → ${String(Object.keys(finalProcessedData).length)} keys)`,
+        )
       },
     )
 
@@ -541,7 +529,7 @@ export abstract class AssetCacheManager<
         if (oldFileContent.trim() === '') oldCommits = null
         else oldCommits = JSON.parse(oldFileContent) as GitLabAPIResponse[]
       } catch (error) {
-        console.error(
+        logger.error(
           'GenshinManager: Error reading existing commits.json:',
           error,
         )
@@ -557,14 +545,14 @@ export abstract class AssetCacheManager<
       })
 
       if (fileContent.trim() === '') {
-        console.error('GenshinManager: Downloaded commits.json is empty!')
+        logger.error('GenshinManager: Downloaded commits.json is empty!')
         throw new Error('Downloaded commits file is empty')
       }
 
       const newCommits = JSON.parse(fileContent) as GitLabAPIResponse[]
 
       if (!Array.isArray(newCommits) || newCommits.length === 0) {
-        console.error(
+        logger.error(
           'GenshinManager: Downloaded commits.json contains invalid data structure!',
         )
         throw new Error('Downloaded commits file contains invalid data')
@@ -581,19 +569,19 @@ export abstract class AssetCacheManager<
         return versionTexts[1]
       }
     } catch (error) {
-      console.error('GenshinManager: Error reading new commits.json:', error)
-      console.error('GenshinManager: File path:', this.commitFilePath)
+      logger.error('GenshinManager: Error reading new commits.json:', error)
+      logger.error('GenshinManager: File path:', this.commitFilePath)
 
       try {
         const fileContent = fs.readFileSync(this.commitFilePath, {
           encoding: 'utf8',
         })
-        console.error(
+        logger.error(
           'GenshinManager: File content preview:',
           fileContent.substring(0, 200),
         )
       } catch (readError) {
-        console.error('GenshinManager: Cannot read file for debug:', readError)
+        logger.error('GenshinManager: Cannot read file for debug:', readError)
       }
 
       throw error
@@ -687,7 +675,7 @@ export abstract class AssetCacheManager<
       folderPath,
     )
     const consoleFolderName = gitFolderName.slice(0, 8)
-    const progressBar = this.option.showFetchCacheLog
+    const progressBar = logger.shouldLog(LogLevel.INFO)
       ? new cliProgress.SingleBar({
           hideCursor: true,
           format: `GenshinManager: Downloading ${consoleFolderName}...\t [{bar}] {percentage}% |ETA: {eta}s| {value}/{total} files`,

@@ -19,6 +19,7 @@ import {
 import { ImageNotFoundError } from '@/errors/ImageNotFoundError'
 import { ImageAssets } from '@/models/assets/ImageAssets'
 import { ClientOption } from '@/types'
+import { LogLevel } from '@/utils/Logger'
 
 /**
  * ImageAssets test suite
@@ -38,7 +39,7 @@ describe('ImageAssets', () => {
     audioBaseURLByRegex: {},
     defaultAudioBaseURL: 'https://audio-cdn.example.com',
     autoCacheAudio: false,
-    showFetchCacheLog: false,
+    logLevel: LogLevel.NONE,
     autoFetchLatestAssetsByCron: undefined,
     autoFixTextMap: false,
     autoFixExcelBin: false,

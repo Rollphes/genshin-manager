@@ -19,6 +19,7 @@ import {
 import { AudioNotFoundError } from '@/errors/AudioNotFoundError'
 import { AudioAssets } from '@/models/assets/AudioAssets'
 import { ClientOption, CVType } from '@/types'
+import { LogLevel } from '@/utils/Logger'
 
 /**
  * AudioAssets test suite
@@ -38,7 +39,7 @@ describe('AudioAssets', () => {
     },
     defaultAudioBaseURL: 'https://default-audio-cdn.example.com',
     autoCacheAudio: true,
-    showFetchCacheLog: false,
+    logLevel: LogLevel.NONE,
     autoFetchLatestAssetsByCron: undefined,
     autoFixTextMap: false,
     autoFixExcelBin: false,

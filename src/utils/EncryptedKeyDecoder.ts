@@ -610,18 +610,4 @@ export class EncryptedKeyDecoder {
 
     return `${dataSignature}::${optionsSignature}`
   }
-
-  /**
-   * Log debugging information for pattern matching
-   * @param message - Debug message
-   * @param data - Additional data to log
-   */
-  private debugLog(message: string, data?: unknown): void {
-    if (process.env.DEBUG_ENCRYPTED_KEY_DECODER) {
-      console.log(
-        `[EncryptedKeyDecoder] ${message}`,
-        data ? JSON.stringify(data, null, 2) : '',
-      )
-    }
-  }
 }
