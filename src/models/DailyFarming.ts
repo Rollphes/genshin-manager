@@ -34,7 +34,7 @@ export interface DomainData {
 }
 
 /**
- * Class of materials available on specified days of the week
+ * Manages daily domain farming schedules and material availability by day
  */
 export class DailyFarming {
   /**

@@ -8,7 +8,7 @@ export class ImageNotFoundError extends Error {
 
   /**
    * Create a ImageNotFoundError
-   * @param imageName Name of the image
+   * @param imageName name of the image
    * @param url URL of the image
    */
   constructor(imageName: string, url: string) {

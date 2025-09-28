@@ -17,7 +17,14 @@ export class EnkaNetworkError extends Error {
 
   /**
    * Create a EnkaNetworkError
-   * @param res Response of EnkaNetwork request
+   * @param res response of EnkaNetwork request
+   * @example
+   * ```ts
+   * const response = await fetch('https://enka.network/api/uid/123')
+   * if (!response.ok) {
+   *   throw new EnkaNetworkError(response)
+   * }
+   * ```
    */
   constructor(res: Response) {
     const message = enkaNetworkStatusMessages[res.status] ?? res.statusText

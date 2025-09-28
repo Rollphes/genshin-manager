@@ -5,7 +5,7 @@ import { CharacterInfo } from '@/models/character/CharacterInfo'
 import { JsonObject } from '@/types/json'
 
 /**
- * Class of character's skill
+ * Contains character skill information including attacks, burst, and elemental abilities
  */
 export class CharacterSkill {
   /**
@@ -44,9 +44,9 @@ export class CharacterSkill {
 
   /**
    * Create a Skill
-   * @param skillId Skill ID
-   * @param level Skill level (1-15). Default: 1
-   * @param extraLevel Levels increased by constellation (0 or 3). Default: 0
+   * @param skillId skill ID
+   * @param level skill level (1-15). Default: 1
+   * @param extraLevel levels increased by constellation (0 or 3). Default: 0
    */
   constructor(skillId: number, level = 1, extraLevel = 0) {
     this.id = skillId
@@ -100,7 +100,7 @@ export class CharacterSkill {
 
   /**
    * Get all skill IDs
-   * @returns All skill IDs
+   * @returns all skill IDs
    */
   public static get allSkillIds(): number[] {
     const characterIds = CharacterInfo.allCharacterIds
@@ -118,9 +118,9 @@ export class CharacterSkill {
 
   /**
    * Get skill order by character ID
-   * @param characterId Character ID
-   * @param skillDepotId Skill depot ID
-   * @returns Skill order
+   * @param characterId character ID
+   * @param skillDepotId skill depot ID
+   * @returns skill order
    */
   public static getSkillOrderByCharacterId(
     characterId: number,

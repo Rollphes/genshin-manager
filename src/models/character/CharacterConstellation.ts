@@ -1,7 +1,7 @@
 import { Client } from '@/client/Client'
 import { ImageAssets } from '@/models/assets/ImageAssets'
 /**
- * Class of character's constellation
+ * Manages character constellation upgrades and unlockable passive abilities
  */
 export class CharacterConstellation {
   /**
@@ -31,8 +31,8 @@ export class CharacterConstellation {
 
   /**
    * Create a Constellation
-   * @param constellationId Constellation ID
-   * @param locked Whether the constellation is locked
+   * @param constellationId constellation ID
+   * @param locked whether the constellation is locked
    */
   constructor(constellationId: number, locked = false) {
     this.id = constellationId
@@ -50,7 +50,7 @@ export class CharacterConstellation {
 
   /**
    * Get all constellation IDs
-   * @returns All constellation IDs
+   * @returns all constellation IDs
    */
   public static get allConstellationIds(): number[] {
     const talentDatas = Object.values(
@@ -61,9 +61,9 @@ export class CharacterConstellation {
 
   /**
    * Get constellation IDs by character ID
-   * @param characterId Character ID
-   * @param skillDepotId Skill depot ID
-   * @returns Constellation IDs
+   * @param characterId character ID
+   * @param skillDepotId skill depot ID
+   * @returns constellation IDs
    */
   public static getConstellationIdsByCharacterId(
     characterId: number,

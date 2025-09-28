@@ -6,7 +6,7 @@ import { Readable } from 'stream'
 export class ReadableStreamWrapper extends Readable {
   /**
    * Create a ReadableStreamWrapper
-   * @param reader ReadableStreamDefaultReader
+   * @param reader readableStreamDefaultReader
    */
   constructor(private reader: ReadableStreamDefaultReader<Uint8Array>) {
     super()

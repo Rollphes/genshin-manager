@@ -15,7 +15,7 @@ import {
 } from '@/types/enkaNetwork'
 
 /**
- * Class of the character obtained from EnkaNetwork
+ * Represents detailed character data retrieved from the EnkaNetwork API
  */
 export class CharacterDetail {
   /**
@@ -72,7 +72,8 @@ export class CharacterDetail {
   public readonly promoteLevel: number
   /**
    * Character constellations
-   * @warn This value is not affected by isShowCharacterPreviewConstellation
+   * @warning This value shows the actual constellation level regardless of the player's privacy settings.
+   * It is not affected by the `isShowCharacterPreviewConstellation` setting.
    * @see {@link PlayerDetail.isShowCharacterPreviewConstellation}
    */
   public readonly constellations: CharacterConstellation[]
@@ -107,7 +108,7 @@ export class CharacterDetail {
 
   /**
    * Create a CharacterDetail
-   * @param data Data from EnkaNetwork
+   * @param data data from EnkaNetwork
    */
   constructor(data: APIAvatarInfo) {
     const characterInfo = new CharacterInfo(data.avatarId, data.skillDepotId)

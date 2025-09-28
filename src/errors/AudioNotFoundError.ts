@@ -8,7 +8,7 @@ export class AudioNotFoundError extends Error {
 
   /**
    * Create a AudioNotFoundError
-   * @param audioName Name of the audio
+   * @param audioName name of the audio
    * @param url URL of the audio
    */
   constructor(audioName: string, url: string) {

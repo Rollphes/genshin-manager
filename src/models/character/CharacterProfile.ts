@@ -2,7 +2,7 @@ import { Client } from '@/client/Client'
 import { AssocType, CVType } from '@/types'
 
 /**
- * Class of character's profile
+ * Represents character profile information including basic details and associations
  */
 export class CharacterProfile {
   /**
@@ -52,7 +52,7 @@ export class CharacterProfile {
 
   /**
    * Create a Profile
-   * @param characterId Character ID
+   * @param characterId character ID
    */
   constructor(characterId: number) {
     this.characterId = characterId
@@ -108,7 +108,7 @@ export class CharacterProfile {
 
   /**
    * Get all character IDs
-   * @returns All character IDs
+   * @returns all character IDs
    */
   public static get allCharacterIds(): number[] {
     const profileDatas = Object.values(

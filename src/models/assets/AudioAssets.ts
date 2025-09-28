@@ -65,9 +65,9 @@ export class AudioAssets {
 
   /**
    * Classes for handling audios
-   * @param name Audio name
-   * @param cv Audio cv
-   * @param characterId Character ID
+   * @param name audio name
+   * @param cv audio cv
+   * @param characterId character ID
    */
   constructor(name: string, cv?: CVType, characterId?: number) {
     this.name = name
@@ -95,7 +95,7 @@ export class AudioAssets {
 
   /**
    * Classes for handling audios
-   * @param option Client option
+   * @param option client option
    */
   public static deploy(option: ClientOption): void {
     this.fetchOption = option.fetchOption
@@ -108,7 +108,7 @@ export class AudioAssets {
 
   /**
    * Fetch audio buffer
-   * @returns Audio buffer
+   * @returns audio buffer
    */
   public async fetchBuffer(): Promise<Buffer> {
     if (!this.url) throw new AudioNotFoundError(this.name, this.url)
@@ -141,8 +141,8 @@ export class AudioAssets {
 
   /**
    * Fetch audio stream
-   * @param highWaterMark HighWaterMark
-   * @returns Audio stream
+   * @param highWaterMark highWaterMark
+   * @returns audio stream
    */
   public async fetchStream(highWaterMark?: number): Promise<fs.ReadStream> {
     if (!this.url) throw new AudioNotFoundError(this.name, this.url)
@@ -182,8 +182,8 @@ export class AudioAssets {
 
   /**
    * Check if the OGG file is corrupted
-   * @warning This function is not perfect, it may not be able to detect all corrupted OGG files. because it only checks the last OggS header.
-   * @param filePath File path
+   * @warning Limited corruption detection - only validates the final OggS header. May not catch all types of file corruption.
+   * @param filePath file path
    * @returns is OGG file corrupted
    */
   private isOGGCorrupted(filePath: string): boolean {

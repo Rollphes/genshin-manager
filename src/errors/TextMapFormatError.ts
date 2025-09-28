@@ -8,7 +8,7 @@ export class TextMapFormatError extends Error {
 
   /**
    * Create a TextMapFormatError
-   * @param language Language of the text map
+   * @param language language of the text map
    */
   constructor(language: keyof typeof TextMapLanguage) {
     super(

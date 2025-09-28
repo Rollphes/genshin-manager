@@ -53,8 +53,8 @@ export class Notice {
    */
   public readonly banner: ImageAssets
   /**
-   * Notice content DOM(jQuery)
-   * @warning This property does not exclude table tags
+   * Notice content DOM manipulation interface (Cheerio/jQuery-like)
+   * @warning Raw HTML content may include table tags that should be filtered for text extraction
    */
   public readonly $: CheerioAPI
   /**
@@ -103,10 +103,16 @@ export class Notice {
 
   /**
    * Create a Notice
-   * @param annList AnnList
-   * @param annContent AnnContent
-   * @param enAnnContent AnnContent(lang=en)
-   * @param region Region
+   * @param annList annList
+   * @param annContent annContent
+   * @param enAnnContent annContent(lang=en)
+   * @param region region
+   * @example
+   * ```ts
+   * const notice = new Notice(annListData, annContentData, enAnnContentData, 'os_asia')
+   * console.log(notice.title)
+   * console.log(notice.subtitle)
+   * ```
    */
   constructor(
     annList: DataList,
@@ -171,7 +177,7 @@ export class Notice {
   /**
    * Get the text of the notice
    * @warning This method does not exclude table tags
-   * @returns Notice all text
+   * @returns notice all text
    */
   public get text(): string {
     return this.convertLocalDate(
@@ -184,7 +190,7 @@ export class Notice {
 
   /**
    * Get the duration of the event
-   * @returns Event duration
+   * @returns event duration
    */
   public get eventDuration(): string | undefined {
     if (this.eventStart && this.eventEnd)
@@ -255,8 +261,8 @@ export class Notice {
   /**
    * Convert t tag to region time
    * @warning t tags work fine when inserted with text() content because the original is \&gt; or \&lt;.
-   * @param text Text
-   * @returns Converted text
+   * @param text text
+   * @returns converted text
    */
   private convertLocalDate(text: string): string {
     return text

@@ -49,11 +49,11 @@ export class Character {
 
   /**
    * Create a Character
-   * @param characterId Character ID
-   * @param level Character level (1-90). Default: 1
-   * @param isAscended Character is ascended (true or false). Default: false
-   * @param constellationLevel Constellation level (0-6). Default: 0
-   * @param skillDepotId Skill depot ID (for travelers). Optional
+   * @param characterId character ID
+   * @param level character level (1-90). Default: 1
+   * @param isAscended character is ascended (true or false). Default: false
+   * @param constellationLevel constellation level (0-6). Default: 0
+   * @param skillDepotId skill depot ID (for travelers). Optional
    */
   constructor(
     characterId: number,
@@ -76,7 +76,7 @@ export class Character {
 
   /**
    * Get all character IDs
-   * @returns All character IDs
+   * @returns all character IDs
    */
   public static get allCharacterIds(): number[] {
     return CharacterInfo.allCharacterIds
@@ -242,7 +242,7 @@ export class Character {
 
   /**
    * Check if character can ascend to next level
-   * @returns True if character can ascend
+   * @returns true if character can ascend
    */
   public get isCanAscend(): boolean {
     const maxPromoteLevel = CharacterAscension.getMaxPromoteLevelByCharacterId(
@@ -253,7 +253,7 @@ export class Character {
 
   /**
    * Get character summary information
-   * @returns Character summary object
+   * @returns character summary object
    */
   public get summary(): {
     name: string
@@ -275,7 +275,7 @@ export class Character {
 
   /**
    * Get required materials for next ascension
-   * @returns Array of materials needed for next ascension
+   * @returns array of materials needed for next ascension
    */
   public get nextAscensionMaterials(): { id: number; count: number }[] {
     if (!this.isCanAscend) return []
@@ -285,7 +285,7 @@ export class Character {
 
   /**
    * Get total materials needed from current to max level
-   * @returns Array of total materials needed
+   * @returns array of total materials needed
    */
   public get totalAscensionMaterials(): { id: number; count: number }[] {
     const maxPromoteLevel = CharacterAscension.getMaxPromoteLevelByCharacterId(
@@ -309,8 +309,8 @@ export class Character {
 
   /**
    * Get character ID by name
-   * @param name Character name
-   * @returns Character ID
+   * @param name character name
+   * @returns character ID
    */
   public static getCharacterIdByName(name: string): number[] {
     return CharacterInfo.getCharacterIdByName(name)
@@ -318,7 +318,7 @@ export class Character {
 
   /**
    * Get traveler skill depot IDs
-   * @param characterId Character ID
+   * @param characterId character ID
    * @returns skill depot IDs
    */
   public static getTravelerSkillDepotIds(characterId: number): number[] {
@@ -327,8 +327,8 @@ export class Character {
 
   /**
    * Get normal attack skill
-   * @param skillLevel Skill level (1-15). Default: 1
-   * @returns Normal attack skill
+   * @param skillLevel skill level (1-15). Default: 1
+   * @returns normal attack skill
    */
   public getNormalAttack(skillLevel = 1): CharacterSkill {
     return this.getSkill(0, skillLevel)
@@ -336,8 +336,8 @@ export class Character {
 
   /**
    * Get elemental skill
-   * @param skillLevel Skill level (1-15). Default: 1
-   * @returns Elemental skill
+   * @param skillLevel skill level (1-15). Default: 1
+   * @returns elemental skill
    */
   public getElementalSkill(skillLevel = 1): CharacterSkill {
     return this.getSkill(1, skillLevel)
@@ -345,8 +345,8 @@ export class Character {
 
   /**
    * Get elemental burst
-   * @param skillLevel Skill level (1-15). Default: 1
-   * @returns Elemental burst
+   * @param skillLevel skill level (1-15). Default: 1
+   * @returns elemental burst
    */
   public getElementalBurst(skillLevel = 1): CharacterSkill {
     return this.getSkill(2, skillLevel)
@@ -354,8 +354,8 @@ export class Character {
 
   /**
    * Get normal attack upgrade materials for a specific level
-   * @param skillLevel Skill level (1-15)
-   * @returns Array of materials needed
+   * @param skillLevel skill level (1-15)
+   * @returns array of materials needed
    */
   public getNormalAttackMaterials(
     skillLevel: number,
@@ -365,8 +365,8 @@ export class Character {
 
   /**
    * Get elemental skill upgrade materials for a specific level
-   * @param skillLevel Skill level (1-15)
-   * @returns Array of materials needed
+   * @param skillLevel skill level (1-15)
+   * @returns array of materials needed
    */
   public getElementalSkillMaterials(
     skillLevel: number,
@@ -376,8 +376,8 @@ export class Character {
 
   /**
    * Get elemental burst upgrade materials for a specific level
-   * @param skillLevel Skill level (1-15)
-   * @returns Array of materials needed
+   * @param skillLevel skill level (1-15)
+   * @returns array of materials needed
    */
   public getElementalBurstMaterials(
     skillLevel: number,
@@ -387,8 +387,8 @@ export class Character {
 
   /**
    * Calculate total materials needed for character upgrade plan
-   * @param plan Character upgrade plan specifying level and skill changes
-   * @returns Array of total materials needed
+   * @param plan character upgrade plan specifying level and skill changes
+   * @returns array of total materials needed
    */
   public calculateUpgradeMaterials(
     plan: CharacterUpgradePlan,
@@ -456,9 +456,9 @@ export class Character {
 
   /**
    * Get a specific skill by index
-   * @param skillIndex Skill index (0: Normal Attack, 1: Elemental Skill, 2: Elemental Burst)
-   * @param skillLevel Skill level (1-15). Default: 1
-   * @returns Character skill
+   * @param skillIndex skill index (0: Normal Attack, 1: Elemental Skill, 2: Elemental Burst)
+   * @param skillLevel skill level (1-15). Default: 1
+   * @returns character skill
    */
   private getSkill(skillIndex: number, skillLevel = 1): CharacterSkill {
     const skillId = this.skillOrder[skillIndex]
@@ -470,9 +470,9 @@ export class Character {
 
   /**
    * Get talent materials for a specific skill
-   * @param skillIndex Skill index (0: Normal Attack, 1: Elemental Skill, 2: Elemental Burst)
-   * @param skillLevel Skill level (1-15)
-   * @returns Array of materials needed
+   * @param skillIndex skill index (0: Normal Attack, 1: Elemental Skill, 2: Elemental Burst)
+   * @param skillLevel skill level (1-15)
+   * @returns array of materials needed
    */
   private getSkillMaterials(
     skillIndex: number,
@@ -488,9 +488,9 @@ export class Character {
 
   /**
    * Calculate character level upgrade materials
-   * @param currentLevel Current character level
-   * @param targetLevel Target character level
-   * @returns Array of materials needed
+   * @param currentLevel current character level
+   * @param targetLevel target character level
+   * @returns array of materials needed
    */
   private calculateCharacterLevelMaterials(
     currentLevel: number,
@@ -538,10 +538,10 @@ export class Character {
 
   /**
    * Calculate skill level upgrade materials
-   * @param skillIndex Skill index
-   * @param currentLevel Current skill level
-   * @param targetLevel Target skill level
-   * @returns Array of materials needed
+   * @param skillIndex skill index
+   * @param currentLevel current skill level
+   * @param targetLevel target skill level
+   * @returns array of materials needed
    */
   private calculateSkillLevelMaterials(
     skillIndex: number,

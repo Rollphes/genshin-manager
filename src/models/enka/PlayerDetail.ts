@@ -3,7 +3,7 @@ import { Material } from '@/models/Material'
 import { ProfilePicture } from '@/models/ProfilePicture'
 import { APIPlayerInfo } from '@/types/enkaNetwork'
 /**
- * Class of player obtained from EnkaNetwork
+ * Contains player profile information and game progress from EnkaNetwork
  */
 export class PlayerDetail {
   /**
@@ -81,7 +81,7 @@ export class PlayerDetail {
 
   /**
    * Create a PlayerDetail
-   * @param data Data from EnkaNetwork
+   * @param data data from EnkaNetwork
    */
   // eslint-disable-next-line complexity
   constructor(data: APIPlayerInfo) {

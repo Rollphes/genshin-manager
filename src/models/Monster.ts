@@ -12,7 +12,7 @@ const statusBonusMonsterAtMultiPlay = {
 } as const
 
 /**
- * Class of Monster
+ * Represents a game monster with stats and properties
  */
 export class Monster {
   /**
@@ -32,7 +32,7 @@ export class Monster {
    */
   public readonly name: string
   /**
-   * Monster Preview name
+   * Monster display name
    */
   public readonly describeName: string = ''
   /**
@@ -40,7 +40,7 @@ export class Monster {
    */
   public readonly description: string = ''
   /**
-   * Monster Preview icon
+   * Monster display icon
    */
   public readonly icon: ImageAssets | undefined
   /**
@@ -59,8 +59,16 @@ export class Monster {
   /**
    * Create a Monster
    * @param monsterId monster ID
-   * @param level monsterLevel (1-100). Default: 1
-   * @param playerCount Number of players (1-4). Default: 1
+   * @param level monster level (1-100), defaults to 1
+   * @param playerCount number of players (1-4), defaults to 1
+   * @example
+   * ```typescript
+   * // Create a level 50 monster for single player
+   * const monster = new Monster(21010101, 50)
+   *
+   * // Create a level 80 monster for co-op (4 players)
+   * const coopMonster = new Monster(21010101, 80, 4)
+   * ```
    */
   // eslint-disable-next-line complexity
   constructor(monsterId: number, level = 1, playerCount = 1) {
@@ -160,7 +168,12 @@ export class Monster {
 
   /**
    * Get all monster IDs
-   * @returns All monster IDs
+   * @returns all monster IDs
+   * @example
+   * ```typescript
+   * const allIds = Monster.allMonsterIds
+   * console.log(`Total monsters: ${allIds.length}`)
+   * ```
    */
   public static get allMonsterIds(): number[] {
     return Object.keys(
@@ -169,13 +182,18 @@ export class Monster {
   }
 
   /**
-   * find monster ID by describe ID
-   * @param describeId Describe ID
+   * Find monster ID by description ID
+   * @param describeId description ID
    * @returns monster ID
+   * @example
+   * ```typescript
+   * const monsterId = Monster.findMonsterIdByDescribeId(21104)
+   * const monster = new Monster(monsterId)
+   * ```
    */
   public static findMonsterIdByDescribeId(describeId: number): number {
     const convertId = describeId.toString().padStart(5, '0')
-    //Since some monsterId cannot be obtained by this method, the describeId is converted.
+    // TODO: Maintenance-free implementation needed to avoid manual updates for each version
     const exceptionIds: Record<number, number> = {
       21104: 22110403,
       30604: 23060201,
@@ -195,9 +213,9 @@ export class Monster {
   /**
    * Get monster's stat value by stat type
    * @param propGrowCurve monsterExcelConfigData.propGrowCurves
-   * @param initValue Initial value
-   * @param playerCount Number of players
-   * @returns Stat value
+   * @param initValue initial value
+   * @param playerCount number of players
+   * @returns stat value
    */
   private getStatValueByJson(
     propGrowCurve: JsonObject | undefined,
@@ -215,7 +233,7 @@ export class Monster {
     if (
       propGrowCurve.growCurve === undefined ||
       propGrowCurve.growCurve === 'GROW_CURVE_NONE' ||
-      propGrowCurve.growCurve === 'GROW_CURVE_DEFENDING' //Skip GROW_CURVE_DEFENDING as it does not exist in the 4.0 data
+      propGrowCurve.growCurve === 'GROW_CURVE_DEFENDING'
     )
       return initValue * bonusValue
     const curveValue = Client._getJsonFromCachedExcelBinOutput(

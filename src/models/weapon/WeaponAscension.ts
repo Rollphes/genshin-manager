@@ -5,7 +5,7 @@ import { FightPropType } from '@/types'
 import { JsonObject } from '@/types/json'
 
 /**
- * Class of weapon ascension
+ * Handles weapon enhancement data including promote levels, costs, and stat boosts
  */
 export class WeaponAscension {
   /**
@@ -48,8 +48,8 @@ export class WeaponAscension {
 
   /**
    * Create a weapon ascension
-   * @param weaponId Weapon ID
-   * @param promoteLevel Weapon promote level (0-6). Default: 0
+   * @param weaponId weapon ID
+   * @param promoteLevel weapon promote level (0-6). Default: 0
    */
   constructor(weaponId: number, promoteLevel = 0) {
     this.id = weaponId
@@ -103,8 +103,8 @@ export class WeaponAscension {
 
   /**
    * Get max promote level by weapon ID
-   * @param weaponId Weapon ID
-   * @returns Max promote level
+   * @param weaponId weapon ID
+   * @returns max promote level
    */
   public static getMaxPromoteLevelByWeaponId(weaponId: number): number {
     const weaponJson = Client._getJsonFromCachedExcelBinOutput(

@@ -2,8 +2,8 @@ import { Region, TimeZonesPerRegion } from '@/types/sg-hk4e-api'
 
 /**
  * Convert the date string to UTC
- * @param dateString Date string
- * @param region Game region
+ * @param dateString date string
+ * @param region game region
  * @returns UTC date
  */
 export function convertToUTC(dateString: string, region: Region): Date {

@@ -109,7 +109,7 @@ export interface APIProfilePicture {
   /**
    * Profile Picture ID
    */
-  id?: number //ProfilePicture ID
+  id?: number
   /**
    * Costume ID
    */

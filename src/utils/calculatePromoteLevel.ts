@@ -3,10 +3,10 @@ import { JsonObject } from '@/types/json'
 
 /**
  * Calculate promote level
- * @param promotesJson Promotes json
- * @param level Level (1-90)
- * @param isAscended Is ascended
- * @returns Promote level (0-6)
+ * @param promotesJson promotes json
+ * @param level level (1-90)
+ * @param isAscended is ascended
+ * @returns promote level (0-6)
  */
 export function calculatePromoteLevel(
   promotesJson: JsonObject,

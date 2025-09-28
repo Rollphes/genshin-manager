@@ -3,7 +3,7 @@ import { AudioAssets } from '@/models/assets/AudioAssets'
 import { CVType } from '@/types'
 
 /**
- * Class of character's voice
+ * Handles character voice lines and audio assets in different languages
  */
 export class CharacterVoice {
   /**
@@ -54,7 +54,7 @@ export class CharacterVoice {
 
   /**
    * Create a CharacterVoice
-   * @param fetterId Fetter ID in the voice
+   * @param fetterId fetter ID in the voice
    * @param cv CV language
    */
   constructor(fetterId: number, cv: CVType) {
@@ -86,7 +86,7 @@ export class CharacterVoice {
 
   /**
    * Get all Fetter IDs in the voice
-   * @returns All Fetter IDs in the voice
+   * @returns all Fetter IDs in the voice
    */
   public static get allFetterIds(): number[] {
     const fetterVoicesJson = Object.values(
@@ -97,8 +97,8 @@ export class CharacterVoice {
 
   /**
    * Get all Fetter IDs in the character's voice
-   * @param characterId Character ID
-   * @returns All Fetter IDs in the character's voice
+   * @param characterId character ID
+   * @returns all Fetter IDs in the character's voice
    */
   public static getAllFetterIdsByCharacterId(characterId: number): number[] {
     const fetterVoicesJson = Object.values(

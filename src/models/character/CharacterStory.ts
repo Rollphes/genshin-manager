@@ -1,7 +1,7 @@
 import { Client } from '@/client/Client'
 
 /**
- * Class of character's story
+ * Contains character background story content and narrative elements
  */
 export class CharacterStory {
   /**
@@ -31,7 +31,7 @@ export class CharacterStory {
 
   /**
    * Create a CharacterStories
-   * @param fetterId Fetter ID in the story
+   * @param fetterId fetter ID in the story
    */
   constructor(fetterId: number) {
     this.fetterId = fetterId
@@ -63,7 +63,7 @@ export class CharacterStory {
 
   /**
    * Get all Fetter IDs in the story
-   * @returns All Fetter IDs in the story
+   * @returns all Fetter IDs in the story
    */
   public static get allFetterIds(): number[] {
     const fetterStoriesJson = Object.values(
@@ -74,8 +74,8 @@ export class CharacterStory {
 
   /**
    * Get all Fetter IDs in the character's story
-   * @param characterId Character ID
-   * @returns All fetter IDs in the character's story
+   * @param characterId character ID
+   * @returns all fetter IDs in the character's story
    */
   public static getAllFetterIdsByCharacterId(characterId: number): number[] {
     const fetterStoriesJson = Object.values(

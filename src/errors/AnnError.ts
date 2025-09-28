@@ -9,7 +9,7 @@ export class AnnError extends Error {
 
   /**
    * Create a AnnError
-   * @param res Response of getAnnList or getAnnContent request
+   * @param res response of getAnnList or getAnnContent request
    */
   constructor(res: Response) {
     const message = res.statusText

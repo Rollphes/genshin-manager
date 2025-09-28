@@ -3,7 +3,7 @@ import { ImageAssets } from '@/models/assets/ImageAssets'
 import { ItemType, MaterialType } from '@/types'
 
 /**
- * Class of material
+ * Represents a game material or resource used for character and weapon enhancement
  */
 export class Material {
   /**
@@ -41,7 +41,13 @@ export class Material {
 
   /**
    * Create a Material
-   * @param materialId Material ID
+   * @param materialId material ID
+   * @example
+   * ```ts
+   * const material = new Material(104001)
+   * console.log(material.name)
+   * console.log(material.description)
+   * ```
    */
   constructor(materialId: number) {
     this.id = materialId
@@ -63,7 +69,12 @@ export class Material {
 
   /**
    * Get all material IDs
-   * @returns All material IDs
+   * @returns all material IDs
+   * @example
+   * ```ts
+   * const allIds = Material.allMaterialIds
+   * console.log(allIds.length)
+   * ```
    */
   public static get allMaterialIds(): number[] {
     const materialDatas = Object.values(
@@ -74,8 +85,13 @@ export class Material {
 
   /**
    * Get material ID by name
-   * @param name Material name
-   * @returns Material ID
+   * @param name material name
+   * @returns material ID
+   * @example
+   * ```ts
+   * const ids = Material.getMaterialIdByName('Mystic Enhancement Ore')
+   * console.log(ids)
+   * ```
    */
   public static getMaterialIdByName(name: string): number[] {
     return Client._searchIdInExcelBinOutByText(

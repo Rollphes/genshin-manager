@@ -10,8 +10,14 @@ export class AssetsNotFoundError extends Error {
 
   /**
    * Create a AssetsNotFoundError
-   * @param key Key of assets
+   * @param key key of assets
    * @param id ID of the specified asset
+   * @example
+   * ```ts
+   * if (!assetExists) {
+   *   throw new AssetsNotFoundError('MaterialExcelConfigData', 104001)
+   * }
+   * ```
    */
   constructor(
     key: keyof (typeof ExcelBinOutputs & typeof TextMapLanguage),

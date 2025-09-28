@@ -10,7 +10,7 @@ import {
 import { JsonObject } from '@/types/json'
 
 /**
- * Class of information about the character.
+ * Contains basic information about a character
  */
 export class CharacterInfo {
   /**
@@ -56,8 +56,8 @@ export class CharacterInfo {
    */
   public readonly proudMap = new Map<number, number>()
   /**
-   * Rarity
-   * @warn aloy is treated as 0 because it is special
+   * Character rarity (1-5 stars)
+   * @warning Aloy has rarity 0 due to her special collaboration character status
    */
   public readonly rarity: number
   /**
@@ -75,8 +75,8 @@ export class CharacterInfo {
 
   /**
    * Create a CharacterInfo
-   * @param characterId Character ID
-   * @param skillDepotId Skill depot ID
+   * @param characterId character ID
+   * @param skillDepotId skill depot ID
    */
   constructor(characterId: number, skillDepotId?: number) {
     this.id = characterId
@@ -167,7 +167,7 @@ export class CharacterInfo {
 
   /**
    * Get all character IDs
-   * @returns All character IDs
+   * @returns all character IDs
    */
   public static get allCharacterIds(): number[] {
     const avatarDatas = Object.values(
@@ -180,8 +180,8 @@ export class CharacterInfo {
 
   /**
    * Get character ID by name
-   * @param name Character name
-   * @returns Character ID
+   * @param name character name
+   * @returns character ID
    */
   public static getCharacterIdByName(name: string): number[] {
     return Client._searchIdInExcelBinOutByText(
@@ -192,7 +192,7 @@ export class CharacterInfo {
 
   /**
    * Get traveler skill depot IDs
-   * @param characterId Character ID
+   * @param characterId character ID
    * @returns skill depot IDs
    */
   public static getTravelerSkillDepotIds(characterId: number): number[] {

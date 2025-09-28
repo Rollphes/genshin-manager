@@ -5,7 +5,7 @@ import { FightPropType } from '@/types'
 import { JsonObject } from '@/types/json'
 
 /**
- * Class of character skill ascension
+ * Manages character skill leveling data including costs and stat bonuses
  */
 export class CharacterSkillAscension {
   /**
@@ -44,7 +44,7 @@ export class CharacterSkillAscension {
 
   /**
    * Create a character skill ascension
-   * @param skillId Skill ID
+   * @param skillId skill ID
    * @param level skill level (1-15). Default: 1
    */
   constructor(skillId: number, level = 1) {

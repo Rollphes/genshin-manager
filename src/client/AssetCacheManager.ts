@@ -87,7 +87,7 @@ export abstract class AssetCacheManager<
 
   /**
    * Create a AssetCacheManager
-   * @param option Client option
+   * @param option client option
    */
   constructor(option: ClientOption) {
     super()
@@ -120,7 +120,7 @@ export abstract class AssetCacheManager<
 
   /**
    * Assets game version text
-   * @returns Assets game version text or undefined
+   * @returns assets game version text or undefined
    */
   protected static get gameVersion(): string | undefined {
     if (!fs.existsSync(this.commitFilePath)) return undefined
@@ -148,7 +148,7 @@ export abstract class AssetCacheManager<
 
   /**
    * Create ExcelBinOutput Keys to cache
-   * @returns All ExcelBinOutput Keys
+   * @returns all ExcelBinOutput Keys
    */
   private static get excelBinOutputAllKeys(): Set<
     keyof typeof ExcelBinOutputs
@@ -164,7 +164,7 @@ export abstract class AssetCacheManager<
    * Download json file from URL and write to downloadFilePath
    * Prevents file conflicts through concurrent access control
    * @param url URL
-   * @param downloadFilePath Download file path
+   * @param downloadFilePath download file path
    */
   public static async downloadJsonFile(
     url: string,
@@ -178,7 +178,7 @@ export abstract class AssetCacheManager<
   /**
    * Add ExcelBinOutput Key from Class Prototype to AssetCacheManager
    * @deprecated This method is deprecated because it is used to pass data to each class
-   * @param classPrototype Class Prototype
+   * @param classPrototype class prototype
    */
   public static _addExcelBinOutputKeyFromClassPrototype(
     classPrototype: unknown,
@@ -203,9 +203,9 @@ export abstract class AssetCacheManager<
   /**
    * Get Json from cached excel bin output
    * @deprecated This method is deprecated because it is used to pass data to each class
-   * @param key ExcelBinOutput name
+   * @param key excelBinOutput name
    * @param id ID of character, etc
-   * @returns Json
+   * @returns JSON
    */
   public static _getJsonFromCachedExcelBinOutput(
     key: keyof typeof ExcelBinOutputs,
@@ -223,8 +223,8 @@ export abstract class AssetCacheManager<
   /**
    * Get cached excel bin output by name
    * @deprecated This method is deprecated because it is used to pass data to each class
-   * @param key ExcelBinOutput name
-   * @returns Cached excel bin output
+   * @param key excelBinOutput name
+   * @returns cached excel bin output
    */
   public static _getCachedExcelBinOutputByName(
     key: keyof typeof ExcelBinOutputs,
@@ -238,8 +238,8 @@ export abstract class AssetCacheManager<
   /**
    * Check if cached excel bin output exists by name
    * @deprecated This method is deprecated because it is used to pass data to each class
-   * @param key ExcelBinOutput name
-   * @returns Cached excel bin output exists
+   * @param key excelBinOutput name
+   * @returns cached excel bin output exists
    */
   public static _hasCachedExcelBinOutputByName(
     key: keyof typeof ExcelBinOutputs,
@@ -250,9 +250,9 @@ export abstract class AssetCacheManager<
   /**
    * Check if cached excel bin output exists by ID
    * @deprecated This method is deprecated because it is used to pass data to each class
-   * @param key ExcelBinOutput name
+   * @param key excelBinOutput name
    * @param id ID of character, etc
-   * @returns Cached excel bin output exists
+   * @returns cached excel bin output exists
    */
   public static _hasCachedExcelBinOutputById(
     key: keyof typeof ExcelBinOutputs,
@@ -270,8 +270,8 @@ export abstract class AssetCacheManager<
   /**
    * Search ID in CachedExcelBinOutput by text
    * @deprecated This method is deprecated because it is used to pass data to each class
-   * @param key ExcelBinOutput name
-   * @param text Text
+   * @param key excelBinOutput name
+   * @param text text
    * @returns IDs
    */
   public static _searchIdInExcelBinOutByText(
@@ -292,8 +292,8 @@ export abstract class AssetCacheManager<
 
   /**
    * Change cached languages
-   * @param language Country code
-   * @returns Returns true if an error occurs
+   * @param language country code
+   * @returns true if an error occurs
    */
   protected static async setTextMapToCache(
     language: keyof typeof TextMapLanguage,
@@ -392,8 +392,8 @@ export abstract class AssetCacheManager<
 
   /**
    * Set excel bin output to cache
-   * @param keys ExcelBinOutput names
-   * @returns Returns true if an error occurs
+   * @param keys excelBinOutput names
+   * @returns true if an error occurs
    */
   protected static async setExcelBinOutputToCache(
     keys: Set<keyof typeof ExcelBinOutputs>,
@@ -507,7 +507,7 @@ export abstract class AssetCacheManager<
 
   /**
    * Check gitlab for new commits
-   * @returns New assets version text or undefined
+   * @returns new assets version text or undefined
    */
   private static async checkGitUpdate(): Promise<undefined | string> {
     ;[
@@ -629,7 +629,7 @@ export abstract class AssetCacheManager<
 
   /**
    * Re download text map
-   * @param language Country code
+   * @param language country code
    */
   private static async reDownloadTextMap(
     language: keyof typeof TextMapLanguage,
@@ -657,9 +657,9 @@ export abstract class AssetCacheManager<
 
   /**
    * Fetch asset folder from gitlab
-   * @param folderPath Folder path
-   * @param files File names
-   * @param isRetry Is Retry
+   * @param folderPath folder path
+   * @param files file names
+   * @param isRetry is retry
    */
   private static async fetchAssetFolder(
     folderPath: string,
@@ -713,7 +713,7 @@ export abstract class AssetCacheManager<
   /**
    * Internal download process executed within file lock
    * @param url URL
-   * @param downloadFilePath Download file path
+   * @param downloadFilePath download file path
    */
   private static async downloadJsonFileInternal(
     url: string,

@@ -6,7 +6,7 @@ import { FightPropType } from '@/types'
 import { JsonObject } from '@/types/json'
 
 /**
- * Class of character's inherent skill
+ * Represents a character's passive skill with unlocked bonuses and effects
  */
 export class CharacterInherentSkill {
   /**
@@ -36,7 +36,7 @@ export class CharacterInherentSkill {
 
   /**
    * Create a Inherent Skill
-   * @param inherentSkillId Inherent Skill ID
+   * @param inherentSkillId inherent skill ID
    */
   constructor(inherentSkillId: number) {
     this.id = inherentSkillId
@@ -66,7 +66,7 @@ export class CharacterInherentSkill {
 
   /**
    * Get all inherent skill IDs
-   * @returns All inherent skill IDs
+   * @returns all inherent skill IDs
    */
   public static get allInherentSkillIds(): number[] {
     const characterIds = CharacterInfo.allCharacterIds
@@ -85,9 +85,9 @@ export class CharacterInherentSkill {
 
   /**
    * Get inherent skill order by character ID
-   * @param characterId Character ID
-   * @param skillDepotId Skill depot ID
-   * @returns Inherent skill order
+   * @param characterId character ID
+   * @param skillDepotId skill depot ID
+   * @returns inherent skill order
    */
   public static getInherentSkillOrderByCharacterId(
     characterId: number,

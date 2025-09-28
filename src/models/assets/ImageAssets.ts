@@ -69,8 +69,8 @@ export class ImageAssets {
 
   /**
    * Classes for handling images
-   * @param name Image name
-   * @param url Image URL(Basically, no need to specify)
+   * @param name image name
+   * @param url image URL(Basically, no need to specify)
    */
   constructor(name: string, url?: string) {
     this.name = name
@@ -94,7 +94,7 @@ export class ImageAssets {
 
   /**
    * Create a ImageAssets instance from the image URL
-   * @param url Image URL
+   * @param url image URL
    * @returns ImageAssets instance
    */
   public static fromURL(url: string): ImageAssets {
@@ -104,7 +104,7 @@ export class ImageAssets {
 
   /**
    * Classes for handling images
-   * @param option Client option
+   * @param option client option
    */
   public static deploy(option: ClientOption): void {
     this.fetchOption = option.fetchOption
@@ -133,7 +133,7 @@ export class ImageAssets {
 
   /**
    * Fetch image buffer
-   * @returns Image buffer
+   * @returns image buffer
    */
   public async fetchBuffer(): Promise<Buffer> {
     if (!this.url) throw new ImageNotFoundError(this.name, this.url)
@@ -160,8 +160,8 @@ export class ImageAssets {
 
   /**
    * Fetch image stream
-   * @param highWaterMark HighWaterMark
-   * @returns Image stream
+   * @param highWaterMark highWaterMark
+   * @returns image stream
    */
   public async fetchStream(highWaterMark?: number): Promise<fs.ReadStream> {
     if (!this.url) throw new ImageNotFoundError(this.name, this.url)
@@ -196,8 +196,8 @@ export class ImageAssets {
 
   /**
    * Check if the PNG file is corrupted
-   * @warning This function is not perfect, so it may not be able to detect all corrupted files. because it only checks the PNG signature and IEnd chunk.
-   * @param filePath File path
+   * @warning Limited corruption detection - only validates PNG signature and IEND chunk. May not detect all corruption types.
+   * @param filePath file path
    * @returns is PNG file corrupted
    */
   private isPNGCorrupted(filePath: string): boolean {

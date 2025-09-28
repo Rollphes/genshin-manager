@@ -7,7 +7,7 @@ import { JsonObject } from '@/types/json'
 import { calculatePromoteLevel } from '@/utils/calculatePromoteLevel'
 
 /**
- * Class of character's base stats
+ * Represents a character's base statistical properties and attributes
  */
 export class CharacterBaseStats {
   /**
@@ -37,9 +37,9 @@ export class CharacterBaseStats {
 
   /**
    * Create a character's base stats
-   * @param characterId Character ID
-   * @param level Character level (1-90). Default: 1
-   * @param isAscended Character is ascended (true or false). Default: false
+   * @param characterId character ID
+   * @param level character level (1-90). Default: 1
+   * @param isAscended character is ascended (true or false). Default: false
    */
   constructor(characterId: number, level = 1, isAscended = false) {
     this.id = characterId
@@ -71,10 +71,10 @@ export class CharacterBaseStats {
 
   /**
    * Calculate character's status
-   * @param avatarJson Avatar json
-   * @param propGrowCurves Prop grow curves
-   * @param ascension Character ascension
-   * @returns Character's status
+   * @param avatarJson avatar json
+   * @param propGrowCurves prop grow curves
+   * @param ascension character ascension
+   * @returns character's status
    */
   private calculateStatus(
     avatarJson: JsonObject,
@@ -131,10 +131,10 @@ export class CharacterBaseStats {
 
   /**
    * Get stat value by json
-   * @param propGrowCurve Json object
-   * @param initValue Initial value
-   * @param addValue Add value
-   * @returns Stat value
+   * @param propGrowCurve json object
+   * @param initValue initial value
+   * @param addValue add value
+   * @returns stat value
    */
   private getStatPropertyByJson(
     propGrowCurve: JsonObject,

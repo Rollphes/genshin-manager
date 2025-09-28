@@ -29,7 +29,7 @@ interface DataDensityAnalysis {
  * Generic ExcelBinOutput file processing function
  * @param inputPath - Input file path
  * @param force - Force overwrite flag
- * @returns Processing result summary
+ * @returns processing result summary
  */
 export function generateMasterFromJson(
   inputPath: string,
@@ -109,7 +109,7 @@ export function generateMasterFromJson(
  * Generate simple master file (prototype-based with multiple patterns)
  * @param sourceFilePath - Source file path
  * @param jsonData - All JSON data
- * @returns Master file
+ * @returns master file
  */
 function createMasterStructure(
   sourceFilePath: string,
@@ -140,7 +140,7 @@ function createMasterStructure(
  * @param jsonData - JSON data array
  * @param maxCandidates - Maximum number of candidates to analyze
  * @param maxPatterns - Maximum number of patterns to return
- * @returns Array of master objects ordered by quality
+ * @returns array of master objects ordered by quality
  */
 function findOptimalMasterPatterns(jsonData: JsonObject[]): JsonObject[] {
   logger.info(`Number of objects to analyze: ${String(jsonData.length)}`)
@@ -239,7 +239,7 @@ function analyzeValue(
 /**
  * Calculate data density for an object (higher is better)
  * @param obj - Object to analyze
- * @returns Data density analysis
+ * @returns data density analysis
  */
 function calculateDataDensity(obj: JsonObject): DataDensityAnalysis {
   const counters = {
@@ -275,7 +275,7 @@ function calculateDataDensity(obj: JsonObject): DataDensityAnalysis {
  * @param existing - The existing JSON value
  * @param target - The target JSON value to compare against
  * @param parentPath - (internal) current path (for recursion)
- * @returns If a non-empty difference is found, returns the path array; otherwise, returns an empty array
+ * @returns if a non-empty difference is found, returns the path array; otherwise, returns an empty array
  */
 export function findFirstNonEmptyDifferencePath(
   existing: JsonValue,
@@ -327,7 +327,7 @@ export function findFirstNonEmptyDifferencePath(
 /**
  * Check if a JSON value is empty
  * @param value - The JSON value to check
- * @returns True if the value is empty, false otherwise
+ * @returns true if the value is empty, false otherwise
  */
 function isEmptyJsonValue(value: JsonValue): boolean {
   return (

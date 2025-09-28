@@ -5,7 +5,7 @@ import { FightPropType } from '@/types'
 import { JsonObject } from '@/types/json'
 
 /**
- * Class of character ascension
+ * Handles character ascension data including promote levels, costs, and stat bonuses
  */
 export class CharacterAscension {
   /**
@@ -48,8 +48,8 @@ export class CharacterAscension {
 
   /**
    * Create a character ascension
-   * @param characterId Character ID
-   * @param promoteLevel Character promote level (0-6). Default: 0
+   * @param characterId character ID
+   * @param promoteLevel character promote level (0-6). Default: 0
    */
   constructor(characterId: number, promoteLevel = 0) {
     this.id = characterId
@@ -96,8 +96,8 @@ export class CharacterAscension {
 
   /**
    * Get max promote level by character ID
-   * @param characterId Character ID
-   * @returns Max promote level
+   * @param characterId character ID
+   * @returns max promote level
    */
   public static getMaxPromoteLevelByCharacterId(characterId: number): number {
     const avatarJson = Client._getJsonFromCachedExcelBinOutput(

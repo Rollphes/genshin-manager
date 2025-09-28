@@ -5,9 +5,15 @@ import { JsonParser } from '@/utils/JsonParser'
 /**
  * Build cache structure from decoded data
  * Handles structure transformation of data decoded by EncryptedKeyDecoder
- * @param jsonData JsonParser (assumes key-decoded data)
- * @param filename ExcelBinOutput Filename
- * @returns Objects to cache
+ * @param jsonData jsonParser (assumes key-decoded data)
+ * @param filename excelBinOutput filename
+ * @returns objects to cache
+ * @example
+ * ```ts
+ * const jsonParser = new JsonParser(decodedData)
+ * const cache = buildCacheStructure(jsonParser, 'MaterialExcelConfigData')
+ * console.log(Object.keys(cache).length)
+ * ```
  */
 export function buildCacheStructure(
   jsonData: JsonParser,

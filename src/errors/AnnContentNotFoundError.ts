@@ -7,7 +7,7 @@ export class AnnContentNotFoundError extends Error {
 
   /**
    * Create a AnnContentNotFoundError
-   * @param id AnnContent ID
+   * @param id annContent ID
    */
   constructor(id: number) {
     super(`AnnContent ${String(id)} not found`)

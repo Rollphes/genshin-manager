@@ -1,15 +1,20 @@
 import type { JsonArray, JsonObject, JsonValue } from '@/types/json'
 
-//TODO: 将来的に削除予定。型厳格化したい。削除したら上部の型はsrc/type/indexに移動(as あんま使いたくない)
+// TODO: Scheduled for future removal. Need to enforce stricter typing. Move types to src/types/index when removed (avoid using 'as' cast)
 /**
- * Class of json parser
+ * JSON parser utility class
  */
 export class JsonParser {
   private readonly json: JsonObject | JsonArray
 
   /**
    * Create a JsonParser
-   * @param jsonString Json string
+   * @param jsonString json string
+   * @example
+   * ```ts
+   * const parser = new JsonParser('{"key": "value"}')
+   * console.log(parser.get('key'))
+   * ```
    */
   constructor(jsonString: string) {
     this.json = JSON.parse(jsonString) as JsonObject | JsonArray
@@ -17,8 +22,8 @@ export class JsonParser {
 
   /**
    * Get value from json
-   * @param propertyPath Property path
-   * @returns Value
+   * @param propertyPath property path
+   * @returns value
    */
   public get(propertyPath?: string): JsonValue | undefined {
     const properties = propertyPath

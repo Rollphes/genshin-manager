@@ -10,7 +10,7 @@ interface ArtifactAffixAppendProp {
   value: number
 }
 /**
- * Class of artifact
+ * Represents a game artifact with stats and set bonuses
  */
 export class Artifact {
   /**
@@ -101,10 +101,16 @@ export class Artifact {
 
   /**
    * Create a Artifact
-   * @param artifactId Artifact ID
-   * @param mainPropId Main stat ID from ReliquaryMainPropExcelConfigData.json. Default: 10001
-   * @param level Artifact level (0-20). Default: 0
-   * @param appendPropIds Artifact sub stat IDs
+   * @param artifactId artifact ID
+   * @param mainPropId main stat ID from ReliquaryMainPropExcelConfigData.json. Default: 10001
+   * @param level artifact level (0-20). Default: 0
+   * @param appendPropIds artifact sub stat IDs
+   * @example
+   * ```ts
+   * const artifact = new Artifact(81101, 10001, 20, [501221, 501231])
+   * console.log(artifact.name)
+   * console.log(artifact.mainStat.value)
+   * ```
    */
   constructor(
     artifactId: number,
@@ -198,7 +204,12 @@ export class Artifact {
 
   /**
    * Get all artifact IDs
-   * @returns All artifact IDs
+   * @returns all artifact IDs
+   * @example
+   * ```ts
+   * const allIds = Artifact.allArtifactIds
+   * console.log(allIds.length)
+   * ```
    */
   public static get allArtifactIds(): number[] {
     const artifactDatas = Object.values(
@@ -214,8 +225,13 @@ export class Artifact {
 
   /**
    * Get max level by artifact ID
-   * @param artifactId Artifact ID
-   * @returns Max level
+   * @param artifactId artifact ID
+   * @returns max level
+   * @example
+   * ```ts
+   * const maxLevel = Artifact.getMaxLevelByArtifactId(81101)
+   * console.log(maxLevel) // 20 for 5-star artifacts
+   * ```
    */
   public static getMaxLevelByArtifactId(artifactId: number): number {
     const artifactJson = Client._getJsonFromCachedExcelBinOutput(
@@ -227,8 +243,8 @@ export class Artifact {
 
   /**
    * Get sub stat properties from appendProp IDs
-   * @param appendPropIds Artifact sub stat IDs
-   * @returns Sub stat properties
+   * @param appendPropIds artifact sub stat IDs
+   * @returns sub stat properties
    */
   private getSubStatProperties(appendPropIds: number[]): StatProperty[] {
     const result: Partial<Record<FightPropType, number>> = {}

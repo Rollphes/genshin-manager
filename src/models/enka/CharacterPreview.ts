@@ -14,7 +14,7 @@ const elementIdMap: Record<number, Element> = {
 } as const
 
 /**
- * Class of the character preview obtained from EnkaNetwork
+ * Provides summary character information for display from EnkaNetwork data
  */
 export class CharacterPreview extends CharacterCostume {
   /**
@@ -23,12 +23,12 @@ export class CharacterPreview extends CharacterCostume {
   public readonly level: number
   /**
    * Character element
-   * @warn If this value is undefined, then it hasn't been updated with 5.0~, or the element is missing.
+   * @warning May be undefined if character data hasn't been updated since version 5.0+ or if element data is missing from API response.
    */
   public readonly element: Element | undefined
   /**
-   * Character collection level
-   * @warn If isShowCharacterPreviewConstellation is false, then this value is 0.
+   * Character constellation level (0-6)
+   * @warning Returns 0 when player has disabled constellation visibility in privacy settings.
    * @see {@link PlayerDetail.isShowCharacterPreviewConstellation}
    */
   public readonly collectionLevel: number | undefined
@@ -39,7 +39,7 @@ export class CharacterPreview extends CharacterCostume {
 
   /**
    * Create a character preview
-   * @param data Data from EnkaNetwork
+   * @param data data from EnkaNetwork
    */
   constructor(data: APIShowAvatarInfo) {
     const characterData = new CharacterInfo(data.avatarId)

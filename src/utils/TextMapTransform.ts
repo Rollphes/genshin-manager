@@ -14,8 +14,8 @@ export class TextMapTransform extends Transform {
 
   /**
    * Create a TextMapTransform
-   * @param language Language
-   * @param filterSet Filter set
+   * @param language language
+   * @param filterSet filter set
    */
   constructor(language: keyof typeof TextMapLanguage, filterSet: Set<number>) {
     super()
@@ -25,9 +25,9 @@ export class TextMapTransform extends Transform {
 
   /**
    * Transform
-   * @param chunk Buffer
-   * @param encoding Encoding
-   * @param callback Callback
+   * @param chunk buffer
+   * @param encoding encoding
+   * @param callback callback
    */
   public _transform(
     chunk: Buffer,
@@ -64,7 +64,7 @@ export class TextMapTransform extends Transform {
 
   /**
    * Flush
-   * @param callback Callback
+   * @param callback callback
    */
   public _flush(callback: () => void): void {
     this.push('\n' + this.buffer.toString())
@@ -73,7 +73,7 @@ export class TextMapTransform extends Transform {
 
   /**
    * Final
-   * @param callback Callback
+   * @param callback callback
    */
   public _final(callback: () => void): void {
     if (!this.buffer.toString().endsWith('}'))

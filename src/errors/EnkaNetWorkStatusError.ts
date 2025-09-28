@@ -9,7 +9,7 @@ export class EnkaNetWorkStatusError extends Error {
 
   /**
    * Create a EnkaNetworkStatusError
-   * @param reason Response of status.enka.network
+   * @param reason response of status.enka.network
    */
   constructor(reason: Response) {
     const message = reason.statusText

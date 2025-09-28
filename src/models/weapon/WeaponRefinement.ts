@@ -5,7 +5,7 @@ import { FightPropType } from '@/types'
 import { JsonObject } from '@/types/json'
 
 /**
- * Class of weapon refinement
+ * Manages weapon refinement levels and passive ability improvements
  */
 export class WeaponRefinement {
   /**
@@ -35,8 +35,8 @@ export class WeaponRefinement {
 
   /**
    * Create a weapon refinement
-   * @param weaponId Weapon ID
-   * @param refinementRank Weapon refinement rank (1-5). Default: 1
+   * @param weaponId weapon ID
+   * @param refinementRank weapon refinement rank (1-5). Default: 1
    */
   constructor(weaponId: number, refinementRank = 1) {
     this.id = weaponId
@@ -88,8 +88,8 @@ export class WeaponRefinement {
 
   /**
    * Get max refinement rank by weapon ID
-   * @param weaponId Weapon ID
-   * @returns Max refinement rank
+   * @param weaponId weapon ID
+   * @returns max refinement rank
    */
   public static getMaxRefinementRankByWeaponId(weaponId: number): number {
     const weaponJson = Client._getJsonFromCachedExcelBinOutput(

@@ -82,7 +82,7 @@ export function error(message: string, data?: unknown): void {
 /**
  * Check if a given log level should be logged
  * @param level - Log level to check
- * @returns Whether the level should be logged
+ * @returns whether the level should be logged
  */
 export function shouldLog(level: LogLevel): boolean {
   return level <= currentLevel

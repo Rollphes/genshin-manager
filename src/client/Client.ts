@@ -59,7 +59,7 @@ interface ClientEventMap {
 }
 
 /**
- * Class of the client
+ * Main client for the Genshin Manager library
  * @description This is the main body of `Genshin-Manager` where cache information is stored
  */
 export class Client extends AssetCacheManager<ClientEventMap, ClientEvents> {
@@ -126,7 +126,15 @@ export class Client extends AssetCacheManager<ClientEventMap, ClientEvents> {
 
   /**
    * Create a Client
-   * @param option Client option
+   * @param option client option
+   * @example
+   * ```ts
+   * const client = new Client({
+   *   defaultLanguage: 'EN',
+   *   logLevel: LogLevel.INFO,
+   *   autoCacheImage: true
+   * })
+   * ```
    */
   constructor(option?: Partial<ClientOption>) {
     const mergeOption = merge.withOptions(
@@ -158,7 +166,7 @@ export class Client extends AssetCacheManager<ClientEventMap, ClientEvents> {
 
   /**
    * Cached game version
-   * @returns Cached game version
+   * @returns cached game version
    * @example `5.1.0`
    */
   public get gameVersion(): string | undefined {
@@ -167,7 +175,7 @@ export class Client extends AssetCacheManager<ClientEventMap, ClientEvents> {
 
   /**
    * Change cached languages
-   * @param language Country code
+   * @param language country code
    * @example
    * ```ts
    * const client = new Client()

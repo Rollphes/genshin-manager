@@ -9,7 +9,7 @@ import { JsonObject } from '@/types/json'
 import { calculatePromoteLevel } from '@/utils/calculatePromoteLevel'
 
 /**
- * Class of weapon info
+ * Contains weapon information including stats, refinement, and enhancement data
  */
 export class WeaponInfo {
   /**
@@ -87,10 +87,10 @@ export class WeaponInfo {
 
   /**
    * Create a WeaponInfo
-   * @param weaponId Weapon ID
-   * @param level Weapon level (1-90). Default: 1
-   * @param isAscended Weapon is ascended. Default: true
-   * @param refinementRank Weapon refinement rank (1-5). Default: 1
+   * @param weaponId weapon ID
+   * @param level weapon level (1-90). Default: 1
+   * @param isAscended weapon is ascended. Default: true
+   * @param refinementRank weapon refinement rank (1-5). Default: 1
    */
   constructor(
     weaponId: number,
@@ -163,7 +163,7 @@ export class WeaponInfo {
 
   /**
    * Get all weapon IDs
-   * @returns All weapon IDs
+   * @returns all weapon IDs
    */
   public static get allWeaponIds(): number[] {
     const weaponDatas = Object.values(
@@ -176,8 +176,8 @@ export class WeaponInfo {
 
   /**
    * Get weapon ID by name
-   * @param name Weapon name
-   * @returns Weapon ID
+   * @param name weapon name
+   * @returns weapon ID
    */
   public static getWeaponIdByName(name: string): number[] {
     return Client._searchIdInExcelBinOutByText(
@@ -188,9 +188,9 @@ export class WeaponInfo {
 
   /**
    * Get stat value by json
-   * @param weaponPropJson Weapon property json
-   * @param addValue Add value
-   * @returns Stat value
+   * @param weaponPropJson weapon property json
+   * @param addValue add value
+   * @returns stat value
    */
   private getStatPropertyByJson(
     weaponPropJson: JsonObject,

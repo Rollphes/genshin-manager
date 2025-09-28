@@ -6,9 +6,9 @@ const locks = new Map<string, Promise<void>>()
 
 /**
  * Performs exclusive control on a file
- * @param filePath Path to the file to lock
- * @param operation Async operation to execute
- * @returns Result of the operation
+ * @param filePath path to the file to lock
+ * @param operation async operation to execute
+ * @returns result of the operation
  */
 export async function withFileLock<T>(
   filePath: string,
@@ -35,8 +35,8 @@ export async function withFileLock<T>(
 
 /**
  * Checks if the specified file is locked
- * @param filePath Path to the file to check
- * @returns True if the file is locked
+ * @param filePath path to the file to check
+ * @returns true if the file is locked
  */
 export function isFileLocked(filePath: string): boolean {
   return locks.has(filePath)

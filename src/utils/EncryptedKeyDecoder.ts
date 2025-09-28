@@ -76,7 +76,7 @@ export class EncryptedKeyDecoder {
    * Process encrypted object array and decode keys recursively
    * @param encryptedData - Encrypted object array
    * @param options - Decoding options
-   * @returns Decoded object array
+   * @returns decoded object array
    */
   public execute(
     encryptedData: JsonObject[],
@@ -167,7 +167,7 @@ export class EncryptedKeyDecoder {
    * Generate recursive pattern from master object
    * @param masterObject - Master object to analyze
    * @param currentPath - Current path in the object hierarchy
-   * @returns Recursive pattern representation
+   * @returns recursive pattern representation
    */
   private generateRecursivePattern(
     masterObject: JsonValue,
@@ -216,7 +216,7 @@ export class EncryptedKeyDecoder {
    * @param encryptedData - Array of encrypted objects
    * @param pattern - Pattern to match against
    * @param options - Decoding options
-   * @returns Best decoding result
+   * @returns best decoding result
    */
   private findBestKeyMapping(
     encryptedData: JsonObject[],
@@ -245,7 +245,7 @@ export class EncryptedKeyDecoder {
    * @param pattern - Pattern to match against
    * @param currentPath - Current path in the structure
    * @param options - Decoding options
-   * @returns Matching result with key mappings
+   * @returns matching result with key mappings
    */
   private matchPatternRecursively(
     encryptedValue: JsonValue,
@@ -451,7 +451,7 @@ export class EncryptedKeyDecoder {
    * @param value1 - First value
    * @param value2 - Second value
    * @param strategy - Matching strategy
-   * @returns Whether values match
+   * @returns whether values match
    */
   private valueMatches(
     value1: JsonValue,
@@ -480,7 +480,7 @@ export class EncryptedKeyDecoder {
    * Apply recursive decoding to an object using key mappings
    * @param obj - Object to decode
    * @param keyMappings - Map of encrypted key paths to original keys
-   * @returns Decoded object
+   * @returns decoded object
    */
   private applyRecursiveDecoding(
     obj: JsonValue,
@@ -494,7 +494,7 @@ export class EncryptedKeyDecoder {
    * @param value - Current value
    * @param currentPath - Current path
    * @param keyMappings - Key mappings
-   * @returns Decoded value
+   * @returns decoded value
    */
   private applyDecodingAtPath(
     value: JsonValue,
@@ -541,7 +541,7 @@ export class EncryptedKeyDecoder {
   /**
    * Convert key path to string for comparison
    * @param path - Key path
-   * @returns String representation
+   * @returns string representation
    */
   private pathToString(path: KeyPath): string {
     return path.map((segment) => String(segment)).join('.')
@@ -551,7 +551,7 @@ export class EncryptedKeyDecoder {
    * Generate detailed error message with debugging information
    * @param result - Failed decoding result
    * @param encryptedData - Original encrypted data
-   * @returns Detailed error message
+   * @returns detailed error message
    */
   private generateDetailedError(
     result: DecodingResult,
@@ -591,7 +591,7 @@ export class EncryptedKeyDecoder {
    * Generate cache key for performance optimization
    * @param encryptedData - Encrypted data
    * @param options - Decoding options
-   * @returns Cache key string
+   * @returns cache key string
    */
   private generateCacheKey(
     encryptedData: JsonObject[],

@@ -102,9 +102,15 @@ export class NoticeManager extends PromiseEventEmitter<
 
   /**
    * Create a NoticeManager
-   * @param language Language of notices
-   * @param updateInterval Update interval(ms) Min: 1 minute
+   * @param language language of notices
+   * @param updateInterval update interval(ms) Min: 1 minute
    * @param urlParams URL params
+   * @example
+   * ```ts
+   * const noticeManager = new NoticeManager('en', 60000)
+   * await noticeManager.update()
+   * console.log(noticeManager.notices.size)
+   * ```
    */
   constructor(
     language: keyof typeof NoticeLanguage,
@@ -174,8 +180,8 @@ export class NoticeManager extends PromiseEventEmitter<
 
   /**
    * Get AnnContent
-   * @param lang Language of notices
-   * @returns AnnContent
+   * @param lang language of notices
+   * @returns annContent
    */
   private async getAnnContent(
     lang?: keyof typeof NoticeLanguage,
@@ -188,7 +194,7 @@ export class NoticeManager extends PromiseEventEmitter<
 
   /**
    * Get AnnList
-   * @returns AnnList
+   * @returns annList
    */
   private async getAnnList(): Promise<APIGetAnnList> {
     return (await this._getAnn(NoticeManager.GIT_LIST_URL)) as APIGetAnnList
@@ -197,8 +203,8 @@ export class NoticeManager extends PromiseEventEmitter<
   /**
    * Get Ann
    * @param urlText URL
-   * @param lang Language of notices
-   * @returns Ann
+   * @param lang language of notices
+   * @returns ann
    */
   private async _getAnn(
     urlText: string,

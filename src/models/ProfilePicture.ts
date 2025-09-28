@@ -5,7 +5,7 @@ import { CharacterInfo } from '@/models/character/CharacterInfo'
 import { ProfilePictureType } from '@/types'
 
 /**
- * Class of character's profile picture
+ * Manages character avatar images and profile picture assets
  */
 export class ProfilePicture {
   /**
@@ -47,7 +47,7 @@ export class ProfilePicture {
 
   /**
    * Create a ProfilePicture
-   * @param profilePictureId Profile picture ID
+   * @param profilePictureId profile picture ID
    */
   constructor(profilePictureId: number) {
     this.id = profilePictureId
@@ -81,7 +81,7 @@ export class ProfilePicture {
 
   /**
    * Get all profile picture IDs
-   * @returns Profile picture IDs
+   * @returns profile picture IDs
    */
   public static get allProfilePictureIds(): number[] {
     return Object.keys(
@@ -91,8 +91,8 @@ export class ProfilePicture {
 
   /**
    * Find profile picture ID by info ID
-   * @param unlockParam Costume ID or Character ID or Material ID or Quest ID
-   * @returns Profile picture ID
+   * @param unlockParam costume ID or Character ID or Material ID or Quest ID
+   * @returns profile picture ID
    */
   public static findProfilePictureIdByUnlockParam(
     unlockParam: number,

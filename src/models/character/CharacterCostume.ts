@@ -2,7 +2,7 @@ import { Client } from '@/client/Client'
 import { ImageAssets } from '@/models/assets/ImageAssets'
 
 /**
- * Class of character's costume
+ * Represents character outfit skins and alternative visual appearances
  */
 export class CharacterCostume {
   /**
@@ -48,7 +48,7 @@ export class CharacterCostume {
 
   /**
    * Create a Costume
-   * @param costumeId Costume ID
+   * @param costumeId costume ID
    */
   constructor(costumeId: number) {
     this.id = costumeId
@@ -85,7 +85,7 @@ export class CharacterCostume {
 
   /**
    * Get all costume IDs
-   * @returns All costume IDs
+   * @returns all costume IDs
    */
   public static get allCostumeIds(): number[] {
     const costumeDatas = Object.values(
