@@ -1,4 +1,4 @@
-import { Client } from '@/client/Client'
+import { Client } from '@/client'
 import { AudioAssets } from '@/models/assets/AudioAssets'
 import { CVType } from '@/types'
 

@@ -1,6 +1,4 @@
-import { Client, ClientEvents } from '@/client/Client'
-import { EnkaData, EnkaManager, EnkaManagerEvents } from '@/client/EnkaManager'
-import { NoticeManager, NoticeManagerEvents } from '@/client/NoticeManager'
+import { Client, EnkaManager, EnkaManagerEvents, NoticeManager, NoticeManagerEvents, type ClientEvents, type EnkaData } from '@/client'
 import { Artifact } from '@/models/Artifact'
 import { AudioAssets } from '@/models/assets/AudioAssets'
 import { ImageAssets } from '@/models/assets/ImageAssets'

@@ -1,4 +1,4 @@
-import { Client } from '@/client/Client'
+import { Client } from '@/client'
 import { ImageAssets } from '@/models/assets/ImageAssets'
 import { CharacterCostume } from '@/models/character/CharacterCostume'
 import { CharacterInfo } from '@/models/character/CharacterInfo'

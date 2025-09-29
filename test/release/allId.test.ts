@@ -1,6 +1,6 @@
 import { beforeAll, describe, expect, test } from 'vitest'
 
-import { Client } from '@/client/Client.js'
+import { Client } from '@/client'
 import { Artifact } from '@/models/Artifact'
 import { CharacterConstellation } from '@/models/character/CharacterConstellation'
 import { CharacterCostume } from '@/models/character/CharacterCostume'

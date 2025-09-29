@@ -1,4 +1,4 @@
-import { Client } from '@/client/Client'
+import { Client } from '@/client'
 import { FightPropType } from '@/types'
 /**
  * Represents a statistical property with type, name, and value information

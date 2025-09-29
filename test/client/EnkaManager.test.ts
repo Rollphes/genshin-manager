@@ -17,8 +17,8 @@ import {
   vi,
 } from 'vitest'
 
-import { Client } from '@/client/Client'
-import { EnkaManager, EnkaManagerEvents } from '@/client/EnkaManager'
+import { Client } from '@/client'
+import { EnkaManager, EnkaManagerEvents } from '@/client'
 import {
   EnkaNetworkError,
   EnkaNetworkStatusError,

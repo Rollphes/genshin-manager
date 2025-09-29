@@ -1,4 +1,4 @@
-import { Client } from '@/client/Client'
+import { Client } from '@/client'
 import { travelerIdSchema } from '@/schemas'
 import {
   BodyType,

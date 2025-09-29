@@ -4,8 +4,7 @@ import fs from 'fs'
 import path from 'path'
 import { beforeAll, beforeEach, describe, expect, it, vi } from 'vitest'
 
-import { AssetCacheManager } from '@/client/AssetCacheManager'
-import { Client } from '@/client/Client'
+import { AssetCacheManager, Client } from '@/client'
 import { AssetNotFoundError } from '@/errors'
 import { ExcelBinOutputs } from '@/types'
 

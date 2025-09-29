@@ -1,4 +1,4 @@
-import { Client } from '@/client/Client'
+import { Client } from '@/client'
 
 /**
  * Contains character background story content and narrative elements

@@ -1,6 +1,6 @@
 import fs from 'fs'
 
-import { Client, ClientEvents } from '@/client/Client.js'
+import { Client, ClientEvents } from '@/client'
 import { Artifact } from '@/models/Artifact.js'
 import { CharacterConstellation } from '@/models/character/CharacterConstellation.js'
 import { CharacterCostume } from '@/models/character/CharacterCostume.js'

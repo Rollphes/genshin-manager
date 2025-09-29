@@ -1,7 +1,6 @@
 import { beforeAll, describe, expect, test } from 'vitest'
 
-import { Client } from '@/client/Client.js'
-import { EnkaManager } from '@/client/EnkaManager.js'
+import { Client, EnkaManager } from '@/client'
 
 describe('EnkaNetwork Release Test', () => {
   beforeAll(async () => {

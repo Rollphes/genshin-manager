@@ -16,8 +16,7 @@ import {
   vi,
 } from 'vitest'
 
-import { Client } from '@/client/Client'
-import { NoticeManager, NoticeManagerEvents } from '@/client/NoticeManager'
+import { Client, NoticeManager, NoticeManagerEvents } from '@/client'
 import { AnnContentNotFoundError, ValidationError } from '@/errors'
 
 // Increase max listeners to prevent memory leak warnings during tests

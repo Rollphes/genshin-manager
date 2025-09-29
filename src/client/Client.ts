@@ -2,7 +2,7 @@ import cron from 'node-cron'
 import path from 'path'
 import { merge } from 'ts-deepmerge'
 
-import { AssetCacheManager } from '@/client/AssetCacheManager'
+import { AssetCacheManager } from '@/client'
 import { AudioAssets } from '@/models/assets/AudioAssets'
 import { ImageAssets } from '@/models/assets/ImageAssets'
 import { ClientOption, TextMapLanguage } from '@/types'

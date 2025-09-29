@@ -1,6 +1,6 @@
 import { z } from 'zod'
 
-import { Client } from '@/client/Client'
+import { Client } from '@/client'
 import { StatProperty } from '@/models/StatProperty'
 import { FightPropType } from '@/types'
 import { JsonObject } from '@/types/json'

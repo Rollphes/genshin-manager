@@ -1,4 +1,4 @@
-import { Client } from '@/client/Client'
+import { Client } from '@/client'
 import { StatProperty } from '@/models/StatProperty'
 import { skillLevelSchema } from '@/schemas'
 import { FightPropType } from '@/types'
