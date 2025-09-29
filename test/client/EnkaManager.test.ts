@@ -19,9 +19,6 @@ import {
 
 import { Client } from '@/client/Client'
 import { EnkaManager, EnkaManagerEvents } from '@/client/EnkaManager'
-import { EnkaManagerError } from '@/errors/EnkaManagerError'
-import { EnkaNetworkError } from '@/errors/EnkaNetWorkError'
-import { EnkaNetWorkStatusError } from '@/errors/EnkaNetWorkStatusError'
 
 // Increase max listeners to prevent memory leak warnings during tests
 EventEmitter.defaultMaxListeners = 50
@@ -376,11 +373,11 @@ describe('EnkaManager Basic Functionality', () => {
   })
 
   describe('Error Handling Tests', () => {
-    it('should throw EnkaManagerError for invalid UID format', async () => {
+    it('should throw GeneralError for invalid UID format', async () => {
       const invalidUID = 123 // Too short
 
       await expect(enkaManager.fetchAll(invalidUID)).rejects.toThrow(
-        EnkaManagerError,
+        'GeneralError',
       )
       await expect(enkaManager.fetchAll(invalidUID)).rejects.toThrow(
         'The UID format is not correct(123)',
@@ -396,7 +393,9 @@ describe('EnkaManager Basic Functionality', () => {
 
       mockFetch.mockResolvedValueOnce(mockErrorResponse as unknown as Response)
 
-      await expect(enkaManager.fetchAll(uid)).rejects.toThrow(EnkaNetworkError)
+      await expect(enkaManager.fetchAll(uid)).rejects.toThrow(
+        'EnkaNetworkError',
+      )
     })
 
     it('should throw EnkaNetworkError for EnkaAccount API failure', async () => {
@@ -409,7 +408,7 @@ describe('EnkaManager Basic Functionality', () => {
       mockFetch.mockResolvedValueOnce(mockErrorResponse as unknown as Response)
 
       await expect(enkaManager.fetchEnkaAccount(username)).rejects.toThrow(
-        EnkaNetworkError,
+        'EnkaNetworkError',
       )
     })
 
@@ -423,11 +422,11 @@ describe('EnkaManager Basic Functionality', () => {
       mockFetch.mockResolvedValueOnce(mockErrorResponse as unknown as Response)
 
       await expect(enkaManager.fetchGenshinAccounts(username)).rejects.toThrow(
-        EnkaNetworkError,
+        'EnkaNetworkError',
       )
     })
 
-    it('should throw EnkaNetWorkStatusError for status API failure', async () => {
+    it('should throw EnkaNetworkStatusError for status API failure', async () => {
       const mockErrorResponse = new MockResponse(
         { error: 'Service unavailable' },
         { status: 503, statusText: 'Service Unavailable' },
@@ -436,11 +435,11 @@ describe('EnkaManager Basic Functionality', () => {
       mockFetch.mockResolvedValueOnce(mockErrorResponse as unknown as Response)
 
       await expect(enkaManager.fetchNowStatus()).rejects.toThrow(
-        EnkaNetWorkStatusError,
+        'EnkaNetworkStatusError',
       )
     })
 
-    it('should throw EnkaNetWorkStatusError for all status API failure', async () => {
+    it('should throw EnkaNetworkStatusError for all status API failure', async () => {
       const mockErrorResponse = new MockResponse(
         { error: 'Service unavailable' },
         { status: 503, statusText: 'Service Unavailable' },
@@ -449,7 +448,7 @@ describe('EnkaManager Basic Functionality', () => {
       mockFetch.mockResolvedValueOnce(mockErrorResponse as unknown as Response)
 
       await expect(enkaManager.fetchAllStatus()).rejects.toThrow(
-        EnkaNetWorkStatusError,
+        'EnkaNetworkStatusError',
       )
     })
 

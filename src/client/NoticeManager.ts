@@ -1,12 +1,12 @@
 import { merge } from 'ts-deepmerge'
 
-import { AnnContentNotFoundError } from '@/errors/AnnContentNotFoundError'
-import { AnnError } from '@/errors/AnnError'
-import { OutOfRangeError } from '@/errors/OutOfRangeError'
+import { AnnContentNotFoundError, NetworkUnavailableError } from '@/errors'
 import { Notice } from '@/models/Notice'
+import { createUpdateIntervalSchema } from '@/schemas'
 import { NoticeLanguage, URLParams as URLParams } from '@/types/sg-hk4e-api'
 import { APIGetAnnContent, APIGetAnnList } from '@/types/sg-hk4e-api/response'
 import { PromiseEventEmitter } from '@/utils/PromiseEventEmitter'
+import { ValidationHelper } from '@/utils/ValidationHelper'
 
 /**
  * NoticeManager events
@@ -50,6 +50,7 @@ export class NoticeManager extends PromiseEventEmitter<
    * @default 1 minute
    */
   private static readonly MIN_UPDATE_INTERVAL = 1000 * 60 * 1
+
   /**
    * URL of getAnnContent
    */
@@ -120,16 +121,14 @@ export class NoticeManager extends PromiseEventEmitter<
     super()
     this.language = language
     this.updateInterval = updateInterval
-    if (
-      this.updateInterval &&
-      (this.updateInterval < NoticeManager.MIN_UPDATE_INTERVAL ||
-        this.updateInterval > 2147483647)
-    ) {
-      throw new OutOfRangeError(
-        'level',
-        this.updateInterval,
+    if (this.updateInterval) {
+      const schema = createUpdateIntervalSchema(
         NoticeManager.MIN_UPDATE_INTERVAL,
-        2147483647,
+      )
+      this.updateInterval = ValidationHelper.validate(
+        schema,
+        this.updateInterval,
+        { propertyKey: 'updateInterval' },
       )
     }
     this.urlParams = merge.withOptions(
@@ -165,7 +164,7 @@ export class NoticeManager extends PromiseEventEmitter<
           (content) => content.ann_id === data.ann_id,
         )
         if (!content || !enContent)
-          throw new AnnContentNotFoundError(data.ann_id)
+          throw new AnnContentNotFoundError(String(data.ann_id))
         const notice = new Notice(
           data,
           content,
@@ -216,7 +215,8 @@ export class NoticeManager extends PromiseEventEmitter<
       else url.searchParams.append(key, this.urlParams[key as keyof URLParams])
     })
     const res = await fetch(url.toString())
-    if (!res.ok) throw new AnnError(res)
+    if (!res.ok) throw new NetworkUnavailableError(res.url, 'GET')
+
     return (await res.json()) as APIGetAnnContent | APIGetAnnList
   }
 }

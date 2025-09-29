@@ -64,7 +64,8 @@
     "cheerio": "^1.0.0",
     "cli-progress": "^3.12.0",
     "node-cron": "^4.2.1",
-    "ts-deepmerge": "^7.0.1"
+    "ts-deepmerge": "^7.0.1",
+    "zod": "^4.1.11"
   },
   "devDependencies": {
     "@commitlint/cli": "^19.8.1",

@@ -1,8 +1,9 @@
 import { Client } from '@/client/Client'
-import { OutOfRangeError } from '@/errors/OutOfRangeError'
 import { StatProperty } from '@/models/StatProperty'
+import { createPromoteLevelSchema } from '@/schemas'
 import { FightPropType } from '@/types'
 import { JsonObject } from '@/types/json'
+import { ValidationHelper } from '@/utils/ValidationHelper'
 
 /**
  * Handles weapon enhancement data including promote levels, costs, and stat boosts
@@ -57,14 +58,10 @@ export class WeaponAscension {
     const maxPromoteLevel = WeaponAscension.getMaxPromoteLevelByWeaponId(
       this.id,
     )
-    if (this.promoteLevel < 0 || this.promoteLevel > maxPromoteLevel) {
-      throw new OutOfRangeError(
-        'promoteLevel',
-        this.promoteLevel,
-        0,
-        maxPromoteLevel,
-      )
-    }
+    const promoteLevelSchema = createPromoteLevelSchema(maxPromoteLevel)
+    void ValidationHelper.validate(promoteLevelSchema, this.promoteLevel, {
+      propertyKey: 'promoteLevel',
+    })
     const weaponJson = Client._getJsonFromCachedExcelBinOutput(
       'WeaponExcelConfigData',
       this.id,

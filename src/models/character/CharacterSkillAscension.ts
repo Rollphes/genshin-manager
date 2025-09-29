@@ -1,8 +1,9 @@
 import { Client } from '@/client/Client'
-import { OutOfRangeError } from '@/errors/OutOfRangeError'
 import { StatProperty } from '@/models/StatProperty'
+import { skillLevelSchema } from '@/schemas'
 import { FightPropType } from '@/types'
 import { JsonObject } from '@/types/json'
+import { ValidationHelper } from '@/utils/ValidationHelper'
 
 /**
  * Manages character skill leveling data including costs and stat bonuses
@@ -50,8 +51,9 @@ export class CharacterSkillAscension {
   constructor(skillId: number, level = 1) {
     this.id = skillId
     this.level = level
-    if (this.level < 1 || this.level > 15)
-      throw new OutOfRangeError('level', this.level, 1, 15)
+    void ValidationHelper.validate(skillLevelSchema, this.level, {
+      propertyKey: 'level',
+    })
     const skillJson = Client._getJsonFromCachedExcelBinOutput(
       'AvatarSkillExcelConfigData',
       this.id,

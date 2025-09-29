@@ -1,4 +1,4 @@
-import { EnkaManagerError } from '@/errors/EnkaManagerError'
+import { GeneralError } from '@/errors/general/GeneralError'
 import { Artifact } from '@/models/Artifact'
 import { CharacterConstellation } from '@/models/character/CharacterConstellation'
 import { CharacterCostume } from '@/models/character/CharacterCostume'
@@ -144,7 +144,7 @@ export class CharacterDetail {
     const weaponData = data.equipList.find(
       (equip): equip is APIWeaponEquip => 'weapon' in equip,
     )
-    if (!weaponData) throw new EnkaManagerError('Weapon not found.')
+    if (!weaponData) throw new GeneralError('Weapon not found.')
     const affixMap = weaponData.weapon.affixMap
     this.weapon = new WeaponInfo(
       weaponData.itemId,

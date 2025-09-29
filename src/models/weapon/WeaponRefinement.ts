@@ -1,8 +1,9 @@
 import { Client } from '@/client/Client'
-import { OutOfRangeError } from '@/errors/OutOfRangeError'
 import { StatProperty } from '@/models/StatProperty'
+import { fixedRefinementSchema, refinementLevelSchema } from '@/schemas'
 import { FightPropType } from '@/types'
 import { JsonObject } from '@/types/json'
+import { ValidationHelper } from '@/utils/ValidationHelper'
 
 /**
  * Manages weapon refinement levels and passive ability improvements
@@ -41,8 +42,9 @@ export class WeaponRefinement {
   constructor(weaponId: number, refinementRank = 1) {
     this.id = weaponId
     this.refinementRank = refinementRank
-    if (this.refinementRank < 1 || this.refinementRank > 5)
-      throw new OutOfRangeError('refinementRank', this.refinementRank, 1, 5)
+    void ValidationHelper.validate(refinementLevelSchema, this.refinementRank, {
+      propertyKey: 'refinementRank',
+    })
 
     const weaponJson = Client._getJsonFromCachedExcelBinOutput(
       'WeaponExcelConfigData',
@@ -81,8 +83,15 @@ export class WeaponRefinement {
       this.skillName = undefined
       this.skillDescription = undefined
       this.addProps = []
-      if (this.refinementRank > 1)
-        throw new OutOfRangeError('refinementRank', this.refinementRank, 1, 1)
+      if (this.refinementRank > 1) {
+        void ValidationHelper.validate(
+          fixedRefinementSchema,
+          this.refinementRank,
+          {
+            propertyKey: 'refinementRank',
+          },
+        )
+      }
     }
   }
 

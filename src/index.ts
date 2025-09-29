@@ -1,16 +1,6 @@
 import { Client, ClientEvents } from '@/client/Client'
 import { EnkaData, EnkaManager, EnkaManagerEvents } from '@/client/EnkaManager'
 import { NoticeManager, NoticeManagerEvents } from '@/client/NoticeManager'
-import { AnnContentNotFoundError } from '@/errors/AnnContentNotFoundError'
-import { AnnError } from '@/errors/AnnError'
-import { AssetsNotFoundError } from '@/errors/AssetsNotFoundError'
-import { AudioNotFoundError } from '@/errors/AudioNotFoundError'
-import { BodyNotFoundError } from '@/errors/BodyNotFoundError'
-import { EnkaManagerError } from '@/errors/EnkaManagerError'
-import { EnkaNetworkError } from '@/errors/EnkaNetWorkError'
-import { EnkaNetWorkStatusError } from '@/errors/EnkaNetWorkStatusError'
-import { ImageNotFoundError } from '@/errors/ImageNotFoundError'
-import { TextMapFormatError } from '@/errors/TextMapFormatError'
 import { Artifact } from '@/models/Artifact'
 import { AudioAssets } from '@/models/assets/AudioAssets'
 import { ImageAssets } from '@/models/assets/ImageAssets'
@@ -59,14 +49,10 @@ import {
   WeaponType,
 } from '@/types'
 import { convertToUTC } from '@/utils/convertToUTC'
+import { ValidationHelper } from '@/utils/ValidationHelper'
 export {
-  AnnContentNotFoundError,
-  AnnError,
   Artifact,
-  AssetsNotFoundError,
   AudioAssets,
-  AudioNotFoundError,
-  BodyNotFoundError,
   Character,
   CharacterAscension,
   CharacterBaseStats,
@@ -87,12 +73,8 @@ export {
   EnkaAccount,
   EnkaBuild,
   EnkaManager,
-  EnkaManagerError,
-  EnkaNetworkError,
-  EnkaNetWorkStatusError,
   GenshinAccount,
   ImageAssets,
-  ImageNotFoundError,
   Material,
   Monster,
   Notice,
@@ -100,13 +82,12 @@ export {
   PlayerDetail,
   ProfilePicture,
   StatProperty,
-  TextMapFormatError,
   Weapon,
   WeaponAscension,
   WeaponInfo,
   WeaponRefinement,
 }
-export { convertToUTC }
+export { convertToUTC, ValidationHelper }
 export {
   ArtifactType,
   AssocType,
@@ -129,3 +110,9 @@ export {
 }
 export * from '@/types/enkaNetwork'
 export * from '@/types/sg-hk4e-api'
+
+// Export new unified error system
+export * from '@/errors'
+
+// Export validation schemas and utilities
+export * from '@/schemas'

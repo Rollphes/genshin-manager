@@ -1,6 +1,6 @@
 import { Transform } from 'stream'
 
-import { TextMapFormatError } from '@/errors/TextMapFormatError'
+import { TextMapFormatError } from '@/errors/content/ContentError'
 import { TextMapLanguage } from '@/types'
 
 /**
@@ -76,8 +76,13 @@ export class TextMapTransform extends Transform {
    * @param callback callback
    */
   public _final(callback: () => void): void {
-    if (!this.buffer.toString().endsWith('}'))
-      throw new TextMapFormatError(this.language)
+    if (!this.buffer.toString().endsWith('}')) {
+      throw new TextMapFormatError(
+        this.language,
+        'JSON ending with }',
+        this.buffer.toString(),
+      )
+    }
 
     callback()
   }

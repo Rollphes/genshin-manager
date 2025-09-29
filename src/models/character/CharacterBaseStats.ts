@@ -1,10 +1,11 @@
 import { Client } from '@/client/Client'
-import { OutOfRangeError } from '@/errors/OutOfRangeError'
 import { CharacterAscension } from '@/models/character/CharacterAscension'
 import { StatProperty } from '@/models/StatProperty'
+import { characterLevelSchema } from '@/schemas'
 import { FightPropType } from '@/types'
 import { JsonObject } from '@/types/json'
 import { calculatePromoteLevel } from '@/utils/calculatePromoteLevel'
+import { ValidationHelper } from '@/utils/ValidationHelper'
 
 /**
  * Represents a character's base statistical properties and attributes
@@ -38,14 +39,14 @@ export class CharacterBaseStats {
   /**
    * Create a character's base stats
    * @param characterId character ID
-   * @param level character level (1-90). Default: 1
+   * @param level character level (1-100). Default: 1
    * @param isAscended character is ascended (true or false). Default: false
    */
   constructor(characterId: number, level = 1, isAscended = false) {
     this.id = characterId
-    this.level = level
-    if (this.level < 1 || this.level > 100)
-      throw new OutOfRangeError('level', this.level, 1, 100)
+    this.level = ValidationHelper.validate(characterLevelSchema, level, {
+      propertyKey: 'level',
+    })
     this.isAscended = isAscended
     const avatarJson = Client._getJsonFromCachedExcelBinOutput(
       'AvatarExcelConfigData',

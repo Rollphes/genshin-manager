@@ -4,9 +4,11 @@ import fs from 'fs'
 import * as path from 'path'
 import { pipeline } from 'stream/promises'
 
-import { AssetsNotFoundError } from '@/errors/AssetsNotFoundError'
-import { BodyNotFoundError } from '@/errors/BodyNotFoundError'
-import { TextMapFormatError } from '@/errors/TextMapFormatError'
+import {
+  AssetNotFoundError,
+  BodyNotFoundError,
+  TextMapFormatError,
+} from '@/errors'
 import { ClientOption, ExcelBinOutputs, TextMapLanguage } from '@/types'
 import { JsonArray, JsonObject } from '@/types/json'
 import { buildCacheStructure } from '@/utils/buildCacheStructure'
@@ -212,10 +214,10 @@ export abstract class AssetCacheManager<
     id: string | number,
   ): JsonObject {
     const excelBinOutput = this.cachedExcelBinOutput.get(key)
-    if (!excelBinOutput) throw new AssetsNotFoundError(key)
+    if (!excelBinOutput) throw new AssetNotFoundError(key)
 
     const json = excelBinOutput.get(String(id)) as JsonObject | undefined
-    if (!json) throw new AssetsNotFoundError(key, id)
+    if (!json) throw new AssetNotFoundError(key, String(id))
 
     return json
   }
@@ -230,7 +232,7 @@ export abstract class AssetCacheManager<
     key: keyof typeof ExcelBinOutputs,
   ): Record<string, JsonObject> {
     const excelBinOutput = this.cachedExcelBinOutput.get(key)
-    if (!excelBinOutput) throw new AssetsNotFoundError(key)
+    if (!excelBinOutput) throw new AssetNotFoundError(key)
 
     return excelBinOutput.get() as Record<string, JsonObject>
   }
@@ -309,7 +311,7 @@ export abstract class AssetCacheManager<
             await this.reDownloadTextMap(language)
             return true
           } else {
-            throw new AssetsNotFoundError(language)
+            throw new AssetNotFoundError(language)
           }
         }
 
@@ -414,7 +416,7 @@ export abstract class AssetCacheManager<
           await this.reDownloadAllExcelBinOutput()
           return true
         } else {
-          throw new AssetsNotFoundError(key)
+          throw new AssetNotFoundError(key)
         }
       }
       const stream = fs.createReadStream(selectedExcelBinOutputPath, {

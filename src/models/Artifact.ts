@@ -1,9 +1,10 @@
 import { Client } from '@/client/Client'
-import { OutOfRangeError } from '@/errors/OutOfRangeError'
 import { ImageAssets } from '@/models/assets/ImageAssets'
 import { StatProperty } from '@/models/StatProperty'
+import { createArtifactLevelSchema } from '@/schemas'
 import { ArtifactType, FightPropType } from '@/types'
 import { JsonObject } from '@/types/json'
+import { ValidationHelper } from '@/utils/ValidationHelper'
 interface ArtifactAffixAppendProp {
   id: number
   type: FightPropType
@@ -132,8 +133,10 @@ export class Artifact {
     this.rarity = artifactJson.rankLevel as number
     this.setId = artifactJson.setId as number | undefined
     const maxLevel = Artifact.maxLevelMap[this.rarity]
-    if (this.level < 0 || this.level > maxLevel)
-      throw new OutOfRangeError('level', this.level, 0, maxLevel)
+    const artifactLevelSchema = createArtifactLevelSchema(maxLevel)
+    this.level = ValidationHelper.validate(artifactLevelSchema, this.level, {
+      propertyKey: 'level',
+    })
     if (this.setId) {
       const setJson = Client._getJsonFromCachedExcelBinOutput(
         'ReliquarySetExcelConfigData',

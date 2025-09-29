@@ -3,7 +3,7 @@ import * as fsPromises from 'fs/promises'
 import path from 'path'
 import { pipeline } from 'stream/promises'
 
-import { ImageNotFoundError } from '@/errors/ImageNotFoundError'
+import { ImageNotFoundError } from '@/errors'
 import { ClientOption } from '@/types'
 import { ReadableStreamWrapper } from '@/utils/ReadableStreamWrapper'
 import { initImageFolderPath } from '@/utils/utilPath'
@@ -136,7 +136,7 @@ export class ImageAssets {
    * @returns image buffer
    */
   public async fetchBuffer(): Promise<Buffer> {
-    if (!this.url) throw new ImageNotFoundError(this.name, this.url)
+    if (!this.url) throw new ImageNotFoundError(this.name, { url: this.url })
 
     const imageCachePath = path.resolve(
       ImageAssets.imageFolderPath,
@@ -147,7 +147,7 @@ export class ImageAssets {
     } else {
       const res = await fetch(this.url, ImageAssets.fetchOption)
       if (!res.ok || !res.body)
-        throw new ImageNotFoundError(this.name, this.url)
+        throw new ImageNotFoundError(this.name, { url: this.url })
 
       const arrayBuffer = await res.arrayBuffer()
       const data = Buffer.from(arrayBuffer)
@@ -164,7 +164,7 @@ export class ImageAssets {
    * @returns image stream
    */
   public async fetchStream(highWaterMark?: number): Promise<fs.ReadStream> {
-    if (!this.url) throw new ImageNotFoundError(this.name, this.url)
+    if (!this.url) throw new ImageNotFoundError(this.name, { url: this.url })
 
     const imageCachePath = path.resolve(
       ImageAssets.imageFolderPath,
@@ -177,7 +177,7 @@ export class ImageAssets {
     } else {
       const res = await fetch(this.url, ImageAssets.fetchOption)
       if (!res.ok || !res.body)
-        throw new ImageNotFoundError(this.name, this.url)
+        throw new ImageNotFoundError(this.name, { url: this.url })
 
       if (ImageAssets.autoCacheImage) {
         const fsWriteStream = fs.createWriteStream(imageCachePath, {

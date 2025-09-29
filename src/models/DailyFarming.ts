@@ -1,11 +1,12 @@
 import { Client } from '@/client/Client'
-import { OutOfRangeError } from '@/errors/OutOfRangeError'
 import { CharacterInfo } from '@/models/character/CharacterInfo'
 import { CharacterSkill } from '@/models/character/CharacterSkill'
 import { CharacterSkillAscension } from '@/models/character/CharacterSkillAscension'
 import { WeaponAscension } from '@/models/weapon/WeaponAscension'
 import { WeaponInfo } from '@/models/weapon/WeaponInfo'
+import { dayOfWeekSchema } from '@/schemas'
 import { JsonArray } from '@/types/json'
+import { ValidationHelper } from '@/utils/ValidationHelper'
 
 /**
  * Domain data
@@ -75,9 +76,9 @@ export class DailyFarming {
    * @param dayOfWeek day-of-week (0-6)
    */
   constructor(dayOfWeek: number) {
-    if (dayOfWeek < 0 || dayOfWeek > 6)
-      throw new OutOfRangeError('dayOfWeek', dayOfWeek, 0, 6)
-    this.dayOfWeek = dayOfWeek
+    this.dayOfWeek = ValidationHelper.validate(dayOfWeekSchema, dayOfWeek, {
+      propertyKey: 'dayOfWeek',
+    })
     const rewardDateIndex = dayOfWeek === 0 ? 3 : (dayOfWeek - 1) % 3
     const dungeons = Object.values(
       Client._getCachedExcelBinOutputByName('DungeonEntryExcelConfigData'),

@@ -1,8 +1,10 @@
 import { merge } from 'ts-deepmerge'
 
-import { EnkaManagerError } from '@/errors/EnkaManagerError'
-import { EnkaNetworkError } from '@/errors/EnkaNetWorkError'
-import { EnkaNetWorkStatusError } from '@/errors/EnkaNetWorkStatusError'
+import {
+  EnkaNetworkError,
+  EnkaNetworkStatusError,
+  GeneralError,
+} from '@/errors'
 import { CharacterDetail } from '@/models/enka/CharacterDetail'
 import { EnkaAccount } from '@/models/enka/EnkaAccount'
 import { GenshinAccount } from '@/models/enka/GenshinAccount'
@@ -175,7 +177,15 @@ export class EnkaManager extends PromiseEventEmitter<
       fetchOption ?? {},
     )
     const ownerRes = await fetch(getOwnerURL, mergedFetchOption)
-    if (!ownerRes.ok) throw new EnkaNetworkError(ownerRes)
+    if (!ownerRes.ok) {
+      throw new EnkaNetworkError(
+        'Enka owner API failed',
+        ownerRes.url,
+        ownerRes.status,
+        undefined,
+        'GET',
+      )
+    }
     const owner = (await ownerRes.json()) as APIOwner
     return new EnkaAccount(owner, EnkaManager.ENKA_BASE_URL)
   }
@@ -204,7 +214,15 @@ export class EnkaManager extends PromiseEventEmitter<
       fetchOption ?? {},
     )
     const gameAccountsRes = await fetch(getGameAccountsURL, mergedFetchOption)
-    if (!gameAccountsRes.ok) throw new EnkaNetworkError(gameAccountsRes)
+    if (!gameAccountsRes.ok) {
+      throw new EnkaNetworkError(
+        'Enka game accounts API failed',
+        gameAccountsRes.url,
+        gameAccountsRes.status,
+        undefined,
+        'GET',
+      )
+    }
     const gameAccounts = (await gameAccountsRes.json()) as Record<
       string,
       APIGameAccount
@@ -216,7 +234,15 @@ export class EnkaManager extends PromiseEventEmitter<
         .map(async (account) => {
           const getBuildsURL = `${EnkaManager.ENKA_BASE_URL}/api/profile/${username}/hoyos/${account.hash}/builds`
           const buildsRes = await fetch(getBuildsURL, mergedFetchOption)
-          if (!buildsRes.ok) throw new EnkaNetworkError(buildsRes)
+          if (!buildsRes.ok) {
+            throw new EnkaNetworkError(
+              'Enka builds API failed',
+              buildsRes.url,
+              buildsRes.status,
+              undefined,
+              'GET',
+            )
+          }
           const builds = (await buildsRes.json()) as Record<string, APIBuild[]>
           return new GenshinAccount(
             account,
@@ -243,7 +269,14 @@ export class EnkaManager extends PromiseEventEmitter<
       fetchOption ?? {},
     )
     const statusRes = await fetch(getStatusURL, mergedFetchOption)
-    if (!statusRes.ok) throw new EnkaNetWorkStatusError(statusRes)
+    if (!statusRes.ok) {
+      throw new EnkaNetworkStatusError(
+        'Enka Network status error',
+        'unavailable',
+        statusRes.url,
+        statusRes.status,
+      )
+    }
 
     return (await statusRes.json()) as Record<string, APIEnkaStatus>
   }
@@ -263,7 +296,14 @@ export class EnkaManager extends PromiseEventEmitter<
       fetchOption ?? {},
     )
     const statusRes = await fetch(getStatusURL, mergedFetchOption)
-    if (!statusRes.ok) throw new EnkaNetWorkStatusError(statusRes)
+    if (!statusRes.ok) {
+      throw new EnkaNetworkStatusError(
+        'Enka Network status error',
+        'unavailable',
+        statusRes.url,
+        statusRes.status,
+      )
+    }
 
     return (await statusRes.json()) as APIEnkaStatus
   }
@@ -281,11 +321,9 @@ export class EnkaManager extends PromiseEventEmitter<
     fetchOption?: RequestInit,
   ): Promise<EnkaData> {
     this.clearCacheOverNextShowCaseDate()
-    if (!/1?\d{9}/.test(String(uid))) {
-      throw new EnkaManagerError(
-        `The UID format is not correct(${String(uid)})`,
-      )
-    }
+    if (!/1?\d{9}/.test(String(uid)))
+      throw new GeneralError(`The UID format is not correct(${String(uid)})`)
+
     const cachedData = this.cache.get(uid)
     if (
       cachedData?.characterDetails &&
@@ -299,7 +337,15 @@ export class EnkaManager extends PromiseEventEmitter<
       fetchOption ?? {},
     )
     const res = await fetch(url, mergedFetchOption)
-    if (!res.ok) throw new EnkaNetworkError(res)
+    if (!res.ok) {
+      throw new EnkaNetworkError(
+        'Enka API failed',
+        res.url,
+        res.status,
+        undefined,
+        'GET',
+      )
+    }
 
     const result = (await res.json()) as APIEnkaData
     const enkaData: EnkaData = {

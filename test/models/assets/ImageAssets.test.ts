@@ -16,7 +16,6 @@ import {
   vi,
 } from 'vitest'
 
-import { ImageNotFoundError } from '@/errors/ImageNotFoundError'
 import { ImageAssets } from '@/models/assets/ImageAssets'
 import { ClientOption } from '@/types'
 import { LogLevel } from '@/utils/Logger'
@@ -155,7 +154,7 @@ describe('ImageAssets', () => {
     it('should throw ImageNotFoundError for empty URL', async () => {
       const image = new ImageAssets('')
 
-      await expect(image.fetchBuffer()).rejects.toThrow(ImageNotFoundError)
+      await expect(image.fetchBuffer()).rejects.toThrow('ImageNotFoundError')
     })
 
     it('should throw ImageNotFoundError for 404 response', async () => {
@@ -166,7 +165,7 @@ describe('ImageAssets', () => {
 
       const image = new ImageAssets('testNotFound')
 
-      await expect(image.fetchBuffer()).rejects.toThrow(ImageNotFoundError)
+      await expect(image.fetchBuffer()).rejects.toThrow('ImageNotFoundError')
     })
 
     it('should throw ImageNotFoundError for response without body', async () => {
@@ -176,7 +175,7 @@ describe('ImageAssets', () => {
 
       const image = new ImageAssets('testNoBody')
 
-      await expect(image.fetchBuffer()).rejects.toThrow(ImageNotFoundError)
+      await expect(image.fetchBuffer()).rejects.toThrow('ImageNotFoundError')
     })
 
     it('should cache image when autoCacheImage is enabled', async () => {
@@ -222,7 +221,7 @@ describe('ImageAssets', () => {
     it('should throw ImageNotFoundError for empty URL', async () => {
       const image = new ImageAssets('')
 
-      await expect(image.fetchStream()).rejects.toThrow(ImageNotFoundError)
+      await expect(image.fetchStream()).rejects.toThrow('ImageNotFoundError')
     })
 
     it('should use cached file for stream if available', async () => {
@@ -328,7 +327,7 @@ describe('ImageAssets', () => {
 
       const image = new ImageAssets('testNetworkError')
 
-      await expect(image.fetchBuffer()).rejects.toThrow(ImageNotFoundError)
+      await expect(image.fetchBuffer()).rejects.toThrow('ImageNotFoundError')
     })
 
     it('should handle fetch failures', async () => {

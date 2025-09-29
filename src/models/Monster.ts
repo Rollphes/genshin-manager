@@ -1,9 +1,10 @@
 import { Client } from '@/client/Client'
-import { OutOfRangeError } from '@/errors/OutOfRangeError'
 import { ImageAssets } from '@/models/assets/ImageAssets'
 import { StatProperty } from '@/models/StatProperty'
+import { monsterLevelSchema, playerCountSchema } from '@/schemas'
 import { CodexType, FightProps } from '@/types'
 import { JsonObject } from '@/types/json'
+import { ValidationHelper } from '@/utils/ValidationHelper'
 
 const statusBonusMonsterAtMultiPlay = {
   FIGHT_PROP_BASE_HP: [1.0, 1.5, 2.0, 2.5],
@@ -23,6 +24,10 @@ export class Monster {
    * Monster level
    */
   public readonly level: number
+  /**
+   * Player count for co-op scaling
+   */
+  public readonly playerCount: number
   /**
    * Monster Internal name
    */
@@ -70,14 +75,25 @@ export class Monster {
    * const coopMonster = new Monster(21010101, 80, 4)
    * ```
    */
-  // eslint-disable-next-line complexity
+
+  /**
+   * Creates a new Monster instance
+   * @param monsterId - Monster ID
+   * @param level - Monster level
+   * @param playerCount - Number of players for co-op scaling
+   */
   constructor(monsterId: number, level = 1, playerCount = 1) {
     this.id = monsterId
-    this.level = level
-    if (this.level < 1 || this.level > 100)
-      throw new OutOfRangeError('level', this.level, 1, 200)
-    if (playerCount < 1 || playerCount > 4)
-      throw new OutOfRangeError('playerCount', playerCount, 1, 4)
+    this.level = ValidationHelper.validate(monsterLevelSchema, level, {
+      propertyKey: 'level',
+    })
+    this.playerCount = ValidationHelper.validate(
+      playerCountSchema,
+      playerCount,
+      {
+        propertyKey: 'playerCount',
+      },
+    )
 
     const monsterJson = Client._getJsonFromCachedExcelBinOutput(
       'MonsterExcelConfigData',

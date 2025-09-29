@@ -18,13 +18,10 @@ import {
 
 import { Client } from '@/client/Client'
 import { NoticeManager, NoticeManagerEvents } from '@/client/NoticeManager'
-import { AnnContentNotFoundError } from '@/errors/AnnContentNotFoundError'
-import { AnnError } from '@/errors/AnnError'
 
 // Increase max listeners to prevent memory leak warnings during tests
 EventEmitter.defaultMaxListeners = 50
 
-import { OutOfRangeError } from '@/errors/OutOfRangeError'
 import { NoticeLanguage } from '@/types/sg-hk4e-api'
 const supportedLanguages: (keyof typeof NoticeLanguage)[] = [
   'en',
@@ -433,7 +430,7 @@ describe('NoticeManager Basic Functionality', () => {
   })
 
   describe('Error handling Tests', () => {
-    it('should throw AnnError when AnnContent API request fails', async () => {
+    it('should throw NetworkError when AnnContent API request fails', async () => {
       // Mock failed API response for AnnContent
       const mockErrorResponse = new MockResponse(
         { error: 'API Error' },
@@ -442,8 +439,8 @@ describe('NoticeManager Basic Functionality', () => {
 
       mockFetch.mockResolvedValueOnce(mockErrorResponse as unknown as Response)
 
-      // Verify that AnnError is thrown
-      await expect(noticeManager.update()).rejects.toThrow(AnnError)
+      // Verify that NetworkError is thrown
+      await expect(noticeManager.update()).rejects.toThrow('NetworkError')
 
       // Reset mock for second test
       mockFetch.mockResolvedValueOnce(mockErrorResponse as unknown as Response)
@@ -452,7 +449,7 @@ describe('NoticeManager Basic Functionality', () => {
       )
     })
 
-    it('should throw AnnError when AnnList API request fails', async () => {
+    it('should throw NetworkError when AnnList API request fails', async () => {
       const mockAnnContentResponse = createAnnContentResponse([1001])
       const mockEnAnnContentResponse = createAnnContentResponse([1001], 'en-us')
       const mockErrorResponse = new MockResponse(
@@ -469,8 +466,8 @@ describe('NoticeManager Basic Functionality', () => {
         )
         .mockResolvedValueOnce(mockErrorResponse as unknown as Response)
 
-      // Verify that AnnError is thrown
-      await expect(noticeManager.update()).rejects.toThrow(AnnError)
+      // Verify that NetworkError is thrown
+      await expect(noticeManager.update()).rejects.toThrow('NetworkError')
 
       // Reset mock for second test
       mockFetch
@@ -484,7 +481,7 @@ describe('NoticeManager Basic Functionality', () => {
       await expect(noticeManager.update()).rejects.toThrow('Not Found')
     })
 
-    it('should throw AnnError when English AnnContent API request fails', async () => {
+    it('should throw NetworkError when English AnnContent API request fails', async () => {
       const mockAnnContentResponse = createAnnContentResponse([1001])
       const mockErrorResponse = new MockResponse(
         { error: 'API Error' },
@@ -497,8 +494,8 @@ describe('NoticeManager Basic Functionality', () => {
         )
         .mockResolvedValueOnce(mockErrorResponse as unknown as Response)
 
-      // Verify that AnnError is thrown
-      await expect(noticeManager.update()).rejects.toThrow(AnnError)
+      // Verify that NetworkError is thrown
+      await expect(noticeManager.update()).rejects.toThrow('NetworkError')
 
       // Reset mock for second test
       mockFetch
@@ -530,7 +527,7 @@ describe('NoticeManager Basic Functionality', () => {
 
       // Verify that AnnContentNotFoundError is thrown for missing content (ID 1002)
       await expect(noticeManager.update()).rejects.toThrow(
-        AnnContentNotFoundError,
+        'AnnContentNotFoundError',
       )
 
       // Reset mock for second test
@@ -733,20 +730,24 @@ describe('NoticeManager Basic Functionality', () => {
 
       // Test invalid interval (below minimum but positive)
       expect(() => new NoticeManager('en', minInterval - 1)).toThrow(
-        OutOfRangeError,
+        'RangeValidationError',
       )
 
       // Test invalid interval (small positive value)
-      expect(() => new NoticeManager('en', 1)).toThrow(OutOfRangeError)
+      expect(() => new NoticeManager('en', 1)).toThrow('RangeValidationError')
 
       // Test invalid interval (negative)
-      expect(() => new NoticeManager('en', -1000)).toThrow(OutOfRangeError)
+      expect(() => new NoticeManager('en', -1000)).toThrow(
+        'RangeValidationError',
+      )
 
       // Test maximum boundary (should not throw)
       expect(() => new NoticeManager('en', 2147483647)).not.toThrow()
 
       // Test over maximum boundary (should throw)
-      expect(() => new NoticeManager('en', 2147483648)).toThrow(OutOfRangeError)
+      expect(() => new NoticeManager('en', 2147483648)).toThrow(
+        'RangeValidationError',
+      )
     })
 
     it('should handle expired cache updates properly', async () => {

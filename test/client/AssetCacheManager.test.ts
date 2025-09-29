@@ -6,7 +6,7 @@ import { beforeAll, beforeEach, describe, expect, it, vi } from 'vitest'
 
 import { AssetCacheManager } from '@/client/AssetCacheManager'
 import { Client } from '@/client/Client'
-import { AssetsNotFoundError } from '@/errors/AssetsNotFoundError'
+import { AssetNotFoundError } from '@/errors'
 import { ExcelBinOutputs } from '@/types'
 
 // Increase max listeners to prevent memory leak warnings during tests
@@ -92,23 +92,23 @@ describe('AssetCacheManager Basic Functionality', () => {
         }).not.toThrow()
       })
 
-      it('should throw AssetsNotFoundError for non-existent ExcelBinOutput key', () => {
+      it('should throw AssetNotFoundError for non-existent ExcelBinOutput key', () => {
         expect(() => {
           // Use a key that exists in the type but is not cached
           AssetCacheManager._getJsonFromCachedExcelBinOutput(
             'AnimalCodexExcelConfigData' as keyof typeof ExcelBinOutputs,
             '123',
           )
-        }).toThrow(AssetsNotFoundError)
+        }).toThrow('AssetNotFoundError')
       })
 
-      it('should throw AssetsNotFoundError for non-existent ID', () => {
+      it('should throw AssetNotFoundError for non-existent ID', () => {
         expect(() => {
           AssetCacheManager._getJsonFromCachedExcelBinOutput(
             'AvatarExcelConfigData',
             '99999999',
           )
-        }).toThrow(AssetsNotFoundError)
+        }).toThrow('AssetNotFoundError')
       })
     })
 
@@ -423,7 +423,7 @@ describe('AssetCacheManager Basic Functionality', () => {
           'AnimalCodexExcelConfigData' as keyof typeof ExcelBinOutputs,
           '123',
         )
-      }).toThrow(AssetsNotFoundError)
+      }).toThrow('AssetNotFoundError')
     })
 
     it('should handle missing ID in ExcelBinOutput gracefully', () => {
@@ -432,10 +432,10 @@ describe('AssetCacheManager Basic Functionality', () => {
           'AvatarExcelConfigData',
           '99999999',
         )
-      }).toThrow(AssetsNotFoundError)
+      }).toThrow('AssetNotFoundError')
     })
 
-    it('should validate AssetsNotFoundError properties', () => {
+    it('should validate AssetNotFoundError properties', () => {
       let caughtError: unknown
 
       expect(() => {
@@ -454,8 +454,9 @@ describe('AssetCacheManager Basic Functionality', () => {
         caughtError = error
       }
 
-      expect(caughtError).toBeInstanceOf(AssetsNotFoundError)
-      const assetError = caughtError as AssetsNotFoundError
+      expect(caughtError).toBeInstanceOf(AssetNotFoundError)
+      const assetError = caughtError
+      expect(assetError).toBeInstanceOf(AssetNotFoundError)
       expect(assetError).toHaveProperty('key')
       expect(assetError).toHaveProperty('id')
       expect(assetError).toHaveProperty('name')

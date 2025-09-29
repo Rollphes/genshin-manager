@@ -1,5 +1,5 @@
 import { Client } from '@/client/Client'
-import { OutOfRangeError } from '@/errors/OutOfRangeError'
+import { travelerIdSchema } from '@/schemas'
 import {
   BodyType,
   Element,
@@ -8,6 +8,7 @@ import {
   WeaponType,
 } from '@/types'
 import { JsonObject } from '@/types/json'
+import { ValidationHelper } from '@/utils/ValidationHelper'
 
 /**
  * Contains basic information about a character
@@ -196,8 +197,11 @@ export class CharacterInfo {
    * @returns skill depot IDs
    */
   public static getTravelerSkillDepotIds(characterId: number): number[] {
-    if (![10000005, 10000007].includes(characterId))
-      throw new OutOfRangeError('characterId', characterId, 10000005, 10000007)
+    if (![10000005, 10000007].includes(characterId)) {
+      void ValidationHelper.validate(travelerIdSchema, characterId, {
+        propertyKey: 'characterId',
+      })
+    }
 
     const avatarData = Client._getJsonFromCachedExcelBinOutput(
       'AvatarExcelConfigData',

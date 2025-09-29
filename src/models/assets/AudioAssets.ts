@@ -3,7 +3,7 @@ import * as fsPromises from 'fs/promises'
 import path from 'path'
 import { pipeline } from 'stream/promises'
 
-import { AudioNotFoundError } from '@/errors/AudioNotFoundError'
+import { AudioNotFoundError } from '@/errors'
 import { CVType } from '@/types'
 import { ClientOption } from '@/types'
 import { ReadableStreamWrapper } from '@/utils/ReadableStreamWrapper'
@@ -111,7 +111,7 @@ export class AudioAssets {
    * @returns audio buffer
    */
   public async fetchBuffer(): Promise<Buffer> {
-    if (!this.url) throw new AudioNotFoundError(this.name, this.url)
+    if (!this.url) throw new AudioNotFoundError(this.name, { url: this.url })
 
     const cvPaths: string[] = []
     if (this.cv !== undefined) cvPaths.push(this.cv)
@@ -126,7 +126,7 @@ export class AudioAssets {
     } else {
       const res = await fetch(this.url, AudioAssets.fetchOption)
       if (!res.ok || !res.body)
-        throw new AudioNotFoundError(this.name, this.url)
+        throw new AudioNotFoundError(this.name, { url: this.url })
 
       const arrayBuffer = await res.arrayBuffer()
       const data = Buffer.from(arrayBuffer)
@@ -145,7 +145,7 @@ export class AudioAssets {
    * @returns audio stream
    */
   public async fetchStream(highWaterMark?: number): Promise<fs.ReadStream> {
-    if (!this.url) throw new AudioNotFoundError(this.name, this.url)
+    if (!this.url) throw new AudioNotFoundError(this.name, { url: this.url })
 
     const cvPaths: string[] = []
     if (this.cv !== undefined) cvPaths.push(this.cv)
@@ -162,7 +162,7 @@ export class AudioAssets {
     } else {
       const res = await fetch(this.url, AudioAssets.fetchOption)
       if (!res.ok || !res.body)
-        throw new AudioNotFoundError(this.name, this.url)
+        throw new AudioNotFoundError(this.name, { url: this.url })
 
       if (AudioAssets.autoCacheAudio) {
         fs.mkdirSync(path.dirname(audioCachePath), { recursive: true })

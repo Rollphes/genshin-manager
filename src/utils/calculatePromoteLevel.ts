@@ -1,5 +1,6 @@
-import { OutOfRangeError } from '@/errors/OutOfRangeError'
+import { characterLevelSchema } from '@/schemas'
 import { JsonObject } from '@/types/json'
+import { ValidationHelper } from '@/utils/ValidationHelper'
 
 /**
  * Calculate promote level
@@ -13,8 +14,9 @@ export function calculatePromoteLevel(
   level: number,
   isAscended: boolean,
 ): number {
-  if (level < 1 || level > 100)
-    throw new OutOfRangeError('level', level, 1, 100)
+  void ValidationHelper.validate(characterLevelSchema, level, {
+    propertyKey: 'level',
+  })
   const maxPromoteLevel = Math.max(
     ...(Object.values(promotesJson) as JsonObject[]).map(
       (promote) => (promote.promoteLevel ?? 0) as number,

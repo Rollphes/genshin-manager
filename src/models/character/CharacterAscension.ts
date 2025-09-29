@@ -1,8 +1,10 @@
+import { z } from 'zod'
+
 import { Client } from '@/client/Client'
-import { OutOfRangeError } from '@/errors/OutOfRangeError'
 import { StatProperty } from '@/models/StatProperty'
 import { FightPropType } from '@/types'
 import { JsonObject } from '@/types/json'
+import { ValidationHelper } from '@/utils/ValidationHelper'
 
 /**
  * Handles character ascension data including promote levels, costs, and stat bonuses
@@ -57,14 +59,15 @@ export class CharacterAscension {
     const maxPromoteLevel = CharacterAscension.getMaxPromoteLevelByCharacterId(
       this.id,
     )
-    if (this.promoteLevel < 0 || this.promoteLevel > maxPromoteLevel) {
-      throw new OutOfRangeError(
-        'promoteLevel',
-        this.promoteLevel,
-        0,
-        maxPromoteLevel,
-      )
-    }
+    const promoteLevelSchema = z
+      .number()
+      .min(0, { message: 'promoteLevel must be at least 0' })
+      .max(maxPromoteLevel, {
+        message: `promoteLevel must be at most ${maxPromoteLevel.toString()}`,
+      })
+    void ValidationHelper.validate(promoteLevelSchema, this.promoteLevel, {
+      propertyKey: 'promoteLevel',
+    })
     const avatarJson = Client._getJsonFromCachedExcelBinOutput(
       'AvatarExcelConfigData',
       this.id,

@@ -1,8 +1,9 @@
 import { Client } from '@/client/Client'
-import { OutOfRangeError } from '@/errors/OutOfRangeError'
 import { ImageAssets } from '@/models/assets/ImageAssets'
 import { CharacterInfo } from '@/models/character/CharacterInfo'
+import { skillLevelSchema } from '@/schemas'
 import { JsonObject } from '@/types/json'
+import { ValidationHelper } from '@/utils/ValidationHelper'
 
 /**
  * Contains character skill information including attacks, burst, and elemental abilities
@@ -61,8 +62,9 @@ export class CharacterSkill {
     this.icon = new ImageAssets(skillJson.skillIcon as string)
     this.extraLevel = extraLevel
     this.level = level + this.extraLevel
-    if (this.level < 1 || this.level > 15)
-      throw new OutOfRangeError('level + extraLevel', this.level, 1, 15)
+    void ValidationHelper.validate(skillLevelSchema, this.level, {
+      propertyKey: 'level + extraLevel',
+    })
 
     if (
       skillJson.proudSkillGroupId === undefined ||

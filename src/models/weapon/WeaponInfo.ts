@@ -1,12 +1,14 @@
 import { Client } from '@/client/Client'
-import { OutOfRangeError } from '@/errors/OutOfRangeError'
 import { ImageAssets } from '@/models/assets/ImageAssets'
 import { StatProperty } from '@/models/StatProperty'
 import { WeaponAscension } from '@/models/weapon/WeaponAscension'
 import { WeaponRefinement } from '@/models/weapon/WeaponRefinement'
+import { refinementLevelSchema } from '@/schemas'
+import { createDynamicWeaponLevelSchema } from '@/schemas'
 import { FightPropType, WeaponType } from '@/types'
 import { JsonObject } from '@/types/json'
 import { calculatePromoteLevel } from '@/utils/calculatePromoteLevel'
+import { ValidationHelper } from '@/utils/ValidationHelper'
 
 /**
  * Contains weapon information including stats, refinement, and enhancement data
@@ -105,13 +107,16 @@ export class WeaponInfo {
       WeaponAscension.getMaxPromoteLevelByWeaponId(weaponId)
     const maxAscension = new WeaponAscension(this.id, maxPromoteLevel)
     this.maxLevel = maxAscension.unlockMaxLevel
-    if (this.level < 1 || this.level > this.maxLevel)
-      throw new OutOfRangeError('level', this.level, 1, this.maxLevel)
+    const weaponLevelSchema = createDynamicWeaponLevelSchema(this.maxLevel)
+    this.level = ValidationHelper.validate(weaponLevelSchema, this.level, {
+      propertyKey: 'level',
+    })
 
     this.isAscended = isAscended
     this.refinementRank = refinementRank
-    if (this.refinementRank < 1 || this.refinementRank > 5)
-      throw new OutOfRangeError('refinementRank', this.refinementRank, 1, 5)
+    void ValidationHelper.validate(refinementLevelSchema, this.refinementRank, {
+      propertyKey: 'refinementRank',
+    })
 
     const weaponJson = Client._getJsonFromCachedExcelBinOutput(
       'WeaponExcelConfigData',
