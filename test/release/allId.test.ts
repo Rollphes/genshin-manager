@@ -24,7 +24,7 @@ describe('AllId Release Test', () => {
       downloadLanguages: ['EN'],
     })
     await client.deploy()
-  })
+  }, 30000) // 30 seconds timeout for deployment
   test('should instantiate all CharacterInfo instances', () => {
     const characterIds = CharacterInfo.allCharacterIds
     expect(characterIds.length).toBeGreaterThan(0)

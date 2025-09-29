@@ -2,11 +2,11 @@ import { z } from 'zod'
 
 import {
   EnumValidationError,
+  type ErrorContext,
   FormatValidationError,
   RequiredFieldError,
   ValidationError,
 } from '@/errors'
-import type { ErrorContext } from '@/errors/base/ErrorContext'
 
 /**
  * Validation helper utilities for type-safe validation with error handling

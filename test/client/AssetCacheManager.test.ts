@@ -59,7 +59,7 @@ describe('AssetCacheManager Basic Functionality', () => {
         updateCache: () => Promise<void>
       }
     ).updateCache()
-  })
+  }, 30000) // 30 seconds timeout for deployment
 
   beforeEach(() => {
     vi.clearAllMocks()
@@ -99,7 +99,7 @@ describe('AssetCacheManager Basic Functionality', () => {
             'AnimalCodexExcelConfigData' as keyof typeof ExcelBinOutputs,
             '123',
           )
-        }).toThrow('AssetNotFoundError')
+        }).toThrow(AssetNotFoundError)
       })
 
       it('should throw AssetNotFoundError for non-existent ID', () => {
@@ -108,7 +108,7 @@ describe('AssetCacheManager Basic Functionality', () => {
             'AvatarExcelConfigData',
             '99999999',
           )
-        }).toThrow('AssetNotFoundError')
+        }).toThrow(AssetNotFoundError)
       })
     })
 
@@ -423,7 +423,7 @@ describe('AssetCacheManager Basic Functionality', () => {
           'AnimalCodexExcelConfigData' as keyof typeof ExcelBinOutputs,
           '123',
         )
-      }).toThrow('AssetNotFoundError')
+      }).toThrow(AssetNotFoundError)
     })
 
     it('should handle missing ID in ExcelBinOutput gracefully', () => {
@@ -432,7 +432,7 @@ describe('AssetCacheManager Basic Functionality', () => {
           'AvatarExcelConfigData',
           '99999999',
         )
-      }).toThrow('AssetNotFoundError')
+      }).toThrow(AssetNotFoundError)
     })
 
     it('should validate AssetNotFoundError properties', () => {
@@ -457,9 +457,9 @@ describe('AssetCacheManager Basic Functionality', () => {
       expect(caughtError).toBeInstanceOf(AssetNotFoundError)
       const assetError = caughtError
       expect(assetError).toBeInstanceOf(AssetNotFoundError)
-      expect(assetError).toHaveProperty('key')
-      expect(assetError).toHaveProperty('id')
-      expect(assetError).toHaveProperty('name')
+      expect(assetError).toHaveProperty('assetPath')
+      expect(assetError).toHaveProperty('assetType')
+      expect(assetError).toHaveProperty('errorCode')
     })
   })
 

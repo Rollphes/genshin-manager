@@ -1,4 +1,4 @@
-import { AssetError } from '@/errors'
+import { AssetError } from '@/errors/assets/AssetError'
 import { GenshinManagerErrorCode } from '@/errors/base/ErrorCodes'
 import type { ErrorContext } from '@/errors/base/ErrorContext'
 import { ErrorContextFactory } from '@/errors/base/ErrorContext'

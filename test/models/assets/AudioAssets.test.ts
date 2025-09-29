@@ -16,6 +16,7 @@ import {
   vi,
 } from 'vitest'
 
+import { AudioNotFoundError } from '@/errors'
 import { AudioAssets } from '@/models/assets/AudioAssets'
 import { ClientOption, CVType } from '@/types'
 import { LogLevel } from '@/utils/Logger'
@@ -162,7 +163,7 @@ describe('AudioAssets', () => {
     it('should throw AudioNotFoundError for empty URL', async () => {
       const audio = new AudioAssets('')
 
-      await expect(audio.fetchBuffer()).rejects.toThrow('AudioNotFoundError')
+      await expect(audio.fetchBuffer()).rejects.toThrow(AudioNotFoundError)
     })
 
     it('should throw AudioNotFoundError for 404 response', async () => {
@@ -173,7 +174,7 @@ describe('AudioAssets', () => {
 
       const audio = new AudioAssets('testAudioNotFound')
 
-      await expect(audio.fetchBuffer()).rejects.toThrow('AudioNotFoundError')
+      await expect(audio.fetchBuffer()).rejects.toThrow(AudioNotFoundError)
     })
 
     it('should throw AudioNotFoundError for response without body', async () => {
@@ -184,7 +185,7 @@ describe('AudioAssets', () => {
 
       const audio = new AudioAssets('testAudioNoBody')
 
-      await expect(audio.fetchBuffer()).rejects.toThrow('AudioNotFoundError')
+      await expect(audio.fetchBuffer()).rejects.toThrow(AudioNotFoundError)
     })
 
     it('should cache audio when autoCacheAudio is enabled', async () => {
@@ -249,7 +250,7 @@ describe('AudioAssets', () => {
     it('should throw AudioNotFoundError for empty URL', async () => {
       const audio = new AudioAssets('')
 
-      await expect(audio.fetchStream()).rejects.toThrow('AudioNotFoundError')
+      await expect(audio.fetchStream()).rejects.toThrow(AudioNotFoundError)
     })
 
     it('should use cached file for stream if available', async () => {
@@ -362,7 +363,7 @@ describe('AudioAssets', () => {
 
       const audio = new AudioAssets('testAudioNetworkError')
 
-      await expect(audio.fetchBuffer()).rejects.toThrow('AudioNotFoundError')
+      await expect(audio.fetchBuffer()).rejects.toThrow(AudioNotFoundError)
     })
 
     it('should handle fetch failures', async () => {

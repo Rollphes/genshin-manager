@@ -1,7 +1,7 @@
-import { ValidationError } from '@/errors'
 import { GenshinManagerErrorCode } from '@/errors/base/ErrorCodes'
 import type { ErrorContext } from '@/errors/base/ErrorContext'
 import { ErrorContextFactory } from '@/errors/base/ErrorContext'
+import { ValidationError } from '@/errors/validation/ValidationError'
 
 /**
  * Format validation error

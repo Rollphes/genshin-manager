@@ -11,7 +11,7 @@ describe('EnkaNetwork Release Test', () => {
       downloadLanguages: ['EN'],
     })
     await client.deploy()
-  })
+  }, 30000) // 30 seconds timeout for deployment
   test(
     'should fetch all user data from EnkaNetwork API',
     { timeout: 30000 },

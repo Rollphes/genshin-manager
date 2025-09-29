@@ -25,7 +25,7 @@ describe('Client Basic Functionality', () => {
       downloadLanguages: ['EN'],
     })
     await client.deploy()
-  })
+  }, 30000) // 30 seconds timeout for deployment
 
   beforeEach(() => {
     vi.clearAllMocks()

@@ -1,4 +1,4 @@
-import { GeneralError } from '@/errors/general/GeneralError'
+import { GeneralError } from '@/errors'
 import { Artifact } from '@/models/Artifact'
 import { CharacterConstellation } from '@/models/character/CharacterConstellation'
 import { CharacterCostume } from '@/models/character/CharacterCostume'

@@ -1,6 +1,6 @@
-import { NetworkError } from '@/errors'
 import { GenshinManagerErrorCode } from '@/errors/base/ErrorCodes'
 import type { ErrorContext } from '@/errors/base/ErrorContext'
+import { NetworkError } from '@/errors/network/NetworkError'
 
 /**
  * Network timeout error
