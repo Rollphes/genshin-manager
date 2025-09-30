@@ -3,7 +3,7 @@ import { StatProperty } from '@/models/StatProperty'
 import { skillLevelSchema } from '@/schemas'
 import { FightPropType } from '@/types'
 import { JsonObject } from '@/types/json'
-import { ValidationHelper } from '@/utils/ValidationHelper'
+import { ValidationHelper } from '@/utils/validation'
 
 /**
  * Manages character skill leveling data including costs and stat bonuses

@@ -4,8 +4,8 @@ import { StatProperty } from '@/models/StatProperty'
 import { characterLevelSchema } from '@/schemas'
 import { FightPropType } from '@/types'
 import { JsonObject } from '@/types/json'
-import { calculatePromoteLevel } from '@/utils/calculatePromoteLevel'
-import { ValidationHelper } from '@/utils/ValidationHelper'
+import { calculatePromoteLevel } from '@/utils/parsers'
+import { ValidationHelper } from '@/utils/validation'
 
 /**
  * Represents a character's base statistical properties and attributes

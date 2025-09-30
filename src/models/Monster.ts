@@ -4,7 +4,7 @@ import { StatProperty } from '@/models/StatProperty'
 import { monsterLevelSchema, playerCountSchema } from '@/schemas'
 import { CodexType, FightProps } from '@/types'
 import { JsonObject } from '@/types/json'
-import { ValidationHelper } from '@/utils/ValidationHelper'
+import { ValidationHelper } from '@/utils/validation'
 
 const statusBonusMonsterAtMultiPlay = {
   FIGHT_PROP_BASE_HP: [1.0, 1.5, 2.0, 2.5],

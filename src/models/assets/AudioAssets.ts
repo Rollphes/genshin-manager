@@ -6,7 +6,7 @@ import { pipeline } from 'stream/promises'
 import { AudioNotFoundError } from '@/errors'
 import { CVType } from '@/types'
 import { ClientOption } from '@/types'
-import { ReadableStreamWrapper } from '@/utils/ReadableStreamWrapper'
+import { ReadableStreamWrapper } from '@/utils/streams'
 
 /**
  * Class for compiling information about audio

@@ -11,16 +11,17 @@ import {
 } from '@/errors'
 import { ClientOption, ExcelBinOutputs, TextMapLanguage } from '@/types'
 import { JsonArray, JsonObject } from '@/types/json'
-import { buildCacheStructure } from '@/utils/buildCacheStructure'
-import { EncryptedKeyDecoder } from '@/utils/EncryptedKeyDecoder'
-import { withFileLock } from '@/utils/fileLockManager'
-import { JsonParser } from '@/utils/JsonParser'
-import { logger, LogLevel } from '@/utils/Logger'
-import { EventMap, PromiseEventEmitter } from '@/utils/PromiseEventEmitter'
-import { ReadableStreamWrapper } from '@/utils/ReadableStreamWrapper'
-import { TextMapEmptyWritable } from '@/utils/TextMapEmptyWritable'
-import { TextMapTransform } from '@/utils/TextMapTransform'
-import { masterFileFolderPath } from '@/utils/utilPath'
+import { buildCacheStructure, withFileLock } from '@/utils/cache'
+import { EncryptedKeyDecoder } from '@/utils/crypto'
+import { EventMap, PromiseEventEmitter } from '@/utils/events'
+import { logger, LogLevel } from '@/utils/logger'
+import { JsonParser } from '@/utils/parsers'
+import { masterFileFolderPath } from '@/utils/paths'
+import {
+  ReadableStreamWrapper,
+  TextMapEmptyWritable,
+  TextMapTransform,
+} from '@/utils/streams'
 interface GitLabAPIResponse {
   id: string
   short_id: string

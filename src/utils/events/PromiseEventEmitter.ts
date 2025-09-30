@@ -4,18 +4,33 @@ import { EventEmitter } from 'events'
  * Type for event map.
  */
 export type EventMap<T> = Record<keyof T, unknown[]> | DefaultEventMap
-type DefaultEventMap = [never]
+/**
+ * Default event map type
+ */
+export type DefaultEventMap = [never]
 
-type Key<K, E, T> = T extends DefaultEventMap
+/**
+ * Key type for event handling
+ */
+export type Key<K, E, T> = T extends DefaultEventMap
   ? string | symbol
   : (K | E) | keyof T
-type AnyRest = [...args: unknown[]]
-type Args<K, T> = T extends DefaultEventMap
+/**
+ * Rest arguments type
+ */
+export type AnyRest = [...args: unknown[]]
+/**
+ * Arguments type for events
+ */
+export type Args<K, T> = T extends DefaultEventMap
   ? AnyRest
   : K extends keyof T
     ? T[K]
     : never
-type Listener<K, T, R> = T extends DefaultEventMap
+/**
+ * Event listener type
+ */
+export type Listener<K, T, R> = T extends DefaultEventMap
   ? (...args: unknown[]) => R
   : K extends keyof T
     ? T[K] extends unknown[]
@@ -26,9 +41,15 @@ type Listener<K, T, R> = T extends DefaultEventMap
  * Type for event listener.
  */
 export type Listener1<K, T> = Listener<K, T, Awaitable<void>>
-type Listener2<K, T> = Listener<K, T, void>
+/**
+ * Synchronous event listener type
+ */
+export type Listener2<K, T> = Listener<K, T, void>
 
-type Awaitable<Value> = PromiseLike<Value> | Value
+/**
+ * Type for values that can be awaited
+ */
+export type Awaitable<Value> = PromiseLike<Value> | Value
 
 /**
  * Class for supporting asynchronous event listeners.

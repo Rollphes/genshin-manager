@@ -19,7 +19,7 @@ import {
 import { ImageNotFoundError } from '@/errors'
 import { ImageAssets } from '@/models/assets/ImageAssets'
 import { ClientOption } from '@/types'
-import { LogLevel } from '@/utils/Logger'
+import { LogLevel } from '@/utils/logger'
 
 /**
  * ImageAssets test suite

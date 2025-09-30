@@ -3,7 +3,7 @@ import { StatProperty } from '@/models/StatProperty'
 import { fixedRefinementSchema, refinementLevelSchema } from '@/schemas'
 import { FightPropType } from '@/types'
 import { JsonObject } from '@/types/json'
-import { ValidationHelper } from '@/utils/ValidationHelper'
+import { ValidationHelper } from '@/utils/validation'
 
 /**
  * Manages weapon refinement levels and passive ability improvements

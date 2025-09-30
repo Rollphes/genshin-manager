@@ -3,7 +3,7 @@ import { StatProperty } from '@/models/StatProperty'
 import { createPromoteLevelSchema } from '@/schemas'
 import { FightPropType } from '@/types'
 import { JsonObject } from '@/types/json'
-import { ValidationHelper } from '@/utils/ValidationHelper'
+import { ValidationHelper } from '@/utils/validation'
 
 /**
  * Handles weapon enhancement data including promote levels, costs, and stat boosts

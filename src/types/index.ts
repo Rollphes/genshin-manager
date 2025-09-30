@@ -1,5 +1,5 @@
 import { JsonObject } from '@/types/json'
-import { LogLevel } from '@/utils/Logger'
+import { LogLevel } from '@/utils/logger'
 
 /**
  * Type of value of object

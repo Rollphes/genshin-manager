@@ -11,7 +11,7 @@ import { Material } from '@/models/Material.js'
 import { Monster } from '@/models/Monster.js'
 import { WeaponInfo } from '@/models/weapon/WeaponInfo.js'
 import path from 'path'
-import { handbookFolderPath } from '@/utils/utilPath'
+import { handbookFolderPath } from '@/utils/paths'
 
 async function main(): Promise<void> {
   const client = new Client({

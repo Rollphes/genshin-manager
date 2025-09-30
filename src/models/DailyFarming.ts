@@ -6,7 +6,7 @@ import { WeaponAscension } from '@/models/weapon/WeaponAscension'
 import { WeaponInfo } from '@/models/weapon/WeaponInfo'
 import { dayOfWeekSchema } from '@/schemas'
 import { JsonArray } from '@/types/json'
-import { ValidationHelper } from '@/utils/ValidationHelper'
+import { ValidationHelper } from '@/utils/validation'
 
 /**
  * Domain data

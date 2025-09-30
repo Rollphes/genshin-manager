@@ -5,7 +5,7 @@ import { WeaponAscension } from '@/models/weapon/WeaponAscension'
 import { WeaponInfo } from '@/models/weapon/WeaponInfo'
 import { WeaponRefinement } from '@/models/weapon/WeaponRefinement'
 import { WeaponType } from '@/types'
-import { calculatePromoteLevel } from '@/utils/calculatePromoteLevel'
+import { calculatePromoteLevel } from '@/utils/parsers'
 
 /**
  * Unified weapon class providing comprehensive access to all weapon data

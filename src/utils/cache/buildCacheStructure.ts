@@ -1,6 +1,6 @@
 import { ExcelBinOutputs } from '@/types'
 import { JsonArray, JsonObject, JsonValue } from '@/types/json'
-import { JsonParser } from '@/utils/JsonParser'
+import { JsonParser } from '@/utils/parsers'
 
 /**
  * Build cache structure from decoded data
@@ -32,14 +32,16 @@ export function buildCacheStructure(
         })
         break
       case 'WeaponCurveExcelConfigData':
-        ;(json.curveInfos as JsonArray).forEach((obj) => {
-          const curve = obj as JsonObject
-          const level = json.level as number
-          const value = curve.value
-          const type = curve.type as string
-          cacheObject[type] ??= {}
-          ;(cacheObject[type] as Record<string, JsonValue>)[level] = value
-        })
+        if (json.curveInfos && Array.isArray(json.curveInfos)) {
+          json.curveInfos.forEach((obj) => {
+            const curve = obj as JsonObject
+            const level = json.level as number
+            const value = curve.value
+            const type = curve.type as string
+            cacheObject[type] ??= {}
+            ;(cacheObject[type] as Record<string, JsonValue>)[level] = value
+          })
+        }
         break
       case 'WeaponPromoteExcelConfigData':
         if (!cacheObject[json.weaponPromoteId as string])
@@ -52,19 +54,21 @@ export function buildCacheStructure(
         )[(json.promoteLevel ?? 0) as string] = json
         break
       case 'ReliquaryLevelExcelConfigData':
-        ;(json.addProps as JsonArray).forEach((obj) => {
-          const prop = obj as JsonObject
-          if (!json.rank) return
-          const rank = json.rank as number
-          const level = (json.level as number) - 1
-          const value = prop.value
-          const type = prop.propType as string
-          cacheObject[type] ??= {}
-          let cache = cacheObject[type] as Record<string, JsonValue>
-          cache[rank] ??= {}
-          cache = cache[rank] as Record<string, JsonValue>
-          cache[level] = value
-        })
+        if (json.addProps && Array.isArray(json.addProps)) {
+          json.addProps.forEach((obj) => {
+            const prop = obj as JsonObject
+            if (!json.rank) return
+            const rank = json.rank as number
+            const level = (json.level as number) - 1
+            const value = prop.value
+            const type = prop.propType as string
+            cacheObject[type] ??= {}
+            let cache = cacheObject[type] as Record<string, JsonValue>
+            cache[rank] ??= {}
+            cache = cache[rank] as Record<string, JsonValue>
+            cache[level] = value
+          })
+        }
         break
       case 'ReliquarySetExcelConfigData':
         cacheObject[json.setId as string] = json
@@ -81,14 +85,16 @@ export function buildCacheStructure(
         cacheObject[json.talentId as string] = json
         break
       case 'AvatarCurveExcelConfigData':
-        ;(json.curveInfos as JsonArray).forEach((obj) => {
-          const curve = obj as JsonObject
-          const level = json.level as number
-          const value = curve.value ?? 0
-          const type = curve.type as string
-          cacheObject[type] ??= {}
-          ;(cacheObject[type] as Record<string, JsonValue>)[level] = value
-        })
+        if (json.curveInfos && Array.isArray(json.curveInfos)) {
+          json.curveInfos.forEach((obj) => {
+            const curve = obj as JsonObject
+            const level = json.level as number
+            const value = curve.value ?? 0
+            const type = curve.type as string
+            cacheObject[type] ??= {}
+            ;(cacheObject[type] as Record<string, JsonValue>)[level] = value
+          })
+        }
         break
       case 'AvatarPromoteExcelConfigData':
         if (!cacheObject[json.avatarPromoteId as string])
@@ -139,14 +145,16 @@ export function buildCacheStructure(
         cacheObject[json.describeId as string] = json
         break
       case 'MonsterCurveExcelConfigData':
-        ;(json.curveInfos as JsonArray).forEach((obj) => {
-          const curve = obj as JsonObject
-          const level = json.level as number
-          const value = curve.value ?? 0
-          const type = curve.type as string
-          cacheObject[type] ??= {}
-          ;(cacheObject[type] as Record<string, JsonValue>)[level] = value
-        })
+        if (json.curveInfos && Array.isArray(json.curveInfos)) {
+          json.curveInfos.forEach((obj) => {
+            const curve = obj as JsonObject
+            const level = json.level as number
+            const value = curve.value ?? 0
+            const type = curve.type as string
+            cacheObject[type] ??= {}
+            ;(cacheObject[type] as Record<string, JsonValue>)[level] = value
+          })
+        }
         break
       case 'FetterStoryExcelConfigData':
         cacheObject[json.fetterId as string] = json

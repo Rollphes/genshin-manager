@@ -1,6 +1,6 @@
 import { characterLevelSchema } from '@/schemas'
 import { JsonObject } from '@/types/json'
-import { ValidationHelper } from '@/utils/ValidationHelper'
+import { ValidationHelper } from '@/utils/validation'
 
 /**
  * Calculate promote level

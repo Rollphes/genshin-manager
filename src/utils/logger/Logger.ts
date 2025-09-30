@@ -106,7 +106,7 @@ export const logger = {
  * @param message - Log message
  * @param data - Additional data to log
  */
-function log(levelName: string, message: string, data?: unknown): void {
+export function log(levelName: string, message: string, data?: unknown): void {
   const timestamp = new Date().toISOString()
   const formattedMessage = `[${timestamp}] [${levelName}] ${message}`
 

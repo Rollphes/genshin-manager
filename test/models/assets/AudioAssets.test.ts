@@ -19,7 +19,7 @@ import {
 import { AudioNotFoundError } from '@/errors'
 import { AudioAssets } from '@/models/assets/AudioAssets'
 import { ClientOption, CVType } from '@/types'
-import { LogLevel } from '@/utils/Logger'
+import { LogLevel } from '@/utils/logger'
 
 /**
  * AudioAssets test suite

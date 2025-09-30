@@ -12,7 +12,7 @@ import { CharacterStory } from '@/models/character/CharacterStory'
 import { CharacterVoice } from '@/models/character/CharacterVoice'
 import { StatProperty } from '@/models/StatProperty'
 import { BodyType, CharacterUpgradePlan, Element, WeaponType } from '@/types'
-import { calculatePromoteLevel } from '@/utils/calculatePromoteLevel'
+import { calculatePromoteLevel } from '@/utils/parsers'
 
 /**
  * Unified character class providing comprehensive access to all character data

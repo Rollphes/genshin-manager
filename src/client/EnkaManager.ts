@@ -16,7 +16,7 @@ import {
   APIOwner,
 } from '@/types/enkaNetwork'
 import { APIEnkaData } from '@/types/enkaNetwork/EnkaTypes'
-import { PromiseEventEmitter } from '@/utils/PromiseEventEmitter'
+import { PromiseEventEmitter } from '@/utils/events'
 
 /**
  * Cached EnkaData type

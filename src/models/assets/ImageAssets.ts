@@ -5,8 +5,8 @@ import { pipeline } from 'stream/promises'
 
 import { ImageNotFoundError } from '@/errors'
 import { ClientOption } from '@/types'
-import { ReadableStreamWrapper } from '@/utils/ReadableStreamWrapper'
-import { initImageFolderPath } from '@/utils/utilPath'
+import { initImageFolderPath } from '@/utils/paths'
+import { ReadableStreamWrapper } from '@/utils/streams'
 
 /**
  * Class for compiling information about image

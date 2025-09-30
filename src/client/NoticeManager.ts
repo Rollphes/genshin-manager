@@ -5,8 +5,8 @@ import { Notice } from '@/models/Notice'
 import { createUpdateIntervalSchema } from '@/schemas'
 import { NoticeLanguage, URLParams as URLParams } from '@/types/sg-hk4e-api'
 import { APIGetAnnContent, APIGetAnnList } from '@/types/sg-hk4e-api/response'
-import { PromiseEventEmitter } from '@/utils/PromiseEventEmitter'
-import { ValidationHelper } from '@/utils/ValidationHelper'
+import { PromiseEventEmitter } from '@/utils/events'
+import { ValidationHelper } from '@/utils/validation'
 
 /**
  * NoticeManager events

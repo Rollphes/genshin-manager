@@ -7,8 +7,8 @@ import { refinementLevelSchema } from '@/schemas'
 import { createDynamicWeaponLevelSchema } from '@/schemas'
 import { FightPropType, WeaponType } from '@/types'
 import { JsonObject } from '@/types/json'
-import { calculatePromoteLevel } from '@/utils/calculatePromoteLevel'
-import { ValidationHelper } from '@/utils/ValidationHelper'
+import { calculatePromoteLevel } from '@/utils/parsers'
+import { ValidationHelper } from '@/utils/validation'
 
 /**
  * Contains weapon information including stats, refinement, and enhancement data

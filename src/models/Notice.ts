@@ -5,7 +5,7 @@ import { ImageAssets } from '@/models/assets/ImageAssets'
 import { ValueOf } from '@/types'
 import { NoticeLanguage, Region } from '@/types/sg-hk4e-api'
 import { ContentList, DataList } from '@/types/sg-hk4e-api/response'
-import { convertToUTC } from '@/utils/convertToUTC'
+import { convertToUTC } from '@/utils/parsers'
 
 type CheerioAPI = ReturnType<typeof cheerio.load>
 

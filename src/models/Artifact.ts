@@ -4,7 +4,7 @@ import { StatProperty } from '@/models/StatProperty'
 import { createArtifactLevelSchema } from '@/schemas'
 import { ArtifactType, FightPropType } from '@/types'
 import { JsonObject } from '@/types/json'
-import { ValidationHelper } from '@/utils/ValidationHelper'
+import { ValidationHelper } from '@/utils/validation'
 interface ArtifactAffixAppendProp {
   id: number
   type: FightPropType

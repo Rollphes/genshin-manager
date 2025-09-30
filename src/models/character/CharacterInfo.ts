@@ -8,7 +8,7 @@ import {
   WeaponType,
 } from '@/types'
 import { JsonObject } from '@/types/json'
-import { ValidationHelper } from '@/utils/ValidationHelper'
+import { ValidationHelper } from '@/utils/validation'
 
 /**
  * Contains basic information about a character

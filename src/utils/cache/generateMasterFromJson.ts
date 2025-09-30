@@ -3,26 +3,47 @@ import path from 'path'
 
 import type { EncryptedKeyMasterFile } from '@/types'
 import type { JsonObject, JsonValue } from '@/types/json'
-import { logger, LogLevel } from '@/utils/Logger'
-import { masterFileFolderPath } from '@/utils/utilPath'
+import { logger, LogLevel } from '@/utils/logger'
+import { masterFileFolderPath } from '@/utils/paths'
 
 /**
  * Master candidate interface
  */
-interface MasterCandidate {
+export interface MasterCandidate {
+  /**
+   * The JSON object candidate
+   */
   object: JsonObject
+  /**
+   * Data density score (0-1, higher is better)
+   */
   dataDensity: number
 }
 
 /**
  * Data density analysis result
  */
-interface DataDensityAnalysis {
+export interface DataDensityAnalysis {
+  /**
+   * Number of empty arrays
+   */
   emptyArrays: number
+  /**
+   * Number of empty strings
+   */
   emptyStrings: number
+  /**
+   * Number of null values
+   */
   nullValues: number
+  /**
+   * Total number of properties
+   */
   totalProperties: number
-  density: number // 0-1, higher is better
+  /**
+   * Data density ratio (0-1, higher is better)
+   */
+  density: number
 }
 
 /**
@@ -111,7 +132,7 @@ export function generateMasterFromJson(
  * @param jsonData - All JSON data
  * @returns master file
  */
-function createMasterStructure(
+export function createMasterStructure(
   sourceFilePath: string,
   jsonData: JsonObject[],
 ): EncryptedKeyMasterFile {
@@ -142,7 +163,9 @@ function createMasterStructure(
  * @param maxPatterns - Maximum number of patterns to return
  * @returns array of master objects ordered by quality
  */
-function findOptimalMasterPatterns(jsonData: JsonObject[]): JsonObject[] {
+export function findOptimalMasterPatterns(
+  jsonData: JsonObject[],
+): JsonObject[] {
   logger.info(`Number of objects to analyze: ${String(jsonData.length)}`)
 
   const candidates = jsonData
@@ -206,7 +229,7 @@ function findOptimalMasterPatterns(jsonData: JsonObject[]): JsonObject[] {
  * @param value - Value to analyze
  * @param counters - Object containing counters
  */
-function analyzeValue(
+export function analyzeValue(
   value: JsonValue,
   counters: {
     emptyArrays: number
@@ -241,7 +264,7 @@ function analyzeValue(
  * @param obj - Object to analyze
  * @returns data density analysis
  */
-function calculateDataDensity(obj: JsonObject): DataDensityAnalysis {
+export function calculateDataDensity(obj: JsonObject): DataDensityAnalysis {
   const counters = {
     emptyArrays: 0,
     emptyStrings: 0,
@@ -329,7 +352,7 @@ export function findFirstNonEmptyDifferencePath(
  * @param value - The JSON value to check
  * @returns true if the value is empty, false otherwise
  */
-function isEmptyJsonValue(value: JsonValue): boolean {
+export function isEmptyJsonValue(value: JsonValue): boolean {
   return (
     value === null ||
     value === undefined ||
