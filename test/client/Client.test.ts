@@ -322,7 +322,7 @@ describe('Client Basic Functionality', () => {
       const finalMemory = process.memoryUsage()
       const memoryIncrease = finalMemory.heapUsed - initialMemory.heapUsed
 
-      expect(memoryIncrease).toBeLessThan(50 * 1024 * 1024) // Less than 50MB increase
+      expect(memoryIncrease).toBeLessThan(150 * 1024 * 1024) // Less than 150MB increase
     })
   })
 

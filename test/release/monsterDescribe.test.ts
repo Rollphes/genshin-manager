@@ -11,7 +11,7 @@ describe('MonsterDescribe Release Test', () => {
       downloadLanguages: ['EN'],
     })
     await client.deploy()
-  })
+  }, 30000) // 30 seconds timeout for deployment
   test('should find monster IDs by describe IDs and instantiate monsters', () => {
     // Get all MonsterDescribeExcelConfigData keys
     const describeIds = Object.keys(

@@ -29,7 +29,7 @@ export async function setup(): Promise<void> {
     fs.existsSync(TEST_COMMIT_FILE_PATH)
   ) {
     // If test temp file exists, remove it to avoid conflicts
-    fs.rmSync(TEST_COMMIT_FILE_PATH, { recursive: true, force: true })
+    fs.rmSync(TEST_COMMIT_FILE_PATH, { force: true })
     console.log('🗑️ Global setup: Removed old test commits file')
   }
 
