@@ -10,6 +10,7 @@ import { Client } from '@/client'
 
 // Cache directory paths
 const CACHE_DIR = path.resolve(process.cwd(), 'cache')
+const TEST_CACHE_DIR = path.resolve(process.cwd(), 'test-cache')
 const COMMIT_FILE_PATH = path.resolve(CACHE_DIR, 'commits.json')
 const TEST_COMMIT_FILE_PATH = path.resolve(CACHE_DIR, 'commits_test_temp.json')
 
@@ -64,4 +65,19 @@ export async function setup(): Promise<void> {
   }
 
   console.log('✅ Global setup: Client deployment completed')
+}
+
+/**
+ * Cleans up test-specific cache directories after all tests complete.
+ */
+export function teardown(): void {
+  console.log('🧹 Global teardown: Cleaning up test cache...')
+
+  // Remove test-cache directory
+  if (fs.existsSync(TEST_CACHE_DIR)) {
+    fs.rmSync(TEST_CACHE_DIR, { recursive: true, force: true })
+    console.log('🗑️  Global teardown: Removed test-cache directory')
+  }
+
+  console.log('✅ Global teardown: Cleanup completed')
 }
