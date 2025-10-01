@@ -10,18 +10,18 @@ import {
   TextMapFormatError,
 } from '@/errors'
 import { ClientOption, ExcelBinOutputs, TextMapLanguage } from '@/types'
-import { JsonArray, JsonObject } from '@/types/json'
+import { JsonObject } from '@/types/json'
 import { buildCacheStructure, withFileLock } from '@/utils/cache'
 import { EncryptedKeyDecoder } from '@/utils/crypto'
 import { EventMap, PromiseEventEmitter } from '@/utils/events'
 import { logger, LogLevel } from '@/utils/logger'
 import { JsonParser } from '@/utils/parsers'
-import { masterFileFolderPath } from '@/utils/paths'
 import {
   ReadableStreamWrapper,
   TextMapEmptyWritable,
   TextMapTransform,
 } from '@/utils/streams'
+
 interface GitLabAPIResponse {
   id: string
   short_id: string
@@ -402,6 +402,7 @@ export abstract class AssetCacheManager<
     keys: Set<keyof typeof ExcelBinOutputs>,
   ): Promise<boolean> {
     this.cachedExcelBinOutput.clear()
+    const rawJsonDataMap = new Map<keyof typeof ExcelBinOutputs, JsonObject[]>()
     for (const key of keys) {
       const filename = ExcelBinOutputs[key]
       const selectedExcelBinOutputPath = path.join(
@@ -430,7 +431,7 @@ export abstract class AssetCacheManager<
             reject(error)
           })
           stream.on('end', () => {
-            this.cachedExcelBinOutput.set(key, new JsonParser(text))
+            rawJsonDataMap.set(key, JSON.parse(text) as JsonObject[])
             resolve()
           })
         },
@@ -450,62 +451,27 @@ export abstract class AssetCacheManager<
       if (setCachePromiseResult) return true
     }
 
-    Array.from(this.cachedExcelBinOutput.entries()).map(
-      ([fileName, jsonParser]) => {
-        const rawJsonData = jsonParser.get() as JsonArray
-        const encryptedKeyDecodedData = this.applyEncryptedKeyDecoding(
-          rawJsonData,
-          fileName,
-        )
+    Array.from(rawJsonDataMap).forEach(([fileName, jsonObjectArray]) => {
+      const encryptedKeyDecoder = new EncryptedKeyDecoder(fileName)
+      const encryptedKeyDecodedData =
+        encryptedKeyDecoder.execute(jsonObjectArray)
 
-        const finalProcessedData = buildCacheStructure(
-          new JsonParser(JSON.stringify(encryptedKeyDecodedData)),
-          fileName,
-        )
+      const finalProcessedData = buildCacheStructure(
+        encryptedKeyDecodedData,
+        fileName,
+      )
 
-        this.cachedExcelBinOutput.set(
-          fileName,
-          new JsonParser(JSON.stringify(finalProcessedData)),
-        )
+      this.cachedExcelBinOutput.set(
+        fileName,
+        new JsonParser(JSON.stringify(finalProcessedData)),
+      )
 
-        logger.debug(
-          `GenshinManager: ${fileName} processing complete (${String(Object.keys(rawJsonData).length)} → ${String(Object.keys(finalProcessedData).length)} keys)`,
-        )
-      },
-    )
+      logger.debug(
+        `GenshinManager: ${fileName} processing complete (${String(Object.keys(jsonObjectArray).length)} → ${String(Object.keys(finalProcessedData).length)} keys)`,
+      )
+    })
 
     return false
-  }
-
-  /**
-   * Apply encrypted key decoding using EncryptedKeyDecoder
-   * Executes key decoding on raw JSON data
-   */
-  private static applyEncryptedKeyDecoding(
-    rawJsonData: JsonArray,
-    fileName: keyof typeof ExcelBinOutputs,
-  ): JsonArray {
-    const masterFilePath = path.join(
-      masterFileFolderPath,
-      `${fileName}.master.json`,
-    )
-
-    if (!fs.existsSync(masterFilePath)) throw new Error('Master file not found')
-
-    const encryptedKeyDecoder = new EncryptedKeyDecoder(masterFilePath)
-
-    const jsonObjectArray = Object.values(rawJsonData).filter(
-      (item): item is JsonObject =>
-        item !== null &&
-        item !== undefined &&
-        typeof item === 'object' &&
-        !Array.isArray(item),
-    )
-
-    const encryptedKeyDecodedArray =
-      encryptedKeyDecoder.execute(jsonObjectArray)
-
-    return encryptedKeyDecodedArray
   }
 
   /**

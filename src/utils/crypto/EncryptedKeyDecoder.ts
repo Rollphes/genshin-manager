@@ -1,7 +1,9 @@
 import fs from 'fs'
+import path from 'path'
 
-import { EncryptedKeyMasterFile } from '@/types'
+import { EncryptedKeyMasterFile, ExcelBinOutputs } from '@/types'
 import type { JsonObject, JsonValue } from '@/types/json'
+import { masterFileFolderPath } from '@/utils/paths'
 
 /**
  * Key path type for tracking nested locations
@@ -58,14 +60,19 @@ export class EncryptedKeyDecoder {
 
   /**
    * Constructor
-   * @param masterFilePath - Master file path
+   * @param fileName - ExcelBinOutput file name
    */
-  constructor(masterFilePath: string) {
+  constructor(fileName: keyof typeof ExcelBinOutputs) {
     try {
+      const masterFilePath = path.join(
+        masterFileFolderPath,
+        `${fileName}.master.json`,
+      )
+      if (!fs.existsSync(masterFilePath))
+        throw new Error('Master file not found')
       this.masterFile = JSON.parse(
         fs.readFileSync(masterFilePath, 'utf-8'),
       ) as EncryptedKeyMasterFile
-
       this.precompilePatterns()
     } catch (error) {
       throw new Error(`Failed to load master file: ${String(error)}`)
