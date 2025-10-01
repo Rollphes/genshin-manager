@@ -1,13 +1,15 @@
 {
   "metadata": {
     "sourceFile": "FettersExcelConfigData.json",
-    "generatedAt": "2025-09-27T15:02:49.232Z"
+    "generatedAt": "2025-10-01T15:37:38.654Z"
   },
   "keyMappingTemplate": {
     "avatarId": 10000005,
     "fetterId": 1150,
     "finishConds": [],
-    "hideCostumeList": [],
+    "hideCostumeList": [
+      201601
+    ],
     "isHiden": false,
     "openConds": [
       {
@@ -39,7 +41,9 @@
         ]
       }
     ],
-    "showCostumeList": [],
+    "showCostumeList": [
+      201601
+    ],
     "tips": [
       2113186722,
       2977545416,
@@ -54,104 +58,33 @@
   },
   "alternativePatterns": [
     {
-      "avatarId": 10000005,
-      "fetterId": 1182,
+      "avatarId": 10000007,
+      "fetterId": 2149,
       "finishConds": [],
-      "hideCostumeList": [],
+      "hideCostumeList": [
+        201601
+      ],
       "isHiden": false,
       "openConds": [
         {
           "condType": "FETTER_COND_UNLOCK_TRANS_POINT",
           "paramList": [
             3,
-            905
-          ]
-        },
-        {
-          "condType": "FETTER_COND_FINISH_PARENT_QUEST",
-          "paramList": [
-            2021
-          ]
-        },
-        {
-          "condType": "FETTER_COND_FINISH_PARENT_QUEST",
-          "paramList": [
-            3012
-          ]
-        },
-        {
-          "condType": "FETTER_COND_NONE",
-          "paramList": []
-        }
-      ],
-      "showCostumeList": [],
-      "tips": [
-        1822539250,
-        2566881320,
-        22109152,
-        2705706255
-      ],
-      "type": 1,
-      "voiceFile": "71080",
-      "voiceFileTextTextMapHash": 2168592487,
-      "voiceTitleLockedTextMapHash": 1009718850,
-      "voiceTitleTextMapHash": 3038041367
-    },
-    {
-      "avatarId": 10000052,
-      "fetterId": 52084,
-      "finishConds": [],
-      "hideCostumeList": [],
-      "isHiden": false,
-      "openConds": [
-        {
-          "condType": "FETTER_COND_FETTER_LEVEL",
-          "paramList": [
             4
           ]
         },
         {
-          "condType": "FETTER_COND_FINISH_PARENT_QUEST",
+          "condType": "FETTER_COND_UNLOCK_TRANS_POINT",
           "paramList": [
-            4025
+            3,
+            204
           ]
         },
-        {
-          "condType": "FETTER_COND_FINISH_QUEST",
-          "paramList": [
-            1204209
-          ]
-        },
-        {
-          "condType": "FETTER_COND_NONE",
-          "paramList": []
-        }
-      ],
-      "showCostumeList": [],
-      "tips": [
-        3962330922,
-        3103712080,
-        2792690680,
-        4089450903
-      ],
-      "type": 1,
-      "voiceFile": "4013",
-      "voiceFileTextTextMapHash": 1432277991,
-      "voiceTitleLockedTextMapHash": 2847544106,
-      "voiceTitleTextMapHash": 3606581375
-    },
-    {
-      "avatarId": 10000005,
-      "fetterId": 1151,
-      "finishConds": [],
-      "hideCostumeList": [],
-      "isHiden": false,
-      "openConds": [
         {
           "condType": "FETTER_COND_UNLOCK_TRANS_POINT",
           "paramList": [
             3,
-            128
+            306
           ]
         },
         {
@@ -160,68 +93,22 @@
             3,
             598
           ]
-        },
-        {
-          "condType": "FETTER_COND_NONE",
-          "paramList": []
-        },
-        {
-          "condType": "FETTER_COND_NONE",
-          "paramList": []
         }
       ],
-      "showCostumeList": [],
+      "showCostumeList": [
+        201601
+      ],
       "tips": [
-        71627946,
-        3970061592,
-        1580688840,
-        4254114463
+        2245902714,
+        1040804952,
+        2718481352,
+        1531149991
       ],
       "type": 1,
-      "voiceFile": "71055",
-      "voiceFileTextTextMapHash": 2574724487,
-      "voiceTitleLockedTextMapHash": 3635415714,
-      "voiceTitleTextMapHash": 829631015
-    },
-    {
-      "avatarId": 10000005,
-      "fetterId": 1002,
-      "finishConds": [],
-      "hideCostumeList": [],
-      "isHiden": false,
-      "openConds": [
-        {
-          "condType": "FETTER_COND_UNLOCK_TRANS_POINT",
-          "paramList": [
-            3,
-            10
-          ]
-        },
-        {
-          "condType": "FETTER_COND_NONE",
-          "paramList": []
-        },
-        {
-          "condType": "FETTER_COND_NONE",
-          "paramList": []
-        },
-        {
-          "condType": "FETTER_COND_NONE",
-          "paramList": []
-        }
-      ],
-      "showCostumeList": [],
-      "tips": [
-        845916738,
-        3539823896,
-        2710965520,
-        2684012255
-      ],
-      "type": 1,
-      "voiceFile": "24001",
-      "voiceFileTextTextMapHash": 177667047,
-      "voiceTitleLockedTextMapHash": 3913384578,
-      "voiceTitleTextMapHash": 3597924895
+      "voiceFile": "71054",
+      "voiceFileTextTextMapHash": 3865296039,
+      "voiceTitleLockedTextMapHash": 3155069370,
+      "voiceTitleTextMapHash": 4149918695
     },
     {
       "avatarId": 10000016,
@@ -249,7 +136,9 @@
           "paramList": []
         }
       ],
-      "showCostumeList": [],
+      "showCostumeList": [
+        201601
+      ],
       "tips": [
         3398823162,
         1883526048,
@@ -264,9 +153,11 @@
     },
     {
       "avatarId": 10000016,
-      "fetterId": 8161,
+      "fetterId": 8102,
       "finishConds": [],
-      "hideCostumeList": [],
+      "hideCostumeList": [
+        201601
+      ],
       "isHiden": false,
       "openConds": [
         {
@@ -290,92 +181,16 @@
         201601
       ],
       "tips": [
-        2971926570,
-        2854281656,
-        2979209704,
-        99580775
+        1973484250,
+        1951337312,
+        3013264752,
+        1161917863
       ],
       "type": 1,
-      "voiceFile": "1106",
-      "voiceFileTextTextMapHash": 126887399,
-      "voiceTitleLockedTextMapHash": 479315842,
-      "voiceTitleTextMapHash": 156980823
-    },
-    {
-      "avatarId": 10000016,
-      "fetterId": 8114,
-      "finishConds": [],
-      "hideCostumeList": [],
-      "isHiden": false,
-      "openConds": [
-        {
-          "condType": "FETTER_COND_FETTER_LEVEL",
-          "paramList": [
-            6
-          ]
-        },
-        {
-          "condType": "FETTER_COND_NONE",
-          "paramList": []
-        },
-        {
-          "condType": "FETTER_COND_NONE",
-          "paramList": []
-        },
-        {
-          "condType": "FETTER_COND_NONE",
-          "paramList": []
-        }
-      ],
-      "showCostumeList": [],
-      "tips": [
-        899576362,
-        559896424,
-        1455749648,
-        3413470871
-      ],
-      "type": 1,
-      "voiceFile": "2003",
-      "voiceFileTextTextMapHash": 2133587951,
-      "voiceTitleLockedTextMapHash": 472799730,
-      "voiceTitleTextMapHash": 2543568799
-    },
-    {
-      "avatarId": 10000005,
-      "fetterId": 1062,
-      "finishConds": [],
-      "hideCostumeList": [],
-      "isHiden": false,
-      "openConds": [
-        {
-          "condType": "FETTER_COND_NONE",
-          "paramList": []
-        },
-        {
-          "condType": "FETTER_COND_NONE",
-          "paramList": []
-        },
-        {
-          "condType": "FETTER_COND_NONE",
-          "paramList": []
-        },
-        {
-          "condType": "FETTER_COND_NONE",
-          "paramList": []
-        }
-      ],
-      "showCostumeList": [],
-      "tips": [
-        2739235762,
-        3943885928,
-        694612616,
-        1108589271
-      ],
-      "type": 2,
-      "voiceFile": "100001",
-      "voiceFileTextTextMapHash": 2815688855,
-      "voiceTitleLockedTextMapHash": 158126450,
-      "voiceTitleTextMapHash": 2622129055
+      "voiceFile": "1102",
+      "voiceFileTextTextMapHash": 978764215,
+      "voiceTitleLockedTextMapHash": 2995972394,
+      "voiceTitleTextMapHash": 114939575
     }
   ]
 }

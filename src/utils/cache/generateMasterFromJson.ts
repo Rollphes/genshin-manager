@@ -157,6 +157,86 @@ export function createMasterStructure(
 }
 
 /**
+ * Check if an object contains empty arrays deeply
+ * @param value - Value to check
+ * @returns true if contains empty arrays, false otherwise
+ */
+export function hasDeepEmptyArrays(value: JsonValue): boolean {
+  if (Array.isArray(value)) {
+    if (value.length === 0) return true
+    return value.some((item) => hasDeepEmptyArrays(item))
+  }
+
+  if (typeof value === 'object' && value !== null)
+    return Object.values(value).some((item) => hasDeepEmptyArrays(item))
+
+  return false
+}
+
+/**
+ * Fill empty arrays in target object with non-empty values from candidates
+ * @param target - Target object to fill
+ * @param candidates - Candidate objects to use for filling
+ * @returns filled object
+ */
+export function fillEmptyArraysFromCandidates(
+  target: JsonValue,
+  candidates: JsonObject[],
+): JsonValue {
+  if (Array.isArray(target)) {
+    if (target.length === 0) {
+      // Try to find non-empty array from candidates at the same path
+      for (const candidate of candidates) {
+        const candidateValue = candidate
+        if (
+          Array.isArray(candidateValue) &&
+          candidateValue.length > 0 &&
+          !hasDeepEmptyArrays(candidateValue)
+        ) {
+          logger.debug('Filled empty array with non-empty candidate')
+          return candidateValue
+        }
+      }
+      // If no candidate found, return empty array as last resort
+      return target
+    }
+    // Recursively fill nested arrays
+    return target.map((item) => fillEmptyArraysFromCandidates(item, candidates))
+  }
+
+  if (typeof target === 'object' && target !== null) {
+    const result: JsonObject = {}
+    for (const [key, value] of Object.entries(target)) {
+      if (Array.isArray(value) && value.length === 0) {
+        // Try to find non-empty value from candidates
+        let filled = false
+        for (const candidate of candidates) {
+          const candidateValue = candidate[key]
+          if (
+            Array.isArray(candidateValue) &&
+            candidateValue.length > 0 &&
+            !hasDeepEmptyArrays(candidateValue)
+          ) {
+            result[key] = candidateValue
+            filled = true
+            logger.debug(
+              `Filled empty array at key '${key}' with non-empty candidate`,
+            )
+            break
+          }
+        }
+        if (!filled) result[key] = value // Keep empty array as last resort
+      } else {
+        result[key] = fillEmptyArraysFromCandidates(value, candidates)
+      }
+    }
+    return result
+  }
+
+  return target
+}
+
+/**
  * Find multiple master patterns based on data density and structural diversity
  * @param jsonData - JSON data array
  * @param maxCandidates - Maximum number of candidates to analyze
@@ -173,6 +253,7 @@ export function findOptimalMasterPatterns(
 
   for (const candidate of candidates) {
     const densityAnalysis = calculateDataDensity(candidate)
+    const hasEmptyArrays = hasDeepEmptyArrays(candidate)
 
     masterCandidates.push({
       object: candidate,
@@ -180,11 +261,17 @@ export function findOptimalMasterPatterns(
     })
 
     logger.debug(
-      `Candidate ${String(masterCandidates.length)}: density ${densityAnalysis.density.toFixed(3)}`,
+      `Candidate ${String(masterCandidates.length)}: density ${densityAnalysis.density.toFixed(3)}, hasEmptyArrays ${String(hasEmptyArrays)}`,
     )
   }
 
+  // Sort by: 1) no empty arrays first, 2) then by density
   masterCandidates.sort((a, b) => {
+    const aHasEmpty = hasDeepEmptyArrays(a.object)
+    const bHasEmpty = hasDeepEmptyArrays(b.object)
+
+    if (aHasEmpty !== bHasEmpty) return aHasEmpty ? 1 : -1 // Prefer objects without empty arrays
+
     return b.dataDensity - a.dataDensity
   })
 
@@ -193,7 +280,18 @@ export function findOptimalMasterPatterns(
 
   for (const candidate of masterCandidates) {
     if (selectedPatterns.length === 0) {
-      selectedPatterns.push(candidate.object)
+      let primaryPattern = candidate.object
+      // If the best candidate still has empty arrays, try to fill them
+      if (hasDeepEmptyArrays(primaryPattern)) {
+        logger.info(
+          'Primary pattern has empty arrays, attempting to fill from other candidates...',
+        )
+        primaryPattern = fillEmptyArraysFromCandidates(
+          primaryPattern,
+          jsonData,
+        ) as JsonObject
+      }
+      selectedPatterns.push(primaryPattern)
       continue
     }
 
@@ -216,7 +314,14 @@ export function findOptimalMasterPatterns(
       }
     }
 
-    if (hasNewDiversePattern) selectedPatterns.push(candidate.object)
+    if (hasNewDiversePattern) {
+      let pattern = candidate.object
+      // Fill empty arrays for alternative patterns too
+      if (hasDeepEmptyArrays(pattern))
+        pattern = fillEmptyArraysFromCandidates(pattern, jsonData) as JsonObject
+
+      selectedPatterns.push(pattern)
+    }
   }
 
   logger.info(`Total selected patterns: ${String(selectedPatterns.length)}`)

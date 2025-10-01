@@ -1,7 +1,7 @@
 {
   "metadata": {
     "sourceFile": "TowerLevelExcelConfigData.json",
-    "generatedAt": "2025-09-27T15:02:53.396Z"
+    "generatedAt": "2025-10-01T15:37:44.252Z"
   },
   "keyMappingTemplate": {
     "conds": [
@@ -1516,7 +1516,9 @@
       "levelIndex": 2,
       "monsterLevel": 49,
       "NKOPAOBMOLC": 0,
-      "secondMonsterList": [],
+      "secondMonsterList": [
+        20101
+      ],
       "towerBuffConfigStrList": [
         "4:100,23:100,24:100",
         "20:100,21:100",
@@ -1566,7 +1568,11 @@
         }
       ],
       "dungeonId": 3127,
-      "firstMonsterList": [],
+      "firstMonsterList": [
+        105,
+        106,
+        107
+      ],
       "firstPassRewardId": 621031,
       "GNNNGECFCAJ": 0,
       "HAOBIOJEECA": 1,
@@ -1576,7 +1582,9 @@
       "levelIndex": 1,
       "monsterLevel": 87,
       "NKOPAOBMOLC": 2,
-      "secondMonsterList": [],
+      "secondMonsterList": [
+        20101
+      ],
       "towerBuffConfigStrList": [
         "1:100,2:100,4:100,5:100,20:100,21:100,23:100,24:100",
         "15:100,25:100,26:100,28:100,29:100,30:100,35:100",

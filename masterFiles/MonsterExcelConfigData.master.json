@@ -1,7 +1,7 @@
 {
   "metadata": {
     "sourceFile": "MonsterExcelConfigData.json",
-    "generatedAt": "2025-09-27T15:02:52.341Z"
+    "generatedAt": "2025-10-01T15:37:42.737Z"
   },
   "keyMappingTemplate": {
     "affix": [
@@ -694,103 +694,6 @@
       "skin": "",
       "type": "MONSTER_ORDINARY",
       "visionLevel": "VISION_LEVEL_NORMAL",
-      "waterSubHurt": 0,
-      "windSubHurt": 0
-    },
-    {
-      "affix": [],
-      "AGMBDGBDMMC": [
-        {
-          "dropId": 0,
-          "NDIKMHDKDLO": 0
-        },
-        {
-          "dropId": 0,
-          "NDIKMHDKDLO": 0
-        },
-        {
-          "dropId": 0,
-          "NDIKMHDKDLO": 0
-        }
-      ],
-      "ai": "sentry02",
-      "attackBase": 0.51,
-      "campID": 4001,
-      "canSwim": false,
-      "combatBGMLevel": 0,
-      "combatConfigHash": 2248588891937457200,
-      "controllerPathHash": 17378960713166258000,
-      "controllerPathRemoteHash": 14710822379614196000,
-      "critical": 0,
-      "criticalHurt": 0,
-      "defenseBase": 0,
-      "deformationMeshPathHash": 0,
-      "describeId": 28020605,
-      "DKKMALNLCNA": 0,
-      "EBOFFNEMHNP": [
-        0,
-        0
-      ],
-      "elecSubHurt": 0,
-      "elementMastery": 0,
-      "entityBudgetLevel": 12,
-      "equips": [
-        0,
-        0
-      ],
-      "excludeWeathers": "雷雨,雪",
-      "featureTagGroupID": 28020601,
-      "FFOMDMCHMCC": 0,
-      "fireSubHurt": 0,
-      "GHGKDLEMENH": 0,
-      "GPJIHFNKCKC": 0,
-      "GPONINHPLCD": 0,
-      "grassSubHurt": 0,
-      "HALIFLONHIH": 0,
-      "hideNameInElementView": false,
-      "hpBase": 0.14,
-      "iceSubHurt": 0,
-      "id": 28020605,
-      "IOCJKCGOCJN": 0,
-      "isAIHashCheck": false,
-      "isInvisibleReset": false,
-      "JBEBHHPANFP": "None",
-      "JHPAPNAGOCN": 0,
-      "killDropId": 22000000,
-      "KODKCJGBJLD": 0,
-      "LGPEJEBJJPP": false,
-      "lodPatternName": "Animal_Special_40_01",
-      "monsterName": "Marten_05",
-      "mpPropID": 1,
-      "nameTextMapHash": 4171435641,
-      "physicalSubHurt": 0,
-      "playType": "DEFAULT",
-      "prefabPathHash": 3501674008144893000,
-      "prefabPathRagdollHash": 15339954975469530000,
-      "prefabPathRemoteHash": 5421095343232570000,
-      "propGrowCurves": [
-        {
-          "growCurve": "GROW_CURVE_HP_LITTLEMONSTER",
-          "type": "FIGHT_PROP_BASE_HP"
-        },
-        {
-          "growCurve": "GROW_CURVE_ATTACK",
-          "type": "FIGHT_PROP_BASE_ATTACK"
-        },
-        {
-          "growCurve": "GROW_CURVE_DEFENSE",
-          "type": "FIGHT_PROP_BASE_DEFENSE"
-        }
-      ],
-      "radarHintID": 0,
-      "rockSubHurt": 0,
-      "safetyCheck": false,
-      "scriptDataPathHash": 4553677246385809000,
-      "securityLevel": "NORMAL",
-      "serverScript": "SubFieldDrop_LightBall",
-      "skin": "",
-      "type": "MONSTER_ORDINARY",
-      "visionLevel": "VISION_LEVEL_NEARBY",
       "waterSubHurt": 0,
       "windSubHurt": 0
     },
@@ -1700,103 +1603,6 @@
       "windSubHurt": 0.1
     },
     {
-      "affix": [],
-      "AGMBDGBDMMC": [
-        {
-          "dropId": 0,
-          "NDIKMHDKDLO": 0
-        },
-        {
-          "dropId": 0,
-          "NDIKMHDKDLO": 0
-        },
-        {
-          "dropId": 0,
-          "NDIKMHDKDLO": 0
-        }
-      ],
-      "ai": "sentry02",
-      "attackBase": 0.51,
-      "campID": 4001,
-      "canSwim": false,
-      "combatBGMLevel": 0,
-      "combatConfigHash": 8612087398644364000,
-      "controllerPathHash": 226750676282897540,
-      "controllerPathRemoteHash": 7622693410168573000,
-      "critical": 0,
-      "criticalHurt": 0,
-      "defenseBase": 0,
-      "deformationMeshPathHash": 0,
-      "describeId": 28050401,
-      "DKKMALNLCNA": 0,
-      "EBOFFNEMHNP": [
-        0,
-        0
-      ],
-      "elecSubHurt": 0,
-      "elementMastery": 0,
-      "entityBudgetLevel": 12,
-      "equips": [
-        0,
-        0
-      ],
-      "excludeWeathers": "雷雨,雪",
-      "featureTagGroupID": 28010401,
-      "FFOMDMCHMCC": 0,
-      "fireSubHurt": 0,
-      "GHGKDLEMENH": 0,
-      "GPJIHFNKCKC": 0,
-      "GPONINHPLCD": 0,
-      "grassSubHurt": 0,
-      "HALIFLONHIH": 0,
-      "hideNameInElementView": false,
-      "hpBase": 0.14,
-      "iceSubHurt": 0,
-      "id": 28050401,
-      "IOCJKCGOCJN": 0,
-      "isAIHashCheck": false,
-      "isInvisibleReset": false,
-      "JBEBHHPANFP": "None",
-      "JHPAPNAGOCN": 0,
-      "killDropId": 0,
-      "KODKCJGBJLD": 0,
-      "LGPEJEBJJPP": false,
-      "lodPatternName": "Animal_Special_20_01",
-      "monsterName": "Boltbug_Scarab_01",
-      "mpPropID": 1,
-      "nameTextMapHash": 2466918521,
-      "physicalSubHurt": 0,
-      "playType": "DEFAULT",
-      "prefabPathHash": 3694034680453744600,
-      "prefabPathRagdollHash": 9292498101580302000,
-      "prefabPathRemoteHash": 10188878049683188000,
-      "propGrowCurves": [
-        {
-          "growCurve": "GROW_CURVE_HP_LITTLEMONSTER",
-          "type": "FIGHT_PROP_BASE_HP"
-        },
-        {
-          "growCurve": "GROW_CURVE_ATTACK",
-          "type": "FIGHT_PROP_BASE_ATTACK"
-        },
-        {
-          "growCurve": "GROW_CURVE_DEFENSE",
-          "type": "FIGHT_PROP_BASE_DEFENSE"
-        }
-      ],
-      "radarHintID": 3,
-      "rockSubHurt": 0,
-      "safetyCheck": false,
-      "scriptDataPathHash": 4553677246385809000,
-      "securityLevel": "NORMAL",
-      "serverScript": "",
-      "skin": "",
-      "type": "MONSTER_ENV_ANIMAL",
-      "visionLevel": "VISION_LEVEL_SUPER_NEARBY",
-      "waterSubHurt": 0,
-      "windSubHurt": 0
-    },
-    {
       "affix": [
         55001,
         55040,
@@ -2522,6 +2328,105 @@
       "visionLevel": "VISION_LEVEL_NORMAL",
       "waterSubHurt": 0.1,
       "windSubHurt": 0.1
+    },
+    {
+      "affix": [
+        2001
+      ],
+      "AGMBDGBDMMC": [
+        {
+          "dropId": 0,
+          "NDIKMHDKDLO": 0
+        },
+        {
+          "dropId": 0,
+          "NDIKMHDKDLO": 0
+        },
+        {
+          "dropId": 0,
+          "NDIKMHDKDLO": 0
+        }
+      ],
+      "ai": "sentry02",
+      "attackBase": 0.51,
+      "campID": 4001,
+      "canSwim": false,
+      "combatBGMLevel": 0,
+      "combatConfigHash": 2248588891937457200,
+      "controllerPathHash": 17378960713166258000,
+      "controllerPathRemoteHash": 14710822379614196000,
+      "critical": 0,
+      "criticalHurt": 0,
+      "defenseBase": 0,
+      "deformationMeshPathHash": 0,
+      "describeId": 28020605,
+      "DKKMALNLCNA": 0,
+      "EBOFFNEMHNP": [
+        0,
+        0
+      ],
+      "elecSubHurt": 0,
+      "elementMastery": 0,
+      "entityBudgetLevel": 12,
+      "equips": [
+        0,
+        0
+      ],
+      "excludeWeathers": "雷雨,雪",
+      "featureTagGroupID": 28020601,
+      "FFOMDMCHMCC": 0,
+      "fireSubHurt": 0,
+      "GHGKDLEMENH": 0,
+      "GPJIHFNKCKC": 0,
+      "GPONINHPLCD": 0,
+      "grassSubHurt": 0,
+      "HALIFLONHIH": 0,
+      "hideNameInElementView": false,
+      "hpBase": 0.14,
+      "iceSubHurt": 0,
+      "id": 28020605,
+      "IOCJKCGOCJN": 0,
+      "isAIHashCheck": false,
+      "isInvisibleReset": false,
+      "JBEBHHPANFP": "None",
+      "JHPAPNAGOCN": 0,
+      "killDropId": 22000000,
+      "KODKCJGBJLD": 0,
+      "LGPEJEBJJPP": false,
+      "lodPatternName": "Animal_Special_40_01",
+      "monsterName": "Marten_05",
+      "mpPropID": 1,
+      "nameTextMapHash": 4171435641,
+      "physicalSubHurt": 0,
+      "playType": "DEFAULT",
+      "prefabPathHash": 3501674008144893000,
+      "prefabPathRagdollHash": 15339954975469530000,
+      "prefabPathRemoteHash": 5421095343232570000,
+      "propGrowCurves": [
+        {
+          "growCurve": "GROW_CURVE_HP_LITTLEMONSTER",
+          "type": "FIGHT_PROP_BASE_HP"
+        },
+        {
+          "growCurve": "GROW_CURVE_ATTACK",
+          "type": "FIGHT_PROP_BASE_ATTACK"
+        },
+        {
+          "growCurve": "GROW_CURVE_DEFENSE",
+          "type": "FIGHT_PROP_BASE_DEFENSE"
+        }
+      ],
+      "radarHintID": 0,
+      "rockSubHurt": 0,
+      "safetyCheck": false,
+      "scriptDataPathHash": 4553677246385809000,
+      "securityLevel": "NORMAL",
+      "serverScript": "SubFieldDrop_LightBall",
+      "skin": "",
+      "type": "MONSTER_ORDINARY",
+      "visionLevel": "VISION_LEVEL_NEARBY",
+      "waterSubHurt": 0,
+      "windSubHurt": 0
     }
   ]
 }

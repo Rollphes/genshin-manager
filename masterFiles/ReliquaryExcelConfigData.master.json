@@ -1,7 +1,7 @@
 {
   "metadata": {
     "sourceFile": "ReliquaryExcelConfigData.json",
-    "generatedAt": "2025-09-27T15:02:53.321Z"
+    "generatedAt": "2025-10-01T15:37:44.104Z"
   },
   "keyMappingTemplate": {
     "addPropLevels": [
@@ -92,8 +92,12 @@
       "appendPropNum": 0,
       "baseConvExp": 3780,
       "descTextMapHash": 1827582000,
-      "destroyReturnMaterial": [],
-      "destroyReturnMaterialCount": [],
+      "destroyReturnMaterial": [
+        202
+      ],
+      "destroyReturnMaterialCount": [
+        420
+      ],
       "destroyRule": "DESTROY_NONE",
       "dropable": false,
       "equipType": "EQUIP_RING",
@@ -115,13 +119,23 @@
       "weight": 1
     },
     {
-      "addPropLevels": [],
+      "addPropLevels": [
+        5,
+        9,
+        13,
+        17,
+        21
+      ],
       "appendPropDepotId": 101,
       "appendPropNum": 0,
       "baseConvExp": 420,
       "descTextMapHash": 1560367008,
-      "destroyReturnMaterial": [],
-      "destroyReturnMaterialCount": [],
+      "destroyReturnMaterial": [
+        202
+      ],
+      "destroyReturnMaterialCount": [
+        420
+      ],
       "destroyRule": "DESTROY_NONE",
       "dropable": false,
       "equipType": "EQUIP_NECKLACE",

@@ -1,7 +1,7 @@
 {
   "metadata": {
     "sourceFile": "ReliquarySetExcelConfigData.json",
-    "generatedAt": "2025-09-27T15:02:53.347Z"
+    "generatedAt": "2025-10-01T15:37:44.134Z"
   },
   "keyMappingTemplate": {
     "bagSortValue": 30,
@@ -42,7 +42,10 @@
       ],
       "DFGNDLNPOIJ": 4,
       "disableFilter": 0,
-      "dungeonGroup": [],
+      "dungeonGroup": [
+        5122,
+        5123
+      ],
       "equipAffixId": 210001,
       "setIcon": "UI_RelicIcon_10001_4",
       "setId": 10001,
@@ -66,7 +69,10 @@
       ],
       "DFGNDLNPOIJ": 5,
       "disableFilter": 1,
-      "dungeonGroup": [],
+      "dungeonGroup": [
+        5122,
+        5123
+      ],
       "equipAffixId": 215004,
       "setIcon": "UI_RelicIcon_15004_4",
       "setId": 15004,
@@ -86,7 +92,10 @@
       ],
       "DFGNDLNPOIJ": 4,
       "disableFilter": 0,
-      "dungeonGroup": [],
+      "dungeonGroup": [
+        5122,
+        5123
+      ],
       "equipAffixId": 215009,
       "setIcon": "UI_RelicIcon_15009_3",
       "setId": 15009,
