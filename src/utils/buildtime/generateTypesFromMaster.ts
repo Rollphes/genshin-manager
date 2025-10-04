@@ -6,6 +6,7 @@ import {
   quicktype,
 } from 'quicktype-core'
 
+import { Client } from '@/client'
 import { ConfigMissingError, FormatValidationError } from '@/errors'
 import { ExcelBinOutputs } from '@/types'
 import type { JsonObject } from '@/types/json'
@@ -96,8 +97,11 @@ export async function generateTypeFromMaster(
 export async function generateAllMasterTypes(
   outputDir: string,
 ): Promise<string[]> {
-  logger.info('=== Generating types from all master files ===')
+  logger.info('=== Initiating type generation from master files ===')
+  const client = new Client({})
+  await client.deploy()
 
+  logger.info('=== Generating types from all master files ===')
   if (!fs.existsSync(masterFileFolderPath))
     throw new ConfigMissingError('masterFileFolderPath', masterFileFolderPath)
 
