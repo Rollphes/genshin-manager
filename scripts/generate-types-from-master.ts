@@ -15,6 +15,7 @@ import { generatedTypesFolderPath } from '@/utils/paths'
     console.log('\n✅ Type generation completed successfully!')
     console.log(`📁 Output directory: ${generatedTypesFolderPath}`)
     console.log(`📄 Generated ${String(generatedFiles.length)} files`)
+    process.exit(0)
   } catch (error) {
     console.error('❌ Error during type generation:', error)
     process.exit(1)
