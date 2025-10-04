@@ -17,11 +17,11 @@ export class CharacterVoice {
   /**
    * Costume IDs to hide this
    */
-  public readonly hideCostumeIds: number[] = []
+  public readonly hideCostumeList: number[] = []
   /**
    * Costume IDs to show this
    */
-  public readonly showCostumeIds: number[] = []
+  public readonly showCostumeList: number[] = []
   /**
    * Character ID
    */
@@ -64,21 +64,20 @@ export class CharacterVoice {
       'FettersExcelConfigData',
       fetterId,
     )
-    this.hideCostumeIds = fetterVoiceJson.hideCostumeIds as number[]
-    this.showCostumeIds = fetterVoiceJson.showCostumeIds as number[]
-    this.characterId = fetterVoiceJson.avatarId as number
-    this.type = fetterVoiceJson.type as number
-    const voiceTitleTextMapHash =
-      fetterVoiceJson.voiceTitleTextMapHash as number
-    const voiceFileTextMapHash = fetterVoiceJson.voiceFileTextMapHash as number
+    this.hideCostumeList = fetterVoiceJson.hideCostumeList
+    this.showCostumeList = fetterVoiceJson.showCostumeList
+    this.characterId = fetterVoiceJson.avatarId
+    this.type = fetterVoiceJson.type
+    const voiceTitleTextMapHash = fetterVoiceJson.voiceTitleTextMapHash
+    const voiceFileTextMapHash = fetterVoiceJson.voiceTitleTextMapHash
 
     this.title = Client._cachedTextMap.get(voiceTitleTextMapHash) ?? ''
     this.content = Client._cachedTextMap.get(voiceFileTextMapHash) ?? ''
-    this.tips = (fetterVoiceJson.tips as number[])
+    this.tips = fetterVoiceJson.tips
       .map((tip) => Client._cachedTextMap.get(tip))
       .filter((tip): tip is string => tip !== undefined)
     this.audio = new AudioAssets(
-      fetterVoiceJson.voiceFile as string,
+      fetterVoiceJson.voiceFile,
       cv,
       this.characterId,
     )
@@ -92,7 +91,12 @@ export class CharacterVoice {
     const fetterVoicesJson = Object.values(
       Client._getCachedExcelBinOutputByName('FettersExcelConfigData'),
     )
-    return fetterVoicesJson.map((voice) => voice.fetterId as number)
+    return fetterVoicesJson
+      .filter(
+        (voice): voice is NonNullable<typeof voice> =>
+          voice?.fetterId !== undefined,
+      )
+      .map((voice) => voice.fetterId)
   }
 
   /**
@@ -105,7 +109,10 @@ export class CharacterVoice {
       Client._getCachedExcelBinOutputByName('FettersExcelConfigData'),
     )
     return fetterVoicesJson
-      .filter((voice) => voice.avatarId === characterId)
-      .map((voice) => voice.fetterId as number)
+      .filter(
+        (voice): voice is NonNullable<typeof voice> =>
+          voice !== undefined && voice.avatarId === characterId,
+      )
+      .map((voice) => voice.fetterId)
   }
 }

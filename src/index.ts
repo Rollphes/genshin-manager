@@ -39,21 +39,15 @@ import { Weapon } from '@/models/weapon/Weapon'
 import { WeaponAscension } from '@/models/weapon/WeaponAscension'
 import { WeaponInfo } from '@/models/weapon/WeaponInfo'
 import { WeaponRefinement } from '@/models/weapon/WeaponRefinement'
+import { ClientOption, CVType, Element, FightPropType } from '@/types'
+import { BodyType, QualityType } from '@/types/generated/AvatarExcelConfigData'
 import {
-  ArtifactType,
-  AssocType,
-  BodyType,
-  ClientOption,
-  CodexType,
-  CVType,
-  Element,
-  FightPropType,
   ItemType,
   MaterialType,
-  ProfilePictureType,
-  QualityType,
-  WeaponType,
-} from '@/types'
+} from '@/types/generated/MaterialExcelConfigData'
+import type { Type as ProfilePictureType } from '@/types/generated/ProfilePictureExcelConfigData'
+import { EquipType as ArtifactType } from '@/types/generated/ReliquaryExcelConfigData'
+import { WeaponType } from '@/types/generated/WeaponExcelConfigData'
 import { convertToUTC } from '@/utils/parsers'
 import { ValidationHelper } from '@/utils/validation'
 export {
@@ -96,11 +90,9 @@ export {
 export { convertToUTC, ValidationHelper }
 export {
   ArtifactType,
-  AssocType,
   BodyType,
   ClientEvents,
   ClientOption,
-  CodexType,
   CVType,
   DomainData,
   Element,

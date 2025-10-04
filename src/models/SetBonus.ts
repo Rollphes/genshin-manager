@@ -45,10 +45,7 @@ export class SetBonus {
           'ReliquarySetExcelConfigData',
           setId,
         )
-        setBracers[setId] = new Artifact(
-          (setJson.containsList as number[])[0],
-          10001,
-        )
+        setBracers[setId] = new Artifact(setJson.containsList[0], 10001)
       }
     })
 

@@ -1,8 +1,8 @@
 import { Client } from '@/client'
+import { AssetNotFoundError } from '@/errors'
 import { ImageAssets } from '@/models/assets/ImageAssets'
 import { CharacterInfo } from '@/models/character/CharacterInfo'
 import { skillLevelSchema } from '@/schemas'
-import { JsonObject } from '@/types/json'
 import { ValidationHelper } from '@/utils/validation'
 
 /**
@@ -55,29 +55,31 @@ export class CharacterSkill {
       'AvatarSkillExcelConfigData',
       this.id,
     )
-    const nameTextMapHash = skillJson.nameTextMapHash as number
-    const descTextMapHash = skillJson.descTextMapHash as number
+    const nameTextMapHash = skillJson.nameTextMapHash
+    const descTextMapHash = skillJson.descTextMapHash
     this.name = Client._cachedTextMap.get(nameTextMapHash) ?? ''
     this.description = Client._cachedTextMap.get(descTextMapHash) ?? ''
-    this.icon = new ImageAssets(skillJson.skillIcon as string)
+    this.icon = new ImageAssets(skillJson.skillIcon)
     this.extraLevel = extraLevel
     this.level = level + this.extraLevel
     void ValidationHelper.validate(skillLevelSchema, this.level, {
       propertyKey: 'level + extraLevel',
     })
 
-    if (
-      skillJson.proudSkillGroupId === undefined ||
-      skillJson.proudSkillGroupId === 0
-    )
-      return
-    const proudSkillGroupId = skillJson.proudSkillGroupId as number
+    if (skillJson.proudSkillGroupId === 0) return
+    const proudSkillGroupId = skillJson.proudSkillGroupId
     const proudSkillJson = Client._getJsonFromCachedExcelBinOutput(
       'ProudSkillExcelConfigData',
       proudSkillGroupId,
-    )[this.level] as JsonObject
-    const params = proudSkillJson.paramList as number[]
-    ;(proudSkillJson.paramDescList as number[]).forEach((paramDescHash) => {
+    )[this.level]
+    if (!proudSkillJson) {
+      throw new AssetNotFoundError(
+        `level ${String(this.level)}`,
+        'ProudSkillExcelConfigData',
+      )
+    }
+    const params = proudSkillJson.paramList
+    proudSkillJson.paramDescList.forEach((paramDescHash) => {
       const paramDesc = (
         Client._cachedTextMap.get(paramDescHash) ?? ''
       ).replace(/|/g, '')
@@ -135,15 +137,13 @@ export class CharacterSkill {
     const depotId =
       skillDepotId && [10000005, 10000007].includes(characterId)
         ? skillDepotId
-        : (avatarJson.skillDepotId as number)
+        : avatarJson.skillDepotId
     const depotJson = Client._getJsonFromCachedExcelBinOutput(
       'AvatarSkillDepotExcelConfigData',
       depotId,
     )
     return [501, 701].includes(depotId)
-      ? (depotJson.skills as number[]).slice(0, 1)
-      : (depotJson.skills as number[])
-          .slice(0, 2)
-          .concat(depotJson.energySkill as number)
+      ? depotJson.skills.slice(0, 1)
+      : depotJson.skills.slice(0, 2).concat(depotJson.energySkill)
   }
 }

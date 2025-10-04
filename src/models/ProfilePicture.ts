@@ -2,7 +2,7 @@ import { Client } from '@/client'
 import { ImageAssets } from '@/models/assets/ImageAssets'
 import { CharacterCostume } from '@/models/character/CharacterCostume'
 import { CharacterInfo } from '@/models/character/CharacterInfo'
-import { ProfilePictureType } from '@/types'
+import { Type as ProfilePictureType } from '@/types/generated/ProfilePictureExcelConfigData'
 
 /**
  * Manages character avatar images and profile picture assets
@@ -56,27 +56,27 @@ export class ProfilePicture {
       this.id,
     )
 
-    const unlockParam = profilePictureJson.unlockParam as number
+    const unlockParam = profilePictureJson.unlockParam
 
     switch (profilePictureJson.type) {
-      case 'PROFILE_PICTURE_UNLOCK_BY_AVATAR':
+      case ProfilePictureType.ProfilePictureUnlockByAvatar:
         this.characterId = unlockParam
         this.costumeId = new CharacterInfo(unlockParam).defaultCostumeId
         break
-      case 'PROFILE_PICTURE_UNLOCK_BY_COSTUME':
+      case ProfilePictureType.ProfilePictureUnlockByCostume:
         this.costumeId = unlockParam
         this.characterId = new CharacterCostume(unlockParam).characterId
         break
-      case 'PROFILE_PICTURE_UNLOCK_BY_ITEM':
+      case ProfilePictureType.ProfilePictureUnlockByItem:
         this.materialId = unlockParam
         break
-      case 'PROFILE_PICTURE_UNLOCK_BY_PARENT_QUEST':
+      case ProfilePictureType.ProfilePictureUnlockByParentQuest:
         this.questId = unlockParam
         break
     }
 
-    this.icon = new ImageAssets(profilePictureJson.iconPath as string)
-    this.type = profilePictureJson.type as ProfilePictureType
+    this.icon = new ImageAssets(profilePictureJson.iconPath)
+    this.type = profilePictureJson.type
   }
 
   /**
@@ -101,9 +101,9 @@ export class ProfilePicture {
       Client._getCachedExcelBinOutputByName('ProfilePictureExcelConfigData'),
     )
     const profilePictureData = profilePictureDatas.find(
-      (data) => data.unlockParam === unlockParam,
+      (data) => data !== undefined && data.unlockParam === unlockParam,
     )
     if (!profilePictureData) return
-    return profilePictureData.id as number
+    return profilePictureData.id
   }
 }

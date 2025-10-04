@@ -1,8 +1,8 @@
 import { Client } from '@/client'
 import { StatProperty } from '@/models/StatProperty'
 import { fixedRefinementSchema, refinementLevelSchema } from '@/schemas'
-import { FightPropType } from '@/types'
-import { JsonObject } from '@/types/json'
+import { PropType } from '@/types/generated/EquipAffixExcelConfigData'
+import { toFightPropType } from '@/utils/typeGuards'
 import { ValidationHelper } from '@/utils/validation'
 
 /**
@@ -50,8 +50,7 @@ export class WeaponRefinement {
       'WeaponExcelConfigData',
       this.id,
     )
-    const skillAffix =
-      (weaponJson.skillAffix as number[])[0] * 10 + this.refinementRank - 1
+    const skillAffix = weaponJson.skillAffix[0] * 10 + this.refinementRank - 1
     if (
       Client._hasCachedExcelBinOutputById(
         'EquipAffixExcelConfigData',
@@ -62,21 +61,17 @@ export class WeaponRefinement {
         'EquipAffixExcelConfigData',
         skillAffix,
       )
-      const nameTextMapHash = equipAffixJson.nameTextMapHash as number
-      const descTextMapHash = equipAffixJson.descTextMapHash as number
+      const nameTextMapHash = equipAffixJson.nameTextMapHash
+      const descTextMapHash = equipAffixJson.descTextMapHash
       this.skillName = Client._cachedTextMap.get(nameTextMapHash) ?? ''
       this.skillDescription = Client._cachedTextMap.get(descTextMapHash) ?? ''
-      this.addProps = (equipAffixJson.addProps as JsonObject[])
-        .filter(
-          (addProp) =>
-            addProp.propType !== undefined &&
-            addProp.propType !== 'FIGHT_PROP_NONE',
-        )
+      this.addProps = equipAffixJson.addProps
+        .filter((addProp) => addProp.propType !== PropType.FightPropNone)
         .map(
           (addProp) =>
             new StatProperty(
-              addProp.propType as FightPropType,
-              (addProp.value ?? 0) as number,
+              toFightPropType(addProp.propType, 'WeaponRefinement'),
+              addProp.value,
             ),
         )
     } else {
@@ -106,7 +101,7 @@ export class WeaponRefinement {
       weaponId,
     )
     for (let i = 1; i < 6; i++) {
-      const skillAffix = (weaponJson.skillAffix as number[])[0] * 10 + i - 1
+      const skillAffix = weaponJson.skillAffix[0] * 10 + i - 1
       if (
         !Client._hasCachedExcelBinOutputById(
           'EquipAffixExcelConfigData',

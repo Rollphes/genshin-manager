@@ -1,8 +1,7 @@
 import { Client } from '@/client'
+import { AssetNotFoundError } from '@/errors'
 import { StatProperty } from '@/models/StatProperty'
 import { createPromoteLevelSchema } from '@/schemas'
-import { FightPropType } from '@/types'
-import { JsonObject } from '@/types/json'
 import { ValidationHelper } from '@/utils/validation'
 
 /**
@@ -68,34 +67,25 @@ export class WeaponAscension {
     )
     const weaponPromoteJson = Client._getJsonFromCachedExcelBinOutput(
       'WeaponPromoteExcelConfigData',
-      weaponJson.weaponPromoteId as number,
-    )[this.promoteLevel] as JsonObject
-    this.costItems = (weaponPromoteJson.costItems as JsonObject[])
-      .filter(
-        (costItem) => costItem.id !== undefined && costItem.count !== undefined,
+      weaponJson.weaponPromoteId,
+    )[this.promoteLevel]
+    if (!weaponPromoteJson) {
+      throw new AssetNotFoundError(
+        `promoteLevel ${String(this.promoteLevel)}`,
+        'WeaponPromoteExcelConfigData',
       )
-      .map((costItem) => {
-        return {
-          id: costItem.id as number,
-          count: costItem.count as number,
-        }
-      })
-    this.costMora = (weaponPromoteJson.coinCost as number | undefined) ?? 0
-    this.addProps = (weaponPromoteJson.addProps as JsonObject[])
-      .filter(
-        (addProp) =>
-          addProp.propType !== undefined &&
-          addProp.propType !== 'FIGHT_PROP_NONE' &&
-          addProp.value !== undefined,
-      )
-      .map(
-        (addProp) =>
-          new StatProperty(
-            addProp.propType as FightPropType,
-            (addProp.value ?? 0) as number,
-          ),
-      )
-    this.unlockMaxLevel = weaponPromoteJson.unlockMaxLevel as number
+    }
+    this.costItems = weaponPromoteJson.costItems.map((costItem) => {
+      return {
+        id: costItem.id,
+        count: costItem.count,
+      }
+    })
+    this.costMora = weaponPromoteJson.coinCost
+    this.addProps = weaponPromoteJson.addProps.map(
+      (addProp) => new StatProperty(addProp.propType, addProp.value),
+    )
+    this.unlockMaxLevel = weaponPromoteJson.unlockMaxLevel
   }
 
   /**
@@ -110,11 +100,11 @@ export class WeaponAscension {
     )
     const weaponPromoteJson = Client._getJsonFromCachedExcelBinOutput(
       'WeaponPromoteExcelConfigData',
-      weaponJson.weaponPromoteId as number,
+      weaponJson.weaponPromoteId,
     )
     return Math.max(
-      ...(Object.values(weaponPromoteJson) as JsonObject[]).map(
-        (promote) => (promote.promoteLevel ?? 0) as number,
+      ...Object.values(weaponPromoteJson).map((promote) =>
+        promote ? promote.promoteLevel : 0,
       ),
     )
   }

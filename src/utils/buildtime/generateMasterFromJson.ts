@@ -1,6 +1,7 @@
 import fs from 'fs'
 import path from 'path'
 
+import { ConfigMissingError, FormatValidationError } from '@/errors'
 import type { EncryptedKeyMasterFile } from '@/types'
 import type { JsonObject, JsonValue } from '@/types/json'
 import { logger, LogLevel } from '@/utils/logger'
@@ -69,7 +70,7 @@ export function generateMasterFromJson(
   const outputPath = path.join(masterFileFolderPath, `${fileName}.master.json`)
 
   if (!fs.existsSync(inputPath))
-    throw new Error(`Input file not found: ${inputPath}`)
+    throw new ConfigMissingError('inputPath', inputPath)
 
   const outputDir = path.dirname(outputPath)
   if (!fs.existsSync(outputDir)) fs.mkdirSync(outputDir, { recursive: true })
@@ -99,10 +100,24 @@ export function generateMasterFromJson(
 
   try {
     const jsonContent = fs.readFileSync(inputPath, 'utf-8')
-    const jsonData = JSON.parse(jsonContent) as JsonObject[]
+    const jsonData = JSON.parse(jsonContent) as JsonValue
 
-    if (!Array.isArray(jsonData))
-      throw new Error(`${fileName}.json must be an array of objects`)
+    if (!Array.isArray(jsonData)) {
+      throw new FormatValidationError(
+        typeof jsonData,
+        'array of objects',
+        fileName,
+      )
+    }
+    if (
+      !jsonData.every((item): item is JsonObject => typeof item === 'object')
+    ) {
+      throw new FormatValidationError(
+        'array with non-object items',
+        'array of objects only',
+        fileName,
+      )
+    }
 
     logger.info(`=== ${fileName} Simple Master Generation ===`)
 
@@ -138,7 +153,13 @@ export function createMasterStructure(
 ): EncryptedKeyMasterFile {
   const sourceFileName = path.basename(sourceFilePath)
 
-  if (jsonData.length === 0) throw new Error('No objects found')
+  if (jsonData.length === 0) {
+    throw new FormatValidationError(
+      'empty array',
+      'non-empty array of objects',
+      sourceFileName,
+    )
+  }
 
   const patterns = findOptimalMasterPatterns(jsonData)
 
@@ -185,7 +206,6 @@ export function fillEmptyArraysFromCandidates(
 ): JsonValue {
   if (Array.isArray(target)) {
     if (target.length === 0) {
-      // Try to find non-empty array from candidates at the same path
       for (const candidate of candidates) {
         const candidateValue = candidate
         if (
@@ -197,10 +217,8 @@ export function fillEmptyArraysFromCandidates(
           return candidateValue
         }
       }
-      // If no candidate found, return empty array as last resort
       return target
     }
-    // Recursively fill nested arrays
     return target.map((item) => fillEmptyArraysFromCandidates(item, candidates))
   }
 
@@ -208,7 +226,6 @@ export function fillEmptyArraysFromCandidates(
     const result: JsonObject = {}
     for (const [key, value] of Object.entries(target)) {
       if (Array.isArray(value) && value.length === 0) {
-        // Try to find non-empty value from candidates
         let filled = false
         for (const candidate of candidates) {
           const candidateValue = candidate[key]
@@ -225,7 +242,7 @@ export function fillEmptyArraysFromCandidates(
             break
           }
         }
-        if (!filled) result[key] = value // Keep empty array as last resort
+        if (!filled) result[key] = value
       } else {
         result[key] = fillEmptyArraysFromCandidates(value, candidates)
       }
@@ -265,12 +282,11 @@ export function findOptimalMasterPatterns(
     )
   }
 
-  // Sort by: 1) no empty arrays first, 2) then by density
   masterCandidates.sort((a, b) => {
     const aHasEmpty = hasDeepEmptyArrays(a.object)
     const bHasEmpty = hasDeepEmptyArrays(b.object)
 
-    if (aHasEmpty !== bHasEmpty) return aHasEmpty ? 1 : -1 // Prefer objects without empty arrays
+    if (aHasEmpty !== bHasEmpty) return aHasEmpty ? 1 : -1
 
     return b.dataDensity - a.dataDensity
   })
@@ -281,15 +297,16 @@ export function findOptimalMasterPatterns(
   for (const candidate of masterCandidates) {
     if (selectedPatterns.length === 0) {
       let primaryPattern = candidate.object
-      // If the best candidate still has empty arrays, try to fill them
       if (hasDeepEmptyArrays(primaryPattern)) {
         logger.info(
           'Primary pattern has empty arrays, attempting to fill from other candidates...',
         )
-        primaryPattern = fillEmptyArraysFromCandidates(
+        const filledPattern = fillEmptyArraysFromCandidates(
           primaryPattern,
           jsonData,
-        ) as JsonObject
+        )
+        if (typeof filledPattern === 'object' && filledPattern !== null)
+          primaryPattern = filledPattern as JsonObject
       }
       selectedPatterns.push(primaryPattern)
       continue
@@ -317,8 +334,11 @@ export function findOptimalMasterPatterns(
     if (hasNewDiversePattern) {
       let pattern = candidate.object
       // Fill empty arrays for alternative patterns too
-      if (hasDeepEmptyArrays(pattern))
-        pattern = fillEmptyArraysFromCandidates(pattern, jsonData) as JsonObject
+      if (hasDeepEmptyArrays(pattern)) {
+        const filledPattern = fillEmptyArraysFromCandidates(pattern, jsonData)
+        if (typeof filledPattern === 'object' && filledPattern !== null)
+          pattern = filledPattern as JsonObject
+      }
 
       selectedPatterns.push(pattern)
     }

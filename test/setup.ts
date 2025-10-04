@@ -68,12 +68,12 @@ export async function setup(): Promise<void> {
 }
 
 /**
- * Cleans up test-specific cache directories after all tests complete.
+ * Global teardown for vitest
+ * This runs once after all tests complete and cleans up test-cache directory
  */
 export function teardown(): void {
   console.log('🧹 Global teardown: Cleaning up test cache...')
 
-  // Remove test-cache directory
   if (fs.existsSync(TEST_CACHE_DIR)) {
     fs.rmSync(TEST_CACHE_DIR, { recursive: true, force: true })
     console.log('🗑️  Global teardown: Removed test-cache directory')
@@ -81,3 +81,18 @@ export function teardown(): void {
 
   console.log('✅ Global teardown: Cleanup completed')
 }
+
+/**
+ * Fallback cleanup on process exit (for VSCode Vitest extension)
+ * This ensures test-cache is removed even when globalTeardown is not called
+ */
+process.on('exit', () => {
+  if (fs.existsSync(TEST_CACHE_DIR)) {
+    try {
+      fs.rmSync(TEST_CACHE_DIR, { recursive: true, force: true })
+      console.log('🗑️  Process exit: Removed test-cache directory')
+    } catch {
+      // Silently ignore errors (directory may already be removed by globalTeardown)
+    }
+  }
+})

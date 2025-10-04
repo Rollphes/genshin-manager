@@ -1,7 +1,13 @@
 import fs from 'fs'
 import path from 'path'
 
+import {
+  AssetCorruptedError,
+  ConfigMissingError,
+  ValidationError,
+} from '@/errors'
 import { EncryptedKeyMasterFile, ExcelBinOutputs } from '@/types'
+import type { DecodedType } from '@/types/generated/MasterFileMap'
 import type { JsonObject, JsonValue } from '@/types/json'
 import { masterFileFolderPath } from '@/utils/paths'
 
@@ -51,8 +57,9 @@ interface DecodingOptions {
 /**
  * Enhanced encrypted key decoder with recursive support
  * Inspired by SimpleMasterFileGenerator patterns
+ * @template T - ExcelBinOutput file name type
  */
-export class EncryptedKeyDecoder {
+export class EncryptedKeyDecoder<T extends keyof typeof ExcelBinOutputs> {
   private readonly masterFile: EncryptedKeyMasterFile
   private readonly patternCache = new Map<string, RecursivePattern>()
   private readonly matchResultCache = new Map<string, DecodingResult>()
@@ -62,20 +69,23 @@ export class EncryptedKeyDecoder {
    * Constructor
    * @param fileName - ExcelBinOutput file name
    */
-  constructor(fileName: keyof typeof ExcelBinOutputs) {
+  constructor(fileName: T) {
     try {
       const masterFilePath = path.join(
         masterFileFolderPath,
         `${fileName}.master.json`,
       )
       if (!fs.existsSync(masterFilePath))
-        throw new Error('Master file not found')
-      this.masterFile = JSON.parse(
-        fs.readFileSync(masterFilePath, 'utf-8'),
-      ) as EncryptedKeyMasterFile
+        throw new ConfigMissingError('masterFilePath', masterFilePath)
+      const masterContent = fs.readFileSync(masterFilePath, 'utf-8')
+      this.masterFile = JSON.parse(masterContent) as EncryptedKeyMasterFile
       this.precompilePatterns()
     } catch (error) {
-      throw new Error(`Failed to load master file: ${String(error)}`)
+      if (error instanceof ConfigMissingError) throw error
+      throw new AssetCorruptedError(
+        `${fileName}.master.json`,
+        `Failed to load or parse: ${String(error)}`,
+      )
     }
   }
 
@@ -83,12 +93,12 @@ export class EncryptedKeyDecoder {
    * Process encrypted object array and decode keys recursively
    * @param encryptedData - Encrypted object array
    * @param options - Decoding options
-   * @returns decoded object array
+   * @returns decoded object array with proper typing
    */
   public execute(
     encryptedData: JsonObject[],
     options: DecodingOptions = {},
-  ): JsonObject[] {
+  ): DecodedType<T> {
     const defaultOptions: Required<DecodingOptions> = {
       matchStrategy: 'subset',
       maxDepth: 10,
@@ -101,19 +111,19 @@ export class EncryptedKeyDecoder {
     if (this.matchResultCache.has(cacheKey)) {
       const cachedResult = this.matchResultCache.get(cacheKey)
       if (cachedResult) {
-        return encryptedData.map(
-          (obj) =>
-            this.applyRecursiveDecoding(
-              obj,
-              cachedResult.keyMappings,
-            ) as JsonObject,
-        )
+        return encryptedData.map((obj) =>
+          this.applyRecursiveDecoding(obj, cachedResult.keyMappings),
+        ) as DecodedType<T>
       }
     }
 
     const primaryPattern = this.compiledPatterns.get('primary')
-    if (!primaryPattern)
-      throw new Error('Primary pattern not found in compiled patterns')
+    if (!primaryPattern) {
+      throw new AssetCorruptedError(
+        'compiledPatterns',
+        'Primary pattern not found in compiled patterns',
+      )
+    }
 
     let bestResult = this.findBestKeyMapping(
       encryptedData,
@@ -143,13 +153,15 @@ export class EncryptedKeyDecoder {
 
     if (!bestResult.success && !defaultOptions.enablePartialMatch) {
       const errorMessage = this.generateDetailedError(bestResult, encryptedData)
-      throw new Error(errorMessage)
+      throw new ValidationError('Encrypted data validation failed', {
+        propertyKey: 'encryptedData',
+        actualValue: errorMessage,
+      })
     }
 
-    return encryptedData.map(
-      (obj) =>
-        this.applyRecursiveDecoding(obj, bestResult.keyMappings) as JsonObject,
-    )
+    return encryptedData.map((obj) =>
+      this.applyRecursiveDecoding(obj, bestResult.keyMappings),
+    ) as DecodedType<T>
   }
 
   /**
@@ -493,26 +505,42 @@ export class EncryptedKeyDecoder {
     obj: JsonValue,
     keyMappings: Map<KeyPath, string>,
   ): JsonValue {
-    return this.applyDecodingAtPath(obj, [], keyMappings)
+    const stringMappings = this.convertKeyMappingsToStringMap(keyMappings)
+    return this.applyDecodingAtPath(obj, [], stringMappings)
+  }
+
+  /**
+   * Convert KeyPath-based mappings to string-based mappings for faster lookup
+   * @param keyMappings - Original key mappings with KeyPath keys
+   * @returns string-based key mappings
+   */
+  private convertKeyMappingsToStringMap(
+    keyMappings: Map<KeyPath, string>,
+  ): Map<string, string> {
+    const result = new Map<string, string>()
+    for (const [path, key] of keyMappings)
+      result.set(this.pathToString(path), key)
+
+    return result
   }
 
   /**
    * Apply decoding at specific path in object hierarchy
    * @param value - Current value
    * @param currentPath - Current path
-   * @param keyMappings - Key mappings
+   * @param stringMappings - String-based key mappings for O(1) lookup
    * @returns decoded value
    */
   private applyDecodingAtPath(
     value: JsonValue,
     currentPath: KeyPath,
-    keyMappings: Map<KeyPath, string>,
+    stringMappings: Map<string, string>,
   ): JsonValue {
     if (value === null || value === undefined) return value
 
     if (Array.isArray(value)) {
       return value.map((item, index) =>
-        this.applyDecodingAtPath(item, [...currentPath, index], keyMappings),
+        this.applyDecodingAtPath(item, [...currentPath, index], stringMappings),
       )
     }
 
@@ -524,18 +552,12 @@ export class EncryptedKeyDecoder {
         const keyPath = [...currentPath, encryptedKey]
         const pathKey = this.pathToString(keyPath)
 
-        let originalKey = encryptedKey
-        for (const [mappedPath, mappedKey] of keyMappings) {
-          if (this.pathToString(mappedPath) === pathKey) {
-            originalKey = mappedKey
-            break
-          }
-        }
+        const originalKey = stringMappings.get(pathKey) ?? encryptedKey
 
         decodedObj[originalKey] = this.applyDecodingAtPath(
           nestedValue,
           keyPath,
-          keyMappings,
+          stringMappings,
         )
       }
 
@@ -604,14 +626,8 @@ export class EncryptedKeyDecoder {
     encryptedData: JsonObject[],
     options: Required<DecodingOptions>,
   ): string {
-    const dataSignature = encryptedData
-      .slice(0, 3)
-      .map((obj) => {
-        const keys = Object.keys(obj).sort()
-        const types = keys.map((key) => typeof obj[key])
-        return `${keys.join(',')}:${types.join(',')}`
-      })
-      .join('|')
+    const keys = Object.keys(encryptedData[0]).sort()
+    const dataSignature = keys.join(',')
 
     const optionsSignature = `${options.matchStrategy}-${String(options.maxDepth)}-${String(options.enablePartialMatch)}`
 

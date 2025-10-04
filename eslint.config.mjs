@@ -215,6 +215,7 @@ export default [
       '.serena/',
       'cache/',
       'coverage/',
+      'src/types/generated/',
       'dist/',
       'docs/',
       'examples/',

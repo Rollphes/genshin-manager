@@ -5,17 +5,23 @@ import * as path from 'path'
 import { pipeline } from 'stream/promises'
 
 import {
+  AssetCorruptedError,
   AssetNotFoundError,
   BodyNotFoundError,
   TextMapFormatError,
 } from '@/errors'
-import { ClientOption, ExcelBinOutputs, TextMapLanguage } from '@/types'
-import { JsonObject } from '@/types/json'
+import {
+  CacheStructureMap,
+  ClientOption,
+  ExcelBinOutputs,
+  MasterFileMap,
+  TextMapLanguage,
+} from '@/types'
+import type { JsonObject } from '@/types/json'
 import { buildCacheStructure, withFileLock } from '@/utils/cache'
 import { EncryptedKeyDecoder } from '@/utils/crypto'
 import { EventMap, PromiseEventEmitter } from '@/utils/events'
 import { logger, LogLevel } from '@/utils/logger'
-import { JsonParser } from '@/utils/parsers'
 import {
   ReadableStreamWrapper,
   TextMapEmptyWritable,
@@ -73,10 +79,9 @@ export abstract class AssetCacheManager<
    * @key ExcelBinOutput name
    * @value Cached excel bin output
    */
-  private static readonly cachedExcelBinOutput = new Map<
-    keyof typeof ExcelBinOutputs,
-    JsonParser
-  >()
+  private static cachedExcelBinOutput: {
+    [K in keyof CacheStructureMap]?: CacheStructureMap[K]
+  } = {}
 
   private static option: ClientOption
   private static nowCommitId: string
@@ -135,12 +140,17 @@ export abstract class AssetCacheManager<
 
       if (fileContent.trim() === '') return undefined
 
-      const oldCommits = JSON.parse(fileContent) as GitLabAPIResponse[]
-
-      if (!Array.isArray(oldCommits) || oldCommits.length === 0)
+      const oldCommitsRaw: unknown = JSON.parse(fileContent)
+      if (
+        !Array.isArray(oldCommitsRaw) ||
+        oldCommitsRaw.length === 0 ||
+        !this.isGitLabAPIResponse(oldCommitsRaw[0])
+      )
         return undefined
 
-      const versionTexts = /OSRELWin(\d+\.\d+\.\d+)_/.exec(oldCommits[0].title)
+      const versionTexts = /OSRELWin(\d+\.\d+\.\d+)_/.exec(
+        oldCommitsRaw[0].title,
+      )
       if (!versionTexts || versionTexts.length < 2) return '?.?.?'
       return versionTexts[1]
     } catch (error) {
@@ -186,10 +196,9 @@ export abstract class AssetCacheManager<
   public static _addExcelBinOutputKeyFromClassPrototype(
     classPrototype: unknown,
   ): void {
-    const targetOrigin = classPrototype as Record<
-      string,
-      (...args: unknown[]) => unknown
-    >
+    const targetOrigin = classPrototype as {
+      constructor: { toString: () => string }
+    }
     const methodSource = targetOrigin.constructor.toString()
 
     const keys = Object.keys(ExcelBinOutputs)
@@ -210,17 +219,17 @@ export abstract class AssetCacheManager<
    * @param id ID of character, etc
    * @returns JSON
    */
-  public static _getJsonFromCachedExcelBinOutput(
-    key: keyof typeof ExcelBinOutputs,
-    id: string | number,
-  ): JsonObject {
-    const excelBinOutput = this.cachedExcelBinOutput.get(key)
+  public static _getJsonFromCachedExcelBinOutput<
+    T extends keyof typeof ExcelBinOutputs,
+  >(key: T, id: string | number): NonNullable<CacheStructureMap[T][string]> {
+    const excelBinOutput = this.cachedExcelBinOutput[key]
     if (!excelBinOutput) throw new AssetNotFoundError(key)
 
-    const json = excelBinOutput.get(String(id)) as JsonObject | undefined
-    if (!json) throw new AssetNotFoundError(key, String(id))
+    const excelBinOutputId = excelBinOutput[id] as CacheStructureMap[T][string]
+    if (!excelBinOutputId)
+      throw new AssetNotFoundError(`${key} ID:${String(id)}`)
 
-    return json
+    return excelBinOutputId
   }
 
   /**
@@ -229,13 +238,13 @@ export abstract class AssetCacheManager<
    * @param key excelBinOutput name
    * @returns cached excel bin output
    */
-  public static _getCachedExcelBinOutputByName(
-    key: keyof typeof ExcelBinOutputs,
-  ): Record<string, JsonObject> {
-    const excelBinOutput = this.cachedExcelBinOutput.get(key)
+  public static _getCachedExcelBinOutputByName<
+    T extends keyof typeof ExcelBinOutputs,
+  >(key: T): CacheStructureMap[T] {
+    const excelBinOutput = this.cachedExcelBinOutput[key]
     if (!excelBinOutput) throw new AssetNotFoundError(key)
 
-    return excelBinOutput.get() as Record<string, JsonObject>
+    return excelBinOutput as CacheStructureMap[T]
   }
 
   /**
@@ -247,7 +256,7 @@ export abstract class AssetCacheManager<
   public static _hasCachedExcelBinOutputByName(
     key: keyof typeof ExcelBinOutputs,
   ): boolean {
-    return this.cachedExcelBinOutput.has(key)
+    return this.cachedExcelBinOutput[key] !== undefined
   }
 
   /**
@@ -261,13 +270,10 @@ export abstract class AssetCacheManager<
     key: keyof typeof ExcelBinOutputs,
     id: string | number,
   ): boolean {
-    const excelBinOutput = this.cachedExcelBinOutput.get(key)
+    const excelBinOutput = this.cachedExcelBinOutput[key]
     if (!excelBinOutput) return false
 
-    const json = excelBinOutput.get(String(id))
-    if (!json) return false
-
-    return true
+    return excelBinOutput[String(id)] !== undefined
   }
 
   /**
@@ -281,15 +287,20 @@ export abstract class AssetCacheManager<
     key: keyof typeof ExcelBinOutputs,
     text: string,
   ): string[] {
-    return Object.entries(this._getCachedExcelBinOutputByName(key))
-      .filter(([, json]) =>
-        Object.keys(json).some((jsonKey) => {
+    const cachedData = this._getCachedExcelBinOutputByName(key)
+    return Object.entries(cachedData)
+      .filter(([, obj]) => {
+        if (!obj || typeof obj !== 'object') return false
+        const objRecord = obj as JsonObject
+        return Object.keys(objRecord).some((jsonKey) => {
           if (/TextMapHash/g.exec(jsonKey)) {
-            const hash = json[jsonKey] as number
-            return this._cachedTextMap.get(hash) === text
+            const value = objRecord[jsonKey]
+            if (typeof value === 'number')
+              return this._cachedTextMap.get(value) === text
           }
-        }),
-      )
+          return false
+        })
+      })
       .map(([id]) => id)
   }
 
@@ -368,8 +379,9 @@ export abstract class AssetCacheManager<
         this.excelBinOutputFolderPath,
         Object.values(ExcelBinOutputs),
       )
-      // eslint-disable-next-line no-empty
-      while (await this.setExcelBinOutputToCache(this.excelBinOutputAllKeys)) {}
+      await this.retryUntilSuccess(() =>
+        this.setExcelBinOutputToCache(this.excelBinOutputAllKeys),
+      )
       this.createTextHashes()
       const textMapFileNames = this.option.downloadLanguages
         .map((key) => TextMapLanguage[key])
@@ -383,11 +395,13 @@ export abstract class AssetCacheManager<
       )
     }
     this._assetEventEmitter.emit('BEGIN_UPDATE_CACHE', this.gameVersion)
-    // eslint-disable-next-line no-empty
-    while (await this.setExcelBinOutputToCache(this.useExcelBinOutputKeys)) {}
+    await this.retryUntilSuccess(() =>
+      this.setExcelBinOutputToCache(this.useExcelBinOutputKeys),
+    )
     this.createTextHashes()
-    // eslint-disable-next-line no-empty
-    while (await this.setTextMapToCache(this.option.defaultLanguage)) {}
+    await this.retryUntilSuccess(() =>
+      this.setTextMapToCache(this.option.defaultLanguage),
+    )
     this._assetEventEmitter.emit('END_UPDATE_CACHE', this.gameVersion)
 
     logger.info('GenshinManager: Finish update cache and set cache.')
@@ -401,8 +415,17 @@ export abstract class AssetCacheManager<
   protected static async setExcelBinOutputToCache(
     keys: Set<keyof typeof ExcelBinOutputs>,
   ): Promise<boolean> {
-    this.cachedExcelBinOutput.clear()
-    const rawJsonDataMap = new Map<keyof typeof ExcelBinOutputs, JsonObject[]>()
+    const allKeys = Object.keys(
+      ExcelBinOutputs,
+    ) as (keyof typeof ExcelBinOutputs)[]
+    allKeys.forEach((key) => {
+      Reflect.deleteProperty(this.cachedExcelBinOutput, key)
+    })
+
+    const rawJsonDataMap = new Map<
+      keyof typeof ExcelBinOutputs,
+      MasterFileMap[keyof typeof ExcelBinOutputs][]
+    >()
     for (const key of keys) {
       const filename = ExcelBinOutputs[key]
       const selectedExcelBinOutputPath = path.join(
@@ -431,7 +454,16 @@ export abstract class AssetCacheManager<
             reject(error)
           })
           stream.on('end', () => {
-            rawJsonDataMap.set(key, JSON.parse(text) as JsonObject[])
+            const parsedData: unknown = JSON.parse(text)
+            if (!Array.isArray(parsedData)) {
+              reject(
+                new Error(
+                  `Invalid data format for ${key}: expected array, got ${typeof parsedData}`,
+                ),
+              )
+              return
+            }
+            rawJsonDataMap.set(key, parsedData as MasterFileMap[typeof key][])
             resolve()
           })
         },
@@ -451,27 +483,32 @@ export abstract class AssetCacheManager<
       if (setCachePromiseResult) return true
     }
 
-    Array.from(rawJsonDataMap).forEach(([fileName, jsonObjectArray]) => {
-      const encryptedKeyDecoder = new EncryptedKeyDecoder(fileName)
-      const encryptedKeyDecodedData =
-        encryptedKeyDecoder.execute(jsonObjectArray)
-
-      const finalProcessedData = buildCacheStructure(
-        encryptedKeyDecodedData,
-        fileName,
-      )
-
-      this.cachedExcelBinOutput.set(
-        fileName,
-        new JsonParser(JSON.stringify(finalProcessedData)),
-      )
-
-      logger.debug(
-        `GenshinManager: ${fileName} processing complete (${String(Object.keys(jsonObjectArray).length)} → ${String(Object.keys(finalProcessedData).length)} keys)`,
-      )
-    })
+    for (const [fileName, jsonObjectArray] of rawJsonDataMap)
+      this.processCacheEntry(fileName, jsonObjectArray)
 
     return false
+  }
+
+  /**
+   * Process and cache a single Excel bin output entry
+   * @param fileName - Excel bin output file name
+   * @param jsonObjectArray - Raw JSON data array
+   */
+  private static processCacheEntry<T extends keyof typeof ExcelBinOutputs>(
+    fileName: T,
+    jsonObjectArray: MasterFileMap[T][],
+  ): void {
+    const encryptedKeyDecoder = new EncryptedKeyDecoder(fileName)
+    const encryptedKeyDecodedData = encryptedKeyDecoder.execute(
+      jsonObjectArray as JsonObject[],
+    )
+
+    const processedData = buildCacheStructure(encryptedKeyDecodedData, fileName)
+    this.cachedExcelBinOutput[fileName] = processedData
+
+    logger.debug(
+      `GenshinManager: ${fileName} processing complete (${String(Object.keys(jsonObjectArray).length)} → ${String(Object.keys(processedData).length)} keys)`,
+    )
   }
 
   /**
@@ -495,8 +532,17 @@ export abstract class AssetCacheManager<
           encoding: 'utf8',
         })
 
-        if (oldFileContent.trim() === '') oldCommits = null
-        else oldCommits = JSON.parse(oldFileContent) as GitLabAPIResponse[]
+        if (oldFileContent.trim() === '') {
+          oldCommits = null
+        } else {
+          const parsedData: unknown = JSON.parse(oldFileContent)
+          oldCommits =
+            Array.isArray(parsedData) &&
+            parsedData.length > 0 &&
+            this.isGitLabAPIResponse(parsedData[0])
+              ? parsedData
+              : null
+        }
       } catch (error) {
         logger.error(
           'GenshinManager: Error reading existing commits.json:',
@@ -515,24 +561,31 @@ export abstract class AssetCacheManager<
 
       if (fileContent.trim() === '') {
         logger.error('GenshinManager: Downloaded commits.json is empty!')
-        throw new Error('Downloaded commits file is empty')
+        throw new AssetCorruptedError('commits.json', 'File is empty')
       }
 
-      const newCommits = JSON.parse(fileContent) as GitLabAPIResponse[]
+      const newCommitsRaw: unknown = JSON.parse(fileContent)
 
-      if (!Array.isArray(newCommits) || newCommits.length === 0) {
+      if (
+        !Array.isArray(newCommitsRaw) ||
+        newCommitsRaw.length === 0 ||
+        !this.isGitLabAPIResponse(newCommitsRaw[0])
+      ) {
         logger.error(
           'GenshinManager: Downloaded commits.json contains invalid data structure!',
         )
-        throw new Error('Downloaded commits file contains invalid data')
+        throw new AssetCorruptedError(
+          'commits.json',
+          'Invalid data structure (expected non-empty array)',
+        )
       }
 
-      this.nowCommitId = newCommits[0].id
-      if (oldCommits && newCommits[0].id === oldCommits[0].id) {
+      this.nowCommitId = newCommitsRaw[0].id
+      if (oldCommits && newCommitsRaw[0].id === oldCommits[0].id) {
         return undefined
       } else {
         const versionTexts = /OSRELWin(\d+\.\d+\.\d+)_/.exec(
-          newCommits[0].title,
+          newCommitsRaw[0].title,
         )
         if (!versionTexts || versionTexts.length < 2) return '?.?.?'
         return versionTexts[1]
@@ -562,37 +615,47 @@ export abstract class AssetCacheManager<
    */
   private static createTextHashes(): void {
     this.textHashes.clear()
-    this.cachedExcelBinOutput.forEach((excelBin) => {
-      const excelBinData = excelBin.get()
-      if (excelBinData && typeof excelBinData === 'object') {
-        Object.values(excelBinData).forEach((obj) => {
-          if (obj && typeof obj === 'object') {
-            Object.values(obj).forEach((value) => {
-              const obj = value as JsonObject
-              Object.keys(obj).forEach((key) => {
-                if (/TextMapHash/g.exec(key)) {
-                  const hash = obj[key] as number
-                  this.textHashes.add(hash)
-                }
-                if (key === 'paramDescList') {
-                  const hashes = obj[key] as number[]
-                  hashes.forEach((hash) => this.textHashes.add(hash))
-                }
+    Object.values(this.cachedExcelBinOutput).forEach((excelBinDataMap) => {
+      if (typeof excelBinDataMap !== 'object') return
+      Object.values(excelBinDataMap).forEach((excelBinData) => {
+        if (typeof excelBinData !== 'object') return
+
+        const dataRecord = excelBinData as JsonObject
+        Object.keys(dataRecord).forEach((key) => {
+          if (/TextMapHash/g.exec(key)) {
+            const hash = dataRecord[key]
+            if (typeof hash === 'number') this.textHashes.add(hash)
+          }
+          if (key === 'tips') {
+            const hashes = dataRecord[key]
+            if (Array.isArray(hashes)) {
+              hashes.forEach((hash) => {
+                if (typeof hash === 'number') this.textHashes.add(hash)
               })
-            })
-            Object.keys(obj).forEach((key) => {
+            }
+          }
+        })
+
+        Object.values(dataRecord).forEach((value) => {
+          if (value && typeof value === 'object' && !Array.isArray(value)) {
+            const valueRecord = value
+            Object.keys(valueRecord).forEach((key) => {
               if (/TextMapHash/g.exec(key)) {
-                const hash = (obj as JsonObject)[key] as number
-                this.textHashes.add(hash)
+                const hash = valueRecord[key]
+                if (typeof hash === 'number') this.textHashes.add(hash)
               }
-              if (key === 'tips') {
-                const hashes = (obj as JsonObject)[key] as number[]
-                hashes.forEach((hash) => this.textHashes.add(hash))
+              if (key === 'paramDescList') {
+                const hashes = valueRecord[key]
+                if (Array.isArray(hashes)) {
+                  hashes.forEach((hash) => {
+                    if (typeof hash === 'number') this.textHashes.add(hash)
+                  })
+                }
               }
             })
           }
         })
-      }
+      })
     })
   }
 
@@ -720,26 +783,39 @@ export abstract class AssetCacheManager<
 
         await new Promise((resolve) => setTimeout(resolve, 150))
 
-        if (!fs.existsSync(downloadFilePath))
-          throw new Error('File does not exist after download completion')
+        if (!fs.existsSync(downloadFilePath)) {
+          throw new AssetNotFoundError(
+            downloadFilePath,
+            'File does not exist after download completion',
+          )
+        }
 
-        if (!fs.existsSync(downloadFilePath))
-          throw new Error('File disappeared between existence checks')
+        if (!fs.existsSync(downloadFilePath)) {
+          throw new AssetNotFoundError(
+            downloadFilePath,
+            'File disappeared between existence checks',
+          )
+        }
 
         let fileStats: fs.Stats
         try {
           fileStats = fs.statSync(downloadFilePath)
         } catch (error) {
           if ((error as NodeJS.ErrnoException).code === 'ENOENT') {
-            throw new Error(
+            throw new AssetNotFoundError(
+              downloadFilePath,
               'File was removed by another process during concurrent access',
             )
           }
           throw error
         }
 
-        if (fileStats.size === 0)
-          throw new Error('File is empty after download')
+        if (fileStats.size === 0) {
+          throw new AssetCorruptedError(
+            path.basename(downloadFilePath),
+            'File is empty after download',
+          )
+        }
 
         if (
           downloadFilePath.endsWith('.json') ||
@@ -748,11 +824,16 @@ export abstract class AssetCacheManager<
           const testContent = fs.readFileSync(downloadFilePath, {
             encoding: 'utf8',
           })
-          if (testContent.trim() === '')
-            throw new Error('File content is empty after download')
+          if (testContent.trim() === '') {
+            throw new AssetCorruptedError(
+              path.basename(downloadFilePath),
+              'File content is empty after download',
+            )
+          }
 
           if (testContent.length < 10) {
-            throw new Error(
+            throw new AssetCorruptedError(
+              path.basename(downloadFilePath),
               'File content is suspiciously short, likely truncated',
             )
           }
@@ -774,5 +855,33 @@ export abstract class AssetCacheManager<
         }
       }
     }
+  }
+
+  /**
+   * Type guard for GitLabAPIResponse
+   * @param value value to check
+   * @returns true if value is GitLabAPIResponse
+   */
+  private static isGitLabAPIResponse(
+    value: unknown,
+  ): value is GitLabAPIResponse {
+    if (!value || typeof value !== 'object') return false
+    const obj = value as Record<string, unknown>
+    return (
+      typeof obj.id === 'string' &&
+      typeof obj.title === 'string' &&
+      typeof obj.short_id === 'string'
+    )
+  }
+
+  /**
+   * Retry operation until it succeeds (returns false)
+   * @param operation async operation that returns true on error (requires retry)
+   */
+  private static async retryUntilSuccess(
+    operation: () => Promise<boolean>,
+  ): Promise<void> {
+    // eslint-disable-next-line no-empty
+    while (await operation()) {}
   }
 }

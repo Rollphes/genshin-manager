@@ -5,8 +5,10 @@ import { WeaponAscension } from '@/models/weapon/WeaponAscension'
 import { WeaponRefinement } from '@/models/weapon/WeaponRefinement'
 import { refinementLevelSchema } from '@/schemas'
 import { createDynamicWeaponLevelSchema } from '@/schemas'
-import { FightPropType, WeaponType } from '@/types'
-import { JsonObject } from '@/types/json'
+import {
+  type WeaponProp,
+  WeaponType,
+} from '@/types/generated/WeaponExcelConfigData'
 import { calculatePromoteLevel } from '@/utils/parsers'
 import { ValidationHelper } from '@/utils/validation'
 
@@ -125,7 +127,7 @@ export class WeaponInfo {
 
     const weaponPromotesJson = Client._getJsonFromCachedExcelBinOutput(
       'WeaponPromoteExcelConfigData',
-      weaponJson.weaponPromoteId as number,
+      weaponJson.weaponPromoteId,
     )
     this.promoteLevel = calculatePromoteLevel(
       weaponPromotesJson,
@@ -138,19 +140,16 @@ export class WeaponInfo {
     this.skillName = refinement.skillName
     this.skillDescription = refinement.skillDescription
 
-    const nameTextMapHash = weaponJson.nameTextMapHash as number
-    const descTextMapHash = weaponJson.descTextMapHash as number
-    this.name = Client._cachedTextMap.get(nameTextMapHash) ?? ''
-    this.description = Client._cachedTextMap.get(descTextMapHash) ?? ''
-    this.type = weaponJson.weaponType as WeaponType
+    this.name = Client._cachedTextMap.get(weaponJson.nameTextMapHash) ?? ''
+    this.description =
+      Client._cachedTextMap.get(weaponJson.descTextMapHash) ?? ''
+    this.type = weaponJson.weaponType
 
-    this.rarity = weaponJson.rankLevel as number
+    this.rarity = weaponJson.rankLevel
 
-    const weaponPropJsonArray = weaponJson.weaponProp as JsonObject[]
-
-    this.stats = weaponPropJsonArray
+    this.stats = weaponJson.weaponProp
       .map((weaponPropJson) => {
-        if (!weaponPropJson.initValue || !weaponPropJson.propType) return
+        if (!weaponPropJson.initValue) return
         return this.getStatPropertyByJson(
           weaponPropJson,
           ascension.addProps.find(
@@ -162,7 +161,7 @@ export class WeaponInfo {
 
     this.isAwaken = this.promoteLevel >= 2
     this.icon = new ImageAssets(
-      (this.isAwaken ? weaponJson.awakenIcon : weaponJson.icon) as string,
+      this.isAwaken ? weaponJson.awakenIcon : weaponJson.icon,
     )
   }
 
@@ -175,8 +174,12 @@ export class WeaponInfo {
       Client._getCachedExcelBinOutputByName('WeaponExcelConfigData'),
     )
     return weaponDatas
-      .filter((data) => !WeaponInfo.blackWeaponIds.includes(data.id as number))
-      .map((data) => data.id as number)
+      .filter(
+        (data): data is NonNullable<typeof data> =>
+          data?.id !== undefined &&
+          !WeaponInfo.blackWeaponIds.includes(data.id),
+      )
+      .map((data) => data.id)
   }
 
   /**
@@ -198,15 +201,14 @@ export class WeaponInfo {
    * @returns stat value
    */
   private getStatPropertyByJson(
-    weaponPropJson: JsonObject,
+    weaponPropJson: WeaponProp,
     addValue = 0,
   ): StatProperty {
     const curveValue = Client._getJsonFromCachedExcelBinOutput(
       'WeaponCurveExcelConfigData',
-      weaponPropJson.type as string,
-    )[this.level] as number
-    const statValue =
-      (weaponPropJson.initValue as number) * curveValue + addValue
-    return new StatProperty(weaponPropJson.propType as FightPropType, statValue)
+      weaponPropJson.type,
+    )[this.level]
+    const statValue = weaponPropJson.initValue * curveValue + addValue
+    return new StatProperty(weaponPropJson.propType, statValue)
   }
 }

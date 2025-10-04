@@ -24,6 +24,7 @@ import {
   EnkaNetworkStatusError,
   GeneralError,
 } from '@/errors'
+import { Material } from '@/models/Material'
 
 // Increase max listeners to prevent memory leak warnings during tests
 EventEmitter.defaultMaxListeners = 50
@@ -34,6 +35,9 @@ describe('EnkaManager Basic Functionality', () => {
 
   beforeAll(async () => {
     setupGitLabMock()
+
+    // Ensure Material class is loaded before deploy
+    void Material
 
     // Deploy Client using the GitLab mock server
     const client = new Client({

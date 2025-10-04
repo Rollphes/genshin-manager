@@ -1,5 +1,5 @@
 import { characterLevelSchema } from '@/schemas'
-import { JsonObject } from '@/types/json'
+import type { AvatarPromoteExcelConfigDataType } from '@/types/generated/AvatarPromoteExcelConfigData'
 import { ValidationHelper } from '@/utils/validation'
 
 /**
@@ -10,25 +10,35 @@ import { ValidationHelper } from '@/utils/validation'
  * @returns promote level (0-6)
  */
 export function calculatePromoteLevel(
-  promotesJson: JsonObject,
+  promotesJson: Record<
+    string,
+    | Pick<AvatarPromoteExcelConfigDataType, 'promoteLevel' | 'unlockMaxLevel'>
+    | undefined
+  >,
   level: number,
   isAscended: boolean,
 ): number {
   void ValidationHelper.validate(characterLevelSchema, level, {
     propertyKey: 'level',
   })
-  const maxPromoteLevel = Math.max(
-    ...(Object.values(promotesJson) as JsonObject[]).map(
-      (promote) => (promote.promoteLevel ?? 0) as number,
-    ),
+  const promotes = Object.values(promotesJson).filter(
+    (
+      p,
+    ): p is Pick<
+      AvatarPromoteExcelConfigDataType,
+      'promoteLevel' | 'unlockMaxLevel'
+    > => p !== undefined,
   )
-  const beforePromoteLevels = (Object.values(promotesJson) as JsonObject[])
-    .filter((promote) => (promote.unlockMaxLevel as number) < level)
-    .map((promote) => ((promote.promoteLevel ?? 0) as number) + 1)
+  const maxPromoteLevel = Math.max(
+    ...promotes.map((promote) => promote.promoteLevel),
+  )
+  const beforePromoteLevels = promotes
+    .filter((promote) => promote.unlockMaxLevel < level)
+    .map((promote) => promote.promoteLevel + 1)
 
-  const afterPromoteLevels = (Object.values(promotesJson) as JsonObject[])
-    .filter((promote) => (promote.unlockMaxLevel as number) <= level)
-    .map((promote) => ((promote.promoteLevel ?? 0) as number) + 1)
+  const afterPromoteLevels = promotes
+    .filter((promote) => promote.unlockMaxLevel <= level)
+    .map((promote) => promote.promoteLevel + 1)
 
   const beforePromoteLevelByLevel = Math.max(...beforePromoteLevels, 0)
   const afterPromoteLevelByLevel = Math.max(...afterPromoteLevels, 0)

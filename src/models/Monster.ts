@@ -2,15 +2,24 @@ import { Client } from '@/client'
 import { ImageAssets } from '@/models/assets/ImageAssets'
 import { StatProperty } from '@/models/StatProperty'
 import { monsterLevelSchema, playerCountSchema } from '@/schemas'
-import { CodexType, FightProps } from '@/types'
-import { JsonObject } from '@/types/json'
+import { FightProps } from '@/types'
+import { SubType } from '@/types/generated/AnimalCodexExcelConfigData'
+import {
+  GrowCurve,
+  type PropGrowCurve,
+  type PropGrowCurveType,
+} from '@/types/generated/MonsterExcelConfigData'
 import { ValidationHelper } from '@/utils/validation'
 
-const statusBonusMonsterAtMultiPlay = {
+const statusBonusMonsterAtMultiPlay: Record<
+  PropGrowCurveType,
+  readonly [number, number, number, number]
+> = {
   FIGHT_PROP_BASE_HP: [1.0, 1.5, 2.0, 2.5],
   FIGHT_PROP_BASE_ATTACK: [1.0, 1.1, 1.25, 1.4],
   FIGHT_PROP_BASE_DEFENSE: [1.0, 1.0, 1.0, 1.0],
-} as const
+  FIGHT_PROP_NONE: [1.0, 1.0, 1.0, 1.0],
+}
 
 /**
  * Represents a game monster with stats and properties
@@ -55,7 +64,7 @@ export class Monster {
   /**
    * Monster type
    */
-  public readonly codexType: CodexType | undefined
+  public readonly codexType: SubType | undefined
 
   static {
     Client._addExcelBinOutputKeyFromClassPrototype(this.prototype)
@@ -99,8 +108,8 @@ export class Monster {
       'MonsterExcelConfigData',
       this.id,
     )
-    this.internalName = monsterJson.monsterName as string
-    const nameTextMapHash = monsterJson.nameTextMapHash as number
+    this.internalName = monsterJson.monsterName
+    const nameTextMapHash = monsterJson.nameTextMapHash
     this.name = Client._cachedTextMap.get(nameTextMapHash) ?? ''
     const describeId = +String(this.id).slice(1, 6)
     if (
@@ -112,73 +121,52 @@ export class Monster {
         'MonsterDescribeExcelConfigData',
         describeId,
       )
-      const nameTextMapHash = monsterDescribeJson.nameTextMapHash as number
+      const nameTextMapHash = monsterDescribeJson.nameTextMapHash
       this.describeName = Client._cachedTextMap.get(nameTextMapHash) ?? ''
-      this.icon = new ImageAssets(monsterDescribeJson.icon as string)
+      this.icon = new ImageAssets(monsterDescribeJson.icon)
     }
 
     if (
       monsterJson.describeId &&
       Object.keys(
         Client._getCachedExcelBinOutputByName('AnimalCodexExcelConfigData'),
-      ).includes(String(monsterJson.describeId as number))
+      ).includes(String(monsterJson.describeId))
     ) {
       const animalCodexJson = Client._getJsonFromCachedExcelBinOutput(
         'AnimalCodexExcelConfigData',
-        monsterJson.describeId as number,
+        monsterJson.describeId,
       )
-      const descTextMapHash = animalCodexJson.descTextMapHash as number
-      this.description = Client._cachedTextMap.get(descTextMapHash) ?? ''
-      this.codexType =
-        (animalCodexJson.subType as CodexType | undefined) ??
-        'CODEX_SUBTYPE_ELEMENT_LIFE'
+      this.description =
+        Client._cachedTextMap.get(animalCodexJson.descTextMapHash) ?? ''
+      this.codexType = animalCodexJson.subType
     }
 
-    const propGrowCurves = monsterJson.propGrowCurves as JsonObject[]
     const hpBase = this.getStatValueByJson(
-      propGrowCurves[0],
-      monsterJson.hpBase as number | undefined,
+      monsterJson.propGrowCurves[0],
+      monsterJson.hpBase,
       playerCount,
     )
     const attackBase = this.getStatValueByJson(
-      propGrowCurves[1],
-      monsterJson.attackBase as number | undefined,
+      monsterJson.propGrowCurves[1],
+      monsterJson.attackBase,
       playerCount,
     )
     const defenseBase = this.getStatValueByJson(
-      propGrowCurves[2],
-      monsterJson.defenseBase as number | undefined,
+      monsterJson.propGrowCurves[2],
+      monsterJson.defenseBase,
       playerCount,
     )
     this.stats = [
       new StatProperty(FightProps[1], hpBase),
       new StatProperty(FightProps[4], attackBase),
       new StatProperty(FightProps[7], defenseBase),
-      new StatProperty(
-        FightProps[29],
-        (monsterJson.physicalSubHurt ?? 0) as number,
-      ),
-      new StatProperty(
-        FightProps[51],
-        (monsterJson.elecSubHurt ?? 0) as number,
-      ),
-      new StatProperty(
-        FightProps[52],
-        (monsterJson.waterSubHurt ?? 0) as number,
-      ),
-      new StatProperty(
-        FightProps[53],
-        (monsterJson.grassSubHurt ?? 0) as number,
-      ),
-      new StatProperty(
-        FightProps[54],
-        (monsterJson.windSubHurt ?? 0) as number,
-      ),
-      new StatProperty(
-        FightProps[55],
-        (monsterJson.rockSubHurt ?? 0) as number,
-      ),
-      new StatProperty(FightProps[56], (monsterJson.iceSubHurt ?? 0) as number),
+      new StatProperty(FightProps[29], monsterJson.physicalSubHurt),
+      new StatProperty(FightProps[51], monsterJson.elecSubHurt),
+      new StatProperty(FightProps[52], monsterJson.waterSubHurt),
+      new StatProperty(FightProps[53], monsterJson.grassSubHurt),
+      new StatProperty(FightProps[54], monsterJson.windSubHurt),
+      new StatProperty(FightProps[55], monsterJson.rockSubHurt),
+      new StatProperty(FightProps[56], monsterJson.iceSubHurt),
     ]
   }
 
@@ -234,28 +222,22 @@ export class Monster {
    * @returns stat value
    */
   private getStatValueByJson(
-    propGrowCurve: JsonObject | undefined,
+    propGrowCurve: PropGrowCurve | undefined,
     initValue = 0,
     playerCount = 1,
   ): number {
     if (!propGrowCurve) return initValue
     const bonusValue =
-      propGrowCurve.type === undefined ||
-      propGrowCurve.type === 'FIGHT_PROP_NONE'
-        ? 1.0
-        : statusBonusMonsterAtMultiPlay[
-            propGrowCurve.type as keyof typeof statusBonusMonsterAtMultiPlay
-          ][playerCount - 1]
+      statusBonusMonsterAtMultiPlay[propGrowCurve.type][playerCount - 1]
     if (
-      propGrowCurve.growCurve === undefined ||
-      propGrowCurve.growCurve === 'GROW_CURVE_NONE' ||
-      propGrowCurve.growCurve === 'GROW_CURVE_DEFENDING'
+      propGrowCurve.growCurve === GrowCurve.GrowCurveNone ||
+      propGrowCurve.growCurve === GrowCurve.GrowCurveDefending
     )
       return initValue * bonusValue
     const curveValue = Client._getJsonFromCachedExcelBinOutput(
       'MonsterCurveExcelConfigData',
-      propGrowCurve.growCurve as string,
-    )[this.level] as number
+      propGrowCurve.growCurve,
+    )[this.level]
     return initValue * curveValue * bonusValue
   }
 }

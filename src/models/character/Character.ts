@@ -1,4 +1,5 @@
 import { Client } from '@/client'
+import { AssetNotFoundError } from '@/errors'
 import { CharacterAscension } from '@/models/character/CharacterAscension'
 import { CharacterBaseStats } from '@/models/character/CharacterBaseStats'
 import { CharacterConstellation } from '@/models/character/CharacterConstellation'
@@ -11,7 +12,9 @@ import { CharacterSkillAscension } from '@/models/character/CharacterSkillAscens
 import { CharacterStory } from '@/models/character/CharacterStory'
 import { CharacterVoice } from '@/models/character/CharacterVoice'
 import { StatProperty } from '@/models/StatProperty'
-import { BodyType, CharacterUpgradePlan, Element, WeaponType } from '@/types'
+import { CharacterUpgradePlan, Element } from '@/types'
+import { BodyType } from '@/types/generated/AvatarExcelConfigData'
+import { WeaponType } from '@/types/generated/WeaponExcelConfigData'
 import { calculatePromoteLevel } from '@/utils/parsers'
 
 /**
@@ -463,7 +466,7 @@ export class Character {
   private getSkill(skillIndex: number, skillLevel = 1): CharacterSkill {
     const skillId = this.skillOrder[skillIndex]
     if (!skillId)
-      throw new Error(`Skill at index ${String(skillIndex)} not found`)
+      throw new AssetNotFoundError(`index ${String(skillIndex)}`, 'Skill')
 
     return new CharacterSkill(skillId, skillLevel, this.constellationLevel)
   }
@@ -504,7 +507,7 @@ export class Character {
     )
     const avatarPromotesJson = Client._getJsonFromCachedExcelBinOutput(
       'AvatarPromoteExcelConfigData',
-      avatarJson.avatarPromoteId as number,
+      avatarJson.avatarPromoteId,
     )
 
     const currentPromoteLevel = calculatePromoteLevel(

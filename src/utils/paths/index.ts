@@ -34,6 +34,25 @@ export const masterFileFolderPath = path.join(
 )
 
 /**
+ * Get the ExcelBinOutput folder path
+ */
+export const excelBinOutputFolderPathForDevelop = path.join(
+  PACKAGE_FOLDER_PATH_INTERNAL,
+  'cache',
+  'ExcelBinOutput',
+)
+
+/**
+ * Get the generated types folder path
+ */
+export const generatedTypesFolderPath = path.join(
+  PACKAGE_FOLDER_PATH_INTERNAL,
+  'src',
+  'types',
+  'generated',
+)
+
+/**
  * Package folder path (exported for compatibility)
  */
 export const packageFolderPath = PACKAGE_FOLDER_PATH_INTERNAL

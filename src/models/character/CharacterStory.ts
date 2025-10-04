@@ -39,15 +39,11 @@ export class CharacterStory {
       'FetterStoryExcelConfigData',
       fetterId,
     )
-    this.characterId = fetterStoryJson.avatarId as number
-    const storyTitleTextMapHash =
-      fetterStoryJson.storyTitleTextMapHash as number
-    const storyTitle2TextMapHash =
-      fetterStoryJson.storyTitle2TextMapHash as number
-    const storyContextTextMapHash =
-      fetterStoryJson.storyContextTextMapHash as number
-    const storyContext2TextMapHash =
-      fetterStoryJson.storyContext2TextMapHash as number
+    this.characterId = fetterStoryJson.avatarId
+    const storyTitleTextMapHash = fetterStoryJson.storyTitleTextMapHash
+    const storyTitle2TextMapHash = fetterStoryJson.storyTitle2TextMapHash
+    const storyContextTextMapHash = fetterStoryJson.storyContextTextMapHash
+    const storyContext2TextMapHash = fetterStoryJson.storyContext2TextMapHash
     this.title =
       Client._cachedTextMap.get(storyTitleTextMapHash) ??
       Client._cachedTextMap.get(storyTitle2TextMapHash) ??
@@ -56,7 +52,7 @@ export class CharacterStory {
       Client._cachedTextMap.get(storyContextTextMapHash) ??
       Client._cachedTextMap.get(storyContext2TextMapHash) ??
       ''
-    this.tips = (fetterStoryJson.tips as number[])
+    this.tips = fetterStoryJson.tips
       .map((tip) => Client._cachedTextMap.get(tip))
       .filter((tip): tip is string => tip !== undefined)
   }
@@ -69,7 +65,12 @@ export class CharacterStory {
     const fetterStoriesJson = Object.values(
       Client._getCachedExcelBinOutputByName('FetterStoryExcelConfigData'),
     )
-    return fetterStoriesJson.map((story) => story.fetterId as number)
+    return fetterStoriesJson
+      .filter(
+        (story): story is NonNullable<typeof story> =>
+          story?.fetterId !== undefined,
+      )
+      .map((story) => story.fetterId)
   }
 
   /**
@@ -82,7 +83,10 @@ export class CharacterStory {
       Client._getCachedExcelBinOutputByName('FetterStoryExcelConfigData'),
     )
     return fetterStoriesJson
-      .filter((story) => story.avatarId === characterId)
-      .map((story) => story.fetterId as number)
+      .filter(
+        (story): story is NonNullable<typeof story> =>
+          story !== undefined && story.avatarId === characterId,
+      )
+      .map((story) => story.fetterId)
   }
 }

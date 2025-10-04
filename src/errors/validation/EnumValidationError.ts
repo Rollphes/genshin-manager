@@ -25,7 +25,10 @@ export class EnumValidationError extends ValidationError {
     cause?: Error,
   ) {
     const allowedStr = allowedValues.map(String).join(', ')
-    const message = `${propertyName} must be one of: ${allowedStr}, got ${String(value)}`
+    const contextPrefix = context?.propertyKey
+      ? `[${context.propertyKey}] `
+      : ''
+    const message = `${contextPrefix}${propertyName} must be one of: ${allowedStr}, got ${String(value)}`
 
     const enumContext = ErrorContextFactory.createValidationContext(
       propertyName,

@@ -1,6 +1,9 @@
 import { Client } from '@/client'
 import { ImageAssets } from '@/models/assets/ImageAssets'
-import { ItemType, MaterialType } from '@/types'
+import {
+  ItemType,
+  MaterialType,
+} from '@/types/generated/MaterialExcelConfigData'
 
 /**
  * Represents a game material or resource used for character and weapon enhancement
@@ -55,16 +58,14 @@ export class Material {
       'MaterialExcelConfigData',
       this.id,
     )
-    const nameTextMapHash = materialJson.nameTextMapHash as number
-    const descTextMapHash = materialJson.descTextMapHash as number
+    const nameTextMapHash = materialJson.nameTextMapHash
+    const descTextMapHash = materialJson.descTextMapHash
     this.name = Client._cachedTextMap.get(nameTextMapHash) ?? ''
     this.description = Client._cachedTextMap.get(descTextMapHash) ?? ''
-    this.icon = new ImageAssets(materialJson.icon as string)
-    this.pictures = (materialJson.picPath as string[]).map(
-      (v) => new ImageAssets(v),
-    )
-    this.itemType = materialJson.itemType as ItemType
-    this.materialType = materialJson.materialType as MaterialType | undefined
+    this.icon = new ImageAssets(materialJson.icon)
+    this.pictures = materialJson.picPath.map((v) => new ImageAssets(v))
+    this.itemType = materialJson.itemType
+    this.materialType = materialJson.materialType
   }
 
   /**
@@ -80,7 +81,11 @@ export class Material {
     const materialDatas = Object.values(
       Client._getCachedExcelBinOutputByName('MaterialExcelConfigData'),
     )
-    return materialDatas.map((data) => data.id as number)
+    return materialDatas
+      .filter(
+        (data): data is NonNullable<typeof data> => data?.id !== undefined,
+      )
+      .map((data) => data.id)
   }
 
   /**

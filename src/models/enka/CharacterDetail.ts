@@ -7,12 +7,14 @@ import { CharacterSkill } from '@/models/character/CharacterSkill'
 import { CharacterStatusManager } from '@/models/character/CharacterStatusManager'
 import { SetBonus } from '@/models/SetBonus'
 import { WeaponInfo } from '@/models/weapon/WeaponInfo'
-import { BodyType, Element, WeaponType } from '@/types'
+import { Element } from '@/types'
 import {
   APIAvatarInfo,
   APIReliquaryEquip,
   APIWeaponEquip,
 } from '@/types/enkaNetwork'
+import { BodyType } from '@/types/generated/AvatarExcelConfigData'
+import { WeaponType } from '@/types/generated/WeaponExcelConfigData'
 
 /**
  * Represents detailed character data retrieved from the EnkaNetwork API

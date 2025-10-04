@@ -1,6 +1,7 @@
 import * as cheerio from 'cheerio'
 import { Element } from 'domhandler'
 
+import { ValidationError } from '@/errors'
 import { ImageAssets } from '@/models/assets/ImageAssets'
 import { ValueOf } from '@/types'
 import { NoticeLanguage, Region } from '@/types/sg-hk4e-api'
@@ -121,7 +122,15 @@ export class Notice {
     region: Region,
   ) {
     this.region = region
-    if (annList.ann_id !== annContent.ann_id) throw new Error('ID mismatch')
+    if (annList.ann_id !== annContent.ann_id) {
+      throw new ValidationError(
+        'Announcement ID mismatch between list and content',
+        {
+          propertyKey: 'ann_id',
+          actualValue: `annList: ${String(annList.ann_id)}, annContent: ${String(annContent.ann_id)}`,
+        },
+      )
+    }
     this.id = annList.ann_id
     this.lang = annContent.lang
     this.type = annList.type

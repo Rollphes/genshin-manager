@@ -4,7 +4,7 @@ import { StatProperty } from '@/models/StatProperty'
 import { WeaponAscension } from '@/models/weapon/WeaponAscension'
 import { WeaponInfo } from '@/models/weapon/WeaponInfo'
 import { WeaponRefinement } from '@/models/weapon/WeaponRefinement'
-import { WeaponType } from '@/types'
+import { WeaponType } from '@/types/generated/WeaponExcelConfigData'
 import { calculatePromoteLevel } from '@/utils/parsers'
 
 /**
@@ -282,7 +282,7 @@ export class Weapon {
     )
     const weaponPromotesJson = Client._getJsonFromCachedExcelBinOutput(
       'WeaponPromoteExcelConfigData',
-      weaponJson.weaponPromoteId as number,
+      weaponJson.weaponPromoteId,
     )
 
     const currentPromoteLevel = calculatePromoteLevel(

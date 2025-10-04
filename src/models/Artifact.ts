@@ -1,9 +1,11 @@
 import { Client } from '@/client'
+import { AssetNotFoundError } from '@/errors'
 import { ImageAssets } from '@/models/assets/ImageAssets'
 import { StatProperty } from '@/models/StatProperty'
 import { createArtifactLevelSchema } from '@/schemas'
-import { ArtifactType, FightPropType } from '@/types'
-import { JsonObject } from '@/types/json'
+import { FightPropType } from '@/types'
+import { EquipType } from '@/types/generated/ReliquaryExcelConfigData'
+import { toFightPropType } from '@/utils/typeGuards'
 import { ValidationHelper } from '@/utils/validation'
 interface ArtifactAffixAppendProp {
   id: number
@@ -54,7 +56,7 @@ export class Artifact {
   /**
    * Artifact type
    */
-  public readonly type: ArtifactType
+  public readonly type: EquipType
   /**
    * Artifact name
    */
@@ -125,12 +127,12 @@ export class Artifact {
       'ReliquaryExcelConfigData',
       this.id,
     )
-    this.type = artifactJson.equipType as ArtifactType
-    const nameTextMapHash = artifactJson.nameTextMapHash as number
-    const descTextMapHash = artifactJson.descTextMapHash as number
+    this.type = artifactJson.equipType
+    const nameTextMapHash = artifactJson.nameTextMapHash
+    const descTextMapHash = artifactJson.descTextMapHash
     this.name = Client._cachedTextMap.get(nameTextMapHash) ?? ''
     this.description = Client._cachedTextMap.get(descTextMapHash) ?? ''
-    this.rarity = artifactJson.rankLevel as number
+    this.rarity = artifactJson.rankLevel
     this.setId = artifactJson.setId as number | undefined
     const maxLevel = Artifact.maxLevelMap[this.rarity]
     const artifactLevelSchema = createArtifactLevelSchema(maxLevel)
@@ -142,25 +144,24 @@ export class Artifact {
         'ReliquarySetExcelConfigData',
         this.setId,
       )
-      const equipAffixId = (setJson.equipAffixId as number) * 10 + 0
+      const equipAffixId = setJson.equipAffixId * 10 + 0
       const equipAffixJson = Client._getJsonFromCachedExcelBinOutput(
         'EquipAffixExcelConfigData',
         equipAffixId,
       )
 
-      const nameTextMapHash = equipAffixJson.nameTextMapHash as number
+      const nameTextMapHash = equipAffixJson.nameTextMapHash
       this.setName = Client._cachedTextMap.get(nameTextMapHash)
 
       if (Artifact.oneSetBonusIds.includes(this.setId)) {
-        const descTextMapHash = equipAffixJson.descTextMapHash as number
+        const descTextMapHash = equipAffixJson.descTextMapHash
         this.setDescriptions[1] = Client._cachedTextMap.get(descTextMapHash)
       } else {
         const equipAffixJsonBy2pc = Client._getJsonFromCachedExcelBinOutput(
           'EquipAffixExcelConfigData',
           equipAffixId,
         )
-        const descTextMapHashFor2pc =
-          equipAffixJsonBy2pc.descTextMapHash as number
+        const descTextMapHashFor2pc = equipAffixJsonBy2pc.descTextMapHash
         this.setDescriptions[2] = Client._cachedTextMap.get(
           descTextMapHashFor2pc,
         )
@@ -169,8 +170,7 @@ export class Artifact {
           'EquipAffixExcelConfigData',
           equipAffixId + 1,
         )
-        const descTextMapHashFor4pc =
-          equipAffixJsonBy4pc.descTextMapHash as number
+        const descTextMapHashFor4pc = equipAffixJsonBy4pc.descTextMapHash
         this.setDescriptions[4] = Client._cachedTextMap.get(
           descTextMapHashFor4pc,
         )
@@ -182,12 +182,26 @@ export class Artifact {
     )
     const reliquaryLevelJson = Client._getJsonFromCachedExcelBinOutput(
       'ReliquaryLevelExcelConfigData',
-      artifactMainJson.propType as string,
+      artifactMainJson.propType,
     )
-    const realityJson = reliquaryLevelJson[this.rarity] as JsonObject
-    const mainValue = realityJson[this.level] as number
+    const realityJson = reliquaryLevelJson[this.rarity] as
+      | Record<number, number>
+      | undefined
+    if (!realityJson) {
+      throw new AssetNotFoundError(
+        `rarity ${String(this.rarity)}`,
+        'ReliquaryLevelExcelConfigData',
+      )
+    }
+    const mainValue = realityJson[this.level]
+    if (!mainValue) {
+      throw new AssetNotFoundError(
+        `level ${String(this.level)}`,
+        'ReliquaryLevelExcelConfigData',
+      )
+    }
     this.mainStat = new StatProperty(
-      artifactMainJson.propType as FightPropType,
+      toFightPropType(artifactMainJson.propType, 'mainStat'),
       mainValue,
     )
     this.subStats = this.getSubStatProperties(appendPropIds)
@@ -198,11 +212,11 @@ export class Artifact {
       )
       return {
         id: propId,
-        type: artifactAffixJson.propType as FightPropType,
-        value: artifactAffixJson.propValue as number,
+        type: toFightPropType(artifactAffixJson.propType, 'appendProp'),
+        value: artifactAffixJson.propValue,
       }
     })
-    this.icon = new ImageAssets(artifactJson.icon as string)
+    this.icon = new ImageAssets(artifactJson.icon)
   }
 
   /**
@@ -218,12 +232,14 @@ export class Artifact {
     const artifactDatas = Object.values(
       Client._getCachedExcelBinOutputByName('ReliquaryExcelConfigData'),
     )
-    const filteredArtifactDatas = artifactDatas.filter(
-      (data) =>
-        !this.blackSetIds.includes(data.setId as number) &&
-        !this.blackArtifactIds.includes(data.id as number),
-    )
-    return filteredArtifactDatas.map((data) => data.id as number)
+    return artifactDatas
+      .filter(
+        (data): data is NonNullable<typeof data> =>
+          data?.setId !== undefined &&
+          !this.blackSetIds.includes(data.setId) &&
+          !this.blackArtifactIds.includes(data.id),
+      )
+      .map((data) => data.id)
   }
 
   /**
@@ -241,7 +257,7 @@ export class Artifact {
       'ReliquaryExcelConfigData',
       artifactId,
     )
-    return Artifact.maxLevelMap[artifactJson.rankLevel as number]
+    return Artifact.maxLevelMap[artifactJson.rankLevel]
   }
 
   /**
@@ -256,17 +272,13 @@ export class Artifact {
         'ReliquaryAffixExcelConfigData',
         propId,
       )
-      const propType = artifactAffixJson.propType as FightPropType
+      const propType = toFightPropType(artifactAffixJson.propType, 'subStat')
       const propValue = result[propType]
-      if (propValue)
-        result[propType] = propValue + (artifactAffixJson.propValue as number)
-      else result[propType] = artifactAffixJson.propValue as number
+      if (propValue) result[propType] = propValue + artifactAffixJson.propValue
+      else result[propType] = artifactAffixJson.propValue
     })
-    return Object.keys(result).map((key) => {
-      return new StatProperty(
-        key as FightPropType,
-        result[key as FightPropType] ?? 0,
-      )
+    return Object.entries(result).map(([key, value]) => {
+      return new StatProperty(toFightPropType(key, 'subStatResult'), value)
     })
   }
 }

@@ -62,10 +62,8 @@ describe('ImageAssets', () => {
   })
 
   afterAll(() => {
-    // Clean up test cache directory (parent folder)
-    const parentCacheDir = path.resolve(process.cwd(), 'test-cache')
-    if (fs.existsSync(parentCacheDir))
-      fs.rmSync(parentCacheDir, { recursive: true, force: true })
+    if (fs.existsSync(testCacheDir))
+      fs.rmSync(testCacheDir, { recursive: true, force: true })
   })
 
   describe('Constructor Tests', () => {

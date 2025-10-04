@@ -1,9 +1,10 @@
 import { Client } from '@/client'
+import { AssetNotFoundError } from '@/errors'
 import { ImageAssets } from '@/models/assets/ImageAssets'
 import { CharacterInfo } from '@/models/character/CharacterInfo'
 import { StatProperty } from '@/models/StatProperty'
-import { FightPropType } from '@/types'
-import { JsonObject } from '@/types/json'
+import { PropType } from '@/types/generated/ProudSkillExcelConfigData'
+import { toFightPropType } from '@/utils/typeGuards'
 
 /**
  * Represents a character's passive skill with unlocked bonuses and effects
@@ -44,24 +45,26 @@ export class CharacterInherentSkill {
     const proudSkillJson = Client._getJsonFromCachedExcelBinOutput(
       'ProudSkillExcelConfigData',
       proudSkillGroupId,
-    )[1] as JsonObject
-    const nameTextMapHash = proudSkillJson.nameTextMapHash as number
-    const descTextMapHash = proudSkillJson.descTextMapHash as number
-    this.name = Client._cachedTextMap.get(nameTextMapHash) ?? ''
-    this.description = Client._cachedTextMap.get(descTextMapHash) ?? ''
-    this.icon = new ImageAssets(proudSkillJson.icon as string)
-    this.addProps = (proudSkillJson.addProps as JsonObject[])
-      .map((addProp) =>
-        addProp.propType !== undefined &&
-        addProp.propType !== 'FIGHT_PROP_NONE' &&
-        addProp.value !== undefined
-          ? new StatProperty(
-              addProp.propType as FightPropType,
-              (addProp.value ?? 0) as number,
-            )
-          : undefined,
+    )[1]
+    if (!proudSkillJson) {
+      throw new AssetNotFoundError(
+        `proudSkillGroupId ${String(proudSkillGroupId)} level 1`,
+        'ProudSkillExcelConfigData',
       )
-      .filter((k): k is StatProperty => k !== undefined)
+    }
+    this.name = Client._cachedTextMap.get(proudSkillJson.nameTextMapHash) ?? ''
+    this.description =
+      Client._cachedTextMap.get(proudSkillJson.descTextMapHash) ?? ''
+    this.icon = new ImageAssets(proudSkillJson.icon)
+    this.addProps = proudSkillJson.addProps
+      .filter((addProp) => addProp.propType !== PropType.FightPropNone)
+      .map(
+        (addProp) =>
+          new StatProperty(
+            toFightPropType(addProp.propType, 'CharacterInherentSkill'),
+            addProp.value,
+          ),
+      )
   }
 
   /**
@@ -100,16 +103,11 @@ export class CharacterInherentSkill {
     const depotId =
       skillDepotId && [10000005, 10000007].includes(characterId)
         ? skillDepotId
-        : (avatarJson.skillDepotId as number)
+        : avatarJson.skillDepotId
     const depotJson = Client._getJsonFromCachedExcelBinOutput(
       'AvatarSkillDepotExcelConfigData',
       depotId,
     )
-    const result: number[] = []
-    ;(depotJson.inherentProudSkillOpens as JsonObject[]).forEach((k) => {
-      if (k.proudSkillGroupId === undefined) return
-      result.push(k.proudSkillGroupId as number)
-    })
-    return result
+    return depotJson.inherentProudSkillOpens.map((k) => k.proudSkillGroupId)
   }
 }

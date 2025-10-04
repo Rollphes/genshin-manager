@@ -1,9 +1,8 @@
 import { z } from 'zod'
 
 import { Client } from '@/client'
+import { AssetNotFoundError } from '@/errors'
 import { StatProperty } from '@/models/StatProperty'
-import { FightPropType } from '@/types'
-import { JsonObject } from '@/types/json'
 import { ValidationHelper } from '@/utils/validation'
 
 /**
@@ -74,27 +73,25 @@ export class CharacterAscension {
     )
     const avatarPromoteJson = Client._getJsonFromCachedExcelBinOutput(
       'AvatarPromoteExcelConfigData',
-      avatarJson.avatarPromoteId as number,
-    )[this.promoteLevel] as JsonObject
-    this.costItems = (avatarPromoteJson.costItems as JsonObject[])
-      .filter(
-        (costItem) => costItem.id !== undefined && costItem.count !== undefined,
+      avatarJson.avatarPromoteId,
+    )[this.promoteLevel]
+    if (!avatarPromoteJson) {
+      throw new AssetNotFoundError(
+        `promoteLevel ${String(this.promoteLevel)}`,
+        'AvatarPromoteExcelConfigData',
       )
-      .map((costItem) => {
-        return {
-          id: costItem.id as number,
-          count: costItem.count as number,
-        }
-      })
-    this.costMora = (avatarPromoteJson.scoinCost as number | undefined) ?? 0
-    this.addProps = (avatarPromoteJson.addProps as JsonObject[]).map(
-      (addProp) =>
-        new StatProperty(
-          addProp.propType as FightPropType,
-          (addProp.value ?? 0) as number,
-        ),
+    }
+    this.costItems = avatarPromoteJson.costItems.map((costItem) => {
+      return {
+        id: costItem.id,
+        count: costItem.count,
+      }
+    })
+    this.costMora = avatarPromoteJson.scoinCost
+    this.addProps = avatarPromoteJson.addProps.map(
+      (addProp) => new StatProperty(addProp.propType, addProp.value),
     )
-    this.unlockMaxLevel = avatarPromoteJson.unlockMaxLevel as number
+    this.unlockMaxLevel = avatarPromoteJson.unlockMaxLevel
   }
 
   /**
@@ -109,11 +106,11 @@ export class CharacterAscension {
     )
     const avatarPromoteJson = Client._getJsonFromCachedExcelBinOutput(
       'AvatarPromoteExcelConfigData',
-      avatarJson.avatarPromoteId as number,
+      avatarJson.avatarPromoteId,
     )
     return Math.max(
-      ...(Object.values(avatarPromoteJson) as JsonObject[]).map(
-        (promote) => (promote.promoteLevel ?? 0) as number,
+      ...Object.values(avatarPromoteJson).map((promote) =>
+        promote ? promote.promoteLevel : 0,
       ),
     )
   }

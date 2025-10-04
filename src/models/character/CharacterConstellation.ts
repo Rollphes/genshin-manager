@@ -41,11 +41,11 @@ export class CharacterConstellation {
       'AvatarTalentExcelConfigData',
       this.id,
     )
-    const nameTextMapHash = talentJson.nameTextMapHash as number
-    const descTextMapHash = talentJson.descTextMapHash as number
+    const nameTextMapHash = talentJson.nameTextMapHash
+    const descTextMapHash = talentJson.descTextMapHash
     this.name = Client._cachedTextMap.get(nameTextMapHash) ?? ''
     this.description = Client._cachedTextMap.get(descTextMapHash) ?? ''
-    this.icon = new ImageAssets(talentJson.icon as string)
+    this.icon = new ImageAssets(talentJson.icon)
   }
 
   /**
@@ -56,7 +56,12 @@ export class CharacterConstellation {
     const talentDatas = Object.values(
       Client._getCachedExcelBinOutputByName('AvatarTalentExcelConfigData'),
     )
-    return talentDatas.map((data) => data.talentId as number)
+    return talentDatas
+      .filter(
+        (data): data is NonNullable<typeof data> =>
+          data?.talentId !== undefined,
+      )
+      .map((data) => data.talentId)
   }
 
   /**
@@ -76,11 +81,11 @@ export class CharacterConstellation {
     const depotId =
       skillDepotId && [10000005, 10000007].includes(characterId)
         ? skillDepotId
-        : (avatarJson.skillDepotId as number)
+        : avatarJson.skillDepotId
     const depotJson = Client._getJsonFromCachedExcelBinOutput(
       'AvatarSkillDepotExcelConfigData',
       depotId,
     )
-    return depotJson.talents as number[]
+    return depotJson.talents
   }
 }

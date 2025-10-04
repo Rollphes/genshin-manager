@@ -21,7 +21,7 @@ export class EnkaNetworkError extends NetworkError {
    * @param statusCode - HTTP status code
    * @param enkaErrorCode - Enka-specific error code
    * @param method - HTTP method
-   * @param context - Additional error context // TODO: 使われていない。
+   * @param context - Additional error context
    * @param cause - Original error
    */
   constructor(

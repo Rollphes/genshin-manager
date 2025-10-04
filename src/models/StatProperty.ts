@@ -43,8 +43,7 @@ export class StatProperty {
       'ManualTextMapConfigData',
       this.type,
     )
-    const textMapContentTextMapHash =
-      manualTextJson.textMapContentTextMapHash as number
+    const textMapContentTextMapHash = manualTextJson.textMapContentTextMapHash
 
     this.name = Client._cachedTextMap.get(textMapContentTextMapHash) ?? ''
 
