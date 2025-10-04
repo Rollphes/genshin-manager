@@ -6,6 +6,7 @@ export default defineConfig({
     globals: true,
     environment: 'node',
     globalSetup: ['./test/setup.ts'],
+    setupFiles: ['./test/setupFiles.ts'],
     testTimeout: 30000, // Extended timeout for GitLab API calls
     cache: false, // Disable test cache to prevent race conditions
     poolOptions: {

@@ -1,7 +1,7 @@
-import { Client } from '@/client/Client'
+import { Client } from '@/client'
 import { FightPropType } from '@/types'
 /**
- * Class of stat property
+ * Represents a statistical property with type, name, and value information
  */
 export class StatProperty {
   /**
@@ -27,8 +27,14 @@ export class StatProperty {
 
   /**
    * Create a StatProperty
-   * @param type FightPropType
-   * @param value Value of the stat
+   * @param type fight prop type
+   * @param value value of the stat
+   * @example
+   * ```ts
+   * const hpStat = new StatProperty('FIGHT_PROP_HP', 15552)
+   * console.log(hpStat.name)
+   * console.log(hpStat.valueText)
+   * ```
    */
   constructor(type: FightPropType, value: number) {
     this.type = type
@@ -37,8 +43,7 @@ export class StatProperty {
       'ManualTextMapConfigData',
       this.type,
     )
-    const textMapContentTextMapHash =
-      manualTextJson.textMapContentTextMapHash as number
+    const textMapContentTextMapHash = manualTextJson.textMapContentTextMapHash
 
     this.name = Client._cachedTextMap.get(textMapContentTextMapHash) ?? ''
 
@@ -49,7 +54,7 @@ export class StatProperty {
 
   /**
    * Get value text
-   * @returns Value text
+   * @returns value text
    */
   public get valueText(): string {
     const fix = this.isPercent ? 1 : 0
@@ -62,7 +67,7 @@ export class StatProperty {
 
   /**
    * Get multiplied value
-   * @returns Multiplied value
+   * @returns multiplied value
    */
   public get multipliedValue(): number {
     return this.cleanUp(this.value * (this.isPercent ? 100 : 1))
@@ -70,8 +75,8 @@ export class StatProperty {
 
   /**
    * IEEE 754 rounding method
-   * @param v Value
-   * @returns Rounded value
+   * @param v value
+   * @returns rounded value
    */
   private cleanUp(v: number): number {
     return Math.round(v * 100000) / 100000 + 0

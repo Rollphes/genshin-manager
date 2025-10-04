@@ -1,0 +1,855 @@
+{
+  "metadata": {
+    "sourceFile": "MaterialExcelConfigData.json",
+    "generatedAt": "2025-10-01T15:37:42.118Z"
+  },
+  "keyMappingTemplate": {
+    "AGMHDDHHHBL": "Filter_OTHER",
+    "cdGroup": 0,
+    "cdTime": 0,
+    "closeBagAfterUsed": false,
+    "descTextMapHash": 3188181133,
+    "destroyReturnMaterial": [],
+    "destroyReturnMaterialCount": [],
+    "destroyRule": "DESTROY_NONE",
+    "dropable": false,
+    "effectDescTextMapHash": 2831647519,
+    "effectGadgetID": 0,
+    "effectIcon": "UI_Buff_Item_Recovery_HpAdd",
+    "effectName": "",
+    "foodQuality": "FOOD_QUALITY_NONE",
+    "gadgetId": 0,
+    "GKBAHKBFNBH": false,
+    "globalItemLimit": 0,
+    "icon": "UI_ItemIcon_120643",
+    "id": 120643,
+    "interactionTitleTextMapHash": 2317955983,
+    "isForceGetHint": false,
+    "isHidden": false,
+    "isSplitDrop": false,
+    "itemType": "ITEM_MATERIAL",
+    "itemUse": [
+      {
+        "useOp": "ITEM_USE_ADD_SERVER_BUFF",
+        "useParam": [
+          "400102",
+          "5",
+          "",
+          "",
+          ""
+        ]
+      },
+      {
+        "useOp": "ITEM_USE_ADD_ITEM",
+        "useParam": [
+          "120526",
+          "1"
+        ]
+      },
+      {
+        "useOp": "ITEM_USE_NONE",
+        "useParam": [
+          "",
+          ""
+        ]
+      }
+    ],
+    "KNOIOAPAFIH": "None",
+    "LHOFPBCBILJ": false,
+    "materialType": "MATERIAL_QUEST",
+    "maxUseCount": 1,
+    "nameTextMapHash": 3671148668,
+    "noFirstGetHint": false,
+    "picPath": [
+      "",
+      "UI_NameCardPic_0_P"
+    ],
+    "playGainEffect": false,
+    "rank": 10,
+    "rankLevel": 3,
+    "satiationParams": [
+      1,
+      100
+    ],
+    "setID": 0,
+    "specialDescTextMapHash": 1512658441,
+    "stackLimit": 1,
+    "typeDescTextMapHash": 1938990262,
+    "useLevel": 0,
+    "useOnGain": false,
+    "useTarget": "ITEM_USE_TARGET_SPECIFY_ALIVE_AVATAR",
+    "weight": 1
+  },
+  "alternativePatterns": [
+    {
+      "AGMHDDHHHBL": "Filter_OTHER",
+      "cdGroup": 0,
+      "cdTime": 0,
+      "closeBagAfterUsed": false,
+      "descTextMapHash": 2833056493,
+      "destroyReturnMaterial": [],
+      "destroyReturnMaterialCount": [],
+      "destroyRule": "DESTROY_NONE",
+      "dropable": false,
+      "effectDescTextMapHash": 578682727,
+      "effectGadgetID": 0,
+      "effectIcon": "",
+      "effectName": "",
+      "foodQuality": "FOOD_QUALITY_NONE",
+      "gadgetId": 0,
+      "GKBAHKBFNBH": false,
+      "globalItemLimit": 0,
+      "icon": "UI_ItemIcon_121250",
+      "id": 121250,
+      "interactionTitleTextMapHash": 2540531143,
+      "isForceGetHint": false,
+      "isHidden": false,
+      "isSplitDrop": false,
+      "itemType": "ITEM_MATERIAL",
+      "itemUse": [
+        {
+          "useOp": "ITEM_USE_SET_OPEN_STATE",
+          "useParam": [
+            "6003",
+            "1",
+            "",
+            "",
+            ""
+          ]
+        },
+        {
+          "useOp": "ITEM_USE_ADD_ITEM",
+          "useParam": [
+            "121251",
+            "1"
+          ]
+        },
+        {
+          "useOp": "ITEM_USE_CHECK_FORMAL_AVATAR",
+          "useParam": [
+            "10000121",
+            ""
+          ]
+        }
+      ],
+      "KNOIOAPAFIH": "None",
+      "LHOFPBCBILJ": false,
+      "materialType": "MATERIAL_ROBO_GIFT",
+      "maxUseCount": 1,
+      "nameTextMapHash": 3218789316,
+      "noFirstGetHint": false,
+      "picPath": [
+        "",
+        "UI_NameCardPic_0_P"
+      ],
+      "playGainEffect": false,
+      "rank": 260102,
+      "rankLevel": 4,
+      "satiationParams": [
+        5,
+        15000
+      ],
+      "setID": 0,
+      "specialDescTextMapHash": 1074198577,
+      "stackLimit": 1,
+      "typeDescTextMapHash": 736311982,
+      "useLevel": 0,
+      "useOnGain": false,
+      "useTarget": "ITEM_USE_TARGET_NONE",
+      "weight": 1
+    },
+    {
+      "AGMHDDHHHBL": "Filter_OTHER",
+      "cdGroup": 0,
+      "cdTime": 0,
+      "closeBagAfterUsed": false,
+      "descTextMapHash": 3462050853,
+      "destroyReturnMaterial": [],
+      "destroyReturnMaterialCount": [],
+      "destroyRule": "DESTROY_NONE",
+      "dropable": false,
+      "effectDescTextMapHash": 2504322007,
+      "effectGadgetID": 0,
+      "effectIcon": "",
+      "effectName": "",
+      "foodQuality": "FOOD_QUALITY_NONE",
+      "gadgetId": 0,
+      "GKBAHKBFNBH": false,
+      "globalItemLimit": 0,
+      "icon": "UI_ItemIcon_121252",
+      "id": 121252,
+      "interactionTitleTextMapHash": 3690390591,
+      "isForceGetHint": false,
+      "isHidden": false,
+      "isSplitDrop": false,
+      "itemType": "ITEM_MATERIAL",
+      "itemUse": [
+        {
+          "useOp": "ITEM_USE_SET_OPEN_STATE",
+          "useParam": [
+            "5806",
+            "1",
+            "",
+            "",
+            ""
+          ]
+        },
+        {
+          "useOp": "ITEM_USE_ADD_ITEM",
+          "useParam": [
+            "121253",
+            "1"
+          ]
+        },
+        {
+          "useOp": "ITEM_USE_CHECK_FORMAL_AVATAR",
+          "useParam": [
+            "10000116",
+            ""
+          ]
+        }
+      ],
+      "KNOIOAPAFIH": "None",
+      "LHOFPBCBILJ": false,
+      "materialType": "MATERIAL_ROBO_GIFT",
+      "maxUseCount": 1,
+      "nameTextMapHash": 523460068,
+      "noFirstGetHint": false,
+      "picPath": [
+        "",
+        "UI_NameCardPic_0_P"
+      ],
+      "playGainEffect": false,
+      "rank": 260102,
+      "rankLevel": 4,
+      "satiationParams": [
+        5,
+        15000
+      ],
+      "setID": 0,
+      "specialDescTextMapHash": 47127233,
+      "stackLimit": 1,
+      "typeDescTextMapHash": 3973585374,
+      "useLevel": 0,
+      "useOnGain": false,
+      "useTarget": "ITEM_USE_TARGET_NONE",
+      "weight": 1
+    },
+    {
+      "AGMHDDHHHBL": "Filter_HEAL",
+      "cdGroup": 0,
+      "cdTime": 0,
+      "closeBagAfterUsed": false,
+      "descTextMapHash": 3827952949,
+      "destroyReturnMaterial": [],
+      "destroyReturnMaterialCount": [],
+      "destroyRule": "DESTROY_RETURN_MATERIAL",
+      "dropable": false,
+      "effectDescTextMapHash": 262401975,
+      "effectGadgetID": 0,
+      "effectIcon": "UI_Buff_Item_Recovery_HpAdd",
+      "effectName": "",
+      "foodQuality": "FOOD_QUALITY_NONE",
+      "gadgetId": 70540003,
+      "GKBAHKBFNBH": false,
+      "globalItemLimit": 0,
+      "icon": "UI_ItemIcon_100001",
+      "id": 100001,
+      "interactionTitleTextMapHash": 2832627575,
+      "isForceGetHint": false,
+      "isHidden": false,
+      "isSplitDrop": true,
+      "itemType": "ITEM_MATERIAL",
+      "itemUse": [
+        {
+          "useOp": "ITEM_USE_ADD_CUR_HP",
+          "useParam": [
+            "300",
+            "Eff_UI_AvatarIcon_Recovery_Once",
+            "",
+            "",
+            ""
+          ]
+        },
+        {
+          "useOp": "ITEM_USE_NONE",
+          "useParam": [
+            "",
+            ""
+          ]
+        },
+        {
+          "useOp": "ITEM_USE_NONE",
+          "useParam": [
+            "",
+            ""
+          ]
+        }
+      ],
+      "KNOIOAPAFIH": "None",
+      "LHOFPBCBILJ": false,
+      "materialType": "MATERIAL_NOTICE_ADD_HP",
+      "maxUseCount": 99,
+      "nameTextMapHash": 2483588484,
+      "noFirstGetHint": false,
+      "picPath": [
+        "",
+        "UI_NameCardPic_0_P"
+      ],
+      "playGainEffect": false,
+      "rank": 90000,
+      "rankLevel": 0,
+      "satiationParams": [
+        5,
+        15000
+      ],
+      "setID": 0,
+      "specialDescTextMapHash": 4076021585,
+      "stackLimit": 9999,
+      "typeDescTextMapHash": 2957597022,
+      "useLevel": 0,
+      "useOnGain": false,
+      "useTarget": "ITEM_USE_TARGET_SPECIFY_ALIVE_AVATAR",
+      "weight": 1
+    },
+    {
+      "AGMHDDHHHBL": "Filter_OTHER",
+      "cdGroup": 0,
+      "cdTime": 0,
+      "closeBagAfterUsed": false,
+      "descTextMapHash": 3628399005,
+      "destroyReturnMaterial": [],
+      "destroyReturnMaterialCount": [],
+      "destroyRule": "DESTROY_NONE",
+      "dropable": false,
+      "effectDescTextMapHash": 704735319,
+      "effectGadgetID": 0,
+      "effectIcon": "",
+      "effectName": "",
+      "foodQuality": "FOOD_QUALITY_NONE",
+      "gadgetId": 70610009,
+      "GKBAHKBFNBH": false,
+      "globalItemLimit": 0,
+      "icon": "UI_ItemIcon_2001",
+      "id": 2001,
+      "interactionTitleTextMapHash": 474533151,
+      "isForceGetHint": false,
+      "isHidden": false,
+      "isSplitDrop": false,
+      "itemType": "ITEM_MATERIAL",
+      "itemUse": [
+        {
+          "useOp": "ITEM_USE_ADD_ELEM_ENERGY",
+          "useParam": [
+            "1",
+            "9",
+            "3",
+            "",
+            ""
+          ]
+        },
+        {
+          "useOp": "ITEM_USE_NONE",
+          "useParam": [
+            "",
+            ""
+          ]
+        },
+        {
+          "useOp": "ITEM_USE_NONE",
+          "useParam": [
+            "",
+            ""
+          ]
+        }
+      ],
+      "KNOIOAPAFIH": "None",
+      "LHOFPBCBILJ": false,
+      "materialType": "MATERIAL_ADSORBATE",
+      "maxUseCount": 99,
+      "nameTextMapHash": 196474772,
+      "noFirstGetHint": false,
+      "picPath": [
+        "",
+        "UI_NameCardPic_0_P"
+      ],
+      "playGainEffect": false,
+      "rank": 0,
+      "rankLevel": 0,
+      "satiationParams": [
+        5,
+        15000
+      ],
+      "setID": 0,
+      "specialDescTextMapHash": 79376161,
+      "stackLimit": 1000,
+      "typeDescTextMapHash": 242959518,
+      "useLevel": 0,
+      "useOnGain": true,
+      "useTarget": "ITEM_USE_TARGET_CUR_TEAM",
+      "weight": 0
+    },
+    {
+      "AGMHDDHHHBL": "Filter_OTHER",
+      "cdGroup": 0,
+      "cdTime": 0,
+      "closeBagAfterUsed": false,
+      "descTextMapHash": 1214751037,
+      "destroyReturnMaterial": [],
+      "destroyReturnMaterialCount": [],
+      "destroyRule": "DESTROY_NONE",
+      "dropable": false,
+      "effectDescTextMapHash": 3483421519,
+      "effectGadgetID": 0,
+      "effectIcon": "",
+      "effectName": "",
+      "foodQuality": "FOOD_QUALITY_NONE",
+      "gadgetId": 0,
+      "GKBAHKBFNBH": false,
+      "globalItemLimit": 10,
+      "icon": "UI_ItemIcon_101501",
+      "id": 101501,
+      "interactionTitleTextMapHash": 2357132319,
+      "isForceGetHint": false,
+      "isHidden": false,
+      "isSplitDrop": false,
+      "itemType": "ITEM_MATERIAL",
+      "itemUse": [
+        {
+          "useOp": "ITEM_USE_COMBINE_ITEM",
+          "useParam": [
+            "10",
+            "101507",
+            "1",
+            "",
+            ""
+          ]
+        },
+        {
+          "useOp": "ITEM_USE_NONE",
+          "useParam": [
+            "",
+            ""
+          ]
+        },
+        {
+          "useOp": "ITEM_USE_NONE",
+          "useParam": [
+            "",
+            ""
+          ]
+        }
+      ],
+      "KNOIOAPAFIH": "None",
+      "LHOFPBCBILJ": false,
+      "materialType": "MATERIAL_QUEST",
+      "maxUseCount": 10,
+      "nameTextMapHash": 3114275836,
+      "noFirstGetHint": false,
+      "picPath": [
+        "",
+        "UI_NameCardPic_0_P"
+      ],
+      "playGainEffect": false,
+      "rank": 10,
+      "rankLevel": 1,
+      "satiationParams": [
+        5,
+        15000
+      ],
+      "setID": 0,
+      "specialDescTextMapHash": 3901992537,
+      "stackLimit": 100,
+      "typeDescTextMapHash": 860430382,
+      "useLevel": 0,
+      "useOnGain": false,
+      "useTarget": "ITEM_USE_TARGET_NONE",
+      "weight": 1
+    },
+    {
+      "AGMHDDHHHBL": "Filter_OTHER",
+      "cdGroup": 0,
+      "cdTime": 0,
+      "closeBagAfterUsed": false,
+      "descTextMapHash": 3394108781,
+      "destroyReturnMaterial": [],
+      "destroyReturnMaterialCount": [],
+      "destroyRule": "DESTROY_NONE",
+      "dropable": false,
+      "effectDescTextMapHash": 1297276775,
+      "effectGadgetID": 0,
+      "effectIcon": "",
+      "effectName": "",
+      "foodQuality": "FOOD_QUALITY_NONE",
+      "gadgetId": 0,
+      "GKBAHKBFNBH": false,
+      "globalItemLimit": 0,
+      "icon": "UI_ItemIcon_101692",
+      "id": 101689,
+      "interactionTitleTextMapHash": 3561112967,
+      "isForceGetHint": false,
+      "isHidden": false,
+      "isSplitDrop": false,
+      "itemType": "ITEM_MATERIAL",
+      "itemUse": [
+        {
+          "useOp": "ITEM_USE_ADD_REGIONAL_PLAY_VAR",
+          "useParam": [
+            "MichiaeMatsuriCrystalEnergy",
+            "50",
+            "",
+            "",
+            ""
+          ]
+        },
+        {
+          "useOp": "ITEM_USE_OPEN_RANDOM_CHEST",
+          "useParam": [
+            "212000002",
+            ""
+          ]
+        },
+        {
+          "useOp": "ITEM_USE_NONE",
+          "useParam": [
+            "",
+            ""
+          ]
+        }
+      ],
+      "KNOIOAPAFIH": "None",
+      "LHOFPBCBILJ": false,
+      "materialType": "MATERIAL_CHEST",
+      "maxUseCount": 9999,
+      "nameTextMapHash": 3643268548,
+      "noFirstGetHint": true,
+      "picPath": [
+        "",
+        "UI_NameCardPic_0_P"
+      ],
+      "playGainEffect": false,
+      "rank": 10,
+      "rankLevel": 0,
+      "satiationParams": [
+        5,
+        15000
+      ],
+      "setID": 0,
+      "specialDescTextMapHash": 2729335937,
+      "stackLimit": 9999,
+      "typeDescTextMapHash": 2927028790,
+      "useLevel": 0,
+      "useOnGain": true,
+      "useTarget": "ITEM_USE_TARGET_CUR_TEAM",
+      "weight": 0
+    },
+    {
+      "AGMHDDHHHBL": "Filter_OTHER",
+      "cdGroup": 0,
+      "cdTime": 0,
+      "closeBagAfterUsed": false,
+      "descTextMapHash": 1246565301,
+      "destroyReturnMaterial": [],
+      "destroyReturnMaterialCount": [],
+      "destroyRule": "DESTROY_NONE",
+      "dropable": false,
+      "effectDescTextMapHash": 1685822687,
+      "effectGadgetID": 0,
+      "effectIcon": "",
+      "effectName": "Eff_SceneObj_LuminousEnergy_01_Absorb",
+      "foodQuality": "FOOD_QUALITY_NONE",
+      "gadgetId": 70610018,
+      "GKBAHKBFNBH": false,
+      "globalItemLimit": 0,
+      "icon": "UI_ItemIcon_101692",
+      "id": 101713,
+      "interactionTitleTextMapHash": 4246139343,
+      "isForceGetHint": false,
+      "isHidden": false,
+      "isSplitDrop": true,
+      "itemType": "ITEM_MATERIAL",
+      "itemUse": [
+        {
+          "useOp": "ITEM_USE_ADD_REGIONAL_PLAY_VAR",
+          "useParam": [
+            "LightStoneEnergy",
+            "1",
+            "",
+            "",
+            ""
+          ]
+        },
+        {
+          "useOp": "ITEM_USE_NONE",
+          "useParam": [
+            "",
+            ""
+          ]
+        },
+        {
+          "useOp": "ITEM_USE_NONE",
+          "useParam": [
+            "",
+            ""
+          ]
+        }
+      ],
+      "KNOIOAPAFIH": "None",
+      "LHOFPBCBILJ": false,
+      "materialType": "MATERIAL_CONSUME",
+      "maxUseCount": 9999,
+      "nameTextMapHash": 3433212084,
+      "noFirstGetHint": true,
+      "picPath": [
+        "",
+        "UI_NameCardPic_0_P"
+      ],
+      "playGainEffect": false,
+      "rank": 10,
+      "rankLevel": 4,
+      "satiationParams": [
+        5,
+        15000
+      ],
+      "setID": 0,
+      "specialDescTextMapHash": 68686681,
+      "stackLimit": 9999,
+      "typeDescTextMapHash": 3300490654,
+      "useLevel": 0,
+      "useOnGain": true,
+      "useTarget": "ITEM_USE_TARGET_CUR_TEAM",
+      "weight": 0
+    },
+    {
+      "AGMHDDHHHBL": "Filter_OTHER",
+      "cdGroup": 0,
+      "cdTime": 0,
+      "closeBagAfterUsed": false,
+      "descTextMapHash": 1802138181,
+      "destroyReturnMaterial": [],
+      "destroyReturnMaterialCount": [],
+      "destroyRule": "DESTROY_NONE",
+      "dropable": false,
+      "effectDescTextMapHash": 2433817063,
+      "effectGadgetID": 70950192,
+      "effectIcon": "",
+      "effectName": "Eff_SceneObj_PenumbraTicket_Collect_01",
+      "foodQuality": "FOOD_QUALITY_NONE",
+      "gadgetId": 70950191,
+      "GKBAHKBFNBH": false,
+      "globalItemLimit": 0,
+      "icon": "UI_ItemIcon_107024",
+      "id": 107024,
+      "interactionTitleTextMapHash": 912395631,
+      "isForceGetHint": false,
+      "isHidden": false,
+      "isSplitDrop": false,
+      "itemType": "ITEM_MATERIAL",
+      "itemUse": [
+        {
+          "useOp": "ITEM_USE_ADD_ITEM",
+          "useParam": [
+            "161",
+            "4",
+            "",
+            "",
+            ""
+          ]
+        },
+        {
+          "useOp": "ITEM_USE_NONE",
+          "useParam": [
+            "",
+            ""
+          ]
+        },
+        {
+          "useOp": "ITEM_USE_NONE",
+          "useParam": [
+            "",
+            ""
+          ]
+        }
+      ],
+      "KNOIOAPAFIH": "None",
+      "LHOFPBCBILJ": false,
+      "materialType": "MATERIAL_CONSUME",
+      "maxUseCount": 99,
+      "nameTextMapHash": 2870981420,
+      "noFirstGetHint": true,
+      "picPath": [
+        "",
+        "UI_NameCardPic_0_P"
+      ],
+      "playGainEffect": true,
+      "rank": 420001,
+      "rankLevel": 0,
+      "satiationParams": [
+        5,
+        15000
+      ],
+      "setID": 0,
+      "specialDescTextMapHash": 2930529249,
+      "stackLimit": 2000,
+      "typeDescTextMapHash": 2212247478,
+      "useLevel": 0,
+      "useOnGain": true,
+      "useTarget": "ITEM_USE_TARGET_NONE",
+      "weight": 0
+    },
+    {
+      "AGMHDDHHHBL": "Filter_OTHER",
+      "cdGroup": 1,
+      "cdTime": 5,
+      "closeBagAfterUsed": false,
+      "descTextMapHash": 3625414181,
+      "destroyReturnMaterial": [],
+      "destroyReturnMaterialCount": [],
+      "destroyRule": "DESTROY_RETURN_MATERIAL",
+      "dropable": false,
+      "effectDescTextMapHash": 1978725591,
+      "effectGadgetID": 0,
+      "effectIcon": "",
+      "effectName": "",
+      "foodQuality": "FOOD_QUALITY_NONE",
+      "gadgetId": 70590001,
+      "GKBAHKBFNBH": false,
+      "globalItemLimit": 0,
+      "icon": "UI_ItemIcon_102001",
+      "id": 102001,
+      "interactionTitleTextMapHash": 1457126079,
+      "isForceGetHint": false,
+      "isHidden": false,
+      "isSplitDrop": false,
+      "itemType": "ITEM_MATERIAL",
+      "itemUse": [
+        {
+          "useOp": "ITEM_USE_ADD_ELEM_ENERGY",
+          "useParam": [
+            "1",
+            "50",
+            "",
+            "",
+            ""
+          ]
+        },
+        {
+          "useOp": "ITEM_USE_NONE",
+          "useParam": [
+            "",
+            ""
+          ]
+        },
+        {
+          "useOp": "ITEM_USE_NONE",
+          "useParam": [
+            "",
+            ""
+          ]
+        }
+      ],
+      "KNOIOAPAFIH": "None",
+      "LHOFPBCBILJ": false,
+      "materialType": "MATERIAL_FOOD",
+      "maxUseCount": 1,
+      "nameTextMapHash": 3108029388,
+      "noFirstGetHint": false,
+      "picPath": [
+        "",
+        "UI_NameCardPic_0_P"
+      ],
+      "playGainEffect": false,
+      "rank": 80000,
+      "rankLevel": 0,
+      "satiationParams": [
+        5,
+        15000
+      ],
+      "setID": 0,
+      "specialDescTextMapHash": 2947214257,
+      "stackLimit": 1000,
+      "typeDescTextMapHash": 1725161206,
+      "useLevel": 0,
+      "useOnGain": false,
+      "useTarget": "ITEM_USE_TARGET_CUR_TEAM",
+      "weight": 1
+    },
+    {
+      "AGMHDDHHHBL": "Filter_OTHER",
+      "cdGroup": 0,
+      "cdTime": 0,
+      "closeBagAfterUsed": false,
+      "descTextMapHash": 2381932173,
+      "destroyReturnMaterial": [],
+      "destroyReturnMaterialCount": [],
+      "destroyRule": "DESTROY_NONE",
+      "dropable": false,
+      "effectDescTextMapHash": 3843062479,
+      "effectGadgetID": 0,
+      "effectIcon": "",
+      "effectName": "",
+      "foodQuality": "FOOD_QUALITY_NONE",
+      "gadgetId": 0,
+      "GKBAHKBFNBH": false,
+      "globalItemLimit": 0,
+      "icon": "UI_NameCardIcon_0",
+      "id": 210001,
+      "interactionTitleTextMapHash": 45507791,
+      "isForceGetHint": true,
+      "isHidden": false,
+      "isSplitDrop": false,
+      "itemType": "ITEM_MATERIAL",
+      "itemUse": [
+        {
+          "useOp": "ITEM_USE_GAIN_NAME_CARD",
+          "useParam": [
+            "",
+            "",
+            "",
+            "",
+            ""
+          ]
+        },
+        {
+          "useOp": "ITEM_USE_NONE",
+          "useParam": [
+            "",
+            ""
+          ]
+        },
+        {
+          "useOp": "ITEM_USE_NONE",
+          "useParam": [
+            "",
+            ""
+          ]
+        }
+      ],
+      "KNOIOAPAFIH": "None",
+      "LHOFPBCBILJ": false,
+      "materialType": "MATERIAL_NAMECARD",
+      "maxUseCount": 99,
+      "nameTextMapHash": 3539860852,
+      "noFirstGetHint": true,
+      "picPath": [
+        "",
+        "UI_NameCardPic_0_P"
+      ],
+      "playGainEffect": false,
+      "rank": 0,
+      "rankLevel": 4,
+      "satiationParams": [
+        5,
+        15000
+      ],
+      "setID": 0,
+      "specialDescTextMapHash": 2670326625,
+      "stackLimit": 1000,
+      "typeDescTextMapHash": 1872441174,
+      "useLevel": 0,
+      "useOnGain": true,
+      "useTarget": "ITEM_USE_TARGET_NONE",
+      "weight": 0
+    }
+  ]
+}

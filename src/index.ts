@@ -1,17 +1,12 @@
-// This file outputs classes and other information to be provided to this library users.
-import { Client, ClientEvents } from '@/client/Client'
-import { EnkaData, EnkaManager, EnkaManagerEvents } from '@/client/EnkaManager'
-import { NoticeManager, NoticeManagerEvents } from '@/client/NoticeManager'
-import { AnnContentNotFoundError } from '@/errors/AnnContentNotFoundError'
-import { AnnError } from '@/errors/AnnError'
-import { AssetsNotFoundError } from '@/errors/AssetsNotFoundError'
-import { AudioNotFoundError } from '@/errors/AudioNotFoundError'
-import { BodyNotFoundError } from '@/errors/BodyNotFoundError'
-import { EnkaManagerError } from '@/errors/EnkaManagerError'
-import { EnkaNetworkError } from '@/errors/EnkaNetWorkError'
-import { EnkaNetWorkStatusError } from '@/errors/EnkaNetWorkStatusError'
-import { ImageNotFoundError } from '@/errors/ImageNotFoundError'
-import { TextMapFormatError } from '@/errors/TextMapFormatError'
+import {
+  Client,
+  type ClientEvents,
+  type EnkaData,
+  EnkaManager,
+  EnkaManagerEvents,
+  NoticeManager,
+  NoticeManagerEvents,
+} from '@/client'
 import { Artifact } from '@/models/Artifact'
 import { AudioAssets } from '@/models/assets/AudioAssets'
 import { ImageAssets } from '@/models/assets/ImageAssets'
@@ -44,30 +39,20 @@ import { Weapon } from '@/models/weapon/Weapon'
 import { WeaponAscension } from '@/models/weapon/WeaponAscension'
 import { WeaponInfo } from '@/models/weapon/WeaponInfo'
 import { WeaponRefinement } from '@/models/weapon/WeaponRefinement'
+import { ClientOption, CVType, Element, FightPropType } from '@/types'
+import { BodyType, QualityType } from '@/types/generated/AvatarExcelConfigData'
 import {
-  ArtifactType,
-  AssocType,
-  BodyType,
-  ClientOption,
-  CodexType,
-  CVType,
-  Element,
-  FightPropType,
   ItemType,
   MaterialType,
-  ProfilePictureType,
-  QualityType,
-  WeaponType,
-} from '@/types'
-import { convertToUTC } from '@/utils/convertToUTC'
+} from '@/types/generated/MaterialExcelConfigData'
+import type { Type as ProfilePictureType } from '@/types/generated/ProfilePictureExcelConfigData'
+import { EquipType as ArtifactType } from '@/types/generated/ReliquaryExcelConfigData'
+import { WeaponType } from '@/types/generated/WeaponExcelConfigData'
+import { convertToUTC } from '@/utils/parsers'
+import { ValidationHelper } from '@/utils/validation'
 export {
-  AnnContentNotFoundError,
-  AnnError,
   Artifact,
-  AssetsNotFoundError,
   AudioAssets,
-  AudioNotFoundError,
-  BodyNotFoundError,
   Character,
   CharacterAscension,
   CharacterBaseStats,
@@ -88,12 +73,8 @@ export {
   EnkaAccount,
   EnkaBuild,
   EnkaManager,
-  EnkaManagerError,
-  EnkaNetworkError,
-  EnkaNetWorkStatusError,
   GenshinAccount,
   ImageAssets,
-  ImageNotFoundError,
   Material,
   Monster,
   Notice,
@@ -101,20 +82,17 @@ export {
   PlayerDetail,
   ProfilePicture,
   StatProperty,
-  TextMapFormatError,
   Weapon,
   WeaponAscension,
   WeaponInfo,
   WeaponRefinement,
 }
-export { convertToUTC }
+export { convertToUTC, ValidationHelper }
 export {
   ArtifactType,
-  AssocType,
   BodyType,
   ClientEvents,
   ClientOption,
-  CodexType,
   CVType,
   DomainData,
   Element,
@@ -130,3 +108,9 @@ export {
 }
 export * from '@/types/enkaNetwork'
 export * from '@/types/sg-hk4e-api'
+
+// Export new unified error system
+export * from '@/errors'
+
+// Export validation schemas and utilities
+export * from '@/schemas'

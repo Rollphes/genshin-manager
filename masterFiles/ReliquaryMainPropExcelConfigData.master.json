@@ -1,0 +1,12 @@
+{
+  "metadata": {
+    "sourceFile": "ReliquaryMainPropExcelConfigData.json",
+    "generatedAt": "2025-10-01T15:37:44.126Z"
+  },
+  "keyMappingTemplate": {
+    "affixName": "Reliquary_Main_Affix_TOUGH",
+    "id": 10001,
+    "propDepotId": 1000,
+    "propType": "FIGHT_PROP_HP"
+  }
+}

@@ -81,9 +81,9 @@ interface ListData {
   alert_id: number
   timezone: number
   t: string
-  pic_list: string[] //any
+  pic_list: string[]
   pic_total: number
-  pic_type_list: string[] //any
+  pic_type_list: string[]
   pic_alert: boolean
   pic_alert_id: number
   static_sign: string
@@ -188,7 +188,6 @@ export interface DataList {
   extra_remind: number
 }
 
-//Tab
 interface TypeList {
   id: number //1:event 2:important
   name: string

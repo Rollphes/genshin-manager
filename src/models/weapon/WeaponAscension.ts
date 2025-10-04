@@ -1,11 +1,11 @@
-import { Client } from '@/client/Client'
-import { OutOfRangeError } from '@/errors/OutOfRangeError'
+import { Client } from '@/client'
+import { AssetNotFoundError } from '@/errors'
 import { StatProperty } from '@/models/StatProperty'
-import { FightPropType } from '@/types'
-import { JsonObject } from '@/utils/JsonParser'
+import { createPromoteLevelSchema } from '@/schemas'
+import { ValidationHelper } from '@/utils/validation'
 
 /**
- * Class of weapon ascension
+ * Handles weapon enhancement data including promote levels, costs, and stat boosts
  */
 export class WeaponAscension {
   /**
@@ -48,8 +48,8 @@ export class WeaponAscension {
 
   /**
    * Create a weapon ascension
-   * @param weaponId Weapon ID
-   * @param promoteLevel Weapon promote level (0-6). Default: 0
+   * @param weaponId weapon ID
+   * @param promoteLevel weapon promote level (0-6). Default: 0
    */
   constructor(weaponId: number, promoteLevel = 0) {
     this.id = weaponId
@@ -57,54 +57,41 @@ export class WeaponAscension {
     const maxPromoteLevel = WeaponAscension.getMaxPromoteLevelByWeaponId(
       this.id,
     )
-    if (this.promoteLevel < 0 || this.promoteLevel > maxPromoteLevel) {
-      throw new OutOfRangeError(
-        'promoteLevel',
-        this.promoteLevel,
-        0,
-        maxPromoteLevel,
-      )
-    }
+    const promoteLevelSchema = createPromoteLevelSchema(maxPromoteLevel)
+    void ValidationHelper.validate(promoteLevelSchema, this.promoteLevel, {
+      propertyKey: 'promoteLevel',
+    })
     const weaponJson = Client._getJsonFromCachedExcelBinOutput(
       'WeaponExcelConfigData',
       this.id,
     )
     const weaponPromoteJson = Client._getJsonFromCachedExcelBinOutput(
       'WeaponPromoteExcelConfigData',
-      weaponJson.weaponPromoteId as number,
-    )[this.promoteLevel] as JsonObject
-    this.costItems = (weaponPromoteJson.costItems as JsonObject[])
-      .filter(
-        (costItem) => costItem.id !== undefined && costItem.count !== undefined,
+      weaponJson.weaponPromoteId,
+    )[this.promoteLevel]
+    if (!weaponPromoteJson) {
+      throw new AssetNotFoundError(
+        `promoteLevel ${String(this.promoteLevel)}`,
+        'WeaponPromoteExcelConfigData',
       )
-      .map((costItem) => {
-        return {
-          id: costItem.id as number,
-          count: costItem.count as number,
-        }
-      })
-    this.costMora = (weaponPromoteJson.coinCost as number | undefined) ?? 0
-    this.addProps = (weaponPromoteJson.addProps as JsonObject[])
-      .filter(
-        (addProp) =>
-          addProp.propType !== undefined &&
-          addProp.propType !== 'FIGHT_PROP_NONE' &&
-          addProp.value !== undefined,
-      )
-      .map(
-        (addProp) =>
-          new StatProperty(
-            addProp.propType as FightPropType,
-            (addProp.value ?? 0) as number,
-          ),
-      )
-    this.unlockMaxLevel = weaponPromoteJson.unlockMaxLevel as number
+    }
+    this.costItems = weaponPromoteJson.costItems.map((costItem) => {
+      return {
+        id: costItem.id,
+        count: costItem.count,
+      }
+    })
+    this.costMora = weaponPromoteJson.coinCost
+    this.addProps = weaponPromoteJson.addProps.map(
+      (addProp) => new StatProperty(addProp.propType, addProp.value),
+    )
+    this.unlockMaxLevel = weaponPromoteJson.unlockMaxLevel
   }
 
   /**
    * Get max promote level by weapon ID
-   * @param weaponId Weapon ID
-   * @returns Max promote level
+   * @param weaponId weapon ID
+   * @returns max promote level
    */
   public static getMaxPromoteLevelByWeaponId(weaponId: number): number {
     const weaponJson = Client._getJsonFromCachedExcelBinOutput(
@@ -113,11 +100,11 @@ export class WeaponAscension {
     )
     const weaponPromoteJson = Client._getJsonFromCachedExcelBinOutput(
       'WeaponPromoteExcelConfigData',
-      weaponJson.weaponPromoteId as number,
+      weaponJson.weaponPromoteId,
     )
     return Math.max(
-      ...(Object.values(weaponPromoteJson) as JsonObject[]).map(
-        (promote) => (promote.promoteLevel ?? 0) as number,
+      ...Object.values(weaponPromoteJson).map((promote) =>
+        promote ? promote.promoteLevel : 0,
       ),
     )
   }

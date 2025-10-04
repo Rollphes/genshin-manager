@@ -1,7 +1,7 @@
 import fs from 'fs'
 import path from 'path'
 
-import { Client } from '@/client/Client'
+import { Client } from '@/client'
 
 /**
  * Global setup for vitest
@@ -10,6 +10,7 @@ import { Client } from '@/client/Client'
 
 // Cache directory paths
 const CACHE_DIR = path.resolve(process.cwd(), 'cache')
+const TEST_CACHE_DIR = path.resolve(process.cwd(), 'test-cache')
 const COMMIT_FILE_PATH = path.resolve(CACHE_DIR, 'commits.json')
 const TEST_COMMIT_FILE_PATH = path.resolve(CACHE_DIR, 'commits_test_temp.json')
 
@@ -29,7 +30,7 @@ export async function setup(): Promise<void> {
     fs.existsSync(TEST_COMMIT_FILE_PATH)
   ) {
     // If test temp file exists, remove it to avoid conflicts
-    fs.rmSync(TEST_COMMIT_FILE_PATH, { recursive: true, force: true })
+    fs.rmSync(TEST_COMMIT_FILE_PATH, { force: true })
     console.log('🗑️ Global setup: Removed old test commits file')
   }
 
@@ -65,3 +66,33 @@ export async function setup(): Promise<void> {
 
   console.log('✅ Global setup: Client deployment completed')
 }
+
+/**
+ * Global teardown for vitest
+ * This runs once after all tests complete and cleans up test-cache directory
+ */
+export function teardown(): void {
+  console.log('🧹 Global teardown: Cleaning up test cache...')
+
+  if (fs.existsSync(TEST_CACHE_DIR)) {
+    fs.rmSync(TEST_CACHE_DIR, { recursive: true, force: true })
+    console.log('🗑️  Global teardown: Removed test-cache directory')
+  }
+
+  console.log('✅ Global teardown: Cleanup completed')
+}
+
+/**
+ * Fallback cleanup on process exit (for VSCode Vitest extension)
+ * This ensures test-cache is removed even when globalTeardown is not called
+ */
+process.on('exit', () => {
+  if (fs.existsSync(TEST_CACHE_DIR)) {
+    try {
+      fs.rmSync(TEST_CACHE_DIR, { recursive: true, force: true })
+      console.log('🗑️  Process exit: Removed test-cache directory')
+    } catch {
+      // Silently ignore errors (directory may already be removed by globalTeardown)
+    }
+  }
+})

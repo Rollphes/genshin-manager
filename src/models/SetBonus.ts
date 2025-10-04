@@ -1,8 +1,8 @@
-import { Client } from '@/client/Client'
+import { Client } from '@/client'
 import { Artifact } from '@/models/Artifact'
 
 /**
- * Class of set bonuses that can be activated by artifacts
+ * Manages artifact set effects and bonuses that activate when wearing multiple pieces
  */
 export class SetBonus {
   /**
@@ -30,7 +30,7 @@ export class SetBonus {
 
   /**
    * Create a SetBonus
-   * @param artifacts Artifacts equipped by the character
+   * @param artifacts artifacts equipped by the character
    */
   constructor(artifacts: Artifact[]) {
     const countIds: Record<string, number> = {}
@@ -45,10 +45,7 @@ export class SetBonus {
           'ReliquarySetExcelConfigData',
           setId,
         )
-        setBracers[setId] = new Artifact(
-          (setJson.containsList as number[])[0],
-          10001,
-        )
+        setBracers[setId] = new Artifact(setJson.containsList[0], 10001)
       }
     })
 

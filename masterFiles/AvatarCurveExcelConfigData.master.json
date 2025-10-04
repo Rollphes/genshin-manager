@@ -1,0 +1,31 @@
+{
+  "metadata": {
+    "sourceFile": "AvatarCurveExcelConfigData.json",
+    "generatedAt": "2025-10-01T15:37:37.018Z"
+  },
+  "keyMappingTemplate": {
+    "curveInfos": [
+      {
+        "arith": "ARITH_MULTI",
+        "type": "GROW_CURVE_HP_S4",
+        "value": 1
+      },
+      {
+        "arith": "ARITH_MULTI",
+        "type": "GROW_CURVE_ATTACK_S4",
+        "value": 1
+      },
+      {
+        "arith": "ARITH_MULTI",
+        "type": "GROW_CURVE_HP_S5",
+        "value": 1
+      },
+      {
+        "arith": "ARITH_MULTI",
+        "type": "GROW_CURVE_ATTACK_S5",
+        "value": 1
+      }
+    ],
+    "level": 1
+  }
+}

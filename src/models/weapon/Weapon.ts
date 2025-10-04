@@ -1,11 +1,11 @@
-import { Client } from '@/client/Client'
+import { Client } from '@/client'
 import { ImageAssets } from '@/models/assets/ImageAssets'
 import { StatProperty } from '@/models/StatProperty'
 import { WeaponAscension } from '@/models/weapon/WeaponAscension'
 import { WeaponInfo } from '@/models/weapon/WeaponInfo'
 import { WeaponRefinement } from '@/models/weapon/WeaponRefinement'
-import { WeaponType } from '@/types'
-import { calculatePromoteLevel } from '@/utils/calculatePromoteLevel'
+import { WeaponType } from '@/types/generated/WeaponExcelConfigData'
+import { calculatePromoteLevel } from '@/utils/parsers'
 
 /**
  * Unified weapon class providing comprehensive access to all weapon data
@@ -42,10 +42,10 @@ export class Weapon {
 
   /**
    * Create a Weapon
-   * @param weaponId Weapon ID
-   * @param level Weapon level (1-90). Default: 1
-   * @param isAscended Weapon is ascended. Default: true
-   * @param refinementRank Weapon refinement rank (1-5). Default: 1
+   * @param weaponId weapon ID
+   * @param level weapon level (1-90). Default: 1
+   * @param isAscended weapon is ascended. Default: true
+   * @param refinementRank weapon refinement rank (1-5). Default: 1
    */
   constructor(
     weaponId: number,
@@ -60,6 +60,14 @@ export class Weapon {
     this.info = new WeaponInfo(weaponId, level, isAscended, refinementRank)
     this.ascension = new WeaponAscension(weaponId, this.info.promoteLevel)
     this.refinement = new WeaponRefinement(weaponId, refinementRank)
+  }
+
+  /**
+   * Get all weapon IDs
+   * @returns all weapon IDs
+   */
+  public static get allWeaponIds(): number[] {
+    return WeaponInfo.allWeaponIds
   }
 
   /**
@@ -154,27 +162,10 @@ export class Weapon {
   }
 
   /**
-   * Get all weapon IDs
-   * @returns All weapon IDs
-   */
-  public static getAllWeaponIds(): number[] {
-    return WeaponInfo.allWeaponIds
-  }
-
-  /**
-   * Get weapon ID by name
-   * @param name Weapon name
-   * @returns Weapon ID
-   */
-  public static getWeaponIdByName(name: string): number[] {
-    return WeaponInfo.getWeaponIdByName(name)
-  }
-
-  /**
    * Get weapon summary information
-   * @returns Weapon summary object
+   * @returns weapon summary object
    */
-  public getSummary(): {
+  public get summary(): {
     name: string
     type: WeaponType
     rarity: number
@@ -192,9 +183,9 @@ export class Weapon {
 
   /**
    * Check if weapon can ascend to next level
-   * @returns True if weapon can ascend
+   * @returns true if weapon can ascend
    */
-  public canAscend(): boolean {
+  public get isCanAscend(): boolean {
     const maxPromoteLevel = WeaponAscension.getMaxPromoteLevelByWeaponId(
       this.id,
     )
@@ -203,19 +194,19 @@ export class Weapon {
 
   /**
    * Get required materials for next ascension
-   * @returns Array of materials needed for next ascension
+   * @returns array of materials needed for next ascension
    */
-  public getNextAscensionMaterials(): { id: number; count: number }[] {
-    if (!this.canAscend()) return []
+  public get nextAscensionMaterials(): { id: number; count: number }[] {
+    if (!this.isCanAscend) return []
     const nextAscension = new WeaponAscension(this.id, this.promoteLevel + 1)
     return nextAscension.costItems
   }
 
   /**
    * Get total materials needed from current to max level
-   * @returns Array of total materials needed
+   * @returns array of total materials needed
    */
-  public getTotalAscensionMaterials(): { id: number; count: number }[] {
+  public get totalAscensionMaterials(): { id: number; count: number }[] {
     const maxPromoteLevel = WeaponAscension.getMaxPromoteLevelByWeaponId(
       this.id,
     )
@@ -237,9 +228,9 @@ export class Weapon {
 
   /**
    * Check if weapon can refine to next rank
-   * @returns True if weapon can refine
+   * @returns true if weapon can refine
    */
-  public canRefine(): boolean {
+  public get isCanRefine(): boolean {
     const maxRefinementRank = WeaponRefinement.getMaxRefinementRankByWeaponId(
       this.id,
     )
@@ -248,16 +239,25 @@ export class Weapon {
 
   /**
    * Get max refinement rank for this weapon
-   * @returns Max refinement rank
+   * @returns max refinement rank
    */
-  public getMaxRefinementRank(): number {
+  public get maxRefinementRank(): number {
     return WeaponRefinement.getMaxRefinementRankByWeaponId(this.id)
   }
 
   /**
+   * Get weapon ID by name
+   * @param name weapon name
+   * @returns weapon ID
+   */
+  public static getWeaponIdByName(name: string): number[] {
+    return WeaponInfo.getWeaponIdByName(name)
+  }
+
+  /**
    * Get refinement effect for specified rank
-   * @param rank Refinement rank (1-5). Default: current rank
-   * @returns Refinement effect
+   * @param rank refinement rank (1-5). Default: current rank
+   * @returns refinement effect
    */
   public getRefinementEffect(rank?: number): WeaponRefinement {
     const targetRank = rank ?? this.refinementRank
@@ -266,9 +266,9 @@ export class Weapon {
 
   /**
    * Calculate weapon level upgrade materials
-   * @param currentLevel Current weapon level
-   * @param targetLevel Target weapon level
-   * @returns Array of materials needed
+   * @param currentLevel current weapon level
+   * @param targetLevel target weapon level
+   * @returns array of materials needed
    */
   public calculateWeaponLevelMaterials(
     currentLevel: number,
@@ -276,14 +276,13 @@ export class Weapon {
   ): { id: number; count: number }[] {
     const materialsMap = new Map<number, number>()
 
-    // Calculate promote levels for current and target
     const weaponJson = Client._getJsonFromCachedExcelBinOutput(
       'WeaponExcelConfigData',
       this.id,
     )
     const weaponPromotesJson = Client._getJsonFromCachedExcelBinOutput(
       'WeaponPromoteExcelConfigData',
-      weaponJson.weaponPromoteId as number,
+      weaponJson.weaponPromoteId,
     )
 
     const currentPromoteLevel = calculatePromoteLevel(
@@ -297,7 +296,6 @@ export class Weapon {
       false,
     )
 
-    // Add ascension materials
     for (
       let promoteLevel = currentPromoteLevel + 1;
       promoteLevel <= targetPromoteLevel;

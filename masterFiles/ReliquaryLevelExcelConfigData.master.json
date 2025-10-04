@@ -1,0 +1,182 @@
+{
+  "metadata": {
+    "sourceFile": "ReliquaryLevelExcelConfigData.json",
+    "generatedAt": "2025-10-01T15:37:44.118Z"
+  },
+  "keyMappingTemplate": {
+    "addProps": [
+      {
+        "propType": "FIGHT_PROP_HP",
+        "value": 40
+      },
+      {
+        "propType": "FIGHT_PROP_HP_PERCENT",
+        "value": 0.02
+      },
+      {
+        "propType": "FIGHT_PROP_ATTACK",
+        "value": 3
+      },
+      {
+        "propType": "FIGHT_PROP_ATTACK_PERCENT",
+        "value": 0.02
+      },
+      {
+        "propType": "FIGHT_PROP_DEFENSE",
+        "value": 2
+      },
+      {
+        "propType": "FIGHT_PROP_DEFENSE_PERCENT",
+        "value": 0.03
+      },
+      {
+        "propType": "FIGHT_PROP_CRITICAL",
+        "value": 0.015
+      },
+      {
+        "propType": "FIGHT_PROP_CRITICAL_HURT",
+        "value": 0.03
+      },
+      {
+        "propType": "FIGHT_PROP_CHARGE_EFFICIENCY",
+        "value": 0.03
+      },
+      {
+        "propType": "FIGHT_PROP_HEAL_ADD",
+        "value": 0.03
+      },
+      {
+        "propType": "FIGHT_PROP_ELEMENT_MASTERY",
+        "value": 5
+      },
+      {
+        "propType": "FIGHT_PROP_FIRE_ADD_HURT",
+        "value": 0.02
+      },
+      {
+        "propType": "FIGHT_PROP_ELEC_ADD_HURT",
+        "value": 0.02
+      },
+      {
+        "propType": "FIGHT_PROP_WATER_ADD_HURT",
+        "value": 0.02
+      },
+      {
+        "propType": "FIGHT_PROP_WIND_ADD_HURT",
+        "value": 0.02
+      },
+      {
+        "propType": "FIGHT_PROP_ROCK_ADD_HURT",
+        "value": 0.02
+      },
+      {
+        "propType": "FIGHT_PROP_GRASS_ADD_HURT",
+        "value": 0.02
+      },
+      {
+        "propType": "FIGHT_PROP_ICE_ADD_HURT",
+        "value": 0.02
+      },
+      {
+        "propType": "FIGHT_PROP_PHYSICAL_ADD_HURT",
+        "value": 0.04
+      },
+      {
+        "propType": "FIGHT_PROP_FIRE_SUB_HURT",
+        "value": 0.02
+      }
+    ],
+    "exp": 0,
+    "level": 1,
+    "rank": 0
+  },
+  "alternativePatterns": [
+    {
+      "addProps": [
+        {
+          "propType": "FIGHT_PROP_HP",
+          "value": 129
+        },
+        {
+          "propType": "FIGHT_PROP_HP_PERCENT",
+          "value": 0.031
+        },
+        {
+          "propType": "FIGHT_PROP_ATTACK",
+          "value": 8
+        },
+        {
+          "propType": "FIGHT_PROP_ATTACK_PERCENT",
+          "value": 0.031
+        },
+        {
+          "propType": "FIGHT_PROP_DEFENSE",
+          "value": 20
+        },
+        {
+          "propType": "FIGHT_PROP_DEFENSE_PERCENT",
+          "value": 0.039
+        },
+        {
+          "propType": "FIGHT_PROP_CRITICAL",
+          "value": 0.021
+        },
+        {
+          "propType": "FIGHT_PROP_CRITICAL_HURT",
+          "value": 0.042
+        },
+        {
+          "propType": "FIGHT_PROP_CHARGE_EFFICIENCY",
+          "value": 0.035
+        },
+        {
+          "propType": "FIGHT_PROP_HEAL_ADD",
+          "value": 0.024
+        },
+        {
+          "propType": "FIGHT_PROP_ELEMENT_MASTERY",
+          "value": 12.6
+        },
+        {
+          "propType": "FIGHT_PROP_FIRE_ADD_HURT",
+          "value": 0.031
+        },
+        {
+          "propType": "FIGHT_PROP_ELEC_ADD_HURT",
+          "value": 0.031
+        },
+        {
+          "propType": "FIGHT_PROP_WATER_ADD_HURT",
+          "value": 0.031
+        },
+        {
+          "propType": "FIGHT_PROP_WIND_ADD_HURT",
+          "value": 0.031
+        },
+        {
+          "propType": "FIGHT_PROP_ROCK_ADD_HURT",
+          "value": 0.031
+        },
+        {
+          "propType": "FIGHT_PROP_GRASS_ADD_HURT",
+          "value": 0.031
+        },
+        {
+          "propType": "FIGHT_PROP_ICE_ADD_HURT",
+          "value": 0.031
+        },
+        {
+          "propType": "FIGHT_PROP_PHYSICAL_ADD_HURT",
+          "value": 0.039
+        },
+        {
+          "propType": "FIGHT_PROP_FIRE_SUB_HURT",
+          "value": 0.045
+        }
+      ],
+      "exp": 600,
+      "level": 1,
+      "rank": 1
+    }
+  ]
+}

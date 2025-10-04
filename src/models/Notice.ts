@@ -1,11 +1,12 @@
 import * as cheerio from 'cheerio'
 import { Element } from 'domhandler'
 
+import { ValidationError } from '@/errors'
 import { ImageAssets } from '@/models/assets/ImageAssets'
 import { ValueOf } from '@/types'
 import { NoticeLanguage, Region } from '@/types/sg-hk4e-api'
 import { ContentList, DataList } from '@/types/sg-hk4e-api/response'
-import { convertToUTC } from '@/utils/convertToUTC'
+import { convertToUTC } from '@/utils/parsers'
 
 type CheerioAPI = ReturnType<typeof cheerio.load>
 
@@ -53,8 +54,8 @@ export class Notice {
    */
   public readonly banner: ImageAssets
   /**
-   * Notice content DOM(jQuery)
-   * @warning This property does not exclude table tags
+   * Notice content DOM manipulation interface (Cheerio/jQuery-like)
+   * @warning Raw HTML content may include table tags that should be filtered for text extraction
    */
   public readonly $: CheerioAPI
   /**
@@ -103,10 +104,16 @@ export class Notice {
 
   /**
    * Create a Notice
-   * @param annList AnnList
-   * @param annContent AnnContent
-   * @param enAnnContent AnnContent(lang=en)
-   * @param region Region
+   * @param annList annList
+   * @param annContent annContent
+   * @param enAnnContent annContent(lang=en)
+   * @param region region
+   * @example
+   * ```ts
+   * const notice = new Notice(annListData, annContentData, enAnnContentData, 'os_asia')
+   * console.log(notice.title)
+   * console.log(notice.subtitle)
+   * ```
    */
   constructor(
     annList: DataList,
@@ -115,7 +122,15 @@ export class Notice {
     region: Region,
   ) {
     this.region = region
-    if (annList.ann_id !== annContent.ann_id) throw new Error('ID mismatch')
+    if (annList.ann_id !== annContent.ann_id) {
+      throw new ValidationError(
+        'Announcement ID mismatch between list and content',
+        {
+          propertyKey: 'ann_id',
+          actualValue: `annList: ${String(annList.ann_id)}, annContent: ${String(annContent.ann_id)}`,
+        },
+      )
+    }
     this.id = annList.ann_id
     this.lang = annContent.lang
     this.type = annList.type
@@ -171,7 +186,7 @@ export class Notice {
   /**
    * Get the text of the notice
    * @warning This method does not exclude table tags
-   * @returns Notice all text
+   * @returns notice all text
    */
   public get text(): string {
     return this.convertLocalDate(
@@ -184,7 +199,7 @@ export class Notice {
 
   /**
    * Get the duration of the event
-   * @returns Event duration
+   * @returns event duration
    */
   public get eventDuration(): string | undefined {
     if (this.eventStart && this.eventEnd)
@@ -255,8 +270,8 @@ export class Notice {
   /**
    * Convert t tag to region time
    * @warning t tags work fine when inserted with text() content because the original is \&gt; or \&lt;.
-   * @param text Text
-   * @returns Converted text
+   * @param text text
+   * @returns converted text
    */
   private convertLocalDate(text: string): string {
     return text

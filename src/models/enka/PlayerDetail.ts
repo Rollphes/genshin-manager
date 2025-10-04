@@ -3,7 +3,7 @@ import { Material } from '@/models/Material'
 import { ProfilePicture } from '@/models/ProfilePicture'
 import { APIPlayerInfo } from '@/types/enkaNetwork'
 /**
- * Class of player obtained from EnkaNetwork
+ * Contains player profile information and game progress from EnkaNetwork
  */
 export class PlayerDetail {
   /**
@@ -81,9 +81,8 @@ export class PlayerDetail {
 
   /**
    * Create a PlayerDetail
-   * @param data Data from EnkaNetwork
+   * @param data data from EnkaNetwork
    */
-  // eslint-disable-next-line complexity
   constructor(data: APIPlayerInfo) {
     this.nickname = data.nickname ?? ''
     this.level = data.level
@@ -94,13 +93,45 @@ export class PlayerDetail {
     this.towerFloorIndex = data.towerFloorIndex ?? 0
     this.towerLevelIndex = data.towerLevelIndex ?? 0
     this.towerStarIndex = data.towerStarIndex ?? 0
-    this.characterPreviews = data.showAvatarInfoList
+    this.characterPreviews = this.initializeCharacterPreviews(data)
+    this.showNameCards = this.initializeShowNameCards(data)
+    this.profilePicture = this.createProfilePicture(data)
+    this.maxFriendshipCharactersCount = data.fetterCount ?? 0
+    this.theaterActIndex = data.theaterActIndex ?? 0
+    this.theaterModeIndex = data.theaterModeIndex ?? 0
+    this.theaterStarIndex = data.theaterStarIndex ?? 0
+    this.isShowCharacterPreviewConstellation = data.isShowAvatarTalent ?? false
+    this.data = data
+  }
+
+  /**
+   * Initialize character previews from API data
+   * @param data API player info
+   * @returns array of character previews
+   */
+  private initializeCharacterPreviews(data: APIPlayerInfo): CharacterPreview[] {
+    return data.showAvatarInfoList
       ? data.showAvatarInfoList.map((v) => new CharacterPreview(v))
       : []
-    this.showNameCards = data.showNameCardIdList
+  }
+
+  /**
+   * Initialize show name cards from API data
+   * @param data API player info
+   * @returns array of materials
+   */
+  private initializeShowNameCards(data: APIPlayerInfo): Material[] {
+    return data.showNameCardIdList
       ? data.showNameCardIdList.map((id) => new Material(id))
       : []
+  }
 
+  /**
+   * Create profile picture from API data
+   * @param data API player info
+   * @returns profile picture instance
+   */
+  private createProfilePicture(data: APIPlayerInfo): ProfilePicture {
     let profilePictureId
     if (data.profilePicture?.id) {
       profilePictureId = data.profilePicture.id
@@ -111,12 +142,6 @@ export class PlayerDetail {
           10000005,
       )
     }
-    this.profilePicture = new ProfilePicture(profilePictureId ?? 1)
-    this.maxFriendshipCharactersCount = data.fetterCount ?? 0
-    this.theaterActIndex = data.theaterActIndex ?? 0
-    this.theaterModeIndex = data.theaterModeIndex ?? 0
-    this.theaterStarIndex = data.theaterStarIndex ?? 0
-    this.isShowCharacterPreviewConstellation = data.isShowAvatarTalent ?? false
-    this.data = data
+    return new ProfilePicture(profilePictureId ?? 1)
   }
 }

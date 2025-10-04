@@ -3,10 +3,10 @@ import * as fsPromises from 'fs/promises'
 import path from 'path'
 import { pipeline } from 'stream/promises'
 
-import { AudioNotFoundError } from '@/errors/AudioNotFoundError'
+import { AudioNotFoundError } from '@/errors'
 import { CVType } from '@/types'
 import { ClientOption } from '@/types'
-import { ReadableStreamWrapper } from '@/utils/ReadableStreamWrapper'
+import { ReadableStreamWrapper } from '@/utils/streams'
 
 /**
  * Class for compiling information about audio
@@ -65,9 +65,9 @@ export class AudioAssets {
 
   /**
    * Classes for handling audios
-   * @param name Audio name
-   * @param cv Audio cv
-   * @param characterId Character ID
+   * @param name audio name
+   * @param cv audio cv
+   * @param characterId character ID
    */
   constructor(name: string, cv?: CVType, characterId?: number) {
     this.name = name
@@ -95,7 +95,7 @@ export class AudioAssets {
 
   /**
    * Classes for handling audios
-   * @param option Client option
+   * @param option client option
    */
   public static deploy(option: ClientOption): void {
     this.fetchOption = option.fetchOption
@@ -108,10 +108,10 @@ export class AudioAssets {
 
   /**
    * Fetch audio buffer
-   * @returns Audio buffer
+   * @returns audio buffer
    */
   public async fetchBuffer(): Promise<Buffer> {
-    if (!this.url) throw new AudioNotFoundError(this.name, this.url)
+    if (!this.url) throw new AudioNotFoundError(this.name, { url: this.url })
 
     const cvPaths: string[] = []
     if (this.cv !== undefined) cvPaths.push(this.cv)
@@ -126,7 +126,7 @@ export class AudioAssets {
     } else {
       const res = await fetch(this.url, AudioAssets.fetchOption)
       if (!res.ok || !res.body)
-        throw new AudioNotFoundError(this.name, this.url)
+        throw new AudioNotFoundError(this.name, { url: this.url })
 
       const arrayBuffer = await res.arrayBuffer()
       const data = Buffer.from(arrayBuffer)
@@ -141,11 +141,11 @@ export class AudioAssets {
 
   /**
    * Fetch audio stream
-   * @param highWaterMark HighWaterMark
-   * @returns Audio stream
+   * @param highWaterMark highWaterMark
+   * @returns audio stream
    */
   public async fetchStream(highWaterMark?: number): Promise<fs.ReadStream> {
-    if (!this.url) throw new AudioNotFoundError(this.name, this.url)
+    if (!this.url) throw new AudioNotFoundError(this.name, { url: this.url })
 
     const cvPaths: string[] = []
     if (this.cv !== undefined) cvPaths.push(this.cv)
@@ -162,7 +162,7 @@ export class AudioAssets {
     } else {
       const res = await fetch(this.url, AudioAssets.fetchOption)
       if (!res.ok || !res.body)
-        throw new AudioNotFoundError(this.name, this.url)
+        throw new AudioNotFoundError(this.name, { url: this.url })
 
       if (AudioAssets.autoCacheAudio) {
         fs.mkdirSync(path.dirname(audioCachePath), { recursive: true })
@@ -182,12 +182,12 @@ export class AudioAssets {
 
   /**
    * Check if the OGG file is corrupted
-   * @warning This function is not perfect, it may not be able to detect all corrupted OGG files. because it only checks the last OggS header.
-   * @param filePath File path
+   * @warning Limited corruption detection - only validates the final OggS header. May not catch all types of file corruption.
+   * @param filePath file path
    * @returns is OGG file corrupted
    */
   private isOGGCorrupted(filePath: string): boolean {
-    const data = fs.readFileSync(filePath) // There is no footer in the ogg file, so all the data has to be read in.
+    const data = fs.readFileSync(filePath)
     const lastIndex = data.lastIndexOf('OggS')
 
     if (lastIndex !== -1) {

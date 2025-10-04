@@ -3,7 +3,7 @@ import { PlayerDetail } from '@/models/enka/PlayerDetail'
 import { APIBuild, APIGameAccount } from '@/types/enkaNetwork'
 
 /**
- * Class of GenshinAccount
+ * Represents a Genshin Impact account with associated game data and builds
  */
 export class GenshinAccount {
   /**
@@ -49,9 +49,9 @@ export class GenshinAccount {
 
   /**
    * Create a GenshinAccount
-   * @param gameAccountData Data from EnkaNetwork
-   * @param buildDatas Data from EnkaNetwork
-   * @param username Username of EnkaNetwork
+   * @param gameAccountData data from EnkaNetwork
+   * @param buildDatas data from EnkaNetwork
+   * @param username username of EnkaNetwork
    * @param enkaBaseURL URL of enka.network
    */
   constructor(

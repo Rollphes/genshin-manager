@@ -1,9 +1,9 @@
-import { Client } from '@/client/Client'
+import { Client } from '@/client'
 import { AudioAssets } from '@/models/assets/AudioAssets'
 import { CVType } from '@/types'
 
 /**
- * Class of character's voice
+ * Handles character voice lines and audio assets in different languages
  */
 export class CharacterVoice {
   /**
@@ -17,11 +17,11 @@ export class CharacterVoice {
   /**
    * Costume IDs to hide this
    */
-  public readonly hideCostumeIds: number[] = []
+  public readonly hideCostumeList: number[] = []
   /**
    * Costume IDs to show this
    */
-  public readonly showCostumeIds: number[] = []
+  public readonly showCostumeList: number[] = []
   /**
    * Character ID
    */
@@ -54,7 +54,7 @@ export class CharacterVoice {
 
   /**
    * Create a CharacterVoice
-   * @param fetterId Fetter ID in the voice
+   * @param fetterId fetter ID in the voice
    * @param cv CV language
    */
   constructor(fetterId: number, cv: CVType) {
@@ -64,21 +64,20 @@ export class CharacterVoice {
       'FettersExcelConfigData',
       fetterId,
     )
-    this.hideCostumeIds = fetterVoiceJson.hideCostumeIds as number[]
-    this.showCostumeIds = fetterVoiceJson.showCostumeIds as number[]
-    this.characterId = fetterVoiceJson.avatarId as number
-    this.type = fetterVoiceJson.type as number
-    const voiceTitleTextMapHash =
-      fetterVoiceJson.voiceTitleTextMapHash as number
-    const voiceFileTextMapHash = fetterVoiceJson.voiceFileTextMapHash as number
+    this.hideCostumeList = fetterVoiceJson.hideCostumeList
+    this.showCostumeList = fetterVoiceJson.showCostumeList
+    this.characterId = fetterVoiceJson.avatarId
+    this.type = fetterVoiceJson.type
+    const voiceTitleTextMapHash = fetterVoiceJson.voiceTitleTextMapHash
+    const voiceFileTextMapHash = fetterVoiceJson.voiceTitleTextMapHash
 
     this.title = Client._cachedTextMap.get(voiceTitleTextMapHash) ?? ''
     this.content = Client._cachedTextMap.get(voiceFileTextMapHash) ?? ''
-    this.tips = (fetterVoiceJson.tips as number[])
+    this.tips = fetterVoiceJson.tips
       .map((tip) => Client._cachedTextMap.get(tip))
       .filter((tip): tip is string => tip !== undefined)
     this.audio = new AudioAssets(
-      fetterVoiceJson.voiceFile as string,
+      fetterVoiceJson.voiceFile,
       cv,
       this.characterId,
     )
@@ -86,26 +85,34 @@ export class CharacterVoice {
 
   /**
    * Get all Fetter IDs in the voice
-   * @returns All Fetter IDs in the voice
+   * @returns all Fetter IDs in the voice
    */
   public static get allFetterIds(): number[] {
     const fetterVoicesJson = Object.values(
       Client._getCachedExcelBinOutputByName('FettersExcelConfigData'),
     )
-    return fetterVoicesJson.map((voice) => voice.fetterId as number)
+    return fetterVoicesJson
+      .filter(
+        (voice): voice is NonNullable<typeof voice> =>
+          voice?.fetterId !== undefined,
+      )
+      .map((voice) => voice.fetterId)
   }
 
   /**
    * Get all Fetter IDs in the character's voice
-   * @param characterId Character ID
-   * @returns All Fetter IDs in the character's voice
+   * @param characterId character ID
+   * @returns all Fetter IDs in the character's voice
    */
   public static getAllFetterIdsByCharacterId(characterId: number): number[] {
     const fetterVoicesJson = Object.values(
       Client._getCachedExcelBinOutputByName('FettersExcelConfigData'),
     )
     return fetterVoicesJson
-      .filter((voice) => voice.avatarId === characterId)
-      .map((voice) => voice.fetterId as number)
+      .filter(
+        (voice): voice is NonNullable<typeof voice> =>
+          voice !== undefined && voice.avatarId === characterId,
+      )
+      .map((voice) => voice.fetterId)
   }
 }

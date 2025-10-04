@@ -1,0 +1,44 @@
+{
+  "metadata": {
+    "sourceFile": "TowerFloorExcelConfigData.json",
+    "generatedAt": "2025-10-01T15:37:44.155Z"
+  },
+  "keyMappingTemplate": {
+    "bgImage": "UI_TowerPic_1",
+    "CFABEGPOHCA": 0,
+    "CPNFHGAINLO": 0,
+    "floorId": 1001,
+    "floorIndex": 1,
+    "floorLevelConfigId": 1200,
+    "levelGroupId": 1,
+    "overrideMonsterLevel": 25,
+    "rewardIdFifteenStars": 610041,
+    "rewardIdFiveStars": 610001,
+    "rewardIdNineStars": 610041,
+    "rewardIdSixStars": 610021,
+    "rewardIdTenStars": 610021,
+    "rewardIdThreeStars": 610001,
+    "teamNum": 1,
+    "unlockStarCount": 6
+  },
+  "alternativePatterns": [
+    {
+      "bgImage": "UI_TowerPic_5",
+      "CFABEGPOHCA": 2047,
+      "CPNFHGAINLO": 2048,
+      "floorId": 1095,
+      "floorIndex": 12,
+      "floorLevelConfigId": 2045,
+      "levelGroupId": 95,
+      "overrideMonsterLevel": 95,
+      "rewardIdFifteenStars": 610052,
+      "rewardIdFiveStars": 610012,
+      "rewardIdNineStars": 610052,
+      "rewardIdSixStars": 610032,
+      "rewardIdTenStars": 610032,
+      "rewardIdThreeStars": 610012,
+      "teamNum": 2,
+      "unlockStarCount": 6
+    }
+  ]
+}

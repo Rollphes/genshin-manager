@@ -1,6 +1,6 @@
 import { beforeAll, describe, expect, test } from 'vitest'
 
-import { Client } from '@/client/Client.js'
+import { Client } from '@/client'
 import { Artifact } from '@/models/Artifact'
 import { CharacterConstellation } from '@/models/character/CharacterConstellation'
 import { CharacterCostume } from '@/models/character/CharacterCostume'
@@ -24,7 +24,7 @@ describe('AllId Release Test', () => {
       downloadLanguages: ['EN'],
     })
     await client.deploy()
-  })
+  }, 30000) // 30 seconds timeout for deployment
   test('should instantiate all CharacterInfo instances', () => {
     const characterIds = CharacterInfo.allCharacterIds
     expect(characterIds.length).toBeGreaterThan(0)

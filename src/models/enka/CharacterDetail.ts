@@ -1,4 +1,4 @@
-import { EnkaManagerError } from '@/errors/EnkaManagerError'
+import { GeneralError } from '@/errors'
 import { Artifact } from '@/models/Artifact'
 import { CharacterConstellation } from '@/models/character/CharacterConstellation'
 import { CharacterCostume } from '@/models/character/CharacterCostume'
@@ -7,15 +7,17 @@ import { CharacterSkill } from '@/models/character/CharacterSkill'
 import { CharacterStatusManager } from '@/models/character/CharacterStatusManager'
 import { SetBonus } from '@/models/SetBonus'
 import { WeaponInfo } from '@/models/weapon/WeaponInfo'
-import { BodyType, Element, WeaponType } from '@/types'
+import { Element } from '@/types'
 import {
   APIAvatarInfo,
   APIReliquaryEquip,
   APIWeaponEquip,
 } from '@/types/enkaNetwork'
+import { BodyType } from '@/types/generated/AvatarExcelConfigData'
+import { WeaponType } from '@/types/generated/WeaponExcelConfigData'
 
 /**
- * Class of the character obtained from EnkaNetwork
+ * Represents detailed character data retrieved from the EnkaNetwork API
  */
 export class CharacterDetail {
   /**
@@ -72,7 +74,8 @@ export class CharacterDetail {
   public readonly promoteLevel: number
   /**
    * Character constellations
-   * @warn This value is not affected by isShowCharacterPreviewConstellation
+   * @warning This value shows the actual constellation level regardless of the player's privacy settings.
+   * It is not affected by the `isShowCharacterPreviewConstellation` setting.
    * @see {@link PlayerDetail.isShowCharacterPreviewConstellation}
    */
   public readonly constellations: CharacterConstellation[]
@@ -107,7 +110,7 @@ export class CharacterDetail {
 
   /**
    * Create a CharacterDetail
-   * @param data Data from EnkaNetwork
+   * @param data data from EnkaNetwork
    */
   constructor(data: APIAvatarInfo) {
     const characterInfo = new CharacterInfo(data.avatarId, data.skillDepotId)
@@ -143,7 +146,7 @@ export class CharacterDetail {
     const weaponData = data.equipList.find(
       (equip): equip is APIWeaponEquip => 'weapon' in equip,
     )
-    if (!weaponData) throw new EnkaManagerError('Weapon not found.')
+    if (!weaponData) throw new GeneralError('Weapon not found.')
     const affixMap = weaponData.weapon.affixMap
     this.weapon = new WeaponInfo(
       weaponData.itemId,

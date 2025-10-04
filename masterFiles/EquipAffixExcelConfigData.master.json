@@ -1,0 +1,264 @@
+{
+  "metadata": {
+    "sourceFile": "EquipAffixExcelConfigData.json",
+    "generatedAt": "2025-10-01T15:37:37.764Z"
+  },
+  "keyMappingTemplate": {
+    "addProps": [
+      {
+        "propType": "FIGHT_PROP_NONE",
+        "value": 0
+      },
+      {
+        "propType": "FIGHT_PROP_NONE",
+        "value": 0
+      },
+      {
+        "propType": "FIGHT_PROP_NONE",
+        "value": 0
+      }
+    ],
+    "affixId": 1113010,
+    "descTextMapHash": 4047259305,
+    "id": 111301,
+    "level": 0,
+    "nameTextMapHash": 523615731,
+    "openConfig": "Weapon_Sword_DamageUpToEnemy",
+    "paramList": [
+      0.12,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ]
+  },
+  "alternativePatterns": [
+    {
+      "addProps": [
+        {
+          "propType": "FIGHT_PROP_NONE",
+          "value": 0
+        },
+        {
+          "propType": "FIGHT_PROP_NONE",
+          "value": 0
+        },
+        {
+          "propType": "FIGHT_PROP_NONE",
+          "value": 0
+        }
+      ],
+      "affixId": 1113011,
+      "descTextMapHash": 4252592161,
+      "id": 111301,
+      "level": 1,
+      "nameTextMapHash": 3702337643,
+      "openConfig": "Weapon_Sword_DamageUpToEnemy",
+      "paramList": [
+        0.15,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "addProps": [
+        {
+          "propType": "FIGHT_PROP_NONE",
+          "value": 0
+        },
+        {
+          "propType": "FIGHT_PROP_NONE",
+          "value": 0
+        },
+        {
+          "propType": "FIGHT_PROP_NONE",
+          "value": 0
+        }
+      ],
+      "affixId": 1113030,
+      "descTextMapHash": 1907931185,
+      "id": 111303,
+      "level": 0,
+      "nameTextMapHash": 3982569419,
+      "openConfig": "Weapon_Sword_OnGainEnergyHealHP",
+      "paramList": [
+        0.01,
+        1,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "addProps": [
+        {
+          "propType": "FIGHT_PROP_NONE",
+          "value": 0
+        },
+        {
+          "propType": "FIGHT_PROP_NONE",
+          "value": 0
+        },
+        {
+          "propType": "FIGHT_PROP_NONE",
+          "value": 0
+        }
+      ],
+      "affixId": 1113050,
+      "descTextMapHash": 3893281385,
+      "id": 111305,
+      "level": 0,
+      "nameTextMapHash": 3397834435,
+      "openConfig": "Weapon_Sword_ExtraDamageWhenCDReady",
+      "paramList": [
+        0.5,
+        2.4,
+        15,
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "addProps": [
+        {
+          "propType": "FIGHT_PROP_NONE",
+          "value": 0
+        },
+        {
+          "propType": "FIGHT_PROP_NONE",
+          "value": 0
+        },
+        {
+          "propType": "FIGHT_PROP_NONE",
+          "value": 0
+        }
+      ],
+      "affixId": 1114090,
+      "descTextMapHash": 1687951521,
+      "id": 111409,
+      "level": 0,
+      "nameTextMapHash": 1092738771,
+      "openConfig": "Weapon_Sword_Bloodstained",
+      "paramList": [
+        0.2,
+        0.6,
+        5,
+        1,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "addProps": [
+        {
+          "propType": "FIGHT_PROP_NONE",
+          "value": 0
+        },
+        {
+          "propType": "FIGHT_PROP_NONE",
+          "value": 0
+        },
+        {
+          "propType": "FIGHT_PROP_NONE",
+          "value": 0
+        }
+      ],
+      "affixId": 1114240,
+      "descTextMapHash": 1103989697,
+      "id": 111424,
+      "level": 0,
+      "nameTextMapHash": 2361105603,
+      "openConfig": "Weapon_Sword_Boreas",
+      "paramList": [
+        0.16,
+        10,
+        4,
+        0.02,
+        10,
+        4,
+        0.02,
+        0.1
+      ]
+    },
+    {
+      "addProps": [
+        {
+          "propType": "FIGHT_PROP_ATTACK_PERCENT",
+          "value": 0.2
+        },
+        {
+          "propType": "FIGHT_PROP_NONE",
+          "value": 0
+        },
+        {
+          "propType": "FIGHT_PROP_NONE",
+          "value": 0
+        }
+      ],
+      "affixId": 1115010,
+      "descTextMapHash": 2016911921,
+      "id": 111501,
+      "level": 0,
+      "nameTextMapHash": 1362580043,
+      "openConfig": "Weapon_Sword_Legend_Falcon",
+      "paramList": [
+        0.2,
+        1,
+        2,
+        15,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "addProps": [
+        {
+          "propType": "FIGHT_PROP_NONE",
+          "value": 0
+        },
+        {
+          "propType": "FIGHT_PROP_NONE",
+          "value": 0
+        },
+        {
+          "propType": "FIGHT_PROP_NONE",
+          "value": 0
+        }
+      ],
+      "affixId": 1115160,
+      "descTextMapHash": 2169172297,
+      "id": 111516,
+      "level": 0,
+      "nameTextMapHash": 929950395,
+      "openConfig": "Weapon_Sword_XochitlsTube",
+      "paramList": [
+        0.08,
+        6,
+        0.1,
+        0.1,
+        0,
+        0.08,
+        15,
+        3200
+      ]
+    }
+  ]
+}

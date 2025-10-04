@@ -1,18 +1,28 @@
-import { Client } from '@/client/Client'
-import { OutOfRangeError } from '@/errors/OutOfRangeError'
+import { Client } from '@/client'
 import { ImageAssets } from '@/models/assets/ImageAssets'
 import { StatProperty } from '@/models/StatProperty'
-import { CodexType, FightProps } from '@/types'
-import { JsonObject } from '@/utils/JsonParser'
+import { monsterLevelSchema, playerCountSchema } from '@/schemas'
+import { FightProps } from '@/types'
+import { SubType } from '@/types/generated/AnimalCodexExcelConfigData'
+import {
+  GrowCurve,
+  type PropGrowCurve,
+  type PropGrowCurveType,
+} from '@/types/generated/MonsterExcelConfigData'
+import { ValidationHelper } from '@/utils/validation'
 
-const statusBonusMonsterAtMultiPlay = {
+const statusBonusMonsterAtMultiPlay: Record<
+  PropGrowCurveType,
+  readonly [number, number, number, number]
+> = {
   FIGHT_PROP_BASE_HP: [1.0, 1.5, 2.0, 2.5],
   FIGHT_PROP_BASE_ATTACK: [1.0, 1.1, 1.25, 1.4],
   FIGHT_PROP_BASE_DEFENSE: [1.0, 1.0, 1.0, 1.0],
-} as const
+  FIGHT_PROP_NONE: [1.0, 1.0, 1.0, 1.0],
+}
 
 /**
- * Class of Monster
+ * Represents a game monster with stats and properties
  */
 export class Monster {
   /**
@@ -24,6 +34,10 @@ export class Monster {
    */
   public readonly level: number
   /**
+   * Player count for co-op scaling
+   */
+  public readonly playerCount: number
+  /**
    * Monster Internal name
    */
   public readonly internalName: string
@@ -32,7 +46,7 @@ export class Monster {
    */
   public readonly name: string
   /**
-   * Monster Preview name
+   * Monster display name
    */
   public readonly describeName: string = ''
   /**
@@ -40,7 +54,7 @@ export class Monster {
    */
   public readonly description: string = ''
   /**
-   * Monster Preview icon
+   * Monster display icon
    */
   public readonly icon: ImageAssets | undefined
   /**
@@ -50,7 +64,7 @@ export class Monster {
   /**
    * Monster type
    */
-  public readonly codexType: CodexType | undefined
+  public readonly codexType: SubType | undefined
 
   static {
     Client._addExcelBinOutputKeyFromClassPrototype(this.prototype)
@@ -59,24 +73,43 @@ export class Monster {
   /**
    * Create a Monster
    * @param monsterId monster ID
-   * @param level monsterLevel (1-100). Default: 1
-   * @param playerCount Number of players (1-4). Default: 1
+   * @param level monster level (1-100), defaults to 1
+   * @param playerCount number of players (1-4), defaults to 1
+   * @example
+   * ```typescript
+   * // Create a level 50 monster for single player
+   * const monster = new Monster(21010101, 50)
+   *
+   * // Create a level 80 monster for co-op (4 players)
+   * const coopMonster = new Monster(21010101, 80, 4)
+   * ```
    */
-  // eslint-disable-next-line complexity
+
+  /**
+   * Creates a new Monster instance
+   * @param monsterId - Monster ID
+   * @param level - Monster level
+   * @param playerCount - Number of players for co-op scaling
+   */
   constructor(monsterId: number, level = 1, playerCount = 1) {
     this.id = monsterId
-    this.level = level
-    if (this.level < 1 || this.level > 100)
-      throw new OutOfRangeError('level', this.level, 1, 200)
-    if (playerCount < 1 || playerCount > 4)
-      throw new OutOfRangeError('playerCount', playerCount, 1, 4)
+    this.level = ValidationHelper.validate(monsterLevelSchema, level, {
+      propertyKey: 'level',
+    })
+    this.playerCount = ValidationHelper.validate(
+      playerCountSchema,
+      playerCount,
+      {
+        propertyKey: 'playerCount',
+      },
+    )
 
     const monsterJson = Client._getJsonFromCachedExcelBinOutput(
       'MonsterExcelConfigData',
       this.id,
     )
-    this.internalName = monsterJson.monsterName as string
-    const nameTextMapHash = monsterJson.nameTextMapHash as number
+    this.internalName = monsterJson.monsterName
+    const nameTextMapHash = monsterJson.nameTextMapHash
     this.name = Client._cachedTextMap.get(nameTextMapHash) ?? ''
     const describeId = +String(this.id).slice(1, 6)
     if (
@@ -88,79 +121,63 @@ export class Monster {
         'MonsterDescribeExcelConfigData',
         describeId,
       )
-      const nameTextMapHash = monsterDescribeJson.nameTextMapHash as number
+      const nameTextMapHash = monsterDescribeJson.nameTextMapHash
       this.describeName = Client._cachedTextMap.get(nameTextMapHash) ?? ''
-      this.icon = new ImageAssets(monsterDescribeJson.icon as string)
+      this.icon = new ImageAssets(monsterDescribeJson.icon)
     }
 
     if (
       monsterJson.describeId &&
       Object.keys(
         Client._getCachedExcelBinOutputByName('AnimalCodexExcelConfigData'),
-      ).includes(String(monsterJson.describeId as number))
+      ).includes(String(monsterJson.describeId))
     ) {
       const animalCodexJson = Client._getJsonFromCachedExcelBinOutput(
         'AnimalCodexExcelConfigData',
-        monsterJson.describeId as number,
+        monsterJson.describeId,
       )
-      const descTextMapHash = animalCodexJson.descTextMapHash as number
-      this.description = Client._cachedTextMap.get(descTextMapHash) ?? ''
-      this.codexType =
-        (animalCodexJson.subType as CodexType | undefined) ??
-        'CODEX_SUBTYPE_ELEMENT_LIFE'
+      this.description =
+        Client._cachedTextMap.get(animalCodexJson.descTextMapHash) ?? ''
+      this.codexType = animalCodexJson.subType
     }
 
-    const propGrowCurves = monsterJson.propGrowCurves as JsonObject[]
     const hpBase = this.getStatValueByJson(
-      propGrowCurves[0],
-      monsterJson.hpBase as number | undefined,
+      monsterJson.propGrowCurves[0],
+      monsterJson.hpBase,
       playerCount,
     )
     const attackBase = this.getStatValueByJson(
-      propGrowCurves[1],
-      monsterJson.attackBase as number | undefined,
+      monsterJson.propGrowCurves[1],
+      monsterJson.attackBase,
       playerCount,
     )
     const defenseBase = this.getStatValueByJson(
-      propGrowCurves[2],
-      monsterJson.defenseBase as number | undefined,
+      monsterJson.propGrowCurves[2],
+      monsterJson.defenseBase,
       playerCount,
     )
     this.stats = [
       new StatProperty(FightProps[1], hpBase),
       new StatProperty(FightProps[4], attackBase),
       new StatProperty(FightProps[7], defenseBase),
-      new StatProperty(
-        FightProps[29],
-        (monsterJson.physicalSubHurt ?? 0) as number,
-      ),
-      new StatProperty(
-        FightProps[51],
-        (monsterJson.elecSubHurt ?? 0) as number,
-      ),
-      new StatProperty(
-        FightProps[52],
-        (monsterJson.waterSubHurt ?? 0) as number,
-      ),
-      new StatProperty(
-        FightProps[53],
-        (monsterJson.grassSubHurt ?? 0) as number,
-      ),
-      new StatProperty(
-        FightProps[54],
-        (monsterJson.windSubHurt ?? 0) as number,
-      ),
-      new StatProperty(
-        FightProps[55],
-        (monsterJson.rockSubHurt ?? 0) as number,
-      ),
-      new StatProperty(FightProps[56], (monsterJson.iceSubHurt ?? 0) as number),
+      new StatProperty(FightProps[29], monsterJson.physicalSubHurt),
+      new StatProperty(FightProps[51], monsterJson.elecSubHurt),
+      new StatProperty(FightProps[52], monsterJson.waterSubHurt),
+      new StatProperty(FightProps[53], monsterJson.grassSubHurt),
+      new StatProperty(FightProps[54], monsterJson.windSubHurt),
+      new StatProperty(FightProps[55], monsterJson.rockSubHurt),
+      new StatProperty(FightProps[56], monsterJson.iceSubHurt),
     ]
   }
 
   /**
    * Get all monster IDs
-   * @returns All monster IDs
+   * @returns all monster IDs
+   * @example
+   * ```typescript
+   * const allIds = Monster.allMonsterIds
+   * console.log(`Total monsters: ${allIds.length}`)
+   * ```
    */
   public static get allMonsterIds(): number[] {
     return Object.keys(
@@ -169,13 +186,18 @@ export class Monster {
   }
 
   /**
-   * find monster ID by describe ID
-   * @param describeId Describe ID
+   * Find monster ID by description ID
+   * @param describeId description ID
    * @returns monster ID
+   * @example
+   * ```typescript
+   * const monsterId = Monster.findMonsterIdByDescribeId(21104)
+   * const monster = new Monster(monsterId)
+   * ```
    */
   public static findMonsterIdByDescribeId(describeId: number): number {
     const convertId = describeId.toString().padStart(5, '0')
-    //Since some monsterId cannot be obtained by this method, the describeId is converted.
+    // TODO: Maintenance-free implementation needed to avoid manual updates for each version
     const exceptionIds: Record<number, number> = {
       21104: 22110403,
       30604: 23060201,
@@ -195,33 +217,27 @@ export class Monster {
   /**
    * Get monster's stat value by stat type
    * @param propGrowCurve monsterExcelConfigData.propGrowCurves
-   * @param initValue Initial value
-   * @param playerCount Number of players
-   * @returns Stat value
+   * @param initValue initial value
+   * @param playerCount number of players
+   * @returns stat value
    */
   private getStatValueByJson(
-    propGrowCurve: JsonObject | undefined,
+    propGrowCurve: PropGrowCurve | undefined,
     initValue = 0,
     playerCount = 1,
   ): number {
     if (!propGrowCurve) return initValue
     const bonusValue =
-      propGrowCurve.type === undefined ||
-      propGrowCurve.type === 'FIGHT_PROP_NONE'
-        ? 1.0
-        : statusBonusMonsterAtMultiPlay[
-            propGrowCurve.type as keyof typeof statusBonusMonsterAtMultiPlay
-          ][playerCount - 1]
+      statusBonusMonsterAtMultiPlay[propGrowCurve.type][playerCount - 1]
     if (
-      propGrowCurve.growCurve === undefined ||
-      propGrowCurve.growCurve === 'GROW_CURVE_NONE' ||
-      propGrowCurve.growCurve === 'GROW_CURVE_DEFENDING' //Skip GROW_CURVE_DEFENDING as it does not exist in the 4.0 data
+      propGrowCurve.growCurve === GrowCurve.GrowCurveNone ||
+      propGrowCurve.growCurve === GrowCurve.GrowCurveDefending
     )
       return initValue * bonusValue
     const curveValue = Client._getJsonFromCachedExcelBinOutput(
       'MonsterCurveExcelConfigData',
-      propGrowCurve.growCurve as string,
-    )[this.level] as number
+      propGrowCurve.growCurve,
+    )[this.level]
     return initValue * curveValue * bonusValue
   }
 }

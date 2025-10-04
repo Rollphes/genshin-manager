@@ -1,7 +1,7 @@
 import { APIOwner } from '@/types/enkaNetwork'
 
 /**
- * Class of Enka Account
+ * Represents an EnkaNetwork user account with access credentials
  */
 export class EnkaAccount {
   /**
@@ -43,7 +43,7 @@ export class EnkaAccount {
 
   /**
    * Create a EnkaAccount
-   * @param ownerData OwnerData from EnkaNetwork
+   * @param ownerData ownerData from EnkaNetwork
    * @param enkaBaseURL URL of enka.network
    */
   constructor(ownerData: APIOwner, enkaBaseURL: string) {

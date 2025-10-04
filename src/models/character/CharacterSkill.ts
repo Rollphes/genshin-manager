@@ -1,11 +1,12 @@
-import { Client } from '@/client/Client'
-import { OutOfRangeError } from '@/errors/OutOfRangeError'
+import { Client } from '@/client'
+import { AssetNotFoundError } from '@/errors'
 import { ImageAssets } from '@/models/assets/ImageAssets'
 import { CharacterInfo } from '@/models/character/CharacterInfo'
-import { JsonObject } from '@/utils/JsonParser'
+import { skillLevelSchema } from '@/schemas'
+import { ValidationHelper } from '@/utils/validation'
 
 /**
- * Class of character's skill
+ * Contains character skill information including attacks, burst, and elemental abilities
  */
 export class CharacterSkill {
   /**
@@ -44,9 +45,9 @@ export class CharacterSkill {
 
   /**
    * Create a Skill
-   * @param skillId Skill ID
-   * @param level Skill level (1-15). Default: 1
-   * @param extraLevel Levels increased by constellation (0 or 3). Default: 0
+   * @param skillId skill ID
+   * @param level skill level (1-15). Default: 1
+   * @param extraLevel levels increased by constellation (0 or 3). Default: 0
    */
   constructor(skillId: number, level = 1, extraLevel = 0) {
     this.id = skillId
@@ -54,28 +55,31 @@ export class CharacterSkill {
       'AvatarSkillExcelConfigData',
       this.id,
     )
-    const nameTextMapHash = skillJson.nameTextMapHash as number
-    const descTextMapHash = skillJson.descTextMapHash as number
+    const nameTextMapHash = skillJson.nameTextMapHash
+    const descTextMapHash = skillJson.descTextMapHash
     this.name = Client._cachedTextMap.get(nameTextMapHash) ?? ''
     this.description = Client._cachedTextMap.get(descTextMapHash) ?? ''
-    this.icon = new ImageAssets(skillJson.skillIcon as string)
+    this.icon = new ImageAssets(skillJson.skillIcon)
     this.extraLevel = extraLevel
     this.level = level + this.extraLevel
-    if (this.level < 1 || this.level > 15)
-      throw new OutOfRangeError('level + extraLevel', this.level, 1, 15)
+    void ValidationHelper.validate(skillLevelSchema, this.level, {
+      propertyKey: 'level + extraLevel',
+    })
 
-    if (
-      skillJson.proudSkillGroupId === undefined ||
-      skillJson.proudSkillGroupId === 0
-    )
-      return
-    const proudSkillGroupId = skillJson.proudSkillGroupId as number
+    if (skillJson.proudSkillGroupId === 0) return
+    const proudSkillGroupId = skillJson.proudSkillGroupId
     const proudSkillJson = Client._getJsonFromCachedExcelBinOutput(
       'ProudSkillExcelConfigData',
       proudSkillGroupId,
-    )[this.level] as JsonObject
-    const params = proudSkillJson.paramList as number[]
-    ;(proudSkillJson.paramDescList as number[]).forEach((paramDescHash) => {
+    )[this.level]
+    if (!proudSkillJson) {
+      throw new AssetNotFoundError(
+        `level ${String(this.level)}`,
+        'ProudSkillExcelConfigData',
+      )
+    }
+    const params = proudSkillJson.paramList
+    proudSkillJson.paramDescList.forEach((paramDescHash) => {
       const paramDesc = (
         Client._cachedTextMap.get(paramDescHash) ?? ''
       ).replace(/|/g, '')
@@ -100,7 +104,7 @@ export class CharacterSkill {
 
   /**
    * Get all skill IDs
-   * @returns All skill IDs
+   * @returns all skill IDs
    */
   public static get allSkillIds(): number[] {
     const characterIds = CharacterInfo.allCharacterIds
@@ -118,9 +122,9 @@ export class CharacterSkill {
 
   /**
    * Get skill order by character ID
-   * @param characterId Character ID
-   * @param skillDepotId Skill depot ID
-   * @returns Skill order
+   * @param characterId character ID
+   * @param skillDepotId skill depot ID
+   * @returns skill order
    */
   public static getSkillOrderByCharacterId(
     characterId: number,
@@ -133,15 +137,13 @@ export class CharacterSkill {
     const depotId =
       skillDepotId && [10000005, 10000007].includes(characterId)
         ? skillDepotId
-        : (avatarJson.skillDepotId as number)
+        : avatarJson.skillDepotId
     const depotJson = Client._getJsonFromCachedExcelBinOutput(
       'AvatarSkillDepotExcelConfigData',
       depotId,
     )
     return [501, 701].includes(depotId)
-      ? (depotJson.skills as number[]).slice(0, 1)
-      : (depotJson.skills as number[])
-          .slice(0, 2)
-          .concat(depotJson.energySkill as number)
+      ? depotJson.skills.slice(0, 1)
+      : depotJson.skills.slice(0, 2).concat(depotJson.energySkill)
   }
 }

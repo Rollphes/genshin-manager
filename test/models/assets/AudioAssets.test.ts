@@ -16,9 +16,10 @@ import {
   vi,
 } from 'vitest'
 
-import { AudioNotFoundError } from '@/errors/AudioNotFoundError'
+import { AudioNotFoundError } from '@/errors'
 import { AudioAssets } from '@/models/assets/AudioAssets'
 import { ClientOption, CVType } from '@/types'
+import { LogLevel } from '@/utils/logger'
 
 /**
  * AudioAssets test suite
@@ -38,7 +39,7 @@ describe('AudioAssets', () => {
     },
     defaultAudioBaseURL: 'https://default-audio-cdn.example.com',
     autoCacheAudio: true,
-    showFetchCacheLog: false,
+    logLevel: LogLevel.NONE,
     autoFetchLatestAssetsByCron: undefined,
     autoFixTextMap: false,
     autoFixExcelBin: false,
@@ -62,7 +63,6 @@ describe('AudioAssets', () => {
   })
 
   afterAll(() => {
-    // Clean up test cache directory
     if (fs.existsSync(testCacheDir))
       fs.rmSync(testCacheDir, { recursive: true, force: true })
   })

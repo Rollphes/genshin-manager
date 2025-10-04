@@ -1,8 +1,8 @@
-import { Client } from '@/client/Client'
+import { Client } from '@/client'
 import { ImageAssets } from '@/models/assets/ImageAssets'
 
 /**
- * Class of character's costume
+ * Represents character outfit skins and alternative visual appearances
  */
 export class CharacterCostume {
   /**
@@ -48,7 +48,7 @@ export class CharacterCostume {
 
   /**
    * Create a Costume
-   * @param costumeId Costume ID
+   * @param costumeId costume ID
    */
   constructor(costumeId: number) {
     this.id = costumeId
@@ -56,21 +56,21 @@ export class CharacterCostume {
       'AvatarCostumeExcelConfigData',
       this.id,
     )
-    this.characterId = costumeJson.characterId as number
+    this.characterId = costumeJson.characterId
     const avatarJson = Client._getJsonFromCachedExcelBinOutput(
       'AvatarExcelConfigData',
       this.characterId,
     )
 
-    const nameTextMapHash = costumeJson.nameTextMapHash as number
-    const descTextMapHash = costumeJson.descTextMapHash as number
+    const nameTextMapHash = costumeJson.nameTextMapHash
+    const descTextMapHash = costumeJson.descTextMapHash
     this.name = Client._cachedTextMap.get(nameTextMapHash) ?? ''
     this.description = Client._cachedTextMap.get(descTextMapHash) ?? ''
-    this.quality = costumeJson.quality as number
+    this.quality = costumeJson.quality
     const sideIconName =
       costumeJson.quality && typeof avatarJson != 'undefined'
-        ? (costumeJson.sideIconName as string)
-        : (avatarJson.sideIconName as string)
+        ? costumeJson.sideIconName
+        : avatarJson.sideIconName
     this.sideIcon = new ImageAssets(sideIconName)
     const nameParts = this.sideIcon.name.split('_')
     const avatarTag = nameParts[nameParts.length - 1]
@@ -85,12 +85,14 @@ export class CharacterCostume {
 
   /**
    * Get all costume IDs
-   * @returns All costume IDs
+   * @returns all costume IDs
    */
   public static get allCostumeIds(): number[] {
     const costumeDatas = Object.values(
       Client._getCachedExcelBinOutputByName('AvatarCostumeExcelConfigData'),
     )
-    return costumeDatas.map((k) => k.skinId as number)
+    return costumeDatas
+      .filter((k): k is NonNullable<typeof k> => k?.skinId !== undefined)
+      .map((k) => k.skinId)
   }
 }

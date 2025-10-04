@@ -2,7 +2,7 @@ import { CharacterDetail } from '@/models/enka/CharacterDetail'
 import { APIBuild } from '@/types/enkaNetwork'
 
 /**
- * Class of Enka Build
+ * Represents a character build configuration from EnkaNetwork showcases
  */
 export class EnkaBuild {
   /**
@@ -52,7 +52,7 @@ export class EnkaBuild {
 
   /**
    * Create a EnkaBuild
-   * @param data Data from EnkaNetwork
+   * @param data data from EnkaNetwork
    * @param genshinAccountURL URL of enka.network game account
    */
   constructor(data: APIBuild, genshinAccountURL: string) {

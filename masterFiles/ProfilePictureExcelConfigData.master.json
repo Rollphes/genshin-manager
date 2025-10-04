@@ -1,0 +1,16 @@
+{
+  "metadata": {
+    "sourceFile": "ProfilePictureExcelConfigData.json",
+    "generatedAt": "2025-10-01T15:37:42.755Z"
+  },
+  "keyMappingTemplate": {
+    "type": "PROFILE_PICTURE_UNLOCK_BY_AVATAR",
+    "iconPath": "UI_AvatarIcon_PlayerBoy_Circle",
+    "id": 1,
+    "KFLKNHLLDJA": false,
+    "nameTextMapHash": 3604285884,
+    "priority": 1,
+    "unlockDescTextMapHash": 543619816,
+    "unlockParam": 10000005
+  }
+}

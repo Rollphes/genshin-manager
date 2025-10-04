@@ -1,13 +1,18 @@
-import { Client } from '@/client/Client'
-import { OutOfRangeError } from '@/errors/OutOfRangeError'
+import { Client } from '@/client'
 import { CharacterAscension } from '@/models/character/CharacterAscension'
 import { StatProperty } from '@/models/StatProperty'
+import { characterLevelSchema } from '@/schemas'
 import { FightPropType } from '@/types'
-import { calculatePromoteLevel } from '@/utils/calculatePromoteLevel'
-import { JsonObject } from '@/utils/JsonParser'
+import type {
+  AvatarExcelConfigDataType,
+  PropGrowCurve,
+} from '@/types/generated/AvatarExcelConfigData'
+import { calculatePromoteLevel } from '@/utils/parsers'
+import { toFightPropType } from '@/utils/typeGuards'
+import { ValidationHelper } from '@/utils/validation'
 
 /**
- * Class of character's base stats
+ * Represents a character's base statistical properties and attributes
  */
 export class CharacterBaseStats {
   /**
@@ -37,15 +42,15 @@ export class CharacterBaseStats {
 
   /**
    * Create a character's base stats
-   * @param characterId Character ID
-   * @param level Character level (1-90). Default: 1
-   * @param isAscended Character is ascended (true or false). Default: false
+   * @param characterId character ID
+   * @param level character level (1-100). Default: 1
+   * @param isAscended character is ascended (true or false). Default: false
    */
   constructor(characterId: number, level = 1, isAscended = false) {
     this.id = characterId
-    this.level = level
-    if (this.level < 1 || this.level > 100)
-      throw new OutOfRangeError('level', this.level, 1, 100)
+    this.level = ValidationHelper.validate(characterLevelSchema, level, {
+      propertyKey: 'level',
+    })
     this.isAscended = isAscended
     const avatarJson = Client._getJsonFromCachedExcelBinOutput(
       'AvatarExcelConfigData',
@@ -54,7 +59,7 @@ export class CharacterBaseStats {
 
     const avatarPromotesJson = Client._getJsonFromCachedExcelBinOutput(
       'AvatarPromoteExcelConfigData',
-      avatarJson.avatarPromoteId as number,
+      avatarJson.avatarPromoteId,
     )
     this.promoteLevel = calculatePromoteLevel(
       avatarPromotesJson,
@@ -64,33 +69,38 @@ export class CharacterBaseStats {
 
     const ascension = new CharacterAscension(this.id, this.promoteLevel)
 
-    const propGrowCurves = avatarJson.propGrowCurves as JsonObject[]
-
-    this.stats = this.calculateStatus(avatarJson, propGrowCurves, ascension)
+    this.stats = this.calculateStatus(
+      avatarJson,
+      avatarJson.propGrowCurves,
+      ascension,
+    )
   }
 
   /**
    * Calculate character's status
-   * @param avatarJson Avatar json
-   * @param propGrowCurves Prop grow curves
-   * @param ascension Character ascension
-   * @returns Character's status
+   * @param avatarJson avatar json
+   * @param propGrowCurves prop grow curves
+   * @param ascension character ascension
+   * @returns character's status
    */
   private calculateStatus(
-    avatarJson: JsonObject,
-    propGrowCurves: JsonObject[],
+    avatarJson: AvatarExcelConfigDataType,
+    propGrowCurves: PropGrowCurve[],
     ascension: CharacterAscension,
   ): StatProperty[] {
     const initValueObj: Partial<Record<FightPropType, number>> = {
-      FIGHT_PROP_BASE_HP: avatarJson.hpBase as number,
-      FIGHT_PROP_BASE_ATTACK: avatarJson.attackBase as number,
-      FIGHT_PROP_BASE_DEFENSE: avatarJson.defenseBase as number,
-      FIGHT_PROP_CRITICAL: avatarJson.critical as number,
-      FIGHT_PROP_CRITICAL_HURT: avatarJson.criticalHurt as number,
+      FIGHT_PROP_BASE_HP: avatarJson.hpBase,
+      FIGHT_PROP_BASE_ATTACK: avatarJson.attackBase,
+      FIGHT_PROP_BASE_DEFENSE: avatarJson.defenseBase,
+      FIGHT_PROP_CRITICAL: avatarJson.critical,
+      FIGHT_PROP_CRITICAL_HURT: avatarJson.criticalHurt,
     }
 
     const status = Object.entries(initValueObj).map(([key, value]) => {
-      const statProperty = new StatProperty(key as FightPropType, value)
+      const statProperty = new StatProperty(
+        toFightPropType(key, 'CharacterBaseStats'),
+        value,
+      )
 
       const propGrowCurve = propGrowCurves.find(
         (propGrowCurve) => propGrowCurve.type === statProperty.type,
@@ -131,22 +141,22 @@ export class CharacterBaseStats {
 
   /**
    * Get stat value by json
-   * @param propGrowCurve Json object
-   * @param initValue Initial value
-   * @param addValue Add value
-   * @returns Stat value
+   * @param propGrowCurve json object
+   * @param initValue initial value
+   * @param addValue add value
+   * @returns stat value
    */
   private getStatPropertyByJson(
-    propGrowCurve: JsonObject,
+    propGrowCurve: PropGrowCurve,
     initValue: number,
     addValue = 0,
   ): StatProperty {
     const curveValue = Client._getJsonFromCachedExcelBinOutput(
       'AvatarCurveExcelConfigData',
-      propGrowCurve.growCurve as string,
-    )[this.level] as number
+      propGrowCurve.growCurve,
+    )[this.level]
 
     const statValue = initValue * curveValue + addValue
-    return new StatProperty(propGrowCurve.type as FightPropType, statValue)
+    return new StatProperty(propGrowCurve.type, statValue)
   }
 }

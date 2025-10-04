@@ -1,16 +1,16 @@
-import { Client } from '@/client/Client'
-import { OutOfRangeError } from '@/errors/OutOfRangeError'
+import { Client } from '@/client'
+import { AssetNotFoundError } from '@/errors'
+import { travelerIdSchema } from '@/schemas'
+import { Element, ElementKeys } from '@/types'
 import {
   BodyType,
-  Element,
-  ElementKeys,
   QualityType,
   WeaponType,
-} from '@/types'
-import { JsonObject } from '@/utils/JsonParser'
+} from '@/types/generated/AvatarExcelConfigData'
+import { ValidationHelper } from '@/utils/validation'
 
 /**
- * Class of information about the character.
+ * Contains basic information about a character
  */
 export class CharacterInfo {
   /**
@@ -56,8 +56,8 @@ export class CharacterInfo {
    */
   public readonly proudMap = new Map<number, number>()
   /**
-   * Rarity
-   * @warn aloy is treated as 0 because it is special
+   * Character rarity (1-5 stars)
+   * @warning Aloy has rarity 0 due to her special collaboration character status
    */
   public readonly rarity: number
   /**
@@ -75,8 +75,8 @@ export class CharacterInfo {
 
   /**
    * Create a CharacterInfo
-   * @param characterId Character ID
-   * @param skillDepotId Skill depot ID
+   * @param characterId character ID
+   * @param skillDepotId skill depot ID
    */
   constructor(characterId: number, skillDepotId?: number) {
     this.id = characterId
@@ -84,14 +84,15 @@ export class CharacterInfo {
       Client._getCachedExcelBinOutputByName('AvatarCostumeExcelConfigData'),
     )
     const defaultCostumeData = costumeDatas.find(
-      (k) => k.characterId === this.id && k.quality === 0,
+      (k) => k !== undefined && k.characterId === this.id && k.quality === 0,
     )
     if (!defaultCostumeData) {
-      throw new Error(
-        `Default costume not found for character ${String(this.id)}`,
+      throw new AssetNotFoundError(
+        String(this.id),
+        'Default costume for character',
       )
     }
-    this.defaultCostumeId = defaultCostumeData.skinId as number
+    this.defaultCostumeId = defaultCostumeData.skinId
 
     const avatarJson = Client._getJsonFromCachedExcelBinOutput(
       'AvatarExcelConfigData',
@@ -101,7 +102,7 @@ export class CharacterInfo {
     this.depotId =
       skillDepotId && [10000005, 10000007].includes(this.id)
         ? skillDepotId
-        : (avatarJson.skillDepotId as number)
+        : avatarJson.skillDepotId
     const depotJson = Client._getJsonFromCachedExcelBinOutput(
       'AvatarSkillDepotExcelConfigData',
       this.depotId,
@@ -110,49 +111,44 @@ export class CharacterInfo {
     const skillJson = depotJson.energySkill
       ? Client._getJsonFromCachedExcelBinOutput(
           'AvatarSkillExcelConfigData',
-          depotJson.energySkill as number,
+          depotJson.energySkill,
         )
       : undefined
 
-    const nameTextMapHash = avatarJson.nameTextMapHash as number
+    const nameTextMapHash = avatarJson.nameTextMapHash
     this.name = Client._cachedTextMap.get(nameTextMapHash) ?? ''
 
-    this.element = skillJson
-      ? ElementKeys[skillJson.costElemType as keyof typeof ElementKeys]
-      : undefined
+    this.element =
+      skillJson && skillJson.costElemType in ElementKeys
+        ? ElementKeys[skillJson.costElemType as keyof typeof ElementKeys]
+        : undefined
 
     this.skillOrder = (
       [501, 701].includes(this.depotId)
-        ? (depotJson.skills as number[]).slice(0, 1)
-        : (depotJson.skills as (number | undefined)[])
-            .slice(0, 2)
-            .concat(depotJson.energySkill as number | undefined)
-    ).filter(
-      (skillId): skillId is number => skillId !== 0 && skillId !== undefined,
-    )
-    ;(depotJson.inherentProudSkillOpens as JsonObject[]).forEach((k) => {
-      if (k.proudSkillGroupId === undefined || k.proudSkillGroupId === 0) return
+        ? depotJson.skills.slice(0, 1)
+        : depotJson.skills.slice(0, 2).concat(depotJson.energySkill)
+    ).filter((skillId): skillId is number => skillId !== 0)
+    depotJson.inherentProudSkillOpens.forEach((k) => {
+      if (k.proudSkillGroupId === 0) return
       const proudSkillJson = Client._getJsonFromCachedExcelBinOutput(
         'ProudSkillExcelConfigData',
-        k.proudSkillGroupId as number,
-      )[1] as JsonObject | undefined
+        k.proudSkillGroupId,
+      )[1]
       if (!proudSkillJson) return
       if (proudSkillJson.isHideLifeProudSkill) return
-      this.inherentSkillOrder.push(k.proudSkillGroupId as number)
+      this.inherentSkillOrder.push(k.proudSkillGroupId)
     })
 
-    this.constellationIds = (depotJson.talents as number[]).filter(
-      (constId) => constId !== 0,
-    )
+    this.constellationIds = depotJson.talents.filter((constId) => constId !== 0)
 
     this.skillOrder = this.skillOrder.filter((skillId) => {
       const skillJson = Client._getJsonFromCachedExcelBinOutput(
         'AvatarSkillExcelConfigData',
         skillId,
       )
-      const proudId = skillJson.proudSkillGroupId as number | undefined
+      const proudId = skillJson.proudSkillGroupId
       if (proudId) this.proudMap.set(skillId, proudId)
-      return proudId !== undefined
+      return Boolean(proudId)
     })
 
     const qualityMap: Record<QualityType, number> = {
@@ -160,28 +156,30 @@ export class CharacterInfo {
       QUALITY_PURPLE: 4,
       QUALITY_ORANGE_SP: 0,
     }
-    this.rarity = qualityMap[avatarJson.qualityType as QualityType]
-    this.weaponType = avatarJson.weaponType as WeaponType
-    this.bodyType = avatarJson.bodyType as BodyType
+    this.rarity = qualityMap[avatarJson.qualityType]
+    this.weaponType = avatarJson.weaponType
+    this.bodyType = avatarJson.bodyType
   }
 
   /**
    * Get all character IDs
-   * @returns All character IDs
+   * @returns all character IDs
    */
   public static get allCharacterIds(): number[] {
     const avatarDatas = Object.values(
       Client._getCachedExcelBinOutputByName('AvatarExcelConfigData'),
     )
     return avatarDatas
-      .filter((k) => !('rarity' in k))
-      .map((k) => k.id as number)
+      .filter(
+        (k): k is NonNullable<typeof k> => k !== undefined && !('rarity' in k),
+      )
+      .map((k) => k.id)
   }
 
   /**
    * Get character ID by name
-   * @param name Character name
-   * @returns Character ID
+   * @param name character name
+   * @returns character ID
    */
   public static getCharacterIdByName(name: string): number[] {
     return Client._searchIdInExcelBinOutByText(
@@ -192,17 +190,20 @@ export class CharacterInfo {
 
   /**
    * Get traveler skill depot IDs
-   * @param characterId Character ID
+   * @param characterId character ID
    * @returns skill depot IDs
    */
   public static getTravelerSkillDepotIds(characterId: number): number[] {
-    if (![10000005, 10000007].includes(characterId))
-      throw new OutOfRangeError('characterId', characterId, 10000005, 10000007)
+    if (![10000005, 10000007].includes(characterId)) {
+      void ValidationHelper.validate(travelerIdSchema, characterId, {
+        propertyKey: 'characterId',
+      })
+    }
 
     const avatarData = Client._getJsonFromCachedExcelBinOutput(
       'AvatarExcelConfigData',
       characterId,
     )
-    return avatarData.candSkillDepotIds as number[]
+    return avatarData.candSkillDepotIds
   }
 }

@@ -1,11 +1,13 @@
-import { Client } from '@/client/Client'
-import { OutOfRangeError } from '@/errors/OutOfRangeError'
+import { Client } from '@/client'
+import { AssetNotFoundError } from '@/errors'
 import { StatProperty } from '@/models/StatProperty'
-import { FightPropType } from '@/types'
-import { JsonObject } from '@/utils/JsonParser'
+import { skillLevelSchema } from '@/schemas'
+import { PropType } from '@/types/generated/ProudSkillExcelConfigData'
+import { toFightPropType } from '@/utils/typeGuards'
+import { ValidationHelper } from '@/utils/validation'
 
 /**
- * Class of character skill ascension
+ * Manages character skill leveling data including costs and stat bonuses
  */
 export class CharacterSkillAscension {
   /**
@@ -44,19 +46,20 @@ export class CharacterSkillAscension {
 
   /**
    * Create a character skill ascension
-   * @param skillId Skill ID
+   * @param skillId skill ID
    * @param level skill level (1-15). Default: 1
    */
   constructor(skillId: number, level = 1) {
     this.id = skillId
     this.level = level
-    if (this.level < 1 || this.level > 15)
-      throw new OutOfRangeError('level', this.level, 1, 15)
+    void ValidationHelper.validate(skillLevelSchema, this.level, {
+      propertyKey: 'level',
+    })
     const skillJson = Client._getJsonFromCachedExcelBinOutput(
       'AvatarSkillExcelConfigData',
       this.id,
     )
-    const proudSkillGroupId = skillJson.proudSkillGroupId as number
+    const proudSkillGroupId = skillJson.proudSkillGroupId
     if (proudSkillGroupId === 0) {
       this.costItems = []
       this.costMora = 0
@@ -66,30 +69,27 @@ export class CharacterSkillAscension {
     const proudSkillJson = Client._getJsonFromCachedExcelBinOutput(
       'ProudSkillExcelConfigData',
       proudSkillGroupId,
-    )[this.level] as JsonObject
-    this.costItems = (proudSkillJson.costItems as JsonObject[])
-      .filter(
-        (costItem) => costItem.id !== undefined && costItem.count !== undefined,
+    )[this.level]
+    if (!proudSkillJson) {
+      throw new AssetNotFoundError(
+        `level ${String(this.level)}`,
+        'ProudSkillExcelConfigData',
       )
-      .map((costItem) => {
-        return {
-          id: costItem.id as number,
-          count: costItem.count as number,
-        }
-      })
-    this.costMora = (proudSkillJson.coinCost as number | undefined) ?? 0
-    this.addProps = (proudSkillJson.addProps as JsonObject[])
-      .filter(
-        (addProp) =>
-          addProp.propType !== undefined &&
-          addProp.propType !== 'FIGHT_PROP_NONE' &&
-          addProp.value !== undefined,
-      )
+    }
+    this.costItems = proudSkillJson.costItems.map((costItem) => {
+      return {
+        id: costItem.id,
+        count: costItem.count,
+      }
+    })
+    this.costMora = proudSkillJson.coinCost
+    this.addProps = proudSkillJson.addProps
+      .filter((addProp) => addProp.propType !== PropType.FightPropNone)
       .map(
         (addProp) =>
           new StatProperty(
-            addProp.propType as FightPropType,
-            (addProp.value ?? 0) as number,
+            toFightPropType(addProp.propType, 'CharacterSkillAscension'),
+            addProp.value,
           ),
       )
   }

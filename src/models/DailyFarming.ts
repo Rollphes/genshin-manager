@@ -1,11 +1,11 @@
-import { Client } from '@/client/Client'
-import { OutOfRangeError } from '@/errors/OutOfRangeError'
+import { Client } from '@/client'
 import { CharacterInfo } from '@/models/character/CharacterInfo'
 import { CharacterSkill } from '@/models/character/CharacterSkill'
 import { CharacterSkillAscension } from '@/models/character/CharacterSkillAscension'
 import { WeaponAscension } from '@/models/weapon/WeaponAscension'
 import { WeaponInfo } from '@/models/weapon/WeaponInfo'
-import { JsonArray } from '@/utils/JsonParser'
+import { dayOfWeekSchema } from '@/schemas'
+import { ValidationHelper } from '@/utils/validation'
 
 /**
  * Domain data
@@ -34,7 +34,7 @@ export interface DomainData {
 }
 
 /**
- * Class of materials available on specified days of the week
+ * Manages daily domain farming schedules and material availability by day
  */
 export class DailyFarming {
   /**
@@ -75,63 +75,63 @@ export class DailyFarming {
    * @param dayOfWeek day-of-week (0-6)
    */
   constructor(dayOfWeek: number) {
-    if (dayOfWeek < 0 || dayOfWeek > 6)
-      throw new OutOfRangeError('dayOfWeek', dayOfWeek, 0, 6)
-    this.dayOfWeek = dayOfWeek
+    this.dayOfWeek = ValidationHelper.validate(dayOfWeekSchema, dayOfWeek, {
+      propertyKey: 'dayOfWeek',
+    })
     const rewardDateIndex = dayOfWeek === 0 ? 3 : (dayOfWeek - 1) % 3
     const dungeons = Object.values(
       Client._getCachedExcelBinOutputByName('DungeonEntryExcelConfigData'),
     )
     const skillDomains = dungeons.filter(
-      (d) => d.type === 'DUNGEN_ENTRY_TYPE_AVATAR_TALENT',
+      (d) => d?.type === 'DUNGEN_ENTRY_TYPE_AVATAR_TALENT',
     )
     const weaponDomains = dungeons.filter(
-      (d) => d.type === 'DUNGEN_ENTRY_TYPE_WEAPON_PROMOTE',
+      (d) => d?.type === 'DUNGEN_ENTRY_TYPE_WEAPON_PROMOTE',
     )
 
     for (let i = 0; i < (dayOfWeek === 0 ? 3 : 1); i++) {
-      ;[...weaponDomains, ...skillDomains].forEach((domain) => {
-        const descriptionCycleRewardList =
-          domain.descriptionCycleRewardList as JsonArray
-        const materialIds = descriptionCycleRewardList[
-          dayOfWeek === 0 ? i : rewardDateIndex
-        ] as number[]
-        const dungeonEntryId = domain.dungeonEntryId as number
+      ;[...weaponDomains, ...skillDomains]
+        .filter((domain) => domain !== undefined)
+        .forEach((domain) => {
+          const materialIds =
+            domain.descriptionCycleRewardList[
+              dayOfWeek === 0 ? i : rewardDateIndex
+            ]
+          const dungeonEntryId = domain.dungeonEntryId
 
-        const nameTextId = Object.keys(
-          DailyFarming.replaceTextMapIdMap,
-        ).includes(String(dungeonEntryId))
-          ? DailyFarming.replaceTextMapIdMap[dungeonEntryId]
-          : `UI_DUNGEON_ENTRY_${String(dungeonEntryId)}`
+          const nameTextId = Object.keys(
+            DailyFarming.replaceTextMapIdMap,
+          ).includes(String(dungeonEntryId))
+            ? DailyFarming.replaceTextMapIdMap[dungeonEntryId]
+            : `UI_DUNGEON_ENTRY_${String(dungeonEntryId)}`
 
-        const manualTextJson = Client._getJsonFromCachedExcelBinOutput(
-          'ManualTextMapConfigData',
-          nameTextId,
-        )
-        const textMapContentTextMapHash =
-          manualTextJson.textMapContentTextMapHash as number
-        const descTextMapHash = manualTextJson.descTextMapHash as number
+          const manualTextJson = Client._getJsonFromCachedExcelBinOutput(
+            'ManualTextMapConfigData',
+            nameTextId,
+          )
+          const textMapContentTextMapHash =
+            manualTextJson.textMapContentTextMapHash
 
-        this.domains.push({
-          name: Client._cachedTextMap.get(textMapContentTextMapHash) ?? '',
-          description: Client._cachedTextMap.get(descTextMapHash) ?? '',
-          materialIds: materialIds,
-          characterInfos: this.getCharacterInfoByMaterialIds(materialIds),
-          weaponIds: this.getWeaponIdsByMaterialIds(materialIds),
+          this.domains.push({
+            name: Client._cachedTextMap.get(textMapContentTextMapHash) ?? '',
+            description: '',
+            materialIds: materialIds,
+            characterInfos: this.getCharacterInfoByMaterialIds(materialIds),
+            weaponIds: this.getWeaponIdsByMaterialIds(materialIds),
+          })
         })
-      })
     }
 
-    this.talentBookIds = skillDomains.flatMap((d) => {
-      const descriptionCycleRewardList =
-        d.descriptionCycleRewardList as number[][]
-      return descriptionCycleRewardList[rewardDateIndex]
-    })
-    this.weaponMaterialIds = weaponDomains.flatMap((d) => {
-      const descriptionCycleRewardList =
-        d.descriptionCycleRewardList as number[][]
-      return descriptionCycleRewardList[rewardDateIndex]
-    })
+    this.talentBookIds = skillDomains
+      .filter((d) => d !== undefined)
+      .flatMap((d) => {
+        return d.descriptionCycleRewardList[rewardDateIndex]
+      })
+    this.weaponMaterialIds = weaponDomains
+      .filter((d) => d !== undefined)
+      .flatMap((d) => {
+        return d.descriptionCycleRewardList[rewardDateIndex]
+      })
   }
 
   private getCharacterInfoByMaterialIds(

@@ -16,9 +16,10 @@ import {
   vi,
 } from 'vitest'
 
-import { ImageNotFoundError } from '@/errors/ImageNotFoundError'
+import { ImageNotFoundError } from '@/errors'
 import { ImageAssets } from '@/models/assets/ImageAssets'
 import { ClientOption } from '@/types'
+import { LogLevel } from '@/utils/logger'
 
 /**
  * ImageAssets test suite
@@ -38,7 +39,7 @@ describe('ImageAssets', () => {
     audioBaseURLByRegex: {},
     defaultAudioBaseURL: 'https://audio-cdn.example.com',
     autoCacheAudio: false,
-    showFetchCacheLog: false,
+    logLevel: LogLevel.NONE,
     autoFetchLatestAssetsByCron: undefined,
     autoFixTextMap: false,
     autoFixExcelBin: false,
@@ -61,7 +62,6 @@ describe('ImageAssets', () => {
   })
 
   afterAll(() => {
-    // Clean up test cache directory
     if (fs.existsSync(testCacheDir))
       fs.rmSync(testCacheDir, { recursive: true, force: true })
   })

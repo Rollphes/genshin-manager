@@ -1,0 +1,1154 @@
+{
+  "metadata": {
+    "sourceFile": "AvatarSkillDepotExcelConfigData.json",
+    "generatedAt": "2025-10-01T15:37:37.179Z"
+  },
+  "keyMappingTemplate": {
+    "attackModeSkill": 0,
+    "DGLKLDNIEKC": 0,
+    "energySkill": 10068,
+    "extraAbilities": [
+      "",
+      "",
+      ""
+    ],
+    "id": 504,
+    "inherentProudSkillOpens": [
+      {
+        "needAvatarPromoteLevel": 1,
+        "proudSkillGroupId": 721
+      },
+      {
+        "needAvatarPromoteLevel": 4,
+        "proudSkillGroupId": 722
+      },
+      {
+        "needAvatarPromoteLevel": 0,
+        "proudSkillGroupId": 0
+      },
+      {
+        "needAvatarPromoteLevel": 0,
+        "proudSkillGroupId": 0
+      },
+      {
+        "needAvatarPromoteLevel": 0,
+        "proudSkillGroupId": 0
+      }
+    ],
+    "JBEBHHPANFP": "None",
+    "LDMOAPKDBJD": 0,
+    "leaderTalent": 1481,
+    "MDNLOEBMIHK": 0,
+    "skillDepotAbilityGroup": "Avatar_Player_AbilityGroup_Boy_Wind",
+    "skills": [
+      100543,
+      10067,
+      0,
+      0
+    ],
+    "subSkills": [
+      10101,
+      10001,
+      10102,
+      10006,
+      5005010
+    ],
+    "talents": [
+      71,
+      72,
+      73,
+      74,
+      75,
+      76
+    ],
+    "talentStarName": "Talent_PlayerBoy_Wind"
+  },
+  "alternativePatterns": [
+    {
+      "attackModeSkill": 0,
+      "DGLKLDNIEKC": 0,
+      "energySkill": 10098,
+      "extraAbilities": [
+        "",
+        "",
+        ""
+      ],
+      "id": 502,
+      "inherentProudSkillOpens": [
+        {
+          "needAvatarPromoteLevel": 1,
+          "proudSkillGroupId": 521
+        },
+        {
+          "needAvatarPromoteLevel": 4,
+          "proudSkillGroupId": 522
+        },
+        {
+          "needAvatarPromoteLevel": 0,
+          "proudSkillGroupId": 0
+        },
+        {
+          "needAvatarPromoteLevel": 0,
+          "proudSkillGroupId": 0
+        },
+        {
+          "needAvatarPromoteLevel": 0,
+          "proudSkillGroupId": 0
+        }
+      ],
+      "JBEBHHPANFP": "None",
+      "LDMOAPKDBJD": 0,
+      "leaderTalent": 0,
+      "MDNLOEBMIHK": 0,
+      "skillDepotAbilityGroup": "Avatar_Player_AbilityGroup_Boy_Fire",
+      "skills": [
+        100541,
+        10097,
+        0,
+        0
+      ],
+      "subSkills": [
+        10001,
+        10054,
+        5005010,
+        10099
+      ],
+      "talents": [
+        51,
+        52,
+        53,
+        54,
+        55,
+        56
+      ],
+      "talentStarName": "Talent_PlayerBoy_Fire"
+    },
+    {
+      "attackModeSkill": 0,
+      "DGLKLDNIEKC": 0,
+      "energySkill": 10078,
+      "extraAbilities": [
+        "",
+        "",
+        ""
+      ],
+      "id": 506,
+      "inherentProudSkillOpens": [
+        {
+          "needAvatarPromoteLevel": 1,
+          "proudSkillGroupId": 921
+        },
+        {
+          "needAvatarPromoteLevel": 4,
+          "proudSkillGroupId": 922
+        },
+        {
+          "needAvatarPromoteLevel": 0,
+          "proudSkillGroupId": 0
+        },
+        {
+          "needAvatarPromoteLevel": 0,
+          "proudSkillGroupId": 0
+        },
+        {
+          "needAvatarPromoteLevel": 0,
+          "proudSkillGroupId": 0
+        }
+      ],
+      "JBEBHHPANFP": "None",
+      "LDMOAPKDBJD": 0,
+      "leaderTalent": 1641,
+      "MDNLOEBMIHK": 0,
+      "skillDepotAbilityGroup": "Avatar_Player_AbilityGroup_Boy_Rock",
+      "skills": [
+        100545,
+        10077,
+        0,
+        0
+      ],
+      "subSkills": [
+        10101,
+        10001,
+        10102,
+        5005010
+      ],
+      "talents": [
+        91,
+        92,
+        93,
+        94,
+        95,
+        96
+      ],
+      "talentStarName": "Talent_PlayerBoy_Rock"
+    },
+    {
+      "attackModeSkill": 0,
+      "DGLKLDNIEKC": 0,
+      "energySkill": 10088,
+      "extraAbilities": [
+        "",
+        "",
+        ""
+      ],
+      "id": 503,
+      "inherentProudSkillOpens": [
+        {
+          "needAvatarPromoteLevel": 1,
+          "proudSkillGroupId": 621
+        },
+        {
+          "needAvatarPromoteLevel": 4,
+          "proudSkillGroupId": 622
+        },
+        {
+          "needAvatarPromoteLevel": 0,
+          "proudSkillGroupId": 0
+        },
+        {
+          "needAvatarPromoteLevel": 0,
+          "proudSkillGroupId": 0
+        },
+        {
+          "needAvatarPromoteLevel": 0,
+          "proudSkillGroupId": 0
+        }
+      ],
+      "JBEBHHPANFP": "Ousia",
+      "LDMOAPKDBJD": 0,
+      "leaderTalent": 0,
+      "MDNLOEBMIHK": 0,
+      "skillDepotAbilityGroup": "Avatar_Player_AbilityGroup_Boy_Water",
+      "skills": [
+        100542,
+        10087,
+        0,
+        0
+      ],
+      "subSkills": [
+        10001,
+        10054,
+        5005010
+      ],
+      "talents": [
+        61,
+        62,
+        63,
+        64,
+        65,
+        66
+      ],
+      "talentStarName": "Talent_PlayerBoy_Water"
+    },
+    {
+      "attackModeSkill": 0,
+      "DGLKLDNIEKC": 0,
+      "energySkill": 30007,
+      "extraAbilities": [
+        "",
+        "",
+        ""
+      ],
+      "id": 10201,
+      "inherentProudSkillOpens": [
+        {
+          "needAvatarPromoteLevel": 1,
+          "proudSkillGroupId": 10221
+        },
+        {
+          "needAvatarPromoteLevel": 4,
+          "proudSkillGroupId": 10222
+        },
+        {
+          "needAvatarPromoteLevel": 0,
+          "proudSkillGroupId": 10223
+        },
+        {
+          "needAvatarPromoteLevel": 0,
+          "proudSkillGroupId": 0
+        },
+        {
+          "needAvatarPromoteLevel": 0,
+          "proudSkillGroupId": 10225
+        }
+      ],
+      "JBEBHHPANFP": "None",
+      "LDMOAPKDBJD": 0,
+      "leaderTalent": 0,
+      "MDNLOEBMIHK": 0,
+      "skillDepotAbilityGroup": "",
+      "skills": [
+        30000,
+        30002,
+        0,
+        0
+      ],
+      "subSkills": [
+        30003,
+        30004,
+        30005,
+        30006,
+        30008,
+        30009,
+        30010,
+        30011,
+        10003,
+        5102010
+      ],
+      "talents": [
+        1021,
+        1022,
+        1023,
+        1024,
+        1025,
+        1026
+      ],
+      "talentStarName": "Talent_Mualani"
+    },
+    {
+      "attackModeSkill": 0,
+      "DGLKLDNIEKC": 0,
+      "energySkill": 10705,
+      "extraAbilities": [
+        "",
+        "",
+        ""
+      ],
+      "id": 7001,
+      "inherentProudSkillOpens": [
+        {
+          "needAvatarPromoteLevel": 1,
+          "proudSkillGroupId": 7021
+        },
+        {
+          "needAvatarPromoteLevel": 4,
+          "proudSkillGroupId": 7022
+        },
+        {
+          "needAvatarPromoteLevel": 0,
+          "proudSkillGroupId": 7023
+        },
+        {
+          "needAvatarPromoteLevel": 0,
+          "proudSkillGroupId": 0
+        },
+        {
+          "needAvatarPromoteLevel": 0,
+          "proudSkillGroupId": 0
+        }
+      ],
+      "JBEBHHPANFP": "None",
+      "LDMOAPKDBJD": 0,
+      "leaderTalent": 0,
+      "MDNLOEBMIHK": 0,
+      "skillDepotAbilityGroup": "",
+      "skills": [
+        10701,
+        10702,
+        0,
+        0
+      ],
+      "subSkills": [
+        10703,
+        10704,
+        10706,
+        10707,
+        10708,
+        10001,
+        10101,
+        10102,
+        5070010
+      ],
+      "talents": [
+        701,
+        702,
+        703,
+        704,
+        705,
+        706
+      ],
+      "talentStarName": "Talent_Nilou"
+    },
+    {
+      "attackModeSkill": 20000,
+      "DGLKLDNIEKC": 0,
+      "energySkill": 10333,
+      "extraAbilities": [
+        "",
+        "",
+        ""
+      ],
+      "id": 3301,
+      "inherentProudSkillOpens": [
+        {
+          "needAvatarPromoteLevel": 1,
+          "proudSkillGroupId": 3321
+        },
+        {
+          "needAvatarPromoteLevel": 4,
+          "proudSkillGroupId": 3322
+        },
+        {
+          "needAvatarPromoteLevel": 0,
+          "proudSkillGroupId": 3323
+        },
+        {
+          "needAvatarPromoteLevel": 0,
+          "proudSkillGroupId": 0
+        },
+        {
+          "needAvatarPromoteLevel": 0,
+          "proudSkillGroupId": 0
+        }
+      ],
+      "JBEBHHPANFP": "None",
+      "LDMOAPKDBJD": 0,
+      "leaderTalent": 0,
+      "MDNLOEBMIHK": 0,
+      "skillDepotAbilityGroup": "",
+      "skills": [
+        10331,
+        10332,
+        0,
+        0
+      ],
+      "subSkills": [
+        10334,
+        10335,
+        10336,
+        10337,
+        10101,
+        10102,
+        10001,
+        5033010
+      ],
+      "talents": [
+        331,
+        332,
+        333,
+        334,
+        335,
+        336
+      ],
+      "talentStarName": "Talent_Tartaglia"
+    },
+    {
+      "attackModeSkill": 0,
+      "DGLKLDNIEKC": 0,
+      "energySkill": 10755,
+      "extraAbilities": [
+        "",
+        "",
+        ""
+      ],
+      "id": 7501,
+      "inherentProudSkillOpens": [
+        {
+          "needAvatarPromoteLevel": 1,
+          "proudSkillGroupId": 7521
+        },
+        {
+          "needAvatarPromoteLevel": 4,
+          "proudSkillGroupId": 7522
+        },
+        {
+          "needAvatarPromoteLevel": 0,
+          "proudSkillGroupId": 7523
+        },
+        {
+          "needAvatarPromoteLevel": 0,
+          "proudSkillGroupId": 0
+        },
+        {
+          "needAvatarPromoteLevel": 0,
+          "proudSkillGroupId": 0
+        }
+      ],
+      "JBEBHHPANFP": "None",
+      "LDMOAPKDBJD": 0,
+      "leaderTalent": 0,
+      "MDNLOEBMIHK": 0,
+      "skillDepotAbilityGroup": "",
+      "skills": [
+        10751,
+        10752,
+        0,
+        0
+      ],
+      "subSkills": [
+        10753,
+        10756,
+        10757,
+        10758,
+        10759,
+        10750,
+        10003,
+        5075010
+      ],
+      "talents": [
+        751,
+        752,
+        753,
+        754,
+        755,
+        756
+      ],
+      "talentStarName": "Talent_Wanderer"
+    },
+    {
+      "attackModeSkill": 0,
+      "DGLKLDNIEKC": 0,
+      "energySkill": 11015,
+      "extraAbilities": [
+        "",
+        "",
+        ""
+      ],
+      "id": 10101,
+      "inherentProudSkillOpens": [
+        {
+          "needAvatarPromoteLevel": 1,
+          "proudSkillGroupId": 10121
+        },
+        {
+          "needAvatarPromoteLevel": 4,
+          "proudSkillGroupId": 10122
+        },
+        {
+          "needAvatarPromoteLevel": 0,
+          "proudSkillGroupId": 10123
+        },
+        {
+          "needAvatarPromoteLevel": 0,
+          "proudSkillGroupId": 0
+        },
+        {
+          "needAvatarPromoteLevel": 0,
+          "proudSkillGroupId": 10125
+        }
+      ],
+      "JBEBHHPANFP": "None",
+      "LDMOAPKDBJD": 0,
+      "leaderTalent": 0,
+      "MDNLOEBMIHK": 0,
+      "skillDepotAbilityGroup": "",
+      "skills": [
+        11011,
+        11012,
+        0,
+        0
+      ],
+      "subSkills": [
+        10004,
+        11013,
+        11014,
+        11016,
+        11017,
+        11018,
+        11019,
+        5101010
+      ],
+      "talents": [
+        1011,
+        1012,
+        1013,
+        1014,
+        1015,
+        1016
+      ],
+      "talentStarName": "Talent_Kinich"
+    },
+    {
+      "attackModeSkill": 0,
+      "DGLKLDNIEKC": 0,
+      "energySkill": 11005,
+      "extraAbilities": [
+        "",
+        "",
+        ""
+      ],
+      "id": 10001,
+      "inherentProudSkillOpens": [
+        {
+          "needAvatarPromoteLevel": 1,
+          "proudSkillGroupId": 10021
+        },
+        {
+          "needAvatarPromoteLevel": 4,
+          "proudSkillGroupId": 10022
+        },
+        {
+          "needAvatarPromoteLevel": 0,
+          "proudSkillGroupId": 10023
+        },
+        {
+          "needAvatarPromoteLevel": 0,
+          "proudSkillGroupId": 0
+        },
+        {
+          "needAvatarPromoteLevel": 0,
+          "proudSkillGroupId": 10025
+        }
+      ],
+      "JBEBHHPANFP": "None",
+      "LDMOAPKDBJD": 0,
+      "leaderTalent": 0,
+      "MDNLOEBMIHK": 0,
+      "skillDepotAbilityGroup": "",
+      "skills": [
+        11001,
+        11002,
+        0,
+        0
+      ],
+      "subSkills": [
+        11003,
+        11004,
+        11006,
+        11007,
+        11008,
+        10002,
+        5100010
+      ],
+      "talents": [
+        1001,
+        1002,
+        1003,
+        1004,
+        1005,
+        1006
+      ],
+      "talentStarName": "Talent_Kachina"
+    },
+    {
+      "attackModeSkill": 0,
+      "DGLKLDNIEKC": 0,
+      "energySkill": 10274,
+      "extraAbilities": [
+        "",
+        "",
+        ""
+      ],
+      "id": 2701,
+      "inherentProudSkillOpens": [
+        {
+          "needAvatarPromoteLevel": 1,
+          "proudSkillGroupId": 2721
+        },
+        {
+          "needAvatarPromoteLevel": 4,
+          "proudSkillGroupId": 2722
+        },
+        {
+          "needAvatarPromoteLevel": 0,
+          "proudSkillGroupId": 2723
+        },
+        {
+          "needAvatarPromoteLevel": 0,
+          "proudSkillGroupId": 0
+        },
+        {
+          "needAvatarPromoteLevel": 0,
+          "proudSkillGroupId": 0
+        }
+      ],
+      "JBEBHHPANFP": "None",
+      "LDMOAPKDBJD": 0,
+      "leaderTalent": 0,
+      "MDNLOEBMIHK": 0,
+      "skillDepotAbilityGroup": "",
+      "skills": [
+        10271,
+        10272,
+        0,
+        0
+      ],
+      "subSkills": [
+        10101,
+        10102,
+        10003,
+        10273,
+        10275,
+        5027010
+      ],
+      "talents": [
+        271,
+        272,
+        273,
+        274,
+        275,
+        276
+      ],
+      "talentStarName": "Talent_Ningguang"
+    },
+    {
+      "attackModeSkill": 0,
+      "DGLKLDNIEKC": 0,
+      "energySkill": 0,
+      "extraAbilities": [
+        "",
+        "",
+        ""
+      ],
+      "id": 501,
+      "inherentProudSkillOpens": [
+        {
+          "needAvatarPromoteLevel": 0,
+          "proudSkillGroupId": 0
+        },
+        {
+          "needAvatarPromoteLevel": 0,
+          "proudSkillGroupId": 0
+        },
+        {
+          "needAvatarPromoteLevel": 0,
+          "proudSkillGroupId": 0
+        },
+        {
+          "needAvatarPromoteLevel": 0,
+          "proudSkillGroupId": 0
+        },
+        {
+          "needAvatarPromoteLevel": 0,
+          "proudSkillGroupId": 0
+        }
+      ],
+      "JBEBHHPANFP": "None",
+      "LDMOAPKDBJD": 0,
+      "leaderTalent": 0,
+      "MDNLOEBMIHK": 0,
+      "skillDepotAbilityGroup": "Avatar_Player_AbilityGroup_Boy_Common",
+      "skills": [
+        100540,
+        0,
+        0,
+        0
+      ],
+      "subSkills": [
+        10035,
+        10101,
+        10001,
+        10102,
+        5005010
+      ],
+      "talents": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "talentStarName": ""
+    },
+    {
+      "attackModeSkill": 0,
+      "DGLKLDNIEKC": 0,
+      "energySkill": 0,
+      "extraAbilities": [
+        "",
+        "",
+        ""
+      ],
+      "id": 505,
+      "inherentProudSkillOpens": [
+        {
+          "needAvatarPromoteLevel": 0,
+          "proudSkillGroupId": 0
+        },
+        {
+          "needAvatarPromoteLevel": 0,
+          "proudSkillGroupId": 0
+        },
+        {
+          "needAvatarPromoteLevel": 0,
+          "proudSkillGroupId": 0
+        },
+        {
+          "needAvatarPromoteLevel": 0,
+          "proudSkillGroupId": 0
+        },
+        {
+          "needAvatarPromoteLevel": 0,
+          "proudSkillGroupId": 0
+        }
+      ],
+      "JBEBHHPANFP": "None",
+      "LDMOAPKDBJD": 0,
+      "leaderTalent": 0,
+      "MDNLOEBMIHK": 0,
+      "skillDepotAbilityGroup": "",
+      "skills": [
+        100544,
+        0,
+        0,
+        0
+      ],
+      "subSkills": [
+        10101,
+        10001,
+        10102,
+        10054,
+        5005010
+      ],
+      "talents": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "talentStarName": "Talent_PlayerBoy_Ice"
+    },
+    {
+      "attackModeSkill": 0,
+      "DGLKLDNIEKC": 0,
+      "energySkill": 10075,
+      "extraAbilities": [
+        "",
+        "",
+        ""
+      ],
+      "id": 1501,
+      "inherentProudSkillOpens": [
+        {
+          "needAvatarPromoteLevel": 1,
+          "proudSkillGroupId": 1521
+        },
+        {
+          "needAvatarPromoteLevel": 4,
+          "proudSkillGroupId": 1522
+        },
+        {
+          "needAvatarPromoteLevel": 0,
+          "proudSkillGroupId": 1523
+        },
+        {
+          "needAvatarPromoteLevel": 0,
+          "proudSkillGroupId": 0
+        },
+        {
+          "needAvatarPromoteLevel": 0,
+          "proudSkillGroupId": 0
+        }
+      ],
+      "JBEBHHPANFP": "None",
+      "LDMOAPKDBJD": 0,
+      "leaderTalent": 1050,
+      "MDNLOEBMIHK": 0,
+      "skillDepotAbilityGroup": "",
+      "skills": [
+        10073,
+        10074,
+        0,
+        0
+      ],
+      "subSkills": [
+        10081,
+        10101,
+        10001,
+        10102,
+        5015010
+      ],
+      "talents": [
+        151,
+        152,
+        153,
+        154,
+        155,
+        156
+      ],
+      "talentStarName": "Talent_Kaeya"
+    },
+    {
+      "attackModeSkill": 0,
+      "DGLKLDNIEKC": 0,
+      "energySkill": 10415,
+      "extraAbilities": [
+        "",
+        "",
+        ""
+      ],
+      "id": 4101,
+      "inherentProudSkillOpens": [
+        {
+          "needAvatarPromoteLevel": 1,
+          "proudSkillGroupId": 4121
+        },
+        {
+          "needAvatarPromoteLevel": 4,
+          "proudSkillGroupId": 4122
+        },
+        {
+          "needAvatarPromoteLevel": 0,
+          "proudSkillGroupId": 4123
+        },
+        {
+          "needAvatarPromoteLevel": 0,
+          "proudSkillGroupId": 0
+        },
+        {
+          "needAvatarPromoteLevel": 0,
+          "proudSkillGroupId": 0
+        }
+      ],
+      "JBEBHHPANFP": "None",
+      "LDMOAPKDBJD": 0,
+      "leaderTalent": 0,
+      "MDNLOEBMIHK": 0,
+      "skillDepotAbilityGroup": "",
+      "skills": [
+        10411,
+        10412,
+        10413,
+        0
+      ],
+      "subSkills": [
+        10101,
+        10102,
+        10003,
+        5041010
+      ],
+      "talents": [
+        411,
+        412,
+        413,
+        414,
+        415,
+        416
+      ],
+      "talentStarName": "Talent_Mona"
+    },
+    {
+      "attackModeSkill": 0,
+      "DGLKLDNIEKC": 0,
+      "energySkill": 11075,
+      "extraAbilities": [
+        "",
+        "",
+        ""
+      ],
+      "id": 10701,
+      "inherentProudSkillOpens": [
+        {
+          "needAvatarPromoteLevel": 1,
+          "proudSkillGroupId": 10721
+        },
+        {
+          "needAvatarPromoteLevel": 4,
+          "proudSkillGroupId": 10722
+        },
+        {
+          "needAvatarPromoteLevel": 0,
+          "proudSkillGroupId": 10723
+        },
+        {
+          "needAvatarPromoteLevel": 0,
+          "proudSkillGroupId": 0
+        },
+        {
+          "needAvatarPromoteLevel": 0,
+          "proudSkillGroupId": 10725
+        }
+      ],
+      "JBEBHHPANFP": "None",
+      "LDMOAPKDBJD": 0,
+      "leaderTalent": 0,
+      "MDNLOEBMIHK": 0,
+      "skillDepotAbilityGroup": "",
+      "skills": [
+        11071,
+        11072,
+        0,
+        11076
+      ],
+      "subSkills": [
+        10003,
+        11073,
+        5107010
+      ],
+      "talents": [
+        1071,
+        1072,
+        1073,
+        1074,
+        1075,
+        1076
+      ],
+      "talentStarName": "Talent_Citlali"
+    },
+    {
+      "attackModeSkill": 20000,
+      "DGLKLDNIEKC": 0,
+      "energySkill": 10495,
+      "extraAbilities": [
+        "",
+        "",
+        ""
+      ],
+      "id": 4901,
+      "inherentProudSkillOpens": [
+        {
+          "needAvatarPromoteLevel": 1,
+          "proudSkillGroupId": 4921
+        },
+        {
+          "needAvatarPromoteLevel": 4,
+          "proudSkillGroupId": 4922
+        },
+        {
+          "needAvatarPromoteLevel": 0,
+          "proudSkillGroupId": 4923
+        },
+        {
+          "needAvatarPromoteLevel": 0,
+          "proudSkillGroupId": 0
+        },
+        {
+          "needAvatarPromoteLevel": 0,
+          "proudSkillGroupId": 0
+        }
+      ],
+      "JBEBHHPANFP": "None",
+      "LDMOAPKDBJD": 0,
+      "leaderTalent": 0,
+      "MDNLOEBMIHK": 0,
+      "skillDepotAbilityGroup": "",
+      "skills": [
+        10491,
+        10492,
+        0,
+        0
+      ],
+      "subSkills": [
+        10493,
+        5049010
+      ],
+      "talents": [
+        491,
+        492,
+        493,
+        494,
+        495,
+        496
+      ],
+      "talentStarName": "Talent_Yoimiya"
+    },
+    {
+      "attackModeSkill": 0,
+      "DGLKLDNIEKC": 0,
+      "energySkill": 10685,
+      "extraAbilities": [
+        "",
+        "",
+        ""
+      ],
+      "id": 6801,
+      "inherentProudSkillOpens": [
+        {
+          "needAvatarPromoteLevel": 1,
+          "proudSkillGroupId": 6821
+        },
+        {
+          "needAvatarPromoteLevel": 4,
+          "proudSkillGroupId": 6822
+        },
+        {
+          "needAvatarPromoteLevel": 0,
+          "proudSkillGroupId": 6823
+        },
+        {
+          "needAvatarPromoteLevel": 0,
+          "proudSkillGroupId": 0
+        },
+        {
+          "needAvatarPromoteLevel": 0,
+          "proudSkillGroupId": 0
+        }
+      ],
+      "JBEBHHPANFP": "None",
+      "LDMOAPKDBJD": 0,
+      "leaderTalent": 0,
+      "MDNLOEBMIHK": 0,
+      "skillDepotAbilityGroup": "",
+      "skills": [
+        10681,
+        10682,
+        0,
+        0
+      ],
+      "subSkills": [
+        5068010
+      ],
+      "talents": [
+        681,
+        682,
+        683,
+        684,
+        685,
+        686
+      ],
+      "talentStarName": "Talent_Dori"
+    },
+    {
+      "attackModeSkill": 0,
+      "DGLKLDNIEKC": 0,
+      "energySkill": 0,
+      "extraAbilities": [
+        "",
+        "",
+        ""
+      ],
+      "id": 8011,
+      "inherentProudSkillOpens": [
+        {
+          "needAvatarPromoteLevel": 0,
+          "proudSkillGroupId": 0
+        },
+        {
+          "needAvatarPromoteLevel": 0,
+          "proudSkillGroupId": 0
+        },
+        {
+          "needAvatarPromoteLevel": 0,
+          "proudSkillGroupId": 0
+        },
+        {
+          "needAvatarPromoteLevel": 0,
+          "proudSkillGroupId": 0
+        },
+        {
+          "needAvatarPromoteLevel": 0,
+          "proudSkillGroupId": 0
+        }
+      ],
+      "JBEBHHPANFP": "None",
+      "LDMOAPKDBJD": 0,
+      "leaderTalent": 0,
+      "MDNLOEBMIHK": 0,
+      "skillDepotAbilityGroup": "",
+      "skills": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "subSkills": [
+        10300,
+        10101,
+        10102,
+        10001
+      ],
+      "talents": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "talentStarName": ""
+    }
+  ]
+}

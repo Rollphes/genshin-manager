@@ -1,0 +1,144 @@
+{
+  "metadata": {
+    "sourceFile": "FetterStoryExcelConfigData.json",
+    "generatedAt": "2025-10-01T15:37:38.748Z"
+  },
+  "keyMappingTemplate": {
+    "avatarId": 10000030,
+    "fetterId": 172006,
+    "finishConds": [
+      {
+        "condType": "FETTER_COND_FINISH_PARENT_QUEST",
+        "paramList": [
+          3026
+        ]
+      }
+    ],
+    "isHiden": false,
+    "openConds": [
+      {
+        "condType": "FETTER_COND_FETTER_LEVEL",
+        "paramList": [
+          6
+        ]
+      },
+      {
+        "condType": "FETTER_COND_FINISH_QUEST",
+        "paramList": [
+          102510
+        ]
+      }
+    ],
+    "storyContext2TextMapHash": 426393311,
+    "storyContextTextMapHash": 1655827208,
+    "storyTitle2TextMapHash": 2197962037,
+    "storyTitleLockedTextMapHash": 1037145844,
+    "storyTitleTextMapHash": 1490584870,
+    "tips": [
+      1008679084,
+      205327689
+    ]
+  },
+  "alternativePatterns": [
+    {
+      "avatarId": 10000016,
+      "fetterId": 8208,
+      "finishConds": [
+        {
+          "condType": "FETTER_COND_NOT_OPEN",
+          "paramList": []
+        }
+      ],
+      "isHiden": false,
+      "openConds": [
+        {
+          "condType": "FETTER_COND_FETTER_LEVEL",
+          "paramList": [
+            6
+          ]
+        },
+        {
+          "condType": "FETTER_COND_FINISH_QUEST",
+          "paramList": [
+            46618
+          ]
+        }
+      ],
+      "storyContext2TextMapHash": 1952982703,
+      "storyContextTextMapHash": 3021922768,
+      "storyTitle2TextMapHash": 2721998541,
+      "storyTitleLockedTextMapHash": 1381665348,
+      "storyTitleTextMapHash": 3499742334,
+      "tips": [
+        2545937348,
+        3211014041
+      ]
+    },
+    {
+      "avatarId": 10000073,
+      "fetterId": 73201,
+      "finishConds": [
+        {
+          "condType": "FETTER_COND_FINISH_PARENT_QUEST",
+          "paramList": [
+            3026
+          ]
+        }
+      ],
+      "isHiden": false,
+      "openConds": [
+        {
+          "condType": "FETTER_COND_FETTER_LEVEL",
+          "paramList": [
+            2
+          ]
+        },
+        {
+          "condType": "FETTER_COND_NONE",
+          "paramList": []
+        }
+      ],
+      "storyContext2TextMapHash": 3195123935,
+      "storyContextTextMapHash": 3090627032,
+      "storyTitle2TextMapHash": 2643348885,
+      "storyTitleLockedTextMapHash": 1286090428,
+      "storyTitleTextMapHash": 444464214,
+      "tips": [
+        2203621308,
+        298699297
+      ]
+    },
+    {
+      "avatarId": 10000073,
+      "fetterId": 73200,
+      "finishConds": [
+        {
+          "condType": "FETTER_COND_FINISH_PARENT_QUEST",
+          "paramList": [
+            3026
+          ]
+        }
+      ],
+      "isHiden": false,
+      "openConds": [
+        {
+          "condType": "FETTER_COND_NONE",
+          "paramList": []
+        },
+        {
+          "condType": "FETTER_COND_NONE",
+          "paramList": []
+        }
+      ],
+      "storyContext2TextMapHash": 2023826719,
+      "storyContextTextMapHash": 95131096,
+      "storyTitle2TextMapHash": 3670110533,
+      "storyTitleLockedTextMapHash": 1192795932,
+      "storyTitleTextMapHash": 736865310,
+      "tips": [
+        2286927708,
+        4071126993
+      ]
+    }
+  ]
+}

@@ -1,7 +1,7 @@
 import { beforeAll, describe, expect, test } from 'vitest'
 
-import { Client } from '@/client/Client.js'
-import { Monster } from '@/models/Monster.js'
+import { Client } from '@/client'
+import { Monster } from '@/models/Monster'
 
 describe('MonsterDescribe Release Test', () => {
   beforeAll(async () => {
@@ -11,7 +11,7 @@ describe('MonsterDescribe Release Test', () => {
       downloadLanguages: ['EN'],
     })
     await client.deploy()
-  })
+  }, 30000) // 30 seconds timeout for deployment
   test('should find monster IDs by describe IDs and instantiate monsters', () => {
     // Get all MonsterDescribeExcelConfigData keys
     const describeIds = Object.keys(

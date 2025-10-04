@@ -206,6 +206,16 @@ export default [
   },
   {
     ignores: [
+      '.git/',
+      '.vscode/',
+      '.github/',
+      '.husky/',
+      '.idea/',
+      '.claude/',
+      '.serena/',
+      'cache/',
+      'coverage/',
+      'src/types/generated/',
       'dist/',
       'docs/',
       'examples/',

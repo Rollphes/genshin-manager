@@ -1,8 +1,9 @@
-import { Client } from '@/client/Client'
-import { AssocType, CVType } from '@/types'
+import { Client } from '@/client'
+import type { CVType } from '@/types'
+import type { FetterInfoExcelConfigDataType } from '@/types/generated/FetterInfoExcelConfigData'
 
 /**
- * Class of character's profile
+ * Represents character profile information including basic details and associations
  */
 export class CharacterProfile {
   /**
@@ -40,7 +41,7 @@ export class CharacterProfile {
   /**
    * Association
    */
-  public readonly assocType: AssocType
+  public readonly assocType: FetterInfoExcelConfigDataType['avatarAssocType']
   /**
    * Character Voice
    */
@@ -52,7 +53,7 @@ export class CharacterProfile {
 
   /**
    * Create a Profile
-   * @param characterId Character ID
+   * @param characterId character ID
    */
   constructor(characterId: number) {
     this.characterId = characterId
@@ -60,44 +61,41 @@ export class CharacterProfile {
       'FetterInfoExcelConfigData',
       this.characterId,
     )
-    this.fetterId = fetterInfoJson.fetterId as number
+    this.fetterId = fetterInfoJson.fetterId
     const birthMonth = fetterInfoJson.infoBirthMonth as number | undefined
     const birthDay = fetterInfoJson.infoBirthDay as number | undefined
     this.birthDate = birthMonth
       ? new Date(0, birthMonth - 1, birthDay)
       : undefined
-    const avatarNativeTextMapHash =
-      fetterInfoJson.avatarNativeTextMapHash as number
+    const avatarNativeTextMapHash = fetterInfoJson.avatarNativeTextMapHash
     const avatarVisionAfterTextMapHash =
-      fetterInfoJson.avatarVisionAfterTextMapHash as number
+      fetterInfoJson.avatarVisionAfterTextMapHash
     const avatarVisionBeforeTextMapHash =
-      fetterInfoJson.avatarVisionBeforTextMapHash as number
+      fetterInfoJson.avatarVisionBeforTextMapHash
     this.native = Client._cachedTextMap.get(avatarNativeTextMapHash) ?? ''
     this.vision =
       Client._cachedTextMap.get(avatarVisionAfterTextMapHash) ??
       Client._cachedTextMap.get(avatarVisionBeforeTextMapHash) ??
       ''
     const avatarConstellationAfterTextMapHash =
-      fetterInfoJson.avatarConstellationAfterTextMapHash as number
+      fetterInfoJson.avatarConstellationAfterTextMapHash
     const avatarConstellationBeforeTextMapHash =
-      fetterInfoJson.avatarConstellationBeforTextMapHash as number
+      fetterInfoJson.avatarConstellationBeforTextMapHash
     this.constellation =
       Client._cachedTextMap.get(avatarConstellationAfterTextMapHash) ??
       Client._cachedTextMap.get(avatarConstellationBeforeTextMapHash) ??
       ''
 
-    const avatarTitleTextMapHash =
-      fetterInfoJson.avatarTitleTextMapHash as number
-    const avatarDetailTextMapHash =
-      fetterInfoJson.avatarDetailTextMapHash as number
+    const avatarTitleTextMapHash = fetterInfoJson.avatarTitleTextMapHash
+    const avatarDetailTextMapHash = fetterInfoJson.avatarDetailTextMapHash
     this.title = Client._cachedTextMap.get(avatarTitleTextMapHash) ?? ''
     this.detail = Client._cachedTextMap.get(avatarDetailTextMapHash) ?? ''
-    this.assocType = fetterInfoJson.avatarAssocType as AssocType
+    this.assocType = fetterInfoJson.avatarAssocType
 
-    const cvChineseTextMapHash = fetterInfoJson.cvChineseTextMapHash as number
-    const cvJapaneseTextMapHash = fetterInfoJson.cvJapaneseTextMapHash as number
-    const cvEnglishTextMapHash = fetterInfoJson.cvEnglishTextMapHash as number
-    const cvKoreanTextMapHash = fetterInfoJson.cvKoreanTextMapHash as number
+    const cvChineseTextMapHash = fetterInfoJson.cvChineseTextMapHash
+    const cvJapaneseTextMapHash = fetterInfoJson.cvJapaneseTextMapHash
+    const cvEnglishTextMapHash = fetterInfoJson.cvEnglishTextMapHash
+    const cvKoreanTextMapHash = fetterInfoJson.cvKoreanTextMapHash
     this.cv = {
       CHS: Client._cachedTextMap.get(cvChineseTextMapHash) ?? '',
       JP: Client._cachedTextMap.get(cvJapaneseTextMapHash) ?? '',
@@ -108,12 +106,17 @@ export class CharacterProfile {
 
   /**
    * Get all character IDs
-   * @returns All character IDs
+   * @returns all character IDs
    */
   public static get allCharacterIds(): number[] {
     const profileDatas = Object.values(
       Client._getCachedExcelBinOutputByName('FetterInfoExcelConfigData'),
     )
-    return profileDatas.map((data) => data.avatarId as number)
+    return profileDatas
+      .filter(
+        (data): data is NonNullable<typeof data> =>
+          data?.avatarId !== undefined,
+      )
+      .map((data) => data.avatarId)
   }
 }

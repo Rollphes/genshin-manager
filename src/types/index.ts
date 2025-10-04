@@ -1,7 +1,32 @@
+import { MasterFileMap } from '@/types/generated/MasterFileMap'
+import { JsonObject } from '@/types/json'
+import { LogLevel } from '@/utils/logger'
+
 /**
  * Type of value of object
  */
 export type ValueOf<T> = T[keyof T]
+
+/**
+ * Enhanced master file structure with recursive support
+ */
+export interface EncryptedKeyMasterFile {
+  /**
+   * Metadata
+   */
+  metadata: {
+    sourceFile: string
+    generatedAt: string
+  }
+  /**
+   * Primary key mapping template (decoded reference object with highest data density)
+   */
+  keyMappingTemplate: JsonObject
+  /**
+   * Alternative patterns for structural variations (optional, ordered by data density)
+   */
+  alternativePatterns?: JsonObject[]
+}
 
 /**
  * Character upgrade plan interface
@@ -102,10 +127,10 @@ export interface ClientOption {
    */
   defaultLanguage: keyof typeof TextMapLanguage
   /**
-   * show fetch cache log
-   * @default true
+   * log level for the application
+   * @default LogLevel.NONE
    */
-  showFetchCacheLog: boolean
+  logLevel?: LogLevel
   /**
    * auto fetch latest assets by cron
    * @warn If this option is `undefined`, asset updates and initial setup are not executed
@@ -170,89 +195,8 @@ export type CVType = keyof Omit<
 >
 
 /**
- * Artifact type
- */
-export type ArtifactType =
-  | 'EQUIP_BRACER'
-  | 'EQUIP_NECKLACE'
-  | 'EQUIP_SHOES'
-  | 'EQUIP_RING'
-  | 'EQUIP_DRESS'
-
-//TODO: If genshin does a major update, I'll update here.
-/**
- * Association type
- */
-export type AssocType =
-  | 'ASSOC_TYPE_FATUI'
-  | 'ASSOC_TYPE_FONTAINE'
-  | 'ASSOC_TYPE_INAZUMA'
-  | 'ASSOC_TYPE_LIYUE'
-  | 'ASSOC_TYPE_MAINACTOR'
-  | 'ASSOC_TYPE_MONDSTADT'
-  | 'ASSOC_TYPE_RANGER'
-  | 'ASSOC_TYPE_SUMERU'
-  | 'ASSOC_TYPE_NATLAN'
-  | 'ASSOC_TYPE_NODKRAI'
-  | 'ASSOC_TYPE_OMNI_SCOURGE'
-
-/**
- * Item type
- */
-export type ItemType = 'ITEM_VIRTUAL' | 'ITEM_MATERIAL'
-
-/**
- * Material type
- */
-export type MaterialType =
-  | 'MATERIAL_ACTIVITY_GEAR'
-  | 'MATERIAL_ACTIVITY_JIGSAW'
-  | 'MATERIAL_ACTIVITY_ROBOT'
-  | 'MATERIAL_ADSORBATE'
-  | 'MATERIAL_ARANARA'
-  | 'MATERIAL_AVATAR'
-  | 'MATERIAL_AVATAR_MATERIAL'
-  | 'MATERIAL_BGM'
-  | 'MATERIAL_CHANNELLER_SLAB_BUFF'
-  | 'MATERIAL_CHEST'
-  | 'MATERIAL_CHEST_BATCH_USE'
-  | 'MATERIAL_CONSUME'
-  | 'MATERIAL_CONSUME_BATCH_USE'
-  | 'MATERIAL_COSTUME'
-  | 'MATERIAL_CRICKET'
-  | 'MATERIAL_DESHRET_MANUAL'
-  | 'MATERIAL_ELEM_CRYSTAL'
-  | 'MATERIAL_EXCHANGE'
-  | 'MATERIAL_EXP_FRUIT'
-  | 'MATERIAL_FAKE_ABSORBATE'
-  | 'MATERIAL_FIREWORKS'
-  | 'MATERIAL_FISH_BAIT'
-  | 'MATERIAL_FISH_ROD'
-  | 'MATERIAL_FLYCLOAK'
-  | 'MATERIAL_FOOD'
-  | 'MATERIAL_FURNITURE_FORMULA'
-  | 'MATERIAL_FURNITURE_SUITE_FORMULA'
-  | 'MATERIAL_GCG_CARD'
-  | 'MATERIAL_GCG_CARD_BACK'
-  | 'MATERIAL_GCG_CARD_FACE'
-  | 'MATERIAL_GCG_EXCHANGE_ITEM'
-  | 'MATERIAL_GCG_FIELD'
-  | 'MATERIAL_HOME_SEED'
-  | 'MATERIAL_NAMECARD'
-  | 'MATERIAL_NOTICE_ADD_HP'
-  | 'MATERIAL_QUEST'
-  | 'MATERIAL_RELIQUARY_MATERIAL'
-  | 'MATERIAL_RENAME_ITEM'
-  | 'MATERIAL_SEA_LAMP'
-  | 'MATERIAL_SELECTABLE_CHEST'
-  | 'MATERIAL_SPICE_FOOD'
-  | 'MATERIAL_TALENT'
-  | 'MATERIAL_WEAPON_EXP_STONE'
-  | 'MATERIAL_WIDGET'
-  | 'MATERIAL_WOOD'
-
-/**
  * FightProp Map
+ * @remarks Numeric keys are necessary for runtime mapping from game data IDs
  */
 export const FightProps = {
   0: 'FIGHT_PROP_NONE',
@@ -379,60 +323,6 @@ export const FightProps = {
  * FightProp type
  */
 export type FightPropType = ValueOf<typeof FightProps>
-
-/**
- * Weapon type
- */
-export type WeaponType =
-  | 'WEAPON_BOW'
-  | 'WEAPON_CATALYST'
-  | 'WEAPON_CLAYMORE'
-  | 'WEAPON_POLE'
-  | 'WEAPON_SWORD_ONE_HAND'
-
-/**
- * Character's profile picture type
- */
-export type ProfilePictureType =
-  | 'PROFILE_PICTURE_UNLOCK_BY_AVATAR'
-  | 'PROFILE_PICTURE_UNLOCK_BY_COSTUME'
-  | 'PROFILE_PICTURE_UNLOCK_BY_ITEM'
-
-/**
- * Quality type (Rarity Type)
- */
-export type QualityType =
-  | 'QUALITY_ORANGE'
-  | 'QUALITY_PURPLE'
-  | 'QUALITY_ORANGE_SP'
-
-/**
- * Body type
- */
-export type BodyType =
-  | 'BODY_BOY'
-  | 'BODY_GIRL'
-  | 'BODY_LADY'
-  | 'BODY_LOLI'
-  | 'BODY_MALE'
-
-/**
- * Monster type
- * @description `CODEX_SUBTYPE_ELEMENT_LIFE` is original (reason:Element lifeforms does not have a subType)
- */
-export type CodexType =
-  | 'CODEX_SUBTYPE_ELEMENT_LIFE'
-  | 'CODEX_SUBTYPE_ABYSS'
-  | 'CODEX_SUBTYPE_ANIMAL'
-  | 'CODEX_SUBTYPE_AUTOMATRON'
-  | 'CODEX_SUBTYPE_AVIARY'
-  | 'CODEX_SUBTYPE_BEAST'
-  | 'CODEX_SUBTYPE_BOSS'
-  | 'CODEX_SUBTYPE_CRITTER'
-  | 'CODEX_SUBTYPE_FATUI'
-  | 'CODEX_SUBTYPE_FISH'
-  | 'CODEX_SUBTYPE_HILICHURL'
-  | 'CODEX_SUBTYPE_HUMAN'
 
 /**
  * TextMap language type
@@ -1612,3 +1502,265 @@ export const ExcelBinOutputs = {
   // WorldExcelConfigData: 'WorldExcelConfigData.json',
   // WorldLevelExcelConfigData: 'WorldLevelExcelConfigData.json',
 } as const
+
+/* eslint-disable @typescript-eslint/naming-convention */
+/**
+ * Cache structure type mapping for processed game data
+ */
+export interface CacheStructureMap {
+  /**
+   * Animal codex entries mapped by describe ID
+   */
+  AnimalCodexExcelConfigData: Record<
+    string,
+    MasterFileMap['AnimalCodexExcelConfigData'] | undefined
+  >
+
+  /**
+   * Avatar costume data mapped by skin ID
+   */
+  AvatarCostumeExcelConfigData: Record<
+    string,
+    MasterFileMap['AvatarCostumeExcelConfigData'] | undefined
+  >
+
+  /**
+   * Avatar stat curve data indexed by type then level
+   */
+  AvatarCurveExcelConfigData: Record<string, Record<number, number>>
+
+  /**
+   * Avatar base data mapped by character ID
+   */
+  AvatarExcelConfigData: Record<
+    string,
+    MasterFileMap['AvatarExcelConfigData'] | undefined
+  >
+
+  /**
+   * Avatar ascension data nested by promote ID and level
+   */
+  AvatarPromoteExcelConfigData: Record<
+    string,
+    Record<string, MasterFileMap['AvatarPromoteExcelConfigData'] | undefined>
+  >
+
+  /**
+   * Avatar skill depot configurations mapped by ID
+   */
+  AvatarSkillDepotExcelConfigData: Record<
+    string,
+    MasterFileMap['AvatarSkillDepotExcelConfigData'] | undefined
+  >
+
+  /**
+   * Avatar skill definitions mapped by skill ID
+   */
+  AvatarSkillExcelConfigData: Record<
+    string,
+    MasterFileMap['AvatarSkillExcelConfigData'] | undefined
+  >
+
+  /**
+   * Avatar talent data mapped by talent ID
+   */
+  AvatarTalentExcelConfigData: Record<
+    string,
+    MasterFileMap['AvatarTalentExcelConfigData'] | undefined
+  >
+
+  /**
+   * Dungeon entry configurations mapped by ID
+   */
+  DungeonEntryExcelConfigData: Record<
+    string,
+    MasterFileMap['DungeonEntryExcelConfigData'] | undefined
+  >
+
+  /**
+   * Dungeon level entity data mapped by client ID
+   */
+  DungeonLevelEntityConfigData: Record<
+    string,
+    MasterFileMap['DungeonLevelEntityConfigData'] | undefined
+  >
+
+  /**
+   * Equipment affix data mapped by affix ID
+   */
+  EquipAffixExcelConfigData: Record<
+    string,
+    MasterFileMap['EquipAffixExcelConfigData'] | undefined
+  >
+
+  /**
+   * Character fetter info mapped by avatar ID
+   */
+  FetterInfoExcelConfigData: Record<
+    string,
+    MasterFileMap['FetterInfoExcelConfigData'] | undefined
+  >
+
+  /**
+   * Fetter configuration data mapped by fetter ID
+   */
+  FettersExcelConfigData: Record<
+    string,
+    MasterFileMap['FettersExcelConfigData'] | undefined
+  >
+
+  /**
+   * Character story data mapped by fetter ID
+   */
+  FetterStoryExcelConfigData: Record<
+    string,
+    MasterFileMap['FetterStoryExcelConfigData'] | undefined
+  >
+
+  /**
+   * Manual text map entries indexed by text map ID
+   */
+  ManualTextMapConfigData: Record<
+    string,
+    MasterFileMap['ManualTextMapConfigData'] | undefined
+  >
+
+  /**
+   * Material item data mapped by material ID
+   */
+  MaterialExcelConfigData: Record<
+    string,
+    MasterFileMap['MaterialExcelConfigData'] | undefined
+  >
+
+  /**
+   * Monster stat curve data indexed by type then level
+   */
+  MonsterCurveExcelConfigData: Record<string, Record<number, number>>
+
+  /**
+   * Monster description data mapped by ID
+   */
+  MonsterDescribeExcelConfigData: Record<
+    string,
+    MasterFileMap['MonsterDescribeExcelConfigData'] | undefined
+  >
+
+  /**
+   * Monster configuration data mapped by monster ID
+   */
+  MonsterExcelConfigData: Record<
+    string,
+    MasterFileMap['MonsterExcelConfigData'] | undefined
+  >
+
+  /**
+   * Profile picture data mapped by picture ID
+   */
+  ProfilePictureExcelConfigData: Record<
+    string,
+    MasterFileMap['ProfilePictureExcelConfigData'] | undefined
+  >
+
+  /**
+   * Skill enhancement data nested by group ID and skill level
+   */
+  ProudSkillExcelConfigData: Record<
+    string,
+    Record<number, MasterFileMap['ProudSkillExcelConfigData'] | undefined>
+  >
+
+  /**
+   * Artifact affix data mapped by affix ID
+   */
+  ReliquaryAffixExcelConfigData: Record<
+    string,
+    MasterFileMap['ReliquaryAffixExcelConfigData'] | undefined
+  >
+
+  /**
+   * Artifact base data mapped by artifact ID
+   */
+  ReliquaryExcelConfigData: Record<
+    string,
+    MasterFileMap['ReliquaryExcelConfigData'] | undefined
+  >
+
+  /**
+   * Artifact stat growth data indexed by type, rank, and level
+   */
+  ReliquaryLevelExcelConfigData: Record<
+    string,
+    Record<number, Record<number, number>>
+  >
+
+  /**
+   * Artifact main stat data mapped by prop ID
+   */
+  ReliquaryMainPropExcelConfigData: Record<
+    string,
+    MasterFileMap['ReliquaryMainPropExcelConfigData'] | undefined
+  >
+
+  /**
+   * Artifact set bonus data mapped by set ID
+   */
+  ReliquarySetExcelConfigData: Record<
+    string,
+    MasterFileMap['ReliquarySetExcelConfigData'] | undefined
+  >
+
+  /**
+   * Spiral Abyss floor data mapped by floor ID
+   */
+  TowerFloorExcelConfigData: Record<
+    string,
+    MasterFileMap['TowerFloorExcelConfigData'] | undefined
+  >
+
+  /**
+   * Spiral Abyss level data mapped by level ID
+   */
+  TowerLevelExcelConfigData: Record<
+    string,
+    MasterFileMap['TowerLevelExcelConfigData'] | undefined
+  >
+
+  /**
+   * Spiral Abyss schedule data mapped by schedule ID
+   */
+  TowerScheduleExcelConfigData: Record<
+    string,
+    MasterFileMap['TowerScheduleExcelConfigData'] | undefined
+  >
+
+  /**
+   * Weapon stat curve data indexed by type then level
+   */
+  WeaponCurveExcelConfigData: Record<string, Record<number, number>>
+
+  /**
+   * Weapon base data mapped by weapon ID
+   */
+  WeaponExcelConfigData: Record<
+    string,
+    MasterFileMap['WeaponExcelConfigData'] | undefined
+  >
+
+  /**
+   * Weapon ascension data nested by promote ID and level
+   */
+  WeaponPromoteExcelConfigData: Record<
+    string,
+    Record<string, MasterFileMap['WeaponPromoteExcelConfigData'] | undefined>
+  >
+}
+/* eslint-enable @typescript-eslint/naming-convention */
+
+/**
+ * Type helper to extract cache structure type from ExcelBinOutput key
+ */
+export type CacheStructureType<T extends keyof CacheStructureMap> =
+  CacheStructureMap[T]
+
+export type { MasterFileMap } from '@/types/generated/MasterFileMap'

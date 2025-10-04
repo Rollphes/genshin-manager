@@ -2,7 +2,7 @@ import { StatProperty } from '@/models/StatProperty'
 import { FightProps } from '@/types'
 
 /**
- * Class of Character's Combat Properties
+ * Manages character combat statistics and calculated property values
  */
 export class CharacterStatusManager {
   public readonly healthBase: StatProperty
@@ -67,7 +67,7 @@ export class CharacterStatusManager {
 
   /**
    * Create a CharacterStatusManager
-   * @param fightPropData FightPropMap from EnkaNetwork and other sources
+   * @param fightPropData fightPropMap from EnkaNetwork and other sources
    */
   constructor(fightPropData: Record<number, number | undefined>) {
     this.fightPropData = fightPropData
@@ -170,8 +170,8 @@ export class CharacterStatusManager {
 
   /**
    * Get StatProperty from fightPropData
-   * @param id FightProp ID
-   * @param defaultValue Default value if fightPropData[ID] is undefined
+   * @param id fightProp ID
+   * @param defaultValue default value if fightPropData[ID] is undefined
    * @returns StatProperty
    */
   private getStatProperty(

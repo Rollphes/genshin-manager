@@ -1,11 +1,12 @@
-import { Client } from '@/client/Client'
-import { OutOfRangeError } from '@/errors/OutOfRangeError'
+import { z } from 'zod'
+
+import { Client } from '@/client'
+import { AssetNotFoundError } from '@/errors'
 import { StatProperty } from '@/models/StatProperty'
-import { FightPropType } from '@/types'
-import { JsonObject } from '@/utils/JsonParser'
+import { ValidationHelper } from '@/utils/validation'
 
 /**
- * Class of character ascension
+ * Handles character ascension data including promote levels, costs, and stat bonuses
  */
 export class CharacterAscension {
   /**
@@ -48,8 +49,8 @@ export class CharacterAscension {
 
   /**
    * Create a character ascension
-   * @param characterId Character ID
-   * @param promoteLevel Character promote level (0-6). Default: 0
+   * @param characterId character ID
+   * @param promoteLevel character promote level (0-6). Default: 0
    */
   constructor(characterId: number, promoteLevel = 0) {
     this.id = characterId
@@ -57,47 +58,46 @@ export class CharacterAscension {
     const maxPromoteLevel = CharacterAscension.getMaxPromoteLevelByCharacterId(
       this.id,
     )
-    if (this.promoteLevel < 0 || this.promoteLevel > maxPromoteLevel) {
-      throw new OutOfRangeError(
-        'promoteLevel',
-        this.promoteLevel,
-        0,
-        maxPromoteLevel,
-      )
-    }
+    const promoteLevelSchema = z
+      .number()
+      .min(0, { message: 'promoteLevel must be at least 0' })
+      .max(maxPromoteLevel, {
+        message: `promoteLevel must be at most ${maxPromoteLevel.toString()}`,
+      })
+    void ValidationHelper.validate(promoteLevelSchema, this.promoteLevel, {
+      propertyKey: 'promoteLevel',
+    })
     const avatarJson = Client._getJsonFromCachedExcelBinOutput(
       'AvatarExcelConfigData',
       this.id,
     )
     const avatarPromoteJson = Client._getJsonFromCachedExcelBinOutput(
       'AvatarPromoteExcelConfigData',
-      avatarJson.avatarPromoteId as number,
-    )[this.promoteLevel] as JsonObject
-    this.costItems = (avatarPromoteJson.costItems as JsonObject[])
-      .filter(
-        (costItem) => costItem.id !== undefined && costItem.count !== undefined,
+      avatarJson.avatarPromoteId,
+    )[this.promoteLevel]
+    if (!avatarPromoteJson) {
+      throw new AssetNotFoundError(
+        `promoteLevel ${String(this.promoteLevel)}`,
+        'AvatarPromoteExcelConfigData',
       )
-      .map((costItem) => {
-        return {
-          id: costItem.id as number,
-          count: costItem.count as number,
-        }
-      })
-    this.costMora = (avatarPromoteJson.scoinCost as number | undefined) ?? 0
-    this.addProps = (avatarPromoteJson.addProps as JsonObject[]).map(
-      (addProp) =>
-        new StatProperty(
-          addProp.propType as FightPropType,
-          (addProp.value ?? 0) as number,
-        ),
+    }
+    this.costItems = avatarPromoteJson.costItems.map((costItem) => {
+      return {
+        id: costItem.id,
+        count: costItem.count,
+      }
+    })
+    this.costMora = avatarPromoteJson.scoinCost
+    this.addProps = avatarPromoteJson.addProps.map(
+      (addProp) => new StatProperty(addProp.propType, addProp.value),
     )
-    this.unlockMaxLevel = avatarPromoteJson.unlockMaxLevel as number
+    this.unlockMaxLevel = avatarPromoteJson.unlockMaxLevel
   }
 
   /**
    * Get max promote level by character ID
-   * @param characterId Character ID
-   * @returns Max promote level
+   * @param characterId character ID
+   * @returns max promote level
    */
   public static getMaxPromoteLevelByCharacterId(characterId: number): number {
     const avatarJson = Client._getJsonFromCachedExcelBinOutput(
@@ -106,11 +106,11 @@ export class CharacterAscension {
     )
     const avatarPromoteJson = Client._getJsonFromCachedExcelBinOutput(
       'AvatarPromoteExcelConfigData',
-      avatarJson.avatarPromoteId as number,
+      avatarJson.avatarPromoteId,
     )
     return Math.max(
-      ...(Object.values(avatarPromoteJson) as JsonObject[]).map(
-        (promote) => (promote.promoteLevel ?? 0) as number,
+      ...Object.values(avatarPromoteJson).map((promote) =>
+        promote ? promote.promoteLevel : 0,
       ),
     )
   }
