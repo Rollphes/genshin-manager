@@ -33,12 +33,10 @@ function isJsonObjectArray(value: unknown): value is JsonObject[] {
  * @param typeName - Type name to generate
  * @returns generated TypeScript code
  */
-export async function generateTypeFromMaster(
+async function generateTypeFromMaster(
   masterFilePath: string,
   typeName: string,
 ): Promise<string> {
-  logger.configure({ level: LogLevel.DEBUG })
-
   if (!fs.existsSync(masterFilePath))
     throw new ConfigMissingError('masterFilePath', masterFilePath)
 
@@ -97,6 +95,7 @@ export async function generateTypeFromMaster(
 export async function generateAllMasterTypes(
   outputDir: string,
 ): Promise<string[]> {
+  logger.configure({ level: LogLevel.DEBUG })
   logger.info('=== Initiating type generation from master files ===')
   const client = new Client({})
   await client.deploy()
