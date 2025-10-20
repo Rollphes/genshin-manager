@@ -1,6 +1,6 @@
 {
   "name": "genshin-manager",
-  "version": "2.0.2",
+  "version": "2.0.3",
   "homepage": "https://rollphes.github.io/genshin-manager/",
   "bugs": "https://github.com/Rollphes/genshin-manager/issues",
   "main": "dist/index.js",
