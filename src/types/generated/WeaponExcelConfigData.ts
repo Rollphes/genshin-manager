@@ -8,7 +8,6 @@
 // match the expected interface, even if the JSON is valid.
 
 export type WeaponExcelConfigDataType = {
-    AJIMOHCMNGI:                Ajimohcmngi;
     awakenCosts:                number[];
     awakenIcon:                 string;
     awakenLightMapTexture:      string;
@@ -18,8 +17,8 @@ export type WeaponExcelConfigDataType = {
     destroyReturnMaterial:      number[];
     destroyReturnMaterialCount: number[];
     destroyRule:                DestroyRule;
+    DLIALKLHDED:                number;
     dropable:                   boolean;
-    ENKAHBLLDEE:                number;
     gachaCardNameHash:          number;
     gadgetId:                   number;
     globalItemLimit:            number;
@@ -27,9 +26,10 @@ export type WeaponExcelConfigDataType = {
     id:                         number;
     initialLockState:           number;
     itemType:                   ItemType;
+    KCCFDAFPBCI:                boolean;
     materialType:               MaterialType;
     nameTextMapHash:            number;
-    PKAJBJJLKBO:                boolean;
+    PDAEIKHKCBP:                Pdaeikhkcbp;
     rank:                       number;
     rankLevel:                  number;
     skillAffix:                 number[];
@@ -43,7 +43,7 @@ export type WeaponExcelConfigDataType = {
     weight:                     number;
 }
 
-export enum Ajimohcmngi {
+export enum Pdaeikhkcbp {
     None = "None",
 }
 
@@ -270,7 +270,6 @@ function r(name: string) {
 
 const typeMap: any = {
     "WeaponExcelConfigDataType": o([
-        { json: "AJIMOHCMNGI", js: "AJIMOHCMNGI", typ: r("Ajimohcmngi") },
         { json: "awakenCosts", js: "awakenCosts", typ: a(0) },
         { json: "awakenIcon", js: "awakenIcon", typ: "" },
         { json: "awakenLightMapTexture", js: "awakenLightMapTexture", typ: "" },
@@ -280,8 +279,8 @@ const typeMap: any = {
         { json: "destroyReturnMaterial", js: "destroyReturnMaterial", typ: a(0) },
         { json: "destroyReturnMaterialCount", js: "destroyReturnMaterialCount", typ: a(0) },
         { json: "destroyRule", js: "destroyRule", typ: r("DestroyRule") },
+        { json: "DLIALKLHDED", js: "DLIALKLHDED", typ: 0 },
         { json: "dropable", js: "dropable", typ: true },
-        { json: "ENKAHBLLDEE", js: "ENKAHBLLDEE", typ: 0 },
         { json: "gachaCardNameHash", js: "gachaCardNameHash", typ: 3.14 },
         { json: "gadgetId", js: "gadgetId", typ: 0 },
         { json: "globalItemLimit", js: "globalItemLimit", typ: 0 },
@@ -289,9 +288,10 @@ const typeMap: any = {
         { json: "id", js: "id", typ: 0 },
         { json: "initialLockState", js: "initialLockState", typ: 0 },
         { json: "itemType", js: "itemType", typ: r("ItemType") },
+        { json: "KCCFDAFPBCI", js: "KCCFDAFPBCI", typ: true },
         { json: "materialType", js: "materialType", typ: r("MaterialType") },
         { json: "nameTextMapHash", js: "nameTextMapHash", typ: 0 },
-        { json: "PKAJBJJLKBO", js: "PKAJBJJLKBO", typ: true },
+        { json: "PDAEIKHKCBP", js: "PDAEIKHKCBP", typ: r("Pdaeikhkcbp") },
         { json: "rank", js: "rank", typ: 0 },
         { json: "rankLevel", js: "rankLevel", typ: 0 },
         { json: "skillAffix", js: "skillAffix", typ: a(0) },
@@ -309,7 +309,7 @@ const typeMap: any = {
         { json: "propType", js: "propType", typ: r("PropType") },
         { json: "type", js: "type", typ: r("Type") },
     ], false),
-    "Ajimohcmngi": [
+    "Pdaeikhkcbp": [
         "None",
     ],
     "DestroyRule": [

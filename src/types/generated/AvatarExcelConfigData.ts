@@ -9,64 +9,72 @@
 
 export type AvatarExcelConfigDataType = {
     animatorConfigPathHash:         number;
-    APFLBAKLOEO:                    Apflbakloeo;
     attackBase:                     number;
     avatarIdentityType:             AvatarIdentityType;
     avatarPromoteId:                number;
     avatarPromoteRewardIdList:      number[];
     avatarPromoteRewardLevelList:   number[];
-    BKDIKIELCJP:                    number;
+    BDKICGKLCMA:                    number;
     bodyType:                       BodyType;
     campID:                         number;
     candSkillDepotIds:              number[];
+    CDBLKEGMAEN:                    boolean;
     chargeEfficiency:               number;
+    CIAPMJAEIHD:                    number;
+    CMHFEAFOLPG:                    number;
     combatConfigHash:               number;
     controllerPathHash:             number;
     controllerPathRemoteHash:       number;
     coopPicNameHash:                number;
-    CPCEANDLJLK:                    Apflbakloeo;
     critical:                       number;
     criticalHurt:                   number;
     defenseBase:                    number;
     deformationMeshPathHash:        number;
     descTextMapHash:                number;
-    DKKMALNLCNA:                    number;
-    DKLKLDJHMHO:                    number;
-    EKCFOJPGLIC:                    number;
+    EFBDEAEJMNJ:                    number;
     elecSubHurt:                    number;
     elementMastery:                 number;
-    EOABMLDFBHM:                    number;
+    EPBCFFKHAIM:                    Epbcffkhaim;
     featureTagGroupID:              number;
-    FFOMDMCHMCC:                    number;
     fireSubHurt:                    number;
     gachaCardNameHash:              number;
     gachaImageNameHash:             number;
-    GDODLCIIIEM:                    number;
-    GHGKDLEMENH:                    number;
-    GPJIHFNKCKC:                    number;
-    GPONINHPLCD:                    number;
+    GDACAJPIPCJ:                    boolean;
+    GPHICMPCPFA:                    number;
     grassSubHurt:                   number;
-    HALIFLONHIH:                    number;
-    HIBBIBNJPMH:                    number;
+    HCHFHPEKGHO:                    number;
+    HDJEMKFONAD:                    number;
+    HGJCAPNOMAA:                    number;
+    HINKMCLODHL:                    number;
     hpBase:                         number;
     iceSubHurt:                     number;
     iconName:                       string;
     id:                             number;
+    IFNGBLPHINC:                    number;
+    IJIPDMJLGNB:                    number;
+    ILDGFINBLII:                    number;
     imageName:                      string;
     initialWeapon:                  number;
-    IOCJKCGOCJN:                    number;
+    IOMANLCNFEO:                    number;
     isRangeAttack:                  boolean;
-    JHPAPNAGOCN:                    number;
-    KEHFCONEFIM:                    Apflbakloeo;
-    KNJHBLOKJDG:                    number;
-    KODKCJGBJLD:                    number;
-    LODFLILJEJD:                    string;
+    JEOILPDPBCF:                    number;
+    KBGIKODHDPA:                    Epbcffkhaim;
+    KGOGCJLGLNI:                    number;
+    LLPAFFFGFBP:                    number;
     lodPatternName:                 string;
+    MAEJJKELOBK:                    number;
     manekinJsonConfigHash:          number;
     manekinMotionConfig:            number;
     manekinPathHash:                number;
+    MOCNCNMLBHE:                    string;
     nameTextMapHash:                number;
+    NCLJNCFOILK:                    number;
+    NKGIPKIAOGH:                    number;
+    NOCDAKPNGFO:                    number;
+    PBJALANPDBD:                    number;
+    PDKIEBDGBCC:                    Epbcffkhaim;
     physicalSubHurt:                number;
+    POKAEPFKOLI:                    number;
     prefabPathHash:                 number;
     prefabPathRagdollHash:          number;
     prefabPathRemoteHash:           number;
@@ -84,7 +92,7 @@ export type AvatarExcelConfigDataType = {
     windSubHurt:                    number;
 }
 
-export enum Apflbakloeo {
+export enum Epbcffkhaim {
     FightPropAttackPercent = "FIGHT_PROP_ATTACK_PERCENT",
     FightPropChargeEfficiency = "FIGHT_PROP_CHARGE_EFFICIENCY",
     FightPropCritical = "FIGHT_PROP_CRITICAL",
@@ -315,64 +323,72 @@ function r(name: string) {
 const typeMap: any = {
     "AvatarExcelConfigDataType": o([
         { json: "animatorConfigPathHash", js: "animatorConfigPathHash", typ: 3.14 },
-        { json: "APFLBAKLOEO", js: "APFLBAKLOEO", typ: r("Apflbakloeo") },
         { json: "attackBase", js: "attackBase", typ: 3.14 },
         { json: "avatarIdentityType", js: "avatarIdentityType", typ: r("AvatarIdentityType") },
         { json: "avatarPromoteId", js: "avatarPromoteId", typ: 0 },
         { json: "avatarPromoteRewardIdList", js: "avatarPromoteRewardIdList", typ: a(0) },
         { json: "avatarPromoteRewardLevelList", js: "avatarPromoteRewardLevelList", typ: a(0) },
-        { json: "BKDIKIELCJP", js: "BKDIKIELCJP", typ: 3.14 },
+        { json: "BDKICGKLCMA", js: "BDKICGKLCMA", typ: 3.14 },
         { json: "bodyType", js: "bodyType", typ: r("BodyType") },
         { json: "campID", js: "campID", typ: 0 },
         { json: "candSkillDepotIds", js: "candSkillDepotIds", typ: a(0) },
+        { json: "CDBLKEGMAEN", js: "CDBLKEGMAEN", typ: true },
         { json: "chargeEfficiency", js: "chargeEfficiency", typ: 0 },
+        { json: "CIAPMJAEIHD", js: "CIAPMJAEIHD", typ: 0 },
+        { json: "CMHFEAFOLPG", js: "CMHFEAFOLPG", typ: 0 },
         { json: "combatConfigHash", js: "combatConfigHash", typ: 3.14 },
         { json: "controllerPathHash", js: "controllerPathHash", typ: 3.14 },
         { json: "controllerPathRemoteHash", js: "controllerPathRemoteHash", typ: 3.14 },
         { json: "coopPicNameHash", js: "coopPicNameHash", typ: 3.14 },
-        { json: "CPCEANDLJLK", js: "CPCEANDLJLK", typ: r("Apflbakloeo") },
         { json: "critical", js: "critical", typ: 3.14 },
         { json: "criticalHurt", js: "criticalHurt", typ: 3.14 },
         { json: "defenseBase", js: "defenseBase", typ: 3.14 },
         { json: "deformationMeshPathHash", js: "deformationMeshPathHash", typ: 3.14 },
         { json: "descTextMapHash", js: "descTextMapHash", typ: 0 },
-        { json: "DKKMALNLCNA", js: "DKKMALNLCNA", typ: 0 },
-        { json: "DKLKLDJHMHO", js: "DKLKLDJHMHO", typ: 0 },
-        { json: "EKCFOJPGLIC", js: "EKCFOJPGLIC", typ: 0 },
+        { json: "EFBDEAEJMNJ", js: "EFBDEAEJMNJ", typ: 3.14 },
         { json: "elecSubHurt", js: "elecSubHurt", typ: 0 },
         { json: "elementMastery", js: "elementMastery", typ: 0 },
-        { json: "EOABMLDFBHM", js: "EOABMLDFBHM", typ: 3.14 },
+        { json: "EPBCFFKHAIM", js: "EPBCFFKHAIM", typ: r("Epbcffkhaim") },
         { json: "featureTagGroupID", js: "featureTagGroupID", typ: 0 },
-        { json: "FFOMDMCHMCC", js: "FFOMDMCHMCC", typ: 0 },
         { json: "fireSubHurt", js: "fireSubHurt", typ: 0 },
         { json: "gachaCardNameHash", js: "gachaCardNameHash", typ: 3.14 },
         { json: "gachaImageNameHash", js: "gachaImageNameHash", typ: 3.14 },
-        { json: "GDODLCIIIEM", js: "GDODLCIIIEM", typ: 0 },
-        { json: "GHGKDLEMENH", js: "GHGKDLEMENH", typ: 0 },
-        { json: "GPJIHFNKCKC", js: "GPJIHFNKCKC", typ: 0 },
-        { json: "GPONINHPLCD", js: "GPONINHPLCD", typ: 0 },
+        { json: "GDACAJPIPCJ", js: "GDACAJPIPCJ", typ: true },
+        { json: "GPHICMPCPFA", js: "GPHICMPCPFA", typ: 0 },
         { json: "grassSubHurt", js: "grassSubHurt", typ: 0 },
-        { json: "HALIFLONHIH", js: "HALIFLONHIH", typ: 0 },
-        { json: "HIBBIBNJPMH", js: "HIBBIBNJPMH", typ: 0 },
+        { json: "HCHFHPEKGHO", js: "HCHFHPEKGHO", typ: 3.14 },
+        { json: "HDJEMKFONAD", js: "HDJEMKFONAD", typ: 0 },
+        { json: "HGJCAPNOMAA", js: "HGJCAPNOMAA", typ: 3.14 },
+        { json: "HINKMCLODHL", js: "HINKMCLODHL", typ: 3.14 },
         { json: "hpBase", js: "hpBase", typ: 3.14 },
         { json: "iceSubHurt", js: "iceSubHurt", typ: 0 },
         { json: "iconName", js: "iconName", typ: "" },
         { json: "id", js: "id", typ: 0 },
+        { json: "IFNGBLPHINC", js: "IFNGBLPHINC", typ: 0 },
+        { json: "IJIPDMJLGNB", js: "IJIPDMJLGNB", typ: 3.14 },
+        { json: "ILDGFINBLII", js: "ILDGFINBLII", typ: 0 },
         { json: "imageName", js: "imageName", typ: "" },
         { json: "initialWeapon", js: "initialWeapon", typ: 0 },
-        { json: "IOCJKCGOCJN", js: "IOCJKCGOCJN", typ: 0 },
+        { json: "IOMANLCNFEO", js: "IOMANLCNFEO", typ: 0 },
         { json: "isRangeAttack", js: "isRangeAttack", typ: true },
-        { json: "JHPAPNAGOCN", js: "JHPAPNAGOCN", typ: 0 },
-        { json: "KEHFCONEFIM", js: "KEHFCONEFIM", typ: r("Apflbakloeo") },
-        { json: "KNJHBLOKJDG", js: "KNJHBLOKJDG", typ: 3.14 },
-        { json: "KODKCJGBJLD", js: "KODKCJGBJLD", typ: 0 },
-        { json: "LODFLILJEJD", js: "LODFLILJEJD", typ: "" },
+        { json: "JEOILPDPBCF", js: "JEOILPDPBCF", typ: 0 },
+        { json: "KBGIKODHDPA", js: "KBGIKODHDPA", typ: r("Epbcffkhaim") },
+        { json: "KGOGCJLGLNI", js: "KGOGCJLGLNI", typ: 0 },
+        { json: "LLPAFFFGFBP", js: "LLPAFFFGFBP", typ: 3.14 },
         { json: "lodPatternName", js: "lodPatternName", typ: "" },
+        { json: "MAEJJKELOBK", js: "MAEJJKELOBK", typ: 3.14 },
         { json: "manekinJsonConfigHash", js: "manekinJsonConfigHash", typ: 3.14 },
         { json: "manekinMotionConfig", js: "manekinMotionConfig", typ: 0 },
         { json: "manekinPathHash", js: "manekinPathHash", typ: 3.14 },
+        { json: "MOCNCNMLBHE", js: "MOCNCNMLBHE", typ: "" },
         { json: "nameTextMapHash", js: "nameTextMapHash", typ: 0 },
+        { json: "NCLJNCFOILK", js: "NCLJNCFOILK", typ: 0 },
+        { json: "NKGIPKIAOGH", js: "NKGIPKIAOGH", typ: 0 },
+        { json: "NOCDAKPNGFO", js: "NOCDAKPNGFO", typ: 0 },
+        { json: "PBJALANPDBD", js: "PBJALANPDBD", typ: 0 },
+        { json: "PDKIEBDGBCC", js: "PDKIEBDGBCC", typ: r("Epbcffkhaim") },
         { json: "physicalSubHurt", js: "physicalSubHurt", typ: 0 },
+        { json: "POKAEPFKOLI", js: "POKAEPFKOLI", typ: 0 },
         { json: "prefabPathHash", js: "prefabPathHash", typ: 3.14 },
         { json: "prefabPathRagdollHash", js: "prefabPathRagdollHash", typ: 3.14 },
         { json: "prefabPathRemoteHash", js: "prefabPathRemoteHash", typ: 3.14 },
@@ -393,7 +409,7 @@ const typeMap: any = {
         { json: "growCurve", js: "growCurve", typ: r("GrowCurve") },
         { json: "type", js: "type", typ: r("Type") },
     ], false),
-    "Apflbakloeo": [
+    "Epbcffkhaim": [
         "FIGHT_PROP_ATTACK_PERCENT",
         "FIGHT_PROP_CHARGE_EFFICIENCY",
         "FIGHT_PROP_CRITICAL",

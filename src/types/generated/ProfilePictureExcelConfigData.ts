@@ -8,11 +8,12 @@
 // match the expected interface, even if the JSON is valid.
 
 export type ProfilePictureExcelConfigDataType = {
-    type:                  Type;
+    EKFIIIINJCD:           boolean;
     iconPath:              string;
     id:                    number;
-    KFLKNHLLDJA:           boolean;
+    type:                  Type;
     nameTextMapHash:       number;
+    OOMIPLHHLGO:           boolean;
     priority:              number;
     unlockDescTextMapHash: number;
     unlockParam:           number;
@@ -21,6 +22,7 @@ export type ProfilePictureExcelConfigDataType = {
 export enum Type {
     ProfilePictureUnlockByAvatar = "PROFILE_PICTURE_UNLOCK_BY_AVATAR",
     ProfilePictureUnlockByCostume = "PROFILE_PICTURE_UNLOCK_BY_COSTUME",
+    ProfilePictureUnlockByDefault = "PROFILE_PICTURE_UNLOCK_BY_DEFAULT",
     ProfilePictureUnlockByItem = "PROFILE_PICTURE_UNLOCK_BY_ITEM",
     ProfilePictureUnlockByParentQuest = "PROFILE_PICTURE_UNLOCK_BY_PARENT_QUEST",
 }
@@ -191,11 +193,12 @@ function r(name: string) {
 
 const typeMap: any = {
     "ProfilePictureExcelConfigDataType": o([
-        { json: "type", js: "type", typ: r("Type") },
+        { json: "EKFIIIINJCD", js: "EKFIIIINJCD", typ: true },
         { json: "iconPath", js: "iconPath", typ: "" },
         { json: "id", js: "id", typ: 0 },
-        { json: "KFLKNHLLDJA", js: "KFLKNHLLDJA", typ: true },
+        { json: "type", js: "type", typ: r("Type") },
         { json: "nameTextMapHash", js: "nameTextMapHash", typ: 0 },
+        { json: "OOMIPLHHLGO", js: "OOMIPLHHLGO", typ: true },
         { json: "priority", js: "priority", typ: 0 },
         { json: "unlockDescTextMapHash", js: "unlockDescTextMapHash", typ: 0 },
         { json: "unlockParam", js: "unlockParam", typ: 0 },
@@ -203,6 +206,7 @@ const typeMap: any = {
     "Type": [
         "PROFILE_PICTURE_UNLOCK_BY_AVATAR",
         "PROFILE_PICTURE_UNLOCK_BY_COSTUME",
+        "PROFILE_PICTURE_UNLOCK_BY_DEFAULT",
         "PROFILE_PICTURE_UNLOCK_BY_ITEM",
         "PROFILE_PICTURE_UNLOCK_BY_PARENT_QUEST",
     ],

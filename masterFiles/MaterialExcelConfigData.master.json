@@ -1,10 +1,9 @@
 {
   "metadata": {
     "sourceFile": "MaterialExcelConfigData.json",
-    "generatedAt": "2025-10-01T15:37:42.118Z"
+    "generatedAt": "2025-10-20T15:45:00.100Z"
   },
   "keyMappingTemplate": {
-    "AGMHDDHHHBL": "Filter_OTHER",
     "cdGroup": 0,
     "cdTime": 0,
     "closeBagAfterUsed": false,
@@ -19,11 +18,13 @@
     "effectName": "",
     "foodQuality": "FOOD_QUALITY_NONE",
     "gadgetId": 0,
-    "GKBAHKBFNBH": false,
     "globalItemLimit": 0,
+    "GOFEFCODPII": "MATERIAL_SYS_TYPE_NONE",
+    "HJCEKDFGLCG": "Filter_OTHER",
     "icon": "UI_ItemIcon_120643",
     "id": 120643,
     "interactionTitleTextMapHash": 2317955983,
+    "IOMEHCHLAJM": false,
     "isForceGetHint": false,
     "isHidden": false,
     "isSplitDrop": false,
@@ -54,12 +55,12 @@
         ]
       }
     ],
-    "KNOIOAPAFIH": "None",
-    "LHOFPBCBILJ": false,
     "materialType": "MATERIAL_QUEST",
     "maxUseCount": 1,
     "nameTextMapHash": 3671148668,
     "noFirstGetHint": false,
+    "PCOPCNFOONA": "None",
+    "PHKICCAOKCK": false,
     "picPath": [
       "",
       "UI_NameCardPic_0_P"
@@ -82,7 +83,6 @@
   },
   "alternativePatterns": [
     {
-      "AGMHDDHHHBL": "Filter_OTHER",
       "cdGroup": 0,
       "cdTime": 0,
       "closeBagAfterUsed": false,
@@ -97,11 +97,13 @@
       "effectName": "",
       "foodQuality": "FOOD_QUALITY_NONE",
       "gadgetId": 0,
-      "GKBAHKBFNBH": false,
       "globalItemLimit": 0,
+      "GOFEFCODPII": "MATERIAL_SYS_TYPE_NONE",
+      "HJCEKDFGLCG": "Filter_OTHER",
       "icon": "UI_ItemIcon_121250",
       "id": 121250,
       "interactionTitleTextMapHash": 2540531143,
+      "IOMEHCHLAJM": false,
       "isForceGetHint": false,
       "isHidden": false,
       "isSplitDrop": false,
@@ -132,12 +134,12 @@
           ]
         }
       ],
-      "KNOIOAPAFIH": "None",
-      "LHOFPBCBILJ": false,
       "materialType": "MATERIAL_ROBO_GIFT",
       "maxUseCount": 1,
       "nameTextMapHash": 3218789316,
       "noFirstGetHint": false,
+      "PCOPCNFOONA": "None",
+      "PHKICCAOKCK": false,
       "picPath": [
         "",
         "UI_NameCardPic_0_P"
@@ -159,7 +161,6 @@
       "weight": 1
     },
     {
-      "AGMHDDHHHBL": "Filter_OTHER",
       "cdGroup": 0,
       "cdTime": 0,
       "closeBagAfterUsed": false,
@@ -174,11 +175,13 @@
       "effectName": "",
       "foodQuality": "FOOD_QUALITY_NONE",
       "gadgetId": 0,
-      "GKBAHKBFNBH": false,
       "globalItemLimit": 0,
+      "GOFEFCODPII": "MATERIAL_SYS_TYPE_NONE",
+      "HJCEKDFGLCG": "Filter_OTHER",
       "icon": "UI_ItemIcon_121252",
       "id": 121252,
       "interactionTitleTextMapHash": 3690390591,
+      "IOMEHCHLAJM": false,
       "isForceGetHint": false,
       "isHidden": false,
       "isSplitDrop": false,
@@ -209,12 +212,12 @@
           ]
         }
       ],
-      "KNOIOAPAFIH": "None",
-      "LHOFPBCBILJ": false,
       "materialType": "MATERIAL_ROBO_GIFT",
       "maxUseCount": 1,
       "nameTextMapHash": 523460068,
       "noFirstGetHint": false,
+      "PCOPCNFOONA": "None",
+      "PHKICCAOKCK": false,
       "picPath": [
         "",
         "UI_NameCardPic_0_P"
@@ -236,7 +239,6 @@
       "weight": 1
     },
     {
-      "AGMHDDHHHBL": "Filter_HEAL",
       "cdGroup": 0,
       "cdTime": 0,
       "closeBagAfterUsed": false,
@@ -251,11 +253,13 @@
       "effectName": "",
       "foodQuality": "FOOD_QUALITY_NONE",
       "gadgetId": 70540003,
-      "GKBAHKBFNBH": false,
       "globalItemLimit": 0,
+      "GOFEFCODPII": "MATERIAL_SYS_TYPE_NONE",
+      "HJCEKDFGLCG": "Filter_HEAL",
       "icon": "UI_ItemIcon_100001",
       "id": 100001,
       "interactionTitleTextMapHash": 2832627575,
+      "IOMEHCHLAJM": false,
       "isForceGetHint": false,
       "isHidden": false,
       "isSplitDrop": true,
@@ -286,12 +290,12 @@
           ]
         }
       ],
-      "KNOIOAPAFIH": "None",
-      "LHOFPBCBILJ": false,
       "materialType": "MATERIAL_NOTICE_ADD_HP",
       "maxUseCount": 99,
       "nameTextMapHash": 2483588484,
       "noFirstGetHint": false,
+      "PCOPCNFOONA": "None",
+      "PHKICCAOKCK": false,
       "picPath": [
         "",
         "UI_NameCardPic_0_P"
@@ -313,7 +317,6 @@
       "weight": 1
     },
     {
-      "AGMHDDHHHBL": "Filter_OTHER",
       "cdGroup": 0,
       "cdTime": 0,
       "closeBagAfterUsed": false,
@@ -328,11 +331,13 @@
       "effectName": "",
       "foodQuality": "FOOD_QUALITY_NONE",
       "gadgetId": 70610009,
-      "GKBAHKBFNBH": false,
       "globalItemLimit": 0,
+      "GOFEFCODPII": "MATERIAL_SYS_TYPE_NONE",
+      "HJCEKDFGLCG": "Filter_OTHER",
       "icon": "UI_ItemIcon_2001",
       "id": 2001,
       "interactionTitleTextMapHash": 474533151,
+      "IOMEHCHLAJM": false,
       "isForceGetHint": false,
       "isHidden": false,
       "isSplitDrop": false,
@@ -363,12 +368,12 @@
           ]
         }
       ],
-      "KNOIOAPAFIH": "None",
-      "LHOFPBCBILJ": false,
       "materialType": "MATERIAL_ADSORBATE",
       "maxUseCount": 99,
       "nameTextMapHash": 196474772,
       "noFirstGetHint": false,
+      "PCOPCNFOONA": "None",
+      "PHKICCAOKCK": false,
       "picPath": [
         "",
         "UI_NameCardPic_0_P"
@@ -390,7 +395,6 @@
       "weight": 0
     },
     {
-      "AGMHDDHHHBL": "Filter_OTHER",
       "cdGroup": 0,
       "cdTime": 0,
       "closeBagAfterUsed": false,
@@ -405,11 +409,13 @@
       "effectName": "",
       "foodQuality": "FOOD_QUALITY_NONE",
       "gadgetId": 0,
-      "GKBAHKBFNBH": false,
       "globalItemLimit": 10,
+      "GOFEFCODPII": "MATERIAL_SYS_TYPE_NONE",
+      "HJCEKDFGLCG": "Filter_OTHER",
       "icon": "UI_ItemIcon_101501",
       "id": 101501,
       "interactionTitleTextMapHash": 2357132319,
+      "IOMEHCHLAJM": false,
       "isForceGetHint": false,
       "isHidden": false,
       "isSplitDrop": false,
@@ -440,12 +446,12 @@
           ]
         }
       ],
-      "KNOIOAPAFIH": "None",
-      "LHOFPBCBILJ": false,
       "materialType": "MATERIAL_QUEST",
       "maxUseCount": 10,
       "nameTextMapHash": 3114275836,
       "noFirstGetHint": false,
+      "PCOPCNFOONA": "None",
+      "PHKICCAOKCK": false,
       "picPath": [
         "",
         "UI_NameCardPic_0_P"
@@ -467,7 +473,6 @@
       "weight": 1
     },
     {
-      "AGMHDDHHHBL": "Filter_OTHER",
       "cdGroup": 0,
       "cdTime": 0,
       "closeBagAfterUsed": false,
@@ -482,11 +487,13 @@
       "effectName": "",
       "foodQuality": "FOOD_QUALITY_NONE",
       "gadgetId": 0,
-      "GKBAHKBFNBH": false,
       "globalItemLimit": 0,
+      "GOFEFCODPII": "MATERIAL_SYS_TYPE_NONE",
+      "HJCEKDFGLCG": "Filter_OTHER",
       "icon": "UI_ItemIcon_101692",
       "id": 101689,
       "interactionTitleTextMapHash": 3561112967,
+      "IOMEHCHLAJM": false,
       "isForceGetHint": false,
       "isHidden": false,
       "isSplitDrop": false,
@@ -517,12 +524,12 @@
           ]
         }
       ],
-      "KNOIOAPAFIH": "None",
-      "LHOFPBCBILJ": false,
       "materialType": "MATERIAL_CHEST",
       "maxUseCount": 9999,
       "nameTextMapHash": 3643268548,
       "noFirstGetHint": true,
+      "PCOPCNFOONA": "None",
+      "PHKICCAOKCK": false,
       "picPath": [
         "",
         "UI_NameCardPic_0_P"
@@ -544,7 +551,6 @@
       "weight": 0
     },
     {
-      "AGMHDDHHHBL": "Filter_OTHER",
       "cdGroup": 0,
       "cdTime": 0,
       "closeBagAfterUsed": false,
@@ -559,11 +565,13 @@
       "effectName": "Eff_SceneObj_LuminousEnergy_01_Absorb",
       "foodQuality": "FOOD_QUALITY_NONE",
       "gadgetId": 70610018,
-      "GKBAHKBFNBH": false,
       "globalItemLimit": 0,
+      "GOFEFCODPII": "MATERIAL_SYS_TYPE_NONE",
+      "HJCEKDFGLCG": "Filter_OTHER",
       "icon": "UI_ItemIcon_101692",
       "id": 101713,
       "interactionTitleTextMapHash": 4246139343,
+      "IOMEHCHLAJM": false,
       "isForceGetHint": false,
       "isHidden": false,
       "isSplitDrop": true,
@@ -594,12 +602,12 @@
           ]
         }
       ],
-      "KNOIOAPAFIH": "None",
-      "LHOFPBCBILJ": false,
       "materialType": "MATERIAL_CONSUME",
       "maxUseCount": 9999,
       "nameTextMapHash": 3433212084,
       "noFirstGetHint": true,
+      "PCOPCNFOONA": "None",
+      "PHKICCAOKCK": false,
       "picPath": [
         "",
         "UI_NameCardPic_0_P"
@@ -621,7 +629,6 @@
       "weight": 0
     },
     {
-      "AGMHDDHHHBL": "Filter_OTHER",
       "cdGroup": 0,
       "cdTime": 0,
       "closeBagAfterUsed": false,
@@ -636,11 +643,13 @@
       "effectName": "Eff_SceneObj_PenumbraTicket_Collect_01",
       "foodQuality": "FOOD_QUALITY_NONE",
       "gadgetId": 70950191,
-      "GKBAHKBFNBH": false,
       "globalItemLimit": 0,
+      "GOFEFCODPII": "MATERIAL_SYS_TYPE_NONE",
+      "HJCEKDFGLCG": "Filter_OTHER",
       "icon": "UI_ItemIcon_107024",
       "id": 107024,
       "interactionTitleTextMapHash": 912395631,
+      "IOMEHCHLAJM": false,
       "isForceGetHint": false,
       "isHidden": false,
       "isSplitDrop": false,
@@ -671,12 +680,12 @@
           ]
         }
       ],
-      "KNOIOAPAFIH": "None",
-      "LHOFPBCBILJ": false,
       "materialType": "MATERIAL_CONSUME",
       "maxUseCount": 99,
       "nameTextMapHash": 2870981420,
       "noFirstGetHint": true,
+      "PCOPCNFOONA": "None",
+      "PHKICCAOKCK": false,
       "picPath": [
         "",
         "UI_NameCardPic_0_P"
@@ -698,7 +707,6 @@
       "weight": 0
     },
     {
-      "AGMHDDHHHBL": "Filter_OTHER",
       "cdGroup": 1,
       "cdTime": 5,
       "closeBagAfterUsed": false,
@@ -713,11 +721,13 @@
       "effectName": "",
       "foodQuality": "FOOD_QUALITY_NONE",
       "gadgetId": 70590001,
-      "GKBAHKBFNBH": false,
       "globalItemLimit": 0,
+      "GOFEFCODPII": "MATERIAL_SYS_TYPE_NONE",
+      "HJCEKDFGLCG": "Filter_OTHER",
       "icon": "UI_ItemIcon_102001",
       "id": 102001,
       "interactionTitleTextMapHash": 1457126079,
+      "IOMEHCHLAJM": false,
       "isForceGetHint": false,
       "isHidden": false,
       "isSplitDrop": false,
@@ -748,12 +758,12 @@
           ]
         }
       ],
-      "KNOIOAPAFIH": "None",
-      "LHOFPBCBILJ": false,
       "materialType": "MATERIAL_FOOD",
       "maxUseCount": 1,
       "nameTextMapHash": 3108029388,
       "noFirstGetHint": false,
+      "PCOPCNFOONA": "None",
+      "PHKICCAOKCK": false,
       "picPath": [
         "",
         "UI_NameCardPic_0_P"
@@ -775,7 +785,6 @@
       "weight": 1
     },
     {
-      "AGMHDDHHHBL": "Filter_OTHER",
       "cdGroup": 0,
       "cdTime": 0,
       "closeBagAfterUsed": false,
@@ -790,11 +799,13 @@
       "effectName": "",
       "foodQuality": "FOOD_QUALITY_NONE",
       "gadgetId": 0,
-      "GKBAHKBFNBH": false,
       "globalItemLimit": 0,
+      "GOFEFCODPII": "MATERIAL_SYS_TYPE_NONE",
+      "HJCEKDFGLCG": "Filter_OTHER",
       "icon": "UI_NameCardIcon_0",
       "id": 210001,
       "interactionTitleTextMapHash": 45507791,
+      "IOMEHCHLAJM": false,
       "isForceGetHint": true,
       "isHidden": false,
       "isSplitDrop": false,
@@ -825,12 +836,12 @@
           ]
         }
       ],
-      "KNOIOAPAFIH": "None",
-      "LHOFPBCBILJ": false,
       "materialType": "MATERIAL_NAMECARD",
       "maxUseCount": 99,
       "nameTextMapHash": 3539860852,
       "noFirstGetHint": true,
+      "PCOPCNFOONA": "None",
+      "PHKICCAOKCK": false,
       "picPath": [
         "",
         "UI_NameCardPic_0_P"

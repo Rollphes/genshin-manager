@@ -12,13 +12,13 @@ export type DungeonLevelEntityConfigDataType = {
     clientId:               number;
     descTextMapHash:        number;
     id:                     number;
-    IEDIJALKDJO:            Iedijalkdjo;
     levelConfigName:        string;
+    OHICBGIFKGF:            Ohicbgifkgf;
     show:                   boolean;
     switchTitleTextMapHash: number;
 }
 
-export enum Iedijalkdjo {
+export enum Ohicbgifkgf {
     ActivityAbilityLevelBuffTowerBuffFireNormalAttackUp = "ActivityAbility_LevelBuff_TowerBuff_FireNormalAttackUp",
     ActivityAbilityLevelBuffTowerBuffNyxAttackUp = "ActivityAbility_LevelBuff_TowerBuff_NyxAttackUp",
     Empty = "",
@@ -209,12 +209,12 @@ const typeMap: any = {
         { json: "clientId", js: "clientId", typ: 0 },
         { json: "descTextMapHash", js: "descTextMapHash", typ: 0 },
         { json: "id", js: "id", typ: 0 },
-        { json: "IEDIJALKDJO", js: "IEDIJALKDJO", typ: r("Iedijalkdjo") },
         { json: "levelConfigName", js: "levelConfigName", typ: "" },
+        { json: "OHICBGIFKGF", js: "OHICBGIFKGF", typ: r("Ohicbgifkgf") },
         { json: "show", js: "show", typ: true },
         { json: "switchTitleTextMapHash", js: "switchTitleTextMapHash", typ: 0 },
     ], false),
-    "Iedijalkdjo": [
+    "Ohicbgifkgf": [
         "ActivityAbility_LevelBuff_TowerBuff_FireNormalAttackUp",
         "ActivityAbility_LevelBuff_TowerBuff_NyxAttackUp",
         "",

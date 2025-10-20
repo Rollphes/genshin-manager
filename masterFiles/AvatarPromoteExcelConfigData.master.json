@@ -1,7 +1,7 @@
 {
   "metadata": {
     "sourceFile": "AvatarPromoteExcelConfigData.json",
-    "generatedAt": "2025-10-01T15:37:37.146Z"
+    "generatedAt": "2025-10-20T15:44:55.399Z"
   },
   "keyMappingTemplate": {
     "addProps": [
@@ -68,7 +68,7 @@
         }
       ],
       "avatarPromoteId": 2,
-      "KPCDDDCMLNB": [
+      "costItems": [
         {
           "count": 1,
           "id": 104161
@@ -112,7 +112,7 @@
         }
       ],
       "avatarPromoteId": 2,
-      "KPCDDDCMLNB": [
+      "costItems": [
         {
           "count": 3,
           "id": 104162
@@ -135,6 +135,50 @@
       "requiredPlayerLevel": 25,
       "scoinCost": 40000,
       "unlockMaxLevel": 50
+    },
+    {
+      "addProps": [
+        {
+          "propType": "FIGHT_PROP_BASE_HP",
+          "value": 0
+        },
+        {
+          "propType": "FIGHT_PROP_BASE_DEFENSE",
+          "value": 0
+        },
+        {
+          "propType": "FIGHT_PROP_BASE_ATTACK",
+          "value": 0
+        },
+        {
+          "propType": "FIGHT_PROP_CRITICAL_HURT",
+          "value": 0
+        }
+      ],
+      "avatarPromoteId": 999,
+      "costItems": [
+        {
+          "count": 0,
+          "id": 0
+        },
+        {
+          "count": 0,
+          "id": 0
+        },
+        {
+          "count": 0,
+          "id": 0
+        },
+        {
+          "count": 0,
+          "id": 0
+        }
+      ],
+      "promoteAudio": "",
+      "promoteLevel": 1,
+      "requiredPlayerLevel": 0,
+      "scoinCost": 0,
+      "unlockMaxLevel": 40
     }
   ]
 }

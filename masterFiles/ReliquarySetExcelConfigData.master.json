@@ -1,7 +1,7 @@
 {
   "metadata": {
     "sourceFile": "ReliquarySetExcelConfigData.json",
-    "generatedAt": "2025-10-01T15:37:44.134Z"
+    "generatedAt": "2025-10-20T15:45:01.737Z"
   },
   "keyMappingTemplate": {
     "bagSortValue": 30,
@@ -12,8 +12,8 @@
       71310,
       71330
     ],
-    "DFGNDLNPOIJ": 5,
     "disableFilter": 0,
+    "DKBIAAFLNOB": 5,
     "dungeonGroup": [
       5122,
       5123
@@ -40,8 +40,8 @@
         51110,
         51130
       ],
-      "DFGNDLNPOIJ": 4,
       "disableFilter": 0,
+      "DKBIAAFLNOB": 4,
       "dungeonGroup": [
         5122,
         5123
@@ -67,8 +67,8 @@
         78310,
         78330
       ],
-      "DFGNDLNPOIJ": 5,
       "disableFilter": 1,
+      "DKBIAAFLNOB": 5,
       "dungeonGroup": [
         5122,
         5123
@@ -90,8 +90,8 @@
       "containsList": [
         83330
       ],
-      "DFGNDLNPOIJ": 4,
       "disableFilter": 0,
+      "DKBIAAFLNOB": 4,
       "dungeonGroup": [
         5122,
         5123

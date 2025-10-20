@@ -1,7 +1,7 @@
 {
   "metadata": {
     "sourceFile": "FetterInfoExcelConfigData.json",
-    "generatedAt": "2025-10-01T15:37:37.826Z"
+    "generatedAt": "2025-10-20T15:44:55.845Z"
   },
   "keyMappingTemplate": {
     "avatarAssocType": "ASSOC_TYPE_MONDSTADT",
@@ -26,12 +26,12 @@
         ]
       }
     ],
-    "GFIPPLJGEAB": 4209150520,
     "infoBirthDay": 16,
     "infoBirthMonth": 6,
     "isHiden": false,
-    "NDGGLAGAMEF": 3963077898,
-    "openConds": []
+    "openConds": [],
+    "PKJJAOCGOPO": 3963077898,
+    "PMDBPIJHHPC": 4209150520
   },
   "alternativePatterns": [
     {
@@ -55,12 +55,12 @@
           "paramList": []
         }
       ],
-      "GFIPPLJGEAB": 3690673200,
       "infoBirthDay": 28,
       "infoBirthMonth": 9,
       "isHiden": false,
-      "NDGGLAGAMEF": 1706132810,
-      "openConds": []
+      "openConds": [],
+      "PKJJAOCGOPO": 1706132810,
+      "PMDBPIJHHPC": 3690673200
     }
   ]
 }

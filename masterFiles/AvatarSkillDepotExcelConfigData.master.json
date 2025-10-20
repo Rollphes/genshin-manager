@@ -1,11 +1,11 @@
 {
   "metadata": {
     "sourceFile": "AvatarSkillDepotExcelConfigData.json",
-    "generatedAt": "2025-10-01T15:37:37.179Z"
+    "generatedAt": "2025-10-20T15:44:55.428Z"
   },
   "keyMappingTemplate": {
     "attackModeSkill": 0,
-    "DGLKLDNIEKC": 0,
+    "BDKHFEFKECB": 0,
     "energySkill": 10068,
     "extraAbilities": [
       "",
@@ -35,10 +35,10 @@
         "proudSkillGroupId": 0
       }
     ],
-    "JBEBHHPANFP": "None",
-    "LDMOAPKDBJD": 0,
+    "JGJCJEEOFCK": 0,
+    "JNBEFHILAIP": 0,
     "leaderTalent": 1481,
-    "MDNLOEBMIHK": 0,
+    "PPMJAMDEFFO": "None",
     "skillDepotAbilityGroup": "Avatar_Player_AbilityGroup_Boy_Wind",
     "skills": [
       100543,
@@ -66,7 +66,7 @@
   "alternativePatterns": [
     {
       "attackModeSkill": 0,
-      "DGLKLDNIEKC": 0,
+      "BDKHFEFKECB": 0,
       "energySkill": 10098,
       "extraAbilities": [
         "",
@@ -96,10 +96,10 @@
           "proudSkillGroupId": 0
         }
       ],
-      "JBEBHHPANFP": "None",
-      "LDMOAPKDBJD": 0,
+      "JGJCJEEOFCK": 0,
+      "JNBEFHILAIP": 0,
       "leaderTalent": 0,
-      "MDNLOEBMIHK": 0,
+      "PPMJAMDEFFO": "None",
       "skillDepotAbilityGroup": "Avatar_Player_AbilityGroup_Boy_Fire",
       "skills": [
         100541,
@@ -125,7 +125,7 @@
     },
     {
       "attackModeSkill": 0,
-      "DGLKLDNIEKC": 0,
+      "BDKHFEFKECB": 0,
       "energySkill": 10078,
       "extraAbilities": [
         "",
@@ -155,10 +155,10 @@
           "proudSkillGroupId": 0
         }
       ],
-      "JBEBHHPANFP": "None",
-      "LDMOAPKDBJD": 0,
+      "JGJCJEEOFCK": 0,
+      "JNBEFHILAIP": 0,
       "leaderTalent": 1641,
-      "MDNLOEBMIHK": 0,
+      "PPMJAMDEFFO": "None",
       "skillDepotAbilityGroup": "Avatar_Player_AbilityGroup_Boy_Rock",
       "skills": [
         100545,
@@ -184,7 +184,7 @@
     },
     {
       "attackModeSkill": 0,
-      "DGLKLDNIEKC": 0,
+      "BDKHFEFKECB": 0,
       "energySkill": 10088,
       "extraAbilities": [
         "",
@@ -214,10 +214,10 @@
           "proudSkillGroupId": 0
         }
       ],
-      "JBEBHHPANFP": "Ousia",
-      "LDMOAPKDBJD": 0,
+      "JGJCJEEOFCK": 0,
+      "JNBEFHILAIP": 0,
       "leaderTalent": 0,
-      "MDNLOEBMIHK": 0,
+      "PPMJAMDEFFO": "Ousia",
       "skillDepotAbilityGroup": "Avatar_Player_AbilityGroup_Boy_Water",
       "skills": [
         100542,
@@ -242,7 +242,7 @@
     },
     {
       "attackModeSkill": 0,
-      "DGLKLDNIEKC": 0,
+      "BDKHFEFKECB": 0,
       "energySkill": 30007,
       "extraAbilities": [
         "",
@@ -272,10 +272,10 @@
           "proudSkillGroupId": 10225
         }
       ],
-      "JBEBHHPANFP": "None",
-      "LDMOAPKDBJD": 0,
+      "JGJCJEEOFCK": 0,
+      "JNBEFHILAIP": 0,
       "leaderTalent": 0,
-      "MDNLOEBMIHK": 0,
+      "PPMJAMDEFFO": "None",
       "skillDepotAbilityGroup": "",
       "skills": [
         30000,
@@ -307,7 +307,7 @@
     },
     {
       "attackModeSkill": 0,
-      "DGLKLDNIEKC": 0,
+      "BDKHFEFKECB": 0,
       "energySkill": 10705,
       "extraAbilities": [
         "",
@@ -337,10 +337,10 @@
           "proudSkillGroupId": 0
         }
       ],
-      "JBEBHHPANFP": "None",
-      "LDMOAPKDBJD": 0,
+      "JGJCJEEOFCK": 0,
+      "JNBEFHILAIP": 0,
       "leaderTalent": 0,
-      "MDNLOEBMIHK": 0,
+      "PPMJAMDEFFO": "None",
       "skillDepotAbilityGroup": "",
       "skills": [
         10701,
@@ -371,7 +371,7 @@
     },
     {
       "attackModeSkill": 20000,
-      "DGLKLDNIEKC": 0,
+      "BDKHFEFKECB": 0,
       "energySkill": 10333,
       "extraAbilities": [
         "",
@@ -401,10 +401,10 @@
           "proudSkillGroupId": 0
         }
       ],
-      "JBEBHHPANFP": "None",
-      "LDMOAPKDBJD": 0,
+      "JGJCJEEOFCK": 0,
+      "JNBEFHILAIP": 0,
       "leaderTalent": 0,
-      "MDNLOEBMIHK": 0,
+      "PPMJAMDEFFO": "None",
       "skillDepotAbilityGroup": "",
       "skills": [
         10331,
@@ -434,7 +434,7 @@
     },
     {
       "attackModeSkill": 0,
-      "DGLKLDNIEKC": 0,
+      "BDKHFEFKECB": 0,
       "energySkill": 10755,
       "extraAbilities": [
         "",
@@ -464,10 +464,10 @@
           "proudSkillGroupId": 0
         }
       ],
-      "JBEBHHPANFP": "None",
-      "LDMOAPKDBJD": 0,
+      "JGJCJEEOFCK": 0,
+      "JNBEFHILAIP": 0,
       "leaderTalent": 0,
-      "MDNLOEBMIHK": 0,
+      "PPMJAMDEFFO": "None",
       "skillDepotAbilityGroup": "",
       "skills": [
         10751,
@@ -497,7 +497,7 @@
     },
     {
       "attackModeSkill": 0,
-      "DGLKLDNIEKC": 0,
+      "BDKHFEFKECB": 0,
       "energySkill": 11015,
       "extraAbilities": [
         "",
@@ -527,10 +527,10 @@
           "proudSkillGroupId": 10125
         }
       ],
-      "JBEBHHPANFP": "None",
-      "LDMOAPKDBJD": 0,
+      "JGJCJEEOFCK": 0,
+      "JNBEFHILAIP": 0,
       "leaderTalent": 0,
-      "MDNLOEBMIHK": 0,
+      "PPMJAMDEFFO": "None",
       "skillDepotAbilityGroup": "",
       "skills": [
         11011,
@@ -560,7 +560,7 @@
     },
     {
       "attackModeSkill": 0,
-      "DGLKLDNIEKC": 0,
+      "BDKHFEFKECB": 0,
       "energySkill": 11005,
       "extraAbilities": [
         "",
@@ -590,10 +590,10 @@
           "proudSkillGroupId": 10025
         }
       ],
-      "JBEBHHPANFP": "None",
-      "LDMOAPKDBJD": 0,
+      "JGJCJEEOFCK": 0,
+      "JNBEFHILAIP": 0,
       "leaderTalent": 0,
-      "MDNLOEBMIHK": 0,
+      "PPMJAMDEFFO": "None",
       "skillDepotAbilityGroup": "",
       "skills": [
         11001,
@@ -622,7 +622,7 @@
     },
     {
       "attackModeSkill": 0,
-      "DGLKLDNIEKC": 0,
+      "BDKHFEFKECB": 0,
       "energySkill": 10274,
       "extraAbilities": [
         "",
@@ -652,10 +652,10 @@
           "proudSkillGroupId": 0
         }
       ],
-      "JBEBHHPANFP": "None",
-      "LDMOAPKDBJD": 0,
+      "JGJCJEEOFCK": 0,
+      "JNBEFHILAIP": 0,
       "leaderTalent": 0,
-      "MDNLOEBMIHK": 0,
+      "PPMJAMDEFFO": "None",
       "skillDepotAbilityGroup": "",
       "skills": [
         10271,
@@ -683,7 +683,7 @@
     },
     {
       "attackModeSkill": 0,
-      "DGLKLDNIEKC": 0,
+      "BDKHFEFKECB": 0,
       "energySkill": 0,
       "extraAbilities": [
         "",
@@ -713,10 +713,10 @@
           "proudSkillGroupId": 0
         }
       ],
-      "JBEBHHPANFP": "None",
-      "LDMOAPKDBJD": 0,
+      "JGJCJEEOFCK": 0,
+      "JNBEFHILAIP": 0,
       "leaderTalent": 0,
-      "MDNLOEBMIHK": 0,
+      "PPMJAMDEFFO": "None",
       "skillDepotAbilityGroup": "Avatar_Player_AbilityGroup_Boy_Common",
       "skills": [
         100540,
@@ -743,7 +743,7 @@
     },
     {
       "attackModeSkill": 0,
-      "DGLKLDNIEKC": 0,
+      "BDKHFEFKECB": 0,
       "energySkill": 0,
       "extraAbilities": [
         "",
@@ -773,10 +773,10 @@
           "proudSkillGroupId": 0
         }
       ],
-      "JBEBHHPANFP": "None",
-      "LDMOAPKDBJD": 0,
+      "JGJCJEEOFCK": 0,
+      "JNBEFHILAIP": 0,
       "leaderTalent": 0,
-      "MDNLOEBMIHK": 0,
+      "PPMJAMDEFFO": "None",
       "skillDepotAbilityGroup": "",
       "skills": [
         100544,
@@ -803,7 +803,7 @@
     },
     {
       "attackModeSkill": 0,
-      "DGLKLDNIEKC": 0,
+      "BDKHFEFKECB": 0,
       "energySkill": 10075,
       "extraAbilities": [
         "",
@@ -833,10 +833,10 @@
           "proudSkillGroupId": 0
         }
       ],
-      "JBEBHHPANFP": "None",
-      "LDMOAPKDBJD": 0,
+      "JGJCJEEOFCK": 0,
+      "JNBEFHILAIP": 0,
       "leaderTalent": 1050,
-      "MDNLOEBMIHK": 0,
+      "PPMJAMDEFFO": "None",
       "skillDepotAbilityGroup": "",
       "skills": [
         10073,
@@ -863,7 +863,7 @@
     },
     {
       "attackModeSkill": 0,
-      "DGLKLDNIEKC": 0,
+      "BDKHFEFKECB": 0,
       "energySkill": 10415,
       "extraAbilities": [
         "",
@@ -893,10 +893,10 @@
           "proudSkillGroupId": 0
         }
       ],
-      "JBEBHHPANFP": "None",
-      "LDMOAPKDBJD": 0,
+      "JGJCJEEOFCK": 0,
+      "JNBEFHILAIP": 0,
       "leaderTalent": 0,
-      "MDNLOEBMIHK": 0,
+      "PPMJAMDEFFO": "None",
       "skillDepotAbilityGroup": "",
       "skills": [
         10411,
@@ -922,7 +922,7 @@
     },
     {
       "attackModeSkill": 0,
-      "DGLKLDNIEKC": 0,
+      "BDKHFEFKECB": 0,
       "energySkill": 11075,
       "extraAbilities": [
         "",
@@ -952,10 +952,10 @@
           "proudSkillGroupId": 10725
         }
       ],
-      "JBEBHHPANFP": "None",
-      "LDMOAPKDBJD": 0,
+      "JGJCJEEOFCK": 0,
+      "JNBEFHILAIP": 0,
       "leaderTalent": 0,
-      "MDNLOEBMIHK": 0,
+      "PPMJAMDEFFO": "None",
       "skillDepotAbilityGroup": "",
       "skills": [
         11071,
@@ -979,8 +979,66 @@
       "talentStarName": "Talent_Citlali"
     },
     {
+      "attackModeSkill": 0,
+      "BDKHFEFKECB": 0,
+      "energySkill": 0,
+      "extraAbilities": [
+        "",
+        "",
+        ""
+      ],
+      "id": 11701,
+      "inherentProudSkillOpens": [
+        {
+          "needAvatarPromoteLevel": 1,
+          "proudSkillGroupId": 11721
+        },
+        {
+          "needAvatarPromoteLevel": 4,
+          "proudSkillGroupId": 11722
+        },
+        {
+          "needAvatarPromoteLevel": 0,
+          "proudSkillGroupId": 0
+        },
+        {
+          "needAvatarPromoteLevel": 0,
+          "proudSkillGroupId": 0
+        },
+        {
+          "needAvatarPromoteLevel": 0,
+          "proudSkillGroupId": 11725
+        }
+      ],
+      "JGJCJEEOFCK": 0,
+      "JNBEFHILAIP": 0,
+      "leaderTalent": 0,
+      "PPMJAMDEFFO": "None",
+      "skillDepotAbilityGroup": "",
+      "skills": [
+        11171,
+        0,
+        0,
+        0
+      ],
+      "subSkills": [
+        10001,
+        11173,
+        5117010
+      ],
+      "talents": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "talentStarName": "Talent_LittleIdolBoy"
+    },
+    {
       "attackModeSkill": 20000,
-      "DGLKLDNIEKC": 0,
+      "BDKHFEFKECB": 0,
       "energySkill": 10495,
       "extraAbilities": [
         "",
@@ -1010,10 +1068,10 @@
           "proudSkillGroupId": 0
         }
       ],
-      "JBEBHHPANFP": "None",
-      "LDMOAPKDBJD": 0,
+      "JGJCJEEOFCK": 0,
+      "JNBEFHILAIP": 0,
       "leaderTalent": 0,
-      "MDNLOEBMIHK": 0,
+      "PPMJAMDEFFO": "None",
       "skillDepotAbilityGroup": "",
       "skills": [
         10491,
@@ -1037,7 +1095,7 @@
     },
     {
       "attackModeSkill": 0,
-      "DGLKLDNIEKC": 0,
+      "BDKHFEFKECB": 0,
       "energySkill": 10685,
       "extraAbilities": [
         "",
@@ -1067,10 +1125,10 @@
           "proudSkillGroupId": 0
         }
       ],
-      "JBEBHHPANFP": "None",
-      "LDMOAPKDBJD": 0,
+      "JGJCJEEOFCK": 0,
+      "JNBEFHILAIP": 0,
       "leaderTalent": 0,
-      "MDNLOEBMIHK": 0,
+      "PPMJAMDEFFO": "None",
       "skillDepotAbilityGroup": "",
       "skills": [
         10681,
@@ -1093,7 +1151,7 @@
     },
     {
       "attackModeSkill": 0,
-      "DGLKLDNIEKC": 0,
+      "BDKHFEFKECB": 0,
       "energySkill": 0,
       "extraAbilities": [
         "",
@@ -1123,10 +1181,10 @@
           "proudSkillGroupId": 0
         }
       ],
-      "JBEBHHPANFP": "None",
-      "LDMOAPKDBJD": 0,
+      "JGJCJEEOFCK": 0,
+      "JNBEFHILAIP": 0,
       "leaderTalent": 0,
-      "MDNLOEBMIHK": 0,
+      "PPMJAMDEFFO": "None",
       "skillDepotAbilityGroup": "",
       "skills": [
         0,

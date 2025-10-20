@@ -8,18 +8,18 @@
 // match the expected interface, even if the JSON is valid.
 
 export type AnimalCodexExcelConfigDataType = {
-    ABOAGOHLBID:      number[];
+    AJPLBCNANHO:      number;
     countType:        CountType;
     describeId:       number;
     descTextMapHash:  number;
+    DGPFHOOEKNC:      number;
+    EJNDNFFKDHN:      number[];
     id:               number;
+    IEDNJFPPPHD:      number[];
     isDisuse:         boolean;
     isSeenActive:     boolean;
-    LICBOMOOAFI:      number[];
-    LJMGOHDNFMO:      number[];
+    KOGKIGNPAIO:      number[];
     modelPath:        string;
-    MPNCFOBMIDN:      number;
-    OHCCAFLBIAJ:      number;
     pushTipsCodexId:  number;
     showOnlyUnlocked: boolean;
     sortOrder:        number;
@@ -220,18 +220,18 @@ function r(name: string) {
 
 const typeMap: any = {
     "AnimalCodexExcelConfigDataType": o([
-        { json: "ABOAGOHLBID", js: "ABOAGOHLBID", typ: a(0) },
+        { json: "AJPLBCNANHO", js: "AJPLBCNANHO", typ: 0 },
         { json: "countType", js: "countType", typ: r("CountType") },
         { json: "describeId", js: "describeId", typ: 0 },
         { json: "descTextMapHash", js: "descTextMapHash", typ: 0 },
+        { json: "DGPFHOOEKNC", js: "DGPFHOOEKNC", typ: 3.14 },
+        { json: "EJNDNFFKDHN", js: "EJNDNFFKDHN", typ: a(0) },
         { json: "id", js: "id", typ: 0 },
+        { json: "IEDNJFPPPHD", js: "IEDNJFPPPHD", typ: a(0) },
         { json: "isDisuse", js: "isDisuse", typ: true },
         { json: "isSeenActive", js: "isSeenActive", typ: true },
-        { json: "LICBOMOOAFI", js: "LICBOMOOAFI", typ: a(0) },
-        { json: "LJMGOHDNFMO", js: "LJMGOHDNFMO", typ: a(0) },
+        { json: "KOGKIGNPAIO", js: "KOGKIGNPAIO", typ: a(0) },
         { json: "modelPath", js: "modelPath", typ: "" },
-        { json: "MPNCFOBMIDN", js: "MPNCFOBMIDN", typ: 3.14 },
-        { json: "OHCCAFLBIAJ", js: "OHCCAFLBIAJ", typ: 0 },
         { json: "pushTipsCodexId", js: "pushTipsCodexId", typ: 0 },
         { json: "showOnlyUnlocked", js: "showOnlyUnlocked", typ: true },
         { json: "sortOrder", js: "sortOrder", typ: 0 },

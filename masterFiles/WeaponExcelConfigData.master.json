@@ -1,10 +1,9 @@
 {
   "metadata": {
     "sourceFile": "WeaponExcelConfigData.json",
-    "generatedAt": "2025-10-01T15:37:44.324Z"
+    "generatedAt": "2025-10-20T15:45:01.835Z"
   },
   "keyMappingTemplate": {
-    "AJIMOHCMNGI": "None",
     "awakenCosts": [
       500,
       1000,
@@ -23,8 +22,8 @@
       3
     ],
     "destroyRule": "DESTROY_RETURN_MATERIAL",
+    "DLIALKLHDED": 0,
     "dropable": false,
-    "ENKAHBLLDEE": 0,
     "gachaCardNameHash": 7434030286633341000,
     "gadgetId": 50011301,
     "globalItemLimit": 0,
@@ -32,9 +31,10 @@
     "id": 11301,
     "initialLockState": 0,
     "itemType": "ITEM_WEAPON",
+    "KCCFDAFPBCI": false,
     "materialType": "WEAPON_MATERIAL_NONE",
     "nameTextMapHash": 479076483,
-    "PKAJBJJLKBO": false,
+    "PDAEIKHKCBP": "None",
     "rank": 10,
     "rankLevel": 3,
     "skillAffix": [
@@ -63,7 +63,6 @@
   },
   "alternativePatterns": [
     {
-      "AJIMOHCMNGI": "None",
       "awakenCosts": [
         1000,
         2000,
@@ -82,8 +81,8 @@
         0
       ],
       "destroyRule": "DESTROY_NONE",
+      "DLIALKLHDED": 0,
       "dropable": false,
-      "ENKAHBLLDEE": 0,
       "gachaCardNameHash": 2826103670021865000,
       "gadgetId": 50011401,
       "globalItemLimit": 0,
@@ -91,9 +90,10 @@
       "id": 11401,
       "initialLockState": 2,
       "itemType": "ITEM_WEAPON",
+      "KCCFDAFPBCI": false,
       "materialType": "WEAPON_MATERIAL_NONE",
       "nameTextMapHash": 2474354867,
-      "PKAJBJJLKBO": false,
+      "PDAEIKHKCBP": "None",
       "rank": 10,
       "rankLevel": 4,
       "skillAffix": [
@@ -121,7 +121,6 @@
       "weight": 1
     },
     {
-      "AJIMOHCMNGI": "None",
       "awakenCosts": [
         1000,
         2000,
@@ -140,8 +139,8 @@
         0
       ],
       "destroyRule": "DESTROY_NONE",
+      "DLIALKLHDED": 1,
       "dropable": false,
-      "ENKAHBLLDEE": 1,
       "gachaCardNameHash": 17944186735592581000,
       "gadgetId": 50011413,
       "globalItemLimit": 0,
@@ -149,9 +148,10 @@
       "id": 11413,
       "initialLockState": 2,
       "itemType": "ITEM_WEAPON",
+      "KCCFDAFPBCI": false,
       "materialType": "WEAPON_MATERIAL_NONE",
       "nameTextMapHash": 2749853923,
-      "PKAJBJJLKBO": false,
+      "PDAEIKHKCBP": "None",
       "rank": 10,
       "rankLevel": 4,
       "skillAffix": [
@@ -179,7 +179,6 @@
       "weight": 1
     },
     {
-      "AJIMOHCMNGI": "None",
       "awakenCosts": [
         500,
         1000,
@@ -198,8 +197,8 @@
         3
       ],
       "destroyRule": "DESTROY_RETURN_MATERIAL",
+      "DLIALKLHDED": 0,
       "dropable": false,
-      "ENKAHBLLDEE": 0,
       "gachaCardNameHash": 18902074258675024,
       "gadgetId": 50012301,
       "globalItemLimit": 0,
@@ -207,9 +206,10 @@
       "id": 12301,
       "initialLockState": 0,
       "itemType": "ITEM_WEAPON",
+      "KCCFDAFPBCI": false,
       "materialType": "WEAPON_MATERIAL_NONE",
       "nameTextMapHash": 1479961579,
-      "PKAJBJJLKBO": false,
+      "PDAEIKHKCBP": "None",
       "rank": 10,
       "rankLevel": 3,
       "skillAffix": [
@@ -237,7 +237,6 @@
       "weight": 1
     },
     {
-      "AJIMOHCMNGI": "None",
       "awakenCosts": [
         500,
         1000,
@@ -256,8 +255,8 @@
         1
       ],
       "destroyRule": "DESTROY_RETURN_MATERIAL",
+      "DLIALKLHDED": 0,
       "dropable": false,
-      "ENKAHBLLDEE": 0,
       "gachaCardNameHash": 5206550965894458000,
       "gadgetId": 50011101,
       "globalItemLimit": 0,
@@ -265,9 +264,10 @@
       "id": 11101,
       "initialLockState": 0,
       "itemType": "ITEM_WEAPON",
+      "KCCFDAFPBCI": false,
       "materialType": "WEAPON_MATERIAL_NONE",
       "nameTextMapHash": 2410593283,
-      "PKAJBJJLKBO": false,
+      "PDAEIKHKCBP": "None",
       "rank": 10,
       "rankLevel": 1,
       "skillAffix": [

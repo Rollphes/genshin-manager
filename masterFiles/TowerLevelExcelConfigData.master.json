@@ -1,9 +1,10 @@
 {
   "metadata": {
     "sourceFile": "TowerLevelExcelConfigData.json",
-    "generatedAt": "2025-10-01T15:37:44.252Z"
+    "generatedAt": "2025-10-20T15:45:01.788Z"
   },
   "keyMappingTemplate": {
+    "AGEAANNELOI": 0,
     "conds": [
       {
         "argumentList": [
@@ -60,14 +61,13 @@
       10105
     ],
     "firstPassRewardId": 621031,
-    "GNNNGECFCAJ": 0,
-    "HAOBIOJEECA": 0,
-    "JDHIPBOALOD": "",
+    "ILCLLJANFMK": 0,
+    "JKMIPCBDBPM": 0,
+    "KLNFCGKDKGE": "",
     "levelGroupId": 32,
     "levelId": 94,
     "levelIndex": 1,
     "monsterLevel": 87,
-    "NKOPAOBMOLC": 0,
     "secondMonsterList": [
       50801,
       50802,
@@ -89,6 +89,7 @@
   },
   "alternativePatterns": [
     {
+      "AGEAANNELOI": 0,
       "conds": [
         {
           "argumentList": [
@@ -144,14 +145,13 @@
         10110
       ],
       "firstPassRewardId": 621031,
-      "GNNNGECFCAJ": 0,
-      "HAOBIOJEECA": 0,
-      "JDHIPBOALOD": "",
+      "ILCLLJANFMK": 0,
+      "JKMIPCBDBPM": 0,
+      "KLNFCGKDKGE": "",
       "levelGroupId": 38,
       "levelId": 112,
       "levelIndex": 1,
       "monsterLevel": 87,
-      "NKOPAOBMOLC": 0,
       "secondMonsterList": [
         50303,
         50302,
@@ -170,6 +170,7 @@
       ]
     },
     {
+      "AGEAANNELOI": 0,
       "conds": [
         {
           "argumentList": [
@@ -225,14 +226,13 @@
         50106
       ],
       "firstPassRewardId": 621031,
-      "GNNNGECFCAJ": 0,
-      "HAOBIOJEECA": 0,
-      "JDHIPBOALOD": "",
+      "ILCLLJANFMK": 0,
+      "JKMIPCBDBPM": 0,
+      "KLNFCGKDKGE": "",
       "levelGroupId": 46,
       "levelId": 136,
       "levelIndex": 1,
       "monsterLevel": 87,
-      "NKOPAOBMOLC": 0,
       "secondMonsterList": [
         10208,
         10201,
@@ -246,6 +246,7 @@
       ]
     },
     {
+      "AGEAANNELOI": 0,
       "conds": [
         {
           "argumentList": [
@@ -297,14 +298,13 @@
         10103
       ],
       "firstPassRewardId": 621017,
-      "GNNNGECFCAJ": 0,
-      "HAOBIOJEECA": 0,
-      "JDHIPBOALOD": "",
+      "ILCLLJANFMK": 0,
+      "JKMIPCBDBPM": 0,
+      "KLNFCGKDKGE": "",
       "levelGroupId": 6,
       "levelId": 17,
       "levelIndex": 2,
       "monsterLevel": 59,
-      "NKOPAOBMOLC": 0,
       "secondMonsterList": [
         10302,
         10303,
@@ -321,6 +321,7 @@
       ]
     },
     {
+      "AGEAANNELOI": 0,
       "conds": [
         {
           "argumentList": [
@@ -372,14 +373,13 @@
         10105
       ],
       "firstPassRewardId": 621032,
-      "GNNNGECFCAJ": 0,
-      "HAOBIOJEECA": 0,
-      "JDHIPBOALOD": "",
+      "ILCLLJANFMK": 0,
+      "JKMIPCBDBPM": 0,
+      "KLNFCGKDKGE": "",
       "levelGroupId": 15,
       "levelId": 44,
       "levelIndex": 2,
       "monsterLevel": 89,
-      "NKOPAOBMOLC": 0,
       "secondMonsterList": [
         30301,
         30201,
@@ -396,6 +396,7 @@
       ]
     },
     {
+      "AGEAANNELOI": 0,
       "conds": [
         {
           "argumentList": [
@@ -444,14 +445,13 @@
         10112
       ],
       "firstPassRewardId": 621031,
-      "GNNNGECFCAJ": 0,
-      "HAOBIOJEECA": 0,
-      "JDHIPBOALOD": "",
+      "ILCLLJANFMK": 0,
+      "JKMIPCBDBPM": 0,
+      "KLNFCGKDKGE": "",
       "levelGroupId": 40,
       "levelId": 118,
       "levelIndex": 1,
       "monsterLevel": 87,
-      "NKOPAOBMOLC": 0,
       "secondMonsterList": [
         51001,
         50801,
@@ -471,6 +471,7 @@
       ]
     },
     {
+      "AGEAANNELOI": 0,
       "conds": [
         {
           "argumentList": [
@@ -521,14 +522,13 @@
         108
       ],
       "firstPassRewardId": 621031,
-      "GNNNGECFCAJ": 0,
-      "HAOBIOJEECA": 0,
-      "JDHIPBOALOD": "",
+      "ILCLLJANFMK": 0,
+      "JKMIPCBDBPM": 0,
+      "KLNFCGKDKGE": "",
       "levelGroupId": 42,
       "levelId": 124,
       "levelIndex": 1,
       "monsterLevel": 87,
-      "NKOPAOBMOLC": 0,
       "secondMonsterList": [
         50302,
         50303,
@@ -546,6 +546,7 @@
       ]
     },
     {
+      "AGEAANNELOI": 0,
       "conds": [
         {
           "argumentList": [
@@ -599,14 +600,13 @@
         603
       ],
       "firstPassRewardId": 621031,
-      "GNNNGECFCAJ": 0,
-      "HAOBIOJEECA": 0,
-      "JDHIPBOALOD": "",
+      "ILCLLJANFMK": 0,
+      "JKMIPCBDBPM": 0,
+      "KLNFCGKDKGE": "",
       "levelGroupId": 60,
       "levelId": 178,
       "levelIndex": 1,
       "monsterLevel": 87,
-      "NKOPAOBMOLC": 0,
       "secondMonsterList": [
         54103,
         53102,
@@ -621,6 +621,7 @@
       ]
     },
     {
+      "AGEAANNELOI": 0,
       "conds": [
         {
           "argumentList": [
@@ -674,14 +675,13 @@
         10116
       ],
       "firstPassRewardId": 621026,
-      "GNNNGECFCAJ": 0,
-      "HAOBIOJEECA": 0,
-      "JDHIPBOALOD": "",
+      "ILCLLJANFMK": 0,
+      "JKMIPCBDBPM": 0,
+      "KLNFCGKDKGE": "",
       "levelGroupId": 44,
       "levelId": 131,
       "levelIndex": 2,
       "monsterLevel": 73,
-      "NKOPAOBMOLC": 0,
       "secondMonsterList": [
         20103,
         10302,
@@ -695,6 +695,7 @@
       ]
     },
     {
+      "AGEAANNELOI": 0,
       "conds": [
         {
           "argumentList": [
@@ -749,14 +750,13 @@
         60908
       ],
       "firstPassRewardId": 621031,
-      "GNNNGECFCAJ": 0,
-      "HAOBIOJEECA": 0,
-      "JDHIPBOALOD": "",
+      "ILCLLJANFMK": 0,
+      "JKMIPCBDBPM": 0,
+      "KLNFCGKDKGE": "",
       "levelGroupId": 48,
       "levelId": 142,
       "levelIndex": 1,
       "monsterLevel": 87,
-      "NKOPAOBMOLC": 0,
       "secondMonsterList": [
         54101,
         40403,
@@ -769,6 +769,7 @@
       ]
     },
     {
+      "AGEAANNELOI": 0,
       "conds": [
         {
           "argumentList": [
@@ -821,14 +822,13 @@
         10110
       ],
       "firstPassRewardId": 621031,
-      "GNNNGECFCAJ": 0,
-      "HAOBIOJEECA": 0,
-      "JDHIPBOALOD": "",
+      "ILCLLJANFMK": 0,
+      "JKMIPCBDBPM": 0,
+      "KLNFCGKDKGE": "",
       "levelGroupId": 22,
       "levelId": 64,
       "levelIndex": 1,
       "monsterLevel": 87,
-      "NKOPAOBMOLC": 0,
       "secondMonsterList": [
         10205,
         10112,
@@ -842,6 +842,7 @@
       ]
     },
     {
+      "AGEAANNELOI": 0,
       "conds": [
         {
           "argumentList": [
@@ -891,14 +892,13 @@
         10112
       ],
       "firstPassRewardId": 621032,
-      "GNNNGECFCAJ": 0,
-      "HAOBIOJEECA": 0,
-      "JDHIPBOALOD": "",
+      "ILCLLJANFMK": 0,
+      "JKMIPCBDBPM": 0,
+      "KLNFCGKDKGE": "",
       "levelGroupId": 11,
       "levelId": 32,
       "levelIndex": 2,
       "monsterLevel": 89,
-      "NKOPAOBMOLC": 0,
       "secondMonsterList": [
         10202,
         10203,
@@ -914,6 +914,7 @@
       ]
     },
     {
+      "AGEAANNELOI": 0,
       "conds": [
         {
           "argumentList": [
@@ -962,14 +963,13 @@
         50202
       ],
       "firstPassRewardId": 621034,
-      "GNNNGECFCAJ": 0,
-      "HAOBIOJEECA": 0,
-      "JDHIPBOALOD": "",
+      "ILCLLJANFMK": 0,
+      "JKMIPCBDBPM": 0,
+      "KLNFCGKDKGE": "",
       "levelGroupId": 18,
       "levelId": 52,
       "levelIndex": 1,
       "monsterLevel": 87,
-      "NKOPAOBMOLC": 0,
       "secondMonsterList": [
         50302,
         50303,
@@ -986,6 +986,7 @@
       ]
     },
     {
+      "AGEAANNELOI": 0,
       "conds": [
         {
           "argumentList": [
@@ -1036,14 +1037,13 @@
         113
       ],
       "firstPassRewardId": 621031,
-      "GNNNGECFCAJ": 0,
-      "HAOBIOJEECA": 0,
-      "JDHIPBOALOD": "",
+      "ILCLLJANFMK": 0,
+      "JKMIPCBDBPM": 0,
+      "KLNFCGKDKGE": "",
       "levelGroupId": 72,
       "levelId": 214,
       "levelIndex": 1,
       "monsterLevel": 87,
-      "NKOPAOBMOLC": 0,
       "secondMonsterList": [
         607,
         603,
@@ -1058,6 +1058,7 @@
       ]
     },
     {
+      "AGEAANNELOI": 0,
       "conds": [
         {
           "argumentList": [
@@ -1106,14 +1107,13 @@
         10109
       ],
       "firstPassRewardId": 621035,
-      "GNNNGECFCAJ": 0,
-      "HAOBIOJEECA": 0,
-      "JDHIPBOALOD": "",
+      "ILCLLJANFMK": 0,
+      "JKMIPCBDBPM": 0,
+      "KLNFCGKDKGE": "",
       "levelGroupId": 12,
       "levelId": 35,
       "levelIndex": 2,
       "monsterLevel": 97,
-      "NKOPAOBMOLC": 0,
       "secondMonsterList": [
         20102,
         10201,
@@ -1129,6 +1129,7 @@
       ]
     },
     {
+      "AGEAANNELOI": 0,
       "conds": [
         {
           "argumentList": [
@@ -1176,14 +1177,13 @@
         40202
       ],
       "firstPassRewardId": 621031,
-      "GNNNGECFCAJ": 0,
-      "HAOBIOJEECA": 0,
-      "JDHIPBOALOD": "",
+      "ILCLLJANFMK": 0,
+      "JKMIPCBDBPM": 0,
+      "KLNFCGKDKGE": "",
       "levelGroupId": 34,
       "levelId": 100,
       "levelIndex": 1,
       "monsterLevel": 87,
-      "NKOPAOBMOLC": 0,
       "secondMonsterList": [
         20104,
         10208,
@@ -1198,6 +1198,7 @@
       ]
     },
     {
+      "AGEAANNELOI": 0,
       "conds": [
         {
           "argumentList": [
@@ -1248,14 +1249,13 @@
         53101
       ],
       "firstPassRewardId": 621031,
-      "GNNNGECFCAJ": 0,
-      "HAOBIOJEECA": 0,
-      "JDHIPBOALOD": "",
+      "ILCLLJANFMK": 0,
+      "JKMIPCBDBPM": 0,
+      "KLNFCGKDKGE": "",
       "levelGroupId": 68,
       "levelId": 202,
       "levelIndex": 1,
       "monsterLevel": 87,
-      "NKOPAOBMOLC": 0,
       "secondMonsterList": [
         10205,
         10208
@@ -1267,6 +1267,7 @@
       ]
     },
     {
+      "AGEAANNELOI": 0,
       "conds": [
         {
           "argumentList": [
@@ -1315,14 +1316,13 @@
         60102
       ],
       "firstPassRewardId": 621031,
-      "GNNNGECFCAJ": 0,
-      "HAOBIOJEECA": 0,
-      "JDHIPBOALOD": "",
+      "ILCLLJANFMK": 0,
+      "JKMIPCBDBPM": 0,
+      "KLNFCGKDKGE": "",
       "levelGroupId": 66,
       "levelId": 196,
       "levelIndex": 1,
       "monsterLevel": 87,
-      "NKOPAOBMOLC": 0,
       "secondMonsterList": [
         109,
         604,
@@ -1335,6 +1335,7 @@
       ]
     },
     {
+      "AGEAANNELOI": 0,
       "conds": [
         {
           "argumentList": [
@@ -1375,14 +1376,13 @@
         40301
       ],
       "firstPassRewardId": 621032,
-      "GNNNGECFCAJ": 0,
-      "HAOBIOJEECA": 0,
-      "JDHIPBOALOD": "",
+      "ILCLLJANFMK": 0,
+      "JKMIPCBDBPM": 0,
+      "KLNFCGKDKGE": "",
       "levelGroupId": 50,
       "levelId": 149,
       "levelIndex": 2,
       "monsterLevel": 89,
-      "NKOPAOBMOLC": 0,
       "secondMonsterList": [
         30501,
         50103,
@@ -1399,6 +1399,7 @@
       ]
     },
     {
+      "AGEAANNELOI": 0,
       "conds": [
         {
           "argumentList": [
@@ -1439,14 +1440,13 @@
         60201
       ],
       "firstPassRewardId": 621024,
-      "GNNNGECFCAJ": 0,
-      "HAOBIOJEECA": 0,
-      "JDHIPBOALOD": "",
+      "ILCLLJANFMK": 0,
+      "JKMIPCBDBPM": 0,
+      "KLNFCGKDKGE": "",
       "levelGroupId": 8,
       "levelId": 24,
       "levelIndex": 3,
       "monsterLevel": 69,
-      "NKOPAOBMOLC": 0,
       "secondMonsterList": [
         60202
       ],
@@ -1457,6 +1457,7 @@
       ]
     },
     {
+      "AGEAANNELOI": 0,
       "conds": [
         {
           "argumentList": [
@@ -1508,14 +1509,13 @@
         20103
       ],
       "firstPassRewardId": 621011,
-      "GNNNGECFCAJ": 0,
-      "HAOBIOJEECA": 0,
-      "JDHIPBOALOD": "",
+      "ILCLLJANFMK": 0,
+      "JKMIPCBDBPM": 0,
+      "KLNFCGKDKGE": "",
       "levelGroupId": 4,
       "levelId": 11,
       "levelIndex": 2,
       "monsterLevel": 49,
-      "NKOPAOBMOLC": 0,
       "secondMonsterList": [
         20101
       ],
@@ -1526,6 +1526,7 @@
       ]
     },
     {
+      "AGEAANNELOI": 2,
       "conds": [
         {
           "argumentList": [
@@ -1574,14 +1575,79 @@
         107
       ],
       "firstPassRewardId": 621031,
-      "GNNNGECFCAJ": 0,
-      "HAOBIOJEECA": 1,
-      "JDHIPBOALOD": "Tower4_4",
+      "ILCLLJANFMK": 1,
+      "JKMIPCBDBPM": 0,
+      "KLNFCGKDKGE": "Tower4_4",
       "levelGroupId": 74,
       "levelId": 220,
       "levelIndex": 1,
       "monsterLevel": 87,
-      "NKOPAOBMOLC": 2,
+      "secondMonsterList": [
+        20101
+      ],
+      "towerBuffConfigStrList": [
+        "1:100,2:100,4:100,5:100,20:100,21:100,23:100,24:100",
+        "15:100,25:100,26:100,28:100,29:100,30:100,35:100",
+        "7:100,22:100,31:100"
+      ]
+    },
+    {
+      "AGEAANNELOI": 2,
+      "conds": [
+        {
+          "argumentList": [
+            233771003,
+            3024,
+            20
+          ],
+          "argumentListUpper": [
+            233771003,
+            3024,
+            20
+          ],
+          "towerCondType": "TOWER_COND_LEFT_HP_GREATER_THAN"
+        },
+        {
+          "argumentList": [
+            233771003,
+            3024,
+            40
+          ],
+          "argumentListUpper": [
+            233771003,
+            3024,
+            40
+          ],
+          "towerCondType": "TOWER_COND_LEFT_HP_GREATER_THAN"
+        },
+        {
+          "argumentList": [
+            233771003,
+            3024,
+            60
+          ],
+          "argumentListUpper": [
+            233771003,
+            3024,
+            60
+          ],
+          "towerCondType": "TOWER_COND_LEFT_HP_GREATER_THAN"
+        }
+      ],
+      "dungeonId": 3131,
+      "firstMonsterList": [
+        105,
+        106,
+        107
+      ],
+      "firstPassRewardId": 621031,
+      "ILCLLJANFMK": 1,
+      "JKMIPCBDBPM": 0,
+      "KLNFCGKDKGE": "Tower4_6",
+      "levelGroupId": 78,
+      "levelId": 232,
+      "levelIndex": 1,
+      "monsterLevel": 87,
       "secondMonsterList": [
         20101
       ],

@@ -8,28 +8,28 @@
 // match the expected interface, even if the JSON is valid.
 
 export type TowerScheduleExcelConfigDataType = {
-    ADOHEDEJHCO:          number;
     buffnameTextMapHash:  number;
+    CGBJKDEDNFN:          Cgbjkdednfn[];
     closeTime:            Date;
     descTextMapHash:      number;
+    EGJACBLKAKB:          Egjacblkakb[];
     entranceFloorId:      number[];
-    GBMLAKGIEMO:          Gbmlakgiemo[];
+    FHEEAFHBJHA:          number;
     icon:                 string;
-    LGJOAOLFLDM:          number;
+    KKCEHFCCICG:          number;
     monthlyLevelConfigId: number;
-    PAKFIFGANPN:          Pakfifganpn[];
     rewardGroup:          number;
     scheduleId:           number;
 }
 
-export type Gbmlakgiemo = {
-    BCKABKPKFFG: number;
-    rewardId:    number;
+export type Cgbjkdednfn = {
+    GMMMCFJJNOF: number[];
+    LIAMLMJIGNK: string;
 }
 
-export type Pakfifganpn = {
-    JFEBFCLGMOJ: string;
-    NNDKHDAFINE: number[];
+export type Egjacblkakb = {
+    CPLCFNJNBEI: number;
+    rewardId:    number;
 }
 
 // Converts JSON strings to/from your types
@@ -198,25 +198,25 @@ function r(name: string) {
 
 const typeMap: any = {
     "TowerScheduleExcelConfigDataType": o([
-        { json: "ADOHEDEJHCO", js: "ADOHEDEJHCO", typ: 0 },
         { json: "buffnameTextMapHash", js: "buffnameTextMapHash", typ: 0 },
+        { json: "CGBJKDEDNFN", js: "CGBJKDEDNFN", typ: a(r("Cgbjkdednfn")) },
         { json: "closeTime", js: "closeTime", typ: Date },
         { json: "descTextMapHash", js: "descTextMapHash", typ: 0 },
+        { json: "EGJACBLKAKB", js: "EGJACBLKAKB", typ: a(r("Egjacblkakb")) },
         { json: "entranceFloorId", js: "entranceFloorId", typ: a(0) },
-        { json: "GBMLAKGIEMO", js: "GBMLAKGIEMO", typ: a(r("Gbmlakgiemo")) },
+        { json: "FHEEAFHBJHA", js: "FHEEAFHBJHA", typ: 0 },
         { json: "icon", js: "icon", typ: "" },
-        { json: "LGJOAOLFLDM", js: "LGJOAOLFLDM", typ: 0 },
+        { json: "KKCEHFCCICG", js: "KKCEHFCCICG", typ: 0 },
         { json: "monthlyLevelConfigId", js: "monthlyLevelConfigId", typ: 0 },
-        { json: "PAKFIFGANPN", js: "PAKFIFGANPN", typ: a(r("Pakfifganpn")) },
         { json: "rewardGroup", js: "rewardGroup", typ: 0 },
         { json: "scheduleId", js: "scheduleId", typ: 0 },
     ], false),
-    "Gbmlakgiemo": o([
-        { json: "BCKABKPKFFG", js: "BCKABKPKFFG", typ: 0 },
-        { json: "rewardId", js: "rewardId", typ: 0 },
+    "Cgbjkdednfn": o([
+        { json: "GMMMCFJJNOF", js: "GMMMCFJJNOF", typ: a(0) },
+        { json: "LIAMLMJIGNK", js: "LIAMLMJIGNK", typ: "" },
     ], false),
-    "Pakfifganpn": o([
-        { json: "JFEBFCLGMOJ", js: "JFEBFCLGMOJ", typ: "" },
-        { json: "NNDKHDAFINE", js: "NNDKHDAFINE", typ: a(0) },
+    "Egjacblkakb": o([
+        { json: "CPLCFNJNBEI", js: "CPLCFNJNBEI", typ: 0 },
+        { json: "rewardId", js: "rewardId", typ: 0 },
     ], false),
 };

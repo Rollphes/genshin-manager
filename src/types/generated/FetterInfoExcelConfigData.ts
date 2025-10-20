@@ -23,12 +23,12 @@ export type FetterInfoExcelConfigDataType = {
     cvKoreanTextMapHash:                 number;
     fetterId:                            number;
     finishConds:                         FinishCond[];
-    GFIPPLJGEAB:                         number;
     infoBirthDay:                        number;
     infoBirthMonth:                      number;
     isHiden:                             boolean;
-    NDGGLAGAMEF:                         number;
     openConds:                           any[];
+    PKJJAOCGOPO:                         number;
+    PMDBPIJHHPC:                         number;
 }
 
 export type FinishCond = {
@@ -223,12 +223,12 @@ const typeMap: any = {
         { json: "cvKoreanTextMapHash", js: "cvKoreanTextMapHash", typ: 0 },
         { json: "fetterId", js: "fetterId", typ: 0 },
         { json: "finishConds", js: "finishConds", typ: a(r("FinishCond")) },
-        { json: "GFIPPLJGEAB", js: "GFIPPLJGEAB", typ: 0 },
         { json: "infoBirthDay", js: "infoBirthDay", typ: 0 },
         { json: "infoBirthMonth", js: "infoBirthMonth", typ: 0 },
         { json: "isHiden", js: "isHiden", typ: true },
-        { json: "NDGGLAGAMEF", js: "NDGGLAGAMEF", typ: 0 },
         { json: "openConds", js: "openConds", typ: a("any") },
+        { json: "PKJJAOCGOPO", js: "PKJJAOCGOPO", typ: 0 },
+        { json: "PMDBPIJHHPC", js: "PMDBPIJHHPC", typ: 0 },
     ], false),
     "FinishCond": o([
         { json: "condType", js: "condType", typ: r("CondType") },

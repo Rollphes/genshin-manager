@@ -1,17 +1,17 @@
 {
   "metadata": {
     "sourceFile": "TowerFloorExcelConfigData.json",
-    "generatedAt": "2025-10-01T15:37:44.155Z"
+    "generatedAt": "2025-10-20T15:45:01.747Z"
   },
   "keyMappingTemplate": {
     "bgImage": "UI_TowerPic_1",
-    "CFABEGPOHCA": 0,
-    "CPNFHGAINLO": 0,
     "floorId": 1001,
     "floorIndex": 1,
     "floorLevelConfigId": 1200,
+    "KFMMFLCOBBN": 0,
     "levelGroupId": 1,
     "overrideMonsterLevel": 25,
+    "PGMLCDGLAKK": 0,
     "rewardIdFifteenStars": 610041,
     "rewardIdFiveStars": 610001,
     "rewardIdNineStars": 610041,
@@ -24,13 +24,13 @@
   "alternativePatterns": [
     {
       "bgImage": "UI_TowerPic_5",
-      "CFABEGPOHCA": 2047,
-      "CPNFHGAINLO": 2048,
       "floorId": 1095,
       "floorIndex": 12,
       "floorLevelConfigId": 2045,
+      "KFMMFLCOBBN": 2047,
       "levelGroupId": 95,
       "overrideMonsterLevel": 95,
+      "PGMLCDGLAKK": 2048,
       "rewardIdFifteenStars": 610052,
       "rewardIdFiveStars": 610012,
       "rewardIdNineStars": 610052,

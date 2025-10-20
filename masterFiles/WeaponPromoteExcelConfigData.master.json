@@ -1,7 +1,7 @@
 {
   "metadata": {
     "sourceFile": "WeaponPromoteExcelConfigData.json",
-    "generatedAt": "2025-10-01T15:37:44.485Z"
+    "generatedAt": "2025-10-20T15:45:01.959Z"
   },
   "keyMappingTemplate": {
     "addProps": [
@@ -71,7 +71,7 @@
         }
       ],
       "coinCost": 0,
-      "KPCDDDCMLNB": [
+      "costItems": [
         {
           "count": 1,
           "id": 114001
@@ -114,7 +114,7 @@
         }
       ],
       "coinCost": 5000,
-      "KPCDDDCMLNB": [
+      "costItems": [
         {
           "count": 1,
           "id": 114002
