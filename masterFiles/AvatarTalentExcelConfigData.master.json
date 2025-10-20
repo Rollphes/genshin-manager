@@ -1,7 +1,7 @@
 {
   "metadata": {
     "sourceFile": "AvatarTalentExcelConfigData.json",
-    "generatedAt": "2025-10-01T15:37:37.474Z"
+    "generatedAt": "2025-10-20T15:44:55.628Z"
   },
   "keyMappingTemplate": {
     "addProps": [
@@ -15,10 +15,11 @@
       }
     ],
     "descTextMapHash": 194851991,
+    "EEADMPJDKLA": 0,
     "icon": "UI_Talent_S_Ayaka_01",
-    "KAGDHDEIJMC": 0,
     "mainCostItemCount": 1,
     "mainCostItemId": 1102,
+    "MLPEJMIJALL": 0,
     "nameTextMapHash": 3364696049,
     "openConfig": "Ayaka_Constellation_1",
     "paramList": [
@@ -31,7 +32,6 @@
       0,
       0
     ],
-    "PMIFBDFEKBH": 0,
     "prevTalent": 0,
     "talentId": 21
   },
@@ -48,10 +48,11 @@
         }
       ],
       "descTextMapHash": 846522047,
+      "EEADMPJDKLA": 0,
       "icon": "UI_Talent_S_Ayaka_02",
-      "KAGDHDEIJMC": 0,
       "mainCostItemCount": 1,
       "mainCostItemId": 1102,
+      "MLPEJMIJALL": 0,
       "nameTextMapHash": 562006217,
       "openConfig": "Ayaka_Constellation_2",
       "paramList": [
@@ -64,7 +65,6 @@
         0,
         0
       ],
-      "PMIFBDFEKBH": 0,
       "prevTalent": 21,
       "talentId": 22
     },
@@ -80,10 +80,11 @@
         }
       ],
       "descTextMapHash": 2503540655,
+      "EEADMPJDKLA": 0,
       "icon": "UI_Talent_S_Ayaka_03",
-      "KAGDHDEIJMC": 0,
       "mainCostItemCount": 1,
       "mainCostItemId": 1102,
+      "MLPEJMIJALL": 0,
       "nameTextMapHash": 2463454169,
       "openConfig": "Ayaka_Constellation_4",
       "paramList": [
@@ -96,7 +97,6 @@
         0,
         0
       ],
-      "PMIFBDFEKBH": 0,
       "prevTalent": 23,
       "talentId": 24
     },
@@ -112,10 +112,11 @@
         }
       ],
       "descTextMapHash": 544290319,
+      "EEADMPJDKLA": 0,
       "icon": "UI_Talent_S_Qin_02",
-      "KAGDHDEIJMC": 0,
       "mainCostItemCount": 1,
       "mainCostItemId": 1103,
+      "MLPEJMIJALL": 0,
       "nameTextMapHash": 573725673,
       "openConfig": "Qin_Talent_2",
       "paramList": [
@@ -128,7 +129,6 @@
         0,
         0
       ],
-      "PMIFBDFEKBH": 0,
       "prevTalent": 31,
       "talentId": 32
     },
@@ -144,10 +144,11 @@
         }
       ],
       "descTextMapHash": 1959927503,
+      "EEADMPJDKLA": 0,
       "icon": "UI_Talent_S_PlayerWind_02",
-      "KAGDHDEIJMC": 0,
       "mainCostItemCount": 1,
       "mainCostItemId": 915,
+      "MLPEJMIJALL": 0,
       "nameTextMapHash": 202198665,
       "openConfig": "Player_Wind_Constellation_2",
       "paramList": [
@@ -160,7 +161,6 @@
         0,
         0
       ],
-      "PMIFBDFEKBH": 0,
       "prevTalent": 71,
       "talentId": 72
     },
@@ -176,10 +176,11 @@
         }
       ],
       "descTextMapHash": 2404048095,
+      "EEADMPJDKLA": 0,
       "icon": "UI_Talent_S_PlayerElectric_02",
-      "KAGDHDEIJMC": 0,
       "mainCostItemCount": 1,
       "mainCostItemId": 914,
+      "MLPEJMIJALL": 0,
       "nameTextMapHash": 23741097,
       "openConfig": "Player_Electric_Constellation_2",
       "paramList": [
@@ -192,7 +193,6 @@
         0,
         0
       ],
-      "PMIFBDFEKBH": 0,
       "prevTalent": 101,
       "talentId": 102
     },
@@ -208,10 +208,11 @@
         }
       ],
       "descTextMapHash": 3591206935,
+      "EEADMPJDKLA": 0,
       "icon": "UI_Talent_S_Diluc_02",
-      "KAGDHDEIJMC": 0,
       "mainCostItemCount": 1,
       "mainCostItemId": 1116,
+      "MLPEJMIJALL": 0,
       "nameTextMapHash": 610672953,
       "openConfig": "Diluc_Talent_2",
       "paramList": [
@@ -224,7 +225,6 @@
         0,
         0
       ],
-      "PMIFBDFEKBH": 0,
       "prevTalent": 161,
       "talentId": 162
     },
@@ -240,10 +240,11 @@
         }
       ],
       "descTextMapHash": 452602631,
+      "EEADMPJDKLA": 0,
       "icon": "UI_Talent_S_Mona_01",
-      "KAGDHDEIJMC": 0,
       "mainCostItemCount": 1,
       "mainCostItemId": 1141,
+      "MLPEJMIJALL": 0,
       "nameTextMapHash": 3262519193,
       "openConfig": "Mona_Talent_01",
       "paramList": [
@@ -256,7 +257,6 @@
         0,
         0
       ],
-      "PMIFBDFEKBH": 0,
       "prevTalent": 0,
       "talentId": 411
     },
@@ -272,10 +272,11 @@
         }
       ],
       "descTextMapHash": 2439371303,
+      "EEADMPJDKLA": 0,
       "icon": "UI_Talent_S_Furina_02",
-      "KAGDHDEIJMC": 0,
       "mainCostItemCount": 1,
       "mainCostItemId": 1189,
+      "MLPEJMIJALL": 0,
       "nameTextMapHash": 3889320921,
       "openConfig": "Furina_Constellation_2",
       "paramList": [
@@ -288,7 +289,6 @@
         0.25,
         6
       ],
-      "PMIFBDFEKBH": 0,
       "prevTalent": 895,
       "talentId": 896
     }

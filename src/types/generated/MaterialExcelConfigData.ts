@@ -8,7 +8,6 @@
 // match the expected interface, even if the JSON is valid.
 
 export type MaterialExcelConfigDataType = {
-    AGMHDDHHHBL:                 Agmhddhhhbl;
     cdGroup:                     number;
     cdTime:                      number;
     closeBagAfterUsed:           boolean;
@@ -23,22 +22,24 @@ export type MaterialExcelConfigDataType = {
     effectName:                  EffectName;
     foodQuality:                 FoodQuality;
     gadgetId:                    number;
-    GKBAHKBFNBH:                 boolean;
     globalItemLimit:             number;
+    GOFEFCODPII:                 Gofefcodpii;
+    HJCEKDFGLCG:                 Hjcekdfglcg;
     icon:                        string;
     id:                          number;
     interactionTitleTextMapHash: number;
+    IOMEHCHLAJM:                 boolean;
     isForceGetHint:              boolean;
     isHidden:                    boolean;
     isSplitDrop:                 boolean;
     itemType:                    ItemType;
     itemUse:                     ItemUse[];
-    KNOIOAPAFIH:                 Knoioapafih;
-    LHOFPBCBILJ:                 boolean;
     materialType:                MaterialType;
     maxUseCount:                 number;
     nameTextMapHash:             number;
     noFirstGetHint:              boolean;
+    PCOPCNFOONA:                 Pcopcnfoona;
+    PHKICCAOKCK:                 boolean;
     picPath:                     string[];
     playGainEffect:              boolean;
     rank:                        number;
@@ -54,7 +55,12 @@ export type MaterialExcelConfigDataType = {
     weight:                      number;
 }
 
-export enum Agmhddhhhbl {
+export enum Gofefcodpii {
+    MaterialSysTypeBeyond = "MATERIAL_SYS_TYPE_BEYOND",
+    MaterialSysTypeNone = "MATERIAL_SYS_TYPE_NONE",
+}
+
+export enum Hjcekdfglcg {
     FilterADVENTURE = "Filter_ADVENTURE",
     FilterATTACK = "Filter_ATTACK",
     FilterDEFENSE = "Filter_DEFENSE",
@@ -63,7 +69,7 @@ export enum Agmhddhhhbl {
     FilterOTHER = "Filter_OTHER",
 }
 
-export enum Knoioapafih {
+export enum Pcopcnfoona {
     AtkUp = "ATK_UP",
     BlackEgg = "BLACK_EGG",
     ColdResist = "Cold_Resist",
@@ -216,6 +222,7 @@ export enum UseOp {
     ItemUseUnlockFurnitureSuite = "ITEM_USE_UNLOCK_FURNITURE_SUITE",
     ItemUseUnlockHomeBgm = "ITEM_USE_UNLOCK_HOME_BGM",
     ItemUseUnlockHomeModule = "ITEM_USE_UNLOCK_HOME_MODULE",
+    ItemUseUnlockNormalBeyondBattlePass = "ITEM_USE_UNLOCK_NORMAL_BEYOND_BATTLE_PASS",
     ItemUseUnlockPaidBattlePassNormal = "ITEM_USE_UNLOCK_PAID_BATTLE_PASS_NORMAL",
     ItemUseUnlockPhotographPose = "ITEM_USE_UNLOCK_PHOTOGRAPH_POSE",
     ItemUseUnlockProfileFrame = "ITEM_USE_UNLOCK_PROFILE_FRAME",
@@ -473,7 +480,6 @@ function r(name: string) {
 
 const typeMap: any = {
     "MaterialExcelConfigDataType": o([
-        { json: "AGMHDDHHHBL", js: "AGMHDDHHHBL", typ: r("Agmhddhhhbl") },
         { json: "cdGroup", js: "cdGroup", typ: 0 },
         { json: "cdTime", js: "cdTime", typ: 0 },
         { json: "closeBagAfterUsed", js: "closeBagAfterUsed", typ: true },
@@ -488,22 +494,24 @@ const typeMap: any = {
         { json: "effectName", js: "effectName", typ: r("EffectName") },
         { json: "foodQuality", js: "foodQuality", typ: r("FoodQuality") },
         { json: "gadgetId", js: "gadgetId", typ: 0 },
-        { json: "GKBAHKBFNBH", js: "GKBAHKBFNBH", typ: true },
         { json: "globalItemLimit", js: "globalItemLimit", typ: 0 },
+        { json: "GOFEFCODPII", js: "GOFEFCODPII", typ: r("Gofefcodpii") },
+        { json: "HJCEKDFGLCG", js: "HJCEKDFGLCG", typ: r("Hjcekdfglcg") },
         { json: "icon", js: "icon", typ: "" },
         { json: "id", js: "id", typ: 0 },
         { json: "interactionTitleTextMapHash", js: "interactionTitleTextMapHash", typ: 0 },
+        { json: "IOMEHCHLAJM", js: "IOMEHCHLAJM", typ: true },
         { json: "isForceGetHint", js: "isForceGetHint", typ: true },
         { json: "isHidden", js: "isHidden", typ: true },
         { json: "isSplitDrop", js: "isSplitDrop", typ: true },
         { json: "itemType", js: "itemType", typ: r("ItemType") },
         { json: "itemUse", js: "itemUse", typ: a(r("ItemUse")) },
-        { json: "KNOIOAPAFIH", js: "KNOIOAPAFIH", typ: r("Knoioapafih") },
-        { json: "LHOFPBCBILJ", js: "LHOFPBCBILJ", typ: true },
         { json: "materialType", js: "materialType", typ: r("MaterialType") },
         { json: "maxUseCount", js: "maxUseCount", typ: 0 },
         { json: "nameTextMapHash", js: "nameTextMapHash", typ: 0 },
         { json: "noFirstGetHint", js: "noFirstGetHint", typ: true },
+        { json: "PCOPCNFOONA", js: "PCOPCNFOONA", typ: r("Pcopcnfoona") },
+        { json: "PHKICCAOKCK", js: "PHKICCAOKCK", typ: true },
         { json: "picPath", js: "picPath", typ: a("") },
         { json: "playGainEffect", js: "playGainEffect", typ: true },
         { json: "rank", js: "rank", typ: 0 },
@@ -522,7 +530,11 @@ const typeMap: any = {
         { json: "useOp", js: "useOp", typ: r("UseOp") },
         { json: "useParam", js: "useParam", typ: a("") },
     ], false),
-    "Agmhddhhhbl": [
+    "Gofefcodpii": [
+        "MATERIAL_SYS_TYPE_BEYOND",
+        "MATERIAL_SYS_TYPE_NONE",
+    ],
+    "Hjcekdfglcg": [
         "Filter_ADVENTURE",
         "Filter_ATTACK",
         "Filter_DEFENSE",
@@ -530,7 +542,7 @@ const typeMap: any = {
         "Filter_MEDICAL",
         "Filter_OTHER",
     ],
-    "Knoioapafih": [
+    "Pcopcnfoona": [
         "ATK_UP",
         "BLACK_EGG",
         "Cold_Resist",
@@ -672,6 +684,7 @@ const typeMap: any = {
         "ITEM_USE_UNLOCK_FURNITURE_SUITE",
         "ITEM_USE_UNLOCK_HOME_BGM",
         "ITEM_USE_UNLOCK_HOME_MODULE",
+        "ITEM_USE_UNLOCK_NORMAL_BEYOND_BATTLE_PASS",
         "ITEM_USE_UNLOCK_PAID_BATTLE_PASS_NORMAL",
         "ITEM_USE_UNLOCK_PHOTOGRAPH_POSE",
         "ITEM_USE_UNLOCK_PROFILE_FRAME",

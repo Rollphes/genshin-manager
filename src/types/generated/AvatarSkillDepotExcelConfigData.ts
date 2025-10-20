@@ -9,15 +9,15 @@
 
 export type AvatarSkillDepotExcelConfigDataType = {
     attackModeSkill:         number;
-    DGLKLDNIEKC:             number;
+    BDKHFEFKECB:             number;
     energySkill:             number;
     extraAbilities:          string[];
     id:                      number;
     inherentProudSkillOpens: InherentProudSkillOpen[];
-    JBEBHHPANFP:             Jbebhhpanfp;
-    LDMOAPKDBJD:             number;
+    JGJCJEEOFCK:             number;
+    JNBEFHILAIP:             number;
     leaderTalent:            number;
-    MDNLOEBMIHK:             number;
+    PPMJAMDEFFO:             Ppmjamdeffo;
     skillDepotAbilityGroup:  string;
     skills:                  number[];
     subSkills:               number[];
@@ -25,7 +25,7 @@ export type AvatarSkillDepotExcelConfigDataType = {
     talentStarName:          string;
 }
 
-export enum Jbebhhpanfp {
+export enum Ppmjamdeffo {
     Furina = "Furina",
     None = "None",
     Ousia = "Ousia",
@@ -204,15 +204,15 @@ function r(name: string) {
 const typeMap: any = {
     "AvatarSkillDepotExcelConfigDataType": o([
         { json: "attackModeSkill", js: "attackModeSkill", typ: 0 },
-        { json: "DGLKLDNIEKC", js: "DGLKLDNIEKC", typ: 0 },
+        { json: "BDKHFEFKECB", js: "BDKHFEFKECB", typ: 0 },
         { json: "energySkill", js: "energySkill", typ: 0 },
         { json: "extraAbilities", js: "extraAbilities", typ: a("") },
         { json: "id", js: "id", typ: 0 },
         { json: "inherentProudSkillOpens", js: "inherentProudSkillOpens", typ: a(r("InherentProudSkillOpen")) },
-        { json: "JBEBHHPANFP", js: "JBEBHHPANFP", typ: r("Jbebhhpanfp") },
-        { json: "LDMOAPKDBJD", js: "LDMOAPKDBJD", typ: 0 },
+        { json: "JGJCJEEOFCK", js: "JGJCJEEOFCK", typ: 0 },
+        { json: "JNBEFHILAIP", js: "JNBEFHILAIP", typ: 0 },
         { json: "leaderTalent", js: "leaderTalent", typ: 0 },
-        { json: "MDNLOEBMIHK", js: "MDNLOEBMIHK", typ: 0 },
+        { json: "PPMJAMDEFFO", js: "PPMJAMDEFFO", typ: r("Ppmjamdeffo") },
         { json: "skillDepotAbilityGroup", js: "skillDepotAbilityGroup", typ: "" },
         { json: "skills", js: "skills", typ: a(0) },
         { json: "subSkills", js: "subSkills", typ: a(0) },
@@ -223,7 +223,7 @@ const typeMap: any = {
         { json: "needAvatarPromoteLevel", js: "needAvatarPromoteLevel", typ: 0 },
         { json: "proudSkillGroupId", js: "proudSkillGroupId", typ: 0 },
     ], false),
-    "Jbebhhpanfp": [
+    "Ppmjamdeffo": [
         "Furina",
         "None",
         "Ousia",

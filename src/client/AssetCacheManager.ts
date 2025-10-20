@@ -699,9 +699,17 @@ export abstract class AssetCacheManager<
     isRetry = false,
   ): Promise<void> {
     if (!isRetry) {
-      fs.rmdirSync(folderPath, { recursive: true })
-      fs.mkdirSync(folderPath)
+      await withFileLock(folderPath, async () => {
+        if (fs.existsSync(folderPath))
+          fs.rmdirSync(folderPath, { recursive: true })
+        fs.mkdirSync(folderPath, { recursive: true })
+        return Promise.resolve()
+      })
+    } else {
+      if (!fs.existsSync(folderPath))
+        fs.mkdirSync(folderPath, { recursive: true })
     }
+
     const gitFolderName = path.relative(
       this.option.assetCacheFolderPath,
       folderPath,
@@ -759,9 +767,12 @@ export abstract class AssetCacheManager<
         const res = await fetch(url, this.option.fetchOption)
         if (!res.body) throw new BodyNotFoundError(url)
 
-        const writeStream = fs.createWriteStream(downloadFilePath, {
-          highWaterMark: 1 * 1024 * 1024,
-        })
+        const writeStream: fs.WriteStream = fs.createWriteStream(
+          downloadFilePath,
+          {
+            highWaterMark: 1 * 1024 * 1024,
+          },
+        )
 
         const language = path
           .basename(downloadFilePath)
@@ -781,19 +792,42 @@ export abstract class AssetCacheManager<
           )
         }
 
-        await new Promise((resolve) => setTimeout(resolve, 150))
+        await new Promise<void>((resolve, reject) => {
+          if (writeStream.closed) {
+            resolve()
+            return
+          }
+
+          writeStream.once('finish', () => {
+            try {
+              const fd: unknown = (writeStream as { fd?: unknown }).fd
+              if (fd !== null && fd !== undefined && typeof fd === 'number') {
+                fs.fsync(fd, (err: NodeJS.ErrnoException | null) => {
+                  if (err)
+                    reject(err instanceof Error ? err : new Error(String(err)))
+                  else resolve()
+                })
+              } else {
+                resolve()
+              }
+            } catch (err) {
+              reject(
+                err instanceof Error
+                  ? err
+                  : new Error('Failed to get file descriptor'),
+              )
+            }
+          })
+
+          writeStream.once('error', (err: Error) => {
+            reject(err)
+          })
+        })
 
         if (!fs.existsSync(downloadFilePath)) {
           throw new AssetNotFoundError(
             downloadFilePath,
             'File does not exist after download completion',
-          )
-        }
-
-        if (!fs.existsSync(downloadFilePath)) {
-          throw new AssetNotFoundError(
-            downloadFilePath,
-            'File disappeared between existence checks',
           )
         }
 

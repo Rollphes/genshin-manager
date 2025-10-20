@@ -9,13 +9,13 @@
 
 export type TowerFloorExcelConfigDataType = {
     bgImage:              BgImage;
-    CFABEGPOHCA:          number;
-    CPNFHGAINLO:          number;
     floorId:              number;
     floorIndex:           number;
     floorLevelConfigId:   number;
+    KFMMFLCOBBN:          number;
     levelGroupId:         number;
     overrideMonsterLevel: number;
+    PGMLCDGLAKK:          number;
     rewardIdFifteenStars: number;
     rewardIdFiveStars:    number;
     rewardIdNineStars:    number;
@@ -205,13 +205,13 @@ function r(name: string) {
 const typeMap: any = {
     "TowerFloorExcelConfigDataType": o([
         { json: "bgImage", js: "bgImage", typ: r("BgImage") },
-        { json: "CFABEGPOHCA", js: "CFABEGPOHCA", typ: 0 },
-        { json: "CPNFHGAINLO", js: "CPNFHGAINLO", typ: 0 },
         { json: "floorId", js: "floorId", typ: 0 },
         { json: "floorIndex", js: "floorIndex", typ: 0 },
         { json: "floorLevelConfigId", js: "floorLevelConfigId", typ: 0 },
+        { json: "KFMMFLCOBBN", js: "KFMMFLCOBBN", typ: 0 },
         { json: "levelGroupId", js: "levelGroupId", typ: 0 },
         { json: "overrideMonsterLevel", js: "overrideMonsterLevel", typ: 0 },
+        { json: "PGMLCDGLAKK", js: "PGMLCDGLAKK", typ: 0 },
         { json: "rewardIdFifteenStars", js: "rewardIdFifteenStars", typ: 0 },
         { json: "rewardIdFiveStars", js: "rewardIdFiveStars", typ: 0 },
         { json: "rewardIdNineStars", js: "rewardIdNineStars", typ: 0 },

@@ -10,14 +10,14 @@
 export type AvatarTalentExcelConfigDataType = {
     addProps:          AddProp[];
     descTextMapHash:   number;
+    EEADMPJDKLA:       number;
     icon:              string;
-    KAGDHDEIJMC:       number;
     mainCostItemCount: number;
     mainCostItemId:    number;
+    MLPEJMIJALL:       number;
     nameTextMapHash:   number;
     openConfig:        string;
     paramList:         number[];
-    PMIFBDFEKBH:       number;
     prevTalent:        number;
     talentId:          number;
 }
@@ -200,14 +200,14 @@ const typeMap: any = {
     "AvatarTalentExcelConfigDataType": o([
         { json: "addProps", js: "addProps", typ: a(r("AddProp")) },
         { json: "descTextMapHash", js: "descTextMapHash", typ: 0 },
+        { json: "EEADMPJDKLA", js: "EEADMPJDKLA", typ: 0 },
         { json: "icon", js: "icon", typ: "" },
-        { json: "KAGDHDEIJMC", js: "KAGDHDEIJMC", typ: 0 },
         { json: "mainCostItemCount", js: "mainCostItemCount", typ: 0 },
         { json: "mainCostItemId", js: "mainCostItemId", typ: 0 },
+        { json: "MLPEJMIJALL", js: "MLPEJMIJALL", typ: 0 },
         { json: "nameTextMapHash", js: "nameTextMapHash", typ: 0 },
         { json: "openConfig", js: "openConfig", typ: "" },
         { json: "paramList", js: "paramList", typ: a(3.14) },
-        { json: "PMIFBDFEKBH", js: "PMIFBDFEKBH", typ: 0 },
         { json: "prevTalent", js: "prevTalent", typ: 0 },
         { json: "talentId", js: "talentId", typ: 0 },
     ], false),

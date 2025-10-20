@@ -1,7 +1,7 @@
 {
   "metadata": {
     "sourceFile": "ProudSkillExcelConfigData.json",
-    "generatedAt": "2025-10-01T15:37:43.679Z"
+    "generatedAt": "2025-10-20T15:45:01.328Z"
   },
   "keyMappingTemplate": {
     "addProps": [
@@ -15,15 +15,8 @@
       }
     ],
     "breakLevel": 0,
+    "CIJGPJNCAKN": "PROUD_SKILL_DISPLAY_DEFAULT",
     "coinCost": 0,
-    "descTextMapHash": 3062891747,
-    "filterConds": [
-      "TALENT_FILTER_NONE",
-      "TALENT_FILTER_NONE"
-    ],
-    "HFOHLKDEJPO": "PROUD_SKILL_DISPLAY_DEFAULT",
-    "icon": "UI_Talent_Cook_ExtraFailedItem",
-    "isHideLifeProudSkill": false,
     "costItems": [
       {
         "count": 0,
@@ -42,6 +35,13 @@
         "id": 0
       }
     ],
+    "descTextMapHash": 3062891747,
+    "filterConds": [
+      "TALENT_FILTER_NONE",
+      "TALENT_FILTER_NONE"
+    ],
+    "icon": "UI_Talent_Cook_ExtraFailedItem",
+    "isHideLifeProudSkill": false,
     "level": 1,
     "lifeEffectParams": [
       "1800",
@@ -51,10 +51,10 @@
       "1"
     ],
     "lifeEffectType": "PROUD_EFFECT_COOK_PROB_MULTI_OUTPUT",
-    "nameTextMapHash": 1749668397,
-    "OJAOOFGBGJI": {
-      "value": 190
+    "MPHBJMGKEHK": {
+      "value": 175
     },
+    "nameTextMapHash": 1749668397,
     "openConfig": "",
     "paramDescList": [
       3148177758,
@@ -114,16 +114,9 @@
         }
       ],
       "breakLevel": 0,
+      "CIJGPJNCAKN": "PROUD_SKILL_DISPLAY_DEFAULT",
       "coinCost": 0,
-      "descTextMapHash": 3514609507,
-      "filterConds": [
-        "TALENT_FILTER_NONE",
-        "TALENT_FILTER_NONE"
-      ],
-      "HFOHLKDEJPO": "PROUD_SKILL_DISPLAY_DEFAULT",
-      "icon": "UI_Talent_S_Navia_07",
-      "isHideLifeProudSkill": false,
-      "KPCDDDCMLNB": [
+      "costItems": [
         {
           "count": 0,
           "id": 0
@@ -141,6 +134,13 @@
           "id": 0
         }
       ],
+      "descTextMapHash": 3514609507,
+      "filterConds": [
+        "TALENT_FILTER_NONE",
+        "TALENT_FILTER_NONE"
+      ],
+      "icon": "UI_Talent_S_Navia_07",
+      "isHideLifeProudSkill": false,
       "level": 1,
       "lifeEffectParams": [
         "5",
@@ -150,10 +150,10 @@
         ""
       ],
       "lifeEffectType": "PROUD_EFFECT_EXPEDITION_EXTRA_OUTPUT",
-      "nameTextMapHash": 438270701,
-      "OJAOOFGBGJI": {
-        "value": 190
+      "MPHBJMGKEHK": {
+        "value": 175
       },
+      "nameTextMapHash": 438270701,
       "openConfig": "Navia_PermanentSkill_3",
       "paramDescList": [
         1197852262,
@@ -212,16 +212,9 @@
         }
       ],
       "breakLevel": 0,
+      "CIJGPJNCAKN": "PROUD_SKILL_DISPLAY_DEFAULT",
       "coinCost": 0,
-      "descTextMapHash": 779979035,
-      "filterConds": [
-        "TALENT_FILTER_NONE",
-        "TALENT_FILTER_NONE"
-      ],
-      "HFOHLKDEJPO": "PROUD_SKILL_DISPLAY_DEFAULT",
-      "icon": "UI_Talent_Combine_Weapon_Double",
-      "isHideLifeProudSkill": false,
-      "KPCDDDCMLNB": [
+      "costItems": [
         {
           "count": 0,
           "id": 0
@@ -239,6 +232,13 @@
           "id": 0
         }
       ],
+      "descTextMapHash": 779979035,
+      "filterConds": [
+        "TALENT_FILTER_NONE",
+        "TALENT_FILTER_NONE"
+      ],
+      "icon": "UI_Talent_Combine_Weapon_Double",
+      "isHideLifeProudSkill": false,
       "level": 1,
       "lifeEffectParams": [
         "1000",
@@ -248,10 +248,10 @@
         ""
       ],
       "lifeEffectType": "PROUD_EFFECT_COMBINE_MULTIPLY_OUTPUT",
-      "nameTextMapHash": 447551629,
-      "OJAOOFGBGJI": {
-        "value": 190
+      "MPHBJMGKEHK": {
+        "value": 175
       },
+      "nameTextMapHash": 447551629,
       "openConfig": "",
       "paramDescList": [
         3497978718,
@@ -310,16 +310,9 @@
         }
       ],
       "breakLevel": 1,
+      "CIJGPJNCAKN": "PROUD_SKILL_DISPLAY_BREAK",
       "coinCost": 0,
-      "descTextMapHash": 2636480403,
-      "filterConds": [
-        "TALENT_FILTER_NONE",
-        "TALENT_FILTER_NONE"
-      ],
-      "HFOHLKDEJPO": "PROUD_SKILL_DISPLAY_BREAK",
-      "icon": "UI_Talent_S_Ayaka_05",
-      "isHideLifeProudSkill": false,
-      "KPCDDDCMLNB": [
+      "costItems": [
         {
           "count": 0,
           "id": 0
@@ -337,6 +330,13 @@
           "id": 0
         }
       ],
+      "descTextMapHash": 2636480403,
+      "filterConds": [
+        "TALENT_FILTER_NONE",
+        "TALENT_FILTER_NONE"
+      ],
+      "icon": "UI_Talent_S_Ayaka_05",
+      "isHideLifeProudSkill": false,
       "level": 1,
       "lifeEffectParams": [
         "",
@@ -346,10 +346,10 @@
         ""
       ],
       "lifeEffectType": "PROUD_EFFECT_NONE",
-      "nameTextMapHash": 894491949,
-      "OJAOOFGBGJI": {
-        "value": 190
+      "MPHBJMGKEHK": {
+        "value": 175
       },
+      "nameTextMapHash": 894491949,
       "openConfig": "Ayaka_PermanentSkill_1",
       "paramDescList": [
         152847846,
@@ -408,16 +408,9 @@
         }
       ],
       "breakLevel": 4,
+      "CIJGPJNCAKN": "PROUD_SKILL_DISPLAY_BREAK",
       "coinCost": 0,
-      "descTextMapHash": 3965126451,
-      "filterConds": [
-        "TALENT_FILTER_NONE",
-        "TALENT_FILTER_NONE"
-      ],
-      "HFOHLKDEJPO": "PROUD_SKILL_DISPLAY_BREAK",
-      "icon": "UI_Talent_S_Ayaka_06",
-      "isHideLifeProudSkill": false,
-      "KPCDDDCMLNB": [
+      "costItems": [
         {
           "count": 0,
           "id": 0
@@ -435,6 +428,13 @@
           "id": 0
         }
       ],
+      "descTextMapHash": 3965126451,
+      "filterConds": [
+        "TALENT_FILTER_NONE",
+        "TALENT_FILTER_NONE"
+      ],
+      "icon": "UI_Talent_S_Ayaka_06",
+      "isHideLifeProudSkill": false,
       "level": 1,
       "lifeEffectParams": [
         "",
@@ -444,10 +444,10 @@
         ""
       ],
       "lifeEffectType": "PROUD_EFFECT_NONE",
-      "nameTextMapHash": 93137789,
-      "OJAOOFGBGJI": {
-        "value": 190
+      "MPHBJMGKEHK": {
+        "value": 175
       },
+      "nameTextMapHash": 93137789,
       "openConfig": "Ayaka_PermanentSkill_2",
       "paramDescList": [
         1085178006,
@@ -506,16 +506,9 @@
         }
       ],
       "breakLevel": 0,
+      "CIJGPJNCAKN": "PROUD_SKILL_DISPLAY_DEFAULT",
       "coinCost": 0,
-      "descTextMapHash": 3536678267,
-      "filterConds": [
-        "TALENT_FILTER_NONE",
-        "TALENT_FILTER_NONE"
-      ],
-      "HFOHLKDEJPO": "PROUD_SKILL_DISPLAY_DEFAULT",
-      "icon": "Skill_A_01",
-      "isHideLifeProudSkill": false,
-      "KPCDDDCMLNB": [
+      "costItems": [
         {
           "count": 0,
           "id": 0
@@ -533,6 +526,13 @@
           "id": 0
         }
       ],
+      "descTextMapHash": 3536678267,
+      "filterConds": [
+        "TALENT_FILTER_NONE",
+        "TALENT_FILTER_NONE"
+      ],
+      "icon": "Skill_A_01",
+      "isHideLifeProudSkill": false,
       "level": 1,
       "lifeEffectParams": [
         "",
@@ -542,10 +542,10 @@
         ""
       ],
       "lifeEffectType": "PROUD_EFFECT_NONE",
-      "nameTextMapHash": 4236418557,
-      "OJAOOFGBGJI": {
-        "value": 190
+      "MPHBJMGKEHK": {
+        "value": 175
       },
+      "nameTextMapHash": 4236418557,
       "openConfig": "Ayaka_SkillUpgrade_1",
       "paramDescList": [
         3951510062,
@@ -604,16 +604,9 @@
         }
       ],
       "breakLevel": 2,
+      "CIJGPJNCAKN": "PROUD_SKILL_DISPLAY_DEFAULT",
       "coinCost": 12500,
-      "descTextMapHash": 256121251,
-      "filterConds": [
-        "TALENT_FILTER_NONE",
-        "TALENT_FILTER_NONE"
-      ],
-      "HFOHLKDEJPO": "PROUD_SKILL_DISPLAY_DEFAULT",
-      "icon": "Skill_A_01",
-      "isHideLifeProudSkill": false,
-      "KPCDDDCMLNB": [
+      "costItems": [
         {
           "count": 3,
           "id": 104323
@@ -631,6 +624,13 @@
           "id": 0
         }
       ],
+      "descTextMapHash": 256121251,
+      "filterConds": [
+        "TALENT_FILTER_NONE",
+        "TALENT_FILTER_NONE"
+      ],
+      "icon": "Skill_A_01",
+      "isHideLifeProudSkill": false,
       "level": 2,
       "lifeEffectParams": [
         "",
@@ -640,10 +640,10 @@
         ""
       ],
       "lifeEffectType": "PROUD_EFFECT_NONE",
-      "nameTextMapHash": 75643821,
-      "OJAOOFGBGJI": {
-        "value": 190
+      "MPHBJMGKEHK": {
+        "value": 175
       },
+      "nameTextMapHash": 75643821,
       "openConfig": "Ayaka_SkillUpgrade_1",
       "paramDescList": [
         1781611046,
@@ -702,16 +702,9 @@
         }
       ],
       "breakLevel": 5,
+      "CIJGPJNCAKN": "PROUD_SKILL_DISPLAY_DEFAULT",
       "coinCost": 120000,
-      "descTextMapHash": 1008783739,
-      "filterConds": [
-        "TALENT_FILTER_NONE",
-        "TALENT_FILTER_NONE"
-      ],
-      "HFOHLKDEJPO": "PROUD_SKILL_DISPLAY_DEFAULT",
-      "icon": "Skill_A_01",
-      "isHideLifeProudSkill": false,
-      "KPCDDDCMLNB": [
+      "costItems": [
         {
           "count": 4,
           "id": 104325
@@ -729,6 +722,13 @@
           "id": 0
         }
       ],
+      "descTextMapHash": 1008783739,
+      "filterConds": [
+        "TALENT_FILTER_NONE",
+        "TALENT_FILTER_NONE"
+      ],
+      "icon": "Skill_A_01",
+      "isHideLifeProudSkill": false,
       "level": 7,
       "lifeEffectParams": [
         "",
@@ -738,10 +738,10 @@
         ""
       ],
       "lifeEffectType": "PROUD_EFFECT_NONE",
-      "nameTextMapHash": 3118917709,
-      "OJAOOFGBGJI": {
-        "value": 190
+      "MPHBJMGKEHK": {
+        "value": 175
       },
+      "nameTextMapHash": 3118917709,
       "openConfig": "Ayaka_SkillUpgrade_1",
       "paramDescList": [
         4094928574,
@@ -800,16 +800,9 @@
         }
       ],
       "breakLevel": 6,
+      "CIJGPJNCAKN": "PROUD_SKILL_DISPLAY_DEFAULT",
       "coinCost": 700000,
-      "descTextMapHash": 1151866155,
-      "filterConds": [
-        "TALENT_FILTER_NONE",
-        "TALENT_FILTER_NONE"
-      ],
-      "HFOHLKDEJPO": "PROUD_SKILL_DISPLAY_DEFAULT",
-      "icon": "Skill_A_01",
-      "isHideLifeProudSkill": false,
-      "KPCDDDCMLNB": [
+      "costItems": [
         {
           "count": 16,
           "id": 104325
@@ -827,6 +820,13 @@
           "id": 104319
         }
       ],
+      "descTextMapHash": 1151866155,
+      "filterConds": [
+        "TALENT_FILTER_NONE",
+        "TALENT_FILTER_NONE"
+      ],
+      "icon": "Skill_A_01",
+      "isHideLifeProudSkill": false,
       "level": 10,
       "lifeEffectParams": [
         "",
@@ -836,10 +836,10 @@
         ""
       ],
       "lifeEffectType": "PROUD_EFFECT_NONE",
-      "nameTextMapHash": 2344436805,
-      "OJAOOFGBGJI": {
-        "value": 190
+      "MPHBJMGKEHK": {
+        "value": 175
       },
+      "nameTextMapHash": 2344436805,
       "openConfig": "Ayaka_SkillUpgrade_1",
       "paramDescList": [
         3569892886,
@@ -898,16 +898,9 @@
         }
       ],
       "breakLevel": 0,
+      "CIJGPJNCAKN": "PROUD_SKILL_DISPLAY_DEFAULT",
       "coinCost": 0,
-      "descTextMapHash": 968254195,
-      "filterConds": [
-        "TALENT_FILTER_NONE",
-        "TALENT_FILTER_NONE"
-      ],
-      "HFOHLKDEJPO": "PROUD_SKILL_DISPLAY_DEFAULT",
-      "icon": "Skill_E_Ayaka",
-      "isHideLifeProudSkill": false,
-      "KPCDDDCMLNB": [
+      "costItems": [
         {
           "count": 0,
           "id": 0
@@ -925,6 +918,13 @@
           "id": 0
         }
       ],
+      "descTextMapHash": 968254195,
+      "filterConds": [
+        "TALENT_FILTER_NONE",
+        "TALENT_FILTER_NONE"
+      ],
+      "icon": "Skill_E_Ayaka",
+      "isHideLifeProudSkill": false,
       "level": 1,
       "lifeEffectParams": [
         "",
@@ -934,10 +934,10 @@
         ""
       ],
       "lifeEffectType": "PROUD_EFFECT_NONE",
-      "nameTextMapHash": 452495941,
-      "OJAOOFGBGJI": {
-        "value": 190
+      "MPHBJMGKEHK": {
+        "value": 175
       },
+      "nameTextMapHash": 452495941,
       "openConfig": "Ayaka_SkillUpgrade_3",
       "paramDescList": [
         2155024582,
@@ -996,16 +996,9 @@
         }
       ],
       "breakLevel": 0,
+      "CIJGPJNCAKN": "PROUD_SKILL_DISPLAY_DEFAULT",
       "coinCost": 0,
-      "descTextMapHash": 1334263035,
-      "filterConds": [
-        "TALENT_FILTER_NONE",
-        "TALENT_FILTER_NONE"
-      ],
-      "HFOHLKDEJPO": "PROUD_SKILL_DISPLAY_DEFAULT",
-      "icon": "Skill_A_01",
-      "isHideLifeProudSkill": false,
-      "KPCDDDCMLNB": [
+      "costItems": [
         {
           "count": 0,
           "id": 0
@@ -1023,6 +1016,13 @@
           "id": 0
         }
       ],
+      "descTextMapHash": 1334263035,
+      "filterConds": [
+        "TALENT_FILTER_NONE",
+        "TALENT_FILTER_NONE"
+      ],
+      "icon": "Skill_A_01",
+      "isHideLifeProudSkill": false,
       "level": 1,
       "lifeEffectParams": [
         "",
@@ -1032,10 +1032,10 @@
         ""
       ],
       "lifeEffectType": "PROUD_EFFECT_NONE",
-      "nameTextMapHash": 3614250693,
-      "OJAOOFGBGJI": {
-        "value": 190
+      "MPHBJMGKEHK": {
+        "value": 175
       },
+      "nameTextMapHash": 3614250693,
       "openConfig": "Qin_ProudSkill_1",
       "paramDescList": [
         1145595062,
@@ -1094,16 +1094,9 @@
         }
       ],
       "breakLevel": 0,
+      "CIJGPJNCAKN": "PROUD_SKILL_DISPLAY_DEFAULT",
       "coinCost": 0,
-      "descTextMapHash": 3606893659,
-      "filterConds": [
-        "TALENT_FILTER_NONE",
-        "TALENT_FILTER_NONE"
-      ],
-      "HFOHLKDEJPO": "PROUD_SKILL_DISPLAY_DEFAULT",
-      "icon": "Skill_A_01",
-      "isHideLifeProudSkill": false,
-      "KPCDDDCMLNB": [
+      "costItems": [
         {
           "count": 0,
           "id": 0
@@ -1121,6 +1114,13 @@
           "id": 0
         }
       ],
+      "descTextMapHash": 3606893659,
+      "filterConds": [
+        "TALENT_FILTER_NONE",
+        "TALENT_FILTER_NONE"
+      ],
+      "icon": "Skill_A_01",
+      "isHideLifeProudSkill": false,
       "level": 1,
       "lifeEffectParams": [
         "",
@@ -1130,10 +1130,10 @@
         ""
       ],
       "lifeEffectType": "PROUD_EFFECT_NONE",
-      "nameTextMapHash": 1549934013,
-      "OJAOOFGBGJI": {
-        "value": 190
+      "MPHBJMGKEHK": {
+        "value": 175
       },
+      "nameTextMapHash": 1549934013,
       "openConfig": "PlayerBoy_Common_SkillUpgrade_1",
       "paramDescList": [
         103667430,
@@ -1192,16 +1192,9 @@
         }
       ],
       "breakLevel": 0,
+      "CIJGPJNCAKN": "PROUD_SKILL_DISPLAY_DEFAULT",
       "coinCost": 0,
-      "descTextMapHash": 2977633803,
-      "filterConds": [
-        "TALENT_FILTER_NONE",
-        "TALENT_FILTER_NONE"
-      ],
-      "HFOHLKDEJPO": "PROUD_SKILL_DISPLAY_DEFAULT",
-      "icon": "Skill_A_01",
-      "isHideLifeProudSkill": false,
-      "KPCDDDCMLNB": [
+      "costItems": [
         {
           "count": 0,
           "id": 0
@@ -1219,6 +1212,13 @@
           "id": 0
         }
       ],
+      "descTextMapHash": 2977633803,
+      "filterConds": [
+        "TALENT_FILTER_NONE",
+        "TALENT_FILTER_NONE"
+      ],
+      "icon": "Skill_A_01",
+      "isHideLifeProudSkill": false,
       "level": 1,
       "lifeEffectParams": [
         "",
@@ -1228,10 +1228,10 @@
         ""
       ],
       "lifeEffectType": "PROUD_EFFECT_NONE",
-      "nameTextMapHash": 4268334181,
-      "OJAOOFGBGJI": {
-        "value": 190
+      "MPHBJMGKEHK": {
+        "value": 175
       },
+      "nameTextMapHash": 4268334181,
       "openConfig": "Beidou_ProudSkill_1",
       "paramDescList": [
         1461511646,
@@ -1290,16 +1290,9 @@
         }
       ],
       "breakLevel": 0,
+      "CIJGPJNCAKN": "PROUD_SKILL_DISPLAY_DEFAULT",
       "coinCost": 0,
-      "descTextMapHash": 3691523875,
-      "filterConds": [
-        "TALENT_FILTER_NONE",
-        "TALENT_FILTER_NONE"
-      ],
-      "HFOHLKDEJPO": "PROUD_SKILL_DISPLAY_DEFAULT",
-      "icon": "Skill_A_03",
-      "isHideLifeProudSkill": false,
-      "KPCDDDCMLNB": [
+      "costItems": [
         {
           "count": 0,
           "id": 0
@@ -1317,6 +1310,13 @@
           "id": 0
         }
       ],
+      "descTextMapHash": 3691523875,
+      "filterConds": [
+        "TALENT_FILTER_NONE",
+        "TALENT_FILTER_NONE"
+      ],
+      "icon": "Skill_A_03",
+      "isHideLifeProudSkill": false,
       "level": 1,
       "lifeEffectParams": [
         "",
@@ -1326,10 +1326,10 @@
         ""
       ],
       "lifeEffectType": "PROUD_EFFECT_NONE",
-      "nameTextMapHash": 3855413109,
-      "OJAOOFGBGJI": {
-        "value": 190
+      "MPHBJMGKEHK": {
+        "value": 175
       },
+      "nameTextMapHash": 3855413109,
       "openConfig": "Xiao_SkillUpgrade_1",
       "paramDescList": [
         3920161582,
@@ -1388,16 +1388,9 @@
         }
       ],
       "breakLevel": 0,
+      "CIJGPJNCAKN": "PROUD_SKILL_DISPLAY_DEFAULT",
       "coinCost": 0,
-      "descTextMapHash": 1080549699,
-      "filterConds": [
-        "TALENT_FILTER_NONE",
-        "TALENT_FILTER_NONE"
-      ],
-      "HFOHLKDEJPO": "PROUD_SKILL_DISPLAY_DEFAULT",
-      "icon": "Skill_A_01",
-      "isHideLifeProudSkill": false,
-      "KPCDDDCMLNB": [
+      "costItems": [
         {
           "count": 0,
           "id": 0
@@ -1415,6 +1408,13 @@
           "id": 0
         }
       ],
+      "descTextMapHash": 1080549699,
+      "filterConds": [
+        "TALENT_FILTER_NONE",
+        "TALENT_FILTER_NONE"
+      ],
+      "icon": "Skill_A_01",
+      "isHideLifeProudSkill": false,
       "level": 1,
       "lifeEffectParams": [
         "",
@@ -1424,10 +1424,10 @@
         ""
       ],
       "lifeEffectType": "PROUD_EFFECT_NONE",
-      "nameTextMapHash": 4195596333,
-      "OJAOOFGBGJI": {
-        "value": 190
+      "MPHBJMGKEHK": {
+        "value": 175
       },
+      "nameTextMapHash": 4195596333,
       "openConfig": "Tartaglia_SkillUpgrade_1",
       "paramDescList": [
         2491650494,
@@ -1486,16 +1486,9 @@
         }
       ],
       "breakLevel": 0,
+      "CIJGPJNCAKN": "PROUD_SKILL_DISPLAY_DEFAULT",
       "coinCost": 0,
-      "descTextMapHash": 376658467,
-      "filterConds": [
-        "TALENT_FILTER_NONE",
-        "TALENT_FILTER_NONE"
-      ],
-      "HFOHLKDEJPO": "PROUD_SKILL_DISPLAY_DEFAULT",
-      "icon": "Skill_S_Tartaglia_01",
-      "isHideLifeProudSkill": false,
-      "KPCDDDCMLNB": [
+      "costItems": [
         {
           "count": 0,
           "id": 0
@@ -1513,6 +1506,13 @@
           "id": 0
         }
       ],
+      "descTextMapHash": 376658467,
+      "filterConds": [
+        "TALENT_FILTER_NONE",
+        "TALENT_FILTER_NONE"
+      ],
+      "icon": "Skill_S_Tartaglia_01",
+      "isHideLifeProudSkill": false,
       "level": 1,
       "lifeEffectParams": [
         "",
@@ -1522,10 +1522,10 @@
         ""
       ],
       "lifeEffectType": "PROUD_EFFECT_NONE",
-      "nameTextMapHash": 1451749805,
-      "OJAOOFGBGJI": {
-        "value": 190
+      "MPHBJMGKEHK": {
+        "value": 175
       },
+      "nameTextMapHash": 1451749805,
       "openConfig": "Tartaglia_SkillUpgrade_2",
       "paramDescList": [
         64942902,
@@ -1584,16 +1584,9 @@
         }
       ],
       "breakLevel": 0,
+      "CIJGPJNCAKN": "PROUD_SKILL_DISPLAY_DEFAULT",
       "coinCost": 0,
-      "descTextMapHash": 4054066251,
-      "filterConds": [
-        "TALENT_FILTER_NONE",
-        "TALENT_FILTER_NONE"
-      ],
-      "HFOHLKDEJPO": "PROUD_SKILL_DISPLAY_DEFAULT",
-      "icon": "Skill_A_02",
-      "isHideLifeProudSkill": false,
-      "KPCDDDCMLNB": [
+      "costItems": [
         {
           "count": 0,
           "id": 0
@@ -1611,6 +1604,13 @@
           "id": 0
         }
       ],
+      "descTextMapHash": 4054066251,
+      "filterConds": [
+        "TALENT_FILTER_NONE",
+        "TALENT_FILTER_NONE"
+      ],
+      "icon": "Skill_A_02",
+      "isHideLifeProudSkill": false,
       "level": 1,
       "lifeEffectParams": [
         "",
@@ -1620,10 +1620,10 @@
         ""
       ],
       "lifeEffectType": "PROUD_EFFECT_NONE",
-      "nameTextMapHash": 2921988597,
-      "OJAOOFGBGJI": {
-        "value": 190
+      "MPHBJMGKEHK": {
+        "value": 175
       },
+      "nameTextMapHash": 2921988597,
       "openConfig": "Diona_SkillUpgrade_1",
       "paramDescList": [
         2856778054,
@@ -1682,16 +1682,9 @@
         }
       ],
       "breakLevel": 0,
+      "CIJGPJNCAKN": "PROUD_SKILL_DISPLAY_DEFAULT",
       "coinCost": 0,
-      "descTextMapHash": 1004305931,
-      "filterConds": [
-        "TALENT_FILTER_NONE",
-        "TALENT_FILTER_NONE"
-      ],
-      "HFOHLKDEJPO": "PROUD_SKILL_DISPLAY_DEFAULT",
-      "icon": "Skill_A_Catalyst_MD",
-      "isHideLifeProudSkill": false,
-      "KPCDDDCMLNB": [
+      "costItems": [
         {
           "count": 0,
           "id": 0
@@ -1709,6 +1702,13 @@
           "id": 0
         }
       ],
+      "descTextMapHash": 1004305931,
+      "filterConds": [
+        "TALENT_FILTER_NONE",
+        "TALENT_FILTER_NONE"
+      ],
+      "icon": "Skill_A_Catalyst_MD",
+      "isHideLifeProudSkill": false,
       "level": 1,
       "lifeEffectParams": [
         "",
@@ -1718,10 +1718,10 @@
         ""
       ],
       "lifeEffectType": "PROUD_EFFECT_NONE",
-      "nameTextMapHash": 1338075117,
-      "OJAOOFGBGJI": {
-        "value": 190
+      "MPHBJMGKEHK": {
+        "value": 175
       },
+      "nameTextMapHash": 1338075117,
       "openConfig": "Feiyan_SkillUpgrade_1",
       "paramDescList": [
         1994690094,
@@ -1780,16 +1780,9 @@
         }
       ],
       "breakLevel": 0,
+      "CIJGPJNCAKN": "PROUD_SKILL_DISPLAY_DEFAULT",
       "coinCost": 0,
-      "descTextMapHash": 1376470603,
-      "filterConds": [
-        "TALENT_FILTER_NONE",
-        "TALENT_FILTER_NONE"
-      ],
-      "HFOHLKDEJPO": "PROUD_SKILL_DISPLAY_DEFAULT",
-      "icon": "UI_Talent_S_Kokomi_07",
-      "isHideLifeProudSkill": false,
-      "KPCDDDCMLNB": [
+      "costItems": [
         {
           "count": 0,
           "id": 0
@@ -1807,6 +1800,13 @@
           "id": 0
         }
       ],
+      "descTextMapHash": 1376470603,
+      "filterConds": [
+        "TALENT_FILTER_NONE",
+        "TALENT_FILTER_NONE"
+      ],
+      "icon": "UI_Talent_S_Kokomi_07",
+      "isHideLifeProudSkill": false,
       "level": 1,
       "lifeEffectParams": [
         "",
@@ -1816,10 +1816,10 @@
         ""
       ],
       "lifeEffectType": "PROUD_EFFECT_NONE",
-      "nameTextMapHash": 1396546717,
-      "OJAOOFGBGJI": {
-        "value": 190
+      "MPHBJMGKEHK": {
+        "value": 175
       },
+      "nameTextMapHash": 1396546717,
       "openConfig": "Kokomi_PermanentSkill_3",
       "paramDescList": [
         4056777574,
@@ -1878,16 +1878,9 @@
         }
       ],
       "breakLevel": 0,
+      "CIJGPJNCAKN": "PROUD_SKILL_DISPLAY_DEFAULT",
       "coinCost": 0,
-      "descTextMapHash": 1988554475,
-      "filterConds": [
-        "TALENT_FILTER_NONE",
-        "TALENT_FILTER_NONE"
-      ],
-      "HFOHLKDEJPO": "PROUD_SKILL_DISPLAY_DEFAULT",
-      "icon": "Skill_S_Wriothesley_01",
-      "isHideLifeProudSkill": false,
-      "KPCDDDCMLNB": [
+      "costItems": [
         {
           "count": 0,
           "id": 0
@@ -1905,6 +1898,13 @@
           "id": 0
         }
       ],
+      "descTextMapHash": 1988554475,
+      "filterConds": [
+        "TALENT_FILTER_NONE",
+        "TALENT_FILTER_NONE"
+      ],
+      "icon": "Skill_S_Wriothesley_01",
+      "isHideLifeProudSkill": false,
       "level": 1,
       "lifeEffectParams": [
         "",
@@ -1914,10 +1914,10 @@
         ""
       ],
       "lifeEffectType": "PROUD_EFFECT_NONE",
-      "nameTextMapHash": 1322236197,
-      "OJAOOFGBGJI": {
-        "value": 190
+      "MPHBJMGKEHK": {
+        "value": 175
       },
+      "nameTextMapHash": 1322236197,
       "openConfig": "Wriothesley_SkillUpgrade_2",
       "paramDescList": [
         3539321094,

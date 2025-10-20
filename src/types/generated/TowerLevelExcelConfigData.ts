@@ -8,18 +8,18 @@
 // match the expected interface, even if the JSON is valid.
 
 export type TowerLevelExcelConfigDataType = {
+    AGEAANNELOI:            number;
     conds:                  Cond[];
     dungeonId:              number;
     firstMonsterList:       number[];
     firstPassRewardId:      number;
-    GNNNGECFCAJ:            number;
-    HAOBIOJEECA:            number;
-    JDHIPBOALOD:            string;
+    ILCLLJANFMK:            number;
+    JKMIPCBDBPM:            number;
+    KLNFCGKDKGE:            string;
     levelGroupId:           number;
     levelId:                number;
     levelIndex:             number;
     monsterLevel:           number;
-    NKOPAOBMOLC:            number;
     secondMonsterList:      number[];
     towerBuffConfigStrList: string[];
 }
@@ -201,18 +201,18 @@ function r(name: string) {
 
 const typeMap: any = {
     "TowerLevelExcelConfigDataType": o([
+        { json: "AGEAANNELOI", js: "AGEAANNELOI", typ: 0 },
         { json: "conds", js: "conds", typ: a(r("Cond")) },
         { json: "dungeonId", js: "dungeonId", typ: 0 },
         { json: "firstMonsterList", js: "firstMonsterList", typ: a(0) },
         { json: "firstPassRewardId", js: "firstPassRewardId", typ: 0 },
-        { json: "GNNNGECFCAJ", js: "GNNNGECFCAJ", typ: 0 },
-        { json: "HAOBIOJEECA", js: "HAOBIOJEECA", typ: 0 },
-        { json: "JDHIPBOALOD", js: "JDHIPBOALOD", typ: "" },
+        { json: "ILCLLJANFMK", js: "ILCLLJANFMK", typ: 0 },
+        { json: "JKMIPCBDBPM", js: "JKMIPCBDBPM", typ: 0 },
+        { json: "KLNFCGKDKGE", js: "KLNFCGKDKGE", typ: "" },
         { json: "levelGroupId", js: "levelGroupId", typ: 0 },
         { json: "levelId", js: "levelId", typ: 0 },
         { json: "levelIndex", js: "levelIndex", typ: 0 },
         { json: "monsterLevel", js: "monsterLevel", typ: 0 },
-        { json: "NKOPAOBMOLC", js: "NKOPAOBMOLC", typ: 0 },
         { json: "secondMonsterList", js: "secondMonsterList", typ: a(0) },
         { json: "towerBuffConfigStrList", js: "towerBuffConfigStrList", typ: a("") },
     ], false),

@@ -1,27 +1,27 @@
 {
   "metadata": {
     "sourceFile": "AnimalCodexExcelConfigData.json",
-    "generatedAt": "2025-10-01T15:37:36.973Z"
+    "generatedAt": "2025-10-20T15:44:55.261Z"
   },
   "keyMappingTemplate": {
-    "ABOAGOHLBID": [
-      0
-    ],
+    "AJPLBCNANHO": 1166390231,
     "countType": "CODEX_COUNT_TYPE_KILL",
     "describeId": 112,
     "descTextMapHash": 3632663572,
+    "DGPFHOOEKNC": 0,
+    "EJNDNFFKDHN": [
+      0
+    ],
     "id": 20011201,
-    "isDisuse": false,
-    "isSeenActive": false,
-    "LICBOMOOAFI": [
+    "IEDNJFPPPHD": [
       2954911849
     ],
-    "LJMGOHDNFMO": [
+    "isDisuse": false,
+    "isSeenActive": false,
+    "KOGKIGNPAIO": [
       1094559455
     ],
     "modelPath": "Codex_Monster_Slime_Mid_Fire",
-    "MPNCFOBMIDN": 0,
-    "OHCCAFLBIAJ": 1166390231,
     "pushTipsCodexId": 0,
     "showOnlyUnlocked": false,
     "sortOrder": 1,
@@ -30,24 +30,24 @@
   },
   "alternativePatterns": [
     {
-      "ABOAGOHLBID": [
-        0
-      ],
+      "AJPLBCNANHO": 2946983423,
       "countType": "CODEX_COUNT_TYPE_KILL",
       "describeId": 109,
       "descTextMapHash": 3321518100,
+      "DGPFHOOEKNC": 0,
+      "EJNDNFFKDHN": [
+        0
+      ],
       "id": 20010901,
-      "isDisuse": false,
-      "isSeenActive": false,
-      "LICBOMOOAFI": [
+      "IEDNJFPPPHD": [
         3382439513
       ],
-      "LJMGOHDNFMO": [
+      "isDisuse": false,
+      "isSeenActive": false,
+      "KOGKIGNPAIO": [
         1988113823
       ],
       "modelPath": "Codex_Monster_Slime_Large_Ice",
-      "MPNCFOBMIDN": 0,
-      "OHCCAFLBIAJ": 2946983423,
       "pushTipsCodexId": 60500001,
       "showOnlyUnlocked": false,
       "sortOrder": 13,
@@ -55,24 +55,24 @@
       "type": "CODEX_MONSTER"
     },
     {
-      "ABOAGOHLBID": [
-        7407828
-      ],
+      "AJPLBCNANHO": 610407631,
       "countType": "CODEX_COUNT_TYPE_KILL",
       "describeId": 512,
       "descTextMapHash": 3639657556,
+      "DGPFHOOEKNC": 0,
+      "EJNDNFFKDHN": [
+        7407828
+      ],
       "id": 20051201,
-      "isDisuse": false,
-      "isSeenActive": false,
-      "LICBOMOOAFI": [
+      "IEDNJFPPPHD": [
         3211282905
       ],
-      "LJMGOHDNFMO": [
+      "isDisuse": false,
+      "isSeenActive": false,
+      "KOGKIGNPAIO": [
         4032580599
       ],
       "modelPath": "Codex_Monster_Narcissusborn_Normal_01",
-      "MPNCFOBMIDN": 0,
-      "OHCCAFLBIAJ": 610407631,
       "pushTipsCodexId": 60500114,
       "showOnlyUnlocked": false,
       "sortOrder": 60,
@@ -80,24 +80,24 @@
       "type": "CODEX_MONSTER"
     },
     {
-      "ABOAGOHLBID": [
-        0
-      ],
+      "AJPLBCNANHO": 172046319,
       "countType": "CODEX_COUNT_TYPE_KILL",
       "describeId": 90101,
       "descTextMapHash": 572043132,
+      "DGPFHOOEKNC": 3471835212384522000,
+      "EJNDNFFKDHN": [
+        0
+      ],
       "id": 29010101,
-      "isDisuse": false,
-      "isSeenActive": false,
-      "LICBOMOOAFI": [
+      "IEDNJFPPPHD": [
         1003572177
       ],
-      "LJMGOHDNFMO": [
+      "isDisuse": false,
+      "isSeenActive": false,
+      "KOGKIGNPAIO": [
         2747362615
       ],
       "modelPath": "Codex_Monster_Dvalin",
-      "MPNCFOBMIDN": 3471835212384522000,
-      "OHCCAFLBIAJ": 172046319,
       "pushTipsCodexId": 0,
       "showOnlyUnlocked": false,
       "sortOrder": 7001,

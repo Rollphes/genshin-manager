@@ -9,11 +9,11 @@
 
 export type MonsterExcelConfigDataType = {
     affix:                    number[];
-    AGMBDGBDMMC:              Agmbdgbdmmc[];
     ai:                       AI;
     attackBase:               number;
     campID:                   number;
     canSwim:                  boolean;
+    CIAPMJAEIHD:              number;
     combatBGMLevel:           number;
     combatConfigHash:         number;
     controllerPathHash:       number;
@@ -23,39 +23,39 @@ export type MonsterExcelConfigDataType = {
     defenseBase:              number;
     deformationMeshPathHash:  number;
     describeId:               number;
-    DKKMALNLCNA:              number;
-    EBOFFNEMHNP:              number[];
     elecSubHurt:              number;
     elementMastery:           number;
     entityBudgetLevel:        number;
     equips:                   number[];
     excludeWeathers:          ExcludeWeathers;
+    FCAHMCPMPNP:              boolean;
     featureTagGroupID:        number;
-    FFOMDMCHMCC:              number;
     fireSubHurt:              number;
-    GHGKDLEMENH:              number;
-    GPJIHFNKCKC:              number;
-    GPONINHPLCD:              number;
     grassSubHurt:             number;
-    HALIFLONHIH:              number;
     hideNameInElementView:    boolean;
     hpBase:                   number;
+    hpDrops:                  HPDrop[];
     iceSubHurt:               number;
     id:                       number;
-    IOCJKCGOCJN:              number;
+    IFNGBLPHINC:              number;
+    ILDGFINBLII:              number;
+    IOMANLCNFEO:              number;
     isAIHashCheck:            boolean;
     isInvisibleReset:         boolean;
-    JBEBHHPANFP:              Jbebhhpanfp;
-    JHPAPNAGOCN:              number;
+    JEOILPDPBCF:              number;
+    KGOGCJLGLNI:              number;
     killDropId:               number;
-    KODKCJGBJLD:              number;
-    LGPEJEBJJPP:              boolean;
     lodPatternName:           LodPatternName;
     monsterName:              string;
     mpPropID:                 number;
     nameTextMapHash:          number;
+    NCLJNCFOILK:              number;
+    NKGIPKIAOGH:              number;
+    PBJALANPDBD:              number;
     physicalSubHurt:          number;
+    PJFIHJIKDDI:              number[];
     playType:                 PlayType;
+    PPMJAMDEFFO:              Ppmjamdeffo;
     prefabPathHash:           number;
     prefabPathRagdollHash:    number;
     prefabPathRemoteHash:     number;
@@ -73,12 +73,7 @@ export type MonsterExcelConfigDataType = {
     windSubHurt:              number;
 }
 
-export type Agmbdgbdmmc = {
-    dropId:      number;
-    NDIKMHDKDLO: number;
-}
-
-export enum Jbebhhpanfp {
+export enum Ppmjamdeffo {
     None = "None",
     Ousia = "Ousia",
     Pneuma = "Pneuma",
@@ -101,12 +96,20 @@ export enum ExcludeWeathers {
     雷雨雪 = "雷雨,雪",
 }
 
+export type HPDrop = {
+    dropId:    number;
+    hpPercent: number;
+}
+
 export enum LodPatternName {
     AnimalDefault01 = "Animal_Default_01",
     AnimalSpecial200_01 = "Animal_Special_200_01",
     AnimalSpecial20_01 = "Animal_Special_20_01",
     AnimalSpecial40_01 = "Animal_Special_40_01",
     Empty = "",
+    MonsterBeydDefaultLod1 = "Monster_Beyd_Default_Lod1",
+    MonsterBeydDefaultLod2 = "Monster_Beyd_Default_Lod2",
+    MonsterDisplayFar = "Monster_DisplayFar",
     MonsterFlamingoNormalMigrate01 = "Monster_Flamingo_Normal_Migrate_01",
     MonsterGiantChessStage2 = "Monster_GiantChess_Stage2",
     MonsterNarcissusbornNarzissenkreuz01 = "Monster_Narcissusborn_Narzissenkreuz_01",
@@ -117,6 +120,7 @@ export enum LodPatternName {
 }
 
 export enum PlayType {
+    Beyond = "BEYOND",
     Default = "DEFAULT",
 }
 
@@ -346,11 +350,11 @@ function r(name: string) {
 const typeMap: any = {
     "MonsterExcelConfigDataType": o([
         { json: "affix", js: "affix", typ: a(0) },
-        { json: "AGMBDGBDMMC", js: "AGMBDGBDMMC", typ: a(r("Agmbdgbdmmc")) },
         { json: "ai", js: "ai", typ: r("AI") },
         { json: "attackBase", js: "attackBase", typ: 3.14 },
         { json: "campID", js: "campID", typ: 0 },
         { json: "canSwim", js: "canSwim", typ: true },
+        { json: "CIAPMJAEIHD", js: "CIAPMJAEIHD", typ: 0 },
         { json: "combatBGMLevel", js: "combatBGMLevel", typ: 0 },
         { json: "combatConfigHash", js: "combatConfigHash", typ: 3.14 },
         { json: "controllerPathHash", js: "controllerPathHash", typ: 3.14 },
@@ -360,39 +364,39 @@ const typeMap: any = {
         { json: "defenseBase", js: "defenseBase", typ: 0 },
         { json: "deformationMeshPathHash", js: "deformationMeshPathHash", typ: 3.14 },
         { json: "describeId", js: "describeId", typ: 0 },
-        { json: "DKKMALNLCNA", js: "DKKMALNLCNA", typ: 0 },
-        { json: "EBOFFNEMHNP", js: "EBOFFNEMHNP", typ: a(3.14) },
         { json: "elecSubHurt", js: "elecSubHurt", typ: 3.14 },
         { json: "elementMastery", js: "elementMastery", typ: 0 },
         { json: "entityBudgetLevel", js: "entityBudgetLevel", typ: 0 },
         { json: "equips", js: "equips", typ: a(0) },
         { json: "excludeWeathers", js: "excludeWeathers", typ: r("ExcludeWeathers") },
+        { json: "FCAHMCPMPNP", js: "FCAHMCPMPNP", typ: true },
         { json: "featureTagGroupID", js: "featureTagGroupID", typ: 0 },
-        { json: "FFOMDMCHMCC", js: "FFOMDMCHMCC", typ: 0 },
         { json: "fireSubHurt", js: "fireSubHurt", typ: 3.14 },
-        { json: "GHGKDLEMENH", js: "GHGKDLEMENH", typ: 0 },
-        { json: "GPJIHFNKCKC", js: "GPJIHFNKCKC", typ: 0 },
-        { json: "GPONINHPLCD", js: "GPONINHPLCD", typ: 0 },
         { json: "grassSubHurt", js: "grassSubHurt", typ: 3.14 },
-        { json: "HALIFLONHIH", js: "HALIFLONHIH", typ: 0 },
         { json: "hideNameInElementView", js: "hideNameInElementView", typ: true },
         { json: "hpBase", js: "hpBase", typ: 3.14 },
+        { json: "hpDrops", js: "hpDrops", typ: a(r("HPDrop")) },
         { json: "iceSubHurt", js: "iceSubHurt", typ: 3.14 },
         { json: "id", js: "id", typ: 0 },
-        { json: "IOCJKCGOCJN", js: "IOCJKCGOCJN", typ: 0 },
+        { json: "IFNGBLPHINC", js: "IFNGBLPHINC", typ: 0 },
+        { json: "ILDGFINBLII", js: "ILDGFINBLII", typ: 0 },
+        { json: "IOMANLCNFEO", js: "IOMANLCNFEO", typ: 0 },
         { json: "isAIHashCheck", js: "isAIHashCheck", typ: true },
         { json: "isInvisibleReset", js: "isInvisibleReset", typ: true },
-        { json: "JBEBHHPANFP", js: "JBEBHHPANFP", typ: r("Jbebhhpanfp") },
-        { json: "JHPAPNAGOCN", js: "JHPAPNAGOCN", typ: 0 },
+        { json: "JEOILPDPBCF", js: "JEOILPDPBCF", typ: 0 },
+        { json: "KGOGCJLGLNI", js: "KGOGCJLGLNI", typ: 0 },
         { json: "killDropId", js: "killDropId", typ: 0 },
-        { json: "KODKCJGBJLD", js: "KODKCJGBJLD", typ: 0 },
-        { json: "LGPEJEBJJPP", js: "LGPEJEBJJPP", typ: true },
         { json: "lodPatternName", js: "lodPatternName", typ: r("LodPatternName") },
         { json: "monsterName", js: "monsterName", typ: "" },
         { json: "mpPropID", js: "mpPropID", typ: 0 },
         { json: "nameTextMapHash", js: "nameTextMapHash", typ: 0 },
+        { json: "NCLJNCFOILK", js: "NCLJNCFOILK", typ: 0 },
+        { json: "NKGIPKIAOGH", js: "NKGIPKIAOGH", typ: 0 },
+        { json: "PBJALANPDBD", js: "PBJALANPDBD", typ: 0 },
         { json: "physicalSubHurt", js: "physicalSubHurt", typ: 3.14 },
+        { json: "PJFIHJIKDDI", js: "PJFIHJIKDDI", typ: a(3.14) },
         { json: "playType", js: "playType", typ: r("PlayType") },
+        { json: "PPMJAMDEFFO", js: "PPMJAMDEFFO", typ: r("Ppmjamdeffo") },
         { json: "prefabPathHash", js: "prefabPathHash", typ: 3.14 },
         { json: "prefabPathRagdollHash", js: "prefabPathRagdollHash", typ: 3.14 },
         { json: "prefabPathRemoteHash", js: "prefabPathRemoteHash", typ: 3.14 },
@@ -409,15 +413,15 @@ const typeMap: any = {
         { json: "waterSubHurt", js: "waterSubHurt", typ: 3.14 },
         { json: "windSubHurt", js: "windSubHurt", typ: 3.14 },
     ], false),
-    "Agmbdgbdmmc": o([
+    "HPDrop": o([
         { json: "dropId", js: "dropId", typ: 0 },
-        { json: "NDIKMHDKDLO", js: "NDIKMHDKDLO", typ: 0 },
+        { json: "hpPercent", js: "hpPercent", typ: 0 },
     ], false),
     "PropGrowCurve": o([
         { json: "growCurve", js: "growCurve", typ: r("GrowCurve") },
         { json: "type", js: "type", typ: r("PropGrowCurveType") },
     ], false),
-    "Jbebhhpanfp": [
+    "Ppmjamdeffo": [
         "None",
         "Ousia",
         "Pneuma",
@@ -443,6 +447,9 @@ const typeMap: any = {
         "Animal_Special_20_01",
         "Animal_Special_40_01",
         "",
+        "Monster_Beyd_Default_Lod1",
+        "Monster_Beyd_Default_Lod2",
+        "Monster_DisplayFar",
         "Monster_Flamingo_Normal_Migrate_01",
         "Monster_GiantChess_Stage2",
         "Monster_Narcissusborn_Narzissenkreuz_01",
@@ -452,6 +459,7 @@ const typeMap: any = {
         "Monster_Special_Dragon_01",
     ],
     "PlayType": [
+        "BEYOND",
         "DEFAULT",
     ],
     "GrowCurve": [
