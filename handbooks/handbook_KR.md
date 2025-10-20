@@ -1,4 +1,4 @@
-# GameVersion 6.0.0
+# GameVersion 6.1.0
 ## CharacterId
 ID:10000002 Name:카미사토 아야카<br>
 ID:10000003 Name:진<br>
@@ -103,12 +103,17 @@ ID:10000113 Name:이파<br>
 ID:10000114 Name:스커크<br>
 ID:10000115 Name:달리아<br>
 ID:10000116 Name:이네파<br>
+ID:10000117 Name:별인형·남성<br>
+ID:10000118 Name:별인형·여성<br>
 ID:10000119 Name:라우마<br>
 ID:10000120 Name:플린스<br>
 ID:10000121 Name:아이노<br>
+ID:10000122 Name:네페르<br>
 ID:10000901 Name:마비카 (체험)<br>
 ID:10000902 Name:호두(체험)<br>
 ID:10000903 Name:이네파<br>
+ID:10000998 Name:UGC (정식 남성)<br>
+ID:10000999 Name:UGC (정식 여성)<br>
 ## CostumeId
 ID:200200 Name:광휘의 달빛<br>
 ID:200201 Name:꽃 피는 날의 편지<br>
@@ -236,12 +241,17 @@ ID:211300 Name:은빛 휘파람 날개<br>
 ID:211400 Name:부서진 별<br>
 ID:211500 Name:무결한 기도<br>
 ID:211600 Name:기계의 꿈<br>
+ID:211700 Name:기본 코스튬<br>
+ID:211800 Name:기본 코스튬<br>
 ID:211900 Name:푸른 숲과 순수한 달<br>
 ID:212000 Name:야상곡<br>
 ID:212100 Name:뚝딱뚝딱 천재의 작업복<br>
+ID:212200 Name:초록빛 수수께끼<br>
 ID:290100 Name:기본 코스튬<br>
 ID:290200 Name:기본 코스튬<br>
 ID:290300 Name:기본 코스튬<br>
+ID:299800 Name:기본 코스튬<br>
+ID:299900 Name:기본 코스튬<br>
 ## SkillId
 ID:10024 Name:카미사토류·경(傾)<br>
 ID:10018 Name:카미사토류·얼음꽃<br>
@@ -259,7 +269,6 @@ ID:10088 Name:흐름 제어<br>
 ID:100543 Name:이방의 강철바람<br>
 ID:10067 Name:회오리 검<br>
 ID:10068 Name:격동의 바람<br>
-ID:100544 Name:<br>
 ID:100545 Name:이방의 암봉<br>
 ID:10077 Name:성운검<br>
 ID:10078 Name:첩첩산중<br>
@@ -282,7 +291,6 @@ ID:10088 Name:흐름 제어<br>
 ID:100553 Name:이방의 강철바람<br>
 ID:10067 Name:회오리 검<br>
 ID:10068 Name:격동의 바람<br>
-ID:100554 Name:<br>
 ID:100555 Name:이방의 암봉<br>
 ID:10077 Name:성운검<br>
 ID:10078 Name:첩첩산중<br>
@@ -586,6 +594,8 @@ ID:11155 Name:물빛 기도<br>
 ID:11161 Name:회전 청소법<br>
 ID:11162 Name:정화 모드·반송파<br>
 ID:11165 Name:지고한 율령·광역 소탕<br>
+ID:11171 Name:외역의 검술·철통 경계<br>
+ID:11171 Name:외역의 검술·철통 경계<br>
 ID:11191 Name:숲의 여정<br>
 ID:11192 Name:성가·밤의 안식<br>
 ID:11195 Name:성가·달빛 소원<br>
@@ -595,6 +605,9 @@ ID:11205 Name:고대 예법·밤의 손님<br>
 ID:11211 Name:뚝딱뚝딱 수리법<br>
 ID:11212 Name:아이디어 집게<br>
 ID:11215 Name:정밀 냉수기<br>
+ID:11221 Name:춤추는 뱀<br>
+ID:11222 Name:대국·천일 밤의 춤<br>
+ID:11225 Name:성약·진실의 눈동자<br>
 ID:10231 Name:밀가루 음식 솜씨<br>
 ID:10232 Name:누룽지 출격<br>
 ID:10235 Name:화륜<br>
@@ -945,6 +958,12 @@ ID:11621 Name:오버클럭<br>
 ID:11622 Name:광역 재구축 프로토콜<br>
 ID:11623 Name:달빛 징조의 축복·중계기<br>
 ID:11625 Name:요리 합성 유닛<br>
+ID:11721 Name:전장 재편성<br>
+ID:11722 Name:교전 준비<br>
+ID:11725 Name:유연한 전투 태세<br>
+ID:11721 Name:전장 재편성<br>
+ID:11722 Name:교전 준비<br>
+ID:11725 Name:유연한 전투 태세<br>
 ID:11921 Name:서리밤에 바치는 빛<br>
 ID:11922 Name:샘물에 바치는 정화<br>
 ID:11923 Name:달빛 징조의 축복·자연의 은총<br>
@@ -957,6 +976,10 @@ ID:12121 Name:모듈화 전략<br>
 ID:12122 Name:출력 강화 시스템<br>
 ID:12123 Name:달빛 징조의 축복·전력 연산<br>
 ID:12125 Name:소형 탐지기<br>
+ID:12221 Name:달빛 승부사<br>
+ID:12222 Name:모래의 딸<br>
+ID:12223 Name:달빛 징조의 축복·황혼의 그림자<br>
+ID:12225 Name:황금 밀실의 모략<br>
 ID:2321 Name:교차 화력<br>
 ID:2322 Name:절운차오톈자오<br>
 ID:2323 Name:만민당 주방장<br>
@@ -1628,6 +1651,12 @@ ID:1213 Name:케이크와 장치 수리의 예술<br>
 ID:1214 Name:버터와 고양이의 에너지 법칙<br>
 ID:1215 Name:금속과 빛의 영구 터빈<br>
 ID:1216 Name:발명은 천재의 의무<br>
+ID:1221 Name:계획은 성공의 시작<br>
+ID:1222 Name:관찰은 계획의 초석<br>
+ID:1223 Name:진실을 가리는 거짓<br>
+ID:1224 Name:마음을 홀리는 함정<br>
+ID:1225 Name:기회를 포착한 순간<br>
+ID:1226 Name:거머쥔 역전의 승리<br>
 ## ArtifactId
 ID:20002 Name:초심자의 깃털<br>
 ID:20004 Name:초심자의 꽃<br>
@@ -2117,12 +2146,12 @@ ID:23791 Name:순수한 자의 영광<br>
 ID:23792 Name:축복받은 자의 깃털<br>
 ID:23793 Name:사자의 성관<br>
 ID:23794 Name:유랑자의 눈물 결정<br>
-ID:23795 Name:서리 사제의 망상<br>
+ID:23795 Name:서리 사제의 광기<br>
 ID:23796 Name:순수한 자의 영광<br>
 ID:23797 Name:축복받은 자의 깃털<br>
 ID:23798 Name:사자의 성관<br>
 ID:23799 Name:유랑자의 눈물 결정<br>
-ID:23800 Name:서리 사제의 망상<br>
+ID:23800 Name:서리 사제의 광기<br>
 ID:24101 Name:검투사의 취기<br>
 ID:24102 Name:검투사의 귀결<br>
 ID:24103 Name:화려한 투구<br>
@@ -2681,8 +2710,8 @@ ID:42432 Name:사자의 성관<br>
 ID:42433 Name:사자의 성관<br>
 ID:42442 Name:유랑자의 눈물 결정<br>
 ID:42443 Name:유랑자의 눈물 결정<br>
-ID:42452 Name:서리 사제의 망상<br>
-ID:42453 Name:서리 사제의 망상<br>
+ID:42452 Name:서리 사제의 광기<br>
+ID:42453 Name:서리 사제의 광기<br>
 ID:42513 Name:순수한 자의 영광<br>
 ID:42514 Name:순수한 자의 영광<br>
 ID:42523 Name:축복받은 자의 깃털<br>
@@ -2691,8 +2720,8 @@ ID:42533 Name:사자의 성관<br>
 ID:42534 Name:사자의 성관<br>
 ID:42543 Name:유랑자의 눈물 결정<br>
 ID:42544 Name:유랑자의 눈물 결정<br>
-ID:42553 Name:서리 사제의 망상<br>
-ID:42554 Name:서리 사제의 망상<br>
+ID:42553 Name:서리 사제의 광기<br>
+ID:42554 Name:서리 사제의 광기<br>
 ID:51110 Name:이국의 술잔<br>
 ID:51111 Name:이국의 술잔<br>
 ID:51112 Name:이국의 술잔<br>
@@ -5599,6 +5628,7 @@ ID:98544 Name:혼향의 꽃<br>
 ID:98553 Name:축사의 증명<br>
 ID:98554 Name:축사의 증명<br>
 ## WeaponId
+ID:10009 Name:<br>
 ID:11101 Name:무인검<br>
 ID:11201 Name:실버 소드<br>
 ID:11301 Name:차가운 칼날<br>
@@ -5725,6 +5755,7 @@ ID:13430 Name:산을 고정하는 못<br>
 ID:13431 Name:무지개의 행적<br>
 ID:13432 Name:쉼터의 이야기꾼<br>
 ID:13433 Name:채굴의 삽<br>
+ID:13434 Name:신성한 제사의 지팡이<br>
 ID:13501 Name:호마의 지팡이<br>
 ID:13502 Name:천공의 마루<br>
 ID:13504 Name:관홍의 창<br>
@@ -5769,6 +5800,7 @@ ID:14430 Name:돌아오는 파도<br>
 ID:14431 Name:약스체의 고리<br>
 ID:14432 Name:금빛 류트<br>
 ID:14433 Name:검은 골수의 등불<br>
+ID:14434 Name:서릿빛 새벽<br>
 ID:14501 Name:천공의 두루마리<br>
 ID:14502 Name:사풍 원서<br>
 ID:14503 Name:산실된 서사시<br>
@@ -5786,6 +5818,7 @@ ID:14517 Name:별지기의 시선<br>
 ID:14518 Name:나른한 새해<br>
 ID:14519 Name:빛나는 마음<br>
 ID:14520 Name:밤을 엮는 거울<br>
+ID:14521 Name:진실의 함<br>
 ID:15101 Name:사냥활<br>
 ID:15201 Name:노련의 사냥활<br>
 ID:15301 Name:까마귀깃 활<br>
@@ -5920,6 +5953,7 @@ ID:184 Name:행동력<br>
 ID:185 Name:추론 기록<br>
 ID:186 Name:여름 열기<br>
 ID:187 Name:군단 사기<br>
+ID:188 Name:완성도<br>
 ID:201 Name:원석<br>
 ID:202 Name:모라<br>
 ID:203 Name:창세의 결정<br>
@@ -5933,6 +5967,15 @@ ID:221 Name:주인 없는 스타라이트<br>
 ID:222 Name:주인 없는 스타더스트<br>
 ID:223 Name:뒤얽힌 인연<br>
 ID:224 Name:만남의 인연<br>
+ID:231 Name:시공의 결정<br>
+ID:232 Name:찬란한 쐐기석<br>
+ID:233 Name:구현의 수정<br>
+ID:234 Name:각인 파편<br>
+ID:235 Name:로비 열쇠<br>
+ID:236 Name:빛나는 쐐기석<br>
+ID:238 Name:별세계 경험치<br>
+ID:239 Name:유람 경험치<br>
+ID:240 Name:세계 유람<br>
 ID:301 Name:불의 인장<br>
 ID:302 Name:물의 인장<br>
 ID:303 Name:풀의 인장<br>
@@ -6136,6 +6179,8 @@ ID:1201 Name:진주 기행·초안<br>
 ID:1202 Name:공월 축복·초승달<br>
 ID:1301 Name:새 이름의 붓<br>
 ID:1302 Name:새 이름의 계약<br>
+ID:1303 Name:새 이름의 열쇠·좌<br>
+ID:1304 Name:새 이름의 열쇠·우<br>
 ID:2001 Name:원소 에너지 오브(불)<br>
 ID:2002 Name:원소 에너지 오브(물)<br>
 ID:2003 Name:원소 에너지 오브(풀)<br>
@@ -6205,6 +6250,7 @@ ID:4116 Name:이네파<br>
 ID:4119 Name:라우마<br>
 ID:4120 Name:플린스<br>
 ID:4121 Name:아이노<br>
+ID:4122 Name:네페르<br>
 ID:5100 Name:카치나의 운명의 별<br>
 ID:5101 Name:키니치의 운명의 별<br>
 ID:5102 Name:말라니의 운명의 별<br>
@@ -6225,6 +6271,7 @@ ID:5116 Name:이네파의 운명의 별<br>
 ID:5119 Name:라우마의 운명의 별<br>
 ID:5120 Name:플린스의 운명의 별<br>
 ID:5121 Name:아이노의 운명의 별<br>
+ID:5122 Name:네페르의 운명의 별<br>
 ID:6002 Name:카미사토 아야카의 운명의 별<br>
 ID:6003 Name:진의 운명의 별<br>
 ID:6005 Name:여행자(남)의 운명의 별<br>
@@ -6331,6 +6378,7 @@ ID:6116 Name:이네파의 운명의 별<br>
 ID:6119 Name:라우마의 운명의 별<br>
 ID:6120 Name:플린스의 운명의 별<br>
 ID:6121 Name:아이노의 운명의 별<br>
+ID:6122 Name:네페르의 운명의 별<br>
 ID:100001 Name:사과<br>
 ID:100002 Name:일몰 열매<br>
 ID:100003 Name:쪽지<br>
@@ -8897,6 +8945,17 @@ ID:108905 Name:설탕 공예·이네파<br>
 ID:108906 Name:설탕 공예·라우마<br>
 ID:108907 Name:설탕 공예·아이노<br>
 ID:108908 Name:설탕 공예·플린스<br>
+ID:108909 Name:이상한 백령과 파이<br>
+ID:108910 Name:백령과 파이<br>
+ID:108911 Name:맛있는 백령과 파이<br>
+ID:108912 Name:이상한 크림 연어 수프<br>
+ID:108913 Name:크림 연어 수프<br>
+ID:108914 Name:맛있는 크림 연어 수프<br>
+ID:108915 Name:「피라미다의 밤꾀꼬리」<br>
+ID:108916 Name:변방의 땅<br>
+ID:108917 Name:와일드 베리 로드<br>
+ID:108918 Name:「비밀 거래」<br>
+ID:108919 Name:설탕 공예·네페르<br>
 ID:109000 Name:레시피 아이템<br>
 ID:109101 Name:레시피: 버섯 닭꼬치<br>
 ID:109102 Name:레시피: 어부 토스트<br>
@@ -9152,6 +9211,8 @@ ID:109635 Name:레시피: 룰렛 칵테일<br>
 ID:109636 Name:레시피: 노드크라이 핫도그<br>
 ID:109637 Name:레시피: 바삭바삭 스테이크<br>
 ID:109638 Name:레시피: 백령과 닭구이<br>
+ID:109639 Name:레시피: 백령과 파이<br>
+ID:109640 Name:레시피: 크림 연어 수프<br>
 ID:110000 Name:합성 산물<br>
 ID:110001 Name:밀가루<br>
 ID:110002 Name:크림<br>
@@ -9413,6 +9474,7 @@ ID:113075 Name:승격·퀸<br>
 ID:113076 Name:비밀근원 분사구<br>
 ID:113077 Name:달의 힘 오리 금형<br>
 ID:113078 Name:빛을 품은 날개<br>
+ID:113079 Name:빛나는 뿔<br>
 ID:114001 Name:고탑 왕의 잔해<br>
 ID:114002 Name:고탑 왕의 절망<br>
 ID:114003 Name:고탑 왕의 조각<br>
@@ -10809,7 +10871,7 @@ ID:121230 Name:슈벨마 테마파크 기념 지도<br>
 ID:121231 Name:느긋한 휴양촌 기념 앨범<br>
 ID:121232 Name:노트 속의 지도<br>
 ID:121233 Name:신비한 지도<br>
-ID:121234 Name:신비롭게 반짝이는 선물<br>
+ID:121234 Name:별세계 수정구<br>
 ID:121235 Name:출처 불명의 편지<br>
 ID:121236 Name:슈벨마 테마파크 기념 지도<br>
 ID:121237 Name:슈벨마 테마파크 기념 지도<br>
@@ -10873,9 +10935,9 @@ ID:121296 Name:누군가의 파손된 노트 (2)<br>
 ID:121297 Name:부식으로 파손된 노트 (3)<br>
 ID:121298 Name:불 위를 걷는 자의 결단<br>
 ID:121299 Name:바래버린 원고<br>
-ID:121300 Name:<br>
+ID:121300 Name:행운 쿠폰<br>
 ID:121301 Name:느긋한 휘장<br>
-ID:121302 Name:<br>
+ID:121302 Name:신비한 상품<br>
 ID:121303 Name:설탕 공예 상자<br>
 ID:121304 Name:순디자타의 열소 단조 기록<br>
 ID:121305 Name:화촉과 바람깃의 제사장의 기록·첫 번째<br>
@@ -10900,6 +10962,7 @@ ID:121325 Name:누군가의 도움 요청 편지<br>
 ID:121327 Name:현상 증거물: 사기꾼의 붉은 비단<br>
 ID:121328 Name:현상 증거물: 숙녀의 브로치<br>
 ID:121329 Name:현상 증거물: 얼룩진 코등이<br>
+ID:121330 Name:기록된 정보<br>
 ID:121331 Name:조잡한 필체의 수기·1<br>
 ID:121332 Name:조잡한 필체의 수기·2<br>
 ID:121333 Name:조잡한 필체의 수기·3<br>
@@ -10928,10 +10991,12 @@ ID:121358 Name:달의 힘 실험설계국 평면도<br>
 ID:121359 Name:예비 부품<br>
 ID:121360 Name:레버<br>
 ID:121361 Name:「철고래 대령」과 함께 찍은 사진<br>
+ID:121362 Name:특제 설탕 공예 상자<br>
 ID:121363 Name:낡은 휴대용 베어링<br>
 ID:121364 Name:「별 열매」<br>
 ID:121365 Name:훈련장의 과녁<br>
 ID:121366 Name:아우니의 메모<br>
+ID:121367 Name:정보 모음집<br>
 ID:121368 Name:백업 프로그램 모듈<br>
 ID:121369 Name:훼손된 사진<br>
 ID:121370 Name:훼손된 사진<br>
@@ -10939,6 +11004,9 @@ ID:121371 Name:훼손된 사진<br>
 ID:121372 Name:훼손된 사진<br>
 ID:121373 Name:개봉된 밀서<br>
 ID:121374 Name:무알코올 사과주<br>
+ID:121375 Name:문을 여는 열쇠<br>
+ID:121376 Name:낡은 노트<br>
+ID:121377 Name:정리된 노트<br>
 ID:121383 Name:소라 노트<br>
 ID:121384 Name:소라 노트<br>
 ID:121385 Name:공지<br>
@@ -10957,6 +11025,11 @@ ID:121397 Name:오래된 책<br>
 ID:121398 Name:로비아에게 보내는 편지<br>
 ID:121399 Name:아일라에게 보내는 편지<br>
 ID:121400 Name:아일라의 노트<br>
+ID:121401 Name:노새가 된 사람<br>
+ID:121402 Name:불에 그을린 종이<br>
+ID:121406 Name:「비밀의 집」 자금<br>
+ID:121407 Name:「비밀의 집」 자금<br>
+ID:121408 Name:「비밀의 집」 자금<br>
 ID:129001 Name:뭇별 사이의 눈물<br>
 ID:129002 Name:흑요석 고대 이름<br>
 ID:130001 Name:「예상꽃」 씨앗<br>
@@ -11616,6 +11689,8 @@ ID:210257 Name:노드크라이·성역<br>
 ID:210258 Name:업적·기나긴 이별<br>
 ID:210259 Name:기행·빙월<br>
 ID:210260 Name:축제·미식<br>
+ID:210261 Name:네페르·비밀<br>
+ID:210262 Name:기행·유적<br>
 ID:215001 Name:궤적·민들레 기사<br>
 ID:215002 Name:궤적·차가운 환혼의 밤<br>
 ID:215003 Name:궤적·엄월천권<br>
@@ -11962,6 +12037,14 @@ ID:318129 Name:출격 준비<br>
 ID:318130 Name:단정한 자태<br>
 ID:318131 Name:놀래주기<br>
 ID:318132 Name:신중함<br>
+ID:318133 Name:전투 태세<br>
+ID:318134 Name:한가한 시간<br>
+ID:318135 Name:건배<br>
+ID:318136 Name:무기 다루기<br>
+ID:318137 Name:아쥬 혼내기<br>
+ID:318138 Name:깜짝<br>
+ID:318139 Name:주먹 문지르기<br>
+ID:318140 Name:한가한 시간<br>
 ID:319001 Name:절묘한 트릭<br>
 ID:319002 Name:떠오르는 사색<br>
 ID:319003 Name:옥과 천성<br>
@@ -12104,6 +12187,9 @@ ID:326117 Name:식탐의 숲룡 산왕<br>
 ID:326118 Name:얀사<br>
 ID:326119 Name:유메미즈키 미즈키<br>
 ID:326120 Name:침식된 근원의 불꽃 주인<br>
+ID:326121 Name:바레사<br>
+ID:326122 Name:이파<br>
+ID:326123 Name:물의 환인간<br>
 ID:326500 Name:단 하나의 마음<br>
 ID:326501 Name:냉혈의 검<br>
 ID:326502 Name:진기 토납<br>
@@ -12225,6 +12311,9 @@ ID:326617 Name:탐욕스러운 포식<br>
 ID:326618 Name:「비옥한 터전」의 가르침<br>
 ID:326619 Name:그대 꿈속에서 본<br>
 ID:326620 Name:타오르는 분노<br>
+ID:326621 Name:히어로의 승리<br>
+ID:326622 Name:온열 요법<br>
+ID:326623 Name:합류<br>
 ID:327000 Name:마도 서론<br>
 ID:327001 Name:제례의 악장<br>
 ID:327002 Name:천공의 두루마리<br>
@@ -12332,6 +12421,9 @@ ID:327103 Name:왕실의 가면<br>
 ID:327104 Name:미완의 몽상<br>
 ID:327105 Name:조화로운 공상의 단편<br>
 ID:327106 Name:약수<br>
+ID:327107 Name:불멸의 달빛<br>
+ID:327108 Name:악룡의 단안경<br>
+ID:327109 Name:옛 왕실의 의식<br>
 ID:328000 Name:리월 항구<br>
 ID:328001 Name:기사단 도서관<br>
 ID:328002 Name:군옥각<br>
@@ -12400,6 +12492,7 @@ ID:328064 Name:잉크빛 주점<br>
 ID:328065 Name:별길 왕성<br>
 ID:328066 Name:숲의 축복<br>
 ID:328067 Name:예언의 여신의 선물<br>
+ID:328068 Name:모험가 길드<br>
 ID:329000 Name:원소 공명: 뒤엉킨 얼음<br>
 ID:329001 Name:원소 공명: 분쇄의 얼음<br>
 ID:329002 Name:원소 공명: 뒤엉킨 물<br>
@@ -12502,6 +12595,8 @@ ID:329098 Name:깨어난 「악룡」<br>
 ID:329099 Name:내레이션의 주석<br>
 ID:329101 Name:「마녀M의 축복」<br>
 ID:329102 Name:「축제의 리듬」<br>
+ID:329103 Name:과거의 의식과 진심 어린 마음<br>
+ID:329104 Name:침옥 차 이슬<br>
 ID:330000 Name:감우<br>
 ID:330001 Name:케이아<br>
 ID:330002 Name:중운<br>
@@ -12623,6 +12718,9 @@ ID:330117 Name:식탐의 숲룡 산왕<br>
 ID:330118 Name:얀사<br>
 ID:330119 Name:유메미즈키 미즈키<br>
 ID:330120 Name:침식된 근원의 불꽃 주인<br>
+ID:330121 Name:바레사<br>
+ID:330122 Name:이파<br>
+ID:330123 Name:물의 환인간<br>
 ID:330500 Name:단 하나의 마음<br>
 ID:330501 Name:냉혈의 검<br>
 ID:330502 Name:진기 토납<br>
@@ -12744,6 +12842,9 @@ ID:330617 Name:탐욕스러운 포식<br>
 ID:330618 Name:「비옥한 터전」의 가르침<br>
 ID:330619 Name:그대 꿈속에서 본<br>
 ID:330620 Name:타오르는 분노<br>
+ID:330621 Name:히어로의 승리<br>
+ID:330622 Name:온열 요법<br>
+ID:330623 Name:합류<br>
 ID:331000 Name:마도 서론<br>
 ID:331001 Name:제례의 악장<br>
 ID:331002 Name:천공의 두루마리<br>
@@ -12851,6 +12952,9 @@ ID:331103 Name:왕실의 가면<br>
 ID:331104 Name:미완의 몽상<br>
 ID:331105 Name:조화로운 공상의 단편<br>
 ID:331106 Name:약수<br>
+ID:331107 Name:불멸의 달빛<br>
+ID:331108 Name:악룡의 단안경<br>
+ID:331109 Name:옛 왕실의 의식<br>
 ID:332000 Name:리월항<br>
 ID:332001 Name:기사단 도서관<br>
 ID:332002 Name:군옥각<br>
@@ -12919,6 +13023,7 @@ ID:332064 Name:잉크빛 주점<br>
 ID:332065 Name:별길 왕성<br>
 ID:332066 Name:숲의 축복<br>
 ID:332067 Name:예언의 여신의 선물<br>
+ID:332068 Name:모험가 길드<br>
 ID:333000 Name:원소 공명: 뒤엉킨 얼음<br>
 ID:333001 Name:원소 공명: 분쇄의 얼음<br>
 ID:333002 Name:원소 공명: 뒤엉킨 물<br>
@@ -13021,6 +13126,8 @@ ID:333098 Name:깨어난 「악룡」<br>
 ID:333099 Name:내레이션의 주석<br>
 ID:333101 Name:「마녀M의 축복」<br>
 ID:333102 Name:「축제의 리듬」<br>
+ID:333103 Name:과거의 의식과 진심 어린 마음<br>
+ID:333104 Name:침옥 차 이슬<br>
 ID:334000 Name:감우<br>
 ID:334001 Name:케이아<br>
 ID:334002 Name:중운<br>
@@ -13142,6 +13249,9 @@ ID:334117 Name:식탐의 숲룡 산왕<br>
 ID:334118 Name:얀사<br>
 ID:334119 Name:유메미즈키 미즈키<br>
 ID:334120 Name:침식된 근원의 불꽃 주인<br>
+ID:334121 Name:바레사<br>
+ID:334122 Name:이파<br>
+ID:334123 Name:물의 환인간<br>
 ID:334500 Name:단 하나의 마음<br>
 ID:334501 Name:냉혈의 검<br>
 ID:334502 Name:진기 토납<br>
@@ -13263,6 +13373,9 @@ ID:334617 Name:탐욕스러운 포식<br>
 ID:334618 Name:「비옥한 터전」의 가르침<br>
 ID:334619 Name:그대 꿈속에서 본<br>
 ID:334620 Name:타오르는 분노<br>
+ID:334621 Name:히어로의 승리<br>
+ID:334622 Name:온열 요법<br>
+ID:334623 Name:합류<br>
 ID:335000 Name:마도 서론<br>
 ID:335001 Name:제례의 악장<br>
 ID:335002 Name:천공의 두루마리<br>
@@ -13370,6 +13483,9 @@ ID:335103 Name:왕실의 가면<br>
 ID:335104 Name:미완의 몽상<br>
 ID:335105 Name:조화로운 공상의 단편<br>
 ID:335106 Name:약수<br>
+ID:335107 Name:불멸의 달빛<br>
+ID:335108 Name:악룡의 단안경<br>
+ID:335109 Name:옛 왕실의 의식<br>
 ID:336000 Name:리월항<br>
 ID:336001 Name:기사단 도서관<br>
 ID:336002 Name:군옥각<br>
@@ -13438,6 +13554,7 @@ ID:336064 Name:잉크빛 주점<br>
 ID:336065 Name:별길 왕성<br>
 ID:336066 Name:숲의 축복<br>
 ID:336067 Name:예언의 여신의 선물<br>
+ID:336068 Name:모험가 길드<br>
 ID:337000 Name:원소 공명: 뒤엉킨 얼음<br>
 ID:337001 Name:원소 공명: 분쇄의 얼음<br>
 ID:337002 Name:원소 공명: 뒤엉킨 물<br>
@@ -13540,6 +13657,8 @@ ID:337098 Name:깨어난 「악룡」<br>
 ID:337099 Name:내레이션의 주석<br>
 ID:337101 Name:「마녀M의 축복」<br>
 ID:337102 Name:「축제의 리듬」<br>
+ID:337103 Name:과거의 의식과 진심 어린 마음<br>
+ID:337104 Name:침옥 차 이슬<br>
 ID:339000 Name:원초<br>
 ID:339001 Name:몬드<br>
 ID:339002 Name:리월<br>
@@ -13575,6 +13694,7 @@ ID:339035 Name:적색 모래바다·긴 밤<br>
 ID:339036 Name:적색 모래바다·고동색<br>
 ID:339037 Name:적색 모래바다·왕관<br>
 ID:339038 Name:폰타·붉은 열정<br>
+ID:339039 Name:지난날의 바다·침몰<br>
 ID:339500 Name:몬드<br>
 ID:339501 Name:리월<br>
 ID:339502 Name:이나즈마<br>
@@ -13819,6 +13939,8 @@ ID:381115 Name:「시장의 화려한 비단」<br>
 ID:381116 Name:복숭아야자나무 원목 「지탱」 진열장<br>
 ID:381117 Name:「시장의 정리정돈」<br>
 ID:381118 Name:「꽃노래의 집중 홍보」<br>
+ID:381119 Name:「추리와 귀납」<br>
+ID:381120 Name:공장 수납장-「뒤죽박죽」<br>
 ID:381201 Name:도서관 이층 책장<br>
 ID:381202 Name:정교한 췌화나무 책장<br>
 ID:381203 Name:저렴한 췌화나무 책장<br>
@@ -13876,6 +13998,9 @@ ID:381337 Name:「네발 대형 방패」<br>
 ID:381338 Name:「이름 없는 조연」<br>
 ID:381339 Name:「만능 일꾼」<br>
 ID:381340 Name:「시장의 판매 전략」<br>
+ID:381341 Name:공장 긴 탁자-「시간 절약」<br>
+ID:381342 Name:주점 사각 탁자-「자기 보호」<br>
+ID:381343 Name:실내 긴 탁자-「섬세한 관리」<br>
 ID:381401 Name:바람의 가호를 받는 침대<br>
 ID:381402 Name:안개 노을의 꿈 침대<br>
 ID:381403 Name:꿈의 나무 「벚꽃 잠」 침대<br>
@@ -13885,6 +14010,8 @@ ID:381406 Name:아디가마 나무 「연회」 의자<br>
 ID:381407 Name:피나무 원목 「튼튼한」 침대<br>
 ID:381408 Name:피나무 원목 「숙면」 침대<br>
 ID:381409 Name:돌 침대-「숙면」<br>
+ID:381410 Name:「티격태격 우정」<br>
+ID:381411 Name:주점 침대-「적당한 푹신함」<br>
 ID:381501 Name:소나무 객잔 카운터<br>
 ID:381502 Name:찻집 카운터-「십사환」<br>
 ID:381503 Name:사막 석대-「견고」<br>
@@ -13894,6 +14021,7 @@ ID:381506 Name:「술집 사건의 증인」<br>
 ID:381507 Name:「즐거운 즉흥 공연 시간」<br>
 ID:381508 Name:차 공방의 부뚜막-「절묘한 화력」<br>
 ID:381509 Name:차 공방의 부뚜막-「세심한 가공」<br>
+ID:381511 Name:「질문의 대가」<br>
 ID:382101 Name:푹신한 접견실 소파<br>
 ID:382102 Name:「푸른 하늘의 오후」<br>
 ID:382103 Name:「견고한 의지」<br>
@@ -13921,6 +14049,9 @@ ID:382126 Name:경기장의 「뜨거운 연회」 등받이 의자<br>
 ID:382127 Name:경기장의 「단좌」 벤치<br>
 ID:382128 Name:경기장의 「간이」 둥근 의자<br>
 ID:382129 Name:「한입에 꿀꺽」<br>
+ID:382130 Name:「고요함과 아늑함」<br>
+ID:382131 Name:옥빛 개암나무 등받이 의자<br>
+ID:382132 Name:공장 낮은 의자-「다양한 업무」<br>
 ID:382201 Name:북대륙 돌 벽난로<br>
 ID:382202 Name:접이식 소나무 병풍-「구름과 조각배」<br>
 ID:382203 Name:경목 좌병-「구름과 아침 안개」<br>
@@ -13983,6 +14114,10 @@ ID:382268 Name:「시장의 제철 식자재」<br>
 ID:382269 Name:「길 위의 행인」<br>
 ID:382270 Name:「불꽃과의 거리」<br>
 ID:382271 Name:휴대형 범용 화로<br>
+ID:382274 Name:「구름 배」<br>
+ID:382275 Name:「취한 밤의 멜로디」<br>
+ID:382276 Name:로부르참나무 복합 캣타워<br>
+ID:382282 Name:「숨겨진 비밀」<br>
 ID:382301 Name:몬드풍 카펫-「정열의 빨강」<br>
 ID:382302 Name:몬드풍 카펫-「지치지 않는 탐색」<br>
 ID:382303 Name:객잔 카펫-「내 집 같은 편안함」<br>
@@ -14001,6 +14136,8 @@ ID:382315 Name:폰타인 카펫-「네모반듯」<br>
 ID:382316 Name:「바래진 석양」<br>
 ID:382318 Name:피로의 카펫-「부담 덜기」<br>
 ID:382319 Name:시장 카펫-「열정과 온기」<br>
+ID:382320 Name:실내 카펫-「촘촘한 부드러움」<br>
+ID:382321 Name:실내 카펫-「어두운 밤의 별」<br>
 ID:382401 Name:색채 도자기-「화염의 산물」<br>
 ID:382402 Name:두발 목각 인형-「흔들흔들」<br>
 ID:382403 Name:네발 목각 인형-「안정적」<br>
@@ -14128,6 +14265,8 @@ ID:384219 Name:핵심 조명-「조용한 밤의 사색」<br>
 ID:384220 Name:열소 조명-「길잡이」<br>
 ID:384221 Name:「둥실둥실 튜브」<br>
 ID:384222 Name:「긴급 구명 튜브」<br>
+ID:384223 Name:공장 방송-「정신번쩍」<br>
+ID:384224 Name:주점 과녁-「득점」<br>
 ID:384501 Name:「유대의 순간」<br>
 ID:390101 Name:건초 오두막<br>
 ID:390102 Name:건초 저장고<br>
@@ -14901,9 +15040,11 @@ ID:394628 Name:「흔들리는 기쁨」<br>
 ID:394631 Name:기계 인형-「번뜩이는 영감」<br>
 ID:394632 Name:「배불뚝이 부하」<br>
 ID:394633 Name:중형 화물칸-「효율적인 운송」<br>
+ID:394636 Name:수수께끼 파트너-「사라진 긴장감」<br>
 ID:394800 Name:「잠꾸러기 기병」<br>
 ID:394803 Name:열정의 음악 테이블-「축제의 리듬」<br>
 ID:394809 Name:「둥근 모자 주방장」<br>
+ID:394810 Name:「납작 고양이」<br>
 ## MonsterId
 ID:20010101 Name:풀 슬라임<br>
 ID:20010201 Name:거대 풀 슬라임<br>
@@ -15108,6 +15249,11 @@ ID:20080301 Name:화염·서리밤 후예<br>
 ID:20080302 Name:화염·서리밤 후예<br>
 ID:20080401 Name:결빙·서리밤 후예<br>
 ID:20080402 Name:결빙·서리밤 후예<br>
+ID:20081001 Name:서리밤 하늘 영주<br>
+ID:20081002 Name:서리밤 하늘 영주<br>
+ID:20081003 Name:서리밤 하늘 영주<br>
+ID:20081004 Name:서리밤 하늘 영주<br>
+ID:20081101 Name:서리밤 하늘 영주<br>
 ID:21010101 Name:츄츄족<br>
 ID:21010102 Name:츄츄족<br>
 ID:21010103 Name:츄츄족<br>
@@ -15368,15 +15514,28 @@ ID:22121801 Name:그윽한 의태·새끼 바위 용 도마뱀<br>
 ID:22121901 Name:그윽한 의태·뿔룡<br>
 ID:22130001 Name:황야 배회자<br>
 ID:22130002 Name:황야 배회자<br>
+ID:22130003 Name:황야 배회자<br>
+ID:22130004 Name:황야 배회자<br>
 ID:22130101 Name:황야 배회자<br>
 ID:22130102 Name:황야 배회자<br>
 ID:22130103 Name:황야 배회자<br>
 ID:22130104 Name:황야 배회자<br>
+ID:22130105 Name:황야 배회자<br>
+ID:22130106 Name:황야 배회자<br>
+ID:22130107 Name:황야 배회자<br>
+ID:22130108 Name:황야 배회자<br>
+ID:22130109 Name:황야 배회자<br>
 ID:22130201 Name:황야 배회자<br>
 ID:22130202 Name:황야 배회자<br>
+ID:22130203 Name:황야 배회자<br>
+ID:22130204 Name:황야 배회자<br>
+ID:22130205 Name:황야 배회자<br>
 ID:22131001 Name:황야 사냥꾼<br>
 ID:22132001 Name:노련한 등지기<br>
 ID:22132002 Name:노련한 등지기<br>
+ID:22132003 Name:노련한 등지기<br>
+ID:22132004 Name:노련한 등지기<br>
+ID:22132005 Name:노련한 등지기<br>
 ID:23010101 Name:우인단 선발대·얼음총 중보병<br>
 ID:23010201 Name:우인단 선발대·물총 중보병<br>
 ID:23010301 Name:우인단 선발대·번개 해머 돌격대<br>
@@ -15405,6 +15564,9 @@ ID:23060301 Name:노련한 우인단·서리 심부름꾼<br>
 ID:23060302 Name:노련한 우인단·서리 심부름꾼<br>
 ID:23060401 Name:노련한 우인단·바람 심부름꾼<br>
 ID:23060402 Name:노련한 우인단·바람 심부름꾼<br>
+ID:23060501 Name:노련한 우인단·서리 심부름꾼<br>
+ID:23060502 Name:노련한 우인단·서리 심부름꾼<br>
+ID:23060503 Name:노련한 우인단·서리 심부름꾼<br>
 ID:23070101 Name:우인단 특수부대·전열병<br>
 ID:23070102 Name:우인단 특수부대·전열병<br>
 ID:23071101 Name:우인단 특수부대·전열병<br>
@@ -17021,6 +17183,7 @@ ID:29121102 Name:승격한 킹<br>
 ID:29121201 Name:승화한 퀸<br>
 ID:29121202 Name:승화한 퀸<br>
 ID:29122000 Name:문 앞의 체스 매치<br>
+ID:29140101 Name:???<br>
 ID:30010490 Name:거대 바람 슬라임<br>
 ID:30010590 Name:번개 슬라임<br>
 ID:30010591 Name:번개 슬라임<br>
@@ -17327,3 +17490,49 @@ ID:38060502 Name:<br>
 ID:39060101 Name:라이덴 쇼군<br>
 ID:39900101 Name:<br>
 ID:39900201 Name:<br>
+ID:84001011 Name:<br>
+ID:84001021 Name:<br>
+ID:84001031 Name:<br>
+ID:84001041 Name:<br>
+ID:84001051 Name:<br>
+ID:84001061 Name:<br>
+ID:84001081 Name:<br>
+ID:84001091 Name:<br>
+ID:84001101 Name:<br>
+ID:84001111 Name:<br>
+ID:84001121 Name:<br>
+ID:84001131 Name:<br>
+ID:84001141 Name:<br>
+ID:84001151 Name:<br>
+ID:84101011 Name:<br>
+ID:84101021 Name:<br>
+ID:84101051 Name:<br>
+ID:84102011 Name:<br>
+ID:84102021 Name:<br>
+ID:84102041 Name:<br>
+ID:84102051 Name:<br>
+ID:84102081 Name:<br>
+ID:84103011 Name:<br>
+ID:84201011 Name:<br>
+ID:84201021 Name:<br>
+ID:84201031 Name:<br>
+ID:84201041 Name:<br>
+ID:84301011 Name:<br>
+ID:84301031 Name:<br>
+ID:84301041 Name:<br>
+ID:84301061 Name:<br>
+ID:84401011 Name:<br>
+ID:84401031 Name:<br>
+ID:84403011 Name:<br>
+ID:84501021 Name:<br>
+ID:84503031 Name:<br>
+ID:84509011 Name:<br>
+ID:84601011 Name:<br>
+ID:84601021 Name:<br>
+ID:84601031 Name:<br>
+ID:84604011 Name:<br>
+ID:84609011 Name:<br>
+ID:84612021 Name:<br>
+ID:84623031 Name:<br>
+ID:84802031 Name:<br>
+ID:84803091 Name:<br>
