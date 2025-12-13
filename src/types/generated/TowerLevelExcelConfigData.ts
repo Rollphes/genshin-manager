@@ -13,9 +13,9 @@ export type TowerLevelExcelConfigDataType = {
     dungeonId:              number;
     firstMonsterList:       number[];
     firstPassRewardId:      number;
+    KLNFCGKDKGE:            string;
     ILCLLJANFMK:            number;
     JKMIPCBDBPM:            number;
-    KLNFCGKDKGE:            string;
     levelGroupId:           number;
     levelId:                number;
     levelIndex:             number;
@@ -206,9 +206,9 @@ const typeMap: any = {
         { json: "dungeonId", js: "dungeonId", typ: 0 },
         { json: "firstMonsterList", js: "firstMonsterList", typ: a(0) },
         { json: "firstPassRewardId", js: "firstPassRewardId", typ: 0 },
+        { json: "KLNFCGKDKGE", js: "KLNFCGKDKGE", typ: "" },
         { json: "ILCLLJANFMK", js: "ILCLLJANFMK", typ: 0 },
         { json: "JKMIPCBDBPM", js: "JKMIPCBDBPM", typ: 0 },
-        { json: "KLNFCGKDKGE", js: "KLNFCGKDKGE", typ: "" },
         { json: "levelGroupId", js: "levelGroupId", typ: 0 },
         { json: "levelId", js: "levelId", typ: 0 },
         { json: "levelIndex", js: "levelIndex", typ: 0 },

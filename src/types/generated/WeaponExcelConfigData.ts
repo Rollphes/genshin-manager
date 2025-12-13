@@ -13,23 +13,23 @@ export type WeaponExcelConfigDataType = {
     awakenLightMapTexture:      string;
     awakenMaterial:             number;
     awakenTexture:              string;
+    PDAEIKHKCBP:                Pdaeikhkcbp;
     descTextMapHash:            number;
     destroyReturnMaterial:      number[];
     destroyReturnMaterialCount: number[];
     destroyRule:                DestroyRule;
-    DLIALKLHDED:                number;
     dropable:                   boolean;
     gachaCardNameHash:          number;
     gadgetId:                   number;
-    globalItemLimit:            number;
+    DLIALKLHDED:                number;
+    KCCFDAFPBCI:                boolean;
     icon:                       string;
     id:                         number;
-    initialLockState:           number;
+    globalItemLimit:            number;
     itemType:                   ItemType;
-    KCCFDAFPBCI:                boolean;
+    initialLockState:           number;
     materialType:               MaterialType;
     nameTextMapHash:            number;
-    PDAEIKHKCBP:                Pdaeikhkcbp;
     rank:                       number;
     rankLevel:                  number;
     skillAffix:                 number[];
@@ -275,23 +275,23 @@ const typeMap: any = {
         { json: "awakenLightMapTexture", js: "awakenLightMapTexture", typ: "" },
         { json: "awakenMaterial", js: "awakenMaterial", typ: 0 },
         { json: "awakenTexture", js: "awakenTexture", typ: "" },
+        { json: "PDAEIKHKCBP", js: "PDAEIKHKCBP", typ: r("Pdaeikhkcbp") },
         { json: "descTextMapHash", js: "descTextMapHash", typ: 0 },
         { json: "destroyReturnMaterial", js: "destroyReturnMaterial", typ: a(0) },
         { json: "destroyReturnMaterialCount", js: "destroyReturnMaterialCount", typ: a(0) },
         { json: "destroyRule", js: "destroyRule", typ: r("DestroyRule") },
-        { json: "DLIALKLHDED", js: "DLIALKLHDED", typ: 0 },
         { json: "dropable", js: "dropable", typ: true },
         { json: "gachaCardNameHash", js: "gachaCardNameHash", typ: 3.14 },
         { json: "gadgetId", js: "gadgetId", typ: 0 },
-        { json: "globalItemLimit", js: "globalItemLimit", typ: 0 },
+        { json: "DLIALKLHDED", js: "DLIALKLHDED", typ: 0 },
+        { json: "KCCFDAFPBCI", js: "KCCFDAFPBCI", typ: true },
         { json: "icon", js: "icon", typ: "" },
         { json: "id", js: "id", typ: 0 },
-        { json: "initialLockState", js: "initialLockState", typ: 0 },
+        { json: "globalItemLimit", js: "globalItemLimit", typ: 0 },
         { json: "itemType", js: "itemType", typ: r("ItemType") },
-        { json: "KCCFDAFPBCI", js: "KCCFDAFPBCI", typ: true },
+        { json: "initialLockState", js: "initialLockState", typ: 0 },
         { json: "materialType", js: "materialType", typ: r("MaterialType") },
         { json: "nameTextMapHash", js: "nameTextMapHash", typ: 0 },
-        { json: "PDAEIKHKCBP", js: "PDAEIKHKCBP", typ: r("Pdaeikhkcbp") },
         { json: "rank", js: "rank", typ: 0 },
         { json: "rankLevel", js: "rankLevel", typ: 0 },
         { json: "skillAffix", js: "skillAffix", typ: a(0) },

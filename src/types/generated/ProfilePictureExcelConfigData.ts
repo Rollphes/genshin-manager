@@ -9,11 +9,11 @@
 
 export type ProfilePictureExcelConfigDataType = {
     EKFIIIINJCD:           boolean;
+    OOMIPLHHLGO:           boolean;
     iconPath:              string;
     id:                    number;
     type:                  Type;
     nameTextMapHash:       number;
-    OOMIPLHHLGO:           boolean;
     priority:              number;
     unlockDescTextMapHash: number;
     unlockParam:           number;
@@ -194,11 +194,11 @@ function r(name: string) {
 const typeMap: any = {
     "ProfilePictureExcelConfigDataType": o([
         { json: "EKFIIIINJCD", js: "EKFIIIINJCD", typ: true },
+        { json: "OOMIPLHHLGO", js: "OOMIPLHHLGO", typ: true },
         { json: "iconPath", js: "iconPath", typ: "" },
         { json: "id", js: "id", typ: 0 },
         { json: "type", js: "type", typ: r("Type") },
         { json: "nameTextMapHash", js: "nameTextMapHash", typ: 0 },
-        { json: "OOMIPLHHLGO", js: "OOMIPLHHLGO", typ: true },
         { json: "priority", js: "priority", typ: 0 },
         { json: "unlockDescTextMapHash", js: "unlockDescTextMapHash", typ: 0 },
         { json: "unlockParam", js: "unlockParam", typ: 0 },

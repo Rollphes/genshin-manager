@@ -8,14 +8,17 @@
 // match the expected interface, even if the JSON is valid.
 
 export type MaterialExcelConfigDataType = {
+    closeBagAfterUsed:           boolean;
     cdGroup:                     number;
     cdTime:                      number;
-    closeBagAfterUsed:           boolean;
+    dropable:                    boolean;
     descTextMapHash:             number;
     destroyReturnMaterial:       any[];
     destroyReturnMaterialCount:  any[];
     destroyRule:                 DestroyRule;
-    dropable:                    boolean;
+    IOMEHCHLAJM:                 boolean;
+    GOFEFCODPII:                 Gofefcodpii;
+    isForceGetHint:              boolean;
     effectDescTextMapHash:       number;
     effectGadgetID:              number;
     effectIcon:                  EffectIcon;
@@ -23,23 +26,20 @@ export type MaterialExcelConfigDataType = {
     foodQuality:                 FoodQuality;
     gadgetId:                    number;
     globalItemLimit:             number;
-    GOFEFCODPII:                 Gofefcodpii;
-    HJCEKDFGLCG:                 Hjcekdfglcg;
     icon:                        string;
     id:                          number;
     interactionTitleTextMapHash: number;
-    IOMEHCHLAJM:                 boolean;
-    isForceGetHint:              boolean;
     isHidden:                    boolean;
     isSplitDrop:                 boolean;
+    noFirstGetHint:              boolean;
     itemType:                    ItemType;
     itemUse:                     ItemUse[];
+    PCOPCNFOONA:                 Pcopcnfoona;
     materialType:                MaterialType;
     maxUseCount:                 number;
     nameTextMapHash:             number;
-    noFirstGetHint:              boolean;
-    PCOPCNFOONA:                 Pcopcnfoona;
     PHKICCAOKCK:                 boolean;
+    HJCEKDFGLCG:                 Hjcekdfglcg;
     picPath:                     string[];
     playGainEffect:              boolean;
     rank:                        number;
@@ -244,6 +244,7 @@ export enum MaterialType {
     MaterialChest = "MATERIAL_CHEST",
     MaterialChestBatchUse = "MATERIAL_CHEST_BATCH_USE",
     MaterialChestBatchUseWithGroup = "MATERIAL_CHEST_BATCH_USE_WITH_GROUP",
+    MaterialClueShopHandbook = "MATERIAL_CLUE_SHOP_HANDBOOK",
     MaterialConsume = "MATERIAL_CONSUME",
     MaterialConsumeBatchUse = "MATERIAL_CONSUME_BATCH_USE",
     MaterialCostume = "MATERIAL_COSTUME",
@@ -271,7 +272,9 @@ export enum MaterialType {
     MaterialHolidayResortInvite = "MATERIAL_HOLIDAY_RESORT_INVITE",
     MaterialHomeSeed = "MATERIAL_HOME_SEED",
     MaterialLanv5PaimonGreetingCard = "MATERIAL_LANV5_PAIMON_GREETING_CARD",
+    MaterialMagicStoryBook = "MATERIAL_MAGIC_STORY_BOOK",
     MaterialMikawaFlowerInvite = "MATERIAL_MIKAWA_FLOWER_INVITE",
+    MaterialMoonNightCard = "MATERIAL_MOON_NIGHT_CARD",
     MaterialMusicGameBookTheme = "MATERIAL_MUSIC_GAME_BOOK_THEME",
     MaterialNamecard = "MATERIAL_NAMECARD",
     MaterialNatlanRaceAlbum = "MATERIAL_NATLAN_RACE_ALBUM",
@@ -480,14 +483,17 @@ function r(name: string) {
 
 const typeMap: any = {
     "MaterialExcelConfigDataType": o([
+        { json: "closeBagAfterUsed", js: "closeBagAfterUsed", typ: true },
         { json: "cdGroup", js: "cdGroup", typ: 0 },
         { json: "cdTime", js: "cdTime", typ: 0 },
-        { json: "closeBagAfterUsed", js: "closeBagAfterUsed", typ: true },
+        { json: "dropable", js: "dropable", typ: true },
         { json: "descTextMapHash", js: "descTextMapHash", typ: 0 },
         { json: "destroyReturnMaterial", js: "destroyReturnMaterial", typ: a("any") },
         { json: "destroyReturnMaterialCount", js: "destroyReturnMaterialCount", typ: a("any") },
         { json: "destroyRule", js: "destroyRule", typ: r("DestroyRule") },
-        { json: "dropable", js: "dropable", typ: true },
+        { json: "IOMEHCHLAJM", js: "IOMEHCHLAJM", typ: true },
+        { json: "GOFEFCODPII", js: "GOFEFCODPII", typ: r("Gofefcodpii") },
+        { json: "isForceGetHint", js: "isForceGetHint", typ: true },
         { json: "effectDescTextMapHash", js: "effectDescTextMapHash", typ: 0 },
         { json: "effectGadgetID", js: "effectGadgetID", typ: 0 },
         { json: "effectIcon", js: "effectIcon", typ: r("EffectIcon") },
@@ -495,23 +501,20 @@ const typeMap: any = {
         { json: "foodQuality", js: "foodQuality", typ: r("FoodQuality") },
         { json: "gadgetId", js: "gadgetId", typ: 0 },
         { json: "globalItemLimit", js: "globalItemLimit", typ: 0 },
-        { json: "GOFEFCODPII", js: "GOFEFCODPII", typ: r("Gofefcodpii") },
-        { json: "HJCEKDFGLCG", js: "HJCEKDFGLCG", typ: r("Hjcekdfglcg") },
         { json: "icon", js: "icon", typ: "" },
         { json: "id", js: "id", typ: 0 },
         { json: "interactionTitleTextMapHash", js: "interactionTitleTextMapHash", typ: 0 },
-        { json: "IOMEHCHLAJM", js: "IOMEHCHLAJM", typ: true },
-        { json: "isForceGetHint", js: "isForceGetHint", typ: true },
         { json: "isHidden", js: "isHidden", typ: true },
         { json: "isSplitDrop", js: "isSplitDrop", typ: true },
+        { json: "noFirstGetHint", js: "noFirstGetHint", typ: true },
         { json: "itemType", js: "itemType", typ: r("ItemType") },
         { json: "itemUse", js: "itemUse", typ: a(r("ItemUse")) },
+        { json: "PCOPCNFOONA", js: "PCOPCNFOONA", typ: r("Pcopcnfoona") },
         { json: "materialType", js: "materialType", typ: r("MaterialType") },
         { json: "maxUseCount", js: "maxUseCount", typ: 0 },
         { json: "nameTextMapHash", js: "nameTextMapHash", typ: 0 },
-        { json: "noFirstGetHint", js: "noFirstGetHint", typ: true },
-        { json: "PCOPCNFOONA", js: "PCOPCNFOONA", typ: r("Pcopcnfoona") },
         { json: "PHKICCAOKCK", js: "PHKICCAOKCK", typ: true },
+        { json: "HJCEKDFGLCG", js: "HJCEKDFGLCG", typ: r("Hjcekdfglcg") },
         { json: "picPath", js: "picPath", typ: a("") },
         { json: "playGainEffect", js: "playGainEffect", typ: true },
         { json: "rank", js: "rank", typ: 0 },
@@ -705,6 +708,7 @@ const typeMap: any = {
         "MATERIAL_CHEST",
         "MATERIAL_CHEST_BATCH_USE",
         "MATERIAL_CHEST_BATCH_USE_WITH_GROUP",
+        "MATERIAL_CLUE_SHOP_HANDBOOK",
         "MATERIAL_CONSUME",
         "MATERIAL_CONSUME_BATCH_USE",
         "MATERIAL_COSTUME",
@@ -732,7 +736,9 @@ const typeMap: any = {
         "MATERIAL_HOLIDAY_RESORT_INVITE",
         "MATERIAL_HOME_SEED",
         "MATERIAL_LANV5_PAIMON_GREETING_CARD",
+        "MATERIAL_MAGIC_STORY_BOOK",
         "MATERIAL_MIKAWA_FLOWER_INVITE",
+        "MATERIAL_MOON_NIGHT_CARD",
         "MATERIAL_MUSIC_GAME_BOOK_THEME",
         "MATERIAL_NAMECARD",
         "MATERIAL_NATLAN_RACE_ALBUM",

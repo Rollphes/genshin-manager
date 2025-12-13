@@ -8,54 +8,54 @@
 // match the expected interface, even if the JSON is valid.
 
 export type MonsterExcelConfigDataType = {
+    CIAPMJAEIHD:              number;
     affix:                    number[];
     ai:                       AI;
+    combatBGMLevel:           number;
     attackBase:               number;
+    critical:                 number;
+    criticalHurt:             number;
     campID:                   number;
     canSwim:                  boolean;
-    CIAPMJAEIHD:              number;
-    combatBGMLevel:           number;
+    defenseBase:              number;
     combatConfigHash:         number;
     controllerPathHash:       number;
     controllerPathRemoteHash: number;
-    critical:                 number;
-    criticalHurt:             number;
-    defenseBase:              number;
     deformationMeshPathHash:  number;
-    describeId:               number;
     elecSubHurt:              number;
     elementMastery:           number;
+    fireSubHurt:              number;
+    describeId:               number;
+    grassSubHurt:             number;
+    iceSubHurt:               number;
     entityBudgetLevel:        number;
     equips:                   number[];
     excludeWeathers:          ExcludeWeathers;
-    FCAHMCPMPNP:              boolean;
     featureTagGroupID:        number;
-    fireSubHurt:              number;
-    grassSubHurt:             number;
-    hideNameInElementView:    boolean;
-    hpBase:                   number;
-    hpDrops:                  HPDrop[];
-    iceSubHurt:               number;
-    id:                       number;
+    PJFIHJIKDDI:              number[];
     IFNGBLPHINC:              number;
     ILDGFINBLII:              number;
     IOMANLCNFEO:              number;
-    isAIHashCheck:            boolean;
-    isInvisibleReset:         boolean;
+    FCAHMCPMPNP:              boolean;
+    hpBase:                   number;
+    hpDrops:                  HPDrop[];
     JEOILPDPBCF:              number;
+    id:                       number;
     KGOGCJLGLNI:              number;
+    hideNameInElementView:    boolean;
+    isAIHashCheck:            boolean;
+    PPMJAMDEFFO:              Ppmjamdeffo;
     killDropId:               number;
+    NCLJNCFOILK:              number;
+    isInvisibleReset:         boolean;
+    NKGIPKIAOGH:              number;
     lodPatternName:           LodPatternName;
     monsterName:              string;
     mpPropID:                 number;
     nameTextMapHash:          number;
-    NCLJNCFOILK:              number;
-    NKGIPKIAOGH:              number;
     PBJALANPDBD:              number;
-    physicalSubHurt:          number;
-    PJFIHJIKDDI:              number[];
     playType:                 PlayType;
-    PPMJAMDEFFO:              Ppmjamdeffo;
+    physicalSubHurt:          number;
     prefabPathHash:           number;
     prefabPathRagdollHash:    number;
     prefabPathRemoteHash:     number;
@@ -349,54 +349,54 @@ function r(name: string) {
 
 const typeMap: any = {
     "MonsterExcelConfigDataType": o([
+        { json: "CIAPMJAEIHD", js: "CIAPMJAEIHD", typ: 0 },
         { json: "affix", js: "affix", typ: a(0) },
         { json: "ai", js: "ai", typ: r("AI") },
+        { json: "combatBGMLevel", js: "combatBGMLevel", typ: 0 },
         { json: "attackBase", js: "attackBase", typ: 3.14 },
+        { json: "critical", js: "critical", typ: 0 },
+        { json: "criticalHurt", js: "criticalHurt", typ: 0 },
         { json: "campID", js: "campID", typ: 0 },
         { json: "canSwim", js: "canSwim", typ: true },
-        { json: "CIAPMJAEIHD", js: "CIAPMJAEIHD", typ: 0 },
-        { json: "combatBGMLevel", js: "combatBGMLevel", typ: 0 },
+        { json: "defenseBase", js: "defenseBase", typ: 0 },
         { json: "combatConfigHash", js: "combatConfigHash", typ: 3.14 },
         { json: "controllerPathHash", js: "controllerPathHash", typ: 3.14 },
         { json: "controllerPathRemoteHash", js: "controllerPathRemoteHash", typ: 3.14 },
-        { json: "critical", js: "critical", typ: 0 },
-        { json: "criticalHurt", js: "criticalHurt", typ: 0 },
-        { json: "defenseBase", js: "defenseBase", typ: 0 },
-        { json: "deformationMeshPathHash", js: "deformationMeshPathHash", typ: 3.14 },
-        { json: "describeId", js: "describeId", typ: 0 },
-        { json: "elecSubHurt", js: "elecSubHurt", typ: 3.14 },
+        { json: "deformationMeshPathHash", js: "deformationMeshPathHash", typ: 0 },
+        { json: "elecSubHurt", js: "elecSubHurt", typ: 0 },
         { json: "elementMastery", js: "elementMastery", typ: 0 },
+        { json: "fireSubHurt", js: "fireSubHurt", typ: 3.14 },
+        { json: "describeId", js: "describeId", typ: 0 },
+        { json: "grassSubHurt", js: "grassSubHurt", typ: 3.14 },
+        { json: "iceSubHurt", js: "iceSubHurt", typ: 0 },
         { json: "entityBudgetLevel", js: "entityBudgetLevel", typ: 0 },
         { json: "equips", js: "equips", typ: a(0) },
         { json: "excludeWeathers", js: "excludeWeathers", typ: r("ExcludeWeathers") },
-        { json: "FCAHMCPMPNP", js: "FCAHMCPMPNP", typ: true },
         { json: "featureTagGroupID", js: "featureTagGroupID", typ: 0 },
-        { json: "fireSubHurt", js: "fireSubHurt", typ: 3.14 },
-        { json: "grassSubHurt", js: "grassSubHurt", typ: 3.14 },
-        { json: "hideNameInElementView", js: "hideNameInElementView", typ: true },
+        { json: "PJFIHJIKDDI", js: "PJFIHJIKDDI", typ: a(3.14) },
+        { json: "IFNGBLPHINC", js: "IFNGBLPHINC", typ: 3.14 },
+        { json: "ILDGFINBLII", js: "ILDGFINBLII", typ: 0 },
+        { json: "IOMANLCNFEO", js: "IOMANLCNFEO", typ: 3.14 },
+        { json: "FCAHMCPMPNP", js: "FCAHMCPMPNP", typ: true },
         { json: "hpBase", js: "hpBase", typ: 3.14 },
         { json: "hpDrops", js: "hpDrops", typ: a(r("HPDrop")) },
-        { json: "iceSubHurt", js: "iceSubHurt", typ: 3.14 },
+        { json: "JEOILPDPBCF", js: "JEOILPDPBCF", typ: 3.14 },
         { json: "id", js: "id", typ: 0 },
-        { json: "IFNGBLPHINC", js: "IFNGBLPHINC", typ: 0 },
-        { json: "ILDGFINBLII", js: "ILDGFINBLII", typ: 0 },
-        { json: "IOMANLCNFEO", js: "IOMANLCNFEO", typ: 0 },
-        { json: "isAIHashCheck", js: "isAIHashCheck", typ: true },
-        { json: "isInvisibleReset", js: "isInvisibleReset", typ: true },
-        { json: "JEOILPDPBCF", js: "JEOILPDPBCF", typ: 0 },
         { json: "KGOGCJLGLNI", js: "KGOGCJLGLNI", typ: 0 },
+        { json: "hideNameInElementView", js: "hideNameInElementView", typ: true },
+        { json: "isAIHashCheck", js: "isAIHashCheck", typ: true },
+        { json: "PPMJAMDEFFO", js: "PPMJAMDEFFO", typ: r("Ppmjamdeffo") },
         { json: "killDropId", js: "killDropId", typ: 0 },
+        { json: "NCLJNCFOILK", js: "NCLJNCFOILK", typ: 0 },
+        { json: "isInvisibleReset", js: "isInvisibleReset", typ: true },
+        { json: "NKGIPKIAOGH", js: "NKGIPKIAOGH", typ: 0 },
         { json: "lodPatternName", js: "lodPatternName", typ: r("LodPatternName") },
         { json: "monsterName", js: "monsterName", typ: "" },
         { json: "mpPropID", js: "mpPropID", typ: 0 },
         { json: "nameTextMapHash", js: "nameTextMapHash", typ: 0 },
-        { json: "NCLJNCFOILK", js: "NCLJNCFOILK", typ: 0 },
-        { json: "NKGIPKIAOGH", js: "NKGIPKIAOGH", typ: 0 },
-        { json: "PBJALANPDBD", js: "PBJALANPDBD", typ: 0 },
-        { json: "physicalSubHurt", js: "physicalSubHurt", typ: 3.14 },
-        { json: "PJFIHJIKDDI", js: "PJFIHJIKDDI", typ: a(3.14) },
+        { json: "PBJALANPDBD", js: "PBJALANPDBD", typ: 3.14 },
         { json: "playType", js: "playType", typ: r("PlayType") },
-        { json: "PPMJAMDEFFO", js: "PPMJAMDEFFO", typ: r("Ppmjamdeffo") },
+        { json: "physicalSubHurt", js: "physicalSubHurt", typ: 0 },
         { json: "prefabPathHash", js: "prefabPathHash", typ: 3.14 },
         { json: "prefabPathRagdollHash", js: "prefabPathRagdollHash", typ: 3.14 },
         { json: "prefabPathRemoteHash", js: "prefabPathRemoteHash", typ: 3.14 },
