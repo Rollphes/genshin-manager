@@ -1,6 +1,6 @@
 {
   "name": "genshin-manager",
-  "version": "2.0.4",
+  "version": "2.0.5",
   "homepage": "https://rollphes.github.io/genshin-manager/",
   "bugs": "https://github.com/Rollphes/genshin-manager/issues",
   "main": "dist/index.js",
@@ -26,7 +26,7 @@
     "lint:unix": "eslint . --format unix",
     "lint:stats": "npm run lint:unix | awk -F'[][]' '/\\[.*\\]$/ {print $(NF-1)}' | sort | uniq -c | sort -nr",
     "prepublishOnly": "npm run build",
-    "docs": "typedoc",
+    "docs": "cd website && npm run build",
     "build": "tsup",
     "prebuild": "npm run generate:types",
     "generate:types": "tsx scripts/generate-types-from-master.ts",
@@ -71,6 +71,9 @@
     "quicktype-core": "^23.2.6",
     "ts-deepmerge": "^7.0.1",
     "zod": "^4.1.11"
+  },
+  "overrides": {
+    "glob": "^10.5.0"
   },
   "devDependencies": {
     "@commitlint/cli": "^19.8.1",

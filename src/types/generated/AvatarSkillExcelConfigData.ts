@@ -9,41 +9,55 @@
 
 export type AvatarSkillExcelConfigDataType = {
     abilityName:          string;
-    BAIOEDJLIGA:          boolean;
+    BGINCKANIGF:          boolean;
     buffIcon:             BuffIcon;
     cdSlot:               number;
     cdTime:               number;
-    CNJKEJAPFAE:          boolean;
+    CGJLEIHOKLN:          Cgjleihokln;
     costElemType:         CostElemType;
     costElemVal:          number;
     costStamina:          number;
+    DAHEPAIKAJE:          boolean;
+    DEAEBMEIFLO:          Deaebmeiflo;
     descTextMapHash:      number;
     dragType:             DragType;
-    EKPJHGFEJOG:          boolean;
-    EMOIHJNMELL:          boolean;
+    EFHHGFKPGJO:          boolean;
     energyMin:            number;
     extraDescTextMapHash: number;
-    FNMAMBOAHJG:          boolean;
-    GIACMNOHIHI:          boolean;
+    FOJNHEKGGCB:          boolean;
+    GLGOMNEPNDH:          boolean;
     globalValueKey:       GlobalValueKey;
-    GNPCECKFIJF:          boolean;
-    HMPOCNIPDIL:          boolean;
+    HOBKGMMNHLI:          boolean;
+    IACNAENANDH:          number;
     id:                   number;
     isAttackCameraLock:   boolean;
-    JDKAFKFLFLO:          boolean;
+    LGHAEDLLNFF:          number;
+    LLINBJLCONJ:          boolean;
     lockShape:            LockShape;
     lockWeightParams:     number[];
     maxChargeNum:         number;
+    MHLANHFCMBJ:          boolean;
+    MIFFDPCHFID:          boolean;
     nameTextMapHash:      number;
     needMonitor:          NeedMonitor;
-    PJOAGGJCOMA:          boolean;
+    OKLOMDDKDMJ:          boolean;
+    PHBLMBKDEOG:          number;
     proudSkillGroupId:    number;
     shareCDID:            number;
     skillIcon:            string;
-    specialEnergyMax:     number;
-    specialEnergyMin:     number;
-    specialEnergyType:    SpecialEnergyType;
     triggerID:            number;
+}
+
+export enum Cgjleihokln {
+    DurinBlack = "DurinBlack",
+    DurinWhite = "DurinWhite",
+    None = "None",
+}
+
+export enum Deaebmeiflo {
+    SpecialEnergyMavuika = "SPECIAL_ENERGY_MAVUIKA",
+    SpecialEnergyNone = "SPECIAL_ENERGY_NONE",
+    SpecialEnergySkirk = "SPECIAL_ENERGY_SKIRK",
 }
 
 export enum BuffIcon {
@@ -109,12 +123,6 @@ export enum NeedMonitor {
     MonitorNever = "MONITOR_NEVER",
     MonitorOffStage = "MONITOR_OFF_STAGE",
     MonitorOnStage = "MONITOR_ON_STAGE",
-}
-
-export enum SpecialEnergyType {
-    SpecialEnergyMavuika = "SPECIAL_ENERGY_MAVUIKA",
-    SpecialEnergyNone = "SPECIAL_ENERGY_NONE",
-    SpecialEnergySkirk = "SPECIAL_ENERGY_SKIRK",
 }
 
 // Converts JSON strings to/from your types
@@ -284,42 +292,54 @@ function r(name: string) {
 const typeMap: any = {
     "AvatarSkillExcelConfigDataType": o([
         { json: "abilityName", js: "abilityName", typ: "" },
-        { json: "BAIOEDJLIGA", js: "BAIOEDJLIGA", typ: true },
+        { json: "BGINCKANIGF", js: "BGINCKANIGF", typ: true },
         { json: "buffIcon", js: "buffIcon", typ: r("BuffIcon") },
         { json: "cdSlot", js: "cdSlot", typ: 0 },
         { json: "cdTime", js: "cdTime", typ: 3.14 },
-        { json: "CNJKEJAPFAE", js: "CNJKEJAPFAE", typ: true },
+        { json: "CGJLEIHOKLN", js: "CGJLEIHOKLN", typ: r("Cgjleihokln") },
         { json: "costElemType", js: "costElemType", typ: r("CostElemType") },
         { json: "costElemVal", js: "costElemVal", typ: 0 },
         { json: "costStamina", js: "costStamina", typ: 0 },
+        { json: "DAHEPAIKAJE", js: "DAHEPAIKAJE", typ: true },
+        { json: "DEAEBMEIFLO", js: "DEAEBMEIFLO", typ: r("Deaebmeiflo") },
         { json: "descTextMapHash", js: "descTextMapHash", typ: 0 },
         { json: "dragType", js: "dragType", typ: r("DragType") },
-        { json: "EKPJHGFEJOG", js: "EKPJHGFEJOG", typ: true },
-        { json: "EMOIHJNMELL", js: "EMOIHJNMELL", typ: true },
+        { json: "EFHHGFKPGJO", js: "EFHHGFKPGJO", typ: true },
         { json: "energyMin", js: "energyMin", typ: 0 },
         { json: "extraDescTextMapHash", js: "extraDescTextMapHash", typ: 0 },
-        { json: "FNMAMBOAHJG", js: "FNMAMBOAHJG", typ: true },
-        { json: "GIACMNOHIHI", js: "GIACMNOHIHI", typ: true },
+        { json: "FOJNHEKGGCB", js: "FOJNHEKGGCB", typ: true },
+        { json: "GLGOMNEPNDH", js: "GLGOMNEPNDH", typ: true },
         { json: "globalValueKey", js: "globalValueKey", typ: r("GlobalValueKey") },
-        { json: "GNPCECKFIJF", js: "GNPCECKFIJF", typ: true },
-        { json: "HMPOCNIPDIL", js: "HMPOCNIPDIL", typ: true },
+        { json: "HOBKGMMNHLI", js: "HOBKGMMNHLI", typ: true },
+        { json: "IACNAENANDH", js: "IACNAENANDH", typ: 0 },
         { json: "id", js: "id", typ: 0 },
         { json: "isAttackCameraLock", js: "isAttackCameraLock", typ: true },
-        { json: "JDKAFKFLFLO", js: "JDKAFKFLFLO", typ: true },
+        { json: "LGHAEDLLNFF", js: "LGHAEDLLNFF", typ: 0 },
+        { json: "LLINBJLCONJ", js: "LLINBJLCONJ", typ: true },
         { json: "lockShape", js: "lockShape", typ: r("LockShape") },
         { json: "lockWeightParams", js: "lockWeightParams", typ: a(3.14) },
         { json: "maxChargeNum", js: "maxChargeNum", typ: 0 },
+        { json: "MHLANHFCMBJ", js: "MHLANHFCMBJ", typ: true },
+        { json: "MIFFDPCHFID", js: "MIFFDPCHFID", typ: true },
         { json: "nameTextMapHash", js: "nameTextMapHash", typ: 0 },
         { json: "needMonitor", js: "needMonitor", typ: r("NeedMonitor") },
-        { json: "PJOAGGJCOMA", js: "PJOAGGJCOMA", typ: true },
+        { json: "OKLOMDDKDMJ", js: "OKLOMDDKDMJ", typ: true },
+        { json: "PHBLMBKDEOG", js: "PHBLMBKDEOG", typ: 0 },
         { json: "proudSkillGroupId", js: "proudSkillGroupId", typ: 0 },
         { json: "shareCDID", js: "shareCDID", typ: 0 },
         { json: "skillIcon", js: "skillIcon", typ: "" },
-        { json: "specialEnergyMax", js: "specialEnergyMax", typ: 0 },
-        { json: "specialEnergyMin", js: "specialEnergyMin", typ: 0 },
-        { json: "specialEnergyType", js: "specialEnergyType", typ: r("SpecialEnergyType") },
         { json: "triggerID", js: "triggerID", typ: 0 },
     ], false),
+    "Cgjleihokln": [
+        "DurinBlack",
+        "DurinWhite",
+        "None",
+    ],
+    "Deaebmeiflo": [
+        "SPECIAL_ENERGY_MAVUIKA",
+        "SPECIAL_ENERGY_NONE",
+        "SPECIAL_ENERGY_SKIRK",
+    ],
     "BuffIcon": [
         "",
         "Skill_B_Barbara_01",
@@ -378,10 +398,5 @@ const typeMap: any = {
         "MONITOR_NEVER",
         "MONITOR_OFF_STAGE",
         "MONITOR_ON_STAGE",
-    ],
-    "SpecialEnergyType": [
-        "SPECIAL_ENERGY_MAVUIKA",
-        "SPECIAL_ENERGY_NONE",
-        "SPECIAL_ENERGY_SKIRK",
     ],
 };

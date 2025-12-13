@@ -17,6 +17,7 @@ export type FetterInfoExcelConfigDataType = {
     avatarTitleTextMapHash:              number;
     avatarVisionAfterTextMapHash:        number;
     avatarVisionBeforTextMapHash:        number;
+    PKJJAOCGOPO:                         number;
     cvChineseTextMapHash:                number;
     cvEnglishTextMapHash:                number;
     cvJapaneseTextMapHash:               number;
@@ -26,9 +27,8 @@ export type FetterInfoExcelConfigDataType = {
     infoBirthDay:                        number;
     infoBirthMonth:                      number;
     isHiden:                             boolean;
-    openConds:                           any[];
-    PKJJAOCGOPO:                         number;
     PMDBPIJHHPC:                         number;
+    openConds:                           any[];
 }
 
 export type FinishCond = {
@@ -217,6 +217,7 @@ const typeMap: any = {
         { json: "avatarTitleTextMapHash", js: "avatarTitleTextMapHash", typ: 0 },
         { json: "avatarVisionAfterTextMapHash", js: "avatarVisionAfterTextMapHash", typ: 0 },
         { json: "avatarVisionBeforTextMapHash", js: "avatarVisionBeforTextMapHash", typ: 0 },
+        { json: "PKJJAOCGOPO", js: "PKJJAOCGOPO", typ: 0 },
         { json: "cvChineseTextMapHash", js: "cvChineseTextMapHash", typ: 0 },
         { json: "cvEnglishTextMapHash", js: "cvEnglishTextMapHash", typ: 0 },
         { json: "cvJapaneseTextMapHash", js: "cvJapaneseTextMapHash", typ: 0 },
@@ -226,9 +227,8 @@ const typeMap: any = {
         { json: "infoBirthDay", js: "infoBirthDay", typ: 0 },
         { json: "infoBirthMonth", js: "infoBirthMonth", typ: 0 },
         { json: "isHiden", js: "isHiden", typ: true },
-        { json: "openConds", js: "openConds", typ: a("any") },
-        { json: "PKJJAOCGOPO", js: "PKJJAOCGOPO", typ: 0 },
         { json: "PMDBPIJHHPC", js: "PMDBPIJHHPC", typ: 0 },
+        { json: "openConds", js: "openConds", typ: a("any") },
     ], false),
     "FinishCond": o([
         { json: "condType", js: "condType", typ: r("CondType") },

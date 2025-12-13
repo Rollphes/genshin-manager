@@ -12,10 +12,10 @@ export type TowerFloorExcelConfigDataType = {
     floorId:              number;
     floorIndex:           number;
     floorLevelConfigId:   number;
-    KFMMFLCOBBN:          number;
     levelGroupId:         number;
-    overrideMonsterLevel: number;
+    KFMMFLCOBBN:          number;
     PGMLCDGLAKK:          number;
+    overrideMonsterLevel: number;
     rewardIdFifteenStars: number;
     rewardIdFiveStars:    number;
     rewardIdNineStars:    number;
@@ -208,10 +208,10 @@ const typeMap: any = {
         { json: "floorId", js: "floorId", typ: 0 },
         { json: "floorIndex", js: "floorIndex", typ: 0 },
         { json: "floorLevelConfigId", js: "floorLevelConfigId", typ: 0 },
-        { json: "KFMMFLCOBBN", js: "KFMMFLCOBBN", typ: 0 },
         { json: "levelGroupId", js: "levelGroupId", typ: 0 },
-        { json: "overrideMonsterLevel", js: "overrideMonsterLevel", typ: 0 },
+        { json: "KFMMFLCOBBN", js: "KFMMFLCOBBN", typ: 0 },
         { json: "PGMLCDGLAKK", js: "PGMLCDGLAKK", typ: 0 },
+        { json: "overrideMonsterLevel", js: "overrideMonsterLevel", typ: 0 },
         { json: "rewardIdFifteenStars", js: "rewardIdFifteenStars", typ: 0 },
         { json: "rewardIdFiveStars", js: "rewardIdFiveStars", typ: 0 },
         { json: "rewardIdNineStars", js: "rewardIdNineStars", typ: 0 },

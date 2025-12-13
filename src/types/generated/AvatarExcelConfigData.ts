@@ -8,20 +8,25 @@
 // match the expected interface, even if the JSON is valid.
 
 export type AvatarExcelConfigDataType = {
+    BDKICGKLCMA:                    number;
+    campID:                         number;
+    CIAPMJAEIHD:                    number;
     animatorConfigPathHash:         number;
     attackBase:                     number;
     avatarIdentityType:             AvatarIdentityType;
     avatarPromoteId:                number;
     avatarPromoteRewardIdList:      number[];
     avatarPromoteRewardLevelList:   number[];
-    BDKICGKLCMA:                    number;
+    EFBDEAEJMNJ:                    number;
+    elecSubHurt:                    number;
+    EPBCFFKHAIM:                    Epbcffkhaim;
     bodyType:                       BodyType;
-    campID:                         number;
+    elementMastery:                 number;
+    KBGIKODHDPA:                    Epbcffkhaim;
+    fireSubHurt:                    number;
     candSkillDepotIds:              number[];
-    CDBLKEGMAEN:                    boolean;
+    GPHICMPCPFA:                    number;
     chargeEfficiency:               number;
-    CIAPMJAEIHD:                    number;
-    CMHFEAFOLPG:                    number;
     combatConfigHash:               number;
     controllerPathHash:             number;
     controllerPathRemoteHash:       number;
@@ -30,49 +35,44 @@ export type AvatarExcelConfigDataType = {
     criticalHurt:                   number;
     defenseBase:                    number;
     deformationMeshPathHash:        number;
-    descTextMapHash:                number;
-    EFBDEAEJMNJ:                    number;
-    elecSubHurt:                    number;
-    elementMastery:                 number;
-    EPBCFFKHAIM:                    Epbcffkhaim;
-    featureTagGroupID:              number;
-    fireSubHurt:                    number;
-    gachaCardNameHash:              number;
-    gachaImageNameHash:             number;
-    GDACAJPIPCJ:                    boolean;
-    GPHICMPCPFA:                    number;
+    CMHFEAFOLPG:                    number;
     grassSubHurt:                   number;
     HCHFHPEKGHO:                    number;
     HDJEMKFONAD:                    number;
     HGJCAPNOMAA:                    number;
-    HINKMCLODHL:                    number;
-    hpBase:                         number;
     iceSubHurt:                     number;
-    iconName:                       string;
-    id:                             number;
+    featureTagGroupID:              number;
+    MAEJJKELOBK:                    number;
     IFNGBLPHINC:                    number;
+    gachaCardNameHash:              number;
+    gachaImageNameHash:             number;
     IJIPDMJLGNB:                    number;
     ILDGFINBLII:                    number;
+    IOMANLCNFEO:                    number;
+    LLPAFFFGFBP:                    number;
+    hpBase:                         number;
+    JEOILPDPBCF:                    number;
+    iconName:                       string;
+    id:                             number;
+    KGOGCJLGLNI:                    number;
     imageName:                      string;
     initialWeapon:                  number;
-    IOMANLCNFEO:                    number;
-    isRangeAttack:                  boolean;
-    JEOILPDPBCF:                    number;
-    KBGIKODHDPA:                    Epbcffkhaim;
-    KGOGCJLGLNI:                    number;
-    LLPAFFFGFBP:                    number;
+    CDBLKEGMAEN:                    boolean;
+    HINKMCLODHL:                    number;
+    NCLJNCFOILK:                    number;
+    NKGIPKIAOGH:                    number;
+    NOCDAKPNGFO:                    number;
     lodPatternName:                 string;
-    MAEJJKELOBK:                    number;
+    GDACAJPIPCJ:                    boolean;
     manekinJsonConfigHash:          number;
     manekinMotionConfig:            number;
     manekinPathHash:                number;
     MOCNCNMLBHE:                    string;
-    nameTextMapHash:                number;
-    NCLJNCFOILK:                    number;
-    NKGIPKIAOGH:                    number;
-    NOCDAKPNGFO:                    number;
+    descTextMapHash:                number;
     PBJALANPDBD:                    number;
+    nameTextMapHash:                number;
     PDKIEBDGBCC:                    Epbcffkhaim;
+    isRangeAttack:                  boolean;
     physicalSubHurt:                number;
     POKAEPFKOLI:                    number;
     prefabPathHash:                 number;
@@ -86,6 +86,7 @@ export type AvatarExcelConfigDataType = {
     skillDepotId:                   number;
     specialDeformationMeshPathHash: number;
     staminaRecoverSpeed:            number;
+    tags:                           Tag[];
     useType:                        UseType;
     waterSubHurt:                   number;
     weaponType:                     WeaponType;
@@ -139,6 +140,12 @@ export enum QualityType {
     QualityOrange = "QUALITY_ORANGE",
     QualityOrangeSP = "QUALITY_ORANGE_SP",
     QualityPurple = "QUALITY_PURPLE",
+}
+
+export enum Tag {
+    AvatarTagHexenzirkel = "AVATAR_TAG_HEXENZIRKEL",
+    AvatarTagMoonphase = "AVATAR_TAG_MOONPHASE",
+    None = "None",
 }
 
 export enum UseType {
@@ -322,20 +329,25 @@ function r(name: string) {
 
 const typeMap: any = {
     "AvatarExcelConfigDataType": o([
+        { json: "BDKICGKLCMA", js: "BDKICGKLCMA", typ: 0 },
+        { json: "campID", js: "campID", typ: 3.14 },
+        { json: "CIAPMJAEIHD", js: "CIAPMJAEIHD", typ: 0 },
         { json: "animatorConfigPathHash", js: "animatorConfigPathHash", typ: 3.14 },
         { json: "attackBase", js: "attackBase", typ: 3.14 },
         { json: "avatarIdentityType", js: "avatarIdentityType", typ: r("AvatarIdentityType") },
         { json: "avatarPromoteId", js: "avatarPromoteId", typ: 0 },
         { json: "avatarPromoteRewardIdList", js: "avatarPromoteRewardIdList", typ: a(0) },
         { json: "avatarPromoteRewardLevelList", js: "avatarPromoteRewardLevelList", typ: a(0) },
-        { json: "BDKICGKLCMA", js: "BDKICGKLCMA", typ: 3.14 },
+        { json: "EFBDEAEJMNJ", js: "EFBDEAEJMNJ", typ: 0 },
+        { json: "elecSubHurt", js: "elecSubHurt", typ: 0 },
+        { json: "EPBCFFKHAIM", js: "EPBCFFKHAIM", typ: r("Epbcffkhaim") },
         { json: "bodyType", js: "bodyType", typ: r("BodyType") },
-        { json: "campID", js: "campID", typ: 0 },
+        { json: "elementMastery", js: "elementMastery", typ: 3.14 },
+        { json: "KBGIKODHDPA", js: "KBGIKODHDPA", typ: r("Epbcffkhaim") },
+        { json: "fireSubHurt", js: "fireSubHurt", typ: 0 },
         { json: "candSkillDepotIds", js: "candSkillDepotIds", typ: a(0) },
-        { json: "CDBLKEGMAEN", js: "CDBLKEGMAEN", typ: true },
+        { json: "GPHICMPCPFA", js: "GPHICMPCPFA", typ: 0 },
         { json: "chargeEfficiency", js: "chargeEfficiency", typ: 0 },
-        { json: "CIAPMJAEIHD", js: "CIAPMJAEIHD", typ: 0 },
-        { json: "CMHFEAFOLPG", js: "CMHFEAFOLPG", typ: 0 },
         { json: "combatConfigHash", js: "combatConfigHash", typ: 3.14 },
         { json: "controllerPathHash", js: "controllerPathHash", typ: 3.14 },
         { json: "controllerPathRemoteHash", js: "controllerPathRemoteHash", typ: 3.14 },
@@ -344,49 +356,44 @@ const typeMap: any = {
         { json: "criticalHurt", js: "criticalHurt", typ: 3.14 },
         { json: "defenseBase", js: "defenseBase", typ: 3.14 },
         { json: "deformationMeshPathHash", js: "deformationMeshPathHash", typ: 3.14 },
-        { json: "descTextMapHash", js: "descTextMapHash", typ: 0 },
-        { json: "EFBDEAEJMNJ", js: "EFBDEAEJMNJ", typ: 3.14 },
-        { json: "elecSubHurt", js: "elecSubHurt", typ: 0 },
-        { json: "elementMastery", js: "elementMastery", typ: 0 },
-        { json: "EPBCFFKHAIM", js: "EPBCFFKHAIM", typ: r("Epbcffkhaim") },
-        { json: "featureTagGroupID", js: "featureTagGroupID", typ: 0 },
-        { json: "fireSubHurt", js: "fireSubHurt", typ: 0 },
-        { json: "gachaCardNameHash", js: "gachaCardNameHash", typ: 3.14 },
-        { json: "gachaImageNameHash", js: "gachaImageNameHash", typ: 3.14 },
-        { json: "GDACAJPIPCJ", js: "GDACAJPIPCJ", typ: true },
-        { json: "GPHICMPCPFA", js: "GPHICMPCPFA", typ: 0 },
+        { json: "CMHFEAFOLPG", js: "CMHFEAFOLPG", typ: 0 },
         { json: "grassSubHurt", js: "grassSubHurt", typ: 0 },
         { json: "HCHFHPEKGHO", js: "HCHFHPEKGHO", typ: 3.14 },
         { json: "HDJEMKFONAD", js: "HDJEMKFONAD", typ: 0 },
-        { json: "HGJCAPNOMAA", js: "HGJCAPNOMAA", typ: 3.14 },
-        { json: "HINKMCLODHL", js: "HINKMCLODHL", typ: 3.14 },
-        { json: "hpBase", js: "hpBase", typ: 3.14 },
+        { json: "HGJCAPNOMAA", js: "HGJCAPNOMAA", typ: 0 },
         { json: "iceSubHurt", js: "iceSubHurt", typ: 0 },
-        { json: "iconName", js: "iconName", typ: "" },
-        { json: "id", js: "id", typ: 0 },
+        { json: "featureTagGroupID", js: "featureTagGroupID", typ: 0 },
+        { json: "MAEJJKELOBK", js: "MAEJJKELOBK", typ: 3.14 },
         { json: "IFNGBLPHINC", js: "IFNGBLPHINC", typ: 0 },
+        { json: "gachaCardNameHash", js: "gachaCardNameHash", typ: 3.14 },
+        { json: "gachaImageNameHash", js: "gachaImageNameHash", typ: 3.14 },
         { json: "IJIPDMJLGNB", js: "IJIPDMJLGNB", typ: 3.14 },
         { json: "ILDGFINBLII", js: "ILDGFINBLII", typ: 0 },
+        { json: "IOMANLCNFEO", js: "IOMANLCNFEO", typ: 0 },
+        { json: "LLPAFFFGFBP", js: "LLPAFFFGFBP", typ: 3.14 },
+        { json: "hpBase", js: "hpBase", typ: 3.14 },
+        { json: "JEOILPDPBCF", js: "JEOILPDPBCF", typ: 0 },
+        { json: "iconName", js: "iconName", typ: "" },
+        { json: "id", js: "id", typ: 0 },
+        { json: "KGOGCJLGLNI", js: "KGOGCJLGLNI", typ: 0 },
         { json: "imageName", js: "imageName", typ: "" },
         { json: "initialWeapon", js: "initialWeapon", typ: 0 },
-        { json: "IOMANLCNFEO", js: "IOMANLCNFEO", typ: 0 },
-        { json: "isRangeAttack", js: "isRangeAttack", typ: true },
-        { json: "JEOILPDPBCF", js: "JEOILPDPBCF", typ: 0 },
-        { json: "KBGIKODHDPA", js: "KBGIKODHDPA", typ: r("Epbcffkhaim") },
-        { json: "KGOGCJLGLNI", js: "KGOGCJLGLNI", typ: 0 },
-        { json: "LLPAFFFGFBP", js: "LLPAFFFGFBP", typ: 3.14 },
+        { json: "CDBLKEGMAEN", js: "CDBLKEGMAEN", typ: true },
+        { json: "HINKMCLODHL", js: "HINKMCLODHL", typ: 3.14 },
+        { json: "NCLJNCFOILK", js: "NCLJNCFOILK", typ: 0 },
+        { json: "NKGIPKIAOGH", js: "NKGIPKIAOGH", typ: 3.14 },
+        { json: "NOCDAKPNGFO", js: "NOCDAKPNGFO", typ: 0 },
         { json: "lodPatternName", js: "lodPatternName", typ: "" },
-        { json: "MAEJJKELOBK", js: "MAEJJKELOBK", typ: 3.14 },
+        { json: "GDACAJPIPCJ", js: "GDACAJPIPCJ", typ: true },
         { json: "manekinJsonConfigHash", js: "manekinJsonConfigHash", typ: 3.14 },
         { json: "manekinMotionConfig", js: "manekinMotionConfig", typ: 0 },
         { json: "manekinPathHash", js: "manekinPathHash", typ: 3.14 },
         { json: "MOCNCNMLBHE", js: "MOCNCNMLBHE", typ: "" },
-        { json: "nameTextMapHash", js: "nameTextMapHash", typ: 0 },
-        { json: "NCLJNCFOILK", js: "NCLJNCFOILK", typ: 0 },
-        { json: "NKGIPKIAOGH", js: "NKGIPKIAOGH", typ: 0 },
-        { json: "NOCDAKPNGFO", js: "NOCDAKPNGFO", typ: 0 },
+        { json: "descTextMapHash", js: "descTextMapHash", typ: 0 },
         { json: "PBJALANPDBD", js: "PBJALANPDBD", typ: 0 },
+        { json: "nameTextMapHash", js: "nameTextMapHash", typ: 0 },
         { json: "PDKIEBDGBCC", js: "PDKIEBDGBCC", typ: r("Epbcffkhaim") },
+        { json: "isRangeAttack", js: "isRangeAttack", typ: true },
         { json: "physicalSubHurt", js: "physicalSubHurt", typ: 0 },
         { json: "POKAEPFKOLI", js: "POKAEPFKOLI", typ: 0 },
         { json: "prefabPathHash", js: "prefabPathHash", typ: 3.14 },
@@ -400,6 +407,7 @@ const typeMap: any = {
         { json: "skillDepotId", js: "skillDepotId", typ: 0 },
         { json: "specialDeformationMeshPathHash", js: "specialDeformationMeshPathHash", typ: 3.14 },
         { json: "staminaRecoverSpeed", js: "staminaRecoverSpeed", typ: 0 },
+        { json: "tags", js: "tags", typ: a(r("Tag")) },
         { json: "useType", js: "useType", typ: r("UseType") },
         { json: "waterSubHurt", js: "waterSubHurt", typ: 0 },
         { json: "weaponType", js: "weaponType", typ: r("WeaponType") },
@@ -446,6 +454,11 @@ const typeMap: any = {
         "QUALITY_ORANGE",
         "QUALITY_ORANGE_SP",
         "QUALITY_PURPLE",
+    ],
+    "Tag": [
+        "AVATAR_TAG_HEXENZIRKEL",
+        "AVATAR_TAG_MOONPHASE",
+        "None",
     ],
     "UseType": [
         "AVATAR_ABANDON",

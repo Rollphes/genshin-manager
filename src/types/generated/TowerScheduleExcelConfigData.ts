@@ -9,22 +9,23 @@
 
 export type TowerScheduleExcelConfigDataType = {
     buffnameTextMapHash:  number;
-    CGBJKDEDNFN:          Cgbjkdednfn[];
     closeTime:            Date;
     descTextMapHash:      number;
-    EGJACBLKAKB:          Egjacblkakb[];
     entranceFloorId:      number[];
-    FHEEAFHBJHA:          number;
     icon:                 string;
-    KKCEHFCCICG:          number;
+    EGJACBLKAKB:          Egjacblkakb[];
+    CGBJKDEDNFN:          Cgbjkdednfn[];
     monthlyLevelConfigId: number;
+    KKCEHFCCICG:          number;
+    FHEEAFHBJHA:          number;
     rewardGroup:          number;
     scheduleId:           number;
 }
 
 export type Cgbjkdednfn = {
-    GMMMCFJJNOF: number[];
-    LIAMLMJIGNK: string;
+    GMMMCFJJNOF?: number[];
+    LIAMLMJIGNK:  string;
+    JAGPCPNDKMB?: any[];
 }
 
 export type Egjacblkakb = {
@@ -199,21 +200,22 @@ function r(name: string) {
 const typeMap: any = {
     "TowerScheduleExcelConfigDataType": o([
         { json: "buffnameTextMapHash", js: "buffnameTextMapHash", typ: 0 },
-        { json: "CGBJKDEDNFN", js: "CGBJKDEDNFN", typ: a(r("Cgbjkdednfn")) },
         { json: "closeTime", js: "closeTime", typ: Date },
         { json: "descTextMapHash", js: "descTextMapHash", typ: 0 },
-        { json: "EGJACBLKAKB", js: "EGJACBLKAKB", typ: a(r("Egjacblkakb")) },
         { json: "entranceFloorId", js: "entranceFloorId", typ: a(0) },
-        { json: "FHEEAFHBJHA", js: "FHEEAFHBJHA", typ: 0 },
         { json: "icon", js: "icon", typ: "" },
-        { json: "KKCEHFCCICG", js: "KKCEHFCCICG", typ: 0 },
+        { json: "EGJACBLKAKB", js: "EGJACBLKAKB", typ: a(r("Egjacblkakb")) },
+        { json: "CGBJKDEDNFN", js: "CGBJKDEDNFN", typ: a(r("Cgbjkdednfn")) },
         { json: "monthlyLevelConfigId", js: "monthlyLevelConfigId", typ: 0 },
+        { json: "KKCEHFCCICG", js: "KKCEHFCCICG", typ: 0 },
+        { json: "FHEEAFHBJHA", js: "FHEEAFHBJHA", typ: 0 },
         { json: "rewardGroup", js: "rewardGroup", typ: 0 },
         { json: "scheduleId", js: "scheduleId", typ: 0 },
     ], false),
     "Cgbjkdednfn": o([
-        { json: "GMMMCFJJNOF", js: "GMMMCFJJNOF", typ: a(0) },
+        { json: "GMMMCFJJNOF", js: "GMMMCFJJNOF", typ: u(undefined, a(0)) },
         { json: "LIAMLMJIGNK", js: "LIAMLMJIGNK", typ: "" },
+        { json: "JAGPCPNDKMB", js: "JAGPCPNDKMB", typ: u(undefined, a("any")) },
     ], false),
     "Egjacblkakb": o([
         { json: "CPLCFNJNBEI", js: "CPLCFNJNBEI", typ: 0 },

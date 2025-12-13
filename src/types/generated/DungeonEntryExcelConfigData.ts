@@ -8,18 +8,18 @@
 // match the expected interface, even if the JSON is valid.
 
 export type DungeonEntryExcelConfigDataType = {
-    BMEAFBKODMJ:                number[];
+    GAAIKDHGIAI:                boolean;
     condComb:                   CondComb;
     cooldownTipsDungeonId:      number[];
     descriptionCycleRewardList: Array<number[]>;
     descTextMapHash:            number;
     dungeonEntryId:             number;
-    EMCEEGJKLMK:                number;
-    GAAIKDHGIAI:                boolean;
-    GMPKHIHBPAD:                number;
     id:                         number;
+    EMCEEGJKLMK:                number;
     isDefaultOpen:              boolean;
     isShowInAdvHandbook:        boolean;
+    GMPKHIHBPAD:                number;
+    MBNGDKJLBOP:                number[];
     picPath:                    string;
     rewardDataId:               number;
     satisfiedCond:              SatisfiedCond[];
@@ -211,18 +211,18 @@ function r(name: string) {
 
 const typeMap: any = {
     "DungeonEntryExcelConfigDataType": o([
-        { json: "BMEAFBKODMJ", js: "BMEAFBKODMJ", typ: a(0) },
+        { json: "GAAIKDHGIAI", js: "GAAIKDHGIAI", typ: true },
         { json: "condComb", js: "condComb", typ: r("CondComb") },
         { json: "cooldownTipsDungeonId", js: "cooldownTipsDungeonId", typ: a(0) },
         { json: "descriptionCycleRewardList", js: "descriptionCycleRewardList", typ: a(a(0)) },
         { json: "descTextMapHash", js: "descTextMapHash", typ: 0 },
         { json: "dungeonEntryId", js: "dungeonEntryId", typ: 0 },
-        { json: "EMCEEGJKLMK", js: "EMCEEGJKLMK", typ: 0 },
-        { json: "GAAIKDHGIAI", js: "GAAIKDHGIAI", typ: true },
-        { json: "GMPKHIHBPAD", js: "GMPKHIHBPAD", typ: 0 },
         { json: "id", js: "id", typ: 0 },
+        { json: "EMCEEGJKLMK", js: "EMCEEGJKLMK", typ: 0 },
         { json: "isDefaultOpen", js: "isDefaultOpen", typ: true },
         { json: "isShowInAdvHandbook", js: "isShowInAdvHandbook", typ: true },
+        { json: "GMPKHIHBPAD", js: "GMPKHIHBPAD", typ: 0 },
+        { json: "MBNGDKJLBOP", js: "MBNGDKJLBOP", typ: a(0) },
         { json: "picPath", js: "picPath", typ: "" },
         { json: "rewardDataId", js: "rewardDataId", typ: 0 },
         { json: "satisfiedCond", js: "satisfiedCond", typ: a(r("SatisfiedCond")) },

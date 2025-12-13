@@ -12,21 +12,23 @@ export type AvatarCostumeExcelConfigDataType = {
     characterId:              number;
     controllerPathHash:       number;
     controllerRemotePathHash: number;
-    descTextMapHash:          number;
-    frontIconName:            string;
-    hide:                     boolean;
     HINKMCLODHL:              number;
+    descTextMapHash:          number;
+    hide:                     boolean;
+    frontIconName:            string;
+    NFLEEEMIDDO:              number;
+    isDefault:                boolean;
+    JKGJCFBBGNJ:              boolean;
+    KPBMFEFNLBC:              boolean;
     imageNameHash:            number;
     indexID:                  number;
-    isDefault:                boolean;
-    itemId:                   number;
-    JKGJCFBBGNJ:              boolean;
-    jsonName:                 string;
-    KPBMFEFNLBC:              boolean;
-    nameTextMapHash:          number;
-    NFLEEEMIDDO:              number;
-    NGNIMLHLGMF:              number;
     PEEEMKCPLLB:              boolean;
+    itemId:                   number;
+    jsonName:                 string;
+    KGAFLJJDGFI:              number;
+    KJNEBKBDNJI:              number;
+    NGNIMLHLGMF:              number;
+    nameTextMapHash:          number;
     prefabManekinPathHash:    number;
     prefabNpcPathHash:        number;
     prefabPathHash:           number;
@@ -204,23 +206,25 @@ const typeMap: any = {
     "AvatarCostumeExcelConfigDataType": o([
         { json: "animatorConfigPathHash", js: "animatorConfigPathHash", typ: 3.14 },
         { json: "characterId", js: "characterId", typ: 0 },
-        { json: "controllerPathHash", js: "controllerPathHash", typ: 3.14 },
+        { json: "controllerPathHash", js: "controllerPathHash", typ: 0 },
         { json: "controllerRemotePathHash", js: "controllerRemotePathHash", typ: 3.14 },
-        { json: "descTextMapHash", js: "descTextMapHash", typ: 0 },
-        { json: "frontIconName", js: "frontIconName", typ: "" },
-        { json: "hide", js: "hide", typ: true },
         { json: "HINKMCLODHL", js: "HINKMCLODHL", typ: 3.14 },
+        { json: "descTextMapHash", js: "descTextMapHash", typ: 0 },
+        { json: "hide", js: "hide", typ: true },
+        { json: "frontIconName", js: "frontIconName", typ: "" },
+        { json: "NFLEEEMIDDO", js: "NFLEEEMIDDO", typ: 3.14 },
+        { json: "isDefault", js: "isDefault", typ: true },
+        { json: "JKGJCFBBGNJ", js: "JKGJCFBBGNJ", typ: true },
+        { json: "KPBMFEFNLBC", js: "KPBMFEFNLBC", typ: true },
         { json: "imageNameHash", js: "imageNameHash", typ: 3.14 },
         { json: "indexID", js: "indexID", typ: 0 },
-        { json: "isDefault", js: "isDefault", typ: true },
-        { json: "itemId", js: "itemId", typ: 0 },
-        { json: "JKGJCFBBGNJ", js: "JKGJCFBBGNJ", typ: true },
-        { json: "jsonName", js: "jsonName", typ: "" },
-        { json: "KPBMFEFNLBC", js: "KPBMFEFNLBC", typ: true },
-        { json: "nameTextMapHash", js: "nameTextMapHash", typ: 0 },
-        { json: "NFLEEEMIDDO", js: "NFLEEEMIDDO", typ: 3.14 },
-        { json: "NGNIMLHLGMF", js: "NGNIMLHLGMF", typ: 3.14 },
         { json: "PEEEMKCPLLB", js: "PEEEMKCPLLB", typ: true },
+        { json: "itemId", js: "itemId", typ: 0 },
+        { json: "jsonName", js: "jsonName", typ: "" },
+        { json: "KGAFLJJDGFI", js: "KGAFLJJDGFI", typ: 3.14 },
+        { json: "KJNEBKBDNJI", js: "KJNEBKBDNJI", typ: 0 },
+        { json: "NGNIMLHLGMF", js: "NGNIMLHLGMF", typ: 3.14 },
+        { json: "nameTextMapHash", js: "nameTextMapHash", typ: 0 },
         { json: "prefabManekinPathHash", js: "prefabManekinPathHash", typ: 3.14 },
         { json: "prefabNpcPathHash", js: "prefabNpcPathHash", typ: 3.14 },
         { json: "prefabPathHash", js: "prefabPathHash", typ: 3.14 },
