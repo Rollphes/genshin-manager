@@ -1,4 +1,4 @@
-# GameVersion 6.1.0
+# GameVersion 6.2.0
 ## CharacterId
 ID:10000002 Name:Kamisato Ayaka<br>
 ID:10000003 Name:Jean<br>
@@ -109,9 +109,12 @@ ID:10000119 Name:Lauma<br>
 ID:10000120 Name:Flins<br>
 ID:10000121 Name:Aino<br>
 ID:10000122 Name:Nefer<br>
+ID:10000123 Name:Durin<br>
+ID:10000124 Name:Jahoda<br>
 ID:10000901 Name:Mavuika (ทดลองใช้)<br>
 ID:10000902 Name:Hu Tao (ทดลองใช้)<br>
 ID:10000903 Name:Ineffa<br>
+ID:10000904 Name:Columbina<br>
 ID:10000998 Name:UGC (ชายทางการ)<br>
 ID:10000999 Name:UGC (หญิงทางการ)<br>
 ## CostumeId
@@ -247,9 +250,13 @@ ID:211900 Name:จันทราพฤกษาขจี<br>
 ID:212000 Name:เพลงราตรี<br>
 ID:212100 Name:ชุดเวิร์กชอปอัจฉริยะฟูฟ่อง<br>
 ID:212200 Name:ปริศนาแห่งมรกต<br>
+ID:212300 Name:ของขวัญจากแสงดาว<br>
+ID:212301 Name:ปลายทางอันไกลโพ้นของเรื่องราว<br>
+ID:212400 Name:ดาราจรัสล่องเงา<br>
 ID:290100 Name:คอสตูมเริ่มต้น<br>
 ID:290200 Name:คอสตูมเริ่มต้น<br>
 ID:290300 Name:คอสตูมเริ่มต้น<br>
+ID:290400 Name:คอสตูมเริ่มต้น<br>
 ID:299800 Name:คอสตูมเริ่มต้น<br>
 ID:299900 Name:คอสตูมเริ่มต้น<br>
 ## SkillId
@@ -608,6 +615,12 @@ ID:11215 Name:Precision Hydronic Cooler<br>
 ID:11221 Name:Striking Serpent<br>
 ID:11222 Name:Senet Strategy: Dance of a Thousand Nights<br>
 ID:11225 Name:Sacred Vow: True Eye's Phantasm<br>
+ID:11231 Name:Radiant Wingslash<br>
+ID:11232 Name:Binary Form: Convergence and Division<br>
+ID:11235 Name:Principle of Purity: As the Light Shifts<br>
+ID:11241 Name:Strike While the Arrow's Hot<br>
+ID:11242 Name:Savvy Strategy: Splitting the Spoils<br>
+ID:11245 Name:Hidden Aces: Seven Tools of the Hunter<br>
 ID:10231 Name:Dough-Fu<br>
 ID:10232 Name:Guoba Attack<br>
 ID:10235 Name:Pyronado<br>
@@ -617,6 +630,9 @@ ID:10463 Name:Spirit Soother<br>
 ID:11161 Name:Cyclonic Duster<br>
 ID:11162 Name:Cleaning Mode: Carrier Frequency<br>
 ID:11165 Name:Supreme Instruction: Cyclonic Exterminator<br>
+ID:10231 Name:Dough-Fu<br>
+ID:10232 Name:Guoba Attack<br>
+ID:10235 Name:Pyronado<br>
 ## InherentSkillId
 ID:221 Name:Amatsumi Kunitsumi Sanctification<br>
 ID:222 Name:Kanten Senmyou Blessing<br>
@@ -980,6 +996,13 @@ ID:12221 Name:A Wager of Moonlight<br>
 ID:12222 Name:Daughter of the Dust and Sand<br>
 ID:12223 Name:Moonsign Benediction: Dusklit Eaves<br>
 ID:12225 Name:Conspiracy of the Golden Vault<br>
+ID:12321 Name:Light Manifest of the Divine Calculus<br>
+ID:12322 Name:Chaos Formed Like the Night<br>
+ID:12323 Name:Echoes of the Surging Earth<br>
+ID:12421 Name:Plan to Get Paid<br>
+ID:12422 Name:Sweet Berry Bounty<br>
+ID:12423 Name:Moonsign Benediction: Rooftop Dash<br>
+ID:12425 Name:Backstreet Guile<br>
 ID:2321 Name:Crossfire<br>
 ID:2322 Name:Beware, It's Super Hot!<br>
 ID:2323 Name:Chef de Cuisine<br>
@@ -990,6 +1013,9 @@ ID:11621 Name:Overclocking Circuit<br>
 ID:11622 Name:Panoramic Permutation Protocol<br>
 ID:11623 Name:Moonsign Benediction: Assemblage Hub<br>
 ID:11625 Name:Flavor Synthesis Unit<br>
+ID:2321 Name:Crossfire<br>
+ID:2322 Name:Beware, It's Super Hot!<br>
+ID:2323 Name:Chef de Cuisine<br>
 ## ConstellationId
 ID:21 Name:Snowswept Sakura<br>
 ID:22 Name:Blizzard Blade Seki no To<br>
@@ -1657,6 +1683,18 @@ ID:1223 Name:Deceit Cloaks the Truth<br>
 ID:1224 Name:Delusion Ensnares Reason<br>
 ID:1225 Name:Opportunity Hides in the Margins<br>
 ID:1226 Name:Victory Flows from the Turning of Tides<br>
+ID:1231 Name:Adamah's Redemption<br>
+ID:1232 Name:Unground Visions<br>
+ID:1233 Name:Flame Mirror's Revelation<br>
+ID:1234 Name:Emanare's Source<br>
+ID:1235 Name:Scouring Flame's Sundering<br>
+ID:1236 Name:Dual Birth<br>
+ID:1241 Name:One More Flask!<br>
+ID:1242 Name:Rogue's Quick Thinking<br>
+ID:1243 Name:Desperate Gamble<br>
+ID:1244 Name:Wild Berry Amid the Dust<br>
+ID:1245 Name:The Greatest Treasure<br>
+ID:1246 Name:The Littlest Luck<br>
 ## ArtifactId
 ID:20002 Name:Initiate's Feather<br>
 ID:20004 Name:Initiate's Flower<br>
@@ -5685,6 +5723,7 @@ ID:11514 Name:Uraku Misugiri<br>
 ID:11515 Name:Absolution<br>
 ID:11516 Name:Peak Patrol Song<br>
 ID:11517 Name:Azurelight<br>
+ID:11518 Name:Athame Artis<br>
 ID:12101 Name:Waster Greatsword<br>
 ID:12201 Name:Old Merc's Pal<br>
 ID:12301 Name:Ferrous Shadow<br>
@@ -5853,6 +5892,7 @@ ID:15430 Name:Flower-Wreathed Feathers<br>
 ID:15431 Name:Chain Breaker<br>
 ID:15432 Name:Sequence of Solitude<br>
 ID:15433 Name:Snare Hook<br>
+ID:15434 Name:Rainbow Serpent's Rain Bow<br>
 ID:15501 Name:Skyward Harp<br>
 ID:15502 Name:Amos' Bow<br>
 ID:15503 Name:Elegy for the End<br>
@@ -5866,6 +5906,7 @@ ID:15511 Name:Hunter's Path<br>
 ID:15512 Name:The First Great Magic<br>
 ID:15513 Name:Silvershower Heartstrings<br>
 ID:15514 Name:Astral Vulture's Crimson Plumage<br>
+ID:15515 Name:The Daybreak Chronicles<br>
 ## MaterialId
 ID:101 Name:Character EXP<br>
 ID:102 Name:Adventure EXP<br>
@@ -5954,6 +5995,7 @@ ID:185 Name:บันทึกการคาดการณ์<br>
 ID:186 Name:ความสนุกของฤดูร้อน<br>
 ID:187 Name:ขวัญกำลังใจกองทัพ<br>
 ID:188 Name:ความคืบหน้าการเตรียมการ<br>
+ID:189 Name:จิตห้าวหาญโชติช่วง<br>
 ID:201 Name:Primogem<br>
 ID:202 Name:Mora<br>
 ID:203 Name:Genesis Crystal<br>
@@ -6251,6 +6293,8 @@ ID:4119 Name:Lauma<br>
 ID:4120 Name:Flins<br>
 ID:4121 Name:Aino<br>
 ID:4122 Name:Nefer<br>
+ID:4123 Name:Durin<br>
+ID:4124 Name:Jahoda<br>
 ID:5100 Name:ดวงดาวแห่งชีวิตของ Kachina<br>
 ID:5101 Name:ดวงดาวแห่งชีวิตของ Kinich<br>
 ID:5102 Name:ดวงดาวแห่งชีวิตของ Mualani<br>
@@ -6272,6 +6316,8 @@ ID:5119 Name:ดวงดาวแห่งชีวิตของ Lauma<br>
 ID:5120 Name:ดวงดาวแห่งชีวิตของ Flins<br>
 ID:5121 Name:ดวงดาวแห่งชีวิตของ Aino<br>
 ID:5122 Name:ดวงดาวแห่งชีวิตของ Nefer<br>
+ID:5123 Name:ดวงดาวแห่งชีวิตของ Durin<br>
+ID:5124 Name:ดวงดาวแห่งชีวิตของ Jahoda<br>
 ID:6002 Name:ดวงดาวแห่งชีวิตของ Kamisato Ayaka<br>
 ID:6003 Name:ดวงดาวแห่งชีวิตของ Jean<br>
 ID:6005 Name:ดวงดาวแห่งชีวิตของนักเดินทาง (ชาย)<br>
@@ -6379,6 +6425,8 @@ ID:6119 Name:ดวงดาวแห่งชีวิตของ Lauma<br>
 ID:6120 Name:ดวงดาวแห่งชีวิตของ Flins<br>
 ID:6121 Name:ดวงดาวแห่งชีวิตของ Aino<br>
 ID:6122 Name:ดวงดาวแห่งชีวิตของ Nefer<br>
+ID:6123 Name:ดวงดาวแห่งชีวิตของ Durin<br>
+ID:6124 Name:ดวงดาวแห่งชีวิตของ Jahoda<br>
 ID:100001 Name:Apple<br>
 ID:100002 Name:Sunsettia<br>
 ID:100003 Name:Paper Strips<br>
@@ -8956,6 +9004,13 @@ ID:108916 Name:Frontier Land<br>
 ID:108917 Name:Wildberry Trail<br>
 ID:108918 Name:Secrets Exchanged<br>
 ID:108919 Name:น้ำตาลปั้น - Nefer<br>
+ID:108921 Name:\"After-Class Practice\"<br>
+ID:108924 Name:Apple Stew (เวอร์ชันทดลอง)<br>
+ID:108926 Name:Spiced Fried Chicken รสประหลาด<br>
+ID:108927 Name:Spiced Fried Chicken<br>
+ID:108928 Name:Spiced Fried Chicken แสนอร่อย<br>
+ID:108929 Name:น้ำตาลปั้น: Jahoda<br>
+ID:108930 Name:น้ำตาลปั้น: ภูตจันทรา<br>
 ID:109000 Name:Cooking Ingredients<br>
 ID:109101 Name:สูตรอาหาร: Chicken-Mushroom Skewer<br>
 ID:109102 Name:สูตรอาหาร: Fisherman's Toast<br>
@@ -9213,6 +9268,7 @@ ID:109637 Name:สูตรอาหาร: Crispy Roast<br>
 ID:109638 Name:สูตรอาหาร: Lakkaberry Madame<br>
 ID:109639 Name:สูตรอาหาร: Lakkaberry Pie<br>
 ID:109640 Name:สูตรอาหาร: Lohikeitto<br>
+ID:109641 Name:สูตรอาหาร: Spiced Fried Chicken<br>
 ID:110000 Name:ไอเทมจากการสร้าง<br>
 ID:110001 Name:Flour<br>
 ID:110002 Name:Cream<br>
@@ -9475,6 +9531,7 @@ ID:113076 Name:Secret Source Airflow Accumulator<br>
 ID:113077 Name:Precision Kuuvahki Stamping Die<br>
 ID:113078 Name:Lightbearing Scale-Feather<br>
 ID:113079 Name:Radiant Antler<br>
+ID:113080 Name:Cyclic Military Kuuvahki Core<br>
 ID:114001 Name:Tile of Decarabian's Tower<br>
 ID:114002 Name:Debris of Decarabian's City<br>
 ID:114003 Name:Fragment of Decarabian's Epic<br>
@@ -11030,6 +11087,18 @@ ID:121402 Name:หน้ากระดาษที่ไหม้ไปคร�
 ID:121406 Name:เงินทุนของ \"เคหาสน์แห่งความลับ\"<br>
 ID:121407 Name:เงินทุนของ \"เคหาสน์แห่งความลับ\"<br>
 ID:121408 Name:เงินทุนของ \"เคหาสน์แห่งความลับ\"<br>
+ID:121414 Name:\"ของขวัญ\" จาก Rhinedottir<br>
+ID:121415 Name:\"ตุ๊กตา\" ที่เก่าซอมซ่อ<br>
+ID:121418 Name:จดหมายลายมือหวัด ๆ<br>
+ID:121419 Name:กล่องน้ำตาลปั้นรุ่นพิเศษ<br>
+ID:121420 Name:เงินทุนของ \"เคหาสน์แห่งความลับ\"<br>
+ID:121421 Name:คู่มือนำเที่ยว \"คืนจันทราธิษฐาน\"<br>
+ID:121422 Name:การ์ดอวยพรสำหรับ Columbina<br>
+ID:121423 Name:ลูกอมจันทราธิษฐานที่ Columbina เตรียมไว้<br>
+ID:121424 Name:ลูกอมจันทราธิษฐานที่ Columbina เตรียมไว้<br>
+ID:121425 Name:มหากาพย์นักรบวิญญาณโชติช่วง: เล่ม 2<br>
+ID:121426 Name:เรื่องราวที่มีชื่อว่า \"Durin\"<br>
+ID:121441 Name:กล่องน้ำตาลปั้นรุ่นพิเศษ<br>
 ID:129001 Name:น้ำตาแห่งดวงดาว<br>
 ID:129002 Name:ออบซิเดียนนามโบราณ<br>
 ID:130001 Name:Silk Flower Seed<br>
@@ -11362,6 +11431,7 @@ ID:200124 Name:Smoldering Phosphorescent Flame<br>
 ID:200125 Name:Composite Bow Tuning Kit<br>
 ID:200126 Name:Drifter's Crystal Marrow<br>
 ID:200127 Name:Golden Strings<br>
+ID:200128 Name:Refined Heart<br>
 ID:200201 Name:Falcon's Dance<br>
 ID:200202 Name:Steelwing<br>
 ID:200203 Name:Galespring<br>
@@ -11691,6 +11761,10 @@ ID:210259 Name:บันทึก - จันทราน้ำแข็ง<br>
 ID:210260 Name:การฉลอง - เลิศรส<br>
 ID:210261 Name:Nefer - ความลับ<br>
 ID:210262 Name:บันทึก - ซากอดีตกาล<br>
+ID:210263 Name:Durin - หัวใจเรืองรอง<br>
+ID:210264 Name:Jahoda - ผู้ช่วย<br>
+ID:210265 Name:บันทึก - หิมะโชติช่วง<br>
+ID:210266 Name:การฉลอง - อ่านฝัน<br>
 ID:215001 Name:เอฟเฟกต์วิ่ง - อัศวิน Dandelion<br>
 ID:215002 Name:เอฟเฟกต์วิ่ง - ความหนาวเย็นคืนชีพ<br>
 ID:215003 Name:เอฟเฟกต์วิ่ง - Tianquan ผู้บดบังดวงเดือน<br>
@@ -11706,6 +11780,8 @@ ID:215012 Name:เอฟเฟกต์วิ่ง - ดินแดนแห�
 ID:215013 Name:เอฟเฟกต์วิ่ง - ห้วงคำนึงแสนอ้างว้าง<br>
 ID:215014 Name:เอฟเฟกต์วิ่ง - กล้วยไม้งามกลางหุบเขา<br>
 ID:215015 Name:เอฟเฟกต์วิ่ง - พฤกษาช้อยวิสุทธิ์<br>
+ID:215016 Name:เอฟเฟกต์วิ่ง - องค์ชายชอล์กขาว<br>
+ID:215017 Name:เอฟเฟกต์วิ่ง - ดวงอาทิตย์ที่หลบหนี<br>
 ID:216001 Name:แสงอ่อนจาง<br>
 ID:216002 Name:แย้มแสง<br>
 ID:216003 Name:แสงเรืองรอง<br>
@@ -11831,6 +11907,7 @@ ID:220122 Name:\"กล่องถ่ายรูปแห่งความท
 ID:220123 Name:Luna Treasure Compass<br>
 ID:220124 Name:บันทึกย่างก้าวเล่าเรื่อง<br>
 ID:220125 Name:กล่องจันทรา<br>
+ID:220126 Name:พจนานุกรมแม่มดน้อย<br>
 ID:221001 Name:คู่มือ: Anemoculus Resonance Stone<br>
 ID:221002 Name:คู่มือ: Geoculus Resonance Stone<br>
 ID:221003 Name:แบบแปลน: Geo Treasure Compass<br>
@@ -12045,6 +12122,14 @@ ID:318137 Name:ฝึกสอน Ajaw<br>
 ID:318138 Name:แอบตกใจเบา ๆ<br>
 ID:318139 Name:คันไม้คันมือ<br>
 ID:318140 Name:ช่วงเวลาพักผ่อน<br>
+ID:318141 Name:สำรวจและค้นหา<br>
+ID:318142 Name:เวลาจิบชา<br>
+ID:318143 Name:เตรียมพร้อมลุย<br>
+ID:318144 Name:ออร่านักธุรกิจผู้ร่ำรวย<br>
+ID:318145 Name:คิดอย่างแยบยล<br>
+ID:318146 Name:รูปลักษณ์ดารา<br>
+ID:318147 Name:ดูอย่างใจเย็น<br>
+ID:318148 Name:ลางความมั่งคั่ง<br>
 ID:319001 Name:มายาลวงตาพิศวง<br>
 ID:319002 Name:จดจ่อกับฝันอันลึกล้ำ<br>
 ID:319003 Name:ดวงดาวซ่อนพรสวรรค์<br>
@@ -12061,11 +12146,12 @@ ID:319013 Name:เปลวไฟและสงคราม<br>
 ID:319014 Name:บทกวีแห่งฟ้าสีคราม<br>
 ID:319015 Name:แสงไฟลุกโชนแผดเผา<br>
 ID:319016 Name:ฝันนิรันดร์ไร้พะวง<br>
-ID:319017 Name:Falcon Wings Ablaze<br>
-ID:319018 Name:Wisdom of Cherried Frost<br>
-ID:319019 Name:Red-Hot Meter<br>
+ID:319017 Name:ปีกปักษาแผดเผา<br>
+ID:319018 Name:เกล็ดซากุระเบิกบาน<br>
+ID:319019 Name:จังหวะสุดร้อนแรง<br>
 ID:320001 Name:<br>
 ID:320002 Name:พูดคุยอย่างคึกคัก<br>
+ID:320003 Name:ขยันคิด ขยันเรียน<br>
 ID:326000 Name:Ganyu<br>
 ID:326001 Name:Kaeya<br>
 ID:326002 Name:Chongyun<br>
@@ -12190,6 +12276,9 @@ ID:326120 Name:Lord of Eroded Primal Fire<br>
 ID:326121 Name:Varesa<br>
 ID:326122 Name:Ifa<br>
 ID:326123 Name:Hydro Tulpa<br>
+ID:326124 Name:Escoffier<br>
+ID:326125 Name:Gaming<br>
+ID:326126 Name:Black Serpent Knight: Rockbreaker Ax<br>
 ID:326500 Name:Undivided Heart<br>
 ID:326501 Name:Cold-Blooded Strike<br>
 ID:326502 Name:Steady Breathing<br>
@@ -12314,6 +12403,9 @@ ID:326620 Name:Undying Fury<br>
 ID:326621 Name:A Hero of Justice's Triumph<br>
 ID:326622 Name:Tactical Warm Compress Bandaging<br>
 ID:326623 Name:Flow Convergence<br>
+ID:326624 Name:Tea Parties Bursting With Color<br>
+ID:326625 Name:Bringer of Blessing<br>
+ID:326626 Name:\"Once Stood Against the Tide of Dark Waters Like Bedrock...\"<br>
 ID:327000 Name:Magic Guide<br>
 ID:327001 Name:Sacrificial Fragments<br>
 ID:327002 Name:Skyward Atlas<br>
@@ -12424,6 +12516,7 @@ ID:327106 Name:Aqua Simulacra<br>
 ID:327107 Name:Everlasting Moonglow<br>
 ID:327108 Name:Fell Dragon's Monocle<br>
 ID:327109 Name:Noblesse Oblige<br>
+ID:327110 Name:Nymph's Dream<br>
 ID:328000 Name:Liyue Harbor Wharf<br>
 ID:328001 Name:Knights of Favonius Library<br>
 ID:328002 Name:Jade Chamber<br>
@@ -12493,6 +12586,7 @@ ID:328065 Name:เมืองหลวง Constellation<br>
 ID:328066 Name:Forest Blessing<br>
 ID:328067 Name:ของขวัญจากเทพธิดาพยากรณ์<br>
 ID:328068 Name:กิลด์นักผจญภัย<br>
+ID:328069 Name:Seymour<br>
 ID:329000 Name:Elemental Resonance: Woven Ice<br>
 ID:329001 Name:Elemental Resonance: Shattering Ice<br>
 ID:329002 Name:Elemental Resonance: Woven Waters<br>
@@ -12597,6 +12691,9 @@ ID:329101 Name:\"พรจากแม่มด M\"<br>
 ID:329102 Name:\"เทศกาลรื่นเริง\"<br>
 ID:329103 Name:หยกปฏิญาณในอดีต เปี่ยมด้วยจิตวิญญาณที่สัตย์ซื่อ<br>
 ID:329104 Name:Chenyu Brew<br>
+ID:329105 Name:\"สิ่งที่หลงเหลือไว้ในเม็ดทราย\"<br>
+ID:329106 Name:การผจญภัยแห่ง Narzissenkreuz<br>
+ID:329107 Name:แผนการช่วยเหลือโลก<br>
 ID:330000 Name:Ganyu<br>
 ID:330001 Name:Kaeya<br>
 ID:330002 Name:Chongyun<br>
@@ -12721,6 +12818,9 @@ ID:330120 Name:Lord of Eroded Primal Fire<br>
 ID:330121 Name:Varesa<br>
 ID:330122 Name:Ifa<br>
 ID:330123 Name:Hydro Tulpa<br>
+ID:330124 Name:Escoffier<br>
+ID:330125 Name:Gaming<br>
+ID:330126 Name:Black Serpent Knight: Rockbreaker Ax<br>
 ID:330500 Name:Undivided Heart<br>
 ID:330501 Name:Cold-Blooded Strike<br>
 ID:330502 Name:Steady Breathing<br>
@@ -12845,6 +12945,9 @@ ID:330620 Name:Undying Fury<br>
 ID:330621 Name:A Hero of Justice's Triumph<br>
 ID:330622 Name:Tactical Warm Compress Bandaging<br>
 ID:330623 Name:Flow Convergence<br>
+ID:330624 Name:Tea Parties Bursting With Color<br>
+ID:330625 Name:Bringer of Blessing<br>
+ID:330626 Name:\"Once Stood Against the Tide of Dark Waters Like Bedrock...\"<br>
 ID:331000 Name:Magic Guide<br>
 ID:331001 Name:Sacrificial Fragments<br>
 ID:331002 Name:Skyward Atlas<br>
@@ -12955,6 +13058,7 @@ ID:331106 Name:Aqua Simulacra<br>
 ID:331107 Name:Everlasting Moonglow<br>
 ID:331108 Name:Fell Dragon's Monocle<br>
 ID:331109 Name:Noblesse Oblige<br>
+ID:331110 Name:Nymph's Dream<br>
 ID:332000 Name:Liyue Harbor Wharf<br>
 ID:332001 Name:Knights of Favonius Library<br>
 ID:332002 Name:Jade Chamber<br>
@@ -13024,6 +13128,7 @@ ID:332065 Name:เมืองหลวง Constellation<br>
 ID:332066 Name:Forest Blessing<br>
 ID:332067 Name:ของขวัญจากเทพธิดาพยากรณ์<br>
 ID:332068 Name:กิลด์นักผจญภัย<br>
+ID:332069 Name:Seymour<br>
 ID:333000 Name:Elemental Resonance: Woven Ice<br>
 ID:333001 Name:Elemental Resonance: Shattering Ice<br>
 ID:333002 Name:Elemental Resonance: Woven Waters<br>
@@ -13128,6 +13233,9 @@ ID:333101 Name:\"พรจากแม่มด M\"<br>
 ID:333102 Name:\"เทศกาลรื่นเริง\"<br>
 ID:333103 Name:หยกปฏิญาณในอดีต เปี่ยมด้วยจิตวิญญาณที่สัตย์ซื่อ<br>
 ID:333104 Name:Chenyu Brew<br>
+ID:333105 Name:\"สิ่งที่หลงเหลือไว้ในเม็ดทราย\"<br>
+ID:333106 Name:การผจญภัยแห่ง Narzissenkreuz<br>
+ID:333107 Name:แผนการช่วยเหลือโลก<br>
 ID:334000 Name:Ganyu<br>
 ID:334001 Name:Kaeya<br>
 ID:334002 Name:Chongyun<br>
@@ -13252,6 +13360,9 @@ ID:334120 Name:Lord of Eroded Primal Fire<br>
 ID:334121 Name:Varesa<br>
 ID:334122 Name:Ifa<br>
 ID:334123 Name:Hydro Tulpa<br>
+ID:334124 Name:Escoffier<br>
+ID:334125 Name:Gaming<br>
+ID:334126 Name:Black Serpent Knight: Rockbreaker Ax<br>
 ID:334500 Name:Undivided Heart<br>
 ID:334501 Name:Cold-Blooded Strike<br>
 ID:334502 Name:Steady Breathing<br>
@@ -13376,6 +13487,9 @@ ID:334620 Name:Undying Fury<br>
 ID:334621 Name:A Hero of Justice's Triumph<br>
 ID:334622 Name:Tactical Warm Compress Bandaging<br>
 ID:334623 Name:Flow Convergence<br>
+ID:334624 Name:Tea Parties Bursting With Color<br>
+ID:334625 Name:Bringer of Blessing<br>
+ID:334626 Name:\"Once Stood Against the Tide of Dark Waters Like Bedrock...\"<br>
 ID:335000 Name:Magic Guide<br>
 ID:335001 Name:Sacrificial Fragments<br>
 ID:335002 Name:Skyward Atlas<br>
@@ -13486,6 +13600,7 @@ ID:335106 Name:Aqua Simulacra<br>
 ID:335107 Name:Everlasting Moonglow<br>
 ID:335108 Name:Fell Dragon's Monocle<br>
 ID:335109 Name:Noblesse Oblige<br>
+ID:335110 Name:Nymph's Dream<br>
 ID:336000 Name:Liyue Harbor Wharf<br>
 ID:336001 Name:Knights of Favonius Library<br>
 ID:336002 Name:Jade Chamber<br>
@@ -13555,6 +13670,7 @@ ID:336065 Name:เมืองหลวง Constellation<br>
 ID:336066 Name:Forest Blessing<br>
 ID:336067 Name:ของขวัญจากเทพธิดาพยากรณ์<br>
 ID:336068 Name:กิลด์นักผจญภัย<br>
+ID:336069 Name:Seymour<br>
 ID:337000 Name:Elemental Resonance: Woven Ice<br>
 ID:337001 Name:Elemental Resonance: Shattering Ice<br>
 ID:337002 Name:Elemental Resonance: Woven Waters<br>
@@ -13659,6 +13775,9 @@ ID:337101 Name:\"พรจากแม่มด M\"<br>
 ID:337102 Name:\"เทศกาลรื่นเริง\"<br>
 ID:337103 Name:หยกปฏิญาณในอดีต เปี่ยมด้วยจิตวิญญาณที่สัตย์ซื่อ<br>
 ID:337104 Name:Chenyu Brew<br>
+ID:337105 Name:\"สิ่งที่หลงเหลือไว้ในเม็ดทราย\"<br>
+ID:337106 Name:การผจญภัยแห่ง Narzissenkreuz<br>
+ID:337107 Name:แผนการช่วยเหลือโลก<br>
 ID:339000 Name:แรกเริ่ม<br>
 ID:339001 Name:Mondstadt<br>
 ID:339002 Name:Liyue<br>
@@ -13729,6 +13848,7 @@ ID:340019 Name:ดอกท้อแดงพราวหิมะ<br>
 ID:340020 Name:รื่นเริงส่งท้ายปี<br>
 ID:340021 Name:งานเลี้ยงแสนสงบ<br>
 ID:340022 Name:การผจญภัยอันลุกโชน<br>
+ID:340025 Name:ปลายทางอันไกลโพ้นของเรื่องราว<br>
 ID:341001 Name:จินตนาการช่วงโชติ<br>
 ID:341002 Name:จินตนาการช่วงโชติ - ร่างบริสุทธิ์<br>
 ID:341101 Name:กลืนอสรพิษ<br>
@@ -13918,6 +14038,8 @@ ID:380463 Name:ไฟถนนในเมือง - \"เส้นทางข
 ID:380464 Name:ตะเกียงเรืองแสงแบบเรียบง่าย<br>
 ID:380465 Name:\"แสงกระจ่างนำพากลับบ้าน\"<br>
 ID:380466 Name:\"ดุจปุยเมฆโอบกอด\"<br>
+ID:380467 Name:\"ผู้เดินเดียวดาย\"<br>
+ID:380468 Name:\"แสงสว่างที่ไม่เปลี่ยนแปลง\"<br>
 ID:380504 Name:\"กลีบดอกทอแสง\"<br>
 ID:380505 Name:\"โคมไฟระย้าของวิหาร\"<br>
 ID:380506 Name:\"ลำแสงลุกโชนของหอคอย\"<br>
@@ -14225,6 +14347,9 @@ ID:383407 Name:\"หอกที่รอการปล่อย\"<br>
 ID:383408 Name:\"ทะยานสู่ที่สูง\"<br>
 ID:383409 Name:\"เรือที่แล่นอยู่บนผืนน้ำสงบ\"<br>
 ID:383410 Name:โมเดลอาหารปลอม - \"Saurus Cracker\"<br>
+ID:383411 Name:\"ประกายมหัศจรรย์\"<br>
+ID:383412 Name:\"หมุนทำนาย\"<br>
+ID:383413 Name:\"เรียกน้ำย่อย\"<br>
 ID:383501 Name:\"สำนึกของดินแดนแห่งวิสัยทัศน์\"<br>
 ID:383502 Name:\"กลิ่นหอมดับกระหาย\"<br>
 ID:383504 Name:\"ศิลปะกักน้ำบริสุทธิ์\"<br>
@@ -14267,6 +14392,7 @@ ID:384221 Name:\"ห่วงยางโยกเยก\"<br>
 ID:384222 Name:\"ห่วงชูชีพฉุกเฉิน\"<br>
 ID:384223 Name:เสียงตามสายของโรงงาน - \"สดชื่นตื่นตัว\"<br>
 ID:384224 Name:กระดานปาเป้าในร้านเหล้า - \"คะแนนสุทธิ\"<br>
+ID:384225 Name:ประกาศจากร้านเหล้า - \"เรื่องเล่าในเมือง\"<br>
 ID:384501 Name:\"ช่วงเวลาที่ผ่อนคลาย\"<br>
 ID:390101 Name:กระท่อมหญ้าคา<br>
 ID:390102 Name:คลังสินค้าหญ้าคา<br>
@@ -14731,6 +14857,7 @@ ID:393218 Name:\"ขนปุยหวานละมุน\"<br>
 ID:393219 Name:\"รากฐานอันมั่นคง\"<br>
 ID:393220 Name:\"ท่ามกลางเมฆไม้ร้อยเรียง\"<br>
 ID:393221 Name:\"ช่อดอกไม้สีอ่อน\"<br>
+ID:393222 Name:\"ดอกไม้ที่ไร้กลิ่นหอม\"<br>
 ID:393301 Name:ชั้นวางของไม้สนหนาม<br>
 ID:393302 Name:ชั้นวางอาวุธไม้สนหนาม<br>
 ID:393303 Name:ชั้นวางอาวุธไม้เนื้อแข็ง<br>
@@ -14919,6 +15046,7 @@ ID:393935 Name:ของตกแต่งจักรกล - \"ปี๊บ �
 ID:393936 Name:ของตกแต่งจักรกล - \"ว้าววววว\"<br>
 ID:393937 Name:\"ไอศกรีมหวานใจ\"<br>
 ID:393938 Name:กล่องสินค้าขนาดเล็ก - \"จัดวางอย่างเหมาะสม\"<br>
+ID:393939 Name:\"เครื่องตรวจจับพกพาอเนกประสงค์\"<br>
 ID:394101 Name:รั้วไม้ไผ่ทนสภาพอากาศ<br>
 ID:394102 Name:รั้วไม้สนแข็งแรง<br>
 ID:394103 Name:รั้วไม้ Hilichurl<br>
@@ -15041,10 +15169,18 @@ ID:394631 Name:หุ่นยนต์จิ๋ว - \"ปิ๊งไอเด
 ID:394632 Name:\"เจ้าหนูพุงโต\"<br>
 ID:394633 Name:ตู้สินค้าขนาดกลาง - \"การขนส่งประสิทธิภาพสูง\"<br>
 ID:394636 Name:คู่หูไขปริศนา - \"จากไปอย่างรีบร้อน\"<br>
+ID:394637 Name:\"หนึ่งวิพริบตาเดียว\"<br>
+ID:394639 Name:\"ตำนานสุดยอดเนื้อย่าง\"<br>
+ID:394640 Name:\"ม้าจิ๋วโยกเยก\"<br>
+ID:394641 Name:หอคอยสามขาแบบตั้งสองขั้ว<br>
 ID:394800 Name:\"อัศวินฟันยื่นขี้เซา\"<br>
 ID:394803 Name:มิกเซอร์แดนซ์สุดเร่าร้อน - \"จังหวะหฤหรรษ์\"<br>
 ID:394809 Name:\"เชฟใหญ่หมวกกลม\"<br>
 ID:394810 Name:\"แมวน้อยนอนหมอบ\"<br>
+ID:394814 Name:\"นกน้อยจิ๊บจิ๊บ\"<br>
+ID:394815 Name:\"โจรขโมยอาหาร\"<br>
+ID:394816 Name:\"วีเซลวายร้ายจอมบงการ\"<br>
+ID:394818 Name:\"มังกรพร้อมรบ\"<br>
 ## MonsterId
 ID:20010101 Name:Dendro Slime<br>
 ID:20010201 Name:Large Dendro Slime<br>
@@ -15406,7 +15542,7 @@ ID:21030601 Name:Electro Samachurl<br>
 ID:21030602 Name:Electro Samachurl<br>
 ID:21030603 Name:Electro Samachurl<br>
 ID:21030681 Name:Electro Samachurl<br>
-ID:21030701 Name:Samachurl Boss<br>
+ID:21030701 Name:Mystifying Megachurl<br>
 ID:21040101 Name:Anemo Hilichurl Rogue<br>
 ID:21040181 Name:Anemo Hilichurl Rogue<br>
 ID:21040182 Name:Anemo Hilichurl Rogue<br>
@@ -15479,6 +15615,9 @@ ID:22100102 Name:Iniquitous Baptist: ผู้ควบคุมเปลวเ�
 ID:22100201 Name:Iniquitous Baptist: ผู้ควบคุมสายน้ำ, เปลวเพลิง และน้ำแข็ง<br>
 ID:22100202 Name:Iniquitous Baptist: ผู้ควบคุมสายน้ำ, เปลวเพลิง และน้ำแข็ง<br>
 ID:22100301 Name:Iniquitous Baptist: ผู้ควบคุมสายน้ำ, เปลวเพลิง และสายฟ้า<br>
+ID:22100302 Name:Iniquitous Baptist: ผู้ควบคุมสายน้ำ, เปลวเพลิง และสายฟ้า<br>
+ID:22100303 Name:Iniquitous Baptist: ผู้ควบคุมสายน้ำ, เปลวเพลิง และสายฟ้า<br>
+ID:22100304 Name:Iniquitous Baptist: ผู้ควบคุมสายน้ำ, เปลวเพลิง และสายฟ้า<br>
 ID:22100401 Name:Iniquitous Baptist: ผู้ควบคุมสายน้ำ, น้ำแข็ง และสายฟ้า<br>
 ID:22100501 Name:Iniquitous Baptist<br>
 ID:22110101 Name:Shatterstone Breacher Primus ขนาดใหญ่<br>
@@ -15491,27 +15630,43 @@ ID:22110402 Name:Overgrown Breacher Primus<br>
 ID:22110403 Name:Overgrown Breacher Primus<br>
 ID:22120101 Name:Tenebrous Papilla: ประเภท I<br>
 ID:22120201 Name:Tenebrous Mimiflora<br>
+ID:22120202 Name:Tenebrous Mimiflora<br>
 ID:22120301 Name:Tenebrous Mimesis - Ruin Guard<br>
+ID:22120302 Name:Tenebrous Mimesis - Ruin Guard<br>
 ID:22120401 Name:Tenebrous Mimesis - Anemo Hilichurl Rogue<br>
+ID:22120402 Name:Tenebrous Mimesis - Anemo Hilichurl Rogue<br>
 ID:22120501 Name:Tenebrous Mimesis - Secret Source Automaton: Hunter-Seeker<br>
+ID:22120502 Name:Tenebrous Mimesis - Secret Source Automaton: Hunter-Seeker<br>
 ID:22120601 Name:Tenebrous Mimesis - Crackling Axe Mitachurl<br>
+ID:22120602 Name:Tenebrous Mimesis - Crackling Axe Mitachurl<br>
 ID:22120701 Name:Tenebrous Mimesis - Tepetlisaurus<br>
+ID:22120702 Name:Tenebrous Mimesis - Tepetlisaurus<br>
 ID:22120801 Name:Tenebrous Mimesis - Koholasaurus<br>
+ID:22120802 Name:Tenebrous Mimesis - Koholasaurus<br>
 ID:22120901 Name:Tenebrous Mimesis - Yumkasaurus<br>
+ID:22120902 Name:Tenebrous Mimesis - Yumkasaurus<br>
 ID:22121001 Name:Tenebrous Mimesis - Tepetlisaurus Warrior: Shard Striker<br>
+ID:22121002 Name:Tenebrous Mimesis - Tepetlisaurus Warrior: Shard Striker<br>
 ID:22121101 Name:Tenebrous Mimesis - Tepetlisaurus Warrior: Rockbreaker Blade<br>
+ID:22121102 Name:Tenebrous Mimesis - Tepetlisaurus Warrior: Rockbreaker Blade<br>
 ID:22121201 Name:Tenebrous Mimesis - Yumkasaurus Warrior: Flowing Skyfire<br>
+ID:22121202 Name:Tenebrous Mimesis - Yumkasaurus Warrior: Flowing Skyfire<br>
 ID:22121301 Name:Tenebrous Mimesis - Qucusaurus Warrior: Heartstar Hammer<br>
 ID:22121302 Name:Tenebrous Mimesis - Qucusaurus Warrior: Heartstar Hammer<br>
+ID:22121303 Name:Tenebrous Mimesis - Qucusaurus Warrior: Heartstar Hammer<br>
 ID:22121401 Name:Tenebrous Mimesis - Qucusaurus Warrior: Blazing Sky<br>
+ID:22121402 Name:Tenebrous Mimesis - Qucusaurus Warrior: Blazing Sky<br>
 ID:22121501 Name:Tenebrous Mimesis - Iktomisaurus Warrior: Icy Tidebearer<br>
+ID:22121502 Name:Tenebrous Mimesis - Iktomisaurus Warrior: Icy Tidebearer<br>
 ID:22121601 Name:Tenebrous Papilla: ประเภท II<br>
 ID:22121602 Name:Tenebrous Papilla: ประเภท II<br>
 ID:22121603 Name:Tenebrous Papilla: ประเภท II<br>
 ID:22121604 Name:Tenebrous Papilla: ประเภท II<br>
 ID:22121701 Name:Tenebrous Papilla: ประเภท III<br>
 ID:22121801 Name:Tenebrous Mimesis - Geovishap Hatchling<br>
+ID:22121802 Name:Tenebrous Mimesis - Geovishap Hatchling<br>
 ID:22121901 Name:Tenebrous Mimesis - Tatankasaurus<br>
+ID:22121902 Name:Tenebrous Mimesis - Tatankasaurus<br>
 ID:22130001 Name:Wilderness Exile<br>
 ID:22130002 Name:Wilderness Exile<br>
 ID:22130003 Name:Wilderness Exile<br>
@@ -15610,6 +15765,8 @@ ID:23085301 Name:ยานตรวจการณ์: กราวด์เอ�
 ID:23085302 Name:ยานตรวจการณ์: กราวด์เอฟเฟกต์สนับสนุนการยิงขั้นสูง<br>
 ID:23085303 Name:ยานตรวจการณ์: กราวด์เอฟเฟกต์สนับสนุนการยิงขั้นสูง<br>
 ID:23085304 Name:ยานตรวจการณ์: กราวด์เอฟเฟกต์สนับสนุนการยิงขั้นสูง<br>
+ID:23090101 Name:จักรกลตรวจการณ์หนักพิเศษ - ป้อมเคลื่อนที่<br>
+ID:23090102 Name:จักรกลตรวจการณ์หนักพิเศษ - ป้อมเคลื่อนที่<br>
 ID:24010101 Name:Ruin Guard<br>
 ID:24010102 Name:Ruin Guard<br>
 ID:24010103 Name:Ruin Guard<br>
@@ -15761,20 +15918,23 @@ ID:24070202 Name:Icewind Suite: ฝังมรณะแห่ง Coppelia<br>
 ID:24070301 Name:Icewind Suite<br>
 ID:24080101 Name:Experimental Field Generator<br>
 ID:24080102 Name:Experimental Field Generator<br>
+ID:24080103 Name:Experimental Field Generator<br>
+ID:24080104 Name:Experimental Field Generator<br>
+ID:24080105 Name:Experimental Field Generator<br>
 ID:24090101 Name:Secret Source Automaton: Hunter-Seeker<br>
 ID:24090102 Name:Secret Source Automaton: Hunter-Seeker<br>
 ID:24090201 Name:Secret Source Automaton - Configuration Device<br>
 ID:24090202 Name:Secret Source Automaton - Configuration Device<br>
 ID:24090203 Name:Secret Source Automaton - Configuration Device<br>
-ID:24090301 Name:<br>
-ID:24090302 Name:<br>
-ID:24090401 Name:<br>
+ID:24090301 Name:Primeval Source Dragon Mech<br>
+ID:24090302 Name:Primeval Source Dragon Mech<br>
+ID:24090401 Name:Primeval Source Dragon Mech<br>
 ID:24090501 Name:Secret Source Automaton - Overseer Device<br>
 ID:24090502 Name:Secret Source Automaton - Overseer Device<br>
 ID:24090503 Name:Secret Source Automaton - Overseer Device<br>
 ID:24090504 Name:Secret Source Automaton - Overseer Device<br>
 ID:24100101 Name:เป็ดโจมตีหมัดหนัก<br>
-ID:24100201 Name:(test) ยักษ์ขยะ - โดรน<br>
+ID:24100201 Name:เป็ดโจมตีหมัดหนัก<br>
 ID:24810101 Name:หอคอยป้องกันไฟระดับพื้นฐาน<br>
 ID:24810190 Name:หอคอยป้องกันไฟระดับพื้นฐาน<br>
 ID:24810191 Name:หอคอยป้องกันไฟระดับพื้นฐาน<br>
@@ -15888,7 +16048,7 @@ ID:25010702 Name:กองโจรล่าสมบัติ - Handyman<br>
 ID:25010781 Name:กองโจรล่าสมบัติ - Handyman<br>
 ID:25010791 Name:กองโจรล่าสมบัติ - Handyman<br>
 ID:25010792 Name:กองโจรล่าสมบัติ - Handyman<br>
-ID:25010801 Name:<br>
+ID:25010801 Name:Liam<br>
 ID:25020101 Name:กองโจรล่าสมบัติ - Raptor<br>
 ID:25020102 Name:กองโจรล่าสมบัติ - Raptor<br>
 ID:25020103 Name:กองโจรล่าสมบัติ - Raptor<br>
@@ -15951,8 +16111,8 @@ ID:25060112 Name:กองโจรล่าสมบัติ - Pugilist<br>
 ID:25060113 Name:กองโจรล่าสมบัติ - Pugilist<br>
 ID:25060114 Name:กองโจรล่าสมบัติ - Pugilist<br>
 ID:25060181 Name:กองโจรล่าสมบัติ - Pugilist<br>
-ID:25060201 Name:<br>
-ID:25060202 Name:<br>
+ID:25060201 Name:Rocky Avildsen<br>
+ID:25060202 Name:Rocky Avildsen<br>
 ID:25070101 Name:กองโจรล่าสมบัติ - Crusher<br>
 ID:25070102 Name:กองโจรล่าสมบัติ - Crusher<br>
 ID:25070103 Name:กองโจรล่าสมบัติ - Crusher<br>
@@ -16073,8 +16233,8 @@ ID:25210508 Name:Eremite Sword-Dancer<br>
 ID:25210509 Name:Eremite Sword-Dancer<br>
 ID:25210510 Name:Eremite Sword-Dancer<br>
 ID:25210581 Name:Eremite Sword-Dancer<br>
-ID:25210601 Name:<br>
-ID:25210602 Name:<br>
+ID:25210601 Name:กลุ่ม Eremite - Linebreaker<br>
+ID:25210602 Name:กลุ่ม Eremite - Linebreaker<br>
 ID:25310101 Name:Eremite Desert Clearwater<br>
 ID:25310102 Name:Eremite Desert Clearwater<br>
 ID:25310181 Name:Eremite Desert Clearwater<br>
@@ -16233,6 +16393,7 @@ ID:26010101 Name:Cryo Whopperflower<br>
 ID:26010102 Name:Cryo Whopperflower<br>
 ID:26010103 Name:Cryo Whopperflower<br>
 ID:26010104 Name:Cryo Whopperflower<br>
+ID:26010105 Name:Cryo Whopperflower<br>
 ID:26010190 Name:Cryo Whopperflower<br>
 ID:26010201 Name:Pyro Whopperflower<br>
 ID:26010301 Name:Electro Whopperflower<br>
@@ -16459,6 +16620,9 @@ ID:26240201 Name:Iktomisaurus<br>
 ID:26240202 Name:Iktomisaurus<br>
 ID:26240290 Name:Iktomisaurus<br>
 ID:26240301 Name:Iktomisaurus ที่ผ่านศึกมานับร้อย<br>
+ID:26240302 Name:Iktomisaurus ที่ผ่านศึกมานับร้อย<br>
+ID:26240303 Name:Iktomisaurus ที่ผ่านศึกมานับร้อย<br>
+ID:26240304 Name:Iktomisaurus ที่ผ่านศึกมานับร้อย<br>
 ID:26250101 Name:Tatankasaurus Whelp<br>
 ID:26250201 Name:Tatankasaurus<br>
 ID:26250290 Name:Tatankasaurus<br>
@@ -16492,8 +16656,8 @@ ID:26270302 Name:Lava Dragon Statue<br>
 ID:26270303 Name:Lava Dragon Statue<br>
 ID:26270304 Name:Lava Dragon Statue<br>
 ID:26270305 Name:Lava Dragon Statue<br>
-ID:26270401 Name:<br>
-ID:26280101 Name:<br>
+ID:26270401 Name:\"Infinitesimal\"<br>
+ID:26280101 Name:Bakunawa<br>
 ID:26290101 Name:Furnace Shell Mountain Weasel<br>
 ID:26290102 Name:Furnace Shell Mountain Weasel<br>
 ID:26300101 Name:แอนทิโลปเรืองแสง<br>
@@ -16680,6 +16844,10 @@ ID:28022802 Name:ภาพมายาของ \"Battlegoat\"<br>
 ID:28022803 Name:ภาพมายาของ \"Battlegoat\"<br>
 ID:28022901 Name:<br>
 ID:28022902 Name:<br>
+ID:28023001 Name:<br>
+ID:28023002 Name:<br>
+ID:28023003 Name:<br>
+ID:28023004 Name:<br>
 ID:28030101 Name:<br>
 ID:28030102 Name:<br>
 ID:28030103 Name:<br>
@@ -16936,6 +17104,7 @@ ID:28070402 Name:<br>
 ID:28070601 Name:<br>
 ID:28070701 Name:<br>
 ID:28070702 Name:<br>
+ID:28080101 Name:<br>
 ID:28210101 Name:<br>
 ID:28210102 Name:<br>
 ID:28210103 Name:<br>
@@ -17164,9 +17333,9 @@ ID:29080701 Name:สิ่งมีชีวิตที่สามารถเ
 ID:29080702 Name:สิ่งมีชีวิตที่สามารถเพิ่มจำนวนได้อย่างรวดเร็วร่างผู้สร้างรัง<br>
 ID:29090101 Name:All-Devouring Narwhal<br>
 ID:29090102 Name:All-Devouring Narwhal<br>
-ID:29090201 Name:<br>
-ID:29090202 Name:<br>
-ID:29090203 Name:<br>
+ID:29090201 Name:All-Devouring Narwhal<br>
+ID:29090202 Name:All-Devouring Narwhal<br>
+ID:29090203 Name:All-Devouring Narwhal<br>
 ID:29090304 Name:<br>
 ID:29100101 Name:The Knave<br>
 ID:29100102 Name:The Knave<br>
@@ -17265,6 +17434,7 @@ ID:35010203 Name:กองโจรล่าสมบัติ - Scout<br>
 ID:35010204 Name:กองโจรล่าสมบัติ - Scout<br>
 ID:35010205 Name:กองโจรล่าสมบัติ - Scout<br>
 ID:35010206 Name:กองโจรล่าสมบัติ - Scout<br>
+ID:35010207 Name:กองโจรล่าสมบัติ - Scout<br>
 ID:35010291 Name:กองโจรล่าสมบัติ - Scout<br>
 ID:35010301 Name:กองโจรล่าสมบัติ - Pyro Potioneer<br>
 ID:35010390 Name:กองโจรล่าสมบัติ - Pyro Potioneer<br>
@@ -17482,6 +17652,8 @@ ID:36260802 Name:Biting-Cold Wayob Manifestation<br>
 ID:36260803 Name:Biting-Cold Wayob Manifestation<br>
 ID:36270190 Name:Fluid Avatar of Lava<br>
 ID:38022001 Name:<br>
+ID:38023003 Name:<br>
+ID:38023004 Name:<br>
 ID:38050590 Name:<br>
 ID:38050591 Name:<br>
 ID:38050592 Name:<br>
