@@ -62,6 +62,10 @@
   },
   "author": "Rollphes",
   "license": "MIT",
+  "publishConfig": {
+    "access": "public",
+    "provenance": true
+  },
   "dependencies": {
     "@commitlint/config-conventional": "^19.8.1",
     "cheerio": "^1.0.0",

@@ -46,6 +46,8 @@ jobs:
 
       - name: Publish to NPM
         run: npm publish --provenance --access public
+        env:
+          NPM_CONFIG_PROVENANCE: true
 
       - name: Generate release notes
         id: generate-notes
