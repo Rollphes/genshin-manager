@@ -117,6 +117,8 @@ export class ImageAssets {
     ;[
       'UI_Gacha_AvatarImg_PlayerBoy.png',
       'UI_Gacha_AvatarImg_PlayerGirl.png',
+      'UI_Gacha_AvatarImg_MannequinBoy.png',
+      'UI_Gacha_AvatarImg_MannequinGirl.png',
     ].forEach((imgName) => {
       const sourcePath = path.resolve(initImageFolderPath, imgName)
       const destinationPath = path.resolve(this.imageFolderPath, imgName)
