@@ -329,7 +329,7 @@ export type FightPropType = ValueOf<typeof FightProps>
  */
 export const TextMapLanguage = {
   EN: ['TextMapEN.json'],
-  RU: ['TextMapRU.json'],
+  RU: ['TextMapRU_0.json', 'TextMapRU_1.json'],
   VI: ['TextMapVI.json'],
   TH: ['TextMapTH_0.json', 'TextMapTH_1.json'],
   PT: ['TextMapPT.json'],
