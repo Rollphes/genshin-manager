@@ -1,6 +1,6 @@
 import { MasterFileMap } from '@/types/generated/MasterFileMap'
 import { JsonObject } from '@/types/json'
-import { LogLevel } from '@/utils/logger'
+import { LogLevel } from '@/utils/logger/Logger'
 
 /**
  * Type of value of object
@@ -1762,5 +1762,3 @@ export interface CacheStructureMap {
  */
 export type CacheStructureType<T extends keyof CacheStructureMap> =
   CacheStructureMap[T]
-
-export type { MasterFileMap } from '@/types/generated/MasterFileMap'
