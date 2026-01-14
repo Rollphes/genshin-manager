@@ -1,16 +1,19 @@
 {
   "metadata": {
     "sourceFile": "MaterialExcelConfigData.json",
-    "generatedAt": "2025-10-20T15:45:00.100Z"
+    "generatedAt": "2026-01-14T11:55:07.090Z"
   },
   "keyMappingTemplate": {
+    "BGGBHCFJLAG": "Filter_OTHER",
     "cdGroup": 0,
     "cdTime": 0,
+    "CJEPOGCCFMI": "None",
     "closeBagAfterUsed": false,
     "descTextMapHash": 3188181133,
     "destroyReturnMaterial": [],
     "destroyReturnMaterialCount": [],
     "destroyRule": "DESTROY_NONE",
+    "DPAKKALLBGN": "MATERIAL_SYS_TYPE_NONE",
     "dropable": false,
     "effectDescTextMapHash": 2831647519,
     "effectGadgetID": 0,
@@ -19,12 +22,9 @@
     "foodQuality": "FOOD_QUALITY_NONE",
     "gadgetId": 0,
     "globalItemLimit": 0,
-    "GOFEFCODPII": "MATERIAL_SYS_TYPE_NONE",
-    "HJCEKDFGLCG": "Filter_OTHER",
     "icon": "UI_ItemIcon_120643",
     "id": 120643,
     "interactionTitleTextMapHash": 2317955983,
-    "IOMEHCHLAJM": false,
     "isForceGetHint": false,
     "isHidden": false,
     "isSplitDrop": false,
@@ -55,12 +55,12 @@
         ]
       }
     ],
+    "KLDIMKEPCFJ": false,
     "materialType": "MATERIAL_QUEST",
     "maxUseCount": 1,
     "nameTextMapHash": 3671148668,
     "noFirstGetHint": false,
-    "PCOPCNFOONA": "None",
-    "PHKICCAOKCK": false,
+    "OMGMBANAKPF": false,
     "picPath": [
       "",
       "UI_NameCardPic_0_P"
@@ -83,13 +83,16 @@
   },
   "alternativePatterns": [
     {
+      "BGGBHCFJLAG": "Filter_OTHER",
       "cdGroup": 0,
       "cdTime": 0,
+      "CJEPOGCCFMI": "None",
       "closeBagAfterUsed": false,
       "descTextMapHash": 2833056493,
       "destroyReturnMaterial": [],
       "destroyReturnMaterialCount": [],
       "destroyRule": "DESTROY_NONE",
+      "DPAKKALLBGN": "MATERIAL_SYS_TYPE_NONE",
       "dropable": false,
       "effectDescTextMapHash": 578682727,
       "effectGadgetID": 0,
@@ -98,12 +101,9 @@
       "foodQuality": "FOOD_QUALITY_NONE",
       "gadgetId": 0,
       "globalItemLimit": 0,
-      "GOFEFCODPII": "MATERIAL_SYS_TYPE_NONE",
-      "HJCEKDFGLCG": "Filter_OTHER",
       "icon": "UI_ItemIcon_121250",
       "id": 121250,
       "interactionTitleTextMapHash": 2540531143,
-      "IOMEHCHLAJM": false,
       "isForceGetHint": false,
       "isHidden": false,
       "isSplitDrop": false,
@@ -134,12 +134,12 @@
           ]
         }
       ],
+      "KLDIMKEPCFJ": false,
       "materialType": "MATERIAL_ROBO_GIFT",
       "maxUseCount": 1,
       "nameTextMapHash": 3218789316,
       "noFirstGetHint": false,
-      "PCOPCNFOONA": "None",
-      "PHKICCAOKCK": false,
+      "OMGMBANAKPF": false,
       "picPath": [
         "",
         "UI_NameCardPic_0_P"
@@ -161,13 +161,16 @@
       "weight": 1
     },
     {
+      "BGGBHCFJLAG": "Filter_OTHER",
       "cdGroup": 0,
       "cdTime": 0,
+      "CJEPOGCCFMI": "None",
       "closeBagAfterUsed": false,
       "descTextMapHash": 3462050853,
       "destroyReturnMaterial": [],
       "destroyReturnMaterialCount": [],
       "destroyRule": "DESTROY_NONE",
+      "DPAKKALLBGN": "MATERIAL_SYS_TYPE_NONE",
       "dropable": false,
       "effectDescTextMapHash": 2504322007,
       "effectGadgetID": 0,
@@ -176,12 +179,9 @@
       "foodQuality": "FOOD_QUALITY_NONE",
       "gadgetId": 0,
       "globalItemLimit": 0,
-      "GOFEFCODPII": "MATERIAL_SYS_TYPE_NONE",
-      "HJCEKDFGLCG": "Filter_OTHER",
       "icon": "UI_ItemIcon_121252",
       "id": 121252,
       "interactionTitleTextMapHash": 3690390591,
-      "IOMEHCHLAJM": false,
       "isForceGetHint": false,
       "isHidden": false,
       "isSplitDrop": false,
@@ -212,12 +212,12 @@
           ]
         }
       ],
+      "KLDIMKEPCFJ": false,
       "materialType": "MATERIAL_ROBO_GIFT",
       "maxUseCount": 1,
       "nameTextMapHash": 523460068,
       "noFirstGetHint": false,
-      "PCOPCNFOONA": "None",
-      "PHKICCAOKCK": false,
+      "OMGMBANAKPF": false,
       "picPath": [
         "",
         "UI_NameCardPic_0_P"
@@ -239,13 +239,16 @@
       "weight": 1
     },
     {
+      "BGGBHCFJLAG": "Filter_HEAL",
       "cdGroup": 0,
       "cdTime": 0,
+      "CJEPOGCCFMI": "None",
       "closeBagAfterUsed": false,
       "descTextMapHash": 3827952949,
       "destroyReturnMaterial": [],
       "destroyReturnMaterialCount": [],
       "destroyRule": "DESTROY_RETURN_MATERIAL",
+      "DPAKKALLBGN": "MATERIAL_SYS_TYPE_NONE",
       "dropable": false,
       "effectDescTextMapHash": 262401975,
       "effectGadgetID": 0,
@@ -254,12 +257,9 @@
       "foodQuality": "FOOD_QUALITY_NONE",
       "gadgetId": 70540003,
       "globalItemLimit": 0,
-      "GOFEFCODPII": "MATERIAL_SYS_TYPE_NONE",
-      "HJCEKDFGLCG": "Filter_HEAL",
       "icon": "UI_ItemIcon_100001",
       "id": 100001,
       "interactionTitleTextMapHash": 2832627575,
-      "IOMEHCHLAJM": false,
       "isForceGetHint": false,
       "isHidden": false,
       "isSplitDrop": true,
@@ -290,12 +290,12 @@
           ]
         }
       ],
+      "KLDIMKEPCFJ": false,
       "materialType": "MATERIAL_NOTICE_ADD_HP",
       "maxUseCount": 99,
       "nameTextMapHash": 2483588484,
       "noFirstGetHint": false,
-      "PCOPCNFOONA": "None",
-      "PHKICCAOKCK": false,
+      "OMGMBANAKPF": false,
       "picPath": [
         "",
         "UI_NameCardPic_0_P"
@@ -317,13 +317,16 @@
       "weight": 1
     },
     {
+      "BGGBHCFJLAG": "Filter_OTHER",
       "cdGroup": 0,
       "cdTime": 0,
+      "CJEPOGCCFMI": "None",
       "closeBagAfterUsed": false,
       "descTextMapHash": 3628399005,
       "destroyReturnMaterial": [],
       "destroyReturnMaterialCount": [],
       "destroyRule": "DESTROY_NONE",
+      "DPAKKALLBGN": "MATERIAL_SYS_TYPE_NONE",
       "dropable": false,
       "effectDescTextMapHash": 704735319,
       "effectGadgetID": 0,
@@ -332,12 +335,9 @@
       "foodQuality": "FOOD_QUALITY_NONE",
       "gadgetId": 70610009,
       "globalItemLimit": 0,
-      "GOFEFCODPII": "MATERIAL_SYS_TYPE_NONE",
-      "HJCEKDFGLCG": "Filter_OTHER",
       "icon": "UI_ItemIcon_2001",
       "id": 2001,
       "interactionTitleTextMapHash": 474533151,
-      "IOMEHCHLAJM": false,
       "isForceGetHint": false,
       "isHidden": false,
       "isSplitDrop": false,
@@ -368,12 +368,12 @@
           ]
         }
       ],
+      "KLDIMKEPCFJ": false,
       "materialType": "MATERIAL_ADSORBATE",
       "maxUseCount": 99,
       "nameTextMapHash": 196474772,
       "noFirstGetHint": false,
-      "PCOPCNFOONA": "None",
-      "PHKICCAOKCK": false,
+      "OMGMBANAKPF": false,
       "picPath": [
         "",
         "UI_NameCardPic_0_P"
@@ -395,13 +395,16 @@
       "weight": 0
     },
     {
+      "BGGBHCFJLAG": "Filter_OTHER",
       "cdGroup": 0,
       "cdTime": 0,
+      "CJEPOGCCFMI": "None",
       "closeBagAfterUsed": false,
       "descTextMapHash": 1214751037,
       "destroyReturnMaterial": [],
       "destroyReturnMaterialCount": [],
       "destroyRule": "DESTROY_NONE",
+      "DPAKKALLBGN": "MATERIAL_SYS_TYPE_NONE",
       "dropable": false,
       "effectDescTextMapHash": 3483421519,
       "effectGadgetID": 0,
@@ -410,12 +413,9 @@
       "foodQuality": "FOOD_QUALITY_NONE",
       "gadgetId": 0,
       "globalItemLimit": 10,
-      "GOFEFCODPII": "MATERIAL_SYS_TYPE_NONE",
-      "HJCEKDFGLCG": "Filter_OTHER",
       "icon": "UI_ItemIcon_101501",
       "id": 101501,
       "interactionTitleTextMapHash": 2357132319,
-      "IOMEHCHLAJM": false,
       "isForceGetHint": false,
       "isHidden": false,
       "isSplitDrop": false,
@@ -446,12 +446,12 @@
           ]
         }
       ],
+      "KLDIMKEPCFJ": false,
       "materialType": "MATERIAL_QUEST",
       "maxUseCount": 10,
       "nameTextMapHash": 3114275836,
       "noFirstGetHint": false,
-      "PCOPCNFOONA": "None",
-      "PHKICCAOKCK": false,
+      "OMGMBANAKPF": false,
       "picPath": [
         "",
         "UI_NameCardPic_0_P"
@@ -473,13 +473,16 @@
       "weight": 1
     },
     {
+      "BGGBHCFJLAG": "Filter_OTHER",
       "cdGroup": 0,
       "cdTime": 0,
+      "CJEPOGCCFMI": "None",
       "closeBagAfterUsed": false,
       "descTextMapHash": 3394108781,
       "destroyReturnMaterial": [],
       "destroyReturnMaterialCount": [],
       "destroyRule": "DESTROY_NONE",
+      "DPAKKALLBGN": "MATERIAL_SYS_TYPE_NONE",
       "dropable": false,
       "effectDescTextMapHash": 1297276775,
       "effectGadgetID": 0,
@@ -488,12 +491,9 @@
       "foodQuality": "FOOD_QUALITY_NONE",
       "gadgetId": 0,
       "globalItemLimit": 0,
-      "GOFEFCODPII": "MATERIAL_SYS_TYPE_NONE",
-      "HJCEKDFGLCG": "Filter_OTHER",
       "icon": "UI_ItemIcon_101692",
       "id": 101689,
       "interactionTitleTextMapHash": 3561112967,
-      "IOMEHCHLAJM": false,
       "isForceGetHint": false,
       "isHidden": false,
       "isSplitDrop": false,
@@ -524,12 +524,12 @@
           ]
         }
       ],
+      "KLDIMKEPCFJ": false,
       "materialType": "MATERIAL_CHEST",
       "maxUseCount": 9999,
       "nameTextMapHash": 3643268548,
       "noFirstGetHint": true,
-      "PCOPCNFOONA": "None",
-      "PHKICCAOKCK": false,
+      "OMGMBANAKPF": false,
       "picPath": [
         "",
         "UI_NameCardPic_0_P"
@@ -551,13 +551,16 @@
       "weight": 0
     },
     {
+      "BGGBHCFJLAG": "Filter_OTHER",
       "cdGroup": 0,
       "cdTime": 0,
+      "CJEPOGCCFMI": "None",
       "closeBagAfterUsed": false,
       "descTextMapHash": 1246565301,
       "destroyReturnMaterial": [],
       "destroyReturnMaterialCount": [],
       "destroyRule": "DESTROY_NONE",
+      "DPAKKALLBGN": "MATERIAL_SYS_TYPE_NONE",
       "dropable": false,
       "effectDescTextMapHash": 1685822687,
       "effectGadgetID": 0,
@@ -566,12 +569,9 @@
       "foodQuality": "FOOD_QUALITY_NONE",
       "gadgetId": 70610018,
       "globalItemLimit": 0,
-      "GOFEFCODPII": "MATERIAL_SYS_TYPE_NONE",
-      "HJCEKDFGLCG": "Filter_OTHER",
       "icon": "UI_ItemIcon_101692",
       "id": 101713,
       "interactionTitleTextMapHash": 4246139343,
-      "IOMEHCHLAJM": false,
       "isForceGetHint": false,
       "isHidden": false,
       "isSplitDrop": true,
@@ -602,12 +602,12 @@
           ]
         }
       ],
+      "KLDIMKEPCFJ": false,
       "materialType": "MATERIAL_CONSUME",
       "maxUseCount": 9999,
       "nameTextMapHash": 3433212084,
       "noFirstGetHint": true,
-      "PCOPCNFOONA": "None",
-      "PHKICCAOKCK": false,
+      "OMGMBANAKPF": false,
       "picPath": [
         "",
         "UI_NameCardPic_0_P"
@@ -629,13 +629,16 @@
       "weight": 0
     },
     {
+      "BGGBHCFJLAG": "Filter_OTHER",
       "cdGroup": 0,
       "cdTime": 0,
+      "CJEPOGCCFMI": "None",
       "closeBagAfterUsed": false,
       "descTextMapHash": 1802138181,
       "destroyReturnMaterial": [],
       "destroyReturnMaterialCount": [],
       "destroyRule": "DESTROY_NONE",
+      "DPAKKALLBGN": "MATERIAL_SYS_TYPE_NONE",
       "dropable": false,
       "effectDescTextMapHash": 2433817063,
       "effectGadgetID": 70950192,
@@ -644,12 +647,9 @@
       "foodQuality": "FOOD_QUALITY_NONE",
       "gadgetId": 70950191,
       "globalItemLimit": 0,
-      "GOFEFCODPII": "MATERIAL_SYS_TYPE_NONE",
-      "HJCEKDFGLCG": "Filter_OTHER",
       "icon": "UI_ItemIcon_107024",
       "id": 107024,
       "interactionTitleTextMapHash": 912395631,
-      "IOMEHCHLAJM": false,
       "isForceGetHint": false,
       "isHidden": false,
       "isSplitDrop": false,
@@ -680,12 +680,12 @@
           ]
         }
       ],
+      "KLDIMKEPCFJ": false,
       "materialType": "MATERIAL_CONSUME",
       "maxUseCount": 99,
       "nameTextMapHash": 2870981420,
       "noFirstGetHint": true,
-      "PCOPCNFOONA": "None",
-      "PHKICCAOKCK": false,
+      "OMGMBANAKPF": false,
       "picPath": [
         "",
         "UI_NameCardPic_0_P"
@@ -707,13 +707,16 @@
       "weight": 0
     },
     {
+      "BGGBHCFJLAG": "Filter_OTHER",
       "cdGroup": 1,
       "cdTime": 5,
+      "CJEPOGCCFMI": "None",
       "closeBagAfterUsed": false,
       "descTextMapHash": 3625414181,
       "destroyReturnMaterial": [],
       "destroyReturnMaterialCount": [],
       "destroyRule": "DESTROY_RETURN_MATERIAL",
+      "DPAKKALLBGN": "MATERIAL_SYS_TYPE_NONE",
       "dropable": false,
       "effectDescTextMapHash": 1978725591,
       "effectGadgetID": 0,
@@ -722,12 +725,9 @@
       "foodQuality": "FOOD_QUALITY_NONE",
       "gadgetId": 70590001,
       "globalItemLimit": 0,
-      "GOFEFCODPII": "MATERIAL_SYS_TYPE_NONE",
-      "HJCEKDFGLCG": "Filter_OTHER",
       "icon": "UI_ItemIcon_102001",
       "id": 102001,
       "interactionTitleTextMapHash": 1457126079,
-      "IOMEHCHLAJM": false,
       "isForceGetHint": false,
       "isHidden": false,
       "isSplitDrop": false,
@@ -758,12 +758,12 @@
           ]
         }
       ],
+      "KLDIMKEPCFJ": false,
       "materialType": "MATERIAL_FOOD",
       "maxUseCount": 1,
       "nameTextMapHash": 3108029388,
       "noFirstGetHint": false,
-      "PCOPCNFOONA": "None",
-      "PHKICCAOKCK": false,
+      "OMGMBANAKPF": false,
       "picPath": [
         "",
         "UI_NameCardPic_0_P"
@@ -785,13 +785,16 @@
       "weight": 1
     },
     {
+      "BGGBHCFJLAG": "Filter_OTHER",
       "cdGroup": 0,
       "cdTime": 0,
+      "CJEPOGCCFMI": "None",
       "closeBagAfterUsed": false,
       "descTextMapHash": 2381932173,
       "destroyReturnMaterial": [],
       "destroyReturnMaterialCount": [],
       "destroyRule": "DESTROY_NONE",
+      "DPAKKALLBGN": "MATERIAL_SYS_TYPE_NONE",
       "dropable": false,
       "effectDescTextMapHash": 3843062479,
       "effectGadgetID": 0,
@@ -800,12 +803,9 @@
       "foodQuality": "FOOD_QUALITY_NONE",
       "gadgetId": 0,
       "globalItemLimit": 0,
-      "GOFEFCODPII": "MATERIAL_SYS_TYPE_NONE",
-      "HJCEKDFGLCG": "Filter_OTHER",
       "icon": "UI_NameCardIcon_0",
       "id": 210001,
       "interactionTitleTextMapHash": 45507791,
-      "IOMEHCHLAJM": false,
       "isForceGetHint": true,
       "isHidden": false,
       "isSplitDrop": false,
@@ -836,12 +836,12 @@
           ]
         }
       ],
+      "KLDIMKEPCFJ": false,
       "materialType": "MATERIAL_NAMECARD",
       "maxUseCount": 99,
       "nameTextMapHash": 3539860852,
       "noFirstGetHint": true,
-      "PCOPCNFOONA": "None",
-      "PHKICCAOKCK": false,
+      "OMGMBANAKPF": false,
       "picPath": [
         "",
         "UI_NameCardPic_0_P"
