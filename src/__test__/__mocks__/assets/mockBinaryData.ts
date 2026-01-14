@@ -111,8 +111,8 @@ export const validOggData = Buffer.from([
   0, // CRC checksum
   0, // Number of page segments
   // Some dummy audio data
-  // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
-  ...Array(50).fill(0),
+
+  ...new Array<number>(50).fill(0),
 ])
 
 /**
@@ -147,8 +147,8 @@ export const corruptedOggData = Buffer.from([
   0,
   0,
   0,
-  // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
-  ...Array(50).fill(0),
+
+  ...new Array<number>(50).fill(0),
 ])
 
 /**
@@ -183,6 +183,6 @@ export const invalidOggSignature = Buffer.from([
   0,
   0,
   0,
-  // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
-  ...Array(50).fill(0),
+
+  ...new Array<number>(50).fill(0),
 ])

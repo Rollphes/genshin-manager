@@ -1,12 +1,11 @@
+import { vi } from 'vitest'
+
 import {
   corruptedOggData,
   corruptedPngData,
-  invalidOggSignature,
-  invalidPngSignature,
   validOggData,
   validPngData,
-} from '@test/__mocks__/assets/mockBinaryData'
-import { vi } from 'vitest'
+} from '@/__test__/__mocks__/assets/mockBinaryData'
 
 /**
  * Mock fetch responses for asset testing
@@ -162,13 +161,4 @@ export function setupAssetMock(
     // Default to 404 for unknown URLs
     return createNotFoundResponse()
   })
-}
-
-export {
-  corruptedOggData,
-  corruptedPngData,
-  invalidOggSignature,
-  invalidPngSignature,
-  validOggData,
-  validPngData,
 }
