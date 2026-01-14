@@ -21,6 +21,7 @@ export enum GenshinManagerErrorCode {
   GM_DECODE_PATTERN_MISMATCH = 'GM3002',
   GM_DECODE_LOW_CONFIDENCE = 'GM3003',
   GM_DECODE_KEY_MATCHING_FAILED = 'GM3004',
+  GM_DECODE_JSON_PARSE_FAILED = 'GM3005',
 
   // Network errors (4000-4999)
   GM_NETWORK_TIMEOUT = 'GM4001',
@@ -61,6 +62,7 @@ export const errorCategories = {
   [GenshinManagerErrorCode.GM_DECODE_PATTERN_MISMATCH]: 'DECODING',
   [GenshinManagerErrorCode.GM_DECODE_LOW_CONFIDENCE]: 'DECODING',
   [GenshinManagerErrorCode.GM_DECODE_KEY_MATCHING_FAILED]: 'DECODING',
+  [GenshinManagerErrorCode.GM_DECODE_JSON_PARSE_FAILED]: 'DECODING',
 
   [GenshinManagerErrorCode.GM_NETWORK_TIMEOUT]: 'NETWORK',
   [GenshinManagerErrorCode.GM_NETWORK_UNAVAILABLE]: 'NETWORK',
@@ -123,6 +125,7 @@ export const retryClassifications = {
   [GenshinManagerErrorCode.GM_DECODE_KEY_MATCHING_FAILED]: {
     isRetryable: false,
   },
+  [GenshinManagerErrorCode.GM_DECODE_JSON_PARSE_FAILED]: { isRetryable: false },
 
   [GenshinManagerErrorCode.GM_NETWORK_TIMEOUT]: {
     isRetryable: true,

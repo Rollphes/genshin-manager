@@ -27,6 +27,7 @@ export type FetterInfoExcelConfigDataType = {
     infoBirthDay:                        number;
     infoBirthMonth:                      number;
     isHiden:                             boolean;
+    LJPACKFKGGJ:                         number;
     PMDBPIJHHPC:                         number;
     openConds:                           any[];
 }
@@ -227,6 +228,7 @@ const typeMap: any = {
         { json: "infoBirthDay", js: "infoBirthDay", typ: 0 },
         { json: "infoBirthMonth", js: "infoBirthMonth", typ: 0 },
         { json: "isHiden", js: "isHiden", typ: true },
+        { json: "LJPACKFKGGJ", js: "LJPACKFKGGJ", typ: 0 },
         { json: "PMDBPIJHHPC", js: "PMDBPIJHHPC", typ: 0 },
         { json: "openConds", js: "openConds", typ: a("any") },
     ], false),

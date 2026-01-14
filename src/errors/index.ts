@@ -36,6 +36,7 @@ export { NetworkTimeoutError } from '@/errors/network/NetworkTimeoutError'
 export { NetworkUnavailableError } from '@/errors/network/NetworkUnavailableError'
 
 // Decoding errors
+export { JsonParseError } from '@/errors/decoding/JsonParseError'
 export { KeyMatchingError } from '@/errors/decoding/KeyMatchingError'
 export { LowConfidenceError } from '@/errors/decoding/LowConfidenceError'
 export { MasterFileConfigurationError } from '@/errors/decoding/MasterFileConfigurationError'

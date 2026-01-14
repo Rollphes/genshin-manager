@@ -10,13 +10,13 @@
 export type ProfilePictureExcelConfigDataType = {
     EKFIIIINJCD:           boolean;
     OOMIPLHHLGO:           boolean;
+    unlockParam:           number;
     iconPath:              string;
     id:                    number;
-    type:                  Type;
     nameTextMapHash:       number;
+    type:                  Type;
     priority:              number;
     unlockDescTextMapHash: number;
-    unlockParam:           number;
 }
 
 export enum Type {
@@ -195,13 +195,13 @@ const typeMap: any = {
     "ProfilePictureExcelConfigDataType": o([
         { json: "EKFIIIINJCD", js: "EKFIIIINJCD", typ: true },
         { json: "OOMIPLHHLGO", js: "OOMIPLHHLGO", typ: true },
+        { json: "unlockParam", js: "unlockParam", typ: 0 },
         { json: "iconPath", js: "iconPath", typ: "" },
         { json: "id", js: "id", typ: 0 },
-        { json: "type", js: "type", typ: r("Type") },
         { json: "nameTextMapHash", js: "nameTextMapHash", typ: 0 },
+        { json: "type", js: "type", typ: r("Type") },
         { json: "priority", js: "priority", typ: 0 },
         { json: "unlockDescTextMapHash", js: "unlockDescTextMapHash", typ: 0 },
-        { json: "unlockParam", js: "unlockParam", typ: 0 },
     ], false),
     "Type": [
         "PROFILE_PICTURE_UNLOCK_BY_AVATAR",

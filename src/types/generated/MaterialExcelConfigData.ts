@@ -8,17 +8,17 @@
 // match the expected interface, even if the JSON is valid.
 
 export type MaterialExcelConfigDataType = {
-    closeBagAfterUsed:           boolean;
+    BGGBHCFJLAG:                 Bggbhcfjlag;
     cdGroup:                     number;
     cdTime:                      number;
-    dropable:                    boolean;
+    CJEPOGCCFMI:                 Cjepogccfmi;
+    closeBagAfterUsed:           boolean;
     descTextMapHash:             number;
     destroyReturnMaterial:       any[];
     destroyReturnMaterialCount:  any[];
     destroyRule:                 DestroyRule;
-    IOMEHCHLAJM:                 boolean;
-    GOFEFCODPII:                 Gofefcodpii;
-    isForceGetHint:              boolean;
+    DPAKKALLBGN:                 Dpakkallbgn;
+    dropable:                    boolean;
     effectDescTextMapHash:       number;
     effectGadgetID:              number;
     effectIcon:                  EffectIcon;
@@ -29,17 +29,17 @@ export type MaterialExcelConfigDataType = {
     icon:                        string;
     id:                          number;
     interactionTitleTextMapHash: number;
+    isForceGetHint:              boolean;
     isHidden:                    boolean;
     isSplitDrop:                 boolean;
-    noFirstGetHint:              boolean;
     itemType:                    ItemType;
     itemUse:                     ItemUse[];
-    PCOPCNFOONA:                 Pcopcnfoona;
+    KLDIMKEPCFJ:                 boolean;
     materialType:                MaterialType;
     maxUseCount:                 number;
     nameTextMapHash:             number;
-    PHKICCAOKCK:                 boolean;
-    HJCEKDFGLCG:                 Hjcekdfglcg;
+    noFirstGetHint:              boolean;
+    OMGMBANAKPF:                 boolean;
     picPath:                     string[];
     playGainEffect:              boolean;
     rank:                        number;
@@ -55,12 +55,7 @@ export type MaterialExcelConfigDataType = {
     weight:                      number;
 }
 
-export enum Gofefcodpii {
-    MaterialSysTypeBeyond = "MATERIAL_SYS_TYPE_BEYOND",
-    MaterialSysTypeNone = "MATERIAL_SYS_TYPE_NONE",
-}
-
-export enum Hjcekdfglcg {
+export enum Bggbhcfjlag {
     FilterADVENTURE = "Filter_ADVENTURE",
     FilterATTACK = "Filter_ATTACK",
     FilterDEFENSE = "Filter_DEFENSE",
@@ -69,7 +64,7 @@ export enum Hjcekdfglcg {
     FilterOTHER = "Filter_OTHER",
 }
 
-export enum Pcopcnfoona {
+export enum Cjepogccfmi {
     AtkUp = "ATK_UP",
     BlackEgg = "BLACK_EGG",
     ColdResist = "Cold_Resist",
@@ -98,6 +93,11 @@ export enum Pcopcnfoona {
     STARecoveryByKill = "STA_Recovery_By_Kill",
     STASprintReduce = "STA_Sprint_Reduce",
     ShieldStrength = "Shield_Strength",
+}
+
+export enum Dpakkallbgn {
+    MaterialSysTypeBeyond = "MATERIAL_SYS_TYPE_BEYOND",
+    MaterialSysTypeNone = "MATERIAL_SYS_TYPE_NONE",
 }
 
 export enum DestroyRule {
@@ -239,7 +239,9 @@ export enum MaterialType {
     MaterialAvatarMaterial = "MATERIAL_AVATAR_MATERIAL",
     MaterialAvatarTalentMaterial = "MATERIAL_AVATAR_TALENT_MATERIAL",
     MaterialAvatarTrace = "MATERIAL_AVATAR_TRACE",
+    MaterialBeyondCostumeSelectableChest = "MATERIAL_BEYOND_COSTUME_SELECTABLE_CHEST",
     MaterialBgm = "MATERIAL_BGM",
+    MaterialBronzeCarriageBox = "MATERIAL_BRONZE_CARRIAGE_BOX",
     MaterialChannellerSlabBuff = "MATERIAL_CHANNELLER_SLAB_BUFF",
     MaterialChest = "MATERIAL_CHEST",
     MaterialChestBatchUse = "MATERIAL_CHEST_BATCH_USE",
@@ -483,17 +485,17 @@ function r(name: string) {
 
 const typeMap: any = {
     "MaterialExcelConfigDataType": o([
-        { json: "closeBagAfterUsed", js: "closeBagAfterUsed", typ: true },
+        { json: "BGGBHCFJLAG", js: "BGGBHCFJLAG", typ: r("Bggbhcfjlag") },
         { json: "cdGroup", js: "cdGroup", typ: 0 },
         { json: "cdTime", js: "cdTime", typ: 0 },
-        { json: "dropable", js: "dropable", typ: true },
+        { json: "CJEPOGCCFMI", js: "CJEPOGCCFMI", typ: r("Cjepogccfmi") },
+        { json: "closeBagAfterUsed", js: "closeBagAfterUsed", typ: true },
         { json: "descTextMapHash", js: "descTextMapHash", typ: 0 },
         { json: "destroyReturnMaterial", js: "destroyReturnMaterial", typ: a("any") },
         { json: "destroyReturnMaterialCount", js: "destroyReturnMaterialCount", typ: a("any") },
         { json: "destroyRule", js: "destroyRule", typ: r("DestroyRule") },
-        { json: "IOMEHCHLAJM", js: "IOMEHCHLAJM", typ: true },
-        { json: "GOFEFCODPII", js: "GOFEFCODPII", typ: r("Gofefcodpii") },
-        { json: "isForceGetHint", js: "isForceGetHint", typ: true },
+        { json: "DPAKKALLBGN", js: "DPAKKALLBGN", typ: r("Dpakkallbgn") },
+        { json: "dropable", js: "dropable", typ: true },
         { json: "effectDescTextMapHash", js: "effectDescTextMapHash", typ: 0 },
         { json: "effectGadgetID", js: "effectGadgetID", typ: 0 },
         { json: "effectIcon", js: "effectIcon", typ: r("EffectIcon") },
@@ -504,17 +506,17 @@ const typeMap: any = {
         { json: "icon", js: "icon", typ: "" },
         { json: "id", js: "id", typ: 0 },
         { json: "interactionTitleTextMapHash", js: "interactionTitleTextMapHash", typ: 0 },
+        { json: "isForceGetHint", js: "isForceGetHint", typ: true },
         { json: "isHidden", js: "isHidden", typ: true },
         { json: "isSplitDrop", js: "isSplitDrop", typ: true },
-        { json: "noFirstGetHint", js: "noFirstGetHint", typ: true },
         { json: "itemType", js: "itemType", typ: r("ItemType") },
         { json: "itemUse", js: "itemUse", typ: a(r("ItemUse")) },
-        { json: "PCOPCNFOONA", js: "PCOPCNFOONA", typ: r("Pcopcnfoona") },
+        { json: "KLDIMKEPCFJ", js: "KLDIMKEPCFJ", typ: true },
         { json: "materialType", js: "materialType", typ: r("MaterialType") },
         { json: "maxUseCount", js: "maxUseCount", typ: 0 },
         { json: "nameTextMapHash", js: "nameTextMapHash", typ: 0 },
-        { json: "PHKICCAOKCK", js: "PHKICCAOKCK", typ: true },
-        { json: "HJCEKDFGLCG", js: "HJCEKDFGLCG", typ: r("Hjcekdfglcg") },
+        { json: "noFirstGetHint", js: "noFirstGetHint", typ: true },
+        { json: "OMGMBANAKPF", js: "OMGMBANAKPF", typ: true },
         { json: "picPath", js: "picPath", typ: a("") },
         { json: "playGainEffect", js: "playGainEffect", typ: true },
         { json: "rank", js: "rank", typ: 0 },
@@ -533,11 +535,7 @@ const typeMap: any = {
         { json: "useOp", js: "useOp", typ: r("UseOp") },
         { json: "useParam", js: "useParam", typ: a("") },
     ], false),
-    "Gofefcodpii": [
-        "MATERIAL_SYS_TYPE_BEYOND",
-        "MATERIAL_SYS_TYPE_NONE",
-    ],
-    "Hjcekdfglcg": [
+    "Bggbhcfjlag": [
         "Filter_ADVENTURE",
         "Filter_ATTACK",
         "Filter_DEFENSE",
@@ -545,7 +543,7 @@ const typeMap: any = {
         "Filter_MEDICAL",
         "Filter_OTHER",
     ],
-    "Pcopcnfoona": [
+    "Cjepogccfmi": [
         "ATK_UP",
         "BLACK_EGG",
         "Cold_Resist",
@@ -574,6 +572,10 @@ const typeMap: any = {
         "STA_Recovery_By_Kill",
         "STA_Sprint_Reduce",
         "Shield_Strength",
+    ],
+    "Dpakkallbgn": [
+        "MATERIAL_SYS_TYPE_BEYOND",
+        "MATERIAL_SYS_TYPE_NONE",
     ],
     "DestroyRule": [
         "DESTROY_NONE",
@@ -703,7 +705,9 @@ const typeMap: any = {
         "MATERIAL_AVATAR_MATERIAL",
         "MATERIAL_AVATAR_TALENT_MATERIAL",
         "MATERIAL_AVATAR_TRACE",
+        "MATERIAL_BEYOND_COSTUME_SELECTABLE_CHEST",
         "MATERIAL_BGM",
+        "MATERIAL_BRONZE_CARRIAGE_BOX",
         "MATERIAL_CHANNELLER_SLAB_BUFF",
         "MATERIAL_CHEST",
         "MATERIAL_CHEST_BATCH_USE",

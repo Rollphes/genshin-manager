@@ -11,14 +11,14 @@ export type TowerLevelExcelConfigDataType = {
     AGEAANNELOI:            number;
     conds:                  Cond[];
     dungeonId:              number;
+    ILCLLJANFMK:            number;
     firstMonsterList:       number[];
     firstPassRewardId:      number;
-    KLNFCGKDKGE:            string;
-    ILCLLJANFMK:            number;
     JKMIPCBDBPM:            number;
     levelGroupId:           number;
     levelId:                number;
     levelIndex:             number;
+    KLNFCGKDKGE:            string;
     monsterLevel:           number;
     secondMonsterList:      number[];
     towerBuffConfigStrList: string[];
@@ -204,14 +204,14 @@ const typeMap: any = {
         { json: "AGEAANNELOI", js: "AGEAANNELOI", typ: 0 },
         { json: "conds", js: "conds", typ: a(r("Cond")) },
         { json: "dungeonId", js: "dungeonId", typ: 0 },
+        { json: "ILCLLJANFMK", js: "ILCLLJANFMK", typ: 0 },
         { json: "firstMonsterList", js: "firstMonsterList", typ: a(0) },
         { json: "firstPassRewardId", js: "firstPassRewardId", typ: 0 },
-        { json: "KLNFCGKDKGE", js: "KLNFCGKDKGE", typ: "" },
-        { json: "ILCLLJANFMK", js: "ILCLLJANFMK", typ: 0 },
         { json: "JKMIPCBDBPM", js: "JKMIPCBDBPM", typ: 0 },
         { json: "levelGroupId", js: "levelGroupId", typ: 0 },
         { json: "levelId", js: "levelId", typ: 0 },
         { json: "levelIndex", js: "levelIndex", typ: 0 },
+        { json: "KLNFCGKDKGE", js: "KLNFCGKDKGE", typ: "" },
         { json: "monsterLevel", js: "monsterLevel", typ: 0 },
         { json: "secondMonsterList", js: "secondMonsterList", typ: a(0) },
         { json: "towerBuffConfigStrList", js: "towerBuffConfigStrList", typ: a("") },

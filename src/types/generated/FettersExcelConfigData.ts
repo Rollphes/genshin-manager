@@ -34,7 +34,6 @@ export enum CondType {
     FetterCondFinishParentQuest = "FETTER_COND_FINISH_PARENT_QUEST",
     FetterCondFinishQuest = "FETTER_COND_FINISH_QUEST",
     FetterCondNone = "FETTER_COND_NONE",
-    FetterCondNotOpen = "FETTER_COND_NOT_OPEN",
     FetterCondPlayerBirthday = "FETTER_COND_PLAYER_BIRTHDAY",
     FetterCondUnlockTransPoint = "FETTER_COND_UNLOCK_TRANS_POINT",
 }
@@ -229,7 +228,6 @@ const typeMap: any = {
         "FETTER_COND_FINISH_PARENT_QUEST",
         "FETTER_COND_FINISH_QUEST",
         "FETTER_COND_NONE",
-        "FETTER_COND_NOT_OPEN",
         "FETTER_COND_PLAYER_BIRTHDAY",
         "FETTER_COND_UNLOCK_TRANS_POINT",
     ],
