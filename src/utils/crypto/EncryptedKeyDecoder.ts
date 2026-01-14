@@ -1,14 +1,12 @@
 import fs from 'fs'
 import path from 'path'
 
-import {
-  AssetCorruptedError,
-  ConfigMissingError,
-  ValidationError,
-} from '@/errors'
-import { EncryptedKeyMasterFile, ExcelBinOutputs } from '@/types'
+import { AssetCorruptedError } from '@/errors/assets/AssetCorruptedError'
+import { ConfigMissingError } from '@/errors/config/ConfigMissingError'
+import { ValidationError } from '@/errors/validation/ValidationError'
 import type { DecodedType } from '@/types/generated/MasterFileMap'
 import type { JsonObject, JsonValue } from '@/types/json'
+import { EncryptedKeyMasterFile, ExcelBinOutputs } from '@/types/types'
 import { masterFileFolderPath } from '@/utils/paths'
 
 /**

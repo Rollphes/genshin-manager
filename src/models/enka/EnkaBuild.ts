@@ -1,5 +1,5 @@
 import { CharacterDetail } from '@/models/enka/CharacterDetail'
-import { APIBuild } from '@/types/enkaNetwork'
+import { APIBuild } from '@/types/enkaNetwork/EnkaAccountTypes'
 
 /**
  * Represents a character build configuration from EnkaNetwork showcases

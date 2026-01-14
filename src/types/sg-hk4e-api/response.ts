@@ -1,5 +1,5 @@
-import { ValueOf } from '@/types'
 import { NoticeLanguage } from '@/types/sg-hk4e-api'
+import { ValueOf } from '@/types/types'
 /**
  * GetAnnContent response
  */

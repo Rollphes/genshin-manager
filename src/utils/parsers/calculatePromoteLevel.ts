@@ -1,6 +1,6 @@
-import { characterLevelSchema } from '@/schemas'
+import { characterLevelSchema } from '@/schemas/commonSchemas'
 import type { AvatarPromoteExcelConfigDataType } from '@/types/generated/AvatarPromoteExcelConfigData'
-import { ValidationHelper } from '@/utils/validation'
+import { ValidationHelper } from '@/utils/validation/ValidationHelper'
 
 /**
  * Calculate promote level

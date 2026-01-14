@@ -1,5 +1,5 @@
-import { EnumValidationError } from '@/errors'
-import { FightProps, FightPropType } from '@/types'
+import { EnumValidationError } from '@/errors/validation/EnumValidationError'
+import { FightProps, FightPropType } from '@/types/types'
 
 /**
  * Cached array of valid FightPropType values

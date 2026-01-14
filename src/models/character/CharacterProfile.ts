@@ -1,6 +1,6 @@
-import { Client } from '@/client'
-import type { CVType } from '@/types'
+import { Client } from '@/client/Client'
 import type { FetterInfoExcelConfigDataType } from '@/types/generated/FetterInfoExcelConfigData'
+import type { CVType } from '@/types/types'
 
 /**
  * Represents character profile information including basic details and associations

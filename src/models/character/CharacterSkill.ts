@@ -1,9 +1,9 @@
-import { Client } from '@/client'
-import { AssetNotFoundError } from '@/errors'
+import { Client } from '@/client/Client'
+import { AssetNotFoundError } from '@/errors/assets/AssetNotFoundError'
 import { ImageAssets } from '@/models/assets/ImageAssets'
 import { CharacterInfo } from '@/models/character/CharacterInfo'
-import { skillLevelSchema } from '@/schemas'
-import { ValidationHelper } from '@/utils/validation'
+import { skillLevelSchema } from '@/schemas/commonSchemas'
+import { ValidationHelper } from '@/utils/validation/ValidationHelper'
 
 /**
  * Contains character skill information including attacks, burst, and elemental abilities

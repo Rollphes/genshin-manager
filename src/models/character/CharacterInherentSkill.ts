@@ -1,10 +1,10 @@
-import { Client } from '@/client'
-import { AssetNotFoundError } from '@/errors'
+import { Client } from '@/client/Client'
+import { AssetNotFoundError } from '@/errors/assets/AssetNotFoundError'
 import { ImageAssets } from '@/models/assets/ImageAssets'
 import { CharacterInfo } from '@/models/character/CharacterInfo'
 import { StatProperty } from '@/models/StatProperty'
 import { PropType } from '@/types/generated/ProudSkillExcelConfigData'
-import { toFightPropType } from '@/utils/typeGuards'
+import { toFightPropType } from '@/utils/typeGuards/toFightPropType'
 
 /**
  * Represents a character's passive skill with unlocked bonuses and effects

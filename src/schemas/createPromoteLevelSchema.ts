@@ -1,6 +1,6 @@
 import { z } from 'zod'
 
-import { createRangeSchema } from '@/schemas'
+import { createRangeSchema } from '@/schemas/createRangeSchema'
 
 /**
  * Dynamic promote level validation schema factory (0 to maxPromoteLevel)

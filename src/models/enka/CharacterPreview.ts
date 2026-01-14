@@ -1,7 +1,7 @@
 import { CharacterCostume } from '@/models/character/CharacterCostume'
 import { CharacterInfo } from '@/models/character/CharacterInfo'
-import { Element } from '@/types'
-import { APIShowAvatarInfo } from '@/types/enkaNetwork'
+import { APIShowAvatarInfo } from '@/types/enkaNetwork/EnkaTypes'
+import { Element } from '@/types/types'
 
 const elementIdMap: Record<number, Element> = {
   1: 'Pyro',

@@ -1,5 +1,5 @@
-import { Client } from '@/client'
-import { AssetNotFoundError } from '@/errors'
+import { Client } from '@/client/Client'
+import { AssetNotFoundError } from '@/errors/assets/AssetNotFoundError'
 import { CharacterAscension } from '@/models/character/CharacterAscension'
 import { CharacterBaseStats } from '@/models/character/CharacterBaseStats'
 import { CharacterConstellation } from '@/models/character/CharacterConstellation'
@@ -12,10 +12,10 @@ import { CharacterSkillAscension } from '@/models/character/CharacterSkillAscens
 import { CharacterStory } from '@/models/character/CharacterStory'
 import { CharacterVoice } from '@/models/character/CharacterVoice'
 import { StatProperty } from '@/models/StatProperty'
-import { CharacterUpgradePlan, Element } from '@/types'
 import { BodyType } from '@/types/generated/AvatarExcelConfigData'
 import { WeaponType } from '@/types/generated/WeaponExcelConfigData'
-import { calculatePromoteLevel } from '@/utils/parsers'
+import { CharacterUpgradePlan, Element } from '@/types/types'
+import { calculatePromoteLevel } from '@/utils/parsers/calculatePromoteLevel'
 
 /**
  * Unified character class providing comprehensive access to all character data

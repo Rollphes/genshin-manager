@@ -1,11 +1,11 @@
-import { Client } from '@/client'
+import { Client } from '@/client/Client'
 import { ImageAssets } from '@/models/assets/ImageAssets'
 import { StatProperty } from '@/models/StatProperty'
 import { WeaponAscension } from '@/models/weapon/WeaponAscension'
 import { WeaponInfo } from '@/models/weapon/WeaponInfo'
 import { WeaponRefinement } from '@/models/weapon/WeaponRefinement'
 import { WeaponType } from '@/types/generated/WeaponExcelConfigData'
-import { calculatePromoteLevel } from '@/utils/parsers'
+import { calculatePromoteLevel } from '@/utils/parsers/calculatePromoteLevel'
 
 /**
  * Unified weapon class providing comprehensive access to all weapon data
