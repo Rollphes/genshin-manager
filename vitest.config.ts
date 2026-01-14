@@ -5,11 +5,12 @@ export default defineConfig({
   test: {
     globals: true,
     environment: 'node',
-    globalSetup: ['./test/setup.ts'],
-    setupFiles: ['./test/setupFiles.ts'],
+    include: ['src/**/*.test.ts'],
+    globalSetup: ['./src/__test__/setup.ts'],
+    setupFiles: ['./src/__test__/setupFiles.ts'],
     testTimeout: 30000, // Extended timeout for GitLab API calls
     cache: false, // Disable test cache to prevent race conditions
-    reporters: ['default', './test/reporters/JsonErrorReporter.ts'],
+    reporters: ['default', './src/__test__/reporters/JsonErrorReporter.ts'],
     poolOptions: {
       threads: {
         singleThread: true,
@@ -22,7 +23,8 @@ export default defineConfig({
       exclude: [
         '**/node_modules/**',
         '**/dist/**',
-        '**/tests/**',
+        'src/__test__/**',
+        'src/**/*.test.ts',
         'src/test/**',
       ],
     },
@@ -30,7 +32,6 @@ export default defineConfig({
   resolve: {
     alias: {
       '@': path.resolve(__dirname, './src'),
-      '@test': path.resolve(__dirname, './test'),
     },
   },
 })
