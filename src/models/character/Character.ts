@@ -189,7 +189,7 @@ export class Character {
   public get constellations(): CharacterConstellation[] {
     return this.constellationIds.map(
       (constId, index) =>
-        new CharacterConstellation(constId, index < this.constellationLevel),
+        new CharacterConstellation(constId, index >= this.constellationLevel),
     )
   }
 
