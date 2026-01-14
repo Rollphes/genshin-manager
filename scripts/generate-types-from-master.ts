@@ -1,4 +1,4 @@
-import { generateAllMasterTypes } from '@/utils/buildtime'
+import { generateAllMasterTypes } from '@/utils/buildtime/generateTypesFromMaster'
 import { generatedTypesFolderPath } from '@/utils/paths'
 
 /**
