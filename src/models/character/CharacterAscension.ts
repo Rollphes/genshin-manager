@@ -81,12 +81,14 @@ export class CharacterAscension {
         'AvatarPromoteExcelConfigData',
       )
     }
-    this.costItems = avatarPromoteJson.costItems.map((costItem) => {
-      return {
-        id: costItem.id,
-        count: costItem.count,
-      }
-    })
+    this.costItems = avatarPromoteJson.costItems
+      .filter((costItem) => costItem.id !== 0 && costItem.count !== 0)
+      .map((costItem) => {
+        return {
+          id: costItem.id,
+          count: costItem.count,
+        }
+      })
     this.costMora = avatarPromoteJson.scoinCost
     this.addProps = avatarPromoteJson.addProps.map(
       (addProp) => new StatProperty(addProp.propType, addProp.value),
