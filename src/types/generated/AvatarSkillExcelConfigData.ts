@@ -9,52 +9,52 @@
 
 export type AvatarSkillExcelConfigDataType = {
     abilityName:          string;
-    BGINCKANIGF:          boolean;
+    AIICMOANNDD:          boolean;
     buffIcon:             BuffIcon;
+    CDMEHHEIMLL:          boolean;
     cdSlot:               number;
     cdTime:               number;
-    CGJLEIHOKLN:          Cgjleihokln;
     costElemType:         CostElemType;
     costElemVal:          number;
     costStamina:          number;
-    DAHEPAIKAJE:          boolean;
-    DEAEBMEIFLO:          Deaebmeiflo;
     descTextMapHash:      number;
+    DFPMMCMGALP:          number;
     dragType:             DragType;
-    EFHHGFKPGJO:          boolean;
+    ECKEINPOMPP:          boolean;
+    ECPHAKECJGJ:          boolean;
+    ENEEAJPFKFD:          boolean;
     energyMin:            number;
     extraDescTextMapHash: number;
-    FOJNHEKGGCB:          boolean;
-    GLGOMNEPNDH:          boolean;
+    GCLMLPJPGIB:          boolean;
     globalValueKey:       GlobalValueKey;
-    HOBKGMMNHLI:          boolean;
-    IACNAENANDH:          number;
+    GOCDPHLGKCH:          Gocdphlgkch;
+    HCAOGPJPGLM:          number;
     id:                   number;
     isAttackCameraLock:   boolean;
-    LGHAEDLLNFF:          number;
-    LLINBJLCONJ:          boolean;
+    JMIAJDGGHMB:          Jmiajdgghmb;
+    KDEIDMJNCBM:          boolean;
     lockShape:            LockShape;
     lockWeightParams:     number[];
     maxChargeNum:         number;
-    MHLANHFCMBJ:          boolean;
-    MIFFDPCHFID:          boolean;
+    MHLKLEIKICL:          boolean;
+    MHMOKMNJOLL:          boolean;
     nameTextMapHash:      number;
     needMonitor:          NeedMonitor;
-    OKLOMDDKDMJ:          boolean;
-    PHBLMBKDEOG:          number;
+    OKDJHELBFLH:          number;
+    PGGPLIJPBNI:          boolean;
     proudSkillGroupId:    number;
     shareCDID:            number;
     skillIcon:            string;
     triggerID:            number;
 }
 
-export enum Cgjleihokln {
+export enum Gocdphlgkch {
     DurinBlack = "DurinBlack",
     DurinWhite = "DurinWhite",
     None = "None",
 }
 
-export enum Deaebmeiflo {
+export enum Jmiajdgghmb {
     SpecialEnergyMavuika = "SPECIAL_ENERGY_MAVUIKA",
     SpecialEnergyNone = "SPECIAL_ENERGY_NONE",
     SpecialEnergySkirk = "SPECIAL_ENERGY_SKIRK",
@@ -87,6 +87,7 @@ export enum GlobalValueKey {
     AVATARMagnetThrowSkill = "AVATAR_MagnetThrowSkill",
     AVATARSelectLauncherTargetCharge = "AVATAR_Select_Launcher_Target_Charge",
     Avatar6_0_QuestEnergy = "AVATAR_6_0_QUEST_ENERGY",
+    Avatar6_3_QuestEnergy = "AVATAR_6_3_QUEST_ENERGY",
     AvatarBlockingEnergy = "AVATAR_BLOCKING_ENERGY",
     AvatarBlockingMikawaflowerEnergy = "AVATAR_BLOCKING_MIKAWAFLOWER_ENERGY",
     AvatarBreakoutEnergy = "AVATAR_BREAKOUT_ENERGY",
@@ -99,9 +100,15 @@ export enum GlobalValueKey {
     Empty = "",
     FlyingSquirrelFlyEnergy = "Flying_Squirrel_FlyEnergy",
     GVHoldBallFlag = "GV_HoldBallFlag",
+    GVSideScrollerParkourSkillEnergy = "GV_SideScrollerParkour_SkillEnergy",
     GVV61_QuestRerirFightNeferSpecialEnergy = "GV_V6_1_Quest_Rerir_Fight_NeferSpecialEnergy",
     OrigamiSquirrelReturnEnergy = "OrigamiSquirrel_Return_Energy",
+    TEAMAbyssCityLunarisCutSPENERGY = "TEAM_AbyssCity_LunarisCut_SP_ENERGY",
+    TEAMLunarisCSMIXENERGY = "TEAM_LunarisCSMIX_ENERGY",
+    TEAMPlayerSkillLuanrisThrowVail = "TEAM_PlayerSkill_LuanrisThrow_Vail",
+    TEAMTTCThrowCoinSkill = "TEAM_TTC_ThrowCoinSkill",
     TeamAntiKillEnergy = "TEAM_ANTI_KILL_ENERGY",
+    V63_LunarisCSMIXUnload = "V6_3_LunarisCSMIX_Unload",
 }
 
 export enum LockShape {
@@ -292,50 +299,50 @@ function r(name: string) {
 const typeMap: any = {
     "AvatarSkillExcelConfigDataType": o([
         { json: "abilityName", js: "abilityName", typ: "" },
-        { json: "BGINCKANIGF", js: "BGINCKANIGF", typ: true },
+        { json: "AIICMOANNDD", js: "AIICMOANNDD", typ: true },
         { json: "buffIcon", js: "buffIcon", typ: r("BuffIcon") },
+        { json: "CDMEHHEIMLL", js: "CDMEHHEIMLL", typ: true },
         { json: "cdSlot", js: "cdSlot", typ: 0 },
         { json: "cdTime", js: "cdTime", typ: 3.14 },
-        { json: "CGJLEIHOKLN", js: "CGJLEIHOKLN", typ: r("Cgjleihokln") },
         { json: "costElemType", js: "costElemType", typ: r("CostElemType") },
         { json: "costElemVal", js: "costElemVal", typ: 0 },
         { json: "costStamina", js: "costStamina", typ: 0 },
-        { json: "DAHEPAIKAJE", js: "DAHEPAIKAJE", typ: true },
-        { json: "DEAEBMEIFLO", js: "DEAEBMEIFLO", typ: r("Deaebmeiflo") },
         { json: "descTextMapHash", js: "descTextMapHash", typ: 0 },
+        { json: "DFPMMCMGALP", js: "DFPMMCMGALP", typ: 0 },
         { json: "dragType", js: "dragType", typ: r("DragType") },
-        { json: "EFHHGFKPGJO", js: "EFHHGFKPGJO", typ: true },
+        { json: "ECKEINPOMPP", js: "ECKEINPOMPP", typ: true },
+        { json: "ECPHAKECJGJ", js: "ECPHAKECJGJ", typ: true },
+        { json: "ENEEAJPFKFD", js: "ENEEAJPFKFD", typ: true },
         { json: "energyMin", js: "energyMin", typ: 0 },
         { json: "extraDescTextMapHash", js: "extraDescTextMapHash", typ: 0 },
-        { json: "FOJNHEKGGCB", js: "FOJNHEKGGCB", typ: true },
-        { json: "GLGOMNEPNDH", js: "GLGOMNEPNDH", typ: true },
+        { json: "GCLMLPJPGIB", js: "GCLMLPJPGIB", typ: true },
         { json: "globalValueKey", js: "globalValueKey", typ: r("GlobalValueKey") },
-        { json: "HOBKGMMNHLI", js: "HOBKGMMNHLI", typ: true },
-        { json: "IACNAENANDH", js: "IACNAENANDH", typ: 0 },
+        { json: "GOCDPHLGKCH", js: "GOCDPHLGKCH", typ: r("Gocdphlgkch") },
+        { json: "HCAOGPJPGLM", js: "HCAOGPJPGLM", typ: 0 },
         { json: "id", js: "id", typ: 0 },
         { json: "isAttackCameraLock", js: "isAttackCameraLock", typ: true },
-        { json: "LGHAEDLLNFF", js: "LGHAEDLLNFF", typ: 0 },
-        { json: "LLINBJLCONJ", js: "LLINBJLCONJ", typ: true },
+        { json: "JMIAJDGGHMB", js: "JMIAJDGGHMB", typ: r("Jmiajdgghmb") },
+        { json: "KDEIDMJNCBM", js: "KDEIDMJNCBM", typ: true },
         { json: "lockShape", js: "lockShape", typ: r("LockShape") },
         { json: "lockWeightParams", js: "lockWeightParams", typ: a(3.14) },
         { json: "maxChargeNum", js: "maxChargeNum", typ: 0 },
-        { json: "MHLANHFCMBJ", js: "MHLANHFCMBJ", typ: true },
-        { json: "MIFFDPCHFID", js: "MIFFDPCHFID", typ: true },
+        { json: "MHLKLEIKICL", js: "MHLKLEIKICL", typ: true },
+        { json: "MHMOKMNJOLL", js: "MHMOKMNJOLL", typ: true },
         { json: "nameTextMapHash", js: "nameTextMapHash", typ: 0 },
         { json: "needMonitor", js: "needMonitor", typ: r("NeedMonitor") },
-        { json: "OKLOMDDKDMJ", js: "OKLOMDDKDMJ", typ: true },
-        { json: "PHBLMBKDEOG", js: "PHBLMBKDEOG", typ: 0 },
+        { json: "OKDJHELBFLH", js: "OKDJHELBFLH", typ: 0 },
+        { json: "PGGPLIJPBNI", js: "PGGPLIJPBNI", typ: true },
         { json: "proudSkillGroupId", js: "proudSkillGroupId", typ: 0 },
         { json: "shareCDID", js: "shareCDID", typ: 0 },
         { json: "skillIcon", js: "skillIcon", typ: "" },
         { json: "triggerID", js: "triggerID", typ: 0 },
     ], false),
-    "Cgjleihokln": [
+    "Gocdphlgkch": [
         "DurinBlack",
         "DurinWhite",
         "None",
     ],
-    "Deaebmeiflo": [
+    "Jmiajdgghmb": [
         "SPECIAL_ENERGY_MAVUIKA",
         "SPECIAL_ENERGY_NONE",
         "SPECIAL_ENERGY_SKIRK",
@@ -364,6 +371,7 @@ const typeMap: any = {
         "AVATAR_MagnetThrowSkill",
         "AVATAR_Select_Launcher_Target_Charge",
         "AVATAR_6_0_QUEST_ENERGY",
+        "AVATAR_6_3_QUEST_ENERGY",
         "AVATAR_BLOCKING_ENERGY",
         "AVATAR_BLOCKING_MIKAWAFLOWER_ENERGY",
         "AVATAR_BREAKOUT_ENERGY",
@@ -376,9 +384,15 @@ const typeMap: any = {
         "",
         "Flying_Squirrel_FlyEnergy",
         "GV_HoldBallFlag",
+        "GV_SideScrollerParkour_SkillEnergy",
         "GV_V6_1_Quest_Rerir_Fight_NeferSpecialEnergy",
         "OrigamiSquirrel_Return_Energy",
+        "TEAM_AbyssCity_LunarisCut_SP_ENERGY",
+        "TEAM_LunarisCSMIX_ENERGY",
+        "TEAM_PlayerSkill_LuanrisThrow_Vail",
+        "TEAM_TTC_ThrowCoinSkill",
         "TEAM_ANTI_KILL_ENERGY",
+        "V6_3_LunarisCSMIX_Unload",
     ],
     "LockShape": [
         "CircleLockEnemy",

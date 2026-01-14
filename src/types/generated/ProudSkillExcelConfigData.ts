@@ -10,22 +10,22 @@
 export type ProudSkillExcelConfigDataType = {
     addProps:              AddProp[];
     breakLevel:            number;
+    CIJGPJNCAKN:           Cijgpjncakn;
     coinCost:              number;
     costItems:             CostItem[];
     descTextMapHash:       number;
+    DGPODKJBFHL:           Dgpodkjbfhl;
+    ELIEKALFBPD:           number[];
     filterConds:           FilterCond[];
-    IACNAENANDH:           number;
+    GDDGHEPGDMB:           number;
+    GLGGNGIAGEM:           number[];
+    HCAOGPJPGLM:           number;
     icon:                  string;
-    IFBLICKNGFI:           number[];
     isHideLifeProudSkill:  boolean;
-    LCNAOPBKNGP:           Lcnaopbkngp;
     level:                 number;
     lifeEffectParams:      string[];
     lifeEffectType:        LifeEffectType;
-    LPNPFAMOHIH:           number;
-    MLMBNEJOEHI:           number[];
     nameTextMapHash:       number;
-    CIJGPJNCAKN:           Cijgpjncakn;
     openConfig:            string;
     paramDescList:         number[];
     paramList:             number[];
@@ -36,12 +36,13 @@ export type ProudSkillExcelConfigDataType = {
 }
 
 export enum Cijgpjncakn {
+    ProudSkillDisplayAqQuestUnlock = "PROUD_SKILL_DISPLAY_AQ_QUEST_UNLOCK",
     ProudSkillDisplayBreak = "PROUD_SKILL_DISPLAY_BREAK",
     ProudSkillDisplayDefault = "PROUD_SKILL_DISPLAY_DEFAULT",
     ProudSkillDisplayHexenzirkel = "PROUD_SKILL_DISPLAY_HEXENZIRKEL",
 }
 
-export type Lcnaopbkngp = {
+export type Dgpodkjbfhl = {
     value: number;
 }
 
@@ -254,22 +255,22 @@ const typeMap: any = {
     "ProudSkillExcelConfigDataType": o([
         { json: "addProps", js: "addProps", typ: a(r("AddProp")) },
         { json: "breakLevel", js: "breakLevel", typ: 0 },
+        { json: "CIJGPJNCAKN", js: "CIJGPJNCAKN", typ: r("Cijgpjncakn") },
         { json: "coinCost", js: "coinCost", typ: 0 },
         { json: "costItems", js: "costItems", typ: a(r("CostItem")) },
         { json: "descTextMapHash", js: "descTextMapHash", typ: 0 },
+        { json: "DGPODKJBFHL", js: "DGPODKJBFHL", typ: r("Dgpodkjbfhl") },
+        { json: "ELIEKALFBPD", js: "ELIEKALFBPD", typ: a(0) },
         { json: "filterConds", js: "filterConds", typ: a(r("FilterCond")) },
-        { json: "IACNAENANDH", js: "IACNAENANDH", typ: 0 },
+        { json: "GDDGHEPGDMB", js: "GDDGHEPGDMB", typ: 0 },
+        { json: "GLGGNGIAGEM", js: "GLGGNGIAGEM", typ: a(0) },
+        { json: "HCAOGPJPGLM", js: "HCAOGPJPGLM", typ: 0 },
         { json: "icon", js: "icon", typ: "" },
-        { json: "IFBLICKNGFI", js: "IFBLICKNGFI", typ: a(0) },
         { json: "isHideLifeProudSkill", js: "isHideLifeProudSkill", typ: true },
-        { json: "LCNAOPBKNGP", js: "LCNAOPBKNGP", typ: r("Lcnaopbkngp") },
         { json: "level", js: "level", typ: 0 },
         { json: "lifeEffectParams", js: "lifeEffectParams", typ: a("") },
         { json: "lifeEffectType", js: "lifeEffectType", typ: r("LifeEffectType") },
-        { json: "LPNPFAMOHIH", js: "LPNPFAMOHIH", typ: 0 },
-        { json: "MLMBNEJOEHI", js: "MLMBNEJOEHI", typ: a(0) },
         { json: "nameTextMapHash", js: "nameTextMapHash", typ: 0 },
-        { json: "CIJGPJNCAKN", js: "CIJGPJNCAKN", typ: r("Cijgpjncakn") },
         { json: "openConfig", js: "openConfig", typ: "" },
         { json: "paramDescList", js: "paramDescList", typ: a(0) },
         { json: "paramList", js: "paramList", typ: a(3.14) },
@@ -278,7 +279,7 @@ const typeMap: any = {
         { json: "proudSkillType", js: "proudSkillType", typ: 0 },
         { json: "unlockDescTextMapHash", js: "unlockDescTextMapHash", typ: 0 },
     ], false),
-    "Lcnaopbkngp": o([
+    "Dgpodkjbfhl": o([
         { json: "value", js: "value", typ: 0 },
     ], false),
     "AddProp": o([
@@ -290,6 +291,7 @@ const typeMap: any = {
         { json: "id", js: "id", typ: 0 },
     ], false),
     "Cijgpjncakn": [
+        "PROUD_SKILL_DISPLAY_AQ_QUEST_UNLOCK",
         "PROUD_SKILL_DISPLAY_BREAK",
         "PROUD_SKILL_DISPLAY_DEFAULT",
         "PROUD_SKILL_DISPLAY_HEXENZIRKEL",

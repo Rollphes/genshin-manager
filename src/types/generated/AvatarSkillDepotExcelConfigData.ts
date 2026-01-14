@@ -11,13 +11,13 @@ export type AvatarSkillDepotExcelConfigDataType = {
     attackModeSkill:         number;
     energySkill:             number;
     extraAbilities:          string[];
-    inherentProudSkillOpens: InherentProudSkillOpen[];
+    PPMJAMDEFFO:             Ppmjamdeffo;
     BDKHFEFKECB:             number;
+    GFFGFBCGBDH:             Gffgfbcgbdh[];
     id:                      number;
     JGJCJEEOFCK:             number;
-    PPMJAMDEFFO:             Ppmjamdeffo;
     leaderTalent:            number;
-    LLALJAIDKPI:             Llaljaidkpi[];
+    inherentProudSkillOpens: InherentProudSkillOpen[];
     JNBEFHILAIP:             number;
     skillDepotAbilityGroup:  string;
     skills:                  number[];
@@ -26,13 +26,13 @@ export type AvatarSkillDepotExcelConfigDataType = {
     talentStarName:          string;
 }
 
-export type Llaljaidkpi = {
-    AFMEMNMEABG:       number[];
-    KLHCAFHKLNI:       Klhcafhklni;
+export type Gffgfbcgbdh = {
+    AFMOAPEAINH:       Afmoapeainh;
+    BFCALCJMJKD:       number[];
     proudSkillGroupId: number;
 }
 
-export enum Klhcafhklni {
+export enum Afmoapeainh {
     SpecialProudSkillOpenConditionTypeNone = "SPECIAL_PROUD_SKILL_OPEN_CONDITION_TYPE_NONE",
     SpecialProudSkillOpenConditionTypeQuestFinish = "SPECIAL_PROUD_SKILL_OPEN_CONDITION_TYPE_QUEST_FINISH",
 }
@@ -218,13 +218,13 @@ const typeMap: any = {
         { json: "attackModeSkill", js: "attackModeSkill", typ: 0 },
         { json: "energySkill", js: "energySkill", typ: 0 },
         { json: "extraAbilities", js: "extraAbilities", typ: a("") },
-        { json: "inherentProudSkillOpens", js: "inherentProudSkillOpens", typ: a(r("InherentProudSkillOpen")) },
+        { json: "PPMJAMDEFFO", js: "PPMJAMDEFFO", typ: r("Ppmjamdeffo") },
         { json: "BDKHFEFKECB", js: "BDKHFEFKECB", typ: 0 },
+        { json: "GFFGFBCGBDH", js: "GFFGFBCGBDH", typ: a(r("Gffgfbcgbdh")) },
         { json: "id", js: "id", typ: 0 },
         { json: "JGJCJEEOFCK", js: "JGJCJEEOFCK", typ: 0 },
-        { json: "PPMJAMDEFFO", js: "PPMJAMDEFFO", typ: r("Ppmjamdeffo") },
         { json: "leaderTalent", js: "leaderTalent", typ: 0 },
-        { json: "LLALJAIDKPI", js: "LLALJAIDKPI", typ: a(r("Llaljaidkpi")) },
+        { json: "inherentProudSkillOpens", js: "inherentProudSkillOpens", typ: a(r("InherentProudSkillOpen")) },
         { json: "JNBEFHILAIP", js: "JNBEFHILAIP", typ: 0 },
         { json: "skillDepotAbilityGroup", js: "skillDepotAbilityGroup", typ: "" },
         { json: "skills", js: "skills", typ: a(0) },
@@ -232,16 +232,16 @@ const typeMap: any = {
         { json: "talents", js: "talents", typ: a(0) },
         { json: "talentStarName", js: "talentStarName", typ: "" },
     ], false),
-    "Llaljaidkpi": o([
-        { json: "AFMEMNMEABG", js: "AFMEMNMEABG", typ: a(0) },
-        { json: "KLHCAFHKLNI", js: "KLHCAFHKLNI", typ: r("Klhcafhklni") },
+    "Gffgfbcgbdh": o([
+        { json: "AFMOAPEAINH", js: "AFMOAPEAINH", typ: r("Afmoapeainh") },
+        { json: "BFCALCJMJKD", js: "BFCALCJMJKD", typ: a(0) },
         { json: "proudSkillGroupId", js: "proudSkillGroupId", typ: 0 },
     ], false),
     "InherentProudSkillOpen": o([
         { json: "needAvatarPromoteLevel", js: "needAvatarPromoteLevel", typ: 0 },
         { json: "proudSkillGroupId", js: "proudSkillGroupId", typ: 0 },
     ], false),
-    "Klhcafhklni": [
+    "Afmoapeainh": [
         "SPECIAL_PROUD_SKILL_OPEN_CONDITION_TYPE_NONE",
         "SPECIAL_PROUD_SKILL_OPEN_CONDITION_TYPE_QUEST_FINISH",
     ],

@@ -11,9 +11,9 @@ export type DungeonLevelEntityConfigDataType = {
     abilityGroupName:       string;
     clientId:               number;
     descTextMapHash:        number;
+    OHICBGIFKGF:            Ohicbgifkgf;
     id:                     number;
     levelConfigName:        string;
-    OHICBGIFKGF:            Ohicbgifkgf;
     show:                   boolean;
     switchTitleTextMapHash: number;
 }
@@ -23,6 +23,7 @@ export enum Ohicbgifkgf {
     ActivityAbilityLevelBuffTowerBuffNyxAttackUp = "ActivityAbility_LevelBuff_TowerBuff_NyxAttackUp",
     Empty = "",
     LevelBuffTowerBuffElemReactSwirlUp = "LevelBuff_TowerBuff_ElemReactSwirlUp",
+    LevelBuffTowerBuffExtraAttack6_3 = "LevelBuff_TowerBuff_ExtraAttack_6_3",
     LevelBuffTowerBuffFallATKDamageUp6_2 = "LevelBuff_TowerBuff_FallATKDamageUp_6_2",
     LevelBuffTowerBuffFallingAttackUp = "LevelBuff_TowerBuff_FallingAttackUp",
     LevelBuffTowerBuffFireDamageUp6_2 = "LevelBuff_TowerBuff_FireDamageUp_6_2",
@@ -31,6 +32,9 @@ export enum Ohicbgifkgf {
     LevelBuffTowerBuffIceElementalArtUp = "LevelBuff_TowerBuff_IceElementalArtUp",
     LevelBuffTowerBuffIceExtraAttackUp = "LevelBuff_TowerBuff_IceExtraAttackUp",
     LevelBuffTowerBuffIceNormalAttackUp = "LevelBuff_TowerBuff_IceNormalAttackUp",
+    LevelBuffTowerBuffMoonCrystallizeWater6_3 = "LevelBuff_TowerBuff_MoonCrystallizeWater_6_3",
+    LevelBuffTowerBuffMoonDamageUp6_3 = "LevelBuff_TowerBuff_MoonDamageUp_6_3",
+    LevelBuffTowerBuffMoonShockDamageUp6_3 = "LevelBuff_TowerBuff_MoonShockDamageUp_6_3",
     LevelBuffTowerBuffNoneEnergyDamageUp = "LevelBuff_TowerBuff_NoneEnergyDamageUp",
     LevelBuffTowerBuffOvergrowDamageUp6_0 = "LevelBuff_TowerBuff_OvergrowDamageUp_6_0",
     LevelBuffTowerBuffRockElementalArtUp = "LevelBuff_TowerBuff_RockElementalArtUp",
@@ -210,9 +214,9 @@ const typeMap: any = {
         { json: "abilityGroupName", js: "abilityGroupName", typ: "" },
         { json: "clientId", js: "clientId", typ: 0 },
         { json: "descTextMapHash", js: "descTextMapHash", typ: 0 },
+        { json: "OHICBGIFKGF", js: "OHICBGIFKGF", typ: r("Ohicbgifkgf") },
         { json: "id", js: "id", typ: 0 },
         { json: "levelConfigName", js: "levelConfigName", typ: "" },
-        { json: "OHICBGIFKGF", js: "OHICBGIFKGF", typ: r("Ohicbgifkgf") },
         { json: "show", js: "show", typ: true },
         { json: "switchTitleTextMapHash", js: "switchTitleTextMapHash", typ: 0 },
     ], false),
@@ -221,6 +225,7 @@ const typeMap: any = {
         "ActivityAbility_LevelBuff_TowerBuff_NyxAttackUp",
         "",
         "LevelBuff_TowerBuff_ElemReactSwirlUp",
+        "LevelBuff_TowerBuff_ExtraAttack_6_3",
         "LevelBuff_TowerBuff_FallATKDamageUp_6_2",
         "LevelBuff_TowerBuff_FallingAttackUp",
         "LevelBuff_TowerBuff_FireDamageUp_6_2",
@@ -229,6 +234,9 @@ const typeMap: any = {
         "LevelBuff_TowerBuff_IceElementalArtUp",
         "LevelBuff_TowerBuff_IceExtraAttackUp",
         "LevelBuff_TowerBuff_IceNormalAttackUp",
+        "LevelBuff_TowerBuff_MoonCrystallizeWater_6_3",
+        "LevelBuff_TowerBuff_MoonDamageUp_6_3",
+        "LevelBuff_TowerBuff_MoonShockDamageUp_6_3",
         "LevelBuff_TowerBuff_NoneEnergyDamageUp",
         "LevelBuff_TowerBuff_OvergrowDamageUp_6_0",
         "LevelBuff_TowerBuff_RockElementalArtUp",

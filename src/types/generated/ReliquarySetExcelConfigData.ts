@@ -11,9 +11,9 @@ export type ReliquarySetExcelConfigDataType = {
     bagSortValue:  number;
     containsList:  number[];
     disableFilter: number;
-    DKBIAAFLNOB:   number;
     dungeonGroup:  number[];
     equipAffixId:  number;
+    DKBIAAFLNOB:   number;
     setIcon:       string;
     setId:         number;
     setNeedNum:    number[];
@@ -189,9 +189,9 @@ const typeMap: any = {
         { json: "bagSortValue", js: "bagSortValue", typ: 0 },
         { json: "containsList", js: "containsList", typ: a(0) },
         { json: "disableFilter", js: "disableFilter", typ: 0 },
-        { json: "DKBIAAFLNOB", js: "DKBIAAFLNOB", typ: 0 },
         { json: "dungeonGroup", js: "dungeonGroup", typ: a(0) },
         { json: "equipAffixId", js: "equipAffixId", typ: 0 },
+        { json: "DKBIAAFLNOB", js: "DKBIAAFLNOB", typ: 0 },
         { json: "setIcon", js: "setIcon", typ: "" },
         { json: "setId", js: "setId", typ: 0 },
         { json: "setNeedNum", js: "setNeedNum", typ: a(0) },

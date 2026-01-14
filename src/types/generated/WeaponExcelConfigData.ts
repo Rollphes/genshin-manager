@@ -22,12 +22,12 @@ export type WeaponExcelConfigDataType = {
     gachaCardNameHash:          number;
     gadgetId:                   number;
     DLIALKLHDED:                number;
-    KCCFDAFPBCI:                boolean;
+    globalItemLimit:            number;
     icon:                       string;
     id:                         number;
-    globalItemLimit:            number;
-    itemType:                   ItemType;
+    KCCFDAFPBCI:                boolean;
     initialLockState:           number;
+    itemType:                   ItemType;
     materialType:               MaterialType;
     nameTextMapHash:            number;
     rank:                       number;
@@ -284,12 +284,12 @@ const typeMap: any = {
         { json: "gachaCardNameHash", js: "gachaCardNameHash", typ: 3.14 },
         { json: "gadgetId", js: "gadgetId", typ: 0 },
         { json: "DLIALKLHDED", js: "DLIALKLHDED", typ: 0 },
-        { json: "KCCFDAFPBCI", js: "KCCFDAFPBCI", typ: true },
+        { json: "globalItemLimit", js: "globalItemLimit", typ: 0 },
         { json: "icon", js: "icon", typ: "" },
         { json: "id", js: "id", typ: 0 },
-        { json: "globalItemLimit", js: "globalItemLimit", typ: 0 },
-        { json: "itemType", js: "itemType", typ: r("ItemType") },
+        { json: "KCCFDAFPBCI", js: "KCCFDAFPBCI", typ: true },
         { json: "initialLockState", js: "initialLockState", typ: 0 },
+        { json: "itemType", js: "itemType", typ: r("ItemType") },
         { json: "materialType", js: "materialType", typ: r("MaterialType") },
         { json: "nameTextMapHash", js: "nameTextMapHash", typ: 0 },
         { json: "rank", js: "rank", typ: 0 },

@@ -8,18 +8,18 @@
 // match the expected interface, even if the JSON is valid.
 
 export type AnimalCodexExcelConfigDataType = {
-    EJNDNFFKDHN:      number[];
+    IEDNJFPPPHD:      number[];
     countType:        CountType;
     describeId:       number;
     descTextMapHash:  number;
-    id:               number;
-    IEDNJFPPPHD:      number[];
     DGPFHOOEKNC:      number;
+    AJPLBCNANHO:      number;
+    id:               number;
     isDisuse:         boolean;
     isSeenActive:     boolean;
-    modelPath:        string;
     KOGKIGNPAIO:      number[];
-    AJPLBCNANHO:      number;
+    modelPath:        string;
+    EJNDNFFKDHN:      number[];
     pushTipsCodexId:  number;
     showOnlyUnlocked: boolean;
     sortOrder:        number;
@@ -220,18 +220,18 @@ function r(name: string) {
 
 const typeMap: any = {
     "AnimalCodexExcelConfigDataType": o([
-        { json: "EJNDNFFKDHN", js: "EJNDNFFKDHN", typ: a(0) },
+        { json: "IEDNJFPPPHD", js: "IEDNJFPPPHD", typ: a(0) },
         { json: "countType", js: "countType", typ: r("CountType") },
         { json: "describeId", js: "describeId", typ: 0 },
         { json: "descTextMapHash", js: "descTextMapHash", typ: 0 },
-        { json: "id", js: "id", typ: 0 },
-        { json: "IEDNJFPPPHD", js: "IEDNJFPPPHD", typ: a(0) },
         { json: "DGPFHOOEKNC", js: "DGPFHOOEKNC", typ: 3.14 },
+        { json: "AJPLBCNANHO", js: "AJPLBCNANHO", typ: 0 },
+        { json: "id", js: "id", typ: 0 },
         { json: "isDisuse", js: "isDisuse", typ: true },
         { json: "isSeenActive", js: "isSeenActive", typ: true },
-        { json: "modelPath", js: "modelPath", typ: "" },
         { json: "KOGKIGNPAIO", js: "KOGKIGNPAIO", typ: a(0) },
-        { json: "AJPLBCNANHO", js: "AJPLBCNANHO", typ: 0 },
+        { json: "modelPath", js: "modelPath", typ: "" },
+        { json: "EJNDNFFKDHN", js: "EJNDNFFKDHN", typ: a(0) },
         { json: "pushTipsCodexId", js: "pushTipsCodexId", typ: 0 },
         { json: "showOnlyUnlocked", js: "showOnlyUnlocked", typ: true },
         { json: "sortOrder", js: "sortOrder", typ: 0 },
