@@ -1,4 +1,4 @@
-import type { APIGameAccount } from '@/types/enkaNetwork'
+import type { APIGameAccount } from '@/types/enkaNetwork/EnkaAccountTypes'
 
 /**
  * Create mock GenshinAccounts API response for testing

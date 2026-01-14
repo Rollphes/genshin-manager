@@ -1,4 +1,4 @@
-import type { APIEnkaStatus } from '@/types/enkaNetwork'
+import type { APIEnkaStatus } from '@/types/enkaNetwork/EnkaStatusTypes'
 
 /**
  * Create mock EnkaStatus API response for testing

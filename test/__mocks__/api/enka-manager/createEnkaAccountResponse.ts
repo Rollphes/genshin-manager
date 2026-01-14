@@ -1,4 +1,4 @@
-import type { APIOwner } from '@/types/enkaNetwork'
+import type { APIOwner } from '@/types/enkaNetwork/EnkaTypes'
 
 /**
  * Create mock EnkaAccount API response for testing
