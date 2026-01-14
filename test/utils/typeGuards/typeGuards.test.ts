@@ -1,7 +1,7 @@
 import { describe, expect, it } from 'vitest'
 
-import { FightProps } from '@/types'
-import { toFightPropType } from '@/utils/typeGuards'
+import { FightProps } from '@/types/types'
+import { toFightPropType } from '@/utils/typeGuards/toFightPropType'
 
 /**
  * Type guard utilities test suite

@@ -4,11 +4,12 @@ import fs from 'fs'
 import path from 'path'
 import { beforeAll, beforeEach, describe, expect, it, vi } from 'vitest'
 
-import { AssetCacheManager, Client, ClientEvents } from '@/client'
+import { AssetCacheManager } from '@/client/AssetCacheManager'
+import { Client, ClientEvents } from '@/client/Client'
 import { AudioAssets } from '@/models/assets/AudioAssets'
 import { ImageAssets } from '@/models/assets/ImageAssets'
-import { TextMapLanguage } from '@/types'
-import { LogLevel } from '@/utils/logger'
+import { TextMapLanguage } from '@/types/types'
+import { LogLevel } from '@/utils/logger/Logger'
 
 // Increase max listeners to prevent memory leak warnings during tests
 EventEmitter.defaultMaxListeners = 50

@@ -4,9 +4,10 @@ import fs from 'fs'
 import path from 'path'
 import { beforeAll, beforeEach, describe, expect, it, vi } from 'vitest'
 
-import { AssetCacheManager, Client } from '@/client'
-import { AssetNotFoundError } from '@/errors'
-import { ExcelBinOutputs } from '@/types'
+import { AssetCacheManager } from '@/client/AssetCacheManager'
+import { Client } from '@/client/Client'
+import { AssetNotFoundError } from '@/errors/assets/AssetNotFoundError'
+import { ExcelBinOutputs } from '@/types/types'
 
 // Increase max listeners to prevent memory leak warnings during tests
 EventEmitter.defaultMaxListeners = 50
@@ -52,7 +53,7 @@ describe('AssetCacheManager Basic Functionality', () => {
     })
 
     // Access the static updateCache method safely using the class reference
-    const clientClass = client.constructor as typeof Client
+    const clientClass = client.constructor
     await (
       clientClass as unknown as {
         updateCache: () => Promise<void>

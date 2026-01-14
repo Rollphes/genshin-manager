@@ -1,7 +1,7 @@
 import fs from 'fs'
 import path from 'path'
 
-import { Client } from '@/client'
+import { Client } from '@/client/Client'
 
 /**
  * Global setup for vitest

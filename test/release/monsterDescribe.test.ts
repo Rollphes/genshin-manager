@@ -1,6 +1,6 @@
 import { beforeAll, describe, expect, test } from 'vitest'
 
-import { Client } from '@/client'
+import { Client } from '@/client/Client'
 import { Monster } from '@/models/Monster'
 
 describe('MonsterDescribe Release Test', () => {
