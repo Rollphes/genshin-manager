@@ -483,9 +483,7 @@ export class Character {
   ): { id: number; count: number }[] {
     const skillId = this.skillOrder[skillIndex]
     if (!skillId) return []
-    const proudId = this.proudMap.get(skillId)
-    if (!proudId) return []
-    const skillAscension = new CharacterSkillAscension(proudId, skillLevel)
+    const skillAscension = new CharacterSkillAscension(skillId, skillLevel)
     return skillAscension.costItems
   }
 
@@ -555,11 +553,8 @@ export class Character {
     const skillId = this.skillOrder[skillIndex]
     if (!skillId) return []
 
-    const proudId = this.proudMap.get(skillId)
-    if (!proudId) return []
-
     for (let level = currentLevel + 1; level <= targetLevel; level++) {
-      const skillAscension = new CharacterSkillAscension(proudId, level)
+      const skillAscension = new CharacterSkillAscension(skillId, level)
       for (const item of skillAscension.costItems) {
         const current = materialsMap.get(item.id) ?? 0
         materialsMap.set(item.id, current + item.count)
