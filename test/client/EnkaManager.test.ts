@@ -19,9 +19,9 @@ import {
 
 import { Client } from '@/client/Client'
 import { EnkaManager, EnkaManagerEvents } from '@/client/EnkaManager'
+import { GeneralError } from '@/errors/general/GeneralError'
 import { EnkaNetworkError } from '@/errors/network/EnkaNetworkError'
 import { EnkaNetworkStatusError } from '@/errors/network/EnkaNetworkStatusError'
-import { GeneralError } from '@/errors/general/GeneralError'
 import { Material } from '@/models/Material'
 
 // Increase max listeners to prevent memory leak warnings during tests
