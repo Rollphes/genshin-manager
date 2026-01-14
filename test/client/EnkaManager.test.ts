@@ -17,13 +17,11 @@ import {
   vi,
 } from 'vitest'
 
-import { Client } from '@/client'
-import { EnkaManager, EnkaManagerEvents } from '@/client'
-import {
-  EnkaNetworkError,
-  EnkaNetworkStatusError,
-  GeneralError,
-} from '@/errors'
+import { Client } from '@/client/Client'
+import { EnkaManager, EnkaManagerEvents } from '@/client/EnkaManager'
+import { GeneralError } from '@/errors/general/GeneralError'
+import { EnkaNetworkError } from '@/errors/network/EnkaNetworkError'
+import { EnkaNetworkStatusError } from '@/errors/network/EnkaNetworkStatusError'
 import { Material } from '@/models/Material'
 
 // Increase max listeners to prevent memory leak warnings during tests

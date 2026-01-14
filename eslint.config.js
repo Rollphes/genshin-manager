@@ -1,6 +1,7 @@
 import eslintJs from '@eslint/js'
 import eslintConfigPrettier from 'eslint-config-prettier'
 import jsdoc from 'eslint-plugin-jsdoc'
+import noBarrelFiles from 'eslint-plugin-no-barrel-files'
 import eslintPluginPrettierRecommended from 'eslint-plugin-prettier/recommended'
 import simpleImportSort from 'eslint-plugin-simple-import-sort'
 import tseslint from 'typescript-eslint'
@@ -178,10 +179,26 @@ export default [
   {
     plugins: {
       'simple-import-sort': simpleImportSort,
+      'no-barrel-files': noBarrelFiles,
     },
     rules: {
       'simple-import-sort/imports': 'error',
       'simple-import-sort/exports': 'error',
+      'no-barrel-files/no-barrel-files': 'error',
+    },
+  },
+  // Allow barrel file for public API entry point
+  {
+    files: ['src/index.ts'],
+    rules: {
+      'no-barrel-files/no-barrel-files': 'off',
+    },
+  },
+  // Temporarily allow barrel files in test directory (to be addressed in Plan 03)
+  {
+    files: ['test/**/*', 'src/test/**/*'],
+    rules: {
+      'no-barrel-files/no-barrel-files': 'off',
     },
   },
   {

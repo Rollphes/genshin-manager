@@ -1,5 +1,5 @@
-import { Client } from '@/client'
-import { FightPropType } from '@/types'
+import { Client } from '@/client/Client'
+import { FightPropType } from '@/types/types'
 /**
  * Represents a statistical property with type, name, and value information
  */

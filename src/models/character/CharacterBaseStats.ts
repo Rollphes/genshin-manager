@@ -1,15 +1,15 @@
-import { Client } from '@/client'
+import { Client } from '@/client/Client'
 import { CharacterAscension } from '@/models/character/CharacterAscension'
 import { StatProperty } from '@/models/StatProperty'
-import { characterLevelSchema } from '@/schemas'
-import { FightPropType } from '@/types'
+import { characterLevelSchema } from '@/schemas/commonSchemas'
 import type {
   AvatarExcelConfigDataType,
   PropGrowCurve,
 } from '@/types/generated/AvatarExcelConfigData'
-import { calculatePromoteLevel } from '@/utils/parsers'
-import { toFightPropType } from '@/utils/typeGuards'
-import { ValidationHelper } from '@/utils/validation'
+import { FightPropType } from '@/types/types'
+import { calculatePromoteLevel } from '@/utils/parsers/calculatePromoteLevel'
+import { toFightPropType } from '@/utils/typeGuards/toFightPropType'
+import { ValidationHelper } from '@/utils/validation/ValidationHelper'
 
 /**
  * Represents a character's base statistical properties and attributes

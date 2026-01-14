@@ -1,13 +1,13 @@
-import { Client } from '@/client'
-import { AssetNotFoundError } from '@/errors'
-import { travelerIdSchema } from '@/schemas'
-import { Element, ElementKeys } from '@/types'
+import { Client } from '@/client/Client'
+import { AssetNotFoundError } from '@/errors/assets/AssetNotFoundError'
+import { travelerIdSchema } from '@/schemas/commonSchemas'
 import {
   BodyType,
   QualityType,
   WeaponType,
 } from '@/types/generated/AvatarExcelConfigData'
-import { ValidationHelper } from '@/utils/validation'
+import { Element, ElementKeys } from '@/types/types'
+import { ValidationHelper } from '@/utils/validation/ValidationHelper'
 
 /**
  * Contains basic information about a character

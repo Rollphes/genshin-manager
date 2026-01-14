@@ -16,10 +16,10 @@ import {
   vi,
 } from 'vitest'
 
-import { ImageNotFoundError } from '@/errors'
+import { ImageNotFoundError } from '@/errors/assets/ImageNotFoundError'
 import { ImageAssets } from '@/models/assets/ImageAssets'
-import { ClientOption } from '@/types'
-import { LogLevel } from '@/utils/logger'
+import { ClientOption } from '@/types/types'
+import { LogLevel } from '@/utils/logger/Logger'
 
 /**
  * ImageAssets test suite

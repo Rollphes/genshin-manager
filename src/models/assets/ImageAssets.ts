@@ -3,10 +3,10 @@ import * as fsPromises from 'fs/promises'
 import path from 'path'
 import { pipeline } from 'stream/promises'
 
-import { ImageNotFoundError } from '@/errors'
-import { ClientOption } from '@/types'
+import { ImageNotFoundError } from '@/errors/assets/ImageNotFoundError'
+import { ClientOption } from '@/types/types'
 import { initImageFolderPath } from '@/utils/paths'
-import { ReadableStreamWrapper } from '@/utils/streams'
+import { ReadableStreamWrapper } from '@/utils/streams/ReadableStreamWrapper'
 
 /**
  * Class for compiling information about image

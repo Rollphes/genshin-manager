@@ -1,5 +1,5 @@
 import { StatProperty } from '@/models/StatProperty'
-import { FightProps } from '@/types'
+import { FightProps } from '@/types/types'
 
 /**
  * Manages character combat statistics and calculated property values

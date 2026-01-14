@@ -6,12 +6,13 @@ import {
   quicktype,
 } from 'quicktype-core'
 
-import { Client } from '@/client'
-import { ConfigMissingError, FormatValidationError } from '@/errors'
-import { ExcelBinOutputs } from '@/types'
+import { Client } from '@/client/Client'
+import { ConfigMissingError } from '@/errors/config/ConfigMissingError'
+import { FormatValidationError } from '@/errors/validation/FormatValidationError'
 import type { JsonObject } from '@/types/json'
-import { EncryptedKeyDecoder } from '@/utils/crypto'
-import { logger, LogLevel } from '@/utils/logger'
+import { ExcelBinOutputs } from '@/types/types'
+import { EncryptedKeyDecoder } from '@/utils/crypto/EncryptedKeyDecoder'
+import { logger, LogLevel } from '@/utils/logger/Logger'
 import {
   excelBinOutputFolderPathForDevelop,
   masterFileFolderPath,

@@ -1,6 +1,6 @@
-import { ValueOf } from '@/types'
 import { NoticeLanguage } from '@/types/sg-hk4e-api'
 import type { APIGetAnnContent } from '@/types/sg-hk4e-api/response'
+import { ValueOf } from '@/types/types'
 
 /**
  * Creates mock AnnContent response for API testing

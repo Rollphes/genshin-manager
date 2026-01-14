@@ -1,4 +1,4 @@
-import { GeneralError } from '@/errors'
+import { GeneralError } from '@/errors/general/GeneralError'
 import { Artifact } from '@/models/Artifact'
 import { CharacterConstellation } from '@/models/character/CharacterConstellation'
 import { CharacterCostume } from '@/models/character/CharacterCostume'
@@ -7,14 +7,14 @@ import { CharacterSkill } from '@/models/character/CharacterSkill'
 import { CharacterStatusManager } from '@/models/character/CharacterStatusManager'
 import { SetBonus } from '@/models/SetBonus'
 import { WeaponInfo } from '@/models/weapon/WeaponInfo'
-import { Element } from '@/types'
 import {
   APIAvatarInfo,
   APIReliquaryEquip,
   APIWeaponEquip,
-} from '@/types/enkaNetwork'
+} from '@/types/enkaNetwork/EnkaTypes'
 import { BodyType } from '@/types/generated/AvatarExcelConfigData'
 import { WeaponType } from '@/types/generated/WeaponExcelConfigData'
+import { Element } from '@/types/types'
 
 /**
  * Represents detailed character data retrieved from the EnkaNetwork API

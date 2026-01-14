@@ -1,16 +1,16 @@
-import { Client } from '@/client'
+import { Client } from '@/client/Client'
 import { ImageAssets } from '@/models/assets/ImageAssets'
 import { StatProperty } from '@/models/StatProperty'
 import { WeaponAscension } from '@/models/weapon/WeaponAscension'
 import { WeaponRefinement } from '@/models/weapon/WeaponRefinement'
-import { refinementLevelSchema } from '@/schemas'
-import { createDynamicWeaponLevelSchema } from '@/schemas'
+import { refinementLevelSchema } from '@/schemas/commonSchemas'
+import { createDynamicWeaponLevelSchema } from '@/schemas/createDynamicWeaponLevelSchema'
 import {
   type WeaponProp,
   WeaponType,
 } from '@/types/generated/WeaponExcelConfigData'
-import { calculatePromoteLevel } from '@/utils/parsers'
-import { ValidationHelper } from '@/utils/validation'
+import { calculatePromoteLevel } from '@/utils/parsers/calculatePromoteLevel'
+import { ValidationHelper } from '@/utils/validation/ValidationHelper'
 
 /**
  * Contains weapon information including stats, refinement, and enhancement data

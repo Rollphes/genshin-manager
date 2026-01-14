@@ -1,11 +1,11 @@
-import { Client } from '@/client'
+import { Client } from '@/client/Client'
 import { CharacterInfo } from '@/models/character/CharacterInfo'
 import { CharacterSkill } from '@/models/character/CharacterSkill'
 import { CharacterSkillAscension } from '@/models/character/CharacterSkillAscension'
 import { WeaponAscension } from '@/models/weapon/WeaponAscension'
 import { WeaponInfo } from '@/models/weapon/WeaponInfo'
-import { dayOfWeekSchema } from '@/schemas'
-import { ValidationHelper } from '@/utils/validation'
+import { dayOfWeekSchema } from '@/schemas/commonSchemas'
+import { ValidationHelper } from '@/utils/validation/ValidationHelper'
 
 /**
  * Domain data

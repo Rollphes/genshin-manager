@@ -1,10 +1,11 @@
 import fs from 'fs'
 import path from 'path'
 
-import { ConfigMissingError, FormatValidationError } from '@/errors'
-import type { EncryptedKeyMasterFile } from '@/types'
+import { ConfigMissingError } from '@/errors/config/ConfigMissingError'
+import { FormatValidationError } from '@/errors/validation/FormatValidationError'
 import type { JsonObject, JsonValue } from '@/types/json'
-import { logger, LogLevel } from '@/utils/logger'
+import type { EncryptedKeyMasterFile } from '@/types/types'
+import { logger, LogLevel } from '@/utils/logger/Logger'
 import { masterFileFolderPath } from '@/utils/paths'
 
 /**

@@ -1,9 +1,9 @@
 import { z } from 'zod'
 
-import { Client } from '@/client'
-import { AssetNotFoundError } from '@/errors'
+import { Client } from '@/client/Client'
+import { AssetNotFoundError } from '@/errors/assets/AssetNotFoundError'
 import { StatProperty } from '@/models/StatProperty'
-import { ValidationHelper } from '@/utils/validation'
+import { ValidationHelper } from '@/utils/validation/ValidationHelper'
 
 /**
  * Handles character ascension data including promote levels, costs, and stat bonuses

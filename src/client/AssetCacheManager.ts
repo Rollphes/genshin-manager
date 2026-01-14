@@ -4,29 +4,29 @@ import fs from 'fs'
 import * as path from 'path'
 import { pipeline } from 'stream/promises'
 
-import {
-  AssetCorruptedError,
-  AssetNotFoundError,
-  BodyNotFoundError,
-  TextMapFormatError,
-} from '@/errors'
+import { AssetCorruptedError } from '@/errors/assets/AssetCorruptedError'
+import { AssetNotFoundError } from '@/errors/assets/AssetNotFoundError'
+import { BodyNotFoundError } from '@/errors/content/BodyNotFoundError'
+import { TextMapFormatError } from '@/errors/content/TextMapFormatError'
+import type { MasterFileMap } from '@/types/generated/MasterFileMap'
+import type { JsonObject } from '@/types/json'
 import {
   CacheStructureMap,
   ClientOption,
   ExcelBinOutputs,
-  MasterFileMap,
   TextMapLanguage,
-} from '@/types'
-import type { JsonObject } from '@/types/json'
-import { buildCacheStructure, withFileLock } from '@/utils/cache'
-import { EncryptedKeyDecoder } from '@/utils/crypto'
-import { EventMap, PromiseEventEmitter } from '@/utils/events'
-import { logger, LogLevel } from '@/utils/logger'
+} from '@/types/types'
+import { buildCacheStructure } from '@/utils/cache/buildCacheStructure'
+import { withFileLock } from '@/utils/cache/fileLockManager'
+import { EncryptedKeyDecoder } from '@/utils/crypto/EncryptedKeyDecoder'
 import {
-  ReadableStreamWrapper,
-  TextMapEmptyWritable,
-  TextMapTransform,
-} from '@/utils/streams'
+  EventMap,
+  PromiseEventEmitter,
+} from '@/utils/events/PromiseEventEmitter'
+import { logger, LogLevel } from '@/utils/logger/Logger'
+import { ReadableStreamWrapper } from '@/utils/streams/ReadableStreamWrapper'
+import { TextMapEmptyWritable } from '@/utils/streams/TextMapEmptyWritable'
+import { TextMapTransform } from '@/utils/streams/TextMapTransform'
 
 interface GitLabAPIResponse {
   id: string

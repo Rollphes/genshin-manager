@@ -1,6 +1,6 @@
 import { EnkaBuild } from '@/models/enka/EnkaBuild'
 import { PlayerDetail } from '@/models/enka/PlayerDetail'
-import { APIBuild, APIGameAccount } from '@/types/enkaNetwork'
+import { APIBuild, APIGameAccount } from '@/types/enkaNetwork/EnkaAccountTypes'
 
 /**
  * Represents a Genshin Impact account with associated game data and builds

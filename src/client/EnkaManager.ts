@@ -1,22 +1,17 @@
 import { merge } from 'ts-deepmerge'
 
-import {
-  EnkaNetworkError,
-  EnkaNetworkStatusError,
-  GeneralError,
-} from '@/errors'
+import { GeneralError } from '@/errors/general/GeneralError'
+import { EnkaNetworkError } from '@/errors/network/EnkaNetworkError'
+import { EnkaNetworkStatusError } from '@/errors/network/EnkaNetworkStatusError'
 import { CharacterDetail } from '@/models/enka/CharacterDetail'
 import { EnkaAccount } from '@/models/enka/EnkaAccount'
 import { GenshinAccount } from '@/models/enka/GenshinAccount'
 import { PlayerDetail } from '@/models/enka/PlayerDetail'
-import {
-  APIBuild,
-  APIEnkaStatus,
-  APIGameAccount,
-  APIOwner,
-} from '@/types/enkaNetwork'
+import { APIBuild, APIGameAccount } from '@/types/enkaNetwork/EnkaAccountTypes'
+import { APIEnkaStatus } from '@/types/enkaNetwork/EnkaStatusTypes'
+import { APIOwner } from '@/types/enkaNetwork/EnkaTypes'
 import { APIEnkaData } from '@/types/enkaNetwork/EnkaTypes'
-import { PromiseEventEmitter } from '@/utils/events'
+import { PromiseEventEmitter } from '@/utils/events/PromiseEventEmitter'
 
 /**
  * Cached EnkaData type

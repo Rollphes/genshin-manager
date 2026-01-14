@@ -1,7 +1,7 @@
 import { Transform } from 'stream'
 
-import { TextMapFormatError } from '@/errors'
-import { TextMapLanguage } from '@/types'
+import { TextMapFormatError } from '@/errors/content/TextMapFormatError'
+import { TextMapLanguage } from '@/types/types'
 
 /**
  * TextMapTransform

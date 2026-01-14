@@ -3,10 +3,9 @@ import * as fsPromises from 'fs/promises'
 import path from 'path'
 import { pipeline } from 'stream/promises'
 
-import { AudioNotFoundError } from '@/errors'
-import { CVType } from '@/types'
-import { ClientOption } from '@/types'
-import { ReadableStreamWrapper } from '@/utils/streams'
+import { AudioNotFoundError } from '@/errors/assets/AudioNotFoundError'
+import { ClientOption, CVType } from '@/types/types'
+import { ReadableStreamWrapper } from '@/utils/streams/ReadableStreamWrapper'
 
 /**
  * Class for compiling information about audio

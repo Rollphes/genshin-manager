@@ -1,10 +1,10 @@
-import { Client } from '@/client'
-import { AssetNotFoundError } from '@/errors'
+import { Client } from '@/client/Client'
+import { AssetNotFoundError } from '@/errors/assets/AssetNotFoundError'
 import { StatProperty } from '@/models/StatProperty'
-import { skillLevelSchema } from '@/schemas'
+import { skillLevelSchema } from '@/schemas/commonSchemas'
 import { PropType } from '@/types/generated/ProudSkillExcelConfigData'
-import { toFightPropType } from '@/utils/typeGuards'
-import { ValidationHelper } from '@/utils/validation'
+import { toFightPropType } from '@/utils/typeGuards/toFightPropType'
+import { ValidationHelper } from '@/utils/validation/ValidationHelper'
 
 /**
  * Manages character skill leveling data including costs and stat bonuses

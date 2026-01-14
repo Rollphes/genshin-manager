@@ -1,15 +1,15 @@
-import { Client } from '@/client'
+import { Client } from '@/client/Client'
 import { ImageAssets } from '@/models/assets/ImageAssets'
 import { StatProperty } from '@/models/StatProperty'
-import { monsterLevelSchema, playerCountSchema } from '@/schemas'
-import { FightProps } from '@/types'
+import { monsterLevelSchema, playerCountSchema } from '@/schemas/commonSchemas'
 import { SubType } from '@/types/generated/AnimalCodexExcelConfigData'
 import {
   GrowCurve,
   type PropGrowCurve,
   type PropGrowCurveType,
 } from '@/types/generated/MonsterExcelConfigData'
-import { ValidationHelper } from '@/utils/validation'
+import { FightProps } from '@/types/types'
+import { ValidationHelper } from '@/utils/validation/ValidationHelper'
 
 const statusBonusMonsterAtMultiPlay: Record<
   PropGrowCurveType,

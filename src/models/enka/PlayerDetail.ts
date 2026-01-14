@@ -1,7 +1,7 @@
 import { CharacterPreview } from '@/models/enka/CharacterPreview'
 import { Material } from '@/models/Material'
 import { ProfilePicture } from '@/models/ProfilePicture'
-import { APIPlayerInfo } from '@/types/enkaNetwork'
+import { APIPlayerInfo } from '@/types/enkaNetwork/EnkaTypes'
 /**
  * Contains player profile information and game progress from EnkaNetwork
  */

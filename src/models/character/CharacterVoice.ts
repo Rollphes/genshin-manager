@@ -1,6 +1,6 @@
-import { Client } from '@/client'
+import { Client } from '@/client/Client'
 import { AudioAssets } from '@/models/assets/AudioAssets'
-import { CVType } from '@/types'
+import { CVType } from '@/types/types'
 
 /**
  * Handles character voice lines and audio assets in different languages

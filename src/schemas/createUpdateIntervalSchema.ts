@@ -1,6 +1,6 @@
 import { z } from 'zod'
 
-import { createRangeSchema } from '@/schemas'
+import { createRangeSchema } from '@/schemas/createRangeSchema'
 
 /**
  * Update interval validation schema factory (minInterval to maxInterval)

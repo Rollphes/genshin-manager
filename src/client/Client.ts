@@ -5,8 +5,8 @@ import { merge } from 'ts-deepmerge'
 import { AssetCacheManager } from '@/client/AssetCacheManager'
 import { AudioAssets } from '@/models/assets/AudioAssets'
 import { ImageAssets } from '@/models/assets/ImageAssets'
-import { ClientOption, TextMapLanguage } from '@/types'
-import { LogLevel } from '@/utils/logger'
+import { ClientOption, TextMapLanguage } from '@/types/types'
+import { LogLevel } from '@/utils/logger/Logger'
 
 /**
  * Client events

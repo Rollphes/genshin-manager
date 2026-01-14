@@ -1,11 +1,9 @@
-import {
-  AssetCorruptedError,
-  AssetDownloadFailedError,
-  AssetError,
-  AssetNotFoundError,
-  AudioNotFoundError,
-  ImageNotFoundError,
-} from '@/errors'
+import { AssetCorruptedError } from '@/errors/assets/AssetCorruptedError'
+import { AssetDownloadFailedError } from '@/errors/assets/AssetDownloadFailedError'
+import { AssetError } from '@/errors/assets/AssetError'
+import { AssetNotFoundError } from '@/errors/assets/AssetNotFoundError'
+import { AudioNotFoundError } from '@/errors/assets/AudioNotFoundError'
+import { ImageNotFoundError } from '@/errors/assets/ImageNotFoundError'
 import type { ErrorContext } from '@/errors/base/ErrorContext'
 
 /**

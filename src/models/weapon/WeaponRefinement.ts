@@ -1,9 +1,12 @@
-import { Client } from '@/client'
+import { Client } from '@/client/Client'
 import { StatProperty } from '@/models/StatProperty'
-import { fixedRefinementSchema, refinementLevelSchema } from '@/schemas'
+import {
+  fixedRefinementSchema,
+  refinementLevelSchema,
+} from '@/schemas/commonSchemas'
 import { PropType } from '@/types/generated/EquipAffixExcelConfigData'
-import { toFightPropType } from '@/utils/typeGuards'
-import { ValidationHelper } from '@/utils/validation'
+import { toFightPropType } from '@/utils/typeGuards/toFightPropType'
+import { ValidationHelper } from '@/utils/validation/ValidationHelper'
 
 /**
  * Manages weapon refinement levels and passive ability improvements

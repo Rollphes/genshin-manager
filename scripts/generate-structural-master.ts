@@ -1,4 +1,4 @@
-import { generateMasterFromJson } from '@/utils/buildtime'
+import { generateMasterFromJson } from '@/utils/buildtime/generateMasterFromJson'
 import fs from 'fs'
 import path from 'path'
 

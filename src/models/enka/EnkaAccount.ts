@@ -1,4 +1,4 @@
-import { APIOwner } from '@/types/enkaNetwork'
+import { APIOwner } from '@/types/enkaNetwork/EnkaTypes'
 
 /**
  * Represents an EnkaNetwork user account with access credentials

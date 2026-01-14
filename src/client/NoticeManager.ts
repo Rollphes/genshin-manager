@@ -1,12 +1,13 @@
 import { merge } from 'ts-deepmerge'
 
-import { AnnContentNotFoundError, NetworkUnavailableError } from '@/errors'
+import { AnnContentNotFoundError } from '@/errors/content/AnnContentNotFoundError'
+import { NetworkUnavailableError } from '@/errors/network/NetworkUnavailableError'
 import { Notice } from '@/models/Notice'
-import { createUpdateIntervalSchema } from '@/schemas'
+import { createUpdateIntervalSchema } from '@/schemas/createUpdateIntervalSchema'
 import { NoticeLanguage, URLParams as URLParams } from '@/types/sg-hk4e-api'
 import { APIGetAnnContent, APIGetAnnList } from '@/types/sg-hk4e-api/response'
-import { PromiseEventEmitter } from '@/utils/events'
-import { ValidationHelper } from '@/utils/validation'
+import { PromiseEventEmitter } from '@/utils/events/PromiseEventEmitter'
+import { ValidationHelper } from '@/utils/validation/ValidationHelper'
 
 /**
  * NoticeManager events

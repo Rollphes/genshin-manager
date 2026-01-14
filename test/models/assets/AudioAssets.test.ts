@@ -16,10 +16,10 @@ import {
   vi,
 } from 'vitest'
 
-import { AudioNotFoundError } from '@/errors'
+import { AudioNotFoundError } from '@/errors/assets/AudioNotFoundError'
 import { AudioAssets } from '@/models/assets/AudioAssets'
-import { ClientOption, CVType } from '@/types'
-import { LogLevel } from '@/utils/logger'
+import { ClientOption, CVType } from '@/types/types'
+import { LogLevel } from '@/utils/logger/Logger'
 
 /**
  * AudioAssets test suite
