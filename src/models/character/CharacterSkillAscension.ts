@@ -76,12 +76,14 @@ export class CharacterSkillAscension {
         'ProudSkillExcelConfigData',
       )
     }
-    this.costItems = proudSkillJson.costItems.map((costItem) => {
-      return {
-        id: costItem.id,
-        count: costItem.count,
-      }
-    })
+    this.costItems = proudSkillJson.costItems
+      .filter((costItem) => costItem.id !== 0 && costItem.count !== 0)
+      .map((costItem) => {
+        return {
+          id: costItem.id,
+          count: costItem.count,
+        }
+      })
     this.costMora = proudSkillJson.coinCost
     this.addProps = proudSkillJson.addProps
       .filter((addProp) => addProp.propType !== PropType.FightPropNone)
