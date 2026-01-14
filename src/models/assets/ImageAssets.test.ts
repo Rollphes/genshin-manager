@@ -1,9 +1,3 @@
-import {
-  corruptedPngData,
-  invalidPngSignature,
-  setupAssetMock,
-  validPngData,
-} from '@test/__mocks__/assets'
 import fs from 'fs'
 import path from 'path'
 import {
@@ -16,6 +10,12 @@ import {
   vi,
 } from 'vitest'
 
+import { setupAssetMock } from '@/__test__/__mocks__/assets/mockAssetResponses'
+import {
+  corruptedPngData,
+  invalidPngSignature,
+  validPngData,
+} from '@/__test__/__mocks__/assets/mockBinaryData'
 import { ImageNotFoundError } from '@/errors/assets/ImageNotFoundError'
 import { ImageAssets } from '@/models/assets/ImageAssets'
 import { ClientOption } from '@/types/types'

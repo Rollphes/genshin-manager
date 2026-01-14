@@ -1,11 +1,3 @@
-import {
-  createEnkaAccountResponse,
-  createEnkaDataResponse,
-  createEnkaStatusResponse,
-  createGenshinAccountsResponse,
-} from '@test/__mocks__/api/enka-manager'
-import { setupGitLabMock } from '@test/__mocks__/api/gitlab'
-import { MockResponse } from '@test/__mocks__/utils'
 import { EventEmitter } from 'events'
 import {
   beforeAll,
@@ -17,6 +9,12 @@ import {
   vi,
 } from 'vitest'
 
+import { createEnkaAccountResponse } from '@/__test__/__mocks__/api/enka-manager/createEnkaAccountResponse'
+import { createEnkaDataResponse } from '@/__test__/__mocks__/api/enka-manager/createEnkaDataResponse'
+import { createEnkaStatusResponse } from '@/__test__/__mocks__/api/enka-manager/createEnkaStatusResponse'
+import { createGenshinAccountsResponse } from '@/__test__/__mocks__/api/enka-manager/createGenshinAccountsResponse'
+import { setupGitLabMock } from '@/__test__/__mocks__/api/gitlab'
+import { MockResponse } from '@/__test__/__mocks__/utils/MockResponse'
 import { Client } from '@/client/Client'
 import { EnkaManager, EnkaManagerEvents } from '@/client/EnkaManager'
 import { GeneralError } from '@/errors/general/GeneralError'

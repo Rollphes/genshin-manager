@@ -1,9 +1,9 @@
-import { setupGitLabMock } from '@test/__mocks__/api/gitlab'
 import { EventEmitter } from 'events'
 import fs from 'fs'
 import path from 'path'
 import { beforeAll, beforeEach, describe, expect, it, vi } from 'vitest'
 
+import { setupGitLabMock } from '@/__test__/__mocks__/api/gitlab'
 import { AssetCacheManager } from '@/client/AssetCacheManager'
 import { Client, ClientEvents } from '@/client/Client'
 import { AudioAssets } from '@/models/assets/AudioAssets'

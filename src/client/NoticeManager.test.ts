@@ -1,10 +1,3 @@
-import { setupGitLabMock } from '@test/__mocks__/api/gitlab'
-import {
-  createAnnContentResponse,
-  createAnnListResponse,
-  createDetailedAnnContentResponse,
-} from '@test/__mocks__/api/notice-manager'
-import { MockResponse } from '@test/__mocks__/utils'
 import { EventEmitter } from 'events'
 import {
   beforeAll,
@@ -16,6 +9,11 @@ import {
   vi,
 } from 'vitest'
 
+import { setupGitLabMock } from '@/__test__/__mocks__/api/gitlab'
+import { createAnnContentResponse } from '@/__test__/__mocks__/api/notice-manager/createAnnContentResponse'
+import { createAnnListResponse } from '@/__test__/__mocks__/api/notice-manager/createAnnListResponse'
+import { createDetailedAnnContentResponse } from '@/__test__/__mocks__/api/notice-manager/createDetailedAnnContentResponse'
+import { MockResponse } from '@/__test__/__mocks__/utils/MockResponse'
 import { Client } from '@/client/Client'
 import { NoticeManager, NoticeManagerEvents } from '@/client/NoticeManager'
 import { AnnContentNotFoundError } from '@/errors/content/AnnContentNotFoundError'

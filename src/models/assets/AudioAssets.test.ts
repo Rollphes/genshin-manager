@@ -1,9 +1,3 @@
-import {
-  corruptedOggData,
-  invalidOggSignature,
-  setupAssetMock,
-  validOggData,
-} from '@test/__mocks__/assets'
 import fs from 'fs'
 import path from 'path'
 import {
@@ -16,6 +10,12 @@ import {
   vi,
 } from 'vitest'
 
+import { setupAssetMock } from '@/__test__/__mocks__/assets/mockAssetResponses'
+import {
+  corruptedOggData,
+  invalidOggSignature,
+  validOggData,
+} from '@/__test__/__mocks__/assets/mockBinaryData'
 import { AudioNotFoundError } from '@/errors/assets/AudioNotFoundError'
 import { AudioAssets } from '@/models/assets/AudioAssets'
 import { ClientOption, CVType } from '@/types/types'
