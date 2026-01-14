@@ -9,6 +9,7 @@ export default defineConfig({
     setupFiles: ['./test/setupFiles.ts'],
     testTimeout: 30000, // Extended timeout for GitLab API calls
     cache: false, // Disable test cache to prevent race conditions
+    reporters: ['default', './test/reporters/JsonErrorReporter.ts'],
     poolOptions: {
       threads: {
         singleThread: true,
