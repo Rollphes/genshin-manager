@@ -1,12 +1,12 @@
-import { Client } from '@/client'
-import { AssetNotFoundError } from '@/errors'
+import { Client } from '@/client/Client'
+import { AssetNotFoundError } from '@/errors/assets/AssetNotFoundError'
 import { ImageAssets } from '@/models/assets/ImageAssets'
 import { StatProperty } from '@/models/StatProperty'
-import { createArtifactLevelSchema } from '@/schemas'
-import { FightPropType } from '@/types'
+import { createArtifactLevelSchema } from '@/schemas/createArtifactLevelSchema'
 import { EquipType } from '@/types/generated/ReliquaryExcelConfigData'
-import { toFightPropType } from '@/utils/typeGuards'
-import { ValidationHelper } from '@/utils/validation'
+import { FightPropType } from '@/types/types'
+import { toFightPropType } from '@/utils/typeGuards/toFightPropType'
+import { ValidationHelper } from '@/utils/validation/ValidationHelper'
 interface ArtifactAffixAppendProp {
   id: number
   type: FightPropType
