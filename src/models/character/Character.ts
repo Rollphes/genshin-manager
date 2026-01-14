@@ -14,7 +14,7 @@ import { CharacterVoice } from '@/models/character/CharacterVoice'
 import { StatProperty } from '@/models/StatProperty'
 import { BodyType } from '@/types/generated/AvatarExcelConfigData'
 import { WeaponType } from '@/types/generated/WeaponExcelConfigData'
-import { CharacterUpgradePlan, Element } from '@/types/types'
+import { CharacterUpgradePlan, CVType, Element } from '@/types/types'
 import { calculatePromoteLevel } from '@/utils/parsers/calculatePromoteLevel'
 
 /**
@@ -226,15 +226,6 @@ export class Character {
   }
 
   /**
-   * Character voices
-   */
-  public get voices(): CharacterVoice[] {
-    return CharacterVoice.getAllFetterIdsByCharacterId(this.id).map(
-      (fetterId) => new CharacterVoice(fetterId, 'JP'),
-    )
-  }
-
-  /**
    * Character costumes
    */
   public get costumes(): CharacterCostume[] {
@@ -326,6 +317,17 @@ export class Character {
    */
   public static getTravelerSkillDepotIds(characterId: number): number[] {
     return CharacterInfo.getTravelerSkillDepotIds(characterId)
+  }
+
+  /**
+   * Get character voices
+   * @param cv CV language. Default: 'EN'
+   * @returns character voices
+   */
+  public getVoices(cv: CVType = 'EN'): CharacterVoice[] {
+    return CharacterVoice.getAllFetterIdsByCharacterId(this.id).map(
+      (fetterId) => new CharacterVoice(fetterId, cv),
+    )
   }
 
   /**

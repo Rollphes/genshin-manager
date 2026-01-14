@@ -193,10 +193,17 @@ describe('Character', () => {
       expect(Array.isArray(stories)).toBe(true)
     })
 
-    it('should return voices', () => {
-      const voices = character.voices
+    it('should return voices with default language', () => {
+      const voices = character.getVoices()
       expect(voices).toBeDefined()
       expect(Array.isArray(voices)).toBe(true)
+    })
+
+    it('should return voices with specified language', () => {
+      const voices = character.getVoices('JP')
+      expect(voices).toBeDefined()
+      expect(Array.isArray(voices)).toBe(true)
+      if (voices.length > 0) expect(voices[0].cv).toBe('JP')
     })
 
     it('should return costumes', () => {
