@@ -5,57 +5,63 @@ import { ImageAssets } from '@/models/assets/ImageAssets'
 import { Notice } from '@/models/Notice'
 import { ContentList, DataList } from '@/types/sg-hk4e-api/response'
 
-const createMockDataList = (overrides: Partial<DataList> = {}): DataList => ({
-  ann_id: 12345,
-  title: 'Test Announcement',
-  subtitle: 'Test Subtitle<br/>Line 2',
-  banner: 'https://example.com/banner.png',
-  content: '',
-  type_label: 'Event',
-  tag_label: '1',
-  tag_icon: 'https://example.com/tag.png',
-  login_alert: 1,
-  lang: 'en-us',
-  start_time: '2024-01-01 10:00:00',
-  end_time: '2024-01-31 10:00:00',
-  type: 1,
-  remind: 0,
-  alert: 0,
-  tag_start_time: '2024-01-01 10:00:00',
-  tag_end_time: '2024-01-31 10:00:00',
-  remind_ver: 5,
-  has_content: true,
-  extra_remind: 0,
-  ...overrides,
-})
+function createMockDataList(overrides: Partial<DataList> = {}): DataList {
+  return {
+    ann_id: 12345,
+    title: 'Test Announcement',
+    subtitle: 'Test Subtitle<br/>Line 2',
+    banner: 'https://example.com/banner.png',
+    content: '',
+    type_label: 'Event',
+    tag_label: '1',
+    tag_icon: 'https://example.com/tag.png',
+    login_alert: 1,
+    lang: 'en-us',
+    start_time: '2024-01-01 10:00:00',
+    end_time: '2024-01-31 10:00:00',
+    type: 1,
+    remind: 0,
+    alert: 0,
+    tag_start_time: '2024-01-01 10:00:00',
+    tag_end_time: '2024-01-31 10:00:00',
+    remind_ver: 5,
+    has_content: true,
+    extra_remind: 0,
+    ...overrides,
+  }
+}
 
-const createMockContentList = (
+function createMockContentList(
   overrides: Partial<ContentList> = {},
-): ContentList => ({
-  ann_id: 12345,
-  title: 'Test Content Title',
-  subtitle: 'Test Content Subtitle',
-  banner: 'https://example.com/content-banner.png',
-  content: escape(
-    '<p>〓Event Duration〓</p><p>2024/01/15 10:00 ~ 2024/01/31 10:00</p><p>〓Event Details〓</p><p>Test event details.</p>',
-  ),
-  lang: 'en-us',
-  ...overrides,
-})
+): ContentList {
+  return {
+    ann_id: 12345,
+    title: 'Test Content Title',
+    subtitle: 'Test Content Subtitle',
+    banner: 'https://example.com/content-banner.png',
+    content: escape(
+      '<p>〓Event Duration〓</p><p>2024/01/15 10:00 ~ 2024/01/31 10:00</p><p>〓Event Details〓</p><p>Test event details.</p>',
+    ),
+    lang: 'en-us',
+    ...overrides,
+  }
+}
 
-const createMockEnContentList = (
+function createMockEnContentList(
   overrides: Partial<ContentList> = {},
-): ContentList => ({
-  ann_id: 12345,
-  title: 'Test Content Title EN',
-  subtitle: 'Test Content Subtitle EN',
-  banner: 'https://example.com/content-banner-en.png',
-  content: escape(
-    '<p>〓Event Duration〓</p><p>2024/01/15 10:00 ~ 2024/01/31 10:00</p><p>〓Event Details〓</p><p>Test event details EN.</p>',
-  ),
-  lang: 'en-us',
-  ...overrides,
-})
+): ContentList {
+  return {
+    ann_id: 12345,
+    title: 'Test Content Title EN',
+    subtitle: 'Test Content Subtitle EN',
+    banner: 'https://example.com/content-banner-en.png',
+    content: escape(
+      '<p>〓Event Duration〓</p><p>2024/01/15 10:00 ~ 2024/01/31 10:00</p><p>〓Event Details〓</p><p>Test event details EN.</p>',
+    ),
+    lang: 'en-us',
+    ...overrides,
+  }
+}
 
 describe('Notice', () => {
   beforeAll(async () => {
