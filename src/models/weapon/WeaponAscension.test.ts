@@ -134,4 +134,18 @@ describe('WeaponAscension', () => {
       expect(ascension.unlockMaxLevel).toBe(70)
     })
   })
+
+  describe('Error Cases', () => {
+    it('should throw error for invalid promoteLevel (exceeds max for 5-star)', () => {
+      expect(() => new WeaponAscension(11509, 7)).toThrow()
+    })
+
+    it('should throw error for invalid promoteLevel (exceeds max for 1-star)', () => {
+      expect(() => new WeaponAscension(11101, 5)).toThrow()
+    })
+
+    it('should throw error for negative promoteLevel', () => {
+      expect(() => new WeaponAscension(11509, -1)).toThrow()
+    })
+  })
 })
