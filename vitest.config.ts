@@ -7,7 +7,6 @@ export default defineConfig({
     environment: 'node',
     include: ['src/**/*.test.ts'],
     globalSetup: ['./src/__test__/setup.ts'],
-    setupFiles: ['./src/__test__/setupFiles.ts'],
     testTimeout: 30000, // Extended timeout for GitLab API calls
     cache: false, // Disable test cache to prevent race conditions
     fileParallelism: false, // Disable parallel file execution for stability
