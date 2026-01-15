@@ -110,4 +110,86 @@ describe('PlayerDetail', () => {
       expect(playerDetail.characterPreviews.length).toBeGreaterThan(0)
     })
   })
+
+  describe('Default Values (Minimal Data)', () => {
+    it('should use default values for missing optional fields', () => {
+      const minimalData = {
+        level: 1,
+        nameCardId: 210001,
+      }
+      const playerDetail = new PlayerDetail(minimalData)
+      expect(playerDetail.nickname).toBe('')
+      expect(playerDetail.signature).toBe('')
+      expect(playerDetail.worldLevel).toBe(0)
+      expect(playerDetail.finishAchievementNum).toBe(0)
+      expect(playerDetail.towerFloorIndex).toBe(0)
+      expect(playerDetail.towerLevelIndex).toBe(0)
+      expect(playerDetail.towerStarIndex).toBe(0)
+      expect(playerDetail.maxFriendshipCharactersCount).toBe(0)
+      expect(playerDetail.theaterActIndex).toBe(0)
+      expect(playerDetail.theaterModeIndex).toBe(0)
+      expect(playerDetail.theaterStarIndex).toBe(0)
+      expect(playerDetail.isShowCharacterPreviewConstellation).toBe(false)
+    })
+
+    it('should handle undefined showAvatarInfoList', () => {
+      const minimalData = {
+        level: 1,
+        nameCardId: 210001,
+      }
+      const playerDetail = new PlayerDetail(minimalData)
+      expect(playerDetail.characterPreviews).toEqual([])
+    })
+
+    it('should handle undefined showNameCardIdList', () => {
+      const minimalData = {
+        level: 1,
+        nameCardId: 210001,
+      }
+      const playerDetail = new PlayerDetail(minimalData)
+      expect(playerDetail.showNameCards).toEqual([])
+    })
+  })
+
+  describe('ProfilePicture Variations', () => {
+    it('should use profilePicture.id when available', () => {
+      const dataWithId = {
+        level: 1,
+        nameCardId: 210001,
+        profilePicture: { id: 11 },
+      }
+      const playerDetail = new PlayerDetail(dataWithId)
+      expect(playerDetail.profilePicture).toBeInstanceOf(ProfilePicture)
+    })
+
+    it('should use costumeId when profilePicture.id is not available', () => {
+      const dataWithCostume = {
+        level: 1,
+        nameCardId: 210001,
+        profilePicture: { costumeId: 200301 },
+      }
+      const playerDetail = new PlayerDetail(dataWithCostume)
+      expect(playerDetail.profilePicture).toBeInstanceOf(ProfilePicture)
+    })
+
+    it('should use avatarId when profilePicture.id and costumeId are not available', () => {
+      const dataWithAvatar = {
+        level: 1,
+        nameCardId: 210001,
+        profilePicture: { avatarId: 10000002 },
+      }
+      const playerDetail = new PlayerDetail(dataWithAvatar)
+      expect(playerDetail.profilePicture).toBeInstanceOf(ProfilePicture)
+    })
+
+    it('should use default avatarId when no profilePicture info available', () => {
+      const dataNoProfile = {
+        level: 1,
+        nameCardId: 210001,
+        profilePicture: {},
+      }
+      const playerDetail = new PlayerDetail(dataNoProfile)
+      expect(playerDetail.profilePicture).toBeInstanceOf(ProfilePicture)
+    })
+  })
 })
