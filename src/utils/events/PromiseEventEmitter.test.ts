@@ -186,9 +186,15 @@ describe('PromiseEventEmitter', () => {
     it('should call multiple listeners in order', () => {
       const emitter = new TestEmitter()
       const order: number[] = []
-      emitter.on(TestEvents.TEST_EVENT, () => order.push(1))
-      emitter.on(TestEvents.TEST_EVENT, () => order.push(2))
-      emitter.on(TestEvents.TEST_EVENT, () => order.push(3))
+      emitter.on(TestEvents.TEST_EVENT, () => {
+        order.push(1)
+      })
+      emitter.on(TestEvents.TEST_EVENT, () => {
+        order.push(2)
+      })
+      emitter.on(TestEvents.TEST_EVENT, () => {
+        order.push(3)
+      })
       emitter.emitTestEvent('test')
       expect(order).toEqual([1, 2, 3])
     })

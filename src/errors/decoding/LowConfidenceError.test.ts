@@ -79,9 +79,9 @@ describe('LowConfidenceError', () => {
     })
 
     it('should accept context parameter', () => {
-      const context = { attempt: 1 }
+      const context = { metadata: { attempt: 1 } }
       const error = new LowConfidenceError('data.json', 0.5, 0.8, context)
-      expect(error.context?.attempt).toBe(1)
+      expect(error.context?.metadata?.attempt).toBe(1)
     })
   })
 

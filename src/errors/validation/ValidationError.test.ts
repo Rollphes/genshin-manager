@@ -38,7 +38,7 @@ describe('ValidationError', () => {
     })
 
     it('should set zodIssues when provided', () => {
-      const issues: z.ZodIssue[] = [
+      const issues = [
         {
           code: 'invalid_type',
           expected: 'string',
@@ -46,7 +46,7 @@ describe('ValidationError', () => {
           path: ['name'],
           message: 'Expected string, received number',
         },
-      ]
+      ] as unknown as z.ZodIssue[]
       const error = new ValidationError('Validation failed', undefined, issues)
       expect(error.zodIssues).toEqual(issues)
     })
@@ -115,13 +115,13 @@ describe('ValidationError', () => {
 
     it('should accept context parameter', () => {
       const schema = z.object({ name: z.string() })
-      const context = { schemaName: 'UserSchema' }
+      const context = { metadata: { schemaName: 'UserSchema' } }
       try {
         schema.parse({ name: 123 })
       } catch (err) {
         if (err instanceof z.ZodError) {
           const error = ValidationError.fromZodError(err, context)
-          expect(error.context?.schemaName).toBe('UserSchema')
+          expect(error.context?.metadata?.schemaName).toBe('UserSchema')
         }
       }
     })
@@ -134,7 +134,7 @@ describe('ValidationError', () => {
     })
 
     it('should return details for each issue', () => {
-      const issues: z.ZodIssue[] = [
+      const issues = [
         {
           code: 'invalid_type',
           expected: 'string',
@@ -149,7 +149,7 @@ describe('ValidationError', () => {
           path: ['age'],
           message: 'Expected number, received string',
         },
-      ]
+      ] as unknown as z.ZodIssue[]
       const error = new ValidationError('Validation failed', undefined, issues)
       const details = error.getValidationDetails()
       expect(details).toHaveLength(2)
@@ -159,7 +159,7 @@ describe('ValidationError', () => {
     })
 
     it('should return "root" for empty path', () => {
-      const issues: z.ZodIssue[] = [
+      const issues = [
         {
           code: 'invalid_type',
           expected: 'object',
@@ -167,7 +167,7 @@ describe('ValidationError', () => {
           path: [],
           message: 'Expected object, received string',
         },
-      ]
+      ] as unknown as z.ZodIssue[]
       const error = new ValidationError('Validation failed', undefined, issues)
       const details = error.getValidationDetails()
       expect(details[0].path).toBe('root')
@@ -181,7 +181,7 @@ describe('ValidationError', () => {
     })
 
     it('should return message when single issue', () => {
-      const issues: z.ZodIssue[] = [
+      const issues = [
         {
           code: 'invalid_type',
           expected: 'string',
@@ -189,13 +189,13 @@ describe('ValidationError', () => {
           path: ['name'],
           message: 'Expected string',
         },
-      ]
+      ] as unknown as z.ZodIssue[]
       const error = new ValidationError('Validation failed', undefined, issues)
       expect(error.getFormattedMessage()).toBe('Validation failed')
     })
 
     it('should include additional issues when multiple', () => {
-      const issues: z.ZodIssue[] = [
+      const issues = [
         {
           code: 'invalid_type',
           expected: 'string',
@@ -210,7 +210,7 @@ describe('ValidationError', () => {
           path: ['age'],
           message: 'Expected number',
         },
-      ]
+      ] as unknown as z.ZodIssue[]
       const error = new ValidationError('Validation failed', undefined, issues)
       const formatted = error.getFormattedMessage()
       expect(formatted).toContain('Additional issues:')

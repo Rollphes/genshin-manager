@@ -70,14 +70,14 @@ describe('NetworkTimeoutError', () => {
     })
 
     it('should accept context parameter', () => {
-      const context = { attempt: 3 }
+      const context = { metadata: { attempt: 3 } }
       const error = new NetworkTimeoutError(
         'https://example.com/api',
         5000,
         'GET',
         context,
       )
-      expect(error.context?.attempt).toBe(3)
+      expect(error.context?.metadata?.attempt).toBe(3)
     })
 
     it('should accept cause parameter', () => {

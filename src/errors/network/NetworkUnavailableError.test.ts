@@ -75,13 +75,13 @@ describe('NetworkUnavailableError', () => {
     })
 
     it('should accept context parameter', () => {
-      const context = { attempt: 3 }
+      const context = { metadata: { attempt: 3 } }
       const error = new NetworkUnavailableError(
         'https://example.com/api',
         'GET',
         context,
       )
-      expect(error.context?.attempt).toBe(3)
+      expect(error.context?.metadata?.attempt).toBe(3)
     })
 
     it('should accept cause parameter', () => {

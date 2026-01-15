@@ -92,7 +92,7 @@ describe('EnkaNetworkError', () => {
     })
 
     it('should accept context parameter', () => {
-      const context = { attempt: 1 }
+      const context = { metadata: { attempt: 1 } }
       const error = new EnkaNetworkError(
         'API error',
         'https://enka.network/api',
@@ -101,7 +101,7 @@ describe('EnkaNetworkError', () => {
         'GET',
         context,
       )
-      expect(error.context?.attempt).toBe(1)
+      expect(error.context?.metadata?.attempt).toBe(1)
     })
 
     it('should accept cause parameter', () => {
@@ -165,13 +165,13 @@ describe('EnkaNetworkError', () => {
         statusText: 'Internal Server Error',
       } as Response
 
-      const context = { attempt: 3 }
+      const context = { metadata: { attempt: 3 } }
       const error = EnkaNetworkError.fromResponse(
         mockResponse,
         undefined,
         context,
       )
-      expect(error.context?.attempt).toBe(3)
+      expect(error.context?.metadata?.attempt).toBe(3)
     })
   })
 
