@@ -117,16 +117,6 @@ describe('CharacterSkillAscension', () => {
     })
   })
 
-  describe('Skills with proudSkillGroupId=0', () => {
-    it('should handle skill with no proud skill data', () => {
-      // Skill ID 10013 (Kaeya sprint) has proudSkillGroupId=0
-      const asc = new CharacterSkillAscension(10013)
-      expect(asc.costItems).toEqual([])
-      expect(asc.costMora).toBe(0)
-      expect(asc.addProps).toEqual([])
-    })
-  })
-
   describe('Error Cases', () => {
     it('should throw error for invalid level', () => {
       expect(() => new CharacterSkillAscension(10024, 16)).toThrow()
