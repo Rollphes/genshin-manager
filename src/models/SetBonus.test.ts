@@ -22,7 +22,7 @@ describe('SetBonus', () => {
       try {
         const art = new Artifact(id, 10001, 0, [])
         if (art.setId !== undefined && art.setId !== 0) {
-          if (!setArtifacts[art.setId]) setArtifacts[art.setId] = []
+          if (!(art.setId in setArtifacts)) setArtifacts[art.setId] = []
           setArtifacts[art.setId].push(id)
         }
       } catch {
