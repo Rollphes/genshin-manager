@@ -25,6 +25,7 @@ export default defineConfig({
         '**/node_modules/**',
         '**/dist/**',
         'src/__test__/**',
+        'src/test/**',
         'src/**/*.test.ts',
         'src/utils/buildtime/**',
         'src/types/generated/**',
