@@ -118,4 +118,18 @@ describe('WeaponRefinement', () => {
       expect(refinement.addProps).toEqual([])
     })
   })
+
+  describe('Error Cases', () => {
+    it('should throw error when refinementRank > 1 for weapon without skill', () => {
+      expect(() => new WeaponRefinement(11101, 2)).toThrow()
+    })
+
+    it('should throw error for invalid refinementRank (0)', () => {
+      expect(() => new WeaponRefinement(11509, 0)).toThrow()
+    })
+
+    it('should throw error for invalid refinementRank (6)', () => {
+      expect(() => new WeaponRefinement(11509, 6)).toThrow()
+    })
+  })
 })
