@@ -9,7 +9,7 @@ import type {
 import { FightPropType } from '@/types/types'
 import { calculatePromoteLevel } from '@/utils/parsers/calculatePromoteLevel'
 import { toFightPropType } from '@/utils/typeGuards/toFightPropType'
-import { ValidationHelper } from '@/utils/validation/ValidationHelper'
+import { validate } from '@/utils/validation/validate'
 
 /**
  * Represents a character's base statistical properties and attributes
@@ -48,7 +48,7 @@ export class CharacterBaseStats {
    */
   constructor(characterId: number, level = 1, isAscended = false) {
     this.id = characterId
-    this.level = ValidationHelper.validate(characterLevelSchema, level, {
+    this.level = validate(characterLevelSchema, level, {
       propertyKey: 'level',
     })
     this.isAscended = isAscended

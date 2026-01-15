@@ -7,7 +7,7 @@ import {
   WeaponType,
 } from '@/types/generated/AvatarExcelConfigData'
 import { Element, ElementKeys } from '@/types/types'
-import { ValidationHelper } from '@/utils/validation/ValidationHelper'
+import { validate } from '@/utils/validation/validate'
 
 /**
  * Contains basic information about a character
@@ -195,7 +195,7 @@ export class CharacterInfo {
    */
   public static getTravelerSkillDepotIds(characterId: number): number[] {
     if (![10000005, 10000007].includes(characterId)) {
-      void ValidationHelper.validate(travelerIdSchema, characterId, {
+      void validate(travelerIdSchema, characterId, {
         propertyKey: 'characterId',
       })
     }

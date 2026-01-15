@@ -2,7 +2,7 @@ import { Client } from '@/client/Client'
 import { AssetNotFoundError } from '@/errors/assets/AssetNotFoundError'
 import { StatProperty } from '@/models/StatProperty'
 import { createPromoteLevelSchema } from '@/schemas/createPromoteLevelSchema'
-import { ValidationHelper } from '@/utils/validation/ValidationHelper'
+import { validate } from '@/utils/validation/validate'
 
 /**
  * Handles weapon enhancement data including promote levels, costs, and stat boosts
@@ -58,7 +58,7 @@ export class WeaponAscension {
       this.id,
     )
     const promoteLevelSchema = createPromoteLevelSchema(maxPromoteLevel)
-    void ValidationHelper.validate(promoteLevelSchema, this.promoteLevel, {
+    void validate(promoteLevelSchema, this.promoteLevel, {
       propertyKey: 'promoteLevel',
     })
     const weaponJson = Client._getJsonFromCachedExcelBinOutput(

@@ -3,7 +3,7 @@ import { AssetNotFoundError } from '@/errors/assets/AssetNotFoundError'
 import { ImageAssets } from '@/models/assets/ImageAssets'
 import { CharacterInfo } from '@/models/character/CharacterInfo'
 import { skillLevelSchema } from '@/schemas/commonSchemas'
-import { ValidationHelper } from '@/utils/validation/ValidationHelper'
+import { validate } from '@/utils/validation/validate'
 
 /**
  * Contains character skill information including attacks, burst, and elemental abilities
@@ -62,7 +62,7 @@ export class CharacterSkill {
     this.icon = new ImageAssets(skillJson.skillIcon)
     this.extraLevel = extraLevel
     this.level = level + this.extraLevel
-    void ValidationHelper.validate(skillLevelSchema, this.level, {
+    void validate(skillLevelSchema, this.level, {
       propertyKey: 'level + extraLevel',
     })
 

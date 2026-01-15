@@ -9,7 +9,7 @@ import {
   type PropGrowCurveType,
 } from '@/types/generated/MonsterExcelConfigData'
 import { FightProps } from '@/types/types'
-import { ValidationHelper } from '@/utils/validation/ValidationHelper'
+import { validate } from '@/utils/validation/validate'
 
 const statusBonusMonsterAtMultiPlay: Record<
   PropGrowCurveType,
@@ -93,16 +93,12 @@ export class Monster {
    */
   constructor(monsterId: number, level = 1, playerCount = 1) {
     this.id = monsterId
-    this.level = ValidationHelper.validate(monsterLevelSchema, level, {
+    this.level = validate(monsterLevelSchema, level, {
       propertyKey: 'level',
     })
-    this.playerCount = ValidationHelper.validate(
-      playerCountSchema,
-      playerCount,
-      {
-        propertyKey: 'playerCount',
-      },
-    )
+    this.playerCount = validate(playerCountSchema, playerCount, {
+      propertyKey: 'playerCount',
+    })
 
     const monsterJson = Client._getJsonFromCachedExcelBinOutput(
       'MonsterExcelConfigData',

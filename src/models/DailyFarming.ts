@@ -5,7 +5,7 @@ import { CharacterSkillAscension } from '@/models/character/CharacterSkillAscens
 import { WeaponAscension } from '@/models/weapon/WeaponAscension'
 import { WeaponInfo } from '@/models/weapon/WeaponInfo'
 import { dayOfWeekSchema } from '@/schemas/commonSchemas'
-import { ValidationHelper } from '@/utils/validation/ValidationHelper'
+import { validate } from '@/utils/validation/validate'
 
 /**
  * Domain data
@@ -75,7 +75,7 @@ export class DailyFarming {
    * @param dayOfWeek day-of-week (0-6)
    */
   constructor(dayOfWeek: number) {
-    this.dayOfWeek = ValidationHelper.validate(dayOfWeekSchema, dayOfWeek, {
+    this.dayOfWeek = validate(dayOfWeekSchema, dayOfWeek, {
       propertyKey: 'dayOfWeek',
     })
     const rewardDateIndex = dayOfWeek === 0 ? 3 : (dayOfWeek - 1) % 3

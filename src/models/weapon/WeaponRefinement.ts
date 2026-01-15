@@ -6,7 +6,7 @@ import {
 } from '@/schemas/commonSchemas'
 import { PropType } from '@/types/generated/EquipAffixExcelConfigData'
 import { toFightPropType } from '@/utils/typeGuards/toFightPropType'
-import { ValidationHelper } from '@/utils/validation/ValidationHelper'
+import { validate } from '@/utils/validation/validate'
 
 /**
  * Manages weapon refinement levels and passive ability improvements
@@ -45,7 +45,7 @@ export class WeaponRefinement {
   constructor(weaponId: number, refinementRank = 1) {
     this.id = weaponId
     this.refinementRank = refinementRank
-    void ValidationHelper.validate(refinementLevelSchema, this.refinementRank, {
+    void validate(refinementLevelSchema, this.refinementRank, {
       propertyKey: 'refinementRank',
     })
 
@@ -82,13 +82,9 @@ export class WeaponRefinement {
       this.skillDescription = undefined
       this.addProps = []
       if (this.refinementRank > 1) {
-        void ValidationHelper.validate(
-          fixedRefinementSchema,
-          this.refinementRank,
-          {
-            propertyKey: 'refinementRank',
-          },
-        )
+        void validate(fixedRefinementSchema, this.refinementRank, {
+          propertyKey: 'refinementRank',
+        })
       }
     }
   }

@@ -3,7 +3,7 @@ import { z } from 'zod'
 import { Client } from '@/client/Client'
 import { AssetNotFoundError } from '@/errors/assets/AssetNotFoundError'
 import { StatProperty } from '@/models/StatProperty'
-import { ValidationHelper } from '@/utils/validation/ValidationHelper'
+import { validate } from '@/utils/validation/validate'
 
 /**
  * Handles character ascension data including promote levels, costs, and stat bonuses
@@ -64,7 +64,7 @@ export class CharacterAscension {
       .max(maxPromoteLevel, {
         message: `promoteLevel must be at most ${maxPromoteLevel.toString()}`,
       })
-    void ValidationHelper.validate(promoteLevelSchema, this.promoteLevel, {
+    void validate(promoteLevelSchema, this.promoteLevel, {
       propertyKey: 'promoteLevel',
     })
     const avatarJson = Client._getJsonFromCachedExcelBinOutput(

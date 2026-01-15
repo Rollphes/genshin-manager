@@ -7,7 +7,7 @@ import { createUpdateIntervalSchema } from '@/schemas/createUpdateIntervalSchema
 import { NoticeLanguage, URLParams as URLParams } from '@/types/sg-hk4e-api'
 import { APIGetAnnContent, APIGetAnnList } from '@/types/sg-hk4e-api/response'
 import { PromiseEventEmitter } from '@/utils/events/PromiseEventEmitter'
-import { ValidationHelper } from '@/utils/validation/ValidationHelper'
+import { validate } from '@/utils/validation/validate'
 
 /**
  * NoticeManager events
@@ -126,11 +126,9 @@ export class NoticeManager extends PromiseEventEmitter<
       const schema = createUpdateIntervalSchema(
         NoticeManager.MIN_UPDATE_INTERVAL,
       )
-      this.updateInterval = ValidationHelper.validate(
-        schema,
-        this.updateInterval,
-        { propertyKey: 'updateInterval' },
-      )
+      this.updateInterval = validate(schema, this.updateInterval, {
+        propertyKey: 'updateInterval',
+      })
     }
     this.urlParams = merge.withOptions(
       { mergeArrays: false },

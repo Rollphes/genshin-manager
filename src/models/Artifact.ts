@@ -6,7 +6,7 @@ import { createArtifactLevelSchema } from '@/schemas/createArtifactLevelSchema'
 import { EquipType } from '@/types/generated/ReliquaryExcelConfigData'
 import { FightPropType } from '@/types/types'
 import { toFightPropType } from '@/utils/typeGuards/toFightPropType'
-import { ValidationHelper } from '@/utils/validation/ValidationHelper'
+import { validate } from '@/utils/validation/validate'
 interface ArtifactAffixAppendProp {
   id: number
   type: FightPropType
@@ -136,7 +136,7 @@ export class Artifact {
     this.setId = artifactJson.setId as number | undefined
     const maxLevel = Artifact.maxLevelMap[this.rarity]
     const artifactLevelSchema = createArtifactLevelSchema(maxLevel)
-    this.level = ValidationHelper.validate(artifactLevelSchema, this.level, {
+    this.level = validate(artifactLevelSchema, this.level, {
       propertyKey: 'level',
     })
     if (this.setId) {
