@@ -4,7 +4,7 @@ import { StatProperty } from '@/models/StatProperty'
 import { skillLevelSchema } from '@/schemas/commonSchemas'
 import { PropType } from '@/types/generated/ProudSkillExcelConfigData'
 import { toFightPropType } from '@/utils/typeGuards/toFightPropType'
-import { ValidationHelper } from '@/utils/validation/ValidationHelper'
+import { validate } from '@/utils/validation/validate'
 
 /**
  * Manages character skill leveling data including costs and stat bonuses
@@ -52,7 +52,7 @@ export class CharacterSkillAscension {
   constructor(skillId: number, level = 1) {
     this.id = skillId
     this.level = level
-    void ValidationHelper.validate(skillLevelSchema, this.level, {
+    void validate(skillLevelSchema, this.level, {
       propertyKey: 'level',
     })
     const skillJson = Client._getJsonFromCachedExcelBinOutput(
@@ -76,12 +76,14 @@ export class CharacterSkillAscension {
         'ProudSkillExcelConfigData',
       )
     }
-    this.costItems = proudSkillJson.costItems.map((costItem) => {
-      return {
-        id: costItem.id,
-        count: costItem.count,
-      }
-    })
+    this.costItems = proudSkillJson.costItems
+      .filter((costItem) => costItem.id !== 0 && costItem.count !== 0)
+      .map((costItem) => {
+        return {
+          id: costItem.id,
+          count: costItem.count,
+        }
+      })
     this.costMora = proudSkillJson.coinCost
     this.addProps = proudSkillJson.addProps
       .filter((addProp) => addProp.propType !== PropType.FightPropNone)

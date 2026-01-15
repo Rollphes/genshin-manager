@@ -1,6 +1,6 @@
 import { characterLevelSchema } from '@/schemas/commonSchemas'
 import type { AvatarPromoteExcelConfigDataType } from '@/types/generated/AvatarPromoteExcelConfigData'
-import { ValidationHelper } from '@/utils/validation/ValidationHelper'
+import { validate } from '@/utils/validation/validate'
 
 /**
  * Calculate promote level
@@ -18,7 +18,7 @@ export function calculatePromoteLevel(
   level: number,
   isAscended: boolean,
 ): number {
-  void ValidationHelper.validate(characterLevelSchema, level, {
+  void validate(characterLevelSchema, level, {
     propertyKey: 'level',
   })
   const promotes = Object.values(promotesJson).filter(

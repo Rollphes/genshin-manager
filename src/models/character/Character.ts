@@ -14,7 +14,7 @@ import { CharacterVoice } from '@/models/character/CharacterVoice'
 import { StatProperty } from '@/models/StatProperty'
 import { BodyType } from '@/types/generated/AvatarExcelConfigData'
 import { WeaponType } from '@/types/generated/WeaponExcelConfigData'
-import { CharacterUpgradePlan, Element } from '@/types/types'
+import { CharacterUpgradePlan, CVType, Element } from '@/types/types'
 import { calculatePromoteLevel } from '@/utils/parsers/calculatePromoteLevel'
 
 /**
@@ -189,7 +189,7 @@ export class Character {
   public get constellations(): CharacterConstellation[] {
     return this.constellationIds.map(
       (constId, index) =>
-        new CharacterConstellation(constId, index < this.constellationLevel),
+        new CharacterConstellation(constId, index >= this.constellationLevel),
     )
   }
 
@@ -222,15 +222,6 @@ export class Character {
   public get stories(): CharacterStory[] {
     return CharacterStory.getAllFetterIdsByCharacterId(this.id).map(
       (fetterId) => new CharacterStory(fetterId),
-    )
-  }
-
-  /**
-   * Character voices
-   */
-  public get voices(): CharacterVoice[] {
-    return CharacterVoice.getAllFetterIdsByCharacterId(this.id).map(
-      (fetterId) => new CharacterVoice(fetterId, 'JP'),
     )
   }
 
@@ -326,6 +317,17 @@ export class Character {
    */
   public static getTravelerSkillDepotIds(characterId: number): number[] {
     return CharacterInfo.getTravelerSkillDepotIds(characterId)
+  }
+
+  /**
+   * Get character voices
+   * @param cv CV language. Default: 'EN'
+   * @returns character voices
+   */
+  public getVoices(cv: CVType = 'EN'): CharacterVoice[] {
+    return CharacterVoice.getAllFetterIdsByCharacterId(this.id).map(
+      (fetterId) => new CharacterVoice(fetterId, cv),
+    )
   }
 
   /**
@@ -483,9 +485,7 @@ export class Character {
   ): { id: number; count: number }[] {
     const skillId = this.skillOrder[skillIndex]
     if (!skillId) return []
-    const proudId = this.proudMap.get(skillId)
-    if (!proudId) return []
-    const skillAscension = new CharacterSkillAscension(proudId, skillLevel)
+    const skillAscension = new CharacterSkillAscension(skillId, skillLevel)
     return skillAscension.costItems
   }
 
@@ -555,11 +555,8 @@ export class Character {
     const skillId = this.skillOrder[skillIndex]
     if (!skillId) return []
 
-    const proudId = this.proudMap.get(skillId)
-    if (!proudId) return []
-
     for (let level = currentLevel + 1; level <= targetLevel; level++) {
-      const skillAscension = new CharacterSkillAscension(proudId, level)
+      const skillAscension = new CharacterSkillAscension(skillId, level)
       for (const item of skillAscension.costItems) {
         const current = materialsMap.get(item.id) ?? 0
         materialsMap.set(item.id, current + item.count)

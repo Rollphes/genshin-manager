@@ -69,10 +69,10 @@ export class CharacterVoice {
     this.characterId = fetterVoiceJson.avatarId
     this.type = fetterVoiceJson.type
     const voiceTitleTextMapHash = fetterVoiceJson.voiceTitleTextMapHash
-    const voiceFileTextMapHash = fetterVoiceJson.voiceTitleTextMapHash
+    const voiceFileTextTextMapHash = fetterVoiceJson.voiceFileTextTextMapHash
 
     this.title = Client._cachedTextMap.get(voiceTitleTextMapHash) ?? ''
-    this.content = Client._cachedTextMap.get(voiceFileTextMapHash) ?? ''
+    this.content = Client._cachedTextMap.get(voiceFileTextTextMapHash) ?? ''
     this.tips = fetterVoiceJson.tips
       .map((tip) => Client._cachedTextMap.get(tip))
       .filter((tip): tip is string => tip !== undefined)

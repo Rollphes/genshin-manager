@@ -10,7 +10,7 @@ import {
   WeaponType,
 } from '@/types/generated/WeaponExcelConfigData'
 import { calculatePromoteLevel } from '@/utils/parsers/calculatePromoteLevel'
-import { ValidationHelper } from '@/utils/validation/ValidationHelper'
+import { validate } from '@/utils/validation/validate'
 
 /**
  * Contains weapon information including stats, refinement, and enhancement data
@@ -110,13 +110,13 @@ export class WeaponInfo {
     const maxAscension = new WeaponAscension(this.id, maxPromoteLevel)
     this.maxLevel = maxAscension.unlockMaxLevel
     const weaponLevelSchema = createDynamicWeaponLevelSchema(this.maxLevel)
-    this.level = ValidationHelper.validate(weaponLevelSchema, this.level, {
+    this.level = validate(weaponLevelSchema, this.level, {
       propertyKey: 'level',
     })
 
     this.isAscended = isAscended
     this.refinementRank = refinementRank
-    void ValidationHelper.validate(refinementLevelSchema, this.refinementRank, {
+    void validate(refinementLevelSchema, this.refinementRank, {
       propertyKey: 'refinementRank',
     })
 

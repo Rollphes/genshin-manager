@@ -47,7 +47,6 @@ import { EquipType as ArtifactType } from '@/types/generated/ReliquaryExcelConfi
 import { WeaponType } from '@/types/generated/WeaponExcelConfigData'
 import { ClientOption, CVType, Element, FightPropType } from '@/types/types'
 import { convertToUTC } from '@/utils/parsers/convertToUTC'
-import { ValidationHelper } from '@/utils/validation/ValidationHelper'
 export {
   Artifact,
   AudioAssets,
@@ -85,7 +84,7 @@ export {
   WeaponInfo,
   WeaponRefinement,
 }
-export { convertToUTC, ValidationHelper }
+export { convertToUTC }
 export {
   ArtifactType,
   BodyType,
