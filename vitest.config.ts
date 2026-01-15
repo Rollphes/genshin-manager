@@ -26,7 +26,7 @@ export default defineConfig({
         '**/dist/**',
         'src/__test__/**',
         'src/**/*.test.ts',
-        'src/test/**',
+        'src/utils/buildtime/**',
       ],
     },
   },
