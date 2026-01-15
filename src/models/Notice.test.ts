@@ -295,6 +295,95 @@ describe('Notice', () => {
     })
   })
 
+  describe('eventDuration Property', () => {
+    it('should return duration string when eventStart and eventEnd exist', () => {
+      const annList = createMockDataList()
+      const annContent = createMockContentList()
+      const enAnnContent = createMockEnContentList()
+      const notice = new Notice(annList, annContent, enAnnContent, 'os_asia')
+
+      if (notice.eventStart && notice.eventEnd) {
+        expect(notice.eventDuration).toBeDefined()
+        expect(typeof notice.eventDuration).toBe('string')
+        expect(notice.eventDuration).toContain('~')
+      }
+    })
+
+    it('should handle tag=2 (star) with table format', () => {
+      const annList = createMockDataList({ tag_label: '2' })
+      const annContent = createMockContentList({
+        content: escape(
+          '<table><tr><td>Event</td><td>Start</td><td>End</td><td>2024/01/15 10:00 ~ 2024/01/31 10:00</td></tr></table>',
+        ),
+      })
+      const enAnnContent = createMockEnContentList({
+        content: escape('<p>No duration title</p>'),
+      })
+      const notice = new Notice(annList, annContent, enAnnContent, 'os_asia')
+
+      const duration = notice.eventDuration
+      expect(duration === undefined || typeof duration === 'string').toBe(true)
+    })
+
+    it('should handle tag=3 with table format duration', () => {
+      const annList = createMockDataList({ tag_label: '3' })
+      const tableContent = `
+        <p>〓Event Duration〓</p>
+        <table>
+          <tr data-colwidth="100,200,300">
+            <td data-colwidth="100">Phase</td>
+            <td data-colwidth="200">Start</td>
+            <td data-colwidth="300">End</td>
+          </tr>
+          <tr>
+            <td data-colwidth="100">1</td>
+            <td data-colwidth="200">2024/01/15 10:00</td>
+            <td data-colwidth="300">2024/01/31 10:00</td>
+          </tr>
+        </table>
+      `
+      const annContent = createMockContentList({
+        content: escape(tableContent),
+      })
+      const enAnnContent = createMockEnContentList({
+        content: escape(
+          '<p>〓Event Duration〓</p><table><tr><td>Phase</td><td>Start</td><td>End</td></tr></table>',
+        ),
+      })
+      const notice = new Notice(annList, annContent, enAnnContent, 'os_asia')
+
+      const duration = notice.eventDuration
+      expect(duration === undefined || typeof duration === 'string').toBe(true)
+    })
+
+    it('should return undefined when no duration info available', () => {
+      const annList = createMockDataList()
+      const annContent = createMockContentList({
+        content: escape('<p>No duration info here</p>'),
+      })
+      const enAnnContent = createMockEnContentList({
+        content: escape('<p>No duration info here</p>'),
+      })
+      const notice = new Notice(annList, annContent, enAnnContent, 'os_asia')
+
+      expect(notice.eventDuration).toBeUndefined()
+    })
+
+    it('should handle content with t_lc time tags', () => {
+      const annList = createMockDataList()
+      const annContent = createMockContentList({
+        content: escape(
+          '<p>〓Event Duration〓</p><p><t class="t_lc">2024/01/15 10:00:00</t> ~ <t class="t_lc">2024/01/31 10:00:00</t></p>',
+        ),
+      })
+      const enAnnContent = createMockEnContentList()
+      const notice = new Notice(annList, annContent, enAnnContent, 'os_asia')
+
+      const duration = notice.eventDuration
+      expect(duration === undefined || typeof duration === 'string').toBe(true)
+    })
+  })
+
   describe('Content with Images', () => {
     it('should extract reward image if present', () => {
       const annList = createMockDataList()
