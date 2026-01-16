@@ -35,16 +35,14 @@ const CATEGORY_MAP: Record<string, string> = {
   'types/types': 'types',
   'types/generated': 'types',
   'types/enkaNetwork': 'types',
-  'schemas': 'schemas',
-  'utils': 'utils',
+  schemas: 'schemas',
+  utils: 'utils',
 }
 
 function getCategoryFromPath(sourcePath: string): string {
-  for (const [key, category] of Object.entries(CATEGORY_MAP)) {
-    if (sourcePath.includes(key)) {
-      return category
-    }
-  }
+  for (const [key, category] of Object.entries(CATEGORY_MAP))
+    if (sourcePath.includes(key)) return category
+
   return 'other'
 }
 
@@ -67,15 +65,17 @@ function parseExports(): ExportInfo[] {
       const moduleSpecifier = (node.moduleSpecifier as ts.StringLiteral).text
       const importClause = node.importClause
       if (importClause) {
-        if (importClause.namedBindings && ts.isNamedImports(importClause.namedBindings)) {
+        if (
+          importClause.namedBindings &&
+          ts.isNamedImports(importClause.namedBindings)
+        ) {
           importClause.namedBindings.elements.forEach((element) => {
             const name = element.name.text
             importMap.set(name, moduleSpecifier)
           })
         }
-        if (importClause.name) {
+        if (importClause.name)
           importMap.set(importClause.name.text, moduleSpecifier)
-        }
       }
     }
   })
@@ -86,20 +86,29 @@ function parseExports(): ExportInfo[] {
       if (ts.isNamedExports(node.exportClause)) {
         node.exportClause.elements.forEach((element) => {
           const name = element.name.text
-          const sourcePath = importMap.get(name) || ''
+          const sourcePath = importMap.get(name) ?? ''
           const category = getCategoryFromPath(sourcePath)
 
           // Determine kind based on naming convention
           let kind: ExportInfo['kind'] = 'const'
-          if (name.endsWith('Error') || name === 'Client' || name === 'EnkaManager' || name === 'NoticeManager' || /^[A-Z][a-z]/.test(name) && !name.includes('Type') && !name.includes('Events')) {
+          if (
+            name.endsWith('Error') ||
+            name === 'Client' ||
+            name === 'EnkaManager' ||
+            name === 'NoticeManager' ||
+            (/^[A-Z][a-z]/.test(name) &&
+              !name.includes('Type') &&
+              !name.includes('Events'))
+          )
             kind = 'class'
-          } else if (name.endsWith('Events') || name.endsWith('Type') && !name.startsWith('create')) {
+          else if (
+            name.endsWith('Events') ||
+            (name.endsWith('Type') && !name.startsWith('create'))
+          )
             kind = 'enum'
-          } else if (name.startsWith('create')) {
-            kind = 'function'
-          } else if (name === name.toUpperCase() || /^[A-Z][A-Z]/.test(name)) {
+          else if (name.startsWith('create')) kind = 'function'
+          else if (name === name.toUpperCase() || /^[A-Z][A-Z]/.test(name))
             kind = 'const'
-          }
 
           exports.push({ name, kind, sourcePath, category })
         })
@@ -216,7 +225,7 @@ async function main(): Promise<void> {
   // Group by category
   const byCategory = new Map<string, ExportInfo[]>()
   exports.forEach((exp) => {
-    const list = byCategory.get(exp.category) || []
+    const list = byCategory.get(exp.category) ?? []
     list.push(exp)
     byCategory.set(exp.category, list)
   })
@@ -224,9 +233,7 @@ async function main(): Promise<void> {
   const apiDir = path.resolve(__dirname, '../content/docs/api')
 
   // Ensure api directory exists
-  if (!fs.existsSync(apiDir)) {
-    fs.mkdirSync(apiDir, { recursive: true })
-  }
+  if (!fs.existsSync(apiDir)) fs.mkdirSync(apiDir, { recursive: true })
 
   // Generate category pages
   const categories: string[] = []
@@ -245,7 +252,7 @@ async function main(): Promise<void> {
   fs.writeFileSync(path.join(apiDir, 'index.mdx'), indexContent)
   console.log(`Generated: ${path.join(apiDir, 'index.mdx')}`)
 
-  console.log(`\nGenerated ${categories.length} category pages`)
+  console.log(`\nGenerated ${String(categories.length)} category pages`)
 }
 
 main().catch(console.error)
