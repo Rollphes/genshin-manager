@@ -1,0 +1,80 @@
+---
+title: Characters
+description: Access character information and stats
+---
+
+# Character Information
+
+Access detailed character data including stats, skills, and constellations.
+
+## Basic Usage
+
+```javascript
+const { Client, CharacterInfo } = require('genshin-manager')
+
+const client = new Client({ defaultLanguage: 'EN' })
+await client.deploy()
+
+// Get character by ID
+const ayaka = new CharacterInfo(10000002) // Kamisato Ayaka
+console.log(ayaka.name)      // "Kamisato Ayaka"
+console.log(ayaka.element)   // "Cryo"
+console.log(ayaka.rarity)    // 5
+```
+
+## Search by Name
+
+```javascript
+const { CharacterInfo } = require('genshin-manager')
+
+// Search by name
+const zhongliIds = CharacterInfo.getCharacterIdByName("Zhongli")
+const zhongli = new CharacterInfo(zhongliIds[0])
+```
+
+## Character with Stats
+
+```javascript
+const { Client, Character } = require('genshin-manager')
+
+const client = new Client()
+await client.deploy()
+
+// Create character with level and ascension
+const character = new Character(10000002, 90, true) // Ayaka, Level 90, Ascended
+
+console.log(character.baseStats)     // Base stats at current level
+console.log(character.skills)        // Skill information
+console.log(character.constellations) // Constellation data
+```
+
+## Multi-language Support
+
+```javascript
+const { Client, CharacterInfo } = require('genshin-manager')
+
+const client = new Client({
+  defaultLanguage: 'EN',
+  downloadLanguages: ['EN', 'JP', 'KR']
+})
+await client.deploy()
+
+const hutao = new CharacterInfo(10000046)
+console.log(hutao.name) // "Hu Tao"
+
+// Switch language dynamically
+await client.changeLanguage('JP')
+console.log(hutao.name) // "胡桃"
+```
+
+## Get All Characters
+
+```javascript
+const { CharacterInfo } = require('genshin-manager')
+
+const allCharacterIds = CharacterInfo.getAllCharacterIds()
+allCharacterIds.forEach(id => {
+  const char = new CharacterInfo(id)
+  console.log(`${char.name} - ${char.element}`)
+})
+```

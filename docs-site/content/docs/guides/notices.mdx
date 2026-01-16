@@ -1,0 +1,84 @@
+---
+title: Game Notices
+description: Access official game announcements and events
+---
+
+# Game Notices
+
+Monitor official game announcements and events.
+
+## Basic Usage
+
+```javascript
+const { Client, NoticeManager, NoticeManagerEvents } = require('genshin-manager')
+
+const client = new Client()
+await client.deploy()
+
+// Create NoticeManager with language and update interval (ms)
+const noticeManager = new NoticeManager('en', 300000) // English, update every 5 minutes
+
+await noticeManager.update()
+
+// Access notices
+noticeManager.notices.forEach((notice) => {
+  console.log(`${notice.title} - ${notice.eventDuration}`)
+})
+```
+
+## Event Handling
+
+```javascript
+const { NoticeManager, NoticeManagerEvents } = require('genshin-manager')
+
+const noticeManager = new NoticeManager('en', 300000)
+
+// Listen for new notices
+noticeManager.on(NoticeManagerEvents.ADD_NOTICE, (notice) => {
+  console.log(`New notice: ${notice.title}`)
+})
+
+// Listen for removed notices
+noticeManager.on(NoticeManagerEvents.REMOVE_NOTICE, (notice) => {
+  console.log(`Notice removed: ${notice.title}`)
+})
+
+// Listen for updated notices
+noticeManager.on(NoticeManagerEvents.UPDATE_NOTICE, (notice) => {
+  console.log(`Notice updated: ${notice.title}`)
+})
+
+await noticeManager.update()
+```
+
+## Notice Properties
+
+Each notice includes:
+
+- `title` - Notice title
+- `subtitle` - Subtitle if available
+- `banner` - Banner image URL
+- `content` - HTML content
+- `eventDuration` - Event duration string
+- `startTime` - Event start time
+- `endTime` - Event end time
+- `type` - Notice type (event, announcement, etc.)
+
+## Filtering Notices
+
+```javascript
+const { NoticeManager } = require('genshin-manager')
+
+const noticeManager = new NoticeManager('en')
+await noticeManager.update()
+
+// Filter by type
+const events = noticeManager.notices.filter(n => n.type === 'event')
+const announcements = noticeManager.notices.filter(n => n.type === 'announcement')
+
+// Filter by active status
+const activeEvents = noticeManager.notices.filter(n => {
+  const now = new Date()
+  return n.startTime <= now && n.endTime >= now
+})
+```

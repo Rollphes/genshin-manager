@@ -1,13 +1,57 @@
 ---
-title: Hello World
-description: Your first document
+title: Genshin Manager
+description: A comprehensive Node.js library for accessing Genshin Impact game data
 ---
 
-Welcome to the docs! You can start writing documents in `/content/docs`.
+# Genshin Manager
 
-## What is Next?
+A comprehensive Node.js library for accessing Genshin Impact game data through Enka.Network API and official data sources. Build powerful applications with complete character showcases, weapon stats, artifacts, materials, and real-time player data.
+
+**Note: This is a third-party library and not affiliated with Enka.Network or miHoYo.**
+
+## Key Features
+
+- **Complete Game Data Access** - Characters, weapons, artifacts, materials, monsters, and more
+- **Real-time Player Data** - Fetch showcases from Enka.Network with caching
+- **Multi-language Support** - 13 languages including EN, JP, CN, KR, and more
+- **Intelligent Caching** - Automatic asset management with scheduled updates
+- **Game Notices** - Official announcements and events
+- **Rich Media Assets** - Character portraits, weapon icons, artifact images
+- **Type-Safe** - Full TypeScript support with comprehensive type definitions
+- **Performance Optimized** - Smart caching and efficient data structures
+
+## Quick Links
 
 <Cards>
-  <Card title="Learn more about Next.js" href="https://nextjs.org/docs" />
-  <Card title="Learn more about Fumadocs" href="https://fumadocs.dev" />
+  <Card title="Getting Started" href="/docs/getting-started" />
+  <Card title="API Reference" href="/docs/api" />
+  <Card title="Guides" href="/docs/guides" />
 </Cards>
+
+## Installation
+
+```bash
+npm install genshin-manager
+```
+
+## Basic Usage
+
+```javascript
+const { Client } = require('genshin-manager')
+
+// Initialize the client
+const client = new Client()
+await client.deploy()
+
+console.log('Genshin Manager is ready!')
+```
+
+## Requirements
+
+- **Node.js**: Version 18.0.0 or higher
+- **Platform**: Cross-platform (Windows, macOS, Linux)
+- **Internet**: Required for initial setup and API requests
+
+## Supported Languages
+
+`EN`, `RU`, `VI`, `TH`, `PT`, `KR`, `JP`, `ID`, `FR`, `ES`, `DE`, `CHT`, `CHS`

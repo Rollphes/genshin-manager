@@ -1,0 +1,70 @@
+---
+title: Getting Started
+description: Install and set up Genshin Manager
+---
+
+# Getting Started
+
+This guide will help you install and configure Genshin Manager for your project.
+
+## System Requirements
+
+- Node.js 18 or newer
+- Internet connection for initial setup
+
+## Installation
+
+```bash
+npm install genshin-manager
+```
+
+## Basic Setup
+
+```javascript
+const { Client } = require('genshin-manager')
+
+// Initialize the client
+const client = new Client()
+await client.deploy()
+
+console.log('Genshin Manager is ready!')
+```
+
+## Configuration Options
+
+You can customize the client with various options:
+
+```javascript
+const { Client } = require('genshin-manager')
+
+const client = new Client({
+  // Language settings
+  defaultLanguage: 'EN',
+  downloadLanguages: ['EN', 'JP', 'KR'],
+
+  // Cache settings
+  assetCacheFolderPath: './cache',
+  autoCacheImage: true,
+  autoCacheAudio: false,
+
+  // Auto-update settings
+  autoFetchLatestAssetsByCron: '0 0 0 * * 3', // Every Wednesday
+
+  // Logging
+  showFetchCacheLog: true
+})
+
+await client.deploy()
+```
+
+## Client Options
+
+<AutoTypeTable path="../src/types/types.ts" name="ClientOption" />
+
+## Next Steps
+
+<Cards>
+  <Card title="Fetch Player Data" href="/docs/guides/player-data" />
+  <Card title="Character Information" href="/docs/guides/characters" />
+  <Card title="API Reference" href="/docs/api" />
+</Cards>
