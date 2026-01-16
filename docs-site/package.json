@@ -1,0 +1,49 @@
+{
+  "name": "genshin-manager-docs",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "postinstall": "fumadocs-mdx",
+    "type-check": "fumadocs-mdx && tsc --noEmit",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
+    "lint:text": "textlint '**/*.{md,mdx,txt}' --fix"
+  },
+  "dependencies": {
+    "fumadocs-core": "16.2.4",
+    "fumadocs-mdx": "14.1.0",
+    "fumadocs-ui": "16.2.4",
+    "lucide-react": "^0.556.0",
+    "next": "16.0.8",
+    "react": "^19.2.1",
+    "react-dom": "^19.2.1"
+  },
+  "devDependencies": {
+    "@eslint/eslintrc": "^3.3.1",
+    "@eslint/js": "^9.36.0",
+    "@next/eslint-plugin-next": "^16.0.8",
+    "@tailwindcss/postcss": "^4.1.17",
+    "@types/mdx": "^2.0.13",
+    "@types/node": "^24.10.2",
+    "@types/react": "^19.2.7",
+    "@types/react-dom": "^19.2.3",
+    "eslint": "^9.39.1",
+    "eslint-config-next": "^16.0.8",
+    "eslint-config-prettier": "^10.1.8",
+    "eslint-plugin-import": "^2.32.0",
+    "eslint-plugin-prettier": "^5.5.4",
+    "eslint-plugin-react": "^7.37.5",
+    "eslint-plugin-react-hooks": "^7.0.1",
+    "eslint-plugin-simple-import-sort": "^12.1.1",
+    "postcss": "^8.5.6",
+    "tailwindcss": "^4.1.17",
+    "textlint": "^15.5.0",
+    "textlint-rule-preset-ja-technical-writing": "^12.0.2",
+    "textlint-rule-prh": "^6.1.0",
+    "typescript": "^5.9.3",
+    "typescript-eslint": "^8.44.1"
+  }
+}
