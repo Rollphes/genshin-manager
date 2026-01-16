@@ -110,6 +110,11 @@ export default [
             format: null,
           },
           {
+            // Allow PascalCase for React component methods in object literals
+            selector: 'objectLiteralMethod',
+            format: ['camelCase', 'PascalCase'],
+          },
+          {
             selector: 'enumMember',
             format: ['UPPER_CASE'],
           },
