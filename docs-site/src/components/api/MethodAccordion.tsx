@@ -3,17 +3,22 @@
 import { DynamicCodeBlock } from 'fumadocs-ui/components/dynamic-codeblock'
 import { TypeTable } from 'fumadocs-ui/components/type-table'
 import { ChevronRight } from 'lucide-react'
-import type { ReactNode } from 'react'
+import { Children, type ReactNode } from 'react'
 import { useState } from 'react'
 
 import { TypeBadge } from '@/components/api/TypeBadge'
 import { cn } from '@/lib/cn'
 
+/**
+ * Render typeJsx with automatic key assignment to avoid React key warnings
+ * MDX-compiled JSX may have array children without keys
+ */
 function renderTypeJsx(typeJsx: ReactNode): ReactNode {
   if (typeof typeJsx === 'string')
     return <span dangerouslySetInnerHTML={{ __html: typeJsx }} />
 
-  return typeJsx
+  // Use Children.toArray to automatically assign keys to array children
+  return Children.toArray(typeJsx)
 }
 
 interface Parameter {

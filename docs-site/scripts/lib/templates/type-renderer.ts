@@ -10,21 +10,21 @@ export function renderTypeSignature(
 ): string {
   const { name, isArray, isUnion, unionTypes, typeArguments } = typeRef
 
-  // Union type - wrap each part with key to avoid React key warnings
+  // Union type
   if (isUnion && unionTypes) {
     const parts = unionTypes.map((t, i) => {
       const typeJsx = renderTypeSignature(t, linkMap)
-      return `<span key="u${String(i)}">${i > 0 ? ' | ' : ''}${typeJsx}</span>`
+      return `${i > 0 ? ' | ' : ''}${typeJsx}`
     })
     return `<span>${parts.join('')}</span>`
   }
 
-  // Generic type with array - wrap each argument with key
+  // Generic type with type arguments
   if (typeArguments && typeArguments.length > 0) {
     const base = renderSingleType(name, linkMap, false)
     const args = typeArguments.map((t, i) => {
       const typeJsx = renderTypeSignature(t, linkMap)
-      return `<span key="a${String(i)}">${i > 0 ? ', ' : ''}${typeJsx}</span>`
+      return `${i > 0 ? ', ' : ''}${typeJsx}`
     })
     const suffix = isArray ? '[]' : ''
     return `<span>${base}&lt;${args.join('')}&gt;${suffix}</span>`
