@@ -9,16 +9,6 @@ export function toKebabCase(str: string): string {
 }
 
 /**
- * Convert kebab-case to PascalCase
- */
-export function toPascalCase(str: string): string {
-  return str
-    .split('-')
-    .map((s) => s.charAt(0).toUpperCase() + s.slice(1))
-    .join('')
-}
-
-/**
  * Escape string for MDX template literals (inside {\`...\`})
  * Escapes backticks and $ for template literal safety
  */
@@ -28,13 +18,6 @@ export function escapeMdx(str: string): string {
     .replace(/`/g, '\\`')
     .replace(/\$/g, '\\$')
     .replace(/\r?\n/g, ' ')
-}
-
-/**
- * Escape string for code blocks
- */
-export function escapeCodeBlock(str: string): string {
-  return str.replace(/`/g, '\\`').replace(/\$/g, '\\$')
 }
 
 /**
