@@ -21,7 +21,7 @@ const DOMAIN_RULES: {
   },
   {
     domain: 'character',
-    match: /^(Character|Artifact)/,
+    match: /^(Character|Artifact|SetBonus)/,
   },
   {
     domain: 'weapon',
@@ -55,10 +55,12 @@ const DOMAIN_RULES: {
     domain: 'types',
     match: [
       'Element',
+      'EquipType',
       'FightPropType',
       'CVType',
       'ArtifactType',
       'BodyType',
+      'LogLevel',
       'QualityType',
       'WeaponType',
       'ItemType',
