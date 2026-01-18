@@ -234,7 +234,7 @@ export default [
       'coverage/',
       'src/types/generated/',
       'dist/',
-      'docs/',
+      'docs-site/',
       'examples/',
       'scripts/',
       'node_modules/',
