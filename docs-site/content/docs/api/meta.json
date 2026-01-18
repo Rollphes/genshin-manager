@@ -1,5 +1,6 @@
 {
   "title": "API Reference",
+  "root": true,
   "pages": [
     "client",
     "character",

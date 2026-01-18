@@ -6,6 +6,7 @@ import { toKebabCase } from './utils'
 
 interface MetaJson {
   title?: string
+  root?: boolean
   pages: string[]
   defaultOpen?: boolean
 }
@@ -61,6 +62,7 @@ export class MetaGenerator {
 
     const meta: MetaJson = {
       title: 'API Reference',
+      root: true,
       pages: sortedDomains,
       defaultOpen: true,
     }
