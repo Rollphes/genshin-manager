@@ -1,129 +1,22 @@
 ---
 title: API Reference
-description: Genshin Manager API documentation
+description: genshin-manager API Reference
 ---
 
 # API Reference
 
-Complete API documentation for Genshin Manager.
+Complete API documentation for genshin-manager.
 
-## Core Classes
+## Categories
 
-### Client & Managers
-
-| Class | Description |
-|-------|-------------|
-| `Client` | Main entry point for the library |
-| `EnkaManager` | Handles Enka.Network API interactions |
-| `NoticeManager` | Manages game announcements |
-
-### Data Models
-
-| Class | Description |
-|-------|-------------|
-| `Character` | Character with stats at specific level |
-| `CharacterInfo` | Basic character information |
-| `Weapon` | Weapon with stats at specific level |
-| `WeaponInfo` | Basic weapon information |
-| `Artifact` | Artifact data and set bonuses |
-| `Material` | Game materials and items |
-| `Monster` | Enemy data and stats |
-| `StatProperty` | Stat properties with values |
-| `DailyFarming` | Daily farming domain information |
-| `ProfilePicture` | Profile picture information |
-
-### Character Classes
-
-| Class | Description |
-|-------|-------------|
-| `CharacterAscension` | Character ascension materials |
-| `CharacterBaseStats` | Character base stats |
-| `CharacterConstellation` | Constellation information |
-| `CharacterCostume` | Character costume data |
-| `CharacterInherentSkill` | Passive talents |
-| `CharacterProfile` | Character profile/biography |
-| `CharacterSkill` | Active skill information |
-| `CharacterSkillAscension` | Talent level-up materials |
-| `CharacterStatusManager` | Manages character stats |
-| `CharacterStory` | Character story entries |
-| `CharacterVoice` | Character voice lines |
-
-### Weapon Classes
-
-| Class | Description |
-|-------|-------------|
-| `WeaponAscension` | Weapon ascension materials |
-| `WeaponRefinement` | Weapon refinement information |
-
-### Enka Network Classes
-
-| Class | Description |
-|-------|-------------|
-| `PlayerDetail` | Player profile information |
-| `CharacterDetail` | Detailed character showcase data |
-| `CharacterPreview` | Character preview in showcase |
-| `GenshinAccount` | Game account information |
-| `EnkaAccount` | Enka.Network account |
-| `EnkaBuild` | Saved character builds |
-
-### Asset Classes
-
-| Class | Description |
-|-------|-------------|
-| `ImageAssets` | Character/weapon images |
-| `AudioAssets` | Voice/sound files |
-
-## Enums
-
-| Enum | Description |
-|------|-------------|
-| `ClientEvents` | Client event types |
-| `EnkaManagerEvents` | EnkaManager event types |
-| `NoticeManagerEvents` | NoticeManager event types |
-| `ArtifactType` | Artifact slot types |
-| `WeaponType` | Weapon categories |
-| `BodyType` | Character body types |
-| `QualityType` | Rarity levels |
-| `ItemType` | Item categories |
-| `MaterialType` | Material categories |
-
-## Types & Interfaces
-
-| Type | Description |
-|------|-------------|
-| `ClientOption` | Client configuration options |
-| `EnkaData` | Data returned from Enka.Network |
-| `DomainData` | Domain information |
-| `Element` | Character elements |
-| `FightPropType` | Stat property types |
-| `CVType` | Character voice actor types |
-
-## Utility Functions
-
-| Function | Description |
-|----------|-------------|
-| `convertToUTC` | Convert time to UTC |
-| `createRangeSchema` | Create Zod range schema |
-| `createPromoteLevelSchema` | Create ascension level schema |
-| `createArtifactLevelSchema` | Create artifact level schema |
-| `createDynamicWeaponLevelSchema` | Create weapon level schema |
-| `createUpdateIntervalSchema` | Create update interval schema |
-
-## Error Classes
-
-All error classes extend `GenshinManagerError`.
-
-### Base Errors
-- `GenshinManagerError` - Base error class
-- `ValidationError` - Validation failures
-- `NetworkError` - Network issues
-- `AssetError` - Asset-related errors
-
-### Specific Errors
-- `EnumValidationError`, `FormatValidationError`, `RangeValidationError`, `RequiredFieldError`
-- `AssetCorruptedError`, `AssetDownloadFailedError`, `AssetNotFoundError`
-- `ImageNotFoundError`, `AudioNotFoundError`
-- `NetworkTimeoutError`, `NetworkUnavailableError`
-- `EnkaNetworkError`, `EnkaNetworkStatusError`
-- `JsonParseError`, `KeyMatchingError`, `LowConfidenceError`
-- `ConfigInvalidError`, `ConfigMissingError`
+- [Client](/docs/api/client)
+- [Character](/docs/api/character)
+- [Weapon](/docs/api/weapon)
+- [Enka](/docs/api/enka)
+- [Assets](/docs/api/assets)
+- [Monster](/docs/api/monster)
+- [World](/docs/api/world)
+- [Common](/docs/api/common)
+- [Errors](/docs/api/errors)
+- [Types](/docs/api/types)
+- [Utilities](/docs/api/utilities)

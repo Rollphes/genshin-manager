@@ -1,0 +1,346 @@
+---
+title: Notices
+description: Access in-game announcements and events
+---
+
+# Game Notices
+
+Access in-game announcements, event information, and updates from Genshin Impact's official API.
+
+## Basic Usage
+
+```ts twoslash
+import { NoticeManager, NoticeManagerEvents } from 'genshin-manager'
+
+const noticeManager = new NoticeManager('en')
+//    ^?
+
+// Fetch notices
+await noticeManager.update()
+
+console.log(`Total notices: ${noticeManager.notices.size}`)
+
+// Iterate notices
+for (const [id, notice] of noticeManager.notices) {
+  console.log(`[${notice.typeLabel}] ${notice.title}`)
+}
+```
+
+## NoticeManager Configuration
+
+```ts twoslash
+import { NoticeManager } from 'genshin-manager'
+// ---cut---
+// Create with custom settings
+const noticeManager = new NoticeManager(
+  'en',       // Language
+  60000,      // Update interval (ms) - minimum 1 minute
+  {           // Optional URL params
+    region: 'os_asia',
+    level: '60',
+  }
+)
+
+// Manual update
+await noticeManager.update()
+```
+
+## Supported Languages
+
+| Code | Language |
+|------|----------|
+| `en` | English |
+| `zh-cn` | Chinese (Simplified) |
+| `zh-tw` | Chinese (Traditional) |
+| `de` | German |
+| `es` | Spanish |
+| `fr` | French |
+| `id` | Indonesian |
+| `it` | Italian |
+| `ja` | Japanese |
+| `ko` | Korean |
+| `pt` | Portuguese |
+| `ru` | Russian |
+| `th` | Thai |
+| `tr` | Turkish |
+| `vi` | Vietnamese |
+
+## Notice Properties
+
+```ts twoslash
+import { NoticeManager } from 'genshin-manager'
+const noticeManager = new NoticeManager('en')
+await noticeManager.update()
+const notice = noticeManager.notices.values().next().value!
+// ---cut---
+// Basic info
+notice.id           // Notice ID
+//     ^?
+notice.title        // Notice title
+//     ^?
+notice.subtitle     // Subtitle
+//     ^?
+
+// Type info
+notice.type         // 1: Event, 2: Important
+//     ^?
+notice.typeLabel    // "event" or "important"
+//     ^?
+
+// Tag info
+notice.tag          // 1: !, 2: star, 3: flag
+//     ^?
+
+// Version and region
+notice.version      // Remind version
+//     ^?
+notice.lang         // Language code
+//     ^?
+notice.region       // Server region
+//     ^?
+```
+
+## Event Duration
+
+```ts twoslash
+import { NoticeManager } from 'genshin-manager'
+const noticeManager = new NoticeManager('en')
+await noticeManager.update()
+const notice = noticeManager.notices.values().next().value!
+// ---cut---
+// Event times (may be undefined for some notices)
+notice.eventStart     // Event start date
+//     ^?
+notice.eventEnd       // Event end date
+//     ^?
+
+// Formatted duration string
+notice.eventDuration  // e.g., "2024/01/15 10:00 ~ 2024/02/05 03:59"
+//     ^?
+```
+
+## Notice Content
+
+```ts twoslash
+import { NoticeManager } from 'genshin-manager'
+const noticeManager = new NoticeManager('en')
+await noticeManager.update()
+const notice = noticeManager.notices.values().next().value!
+// ---cut---
+// Get plain text content
+const text = notice.text
+//    ^?
+console.log(text)
+
+// Access DOM via Cheerio (jQuery-like)
+const $ = notice.$
+//    ^?
+
+// Extract specific elements
+$('p').each((i, el) => {
+  console.log($(el).text())
+})
+
+// Find images in content
+$('img').each((i, el) => {
+  console.log($(el).attr('src'))
+})
+```
+
+## Images
+
+```ts twoslash
+import { NoticeManager } from 'genshin-manager'
+const noticeManager = new NoticeManager('en')
+await noticeManager.update()
+const notice = noticeManager.notices.values().next().value!
+// ---cut---
+// Banner image
+const banner = notice.banner
+//    ^?
+console.log(banner.url)
+await banner.fetchBuffer() // Download to cache
+
+// Tag icon
+const tagIcon = notice.tagIcon
+//    ^?
+console.log(tagIcon.url)
+
+// Reward image (if available)
+if (notice.rewardImg) {
+  console.log(notice.rewardImg.url)
+}
+```
+
+## Event Handling
+
+```ts twoslash
+import { NoticeManager, NoticeManagerEvents } from 'genshin-manager'
+// ---cut---
+const noticeManager = new NoticeManager('en', 60000) // Auto-update every minute
+
+noticeManager.on(NoticeManagerEvents.ADD_NOTICE, (notice) => {
+//                                   ^?
+  console.log(`New notice: ${notice.title}`)
+})
+
+noticeManager.on(NoticeManagerEvents.REMOVE_NOTICE, (notice) => {
+  console.log(`Removed notice: ${notice.title}`)
+})
+
+// Initial fetch
+await noticeManager.update()
+```
+
+## Filter Notices
+
+### By Type
+
+```ts twoslash
+import { NoticeManager } from 'genshin-manager'
+const noticeManager = new NoticeManager('en')
+await noticeManager.update()
+// ---cut---
+// Get event notices (type: 1)
+const eventNotices = [...noticeManager.notices.values()]
+  .filter(n => n.type === 1)
+
+// Get important notices (type: 2)
+const importantNotices = [...noticeManager.notices.values()]
+  .filter(n => n.type === 2)
+
+console.log(`Events: ${eventNotices.length}`)
+console.log(`Important: ${importantNotices.length}`)
+```
+
+### By Tag
+
+```ts twoslash
+import { NoticeManager } from 'genshin-manager'
+const noticeManager = new NoticeManager('en')
+await noticeManager.update()
+// ---cut---
+// Filter by tag
+const notices = [...noticeManager.notices.values()]
+
+const urgentNotices = notices.filter(n => n.tag === 1)    // ! tag
+const starredNotices = notices.filter(n => n.tag === 2)   // star tag
+const flaggedNotices = notices.filter(n => n.tag === 3)   // flag tag
+```
+
+### Active Events
+
+```ts twoslash
+import { NoticeManager } from 'genshin-manager'
+const noticeManager = new NoticeManager('en')
+await noticeManager.update()
+// ---cut---
+// Get currently active events
+const now = new Date()
+const activeEvents = [...noticeManager.notices.values()]
+  .filter(n => {
+    if (!n.eventStart || !n.eventEnd) return false
+    return n.eventStart <= now && now <= n.eventEnd
+  })
+
+console.log('Currently active events:')
+for (const event of activeEvents) {
+  console.log(`- ${event.title}`)
+  console.log(`  Duration: ${event.eventDuration}`)
+}
+```
+
+### Upcoming Events
+
+```ts twoslash
+import { NoticeManager } from 'genshin-manager'
+const noticeManager = new NoticeManager('en')
+await noticeManager.update()
+// ---cut---
+// Get upcoming events
+const now = new Date()
+const upcomingEvents = [...noticeManager.notices.values()]
+  .filter(n => n.eventStart && n.eventStart > now)
+  .sort((a, b) => (a.eventStart!.getTime() - b.eventStart!.getTime()))
+
+console.log('Upcoming events:')
+for (const event of upcomingEvents) {
+  console.log(`- ${event.title}`)
+  console.log(`  Starts: ${event.eventStart?.toLocaleDateString()}`)
+}
+```
+
+## Complete Example
+
+```ts twoslash
+import { NoticeManager, NoticeManagerEvents } from 'genshin-manager'
+
+async function fetchGameNotices(): Promise<void> {
+  const noticeManager = new NoticeManager('en')
+
+  // Listen for updates
+  noticeManager.on(NoticeManagerEvents.ADD_NOTICE, (notice) => {
+    console.log(`[NEW] ${notice.title}`)
+  })
+
+  // Fetch all notices
+  await noticeManager.update()
+
+  const notices = [...noticeManager.notices.values()]
+  const now = new Date()
+
+  // Summary
+  console.log(`\n=== Notice Summary ===`)
+  console.log(`Total: ${notices.length}`)
+  console.log(`Events: ${notices.filter(n => n.type === 1).length}`)
+  console.log(`Important: ${notices.filter(n => n.type === 2).length}`)
+
+  // Active events
+  const activeEvents = notices.filter(n => {
+    if (!n.eventStart || !n.eventEnd) return false
+    return n.eventStart <= now && now <= n.eventEnd
+  })
+
+  console.log(`\n=== Active Events (${activeEvents.length}) ===`)
+  for (const event of activeEvents) {
+    console.log(`\n${event.title}`)
+    console.log(`Duration: ${event.eventDuration}`)
+    if (event.subtitle) {
+      console.log(`${event.subtitle}`)
+    }
+  }
+
+  // Upcoming events
+  const upcomingEvents = notices
+    .filter(n => n.eventStart && n.eventStart > now)
+    .sort((a, b) => a.eventStart!.getTime() - b.eventStart!.getTime())
+    .slice(0, 5)
+
+  console.log(`\n=== Upcoming Events ===`)
+  for (const event of upcomingEvents) {
+    console.log(`- ${event.title}`)
+    console.log(`  Starts: ${event.eventStart?.toLocaleDateString()}`)
+  }
+}
+
+await fetchGameNotices()
+```
+
+## Error Handling
+
+```ts twoslash
+import { NoticeManager, NetworkUnavailableError } from 'genshin-manager'
+// ---cut---
+const noticeManager = new NoticeManager('en')
+
+try {
+  await noticeManager.update()
+} catch (error) {
+  if (error instanceof NetworkUnavailableError) {
+//                     ^?
+    console.error(`Network error: ${error.url}`)
+  } else {
+    throw error
+  }
+}
+```

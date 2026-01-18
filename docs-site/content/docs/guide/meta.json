@@ -1,0 +1,5 @@
+{
+  "title": "Guide",
+  "root": true,
+  "pages": ["index", "getting-started", "player-data", "characters", "weapons", "models", "notices", "advanced-features"]
+}

@@ -1,0 +1,317 @@
+---
+title: Weapons
+description: Access weapon information and stats
+---
+
+# Weapon Data
+
+Access comprehensive weapon data including stats, refinements, passive abilities, and upgrade materials.
+
+## Basic Usage
+
+```ts twoslash
+import { Client, Weapon } from 'genshin-manager'
+
+const client = new Client()
+await client.deploy()
+
+// Create a level 90, R5 Staff of Homa
+const homa = new Weapon(13501, 90, true, 5)
+//    ^?
+
+console.log(homa.name)
+//               ^?
+console.log(homa.type)
+//               ^?
+console.log(homa.rarity)
+//               ^?
+console.log(homa.skillName)
+//               ^?
+console.log(homa.skillDescription)
+//               ^?
+```
+
+## Find Weapons
+
+### By Name
+
+```ts twoslash
+import { Weapon } from 'genshin-manager'
+// ---cut---
+const ids = Weapon.getWeaponIdByName('Staff of Homa')
+//    ^?
+const homa = new Weapon(ids[0])
+console.log(homa.name)
+```
+
+### All Weapons
+
+```ts twoslash
+import { Weapon } from 'genshin-manager'
+// ---cut---
+const allIds = Weapon.allWeaponIds
+//    ^?
+for (const id of allIds) {
+  const weapon = new Weapon(id)
+  console.log(`${weapon.name} - ${weapon.type} - ${weapon.rarity}★`)
+}
+```
+
+### Filter by Type
+
+```ts twoslash
+import { Weapon } from 'genshin-manager'
+// ---cut---
+// Find all 5-star polearms
+const fiveStarPolearms = Weapon.allWeaponIds
+  .map(id => new Weapon(id))
+  .filter(w => w.rarity === 5 && w.type === 'WEAPON_POLE')
+
+for (const weapon of fiveStarPolearms) {
+  console.log(weapon.name)
+}
+```
+
+## Weapon Stats
+
+```ts twoslash
+import { Weapon } from 'genshin-manager'
+// ---cut---
+const homa = new Weapon(13501, 90, true, 5)
+
+// Get calculated stats at current level
+for (const stat of homa.stats) {
+//         ^?
+  console.log(`${stat.type}: ${stat.value}`)
+}
+// Example output:
+// FIGHT_PROP_BASE_ATTACK: 608
+// FIGHT_PROP_CRITICAL_HURT: 66.2
+
+// Summary info
+const summary = homa.summary
+//    ^?
+console.log(summary.name)
+console.log(summary.level)      // "90/90"
+console.log(summary.refinement) // "R5"
+```
+
+## Refinement Effects
+
+```ts twoslash
+import { Weapon } from 'genshin-manager'
+// ---cut---
+const homa = new Weapon(13501, 90, true, 1)
+
+// Get current refinement effect
+console.log(homa.skillName)        // "Reckless Cinnabar"
+//               ^?
+console.log(homa.skillDescription) // R1 description
+//               ^?
+
+// Compare different refinement levels
+for (let r = 1; r <= 5; r++) {
+  const effect = homa.getRefinementEffect(r)
+//      ^?
+  console.log(`R${r}: ${effect.skillDescription}`)
+}
+
+// Check if can refine further
+console.log(homa.isCanRefine)       // true
+//               ^?
+console.log(homa.maxRefinementRank) // 5
+//               ^?
+```
+
+### Refinement Stat Bonuses
+
+```ts twoslash
+import { Weapon } from 'genshin-manager'
+// ---cut---
+const homa = new Weapon(13501, 90, true, 5)
+
+// Get stat bonuses from refinement
+for (const stat of homa.refinementAddProps) {
+//         ^?
+  console.log(`${stat.type}: ${stat.value}`)
+}
+```
+
+## Upgrade Materials
+
+### Ascension Materials
+
+```ts twoslash
+import { Weapon, Material } from 'genshin-manager'
+// ---cut---
+const homa = new Weapon(13501, 80, false, 1)
+
+// Materials for current ascension
+console.log('Current ascension:')
+for (const mat of homa.ascensionMaterials) {
+//         ^?
+  const material = new Material(mat.id)
+  console.log(`  ${material.name}: ${mat.count}`)
+}
+
+// Materials for next ascension
+console.log('Next ascension:')
+for (const mat of homa.nextAscensionMaterials) {
+  const material = new Material(mat.id)
+  console.log(`  ${material.name}: ${mat.count}`)
+}
+
+// All remaining materials to max
+console.log('Total remaining:')
+for (const mat of homa.totalAscensionMaterials) {
+  const material = new Material(mat.id)
+  console.log(`  ${material.name}: ${mat.count}`)
+}
+
+// Check ascension status
+console.log(`Can ascend: ${homa.isCanAscend}`)
+//                             ^?
+console.log(`Promote level: ${homa.promoteLevel}`)
+//                               ^?
+```
+
+### Calculate Level Materials
+
+```ts twoslash
+import { Client, Weapon, Material } from 'genshin-manager'
+
+const client = new Client()
+await client.deploy()
+
+const homa = new Weapon(13501)
+
+// Calculate materials from level 1 to 90
+const materials = homa.calculateWeaponLevelMaterials(1, 90)
+//    ^?
+
+console.log('Materials for Staff of Homa (1→90):')
+for (const mat of materials) {
+  const material = new Material(mat.id)
+  console.log(`  ${material.name}: ${mat.count}`)
+}
+```
+
+## Weapon Icon
+
+```ts twoslash
+import { Weapon } from 'genshin-manager'
+// ---cut---
+const homa = new Weapon(13501, 90, true, 5)
+
+// Get weapon icon
+const icon = homa.icon
+//    ^?
+
+// Icon URL
+console.log(icon.url)
+
+// Save to cache folder
+await icon.fetchBuffer()
+```
+
+## Weapon Types
+
+| Type | Description |
+|------|-------------|
+| `WEAPON_SWORD_ONE_HAND` | Sword |
+| `WEAPON_CLAYMORE` | Claymore |
+| `WEAPON_POLE` | Polearm |
+| `WEAPON_BOW` | Bow |
+| `WEAPON_CATALYST` | Catalyst |
+
+## Complete Example
+
+```ts twoslash
+import { Client, Weapon, Material } from 'genshin-manager'
+
+async function analyzeWeapon(weaponId: number): Promise<void> {
+  const client = new Client()
+  await client.deploy()
+
+  const weapon = new Weapon(weaponId, 90, true, 5)
+
+  console.log(`=== ${weapon.name} ===`)
+  console.log(`Type: ${weapon.type}`)
+  console.log(`Rarity: ${'★'.repeat(weapon.rarity)}`)
+  console.log()
+
+  console.log('=== Stats (Lv.90) ===')
+  for (const stat of weapon.stats) {
+    console.log(`  ${stat.type}: ${stat.value}`)
+  }
+  console.log()
+
+  if (weapon.skillName) {
+    console.log(`=== Passive: ${weapon.skillName} ===`)
+    console.log(weapon.skillDescription)
+    console.log()
+
+    console.log('=== Refinement Comparison ===')
+    for (let r = 1; r <= weapon.maxRefinementRank; r++) {
+      const effect = weapon.getRefinementEffect(r)
+      const desc = effect.skillDescription?.slice(0, 100) ?? ''
+      console.log(`R${r}: ${desc}...`)
+    }
+    console.log()
+  }
+
+  console.log('=== Ascension Materials (Total) ===')
+  const freshWeapon = new Weapon(weaponId, 1, false, 1)
+  for (const mat of freshWeapon.totalAscensionMaterials) {
+    const material = new Material(mat.id)
+    console.log(`  ${material.name}: ${mat.count}`)
+  }
+}
+
+// Analyze Staff of Homa
+await analyzeWeapon(13501)
+```
+
+## Find Best Weapons
+
+```ts twoslash
+import { Client, Weapon, Character } from 'genshin-manager'
+
+const client = new Client()
+await client.deploy()
+
+// Find all 5-star weapons for Hu Tao (Polearm)
+const hutao = new Character(10000046)
+const polearms = Weapon.allWeaponIds
+  .map(id => new Weapon(id, 90, true, 5))
+  .filter(w => w.type === hutao.weaponType && w.rarity === 5)
+
+console.log(`5-star Polearms for ${hutao.name}:`)
+for (const weapon of polearms) {
+  console.log(`\n${weapon.name}`)
+  if (weapon.skillName) {
+    console.log(`  Passive: ${weapon.skillName}`)
+  }
+  for (const stat of weapon.stats) {
+    if (stat.type !== 'FIGHT_PROP_BASE_ATTACK') {
+      console.log(`  Substat: ${stat.type} ${stat.value}`)
+    }
+  }
+}
+```
+
+## Weapon Info Details
+
+```ts twoslash
+import { Weapon } from 'genshin-manager'
+// ---cut---
+const homa = new Weapon(13501, 90, true, 5)
+
+// Detailed info
+console.log(homa.description)  // Weapon lore description
+//               ^?
+console.log(homa.maxLevel)     // 90
+//               ^?
+console.log(homa.isAwaken)     // true (awakened appearance at high levels)
+//               ^?
+```

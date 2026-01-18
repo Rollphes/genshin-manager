@@ -1,0 +1,366 @@
+---
+title: Characters
+description: Access character information and stats
+---
+
+# Character Data
+
+Access comprehensive character data including stats, skills, constellations, and upgrade materials.
+
+## Basic Usage
+
+```ts twoslash
+import { Client, Character } from 'genshin-manager'
+
+const client = new Client()
+await client.deploy()
+// ---cut---
+const hutao = new Character(10000046, 90, true, 6)
+
+
+console.log(hutao.name)       // "Hu Tao"
+console.log(hutao.element)    // "Pyro"
+console.log(hutao.rarity)     // 5
+console.log(hutao.weaponType) // "WEAPON_POLE"
+```
+
+## Find Characters
+
+### By Name
+
+```ts twoslash
+import { Character } from 'genshin-manager'
+// ---cut---
+const ids = Character.getCharacterIdByName('Hu Tao')
+
+const hutao = new Character(ids[0])
+console.log(hutao.name)
+```
+
+### All Characters
+
+```ts twoslash
+import { Character } from 'genshin-manager'
+// ---cut---
+const allIds = Character.allCharacterIds
+
+for (const id of allIds) {
+  const char = new Character(id)
+  console.log(`${char.name} - ${char.element} - ${char.rarity}★`)
+}
+```
+
+### Filter by Element
+
+```ts twoslash
+import { Character } from 'genshin-manager'
+// ---cut---
+const pyroCharacters = Character.allCharacterIds
+  .map(id => new Character(id))
+  .filter(c => c.element === 'Pyro')
+
+console.log(`Pyro characters: ${pyroCharacters.length}`)
+```
+
+## Character Stats
+
+```ts twoslash
+import { Character } from 'genshin-manager'
+// ---cut---
+const hutao = new Character(10000046, 90, true, 6)
+
+for (const stat of hutao.stats) {
+
+  console.log(`${stat.type}: ${stat.value}`)
+}
+// FIGHT_PROP_BASE_HP: 15552
+// FIGHT_PROP_BASE_ATTACK: 106
+// FIGHT_PROP_BASE_DEFENSE: 876
+// FIGHT_PROP_CRITICAL_HURT: 88.4
+```
+
+### Summary
+
+```ts twoslash
+import { Character } from 'genshin-manager'
+// ---cut---
+const hutao = new Character(10000046, 90, true, 6)
+const summary = hutao.summary
+
+console.log(summary.name)
+console.log(summary.level)        // "90/90"
+console.log(summary.constellation) // "C6"
+```
+
+## Skills
+
+```ts twoslash
+import { Character } from 'genshin-manager'
+// ---cut---
+const hutao = new Character(10000046, 90, true, 6)
+
+const normalAttack = hutao.getNormalAttack(10)
+
+const elementalSkill = hutao.getElementalSkill(10)
+const elementalBurst = hutao.getElementalBurst(10)
+
+console.log(normalAttack.name)
+console.log(normalAttack.description)
+```
+
+### Skill Parameters
+
+```ts twoslash
+import { Character } from 'genshin-manager'
+// ---cut---
+const hutao = new Character(10000046, 90, true, 6)
+const normalAttack = hutao.getNormalAttack(10)
+
+for (const param of normalAttack.paramDescriptions) {
+
+  console.log(param)
+}
+// 1-Hit DMG: 83.6%
+// 2-Hit DMG: 86.1%
+```
+
+## Passive Talents
+
+```ts twoslash
+import { Character } from 'genshin-manager'
+// ---cut---
+const hutao = new Character(10000046)
+
+for (const skill of hutao.inherentSkills) {
+
+  console.log(`${skill.name}: ${skill.description}`)
+}
+```
+
+## Constellations
+
+```ts twoslash
+import { Character } from 'genshin-manager'
+// ---cut---
+const hutao = new Character(10000046, 90, true, 6)
+
+for (const constellation of hutao.constellations) {
+
+  console.log(`${constellation.name}`)
+  console.log(`  Locked: ${constellation.locked}`)
+}
+```
+
+### Constellation Level
+
+```ts twoslash
+import { Character } from 'genshin-manager'
+// ---cut---
+const hutao = new Character(10000046, 90, true, 6)
+console.log(`C${hutao.constellationLevel}`)
+
+```
+
+## Upgrade Materials
+
+### Ascension Materials
+
+```ts twoslash
+import { Character, Material } from 'genshin-manager'
+// ---cut---
+const hutao = new Character(10000046, 80, false, 0)
+
+for (const mat of hutao.ascensionMaterials) {
+
+  const material = new Material(mat.id)
+  console.log(`${material.name}: ${mat.count}`)
+}
+
+console.log(`Can ascend: ${hutao.isCanAscend}`)
+```
+
+### Skill Materials
+
+```ts twoslash
+import { Character, Material } from 'genshin-manager'
+// ---cut---
+const hutao = new Character(10000046)
+const skillMats = hutao.getElementalBurstMaterials(10)
+
+for (const mat of skillMats) {
+  const material = new Material(mat.id)
+  console.log(`${material.name}: ${mat.count}`)
+}
+```
+
+### Complete Upgrade Plan
+
+```ts twoslash
+import { Client, Character, Material } from 'genshin-manager'
+
+const client = new Client()
+await client.deploy()
+// ---cut---
+const hutao = new Character(10000046, 1, false, 0)
+
+const materials = hutao.calculateUpgradeMaterials({
+  characterLevel: [1, 90],
+  skillLevels: {
+    normalAttack: [1, 10],
+    elementalSkill: [1, 10],
+    elementalBurst: [1, 10],
+  }
+})
+
+
+for (const mat of materials) {
+  const material = new Material(mat.id)
+  console.log(`${material.name}: ${mat.count}`)
+}
+```
+
+## Character Profile
+
+```ts twoslash
+import { Character } from 'genshin-manager'
+// ---cut---
+const hutao = new Character(10000046)
+const profile = hutao.profile
+
+
+console.log(profile.title)         // Character title
+console.log(profile.birthDate)     // Birthday
+console.log(profile.constellation) // Constellation name
+console.log(profile.native)        // Affiliation (e.g., "Liyue")
+console.log(profile.cv.EN)         // English VA
+console.log(profile.cv.JP)         // Japanese VA
+```
+
+## Character Stories
+
+```ts twoslash
+import { Character } from 'genshin-manager'
+// ---cut---
+const hutao = new Character(10000046)
+
+for (const story of hutao.stories) {
+
+  console.log(`${story.title}:`)
+  console.log(`  ${story.content.slice(0, 100)}...`)
+}
+```
+
+## Character Voices
+
+```ts twoslash
+import { Character } from 'genshin-manager'
+// ---cut---
+const hutao = new Character(10000046)
+const voices = hutao.getVoices()
+
+
+for (const voice of voices) {
+  console.log(`${voice.title}: ${voice.content.slice(0, 50)}...`)
+}
+```
+
+### Japanese Voices
+
+```ts twoslash
+import { Character } from 'genshin-manager'
+// ---cut---
+const hutao = new Character(10000046)
+const jpVoices = hutao.getVoices('JP')
+
+for (const voice of jpVoices) {
+
+  console.log(`${voice.title}`)
+  console.log(`  Audio: ${voice.audio.name}`)
+}
+```
+
+## Costumes
+
+```ts twoslash
+import { Character } from 'genshin-manager'
+// ---cut---
+const hutao = new Character(10000046)
+
+for (const costume of hutao.costumes) {
+
+  console.log(costume.name)
+  console.log(costume.description)
+}
+```
+
+## Traveler (Multi-Element)
+
+The Traveler has different skill sets for each element:
+
+```ts twoslash
+import { Character } from 'genshin-manager'
+// ---cut---
+const travelerId = 10000007 // Female Traveler
+const depotIds = Character.getTravelerSkillDepotIds(travelerId)
+
+
+for (const depotId of depotIds) {
+  const traveler = new Character(travelerId, 90, true, 0, depotId)
+  console.log(`${traveler.name} - ${traveler.element}`)
+}
+```
+
+## Multi-Language Support
+
+```ts twoslash
+import { Client, Character } from 'genshin-manager'
+// ---cut---
+const client = new Client({
+  defaultLanguage: 'EN',
+  downloadLanguages: ['EN', 'JP', 'KR']
+})
+await client.deploy()
+
+const hutao = new Character(10000046)
+console.log(hutao.name) // "Hu Tao"
+
+await client.changeLanguage('JP')
+const hutaoJp = new Character(10000046)
+console.log(hutaoJp.name) // "胡桃"
+```
+
+## Complete Example
+
+```ts twoslash
+import { Client, Character, Material } from 'genshin-manager'
+
+async function analyzeCharacter(characterId: number): Promise<void> {
+  const client = new Client()
+  await client.deploy()
+
+  const char = new Character(characterId, 90, true, 6)
+
+  console.log(`=== ${char.name} ===`)
+  console.log(`${char.rarity}★ ${char.element} ${char.weaponType}`)
+
+  // Stats
+  for (const stat of char.stats) {
+    console.log(`${stat.type}: ${stat.value}`)
+  }
+
+  // Skills
+  const normalAttack = char.getNormalAttack(10)
+  const elementalSkill = char.getElementalSkill(10)
+  const elementalBurst = char.getElementalBurst(10)
+  console.log(`Normal Attack: ${normalAttack.name}`)
+  console.log(`Elemental Skill: ${elementalSkill.name}`)
+  console.log(`Elemental Burst: ${elementalBurst.name}`)
+
+  // Profile
+  const profile = char.profile
+  console.log(`Title: ${profile.title}`)
+  console.log(`Constellation: ${profile.constellation}`)
+}
+
+await analyzeCharacter(10000046)
+```
