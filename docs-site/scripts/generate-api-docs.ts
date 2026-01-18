@@ -1,258 +1,108 @@
-import * as fs from 'fs'
-import * as path from 'path'
-import * as ts from 'typescript'
+import fs from 'fs/promises'
+import path from 'path'
 
-interface ExportInfo {
-  name: string
-  kind: 'class' | 'interface' | 'type' | 'enum' | 'function' | 'const'
-  sourcePath: string
-  category: string
-}
+import { classifyAllItems } from './lib/domain-classifier'
+import { MdxGenerator } from './lib/mdx-generator'
+import { MetaGenerator } from './lib/meta-generator'
+import { buildTypeLinkMap, typeLinkMapToObject } from './lib/type-link-map'
+import { TypeDocParser } from './lib/typedoc-parser'
 
-const CATEGORY_MAP: Record<string, string> = {
-  'client/Client': 'client',
-  'client/EnkaManager': 'client',
-  'client/NoticeManager': 'client',
-  'models/Artifact': 'models',
-  'models/assets': 'assets',
-  'models/character': 'character',
-  'models/enka': 'enka',
-  'models/weapon': 'weapon',
-  'models/DailyFarming': 'models',
-  'models/Material': 'models',
-  'models/Monster': 'models',
-  'models/Notice': 'models',
-  'models/ProfilePicture': 'models',
-  'models/StatProperty': 'models',
-  'errors/base': 'errors',
-  'errors/validation': 'errors',
-  'errors/assets': 'errors',
-  'errors/network': 'errors',
-  'errors/decoding': 'errors',
-  'errors/content': 'errors',
-  'errors/config': 'errors',
-  'errors/general': 'errors',
-  'types/types': 'types',
-  'types/generated': 'types',
-  'types/enkaNetwork': 'types',
-  schemas: 'schemas',
-  utils: 'utils',
-}
-
-function getCategoryFromPath(sourcePath: string): string {
-  for (const [key, category] of Object.entries(CATEGORY_MAP))
-    if (sourcePath.includes(key)) return category
-
-  return 'other'
-}
-
-function parseExports(): ExportInfo[] {
-  const indexPath = path.resolve(__dirname, '../../src/index.ts')
-  const content = fs.readFileSync(indexPath, 'utf-8')
-  const sourceFile = ts.createSourceFile(
-    'index.ts',
-    content,
-    ts.ScriptTarget.Latest,
-    true,
-  )
-
-  const exports: ExportInfo[] = []
-  const importMap = new Map<string, string>()
-
-  // First pass: collect imports
-  ts.forEachChild(sourceFile, (node) => {
-    if (ts.isImportDeclaration(node)) {
-      const moduleSpecifier = (node.moduleSpecifier as ts.StringLiteral).text
-      const importClause = node.importClause
-      if (importClause) {
-        if (
-          importClause.namedBindings &&
-          ts.isNamedImports(importClause.namedBindings)
-        ) {
-          importClause.namedBindings.elements.forEach((element) => {
-            const name = element.name.text
-            importMap.set(name, moduleSpecifier)
-          })
-        }
-        if (importClause.name)
-          importMap.set(importClause.name.text, moduleSpecifier)
-      }
-    }
-  })
-
-  // Second pass: collect exports
-  ts.forEachChild(sourceFile, (node) => {
-    if (ts.isExportDeclaration(node) && node.exportClause) {
-      if (ts.isNamedExports(node.exportClause)) {
-        node.exportClause.elements.forEach((element) => {
-          const name = element.name.text
-          const sourcePath = importMap.get(name) ?? ''
-          const category = getCategoryFromPath(sourcePath)
-
-          // Determine kind based on naming convention
-          let kind: ExportInfo['kind'] = 'const'
-          if (
-            name.endsWith('Error') ||
-            name === 'Client' ||
-            name === 'EnkaManager' ||
-            name === 'NoticeManager' ||
-            (/^[A-Z][a-z]/.test(name) &&
-              !name.includes('Type') &&
-              !name.includes('Events'))
-          )
-            kind = 'class'
-          else if (
-            name.endsWith('Events') ||
-            (name.endsWith('Type') && !name.startsWith('create'))
-          )
-            kind = 'enum'
-          else if (name.startsWith('create')) kind = 'function'
-          else if (name === name.toUpperCase() || /^[A-Z][A-Z]/.test(name))
-            kind = 'const'
-
-          exports.push({ name, kind, sourcePath, category })
-        })
-      }
-    }
-  })
-
-  return exports
-}
-
-function generateCategoryPage(category: string, items: ExportInfo[]): string {
-  const title = category.charAt(0).toUpperCase() + category.slice(1)
-
-  const classes = items.filter((i) => i.kind === 'class')
-  const enums = items.filter((i) => i.kind === 'enum')
-  const functions = items.filter((i) => i.kind === 'function')
-  const types = items.filter((i) => i.kind === 'type' || i.kind === 'interface')
-  const consts = items.filter((i) => i.kind === 'const')
-
-  let content = `---
-title: ${title}
-description: ${title} API Reference
----
-
-# ${title}
-
-`
-
-  if (classes.length > 0) {
-    content += `## Classes\n\n`
-    classes.forEach((item) => {
-      content += `### ${item.name}\n\n`
-      content += `<AutoTypeTable path="../src/${item.sourcePath.replace('@/', '')}.ts" name="${item.name}" />\n\n`
-    })
-  }
-
-  if (enums.length > 0) {
-    content += `## Enums\n\n`
-    enums.forEach((item) => {
-      content += `### ${item.name}\n\n`
-      content += `<AutoTypeTable path="../src/${item.sourcePath.replace('@/', '')}.ts" name="${item.name}" />\n\n`
-    })
-  }
-
-  if (functions.length > 0) {
-    content += `## Functions\n\n`
-    functions.forEach((item) => {
-      content += `- \`${item.name}\`\n`
-    })
-    content += '\n'
-  }
-
-  if (types.length > 0) {
-    content += `## Types\n\n`
-    types.forEach((item) => {
-      content += `- \`${item.name}\`\n`
-    })
-    content += '\n'
-  }
-
-  if (consts.length > 0) {
-    content += `## Constants\n\n`
-    consts.forEach((item) => {
-      content += `- \`${item.name}\`\n`
-    })
-    content += '\n'
-  }
-
-  return content
-}
-
-function generateApiIndex(categories: string[]): string {
-  return `---
-title: API Reference
-description: Genshin Manager API documentation
----
-
-# API Reference
-
-Complete API documentation for Genshin Manager, auto-generated from TypeScript source code.
-
-## Categories
-
-<Cards>
-${categories.map((cat) => `  <Card title="${cat.charAt(0).toUpperCase() + cat.slice(1)}" href="/docs/api/${cat}" />`).join('\n')}
-</Cards>
-
-## Quick Reference
-
-### Core Classes
-
-- **Client** - Main entry point for the library
-- **EnkaManager** - Handles Enka.Network API interactions
-- **NoticeManager** - Manages game announcements
-
-### Data Models
-
-- **Character** / **CharacterInfo** - Character data and information
-- **Weapon** / **WeaponInfo** - Weapon stats and properties
-- **Artifact** - Artifact data and set bonuses
-- **Material** - Game materials and items
-
-### Enka Network
-
-- **PlayerDetail** - Player profile information
-- **CharacterDetail** - Detailed character showcase data
-- **GenshinAccount** - Game account information
-`
-}
+const OUTPUT_DIR = path.resolve(__dirname, '../content/docs/api')
+const TYPEDOC_JSON = path.resolve(__dirname, '../api-docs.json')
+const TYPE_LINK_MAP_OUTPUT = path.resolve(
+  __dirname,
+  '../src/generated/type-link-map.json',
+)
 
 async function main(): Promise<void> {
-  const exports = parseExports()
+  console.log('Starting API documentation generation...')
+  console.log(`TypeDoc JSON: ${TYPEDOC_JSON}`)
+  console.log(`Output directory: ${OUTPUT_DIR}`)
 
-  // Group by category
-  const byCategory = new Map<string, ExportInfo[]>()
-  exports.forEach((exp) => {
-    const list = byCategory.get(exp.category) ?? []
-    list.push(exp)
-    byCategory.set(exp.category, list)
+  // Check if TypeDoc JSON exists
+  try {
+    await fs.access(TYPEDOC_JSON)
+  } catch {
+    console.error(`Error: TypeDoc JSON not found at ${TYPEDOC_JSON}`)
+    console.error('Run "npm run generate:typedoc" first.')
+    process.exit(1)
+  }
+
+  // 1. Clean output directory
+  console.log('\n1. Cleaning output directory...')
+  await cleanOutputDir()
+
+  // 2. Parse TypeDoc JSON
+  console.log('\n2. Parsing TypeDoc JSON...')
+  const parser = new TypeDocParser(TYPEDOC_JSON)
+  const items = parser.parseAll()
+  console.log(`   Parsed ${String(items.length)} items`)
+
+  // 3. Classify items by domain
+  console.log('\n3. Classifying items by domain...')
+  const classifications = classifyAllItems(items)
+  console.log(`   Classified into ${String(classifications.length)} categories`)
+
+  // Print classification summary
+  const domainCounts = new Map<string, number>()
+  for (const c of classifications) {
+    const current = domainCounts.get(c.domain) ?? 0
+    domainCounts.set(c.domain, current + c.items.length)
+  }
+  for (const [domain, count] of domainCounts)
+    console.log(`   - ${domain}: ${String(count)} items`)
+
+  // 4. Build type link map
+  console.log('\n4. Building type link map...')
+  const typeLinkMap = buildTypeLinkMap(items)
+  console.log(`   Created ${String(typeLinkMap.size)} type links`)
+
+  // 5. Save type link map
+  console.log('\n5. Saving type link map...')
+  await saveTypeLinkMap(typeLinkMap)
+
+  // 6. Generate MDX files
+  console.log('\n6. Generating MDX files...')
+  const mdxGenerator = new MdxGenerator({
+    outputDir: OUTPUT_DIR,
+    typeLinkMap,
+    guideBasePath: '/docs/guide',
   })
+  await mdxGenerator.generateAll(classifications)
 
-  const apiDir = path.resolve(__dirname, '../content/docs/api')
+  // 7. Generate meta.json files
+  console.log('\n7. Generating meta.json files...')
+  const metaGenerator = new MetaGenerator(OUTPUT_DIR)
+  await metaGenerator.generateAll(classifications)
 
-  // Ensure api directory exists
-  if (!fs.existsSync(apiDir)) fs.mkdirSync(apiDir, { recursive: true })
-
-  // Generate category pages
-  const categories: string[] = []
-  byCategory.forEach((items, category) => {
-    if (category !== 'other' && items.length > 0) {
-      categories.push(category)
-      const content = generateCategoryPage(category, items)
-      const filePath = path.join(apiDir, `${category}.mdx`)
-      fs.writeFileSync(filePath, content)
-      console.log(`Generated: ${filePath}`)
-    }
-  })
-
-  // Generate index page
-  const indexContent = generateApiIndex(categories.sort())
-  fs.writeFileSync(path.join(apiDir, 'index.mdx'), indexContent)
-  console.log(`Generated: ${path.join(apiDir, 'index.mdx')}`)
-
-  console.log(`\nGenerated ${String(categories.length)} category pages`)
+  console.log('\n✅ API documentation generation complete!')
 }
 
-main().catch(console.error)
+async function cleanOutputDir(): Promise<void> {
+  try {
+    await fs.rm(OUTPUT_DIR, { recursive: true, force: true })
+    console.log(`   Removed ${OUTPUT_DIR}`)
+  } catch {
+    // Directory doesn't exist, ignore
+  }
+  await fs.mkdir(OUTPUT_DIR, { recursive: true })
+  console.log(`   Created ${OUTPUT_DIR}`)
+}
+
+async function saveTypeLinkMap(linkMap: Map<string, string>): Promise<void> {
+  const dir = path.dirname(TYPE_LINK_MAP_OUTPUT)
+  await fs.mkdir(dir, { recursive: true })
+
+  const obj = typeLinkMapToObject(linkMap)
+  await fs.writeFile(
+    TYPE_LINK_MAP_OUTPUT,
+    JSON.stringify(obj, null, 2),
+    'utf-8',
+  )
+  console.log(`   Saved to ${TYPE_LINK_MAP_OUTPUT}`)
+}
+
+main().catch((error: unknown) => {
+  console.error('\n❌ Error generating API documentation:', error)
+  process.exit(1)
+})

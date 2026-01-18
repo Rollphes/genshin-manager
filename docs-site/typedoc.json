@@ -1,0 +1,33 @@
+{
+  "$schema": "https://typedoc.org/schema.json",
+  "entryPoints": ["../src/index.ts"],
+  "tsconfig": "../tsconfig.typedoc.json",
+  "json": "./api-docs.json",
+  "pretty": false,
+  "excludePrivate": true,
+  "excludeProtected": true,
+  "excludeInternal": true,
+  "excludeExternals": true,
+  "disableSources": true,
+  "includeVersion": false,
+  "blockTags": [
+    "@default",
+    "@defaultValue",
+    "@deprecated",
+    "@example",
+    "@param",
+    "@returns",
+    "@see",
+    "@throws",
+    "@typeParam",
+    "@description",
+    "@key",
+    "@value",
+    "@warn",
+    "@warning",
+    "@listener",
+    "@event",
+    "@group",
+    "@link"
+  ]
+}
