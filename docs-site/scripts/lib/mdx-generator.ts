@@ -62,7 +62,7 @@ export class MdxGenerator {
     item: ParsedClass,
     classification: DomainClassification,
   ): Promise<void> {
-    const mdxContent = this.generateMdxContent(item, classification.category)
+    const mdxContent = this.generateMdxContent(item)
     const fileName = `${toKebabCase(item.name)}.mdx`
     const filePath = path.join(
       this.config.outputDir,
@@ -77,18 +77,18 @@ export class MdxGenerator {
   /**
    * Generate MDX content based on item kind
    */
-  private generateMdxContent(item: ParsedClass, category: string): string {
+  private generateMdxContent(item: ParsedClass): string {
     switch (item.kind) {
       case 'class':
-        return generateClassMdx(item, this.config.typeLinkMap, category)
+        return generateClassMdx(item, this.config.typeLinkMap)
       case 'interface':
-        return generateInterfaceMdx(item, this.config.typeLinkMap, category)
+        return generateInterfaceMdx(item, this.config.typeLinkMap)
       case 'type':
-        return generateTypeMdx(item, this.config.typeLinkMap, category)
+        return generateTypeMdx(item, this.config.typeLinkMap)
       case 'enum':
-        return generateEnumMdx(item, category)
+        return generateEnumMdx(item)
       case 'function':
-        return generateFunctionMdx(item, this.config.typeLinkMap, category)
+        return generateFunctionMdx(item, this.config.typeLinkMap)
       default:
         return ''
     }

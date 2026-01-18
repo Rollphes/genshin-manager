@@ -16,7 +16,7 @@ const badgePlugin: LoaderPlugin = {
       if (filePath) {
         const page = this.storage.read(filePath)
         if (page?.format === 'page') {
-          const badge = page.data.badge as BadgeVariant | undefined
+          const badge = (page.data as { badge?: BadgeVariant }).badge
           if (badge) {
             ;(node as typeof node & { badge?: BadgeVariant }).badge = badge
           }

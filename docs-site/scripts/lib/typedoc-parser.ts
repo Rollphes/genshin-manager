@@ -217,6 +217,7 @@ export class TypeDocParser {
       description: this.extractDescription(reflection),
       extends: this.parseExtends(reflection),
       typeParameters: this.parseTypeParameters(reflection),
+      constructor: undefined,
       properties: properties.sort((a, b) => a.name.localeCompare(b.name)),
       methods: methods.sort((a, b) => a.name.localeCompare(b.name)),
       events: [],
@@ -238,6 +239,7 @@ export class TypeDocParser {
       typeParameters: this.parseTypeParameters(reflection),
       typeDefinition: this.stringifyType(reflection.type),
       typeRef: this.parseType(reflection.type),
+      constructor: undefined,
       properties: [],
       methods: [],
       events: [],
@@ -267,6 +269,7 @@ export class TypeDocParser {
       kind: 'enum',
       description: this.extractDescription(reflection),
       enumMembers,
+      constructor: undefined,
       properties: [],
       methods: [],
       events: [],
@@ -289,6 +292,7 @@ export class TypeDocParser {
       description: signature
         ? this.extractDescriptionFromSignature(signature)
         : '',
+      constructor: undefined,
       methods: signature
         ? [this.parseMethodFromSignature(reflection.name, signature)]
         : [],
@@ -314,6 +318,7 @@ export class TypeDocParser {
       description: this.extractDescription(reflection),
       typeDefinition: this.stringifyType(reflection.type),
       typeRef: this.parseType(reflection.type),
+      constructor: undefined,
       properties: [],
       methods: [],
       events: [],
