@@ -7,9 +7,21 @@ import { EquipType } from '@/types/generated/ReliquaryExcelConfigData'
 import { FightPropType } from '@/types/types'
 import { toFightPropType } from '@/utils/typeGuards/toFightPropType'
 import { validate } from '@/utils/validation/validate'
-interface ArtifactAffixAppendProp {
+/**
+ * Represents a sub-stat property of an artifact
+ */
+export interface ArtifactAffixAppendProp {
+  /**
+   * Unique identifier for the append property
+   */
   id: number
+  /**
+   * Type of the stat property
+   */
   type: FightPropType
+  /**
+   * Value of the stat property
+   */
   value: number
 }
 /**

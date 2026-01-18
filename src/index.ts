@@ -5,7 +5,7 @@ import {
   EnkaManagerEvents,
 } from '@/client/EnkaManager'
 import { NoticeManager, NoticeManagerEvents } from '@/client/NoticeManager'
-import { Artifact } from '@/models/Artifact'
+import { Artifact, ArtifactAffixAppendProp } from '@/models/Artifact'
 import { AudioAssets } from '@/models/assets/AudioAssets'
 import { ImageAssets } from '@/models/assets/ImageAssets'
 import { Character } from '@/models/character/Character'
@@ -32,6 +32,7 @@ import { Material } from '@/models/Material'
 import { Monster } from '@/models/Monster'
 import { Notice } from '@/models/Notice'
 import { ProfilePicture } from '@/models/ProfilePicture'
+import { SetBonus } from '@/models/SetBonus'
 import { StatProperty } from '@/models/StatProperty'
 import { Weapon } from '@/models/weapon/Weapon'
 import { WeaponAscension } from '@/models/weapon/WeaponAscension'
@@ -43,9 +44,19 @@ import {
   MaterialType,
 } from '@/types/generated/MaterialExcelConfigData'
 import type { Type as ProfilePictureType } from '@/types/generated/ProfilePictureExcelConfigData'
-import { EquipType as ArtifactType } from '@/types/generated/ReliquaryExcelConfigData'
+import {
+  EquipType as ArtifactType,
+  EquipType,
+} from '@/types/generated/ReliquaryExcelConfigData'
 import { WeaponType } from '@/types/generated/WeaponExcelConfigData'
-import { ClientOption, CVType, Element, FightPropType } from '@/types/types'
+import {
+  CharacterUpgradePlan,
+  ClientOption,
+  CVType,
+  Element,
+  FightPropType,
+} from '@/types/types'
+import { LogLevel } from '@/utils/logger/Logger'
 import { convertToUTC } from '@/utils/parsers/convertToUTC'
 export {
   Artifact,
@@ -78,6 +89,7 @@ export {
   NoticeManager,
   PlayerDetail,
   ProfilePicture,
+  SetBonus,
   StatProperty,
   Weapon,
   WeaponAscension,
@@ -86,8 +98,10 @@ export {
 }
 export { convertToUTC }
 export {
+  ArtifactAffixAppendProp,
   ArtifactType,
   BodyType,
+  CharacterUpgradePlan,
   ClientEvents,
   ClientOption,
   CVType,
@@ -95,8 +109,10 @@ export {
   Element,
   EnkaData,
   EnkaManagerEvents,
+  EquipType,
   FightPropType,
   ItemType,
+  LogLevel,
   MaterialType,
   NoticeManagerEvents,
   ProfilePictureType,
@@ -126,7 +142,6 @@ export {
   type RetryConfiguration,
 } from '@/errors/base/ErrorCodes'
 export type { ErrorContext } from '@/errors/base/ErrorContext'
-export { ErrorContextFactory } from '@/errors/base/ErrorContext'
 export { GenshinManagerError } from '@/errors/base/GenshinManagerError'
 
 // Export error system - validation errors
@@ -140,7 +155,6 @@ export { ValidationError } from '@/errors/validation/ValidationError'
 export { AssetCorruptedError } from '@/errors/assets/AssetCorruptedError'
 export { AssetDownloadFailedError } from '@/errors/assets/AssetDownloadFailedError'
 export { AssetError } from '@/errors/assets/AssetError'
-export { AssetErrorFactory } from '@/errors/assets/AssetErrorFactory'
 export { AssetNotFoundError } from '@/errors/assets/AssetNotFoundError'
 export { AudioNotFoundError } from '@/errors/assets/AudioNotFoundError'
 export { ImageNotFoundError } from '@/errors/assets/ImageNotFoundError'
@@ -170,11 +184,3 @@ export { ConfigMissingError } from '@/errors/config/ConfigMissingError'
 
 // Export error system - general errors
 export { GeneralError } from '@/errors/general/GeneralError'
-
-// Export validation schemas
-export * from '@/schemas/commonSchemas'
-export { createArtifactLevelSchema } from '@/schemas/createArtifactLevelSchema'
-export { createDynamicWeaponLevelSchema } from '@/schemas/createDynamicWeaponLevelSchema'
-export { createPromoteLevelSchema } from '@/schemas/createPromoteLevelSchema'
-export { createRangeSchema } from '@/schemas/createRangeSchema'
-export { createUpdateIntervalSchema } from '@/schemas/createUpdateIntervalSchema'
