@@ -16,20 +16,12 @@ import { validate } from '@/utils/validation/validate'
 export enum NoticeManagerEvents {
   /**
    * When a notice is added, fires
-   * @event ADD_NOTICE
-   * @listener
-   * | param | type | description |
-   * | --- | --- | --- |
-   * | notice | {@link Notice} | Added Notice |
+   * @param notice {@link Notice} - Added Notice
    */
   ADD_NOTICE = 'ADD_NOTICE',
   /**
    * When a notice is removed, fires
-   * @event REMOVE_NOTICE
-   * @listener
-   * | param | type | description |
-   * | --- | --- | --- |
-   * | notice | {@link Notice} | Removed Notice |
+   * @param notice {@link Notice} - Removed Notice
    */
   REMOVE_NOTICE = 'REMOVE_NOTICE',
 }

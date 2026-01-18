@@ -50,11 +50,7 @@ export interface EnkaData {
 export enum EnkaManagerEvents {
   /**
    * When new data is added to the cache, fires
-   * @event GET_NEW_ENKA_DATA
-   * @listener
-   * | param | type | description |
-   * | --- | --- | --- |
-   * | data | {@link EnkaData} | New data added to the cache |
+   * @param data {@link EnkaData} - New data added to the cache
    */
   GET_NEW_ENKA_DATA = 'GET_NEW_ENKA_DATA',
 }

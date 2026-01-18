@@ -15,38 +15,22 @@ import { LogLevel } from '@/utils/logger/Logger'
 export enum ClientEvents {
   /**
    * When the cache update starts, fires
-   * @event BEGIN_UPDATE_CACHE
-   * @listener
-   * | param | type | description |
-   * | --- | --- | --- |
-   * | version | string | Game version of assets to cache |
+   * @param version {@link string} - Game version of assets to cache
    */
   BEGIN_UPDATE_CACHE = 'BEGIN_UPDATE_CACHE',
   /**
    * When the cache update ends, fires
-   * @event END_UPDATE_CACHE
-   * @listener
-   * | param | type | description |
-   * | --- | --- | --- |
-   * | version | string | Game version of assets to cache |
+   * @param version {@link string} - Game version of assets to cache
    */
   END_UPDATE_CACHE = 'END_UPDATE_CACHE',
   /**
    * When the assets update starts, fires
-   * @event BEGIN_UPDATE_ASSETS
-   * @listener
-   * | param | type | description |
-   * | --- | --- | --- |
-   * | version | string | Game version of new assets |
+   * @param version {@link string} - Game version of new assets
    */
   BEGIN_UPDATE_ASSETS = 'BEGIN_UPDATE_ASSETS',
   /**
    * When the assets update ends, fires
-   * @event END_UPDATE_ASSETS
-   * @listener
-   * | param | type | description |
-   * | --- | --- | --- |
-   * | version | string | Game version of new assets |
+   * @param version {@link string} - Game version of new assets
    */
   END_UPDATE_ASSETS = 'END_UPDATE_ASSETS',
 }
