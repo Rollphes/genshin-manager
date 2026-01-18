@@ -351,7 +351,9 @@ export class TypeDocParser {
       isAbstract: reflection.flags?.isAbstract ?? false,
       defaultValue: reflection.defaultValue,
       warnings: this.extractWarnings(reflection.comment),
-      additionalDescription: this.extractAdditionalDescription(reflection.comment),
+      additionalDescription: this.extractAdditionalDescription(
+        reflection.comment,
+      ),
       mapDescription: this.extractMapDescription(reflection),
     }
   }
@@ -404,7 +406,9 @@ export class TypeDocParser {
       example: this.extractExample(signature),
       returns: this.extractReturns(signature),
       warnings: this.extractWarnings(signature.comment),
-      additionalDescription: this.extractAdditionalDescription(signature.comment),
+      additionalDescription: this.extractAdditionalDescription(
+        signature.comment,
+      ),
     }
   }
 
@@ -733,7 +737,10 @@ export class TypeDocParser {
     const warnings: string[] = []
     for (const tag of blockTags) {
       if (tag.tag === '@warn' || tag.tag === '@warning') {
-        const text = tag.content.map((c) => c.text).join('').trim()
+        const text = tag.content
+          .map((c) => c.text)
+          .join('')
+          .trim()
         if (text) warnings.push(text)
       }
     }
@@ -752,6 +759,11 @@ export class TypeDocParser {
     const descTag = blockTags.find((tag) => tag.tag === '@description')
     if (!descTag) return undefined
 
-    return descTag.content.map((c) => c.text).join('').trim() || undefined
+    return (
+      descTag.content
+        .map((c) => c.text)
+        .join('')
+        .trim() || undefined
+    )
   }
 }

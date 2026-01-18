@@ -49,15 +49,12 @@ function ApiH2({
   className,
   ...props
 }: ComponentPropsWithoutRef<'h2'>): ReactNode {
-  const text = typeof children === 'string' ? children : String(children)
-  const Icon = SECTION_ICONS[text]
+  const text = typeof children === 'string' ? children : ''
+  const Icon = text ? SECTION_ICONS[text] : undefined
 
   return (
-    <h2
-      {...props}
-      className={cn('flex items-center gap-2', className)}
-    >
-      {Icon && (
+    <h2 {...props} className={cn('flex items-center gap-2', className)}>
+      {Icon !== undefined && (
         <span className="text-fd-muted-foreground">
           <Icon className="w-5 h-5" />
         </span>

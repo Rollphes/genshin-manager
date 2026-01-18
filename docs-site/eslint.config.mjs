@@ -127,6 +127,11 @@ export default [
             modifiers: ['exported'],
             format: ['camelCase', 'PascalCase', 'UPPER_CASE'],
           },
+          {
+            // Allow PascalCase for internal React component functions
+            selector: 'function',
+            format: ['camelCase', 'PascalCase'],
+          },
         ],
         // Allow async functions without await for Next.js generateStaticParams
         '@typescript-eslint/require-await': 'off',

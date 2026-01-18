@@ -29,7 +29,7 @@ interface SidebarItemProps {
 
 // Calculate indent offset based on depth (matching FumaDocs implementation)
 function getItemOffset(depth: number): string {
-  return `calc(${2 + 3 * depth} * var(--spacing))`
+  return `calc(${String(2 + 3 * depth)} * var(--spacing))`
 }
 
 export function SidebarItem({ item }: SidebarItemProps): React.ReactElement {

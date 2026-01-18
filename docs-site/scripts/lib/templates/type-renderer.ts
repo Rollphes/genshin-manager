@@ -14,7 +14,7 @@ export function renderTypeSignature(
   if (isUnion && unionTypes) {
     const parts = unionTypes.map((t, i) => {
       const typeJsx = renderTypeSignature(t, linkMap)
-      return `<span key="u${i}">${i > 0 ? ' | ' : ''}${typeJsx}</span>`
+      return `<span key="u${String(i)}">${i > 0 ? ' | ' : ''}${typeJsx}</span>`
     })
     return `<span>${parts.join('')}</span>`
   }
@@ -24,7 +24,7 @@ export function renderTypeSignature(
     const base = renderSingleType(name, linkMap, false)
     const args = typeArguments.map((t, i) => {
       const typeJsx = renderTypeSignature(t, linkMap)
-      return `<span key="a${i}">${i > 0 ? ', ' : ''}${typeJsx}</span>`
+      return `<span key="a${String(i)}">${i > 0 ? ', ' : ''}${typeJsx}</span>`
     })
     const suffix = isArray ? '[]' : ''
     return `<span>${base}&lt;${args.join('')}&gt;${suffix}</span>`

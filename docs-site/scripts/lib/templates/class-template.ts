@@ -118,9 +118,8 @@ function renderPropertiesTable(
     const descParts: string[] = []
 
     // Main description
-    if (prop.description) {
+    if (prop.description)
       descParts.push(`<Md>{\`${escapeMdx(prop.description)}\`}</Md>`)
-    }
 
     // Warnings as Callout
     if (prop.warnings && prop.warnings.length > 0) {
@@ -143,7 +142,9 @@ function renderPropertiesTable(
       const { key, keyType, value, valueType } = prop.mapDescription
       const keyTypeStr = renderTypeSignature(keyType, linkMap)
       const valueTypeStr = renderTypeSignature(valueType, linkMap)
-      descParts.push(`<div className="mt-2"><p className="text-sm font-medium mb-1">Object Structure</p><TypeTableByBadge type={{ "Key": { type: ${keyTypeStr}, description: <Md>{\`${escapeMdx(key)}\`}</Md> }, "Value": { type: ${valueTypeStr}, description: <Md>{\`${escapeMdx(value)}\`}</Md> } }} /></div>`)
+      descParts.push(
+        `<div className="mt-2"><p className="text-sm font-medium mb-1">Object Structure</p><TypeTableByBadge type={{ "Key": { type: ${keyTypeStr}, description: <Md>{\`${escapeMdx(key)}\`}</Md> }, "Value": { type: ${valueTypeStr}, description: <Md>{\`${escapeMdx(value)}\`}</Md> } }} /></div>`,
+      )
     }
 
     const description =
@@ -196,12 +197,14 @@ function renderMethod(
 
   // Build description with warnings and additionalDescription inline
   const descParts: string[] = []
-  if (method.description) {
+  if (method.description)
     descParts.push(`<Md>{\`${escapeMdx(method.description)}\`}</Md>`)
-  }
+
   if (method.warnings && method.warnings.length > 0) {
     for (const warning of method.warnings) {
-      descParts.push(`<Callout type="warn"><Md>{\`${escapeMdx(warning)}\`}</Md></Callout>`)
+      descParts.push(
+        `<Callout type="warn"><Md>{\`${escapeMdx(warning)}\`}</Md></Callout>`,
+      )
     }
   }
   if (method.additionalDescription) {

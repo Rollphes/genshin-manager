@@ -24,6 +24,71 @@ interface Parameter {
   defaultValue?: string
 }
 
+type BadgeType = 'async' | 'static' | 'abstract' | 'deprecated'
+
+// Extracted: Method name rendering
+function MethodName({ name }: { name: string }): ReactNode {
+  if (name.startsWith('new ')) {
+    return (
+      <>
+        <span className="text-[#a40e26] dark:text-[#f85149]">new</span>{' '}
+        <span className="text-[#8250df] dark:text-[#d2a8ff]">
+          {name.slice(4)}
+        </span>
+      </>
+    )
+  }
+
+  return <span className="text-[#8250df] dark:text-[#d2a8ff]">{name}</span>
+}
+
+// Extracted: Parameters section content
+function ParametersSection({
+  parameters,
+}: {
+  parameters: Parameter[]
+}): ReactNode {
+  return (
+    <div>
+      <h4 className="text-sm font-semibold mb-2">Parameters</h4>
+      <TypeTable
+        type={Object.fromEntries(
+          parameters.map((p) => [
+            p.name,
+            {
+              type: renderTypeJsx(p.typeJsx),
+              description: p.description ?? '',
+              default: p.defaultValue,
+              required: !p.optional,
+            },
+          ]),
+        )}
+      />
+    </div>
+  )
+}
+
+// Extracted: Returns section content
+function ReturnsSection({
+  returnType,
+  returns,
+}: {
+  returnType: ReactNode
+  returns?: ReactNode
+}): ReactNode {
+  return (
+    <div>
+      <h4 className="text-sm font-semibold mb-1">Returns</h4>
+      <div className="flex items-start gap-2">
+        <span className="flex-shrink-0">{returnType}</span>
+        {returns && (
+          <span className="text-fd-muted-foreground text-sm">- {returns}</span>
+        )}
+      </div>
+    </div>
+  )
+}
+
 interface MethodAccordionProps {
   name: string
   returnType: ReactNode
@@ -53,12 +118,12 @@ export function MethodAccordion({
 }: MethodAccordionProps): React.ReactElement {
   const [isOpen, setIsOpen] = useState(defaultOpen)
 
-  const badges = [
+  const badges: BadgeType[] = [
     isAsync && 'async',
     isStatic && 'static',
     isAbstract && 'abstract',
     isDeprecated && 'deprecated',
-  ].filter(Boolean) as ('async' | 'static' | 'abstract' | 'deprecated')[]
+  ].filter((b): b is BadgeType => Boolean(b))
 
   return (
     <div className="border border-fd-border rounded-lg mb-2">
@@ -85,17 +150,7 @@ export function MethodAccordion({
             </span>
           )}
           <span className="text-sm">
-            {name.startsWith('new ') ? (
-              <>
-                <span className="text-[#a40e26] dark:text-[#f85149]">new</span>{' '}
-                <span className="text-[#8250df] dark:text-[#d2a8ff]">
-                  {name.slice(4)}
-                </span>
-              </>
-            ) : (
-              <span className="text-[#8250df] dark:text-[#d2a8ff]">{name}</span>
-            )}
-            (
+            <MethodName name={name} />(
             {parameters.map((p, i) => (
               <span key={p.name}>
                 {i > 0 && ', '}
@@ -115,40 +170,12 @@ export function MethodAccordion({
           {description && (
             <p className="text-fd-muted-foreground">{description}</p>
           )}
-
           {parameters.length > 0 && (
-            <div>
-              <h4 className="text-sm font-semibold mb-2">Parameters</h4>
-              <TypeTable
-                type={Object.fromEntries(
-                  parameters.map((p) => [
-                    p.name,
-                    {
-                      type: renderTypeJsx(p.typeJsx),
-                      description: p.description ?? '',
-                      default: p.defaultValue,
-                      required: !p.optional,
-                    },
-                  ]),
-                )}
-              />
-            </div>
+            <ParametersSection parameters={parameters} />
           )}
-
           {(returns !== undefined || returnType !== undefined) && (
-            <div>
-              <h4 className="text-sm font-semibold mb-1">Returns</h4>
-              <div className="flex items-start gap-2">
-                <span className="flex-shrink-0">{returnType}</span>
-                {returns && (
-                  <span className="text-fd-muted-foreground text-sm">
-                    - {returns}
-                  </span>
-                )}
-              </div>
-            </div>
+            <ReturnsSection returnType={returnType} returns={returns} />
           )}
-
           {example && (
             <div>
               <h4 className="text-sm font-semibold mb-2">Example</h4>
