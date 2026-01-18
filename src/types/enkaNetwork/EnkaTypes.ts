@@ -207,7 +207,7 @@ export interface APIAvatarInfo {
   propMap: Record<number, APIPropMap>
   /**
    * List of Constellation IDs
-   * @warn There is no data if 0 Constellation
+   * @warning There is no data if 0 Constellation
    */
   talentIdList?: number[]
   /**
