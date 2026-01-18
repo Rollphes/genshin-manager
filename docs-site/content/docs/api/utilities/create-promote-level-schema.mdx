@@ -1,0 +1,26 @@
+---
+title: "createPromoteLevelSchema"
+description: Dynamic promote level validation schema factory (0 to maxPromoteLevel)
+badge: function
+---
+
+import { TypeLink, MethodAccordion, Md } from '@/components/api'
+
+
+---
+
+## Signature
+
+
+<MethodAccordion
+  name="createPromoteLevelSchema"
+  returnType={<span className="text-[#0550ae] dark:text-[#79c0ff]">ZodNumber</span>}
+  description={<Md>{`Dynamic promote level validation schema factory (0 to maxPromoteLevel)`}</Md>}
+  parameters={[{ name: "maxPromoteLevel", typeJsx: <span className="text-[#0550ae] dark:text-[#79c0ff]">number</span>, description: <Md>{`Maximum promote level for character/weapon`}</Md>, optional: false, defaultValue: undefined }]}
+  returns={<Md>{`Zod number schema for promote level validation`}</Md>}
+  
+  isAsync={false}
+  isStatic={false}
+  isAbstract={false}
+  defaultOpen={true}
+/>

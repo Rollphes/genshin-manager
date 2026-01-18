@@ -1,0 +1,99 @@
+---
+title: "Weapon"
+description: Unified weapon class providing comprehensive access to all weapon data
+badge: class
+---
+
+import { TypeLink, MethodAccordion, TypeTableByBadge, Md } from '@/components/api'
+import { Callout } from 'fumadocs-ui/components/callout'
+
+
+> See [Guide](/docs/guide/weapons) for usage examples.
+
+
+---
+
+## Constructor
+
+
+<MethodAccordion
+  name="new Weapon"
+  returnType={<TypeLink type="Weapon" />}
+  description={<Md>{`Create a Weapon`}</Md>}
+  parameters={[{ name: "weaponId", typeJsx: <span className="text-[#0550ae] dark:text-[#79c0ff]">number</span>, description: <Md>{`weapon ID`}</Md>, optional: false, defaultValue: undefined }, { name: "level", typeJsx: <span className="text-[#0550ae] dark:text-[#79c0ff]">number</span>, description: <Md>{`weapon level (1-90). Default: 1`}</Md>, optional: false, defaultValue: "1" }, { name: "isAscended", typeJsx: <span className="text-[#0550ae] dark:text-[#79c0ff]">boolean</span>, description: <Md>{`weapon is ascended. Default: true`}</Md>, optional: false, defaultValue: "true" }, { name: "refinementRank", typeJsx: <span className="text-[#0550ae] dark:text-[#79c0ff]">number</span>, description: <Md>{`weapon refinement rank (1-5). Default: 1`}</Md>, optional: false, defaultValue: "1" }]}
+/>
+
+
+---
+
+## Properties
+
+
+<TypeTableByBadge
+  type={{
+    "[readonly]id": {
+      type: <span className="text-[#0550ae] dark:text-[#79c0ff]">number</span>,
+      description: <><Md>{`Weapon ID`}</Md></>,
+      required: true,
+    },
+    "[readonly]isAscended": {
+      type: <span className="text-[#0550ae] dark:text-[#79c0ff]">boolean</span>,
+      description: <><Md>{`Weapon is ascended`}</Md></>,
+      required: true,
+    },
+    "[readonly]level": {
+      type: <span className="text-[#0550ae] dark:text-[#79c0ff]">number</span>,
+      description: <><Md>{`Weapon level`}</Md></>,
+      required: true,
+    },
+    "[readonly]refinementRank": {
+      type: <span className="text-[#0550ae] dark:text-[#79c0ff]">number</span>,
+      description: <><Md>{`Weapon refinement rank`}</Md></>,
+      required: true,
+    }
+  }}
+/>
+
+
+---
+
+## Methods
+
+
+<MethodAccordion
+  name="getWeaponIdByName"
+  returnType={<span><span className="text-[#0550ae] dark:text-[#79c0ff]">number</span>[]</span>}
+  description={<><Md>{`Get weapon ID by name`}</Md></>}
+  parameters={[{ name: "name", typeJsx: <span className="text-[#0550ae] dark:text-[#79c0ff]">string</span>, description: <Md>{`weapon name`}</Md>, optional: false, defaultValue: undefined }]}
+  returns={<Md>{`weapon ID`}</Md>}
+  
+  isAsync={false}
+  isStatic={true}
+  isAbstract={false}
+/>
+
+
+<MethodAccordion
+  name="calculateWeaponLevelMaterials"
+  returnType={<span><span className="text-[#0550ae] dark:text-[#79c0ff]">{'{'} count: number; id: number {'}'}</span>[]</span>}
+  description={<><Md>{`Calculate weapon level upgrade materials`}</Md></>}
+  parameters={[{ name: "currentLevel", typeJsx: <span className="text-[#0550ae] dark:text-[#79c0ff]">number</span>, description: <Md>{`current weapon level`}</Md>, optional: false, defaultValue: undefined }, { name: "targetLevel", typeJsx: <span className="text-[#0550ae] dark:text-[#79c0ff]">number</span>, description: <Md>{`target weapon level`}</Md>, optional: false, defaultValue: undefined }]}
+  returns={<Md>{`array of materials needed`}</Md>}
+  
+  isAsync={false}
+  isStatic={false}
+  isAbstract={false}
+/>
+
+
+<MethodAccordion
+  name="getRefinementEffect"
+  returnType={<TypeLink type="WeaponRefinement" />}
+  description={<><Md>{`Get refinement effect for specified rank`}</Md></>}
+  parameters={[{ name: "rank", typeJsx: <span className="text-[#0550ae] dark:text-[#79c0ff]">number</span>, description: <Md>{`refinement rank (1-5). Default: current rank`}</Md>, optional: true, defaultValue: undefined }]}
+  returns={<Md>{`refinement effect`}</Md>}
+  
+  isAsync={false}
+  isStatic={false}
+  isAbstract={false}
+/>

@@ -1,0 +1,75 @@
+---
+title: "WeaponRefinement"
+description: Manages weapon refinement levels and passive ability improvements
+badge: class
+---
+
+import { TypeLink, MethodAccordion, TypeTableByBadge, Md } from '@/components/api'
+import { Callout } from 'fumadocs-ui/components/callout'
+
+
+---
+
+## Constructor
+
+
+<MethodAccordion
+  name="new WeaponRefinement"
+  returnType={<TypeLink type="WeaponRefinement" />}
+  description={<Md>{`Create a weapon refinement`}</Md>}
+  parameters={[{ name: "weaponId", typeJsx: <span className="text-[#0550ae] dark:text-[#79c0ff]">number</span>, description: <Md>{`weapon ID`}</Md>, optional: false, defaultValue: undefined }, { name: "refinementRank", typeJsx: <span className="text-[#0550ae] dark:text-[#79c0ff]">number</span>, description: <Md>{`weapon refinement rank (1-5). Default: 1`}</Md>, optional: false, defaultValue: "1" }]}
+/>
+
+
+---
+
+## Properties
+
+
+<TypeTableByBadge
+  type={{
+    "[readonly]addProps": {
+      type: <TypeLink type="StatProperty" isArray />,
+      description: <><Md>{`Weapon skill addProps`}</Md></>,
+      required: true,
+    },
+    "[readonly]id": {
+      type: <span className="text-[#0550ae] dark:text-[#79c0ff]">number</span>,
+      description: <><Md>{`Weapon ID`}</Md></>,
+      required: true,
+    },
+    "[readonly]refinementRank": {
+      type: <span className="text-[#0550ae] dark:text-[#79c0ff]">number</span>,
+      description: <><Md>{`Weapon refinement rank`}</Md></>,
+      required: true,
+    },
+    "[readonly]skillDescription": {
+      type: <span><span key="u0"><span className="text-[#0550ae] dark:text-[#79c0ff]">string</span></span><span key="u1"> | <span className="text-[#0550ae] dark:text-[#79c0ff]">undefined</span></span></span>,
+      description: <><Md>{`Weapon skill description`}</Md></>,
+      required: true,
+    },
+    "[readonly]skillName": {
+      type: <span><span key="u0"><span className="text-[#0550ae] dark:text-[#79c0ff]">string</span></span><span key="u1"> | <span className="text-[#0550ae] dark:text-[#79c0ff]">undefined</span></span></span>,
+      description: <><Md>{`Weapon skill name`}</Md></>,
+      required: true,
+    }
+  }}
+/>
+
+
+---
+
+## Methods
+
+
+<MethodAccordion
+  name="getMaxRefinementRankByWeaponId"
+  returnType={<span className="text-[#0550ae] dark:text-[#79c0ff]">number</span>}
+  description={<><Md>{`Get max refinement rank by weapon ID`}</Md></>}
+  parameters={[{ name: "weaponId", typeJsx: <span className="text-[#0550ae] dark:text-[#79c0ff]">number</span>, description: <Md>{`weapon ID`}</Md>, optional: false, defaultValue: undefined }]}
+  returns={<Md>{`max refinement rank`}</Md>}
+  
+  isAsync={false}
+  isStatic={true}
+  isAbstract={false}
+/>

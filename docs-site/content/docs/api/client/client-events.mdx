@@ -1,0 +1,32 @@
+---
+title: "ClientEvents"
+description: Client events
+badge: enum
+---
+
+import { TypeTableByBadge, Md } from '@/components/api'
+
+
+## Members
+
+
+<TypeTableByBadge
+  type={{
+    "BEGIN_UPDATE_ASSETS": {
+      type: <span className="text-[#0a3069] dark:text-[#a5d6ff]">"BEGIN_UPDATE_ASSETS"</span>,
+      description: <Md>{`When the assets update starts, fires  BEGIN_UPDATE_ASSETS`}</Md>,
+    },
+    "BEGIN_UPDATE_CACHE": {
+      type: <span className="text-[#0a3069] dark:text-[#a5d6ff]">"BEGIN_UPDATE_CACHE"</span>,
+      description: <Md>{`When the cache update starts, fires  BEGIN_UPDATE_CACHE`}</Md>,
+    },
+    "END_UPDATE_ASSETS": {
+      type: <span className="text-[#0a3069] dark:text-[#a5d6ff]">"END_UPDATE_ASSETS"</span>,
+      description: <Md>{`When the assets update ends, fires  END_UPDATE_ASSETS`}</Md>,
+    },
+    "END_UPDATE_CACHE": {
+      type: <span className="text-[#0a3069] dark:text-[#a5d6ff]">"END_UPDATE_CACHE"</span>,
+      description: <Md>{`When the cache update ends, fires  END_UPDATE_CACHE`}</Md>,
+    }
+  }}
+/>

@@ -1,0 +1,114 @@
+---
+title: "ImageAssets"
+description: Class for compiling information about image
+badge: class
+---
+
+import { TypeLink, MethodAccordion, TypeTableByBadge, Md } from '@/components/api'
+import { Callout } from 'fumadocs-ui/components/callout'
+
+
+---
+
+## Constructor
+
+
+<MethodAccordion
+  name="new ImageAssets"
+  returnType={<TypeLink type="ImageAssets" />}
+  description={<Md>{`Classes for handling images`}</Md>}
+  parameters={[{ name: "name", typeJsx: <span className="text-[#0550ae] dark:text-[#79c0ff]">string</span>, description: <Md>{`image name`}</Md>, optional: false, defaultValue: undefined }, { name: "url", typeJsx: <span className="text-[#0550ae] dark:text-[#79c0ff]">string</span>, description: <Md>{`image URL(Basically, no need to specify)`}</Md>, optional: true, defaultValue: undefined }]}
+/>
+
+
+---
+
+## Properties
+
+
+<TypeTableByBadge
+  type={{
+    "[readonly]imageBaseURL": {
+      type: <span className="text-[#0550ae] dark:text-[#79c0ff]">string</span>,
+      description: <><Md>{`Image base URL`}</Md></>,
+      required: true,
+    },
+    "[readonly]imageType": {
+      type: <span><span key="u0"><span className="text-[#0550ae] dark:text-[#79c0ff]">string</span></span><span key="u1"> | <span className="text-[#0550ae] dark:text-[#79c0ff]">null</span></span></span>,
+      description: <><Md>{`Image type`}</Md></>,
+      required: true,
+    },
+    "[readonly]mihoyoURL": {
+      type: <span className="text-[#0550ae] dark:text-[#79c0ff]">string</span>,
+      description: <><Md>{`Image URL of mihoyo`}</Md></>,
+      required: true,
+    },
+    "[readonly]name": {
+      type: <span className="text-[#0550ae] dark:text-[#79c0ff]">string</span>,
+      description: <><Md>{`Image name`}</Md></>,
+      required: true,
+    },
+    "[readonly]url": {
+      type: <span className="text-[#0550ae] dark:text-[#79c0ff]">string</span>,
+      description: <><Md>{`Image URL`}</Md></>,
+      required: true,
+    }
+  }}
+/>
+
+
+---
+
+## Methods
+
+
+<MethodAccordion
+  name="deploy"
+  returnType={<span className="text-[#0550ae] dark:text-[#79c0ff]">void</span>}
+  description={<><Md>{`Classes for handling images`}</Md></>}
+  parameters={[{ name: "option", typeJsx: <TypeLink type="ClientOption" />, description: <Md>{`client option`}</Md>, optional: false, defaultValue: undefined }]}
+  
+  
+  isAsync={false}
+  isStatic={true}
+  isAbstract={false}
+/>
+
+
+<MethodAccordion
+  name="fromURL"
+  returnType={<TypeLink type="ImageAssets" />}
+  description={<><Md>{`Create a ImageAssets instance from the image URL`}</Md></>}
+  parameters={[{ name: "url", typeJsx: <span className="text-[#0550ae] dark:text-[#79c0ff]">string</span>, description: <Md>{`image URL`}</Md>, optional: false, defaultValue: undefined }]}
+  returns={<Md>{`ImageAssets instance`}</Md>}
+  
+  isAsync={false}
+  isStatic={true}
+  isAbstract={false}
+/>
+
+
+<MethodAccordion
+  name="fetchBuffer"
+  returnType={<span><span className="text-[#0550ae] dark:text-[#79c0ff]">Promise</span>&lt;<span key="a0"><span><span className="text-[#0550ae] dark:text-[#79c0ff]">Buffer</span>&lt;<span key="a0"><span className="text-[#0550ae] dark:text-[#79c0ff]">ArrayBufferLike</span></span>&gt;</span></span>&gt;</span>}
+  description={<><Md>{`Fetch image buffer`}</Md></>}
+  parameters={[]}
+  returns={<Md>{`image buffer`}</Md>}
+  
+  isAsync={true}
+  isStatic={false}
+  isAbstract={false}
+/>
+
+
+<MethodAccordion
+  name="fetchStream"
+  returnType={<span><span className="text-[#0550ae] dark:text-[#79c0ff]">Promise</span>&lt;<span key="a0"><span className="text-[#0550ae] dark:text-[#79c0ff]">ReadStream</span></span>&gt;</span>}
+  description={<><Md>{`Fetch image stream`}</Md></>}
+  parameters={[{ name: "highWaterMark", typeJsx: <span className="text-[#0550ae] dark:text-[#79c0ff]">number</span>, description: <Md>{`highWaterMark`}</Md>, optional: true, defaultValue: undefined }]}
+  returns={<Md>{`image stream`}</Md>}
+  
+  isAsync={true}
+  isStatic={false}
+  isAbstract={false}
+/>

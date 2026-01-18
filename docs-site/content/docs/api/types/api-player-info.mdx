@@ -1,0 +1,89 @@
+---
+title: "APIPlayerInfo"
+description: Enka API PlayerInfo type
+badge: interface
+---
+
+import { TypeLink, MethodAccordion, TypeTableByBadge, Md } from '@/components/api'
+import { Callout } from 'fumadocs-ui/components/callout'
+
+
+---
+
+## Properties
+
+
+<TypeTableByBadge
+  type={{
+    "fetterCount": {
+      type: <span className="text-[#0550ae] dark:text-[#79c0ff]">number</span>,
+      description: <><Md>{`Number of characters with max friendship level`}</Md></>,
+    },
+    "finishAchievementNum": {
+      type: <span className="text-[#0550ae] dark:text-[#79c0ff]">number</span>,
+      description: <><Md>{`Number of Completed Achievements`}</Md></>,
+    },
+    "isShowAvatarTalent": {
+      type: <span className="text-[#0550ae] dark:text-[#79c0ff]">boolean</span>,
+      description: <><Md>{`Show Avatar Talent`}</Md></>,
+    },
+    "level": {
+      type: <span className="text-[#0550ae] dark:text-[#79c0ff]">number</span>,
+      description: <><Md>{`Player Adventure Level`}</Md></>,
+      required: true,
+    },
+    "nameCardId": {
+      type: <span className="text-[#0550ae] dark:text-[#79c0ff]">number</span>,
+      description: <><Md>{`Profile NameCard ID`}</Md></>,
+      required: true,
+    },
+    "nickname": {
+      type: <span className="text-[#0550ae] dark:text-[#79c0ff]">string</span>,
+      description: <><Md>{`Player Nickname`}</Md></>,
+    },
+    "profilePicture": {
+      type: <TypeLink type="APIProfilePicture" />,
+      description: <><Md>{`Profile Picture`}</Md></>,
+    },
+    "showAvatarInfoList": {
+      type: <TypeLink type="APIShowAvatarInfo" isArray />,
+      description: <><Md>{`List of Character IDs and Levels`}</Md></>,
+    },
+    "showNameCardIdList": {
+      type: <span><span className="text-[#0550ae] dark:text-[#79c0ff]">number</span>[]</span>,
+      description: <><Md>{`List of NameCard IDs`}</Md></>,
+    },
+    "signature": {
+      type: <span className="text-[#0550ae] dark:text-[#79c0ff]">string</span>,
+      description: <><Md>{`Profile Signature`}</Md></>,
+    },
+    "theaterActIndex": {
+      type: <span className="text-[#0550ae] dark:text-[#79c0ff]">number</span>,
+      description: <><Md>{`Imaginarium Theater Act Index`}</Md></>,
+    },
+    "theaterModeIndex": {
+      type: <span className="text-[#0550ae] dark:text-[#79c0ff]">number</span>,
+      description: <><Md>{`Number of supporting cast members for Imaginarium Theater`}</Md></>,
+    },
+    "theaterStarIndex": {
+      type: <span className="text-[#0550ae] dark:text-[#79c0ff]">number</span>,
+      description: <><Md>{`Imaginarium Theater Star Index`}</Md></>,
+    },
+    "towerFloorIndex": {
+      type: <span className="text-[#0550ae] dark:text-[#79c0ff]">number</span>,
+      description: <><Md>{`Abyss Floor`}</Md></>,
+    },
+    "towerLevelIndex": {
+      type: <span className="text-[#0550ae] dark:text-[#79c0ff]">number</span>,
+      description: <><Md>{`Abyss Floor's Chamber`}</Md></>,
+    },
+    "towerStarIndex": {
+      type: <span className="text-[#0550ae] dark:text-[#79c0ff]">number</span>,
+      description: <><Md>{`Abyss Star Index`}</Md></>,
+    },
+    "worldLevel": {
+      type: <span className="text-[#0550ae] dark:text-[#79c0ff]">number</span>,
+      description: <><Md>{`Player World Level`}</Md></>,
+    }
+  }}
+/>

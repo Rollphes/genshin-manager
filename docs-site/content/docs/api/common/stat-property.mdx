@@ -1,0 +1,52 @@
+---
+title: "StatProperty"
+description: Represents a statistical property with type, name, and value information
+badge: class
+---
+
+import { TypeLink, MethodAccordion, TypeTableByBadge, Md } from '@/components/api'
+import { Callout } from 'fumadocs-ui/components/callout'
+
+
+---
+
+## Constructor
+
+
+<MethodAccordion
+  name="new StatProperty"
+  returnType={<TypeLink type="StatProperty" />}
+  description={<Md>{`Create a StatProperty`}</Md>}
+  parameters={[{ name: "type", typeJsx: <TypeLink type="FightPropType" />, description: <Md>{`fight prop type`}</Md>, optional: false, defaultValue: undefined }, { name: "value", typeJsx: <span className="text-[#0550ae] dark:text-[#79c0ff]">number</span>, description: <Md>{`value of the stat`}</Md>, optional: false, defaultValue: undefined }]}
+/>
+
+
+---
+
+## Properties
+
+
+<TypeTableByBadge
+  type={{
+    "[readonly]isPercent": {
+      type: <span className="text-[#0550ae] dark:text-[#79c0ff]">boolean</span>,
+      description: <><Md>{`Whether the stat is a percent value`}</Md></>,
+      required: true,
+    },
+    "[readonly]name": {
+      type: <span className="text-[#0550ae] dark:text-[#79c0ff]">string</span>,
+      description: <><Md>{`Stat name`}</Md></>,
+      required: true,
+    },
+    "[readonly]type": {
+      type: <TypeLink type="FightPropType" />,
+      description: <><Md>{`Stat type`}</Md></>,
+      required: true,
+    },
+    "[readonly]value": {
+      type: <span className="text-[#0550ae] dark:text-[#79c0ff]">number</span>,
+      description: <><Md>{`Stat value`}</Md></>,
+      required: true,
+    }
+  }}
+/>

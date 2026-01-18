@@ -1,0 +1,322 @@
+---
+title: "CharacterStatusManager"
+description: Manages character combat statistics and calculated property values
+badge: class
+---
+
+import { TypeLink, MethodAccordion, TypeTableByBadge, Md } from '@/components/api'
+import { Callout } from 'fumadocs-ui/components/callout'
+
+
+---
+
+## Constructor
+
+
+<MethodAccordion
+  name="new CharacterStatusManager"
+  returnType={<TypeLink type="CharacterStatusManager" />}
+  description={<Md>{`Create a CharacterStatusManager`}</Md>}
+  parameters={[{ name: "fightPropData", typeJsx: <span><span className="text-[#0550ae] dark:text-[#79c0ff]">Record</span>&lt;<span key="a0"><span className="text-[#0550ae] dark:text-[#79c0ff]">number</span></span><span key="a1">, <span><span key="u0"><span className="text-[#0550ae] dark:text-[#79c0ff]">number</span></span><span key="u1"> | <span className="text-[#0550ae] dark:text-[#79c0ff]">undefined</span></span></span></span>&gt;</span>, description: <Md>{`fightPropMap from EnkaNetwork and other sources`}</Md>, optional: false, defaultValue: undefined }]}
+/>
+
+
+---
+
+## Properties
+
+
+<TypeTableByBadge
+  type={{
+    "[readonly]anemoDamage": {
+      type: <TypeLink type="StatProperty" />,
+      description: <Md>{``}</Md>,
+      required: true,
+    },
+    "[readonly]anemoEnergyCost": {
+      type: <span className="text-[#0550ae] dark:text-[#79c0ff]">number</span>,
+      description: <Md>{``}</Md>,
+      required: true,
+    },
+    "[readonly]anemoRes": {
+      type: <TypeLink type="StatProperty" />,
+      description: <Md>{``}</Md>,
+      required: true,
+    },
+    "[readonly]attack": {
+      type: <TypeLink type="StatProperty" />,
+      description: <Md>{``}</Md>,
+      required: true,
+    },
+    "[readonly]attackBase": {
+      type: <TypeLink type="StatProperty" />,
+      description: <Md>{``}</Md>,
+      required: true,
+    },
+    "[readonly]attackFlat": {
+      type: <TypeLink type="StatProperty" />,
+      description: <Md>{``}</Md>,
+      required: true,
+    },
+    "[readonly]attackPercent": {
+      type: <TypeLink type="StatProperty" />,
+      description: <Md>{``}</Md>,
+      required: true,
+    },
+    "[readonly]chargeEfficiency": {
+      type: <TypeLink type="StatProperty" />,
+      description: <Md>{``}</Md>,
+      required: true,
+    },
+    "[readonly]cooldownReduction": {
+      type: <TypeLink type="StatProperty" />,
+      description: <Md>{``}</Md>,
+      required: true,
+    },
+    "[readonly]critDamage": {
+      type: <TypeLink type="StatProperty" />,
+      description: <Md>{``}</Md>,
+      required: true,
+    },
+    "[readonly]critRate": {
+      type: <TypeLink type="StatProperty" />,
+      description: <Md>{``}</Md>,
+      required: true,
+    },
+    "[readonly]cryoDamage": {
+      type: <TypeLink type="StatProperty" />,
+      description: <Md>{``}</Md>,
+      required: true,
+    },
+    "[readonly]cryoEnergyCost": {
+      type: <span className="text-[#0550ae] dark:text-[#79c0ff]">number</span>,
+      description: <Md>{``}</Md>,
+      required: true,
+    },
+    "[readonly]cryoRes": {
+      type: <TypeLink type="StatProperty" />,
+      description: <Md>{``}</Md>,
+      required: true,
+    },
+    "[readonly]currentAnemoEnergy": {
+      type: <span className="text-[#0550ae] dark:text-[#79c0ff]">number</span>,
+      description: <Md>{``}</Md>,
+      required: true,
+    },
+    "[readonly]currentCryoEnergy": {
+      type: <span className="text-[#0550ae] dark:text-[#79c0ff]">number</span>,
+      description: <Md>{``}</Md>,
+      required: true,
+    },
+    "[readonly]currentDendroEnergy": {
+      type: <span className="text-[#0550ae] dark:text-[#79c0ff]">number</span>,
+      description: <Md>{``}</Md>,
+      required: true,
+    },
+    "[readonly]currentElectroEnergy": {
+      type: <span className="text-[#0550ae] dark:text-[#79c0ff]">number</span>,
+      description: <Md>{``}</Md>,
+      required: true,
+    },
+    "[readonly]currentEnergy": {
+      type: <span className="text-[#0550ae] dark:text-[#79c0ff]">number</span>,
+      description: <Md>{``}</Md>,
+      required: true,
+    },
+    "[readonly]currentGeoEnergy": {
+      type: <span className="text-[#0550ae] dark:text-[#79c0ff]">number</span>,
+      description: <Md>{``}</Md>,
+      required: true,
+    },
+    "[readonly]currentHealth": {
+      type: <TypeLink type="StatProperty" />,
+      description: <Md>{``}</Md>,
+      required: true,
+    },
+    "[readonly]currentHydroEnergy": {
+      type: <span className="text-[#0550ae] dark:text-[#79c0ff]">number</span>,
+      description: <Md>{``}</Md>,
+      required: true,
+    },
+    "[readonly]currentPyroEnergy": {
+      type: <span className="text-[#0550ae] dark:text-[#79c0ff]">number</span>,
+      description: <Md>{``}</Md>,
+      required: true,
+    },
+    "[readonly]defense": {
+      type: <TypeLink type="StatProperty" />,
+      description: <Md>{``}</Md>,
+      required: true,
+    },
+    "[readonly]defenseBase": {
+      type: <TypeLink type="StatProperty" />,
+      description: <Md>{``}</Md>,
+      required: true,
+    },
+    "[readonly]defenseFlat": {
+      type: <TypeLink type="StatProperty" />,
+      description: <Md>{``}</Md>,
+      required: true,
+    },
+    "[readonly]defensePercent": {
+      type: <TypeLink type="StatProperty" />,
+      description: <Md>{``}</Md>,
+      required: true,
+    },
+    "[readonly]dendroDamage": {
+      type: <TypeLink type="StatProperty" />,
+      description: <Md>{``}</Md>,
+      required: true,
+    },
+    "[readonly]dendroEnergyCost": {
+      type: <span className="text-[#0550ae] dark:text-[#79c0ff]">number</span>,
+      description: <Md>{``}</Md>,
+      required: true,
+    },
+    "[readonly]dendroRes": {
+      type: <TypeLink type="StatProperty" />,
+      description: <Md>{``}</Md>,
+      required: true,
+    },
+    "[readonly]electroDamage": {
+      type: <TypeLink type="StatProperty" />,
+      description: <Md>{``}</Md>,
+      required: true,
+    },
+    "[readonly]electroEnergyCost": {
+      type: <span className="text-[#0550ae] dark:text-[#79c0ff]">number</span>,
+      description: <Md>{``}</Md>,
+      required: true,
+    },
+    "[readonly]electroRes": {
+      type: <TypeLink type="StatProperty" />,
+      description: <Md>{``}</Md>,
+      required: true,
+    },
+    "[readonly]elementMastery": {
+      type: <TypeLink type="StatProperty" />,
+      description: <Md>{``}</Md>,
+      required: true,
+    },
+    "[readonly]energyCost": {
+      type: <span className="text-[#0550ae] dark:text-[#79c0ff]">number</span>,
+      description: <Md>{``}</Md>,
+      required: true,
+    },
+    "[readonly]geoDamage": {
+      type: <TypeLink type="StatProperty" />,
+      description: <Md>{``}</Md>,
+      required: true,
+    },
+    "[readonly]geoEnergyCost": {
+      type: <span className="text-[#0550ae] dark:text-[#79c0ff]">number</span>,
+      description: <Md>{``}</Md>,
+      required: true,
+    },
+    "[readonly]geoRes": {
+      type: <TypeLink type="StatProperty" />,
+      description: <Md>{``}</Md>,
+      required: true,
+    },
+    "[readonly]healAdd": {
+      type: <TypeLink type="StatProperty" />,
+      description: <Md>{``}</Md>,
+      required: true,
+    },
+    "[readonly]healedAdd": {
+      type: <TypeLink type="StatProperty" />,
+      description: <Md>{``}</Md>,
+      required: true,
+    },
+    "[readonly]healthBase": {
+      type: <TypeLink type="StatProperty" />,
+      description: <Md>{``}</Md>,
+      required: true,
+    },
+    "[readonly]healthFlat": {
+      type: <TypeLink type="StatProperty" />,
+      description: <Md>{``}</Md>,
+      required: true,
+    },
+    "[readonly]healthPercent": {
+      type: <TypeLink type="StatProperty" />,
+      description: <Md>{``}</Md>,
+      required: true,
+    },
+    "[readonly]hydroDamage": {
+      type: <TypeLink type="StatProperty" />,
+      description: <Md>{``}</Md>,
+      required: true,
+    },
+    "[readonly]hydroEnergyCost": {
+      type: <span className="text-[#0550ae] dark:text-[#79c0ff]">number</span>,
+      description: <Md>{``}</Md>,
+      required: true,
+    },
+    "[readonly]hydroRes": {
+      type: <TypeLink type="StatProperty" />,
+      description: <Md>{``}</Md>,
+      required: true,
+    },
+    "[readonly]maxHealth": {
+      type: <TypeLink type="StatProperty" />,
+      description: <Md>{``}</Md>,
+      required: true,
+    },
+    "[readonly]physicalDamage": {
+      type: <TypeLink type="StatProperty" />,
+      description: <Md>{``}</Md>,
+      required: true,
+    },
+    "[readonly]physicalRes": {
+      type: <TypeLink type="StatProperty" />,
+      description: <Md>{``}</Md>,
+      required: true,
+    },
+    "[readonly]pyroDamage": {
+      type: <TypeLink type="StatProperty" />,
+      description: <Md>{``}</Md>,
+      required: true,
+    },
+    "[readonly]pyroEnergyCost": {
+      type: <span className="text-[#0550ae] dark:text-[#79c0ff]">number</span>,
+      description: <Md>{``}</Md>,
+      required: true,
+    },
+    "[readonly]pyroRes": {
+      type: <TypeLink type="StatProperty" />,
+      description: <Md>{``}</Md>,
+      required: true,
+    },
+    "[readonly]shieldStrength": {
+      type: <TypeLink type="StatProperty" />,
+      description: <Md>{``}</Md>,
+      required: true,
+    },
+    "[readonly]sortedDamageBonus": {
+      type: <TypeLink type="StatProperty" isArray />,
+      description: <Md>{``}</Md>,
+      required: true,
+    },
+    "[readonly]speed": {
+      type: <TypeLink type="StatProperty" />,
+      description: <Md>{``}</Md>,
+      required: true,
+    },
+    "[readonly]speedBase": {
+      type: <TypeLink type="StatProperty" />,
+      description: <Md>{``}</Md>,
+      required: true,
+    },
+    "[readonly]speedPercent": {
+      type: <TypeLink type="StatProperty" />,
+      description: <Md>{``}</Md>,
+      required: true,
+    },
+    "[readonly]statProperties": {
+      type: <TypeLink type="StatProperty" isArray />,
+      description: <Md>{``}</Md>,
+      required: true,
+    }
+  }}
+/>

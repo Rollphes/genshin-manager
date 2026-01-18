@@ -1,0 +1,39 @@
+---
+title: "APIEnkaPingu"
+description: EnkaPingu
+badge: interface
+---
+
+import { TypeLink, MethodAccordion, TypeTableByBadge, Md } from '@/components/api'
+import { Callout } from 'fumadocs-ui/components/callout'
+
+
+---
+
+## Properties
+
+
+<TypeTableByBadge
+  type={{
+    "api": {
+      type: <TypeLink type="APIEnkaPing" />,
+      description: <><Md>{`API`}</Md></>,
+      required: true,
+    },
+    "cdn": {
+      type: <TypeLink type="APIEnkaPing" />,
+      description: <><Md>{`CDN`}</Md></>,
+      required: true,
+    },
+    "fox": {
+      type: <TypeLink type="APIEnkaPing" />,
+      description: <><Md>{`Fox`}</Md></>,
+      required: true,
+    },
+    "main": {
+      type: <TypeLink type="APIEnkaPing" />,
+      description: <><Md>{`Main`}</Md></>,
+      required: true,
+    }
+  }}
+/>

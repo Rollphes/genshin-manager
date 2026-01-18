@@ -1,0 +1,12 @@
+{
+  "title": "Client",
+  "pages": [
+    "client",
+    "notice",
+    "notice-manager",
+    "client-option",
+    "client-events",
+    "notice-manager-events"
+  ],
+  "defaultOpen": true
+}

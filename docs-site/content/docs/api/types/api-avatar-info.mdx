@@ -1,0 +1,66 @@
+---
+title: "APIAvatarInfo"
+description: Enka API AvatarInfo type
+badge: interface
+---
+
+import { TypeLink, MethodAccordion, TypeTableByBadge, Md } from '@/components/api'
+import { Callout } from 'fumadocs-ui/components/callout'
+
+
+---
+
+## Properties
+
+
+<TypeTableByBadge
+  type={{
+    "avatarId": {
+      type: <span className="text-[#0550ae] dark:text-[#79c0ff]">number</span>,
+      description: <><Md>{`Character ID`}</Md></>,
+      required: true,
+    },
+    "costumeId": {
+      type: <span className="text-[#0550ae] dark:text-[#79c0ff]">number</span>,
+      description: <><Md>{`Character costume ID`}</Md></>,
+    },
+    "equipList": {
+      type: <span><span key="u0"><TypeLink type="APIReliquaryEquip" /></span><span key="u1"> | <TypeLink type="APIWeaponEquip" /></span></span>,
+      description: <><Md>{`List of Equipments: Weapon, Artifacts`}</Md></>,
+      required: true,
+    },
+    "fetterInfo": {
+      type: <span className="text-[#0550ae] dark:text-[#79c0ff]">{'{'} expLevel: number {'}'}</span>,
+      description: <><Md>{`fetterInfo`}</Md></>,
+      required: true,
+    },
+    "fightPropMap": {
+      type: <span><span className="text-[#0550ae] dark:text-[#79c0ff]">Record</span>&lt;<span key="a0"><span className="text-[#0550ae] dark:text-[#79c0ff]">number</span></span><span key="a1">, <span className="text-[#0550ae] dark:text-[#79c0ff]">number</span></span>&gt;</span>,
+      description: <><Md>{`Map of Character's Combat Properties`}</Md></>,
+      required: true,
+    },
+    "propMap": {
+      type: <span><span className="text-[#0550ae] dark:text-[#79c0ff]">Record</span>&lt;<span key="a0"><span className="text-[#0550ae] dark:text-[#79c0ff]">number</span></span><span key="a1">, <TypeLink type="APIPropMap" /></span>&gt;</span>,
+      description: <><Md>{`Character Info Properties List`}</Md></>,
+      required: true,
+    },
+    "proudSkillExtraLevelMap": {
+      type: <span><span className="text-[#0550ae] dark:text-[#79c0ff]">Record</span>&lt;<span key="a0"><span className="text-[#0550ae] dark:text-[#79c0ff]">string</span></span><span key="a1">, <span className="text-[#0550ae] dark:text-[#79c0ff]">number</span></span>&gt;</span>,
+      description: <><Md>{`Map of Skill Extra Levels`}</Md></>,
+    },
+    "skillDepotId": {
+      type: <span className="text-[#0550ae] dark:text-[#79c0ff]">number</span>,
+      description: <><Md>{`Character Skill Set ID`}</Md></>,
+      required: true,
+    },
+    "skillLevelMap": {
+      type: <span><span className="text-[#0550ae] dark:text-[#79c0ff]">Record</span>&lt;<span key="a0"><span className="text-[#0550ae] dark:text-[#79c0ff]">string</span></span><span key="a1">, <span className="text-[#0550ae] dark:text-[#79c0ff]">number</span></span>&gt;</span>,
+      description: <><Md>{`Map of Skill Levels`}</Md></>,
+      required: true,
+    },
+    "talentIdList": {
+      type: <span><span className="text-[#0550ae] dark:text-[#79c0ff]">number</span>[]</span>,
+      description: <><Md>{`List of Constellation IDs`}</Md><Callout type="warn"><Md>{`There is no data if 0 Constellation`}</Md></Callout></>,
+    }
+  }}
+/>

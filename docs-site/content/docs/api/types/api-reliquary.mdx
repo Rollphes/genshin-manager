@@ -1,0 +1,33 @@
+---
+title: "APIReliquary"
+description: Enka API Reliquary type
+badge: interface
+---
+
+import { TypeLink, MethodAccordion, TypeTableByBadge, Md } from '@/components/api'
+import { Callout } from 'fumadocs-ui/components/callout'
+
+
+---
+
+## Properties
+
+
+<TypeTableByBadge
+  type={{
+    "appendPropIdList": {
+      type: <span><span className="text-[#0550ae] dark:text-[#79c0ff]">number</span>[]</span>,
+      description: <><Md>{`Append Property ID List`}</Md></>,
+    },
+    "level": {
+      type: <span className="text-[#0550ae] dark:text-[#79c0ff]">number</span>,
+      description: <><Md>{`Level`}</Md></>,
+      required: true,
+    },
+    "mainPropId": {
+      type: <span className="text-[#0550ae] dark:text-[#79c0ff]">number</span>,
+      description: <><Md>{`Main Property ID`}</Md></>,
+      required: true,
+    }
+  }}
+/>

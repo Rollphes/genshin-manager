@@ -1,0 +1,57 @@
+---
+title: "CharacterBaseStats"
+description: Represents a character's base statistical properties and attributes
+badge: class
+---
+
+import { TypeLink, MethodAccordion, TypeTableByBadge, Md } from '@/components/api'
+import { Callout } from 'fumadocs-ui/components/callout'
+
+
+---
+
+## Constructor
+
+
+<MethodAccordion
+  name="new CharacterBaseStats"
+  returnType={<TypeLink type="CharacterBaseStats" />}
+  description={<Md>{`Create a character's base stats`}</Md>}
+  parameters={[{ name: "characterId", typeJsx: <span className="text-[#0550ae] dark:text-[#79c0ff]">number</span>, description: <Md>{`character ID`}</Md>, optional: false, defaultValue: undefined }, { name: "level", typeJsx: <span className="text-[#0550ae] dark:text-[#79c0ff]">number</span>, description: <Md>{`character level (1-100). Default: 1`}</Md>, optional: false, defaultValue: "1" }, { name: "isAscended", typeJsx: <span className="text-[#0550ae] dark:text-[#79c0ff]">boolean</span>, description: <Md>{`character is ascended (true or false). Default: false`}</Md>, optional: false, defaultValue: "false" }]}
+/>
+
+
+---
+
+## Properties
+
+
+<TypeTableByBadge
+  type={{
+    "[readonly]id": {
+      type: <span className="text-[#0550ae] dark:text-[#79c0ff]">number</span>,
+      description: <><Md>{`Character ID`}</Md></>,
+      required: true,
+    },
+    "[readonly]isAscended": {
+      type: <span className="text-[#0550ae] dark:text-[#79c0ff]">boolean</span>,
+      description: <><Md>{`Character is ascended`}</Md></>,
+      required: true,
+    },
+    "[readonly]level": {
+      type: <span className="text-[#0550ae] dark:text-[#79c0ff]">number</span>,
+      description: <><Md>{`Character level`}</Md></>,
+      required: true,
+    },
+    "[readonly]promoteLevel": {
+      type: <span className="text-[#0550ae] dark:text-[#79c0ff]">number</span>,
+      description: <><Md>{`Character promote level`}</Md></>,
+      required: true,
+    },
+    "[readonly]stats": {
+      type: <TypeLink type="StatProperty" isArray />,
+      description: <><Md>{`Character stats`}</Md></>,
+      required: true,
+    }
+  }}
+/>

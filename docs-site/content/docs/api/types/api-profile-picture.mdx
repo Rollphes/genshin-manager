@@ -1,0 +1,31 @@
+---
+title: "APIProfilePicture"
+description: Enka API ProfilePicture type
+badge: interface
+---
+
+import { TypeLink, MethodAccordion, TypeTableByBadge, Md } from '@/components/api'
+import { Callout } from 'fumadocs-ui/components/callout'
+
+
+---
+
+## Properties
+
+
+<TypeTableByBadge
+  type={{
+    "avatarId": {
+      type: <span className="text-[#0550ae] dark:text-[#79c0ff]">number</span>,
+      description: <><Md>{`Character ID`}</Md></>,
+    },
+    "costumeId": {
+      type: <span className="text-[#0550ae] dark:text-[#79c0ff]">number</span>,
+      description: <><Md>{`Costume ID`}</Md></>,
+    },
+    "id": {
+      type: <span className="text-[#0550ae] dark:text-[#79c0ff]">number</span>,
+      description: <><Md>{`Profile Picture ID`}</Md></>,
+    }
+  }}
+/>

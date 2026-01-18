@@ -1,0 +1,39 @@
+---
+title: "APIEnkaStat"
+description: EnkaStat
+badge: interface
+---
+
+import { TypeLink, MethodAccordion, TypeTableByBadge, Md } from '@/components/api'
+import { Callout } from 'fumadocs-ui/components/callout'
+
+
+---
+
+## Properties
+
+
+<TypeTableByBadge
+  type={{
+    "nodes": {
+      type: <span><span className="text-[#0550ae] dark:text-[#79c0ff]">Partial</span>&lt;<span key="a0"><span><span className="text-[#0550ae] dark:text-[#79c0ff]">Record</span>&lt;<span key="a0"><TypeLink type="APIEnkaRegion" /></span><span key="a1">, <span className="text-[#0550ae] dark:text-[#79c0ff]">number</span></span>&gt;</span></span>&gt;</span>,
+      description: <><Md>{`request capacity (req/min)`}</Md></>,
+      required: true,
+    },
+    "ping": {
+      type: <span><span className="text-[#0550ae] dark:text-[#79c0ff]">Partial</span>&lt;<span key="a0"><span><span className="text-[#0550ae] dark:text-[#79c0ff]">Record</span>&lt;<span key="a0"><TypeLink type="APIEnkaRegion" /></span><span key="a1">, <span className="text-[#0550ae] dark:text-[#79c0ff]">number</span></span>&gt;</span></span>&gt;</span>,
+      description: <><Md>{`ping (ms)`}</Md></>,
+      required: true,
+    },
+    "time": {
+      type: <span><span className="text-[#0550ae] dark:text-[#79c0ff]">Partial</span>&lt;<span key="a0"><span><span className="text-[#0550ae] dark:text-[#79c0ff]">Record</span>&lt;<span key="a0"><TypeLink type="APIEnkaRegion" /></span><span key="a1">, <span className="text-[#0550ae] dark:text-[#79c0ff]">number</span></span>&gt;</span></span>&gt;</span>,
+      description: <><Md>{`response time (ms)`}</Md></>,
+      required: true,
+    },
+    "underruns": {
+      type: <span><span className="text-[#0550ae] dark:text-[#79c0ff]">Partial</span>&lt;<span key="a0"><span><span className="text-[#0550ae] dark:text-[#79c0ff]">Record</span>&lt;<span key="a0"><TypeLink type="APIEnkaRegion" /></span><span key="a1">, <span className="text-[#0550ae] dark:text-[#79c0ff]">string</span></span>&gt;</span></span>&gt;</span>,
+      description: <><Md>{`underruns (fails)`}</Md></>,
+      required: true,
+    }
+  }}
+/>

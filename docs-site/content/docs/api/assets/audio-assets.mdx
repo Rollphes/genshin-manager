@@ -1,0 +1,104 @@
+---
+title: "AudioAssets"
+description: Class for compiling information about audio
+badge: class
+---
+
+import { TypeLink, MethodAccordion, TypeTableByBadge, Md } from '@/components/api'
+import { Callout } from 'fumadocs-ui/components/callout'
+
+
+---
+
+## Constructor
+
+
+<MethodAccordion
+  name="new AudioAssets"
+  returnType={<TypeLink type="AudioAssets" />}
+  description={<Md>{`Classes for handling audios`}</Md>}
+  parameters={[{ name: "name", typeJsx: <span className="text-[#0550ae] dark:text-[#79c0ff]">string</span>, description: <Md>{`audio name`}</Md>, optional: false, defaultValue: undefined }, { name: "cv", typeJsx: <span><span key="u0"><span className="text-[#0550ae] dark:text-[#79c0ff]">"EN"</span></span><span key="u1"> | <span className="text-[#0550ae] dark:text-[#79c0ff]">"KR"</span></span><span key="u2"> | <span className="text-[#0550ae] dark:text-[#79c0ff]">"JP"</span></span><span key="u3"> | <span className="text-[#0550ae] dark:text-[#79c0ff]">"CHS"</span></span></span>, description: <Md>{`audio cv`}</Md>, optional: true, defaultValue: undefined }, { name: "characterId", typeJsx: <span className="text-[#0550ae] dark:text-[#79c0ff]">number</span>, description: <Md>{`character ID`}</Md>, optional: true, defaultValue: undefined }]}
+/>
+
+
+---
+
+## Properties
+
+
+<TypeTableByBadge
+  type={{
+    "[readonly]audioBaseURL": {
+      type: <span className="text-[#0550ae] dark:text-[#79c0ff]">string</span>,
+      description: <><Md>{`Audio base URL`}</Md></>,
+      required: true,
+    },
+    "[readonly]characterId": {
+      type: <span className="text-[#0550ae] dark:text-[#79c0ff]">number</span>,
+      description: <><Md>{`Character ID`}</Md></>,
+    },
+    "[readonly]cv": {
+      type: <span><span key="u0"><span className="text-[#0550ae] dark:text-[#79c0ff]">"EN"</span></span><span key="u1"> | <span className="text-[#0550ae] dark:text-[#79c0ff]">"KR"</span></span><span key="u2"> | <span className="text-[#0550ae] dark:text-[#79c0ff]">"JP"</span></span><span key="u3"> | <span className="text-[#0550ae] dark:text-[#79c0ff]">"CHS"</span></span></span>,
+      description: <><Md>{`Audio cv`}</Md></>,
+    },
+    "[readonly]mihoyoURL": {
+      type: <span className="text-[#0550ae] dark:text-[#79c0ff]">string</span>,
+      description: <><Md>{`Audio URL of mihoyo`}</Md></>,
+      required: true,
+    },
+    "[readonly]name": {
+      type: <span className="text-[#0550ae] dark:text-[#79c0ff]">string</span>,
+      description: <><Md>{`Audio name`}</Md></>,
+      required: true,
+    },
+    "[readonly]url": {
+      type: <span className="text-[#0550ae] dark:text-[#79c0ff]">string</span>,
+      description: <><Md>{`Audio URL`}</Md></>,
+      required: true,
+    }
+  }}
+/>
+
+
+---
+
+## Methods
+
+
+<MethodAccordion
+  name="deploy"
+  returnType={<span className="text-[#0550ae] dark:text-[#79c0ff]">void</span>}
+  description={<><Md>{`Classes for handling audios`}</Md></>}
+  parameters={[{ name: "option", typeJsx: <TypeLink type="ClientOption" />, description: <Md>{`client option`}</Md>, optional: false, defaultValue: undefined }]}
+  
+  
+  isAsync={false}
+  isStatic={true}
+  isAbstract={false}
+/>
+
+
+<MethodAccordion
+  name="fetchBuffer"
+  returnType={<span><span className="text-[#0550ae] dark:text-[#79c0ff]">Promise</span>&lt;<span key="a0"><span><span className="text-[#0550ae] dark:text-[#79c0ff]">Buffer</span>&lt;<span key="a0"><span className="text-[#0550ae] dark:text-[#79c0ff]">ArrayBufferLike</span></span>&gt;</span></span>&gt;</span>}
+  description={<><Md>{`Fetch audio buffer`}</Md></>}
+  parameters={[]}
+  returns={<Md>{`audio buffer`}</Md>}
+  
+  isAsync={true}
+  isStatic={false}
+  isAbstract={false}
+/>
+
+
+<MethodAccordion
+  name="fetchStream"
+  returnType={<span><span className="text-[#0550ae] dark:text-[#79c0ff]">Promise</span>&lt;<span key="a0"><span className="text-[#0550ae] dark:text-[#79c0ff]">ReadStream</span></span>&gt;</span>}
+  description={<><Md>{`Fetch audio stream`}</Md></>}
+  parameters={[{ name: "highWaterMark", typeJsx: <span className="text-[#0550ae] dark:text-[#79c0ff]">number</span>, description: <Md>{`highWaterMark`}</Md>, optional: true, defaultValue: undefined }]}
+  returns={<Md>{`audio stream`}</Md>}
+  
+  isAsync={true}
+  isStatic={false}
+  isAbstract={false}
+/>

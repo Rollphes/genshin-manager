@@ -1,0 +1,146 @@
+---
+title: "NoticeManager"
+description: Class for fetching notices from mihoyo
+badge: class
+---
+
+import { TypeLink, MethodAccordion, TypeTableByBadge, Md } from '@/components/api'
+import { Callout } from 'fumadocs-ui/components/callout'
+
+
+extends <span><span className="text-[#0550ae] dark:text-[#79c0ff]">PromiseEventEmitter</span>&lt;<span key="a0"><span className="text-[#0550ae] dark:text-[#79c0ff]">NoticeManagerEventMap</span></span><span key="a1">, <TypeLink type="NoticeManagerEvents" /></span>&gt;</span>
+
+
+---
+
+## Constructor
+
+
+<MethodAccordion
+  name="new NoticeManager"
+  returnType={<TypeLink type="NoticeManager" />}
+  description={<Md>{`Create a NoticeManager`}</Md>}
+  parameters={[{ name: "language", typeJsx: <span><span key="u0"><span className="text-[#0550ae] dark:text-[#79c0ff]">"id"</span></span><span key="u1"> | <span className="text-[#0550ae] dark:text-[#79c0ff]">"zh-cn"</span></span><span key="u2"> | <span className="text-[#0550ae] dark:text-[#79c0ff]">"zh-tw"</span></span><span key="u3"> | <span className="text-[#0550ae] dark:text-[#79c0ff]">"en"</span></span><span key="u4"> | <span className="text-[#0550ae] dark:text-[#79c0ff]">"ru"</span></span><span key="u5"> | <span className="text-[#0550ae] dark:text-[#79c0ff]">"vi"</span></span><span key="u6"> | <span className="text-[#0550ae] dark:text-[#79c0ff]">"th"</span></span><span key="u7"> | <span className="text-[#0550ae] dark:text-[#79c0ff]">"pt"</span></span><span key="u8"> | <span className="text-[#0550ae] dark:text-[#79c0ff]">"ko"</span></span><span key="u9"> | <span className="text-[#0550ae] dark:text-[#79c0ff]">"ja"</span></span><span key="u10"> | <span className="text-[#0550ae] dark:text-[#79c0ff]">"fr"</span></span><span key="u11"> | <span className="text-[#0550ae] dark:text-[#79c0ff]">"es"</span></span><span key="u12"> | <span className="text-[#0550ae] dark:text-[#79c0ff]">"de"</span></span></span>, description: <Md>{`language of notices`}</Md>, optional: false, defaultValue: undefined }, { name: "updateInterval", typeJsx: <span className="text-[#0550ae] dark:text-[#79c0ff]">number</span>, description: <Md>{`update interval(ms) Min: 1 minute`}</Md>, optional: true, defaultValue: undefined }, { name: "urlParams", typeJsx: <span><span className="text-[#0550ae] dark:text-[#79c0ff]">Partial</span>&lt;<span key="a0"><TypeLink type="URLParams" /></span>&gt;</span>, description: <Md>{`URL params`}</Md>, optional: true, defaultValue: undefined }]}
+/>
+
+
+---
+
+## Properties
+
+
+<TypeTableByBadge
+  type={{
+    "[readonly]language": {
+      type: <span><span key="u0"><span className="text-[#0550ae] dark:text-[#79c0ff]">"id"</span></span><span key="u1"> | <span className="text-[#0550ae] dark:text-[#79c0ff]">"zh-cn"</span></span><span key="u2"> | <span className="text-[#0550ae] dark:text-[#79c0ff]">"zh-tw"</span></span><span key="u3"> | <span className="text-[#0550ae] dark:text-[#79c0ff]">"en"</span></span><span key="u4"> | <span className="text-[#0550ae] dark:text-[#79c0ff]">"ru"</span></span><span key="u5"> | <span className="text-[#0550ae] dark:text-[#79c0ff]">"vi"</span></span><span key="u6"> | <span className="text-[#0550ae] dark:text-[#79c0ff]">"th"</span></span><span key="u7"> | <span className="text-[#0550ae] dark:text-[#79c0ff]">"pt"</span></span><span key="u8"> | <span className="text-[#0550ae] dark:text-[#79c0ff]">"ko"</span></span><span key="u9"> | <span className="text-[#0550ae] dark:text-[#79c0ff]">"ja"</span></span><span key="u10"> | <span className="text-[#0550ae] dark:text-[#79c0ff]">"fr"</span></span><span key="u11"> | <span className="text-[#0550ae] dark:text-[#79c0ff]">"es"</span></span><span key="u12"> | <span className="text-[#0550ae] dark:text-[#79c0ff]">"de"</span></span></span>,
+      description: <><Md>{`Language of notices`}</Md></>,
+      required: true,
+    },
+    "[readonly]notices": {
+      type: <span><span className="text-[#0550ae] dark:text-[#79c0ff]">Map</span>&lt;<span key="a0"><span className="text-[#0550ae] dark:text-[#79c0ff]">number</span></span><span key="a1">, <TypeLink type="Notice" /></span>&gt;</span>,
+      description: <><Md>{`Notices`}</Md><div className="mt-2"><p className="text-sm font-medium mb-1">Object Structure</p><TypeTableByBadge type={{ "Key": { type: <span className="text-[#0550ae] dark:text-[#79c0ff]">number</span>, description: <Md>{`Notice ID`}</Md> }, "Value": { type: <TypeLink type="Notice" />, description: <Md>{`Notice`}</Md> } }} /></div></>,
+      required: true,
+    },
+    "[readonly]updateInterval": {
+      type: <span><span key="u0"><span className="text-[#0550ae] dark:text-[#79c0ff]">number</span></span><span key="u1"> | <span className="text-[#0550ae] dark:text-[#79c0ff]">undefined</span></span></span>,
+      description: <><Md>{`Update interval(ms)`}</Md></>,
+      required: true,
+    }
+  }}
+/>
+
+
+---
+
+## Methods
+
+
+<MethodAccordion
+  name="addListener"
+  returnType={<span className="text-[#0550ae] dark:text-[#79c0ff]">this</span>}
+  description={<><Md>{`Alias for \`emitter.on(eventName, listener)\`.`}</Md></>}
+  parameters={[{ name: "eventName", typeJsx: <span><span key="u0"><TypeLink type="NoticeManagerEvents" /></span><span key="u1"> | <span className="text-[#0550ae] dark:text-[#79c0ff]">unknown</span></span><span key="u2"> | <span className="text-[#0550ae] dark:text-[#79c0ff]">K</span></span></span>, description: <Md>{`the name of the event.`}</Md>, optional: false, defaultValue: undefined }, { name: "listener", typeJsx: <span className="text-[#0550ae] dark:text-[#79c0ff]">unknown</span>, description: <Md>{`the callback function. (supports async)`}</Md>, optional: false, defaultValue: undefined }]}
+  
+  
+  isAsync={false}
+  isStatic={false}
+  isAbstract={false}
+/>
+
+
+<MethodAccordion
+  name="off"
+  returnType={<span className="text-[#0550ae] dark:text-[#79c0ff]">this</span>}
+  description={<><Md>{`Alias for \`emitter.removeListener()\`.`}</Md></>}
+  parameters={[{ name: "eventName", typeJsx: <span><span key="u0"><TypeLink type="NoticeManagerEvents" /></span><span key="u1"> | <span className="text-[#0550ae] dark:text-[#79c0ff]">unknown</span></span><span key="u2"> | <span className="text-[#0550ae] dark:text-[#79c0ff]">K</span></span></span>, description: <Md>{`the name of the event.`}</Md>, optional: false, defaultValue: undefined }, { name: "listener", typeJsx: <span className="text-[#0550ae] dark:text-[#79c0ff]">unknown</span>, description: <Md>{`the callback function. (supports async)`}</Md>, optional: false, defaultValue: undefined }]}
+  
+  
+  isAsync={false}
+  isStatic={false}
+  isAbstract={false}
+/>
+
+
+<MethodAccordion
+  name="on"
+  returnType={<span className="text-[#0550ae] dark:text-[#79c0ff]">this</span>}
+  description={<><Md>{`Adds the \`listener\` function to the end of the listeners array for the event named \`eventName\`. No checks are made to see if the \`listener\` has already been added. Multiple calls passing the same combination of \`eventName\`and \`listener\` will result in the \`listener\` being added, and called, multiple times.`}</Md></>}
+  parameters={[{ name: "eventName", typeJsx: <span><span key="u0"><TypeLink type="NoticeManagerEvents" /></span><span key="u1"> | <span className="text-[#0550ae] dark:text-[#79c0ff]">unknown</span></span><span key="u2"> | <span className="text-[#0550ae] dark:text-[#79c0ff]">K</span></span></span>, description: <Md>{`the name of the event.`}</Md>, optional: false, defaultValue: undefined }, { name: "listener", typeJsx: <span className="text-[#0550ae] dark:text-[#79c0ff]">unknown</span>, description: <Md>{`the callback function. (supports async)`}</Md>, optional: false, defaultValue: undefined }]}
+  
+  
+  isAsync={false}
+  isStatic={false}
+  isAbstract={false}
+/>
+
+
+<MethodAccordion
+  name="once"
+  returnType={<span className="text-[#0550ae] dark:text-[#79c0ff]">this</span>}
+  description={<><Md>{`Adds a **one-time**\`listener\` function for the event named \`eventName\`. The next time \`eventName\` is triggered, this listener is removed and then invoked.`}</Md></>}
+  parameters={[{ name: "eventName", typeJsx: <span><span key="u0"><TypeLink type="NoticeManagerEvents" /></span><span key="u1"> | <span className="text-[#0550ae] dark:text-[#79c0ff]">unknown</span></span><span key="u2"> | <span className="text-[#0550ae] dark:text-[#79c0ff]">K</span></span></span>, description: <Md>{`the name of the event.`}</Md>, optional: false, defaultValue: undefined }, { name: "listener", typeJsx: <span className="text-[#0550ae] dark:text-[#79c0ff]">unknown</span>, description: <Md>{`the callback function. (supports async)`}</Md>, optional: false, defaultValue: undefined }]}
+  
+  
+  isAsync={false}
+  isStatic={false}
+  isAbstract={false}
+/>
+
+
+<MethodAccordion
+  name="removeAllListeners"
+  returnType={<span className="text-[#0550ae] dark:text-[#79c0ff]">this</span>}
+  description={<><Md>{`Removes all listeners, or those of the specified \`eventName\`.`}</Md></>}
+  parameters={[{ name: "event", typeJsx: <span><span key="u0"><TypeLink type="NoticeManagerEvents" /></span><span key="u1"> | <span className="text-[#0550ae] dark:text-[#79c0ff]">unknown</span></span><span key="u2"> | <span className="text-[#0550ae] dark:text-[#79c0ff]">K</span></span></span>, description: <Md>{`the name of the event.`}</Md>, optional: true, defaultValue: undefined }]}
+  
+  
+  isAsync={false}
+  isStatic={false}
+  isAbstract={false}
+/>
+
+
+<MethodAccordion
+  name="removeListener"
+  returnType={<span className="text-[#0550ae] dark:text-[#79c0ff]">this</span>}
+  description={<><Md>{`Removes the specified \`listener\` from the listener array for the event named\`eventName\`.`}</Md></>}
+  parameters={[{ name: "eventName", typeJsx: <span><span key="u0"><TypeLink type="NoticeManagerEvents" /></span><span key="u1"> | <span className="text-[#0550ae] dark:text-[#79c0ff]">unknown</span></span><span key="u2"> | <span className="text-[#0550ae] dark:text-[#79c0ff]">K</span></span></span>, description: <Md>{`the name of the event.`}</Md>, optional: false, defaultValue: undefined }, { name: "listener", typeJsx: <span className="text-[#0550ae] dark:text-[#79c0ff]">unknown</span>, description: <Md>{`the callback function. (supports async)`}</Md>, optional: false, defaultValue: undefined }]}
+  
+  
+  isAsync={false}
+  isStatic={false}
+  isAbstract={false}
+/>
+
+
+<MethodAccordion
+  name="update"
+  returnType={<span><span className="text-[#0550ae] dark:text-[#79c0ff]">Promise</span>&lt;<span key="a0"><span className="text-[#0550ae] dark:text-[#79c0ff]">void</span></span>&gt;</span>}
+  description={<><Md>{`Update notices`}</Md></>}
+  parameters={[]}
+  
+  
+  isAsync={true}
+  isStatic={false}
+  isAbstract={false}
+/>

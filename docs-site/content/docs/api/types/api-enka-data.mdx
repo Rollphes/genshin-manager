@@ -1,0 +1,41 @@
+---
+title: "APIEnkaData"
+description: EnkaNetWork response type
+badge: interface
+---
+
+import { TypeLink, MethodAccordion, TypeTableByBadge, Md } from '@/components/api'
+import { Callout } from 'fumadocs-ui/components/callout'
+
+
+---
+
+## Properties
+
+
+<TypeTableByBadge
+  type={{
+    "avatarInfoList": {
+      type: <TypeLink type="APIAvatarInfo" isArray />,
+      description: <><Md>{`Avatar Info List`}</Md></>,
+    },
+    "owner": {
+      type: <TypeLink type="APIOwner" />,
+      description: <><Md>{`Owner Info`}</Md></>,
+    },
+    "playerInfo": {
+      type: <TypeLink type="APIPlayerInfo" />,
+      description: <><Md>{`Player Info`}</Md></>,
+      required: true,
+    },
+    "ttl": {
+      type: <span className="text-[#0550ae] dark:text-[#79c0ff]">number</span>,
+      description: <><Md>{`TTL`}</Md></>,
+    },
+    "uid": {
+      type: <span className="text-[#0550ae] dark:text-[#79c0ff]">number</span>,
+      description: <><Md>{`UID`}</Md></>,
+      required: true,
+    }
+  }}
+/>

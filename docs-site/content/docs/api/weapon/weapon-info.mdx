@@ -1,0 +1,125 @@
+---
+title: "WeaponInfo"
+description: Contains weapon information including stats, refinement, and enhancement data
+badge: class
+---
+
+import { TypeLink, MethodAccordion, TypeTableByBadge, Md } from '@/components/api'
+import { Callout } from 'fumadocs-ui/components/callout'
+
+
+---
+
+## Constructor
+
+
+<MethodAccordion
+  name="new WeaponInfo"
+  returnType={<TypeLink type="WeaponInfo" />}
+  description={<Md>{`Create a WeaponInfo`}</Md>}
+  parameters={[{ name: "weaponId", typeJsx: <span className="text-[#0550ae] dark:text-[#79c0ff]">number</span>, description: <Md>{`weapon ID`}</Md>, optional: false, defaultValue: undefined }, { name: "level", typeJsx: <span className="text-[#0550ae] dark:text-[#79c0ff]">number</span>, description: <Md>{`weapon level (1-90). Default: 1`}</Md>, optional: false, defaultValue: "1" }, { name: "isAscended", typeJsx: <span className="text-[#0550ae] dark:text-[#79c0ff]">boolean</span>, description: <Md>{`weapon is ascended. Default: true`}</Md>, optional: false, defaultValue: "true" }, { name: "refinementRank", typeJsx: <span className="text-[#0550ae] dark:text-[#79c0ff]">number</span>, description: <Md>{`weapon refinement rank (1-5). Default: 1`}</Md>, optional: false, defaultValue: "1" }]}
+/>
+
+
+---
+
+## Properties
+
+
+<TypeTableByBadge
+  type={{
+    "[readonly]description": {
+      type: <span className="text-[#0550ae] dark:text-[#79c0ff]">string</span>,
+      description: <><Md>{`Weapon description`}</Md></>,
+      required: true,
+    },
+    "[readonly]icon": {
+      type: <TypeLink type="ImageAssets" />,
+      description: <><Md>{`Weapon icon`}</Md></>,
+      required: true,
+    },
+    "[readonly]id": {
+      type: <span className="text-[#0550ae] dark:text-[#79c0ff]">number</span>,
+      description: <><Md>{`Weapon ID`}</Md></>,
+      required: true,
+    },
+    "[readonly]isAscended": {
+      type: <span className="text-[#0550ae] dark:text-[#79c0ff]">boolean</span>,
+      description: <><Md>{`Weapon is ascended`}</Md></>,
+      required: true,
+    },
+    "[readonly]isAwaken": {
+      type: <span className="text-[#0550ae] dark:text-[#79c0ff]">boolean</span>,
+      description: <><Md>{`Whether the weapon is awakened`}</Md></>,
+      required: true,
+    },
+    "[readonly]level": {
+      type: <span className="text-[#0550ae] dark:text-[#79c0ff]">number</span>,
+      description: <><Md>{`Weapon level`}</Md></>,
+      required: true,
+    },
+    "[readonly]maxLevel": {
+      type: <span className="text-[#0550ae] dark:text-[#79c0ff]">number</span>,
+      description: <><Md>{`Weapon max level`}</Md></>,
+      required: true,
+    },
+    "[readonly]name": {
+      type: <span className="text-[#0550ae] dark:text-[#79c0ff]">string</span>,
+      description: <><Md>{`Weapon name`}</Md></>,
+      required: true,
+    },
+    "[readonly]promoteLevel": {
+      type: <span className="text-[#0550ae] dark:text-[#79c0ff]">number</span>,
+      description: <><Md>{`Weapon promote level`}</Md></>,
+      required: true,
+    },
+    "[readonly]rarity": {
+      type: <span className="text-[#0550ae] dark:text-[#79c0ff]">number</span>,
+      description: <><Md>{`Weapon rarity`}</Md></>,
+      required: true,
+    },
+    "[readonly]refinementRank": {
+      type: <span className="text-[#0550ae] dark:text-[#79c0ff]">number</span>,
+      description: <><Md>{`Weapon refinement rank`}</Md></>,
+      required: true,
+    },
+    "[readonly]skillDescription": {
+      type: <span><span key="u0"><span className="text-[#0550ae] dark:text-[#79c0ff]">string</span></span><span key="u1"> | <span className="text-[#0550ae] dark:text-[#79c0ff]">undefined</span></span></span>,
+      description: <><Md>{`Weapon skill description`}</Md></>,
+      required: true,
+    },
+    "[readonly]skillName": {
+      type: <span><span key="u0"><span className="text-[#0550ae] dark:text-[#79c0ff]">string</span></span><span key="u1"> | <span className="text-[#0550ae] dark:text-[#79c0ff]">undefined</span></span></span>,
+      description: <><Md>{`Weapon skill name`}</Md></>,
+      required: true,
+    },
+    "[readonly]stats": {
+      type: <TypeLink type="StatProperty" isArray />,
+      description: <><Md>{`Weapon stats`}</Md></>,
+      required: true,
+    },
+    "[readonly]type": {
+      type: <TypeLink type="WeaponType" />,
+      description: <><Md>{`Weapon type`}</Md></>,
+      required: true,
+    }
+  }}
+/>
+
+
+---
+
+## Methods
+
+
+<MethodAccordion
+  name="getWeaponIdByName"
+  returnType={<span><span className="text-[#0550ae] dark:text-[#79c0ff]">number</span>[]</span>}
+  description={<><Md>{`Get weapon ID by name`}</Md></>}
+  parameters={[{ name: "name", typeJsx: <span className="text-[#0550ae] dark:text-[#79c0ff]">string</span>, description: <Md>{`weapon name`}</Md>, optional: false, defaultValue: undefined }]}
+  returns={<Md>{`weapon ID`}</Md>}
+  
+  isAsync={false}
+  isStatic={true}
+  isAbstract={false}
+/>

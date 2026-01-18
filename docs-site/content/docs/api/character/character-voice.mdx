@@ -1,0 +1,100 @@
+---
+title: "CharacterVoice"
+description: Handles character voice lines and audio assets in different languages
+badge: class
+---
+
+import { TypeLink, MethodAccordion, TypeTableByBadge, Md } from '@/components/api'
+import { Callout } from 'fumadocs-ui/components/callout'
+
+
+---
+
+## Constructor
+
+
+<MethodAccordion
+  name="new CharacterVoice"
+  returnType={<TypeLink type="CharacterVoice" />}
+  description={<Md>{`Create a CharacterVoice`}</Md>}
+  parameters={[{ name: "fetterId", typeJsx: <span className="text-[#0550ae] dark:text-[#79c0ff]">number</span>, description: <Md>{`fetter ID in the voice`}</Md>, optional: false, defaultValue: undefined }, { name: "cv", typeJsx: <span><span key="u0"><span className="text-[#0550ae] dark:text-[#79c0ff]">"EN"</span></span><span key="u1"> | <span className="text-[#0550ae] dark:text-[#79c0ff]">"KR"</span></span><span key="u2"> | <span className="text-[#0550ae] dark:text-[#79c0ff]">"JP"</span></span><span key="u3"> | <span className="text-[#0550ae] dark:text-[#79c0ff]">"CHS"</span></span></span>, description: <Md>{`CV language`}</Md>, optional: false, defaultValue: undefined }]}
+/>
+
+
+---
+
+## Properties
+
+
+<TypeTableByBadge
+  type={{
+    "[readonly]audio": {
+      type: <TypeLink type="AudioAssets" />,
+      description: <><Md>{`Voice Audio`}</Md></>,
+      required: true,
+    },
+    "[readonly]characterId": {
+      type: <span className="text-[#0550ae] dark:text-[#79c0ff]">number</span>,
+      description: <><Md>{`Character ID`}</Md></>,
+      required: true,
+    },
+    "[readonly]content": {
+      type: <span className="text-[#0550ae] dark:text-[#79c0ff]">string</span>,
+      description: <><Md>{`Voice Content`}</Md></>,
+      required: true,
+    },
+    "[readonly]cv": {
+      type: <span><span key="u0"><span className="text-[#0550ae] dark:text-[#79c0ff]">"EN"</span></span><span key="u1"> | <span className="text-[#0550ae] dark:text-[#79c0ff]">"KR"</span></span><span key="u2"> | <span className="text-[#0550ae] dark:text-[#79c0ff]">"JP"</span></span><span key="u3"> | <span className="text-[#0550ae] dark:text-[#79c0ff]">"CHS"</span></span></span>,
+      description: <><Md>{`CV language`}</Md></>,
+      required: true,
+    },
+    "[readonly]fetterId": {
+      type: <span className="text-[#0550ae] dark:text-[#79c0ff]">number</span>,
+      description: <><Md>{`fetter ID in the voice`}</Md></>,
+      required: true,
+    },
+    "[readonly]hideCostumeList": {
+      type: <span><span className="text-[#0550ae] dark:text-[#79c0ff]">number</span>[]</span>,
+      description: <><Md>{`Costume IDs to hide this`}</Md></>,
+      required: true,
+    },
+    "[readonly]showCostumeList": {
+      type: <span><span className="text-[#0550ae] dark:text-[#79c0ff]">number</span>[]</span>,
+      description: <><Md>{`Costume IDs to show this`}</Md></>,
+      required: true,
+    },
+    "[readonly]tips": {
+      type: <span><span className="text-[#0550ae] dark:text-[#79c0ff]">string</span>[]</span>,
+      description: <><Md>{`Voice Tips`}</Md></>,
+      required: true,
+    },
+    "[readonly]title": {
+      type: <span className="text-[#0550ae] dark:text-[#79c0ff]">string</span>,
+      description: <><Md>{`Voice Title`}</Md></>,
+      required: true,
+    },
+    "[readonly]type": {
+      type: <span className="text-[#0550ae] dark:text-[#79c0ff]">number</span>,
+      description: <><Md>{`Voice Type`}</Md><Callout type="info"><Md>{`1: non-Fighting 2: Fighting`}</Md></Callout></>,
+      required: true,
+    }
+  }}
+/>
+
+
+---
+
+## Methods
+
+
+<MethodAccordion
+  name="getAllFetterIdsByCharacterId"
+  returnType={<span><span className="text-[#0550ae] dark:text-[#79c0ff]">number</span>[]</span>}
+  description={<><Md>{`Get all Fetter IDs in the character's voice`}</Md></>}
+  parameters={[{ name: "characterId", typeJsx: <span className="text-[#0550ae] dark:text-[#79c0ff]">number</span>, description: <Md>{`character ID`}</Md>, optional: false, defaultValue: undefined }]}
+  returns={<Md>{`all Fetter IDs in the character's voice`}</Md>}
+  
+  isAsync={false}
+  isStatic={true}
+  isAbstract={false}
+/>
