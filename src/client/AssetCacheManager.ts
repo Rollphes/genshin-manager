@@ -292,11 +292,15 @@ export abstract class AssetCacheManager<
       .filter(([, obj]) => {
         if (!obj || typeof obj !== 'object') return false
         const objRecord = obj as JsonObject
+        const lowerText = text.toLowerCase()
         return Object.keys(objRecord).some((jsonKey) => {
           if (/TextMapHash/g.exec(jsonKey)) {
             const value = objRecord[jsonKey]
-            if (typeof value === 'number')
-              return this._cachedTextMap.get(value) === text
+            if (typeof value === 'number') {
+              const textMapValue = this._cachedTextMap.get(value)
+              if (textMapValue)
+                return textMapValue.toLowerCase().includes(lowerText)
+            }
           }
           return false
         })

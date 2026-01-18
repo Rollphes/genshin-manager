@@ -28,9 +28,14 @@ describe('CharacterInfo', () => {
       expect(ids).toEqual([10000002])
     })
 
-    it('should return empty array for partial name', () => {
+    it('should get character ID by partial name', () => {
       const ids = CharacterInfo.getCharacterIdByName('Ayaka')
-      expect(ids).toEqual([])
+      expect(ids).toContain(10000002)
+    })
+
+    it('should get character ID by case-insensitive name', () => {
+      const ids = CharacterInfo.getCharacterIdByName('kamisato ayaka')
+      expect(ids).toContain(10000002)
     })
 
     it('should get traveler skill depot IDs', () => {
