@@ -133,20 +133,20 @@ export interface ClientOption {
   logLevel?: LogLevel
   /**
    * auto fetch latest assets by cron
-   * @warn If this option is `undefined`, asset updates and initial setup are not executed
+   * @warning If this option is `undefined`, asset updates and initial setup are not executed
    * @default '0 0 0 * * 3' // minute hour day-of-month month day-of-week
    * @see https://crontab.guru/
    */
   autoFetchLatestAssetsByCron: string | undefined
   /**
    * Automatically re-download the textMap if it has not been downloaded or if there is an error in the json format
-   * @warn If `autoFetchLatestAssetsByCron` is `undefined`, this option will be ignored
+   * @warning If `autoFetchLatestAssetsByCron` is `undefined`, this option will be ignored
    * @default true
    */
   autoFixTextMap: boolean
   /**
    * Automatically fix the ExcelBin if it has not been downloaded or if there is an error in the json format
-   * @warn If `autoFetchLatestAssetsByCron` is `undefined`, this option will be ignored
+   * @warning If `autoFetchLatestAssetsByCron` is `undefined`, this option will be ignored
    * @default true
    */
   autoFixExcelBin: boolean
