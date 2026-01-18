@@ -1,3 +1,51 @@
 @import 'tailwindcss';
 @import 'fumadocs-ui/css/neutral.css';
 @import 'fumadocs-ui/css/preset.css';
+@import 'fumadocs-twoslash/twoslash.css';
+
+/* Sidebar width customization for long API names */
+#nd-docs-layout {
+  --fd-sidebar-width: 380px;
+}
+
+/* TypeTable: dynamic 1:1 column layout with horizontal scroll */
+/* Applied to all TypeTable instances including nested ones in Accordions */
+.\@container {
+  container-type: normal !important;
+}
+
+.\@container > div > button {
+  display: flex;
+}
+
+.\@container > div > button > span:first-child,
+.\@container > div > button > span.\@max-xl\:hidden,
+.\@container > div > button > code:first-child {
+  flex: 1 1 0;
+  min-width: 0;
+  overflow-x: auto;
+  white-space: nowrap;
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE/Edge */
+}
+
+.\@container > div > button > span:first-child::-webkit-scrollbar,
+.\@container > div > button > span.\@max-xl\:hidden::-webkit-scrollbar,
+.\@container > div > button > code:first-child::-webkit-scrollbar {
+  display: none; /* Chrome/Safari */
+}
+
+/* Header row also 1:1 */
+.\@container > div:first-child > p {
+  flex: 1 1 0;
+  min-width: 0;
+}
+
+.\@container > div:first-child > p:first-child {
+  width: auto !important;
+}
+
+/* Force Type column to be visible in nested TypeTables */
+.\@container > div > button > span:last-of-type:not(:first-child) {
+  display: inline !important;
+}

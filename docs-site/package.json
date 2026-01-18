@@ -3,24 +3,29 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
-    "build": "next build",
+    "dev": "npm run generate:api-docs && next dev",
+    "build": "npm run generate:api-docs && next build",
     "start": "next start",
     "postinstall": "fumadocs-mdx",
     "type-check": "fumadocs-mdx && tsc --noEmit",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
-    "lint:text": "textlint '**/*.{md,mdx,txt}' --fix"
+    "lint:text": "textlint '**/*.{md,mdx,txt}' --fix",
+    "generate:typedoc": "typedoc --options typedoc.json",
+    "generate:api-docs": "npm run generate:typedoc && tsx ./scripts/generate-api-docs.ts"
   },
   "dependencies": {
     "fumadocs-core": "16.2.4",
     "fumadocs-mdx": "14.1.0",
+    "fumadocs-twoslash": "^3.1.12",
     "fumadocs-typescript": "^5.0.1",
     "fumadocs-ui": "16.2.4",
+    "genshin-manager": "file:..",
     "lucide-react": "^0.556.0",
     "next": "16.0.8",
     "react": "^19.2.1",
-    "react-dom": "^19.2.1"
+    "react-dom": "^19.2.1",
+    "react-markdown": "^10.1.0"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3.3.1",
@@ -44,6 +49,7 @@
     "textlint": "^15.5.0",
     "textlint-rule-preset-ja-technical-writing": "^12.0.2",
     "textlint-rule-prh": "^6.1.0",
+    "typedoc": "^0.28.16",
     "typescript": "^5.9.3",
     "typescript-eslint": "^8.44.1"
   }
