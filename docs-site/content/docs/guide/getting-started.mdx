@@ -1,0 +1,232 @@
+---
+title: Getting Started
+description: Install and set up Genshin Manager
+---
+
+import { Cards, Card } from 'fumadocs-ui/components/card'
+
+# Getting Started
+
+This guide will help you install and configure Genshin Manager for your project.
+
+## System Requirements
+
+- Node.js 18 or newer
+- Internet connection for initial setup (downloads game data)
+- ~500MB disk space for cached assets
+
+## Installation
+
+<Tabs items={['npm', 'yarn', 'bun']}>
+  <Tab value="npm">
+```bash
+npm install genshin-manager
+```
+  </Tab>
+  <Tab value="yarn">
+```bash
+yarn add genshin-manager
+```
+  </Tab>
+  <Tab value="bun">
+```bash
+bun add genshin-manager
+```
+  </Tab>
+</Tabs>
+
+## Quick Start
+
+<Steps>
+<Step>
+
+### Initialize the Client
+
+```ts twoslash
+import { Client } from 'genshin-manager'
+
+const client = new Client({
+  defaultLanguage: 'EN',
+})
+
+await client.deploy()
+```
+
+On first run, this downloads game data (~100MB) and caches it locally.
+
+</Step>
+<Step>
+
+### Access Game Data
+
+```ts twoslash
+import { Character, Weapon } from 'genshin-manager'
+
+// Create a character at level 90, ascended, C6
+const hutao = new Character(10000046, 90, true, 6)
+//    ^?
+console.log(hutao.name)    // "Hu Tao"
+console.log(hutao.element) // "Pyro"
+
+// Create a weapon at level 90, ascended, R5
+const homa = new Weapon(13501, 90, true, 5)
+console.log(homa.name)     // "Staff of Homa"
+```
+
+</Step>
+<Step>
+
+### Fetch Player Data (Optional)
+
+```ts twoslash
+import { EnkaManager } from 'genshin-manager'
+
+const enkaManager = new EnkaManager()
+const data = await enkaManager.fetchAll(800000001) // Replace with UID
+//    ^?
+
+console.log(data.playerDetail.nickname)
+console.log(data.characterDetails.length) // Showcased characters
+```
+
+</Step>
+</Steps>
+
+## Cache Location
+
+By default, data is cached in `node_modules/genshin-manager/.cache`:
+
+<Files>
+  <Folder name="node_modules" defaultOpen>
+    <Folder name="genshin-manager" defaultOpen>
+      <Folder name=".cache" defaultOpen>
+        <Folder name="Data">
+          <File name="ExcelBinOutput" />
+          <File name="TextMap" />
+        </Folder>
+        <Folder name="Image">
+          <File name="UI_AvatarIcon_*.png" />
+        </Folder>
+        <Folder name="Audio">
+          <File name="VO_*.ogg" />
+        </Folder>
+      </Folder>
+    </Folder>
+  </Folder>
+</Files>
+
+You can customize the cache location:
+
+```ts
+const client = new Client({
+  assetCacheFolderPath: './my-cache',
+})
+```
+
+## Configuration
+
+<TypeTable
+  type={{
+    defaultLanguage: {
+      description: 'Default language for text data',
+      type: "'EN' | 'JP' | 'KR' | 'CHS' | 'CHT' | ...",
+      default: "'EN'",
+    },
+    downloadLanguages: {
+      description: 'Languages to download on setup',
+      type: "TextMapLanguage[]",
+      default: "['EN', 'JP', ...]",
+    },
+    assetCacheFolderPath: {
+      description: 'Custom cache folder path',
+      type: "string",
+      default: "undefined (uses node_modules)",
+    },
+    autoCacheImage: {
+      description: 'Auto-download images when accessed',
+      type: "boolean",
+      default: "true",
+    },
+    autoCacheAudio: {
+      description: 'Auto-download audio when accessed',
+      type: "boolean",
+      default: "false",
+    },
+    autoFetchLatestAssetsByCron: {
+      description: 'Auto-update schedule (cron format)',
+      type: "string | undefined",
+      default: "undefined",
+    },
+  }}
+/>
+
+### Example Configuration
+
+```ts twoslash
+import { Client } from 'genshin-manager'
+
+const client = new Client({
+  defaultLanguage: 'JP',
+  downloadLanguages: ['JP', 'EN'],
+  assetCacheFolderPath: './my-cache',
+  autoCacheImage: true,
+  autoCacheAudio: false,
+  // Auto-update every Wednesday at midnight
+  autoFetchLatestAssetsByCron: '0 0 0 * * 3',
+})
+
+await client.deploy()
+```
+
+## Supported Languages
+
+<Accordions>
+<Accordion title="View all supported languages">
+
+| Code | Language |
+|------|----------|
+| `EN` | English |
+| `JP` | Japanese |
+| `KR` | Korean |
+| `CHS` | Chinese (Simplified) |
+| `CHT` | Chinese (Traditional) |
+| `DE` | German |
+| `ES` | Spanish |
+| `FR` | French |
+| `ID` | Indonesian |
+| `PT` | Portuguese |
+| `RU` | Russian |
+| `TH` | Thai |
+| `VI` | Vietnamese |
+
+</Accordion>
+</Accordions>
+
+## Event Handling
+
+Monitor the client's lifecycle:
+
+```ts twoslash
+import { Client, ClientEvents } from 'genshin-manager'
+
+const client = new Client()
+
+client.on(ClientEvents.BEGIN_UPDATE_ASSETS, (version) => {
+  console.log(`Downloading game data v${version}...`)
+})
+
+client.on(ClientEvents.END_UPDATE_ASSETS, (version) => {
+  console.log(`Download complete!`)
+})
+
+await client.deploy()
+```
+
+## Next Steps
+
+<Cards>
+  <Card title="Fetch Player Data" href="/docs/guide/player-data" description="Get player profiles from Enka.Network" />
+  <Card title="Character Data" href="/docs/guide/characters" description="Access character information and stats" />
+  <Card title="Weapon Data" href="/docs/guide/weapons" description="Access weapon information and stats" />
+  <Card title="API Reference" href="/docs/api" description="Complete API documentation" />
+</Cards>

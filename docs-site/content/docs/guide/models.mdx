@@ -1,0 +1,420 @@
+---
+title: Data Models
+description: Artifacts, Materials, Monsters, and other game data
+---
+
+# Data Models
+
+Access various game data including artifacts, materials, monsters, and daily farming information.
+
+## Artifact
+
+Create and manage artifact data with stats and set bonuses.
+
+### Basic Usage
+
+```ts twoslash
+import { Client, Artifact } from 'genshin-manager'
+
+const client = new Client()
+await client.deploy()
+
+// Create a 5-star artifact at level 20
+const artifact = new Artifact(81101, 10001, 20, [501221, 501231])
+//    ^?
+
+console.log(artifact.name)
+//                   ^?
+console.log(artifact.type)       // EQUIP_BRACER, EQUIP_NECKLACE, etc.
+//                   ^?
+console.log(artifact.rarity)
+//                   ^?
+console.log(artifact.setName)
+//                   ^?
+```
+
+### Main Stat
+
+```ts twoslash
+import { Artifact } from 'genshin-manager'
+// ---cut---
+const artifact = new Artifact(81101, 10001, 20)
+
+const mainStat = artifact.mainStat
+//    ^?
+console.log(`${mainStat.type}: ${mainStat.value}`)
+console.log(`Display: ${mainStat.valueText}`) // e.g., "46.6%"
+```
+
+### Sub Stats
+
+```ts twoslash
+import { Artifact } from 'genshin-manager'
+// ---cut---
+// Create artifact with sub stats
+const artifact = new Artifact(81101, 10001, 20, [501221, 501231, 501241])
+
+for (const subStat of artifact.subStats) {
+//         ^?
+  console.log(`${subStat.type}: ${subStat.valueText}`)
+}
+
+// Access raw append props
+for (const prop of artifact.appendProps) {
+//         ^?
+  console.log(`ID: ${prop.id}, Type: ${prop.type}, Value: ${prop.value}`)
+}
+```
+
+### Set Bonuses
+
+```ts twoslash
+import { Artifact } from 'genshin-manager'
+// ---cut---
+const artifact = new Artifact(81101)
+
+// Set info
+console.log(artifact.setId)
+//                   ^?
+console.log(artifact.setName)
+//                   ^?
+
+// Set descriptions (2pc and 4pc bonuses)
+console.log('2pc:', artifact.setDescriptions[2])
+console.log('4pc:', artifact.setDescriptions[4])
+```
+
+### Find Artifacts
+
+```ts twoslash
+import { Artifact } from 'genshin-manager'
+// ---cut---
+// Get all artifact IDs
+const allIds = Artifact.allArtifactIds
+//    ^?
+console.log(`Total artifacts: ${allIds.length}`)
+
+// Get max level for an artifact
+const maxLevel = Artifact.getMaxLevelByArtifactId(81101)
+//    ^?
+console.log(`Max level: ${maxLevel}`) // 20 for 5-star
+```
+
+---
+
+## Material
+
+Access game materials used for character and weapon enhancement.
+
+### Basic Usage
+
+```ts twoslash
+import { Client, Material } from 'genshin-manager'
+
+const client = new Client()
+await client.deploy()
+
+const material = new Material(104001)
+//    ^?
+
+console.log(material.name)
+//                   ^?
+console.log(material.description)
+//                   ^?
+console.log(material.itemType)
+//                   ^?
+console.log(material.materialType)
+//                   ^?
+```
+
+### Material Icon
+
+```ts twoslash
+import { Material } from 'genshin-manager'
+// ---cut---
+const material = new Material(104001)
+
+// Get icon
+const icon = material.icon
+//    ^?
+console.log(icon.url)
+
+// Get additional pictures
+for (const pic of material.pictures) {
+  console.log(pic.url)
+}
+```
+
+### Find Materials
+
+```ts twoslash
+import { Material } from 'genshin-manager'
+// ---cut---
+// Get all material IDs
+const allIds = Material.allMaterialIds
+//    ^?
+console.log(`Total materials: ${allIds.length}`)
+
+// Find by name
+const oreIds = Material.getMaterialIdByName('Mystic Enhancement Ore')
+//    ^?
+for (const id of oreIds) {
+  const mat = new Material(id)
+  console.log(mat.name)
+}
+```
+
+---
+
+## Monster
+
+Access monster data with stats that scale by level and player count.
+
+### Basic Usage
+
+```ts twoslash
+import { Client, Monster } from 'genshin-manager'
+
+const client = new Client()
+await client.deploy()
+
+// Create a level 90 monster
+const monster = new Monster(21010101, 90)
+//    ^?
+
+console.log(monster.name)
+//                  ^?
+console.log(monster.describeName)
+//                  ^?
+console.log(monster.level)
+//                  ^?
+```
+
+### Monster Stats
+
+```ts twoslash
+import { Monster } from 'genshin-manager'
+// ---cut---
+const monster = new Monster(21010101, 90)
+
+// Stats scale with level
+for (const stat of monster.stats) {
+//         ^?
+  console.log(`${stat.type}: ${stat.value}`)
+}
+// Example:
+// FIGHT_PROP_BASE_HP: 169853
+// FIGHT_PROP_BASE_ATTACK: 324
+// FIGHT_PROP_BASE_DEFENSE: 505
+```
+
+### Co-op Scaling
+
+```ts twoslash
+import { Monster } from 'genshin-manager'
+// ---cut---
+// Monsters scale with player count in co-op
+const soloMonster = new Monster(21010101, 90, 1)
+const coopMonster = new Monster(21010101, 90, 4)
+
+console.log('Solo HP:', soloMonster.stats[0].value)
+console.log('4-Player HP:', coopMonster.stats[0].value) // 2.5x HP
+```
+
+### Find Monsters
+
+```ts twoslash
+import { Monster } from 'genshin-manager'
+// ---cut---
+// Get all monster IDs
+const allIds = Monster.allMonsterIds
+//    ^?
+console.log(`Total monsters: ${allIds.length}`)
+
+// Find by describe ID
+const monsterId = Monster.findMonsterIdByDescribeId(21104)
+//    ^?
+const monster = new Monster(monsterId)
+console.log(monster.name)
+```
+
+---
+
+## DailyFarming
+
+Get daily domain farming information based on day of week.
+
+### Basic Usage
+
+```ts twoslash
+import { Client, DailyFarming } from 'genshin-manager'
+
+const client = new Client()
+await client.deploy()
+
+// Get today's farming info (0 = Sunday, 1 = Monday, etc.)
+const today = new Date().getDay()
+const farming = new DailyFarming(today)
+//    ^?
+
+console.log(`Day: ${farming.dayOfWeek}`)
+//                          ^?
+```
+
+### Available Domains
+
+```ts twoslash
+import { DailyFarming, Character, Weapon } from 'genshin-manager'
+// ---cut---
+const farming = new DailyFarming(1) // Monday
+
+for (const domain of farming.domains) {
+//         ^?
+  console.log(`\n=== ${domain.name} ===`)
+
+  // Materials available
+  console.log('Materials:', domain.materialIds.length)
+
+  // Characters that use these materials
+  console.log('Characters:')
+  for (const charInfo of domain.characterInfos.slice(0, 3)) {
+    const char = new Character(charInfo.id)
+    console.log(`  - ${char.name}`)
+  }
+
+  // Weapons that use these materials
+  console.log('Weapons:')
+  for (const weaponId of domain.weaponIds.slice(0, 3)) {
+    const weapon = new Weapon(weaponId)
+    console.log(`  - ${weapon.name}`)
+  }
+}
+```
+
+### Talent Books and Weapon Materials
+
+```ts twoslash
+import { DailyFarming, Material } from 'genshin-manager'
+// ---cut---
+const farming = new DailyFarming(2) // Tuesday
+
+// Talent books available today
+console.log('Talent Books:')
+for (const id of farming.talentBookIds) {
+  const mat = new Material(id)
+  console.log(`  ${mat.name}`)
+}
+
+// Weapon materials available today
+console.log('Weapon Materials:')
+for (const id of farming.weaponMaterialIds) {
+  const mat = new Material(id)
+  console.log(`  ${mat.name}`)
+}
+```
+
+### Sunday (All Materials)
+
+```ts twoslash
+import { DailyFarming } from 'genshin-manager'
+// ---cut---
+// Sunday has all materials available
+const sunday = new DailyFarming(0)
+console.log(`Domains available: ${sunday.domains.length}`)
+```
+
+---
+
+## StatProperty
+
+Represents a statistical property with type, name, and formatted value.
+
+### Basic Usage
+
+```ts twoslash
+import { Client, StatProperty } from 'genshin-manager'
+
+const client = new Client()
+await client.deploy()
+
+const hpStat = new StatProperty('FIGHT_PROP_HP', 15552)
+//    ^?
+
+console.log(hpStat.type)
+//                 ^?
+console.log(hpStat.name)       // Localized name
+//                 ^?
+console.log(hpStat.value)
+//                 ^?
+console.log(hpStat.isPercent)
+//                 ^?
+```
+
+### Formatted Values
+
+```ts twoslash
+import { StatProperty } from 'genshin-manager'
+// ---cut---
+// Flat stat
+const hp = new StatProperty('FIGHT_PROP_HP', 15552)
+console.log(hp.valueText)      // "15,552"
+//             ^?
+console.log(hp.multipliedValue) // 15552
+//             ^?
+
+// Percent stat
+const critRate = new StatProperty('FIGHT_PROP_CRITICAL', 0.311)
+console.log(critRate.valueText)      // "31.1%"
+console.log(critRate.multipliedValue) // 31.1
+```
+
+### Common Stat Types
+
+| Type | Description |
+|------|-------------|
+| `FIGHT_PROP_HP` | Flat HP |
+| `FIGHT_PROP_HP_PERCENT` | HP% |
+| `FIGHT_PROP_ATTACK` | Flat ATK |
+| `FIGHT_PROP_ATTACK_PERCENT` | ATK% |
+| `FIGHT_PROP_DEFENSE` | Flat DEF |
+| `FIGHT_PROP_DEFENSE_PERCENT` | DEF% |
+| `FIGHT_PROP_CRITICAL` | CRIT Rate |
+| `FIGHT_PROP_CRITICAL_HURT` | CRIT DMG |
+| `FIGHT_PROP_CHARGE_EFFICIENCY` | Energy Recharge |
+| `FIGHT_PROP_ELEMENT_MASTERY` | Elemental Mastery |
+
+---
+
+## Complete Example
+
+```ts twoslash
+import { Client, Character, DailyFarming, Material } from 'genshin-manager'
+
+async function planFarming(): Promise<void> {
+  const client = new Client()
+  await client.deploy()
+
+  const today = new Date().getDay()
+  const farming = new DailyFarming(today)
+
+  const dayNames = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday']
+  console.log(`=== ${dayNames[today]} Farming Guide ===\n`)
+
+  for (const domain of farming.domains) {
+    console.log(`\n--- ${domain.name} ---`)
+
+    // Show materials
+    const materials = domain.materialIds.map(id => new Material(id))
+    console.log(`Materials: ${materials.map(m => m.name).join(', ')}`)
+
+    // Show characters that need these materials
+    if (domain.characterInfos.length > 0) {
+      const chars = domain.characterInfos.slice(0, 5)
+        .map(info => new Character(info.id).name)
+      console.log(`Characters: ${chars.join(', ')}...`)
+    }
+  }
+}
+
+await planFarming()
+```

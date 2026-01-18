@@ -1,0 +1,17 @@
+{
+  "title": "API Reference",
+  "pages": [
+    "client",
+    "character",
+    "weapon",
+    "enka",
+    "assets",
+    "errors",
+    "types",
+    "utilities",
+    "monster",
+    "world",
+    "common"
+  ],
+  "defaultOpen": true
+}

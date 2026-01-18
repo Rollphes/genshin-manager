@@ -1,13 +1,18 @@
 import eslintJs from '@eslint/js'
+import nextPlugin from '@next/eslint-plugin-next'
 import eslintConfigPrettier from 'eslint-config-prettier'
-import jsdoc from 'eslint-plugin-jsdoc'
-import noBarrelFiles from 'eslint-plugin-no-barrel-files'
+import importPlugin from 'eslint-plugin-import'
 import eslintPluginPrettierRecommended from 'eslint-plugin-prettier/recommended'
+import reactPlugin from 'eslint-plugin-react'
+import reactHooksPlugin from 'eslint-plugin-react-hooks'
 import simpleImportSort from 'eslint-plugin-simple-import-sort'
 import tseslint from 'typescript-eslint'
 
 export default [
+  // Base ESLint recommended config
   eslintJs.configs.recommended,
+
+  // TypeScript ESLint configs for .ts and .tsx files
   ...tseslint.config(
     {
       files: ['**/*.ts', '**/*.tsx'],
@@ -18,24 +23,17 @@ export default [
         tseslint.configs.stylisticTypeChecked,
       ],
       languageOptions: {
-        ecmaVersion: 2018,
         parserOptions: {
-          project: true,
-          tsconfigRootDir: import.meta.dirname,
-        },
-        globals: {
-          BigInt: true,
+          project: './tsconfig.json',
         },
       },
       rules: {
         '@typescript-eslint/no-unused-vars': 'error',
         '@typescript-eslint/member-ordering': 'warn',
-        '@typescript-eslint/no-deprecated': 'off', // Disabled: internal deprecated methods are not user-facing
         '@typescript-eslint/explicit-member-accessibility': [
           'error',
           {
             accessibility: 'explicit',
-
             overrides: {
               accessors: 'explicit',
               constructors: 'no-public',
@@ -64,6 +62,18 @@ export default [
             trailingUnderscore: 'allow',
           },
           {
+            // Allow PascalCase for React components and UPPER_CASE for Next.js HTTP methods
+            selector: 'variable',
+            modifiers: ['const'],
+            format: ['camelCase', 'PascalCase', 'UPPER_CASE'],
+          },
+          {
+            // Allow UPPER_CASE for destructured Next.js HTTP methods (GET, POST, etc.)
+            selector: 'variable',
+            modifiers: ['destructured', 'exported'],
+            format: ['camelCase', 'PascalCase', 'UPPER_CASE'],
+          },
+          {
             selector: 'variable',
             modifiers: ['const', 'global'],
             types: ['boolean', 'number', 'string'],
@@ -73,12 +83,12 @@ export default [
             selector: 'variable',
             modifiers: ['const', 'global', 'exported'],
             types: ['boolean', 'number', 'string', 'array', 'function'],
-            format: ['camelCase'],
+            format: ['camelCase', 'UPPER_CASE'],
           },
           {
             selector: 'variable',
             modifiers: ['const', 'global', 'exported'],
-            format: ['camelCase', 'PascalCase'],
+            format: ['camelCase', 'PascalCase', 'UPPER_CASE'],
           },
           {
             selector: 'property',
@@ -100,6 +110,11 @@ export default [
             format: null,
           },
           {
+            // Allow PascalCase for React component methods in object literals
+            selector: 'objectLiteralMethod',
+            format: ['camelCase', 'PascalCase'],
+          },
+          {
             selector: 'enumMember',
             format: ['UPPER_CASE'],
           },
@@ -110,9 +125,16 @@ export default [
           {
             selector: 'function',
             modifiers: ['exported'],
+            format: ['camelCase', 'PascalCase', 'UPPER_CASE'],
+          },
+          {
+            // Allow PascalCase for internal React component functions
+            selector: 'function',
             format: ['camelCase', 'PascalCase'],
           },
         ],
+        // Allow async functions without await for Next.js generateStaticParams
+        '@typescript-eslint/require-await': 'off',
       },
     },
     {
@@ -128,79 +150,59 @@ export default [
       },
     },
   ),
+
+  // React and Next.js configurations
   {
+    files: ['**/*.{js,mjs,ts,tsx}'],
     plugins: {
-      jsdoc,
+      react: reactPlugin,
+      'react-hooks': reactHooksPlugin,
+      '@next/next': nextPlugin,
+    },
+    languageOptions: {
+      parserOptions: {
+        project: './tsconfig.json',
+      },
+    },
+    settings: {
+      react: {
+        version: 'detect',
+      },
+      next: {
+        rootDir: '.',
+      },
     },
     rules: {
-      'jsdoc/require-jsdoc': [
-        'error',
-        {
-          publicOnly: true,
-          require: {
-            ArrowFunctionExpression: true,
-            ClassDeclaration: true,
-            ClassExpression: true,
-            FunctionDeclaration: true,
-            FunctionExpression: true,
-            MethodDefinition: true,
-          },
-          contexts: [
-            'VariableDeclaration',
-            'TSInterfaceDeclaration',
-            'TSTypeAliasDeclaration',
-            'TSPropertySignature',
-            'TSMethodSignature',
-          ],
-        },
-      ],
-      'jsdoc/require-description': [
-        'error',
-        {
-          contexts: [
-            'ArrowFunctionExpression',
-            'ClassDeclaration',
-            'ClassExpression',
-            'FunctionDeclaration',
-            'FunctionExpression',
-            'MethodDefinition',
-            'PropertyDefinition',
-            'VariableDeclaration',
-            'TSInterfaceDeclaration',
-            'TSTypeAliasDeclaration',
-            'TSPropertySignature',
-            'TSMethodSignature',
-          ],
-        },
-      ],
-      'jsdoc/check-tag-names': 'off',
+      // React rules
+      ...reactPlugin.configs.recommended.rules,
+      ...reactPlugin.configs['jsx-runtime'].rules,
+
+      // React Hooks rules
+      ...reactHooksPlugin.configs.recommended.rules,
+
+      // Next.js specific rules
+      ...nextPlugin.configs.recommended.rules,
+      ...nextPlugin.configs['core-web-vitals'].rules,
+      '@next/next/no-img-element': 'error',
     },
   },
+
+  // Import sorting configuration
   {
     plugins: {
       'simple-import-sort': simpleImportSort,
-      'no-barrel-files': noBarrelFiles,
+      import: importPlugin,
     },
     rules: {
       'simple-import-sort/imports': 'error',
       'simple-import-sort/exports': 'error',
-      'no-barrel-files/no-barrel-files': 'error',
+      'import/first': 'error',
+      'import/newline-after-import': 'error',
+      'import/no-duplicates': 'error',
     },
   },
-  // Allow barrel file for public API entry point
-  {
-    files: ['src/index.ts'],
-    rules: {
-      'no-barrel-files/no-barrel-files': 'off',
-    },
-  },
-  // Temporarily allow barrel files in test directory (to be addressed in Plan 03)
-  {
-    files: ['test/**/*', 'src/test/**/*'],
-    rules: {
-      'no-barrel-files/no-barrel-files': 'off',
-    },
-  },
+
+  // General JavaScript rules
   {
     rules: {
       'no-unused-vars': 'off',
@@ -213,32 +215,21 @@ export default [
       'no-param-reassign': 'error',
       'no-throw-literal': 'error',
       'func-style': ['warn', 'declaration'],
-      'no-restricted-imports': [
-        'error',
-        {
-          patterns: ['./', '../', '~/'],
-        },
-      ],
+      // Allow relative imports for CSS and local files in Next.js
+      'no-restricted-imports': 'off',
     },
   },
+
+  // Ignore patterns
   {
     ignores: [
-      '.git/',
-      '.vscode/',
-      '.github/',
-      '.husky/',
-      '.idea/',
-      '.claude/',
-      '.serena/',
-      'cache/',
-      'coverage/',
-      'src/types/generated/',
-      'dist/',
-      'docs-site/',
-      'examples/',
-      'scripts/',
       'node_modules/',
+      '.next/',
+      '.source/',
+      'out/',
       '*.config.js',
+      '*.config.mjs',
+      'next-env.d.ts',
     ],
   },
 ]

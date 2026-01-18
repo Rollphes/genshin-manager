@@ -42,3 +42,21 @@ jobs:
 
     - name: Run TypeScript type check
       run: npx tsc --noEmit
+
+    # docs-site checks (separate ESLint config)
+    - name: Install docs-site dependencies
+      run: npm ci
+      working-directory: docs-site
+
+    - name: Run ESLint for docs-site
+      uses: reviewdog/action-eslint@v1
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        filter_mode: diff_context
+        fail_level: error
+        eslint_flags: '.'
+        workdir: docs-site
+
+    - name: Run TypeScript type check for docs-site
+      run: npx tsc --noEmit
+      working-directory: docs-site

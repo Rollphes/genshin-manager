@@ -1,0 +1,436 @@
+---
+title: Player Data
+description: Fetch player data from Enka.Network
+---
+
+# Fetching Player Data
+
+Fetch real-time player profiles and character showcases from [Enka.Network](https://enka.network).
+
+## Basic Usage
+
+```ts twoslash
+import { Client, EnkaManager } from 'genshin-manager'
+
+const client = new Client()
+await client.deploy()
+
+const enkaManager = new EnkaManager()
+//    ^?
+const data = await enkaManager.fetchAll(800000001)
+//    ^?
+
+console.log(`Player: ${data.playerDetail.nickname}`)
+console.log(`AR: ${data.playerDetail.level}`)
+console.log(`World Level: ${data.playerDetail.worldLevel}`)
+console.log(`Showcased characters: ${data.characterDetails.length}`)
+```
+
+## EnkaData Structure
+
+The `fetchAll()` method returns an `EnkaData` object with the following properties:
+
+```ts twoslash
+import { EnkaManager } from 'genshin-manager'
+const enkaManager = new EnkaManager()
+const data = await enkaManager.fetchAll(800000001)
+// ---cut---
+// EnkaData properties
+data.uid                // Player UID
+//   ^?
+data.playerDetail       // Player profile info
+//   ^?
+data.characterDetails   // Array of showcased characters
+//   ^?
+data.owner              // Optional: Enka.Network account owner
+//   ^?
+data.nextShowCaseDate   // Cache expiration date
+//   ^?
+data.url                // Enka.Network profile URL
+//   ^?
+```
+
+## PlayerDetail
+
+Access player profile information:
+
+```ts twoslash
+import { EnkaManager } from 'genshin-manager'
+const enkaManager = new EnkaManager()
+const data = await enkaManager.fetchAll(800000001)
+// ---cut---
+const player = data.playerDetail
+
+// Basic info
+player.nickname           // Display name
+//     ^?
+player.level              // Adventure Rank
+//     ^?
+player.worldLevel         // World Level
+//     ^?
+player.signature          // Profile signature
+//     ^?
+
+// Achievements and progress
+player.finishAchievementNum  // Completed achievements
+//     ^?
+player.maxFriendshipCharactersCount  // Characters at max friendship
+//     ^?
+
+// Spiral Abyss progress
+player.towerFloorIndex    // Current floor
+//     ^?
+player.towerLevelIndex    // Current chamber
+//     ^?
+player.towerStarIndex     // Total stars
+//     ^?
+
+// Imaginarium Theater
+player.theaterActIndex    // Act index
+//     ^?
+player.theaterModeIndex   // Mode (5=easy, 6=hard)
+//     ^?
+player.theaterStarIndex   // Total stars
+//     ^?
+```
+
+### Profile Picture and NameCards
+
+```ts twoslash
+import { EnkaManager } from 'genshin-manager'
+const enkaManager = new EnkaManager()
+const data = await enkaManager.fetchAll(800000001)
+// ---cut---
+const player = data.playerDetail
+
+// Profile picture
+const profilePic = player.profilePicture
+//    ^?
+console.log(profilePic.icon.url)
+
+// Main namecard
+const nameCard = player.nameCard
+//    ^?
+console.log(nameCard.name)
+
+// Displayed namecards
+for (const card of player.showNameCards) {
+//         ^?
+  console.log(card.name)
+}
+```
+
+### Character Previews
+
+```ts twoslash
+import { EnkaManager } from 'genshin-manager'
+const enkaManager = new EnkaManager()
+const data = await enkaManager.fetchAll(800000001)
+// ---cut---
+const player = data.playerDetail
+
+// Character previews (shown on profile)
+for (const preview of player.characterPreviews) {
+//         ^?
+  console.log(`${preview.name} Lv.${preview.level}`)
+}
+
+// Check if constellation is shown
+player.isShowCharacterPreviewConstellation
+//     ^?
+```
+
+## CharacterDetail
+
+Each showcased character includes complete build information:
+
+```ts twoslash
+import { EnkaManager } from 'genshin-manager'
+const enkaManager = new EnkaManager()
+const data = await enkaManager.fetchAll(800000001)
+// ---cut---
+for (const char of data.characterDetails) {
+//         ^?
+  // Basic info
+  console.log(`${char.name} (${char.element})`)
+  console.log(`Level: ${char.level}/${char.maxLevel}`)
+  console.log(`Ascension: ${char.promoteLevel}`)
+  console.log(`Rarity: ${char.rarity}★`)
+
+  // Constellation level (count unlocked)
+  const cLevel = char.constellations.filter(c => !c.locked).length
+  console.log(`Constellation: C${cLevel}`)
+
+  // Weapon info
+  console.log(`Weapon: ${char.weapon.name} R${char.weapon.refinementRank}`)
+  console.log(`  Level: ${char.weapon.level}`)
+
+  // Artifact summary
+  console.log(`Artifacts: ${char.artifacts.length} pieces`)
+
+  // Friendship level
+  console.log(`Friendship: ${char.friendShipLevel}`)
+}
+```
+
+### Character Skills
+
+```ts twoslash
+import { EnkaManager } from 'genshin-manager'
+const enkaManager = new EnkaManager()
+const data = await enkaManager.fetchAll(800000001)
+// ---cut---
+const char = data.characterDetails[0]
+
+for (const skill of char.skills) {
+//         ^?
+  console.log(`${skill.name}: Lv.${skill.level}`)
+  console.log(`  Extra level from constellation: +${skill.extraLevel}`)
+}
+```
+
+### Character Combat Stats
+
+```ts twoslash
+import { EnkaManager } from 'genshin-manager'
+const enkaManager = new EnkaManager()
+const data = await enkaManager.fetchAll(800000001)
+// ---cut---
+const char = data.characterDetails[0]
+
+// Access calculated combat stats
+const stats = char.combatStatus
+//    ^?
+for (const stat of stats.statProperties) {
+//         ^?
+  console.log(`${stat.type}: ${stat.value}`)
+}
+```
+
+### Artifact Details
+
+```ts twoslash
+import { EnkaManager } from 'genshin-manager'
+const enkaManager = new EnkaManager()
+const data = await enkaManager.fetchAll(800000001)
+// ---cut---
+const char = data.characterDetails[0]
+
+for (const artifact of char.artifacts) {
+//         ^?
+  console.log(`${artifact.type}: ${artifact.setName}`)
+  console.log(`  Main stat: ${artifact.mainStat.type} +${artifact.mainStat.value}`)
+  console.log(`  Substats:`)
+  for (const sub of artifact.subStats) {
+    console.log(`    ${sub.type}: +${sub.value}`)
+  }
+}
+
+// Check artifact set bonuses
+const setBonus = char.setBonus
+//    ^?
+// 2-piece bonuses
+for (const artifact of setBonus.twoSetBonus) {
+  console.log(`${artifact.setName} (2pc)`)
+}
+// 4-piece bonuses
+for (const artifact of setBonus.fourSetBonus) {
+  console.log(`${artifact.setName} (4pc)`)
+}
+```
+
+## Fetch Methods
+
+### fetchAll()
+
+Fetches complete player data including character showcase:
+
+```ts twoslash
+import { EnkaManager } from 'genshin-manager'
+const enkaManager = new EnkaManager()
+const uid = 800000001
+// ---cut---
+const data = await enkaManager.fetchAll(uid)
+//    ^?
+```
+
+### fetchPlayerDetail()
+
+Fetches only profile info (faster, no character data):
+
+```ts twoslash
+import { EnkaManager } from 'genshin-manager'
+const enkaManager = new EnkaManager()
+const uid = 800000001
+// ---cut---
+const player = await enkaManager.fetchPlayerDetail(uid)
+//    ^?
+console.log(player.nickname)
+```
+
+## Enka.Network Accounts
+
+### Fetch Account by Username
+
+```ts twoslash
+import { EnkaManager } from 'genshin-manager'
+const enkaManager = new EnkaManager()
+// ---cut---
+const account = await enkaManager.fetchEnkaAccount('username')
+//    ^?
+console.log(account.username)
+console.log(account.url)
+```
+
+### Fetch Linked Genshin Accounts
+
+```ts twoslash
+import { EnkaManager } from 'genshin-manager'
+const enkaManager = new EnkaManager()
+// ---cut---
+const accounts = await enkaManager.fetchGenshinAccounts('username')
+//    ^?
+
+for (const account of accounts) {
+//         ^?
+  console.log(`UID: ${account.uid}`)
+  console.log(`Nickname: ${account.playerDetail.nickname}`)
+
+  // Saved builds (2D array: each character has multiple builds)
+  for (const characterBuilds of account.builds) {
+//           ^?
+    for (const build of characterBuilds) {
+      console.log(`  Build: ${build.name}`)
+    }
+  }
+}
+```
+
+## Caching
+
+Data is automatically cached based on Enka.Network's TTL:
+
+```ts twoslash
+import { EnkaManager } from 'genshin-manager'
+const enkaManager = new EnkaManager()
+const uid = 800000001
+// ---cut---
+// First call - fetches from API
+const data1 = await enkaManager.fetchAll(uid)
+
+// Second call within TTL - returns cached data
+const data2 = await enkaManager.fetchAll(uid)
+
+// Check when cache expires
+console.log(`Cache expires: ${data1.nextShowCaseDate.toISOString()}`)
+
+// Manually clear expired cache
+enkaManager.clearCacheOverNextShowCaseDate()
+```
+
+## Event Handling
+
+```ts twoslash
+import { EnkaManager, EnkaManagerEvents } from 'genshin-manager'
+// ---cut---
+const enkaManager = new EnkaManager()
+
+enkaManager.on(EnkaManagerEvents.GET_NEW_ENKA_DATA, (data) => {
+//                               ^?
+  console.log(`New data cached for UID: ${data.uid}`)
+  console.log(`Player: ${data.playerDetail.nickname}`)
+})
+
+const data = await enkaManager.fetchAll(800000001)
+```
+
+## Error Handling
+
+```ts twoslash
+import { EnkaManager, EnkaNetworkError, GeneralError } from 'genshin-manager'
+// ---cut---
+const enkaManager = new EnkaManager()
+
+try {
+  const data = await enkaManager.fetchAll(123456789)
+} catch (error) {
+  if (error instanceof GeneralError) {
+//                     ^?
+    // Invalid UID format
+    console.error('Invalid UID:', error.message)
+  } else if (error instanceof EnkaNetworkError) {
+//                            ^?
+    // API error
+    console.error(`Enka API error: ${error.statusCode}`)
+    console.error(`URL: ${error.url}`)
+  }
+}
+```
+
+## Service Status
+
+Check Enka.Network API status:
+
+```ts twoslash
+import { EnkaManager } from 'genshin-manager'
+const enkaManager = new EnkaManager()
+// ---cut---
+// Current status
+const status = await enkaManager.fetchNowStatus()
+//    ^?
+console.log(status)
+
+// Status history (last hour)
+const history = await enkaManager.fetchAllStatus()
+//    ^?
+```
+
+## Complete Example
+
+```ts twoslash
+import { Client, EnkaManager, EnkaNetworkError, GeneralError } from 'genshin-manager'
+
+async function analyzePlayer(uid: number): Promise<void> {
+  const client = new Client()
+  await client.deploy()
+
+  const enkaManager = new EnkaManager()
+
+  try {
+    const data = await enkaManager.fetchAll(uid)
+
+    console.log(`=== ${data.playerDetail.nickname} ===`)
+    console.log(`AR ${data.playerDetail.level} | WL ${data.playerDetail.worldLevel}`)
+    console.log(`Signature: ${data.playerDetail.signature || '(none)'}`)
+    console.log(`Achievements: ${data.playerDetail.finishAchievementNum}`)
+    console.log(`Spiral Abyss: Floor ${data.playerDetail.towerFloorIndex}-${data.playerDetail.towerLevelIndex}`)
+
+    console.log('\n=== Character Showcase ===')
+    for (const char of data.characterDetails) {
+      const cLevel = char.constellations.filter(c => !c.locked).length
+      console.log(`\n${char.name} (${char.element}) - Lv.${char.level} C${cLevel}`)
+      console.log(`  Weapon: ${char.weapon.name} Lv.${char.weapon.level} R${char.weapon.refinementRank}`)
+
+      // Show artifact set bonuses
+      for (const artifact of char.setBonus.twoSetBonus) {
+        console.log(`  ${artifact.setName} (2pc)`)
+      }
+      for (const artifact of char.setBonus.fourSetBonus) {
+        console.log(`  ${artifact.setName} (4pc)`)
+      }
+    }
+
+    console.log(`\nProfile URL: ${data.url}`)
+  } catch (error) {
+    if (error instanceof GeneralError) {
+      console.error('Invalid UID format:', error.message)
+    } else if (error instanceof EnkaNetworkError) {
+      console.error(`API error ${error.statusCode}: ${error.message}`)
+    } else {
+      throw error
+    }
+  }
+}
+
+await analyzePlayer(800000001)
+```

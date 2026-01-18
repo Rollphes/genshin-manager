@@ -1,0 +1,29 @@
+version: 1
+rules:
+  - expected: JavaScript
+    pattern:
+      - Javascript
+      - javascript
+  - expected: TypeScript
+    pattern:
+      - Typescript
+      - typescript
+  - expected: GitHub
+    pattern:
+      - github
+      - Github
+  - expected: GitLab
+    pattern:
+      - gitlab
+      - Gitlab
+  - expected: Docker
+    pattern:
+      - docker
+  - expected: Genshin Impact
+    pattern:
+      - genshin impact
+      - Genshin impact
+  - expected: API
+    pattern:
+      - api
+      - Api

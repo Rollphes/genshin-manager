@@ -1,0 +1,344 @@
+---
+title: Advanced Features
+description: Cache optimization, auto re-download, and advanced configuration
+---
+
+# Advanced Features
+
+Learn about cache optimization, automatic asset updates, and advanced configuration options.
+
+## Asset Caching System
+
+Genshin Manager uses an intelligent caching system that stores game data locally for optimal performance.
+
+### Cache Location
+
+```ts twoslash
+import { Client } from 'genshin-manager'
+// ---cut---
+// Default: node_modules/genshin-manager/cache
+const client = new Client()
+
+// Custom location
+const customClient = new Client({
+  assetCacheFolderPath: './my-cache'
+})
+
+await customClient.deploy()
+```
+
+### Cache Structure
+
+The cache contains:
+- **ExcelBinOutput**: Game data (characters, weapons, materials, etc.)
+- **TextMap**: Localized text in multiple languages
+- **Images**: Character icons, weapon icons, etc.
+- **Audio**: Voice lines and sound effects
+
+## Automatic Asset Updates
+
+### Scheduled Updates (Cron)
+
+Assets are automatically updated on a schedule:
+
+```ts twoslash
+import { Client } from 'genshin-manager'
+// ---cut---
+const client = new Client({
+  // Default: Every Wednesday at midnight (game update day)
+  autoFetchLatestAssetsByCron: '0 0 0 * * 3'
+})
+
+await client.deploy()
+```
+
+### Cron Format
+
+| Field | Values | Description |
+|-------|--------|-------------|
+| Second | 0-59 | Optional |
+| Minute | 0-59 | |
+| Hour | 0-23 | |
+| Day of Month | 1-31 | |
+| Month | 1-12 | |
+| Day of Week | 0-6 | 0 = Sunday |
+
+Examples:
+- `'0 0 0 * * 3'` - Every Wednesday at midnight
+- `'0 0 4 * * *'` - Every day at 4:00 AM
+- `'0 */6 * * *'` - Every 6 hours
+
+### Disable Auto-Update
+
+```ts twoslash
+import { Client } from 'genshin-manager'
+// ---cut---
+const client = new Client({
+  autoFetchLatestAssetsByCron: undefined // Disable auto-update
+})
+```
+
+## Image Caching
+
+### Auto-Cache Images
+
+```ts twoslash
+import { Client, Character } from 'genshin-manager'
+// ---cut---
+const client = new Client({
+  autoCacheImage: true // Default: true
+})
+await client.deploy()
+
+// Images are automatically cached when accessed
+const hutao = new Character(10000046)
+const icon = hutao.costumes[0]?.icon
+if (icon) {
+  // First access downloads and caches the image
+  const buffer = await icon.fetchBuffer()
+  //    ^?
+  console.log(`Cached: ${icon.name}`)
+}
+```
+
+### Image Base URLs
+
+Different image types use different CDN sources:
+
+```ts twoslash
+import { Client } from 'genshin-manager'
+// ---cut---
+const client = new Client({
+  // Default image CDN
+  defaultImageBaseURL: 'https://gi.yatta.top/assets/UI',
+
+  // Custom URLs by image type pattern
+  imageBaseURLByRegex: {
+    'https://enka.network/ui': [
+      /^UI_AvatarIcon_Side_/,
+      /^UI_Costume_/,
+    ],
+    'https://gi.yatta.top/assets/UI/reliquary': [
+      /^UI_RelicIcon_/,
+    ],
+  }
+})
+```
+
+## Audio Caching
+
+```ts twoslash
+import { Client, Character } from 'genshin-manager'
+// ---cut---
+const client = new Client({
+  autoCacheAudio: true // Default: true
+})
+await client.deploy()
+
+// Audio files are cached when accessed
+const hutao = new Character(10000046)
+const voices = hutao.getVoices('JP')
+for (const voice of voices) {
+  const buffer = await voice.audio.fetchBuffer()
+  console.log(`Cached: ${voice.audio.name}`)
+}
+```
+
+## Multi-Language Support
+
+### Download Multiple Languages
+
+```ts twoslash
+import { Client } from 'genshin-manager'
+// ---cut---
+const client = new Client({
+  defaultLanguage: 'EN',
+  downloadLanguages: ['EN', 'JP', 'KR', 'CHS']
+})
+await client.deploy()
+```
+
+### Switch Language at Runtime
+
+```ts twoslash
+import { Client, Character } from 'genshin-manager'
+
+const client = new Client({
+  downloadLanguages: ['EN', 'JP']
+})
+await client.deploy()
+
+// Default language (EN)
+const hutaoEn = new Character(10000046)
+console.log(hutaoEn.name) // "Hu Tao"
+
+// Switch to Japanese
+await client.changeLanguage('JP')
+const hutaoJp = new Character(10000046)
+console.log(hutaoJp.name) // "胡桃"
+```
+
+### Supported Languages
+
+| Code | Language |
+|------|----------|
+| `EN` | English |
+| `JP` | Japanese |
+| `KR` | Korean |
+| `CHS` | Chinese (Simplified) |
+| `CHT` | Chinese (Traditional) |
+| `DE` | German |
+| `ES` | Spanish |
+| `FR` | French |
+| `ID` | Indonesian |
+| `PT` | Portuguese |
+| `RU` | Russian |
+| `TH` | Thai |
+| `VI` | Vietnamese |
+
+## Event Handling
+
+Monitor client lifecycle events:
+
+```ts twoslash
+import { Client, ClientEvents } from 'genshin-manager'
+// ---cut---
+const client = new Client()
+
+// Asset update events
+client.on(ClientEvents.BEGIN_UPDATE_ASSETS, (version) => {
+//                     ^?
+  console.log(`Downloading game data v${version}...`)
+})
+
+client.on(ClientEvents.END_UPDATE_ASSETS, (version) => {
+  console.log(`Download complete!`)
+})
+
+// Cache update events
+client.on(ClientEvents.BEGIN_UPDATE_CACHE, (version) => {
+  console.log(`Updating cache to v${version}...`)
+})
+
+client.on(ClientEvents.END_UPDATE_CACHE, (version) => {
+  console.log(`Cache updated!`)
+})
+
+await client.deploy()
+```
+
+## Game Version
+
+```ts twoslash
+import { Client } from 'genshin-manager'
+// ---cut---
+const client = new Client()
+await client.deploy()
+
+// Get cached game version
+const version = client.gameVersion
+//    ^?
+console.log(`Game version: ${version}`) // e.g., "5.1.0"
+```
+
+## Auto-Fix Features
+
+### Text Map Fixes
+
+Automatically fix missing or corrupted text entries:
+
+```ts twoslash
+import { Client } from 'genshin-manager'
+// ---cut---
+const client = new Client({
+  autoFixTextMap: true // Default: true (when autoFetchLatestAssetsByCron is set)
+})
+```
+
+### ExcelBin Fixes
+
+Automatically fix missing game data entries:
+
+```ts twoslash
+import { Client } from 'genshin-manager'
+// ---cut---
+const client = new Client({
+  autoFixExcelBin: true // Default: true (when autoFetchLatestAssetsByCron is set)
+})
+```
+
+## Fetch Options
+
+Customize HTTP requests:
+
+```ts twoslash
+import { Client } from 'genshin-manager'
+// ---cut---
+const client = new Client({
+  fetchOption: {
+    headers: {
+      'user-agent': 'my-app/1.0.0',
+    },
+  }
+})
+```
+
+## Logging
+
+Control log output:
+
+```ts twoslash
+import { Client } from 'genshin-manager'
+// ---cut---
+// Available log levels
+const LogLevel = {
+  NONE: 0,
+  ERROR: 1,
+  WARN: 2,
+  INFO: 3,
+  DEBUG: 4,
+} as const
+
+const client = new Client({
+  logLevel: 3 // INFO level
+})
+```
+
+## Complete Configuration Example
+
+```ts twoslash
+import { Client, ClientEvents } from 'genshin-manager'
+
+const client = new Client({
+  // Language settings
+  defaultLanguage: 'EN',
+  downloadLanguages: ['EN', 'JP', 'KR'],
+
+  // Cache settings
+  assetCacheFolderPath: './my-cache',
+  autoCacheImage: true,
+  autoCacheAudio: false,
+
+  // Auto-update settings
+  autoFetchLatestAssetsByCron: '0 0 4 * * 3', // Wednesdays at 4 AM
+  autoFixTextMap: true,
+  autoFixExcelBin: true,
+
+  // Logging
+  logLevel: 3, // INFO
+})
+
+// Event listeners
+client.on(ClientEvents.BEGIN_UPDATE_ASSETS, (version) => {
+  console.log(`[INFO] Updating to v${version}...`)
+})
+
+client.on(ClientEvents.END_UPDATE_ASSETS, (version) => {
+  console.log(`[INFO] Update complete: v${version}`)
+})
+
+// Deploy
+await client.deploy()
+
+console.log(`Genshin Manager ready! (v${client.gameVersion})`)
+```
