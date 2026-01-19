@@ -1152,7 +1152,13 @@ export class TypeDocParser {
 
     return (
       defaultTag.content
-        .map((c) => c.text)
+        .map((c) => {
+          // TypeDoc wraps @default values in code blocks, strip them
+          if (c.kind === 'code')
+            return c.text.replace(/^```\w*\n?|\n?```$/g, '')
+
+          return c.text
+        })
         .join('')
         .trim() || undefined
     )
