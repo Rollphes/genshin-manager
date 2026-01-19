@@ -42,18 +42,26 @@ export type APIEnkaRegion =
 export interface APIEnkaStat {
   /**
    * response time (ms)
+   * @key Region
+   * @value Response time (ms)
    */
   time: Partial<Record<APIEnkaRegion, number>>
   /**
    * ping (ms)
+   * @key Region
+   * @value Ping (ms)
    */
   ping: Partial<Record<APIEnkaRegion, number>>
   /**
    * request capacity (req/min)
+   * @key Region
+   * @value Request capacity (req/min)
    */
   nodes: Partial<Record<APIEnkaRegion, number>>
   /**
    * underruns (fails)
+   * @key Region
+   * @value Underrun count
    */
   underruns: Partial<Record<APIEnkaRegion, string>>
 }

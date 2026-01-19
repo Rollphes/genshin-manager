@@ -158,6 +158,8 @@ export interface APIWeapon {
   promoteLevel?: number
   /**
    * Affix Map
+   * @key Affix ID
+   * @value Affix level
    */
   affixMap?: Record<string, number>
 }
@@ -203,6 +205,8 @@ export interface APIAvatarInfo {
   costumeId?: number
   /**
    * Character Info Properties List
+   * @key Property type ID
+   * @value Property data
    */
   propMap: Record<number, APIPropMap>
   /**
@@ -212,6 +216,8 @@ export interface APIAvatarInfo {
   talentIdList?: number[]
   /**
    * Map of Character's Combat Properties
+   * @key Fight property type ID
+   * @value Property value
    */
   fightPropMap: Record<number, number>
   /**
@@ -220,10 +226,14 @@ export interface APIAvatarInfo {
   skillDepotId: number
   /**
    * Map of Skill Levels
+   * @key Skill ID
+   * @value Skill level
    */
   skillLevelMap: Record<string, number>
   /**
    * Map of Skill Extra Levels
+   * @key Skill ID
+   * @value Extra level from constellation
    */
   proudSkillExtraLevelMap?: Record<string, number>
   /**

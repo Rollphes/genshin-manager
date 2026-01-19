@@ -42,6 +42,8 @@ export interface APIGameAccount {
   order: number
   /**
    * avatar order
+   * @key Character ID
+   * @value Display order
    */
   avatar_order: Record<string, number>
   /**

@@ -630,7 +630,7 @@ export class TypeDocParser {
       additionalDescription: this.extractAdditionalDescription(
         reflection.comment,
       ),
-      mapDescription: this.extractMapDescription(reflection),
+      mapDescription: this.extractObjectDescription(reflection),
     }
   }
 
@@ -1023,9 +1023,9 @@ export class TypeDocParser {
   }
 
   /**
-   * Extract @key/@value for Map properties with type info
+   * Extract @key/@value for Map/Record properties with type info
    */
-  private extractMapDescription(reflection: TypeDocReflection):
+  private extractObjectDescription(reflection: TypeDocReflection):
     | {
         key: string
         keyType: TypeReference
@@ -1041,14 +1041,14 @@ export class TypeDocParser {
 
     if (!keyTag && !valueTag) return undefined
 
-    // Extract Map type arguments
+    // Extract Map or Record type arguments
     const type = reflection.type
     let keyType: TypeReference = { name: 'unknown' }
     let valueType: TypeReference = { name: 'unknown' }
 
     if (
       type?.type === 'reference' &&
-      type.name === 'Map' &&
+      (type.name === 'Map' || type.name === 'Record') &&
       type.typeArguments
     ) {
       keyType = this.parseType(type.typeArguments[0])
