@@ -101,7 +101,7 @@ export function AccessorAccordion({
         >
           <div className="overflow-hidden">
             <div className="border-t border-fd-border p-4">
-              <p className="text-fd-muted-foreground">{description}</p>
+              <div className="text-fd-muted-foreground">{description}</div>
             </div>
           </div>
         </div>
