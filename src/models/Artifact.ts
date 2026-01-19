@@ -87,6 +87,8 @@ export class Artifact {
   public readonly setName: string | undefined
   /**
    * Artifact set description (index:1 = 1pc, 2 = 2pc , 4 = 4pc)
+   * @key Number of pieces required (1, 2, or 4)
+   * @value Set bonus description
    */
   public readonly setDescriptions: Record<number, string | undefined> = {}
   /**

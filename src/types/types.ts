@@ -124,6 +124,8 @@ export interface ClientOption {
    *    'https://gi.yatta.top/assets/UI/namecard': [/^UI_NameCard/],
    *  },
    * ```
+   * @key Base URL
+   * @value Array of regex patterns to match asset names
    */
   imageBaseURLByRegex: Record<string, RegExp[]>
   /**
@@ -132,6 +134,8 @@ export interface ClientOption {
    * ```ts
    * {}
    * ```
+   * @key Base URL
+   * @value Array of regex patterns to match asset names
    */
   audioBaseURLByRegex: Record<string, RegExp[]>
   /**

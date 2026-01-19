@@ -178,6 +178,8 @@ export class Character {
 
   /**
    * Map of skill ID and proud ID
+   * @key Skill ID
+   * @value Proud ID
    */
   public get proudMap(): Map<number, number> {
     return this.info.proudMap

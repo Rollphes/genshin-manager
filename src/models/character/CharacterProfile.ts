@@ -44,6 +44,8 @@ export class CharacterProfile {
   public readonly assocType: FetterInfoExcelConfigDataType['avatarAssocType']
   /**
    * Character Voice
+   * @key Language code
+   * @value Voice actor name
    */
   public readonly cv: Record<CVType, string>
 
