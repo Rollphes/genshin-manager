@@ -3,6 +3,7 @@ import { AssetNotFoundError } from '@/errors/assets/AssetNotFoundError'
 import { StatProperty } from '@/models/StatProperty'
 import { skillLevelSchema } from '@/schemas/commonSchemas'
 import { PropType } from '@/types/generated/ProudSkillExcelConfigData'
+import { CostItem } from '@/types/types'
 import { toFightPropType } from '@/utils/typeGuards/toFightPropType'
 import { validate } from '@/utils/validation/validate'
 
@@ -21,16 +22,7 @@ export class CharacterSkillAscension {
   /**
    * Skill ascension costItems
    */
-  public readonly costItems: {
-    /**
-     * Cost item ID (materialID)
-     */
-    id: number
-    /**
-     * Cost item count
-     */
-    count: number
-  }[]
+  public readonly costItems: CostItem[]
   /**
    * Skill ascension costMora
    */

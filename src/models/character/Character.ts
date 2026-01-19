@@ -14,8 +14,43 @@ import { CharacterVoice } from '@/models/character/CharacterVoice'
 import { StatProperty } from '@/models/StatProperty'
 import { BodyType } from '@/types/generated/AvatarExcelConfigData'
 import { WeaponType } from '@/types/generated/WeaponExcelConfigData'
-import { CharacterUpgradePlan, CVType, Element } from '@/types/types'
+import {
+  AscensionMaterial,
+  CharacterUpgradePlan,
+  CVType,
+  Element,
+} from '@/types/types'
 import { calculatePromoteLevel } from '@/utils/parsers/calculatePromoteLevel'
+
+/**
+ * Character summary information
+ */
+export interface CharacterSummary {
+  /**
+   * Character name
+   */
+  name: string
+  /**
+   * Character element
+   */
+  element: Element | undefined
+  /**
+   * Character weapon type
+   */
+  weapon: WeaponType
+  /**
+   * Character rarity (1-5 stars)
+   */
+  rarity: number
+  /**
+   * Character level (e.g. "90/90")
+   */
+  level: string
+  /**
+   * Constellation level (e.g. "C6")
+   */
+  constellation: string
+}
 
 /**
  * Unified character class providing comprehensive access to all character data
@@ -251,14 +286,7 @@ export class Character {
    * Get character summary information
    * @returns character summary object
    */
-  public get summary(): {
-    name: string
-    element: Element | undefined
-    weapon: WeaponType
-    rarity: number
-    level: string
-    constellation: string
-  } {
+  public get summary(): CharacterSummary {
     return {
       name: this.name,
       element: this.element,
@@ -273,7 +301,7 @@ export class Character {
    * Get required materials for next ascension
    * @returns array of materials needed for next ascension
    */
-  public get nextAscensionMaterials(): { id: number; count: number }[] {
+  public get nextAscensionMaterials(): AscensionMaterial[] {
     if (!this.isCanAscend) return []
     const nextAscension = new CharacterAscension(this.id, this.promoteLevel + 1)
     return nextAscension.costItems
@@ -283,7 +311,7 @@ export class Character {
    * Get total materials needed from current to max level
    * @returns array of total materials needed
    */
-  public get totalAscensionMaterials(): { id: number; count: number }[] {
+  public get totalAscensionMaterials(): AscensionMaterial[] {
     const maxPromoteLevel = CharacterAscension.getMaxPromoteLevelByCharacterId(
       this.id,
     )

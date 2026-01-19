@@ -5,6 +5,7 @@ import { WeaponAscension } from '@/models/weapon/WeaponAscension'
 import { WeaponInfo } from '@/models/weapon/WeaponInfo'
 import { WeaponRefinement } from '@/models/weapon/WeaponRefinement'
 import { WeaponType } from '@/types/generated/WeaponExcelConfigData'
+import { AscensionMaterial } from '@/types/types'
 import { calculatePromoteLevel } from '@/utils/parsers/calculatePromoteLevel'
 
 /**
@@ -150,7 +151,7 @@ export class Weapon {
   /**
    * Weapon ascension materials
    */
-  public get ascensionMaterials(): { id: number; count: number }[] {
+  public get ascensionMaterials(): AscensionMaterial[] {
     return this.ascension.costItems
   }
 
@@ -196,7 +197,7 @@ export class Weapon {
    * Get required materials for next ascension
    * @returns array of materials needed for next ascension
    */
-  public get nextAscensionMaterials(): { id: number; count: number }[] {
+  public get nextAscensionMaterials(): AscensionMaterial[] {
     if (!this.isCanAscend) return []
     const nextAscension = new WeaponAscension(this.id, this.promoteLevel + 1)
     return nextAscension.costItems
@@ -206,7 +207,7 @@ export class Weapon {
    * Get total materials needed from current to max level
    * @returns array of total materials needed
    */
-  public get totalAscensionMaterials(): { id: number; count: number }[] {
+  public get totalAscensionMaterials(): AscensionMaterial[] {
     const maxPromoteLevel = WeaponAscension.getMaxPromoteLevelByWeaponId(
       this.id,
     )

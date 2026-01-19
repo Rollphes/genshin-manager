@@ -3,6 +3,7 @@ import { z } from 'zod'
 import { Client } from '@/client/Client'
 import { AssetNotFoundError } from '@/errors/assets/AssetNotFoundError'
 import { StatProperty } from '@/models/StatProperty'
+import { CostItem } from '@/types/types'
 import { validate } from '@/utils/validation/validate'
 
 /**
@@ -20,16 +21,7 @@ export class CharacterAscension {
   /**
    * Character ascension costItems
    */
-  public readonly costItems: {
-    /**
-     * Cost item ID(material ID)
-     */
-    id: number
-    /**
-     * Cost item count
-     */
-    count: number
-  }[]
+  public readonly costItems: CostItem[]
   /**
    * Character ascension costMora
    */

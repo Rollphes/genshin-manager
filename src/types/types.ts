@@ -42,6 +42,52 @@ export interface EncryptedKeyMasterFile {
 }
 
 /**
+ * Cost item for ascension
+ */
+export interface CostItem {
+  /**
+   * Material ID
+   */
+  id: number
+  /**
+   * Item count
+   */
+  count: number
+}
+
+/**
+ * Ascension material with ID and count
+ */
+export interface AscensionMaterial {
+  /**
+   * Material ID
+   */
+  id: number
+  /**
+   * Material count
+   */
+  count: number
+}
+
+/**
+ * Skill level upgrade plan
+ */
+export interface SkillLevelPlan {
+  /**
+   * Normal attack level: [current, target] or undefined if no change
+   */
+  normalAttack?: [number, number]
+  /**
+   * Elemental skill level: [current, target] or undefined if no change
+   */
+  elementalSkill?: [number, number]
+  /**
+   * Elemental burst level: [current, target] or undefined if no change
+   */
+  elementalBurst?: [number, number]
+}
+
+/**
  * Character upgrade plan interface
  */
 export interface CharacterUpgradePlan {

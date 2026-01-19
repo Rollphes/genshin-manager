@@ -14,7 +14,7 @@ import {
 import { Artifact, ArtifactAffixAppendProp } from '@/models/Artifact'
 import { AudioAssets } from '@/models/assets/AudioAssets'
 import { ImageAssets } from '@/models/assets/ImageAssets'
-import { Character } from '@/models/character/Character'
+import { Character, CharacterSummary } from '@/models/character/Character'
 import { CharacterAscension } from '@/models/character/CharacterAscension'
 import { CharacterBaseStats } from '@/models/character/CharacterBaseStats'
 import { CharacterConstellation } from '@/models/character/CharacterConstellation'
@@ -56,11 +56,14 @@ import {
 } from '@/types/generated/ReliquaryExcelConfigData'
 import { WeaponType } from '@/types/generated/WeaponExcelConfigData'
 import {
+  AscensionMaterial,
   CharacterUpgradePlan,
   ClientOption,
+  CostItem,
   CVType,
   Element,
   FightPropType,
+  SkillLevelPlan,
 } from '@/types/types'
 import { LogLevel } from '@/utils/logger/Logger'
 import { convertToUTC } from '@/utils/parsers/convertToUTC'
@@ -82,6 +85,7 @@ export {
   CharacterSkillAscension,
   CharacterStatusManager,
   CharacterStory,
+  CharacterSummary,
   CharacterVoice,
   Client,
   DailyFarming,
@@ -107,11 +111,13 @@ export { convertToUTC }
 export {
   ArtifactAffixAppendProp,
   ArtifactType,
+  AscensionMaterial,
   BodyType,
   CharacterUpgradePlan,
   ClientEventMap,
   ClientEvents,
   ClientOption,
+  CostItem,
   CVType,
   DomainData,
   Element,
@@ -127,6 +133,7 @@ export {
   NoticeManagerEvents,
   ProfilePictureType,
   QualityType,
+  SkillLevelPlan,
   WeaponType,
 }
 // Export generated types

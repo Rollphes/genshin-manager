@@ -2,6 +2,7 @@ import { Client } from '@/client/Client'
 import { AssetNotFoundError } from '@/errors/assets/AssetNotFoundError'
 import { StatProperty } from '@/models/StatProperty'
 import { createPromoteLevelSchema } from '@/schemas/createPromoteLevelSchema'
+import { CostItem } from '@/types/types'
 import { validate } from '@/utils/validation/validate'
 
 /**
@@ -19,16 +20,7 @@ export class WeaponAscension {
   /**
    * Weapon ascension costItems
    */
-  public readonly costItems: {
-    /**
-     * Cost item ID(materialIDd)
-     */
-    id: number
-    /**
-     * Cost item count
-     */
-    count: number
-  }[]
+  public readonly costItems: CostItem[]
   /**
    * Weapon ascension costMora
    */
