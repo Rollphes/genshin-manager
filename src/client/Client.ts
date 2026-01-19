@@ -114,6 +114,10 @@ export class Client extends AssetCacheManager<ClientEventMap, ClientEvents> {
       ? path.resolve(__dirname, '..', 'cache')
       : path.resolve(__dirname, '..', '..', 'cache'),
   }
+
+  /**
+   * Client options
+   */
   public readonly option: ClientOption
 
   /**
