@@ -22,10 +22,15 @@ export function generateClassMdx(
 
   // Frontmatter
   const description = item.description || `${item.name} class`
+  const badgeParts: string[] = []
+  if (item.isAbstract) badgeParts.push('abstract')
+  if (item.isStatic) badgeParts.push('static')
+  badgeParts.push('class')
+  const badge = badgeParts.join(' ')
   sections.push(`---
 title: "${item.name}"
 description: ${escapeMdx(description.split('\n')[0])}
-badge: class
+badge: ${badge}
 ---
 
 import { TypeLink, MethodAccordion, TypeTableByBadge, Md } from '@/components/api'

@@ -179,6 +179,8 @@ export class TypeDocParser {
       domain: '',
       kind: 'class',
       description: this.extractDescription(reflection),
+      isAbstract: reflection.flags?.isAbstract ?? false,
+      isStatic: reflection.flags?.isStatic ?? false,
       extends: this.parseExtends(reflection),
       implements: this.parseImplements(reflection),
       typeParameters: this.parseTypeParameters(reflection),

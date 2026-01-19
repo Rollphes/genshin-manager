@@ -39,6 +39,8 @@ export interface ParsedClass {
   domain: string
   kind: 'class' | 'interface' | 'type' | 'enum' | 'function'
   description: string
+  isAbstract?: boolean
+  isStatic?: boolean
   extends?: TypeReference
   implements?: TypeReference[]
   typeParameters?: TypeParameter[]
