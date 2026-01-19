@@ -51,7 +51,7 @@ export default function HomePage(): ReactNode {
             Get Started
           </Link>
           <Link
-            href="/docs/api"
+            href="/docs/api/client/client"
             className="inline-flex items-center gap-2 border border-fd-border px-4 py-2 rounded-md font-medium text-sm hover:bg-fd-accent transition-colors"
           >
             API Reference
@@ -151,7 +151,7 @@ export default function HomePage(): ReactNode {
             description="Access weapon information and upgrade materials"
           />
           <Card
-            href="/docs/api"
+            href="/docs/api/client/client"
             title="API Reference"
             description="Complete API documentation for all classes and types"
           />
