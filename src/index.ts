@@ -44,26 +44,23 @@ import { Weapon } from '@/models/weapon/Weapon'
 import { WeaponAscension } from '@/models/weapon/WeaponAscension'
 import { WeaponInfo } from '@/models/weapon/WeaponInfo'
 import { WeaponRefinement } from '@/models/weapon/WeaponRefinement'
-import { BodyType, QualityType } from '@/types/generated/AvatarExcelConfigData'
 import {
-  ItemType,
-  MaterialType,
-} from '@/types/generated/MaterialExcelConfigData'
-import type { Type as ProfilePictureType } from '@/types/generated/ProfilePictureExcelConfigData'
-import {
-  EquipType as ArtifactType,
-  EquipType,
-} from '@/types/generated/ReliquaryExcelConfigData'
-import { WeaponType } from '@/types/generated/WeaponExcelConfigData'
-import {
+  ArtifactType,
   AscensionMaterial,
+  BodyType,
   CharacterUpgradePlan,
   ClientOption,
   CostItem,
   CVType,
   Element,
+  EquipType,
   FightPropType,
+  ItemType,
+  MaterialType,
+  ProfilePictureType,
+  QualityType,
   SkillLevelPlan,
+  WeaponType,
 } from '@/types/types'
 import { LogLevel } from '@/utils/logger/Logger'
 import { convertToUTC } from '@/utils/parsers/convertToUTC'
@@ -137,10 +134,7 @@ export {
   WeaponType,
 }
 // Export generated types
-export type {
-  DecodedType,
-  MasterFileMap,
-} from '@/types/generated/MasterFileMap'
+export type { DecodedType, MasterFileMap } from '@/types/types'
 
 // Export EnkaNetwork types
 export * from '@/types/enkaNetwork/EnkaAccountTypes'

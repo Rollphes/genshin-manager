@@ -1,6 +1,277 @@
-import { MasterFileMap } from '@/types/generated/MasterFileMap'
+import type {
+  DecodedType as _DecodedType,
+  MasterFileMap as _MasterFileMap,
+} from '@/types/generated/MasterFileMap'
 import { JsonObject } from '@/types/json'
 import { LogLevel } from '@/utils/logger/Logger'
+
+// ============================================================================
+// Generated enum re-definitions with JSDoc
+// ============================================================================
+
+/**
+ * Character body type
+ */
+export enum BodyType {
+  /** Boy body type (e.g., Bennett, Razor) */
+  BODY_BOY = 'BODY_BOY',
+  /** Girl body type (e.g., Barbara, Fischl) */
+  BODY_GIRL = 'BODY_GIRL',
+  /** Lady body type (e.g., Jean, Ningguang) */
+  BODY_LADY = 'BODY_LADY',
+  /** Loli body type (e.g., Klee, Qiqi) */
+  BODY_LOLI = 'BODY_LOLI',
+  /** Male body type (e.g., Diluc, Zhongli) */
+  BODY_MALE = 'BODY_MALE',
+}
+
+/**
+ * Character quality/rarity type
+ */
+export enum QualityType {
+  /** 5-star rarity (Orange) */
+  QUALITY_ORANGE = 'QUALITY_ORANGE',
+  /** Special 5-star rarity (Orange SP, e.g., Aloy) */
+  QUALITY_ORANGE_SP = 'QUALITY_ORANGE_SP',
+  /** 4-star rarity (Purple) */
+  QUALITY_PURPLE = 'QUALITY_PURPLE',
+}
+
+/**
+ * Weapon type
+ */
+export enum WeaponType {
+  /** Bow */
+  WEAPON_BOW = 'WEAPON_BOW',
+  /** Catalyst */
+  WEAPON_CATALYST = 'WEAPON_CATALYST',
+  /** Claymore */
+  WEAPON_CLAYMORE = 'WEAPON_CLAYMORE',
+  /** Polearm */
+  WEAPON_POLE = 'WEAPON_POLE',
+  /** Sword */
+  WEAPON_SWORD_ONE_HAND = 'WEAPON_SWORD_ONE_HAND',
+}
+
+/**
+ * Item type
+ */
+export enum ItemType {
+  /** Material item */
+  ITEM_MATERIAL = 'ITEM_MATERIAL',
+  /** Virtual item */
+  ITEM_VIRTUAL = 'ITEM_VIRTUAL',
+}
+
+/**
+ * Artifact equipment slot type
+ */
+export enum EquipType {
+  /** Flower of Life */
+  EQUIP_BRACER = 'EQUIP_BRACER',
+  /** Plume of Death */
+  EQUIP_DRESS = 'EQUIP_DRESS',
+  /** Sands of Eon */
+  EQUIP_NECKLACE = 'EQUIP_NECKLACE',
+  /** Goblet of Eonothem */
+  EQUIP_RING = 'EQUIP_RING',
+  /** Circlet of Logos */
+  EQUIP_SHOES = 'EQUIP_SHOES',
+}
+
+/**
+ * Artifact type (alias for EquipType)
+ */
+export const ArtifactType = EquipType
+/** Artifact type (alias for EquipType) */
+export type ArtifactType = EquipType
+
+/**
+ * Profile picture unlock type
+ */
+export enum ProfilePictureType {
+  /** Unlocked by obtaining avatar */
+  PROFILE_PICTURE_UNLOCK_BY_AVATAR = 'PROFILE_PICTURE_UNLOCK_BY_AVATAR',
+  /** Unlocked by obtaining costume */
+  PROFILE_PICTURE_UNLOCK_BY_COSTUME = 'PROFILE_PICTURE_UNLOCK_BY_COSTUME',
+  /** Unlocked by default */
+  PROFILE_PICTURE_UNLOCK_BY_DEFAULT = 'PROFILE_PICTURE_UNLOCK_BY_DEFAULT',
+  /** Unlocked by item */
+  PROFILE_PICTURE_UNLOCK_BY_ITEM = 'PROFILE_PICTURE_UNLOCK_BY_ITEM',
+  /** Unlocked by completing parent quest */
+  PROFILE_PICTURE_UNLOCK_BY_PARENT_QUEST = 'PROFILE_PICTURE_UNLOCK_BY_PARENT_QUEST',
+}
+
+/**
+ * Material type
+ */
+export enum MaterialType {
+  /** Activity gear material */
+  MATERIAL_ACTIVITY_GEAR = 'MATERIAL_ACTIVITY_GEAR',
+  /** Activity jigsaw material */
+  MATERIAL_ACTIVITY_JIGSAW = 'MATERIAL_ACTIVITY_JIGSAW',
+  /** Activity robot material */
+  MATERIAL_ACTIVITY_ROBOT = 'MATERIAL_ACTIVITY_ROBOT',
+  /** Adsorbate material */
+  MATERIAL_ADSORBATE = 'MATERIAL_ADSORBATE',
+  /** Aranara material */
+  MATERIAL_ARANARA = 'MATERIAL_ARANARA',
+  /** Avatar material */
+  MATERIAL_AVATAR = 'MATERIAL_AVATAR',
+  /** Avatar ascension material */
+  MATERIAL_AVATAR_MATERIAL = 'MATERIAL_AVATAR_MATERIAL',
+  /** Avatar talent material */
+  MATERIAL_AVATAR_TALENT_MATERIAL = 'MATERIAL_AVATAR_TALENT_MATERIAL',
+  /** Avatar trace material */
+  MATERIAL_AVATAR_TRACE = 'MATERIAL_AVATAR_TRACE',
+  /** Beyond costume selectable chest */
+  MATERIAL_BEYOND_COSTUME_SELECTABLE_CHEST = 'MATERIAL_BEYOND_COSTUME_SELECTABLE_CHEST',
+  /** BGM material */
+  MATERIAL_BGM = 'MATERIAL_BGM',
+  /** Bronze carriage box */
+  MATERIAL_BRONZE_CARRIAGE_BOX = 'MATERIAL_BRONZE_CARRIAGE_BOX',
+  /** Channeller slab buff */
+  MATERIAL_CHANNELLER_SLAB_BUFF = 'MATERIAL_CHANNELLER_SLAB_BUFF',
+  /** Chest */
+  MATERIAL_CHEST = 'MATERIAL_CHEST',
+  /** Chest batch use */
+  MATERIAL_CHEST_BATCH_USE = 'MATERIAL_CHEST_BATCH_USE',
+  /** Chest batch use with group */
+  MATERIAL_CHEST_BATCH_USE_WITH_GROUP = 'MATERIAL_CHEST_BATCH_USE_WITH_GROUP',
+  /** Clue shop handbook */
+  MATERIAL_CLUE_SHOP_HANDBOOK = 'MATERIAL_CLUE_SHOP_HANDBOOK',
+  /** Consumable */
+  MATERIAL_CONSUME = 'MATERIAL_CONSUME',
+  /** Consumable batch use */
+  MATERIAL_CONSUME_BATCH_USE = 'MATERIAL_CONSUME_BATCH_USE',
+  /** Costume */
+  MATERIAL_COSTUME = 'MATERIAL_COSTUME',
+  /** Cricket */
+  MATERIAL_CRICKET = 'MATERIAL_CRICKET',
+  /** Deshret manual */
+  MATERIAL_DESHRET_MANUAL = 'MATERIAL_DESHRET_MANUAL',
+  /** Elemental crystal */
+  MATERIAL_ELEM_CRYSTAL = 'MATERIAL_ELEM_CRYSTAL',
+  /** Exchange material */
+  MATERIAL_EXCHANGE = 'MATERIAL_EXCHANGE',
+  /** EXP fruit */
+  MATERIAL_EXP_FRUIT = 'MATERIAL_EXP_FRUIT',
+  /** Fake absorbate */
+  MATERIAL_FAKE_ABSORBATE = 'MATERIAL_FAKE_ABSORBATE',
+  /** Fire master avatar talent item */
+  MATERIAL_FIRE_MASTER_AVATAR_TALENT_ITEM = 'MATERIAL_FIRE_MASTER_AVATAR_TALENT_ITEM',
+  /** Fireworks */
+  MATERIAL_FIREWORKS = 'MATERIAL_FIREWORKS',
+  /** Fish bait */
+  MATERIAL_FISH_BAIT = 'MATERIAL_FISH_BAIT',
+  /** Fish rod */
+  MATERIAL_FISH_ROD = 'MATERIAL_FISH_ROD',
+  /** Glider */
+  MATERIAL_FLYCLOAK = 'MATERIAL_FLYCLOAK',
+  /** Food */
+  MATERIAL_FOOD = 'MATERIAL_FOOD',
+  /** Furniture formula */
+  MATERIAL_FURNITURE_FORMULA = 'MATERIAL_FURNITURE_FORMULA',
+  /** Furniture suite formula */
+  MATERIAL_FURNITURE_SUITE_FORMULA = 'MATERIAL_FURNITURE_SUITE_FORMULA',
+  /** Genius Invokation TCG card */
+  MATERIAL_GCG_CARD = 'MATERIAL_GCG_CARD',
+  /** Genius Invokation TCG card back */
+  MATERIAL_GCG_CARD_BACK = 'MATERIAL_GCG_CARD_BACK',
+  /** Genius Invokation TCG card face */
+  MATERIAL_GCG_CARD_FACE = 'MATERIAL_GCG_CARD_FACE',
+  /** Genius Invokation TCG exchange item */
+  MATERIAL_GCG_EXCHANGE_ITEM = 'MATERIAL_GCG_EXCHANGE_ITEM',
+  /** Genius Invokation TCG field */
+  MATERIAL_GCG_FIELD = 'MATERIAL_GCG_FIELD',
+  /** Great festival v2 invite */
+  MATERIAL_GREATEFESTIVALV2_INVITE = 'MATERIAL_GREATEFESTIVALV2_INVITE',
+  /** Holiday memory book */
+  MATERIAL_HOLIDAY_MEMORY_BOOK = 'MATERIAL_HOLIDAY_MEMORY_BOOK',
+  /** Holiday resort invite */
+  MATERIAL_HOLIDAY_RESORT_INVITE = 'MATERIAL_HOLIDAY_RESORT_INVITE',
+  /** Serenitea Pot seed */
+  MATERIAL_HOME_SEED = 'MATERIAL_HOME_SEED',
+  /** Lantern Rite v5 Paimon greeting card */
+  MATERIAL_LANV5_PAIMON_GREETING_CARD = 'MATERIAL_LANV5_PAIMON_GREETING_CARD',
+  /** Magic story book */
+  MATERIAL_MAGIC_STORY_BOOK = 'MATERIAL_MAGIC_STORY_BOOK',
+  /** Mikawa flower invite */
+  MATERIAL_MIKAWA_FLOWER_INVITE = 'MATERIAL_MIKAWA_FLOWER_INVITE',
+  /** Moon night card */
+  MATERIAL_MOON_NIGHT_CARD = 'MATERIAL_MOON_NIGHT_CARD',
+  /** Music game book theme */
+  MATERIAL_MUSIC_GAME_BOOK_THEME = 'MATERIAL_MUSIC_GAME_BOOK_THEME',
+  /** Namecard */
+  MATERIAL_NAMECARD = 'MATERIAL_NAMECARD',
+  /** Natlan race album */
+  MATERIAL_NATLAN_RACE_ALBUM = 'MATERIAL_NATLAN_RACE_ALBUM',
+  /** Natlan race envelope */
+  MATERIAL_NATLAN_RACE_ENVELOPE = 'MATERIAL_NATLAN_RACE_ENVELOPE',
+  /** Natlan relation A */
+  MATERIAL_NATLAN_RELATION_A = 'MATERIAL_NATLAN_RELATION_A',
+  /** Natlan relation B */
+  MATERIAL_NATLAN_RELATION_B = 'MATERIAL_NATLAN_RELATION_B',
+  /** None */
+  MATERIAL_NONE = 'MATERIAL_NONE',
+  /** Notice add HP */
+  MATERIAL_NOTICE_ADD_HP = 'MATERIAL_NOTICE_ADD_HP',
+  /** Photo display book */
+  MATERIAL_PHOTO_DISPLAY_BOOK = 'MATERIAL_PHOTO_DISPLAY_BOOK',
+  /** Photograph pose */
+  MATERIAL_PHOTOGRAPH_POSE = 'MATERIAL_PHOTOGRAPH_POSE',
+  /** Photo v5 handbook */
+  MATERIAL_PHOTOV5_HAND_BOOK = 'MATERIAL_PHOTOV5_HAND_BOOK',
+  /** Photo v6 handbook */
+  MATERIAL_PHOTOV6_HAND_BOOK = 'MATERIAL_PHOTOV6_HAND_BOOK',
+  /** Profile frame */
+  MATERIAL_PROFILE_FRAME = 'MATERIAL_PROFILE_FRAME',
+  /** Profile picture */
+  MATERIAL_PROFILE_PICTURE = 'MATERIAL_PROFILE_PICTURE',
+  /** Quest item */
+  MATERIAL_QUEST = 'MATERIAL_QUEST',
+  /** Quest album */
+  MATERIAL_QUEST_ALBUM = 'MATERIAL_QUEST_ALBUM',
+  /** Quest event book */
+  MATERIAL_QUEST_EVENT_BOOK = 'MATERIAL_QUEST_EVENT_BOOK',
+  /** Rainbow prince handbook */
+  MATERIAL_RAINBOW_PRINCE_HAND_BOOK = 'MATERIAL_RAINBOW_PRINCE_HAND_BOOK',
+  /** Rare growth material */
+  MATERIAL_RARE_GROWTH_MATERIAL = 'MATERIAL_RARE_GROWTH_MATERIAL',
+  /** Artifact enhancement material */
+  MATERIAL_RELIQUARY_MATERIAL = 'MATERIAL_RELIQUARY_MATERIAL',
+  /** Remus music box */
+  MATERIAL_REMUS_MUSIC_BOX = 'MATERIAL_REMUS_MUSIC_BOX',
+  /** Rename item */
+  MATERIAL_RENAME_ITEM = 'MATERIAL_RENAME_ITEM',
+  /** Robot gift */
+  MATERIAL_ROBO_GIFT = 'MATERIAL_ROBO_GIFT',
+  /** Sea lamp */
+  MATERIAL_SEA_LAMP = 'MATERIAL_SEA_LAMP',
+  /** Selectable chest */
+  MATERIAL_SELECTABLE_CHEST = 'MATERIAL_SELECTABLE_CHEST',
+  /** Spice food */
+  MATERIAL_SPICE_FOOD = 'MATERIAL_SPICE_FOOD',
+  /** Talent book */
+  MATERIAL_TALENT = 'MATERIAL_TALENT',
+  /** Weapon enhancement ore */
+  MATERIAL_WEAPON_EXP_STONE = 'MATERIAL_WEAPON_EXP_STONE',
+  /** Weapon skin */
+  MATERIAL_WEAPON_SKIN = 'MATERIAL_WEAPON_SKIN',
+  /** Widget */
+  MATERIAL_WIDGET = 'MATERIAL_WIDGET',
+  /** Wood */
+  MATERIAL_WOOD = 'MATERIAL_WOOD',
+}
+
+// ============================================================================
+// Type aliases for generic types (cannot be re-defined as enum)
+// ============================================================================
+
+/** Master file map type */
+export type MasterFileMap = _MasterFileMap
+/** Decoded master file type */
+export type DecodedType<T extends keyof MasterFileMap> = _DecodedType<T>
 
 /**
  * Supported language codes (ISO 639-1 with region)
