@@ -1,4 +1,4 @@
-import type { ParsedClass, TypeLinkMap } from '../types'
+import type { GeneratorConfig, ParsedItem } from '../types'
 import { escapeMdx } from '../utils'
 import { renderTypeSignature } from './type-renderer'
 
@@ -19,10 +19,11 @@ function getCategoryBadge(category: string): string {
  * Generate type alias MDX content
  */
 export function generateTypeMdx(
-  item: ParsedClass,
-  linkMap: TypeLinkMap,
+  item: ParsedItem,
+  config: GeneratorConfig,
   category = 'types',
 ): string {
+  const linkMap = config.typeLinkMap
   const sections: string[] = []
 
   // Frontmatter with badge field for sidebar TypeBadge

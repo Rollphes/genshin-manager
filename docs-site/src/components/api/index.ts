@@ -1,4 +1,7 @@
 export { AccessorAccordion } from '@/components/api/AccessorAccordion'
+export { CodeAccordion } from '@/components/api/CodeAccordion'
+export { EventAccordion } from '@/components/api/EventAccordion'
+export { InheritanceInfo } from '@/components/api/InheritanceInfo'
 export { Md } from '@/components/api/Md'
 export { MethodAccordion } from '@/components/api/MethodAccordion'
 export { TypeBadge } from '@/components/api/TypeBadge'

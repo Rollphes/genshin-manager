@@ -3,8 +3,7 @@
 import { DynamicCodeBlock } from 'fumadocs-ui/components/dynamic-codeblock'
 import { TypeTable } from 'fumadocs-ui/components/type-table'
 import { ChevronRight } from 'lucide-react'
-import { Children, type ReactNode } from 'react'
-import { useState } from 'react'
+import { Children, type ReactNode, useState } from 'react'
 
 import { TypeBadge } from '@/components/api/TypeBadge'
 import { cn } from '@/lib/cn'
@@ -26,6 +25,7 @@ interface Parameter {
   typeJsx: ReactNode
   description?: ReactNode
   optional?: boolean
+  rest?: boolean
   defaultValue?: string
 }
 
@@ -158,6 +158,7 @@ interface MethodAccordionProps {
   isProtected?: boolean
   isDeprecated?: boolean
   defaultOpen?: boolean
+  id?: string // Optional ID for deep linking
 }
 
 export function MethodAccordion({
@@ -173,8 +174,10 @@ export function MethodAccordion({
   isProtected = false,
   isDeprecated = false,
   defaultOpen = false,
+  id,
 }: MethodAccordionProps): React.ReactElement {
   const [isOpen, setIsOpen] = useState(defaultOpen)
+
   const badges = buildBadges({
     isAsync,
     isStatic,
@@ -183,8 +186,14 @@ export function MethodAccordion({
     isDeprecated,
   })
 
+  // Generate anchor ID from method name (handle constructor "new ClassName")
+  const anchorId = id ?? name.replace(/\s+/g, '-').toLowerCase()
+
   return (
-    <div className="border border-fd-border rounded-lg mb-2">
+    <div
+      id={anchorId}
+      className="border border-fd-border rounded-lg mb-2 scroll-mt-20"
+    >
       <button
         type="button"
         data-state={isOpen ? 'open' : 'closed'}
@@ -207,12 +216,13 @@ export function MethodAccordion({
               ))}
             </span>
           )}
-          <span className="text-sm">
+          <span className="text-sm overflow-x-auto whitespace-nowrap scrollbar-none">
             <MethodName name={name} />(
             {parameters.map((p, i) => (
               <span key={p.name}>
                 {i > 0 && ', '}
                 <span className="text-[#953800] dark:text-[#ffa657]">
+                  {p.rest ? '...' : ''}
                   {p.name}
                 </span>
                 {p.optional ? '?' : ''}: {renderTypeJsx(p.typeJsx)}
@@ -223,15 +233,22 @@ export function MethodAccordion({
         </div>
       </button>
 
-      {isOpen && (
-        <AccordionContent
-          description={description}
-          parameters={parameters}
-          returnType={returnType}
-          returns={returns}
-          example={example}
-        />
-      )}
+      <div
+        className={cn(
+          'grid transition-all duration-200 ease-in-out',
+          isOpen ? 'grid-rows-[1fr] opacity-100' : 'grid-rows-[0fr] opacity-0',
+        )}
+      >
+        <div className="overflow-hidden">
+          <AccordionContent
+            description={description}
+            parameters={parameters}
+            returnType={returnType}
+            returns={returns}
+            example={example}
+          />
+        </div>
+      </div>
     </div>
   )
 }

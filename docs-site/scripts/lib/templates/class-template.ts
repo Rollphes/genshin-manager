@@ -1,49 +1,109 @@
-import type { ParsedAccessor, ParsedClass, TypeLinkMap } from '../types'
+import type {
+  GeneratorConfig,
+  ParsedEnumMember,
+  ParsedItem,
+  TypeLinkMap,
+} from '../types'
 import { escapeMdx } from '../utils'
-import { renderTypeSignature } from './type-renderer'
+import {
+  renderAccessor,
+  renderMethod,
+  renderPropertiesTable,
+} from './shared-renderers'
+import { renderTypeParameters, renderTypeSignature } from './type-renderer'
 
 /**
- * Guide links mapping
+ * Generate frontmatter and imports for class
  */
-const GUIDE_LINKS: Record<string, string> = {
-  Client: '/docs/guide/getting-started',
-  Character: '/docs/guide/characters',
-  Weapon: '/docs/guide/weapons',
+function generateFrontmatter(item: ParsedItem): string {
+  const description = item.description || `${item.name} class`
+  // Badge must be one of: class, interface, type, function, enum
+  // Abstract/static modifiers are shown via InheritanceInfo or badges in UI
+  const badge = 'class'
+
+  return `---
+title: "${item.name}"
+description: ${escapeMdx(description.split('\n')[0])}
+badge: ${badge}
+---
+
+import { TypeLink, MethodAccordion, AccessorAccordion, EventAccordion, CodeAccordion, TypeTableByBadge, Md, InheritanceInfo } from '@/components/api'
+import { Callout } from 'fumadocs-ui/components/callout'
+`
+}
+
+/**
+ * Render inheritance info component if applicable
+ */
+function renderInheritanceSection(
+  item: ParsedItem,
+  linkMap: TypeLinkMap,
+  hideExtends?: boolean,
+  hideImplements?: boolean,
+): string | null {
+  const hasTypeParams =
+    item.typeParameters !== undefined && item.typeParameters.length > 0
+  const hasExtends = !hideExtends && item.extends !== undefined
+  const hasImplements =
+    !hideImplements &&
+    item.implements !== undefined &&
+    item.implements.length > 0
+
+  if (!hasTypeParams && !hasExtends && !hasImplements) return null
+
+  const typeParamsStr =
+    item.typeParameters && item.typeParameters.length > 0
+      ? renderTypeParameters(item.typeParameters, linkMap)
+      : 'undefined'
+  const extendsStr =
+    hasExtends && item.extends
+      ? renderTypeSignature(item.extends, linkMap)
+      : 'undefined'
+  const implementsStr =
+    hasImplements && item.implements && item.implements.length > 0
+      ? `[${item.implements.map((i) => renderTypeSignature(i, linkMap)).join(', ')}]`
+      : 'undefined'
+
+  return `
+<InheritanceInfo
+  typeParams={${typeParamsStr}}
+  extendsType={${extendsStr}}
+  implementsTypes={${implementsStr}}
+/>
+`
 }
 
 /**
  * Generate class MDX content
  */
 export function generateClassMdx(
-  item: ParsedClass,
-  linkMap: TypeLinkMap,
+  item: ParsedItem,
+  config: GeneratorConfig,
 ): string {
+  const {
+    typeLinkMap: linkMap,
+    guideLinks,
+    hideExtends,
+    hideImplements,
+    eventMappings,
+    allItems,
+  } = config
   const sections: string[] = []
 
   // Frontmatter
-  const description = item.description || `${item.name} class`
-  const badgeParts: string[] = []
-  if (item.isAbstract) badgeParts.push('abstract')
-  if (item.isStatic) badgeParts.push('static')
-  badgeParts.push('class')
-  const badge = badgeParts.join(' ')
-  sections.push(`---
-title: "${item.name}"
-description: ${escapeMdx(description.split('\n')[0])}
-badge: ${badge}
----
+  sections.push(generateFrontmatter(item))
 
-import { TypeLink, MethodAccordion, AccessorAccordion, TypeTableByBadge, Md } from '@/components/api'
-import { Callout } from 'fumadocs-ui/components/callout'
-`)
-
-  if (item.extends) {
-    const extendsStr = renderTypeSignature(item.extends, linkMap)
-    sections.push(`\nextends ${extendsStr}\n`)
-  }
+  // Inheritance info
+  const inheritanceSection = renderInheritanceSection(
+    item,
+    linkMap,
+    hideExtends,
+    hideImplements,
+  )
+  if (inheritanceSection) sections.push(inheritanceSection)
 
   // Guide link
-  const guideLink = GUIDE_LINKS[item.name]
+  const guideLink = guideLinks[item.name]
   if (guideLink)
     sections.push(`\n> See [Guide](${guideLink}) for usage examples.\n`)
 
@@ -71,7 +131,7 @@ import { Callout } from 'fumadocs-ui/components/callout'
   if (allMethods.length > 0) {
     sections.push(`\n---\n\n## Methods\n`)
     for (const method of allMethods)
-      sections.push(renderMethod(method, linkMap, method.isStatic))
+      sections.push(renderMethod(method, linkMap))
   }
 
   // Accessors (static first, then instance - per member-ordering)
@@ -85,10 +145,100 @@ import { Callout } from 'fumadocs-ui/components/callout'
       sections.push(renderAccessor(accessor, linkMap))
   }
 
+  // Events (from mapped event enum)
+  const eventsSection = renderEventsSection(
+    item.name,
+    linkMap,
+    eventMappings,
+    allItems,
+  )
+  if (eventsSection) sections.push(eventsSection)
+
   return sections.join('\n')
 }
 
-function renderConstructor(item: ParsedClass, linkMap: TypeLinkMap): string {
+/**
+ * Render events section from mapped event enum
+ */
+function renderEventsSection(
+  className: string,
+  linkMap: TypeLinkMap,
+  eventMappings?: Record<string, string>,
+  allItems?: ParsedItem[],
+): string | null {
+  if (!eventMappings || !allItems) return null
+
+  const eventEnumName = eventMappings[className]
+  if (!eventEnumName) return null
+
+  const eventEnum = allItems.find(
+    (i) => i.kind === 'enum' && i.name === eventEnumName,
+  )
+  if (!eventEnum?.enumMembers || eventEnum.enumMembers.length === 0) return null
+
+  // Get first event for example
+  const firstEvent = eventEnum.enumMembers[0]
+  const paramList =
+    firstEvent.parameters?.map((p) => p.name).join(', ') ?? 'data'
+
+  const sections: string[] = []
+  sections.push(`\n---\n\n## Events\n`)
+
+  // Add usage example in accordion
+  const exampleCode = `import { ${className}, ${eventEnumName} } from 'genshin-manager'
+
+const ${className.toLowerCase()} = new ${className}()
+
+${className.toLowerCase()}.on(${eventEnumName}.${firstEvent.name}, (${paramList}) => {
+  // Handle event
+})`
+
+  sections.push(`
+<CodeAccordion
+  title="How to use"
+  code={\`${exampleCode}\`}
+/>
+`)
+
+  for (const member of eventEnum.enumMembers)
+    sections.push(renderEvent(member, linkMap))
+
+  return sections.join('\n')
+}
+
+/**
+ * Render single event as EventAccordion
+ */
+function renderEvent(member: ParsedEnumMember, linkMap: TypeLinkMap): string {
+  const anchorId = member.name.replace(/\s+/g, '-').toLowerCase()
+
+  // Build parameters array
+  const parametersStr =
+    member.parameters && member.parameters.length > 0
+      ? `[${member.parameters
+          .map((p) => {
+            const typeJsx = renderTypeSignature(p.type, linkMap)
+            const desc = escapeMdx(p.description ?? '')
+            return `{ name: "${p.name}", typeJsx: ${typeJsx}, description: <Md>{\`${desc}\`}</Md> }`
+          })
+          .join(', ')}]`
+      : '[]'
+
+  const description = escapeMdx(member.description ?? '')
+
+  return `
+### ${member.name}
+
+<EventAccordion
+  name="${member.name}"
+  description={<Md>{\`${description}\`}</Md>}
+  parameters={${parametersStr}}
+  id="${anchorId}"
+/>
+`
+}
+
+function renderConstructor(item: ParsedItem, linkMap: TypeLinkMap): string {
   const ctor = item.constructor
   if (!ctor) return ''
 
@@ -100,7 +250,7 @@ function renderConstructor(item: ParsedClass, linkMap: TypeLinkMap): string {
       const defVal = p.defaultValue
         ? `"${escapeMdx(p.defaultValue)}"`
         : 'undefined'
-      return `{ name: "${p.name}", typeJsx: ${typeJsx}, description: <Md>{\`${desc}\`}</Md>, optional: ${String(p.isOptional)}, defaultValue: ${defVal} }`
+      return `{ name: "${p.name}", typeJsx: ${typeJsx}, description: <Md>{\`${desc}\`}</Md>, optional: ${String(p.isOptional)}, rest: ${String(p.isRest)}, defaultValue: ${defVal} }`
     })
     .join(', ')}]`
 
@@ -110,163 +260,6 @@ function renderConstructor(item: ParsedClass, linkMap: TypeLinkMap): string {
   returnType={${renderTypeSignature({ name: item.name }, linkMap)}}
   description={<Md>{\`${escapeMdx(ctor.description ?? '')}\`}</Md>}
   parameters={${parametersStr}}
-/>
-`
-}
-
-type PropertyWithStatic = ParsedClass['properties'][0] & {
-  isStatic: boolean
-}
-
-function renderPropertiesTable(
-  properties: PropertyWithStatic[],
-  linkMap: TypeLinkMap,
-): string {
-  const entries = properties.map((prop) => {
-    const typeStr = renderTypeSignature(prop.type, linkMap)
-    const badges: string[] = []
-    if (prop.isReadonly) badges.push('[readonly]')
-    if (prop.isStatic) badges.push('[static]')
-    if (prop.isAbstract) badges.push('[abstract]')
-    if (prop.isProtected) badges.push('[protected]')
-    const badgePrefix = badges.join('')
-
-    // Build description with warnings, additionalDescription, and mapDescription inline
-    const descParts: string[] = []
-
-    // Main description
-    if (prop.description)
-      descParts.push(`<Md>{\`${escapeMdx(prop.description)}\`}</Md>`)
-
-    // Warnings as Callout
-    if (prop.warnings && prop.warnings.length > 0) {
-      for (const warning of prop.warnings) {
-        descParts.push(
-          `<Callout type="warn"><Md>{\`${escapeMdx(warning)}\`}</Md></Callout>`,
-        )
-      }
-    }
-
-    // Additional description as Callout
-    if (prop.additionalDescription) {
-      descParts.push(
-        `<Callout type="info"><Md>{\`${escapeMdx(prop.additionalDescription)}\`}</Md></Callout>`,
-      )
-    }
-
-    // Map/Record structure with @key/@value as nested TypeTable
-    if (prop.mapDescription) {
-      const { key, keyType, value, valueType } = prop.mapDescription
-      const keyTypeStr = renderTypeSignature(keyType, linkMap)
-      const valueTypeStr = renderTypeSignature(valueType, linkMap)
-      descParts.push(
-        `<div className="mt-2"><p className="text-sm font-medium mb-1">Object Structure</p><TypeTableByBadge type={{ "Key": { type: ${keyTypeStr}, description: <Md>{\`${escapeMdx(key)}\`}</Md> }, "Value": { type: ${valueTypeStr}, description: <Md>{\`${escapeMdx(value)}\`}</Md> } }} /></div>`,
-      )
-    }
-
-    const description =
-      descParts.length > 0 ? `<>${descParts.join('')}</>` : `<Md>{\`\`}</Md>`
-
-    return `    "${badgePrefix}${prop.name}": {
-      type: ${typeStr},
-      description: ${description},${prop.isOptional ? '' : '\n      required: true,'}
-    }`
-  })
-
-  return `
-<TypeTableByBadge
-  type={{
-${entries.join(',\n')}
-  }}
-/>
-`
-}
-
-function renderMethod(
-  method: ParsedClass['methods'][0],
-  linkMap: TypeLinkMap,
-  isStatic: boolean,
-): string {
-  const returnTypeStr = renderTypeSignature(method.returnType, linkMap)
-
-  // Build parameters as JS array literal with JSX for types
-  const parametersStr = `[${method.parameters
-    .map((p) => {
-      const typeJsx = renderTypeSignature(p.type, linkMap)
-      const desc = escapeMdx(p.description ?? '')
-      const defVal = p.defaultValue
-        ? `"${escapeMdx(p.defaultValue)}"`
-        : 'undefined'
-      return `{ name: "${p.name}", typeJsx: ${typeJsx}, description: <Md>{\`${desc}\`}</Md>, optional: ${String(p.isOptional)}, defaultValue: ${defVal} }`
-    })
-    .join(', ')}]`
-
-  // Clean up example code
-  let exampleStr = ''
-  if (method.example) {
-    const cleanExample = method.example
-      .trim()
-      .replace(/^```\w*\n?/, '')
-      .replace(/\n?```$/, '')
-      .trim()
-    exampleStr = `example={\`${cleanExample.replace(/`/g, '\\`').replace(/\$/g, '\\$')}\`}`
-  }
-
-  // Build description with warnings and additionalDescription inline
-  const descParts: string[] = []
-  if (method.description)
-    descParts.push(`<Md>{\`${escapeMdx(method.description)}\`}</Md>`)
-
-  if (method.warnings && method.warnings.length > 0) {
-    for (const warning of method.warnings) {
-      descParts.push(
-        `<Callout type="warn"><Md>{\`${escapeMdx(warning)}\`}</Md></Callout>`,
-      )
-    }
-  }
-  if (method.additionalDescription) {
-    descParts.push(
-      `<Callout type="info"><Md>{\`${escapeMdx(method.additionalDescription)}\`}</Md></Callout>`,
-    )
-  }
-  const description =
-    descParts.length > 0 ? `<>${descParts.join('')}</>` : `<Md>{\`\`}</Md>`
-
-  return `
-<MethodAccordion
-  name="${method.name}"
-  returnType={${returnTypeStr}}
-  description={${description}}
-  parameters={${parametersStr}}
-  ${method.returns ? `returns={<Md>{\`${escapeMdx(method.returns)}\`}</Md>}` : ''}
-  ${exampleStr}
-  isAsync={${String(method.isAsync)}}
-  isStatic={${String(isStatic)}}
-  isAbstract={${String(method.isAbstract)}}
-  isProtected={${String(method.isProtected)}}
-/>
-`
-}
-
-function renderAccessor(
-  accessor: ParsedAccessor,
-  linkMap: TypeLinkMap,
-): string {
-  const typeStr = renderTypeSignature(accessor.type, linkMap)
-  const description = accessor.description
-    ? `<Md>{\`${escapeMdx(accessor.description)}\`}</Md>`
-    : `<Md>{\`\`}</Md>`
-
-  return `
-<AccessorAccordion
-  name="${accessor.name}"
-  typeJsx={${typeStr}}
-  description={${description}}
-  hasGetter={${String(accessor.hasGetter)}}
-  hasSetter={${String(accessor.hasSetter)}}
-  isStatic={${String(accessor.isStatic)}}
-  isAbstract={${String(accessor.isAbstract)}}
-  isProtected={${String(accessor.isProtected)}}
 />
 `
 }

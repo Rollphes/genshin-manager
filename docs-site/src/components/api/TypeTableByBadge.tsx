@@ -115,6 +115,14 @@ export function TypeTableByBadge({
       const name = textContent.replace(/\?$/, '')
       const badges = badgeMap.get(name)
 
+      // Find the parent button/row element and add ID for TOC linking
+      const rowButton = codeEl.closest('button')
+      if (rowButton && !rowButton.id) {
+        // Generate ID matching FumaDocs TOC format (lowercase, hyphenated)
+        rowButton.id = name.toLowerCase().replace(/\s+/g, '-')
+        rowButton.classList.add('scroll-mt-20')
+      }
+
       // Wrap code element in flex container for consistent layout
       const wrapper = document.createElement('span')
       wrapper.className =

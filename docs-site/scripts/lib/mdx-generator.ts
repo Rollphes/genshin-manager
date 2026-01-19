@@ -8,11 +8,7 @@ import {
   generateInterfaceMdx,
   generateTypeMdx,
 } from './templates'
-import type {
-  DomainClassification,
-  GeneratorConfig,
-  ParsedClass,
-} from './types'
+import type { DomainClassification, GeneratorConfig, ParsedItem } from './types'
 import { capitalize, toKebabCase } from './utils'
 
 export class MdxGenerator {
@@ -28,6 +24,10 @@ export class MdxGenerator {
   public async generateAll(
     classifications: DomainClassification[],
   ): Promise<void> {
+    // Collect all items for cross-reference (e.g., event mappings)
+    const allItems = classifications.flatMap((c) => c.items)
+    this.config.allItems = allItems
+
     // Create directories
     await this.createDirectories(classifications)
 
@@ -59,7 +59,7 @@ export class MdxGenerator {
    * Generate individual MDX file (flat structure - directly in domain folder)
    */
   private async generateMdx(
-    item: ParsedClass,
+    item: ParsedItem,
     classification: DomainClassification,
   ): Promise<void> {
     const mdxContent = this.generateMdxContent(item)
@@ -77,18 +77,18 @@ export class MdxGenerator {
   /**
    * Generate MDX content based on item kind
    */
-  private generateMdxContent(item: ParsedClass): string {
+  private generateMdxContent(item: ParsedItem): string {
     switch (item.kind) {
       case 'class':
-        return generateClassMdx(item, this.config.typeLinkMap)
+        return generateClassMdx(item, this.config)
       case 'interface':
-        return generateInterfaceMdx(item, this.config.typeLinkMap)
+        return generateInterfaceMdx(item, this.config)
       case 'type':
-        return generateTypeMdx(item, this.config.typeLinkMap)
+        return generateTypeMdx(item, this.config)
       case 'enum':
         return generateEnumMdx(item)
       case 'function':
-        return generateFunctionMdx(item, this.config.typeLinkMap)
+        return generateFunctionMdx(item, this.config)
       default:
         return ''
     }

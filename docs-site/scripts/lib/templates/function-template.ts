@@ -1,4 +1,4 @@
-import type { ParsedClass, TypeLinkMap } from '../types'
+import type { GeneratorConfig, ParsedItem } from '../types'
 import { escapeMdx } from '../utils'
 import { renderTypeSignature } from './type-renderer'
 
@@ -19,10 +19,11 @@ function getCategoryBadge(category: string): string {
  * Generate function MDX content
  */
 export function generateFunctionMdx(
-  item: ParsedClass,
-  linkMap: TypeLinkMap,
+  item: ParsedItem,
+  config: GeneratorConfig,
   category = 'functions',
 ): string {
+  const linkMap = config.typeLinkMap
   const sections: string[] = []
 
   // Frontmatter with badge field
@@ -52,7 +53,7 @@ import { TypeLink, MethodAccordion, Md } from '@/components/api'
         const defVal = p.defaultValue
           ? `"${escapeMdx(p.defaultValue)}"`
           : 'undefined'
-        return `{ name: "${p.name}", typeJsx: ${typeJsx}, description: <Md>{\`${desc}\`}</Md>, optional: ${String(p.isOptional)}, defaultValue: ${defVal} }`
+        return `{ name: "${p.name}", typeJsx: ${typeJsx}, description: <Md>{\`${desc}\`}</Md>, optional: ${String(p.isOptional)}, rest: ${String(p.isRest)}, defaultValue: ${defVal} }`
       })
       .join(', ')}]`
 

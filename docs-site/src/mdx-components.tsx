@@ -20,11 +20,15 @@ import {
   Hammer,
   List,
   type LucideIcon,
+  SlidersHorizontal,
+  Zap,
 } from 'lucide-react'
 import type { MDXComponents } from 'mdx/types'
 import type { ComponentPropsWithoutRef, ReactNode } from 'react'
 
 import {
+  CodeAccordion,
+  EventAccordion,
   Md,
   MethodAccordion,
   TypeBadge,
@@ -38,6 +42,8 @@ const SECTION_ICONS: Record<string, LucideIcon> = {
   Constructor: Hammer,
   Properties: Braces,
   Methods: Code,
+  Accessors: SlidersHorizontal,
+  Events: Zap,
   Signature: FileSignature,
   Members: List,
   Definition: Code,
@@ -64,6 +70,18 @@ function ApiH2({
   )
 }
 
+// Custom h3 component for TOC entries - visually hidden but visible in TOC
+function ApiH3({
+  children,
+  ...props
+}: ComponentPropsWithoutRef<'h3'>): ReactNode {
+  return (
+    <h3 {...props} className="sr-only">
+      {children}
+    </h3>
+  )
+}
+
 // Create a TypeScript generator with caching
 // basePath points to the root of genshin-manager (parent of docs-site)
 const generator = createGenerator({
@@ -78,6 +96,8 @@ export function getMDXComponents(components?: MDXComponents): MDXComponents {
     ...TwoslashComponents,
     // Override h2 with auto-icon support for API sections
     h2: ApiH2,
+    // Override h3 for TOC entries (visually hidden)
+    h3: ApiH3,
     AutoTypeTable: (props) => (
       <AutoTypeTable {...props} generator={generator} />
     ),
@@ -94,6 +114,8 @@ export function getMDXComponents(components?: MDXComponents): MDXComponents {
     Tab,
     Tabs,
     // API documentation components
+    CodeAccordion,
+    EventAccordion,
     Md,
     MethodAccordion,
     TypeBadge,

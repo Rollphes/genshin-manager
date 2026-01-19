@@ -1,5 +1,5 @@
 import { isBuiltin, isInternalType, isPrimitive } from '../type-link-map'
-import type { TypeLinkMap, TypeReference } from '../types'
+import type { TypeLinkMap, TypeParameter, TypeReference } from '../types'
 
 /**
  * Render type reference as JSX string for MDX
@@ -125,4 +125,33 @@ export function serializeTypeForJson(
     linkPath,
     isArray,
   }
+}
+
+/**
+ * Render type parameters (generics) as JSX string
+ * Example: <T extends BaseClient, U = string>
+ */
+export function renderTypeParameters(
+  typeParams: TypeParameter[] | undefined,
+  linkMap: TypeLinkMap,
+): string {
+  if (!typeParams || typeParams.length === 0) return ''
+
+  const params = typeParams.map((tp) => {
+    let result = `<span className="text-[#0550ae] dark:text-[#79c0ff]">${tp.name}</span>`
+
+    if (tp.constraint) {
+      const constraintJsx = renderTypeSignature(tp.constraint, linkMap)
+      result += ` <span className="text-[#cf222e] dark:text-[#ff7b72]">extends</span> ${constraintJsx}`
+    }
+
+    if (tp.default) {
+      const defaultJsx = renderTypeSignature(tp.default, linkMap)
+      result += ` = ${defaultJsx}`
+    }
+
+    return result
+  })
+
+  return `<span>&lt;${params.join(', ')}&gt;</span>`
 }

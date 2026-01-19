@@ -1,5 +1,6 @@
 import Link from 'next/link'
 
+import typeLinkMapData from '@/generated/type-link-map.json'
 import { cn } from '@/lib/cn'
 
 interface TypeLinkProps {
@@ -24,20 +25,7 @@ const PRIMITIVE_TYPES = new Set([
   'bigint',
 ])
 
-// This will be populated by the generated type-link-map.json
-// For now, we use a dynamic import approach
-let typeLinkMap: Record<string, string> = {}
-
-// Try to load the type link map
-try {
-  // eslint-disable-next-line @typescript-eslint/no-require-imports
-  typeLinkMap = require('@/generated/type-link-map.json') as Record<
-    string,
-    string
-  >
-} catch {
-  // File doesn't exist yet, use empty map
-}
+const typeLinkMap: Record<string, string> = typeLinkMapData
 
 export function TypeLink({
   type,

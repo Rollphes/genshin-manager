@@ -1,8 +1,7 @@
 'use client'
 
 import { ChevronRight } from 'lucide-react'
-import { Children, type ReactNode } from 'react'
-import { useState } from 'react'
+import { Children, type ReactNode, useState } from 'react'
 
 import { TypeBadge } from '@/components/api/TypeBadge'
 import { cn } from '@/lib/cn'
@@ -29,6 +28,7 @@ interface AccessorAccordionProps {
   isAbstract?: boolean
   isProtected?: boolean
   defaultOpen?: boolean
+  id?: string // Optional ID for deep linking
 }
 
 export function AccessorAccordion({
@@ -41,6 +41,7 @@ export function AccessorAccordion({
   isAbstract = false,
   isProtected = false,
   defaultOpen = false,
+  id,
 }: AccessorAccordionProps): React.ReactElement {
   const [isOpen, setIsOpen] = useState(defaultOpen)
 
@@ -52,8 +53,14 @@ export function AccessorAccordion({
     hasSetter && 'setter',
   ].filter((b): b is BadgeType => Boolean(b))
 
+  // Generate anchor ID from accessor name
+  const anchorId = id ?? `accessor-${name.toLowerCase()}`
+
   return (
-    <div className="border border-fd-border rounded-lg mb-2">
+    <div
+      id={anchorId}
+      className="border border-fd-border rounded-lg mb-2 scroll-mt-20"
+    >
       <button
         type="button"
         data-state={isOpen ? 'open' : 'closed'}
@@ -83,9 +90,20 @@ export function AccessorAccordion({
         </div>
       </button>
 
-      {isOpen && description && (
-        <div className="border-t border-fd-border p-4">
-          <p className="text-fd-muted-foreground">{description}</p>
+      {description && (
+        <div
+          className={cn(
+            'grid transition-all duration-200 ease-in-out',
+            isOpen
+              ? 'grid-rows-[1fr] opacity-100'
+              : 'grid-rows-[0fr] opacity-0',
+          )}
+        >
+          <div className="overflow-hidden">
+            <div className="border-t border-fd-border p-4">
+              <p className="text-fd-muted-foreground">{description}</p>
+            </div>
+          </div>
         </div>
       )}
     </div>

@@ -8,6 +8,8 @@ type BadgeVariant =
   | 'deprecated'
   | 'abstract'
   | 'protected'
+  | 'const'
+  | 'rest'
   | 'getter'
   | 'setter'
   | 'class'
@@ -32,6 +34,8 @@ const BADGE_STYLES: Record<BadgeVariant, string> = {
     'bg-orange-100 text-orange-800 dark:bg-orange-900/30 dark:text-orange-400',
   protected:
     'bg-amber-100 text-amber-800 dark:bg-amber-900/30 dark:text-amber-400',
+  const: 'bg-sky-100 text-sky-800 dark:bg-sky-900/30 dark:text-sky-400',
+  rest: 'bg-rose-100 text-rose-800 dark:bg-rose-900/30 dark:text-rose-400',
   getter: 'bg-teal-100 text-teal-800 dark:bg-teal-900/30 dark:text-teal-400',
   setter:
     'bg-indigo-100 text-indigo-800 dark:bg-indigo-900/30 dark:text-indigo-400',
@@ -53,6 +57,8 @@ const BADGE_LABELS: Record<BadgeVariant, string> = {
   deprecated: 'deprecated',
   abstract: 'abstract',
   protected: 'protected',
+  const: 'const',
+  rest: 'rest',
   getter: 'get',
   setter: 'set',
   class: 'class',

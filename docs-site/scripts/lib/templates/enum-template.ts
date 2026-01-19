@@ -1,10 +1,10 @@
-import type { ParsedClass } from '../types'
+import type { ParsedItem } from '../types'
 import { escapeMdx } from '../utils'
 
 /**
  * Generate enum MDX content
  */
-export function generateEnumMdx(item: ParsedClass): string {
+export function generateEnumMdx(item: ParsedItem): string {
   const sections: string[] = []
 
   // Frontmatter with badge field - always use 'enum' for enum template
@@ -28,7 +28,7 @@ import { TypeTableByBadge, Md } from '@/components/api'
 }
 
 function renderEnumMembersTable(
-  members: NonNullable<ParsedClass['enumMembers']>,
+  members: NonNullable<ParsedItem['enumMembers']>,
 ): string {
   const entries = members.map((member) => {
     const valueDisplay =
