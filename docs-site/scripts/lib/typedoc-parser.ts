@@ -1,6 +1,7 @@
 import fs from 'fs'
 
 import {
+  type ParsedAccessor,
   type ParsedClass,
   type ParsedConstructor,
   type ParsedEnumMember,
@@ -29,6 +30,8 @@ interface TypeDocReflection {
   comment?: TypeDocComment
   children?: TypeDocReflection[]
   signatures?: TypeDocSignature[]
+  getSignature?: TypeDocSignature
+  setSignature?: TypeDocSignature
   type?: TypeDocType
   extendedTypes?: TypeDocType[]
   implementedTypes?: TypeDocType[]
@@ -169,6 +172,14 @@ export class TypeDocParser {
       .filter((c) => c.kind === ReflectionKind.Method && c.flags?.isStatic)
       .map((c) => this.parseMethod(c))
 
+    const accessors = children
+      .filter((c) => c.kind === ReflectionKind.Accessor && !c.flags?.isStatic)
+      .map((c) => this.parseAccessor(c))
+
+    const staticAccessors = children
+      .filter((c) => c.kind === ReflectionKind.Accessor && c.flags?.isStatic)
+      .map((c) => this.parseAccessor(c))
+
     const constructorReflection = children.find(
       (c) => c.kind === ReflectionKind.Constructor,
     )
@@ -194,6 +205,10 @@ export class TypeDocParser {
         a.name.localeCompare(b.name),
       ),
       staticMethods: staticMethods.sort((a, b) => a.name.localeCompare(b.name)),
+      accessors: accessors.sort((a, b) => a.name.localeCompare(b.name)),
+      staticAccessors: staticAccessors.sort((a, b) =>
+        a.name.localeCompare(b.name),
+      ),
     }
   }
 
@@ -225,6 +240,8 @@ export class TypeDocParser {
       events: [],
       staticProperties: [],
       staticMethods: [],
+      accessors: [],
+      staticAccessors: [],
     }
   }
 
@@ -247,6 +264,8 @@ export class TypeDocParser {
       events: [],
       staticProperties: [],
       staticMethods: [],
+      accessors: [],
+      staticAccessors: [],
     }
   }
 
@@ -277,6 +296,8 @@ export class TypeDocParser {
       events: [],
       staticProperties: [],
       staticMethods: [],
+      accessors: [],
+      staticAccessors: [],
     }
   }
 
@@ -302,6 +323,8 @@ export class TypeDocParser {
       events: [],
       staticProperties: [],
       staticMethods: [],
+      accessors: [],
+      staticAccessors: [],
     }
   }
 
@@ -326,6 +349,8 @@ export class TypeDocParser {
       events: [],
       staticProperties: [],
       staticMethods: [],
+      accessors: [],
+      staticAccessors: [],
     }
   }
 
@@ -362,6 +387,38 @@ export class TypeDocParser {
         reflection.comment,
       ),
       mapDescription: this.extractMapDescription(reflection),
+    }
+  }
+
+  /**
+   * Parse accessor (getter/setter)
+   */
+  private parseAccessor(reflection: TypeDocReflection): ParsedAccessor {
+    const getSignature = reflection.getSignature
+    const setSignature = reflection.setSignature
+
+    // Get type from getter return type or setter parameter type
+    let type: TypeReference = { name: 'unknown' }
+    let description = ''
+
+    if (getSignature) {
+      type = this.parseType(getSignature.type)
+      description = this.extractDescriptionFromSignature(getSignature)
+    } else if (setSignature?.parameters?.[0]) {
+      type = this.parseType(setSignature.parameters[0].type)
+      description = this.extractDescriptionFromSignature(setSignature)
+    }
+
+    return {
+      name: reflection.name,
+      type,
+      description,
+      hasGetter: Boolean(getSignature),
+      hasSetter: Boolean(setSignature),
+      isStatic: reflection.flags?.isStatic ?? false,
+      isAbstract: reflection.flags?.isAbstract ?? false,
+      isProtected: reflection.flags?.isProtected ?? false,
+      isOverride: false, // TypeDoc doesn't expose override flag directly
     }
   }
 

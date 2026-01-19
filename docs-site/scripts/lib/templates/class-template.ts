@@ -1,4 +1,4 @@
-import type { ParsedClass, TypeLinkMap } from '../types'
+import type { ParsedAccessor, ParsedClass, TypeLinkMap } from '../types'
 import { escapeMdx } from '../utils'
 import { renderTypeSignature } from './type-renderer'
 
@@ -33,7 +33,7 @@ description: ${escapeMdx(description.split('\n')[0])}
 badge: ${badge}
 ---
 
-import { TypeLink, MethodAccordion, TypeTableByBadge, Md } from '@/components/api'
+import { TypeLink, MethodAccordion, AccessorAccordion, TypeTableByBadge, Md } from '@/components/api'
 import { Callout } from 'fumadocs-ui/components/callout'
 `)
 
@@ -72,6 +72,17 @@ import { Callout } from 'fumadocs-ui/components/callout'
     sections.push(`\n---\n\n## Methods\n`)
     for (const method of allMethods)
       sections.push(renderMethod(method, linkMap, method.isStatic))
+  }
+
+  // Accessors (static first, then instance - per member-ordering)
+  const allAccessors = [
+    ...item.staticAccessors.map((a) => ({ ...a, isStatic: true })),
+    ...item.accessors.map((a) => ({ ...a, isStatic: false })),
+  ]
+  if (allAccessors.length > 0) {
+    sections.push(`\n---\n\n## Accessors\n`)
+    for (const accessor of allAccessors)
+      sections.push(renderAccessor(accessor, linkMap))
   }
 
   return sections.join('\n')
@@ -231,6 +242,29 @@ function renderMethod(
   isAsync={${String(method.isAsync)}}
   isStatic={${String(isStatic)}}
   isAbstract={${String(method.isAbstract)}}
+/>
+`
+}
+
+function renderAccessor(
+  accessor: ParsedAccessor,
+  linkMap: TypeLinkMap,
+): string {
+  const typeStr = renderTypeSignature(accessor.type, linkMap)
+  const description = accessor.description
+    ? `<Md>{\`${escapeMdx(accessor.description)}\`}</Md>`
+    : `<Md>{\`\`}</Md>`
+
+  return `
+<AccessorAccordion
+  name="${accessor.name}"
+  typeJsx={${typeStr}}
+  description={${description}}
+  hasGetter={${String(accessor.hasGetter)}}
+  hasSetter={${String(accessor.hasSetter)}}
+  isStatic={${String(accessor.isStatic)}}
+  isAbstract={${String(accessor.isAbstract)}}
+  isProtected={${String(accessor.isProtected)}}
 />
 `
 }

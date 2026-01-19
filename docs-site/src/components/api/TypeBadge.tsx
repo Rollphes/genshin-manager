@@ -7,6 +7,9 @@ type BadgeVariant =
   | 'optional'
   | 'deprecated'
   | 'abstract'
+  | 'protected'
+  | 'getter'
+  | 'setter'
   | 'class'
   | 'interface'
   | 'type'
@@ -27,6 +30,11 @@ const BADGE_STYLES: Record<BadgeVariant, string> = {
   deprecated: 'bg-red-100 text-red-800 dark:bg-red-900/30 dark:text-red-400',
   abstract:
     'bg-orange-100 text-orange-800 dark:bg-orange-900/30 dark:text-orange-400',
+  protected:
+    'bg-amber-100 text-amber-800 dark:bg-amber-900/30 dark:text-amber-400',
+  getter: 'bg-teal-100 text-teal-800 dark:bg-teal-900/30 dark:text-teal-400',
+  setter:
+    'bg-indigo-100 text-indigo-800 dark:bg-indigo-900/30 dark:text-indigo-400',
   // Sidebar category badges - same purple style for consistency
   class:
     'bg-purple-100 text-purple-800 dark:bg-purple-900/30 dark:text-purple-400',
@@ -44,6 +52,9 @@ const BADGE_LABELS: Record<BadgeVariant, string> = {
   optional: 'optional',
   deprecated: 'deprecated',
   abstract: 'abstract',
+  protected: 'protected',
+  getter: 'get',
+  setter: 'set',
   class: 'class',
   interface: 'interface',
   type: 'type',

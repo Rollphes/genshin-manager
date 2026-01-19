@@ -50,6 +50,8 @@ export interface ParsedClass {
   events: ParsedEvent[]
   staticProperties: ParsedProperty[]
   staticMethods: ParsedMethod[]
+  accessors: ParsedAccessor[]
+  staticAccessors: ParsedAccessor[]
   enumMembers?: ParsedEnumMember[]
   typeDefinition?: string
   typeRef?: TypeReference
@@ -137,6 +139,18 @@ export interface ParsedEnumMember {
   name: string
   value: string | number
   description?: string
+}
+
+export interface ParsedAccessor {
+  name: string
+  type: TypeReference
+  description?: string
+  hasGetter: boolean
+  hasSetter: boolean
+  isStatic: boolean
+  isAbstract: boolean
+  isProtected: boolean
+  isOverride: boolean
 }
 
 /**
