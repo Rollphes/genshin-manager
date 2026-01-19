@@ -31,9 +31,9 @@ export type ReflectionKindValue =
   (typeof ReflectionKind)[keyof typeof ReflectionKind]
 
 /**
- * Parsed class/interface/type model
+ * Parsed item (class/interface/type/enum/function)
  */
-export interface ParsedClass {
+export interface ParsedItem {
   id: number
   name: string
   domain: string
@@ -41,13 +41,14 @@ export interface ParsedClass {
   description: string
   isAbstract?: boolean
   isStatic?: boolean
+  /** @internal tagged item - should be excluded from docs output */
+  isInternal?: boolean
   extends?: TypeReference
   implements?: TypeReference[]
   typeParameters?: TypeParameter[]
   constructor?: ParsedConstructor
   properties: ParsedProperty[]
   methods: ParsedMethod[]
-  events: ParsedEvent[]
   staticProperties: ParsedProperty[]
   staticMethods: ParsedMethod[]
   accessors: ParsedAccessor[]
@@ -125,21 +126,17 @@ export interface ParsedParameter {
   defaultValue?: string
 }
 
-export interface ParsedEvent {
-  name: string
-  description?: string
-  parameters: EventParameter[]
-}
-
-export interface EventParameter {
-  param: string
-  type: string
-  description: string
-}
-
 export interface ParsedEnumMember {
   name: string
   value: string | number
+  description?: string
+  /** Event parameters from @param JSDoc tags */
+  parameters?: ParsedEventParameter[]
+}
+
+export interface ParsedEventParameter {
+  name: string
+  type: TypeReference
   description?: string
 }
 
@@ -166,7 +163,7 @@ export type TypeLinkMap = Map<string, string>
 export interface DomainClassification {
   domain: string
   category: 'classes' | 'interfaces' | 'types' | 'functions'
-  items: ParsedClass[]
+  items: ParsedItem[]
 }
 
 /**
@@ -176,4 +173,49 @@ export interface GeneratorConfig {
   outputDir: string
   typeLinkMap: TypeLinkMap
   guideBasePath: string
+  guideLinks: Record<string, string>
+  hideExtends?: boolean
+  hideImplements?: boolean
+  /** Maps class names to their event enum names */
+  eventMappings?: Record<string, string>
+  /** All parsed items for resolving event enums */
+  allItems?: ParsedItem[]
+}
+
+/**
+ * Domain rule for classification
+ */
+export interface DomainRule {
+  domain: string
+  match?: string[]
+  matchPattern?: string
+}
+
+/**
+ * API docs generator config file format
+ */
+export interface ApiDocsConfig {
+  typedocJson: string
+  outputDir: string
+  guideBasePath: string
+  /** Hide @internal tagged items from documentation */
+  hideInternal?: boolean
+  hideExtends?: boolean
+  hideImplements?: boolean
+  guideLinks: Record<string, string>
+  /** Maps class names to their event enum names */
+  eventMappings?: Record<string, string>
+  domainRules: DomainRule[]
+  domainOrder: string[]
+  categoryOrder: string[]
+  defaultDomain: string
+}
+
+/**
+ * Event parameter info extracted from EventMap interface
+ */
+export interface EventMapParameter {
+  name: string
+  type: TypeReference
+  description?: string
 }

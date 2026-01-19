@@ -1,106 +1,51 @@
-import type { DomainClassification, ParsedClass } from './types'
+import type {
+  ApiDocsConfig,
+  DomainClassification,
+  DomainRule,
+  ParsedItem,
+} from './types'
 
 /**
- * Domain classification rules
+ * Create a classifier function from domain rules
+ * Supports both match (exact names) and matchPattern (regex), or both combined
  */
-const DOMAIN_RULES: {
-  domain: string
-  match: RegExp | string[]
-}[] = [
-  {
-    domain: 'client',
-    match: [
-      'Client',
-      'ClientOption',
-      'ClientEvents',
-      'AssetCacheManager',
-      'NoticeManager',
-      'NoticeManagerEvents',
-      'Notice',
-    ],
-  },
-  {
-    domain: 'character',
-    match: /^(Character|Artifact|SetBonus)/,
-  },
-  {
-    domain: 'weapon',
-    match: /^Weapon/,
-  },
-  {
-    domain: 'enka',
-    match: /^(Enka|Genshin|PlayerDetail)/,
-  },
-  {
-    domain: 'assets',
-    match: ['ImageAssets', 'AudioAssets'],
-  },
-  {
-    domain: 'monster',
-    match: ['Monster'],
-  },
-  {
-    domain: 'world',
-    match: ['Material', 'DailyFarming', 'DomainData'],
-  },
-  {
-    domain: 'common',
-    match: ['ProfilePicture', 'StatProperty'],
-  },
-  {
-    domain: 'errors',
-    match: /Error$/,
-  },
-  {
-    domain: 'types',
-    match: [
-      'Element',
-      'EquipType',
-      'FightPropType',
-      'CVType',
-      'ArtifactType',
-      'BodyType',
-      'LogLevel',
-      'QualityType',
-      'WeaponType',
-      'ItemType',
-      'MaterialType',
-      'ProfilePictureType',
-      'DecodedType',
-      'MasterFileMap',
-    ],
-  },
-  {
-    domain: 'utilities',
-    match: /^(convert|create)/,
-  },
-]
+function createMatcher(rule: DomainRule): (name: string) => boolean {
+  const matchList = rule.match
+  const regex = rule.matchPattern ? new RegExp(rule.matchPattern) : undefined
 
-/**
- * Determine domain for an item
- */
-export function classifyDomain(item: ParsedClass): string {
-  for (const rule of DOMAIN_RULES) {
-    if (Array.isArray(rule.match)) {
-      if (rule.match.includes(item.name)) return rule.domain
-    } else if (rule.match.test(item.name)) {
-      return rule.domain
-    }
+  return (name: string): boolean => {
+    if (matchList?.includes(name)) return true
+    if (regex?.test(name)) return true
+    return false
   }
-
-  // Default to types
-  return 'types'
 }
 
 /**
- * Classify all items by domain
+ * Determine domain for an item using config rules
  */
-export function classifyAllItems(items: ParsedClass[]): DomainClassification[] {
+export function classifyDomain(
+  item: ParsedItem,
+  config: ApiDocsConfig,
+): string {
+  for (const rule of config.domainRules) {
+    const matcher = createMatcher(rule)
+    if (matcher(item.name)) return rule.domain
+  }
+  return config.defaultDomain
+}
+
+/**
+ * Classify all items by domain using config
+ */
+export function classifyAllItems(
+  items: ParsedItem[],
+  config: ApiDocsConfig,
+): DomainClassification[] {
   // Set domain for each item
-  for (const item of items) item.domain = classifyDomain(item)
+  for (const item of items) item.domain = classifyDomain(item, config)
 
   // Group by domain
-  const domainMap = new Map<string, ParsedClass[]>()
+  const domainMap = new Map<string, ParsedItem[]>()
 
   for (const item of items) {
     const existing = domainMap.get(item.domain) ?? []
@@ -113,7 +58,7 @@ export function classifyAllItems(items: ParsedClass[]): DomainClassification[] {
 
   for (const [domain, domainItems] of domainMap) {
     // Group by category within domain
-    const categories = new Map<string, ParsedClass[]>()
+    const categories = new Map<string, ParsedItem[]>()
 
     for (const item of domainItems) {
       const category = getCategory(item.kind)
@@ -132,14 +77,18 @@ export function classifyAllItems(items: ParsedClass[]): DomainClassification[] {
   }
 
   return results.sort((a, b) => {
-    const domainOrder = getDomainOrder(a.domain) - getDomainOrder(b.domain)
+    const domainOrder =
+      getDomainOrder(a.domain, config) - getDomainOrder(b.domain, config)
     if (domainOrder !== 0) return domainOrder
-    return getCategoryOrder(a.category) - getCategoryOrder(b.category)
+    return (
+      getCategoryOrder(a.category, config) -
+      getCategoryOrder(b.category, config)
+    )
   })
 }
 
 function getCategory(
-  kind: ParsedClass['kind'],
+  kind: ParsedItem['kind'],
 ): 'classes' | 'interfaces' | 'types' | 'functions' {
   switch (kind) {
     case 'class':
@@ -154,26 +103,12 @@ function getCategory(
   }
 }
 
-function getDomainOrder(domain: string): number {
-  const order = [
-    'client',
-    'character',
-    'weapon',
-    'enka',
-    'assets',
-    'monster',
-    'world',
-    'common',
-    'errors',
-    'types',
-    'utilities',
-  ]
-  const index = order.indexOf(domain)
+function getDomainOrder(domain: string, config: ApiDocsConfig): number {
+  const index = config.domainOrder.indexOf(domain)
   return index === -1 ? 999 : index
 }
 
-function getCategoryOrder(category: string): number {
-  const order = ['classes', 'interfaces', 'types', 'functions']
-  const index = order.indexOf(category)
+function getCategoryOrder(category: string, config: ApiDocsConfig): number {
+  const index = config.categoryOrder.indexOf(category)
   return index === -1 ? 999 : index
 }

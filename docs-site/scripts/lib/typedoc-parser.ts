@@ -1,10 +1,12 @@
 import fs from 'fs'
 
 import {
+  type EventMapParameter,
   type ParsedAccessor,
-  type ParsedClass,
   type ParsedConstructor,
   type ParsedEnumMember,
+  type ParsedEventParameter,
+  type ParsedItem,
   type ParsedMethod,
   type ParsedParameter,
   type ParsedProperty,
@@ -37,6 +39,8 @@ interface TypeDocReflection {
   implementedTypes?: TypeDocType[]
   typeParameters?: TypeDocTypeParameter[]
   defaultValue?: string
+  /** For inherited members, references the original declaration */
+  inheritedFrom?: { name: string }
 }
 
 interface TypeDocFlags {
@@ -53,15 +57,19 @@ interface TypeDocFlags {
 interface TypeDocComment {
   summary?: TypeDocCommentPart[]
   blockTags?: TypeDocBlockTag[]
+  modifierTags?: string[]
 }
 
 interface TypeDocCommentPart {
   kind: string
   text: string
+  tag?: string
+  target?: number
 }
 
 interface TypeDocBlockTag {
   tag: string
+  name?: string
   content: TypeDocCommentPart[]
 }
 
@@ -102,21 +110,48 @@ interface TypeDocType {
   declaration?: TypeDocReflection
   elements?: TypeDocType[]
   target?: number
+  /** For namedTupleMember */
+  element?: TypeDocType
+  isOptional?: boolean
 }
 
 export class TypeDocParser {
   private project: TypeDocProject
+  /**
+   * Map of EventMap interface name -> event name -> parameters
+   * e.g., { "ClientEventMap": { "BEGIN_UPDATE_CACHE": [{ name: "version", type: { name: "string" } }] } }
+   */
+  private eventMaps = new Map<string, Map<string, EventMapParameter[]>>()
+  /**
+   * Set of class/interface names that have @internal tag
+   */
+  private internalClasses = new Set<string>()
 
   constructor(jsonPath: string) {
     const content = fs.readFileSync(jsonPath, 'utf-8')
     this.project = JSON.parse(content) as TypeDocProject
+    this.buildInternalClasses()
+    this.buildEventMaps()
+  }
+
+  /**
+   * Get event parameters from EventMap by class name and event name
+   */
+  public getEventParameters(
+    eventEnumName: string,
+    eventName: string,
+  ): EventMapParameter[] | undefined {
+    // Convert enum name to map name: ClientEvents -> ClientEventMap
+    const mapName = eventEnumName.replace(/Events$/, 'EventMap')
+    const eventMap = this.eventMaps.get(mapName)
+    return eventMap?.get(eventName)
   }
 
   /**
    * Parse all exported items
    */
-  public parseAll(): ParsedClass[] {
-    const results: ParsedClass[] = []
+  public parseAll(): ParsedItem[] {
+    const results: ParsedItem[] = []
     const children = this.project.children ?? []
 
     for (const child of children) {
@@ -128,9 +163,97 @@ export class TypeDocParser {
   }
 
   /**
+   * Build set of @internal class/interface names
+   */
+  private buildInternalClasses(): void {
+    const children = this.project.children ?? []
+    for (const child of children)
+      if (this.hasInternalTag(child)) this.internalClasses.add(child.name)
+  }
+
+  /**
+   * Build event parameter maps from EventMap interfaces
+   */
+  private buildEventMaps(): void {
+    const children = this.project.children ?? []
+
+    for (const child of children) {
+      // Only process interfaces ending with "EventMap"
+      if (
+        child.kind === ReflectionKind.Interface &&
+        child.name.endsWith('EventMap')
+      ) {
+        const eventMap = new Map<string, EventMapParameter[]>()
+
+        for (const prop of child.children ?? []) {
+          if (prop.kind === ReflectionKind.Property && prop.type) {
+            // Extract @param descriptions from property's JSDoc
+            const paramDescriptions = this.extractParamDescriptions(prop)
+            const params = this.extractEventMapParameters(
+              prop.type,
+              paramDescriptions,
+            )
+            if (params.length > 0) eventMap.set(prop.name, params)
+          }
+        }
+
+        if (eventMap.size > 0) this.eventMaps.set(child.name, eventMap)
+      }
+    }
+  }
+
+  /**
+   * Extract @param descriptions from a reflection's blockTags
+   */
+  private extractParamDescriptions(
+    reflection: TypeDocReflection,
+  ): Map<string, string> {
+    const descriptions = new Map<string, string>()
+    const blockTags = reflection.comment?.blockTags
+    if (!blockTags) return descriptions
+
+    for (const tag of blockTags) {
+      if (tag.tag === '@param' && tag.name) {
+        const desc = tag.content
+          .filter((part) => part.kind === 'text')
+          .map((part) => part.text.replace(/^\s*-\s*/, ''))
+          .join('')
+          .trim()
+        if (desc) descriptions.set(tag.name, desc)
+      }
+    }
+
+    return descriptions
+  }
+
+  /**
+   * Extract parameters from EventMap tuple type
+   * e.g., [version: string] -> [{ name: "version", type: { name: "string" }, description: "..." }]
+   */
+  private extractEventMapParameters(
+    type: TypeDocType,
+    descriptions: Map<string, string>,
+  ): EventMapParameter[] {
+    if (type.type !== 'tuple' || !type.elements) return []
+
+    return type.elements
+      .filter(
+        (el): el is TypeDocType & { name: string; element: TypeDocType } =>
+          el.type === 'namedTupleMember' &&
+          el.name !== undefined &&
+          el.element !== undefined,
+      )
+      .map((el) => ({
+        name: el.name,
+        type: this.parseType(el.element),
+        description: descriptions.get(el.name),
+      }))
+  }
+
+  /**
    * Parse individual reflection
    */
-  private parseReflection(reflection: TypeDocReflection): ParsedClass | null {
+  private parseReflection(reflection: TypeDocReflection): ParsedItem | null {
     const kind = reflection.kind
 
     if (kind === ReflectionKind.Class) return this.parseClass(reflection)
@@ -153,31 +276,61 @@ export class TypeDocParser {
   /**
    * Parse class
    */
-  private parseClass(reflection: TypeDocReflection): ParsedClass {
+  private parseClass(reflection: TypeDocReflection): ParsedItem {
     const children = reflection.children ?? []
 
     const properties = children
-      .filter((c) => c.kind === ReflectionKind.Property && !c.flags?.isStatic)
+      .filter(
+        (c) =>
+          c.kind === ReflectionKind.Property &&
+          !c.flags?.isStatic &&
+          !this.shouldHideMember(c),
+      )
       .map((c) => this.parseProperty(c))
 
     const methods = children
-      .filter((c) => c.kind === ReflectionKind.Method && !c.flags?.isStatic)
+      .filter(
+        (c) =>
+          c.kind === ReflectionKind.Method &&
+          !c.flags?.isStatic &&
+          !this.shouldHideMember(c),
+      )
       .map((c) => this.parseMethod(c))
 
     const staticProperties = children
-      .filter((c) => c.kind === ReflectionKind.Property && c.flags?.isStatic)
+      .filter(
+        (c) =>
+          c.kind === ReflectionKind.Property &&
+          c.flags?.isStatic &&
+          !this.shouldHideMember(c),
+      )
       .map((c) => this.parseProperty(c))
 
     const staticMethods = children
-      .filter((c) => c.kind === ReflectionKind.Method && c.flags?.isStatic)
+      .filter(
+        (c) =>
+          c.kind === ReflectionKind.Method &&
+          c.flags?.isStatic &&
+          !this.shouldHideMember(c),
+      )
       .map((c) => this.parseMethod(c))
 
     const accessors = children
-      .filter((c) => c.kind === ReflectionKind.Accessor && !c.flags?.isStatic)
+      .filter(
+        (c) =>
+          c.kind === ReflectionKind.Accessor &&
+          !c.flags?.isStatic &&
+          !this.shouldHideMember(c),
+      )
       .map((c) => this.parseAccessor(c))
 
     const staticAccessors = children
-      .filter((c) => c.kind === ReflectionKind.Accessor && c.flags?.isStatic)
+      .filter(
+        (c) =>
+          c.kind === ReflectionKind.Accessor &&
+          c.flags?.isStatic &&
+          !this.shouldHideMember(c),
+      )
       .map((c) => this.parseAccessor(c))
 
     const constructorReflection = children.find(
@@ -192,6 +345,7 @@ export class TypeDocParser {
       description: this.extractDescription(reflection),
       isAbstract: reflection.flags?.isAbstract ?? false,
       isStatic: reflection.flags?.isStatic ?? false,
+      isInternal: this.hasInternalTag(reflection),
       extends: this.parseExtends(reflection),
       implements: this.parseImplements(reflection),
       typeParameters: this.parseTypeParameters(reflection),
@@ -200,7 +354,6 @@ export class TypeDocParser {
         : undefined,
       properties: properties.sort((a, b) => a.name.localeCompare(b.name)),
       methods: methods.sort((a, b) => a.name.localeCompare(b.name)),
-      events: [],
       staticProperties: staticProperties.sort((a, b) =>
         a.name.localeCompare(b.name),
       ),
@@ -215,15 +368,19 @@ export class TypeDocParser {
   /**
    * Parse interface
    */
-  private parseInterface(reflection: TypeDocReflection): ParsedClass {
+  private parseInterface(reflection: TypeDocReflection): ParsedItem {
     const children = reflection.children ?? []
 
     const properties = children
-      .filter((c) => c.kind === ReflectionKind.Property)
+      .filter(
+        (c) => c.kind === ReflectionKind.Property && !this.shouldHideMember(c),
+      )
       .map((c) => this.parseProperty(c))
 
     const methods = children
-      .filter((c) => c.kind === ReflectionKind.Method)
+      .filter(
+        (c) => c.kind === ReflectionKind.Method && !this.shouldHideMember(c),
+      )
       .map((c) => this.parseMethod(c))
 
     return {
@@ -232,12 +389,12 @@ export class TypeDocParser {
       domain: '',
       kind: 'interface',
       description: this.extractDescription(reflection),
+      isInternal: this.hasInternalTag(reflection),
       extends: this.parseExtends(reflection),
       typeParameters: this.parseTypeParameters(reflection),
       constructor: undefined,
       properties: properties.sort((a, b) => a.name.localeCompare(b.name)),
       methods: methods.sort((a, b) => a.name.localeCompare(b.name)),
-      events: [],
       staticProperties: [],
       staticMethods: [],
       accessors: [],
@@ -248,20 +405,20 @@ export class TypeDocParser {
   /**
    * Parse type alias
    */
-  private parseTypeAlias(reflection: TypeDocReflection): ParsedClass {
+  private parseTypeAlias(reflection: TypeDocReflection): ParsedItem {
     return {
       id: reflection.id,
       name: reflection.name,
       domain: '',
       kind: 'type',
       description: this.extractDescription(reflection),
+      isInternal: this.hasInternalTag(reflection),
       typeParameters: this.parseTypeParameters(reflection),
       typeDefinition: this.stringifyType(reflection.type),
       typeRef: this.parseType(reflection.type),
       constructor: undefined,
       properties: [],
       methods: [],
-      events: [],
       staticProperties: [],
       staticMethods: [],
       accessors: [],
@@ -272,16 +429,30 @@ export class TypeDocParser {
   /**
    * Parse enum
    */
-  private parseEnum(reflection: TypeDocReflection): ParsedClass {
+  private parseEnum(reflection: TypeDocReflection): ParsedItem {
     const children = reflection.children ?? []
+    const enumName = reflection.name
 
     const enumMembers: ParsedEnumMember[] = children
       .filter((c) => c.kind === ReflectionKind.EnumMember)
-      .map((c) => ({
-        name: c.name,
-        value: this.extractEnumValue(c),
-        description: this.extractDescription(c),
-      }))
+      .map((c) => {
+        // Try to get parameters from EventMap first, fall back to JSDoc
+        const eventMapParams = this.getEventParameters(enumName, c.name)
+        const parameters: ParsedEventParameter[] | undefined = eventMapParams
+          ? eventMapParams.map((p) => ({
+              name: p.name,
+              type: p.type,
+              description: p.description,
+            }))
+          : this.extractEventParameters(c)
+
+        return {
+          name: c.name,
+          value: this.extractEnumValue(c),
+          description: this.extractDescription(c),
+          parameters,
+        }
+      })
 
     return {
       id: reflection.id,
@@ -289,11 +460,11 @@ export class TypeDocParser {
       domain: '',
       kind: 'enum',
       description: this.extractDescription(reflection),
+      isInternal: this.hasInternalTag(reflection),
       enumMembers,
       constructor: undefined,
       properties: [],
       methods: [],
-      events: [],
       staticProperties: [],
       staticMethods: [],
       accessors: [],
@@ -302,9 +473,74 @@ export class TypeDocParser {
   }
 
   /**
+   * Extract description for a specific @param from JSDoc
+   */
+  private extractEventParamDescription(
+    reflection: TypeDocReflection,
+    paramName: string,
+  ): string | undefined {
+    const blockTags = reflection.comment?.blockTags
+    if (!blockTags) return undefined
+
+    const paramTag = blockTags.find(
+      (tag) => tag.tag === '@param' && tag.name === paramName,
+    )
+    if (!paramTag) return undefined
+
+    // Extract text parts only (skip type references)
+    const description = paramTag.content
+      .filter((part) => part.kind === 'text')
+      .map((part) => part.text.replace(/^\s*-\s*/, ''))
+      .join('')
+      .trim()
+
+    return description || undefined
+  }
+
+  /**
+   * Extract event parameters from @param JSDoc tags on enum members
+   * Supports both {@link Type} and `type` (backtick) formats
+   * Used as fallback when EventMap is not available
+   */
+  private extractEventParameters(
+    reflection: TypeDocReflection,
+  ): ParsedEventParameter[] | undefined {
+    const blockTags = reflection.comment?.blockTags
+    if (!blockTags) return undefined
+
+    const paramTags = blockTags.filter((tag) => tag.tag === '@param')
+    if (paramTags.length === 0) return undefined
+
+    return paramTags.map((tag) => {
+      // Extract type from @link inline tag or backtick code in content
+      let typeName = 'unknown'
+      let description = ''
+
+      for (const part of tag.content) {
+        if (part.kind === 'inline-tag' && part.tag === '@link') {
+          // {@link Type} format - for exported types
+          typeName = part.text
+        } else if (part.kind === 'code') {
+          // `type` backtick format - for primitives
+          typeName = part.text.replace(/^`|`$/g, '')
+        } else if (part.kind === 'text') {
+          // Remove leading " - " from description
+          description += part.text.replace(/^\s*-\s*/, '')
+        }
+      }
+
+      return {
+        name: tag.name ?? 'unknown',
+        type: { name: typeName },
+        description: description.trim() || undefined,
+      }
+    })
+  }
+
+  /**
    * Parse function
    */
-  private parseFunction(reflection: TypeDocReflection): ParsedClass {
+  private parseFunction(reflection: TypeDocReflection): ParsedItem {
     const signature = reflection.signatures?.[0]
 
     return {
@@ -315,12 +551,12 @@ export class TypeDocParser {
       description: signature
         ? this.extractDescriptionFromSignature(signature)
         : '',
+      isInternal: this.hasInternalTag(reflection),
       constructor: undefined,
       methods: signature
         ? [this.parseMethodFromSignature(reflection.name, signature)]
         : [],
       properties: [],
-      events: [],
       staticProperties: [],
       staticMethods: [],
       accessors: [],
@@ -331,9 +567,14 @@ export class TypeDocParser {
   /**
    * Parse variable (for constants/schemas)
    */
-  private parseVariable(reflection: TypeDocReflection): ParsedClass | null {
-    // Only include exported variables that look like schemas or constants
-    if (!/Schema$|^[A-Z_]+$/.exec(reflection.name)) return null
+  private parseVariable(reflection: TypeDocReflection): ParsedItem | null {
+    // Only include exported variables that look like schemas, constants, or type-like objects
+    // - Schema$ : validation schemas
+    // - ^[A-Z_]+$ : SCREAMING_SNAKE_CASE constants
+    // - ^[A-Z][a-z] : PascalCase objects (e.g., NoticeLanguage, TimeZonesPerRegion)
+    // - ^[a-z]+[A-Z] : camelCase objects (e.g., errorCategories, retryClassifications)
+    if (!/Schema$|^[A-Z_]+$|^[A-Z][a-z]|^[a-z]+[A-Z]/.exec(reflection.name))
+      return null
 
     return {
       id: reflection.id,
@@ -341,12 +582,12 @@ export class TypeDocParser {
       domain: '',
       kind: 'type',
       description: this.extractDescription(reflection),
+      isInternal: this.hasInternalTag(reflection),
       typeDefinition: this.stringifyType(reflection.type),
       typeRef: this.parseType(reflection.type),
       constructor: undefined,
       properties: [],
       methods: [],
-      events: [],
       staticProperties: [],
       staticMethods: [],
       accessors: [],
@@ -686,6 +927,43 @@ export class TypeDocParser {
     if (!summary) return ''
 
     return summary.map((s) => s.text).join('')
+  }
+
+  /**
+   * Check if reflection has @internal tag
+   */
+  private hasInternalTag(reflection: TypeDocReflection): boolean {
+    const comment = reflection.comment
+    if (!comment) return false
+
+    // Check modifierTags (TypeDoc stores @internal here)
+    if (comment.modifierTags?.includes('@internal')) return true
+
+    // Also check blockTags as fallback
+    if (comment.blockTags?.some((tag) => tag.tag === '@internal')) return true
+
+    return false
+  }
+
+  /**
+   * Check if member is inherited from an @internal class
+   */
+  private isInheritedFromInternalClass(reflection: TypeDocReflection): boolean {
+    if (!reflection.inheritedFrom) return false
+
+    // inheritedFrom.name is like "AssetCacheManager._getCachedExcelBinOutputByName"
+    const className = reflection.inheritedFrom.name.split('.')[0]
+    return this.internalClasses.has(className)
+  }
+
+  /**
+   * Check if member should be hidden (has @internal or inherited from @internal class)
+   */
+  private shouldHideMember(reflection: TypeDocReflection): boolean {
+    return (
+      this.hasInternalTag(reflection) ||
+      this.isInheritedFromInternalClass(reflection)
+    )
   }
 
   /**

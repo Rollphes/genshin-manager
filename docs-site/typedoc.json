@@ -2,14 +2,17 @@
   "$schema": "https://typedoc.org/schema.json",
   "entryPoints": ["../src/index.ts"],
   "tsconfig": "../tsconfig.typedoc.json",
-  "json": "./api-docs.json",
+  "json": "./src/generated/api-docs.json",
   "pretty": false,
   "excludePrivate": true,
   "excludeProtected": true,
-  "excludeInternal": true,
+  "excludeInternal": false,
   "excludeExternals": true,
   "disableSources": true,
   "includeVersion": false,
+  "validation": {
+    "notExported": false
+  },
   "blockTags": [
     "@default",
     "@defaultValue",

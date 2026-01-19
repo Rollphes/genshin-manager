@@ -1,0 +1,72 @@
+{
+  "typedocJson": "./src/generated/api-docs.json",
+  "outputDir": "content/docs/api",
+  "guideBasePath": "/docs/guide",
+  "hideInternal": true,
+  "hideExtends": true,
+  "hideImplements": true,
+  "guideLinks": {
+    "Client": "/docs/guide/getting-started",
+    "Character": "/docs/guide/characters",
+    "Weapon": "/docs/guide/weapons"
+  },
+  "eventMappings": {
+    "Client": "ClientEvents",
+    "NoticeManager": "NoticeManagerEvents",
+    "EnkaManager": "EnkaManagerEvents"
+  },
+  "domainRules": [
+    {
+      "domain": "client",
+      "match": ["Client", "ClientOption", "ClientEvents", "AssetCacheManager"]
+    },
+    {
+      "domain": "notice",
+      "match": ["NoticeManager", "NoticeManagerEvents", "Notice", "URLParams", "NoticeLanguage", "TimeZonesPerRegion"]
+    },
+    {
+      "domain": "character",
+      "matchPattern": "^(Character|Artifact|SetBonus)"
+    },
+    {
+      "domain": "weapon",
+      "matchPattern": "^Weapon"
+    },
+    {
+      "domain": "enka",
+      "matchPattern": "^(Enka|Genshin|PlayerDetail)"
+    },
+    {
+      "domain": "assets",
+      "match": ["ImageAssets", "AudioAssets"]
+    },
+    {
+      "domain": "monster",
+      "match": ["Monster"]
+    },
+    {
+      "domain": "world",
+      "match": ["Material", "DailyFarming", "DomainData"]
+    },
+    {
+      "domain": "common",
+      "match": ["ProfilePicture", "StatProperty"]
+    },
+    {
+      "domain": "errors",
+      "match": ["errorCategories", "retryClassifications"],
+      "matchPattern": "Error$"
+    },
+    {
+      "domain": "types",
+      "match": ["Element", "EquipType", "FightPropType", "CVType", "ArtifactType", "BodyType", "LogLevel", "QualityType", "WeaponType", "ItemType", "MaterialType", "ProfilePictureType", "DecodedType", "MasterFileMap"]
+    },
+    {
+      "domain": "utilities",
+      "matchPattern": "^(convert|create)"
+    }
+  ],
+  "domainOrder": ["client", "notice", "character", "weapon", "enka", "assets", "monster", "world", "common", "errors", "types", "utilities"],
+  "categoryOrder": ["classes", "interfaces", "types", "functions"],
+  "defaultDomain": "types"
+}

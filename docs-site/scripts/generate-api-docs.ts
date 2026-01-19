@@ -6,16 +6,30 @@ import { MdxGenerator } from './lib/mdx-generator'
 import { MetaGenerator } from './lib/meta-generator'
 import { buildTypeLinkMap, typeLinkMapToObject } from './lib/type-link-map'
 import { TypeDocParser } from './lib/typedoc-parser'
+import type { ApiDocsConfig } from './lib/types'
 
-const OUTPUT_DIR = path.resolve(__dirname, '../content/docs/api')
-const TYPEDOC_JSON = path.resolve(__dirname, '../api-docs.json')
+const CONFIG_FILE = path.resolve(__dirname, '../api-docs.config.json')
 const TYPE_LINK_MAP_OUTPUT = path.resolve(
   __dirname,
   '../src/generated/type-link-map.json',
 )
 
+async function loadConfig(): Promise<ApiDocsConfig> {
+  const content = await fs.readFile(CONFIG_FILE, 'utf-8')
+  return JSON.parse(content) as ApiDocsConfig
+}
+
 async function main(): Promise<void> {
   console.log('Starting API documentation generation...')
+
+  // Load config
+  console.log('\n0. Loading configuration...')
+  const config = await loadConfig()
+  console.log(`   Config: ${CONFIG_FILE}`)
+
+  const OUTPUT_DIR = path.resolve(__dirname, '..', config.outputDir)
+  const TYPEDOC_JSON = path.resolve(__dirname, '..', config.typedocJson)
+
   console.log(`TypeDoc JSON: ${TYPEDOC_JSON}`)
   console.log(`Output directory: ${OUTPUT_DIR}`)
 
@@ -30,17 +44,26 @@ async function main(): Promise<void> {
 
   // 1. Clean output directory
   console.log('\n1. Cleaning output directory...')
-  await cleanOutputDir()
+  await cleanOutputDir(OUTPUT_DIR)
 
   // 2. Parse TypeDoc JSON
   console.log('\n2. Parsing TypeDoc JSON...')
   const parser = new TypeDocParser(TYPEDOC_JSON)
-  const items = parser.parseAll()
-  console.log(`   Parsed ${String(items.length)} items`)
+  const allItems = parser.parseAll()
+  console.log(`   Parsed ${String(allItems.length)} items`)
+
+  // Filter out @internal items if hideInternal is enabled
+  const items = config.hideInternal
+    ? allItems.filter((item) => !item.isInternal)
+    : allItems
+  if (config.hideInternal) {
+    const hiddenCount = allItems.length - items.length
+    console.log(`   Filtered ${String(hiddenCount)} @internal items`)
+  }
 
   // 3. Classify items by domain
   console.log('\n3. Classifying items by domain...')
-  const classifications = classifyAllItems(items)
+  const classifications = classifyAllItems(items, config)
   console.log(`   Classified into ${String(classifications.length)} categories`)
 
   // Print classification summary
@@ -66,7 +89,11 @@ async function main(): Promise<void> {
   const mdxGenerator = new MdxGenerator({
     outputDir: OUTPUT_DIR,
     typeLinkMap,
-    guideBasePath: '/docs/guide',
+    guideBasePath: config.guideBasePath,
+    guideLinks: config.guideLinks,
+    hideExtends: config.hideExtends,
+    hideImplements: config.hideImplements,
+    eventMappings: config.eventMappings,
   })
   await mdxGenerator.generateAll(classifications)
 
@@ -78,15 +105,15 @@ async function main(): Promise<void> {
   console.log('\n✅ API documentation generation complete!')
 }
 
-async function cleanOutputDir(): Promise<void> {
+async function cleanOutputDir(outputDir: string): Promise<void> {
   try {
-    await fs.rm(OUTPUT_DIR, { recursive: true, force: true })
-    console.log(`   Removed ${OUTPUT_DIR}`)
+    await fs.rm(outputDir, { recursive: true, force: true })
+    console.log(`   Removed ${outputDir}`)
   } catch {
     // Directory doesn't exist, ignore
   }
-  await fs.mkdir(OUTPUT_DIR, { recursive: true })
-  console.log(`   Created ${OUTPUT_DIR}`)
+  await fs.mkdir(outputDir, { recursive: true })
+  console.log(`   Created ${outputDir}`)
 }
 
 async function saveTypeLinkMap(linkMap: Map<string, string>): Promise<void> {

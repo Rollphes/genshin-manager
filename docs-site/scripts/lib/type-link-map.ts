@@ -1,4 +1,4 @@
-import type { ParsedClass, TypeLinkMap } from './types'
+import type { ParsedItem, TypeLinkMap } from './types'
 import { toKebabCase } from './utils'
 
 /**
@@ -50,7 +50,7 @@ const BUILTIN_TYPES = new Set([
 /**
  * Build type link map from parsed items
  */
-export function buildTypeLinkMap(items: ParsedClass[]): TypeLinkMap {
+export function buildTypeLinkMap(items: ParsedItem[]): TypeLinkMap {
   const map: TypeLinkMap = new Map()
 
   for (const item of items) {
@@ -64,7 +64,7 @@ export function buildTypeLinkMap(items: ParsedClass[]): TypeLinkMap {
 /**
  * Build path for item (flat structure - no category subdirectory)
  */
-function buildPath(item: ParsedClass): string {
+function buildPath(item: ParsedItem): string {
   const domain = item.domain
   const fileName = toKebabCase(item.name)
 
