@@ -43,9 +43,9 @@ export class Weapon {
   /**
    * Create a Weapon
    * @param weaponId weapon ID
-   * @param level weapon level (1-90). Default: 1
-   * @param isAscended weapon is ascended. Default: true
-   * @param refinementRank weapon refinement rank (1-5). Default: 1
+   * @param level weapon level (1-90)
+   * @param isAscended weapon is ascended
+   * @param refinementRank weapon refinement rank (1-5)
    */
   constructor(
     weaponId: number,
@@ -256,7 +256,7 @@ export class Weapon {
 
   /**
    * Get refinement effect for specified rank
-   * @param rank refinement rank (1-5). Default: current rank
+   * @param rank refinement rank (1-5)
    * @returns refinement effect
    */
   public getRefinementEffect(rank?: number): WeaponRefinement {

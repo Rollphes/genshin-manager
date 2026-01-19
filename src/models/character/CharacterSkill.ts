@@ -46,8 +46,8 @@ export class CharacterSkill {
   /**
    * Create a Skill
    * @param skillId skill ID
-   * @param level skill level (1-15). Default: 1
-   * @param extraLevel levels increased by constellation (0 or 3). Default: 0
+   * @param level skill level (1-15)
+   * @param extraLevel levels increased by constellation (0 or 3)
    */
   constructor(skillId: number, level = 1, extraLevel = 0) {
     this.id = skillId

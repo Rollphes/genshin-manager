@@ -86,7 +86,7 @@ export class Artifact {
    */
   public readonly setName: string | undefined
   /**
-   * Artifact set description (index:1 = 1pc, 2 = 2pc , 4 = 4pc)
+   * Artifact set description
    * @key Number of pieces required (1, 2, or 4)
    * @value Set bonus description
    */
@@ -119,8 +119,8 @@ export class Artifact {
   /**
    * Create a Artifact
    * @param artifactId artifact ID
-   * @param mainPropId main stat ID from ReliquaryMainPropExcelConfigData.json. Default: 10001
-   * @param level artifact level (0-20). Default: 0
+   * @param mainPropId main stat ID from ReliquaryMainPropExcelConfigData.json
+   * @param level artifact level (0-20)
    * @param appendPropIds artifact sub stat IDs
    * @example
    * ```ts

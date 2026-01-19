@@ -50,7 +50,7 @@ export class CharacterAscension {
   /**
    * Create a character ascension
    * @param characterId character ID
-   * @param promoteLevel character promote level (0-6). Default: 0
+   * @param promoteLevel character promote level (0-6)
    */
   constructor(characterId: number, promoteLevel = 0) {
     this.id = characterId

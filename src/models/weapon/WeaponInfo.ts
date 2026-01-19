@@ -92,9 +92,9 @@ export class WeaponInfo {
   /**
    * Create a WeaponInfo
    * @param weaponId weapon ID
-   * @param level weapon level (1-90). Default: 1
-   * @param isAscended weapon is ascended. Default: true
-   * @param refinementRank weapon refinement rank (1-5). Default: 1
+   * @param level weapon level (1-90)
+   * @param isAscended weapon is ascended
+   * @param refinementRank weapon refinement rank (1-5)
    */
   constructor(
     weaponId: number,

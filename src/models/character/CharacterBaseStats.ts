@@ -43,8 +43,8 @@ export class CharacterBaseStats {
   /**
    * Create a character's base stats
    * @param characterId character ID
-   * @param level character level (1-100). Default: 1
-   * @param isAscended character is ascended (true or false). Default: false
+   * @param level character level (1-100)
+   * @param isAscended character is ascended
    */
   constructor(characterId: number, level = 1, isAscended = false) {
     this.id = characterId

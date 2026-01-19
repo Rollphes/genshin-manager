@@ -623,7 +623,9 @@ export class TypeDocParser {
       isStatic: reflection.flags?.isStatic ?? false,
       isAbstract: reflection.flags?.isAbstract ?? false,
       isProtected: reflection.flags?.isProtected ?? false,
-      defaultValue: reflection.defaultValue,
+      defaultValue:
+        reflection.defaultValue ??
+        this.extractDefaultValue(reflection.comment),
       warnings: this.extractWarnings(reflection.comment),
       additionalDescription: this.extractAdditionalDescription(
         reflection.comment,
@@ -1090,6 +1092,28 @@ export class TypeDocParser {
       }
     }
     return warnings
+  }
+
+  /**
+   * Extract @default or @defaultValue tag
+   */
+  private extractDefaultValue(
+    comment: TypeDocComment | undefined,
+  ): string | undefined {
+    const blockTags = comment?.blockTags
+    if (!blockTags) return undefined
+
+    const defaultTag = blockTags.find(
+      (tag) => tag.tag === '@default' || tag.tag === '@defaultValue',
+    )
+    if (!defaultTag) return undefined
+
+    return (
+      defaultTag.content
+        .map((c) => c.text)
+        .join('')
+        .trim() || undefined
+    )
   }
 
   /**

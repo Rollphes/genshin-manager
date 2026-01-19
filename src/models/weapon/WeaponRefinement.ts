@@ -40,7 +40,7 @@ export class WeaponRefinement {
   /**
    * Create a weapon refinement
    * @param weaponId weapon ID
-   * @param refinementRank weapon refinement rank (1-5). Default: 1
+   * @param refinementRank weapon refinement rank (1-5)
    */
   constructor(weaponId: number, refinementRank = 1) {
     this.id = weaponId

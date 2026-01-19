@@ -53,9 +53,9 @@ export class Character {
   /**
    * Create a Character
    * @param characterId character ID
-   * @param level character level (1-90). Default: 1
-   * @param isAscended character is ascended (true or false). Default: false
-   * @param constellationLevel constellation level (0-6). Default: 0
+   * @param level character level (1-100)
+   * @param isAscended character is ascended
+   * @param constellationLevel constellation level (0-6)
    * @param skillDepotId skill depot ID (for travelers). Optional
    */
   constructor(
@@ -323,7 +323,7 @@ export class Character {
 
   /**
    * Get character voices
-   * @param cv CV language. Default: 'en'
+   * @param cv CV language
    * @returns character voices
    */
   public getVoices(cv: CVType = 'en'): CharacterVoice[] {
@@ -334,7 +334,7 @@ export class Character {
 
   /**
    * Get normal attack skill
-   * @param skillLevel skill level (1-15). Default: 1
+   * @param skillLevel skill level (1-15)
    * @returns normal attack skill
    */
   public getNormalAttack(skillLevel = 1): CharacterSkill {
@@ -343,7 +343,7 @@ export class Character {
 
   /**
    * Get elemental skill
-   * @param skillLevel skill level (1-15). Default: 1
+   * @param skillLevel skill level (1-15)
    * @returns elemental skill
    */
   public getElementalSkill(skillLevel = 1): CharacterSkill {
@@ -352,7 +352,7 @@ export class Character {
 
   /**
    * Get elemental burst
-   * @param skillLevel skill level (1-15). Default: 1
+   * @param skillLevel skill level (1-15)
    * @returns elemental burst
    */
   public getElementalBurst(skillLevel = 1): CharacterSkill {
@@ -464,7 +464,7 @@ export class Character {
   /**
    * Get a specific skill by index
    * @param skillIndex skill index (0: Normal Attack, 1: Elemental Skill, 2: Elemental Burst)
-   * @param skillLevel skill level (1-15). Default: 1
+   * @param skillLevel skill level (1-15)
    * @returns character skill
    */
   private getSkill(skillIndex: number, skillLevel = 1): CharacterSkill {

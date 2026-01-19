@@ -47,7 +47,7 @@ export class CharacterSkillAscension {
   /**
    * Create a character skill ascension
    * @param skillId skill ID
-   * @param level skill level (1-15). Default: 1
+   * @param level skill level (1-15)
    */
   constructor(skillId: number, level = 1) {
     this.id = skillId
