@@ -642,8 +642,7 @@ export class TypeDocParser {
       isStatic: reflection.flags?.isStatic ?? false,
       isAbstract: reflection.flags?.isAbstract ?? false,
       isProtected: reflection.flags?.isProtected ?? false,
-      defaultValue:
-        reflection.defaultValue ?? this.extractDefaultValue(reflection.comment),
+      defaultValue: this.extractDefaultValue(reflection.comment),
       warnings: this.extractWarnings(reflection.comment),
       additionalDescription: this.extractAdditionalDescription(
         reflection.comment,
