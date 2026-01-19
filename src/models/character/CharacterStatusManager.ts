@@ -5,63 +5,121 @@ import { FightProps } from '@/types/types'
  * Manages character combat statistics and calculated property values
  */
 export class CharacterStatusManager {
+  /** Base HP */
   public readonly healthBase: StatProperty
+  /** Flat HP bonus */
   public readonly healthFlat: StatProperty
+  /** HP percentage bonus */
   public readonly healthPercent: StatProperty
+  /** Base ATK */
   public readonly attackBase: StatProperty
+  /** Flat ATK bonus */
   public readonly attackFlat: StatProperty
+  /** ATK percentage bonus */
   public readonly attackPercent: StatProperty
+  /** Base DEF */
   public readonly defenseBase: StatProperty
+  /** Flat DEF bonus */
   public readonly defenseFlat: StatProperty
+  /** DEF percentage bonus */
   public readonly defensePercent: StatProperty
+  /** Base speed */
   public readonly speedBase: StatProperty
+  /** Speed percentage bonus */
   public readonly speedPercent: StatProperty
+  /** Critical rate */
   public readonly critRate: StatProperty
+  /** Critical damage */
   public readonly critDamage: StatProperty
+  /** Energy recharge */
   public readonly chargeEfficiency: StatProperty
+  /** Healing bonus */
   public readonly healAdd: StatProperty
+  /** Incoming healing bonus */
   public readonly healedAdd: StatProperty
+  /** Elemental mastery */
   public readonly elementMastery: StatProperty
+  /** Physical resistance */
   public readonly physicalRes: StatProperty
+  /** Physical damage bonus */
   public readonly physicalDamage: StatProperty
+  /** Pyro damage bonus */
   public readonly pyroDamage: StatProperty
+  /** Electro damage bonus */
   public readonly electroDamage: StatProperty
+  /** Hydro damage bonus */
   public readonly hydroDamage: StatProperty
+  /** Dendro damage bonus */
   public readonly dendroDamage: StatProperty
+  /** Anemo damage bonus */
   public readonly anemoDamage: StatProperty
+  /** Geo damage bonus */
   public readonly geoDamage: StatProperty
+  /** Cryo damage bonus */
   public readonly cryoDamage: StatProperty
+  /** Pyro resistance */
   public readonly pyroRes: StatProperty
+  /** Electro resistance */
   public readonly electroRes: StatProperty
+  /** Hydro resistance */
   public readonly hydroRes: StatProperty
+  /** Dendro resistance */
   public readonly dendroRes: StatProperty
+  /** Anemo resistance */
   public readonly anemoRes: StatProperty
+  /** Geo resistance */
   public readonly geoRes: StatProperty
+  /** Cryo resistance */
   public readonly cryoRes: StatProperty
+  /** Damage bonuses sorted by value (descending) */
   public readonly sortedDamageBonus: StatProperty[]
+  /** Pyro elemental burst energy cost */
   public readonly pyroEnergyCost: number
+  /** Electro elemental burst energy cost */
   public readonly electroEnergyCost: number
+  /** Hydro elemental burst energy cost */
   public readonly hydroEnergyCost: number
+  /** Dendro elemental burst energy cost */
   public readonly dendroEnergyCost: number
+  /** Anemo elemental burst energy cost */
   public readonly anemoEnergyCost: number
+  /** Cryo elemental burst energy cost */
   public readonly cryoEnergyCost: number
+  /** Geo elemental burst energy cost */
   public readonly geoEnergyCost: number
+  /** Maximum elemental burst energy cost */
   public readonly energyCost: number
+  /** Cooldown reduction */
   public readonly cooldownReduction: StatProperty
+  /** Shield strength */
   public readonly shieldStrength: StatProperty
+  /** Current pyro energy */
   public readonly currentPyroEnergy: number
+  /** Current electro energy */
   public readonly currentElectroEnergy: number
+  /** Current hydro energy */
   public readonly currentHydroEnergy: number
+  /** Current dendro energy */
   public readonly currentDendroEnergy: number
+  /** Current anemo energy */
   public readonly currentAnemoEnergy: number
+  /** Current cryo energy */
   public readonly currentCryoEnergy: number
+  /** Current geo energy */
   public readonly currentGeoEnergy: number
+  /** Current maximum energy */
   public readonly currentEnergy: number
+  /** Current HP */
   public readonly currentHealth: StatProperty
+  /** Maximum HP (calculated) */
   public readonly maxHealth: StatProperty
+  /** Total ATK (calculated) */
   public readonly attack: StatProperty
+  /** Total DEF (calculated) */
   public readonly defense: StatProperty
+  /** Total speed (calculated) */
   public readonly speed: StatProperty
+  /** All stat properties */
   public readonly statProperties: StatProperty[] = []
   private readonly fightPropData: Record<number, number | undefined>
 
