@@ -274,7 +274,7 @@ export class Weapon {
   public calculateWeaponLevelMaterials(
     currentLevel: number,
     targetLevel: number,
-  ): { id: number; count: number }[] {
+  ): AscensionMaterial[] {
     const materialsMap = new Map<number, number>()
 
     const weaponJson = Client._getJsonFromCachedExcelBinOutput(

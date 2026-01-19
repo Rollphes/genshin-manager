@@ -5,10 +5,6 @@ import type {
 import { JsonObject } from '@/types/json'
 import { LogLevel } from '@/utils/logger/Logger'
 
-// ============================================================================
-// Generated enum re-definitions with JSDoc
-// ============================================================================
-
 /**
  * Character body type
  */
@@ -263,10 +259,6 @@ export enum MaterialType {
   /** Wood */
   MATERIAL_WOOD = 'MATERIAL_WOOD',
 }
-
-// ============================================================================
-// Type aliases for generic types (cannot be re-defined as enum)
-// ============================================================================
 
 /** Master file map type */
 export type MasterFileMap = _MasterFileMap

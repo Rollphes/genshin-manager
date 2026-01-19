@@ -242,7 +242,7 @@ export class Character {
   /**
    * Character ascension materials
    */
-  public get ascensionMaterials(): { id: number; count: number }[] {
+  public get ascensionMaterials(): AscensionMaterial[] {
     return this.ascension.costItems
   }
 
@@ -392,9 +392,7 @@ export class Character {
    * @param skillLevel skill level (1-15)
    * @returns array of materials needed
    */
-  public getNormalAttackMaterials(
-    skillLevel: number,
-  ): { id: number; count: number }[] {
+  public getNormalAttackMaterials(skillLevel: number): AscensionMaterial[] {
     return this.getSkillMaterials(0, skillLevel)
   }
 
@@ -403,9 +401,7 @@ export class Character {
    * @param skillLevel skill level (1-15)
    * @returns array of materials needed
    */
-  public getElementalSkillMaterials(
-    skillLevel: number,
-  ): { id: number; count: number }[] {
+  public getElementalSkillMaterials(skillLevel: number): AscensionMaterial[] {
     return this.getSkillMaterials(1, skillLevel)
   }
 
@@ -414,9 +410,7 @@ export class Character {
    * @param skillLevel skill level (1-15)
    * @returns array of materials needed
    */
-  public getElementalBurstMaterials(
-    skillLevel: number,
-  ): { id: number; count: number }[] {
+  public getElementalBurstMaterials(skillLevel: number): AscensionMaterial[] {
     return this.getSkillMaterials(2, skillLevel)
   }
 
@@ -427,7 +421,7 @@ export class Character {
    */
   public calculateUpgradeMaterials(
     plan: CharacterUpgradePlan,
-  ): { id: number; count: number }[] {
+  ): AscensionMaterial[] {
     const materialsMap = new Map<number, number>()
 
     if (plan.characterLevel) {
@@ -512,7 +506,7 @@ export class Character {
   private getSkillMaterials(
     skillIndex: number,
     skillLevel: number,
-  ): { id: number; count: number }[] {
+  ): AscensionMaterial[] {
     const skillId = this.skillOrder[skillIndex]
     if (!skillId) return []
     const skillAscension = new CharacterSkillAscension(skillId, skillLevel)
@@ -528,7 +522,7 @@ export class Character {
   private calculateCharacterLevelMaterials(
     currentLevel: number,
     targetLevel: number,
-  ): { id: number; count: number }[] {
+  ): AscensionMaterial[] {
     const materialsMap = new Map<number, number>()
 
     const avatarJson = Client._getJsonFromCachedExcelBinOutput(
@@ -580,7 +574,7 @@ export class Character {
     skillIndex: number,
     currentLevel: number,
     targetLevel: number,
-  ): { id: number; count: number }[] {
+  ): AscensionMaterial[] {
     const materialsMap = new Map<number, number>()
     const skillId = this.skillOrder[skillIndex]
     if (!skillId) return []
