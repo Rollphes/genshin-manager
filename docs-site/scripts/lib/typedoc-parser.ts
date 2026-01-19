@@ -126,12 +126,31 @@ export class TypeDocParser {
    * Set of class/interface names that have @internal tag
    */
   private internalClasses = new Set<string>()
+  /**
+   * Map of class/interface name -> reflection for quick lookup
+   */
+  private classMap = new Map<string, TypeDocReflection>()
 
   constructor(jsonPath: string) {
     const content = fs.readFileSync(jsonPath, 'utf-8')
     this.project = JSON.parse(content) as TypeDocProject
+    this.buildClassMap()
     this.buildInternalClasses()
     this.buildEventMaps()
+  }
+
+  /**
+   * Build map of class/interface name -> reflection
+   */
+  private buildClassMap(): void {
+    const children = this.project.children ?? []
+    for (const child of children) {
+      if (
+        child.kind === ReflectionKind.Class ||
+        child.kind === ReflectionKind.Interface
+      )
+        this.classMap.set(child.name, child)
+    }
   }
 
   /**
@@ -624,8 +643,7 @@ export class TypeDocParser {
       isAbstract: reflection.flags?.isAbstract ?? false,
       isProtected: reflection.flags?.isProtected ?? false,
       defaultValue:
-        reflection.defaultValue ??
-        this.extractDefaultValue(reflection.comment),
+        reflection.defaultValue ?? this.extractDefaultValue(reflection.comment),
       warnings: this.extractWarnings(reflection.comment),
       additionalDescription: this.extractAdditionalDescription(
         reflection.comment,
@@ -949,13 +967,37 @@ export class TypeDocParser {
 
   /**
    * Check if member is inherited from an @internal class
+   * Traces back through inheritance chain to find original definition
    */
   private isInheritedFromInternalClass(reflection: TypeDocReflection): boolean {
     if (!reflection.inheritedFrom) return false
 
-    // inheritedFrom.name is like "AssetCacheManager._getCachedExcelBinOutputByName"
-    const className = reflection.inheritedFrom.name.split('.')[0]
-    return this.internalClasses.has(className)
+    // Find the original definition class by tracing inheritedFrom chain
+    const originClassName = this.findOriginClassName(
+      reflection.inheritedFrom.name,
+    )
+    return this.internalClasses.has(originClassName)
+  }
+
+  /**
+   * Find the original class where a member was defined
+   * by tracing the inheritedFrom chain
+   */
+  private findOriginClassName(inheritedFromName: string): string {
+    const [className, memberName] = inheritedFromName.split('.')
+
+    // If this class is not @internal, it's the origin (or close enough)
+    if (!this.internalClasses.has(className)) return className
+
+    // Look up the class and find the member
+    const classReflection = this.classMap.get(className)
+    if (!classReflection?.children) return className
+
+    const member = classReflection.children.find((c) => c.name === memberName)
+    if (!member?.inheritedFrom) return className
+
+    // Recursively trace back
+    return this.findOriginClassName(member.inheritedFrom.name)
   }
 
   /**
