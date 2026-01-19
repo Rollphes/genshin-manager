@@ -128,6 +128,7 @@ function renderPropertiesTable(
     if (prop.isReadonly) badges.push('[readonly]')
     if (prop.isStatic) badges.push('[static]')
     if (prop.isAbstract) badges.push('[abstract]')
+    if (prop.isProtected) badges.push('[protected]')
     const badgePrefix = badges.join('')
 
     // Build description with warnings, additionalDescription, and mapDescription inline
@@ -242,6 +243,7 @@ function renderMethod(
   isAsync={${String(method.isAsync)}}
   isStatic={${String(isStatic)}}
   isAbstract={${String(method.isAbstract)}}
+  isProtected={${String(method.isProtected)}}
 />
 `
 }

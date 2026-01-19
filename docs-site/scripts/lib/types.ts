@@ -88,6 +88,7 @@ export interface ParsedProperty {
   isOptional: boolean
   isStatic: boolean
   isAbstract: boolean
+  isProtected: boolean
   defaultValue?: string
   warnings?: string[]
   additionalDescription?: string
@@ -107,6 +108,7 @@ export interface ParsedMethod {
   isAsync: boolean
   isStatic: boolean
   isAbstract: boolean
+  isProtected: boolean
   typeParameters?: TypeParameter[]
   example?: string
   returns?: string

@@ -381,6 +381,7 @@ export class TypeDocParser {
       isOptional: reflection.flags?.isOptional ?? false,
       isStatic: reflection.flags?.isStatic ?? false,
       isAbstract: reflection.flags?.isAbstract ?? false,
+      isProtected: reflection.flags?.isProtected ?? false,
       defaultValue: reflection.defaultValue,
       warnings: this.extractWarnings(reflection.comment),
       additionalDescription: this.extractAdditionalDescription(
@@ -435,6 +436,7 @@ export class TypeDocParser {
         isAsync: false,
         isStatic: reflection.flags?.isStatic ?? false,
         isAbstract: reflection.flags?.isAbstract ?? false,
+        isProtected: reflection.flags?.isProtected ?? false,
       }
     }
 
@@ -466,6 +468,7 @@ export class TypeDocParser {
       isAsync,
       isStatic: flags?.isStatic ?? false,
       isAbstract: flags?.isAbstract ?? false,
+      isProtected: flags?.isProtected ?? false,
       typeParameters: this.parseTypeParametersFromSignature(signature),
       example: this.extractExample(signature),
       returns: this.extractReturns(signature),

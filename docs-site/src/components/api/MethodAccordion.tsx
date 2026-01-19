@@ -29,7 +29,27 @@ interface Parameter {
   defaultValue?: string
 }
 
-type BadgeType = 'async' | 'static' | 'abstract' | 'deprecated'
+type BadgeType = 'async' | 'static' | 'abstract' | 'deprecated' | 'protected'
+
+interface BadgeFlags {
+  isAsync: boolean
+  isStatic: boolean
+  isAbstract: boolean
+  isProtected: boolean
+  isDeprecated: boolean
+}
+
+// Extracted: Build badges from flags
+function buildBadges(flags: BadgeFlags): BadgeType[] {
+  const { isAsync, isStatic, isAbstract, isProtected, isDeprecated } = flags
+  return [
+    isAsync && 'async',
+    isStatic && 'static',
+    isAbstract && 'abstract',
+    isProtected && 'protected',
+    isDeprecated && 'deprecated',
+  ].filter((b): b is BadgeType => Boolean(b))
+}
 
 // Extracted: Method name rendering
 function MethodName({ name }: { name: string }): ReactNode {
@@ -94,6 +114,37 @@ function ReturnsSection({
   )
 }
 
+// Extracted: Accordion content section
+function AccordionContent({
+  description,
+  parameters,
+  returnType,
+  returns,
+  example,
+}: {
+  description?: ReactNode
+  parameters: Parameter[]
+  returnType: ReactNode
+  returns?: ReactNode
+  example?: string
+}): ReactNode {
+  return (
+    <div className="border-t border-fd-border p-4 space-y-4">
+      {description && <p className="text-fd-muted-foreground">{description}</p>}
+      {parameters.length > 0 && <ParametersSection parameters={parameters} />}
+      {(returns !== undefined || returnType !== undefined) && (
+        <ReturnsSection returnType={returnType} returns={returns} />
+      )}
+      {example && (
+        <div>
+          <h4 className="text-sm font-semibold mb-2">Example</h4>
+          <DynamicCodeBlock lang="ts" code={example.trim()} />
+        </div>
+      )}
+    </div>
+  )
+}
+
 interface MethodAccordionProps {
   name: string
   returnType: ReactNode
@@ -104,6 +155,7 @@ interface MethodAccordionProps {
   isAsync?: boolean
   isStatic?: boolean
   isAbstract?: boolean
+  isProtected?: boolean
   isDeprecated?: boolean
   defaultOpen?: boolean
 }
@@ -118,17 +170,18 @@ export function MethodAccordion({
   isAsync = false,
   isStatic = false,
   isAbstract = false,
+  isProtected = false,
   isDeprecated = false,
   defaultOpen = false,
 }: MethodAccordionProps): React.ReactElement {
   const [isOpen, setIsOpen] = useState(defaultOpen)
-
-  const badges: BadgeType[] = [
-    isAsync && 'async',
-    isStatic && 'static',
-    isAbstract && 'abstract',
-    isDeprecated && 'deprecated',
-  ].filter((b): b is BadgeType => Boolean(b))
+  const badges = buildBadges({
+    isAsync,
+    isStatic,
+    isAbstract,
+    isProtected,
+    isDeprecated,
+  })
 
   return (
     <div className="border border-fd-border rounded-lg mb-2">
@@ -171,23 +224,13 @@ export function MethodAccordion({
       </button>
 
       {isOpen && (
-        <div className="border-t border-fd-border p-4 space-y-4">
-          {description && (
-            <p className="text-fd-muted-foreground">{description}</p>
-          )}
-          {parameters.length > 0 && (
-            <ParametersSection parameters={parameters} />
-          )}
-          {(returns !== undefined || returnType !== undefined) && (
-            <ReturnsSection returnType={returnType} returns={returns} />
-          )}
-          {example && (
-            <div>
-              <h4 className="text-sm font-semibold mb-2">Example</h4>
-              <DynamicCodeBlock lang="ts" code={example.trim()} />
-            </div>
-          )}
-        </div>
+        <AccordionContent
+          description={description}
+          parameters={parameters}
+          returnType={returnType}
+          returns={returns}
+          example={example}
+        />
       )}
     </div>
   )
