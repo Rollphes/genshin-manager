@@ -97,10 +97,10 @@ export class CharacterProfile {
     const cvEnglishTextMapHash = fetterInfoJson.cvEnglishTextMapHash
     const cvKoreanTextMapHash = fetterInfoJson.cvKoreanTextMapHash
     this.cv = {
-      CHS: Client._cachedTextMap.get(cvChineseTextMapHash) ?? '',
-      JP: Client._cachedTextMap.get(cvJapaneseTextMapHash) ?? '',
-      EN: Client._cachedTextMap.get(cvEnglishTextMapHash) ?? '',
-      KR: Client._cachedTextMap.get(cvKoreanTextMapHash) ?? '',
+      'zh-cn': Client._cachedTextMap.get(cvChineseTextMapHash) ?? '',
+      ja: Client._cachedTextMap.get(cvJapaneseTextMapHash) ?? '',
+      en: Client._cachedTextMap.get(cvEnglishTextMapHash) ?? '',
+      ko: Client._cachedTextMap.get(cvKoreanTextMapHash) ?? '',
     }
   }
 

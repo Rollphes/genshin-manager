@@ -21,8 +21,8 @@ describe('Client Basic Functionality', () => {
     setupGitLabMock()
 
     client = new Client({
-      defaultLanguage: 'EN',
-      downloadLanguages: ['EN'],
+      defaultLanguage: 'en',
+      downloadLanguages: ['en'],
     })
     await client.deploy()
   }, 30000) // 30 seconds timeout for deployment
@@ -41,23 +41,23 @@ describe('Client Basic Functionality', () => {
 
     it('should initialize with custom options', () => {
       const customClient = new Client({
-        defaultLanguage: 'JP',
-        downloadLanguages: ['JP', 'EN'],
+        defaultLanguage: 'ja',
+        downloadLanguages: ['ja', 'en'],
         logLevel: LogLevel.ERROR,
       })
-      expect(customClient.option.defaultLanguage).toBe('JP')
-      expect(customClient.option.downloadLanguages).toEqual(['JP', 'EN'])
+      expect(customClient.option.defaultLanguage).toBe('ja')
+      expect(customClient.option.downloadLanguages).toEqual(['ja', 'en'])
       expect(customClient.option.logLevel).toBe(LogLevel.ERROR)
     })
 
     it('should merge download languages with default language', () => {
       const testClient = new Client({
-        defaultLanguage: 'FR',
-        downloadLanguages: ['EN', 'JP'],
+        defaultLanguage: 'fr',
+        downloadLanguages: ['en', 'ja'],
       })
-      expect(testClient.option.downloadLanguages).toContain('FR')
-      expect(testClient.option.downloadLanguages).toContain('EN')
-      expect(testClient.option.downloadLanguages).toContain('JP')
+      expect(testClient.option.downloadLanguages).toContain('fr')
+      expect(testClient.option.downloadLanguages).toContain('en')
+      expect(testClient.option.downloadLanguages).toContain('ja')
     })
 
     it('should set autoFix options to false when autoFetchLatestAssetsByCron is disabled', () => {
@@ -83,8 +83,8 @@ describe('Client Basic Functionality', () => {
 
     it('should have option property with merged configuration', () => {
       expect(client.option).toBeDefined()
-      expect(client.option.defaultLanguage).toBe('EN')
-      expect(client.option.downloadLanguages).toContain('EN')
+      expect(client.option.defaultLanguage).toBe('en')
+      expect(client.option.downloadLanguages).toContain('en')
       expect(typeof client.option.assetCacheFolderPath).toBe('string')
     })
 
@@ -100,8 +100,8 @@ describe('Client Basic Functionality', () => {
   describe('Deploy Method Tests', () => {
     it('should execute deploy method without errors', async () => {
       const testClient = new Client({
-        defaultLanguage: 'EN',
-        downloadLanguages: ['EN'],
+        defaultLanguage: 'en',
+        downloadLanguages: ['en'],
       })
       await expect(testClient.deploy()).resolves.not.toThrow()
     })
@@ -120,8 +120,8 @@ describe('Client Basic Functionality', () => {
     it('should call ImageAssets.deploy during deployment', async () => {
       const deployImagesSpy = vi.spyOn(ImageAssets, 'deploy')
       const testClient = new Client({
-        defaultLanguage: 'EN',
-        downloadLanguages: ['EN'],
+        defaultLanguage: 'en',
+        downloadLanguages: ['en'],
       })
       await testClient.deploy()
       expect(deployImagesSpy).toHaveBeenCalledWith(testClient.option)
@@ -145,7 +145,7 @@ describe('Client Basic Functionality', () => {
       await client.deploy()
 
       // Test that changeLanguage method can be called without throwing
-      await expect(client.changeLanguage('JP')).resolves.not.toThrow()
+      await expect(client.changeLanguage('ja')).resolves.not.toThrow()
       // Note: Language change may not work in test environment due to TextMap limitations
       // The important part is that the method executes without errors
     })
@@ -155,9 +155,9 @@ describe('Client Basic Functionality', () => {
       await client.deploy()
 
       const availableLanguages: (keyof typeof TextMapLanguage)[] = [
-        'EN',
-        'JP',
-        'CHS',
+        'en',
+        'ja',
+        'zh-cn',
       ]
 
       // Test that all language change operations complete without throwing
@@ -175,8 +175,8 @@ describe('Client Basic Functionality', () => {
 
       const originalLanguage = client.option.defaultLanguage
 
-      await client.changeLanguage('JP')
-      await client.changeLanguage('EN')
+      await client.changeLanguage('ja')
+      await client.changeLanguage('en')
       await client.changeLanguage(originalLanguage)
       expect(client.option.defaultLanguage).toBe(originalLanguage)
     })
@@ -185,8 +185,8 @@ describe('Client Basic Functionality', () => {
   describe('Event System Tests', () => {
     it('should emit BEGIN_UPDATE_CACHE event', async () => {
       const testClient = new Client({
-        defaultLanguage: 'EN',
-        downloadLanguages: ['EN'],
+        defaultLanguage: 'en',
+        downloadLanguages: ['en'],
       })
 
       const eventPromise = new Promise<string>((resolve) => {
@@ -202,8 +202,8 @@ describe('Client Basic Functionality', () => {
 
     it('should emit END_UPDATE_CACHE event', async () => {
       const testClient = new Client({
-        defaultLanguage: 'EN',
-        downloadLanguages: ['EN'],
+        defaultLanguage: 'en',
+        downloadLanguages: ['en'],
       })
 
       const eventPromise = new Promise<string>((resolve) => {
@@ -321,7 +321,7 @@ describe('Client Basic Functionality', () => {
 
       const initialMemory = process.memoryUsage()
 
-      for (let i = 0; i < 5; i++) await client.changeLanguage('EN')
+      for (let i = 0; i < 5; i++) await client.changeLanguage('en')
 
       // Force garbage collection after operations
       if (global.gc) global.gc()
@@ -347,8 +347,8 @@ describe('Client Basic Functionality', () => {
       const tempDir = path.resolve(process.cwd(), 'test-cache-absolute')
       const client = new Client({
         assetCacheFolderPath: tempDir,
-        defaultLanguage: 'EN',
-        downloadLanguages: ['EN'],
+        defaultLanguage: 'en',
+        downloadLanguages: ['en'],
       })
 
       expect(client.option.assetCacheFolderPath).toBe(tempDir)
@@ -363,8 +363,8 @@ describe('Client Basic Functionality', () => {
       const relativeDir = 'test-cache-relative'
       const client = new Client({
         assetCacheFolderPath: relativeDir,
-        defaultLanguage: 'EN',
-        downloadLanguages: ['EN'],
+        defaultLanguage: 'en',
+        downloadLanguages: ['en'],
       })
 
       // Client uses the path as provided, no automatic resolution
@@ -385,8 +385,8 @@ describe('Client Basic Functionality', () => {
       )
       const client = new Client({
         assetCacheFolderPath: nestedDir,
-        defaultLanguage: 'EN',
-        downloadLanguages: ['EN'],
+        defaultLanguage: 'en',
+        downloadLanguages: ['en'],
       })
 
       expect(client.option.assetCacheFolderPath).toBe(nestedDir)
@@ -403,8 +403,8 @@ describe('Client Basic Functionality', () => {
       const testDir = path.resolve(process.cwd(), 'test-cache-permissions')
       const client = new Client({
         assetCacheFolderPath: testDir,
-        defaultLanguage: 'EN',
-        downloadLanguages: ['EN'],
+        defaultLanguage: 'en',
+        downloadLanguages: ['en'],
       })
 
       // Validate path configuration
@@ -418,8 +418,8 @@ describe('Client Basic Functionality', () => {
       const pathWithMixedSeparators = 'test\\cache/mixed\\separators'
       const client = new Client({
         assetCacheFolderPath: pathWithMixedSeparators,
-        defaultLanguage: 'EN',
-        downloadLanguages: ['EN'],
+        defaultLanguage: 'en',
+        downloadLanguages: ['en'],
       })
 
       // Client preserves the path as provided
@@ -431,8 +431,8 @@ describe('Client Basic Functionality', () => {
         () =>
           new Client({
             assetCacheFolderPath: '',
-            defaultLanguage: 'EN',
-            downloadLanguages: ['EN'],
+            defaultLanguage: 'en',
+            downloadLanguages: ['en'],
           }),
       ).not.toThrow()
 
@@ -440,8 +440,8 @@ describe('Client Basic Functionality', () => {
         () =>
           new Client({
             assetCacheFolderPath: '   ',
-            defaultLanguage: 'EN',
-            downloadLanguages: ['EN'],
+            defaultLanguage: 'en',
+            downloadLanguages: ['en'],
           }),
       ).not.toThrow()
     })
@@ -451,8 +451,8 @@ describe('Client Basic Functionality', () => {
     it('should handle deployment errors gracefully', async () => {
       const invalidClient = new Client({
         assetCacheFolderPath: '/invalid/path/that/does/not/exist',
-        defaultLanguage: 'EN',
-        downloadLanguages: ['EN'],
+        defaultLanguage: 'en',
+        downloadLanguages: ['en'],
       })
 
       // The client should throw error for invalid paths
@@ -482,7 +482,7 @@ describe('Client Basic Functionality', () => {
     it('should have proper default configuration values', () => {
       const defaultClient = new Client()
 
-      expect(defaultClient.option.defaultLanguage).toBe('EN')
+      expect(defaultClient.option.defaultLanguage).toBe('en')
       expect(defaultClient.option.logLevel).toBe(LogLevel.NONE)
       expect(defaultClient.option.autoCacheImage).toBe(true)
       expect(defaultClient.option.autoCacheAudio).toBe(true)
@@ -500,8 +500,8 @@ describe('Client Basic Functionality', () => {
       const customPath = path.resolve(process.cwd(), 'test-cache')
       const customClient = new Client({
         assetCacheFolderPath: customPath,
-        defaultLanguage: 'EN',
-        downloadLanguages: ['EN'],
+        defaultLanguage: 'en',
+        downloadLanguages: ['en'],
       })
 
       expect(customClient.option.assetCacheFolderPath).toBe(customPath)
@@ -510,8 +510,8 @@ describe('Client Basic Functionality', () => {
     it('should handle cron schedule configuration', () => {
       const cronClient = new Client({
         autoFetchLatestAssetsByCron: '0 0 12 * * *',
-        defaultLanguage: 'EN',
-        downloadLanguages: ['EN'],
+        defaultLanguage: 'en',
+        downloadLanguages: ['en'],
       })
 
       expect(cronClient.option.autoFetchLatestAssetsByCron).toBe('0 0 12 * * *')
@@ -521,12 +521,12 @@ describe('Client Basic Functionality', () => {
   describe('Integration Tests', () => {
     it('should work seamlessly with multiple Client instances', async () => {
       const client1 = new Client({
-        defaultLanguage: 'EN',
-        downloadLanguages: ['EN'],
+        defaultLanguage: 'en',
+        downloadLanguages: ['en'],
       })
       const client2 = new Client({
-        defaultLanguage: 'JP',
-        downloadLanguages: ['JP'],
+        defaultLanguage: 'ja',
+        downloadLanguages: ['ja'],
       })
 
       await Promise.all([client1.deploy(), client2.deploy()])
@@ -539,19 +539,19 @@ describe('Client Basic Functionality', () => {
 
     it('should maintain data consistency across operations', async () => {
       const operations = [
-        (): Promise<void> => client.changeLanguage('EN'),
-        (): Promise<void> => client.changeLanguage('JP'),
-        (): Promise<void> => client.changeLanguage('EN'),
+        (): Promise<void> => client.changeLanguage('en'),
+        (): Promise<void> => client.changeLanguage('ja'),
+        (): Promise<void> => client.changeLanguage('en'),
       ]
 
       await Promise.all(operations.map((op) => op()))
-      expect(client.option.defaultLanguage).toBe('EN')
+      expect(client.option.defaultLanguage).toBe('en')
     })
 
     it('should handle concurrent cache operations efficiently', async () => {
       const concurrentOperations = Array(3)
         .fill(null)
-        .map(() => client.changeLanguage('EN'))
+        .map(() => client.changeLanguage('en'))
 
       const results = await Promise.allSettled(concurrentOperations)
 
@@ -566,8 +566,8 @@ describe('Client Basic Functionality', () => {
       const startTime = Date.now()
 
       const testClient = new Client({
-        defaultLanguage: 'EN',
-        downloadLanguages: ['EN'],
+        defaultLanguage: 'en',
+        downloadLanguages: ['en'],
       })
       await testClient.deploy()
 
@@ -580,7 +580,7 @@ describe('Client Basic Functionality', () => {
     it('should handle rapid language changes efficiently', async () => {
       const startTime = Date.now()
 
-      const languages: (keyof typeof TextMapLanguage)[] = ['EN', 'JP', 'EN']
+      const languages: (keyof typeof TextMapLanguage)[] = ['en', 'ja', 'en']
       for (const lang of languages) await client.changeLanguage(lang)
 
       const endTime = Date.now()

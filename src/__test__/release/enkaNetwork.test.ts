@@ -7,8 +7,8 @@ describe('EnkaNetwork Release Test', () => {
   beforeAll(async () => {
     // Client deployment is already handled in test/setup.ts
     const client = new Client({
-      defaultLanguage: 'EN',
-      downloadLanguages: ['EN'],
+      defaultLanguage: 'en',
+      downloadLanguages: ['en'],
     })
     await client.deploy()
   }, 30000) // 30 seconds timeout for deployment

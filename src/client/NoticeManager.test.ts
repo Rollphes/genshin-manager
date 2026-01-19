@@ -48,8 +48,8 @@ describe('NoticeManager Basic Functionality', () => {
 
     // Deploy Client using the GitLab mock server
     const client = new Client({
-      defaultLanguage: 'EN',
-      downloadLanguages: ['EN'],
+      defaultLanguage: 'en',
+      downloadLanguages: ['en'],
     })
     await client.deploy()
   }, 30000) // 30 seconds timeout for deployment

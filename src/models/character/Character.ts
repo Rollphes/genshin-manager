@@ -321,10 +321,10 @@ export class Character {
 
   /**
    * Get character voices
-   * @param cv CV language. Default: 'EN'
+   * @param cv CV language. Default: 'en'
    * @returns character voices
    */
-  public getVoices(cv: CVType = 'EN'): CharacterVoice[] {
+  public getVoices(cv: CVType = 'en'): CharacterVoice[] {
     return CharacterVoice.getAllFetterIdsByCharacterId(this.id).map(
       (fetterId) => new CharacterVoice(fetterId, cv),
     )

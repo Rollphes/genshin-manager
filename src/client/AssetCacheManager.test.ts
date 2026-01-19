@@ -27,8 +27,8 @@ describe('AssetCacheManager Basic Functionality', () => {
 
     // Deploy Client using the GitLab mock server
     client = new Client({
-      defaultLanguage: 'EN',
-      downloadLanguages: ['EN'],
+      defaultLanguage: 'en',
+      downloadLanguages: ['en'],
     })
     await client.deploy()
 
@@ -220,8 +220,8 @@ describe('AssetCacheManager Basic Functionality', () => {
       const customPath = path.resolve(process.cwd(), 'custom-test-cache')
       const customClient = new Client({
         assetCacheFolderPath: customPath,
-        defaultLanguage: 'EN',
-        downloadLanguages: ['EN'],
+        defaultLanguage: 'en',
+        downloadLanguages: ['en'],
       })
 
       expect(customClient.option.assetCacheFolderPath).toBe(customPath)
@@ -234,8 +234,8 @@ describe('AssetCacheManager Basic Functionality', () => {
       const relativePath = 'relative-test-cache'
       const client = new Client({
         assetCacheFolderPath: relativePath,
-        defaultLanguage: 'EN',
-        downloadLanguages: ['EN'],
+        defaultLanguage: 'en',
+        downloadLanguages: ['en'],
       })
 
       // Client preserves the path as provided
@@ -247,8 +247,8 @@ describe('AssetCacheManager Basic Functionality', () => {
       const basePath = path.resolve(process.cwd(), 'path-test-cache')
       const client = new Client({
         assetCacheFolderPath: basePath,
-        defaultLanguage: 'EN',
-        downloadLanguages: ['EN'],
+        defaultLanguage: 'en',
+        downloadLanguages: ['en'],
       })
 
       expect(client.option.assetCacheFolderPath).toBe(basePath)
@@ -272,8 +272,8 @@ describe('AssetCacheManager Basic Functionality', () => {
       )
       const client = new Client({
         assetCacheFolderPath: specialPath,
-        defaultLanguage: 'EN',
-        downloadLanguages: ['EN'],
+        defaultLanguage: 'en',
+        downloadLanguages: ['en'],
       })
 
       expect(client.option.assetCacheFolderPath).toBe(specialPath)
@@ -284,8 +284,8 @@ describe('AssetCacheManager Basic Functionality', () => {
       const mixedPath = 'test\\mixed/separators\\path'
       const client = new Client({
         assetCacheFolderPath: mixedPath,
-        defaultLanguage: 'EN',
-        downloadLanguages: ['EN'],
+        defaultLanguage: 'en',
+        downloadLanguages: ['en'],
       })
 
       // Client preserves the path as provided, no automatic normalization
@@ -297,8 +297,8 @@ describe('AssetCacheManager Basic Functionality', () => {
       const testPath = path.resolve(process.cwd(), 'cache-ops-test')
       const testClient = new Client({
         assetCacheFolderPath: testPath,
-        defaultLanguage: 'EN',
-        downloadLanguages: ['EN'],
+        defaultLanguage: 'en',
+        downloadLanguages: ['en'],
       })
 
       // Verify AssetCacheManager is using the correct path
@@ -319,8 +319,8 @@ describe('AssetCacheManager Basic Functionality', () => {
       )
       const client = new Client({
         assetCacheFolderPath: deepPath,
-        defaultLanguage: 'EN',
-        downloadLanguages: ['EN'],
+        defaultLanguage: 'en',
+        downloadLanguages: ['en'],
       })
 
       expect(client.option.assetCacheFolderPath).toBe(deepPath)

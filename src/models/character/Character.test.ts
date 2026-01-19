@@ -7,8 +7,8 @@ import { CharacterInfo } from '@/models/character/CharacterInfo'
 describe('Character', () => {
   beforeAll(async () => {
     const client = new Client({
-      defaultLanguage: 'EN',
-      downloadLanguages: ['EN'],
+      defaultLanguage: 'en',
+      downloadLanguages: ['en'],
     })
     await client.deploy()
   }, 30000)
@@ -200,10 +200,10 @@ describe('Character', () => {
     })
 
     it('should return voices with specified language', () => {
-      const voices = character.getVoices('JP')
+      const voices = character.getVoices('ja')
       expect(voices).toBeDefined()
       expect(Array.isArray(voices)).toBe(true)
-      if (voices.length > 0) expect(voices[0].cv).toBe('JP')
+      if (voices.length > 0) expect(voices[0].cv).toBe('ja')
     })
 
     it('should return costumes', () => {

@@ -8,8 +8,8 @@ import { Type as ProfilePictureType } from '@/types/generated/ProfilePictureExce
 describe('ProfilePicture', () => {
   beforeAll(async () => {
     const client = new Client({
-      defaultLanguage: 'EN',
-      downloadLanguages: ['EN'],
+      defaultLanguage: 'en',
+      downloadLanguages: ['en'],
     })
     await client.deploy()
   }, 30000)

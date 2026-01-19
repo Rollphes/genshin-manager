@@ -8,8 +8,8 @@ import { StatProperty } from '@/models/StatProperty'
 describe('Monster', () => {
   beforeAll(async () => {
     const client = new Client({
-      defaultLanguage: 'EN',
-      downloadLanguages: ['EN'],
+      defaultLanguage: 'en',
+      downloadLanguages: ['en'],
     })
     await client.deploy()
   }, 30000)

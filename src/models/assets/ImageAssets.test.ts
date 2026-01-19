@@ -27,8 +27,8 @@ import { LogLevel } from '@/utils/logger/Logger'
 describe('ImageAssets', () => {
   const testCacheDir = path.resolve(process.cwd(), 'test-cache', 'Images')
   const testOption: ClientOption = {
-    defaultLanguage: 'EN',
-    downloadLanguages: ['EN'],
+    defaultLanguage: 'en',
+    downloadLanguages: ['en'],
     fetchOption: {},
     imageBaseURLByRegex: {
       'https://test-cdn.example.com': [/^UI_AvatarIcon_(.+)$/],

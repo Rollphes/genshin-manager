@@ -16,21 +16,21 @@ import { handbookFolderPath } from '@/utils/paths'
 async function main(): Promise<void> {
   const client = new Client({
     downloadLanguages: [
-      'EN',
-      'RU',
-      'VI',
-      'TH',
-      'PT',
-      'KR',
-      'JP',
-      'ID',
-      'FR',
-      'ES',
-      'DE',
-      'CHT',
-      'CHS',
+      'en',
+      'ru',
+      'vi',
+      'th',
+      'pt',
+      'ko',
+      'ja',
+      'id',
+      'fr',
+      'es',
+      'de',
+      'zh-tw',
+      'zh-cn',
     ],
-    defaultLanguage: 'EN',
+    defaultLanguage: 'en',
   })
   client.on(ClientEvents.END_UPDATE_CACHE, async (version) => {
     for (const lang of client.option.downloadLanguages) {

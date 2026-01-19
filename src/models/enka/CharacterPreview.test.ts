@@ -8,8 +8,8 @@ import { CharacterPreview } from '@/models/enka/CharacterPreview'
 describe('CharacterPreview', () => {
   beforeAll(async () => {
     const client = new Client({
-      defaultLanguage: 'EN',
-      downloadLanguages: ['EN'],
+      defaultLanguage: 'en',
+      downloadLanguages: ['en'],
     })
     await client.deploy()
   }, 30000)

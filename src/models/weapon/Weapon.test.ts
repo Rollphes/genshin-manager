@@ -9,8 +9,8 @@ import { WeaponRefinement } from '@/models/weapon/WeaponRefinement'
 describe('Weapon', () => {
   beforeAll(async () => {
     const client = new Client({
-      defaultLanguage: 'EN',
-      downloadLanguages: ['EN'],
+      defaultLanguage: 'en',
+      downloadLanguages: ['en'],
     })
     await client.deploy()
   }, 30000)

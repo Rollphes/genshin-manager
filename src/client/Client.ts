@@ -65,19 +65,19 @@ export class Client extends AssetCacheManager<ClientEventMap, ClientEvents> {
       },
     },
     downloadLanguages: [
-      'EN',
-      'RU',
-      'VI',
-      'TH',
-      'PT',
-      'KR',
-      'JP',
-      'ID',
-      'FR',
-      'ES',
-      'DE',
-      'CHT',
-      'CHS',
+      'en',
+      'ru',
+      'vi',
+      'th',
+      'pt',
+      'ko',
+      'ja',
+      'id',
+      'fr',
+      'es',
+      'de',
+      'zh-tw',
+      'zh-cn',
     ],
     defaultImageBaseURL: 'https://gi.yatta.top/assets/UI',
     defaultAudioBaseURL: 'https://gi.yatta.top/assets/Audio',
@@ -101,7 +101,7 @@ export class Client extends AssetCacheManager<ClientEventMap, ClientEvents> {
       'https://gi.yatta.top/assets/UI/namecard': [/^UI_NameCard/],
     },
     audioBaseURLByRegex: {},
-    defaultLanguage: 'EN',
+    defaultLanguage: 'en',
     logLevel: LogLevel.NONE,
     autoFetchLatestAssetsByCron: '0 0 0 * * 3', //Every Wednesday 00:00:00
     autoCacheImage: true,
@@ -122,7 +122,7 @@ export class Client extends AssetCacheManager<ClientEventMap, ClientEvents> {
    * @example
    * ```ts
    * const client = new Client({
-   *   defaultLanguage: 'EN',
+   *   defaultLanguage: 'en',
    *   logLevel: LogLevel.INFO,
    *   autoCacheImage: true
    * })
@@ -172,7 +172,7 @@ export class Client extends AssetCacheManager<ClientEventMap, ClientEvents> {
    * ```ts
    * const client = new Client()
    * await client.deploy()
-   * await client.changeLanguage('JP')
+   * await client.changeLanguage('ja')
    * ```
    */
   public async changeLanguage(

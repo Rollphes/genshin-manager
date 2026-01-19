@@ -7,8 +7,8 @@ import { WeaponAscension } from '@/models/weapon/WeaponAscension'
 describe('WeaponAscension', () => {
   beforeAll(async () => {
     const client = new Client({
-      defaultLanguage: 'EN',
-      downloadLanguages: ['EN'],
+      defaultLanguage: 'en',
+      downloadLanguages: ['en'],
     })
     await client.deploy()
   }, 30000)

@@ -73,7 +73,7 @@ export interface ClientOption {
    * List of TextMaps to download when new assets are found.
    * @default
    * ```ts
-   * ['EN','RU','VI','TH','PT','KR','JP','ID','FR','ES','DE','CHT','CHS']
+   * ['en','ru','vi','th','pt','ko','ja','id','fr','es','de','zh-tw','zh-cn']
    * ```
    */
   downloadLanguages: (keyof typeof TextMapLanguage)[]
@@ -123,7 +123,7 @@ export interface ClientOption {
   audioBaseURLByRegex: Record<string, RegExp[]>
   /**
    * default language
-   * @default 'EN'
+   * @default 'en'
    */
   defaultLanguage: keyof typeof TextMapLanguage
   /**
@@ -189,10 +189,7 @@ export type Element = ValueOf<typeof ElementKeys>
 /**
  * Character voice type
  */
-export type CVType = keyof Omit<
-  typeof TextMapLanguage,
-  'RU' | 'VI' | 'TH' | 'PT' | 'ID' | 'FR' | 'ES' | 'DE' | 'CHT'
->
+export type CVType = 'en' | 'ja' | 'ko' | 'zh-cn'
 
 /**
  * FightProp Map
@@ -328,19 +325,19 @@ export type FightPropType = ValueOf<typeof FightProps>
  * TextMap language type
  */
 export const TextMapLanguage = {
-  EN: ['TextMapEN.json'],
-  RU: ['TextMapRU_0.json', 'TextMapRU_1.json'],
-  VI: ['TextMapVI.json'],
-  TH: ['TextMapTH_0.json', 'TextMapTH_1.json'],
-  PT: ['TextMapPT.json'],
-  KR: ['TextMapKR.json'],
-  JP: ['TextMapJP.json'],
-  ID: ['TextMapID.json'],
-  FR: ['TextMapFR.json'],
-  ES: ['TextMapES.json'],
-  DE: ['TextMapDE.json'],
-  CHT: ['TextMapCHT.json'],
-  CHS: ['TextMapCHS.json'],
+  en: ['TextMapEN.json'],
+  ru: ['TextMapRU_0.json', 'TextMapRU_1.json'],
+  vi: ['TextMapVI.json'],
+  th: ['TextMapTH_0.json', 'TextMapTH_1.json'],
+  pt: ['TextMapPT.json'],
+  ko: ['TextMapKR.json'],
+  ja: ['TextMapJP.json'],
+  id: ['TextMapID.json'],
+  fr: ['TextMapFR.json'],
+  es: ['TextMapES.json'],
+  de: ['TextMapDE.json'],
+  'zh-tw': ['TextMapCHT.json'],
+  'zh-cn': ['TextMapCHS.json'],
 } as const
 
 /**

@@ -38,21 +38,21 @@ export async function setup(): Promise<void> {
    * Client instance with all supported languages for comprehensive test coverage.
    */
   const client = new Client({
-    defaultLanguage: 'EN',
+    defaultLanguage: 'en',
     downloadLanguages: [
-      'EN',
-      'JP',
-      'CHS',
-      'CHT',
-      'DE',
-      'ES',
-      'FR',
-      'ID',
-      'KR',
-      'PT',
-      'RU',
-      'TH',
-      'VI',
+      'en',
+      'ja',
+      'zh-cn',
+      'zh-tw',
+      'de',
+      'es',
+      'fr',
+      'id',
+      'ko',
+      'pt',
+      'ru',
+      'th',
+      'vi',
     ],
   })
 

@@ -7,8 +7,8 @@ import { EnkaAccount } from '@/models/enka/EnkaAccount'
 describe('EnkaAccount', () => {
   beforeAll(async () => {
     const client = new Client({
-      defaultLanguage: 'EN',
-      downloadLanguages: ['EN'],
+      defaultLanguage: 'en',
+      downloadLanguages: ['en'],
     })
     await client.deploy()
   }, 30000)

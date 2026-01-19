@@ -6,8 +6,8 @@ import { CharacterProfile } from '@/models/character/CharacterProfile'
 describe('CharacterProfile', () => {
   beforeAll(async () => {
     const client = new Client({
-      defaultLanguage: 'EN',
-      downloadLanguages: ['EN'],
+      defaultLanguage: 'en',
+      downloadLanguages: ['en'],
     })
     await client.deploy()
   }, 30000)
@@ -79,18 +79,18 @@ describe('CharacterProfile', () => {
 
     it('should have cv with 4 languages', () => {
       expect(profile.cv).toBeDefined()
-      expect(profile.cv).toHaveProperty('CHS')
-      expect(profile.cv).toHaveProperty('JP')
-      expect(profile.cv).toHaveProperty('EN')
-      expect(profile.cv).toHaveProperty('KR')
+      expect(profile.cv).toHaveProperty('zh-cn')
+      expect(profile.cv).toHaveProperty('ja')
+      expect(profile.cv).toHaveProperty('en')
+      expect(profile.cv).toHaveProperty('ko')
     })
 
-    it('should have correct EN cv', () => {
-      expect(profile.cv.EN).toBe('Erica Mendez')
+    it('should have correct en cv', () => {
+      expect(profile.cv.en).toBe('Erica Mendez')
     })
 
-    it('should have correct JP cv', () => {
-      expect(profile.cv.JP).toBe('早見沙織')
+    it('should have correct ja cv', () => {
+      expect(profile.cv.ja).toBe('早見沙織')
     })
   })
 })

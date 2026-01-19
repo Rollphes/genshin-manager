@@ -20,8 +20,8 @@ describe('AllId Release Test', () => {
   beforeAll(async () => {
     // Client deployment is already handled in test/setup.ts
     const client = new Client({
-      defaultLanguage: 'EN',
-      downloadLanguages: ['EN'],
+      defaultLanguage: 'en',
+      downloadLanguages: ['en'],
     })
     await client.deploy()
   }, 30000) // 30 seconds timeout for deployment
@@ -107,10 +107,10 @@ describe('AllId Release Test', () => {
     expect(fetterIds.length).toBeGreaterThan(0)
 
     fetterIds.forEach((id) => {
-      const voice = new CharacterVoice(id, 'EN')
+      const voice = new CharacterVoice(id, 'en')
       expect(voice).toBeDefined()
       expect(voice.fetterId).toBe(id)
-      expect(voice.cv).toBe('EN')
+      expect(voice.cv).toBe('en')
     })
   })
 

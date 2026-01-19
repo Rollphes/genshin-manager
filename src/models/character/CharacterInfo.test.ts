@@ -6,8 +6,8 @@ import { CharacterInfo } from '@/models/character/CharacterInfo'
 describe('CharacterInfo', () => {
   beforeAll(async () => {
     const client = new Client({
-      defaultLanguage: 'EN',
-      downloadLanguages: ['EN'],
+      defaultLanguage: 'en',
+      downloadLanguages: ['en'],
     })
     await client.deploy()
   }, 30000)

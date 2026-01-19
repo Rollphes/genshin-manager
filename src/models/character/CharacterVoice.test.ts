@@ -7,8 +7,8 @@ import { CharacterVoice } from '@/models/character/CharacterVoice'
 describe('CharacterVoice', () => {
   beforeAll(async () => {
     const client = new Client({
-      defaultLanguage: 'EN',
-      downloadLanguages: ['EN'],
+      defaultLanguage: 'en',
+      downloadLanguages: ['en'],
     })
     await client.deploy()
   }, 30000)
@@ -35,7 +35,7 @@ describe('CharacterVoice', () => {
 
   describe('Constructor', () => {
     it('should create CharacterVoice', () => {
-      const voice = new CharacterVoice(3100, 'EN')
+      const voice = new CharacterVoice(3100, 'en')
       expect(voice).toBeDefined()
       expect(voice.fetterId).toBe(3100)
     })
@@ -45,7 +45,7 @@ describe('CharacterVoice', () => {
     let voice: CharacterVoice
 
     beforeAll(() => {
-      voice = new CharacterVoice(3100, 'EN')
+      voice = new CharacterVoice(3100, 'en')
     })
 
     it('should have correct fetterId', () => {
@@ -53,7 +53,7 @@ describe('CharacterVoice', () => {
     })
 
     it('should have correct cv', () => {
-      expect(voice.cv).toBe('EN')
+      expect(voice.cv).toBe('en')
     })
 
     it('should have hideCostumeList as array', () => {
