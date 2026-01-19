@@ -1,6 +1,17 @@
 import type { Language } from '@/types/types'
 
 /**
+ * Region type
+ */
+export type Region =
+  | 'cn_gf01'
+  | 'cn_qd01'
+  | 'os_usa'
+  | 'os_euro'
+  | 'os_asia'
+  | 'os_cht'
+
+/**
  * Time difference per region (hour)
  */
 export const TimeZonesPerRegion = {
@@ -10,12 +21,7 @@ export const TimeZonesPerRegion = {
   os_euro: 1,
   os_asia: 8,
   os_cht: 8,
-} as const
-
-/**
- * Region type
- */
-export type Region = keyof typeof TimeZonesPerRegion
+} as const satisfies Record<Region, number>
 
 /**
  * URL params for getAnn

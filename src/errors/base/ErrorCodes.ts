@@ -43,6 +43,18 @@ export enum GenshinManagerErrorCode {
 }
 
 /**
+ * Error category type
+ */
+export type ErrorCategory =
+  | 'VALIDATION'
+  | 'ASSETS'
+  | 'DECODING'
+  | 'NETWORK'
+  | 'CONFIG'
+  | 'CONTENT'
+  | 'GENERAL'
+
+/**
  * Error category mapping
  */
 export const errorCategories = {
@@ -77,13 +89,29 @@ export const errorCategories = {
   [GenshinManagerErrorCode.GM_CONTENT_TEXT_MAP_FORMAT]: 'CONTENT',
 
   [GenshinManagerErrorCode.GM_GENERAL_UNKNOWN]: 'GENERAL',
-} as const
+} as const satisfies Record<GenshinManagerErrorCode, ErrorCategory>
 
 /**
- * Error category type
+ * Retry configuration interface
  */
-export type ErrorCategory =
-  (typeof errorCategories)[keyof typeof errorCategories]
+export interface RetryConfiguration {
+  /**
+   * Whether this error should be retried
+   */
+  readonly isRetryable: boolean
+  /**
+   * Maximum number of retry attempts
+   */
+  readonly maxRetries?: number
+  /**
+   * Delay between retry attempts in milliseconds
+   */
+  readonly retryDelay?: number
+  /**
+   * Multiplier for exponential backoff
+   */
+  readonly backoffMultiplier?: number
+}
 
 /**
  * Retry classification for errors
@@ -170,26 +198,4 @@ export const retryClassifications = {
     maxRetries: 1,
     retryDelay: 2000,
   },
-} as const
-
-/**
- * Retry configuration interface
- */
-export interface RetryConfiguration {
-  /**
-   * Whether this error should be retried
-   */
-  readonly isRetryable: boolean
-  /**
-   * Maximum number of retry attempts
-   */
-  readonly maxRetries?: number
-  /**
-   * Delay between retry attempts in milliseconds
-   */
-  readonly retryDelay?: number
-  /**
-   * Multiplier for exponential backoff
-   */
-  readonly backoffMultiplier?: number
-}
+} as const satisfies Record<GenshinManagerErrorCode, RetryConfiguration>
