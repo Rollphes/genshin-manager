@@ -78,7 +78,7 @@ export function renderPropertiesTable(
 
     return `    "${badgePrefix}${prop.name}": {
       type: ${typeStr},
-      description: ${description},${prop.defaultValue ? `\n      default: <Md>{\`${escapeMdx(prop.defaultValue)}\`}</Md>,` : ''}${prop.isOptional ? '' : '\n      required: true,'}
+      description: ${description},${prop.defaultValue ? `\n      default: <Md>{\`\\\`${escapeMdx(prop.defaultValue)}\\\`\`}</Md>,` : ''}${prop.isOptional ? '' : '\n      required: true,'}
     }`
   })
 
