@@ -11,7 +11,7 @@ export function generateEnumMdx(item: ParsedItem): string {
   const description = item.description || `${item.name} enum`
   sections.push(`---
 title: "${item.name}"
-description: ${escapeMdx(description.split('\n')[0])}
+description: "${escapeMdx(description.split('\n')[0])}"
 badge: enum
 ---
 

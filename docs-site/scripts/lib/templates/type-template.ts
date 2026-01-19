@@ -31,7 +31,7 @@ export function generateTypeMdx(
   const badge = getCategoryBadge(category)
   sections.push(`---
 title: "${item.name}"
-description: ${escapeMdx(description.split('\n')[0])}
+description: "${escapeMdx(description.split('\n')[0])}"
 badge: ${badge}
 ---
 
