@@ -5,10 +5,8 @@ import { WeaponAscension } from '@/models/weapon/WeaponAscension'
 import { WeaponRefinement } from '@/models/weapon/WeaponRefinement'
 import { refinementLevelSchema } from '@/schemas/commonSchemas'
 import { createDynamicWeaponLevelSchema } from '@/schemas/createDynamicWeaponLevelSchema'
-import {
-  type WeaponProp,
-  WeaponType,
-} from '@/types/generated/WeaponExcelConfigData'
+import { type WeaponProp } from '@/types/generated/WeaponExcelConfigData'
+import { WeaponType } from '@/types/types'
 import { calculatePromoteLevel } from '@/utils/parsers/calculatePromoteLevel'
 import { validate } from '@/utils/validation/validate'
 
@@ -143,7 +141,7 @@ export class WeaponInfo {
     this.name = Client._cachedTextMap.get(weaponJson.nameTextMapHash) ?? ''
     this.description =
       Client._cachedTextMap.get(weaponJson.descTextMapHash) ?? ''
-    this.type = weaponJson.weaponType
+    this.type = weaponJson.weaponType as unknown as WeaponType
 
     this.rarity = weaponJson.rankLevel
 

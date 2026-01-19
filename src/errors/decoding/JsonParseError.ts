@@ -2,6 +2,7 @@ import { GenshinManagerErrorCode } from '@/errors/base/ErrorCodes'
 import type { ErrorContext } from '@/errors/base/ErrorContext'
 import { ErrorContextFactory } from '@/errors/base/ErrorContext'
 import { GenshinManagerError } from '@/errors/base/GenshinManagerError'
+import type { JsonParseRelatedFiles } from '@/types/types'
 
 /**
  * JSON parse error for debugging which JSON file caused test failures
@@ -83,11 +84,7 @@ export class JsonParseError extends GenshinManagerError {
   /**
    * Get related file paths for debugging
    */
-  public getRelatedFiles(): {
-    jsonFileName: string
-    masterFilePath: string
-    cacheFilePath: string
-  } {
+  public getRelatedFiles(): JsonParseRelatedFiles {
     return {
       jsonFileName: this.jsonFileName,
       masterFilePath: this.masterFilePath,

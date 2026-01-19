@@ -4,8 +4,7 @@ import { StatProperty } from '@/models/StatProperty'
 import { WeaponAscension } from '@/models/weapon/WeaponAscension'
 import { WeaponInfo } from '@/models/weapon/WeaponInfo'
 import { WeaponRefinement } from '@/models/weapon/WeaponRefinement'
-import { WeaponType } from '@/types/generated/WeaponExcelConfigData'
-import { AscensionMaterial } from '@/types/types'
+import { AscensionMaterial, WeaponSummary, WeaponType } from '@/types/types'
 import { calculatePromoteLevel } from '@/utils/parsers/calculatePromoteLevel'
 
 /**
@@ -166,13 +165,7 @@ export class Weapon {
    * Get weapon summary information
    * @returns weapon summary object
    */
-  public get summary(): {
-    name: string
-    type: WeaponType
-    rarity: number
-    level: string
-    refinement: string
-  } {
+  public get summary(): WeaponSummary {
     return {
       name: this.name,
       type: this.type,

@@ -2,6 +2,7 @@ import { GenshinManagerErrorCode } from '@/errors/base/ErrorCodes'
 import type { ErrorContext } from '@/errors/base/ErrorContext'
 import { ErrorContextFactory } from '@/errors/base/ErrorContext'
 import { GenshinManagerError } from '@/errors/base/GenshinManagerError'
+import type { KeyMatchingDetail } from '@/types/types'
 
 /**
  * Key matching failure error for encrypted key decoding
@@ -59,12 +60,7 @@ export class KeyMatchingError extends GenshinManagerError {
   /**
    * Get detailed key matching information
    */
-  public getKeyMatchingDetails(): {
-    failedKeys: string[]
-    expectedKeys: string[]
-    unmatchedExpected: string[]
-    successRate: number
-  } {
+  public getKeyMatchingDetails(): KeyMatchingDetail {
     const unmatchedExpected = this.expectedKeys.filter(
       (key) => !this.failedKeys.includes(key),
     )

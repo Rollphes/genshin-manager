@@ -56,11 +56,15 @@ import {
   EquipType,
   FightPropType,
   ItemType,
+  JsonParseRelatedFiles,
+  KeyMatchingDetail,
   LevelRange,
   MaterialType,
   ProfilePictureType,
   QualityType,
   SkillLevelPlan,
+  ValidationDetail,
+  WeaponSummary,
   WeaponType,
 } from '@/types/types'
 import { LogLevel } from '@/utils/logger/Logger'
@@ -125,6 +129,8 @@ export {
   EquipType,
   FightPropType,
   ItemType,
+  JsonParseRelatedFiles,
+  KeyMatchingDetail,
   LevelRange,
   LogLevel,
   MaterialType,
@@ -133,6 +139,8 @@ export {
   ProfilePictureType,
   QualityType,
   SkillLevelPlan,
+  ValidationDetail,
+  WeaponSummary,
   WeaponType,
 }
 // Export generated types

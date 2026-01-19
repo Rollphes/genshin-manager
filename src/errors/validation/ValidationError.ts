@@ -4,6 +4,7 @@ import { GenshinManagerErrorCode } from '@/errors/base/ErrorCodes'
 import type { ErrorContext } from '@/errors/base/ErrorContext'
 import { ErrorContextFactory } from '@/errors/base/ErrorContext'
 import { GenshinManagerError } from '@/errors/base/GenshinManagerError'
+import type { ValidationDetail } from '@/types/types'
 
 /**
  * Validation error for Zod schema validation failures
@@ -60,12 +61,7 @@ export class ValidationError extends GenshinManagerError {
   /**
    * Get detailed validation error information
    */
-  public getValidationDetails(): {
-    path: string
-    issue: string
-    expected?: unknown
-    received?: unknown
-  }[] {
+  public getValidationDetails(): ValidationDetail[] {
     if (!this.zodIssues) return []
 
     return this.zodIssues.map((issue) => ({

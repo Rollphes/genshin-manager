@@ -75,10 +75,6 @@ export enum EquipType {
   EQUIP_SHOES = 'EQUIP_SHOES',
 }
 
-/**
- * Artifact type (alias for EquipType)
- */
-export const ArtifactType = EquipType
 /** Artifact type (alias for EquipType) */
 export type ArtifactType = EquipType
 
@@ -367,6 +363,94 @@ export interface CharacterUpgradePlan {
    * Skill level upgrades
    */
   skillLevels?: SkillLevelPlan
+}
+
+/**
+ * Weapon summary information
+ */
+export interface WeaponSummary {
+  /**
+   * Weapon name
+   */
+  name: string
+  /**
+   * Weapon type
+   */
+  type: WeaponType
+  /**
+   * Weapon rarity (1-5 stars)
+   */
+  rarity: number
+  /**
+   * Weapon level (e.g. "90/90")
+   */
+  level: string
+  /**
+   * Refinement rank (e.g. "R5")
+   */
+  refinement: string
+}
+
+/**
+ * Validation error detail
+ */
+export interface ValidationDetail {
+  /**
+   * Path to the invalid field
+   */
+  path: string
+  /**
+   * Description of the validation issue
+   */
+  issue: string
+  /**
+   * Expected value or type (if applicable)
+   */
+  expected?: unknown
+  /**
+   * Received value (if applicable)
+   */
+  received?: unknown
+}
+
+/**
+ * Key matching error detail
+ */
+export interface KeyMatchingDetail {
+  /**
+   * Keys that failed to match
+   */
+  failedKeys: string[]
+  /**
+   * Keys that were expected
+   */
+  expectedKeys: string[]
+  /**
+   * Expected keys that were not matched
+   */
+  unmatchedExpected: string[]
+  /**
+   * Success rate (0-1)
+   */
+  successRate: number
+}
+
+/**
+ * JSON parse error related files
+ */
+export interface JsonParseRelatedFiles {
+  /**
+   * Name of the JSON file (e.g. "AvatarExcelConfigData")
+   */
+  jsonFileName: string
+  /**
+   * Path to the master file
+   */
+  masterFilePath: string
+  /**
+   * Path to the cache file
+   */
+  cacheFilePath: string
 }
 
 /**
