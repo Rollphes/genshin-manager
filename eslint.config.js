@@ -154,6 +154,14 @@ export default [
           ],
         },
       ],
+      'jsdoc/require-param-description': 'error',
+      "jsdoc/require-param": 'error',
+      "jsdoc/check-param-names": 'error',
+      "jsdoc/require-returns-check": 'error',
+      "jsdoc/no-undefined-types": 'error',
+      'jsdoc/check-types': 'error',
+      'jsdoc/require-hyphen-before-param-description': 'error',
+      'jsdoc/require-throws': 'error',
       'jsdoc/require-description': [
         'error',
         {
@@ -173,7 +181,12 @@ export default [
           ],
         },
       ],
-      'jsdoc/check-tag-names': 'off',
+      'jsdoc/check-tag-names': [
+        'error',
+        {
+          definedTags: ['warning', 'key','value'],
+        },
+      ]
     },
   },
   {
