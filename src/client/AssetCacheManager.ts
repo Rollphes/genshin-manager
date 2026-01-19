@@ -57,7 +57,7 @@ export abstract class AssetCacheManager<
 > extends PromiseEventEmitter<T, E> {
   /**
    * Cached text map
-   * @deprecated This property is deprecated because it is used to pass data to each class
+   * @ignore Internal property used to pass data to each class
    * @key Text hash
    * @value Text
    */
@@ -65,7 +65,7 @@ export abstract class AssetCacheManager<
 
   /**
    * Asset event emitter
-   * @deprecated This property is deprecated because it is used to pass data to each class
+   * @ignore Internal property used to pass data to each class
    */
   protected static readonly _assetEventEmitter: EventEmitter<AssetCacheManagerEventMap> =
     new EventEmitter<AssetCacheManagerEventMap>()
@@ -174,23 +174,8 @@ export abstract class AssetCacheManager<
   }
 
   /**
-   * Download json file from URL and write to downloadFilePath
-   * Prevents file conflicts through concurrent access control
-   * @param url URL
-   * @param downloadFilePath download file path
-   */
-  public static async downloadJsonFile(
-    url: string,
-    downloadFilePath: string,
-  ): Promise<void> {
-    return withFileLock(downloadFilePath, async () => {
-      return this.downloadJsonFileInternal(url, downloadFilePath)
-    })
-  }
-
-  /**
    * Add ExcelBinOutput Key from Class Prototype to AssetCacheManager
-   * @deprecated This method is deprecated because it is used to pass data to each class
+   * @ignore Internal method used to pass data to each class
    * @param classPrototype class prototype
    */
   public static _addExcelBinOutputKeyFromClassPrototype(
@@ -214,7 +199,7 @@ export abstract class AssetCacheManager<
 
   /**
    * Get Json from cached excel bin output
-   * @deprecated This method is deprecated because it is used to pass data to each class
+   * @ignore Internal method used to pass data to each class
    * @param key excelBinOutput name
    * @param id ID of character, etc
    * @returns JSON
@@ -234,7 +219,7 @@ export abstract class AssetCacheManager<
 
   /**
    * Get cached excel bin output by name
-   * @deprecated This method is deprecated because it is used to pass data to each class
+   * @ignore Internal method used to pass data to each class
    * @param key excelBinOutput name
    * @returns cached excel bin output
    */
@@ -249,7 +234,7 @@ export abstract class AssetCacheManager<
 
   /**
    * Check if cached excel bin output exists by name
-   * @deprecated This method is deprecated because it is used to pass data to each class
+   * @ignore Internal method used to pass data to each class
    * @param key excelBinOutput name
    * @returns cached excel bin output exists
    */
@@ -261,7 +246,7 @@ export abstract class AssetCacheManager<
 
   /**
    * Check if cached excel bin output exists by ID
-   * @deprecated This method is deprecated because it is used to pass data to each class
+   * @ignore Internal method used to pass data to each class
    * @param key excelBinOutput name
    * @param id ID of character, etc
    * @returns cached excel bin output exists
@@ -278,7 +263,7 @@ export abstract class AssetCacheManager<
 
   /**
    * Search ID in CachedExcelBinOutput by text
-   * @deprecated This method is deprecated because it is used to pass data to each class
+   * @ignore Internal method used to pass data to each class
    * @param key excelBinOutput name
    * @param text text
    * @returns IDs
@@ -412,11 +397,26 @@ export abstract class AssetCacheManager<
   }
 
   /**
+   * Download json file from URL and write to downloadFilePath
+   * Prevents file conflicts through concurrent access control
+   * @param url URL
+   * @param downloadFilePath download file path
+   */
+  private static async downloadJsonFile(
+    url: string,
+    downloadFilePath: string,
+  ): Promise<void> {
+    return withFileLock(downloadFilePath, async () => {
+      return this.downloadJsonFileInternal(url, downloadFilePath)
+    })
+  }
+
+  /**
    * Set excel bin output to cache
    * @param keys excelBinOutput names
    * @returns true if an error occurs
    */
-  protected static async setExcelBinOutputToCache(
+  private static async setExcelBinOutputToCache(
     keys: Set<keyof typeof ExcelBinOutputs>,
   ): Promise<boolean> {
     const allKeys = Object.keys(
