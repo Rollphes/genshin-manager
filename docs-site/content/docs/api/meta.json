@@ -10,6 +10,7 @@
     "errors",
     "types",
     "utilities",
+    "notice",
     "monster",
     "world",
     "common"
