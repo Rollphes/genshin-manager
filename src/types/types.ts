@@ -184,7 +184,15 @@ export const ElementKeys = {
 /**
  * Element type
  */
-export type Element = ValueOf<typeof ElementKeys>
+export type Element =
+  | 'Phys'
+  | 'Pyro'
+  | 'Electro'
+  | 'Cryo'
+  | 'Anemo'
+  | 'Hydro'
+  | 'Geo'
+  | 'Dendro'
 
 /**
  * Character voice type
@@ -319,7 +327,48 @@ export const FightProps = {
 /**
  * FightProp type
  */
-export type FightPropType = ValueOf<typeof FightProps>
+export type FightPropType =
+  | 'FIGHT_PROP_NONE'
+  | 'FIGHT_PROP_BASE_HP'
+  | 'FIGHT_PROP_HP'
+  | 'FIGHT_PROP_HP_PERCENT'
+  | 'FIGHT_PROP_BASE_ATTACK'
+  | 'FIGHT_PROP_ATTACK'
+  | 'FIGHT_PROP_ATTACK_PERCENT'
+  | 'FIGHT_PROP_BASE_DEFENSE'
+  | 'FIGHT_PROP_DEFENSE'
+  | 'FIGHT_PROP_DEFENSE_PERCENT'
+  | 'FIGHT_PROP_BASE_SPEED'
+  | 'FIGHT_PROP_SPEED_PERCENT'
+  | 'FIGHT_PROP_CRITICAL'
+  | 'FIGHT_PROP_CRITICAL_HURT'
+  | 'FIGHT_PROP_CHARGE_EFFICIENCY'
+  | 'FIGHT_PROP_HEAL_ADD'
+  | 'FIGHT_PROP_HEALED_ADD'
+  | 'FIGHT_PROP_ELEMENT_MASTERY'
+  | 'FIGHT_PROP_PHYSICAL_SUB_HURT'
+  | 'FIGHT_PROP_PHYSICAL_ADD_HURT'
+  | 'FIGHT_PROP_FIRE_ADD_HURT'
+  | 'FIGHT_PROP_ELEC_ADD_HURT'
+  | 'FIGHT_PROP_WATER_ADD_HURT'
+  | 'FIGHT_PROP_GRASS_ADD_HURT'
+  | 'FIGHT_PROP_WIND_ADD_HURT'
+  | 'FIGHT_PROP_ROCK_ADD_HURT'
+  | 'FIGHT_PROP_ICE_ADD_HURT'
+  | 'FIGHT_PROP_FIRE_SUB_HURT'
+  | 'FIGHT_PROP_ELEC_SUB_HURT'
+  | 'FIGHT_PROP_WATER_SUB_HURT'
+  | 'FIGHT_PROP_GRASS_SUB_HURT'
+  | 'FIGHT_PROP_WIND_SUB_HURT'
+  | 'FIGHT_PROP_ROCK_SUB_HURT'
+  | 'FIGHT_PROP_ICE_SUB_HURT'
+  | 'FIGHT_PROP_SKILL_CD_MINUS_RATIO'
+  | 'FIGHT_PROP_SHIELD_COST_MINUS_RATIO'
+  | 'FIGHT_PROP_CUR_HP'
+  | 'FIGHT_PROP_MAX_HP'
+  | 'FIGHT_PROP_CUR_ATTACK'
+  | 'FIGHT_PROP_CUR_DEFENSE'
+  | 'FIGHT_PROP_CUR_SPEED'
 
 /**
  * TextMap language type
