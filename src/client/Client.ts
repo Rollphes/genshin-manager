@@ -13,32 +13,40 @@ import { LogLevel } from '@/utils/logger/Logger'
  * @see {@link Client}
  */
 export enum ClientEvents {
-  /**
-   * When the cache update starts, fires
-   * @param version {@link string} - Game version of assets to cache
-   */
+  /** When the cache update starts, fires */
   BEGIN_UPDATE_CACHE = 'BEGIN_UPDATE_CACHE',
-  /**
-   * When the cache update ends, fires
-   * @param version {@link string} - Game version of assets to cache
-   */
+  /** When the cache update ends, fires */
   END_UPDATE_CACHE = 'END_UPDATE_CACHE',
-  /**
-   * When the assets update starts, fires
-   * @param version {@link string} - Game version of new assets
-   */
+  /** When the assets update starts, fires */
   BEGIN_UPDATE_ASSETS = 'BEGIN_UPDATE_ASSETS',
-  /**
-   * When the assets update ends, fires
-   * @param version {@link string} - Game version of new assets
-   */
+  /** When the assets update ends, fires */
   END_UPDATE_ASSETS = 'END_UPDATE_ASSETS',
 }
 
-interface ClientEventMap {
+/**
+ * Client event map
+ * @internal
+ */
+export interface ClientEventMap {
+  /**
+   * When the cache update starts, fires
+   * @param version - Game version of assets to cache
+   */
   BEGIN_UPDATE_CACHE: [version: string]
+  /**
+   * When the cache update ends, fires
+   * @param version - Game version of assets to cache
+   */
   END_UPDATE_CACHE: [version: string]
+  /**
+   * When the assets update starts, fires
+   * @param version - Game version of new assets
+   */
   BEGIN_UPDATE_ASSETS: [version: string]
+  /**
+   * When the assets update ends, fires
+   * @param version - Game version of new assets
+   */
   END_UPDATE_ASSETS: [version: string]
 }
 

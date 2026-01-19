@@ -14,20 +14,26 @@ import { validate } from '@/utils/validation/validate'
  * @see {@link NoticeManager}
  */
 export enum NoticeManagerEvents {
-  /**
-   * When a notice is added, fires
-   * @param notice {@link Notice} - Added Notice
-   */
+  /** When a notice is added, fires */
   ADD_NOTICE = 'ADD_NOTICE',
-  /**
-   * When a notice is removed, fires
-   * @param notice {@link Notice} - Removed Notice
-   */
+  /** When a notice is removed, fires */
   REMOVE_NOTICE = 'REMOVE_NOTICE',
 }
 
-interface NoticeManagerEventMap {
+/**
+ * NoticeManager event map
+ * @internal
+ */
+export interface NoticeManagerEventMap {
+  /**
+   * When a notice is added, fires
+   * @param notice - Added Notice
+   */
   ADD_NOTICE: [notice: Notice]
+  /**
+   * When a notice is removed, fires
+   * @param notice - Removed Notice
+   */
   REMOVE_NOTICE: [notice: Notice]
 }
 

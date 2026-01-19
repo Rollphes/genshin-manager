@@ -1,10 +1,16 @@
-import { Client, ClientEvents } from '@/client/Client'
+import { AssetCacheManager } from '@/client/AssetCacheManager'
+import { Client, type ClientEventMap, ClientEvents } from '@/client/Client'
 import {
   type EnkaData,
   EnkaManager,
+  type EnkaManagerEventMap,
   EnkaManagerEvents,
 } from '@/client/EnkaManager'
-import { NoticeManager, NoticeManagerEvents } from '@/client/NoticeManager'
+import {
+  NoticeManager,
+  type NoticeManagerEventMap,
+  NoticeManagerEvents,
+} from '@/client/NoticeManager'
 import { Artifact, ArtifactAffixAppendProp } from '@/models/Artifact'
 import { AudioAssets } from '@/models/assets/AudioAssets'
 import { ImageAssets } from '@/models/assets/ImageAssets'
@@ -60,6 +66,7 @@ import { LogLevel } from '@/utils/logger/Logger'
 import { convertToUTC } from '@/utils/parsers/convertToUTC'
 export {
   Artifact,
+  AssetCacheManager,
   AudioAssets,
   Character,
   CharacterAscension,
@@ -102,18 +109,21 @@ export {
   ArtifactType,
   BodyType,
   CharacterUpgradePlan,
+  ClientEventMap,
   ClientEvents,
   ClientOption,
   CVType,
   DomainData,
   Element,
   EnkaData,
+  EnkaManagerEventMap,
   EnkaManagerEvents,
   EquipType,
   FightPropType,
   ItemType,
   LogLevel,
   MaterialType,
+  NoticeManagerEventMap,
   NoticeManagerEvents,
   ProfilePictureType,
   QualityType,

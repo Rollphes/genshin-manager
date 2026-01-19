@@ -48,14 +48,19 @@ export interface EnkaData {
  * @see {@link EnkaManager}
  */
 export enum EnkaManagerEvents {
-  /**
-   * When new data is added to the cache, fires
-   * @param data {@link EnkaData} - New data added to the cache
-   */
+  /** When new data is added to the cache, fires */
   GET_NEW_ENKA_DATA = 'GET_NEW_ENKA_DATA',
 }
 
-interface EnkaManagerEventMap {
+/**
+ * EnkaManager event map
+ * @internal
+ */
+export interface EnkaManagerEventMap {
+  /**
+   * When new data is added to the cache, fires
+   * @param data - New data added to the cache
+   */
   GET_NEW_ENKA_DATA: [data: EnkaData]
 }
 

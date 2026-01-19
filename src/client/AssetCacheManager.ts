@@ -49,7 +49,7 @@ interface AssetCacheManagerEventMap {
 
 /**
  * Class for managing cached assets
- * @abstract
+ * @internal
  */
 export abstract class AssetCacheManager<
   T extends EventMap<T>,
@@ -57,7 +57,7 @@ export abstract class AssetCacheManager<
 > extends PromiseEventEmitter<T, E> {
   /**
    * Cached text map
-   * @ignore Internal property used to pass data to each class
+   * @internal
    * @key Text hash
    * @value Text
    */
@@ -65,7 +65,7 @@ export abstract class AssetCacheManager<
 
   /**
    * Asset event emitter
-   * @ignore Internal property used to pass data to each class
+   * @internal
    */
   protected static readonly _assetEventEmitter: EventEmitter<AssetCacheManagerEventMap> =
     new EventEmitter<AssetCacheManagerEventMap>()
@@ -175,7 +175,7 @@ export abstract class AssetCacheManager<
 
   /**
    * Add ExcelBinOutput Key from Class Prototype to AssetCacheManager
-   * @ignore Internal method used to pass data to each class
+   * @internal
    * @param classPrototype class prototype
    */
   public static _addExcelBinOutputKeyFromClassPrototype(
@@ -199,7 +199,7 @@ export abstract class AssetCacheManager<
 
   /**
    * Get Json from cached excel bin output
-   * @ignore Internal method used to pass data to each class
+   * @internal
    * @param key excelBinOutput name
    * @param id ID of character, etc
    * @returns JSON
@@ -219,7 +219,7 @@ export abstract class AssetCacheManager<
 
   /**
    * Get cached excel bin output by name
-   * @ignore Internal method used to pass data to each class
+   * @internal
    * @param key excelBinOutput name
    * @returns cached excel bin output
    */
@@ -234,7 +234,7 @@ export abstract class AssetCacheManager<
 
   /**
    * Check if cached excel bin output exists by name
-   * @ignore Internal method used to pass data to each class
+   * @internal
    * @param key excelBinOutput name
    * @returns cached excel bin output exists
    */
@@ -246,7 +246,7 @@ export abstract class AssetCacheManager<
 
   /**
    * Check if cached excel bin output exists by ID
-   * @ignore Internal method used to pass data to each class
+   * @internal
    * @param key excelBinOutput name
    * @param id ID of character, etc
    * @returns cached excel bin output exists
@@ -263,7 +263,7 @@ export abstract class AssetCacheManager<
 
   /**
    * Search ID in CachedExcelBinOutput by text
-   * @ignore Internal method used to pass data to each class
+   * @internal
    * @param key excelBinOutput name
    * @param text text
    * @returns IDs
