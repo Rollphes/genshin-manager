@@ -644,6 +644,8 @@ export class TypeDocParser {
       isProtected: reflection.flags?.isProtected ?? false,
       defaultValue: this.extractDefaultValue(reflection.comment),
       warnings: this.extractWarnings(reflection.comment),
+      remarks: this.extractRemarks(reflection.comment),
+      see: this.extractSee(reflection.comment),
       additionalDescription: this.extractAdditionalDescription(
         reflection.comment,
       ),
@@ -661,6 +663,7 @@ export class TypeDocParser {
     // Get type from getter return type or setter parameter type
     let type: TypeReference = { name: 'unknown' }
     let description = ''
+    const comment = getSignature?.comment ?? setSignature?.comment
 
     if (getSignature) {
       type = this.parseType(getSignature.type)
@@ -680,6 +683,9 @@ export class TypeDocParser {
       isAbstract: reflection.flags?.isAbstract ?? false,
       isProtected: reflection.flags?.isProtected ?? false,
       isOverride: false, // TypeDoc doesn't expose override flag directly
+      warnings: this.extractWarnings(comment),
+      remarks: this.extractRemarks(comment),
+      see: this.extractSee(comment),
     }
   }
 
@@ -733,6 +739,9 @@ export class TypeDocParser {
       example: this.extractExample(signature),
       returns: this.extractReturns(signature),
       warnings: this.extractWarnings(signature.comment),
+      remarks: this.extractRemarks(signature.comment),
+      see: this.extractSee(signature.comment),
+      throws: this.extractThrows(signature.comment),
       additionalDescription: this.extractAdditionalDescription(
         signature.comment,
       ),
@@ -1133,6 +1142,66 @@ export class TypeDocParser {
       }
     }
     return warnings
+  }
+
+  /**
+   * Extract @remarks tag
+   */
+  private extractRemarks(
+    comment: TypeDocComment | undefined,
+  ): string | undefined {
+    const blockTags = comment?.blockTags
+    if (!blockTags) return undefined
+
+    const remarksTag = blockTags.find((tag) => tag.tag === '@remarks')
+    if (!remarksTag) return undefined
+
+    return (
+      remarksTag.content
+        .map((c) => c.text)
+        .join('')
+        .trim() || undefined
+    )
+  }
+
+  /**
+   * Extract @see tags
+   */
+  private extractSee(comment: TypeDocComment | undefined): string[] {
+    const blockTags = comment?.blockTags
+    if (!blockTags) return []
+
+    const seeRefs: string[] = []
+    for (const tag of blockTags) {
+      if (tag.tag === '@see') {
+        const text = tag.content
+          .map((c) => c.text)
+          .join('')
+          .trim()
+        if (text) seeRefs.push(text)
+      }
+    }
+    return seeRefs
+  }
+
+  /**
+   * Extract @throws tags
+   */
+  private extractThrows(comment: TypeDocComment | undefined): string[] {
+    const blockTags = comment?.blockTags
+    if (!blockTags) return []
+
+    const throws: string[] = []
+    for (const tag of blockTags) {
+      if (tag.tag === '@throws') {
+        const text = tag.content
+          .map((c) => c.text)
+          .join('')
+          .trim()
+        if (text) throws.push(text)
+      }
+    }
+    return throws
   }
 
   /**

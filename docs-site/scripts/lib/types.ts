@@ -92,6 +92,8 @@ export interface ParsedProperty {
   isProtected: boolean
   defaultValue?: string
   warnings?: string[]
+  remarks?: string
+  see?: string[]
   additionalDescription?: string
   mapDescription?: {
     key: string
@@ -114,6 +116,9 @@ export interface ParsedMethod {
   example?: string
   returns?: string
   warnings?: string[]
+  remarks?: string
+  see?: string[]
+  throws?: string[]
   additionalDescription?: string
 }
 
@@ -150,6 +155,9 @@ export interface ParsedAccessor {
   isAbstract: boolean
   isProtected: boolean
   isOverride: boolean
+  warnings?: string[]
+  remarks?: string
+  see?: string[]
 }
 
 /**

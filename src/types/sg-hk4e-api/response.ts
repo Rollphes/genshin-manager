@@ -116,7 +116,7 @@ export interface DataList {
   banner: string
   /**
    * Ann content
-   * @remark none
+   * @remarks none
    */
   content: string
   /**
@@ -133,7 +133,7 @@ export interface DataList {
   tag_icon: string
   /**
    * Ann login alert (1:yes 0:no)
-   * @remark unknown. 1 only?
+   * @remarks unknown. 1 only?
    */
   login_alert: number
   /**
@@ -154,12 +154,12 @@ export interface DataList {
   type: number
   /**
    * Ann remind (1:yes 0:no)
-   * @remark unknown. 0 only?
+   * @remarks unknown. 0 only?
    */
   remind: number
   /**
    * Ann alert (1:yes 0:no)
-   * @remark unknown. 0 only?
+   * @remarks unknown. 0 only?
    */
   alert: number
   /**
@@ -172,17 +172,17 @@ export interface DataList {
   tag_end_time: string
   /**
    * Ann remind version
-   * @remark fix version?
+   * @remarks fix version?
    */
   remind_ver: number
   /**
    * Ann has content
-   * @remark unknown. true only?
+   * @remarks unknown. true only?
    */
   has_content: boolean
   /**
    * Ann extra remind
-   * @remark unknown
+   * @remarks unknown
    */
   extra_remind: number
 }
