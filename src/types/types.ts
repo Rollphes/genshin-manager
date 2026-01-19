@@ -3,9 +3,22 @@ import { JsonObject } from '@/types/json'
 import { LogLevel } from '@/utils/logger/Logger'
 
 /**
- * Type of value of object
+ * Supported language codes (ISO 639-1 with region)
  */
-export type ValueOf<T> = T[keyof T]
+export type Language =
+  | 'en'
+  | 'ru'
+  | 'vi'
+  | 'th'
+  | 'pt'
+  | 'ko'
+  | 'ja'
+  | 'id'
+  | 'fr'
+  | 'es'
+  | 'de'
+  | 'zh-tw'
+  | 'zh-cn'
 
 /**
  * Enhanced master file structure with recursive support
@@ -195,9 +208,9 @@ export type Element =
   | 'Dendro'
 
 /**
- * Character voice type
+ * Character voice type (subset of Language with voice acting support)
  */
-export type CVType = 'en' | 'ja' | 'ko' | 'zh-cn'
+export type CVType = Extract<Language, 'en' | 'ja' | 'ko' | 'zh-cn'>
 
 /**
  * FightProp Map
@@ -387,7 +400,7 @@ export const TextMapLanguage = {
   de: ['TextMapDE.json'],
   'zh-tw': ['TextMapCHT.json'],
   'zh-cn': ['TextMapCHS.json'],
-} as const
+} as const satisfies Record<Language, readonly string[]>
 
 /**
  * ExcelBin outputs

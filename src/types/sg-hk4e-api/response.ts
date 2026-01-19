@@ -1,5 +1,4 @@
-import { NoticeLanguage } from '@/types/sg-hk4e-api'
-import { ValueOf } from '@/types/types'
+import type { NoticeLanguageCode } from '@/types/sg-hk4e-api'
 /**
  * GetAnnContent response
  */
@@ -52,7 +51,7 @@ export interface ContentList {
   /**
    * Ann language
    */
-  lang: ValueOf<typeof NoticeLanguage>
+  lang: NoticeLanguageCode
 }
 
 /**
@@ -140,7 +139,7 @@ export interface DataList {
   /**
    * Ann language
    */
-  lang: ValueOf<typeof NoticeLanguage>
+  lang: NoticeLanguageCode
   /**
    * Ann start time (Always fluctuating)
    */

@@ -1,3 +1,5 @@
+import type { Language } from '@/types/types'
+
 /**
  * Time difference per region (hour)
  */
@@ -33,7 +35,7 @@ export interface URLParams {
    * Language
    * @default 'en'
    */
-  lang: keyof typeof NoticeLanguage
+  lang: Language
   /**
    * Auth app ID
    * @default 'announcement'
@@ -82,7 +84,7 @@ export interface URLParams {
 }
 
 /**
- * language code map for getAnn
+ * Language code mapping for Notice API
  */
 export const NoticeLanguage = {
   en: 'en-us',
@@ -98,4 +100,10 @@ export const NoticeLanguage = {
   de: 'de-de',
   'zh-tw': 'zh-tw',
   'zh-cn': 'zh-cn',
-} as const
+} as const satisfies Record<Language, string>
+
+/**
+ * Notice API language code (values of NoticeLanguage)
+ */
+export type NoticeLanguageCode =
+  (typeof NoticeLanguage)[keyof typeof NoticeLanguage]

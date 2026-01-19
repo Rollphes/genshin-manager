@@ -3,9 +3,8 @@ import { Element } from 'domhandler'
 
 import { ValidationError } from '@/errors/validation/ValidationError'
 import { ImageAssets } from '@/models/assets/ImageAssets'
-import { NoticeLanguage, Region } from '@/types/sg-hk4e-api'
-import { ContentList, DataList } from '@/types/sg-hk4e-api/response'
-import { ValueOf } from '@/types/types'
+import type { NoticeLanguageCode, Region } from '@/types/sg-hk4e-api'
+import type { ContentList, DataList } from '@/types/sg-hk4e-api/response'
 import { convertToUTC } from '@/utils/parsers/convertToUTC'
 
 type CheerioAPI = ReturnType<typeof cheerio.load>
@@ -95,7 +94,7 @@ export class Notice {
   /**
    * Notice language
    */
-  public readonly lang: ValueOf<typeof NoticeLanguage>
+  public readonly lang: NoticeLanguageCode
   /**
    * Notice region
    */
