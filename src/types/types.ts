@@ -333,21 +333,26 @@ export interface AscensionMaterial {
 }
 
 /**
+ * Level range tuple: [current, target]
+ */
+export type LevelRange = [number, number]
+
+/**
  * Skill level upgrade plan
  */
 export interface SkillLevelPlan {
   /**
    * Normal attack level: [current, target] or undefined if no change
    */
-  normalAttack?: [number, number]
+  normalAttack?: LevelRange
   /**
    * Elemental skill level: [current, target] or undefined if no change
    */
-  elementalSkill?: [number, number]
+  elementalSkill?: LevelRange
   /**
    * Elemental burst level: [current, target] or undefined if no change
    */
-  elementalBurst?: [number, number]
+  elementalBurst?: LevelRange
 }
 
 /**
@@ -357,24 +362,11 @@ export interface CharacterUpgradePlan {
   /**
    * Character level upgrade: [current, target] or undefined if no change
    */
-  characterLevel?: [number, number]
+  characterLevel?: LevelRange
   /**
    * Skill level upgrades
    */
-  skillLevels?: {
-    /**
-     * Normal attack level: [current, target] or undefined if no change
-     */
-    normalAttack?: [number, number]
-    /**
-     * Elemental skill level: [current, target] or undefined if no change
-     */
-    elementalSkill?: [number, number]
-    /**
-     * Elemental burst level: [current, target] or undefined if no change
-     */
-    elementalBurst?: [number, number]
-  }
+  skillLevels?: SkillLevelPlan
 }
 
 /**
