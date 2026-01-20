@@ -54,7 +54,9 @@ function AccordionContent({
 }): ReactNode {
   return (
     <div className="border-t border-fd-border p-4 space-y-4">
-      {description && <div className="text-fd-muted-foreground">{description}</div>}
+      {description && (
+        <div className="text-fd-muted-foreground">{description}</div>
+      )}
       {parameters.length > 0 && <ParametersSection parameters={parameters} />}
     </div>
   )

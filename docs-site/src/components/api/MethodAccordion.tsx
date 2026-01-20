@@ -29,6 +29,17 @@ interface Parameter {
   defaultValue?: string
 }
 
+interface ThrowItem {
+  typeJsx: ReactNode
+  description?: string
+}
+
+interface SeeItem {
+  text: string
+  url?: string
+  typeJsx?: ReactNode
+}
+
 type BadgeType = 'async' | 'static' | 'abstract' | 'deprecated' | 'protected'
 
 interface BadgeFlags {
@@ -114,27 +125,86 @@ function ReturnsSection({
   )
 }
 
+// Extracted: Throws section content
+function ThrowsSection({ throws }: { throws: ThrowItem[] }): ReactNode {
+  return (
+    <div>
+      <h4 className="text-sm font-semibold mb-2">Throws</h4>
+      <ul className="list-disc list-inside space-y-1">
+        {throws.map((t, i) => (
+          <li key={i} className="text-sm">
+            <span className="font-mono">{t.typeJsx}</span>
+            {t.description && (
+              <span className="text-fd-muted-foreground">
+                {' '}
+                - {t.description}
+              </span>
+            )}
+          </li>
+        ))}
+      </ul>
+    </div>
+  )
+}
+
+// Extracted: See section content
+function SeeSection({ see }: { see: SeeItem[] }): ReactNode {
+  return (
+    <div>
+      <h4 className="text-sm font-semibold mb-2">See</h4>
+      <ul className="list-disc list-inside space-y-1">
+        {see.map((s, i) => (
+          <li key={i} className="text-sm">
+            {s.url ? (
+              <a
+                href={s.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-fd-primary hover:underline"
+              >
+                {s.text}
+              </a>
+            ) : s.typeJsx ? (
+              <span className="font-mono">{s.typeJsx}</span>
+            ) : (
+              <span className="text-fd-muted-foreground">{s.text}</span>
+            )}
+          </li>
+        ))}
+      </ul>
+    </div>
+  )
+}
+
 // Extracted: Accordion content section
 function AccordionContent({
   description,
   parameters,
   returnType,
   returns,
+  throws,
+  see,
   example,
 }: {
   description?: ReactNode
   parameters: Parameter[]
   returnType: ReactNode
   returns?: ReactNode
+  throws?: ThrowItem[]
+  see?: SeeItem[]
   example?: string
 }): ReactNode {
   return (
     <div className="border-t border-fd-border p-4 space-y-4">
-      {description && <div className="text-fd-muted-foreground">{description}</div>}
+      {description && (
+        <div className="text-fd-muted-foreground">{description}</div>
+      )}
       {parameters.length > 0 && <ParametersSection parameters={parameters} />}
       {(returns !== undefined || returnType !== undefined) && (
         <ReturnsSection returnType={returnType} returns={returns} />
       )}
+      {throws && throws.length > 0 && <ThrowsSection throws={throws} />}
+      {see && see.length > 0 && <SeeSection see={see} />}
       {example && (
         <div>
           <h4 className="text-sm font-semibold mb-2">Example</h4>
@@ -151,6 +221,8 @@ interface MethodAccordionProps {
   description?: ReactNode
   parameters?: Parameter[]
   returns?: ReactNode
+  throws?: ThrowItem[]
+  see?: SeeItem[]
   example?: string
   isAsync?: boolean
   isStatic?: boolean
@@ -167,6 +239,8 @@ export function MethodAccordion({
   description,
   parameters = [],
   returns,
+  throws,
+  see,
   example,
   isAsync = false,
   isStatic = false,
@@ -245,6 +319,8 @@ export function MethodAccordion({
             parameters={parameters}
             returnType={returnType}
             returns={returns}
+            throws={throws}
+            see={see}
             example={example}
           />
         </div>

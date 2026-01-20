@@ -7,7 +7,7 @@ import { TypeBadge } from '@/components/api/TypeBadge'
 import { cn } from '@/lib/cn'
 
 /**
- * Render typeJsx with automatic key assignment to avoid React key warnings
+ * Render typeJsx with automatic key assignment to avoid React key warnings.
  */
 function renderTypeJsx(typeJsx: ReactNode): ReactNode {
   if (typeof typeJsx === 'string')
@@ -18,10 +18,95 @@ function renderTypeJsx(typeJsx: ReactNode): ReactNode {
 
 type BadgeType = 'static' | 'abstract' | 'protected' | 'getter' | 'setter'
 
+interface SeeItem {
+  text: string
+  url?: string
+  typeJsx?: ReactNode
+}
+
+/**
+ * Render a single see item based on its type.
+ */
+function renderSeeItem(item: SeeItem): ReactNode {
+  if (item.url) {
+    return (
+      <a
+        href={item.url}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="text-fd-primary hover:underline"
+      >
+        {item.text}
+      </a>
+    )
+  }
+  if (item.typeJsx) return <span className="font-mono">{item.typeJsx}</span>
+
+  return <span className="text-fd-muted-foreground">{item.text}</span>
+}
+
+/**
+ * See section content.
+ */
+function SeeSection({ see }: { see: SeeItem[] }): ReactNode {
+  return (
+    <div>
+      <h4 className="text-sm font-semibold mb-2">See</h4>
+      <ul className="list-disc list-inside space-y-1">
+        {see.map((s, i) => (
+          <li key={i} className="text-sm">
+            {renderSeeItem(s)}
+          </li>
+        ))}
+      </ul>
+    </div>
+  )
+}
+
+/**
+ * Accordion content section.
+ */
+function AccordionContent({
+  description,
+  see,
+}: {
+  description?: ReactNode
+  see?: SeeItem[]
+}): ReactNode {
+  return (
+    <div className="border-t border-fd-border p-4 space-y-4">
+      {description && (
+        <div className="text-fd-muted-foreground">{description}</div>
+      )}
+      {see && see.length > 0 && <SeeSection see={see} />}
+    </div>
+  )
+}
+
+/**
+ * Build badges from accessor flags.
+ */
+function buildBadges(flags: {
+  isStatic: boolean
+  isAbstract: boolean
+  isProtected: boolean
+  hasGetter: boolean
+  hasSetter: boolean
+}): BadgeType[] {
+  return [
+    flags.isStatic && 'static',
+    flags.isAbstract && 'abstract',
+    flags.isProtected && 'protected',
+    flags.hasGetter && 'getter',
+    flags.hasSetter && 'setter',
+  ].filter((b): b is BadgeType => Boolean(b))
+}
+
 interface AccessorAccordionProps {
   name: string
   typeJsx: ReactNode
   description?: ReactNode
+  see?: SeeItem[]
   hasGetter?: boolean
   hasSetter?: boolean
   isStatic?: boolean
@@ -35,6 +120,7 @@ export function AccessorAccordion({
   name,
   typeJsx,
   description,
+  see,
   hasGetter = false,
   hasSetter = false,
   isStatic = false,
@@ -45,16 +131,17 @@ export function AccessorAccordion({
 }: AccessorAccordionProps): React.ReactElement {
   const [isOpen, setIsOpen] = useState(defaultOpen)
 
-  const badges: BadgeType[] = [
-    isStatic && 'static',
-    isAbstract && 'abstract',
-    isProtected && 'protected',
-    hasGetter && 'getter',
-    hasSetter && 'setter',
-  ].filter((b): b is BadgeType => Boolean(b))
+  const badges = buildBadges({
+    isStatic,
+    isAbstract,
+    isProtected,
+    hasGetter,
+    hasSetter,
+  })
 
   // Generate anchor ID from accessor name
   const anchorId = id ?? `accessor-${name.toLowerCase()}`
+  const hasContent = description != null || (see != null && see.length > 0)
 
   return (
     <div
@@ -90,7 +177,7 @@ export function AccessorAccordion({
         </div>
       </button>
 
-      {description && (
+      {hasContent && (
         <div
           className={cn(
             'grid transition-all duration-200 ease-in-out',
@@ -100,9 +187,7 @@ export function AccessorAccordion({
           )}
         >
           <div className="overflow-hidden">
-            <div className="border-t border-fd-border p-4">
-              <div className="text-fd-muted-foreground">{description}</div>
-            </div>
+            <AccordionContent description={description} see={see} />
           </div>
         </div>
       )}
