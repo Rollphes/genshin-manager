@@ -10,6 +10,8 @@ import {
   type ParsedMethod,
   type ParsedParameter,
   type ParsedProperty,
+  type ParsedSee,
+  type ParsedThrow,
   ReflectionKind,
   type TypeParameter,
   type TypeReference,
@@ -1165,40 +1167,67 @@ export class TypeDocParser {
   }
 
   /**
-   * Extract @see tags
+   * Extract @see tags with link information
    */
-  private extractSee(comment: TypeDocComment | undefined): string[] {
+  private extractSee(comment: TypeDocComment | undefined): ParsedSee[] {
     const blockTags = comment?.blockTags
     if (!blockTags) return []
 
-    const seeRefs: string[] = []
+    const seeRefs: ParsedSee[] = []
     for (const tag of blockTags) {
       if (tag.tag === '@see') {
-        const text = tag.content
-          .map((c) => c.text)
-          .join('')
-          .trim()
-        if (text) seeRefs.push(text)
+        for (const part of tag.content) {
+          if (part.kind === 'inline-tag' && part.tag === '@link') {
+            const text = part.text
+            const target = part.target as string | number | undefined
+            // Check if target is a URL (string starting with http)
+            if (typeof target === 'string' && target.startsWith('http')) {
+              seeRefs.push({ text, url: target })
+            } else {
+              // Internal type reference
+              seeRefs.push({ text, typeRef: { name: text } })
+            }
+          } else if (part.kind === 'text') {
+            const text = part.text.trim()
+            if (text) {
+              // Plain text reference
+              seeRefs.push({ text })
+            }
+          }
+        }
       }
     }
     return seeRefs
   }
 
   /**
-   * Extract @throws tags
+   * Extract @throws tags with type information from @link
    */
-  private extractThrows(comment: TypeDocComment | undefined): string[] {
+  private extractThrows(comment: TypeDocComment | undefined): ParsedThrow[] {
     const blockTags = comment?.blockTags
     if (!blockTags) return []
 
-    const throws: string[] = []
+    const throws: ParsedThrow[] = []
     for (const tag of blockTags) {
       if (tag.tag === '@throws') {
-        const text = tag.content
-          .map((c) => c.text)
-          .join('')
-          .trim()
-        if (text) throws.push(text)
+        let typeRef: TypeReference | undefined
+        let description = ''
+
+        for (const part of tag.content) {
+          if (part.kind === 'inline-tag' && part.tag === '@link') {
+            // Extract type from @link tag (path will be resolved by MDX generator)
+            typeRef = { name: part.text }
+          } else if (part.kind === 'text') {
+            // Accumulate description text
+            description += part.text
+          }
+        }
+
+        // Clean up description (remove leading " - ")
+        description = description.replace(/^\s*-\s*/, '').trim()
+
+        if (typeRef)
+          throws.push({ type: typeRef, description: description || undefined })
       }
     }
     return throws
