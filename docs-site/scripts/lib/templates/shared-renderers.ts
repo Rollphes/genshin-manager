@@ -73,6 +73,22 @@ export function renderPropertiesTable(
       )
     }
 
+    // See references
+    if (prop.see && prop.see.length > 0) {
+      const seeItems = prop.see.map((s) => {
+        if (s.url) {
+          return `<a href="${s.url}" target="_blank" rel="noopener noreferrer" className="text-fd-primary hover:underline">${escapeMdx(s.text)}</a>`
+        } else if (s.typeRef) {
+          const typeJsx = renderTypeSignature(s.typeRef, linkMap)
+          return `<span className="font-mono">{${typeJsx}}</span>`
+        }
+        return `<span>${escapeMdx(s.text)}</span>`
+      })
+      descParts.push(
+        `<div className="mt-2"><p className="text-sm font-semibold mb-1">See</p><ul className="list-disc list-inside space-y-1">${seeItems.map((item) => `<li className="text-sm">${item}</li>`).join('')}</ul></div>`,
+      )
+    }
+
     const description =
       descParts.length > 0 ? `<>${descParts.join('')}</>` : `<Md>{\`\`}</Md>`
 
@@ -145,6 +161,33 @@ export function renderMethod(
   const description =
     descParts.length > 0 ? `<>${descParts.join('')}</>` : `<Md>{\`\`}</Md>`
 
+  // Build throws as JS array literal with JSX for types
+  let throwsStr = ''
+  if (method.throws && method.throws.length > 0) {
+    const throwsItems = method.throws.map((t) => {
+      const typeJsx = renderTypeSignature(t.type, linkMap)
+      const desc = t.description ? escapeMdx(t.description) : ''
+      return `{ typeJsx: ${typeJsx}, description: "${desc}" }`
+    })
+    throwsStr = `throws={[${throwsItems.join(', ')}]}`
+  }
+
+  // Build see as JS array literal with JSX for type refs
+  let seeStr = ''
+  if (method.see && method.see.length > 0) {
+    const seeItems = method.see.map((s) => {
+      const text = escapeMdx(s.text)
+      if (s.url) {
+        return `{ text: "${text}", url: "${s.url}" }`
+      } else if (s.typeRef) {
+        const typeJsx = renderTypeSignature(s.typeRef, linkMap)
+        return `{ text: "${text}", typeJsx: ${typeJsx} }`
+      }
+      return `{ text: "${text}" }`
+    })
+    seeStr = `see={[${seeItems.join(', ')}]}`
+  }
+
   // Generate anchor ID from method name (FumaDocs auto-generates from ### heading)
   const anchorId = method.name.replace(/\s+/g, '-').toLowerCase()
 
@@ -157,6 +200,8 @@ export function renderMethod(
   description={${description}}
   parameters={${parametersStr}}
   ${method.returns ? `returns={<Md>{\`${escapeMdx(method.returns)}\`}</Md>}` : ''}
+  ${throwsStr}
+  ${seeStr}
   ${exampleStr}
   isAsync={${String(method.isAsync)}}
   isStatic={${String(method.isStatic)}}
@@ -179,6 +224,22 @@ export function renderAccessor(
     ? `<Md>{\`${escapeMdx(accessor.description)}\`}</Md>`
     : `<Md>{\`\`}</Md>`
 
+  // Build see as JS array literal with JSX for type refs
+  let seeStr = ''
+  if (accessor.see && accessor.see.length > 0) {
+    const seeItems = accessor.see.map((s) => {
+      const text = escapeMdx(s.text)
+      if (s.url) {
+        return `{ text: "${text}", url: "${s.url}" }`
+      } else if (s.typeRef) {
+        const typeJsx = renderTypeSignature(s.typeRef, linkMap)
+        return `{ text: "${text}", typeJsx: ${typeJsx} }`
+      }
+      return `{ text: "${text}" }`
+    })
+    seeStr = `see={[${seeItems.join(', ')}]}`
+  }
+
   // Generate anchor ID from accessor name (FumaDocs auto-generates from ### heading)
   const anchorId = `accessor-${accessor.name.toLowerCase()}`
 
@@ -189,6 +250,7 @@ export function renderAccessor(
   name="${accessor.name}"
   typeJsx={${typeStr}}
   description={${description}}
+  ${seeStr}
   hasGetter={${String(accessor.hasGetter)}}
   hasSetter={${String(accessor.hasSetter)}}
   isStatic={${String(accessor.isStatic)}}
