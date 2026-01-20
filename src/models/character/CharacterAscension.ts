@@ -41,8 +41,8 @@ export class CharacterAscension {
 
   /**
    * Create a character ascension
-   * @param characterId character ID
-   * @param promoteLevel character promote level (0-6)
+   * @param characterId - character ID
+   * @param promoteLevel - character promote level (0-6)
    */
   constructor(characterId: number, promoteLevel = 0) {
     this.id = characterId
@@ -90,7 +90,7 @@ export class CharacterAscension {
 
   /**
    * Get max promote level by character ID
-   * @param characterId character ID
+   * @param characterId - character ID
    * @returns max promote level
    */
   public static getMaxPromoteLevelByCharacterId(characterId: number): number {

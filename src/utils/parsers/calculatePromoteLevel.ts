@@ -4,9 +4,9 @@ import { validate } from '@/utils/validation/validate'
 
 /**
  * Calculate promote level
- * @param promotesJson promotes json
- * @param level level (1-90)
- * @param isAscended is ascended
+ * @param promotesJson - promotes json
+ * @param level - level (1-90)
+ * @param isAscended - is ascended
  * @returns promote level (0-6)
  */
 export function calculatePromoteLevel(

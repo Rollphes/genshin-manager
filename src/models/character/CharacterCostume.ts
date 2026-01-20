@@ -48,7 +48,7 @@ export class CharacterCostume {
 
   /**
    * Create a Costume
-   * @param costumeId costume ID
+   * @param costumeId - costume ID
    */
   constructor(costumeId: number) {
     this.id = costumeId

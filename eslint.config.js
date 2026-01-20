@@ -184,7 +184,7 @@ export default [
       'jsdoc/check-tag-names': [
         'error',
         {
-          definedTags: ['warning', 'key','value'],
+          definedTags: ['warning', 'key', 'value', 'remarks', 'link'],
         },
       ]
     },

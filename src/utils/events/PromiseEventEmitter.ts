@@ -76,8 +76,8 @@ export abstract class PromiseEventEmitter<
 
   /**
    * Adds a **one-time**`listener` function for the event named `eventName`. The next time `eventName` is triggered, this listener is removed and then invoked.
-   * @param eventName the name of the event.
-   * @param listener the callback function. (supports async)
+   * @param eventName - the name of the event.
+   * @param listener - the callback function. (supports async)
    * @see EventEmitter.once()
    */
   public once<K>(eventName: Key<K, E, T>, listener: Listener1<K, T>): this {
@@ -89,8 +89,8 @@ export abstract class PromiseEventEmitter<
    * Adds the `listener` function to the end of the listeners array for the event named `eventName`.
    * No checks are made to see if the `listener` has already been added.
    * Multiple calls passing the same combination of `eventName`and `listener` will result in the `listener` being added, and called, multiple times.
-   * @param eventName the name of the event.
-   * @param listener the callback function. (supports async)
+   * @param eventName - the name of the event.
+   * @param listener - the callback function. (supports async)
    * @see EventEmitter.on()
    */
   public on<K>(eventName: Key<K, E, T>, listener: Listener1<K, T>): this {
@@ -100,8 +100,8 @@ export abstract class PromiseEventEmitter<
 
   /**
    * Alias for `emitter.on(eventName, listener)`.
-   * @param eventName the name of the event.
-   * @param listener the callback function. (supports async)
+   * @param eventName - the name of the event.
+   * @param listener - the callback function. (supports async)
    * @see EventEmitter.addListener()
    */
   public addListener<K>(
@@ -114,8 +114,8 @@ export abstract class PromiseEventEmitter<
 
   /**
    * Alias for `emitter.removeListener()`.
-   * @param eventName the name of the event.
-   * @param listener the callback function. (supports async)
+   * @param eventName - the name of the event.
+   * @param listener - the callback function. (supports async)
    * @see EventEmitter.off()
    */
   public off<K>(eventName: Key<K, E, T>, listener: Listener1<K, T>): this {
@@ -125,8 +125,8 @@ export abstract class PromiseEventEmitter<
 
   /**
    * Removes the specified `listener` from the listener array for the event named`eventName`.
-   * @param eventName the name of the event.
-   * @param listener the callback function. (supports async)
+   * @param eventName - the name of the event.
+   * @param listener - the callback function. (supports async)
    * @see EventEmitter.removeListener()
    */
   public removeListener<K>(
@@ -139,7 +139,7 @@ export abstract class PromiseEventEmitter<
 
   /**
    * Removes all listeners, or those of the specified `eventName`.
-   * @param event the name of the event.
+   * @param event - the name of the event.
    * @see EventEmitter.removeAllListeners()
    */
   public removeAllListeners<K>(event?: Key<K, E, T>): this {
@@ -150,8 +150,8 @@ export abstract class PromiseEventEmitter<
   /**
    * Synchronously calls each of the listeners registered for the event named`eventName`, in the order they were registered, passing the supplied arguments to each.
    * Returns `true` if the event had listeners, `false` otherwise.
-   * @param eventName the name of the event.
-   * @param args arguments to pass to the listeners.
+   * @param eventName - the name of the event.
+   * @param args - arguments to pass to the listeners.
    * @see EventEmitter.emit()
    */
   protected emit<K>(eventName: Key<K, E, T>, ...args: Args<K, T>): boolean {

@@ -31,7 +31,7 @@ export class CharacterStory {
 
   /**
    * Create a CharacterStories
-   * @param fetterId fetter ID in the story
+   * @param fetterId - fetter ID in the story
    */
   constructor(fetterId: number) {
     this.fetterId = fetterId
@@ -75,7 +75,7 @@ export class CharacterStory {
 
   /**
    * Get all Fetter IDs in the character's story
-   * @param characterId character ID
+   * @param characterId - character ID
    * @returns all fetter IDs in the character's story
    */
   public static getAllFetterIdsByCharacterId(characterId: number): number[] {

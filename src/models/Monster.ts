@@ -72,9 +72,9 @@ export class Monster {
 
   /**
    * Create a Monster
-   * @param monsterId monster ID
-   * @param level monster level (1-100), defaults to 1
-   * @param playerCount number of players (1-4), defaults to 1
+   * @param monsterId - monster ID
+   * @param level - monster level (1-100), defaults to 1
+   * @param playerCount - number of players (1-4), defaults to 1
    * @example
    * ```typescript
    * // Create a level 50 monster for single player
@@ -183,7 +183,7 @@ export class Monster {
 
   /**
    * Find monster ID by description ID
-   * @param describeId description ID
+   * @param describeId - description ID
    * @returns monster ID
    * @example
    * ```typescript
@@ -212,9 +212,9 @@ export class Monster {
 
   /**
    * Get monster's stat value by stat type
-   * @param propGrowCurve monsterExcelConfigData.propGrowCurves
-   * @param initValue initial value
-   * @param playerCount number of players
+   * @param propGrowCurve - monsterExcelConfigData.propGrowCurves
+   * @param initValue - initial value
+   * @param playerCount - number of players
    * @returns stat value
    */
   private getStatValueByJson(

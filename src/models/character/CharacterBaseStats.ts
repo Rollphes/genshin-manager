@@ -42,9 +42,9 @@ export class CharacterBaseStats {
 
   /**
    * Create a character's base stats
-   * @param characterId character ID
-   * @param level character level (1-100)
-   * @param isAscended character is ascended
+   * @param characterId - character ID
+   * @param level - character level (1-100)
+   * @param isAscended - character is ascended
    */
   constructor(characterId: number, level = 1, isAscended = false) {
     this.id = characterId
@@ -78,9 +78,9 @@ export class CharacterBaseStats {
 
   /**
    * Calculate character's status
-   * @param avatarJson avatar json
-   * @param propGrowCurves prop grow curves
-   * @param ascension character ascension
+   * @param avatarJson - avatar json
+   * @param propGrowCurves - prop grow curves
+   * @param ascension - character ascension
    * @returns character's status
    */
   private calculateStatus(
@@ -141,9 +141,9 @@ export class CharacterBaseStats {
 
   /**
    * Get stat value by json
-   * @param propGrowCurve json object
-   * @param initValue initial value
-   * @param addValue add value
+   * @param propGrowCurve - json object
+   * @param initValue - initial value
+   * @param addValue - add value
    * @returns stat value
    */
   private getStatPropertyByJson(

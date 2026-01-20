@@ -4,7 +4,7 @@ import { createRangeSchema } from '@/schemas/createRangeSchema'
 
 /**
  * Dynamic promote level validation schema factory (0 to maxPromoteLevel)
- * @param maxPromoteLevel Maximum promote level for character/weapon
+ * @param maxPromoteLevel - Maximum promote level for character/weapon
  * @returns Zod number schema for promote level validation
  */
 export function createPromoteLevelSchema(maxPromoteLevel: number): z.ZodNumber {

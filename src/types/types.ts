@@ -537,7 +537,7 @@ export interface ClientOption {
    * auto fetch latest assets by cron
    * @warning If this option is `undefined`, asset updates and initial setup are not executed
    * @default '0 0 0 * * 3'
-   * @see https://crontab.guru/
+   * @see {@link https://crontab.guru/}
    */
   autoFetchLatestAssetsByCron: string | undefined
   /**

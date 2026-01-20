@@ -64,9 +64,9 @@ export class AudioAssets {
 
   /**
    * Classes for handling audios
-   * @param name audio name
-   * @param cv audio cv
-   * @param characterId character ID
+   * @param name - audio name
+   * @param cv - audio cv
+   * @param characterId - character ID
    */
   constructor(name: string, cv?: CVType, characterId?: number) {
     this.name = name
@@ -94,7 +94,7 @@ export class AudioAssets {
 
   /**
    * Classes for handling audios
-   * @param option client option
+   * @param option - client option
    */
   public static deploy(option: ClientOption): void {
     this.fetchOption = option.fetchOption
@@ -140,7 +140,7 @@ export class AudioAssets {
 
   /**
    * Fetch audio stream
-   * @param highWaterMark highWaterMark
+   * @param highWaterMark - highWaterMark
    * @returns audio stream
    */
   public async fetchStream(highWaterMark?: number): Promise<fs.ReadStream> {
@@ -182,7 +182,7 @@ export class AudioAssets {
   /**
    * Check if the OGG file is corrupted
    * @warning Limited corruption detection - only validates the final OggS header. May not catch all types of file corruption.
-   * @param filePath file path
+   * @param filePath - file path
    * @returns is OGG file corrupted
    */
   private isOGGCorrupted(filePath: string): boolean {

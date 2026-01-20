@@ -76,7 +76,7 @@ export class CharacterDetail {
    * Character constellations
    * @warning This value shows the actual constellation level regardless of the player's privacy settings.
    * It is not affected by the `isShowCharacterPreviewConstellation` setting.
-   * @see {@link PlayerDetail.isShowCharacterPreviewConstellation}
+   * @see PlayerDetail
    */
   public readonly constellations: CharacterConstellation[]
   /**
@@ -110,7 +110,7 @@ export class CharacterDetail {
 
   /**
    * Create a CharacterDetail
-   * @param data data from EnkaNetwork
+   * @param data - data from EnkaNetwork
    */
   constructor(data: APIAvatarInfo) {
     const characterInfo = new CharacterInfo(data.avatarId, data.skillDepotId)

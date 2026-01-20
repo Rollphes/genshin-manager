@@ -27,8 +27,8 @@ export class StatProperty {
 
   /**
    * Create a StatProperty
-   * @param type fight prop type
-   * @param value value of the stat
+   * @param type - fight prop type
+   * @param value - value of the stat
    * @example
    * ```ts
    * const hpStat = new StatProperty('FIGHT_PROP_HP', 15552)
@@ -75,7 +75,7 @@ export class StatProperty {
 
   /**
    * IEEE 754 rounding method
-   * @param v value
+   * @param v - value
    * @returns rounded value
    */
   private cleanUp(v: number): number {

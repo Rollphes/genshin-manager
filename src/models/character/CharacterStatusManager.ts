@@ -125,7 +125,7 @@ export class CharacterStatusManager {
 
   /**
    * Create a CharacterStatusManager
-   * @param fightPropData fightPropMap from EnkaNetwork and other sources
+   * @param fightPropData - fightPropMap from EnkaNetwork and other sources
    */
   constructor(fightPropData: Record<number, number | undefined>) {
     this.fightPropData = fightPropData
@@ -228,8 +228,8 @@ export class CharacterStatusManager {
 
   /**
    * Get StatProperty from fightPropData
-   * @param id fightProp ID
-   * @param defaultValue default value if fightPropData[ID] is undefined
+   * @param id - fightProp ID
+   * @param defaultValue - default value if fightPropData[ID] is undefined
    * @returns StatProperty
    */
   private getStatProperty(

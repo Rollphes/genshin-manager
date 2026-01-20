@@ -14,8 +14,8 @@ export class TextMapTransform extends Transform {
 
   /**
    * Create a TextMapTransform
-   * @param language language
-   * @param filterSet filter set
+   * @param language - language
+   * @param filterSet - filter set
    */
   constructor(language: keyof typeof TextMapLanguage, filterSet: Set<number>) {
     super()
@@ -25,9 +25,9 @@ export class TextMapTransform extends Transform {
 
   /**
    * Transform
-   * @param chunk buffer
-   * @param encoding encoding
-   * @param callback callback
+   * @param chunk - buffer
+   * @param encoding - encoding
+   * @param callback - callback
    */
   public _transform(
     chunk: Buffer,
@@ -64,7 +64,7 @@ export class TextMapTransform extends Transform {
 
   /**
    * Flush
-   * @param callback callback
+   * @param callback - callback
    */
   public _flush(callback: () => void): void {
     this.push('\n' + this.buffer.toString())
@@ -72,8 +72,9 @@ export class TextMapTransform extends Transform {
   }
 
   /**
-   * Final
-   * @param callback callback
+   * Final.
+   * @param callback - Callback function.
+   * @throws {@link TextMapFormatError} - When JSON does not end with closing brace.
    */
   public _final(callback: () => void): void {
     if (!this.buffer.toString().endsWith('}')) {

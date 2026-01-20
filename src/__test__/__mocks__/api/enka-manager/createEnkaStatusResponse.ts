@@ -2,7 +2,7 @@ import type { APIEnkaStatus } from '@/types/enkaNetwork/EnkaStatusTypes'
 
 /**
  * Create mock EnkaStatus API response for testing
- * @param customData Optional custom data to override defaults
+ * @param customData - Optional custom data to override defaults
  * @returns Mock APIEnkaStatus response based on real API structure
  */
 export function createEnkaStatusResponse(

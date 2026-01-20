@@ -89,10 +89,10 @@ export class WeaponInfo {
 
   /**
    * Create a WeaponInfo
-   * @param weaponId weapon ID
-   * @param level weapon level (1-90)
-   * @param isAscended weapon is ascended
-   * @param refinementRank weapon refinement rank (1-5)
+   * @param weaponId - weapon ID
+   * @param level - weapon level (1-90)
+   * @param isAscended - weapon is ascended
+   * @param refinementRank - weapon refinement rank (1-5)
    */
   constructor(
     weaponId: number,
@@ -182,7 +182,7 @@ export class WeaponInfo {
 
   /**
    * Get weapon ID by name
-   * @param name weapon name
+   * @param name - weapon name
    * @returns weapon ID
    */
   public static getWeaponIdByName(name: string): number[] {
@@ -194,8 +194,8 @@ export class WeaponInfo {
 
   /**
    * Get stat value by json
-   * @param weaponPropJson weapon property json
-   * @param addValue add value
+   * @param weaponPropJson - weapon property json
+   * @param addValue - add value
    * @returns stat value
    */
   private getStatPropertyByJson(

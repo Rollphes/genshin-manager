@@ -31,8 +31,8 @@ export class CharacterConstellation {
 
   /**
    * Create a Constellation
-   * @param constellationId constellation ID
-   * @param locked whether the constellation is locked
+   * @param constellationId - constellation ID
+   * @param locked - whether the constellation is locked
    */
   constructor(constellationId: number, locked = false) {
     this.id = constellationId
@@ -66,8 +66,8 @@ export class CharacterConstellation {
 
   /**
    * Get constellation IDs by character ID
-   * @param characterId character ID
-   * @param skillDepotId skill depot ID
+   * @param characterId - character ID
+   * @param skillDepotId - skill depot ID
    * @returns constellation IDs
    */
   public static getConstellationIdsByCharacterId(

@@ -52,8 +52,8 @@ export class EnkaBuild {
 
   /**
    * Create a EnkaBuild
-   * @param data data from EnkaNetwork
-   * @param genshinAccountURL URL of enka.network game account
+   * @param data - data from EnkaNetwork
+   * @param genshinAccountURL - URL of enka.network game account
    */
   constructor(data: APIBuild, genshinAccountURL: string) {
     this.id = data.id

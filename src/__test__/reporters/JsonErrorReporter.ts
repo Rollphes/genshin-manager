@@ -18,7 +18,8 @@ interface TaskInfo {
  */
 export default class JsonErrorReporter implements Reporter {
   /**
-   * Called when tasks are updated
+   * Called when tasks are updated.
+   * @param packs - Array of task result packs from Vitest.
    */
   public onTaskUpdate(packs: TaskResultPack[]): void {
     for (const pack of packs) {
@@ -32,7 +33,9 @@ export default class JsonErrorReporter implements Reporter {
   }
 
   /**
-   * Analyze a failed task for JSON-related errors
+   * Analyze a failed task for JSON-related errors.
+   * @param taskId - The unique identifier of the failed task.
+   * @param result - The task result containing error information.
    */
   private analyzeJsonError(
     taskId: string,
@@ -54,7 +57,8 @@ export default class JsonErrorReporter implements Reporter {
   }
 
   /**
-   * Extract JSON file names from error text
+   * Extract JSON file names from error text.
+   * @param text - Error message and stack trace combined text.
    */
   private extractJsonFileNames(text: string): Set<string> {
     const jsonFiles = new Set<string>()
@@ -80,7 +84,9 @@ export default class JsonErrorReporter implements Reporter {
   }
 
   /**
-   * Print analysis of JSON-related files
+   * Print analysis of JSON-related files.
+   * @param taskId - The unique identifier of the task.
+   * @param jsonFiles - Set of JSON file names found in the error.
    */
   private printJsonAnalysis(taskId: string, jsonFiles: Set<string>): void {
     const separator = '─'.repeat(60)

@@ -44,7 +44,7 @@ export class Material {
 
   /**
    * Create a Material
-   * @param materialId material ID
+   * @param materialId - material ID
    * @example
    * ```ts
    * const material = new Material(104001)
@@ -90,7 +90,7 @@ export class Material {
 
   /**
    * Get material ID by name
-   * @param name material name
+   * @param name - material name
    * @returns material ID
    * @example
    * ```ts

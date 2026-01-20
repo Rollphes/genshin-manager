@@ -54,8 +54,8 @@ export class CharacterVoice {
 
   /**
    * Create a CharacterVoice
-   * @param fetterId fetter ID in the voice
-   * @param cv CV language
+   * @param fetterId - fetter ID in the voice
+   * @param cv - CV language
    */
   constructor(fetterId: number, cv: CVType) {
     this.fetterId = fetterId
@@ -101,7 +101,7 @@ export class CharacterVoice {
 
   /**
    * Get all Fetter IDs in the character's voice
-   * @param characterId character ID
+   * @param characterId - character ID
    * @returns all Fetter IDs in the character's voice
    */
   public static getAllFetterIdsByCharacterId(characterId: number): number[] {

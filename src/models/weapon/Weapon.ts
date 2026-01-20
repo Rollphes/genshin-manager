@@ -42,10 +42,10 @@ export class Weapon {
 
   /**
    * Create a Weapon
-   * @param weaponId weapon ID
-   * @param level weapon level (1-90)
-   * @param isAscended weapon is ascended
-   * @param refinementRank weapon refinement rank (1-5)
+   * @param weaponId - weapon ID
+   * @param level - weapon level (1-90)
+   * @param isAscended - weapon is ascended
+   * @param refinementRank - weapon refinement rank (1-5)
    */
   constructor(
     weaponId: number,
@@ -241,7 +241,7 @@ export class Weapon {
 
   /**
    * Get weapon ID by name
-   * @param name weapon name
+   * @param name - weapon name
    * @returns weapon ID
    */
   public static getWeaponIdByName(name: string): number[] {
@@ -250,7 +250,7 @@ export class Weapon {
 
   /**
    * Get refinement effect for specified rank
-   * @param rank refinement rank (1-5)
+   * @param rank - refinement rank (1-5)
    * @returns refinement effect
    */
   public getRefinementEffect(rank?: number): WeaponRefinement {
@@ -260,8 +260,8 @@ export class Weapon {
 
   /**
    * Calculate weapon level upgrade materials
-   * @param currentLevel current weapon level
-   * @param targetLevel target weapon level
+   * @param currentLevel - current weapon level
+   * @param targetLevel - target weapon level
    * @returns array of materials needed
    */
   public calculateWeaponLevelMaterials(

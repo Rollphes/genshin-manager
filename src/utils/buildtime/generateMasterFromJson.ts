@@ -49,10 +49,11 @@ export interface DataDensityAnalysis {
 }
 
 /**
- * Generic ExcelBinOutput file processing function
- * @param inputPath - Input file path
- * @param force - Force overwrite flag
- * @returns processing result summary
+ * Generic ExcelBinOutput file processing function.
+ * @param inputPath - Input file path.
+ * @param force - Force overwrite flag.
+ * @returns Processing result summary.
+ * @throws {@link Error} - When file processing fails.
  */
 export function generateMasterFromJson(
   inputPath: string,
@@ -143,10 +144,11 @@ export function generateMasterFromJson(
 }
 
 /**
- * Generate simple master file (prototype-based with multiple patterns)
- * @param sourceFilePath - Source file path
- * @param jsonData - All JSON data
- * @returns master file
+ * Generate simple master file (prototype-based with multiple patterns).
+ * @param sourceFilePath - Source file path.
+ * @param jsonData - All JSON data.
+ * @returns Master file.
+ * @throws {@link FormatValidationError} - When JSON data is empty.
  */
 export function createMasterStructure(
   sourceFilePath: string,
@@ -255,11 +257,9 @@ export function fillEmptyArraysFromCandidates(
 }
 
 /**
- * Find multiple master patterns based on data density and structural diversity
- * @param jsonData - JSON data array
- * @param maxCandidates - Maximum number of candidates to analyze
- * @param maxPatterns - Maximum number of patterns to return
- * @returns array of master objects ordered by quality
+ * Find multiple master patterns based on data density and structural diversity.
+ * @param jsonData - JSON data array.
+ * @returns Array of master objects ordered by quality.
  */
 export function findOptimalMasterPatterns(
   jsonData: JsonObject[],
@@ -351,9 +351,13 @@ export function findOptimalMasterPatterns(
 }
 
 /**
- * Analyze value and update counters for data density calculation
- * @param value - Value to analyze
- * @param counters - Object containing counters
+ * Analyze value and update counters for data density calculation.
+ * @param value - Value to analyze.
+ * @param counters - Object containing counters.
+ * @param counters.emptyArrays - Count of empty arrays.
+ * @param counters.emptyStrings - Count of empty strings.
+ * @param counters.nullValues - Count of null values.
+ * @param counters.totalProperties - Total property count.
  */
 export function analyzeValue(
   value: JsonValue,

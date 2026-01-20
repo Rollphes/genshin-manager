@@ -40,8 +40,8 @@ export class WeaponAscension {
 
   /**
    * Create a weapon ascension
-   * @param weaponId weapon ID
-   * @param promoteLevel weapon promote level (0-6)
+   * @param weaponId - weapon ID
+   * @param promoteLevel - weapon promote level (0-6)
    */
   constructor(weaponId: number, promoteLevel = 0) {
     this.id = weaponId
@@ -82,7 +82,7 @@ export class WeaponAscension {
 
   /**
    * Get max promote level by weapon ID
-   * @param weaponId weapon ID
+   * @param weaponId - weapon ID
    * @returns max promote level
    */
   public static getMaxPromoteLevelByWeaponId(weaponId: number): number {

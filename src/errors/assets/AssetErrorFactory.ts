@@ -11,7 +11,16 @@ import type { ErrorContext } from '@/errors/base/ErrorContext'
  */
 export const AssetErrorFactory = {
   /**
-   * Create asset error based on the type of failure
+   * Create asset error based on the type of failure.
+   * @param assetPath - Path to the asset file.
+   * @param assetType - Type of the asset (e.g., 'image', 'audio').
+   * @param failureType - Type of failure that occurred.
+   * @param details - Additional error details.
+   * @param details.downloadUrl - URL from which download was attempted.
+   * @param details.statusCode - HTTP status code if applicable.
+   * @param details.corruptionDetails - Details about the corruption.
+   * @param details.context - Additional error context.
+   * @param details.cause - Original error that caused this failure.
    */
   createFromFailure(
     assetPath: string,
@@ -54,7 +63,15 @@ export const AssetErrorFactory = {
   },
 
   /**
-   * Create image-specific error
+   * Create image-specific error.
+   * @param imagePath - Path to the image file.
+   * @param failureType - Type of failure that occurred.
+   * @param details - Additional error details.
+   * @param details.downloadUrl - URL from which download was attempted.
+   * @param details.statusCode - HTTP status code if applicable.
+   * @param details.corruptionDetails - Details about the corruption.
+   * @param details.context - Additional error context.
+   * @param details.cause - Original error that caused this failure.
    */
   createImageError(
     imagePath: string,
@@ -95,7 +112,15 @@ export const AssetErrorFactory = {
   },
 
   /**
-   * Create audio-specific error
+   * Create audio-specific error.
+   * @param audioPath - Path to the audio file.
+   * @param failureType - Type of failure that occurred.
+   * @param details - Additional error details.
+   * @param details.downloadUrl - URL from which download was attempted.
+   * @param details.statusCode - HTTP status code if applicable.
+   * @param details.corruptionDetails - Details about the corruption.
+   * @param details.context - Additional error context.
+   * @param details.cause - Original error that caused this failure.
    */
   createAudioError(
     audioPath: string,

@@ -99,8 +99,8 @@ export class EnkaManager extends PromiseEventEmitter<
    * Fetch All from enka.network
    * @description The data fetched by this method is stored as a temporary cache.
    *    The storage period depends on ttl.
-   * @param uid UID
-   * @param fetchOption fetch option
+   * @param uid - UID
+   * @param fetchOption - fetch option
    * @returns enka data
    * @example
    * ```ts
@@ -121,8 +121,8 @@ export class EnkaManager extends PromiseEventEmitter<
    * Fetch PlayerDetail from enka.network
    * @description The data fetched by this method is stored as a temporary cache.
    *    The storage period depends on ttl.
-   * @param uid UID
-   * @param fetchOption fetch option
+   * @param uid - UID
+   * @param fetchOption - fetch option
    * @returns player detail
    * @example
    * ```ts
@@ -152,8 +152,8 @@ export class EnkaManager extends PromiseEventEmitter<
   /**
    * Fetch EnkaAccount from enka.network
    * @description Data fetched by this method is not stored as a temporary cache.
-   * @param username enka account username
-   * @param fetchOption fetch option
+   * @param username - enka account username
+   * @param fetchOption - fetch option
    * @returns enka account
    * @example
    * ```ts
@@ -189,8 +189,8 @@ export class EnkaManager extends PromiseEventEmitter<
   /**
    * Fetch GenshinAccounts from enka.network
    * @description Data fetched by this method is not stored as a temporary cache.
-   * @param username enka account username
-   * @param fetchOption fetch option
+   * @param username - enka account username
+   * @param fetchOption - fetch option
    * @returns genshin accounts
    * @example
    * ```ts
@@ -252,7 +252,7 @@ export class EnkaManager extends PromiseEventEmitter<
 
   /**
    * Fetch Status from 1 hour ago to now
-   * @param fetchOption fetch option
+   * @param fetchOption - fetch option
    * @returns status from 1 hour ago to now
    */
   public async fetchAllStatus(
@@ -279,7 +279,7 @@ export class EnkaManager extends PromiseEventEmitter<
 
   /**
    * Fetch now Status
-   * @param fetchOption fetch option
+   * @param fetchOption - fetch option
    * @returns now status
    */
   public async fetchNowStatus(
@@ -306,9 +306,9 @@ export class EnkaManager extends PromiseEventEmitter<
 
   /**
    * Fetch UIDEndPoint from URL
-   * @param uid UID
-   * @param url URL
-   * @param fetchOption fetch option
+   * @param uid - UID
+   * @param url - URL
+   * @param fetchOption - fetch option
    * @returns enka data
    */
   private async fetchUID(

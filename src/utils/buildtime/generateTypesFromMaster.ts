@@ -19,7 +19,8 @@ import {
 } from '@/utils/paths'
 
 /**
- * Type guard to check if value is JsonObject array
+ * Type guard to check if value is JsonObject array.
+ * @param value - Value to check.
  */
 function isJsonObjectArray(value: unknown): value is JsonObject[] {
   return (

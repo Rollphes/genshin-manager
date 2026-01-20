@@ -2,8 +2,8 @@ import type { APIBuild } from '@/types/enkaNetwork/EnkaAccountTypes'
 
 /**
  * Create mock EnkaBuild API response for testing
- * @param buildId Build ID
- * @param avatarId Character avatar ID
+ * @param buildId - Build ID
+ * @param avatarId - Character avatar ID
  * @returns Mock APIBuild response
  */
 export function createEnkaBuildResponse(

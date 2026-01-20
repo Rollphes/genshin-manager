@@ -75,8 +75,8 @@ export class CharacterInfo {
 
   /**
    * Create a CharacterInfo
-   * @param characterId character ID
-   * @param skillDepotId skill depot ID
+   * @param characterId - character ID
+   * @param skillDepotId - skill depot ID
    */
   constructor(characterId: number, skillDepotId?: number) {
     this.id = characterId
@@ -178,7 +178,7 @@ export class CharacterInfo {
 
   /**
    * Get character ID by name
-   * @param name character name
+   * @param name - character name
    * @returns character ID
    */
   public static getCharacterIdByName(name: string): number[] {
@@ -190,7 +190,7 @@ export class CharacterInfo {
 
   /**
    * Get traveler skill depot IDs
-   * @param characterId character ID
+   * @param characterId - character ID
    * @returns skill depot IDs
    */
   public static getTravelerSkillDepotIds(characterId: number): number[] {

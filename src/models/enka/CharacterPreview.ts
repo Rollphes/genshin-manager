@@ -29,7 +29,7 @@ export class CharacterPreview extends CharacterCostume {
   /**
    * Character constellation level (0-6)
    * @warning Returns 0 when player has disabled constellation visibility in privacy settings.
-   * @see {@link PlayerDetail.isShowCharacterPreviewConstellation}
+   * @see PlayerDetail
    */
   public readonly collectionLevel: number | undefined
   /**
@@ -39,7 +39,7 @@ export class CharacterPreview extends CharacterCostume {
 
   /**
    * Create a character preview
-   * @param data data from EnkaNetwork
+   * @param data - data from EnkaNetwork
    */
   constructor(data: APIShowAvatarInfo) {
     const characterData = new CharacterInfo(data.avatarId)

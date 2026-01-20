@@ -69,8 +69,8 @@ export class ImageAssets {
 
   /**
    * Classes for handling images
-   * @param name image name
-   * @param url image URL(Basically, no need to specify)
+   * @param name - image name
+   * @param url - image URL(Basically, no need to specify)
    */
   constructor(name: string, url?: string) {
     this.name = name
@@ -94,7 +94,7 @@ export class ImageAssets {
 
   /**
    * Create a ImageAssets instance from the image URL
-   * @param url image URL
+   * @param url - image URL
    * @returns ImageAssets instance
    */
   public static fromURL(url: string): ImageAssets {
@@ -104,7 +104,7 @@ export class ImageAssets {
 
   /**
    * Classes for handling images
-   * @param option client option
+   * @param option - client option
    */
   public static deploy(option: ClientOption): void {
     this.fetchOption = option.fetchOption
@@ -162,7 +162,7 @@ export class ImageAssets {
 
   /**
    * Fetch image stream
-   * @param highWaterMark highWaterMark
+   * @param highWaterMark - highWaterMark
    * @returns image stream
    */
   public async fetchStream(highWaterMark?: number): Promise<fs.ReadStream> {
@@ -199,7 +199,7 @@ export class ImageAssets {
   /**
    * Check if the PNG file is corrupted
    * @warning Limited corruption detection - only validates PNG signature and IEND chunk. May not detect all corruption types.
-   * @param filePath file path
+   * @param filePath - file path
    * @returns is PNG file corrupted
    */
   private isPNGCorrupted(filePath: string): boolean {

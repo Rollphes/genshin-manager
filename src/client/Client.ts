@@ -122,7 +122,7 @@ export class Client extends AssetCacheManager<ClientEventMap, ClientEvents> {
 
   /**
    * Create a Client
-   * @param option client option
+   * @param option - client option
    * @example
    * ```ts
    * const client = new Client({
@@ -171,7 +171,7 @@ export class Client extends AssetCacheManager<ClientEventMap, ClientEvents> {
 
   /**
    * Change cached languages
-   * @param language country code
+   * @param language - country code
    * @example
    * ```ts
    * const client = new Client()

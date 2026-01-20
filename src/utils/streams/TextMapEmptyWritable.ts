@@ -8,9 +8,9 @@ export class TextMapEmptyWritable extends Writable {
 
   /**
    * Create a TextMapEmptyWritable
-   * @param chunk buffer
-   * @param encoding encoding
-   * @param callback callback
+   * @param chunk - buffer
+   * @param encoding - encoding
+   * @param callback - callback
    */
   public _write(
     chunk: Buffer,

@@ -69,7 +69,8 @@ export abstract class GenshinManagerError extends Error {
   }
 
   /**
-   * Static helper to check if an error is a GenshinManagerError
+   * Static helper to check if an error is a GenshinManagerError.
+   * @param error - Error to check.
    */
   public static isGenshinManagerError(
     error: unknown,
@@ -82,7 +83,10 @@ export abstract class GenshinManagerError extends Error {
   }
 
   /**
-   * Static helper to create error from unknown type
+   * Static helper to create error from unknown type.
+   * @param error - Unknown error value.
+   * @param fallbackMessage - Message to use if error cannot be parsed.
+   * @param context - Additional error context.
    */
   public static async fromUnknown(
     error: unknown,
@@ -173,7 +177,8 @@ export abstract class GenshinManagerError extends Error {
   }
 
   /**
-   * Create a copy of this error with additional context
+   * Create a copy of this error with additional context.
+   * @param additionalContext - Additional context to merge.
    */
   public withContext(additionalContext: Partial<ErrorContext>): this {
     const mergedContext = { ...this.context, ...additionalContext }

@@ -102,9 +102,9 @@ export class NoticeManager extends PromiseEventEmitter<
 
   /**
    * Create a NoticeManager
-   * @param language language of notices
-   * @param updateInterval update interval(ms) Min: 1 minute
-   * @param urlParams URL params
+   * @param language - language of notices
+   * @param updateInterval - update interval(ms) Min: 1 minute
+   * @param urlParams - URL params
    * @example
    * ```ts
    * const noticeManager = new NoticeManager('en', 60000)
@@ -176,7 +176,7 @@ export class NoticeManager extends PromiseEventEmitter<
 
   /**
    * Get AnnContent
-   * @param lang language of notices
+   * @param lang - language of notices
    * @returns annContent
    */
   private async getAnnContent(
@@ -198,8 +198,8 @@ export class NoticeManager extends PromiseEventEmitter<
 
   /**
    * Get Ann
-   * @param urlText URL
-   * @param lang language of notices
+   * @param urlText - URL
+   * @param lang - language of notices
    * @returns ann
    */
   private async _getAnn(

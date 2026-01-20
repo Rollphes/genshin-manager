@@ -118,10 +118,10 @@ export class Artifact {
 
   /**
    * Create a Artifact
-   * @param artifactId artifact ID
-   * @param mainPropId main stat ID from ReliquaryMainPropExcelConfigData.json
-   * @param level artifact level (0-20)
-   * @param appendPropIds artifact sub stat IDs
+   * @param artifactId - artifact ID
+   * @param mainPropId - main stat ID from ReliquaryMainPropExcelConfigData.json
+   * @param level - artifact level (0-20)
+   * @param appendPropIds - artifact sub stat IDs
    * @example
    * ```ts
    * const artifact = new Artifact(81101, 10001, 20, [501221, 501231])
@@ -258,7 +258,7 @@ export class Artifact {
 
   /**
    * Get max level by artifact ID
-   * @param artifactId artifact ID
+   * @param artifactId - artifact ID
    * @returns max level
    * @example
    * ```ts
@@ -276,7 +276,7 @@ export class Artifact {
 
   /**
    * Get sub stat properties from appendProp IDs
-   * @param appendPropIds artifact sub stat IDs
+   * @param appendPropIds - artifact sub stat IDs
    * @returns sub stat properties
    */
   private getSubStatProperties(appendPropIds: number[]): StatProperty[] {

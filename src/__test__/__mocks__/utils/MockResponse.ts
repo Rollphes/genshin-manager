@@ -11,9 +11,13 @@ export class MockResponse implements Partial<Response> {
   private data: unknown
 
   /**
-   * Creates a mock Response object
-   * @param data - The data to return from json() method
-   * @param options - Response configuration options
+   * Creates a mock Response object.
+   * @param data - The data to return from json() method.
+   * @param options - Response configuration options.
+   * @param options.ok - Whether the response is ok (default: based on status).
+   * @param options.status - HTTP status code (default: 200).
+   * @param options.statusText - HTTP status text (default: 'OK').
+   * @param options.url - Response URL (default: 'https://test.com').
    */
   constructor(
     data: unknown,
@@ -33,8 +37,8 @@ export class MockResponse implements Partial<Response> {
   }
 
   /**
-   * Mock implementation of Response.json()
-   * @returns Promise resolving to the mock data
+   * Mock implementation of Response.json().
+   * @returns Promise resolving to the mock data.
    */
   public async json(): Promise<unknown> {
     return this.ok

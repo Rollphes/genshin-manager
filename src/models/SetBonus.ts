@@ -30,7 +30,7 @@ export class SetBonus {
 
   /**
    * Create a SetBonus
-   * @param artifacts artifacts equipped by the character
+   * @param artifacts - artifacts equipped by the character
    */
   constructor(artifacts: Artifact[]) {
     const countIds: Record<string, number> = {}

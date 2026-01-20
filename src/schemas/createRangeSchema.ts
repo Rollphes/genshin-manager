@@ -1,7 +1,10 @@
 import { z } from 'zod'
 
 /**
- * Range validation schema factory (min to max)
+ * Range validation schema factory (min to max).
+ * @param min - Minimum value.
+ * @param max - Maximum value.
+ * @param fieldName - Field name for error messages (default: 'value').
  */
 export function createRangeSchema(
   min: number,

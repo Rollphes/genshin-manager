@@ -81,7 +81,7 @@ export class PlayerDetail {
 
   /**
    * Create a PlayerDetail
-   * @param data data from EnkaNetwork
+   * @param data - data from EnkaNetwork
    */
   constructor(data: APIPlayerInfo) {
     this.nickname = data.nickname ?? ''
@@ -106,7 +106,7 @@ export class PlayerDetail {
 
   /**
    * Initialize character previews from API data
-   * @param data API player info
+   * @param data - API player info
    * @returns array of character previews
    */
   private initializeCharacterPreviews(data: APIPlayerInfo): CharacterPreview[] {
@@ -117,7 +117,7 @@ export class PlayerDetail {
 
   /**
    * Initialize show name cards from API data
-   * @param data API player info
+   * @param data - API player info
    * @returns array of materials
    */
   private initializeShowNameCards(data: APIPlayerInfo): Material[] {
@@ -128,7 +128,7 @@ export class PlayerDetail {
 
   /**
    * Create profile picture from API data
-   * @param data API player info
+   * @param data - API player info
    * @returns profile picture instance
    */
   private createProfilePicture(data: APIPlayerInfo): ProfilePicture {

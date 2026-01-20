@@ -55,7 +55,7 @@ export class CharacterProfile {
 
   /**
    * Create a Profile
-   * @param characterId character ID
+   * @param characterId - character ID
    */
   constructor(characterId: number) {
     this.characterId = characterId

@@ -49,10 +49,10 @@ export class GenshinAccount {
 
   /**
    * Create a GenshinAccount
-   * @param gameAccountData data from EnkaNetwork
-   * @param buildDatas data from EnkaNetwork
-   * @param username username of EnkaNetwork
-   * @param enkaBaseURL URL of enka.network
+   * @param gameAccountData - data from EnkaNetwork
+   * @param buildDatas - data from EnkaNetwork
+   * @param username - username of EnkaNetwork
+   * @param enkaBaseURL - URL of enka.network
    */
   constructor(
     gameAccountData: APIGameAccount,

@@ -64,8 +64,10 @@ export class EncryptedKeyDecoder<T extends keyof typeof ExcelBinOutputs> {
   private readonly compiledPatterns = new Map<string, RecursivePattern>()
 
   /**
-   * Constructor
-   * @param fileName - ExcelBinOutput file name
+   * Constructor.
+   * @param fileName - ExcelBinOutput file name.
+   * @throws {@link ConfigMissingError} - When master file path is missing.
+   * @throws {@link AssetCorruptedError} - When master file fails to load or parse.
    */
   constructor(fileName: T) {
     try {
@@ -88,10 +90,11 @@ export class EncryptedKeyDecoder<T extends keyof typeof ExcelBinOutputs> {
   }
 
   /**
-   * Process encrypted object array and decode keys recursively
-   * @param encryptedData - Encrypted object array
-   * @param options - Decoding options
-   * @returns decoded object array with proper typing
+   * Process encrypted object array and decode keys recursively.
+   * @param encryptedData - Encrypted object array.
+   * @param options - Decoding options.
+   * @returns Decoded object array with proper typing.
+   * @throws {@link AssetCorruptedError} - When primary pattern is not found.
    */
   public execute(
     encryptedData: JsonObject[],
@@ -296,7 +299,12 @@ export class EncryptedKeyDecoder<T extends keyof typeof ExcelBinOutputs> {
   }
 
   /**
-   * Match primitive pattern
+   * Match primitive pattern.
+   * @param encryptedValue - Encrypted value to match.
+   * @param pattern - Pattern object.
+   * @param pattern.type - Pattern type identifier.
+   * @param pattern.value - Expected primitive value.
+   * @param options - Decoding options.
    */
   private matchPrimitivePattern(
     encryptedValue: JsonValue,
@@ -316,7 +324,13 @@ export class EncryptedKeyDecoder<T extends keyof typeof ExcelBinOutputs> {
   }
 
   /**
-   * Match array pattern
+   * Match array pattern.
+   * @param encryptedValue - Encrypted value to match.
+   * @param pattern - Pattern object.
+   * @param pattern.type - Pattern type identifier.
+   * @param pattern.elements - Array element patterns.
+   * @param currentPath - Current key path in recursion.
+   * @param options - Decoding options.
    */
   private matchArrayPattern(
     encryptedValue: JsonValue,
@@ -360,7 +374,14 @@ export class EncryptedKeyDecoder<T extends keyof typeof ExcelBinOutputs> {
   }
 
   /**
-   * Match object pattern
+   * Match object pattern.
+   * @param encryptedValue - Encrypted value to match.
+   * @param pattern - Pattern object.
+   * @param pattern.type - Pattern type identifier.
+   * @param pattern.properties - Object property patterns.
+   * @param pattern.keyPaths - Key path mappings.
+   * @param currentPath - Current key path in recursion.
+   * @param options - Decoding options.
    */
   private matchObjectPattern(
     encryptedValue: JsonValue,
@@ -432,7 +453,12 @@ export class EncryptedKeyDecoder<T extends keyof typeof ExcelBinOutputs> {
   }
 
   /**
-   * Find best key match for a property
+   * Find best key match for a property.
+   * @param originalPattern - Original pattern to match against.
+   * @param encryptedEntries - Encrypted key-value entries.
+   * @param usedEncryptedKeys - Set of already used encrypted keys.
+   * @param currentPath - Current key path in recursion.
+   * @param options - Decoding options.
    */
   private findBestKeyMatch(
     originalPattern: RecursivePattern,

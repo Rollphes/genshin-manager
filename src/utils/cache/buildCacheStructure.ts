@@ -14,7 +14,7 @@ type CacheBuilder<T extends keyof typeof ExcelBinOutputs> = (
 
 /**
  * Type guard for objects with curveInfos array
- * @param item object to check
+ * @param item - object to check
  * @returns true if item has curveInfos array
  */
 function hasCurveInfos(
@@ -27,7 +27,7 @@ function hasCurveInfos(
 
 /**
  * Type guard for objects with addProps array
- * @param item object to check
+ * @param item - object to check
  * @returns true if item has addProps array
  */
 function hasAddProps(
@@ -340,8 +340,8 @@ const cacheBuilders: Partial<{
  * Build cache structure from decoded data
  * Handles structure transformation of data decoded by EncryptedKeyDecoder
  * @template T - ExcelBinOutput file name type
- * @param jsonObjectArray array of json objects (assumes key-decoded data)
- * @param filename excelBinOutput filename
+ * @param jsonObjectArray - array of json objects (assumes key-decoded data)
+ * @param filename - excelBinOutput filename
  * @returns objects to cache with proper typing
  * @example
  * ```ts

@@ -17,7 +17,7 @@ const lockOptions: LockOptions = {
 
 /**
  * Ensures the lock directory exists
- * @param filePath path to the file to lock
+ * @param filePath - path to the file to lock
  * @returns lock directory path
  */
 function ensureLockDirectory(filePath: string): string {
@@ -28,8 +28,8 @@ function ensureLockDirectory(filePath: string): string {
 
 /**
  * Performs exclusive control on a file using filesystem-based locks
- * @param filePath path to the file to lock
- * @param operation async operation to execute
+ * @param filePath - path to the file to lock
+ * @param operation - async operation to execute
  * @returns result of the operation
  */
 export async function withFileLock<T>(
@@ -53,7 +53,7 @@ export async function withFileLock<T>(
 
 /**
  * Checks if the specified file is locked
- * @param filePath path to the file to check
+ * @param filePath - path to the file to check
  * @returns true if the file is locked
  */
 export async function isFileLocked(filePath: string): Promise<boolean> {
@@ -67,7 +67,7 @@ export async function isFileLocked(filePath: string): Promise<boolean> {
 
 /**
  * Clears all locks (for testing)
- * @param directoryPath directory path to clear locks from
+ * @param directoryPath - directory path to clear locks from
  */
 export function clearAllFileLocks(directoryPath: string): void {
   if (!fs.existsSync(directoryPath)) return

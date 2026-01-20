@@ -36,7 +36,9 @@ export class ValidationError extends GenshinManagerError {
   }
 
   /**
-   * Create ValidationError from Zod error
+   * Create ValidationError from Zod error.
+   * @param zodError - Zod validation error.
+   * @param context - Additional error context.
    */
   public static fromZodError(
     zodError: z.ZodError,

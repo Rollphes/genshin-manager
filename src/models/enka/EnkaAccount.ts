@@ -43,8 +43,8 @@ export class EnkaAccount {
 
   /**
    * Create a EnkaAccount
-   * @param ownerData ownerData from EnkaNetwork
-   * @param enkaBaseURL URL of enka.network
+   * @param ownerData - ownerData from EnkaNetwork
+   * @param enkaBaseURL - URL of enka.network
    */
   constructor(ownerData: APIOwner, enkaBaseURL: string) {
     this.id = ownerData.id

@@ -110,7 +110,9 @@ export interface ErrorContext {
  */
 export const ErrorContextFactory = {
   /**
-   * Create file-related error context
+   * Create file-related error context.
+   * @param filePath - Path to the file where error occurred.
+   * @param operation - Operation being performed on the file.
    */
   createFileContext(filePath: string, operation?: string): ErrorContext {
     return {
@@ -121,7 +123,11 @@ export const ErrorContextFactory = {
   },
 
   /**
-   * Create network-related error context
+   * Create network-related error context.
+   * @param url - Request URL.
+   * @param requestMethod - HTTP method used (default: 'GET').
+   * @param statusCode - HTTP response status code.
+   * @param responseHeaders - HTTP response headers.
    */
   createNetworkContext(
     url: string,
@@ -139,7 +145,11 @@ export const ErrorContextFactory = {
   },
 
   /**
-   * Create validation-related error context
+   * Create validation-related error context.
+   * @param propertyKey - Property that failed validation.
+   * @param expectedValue - Expected value for the property.
+   * @param actualValue - Actual value received.
+   * @param validationPath - Path to the validated property.
    */
   createValidationContext(
     propertyKey: string,
@@ -157,7 +167,10 @@ export const ErrorContextFactory = {
   },
 
   /**
-   * Create decoding-related error context
+   * Create decoding-related error context.
+   * @param sourceData - Source data being decoded.
+   * @param targetData - Expected target format.
+   * @param operation - Decoding operation being performed.
    */
   createDecodingContext(
     sourceData: string,
@@ -173,7 +186,11 @@ export const ErrorContextFactory = {
   },
 
   /**
-   * Create asset-related error context
+   * Create asset-related error context.
+   * @param filePath - General file path for the asset.
+   * @param imageFile - Image file path if applicable.
+   * @param audioFile - Audio file path if applicable.
+   * @param operation - Operation being performed on the asset.
    */
   createAssetContext(
     filePath?: string,
@@ -191,7 +208,11 @@ export const ErrorContextFactory = {
   },
 
   /**
-   * Create configuration-related error context
+   * Create configuration-related error context.
+   * @param propertyKey - Configuration property key.
+   * @param jsonFile - JSON configuration file path.
+   * @param expectedValue - Expected configuration value.
+   * @param actualValue - Actual configuration value.
    */
   createConfigContext(
     propertyKey: string,
@@ -209,7 +230,8 @@ export const ErrorContextFactory = {
   },
 
   /**
-   * Merge multiple error contexts
+   * Merge multiple error contexts.
+   * @param contexts - Error contexts to merge.
    */
   merge(...contexts: (ErrorContext | undefined)[]): ErrorContext {
     const result: ErrorContext = { timestamp: new Date() }

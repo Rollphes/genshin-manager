@@ -47,7 +47,7 @@ export class ProfilePicture {
 
   /**
    * Create a ProfilePicture
-   * @param profilePictureId profile picture ID
+   * @param profilePictureId - profile picture ID
    */
   constructor(profilePictureId: number) {
     this.id = profilePictureId
@@ -91,7 +91,7 @@ export class ProfilePicture {
 
   /**
    * Find profile picture ID by info ID
-   * @param unlockParam costume ID or Character ID or Material ID or Quest ID
+   * @param unlockParam - costume ID or Character ID or Material ID or Quest ID
    * @returns profile picture ID
    */
   public static findProfilePictureIdByUnlockParam(

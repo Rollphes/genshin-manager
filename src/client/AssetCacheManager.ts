@@ -95,7 +95,7 @@ export abstract class AssetCacheManager<
 
   /**
    * Create a AssetCacheManager
-   * @param option client option
+   * @param option - client option
    */
   constructor(option: ClientOption) {
     super()
@@ -176,7 +176,7 @@ export abstract class AssetCacheManager<
   /**
    * Add ExcelBinOutput Key from Class Prototype to AssetCacheManager
    * @internal
-   * @param classPrototype class prototype
+   * @param classPrototype - class prototype
    */
   public static _addExcelBinOutputKeyFromClassPrototype(
     classPrototype: unknown,
@@ -198,11 +198,12 @@ export abstract class AssetCacheManager<
   }
 
   /**
-   * Get Json from cached excel bin output
+   * Get Json from cached excel bin output.
    * @internal
-   * @param key excelBinOutput name
-   * @param id ID of character, etc
-   * @returns JSON
+   * @param key - ExcelBinOutput name.
+   * @param id - ID of character, etc.
+   * @returns JSON.
+   * @throws {@link AssetNotFoundError} - When the specified key or id is not found in cache.
    */
   public static _getJsonFromCachedExcelBinOutput<
     T extends keyof typeof ExcelBinOutputs,
@@ -218,10 +219,11 @@ export abstract class AssetCacheManager<
   }
 
   /**
-   * Get cached excel bin output by name
+   * Get cached excel bin output by name.
    * @internal
-   * @param key excelBinOutput name
-   * @returns cached excel bin output
+   * @param key - ExcelBinOutput name.
+   * @returns Cached excel bin output.
+   * @throws {@link AssetNotFoundError} - When the specified key is not found in cache.
    */
   public static _getCachedExcelBinOutputByName<
     T extends keyof typeof ExcelBinOutputs,
@@ -235,7 +237,7 @@ export abstract class AssetCacheManager<
   /**
    * Check if cached excel bin output exists by name
    * @internal
-   * @param key excelBinOutput name
+   * @param key - excelBinOutput name
    * @returns cached excel bin output exists
    */
   public static _hasCachedExcelBinOutputByName(
@@ -247,8 +249,8 @@ export abstract class AssetCacheManager<
   /**
    * Check if cached excel bin output exists by ID
    * @internal
-   * @param key excelBinOutput name
-   * @param id ID of character, etc
+   * @param key - excelBinOutput name
+   * @param id - ID of character, etc
    * @returns cached excel bin output exists
    */
   public static _hasCachedExcelBinOutputById(
@@ -264,8 +266,8 @@ export abstract class AssetCacheManager<
   /**
    * Search ID in CachedExcelBinOutput by text
    * @internal
-   * @param key excelBinOutput name
-   * @param text text
+   * @param key - excelBinOutput name
+   * @param text - text
    * @returns IDs
    */
   public static _searchIdInExcelBinOutByText(
@@ -295,7 +297,7 @@ export abstract class AssetCacheManager<
 
   /**
    * Change cached languages
-   * @param language country code
+   * @param language - country code
    * @returns true if an error occurs
    */
   protected static async setTextMapToCache(
@@ -399,8 +401,8 @@ export abstract class AssetCacheManager<
   /**
    * Download json file from URL and write to downloadFilePath
    * Prevents file conflicts through concurrent access control
-   * @param url URL
-   * @param downloadFilePath download file path
+   * @param url - URL
+   * @param downloadFilePath - download file path
    */
   private static async downloadJsonFile(
     url: string,
@@ -413,7 +415,7 @@ export abstract class AssetCacheManager<
 
   /**
    * Set excel bin output to cache
-   * @param keys excelBinOutput names
+   * @param keys - excelBinOutput names
    * @returns true if an error occurs
    */
   private static async setExcelBinOutputToCache(
@@ -665,7 +667,7 @@ export abstract class AssetCacheManager<
 
   /**
    * Re download text map
-   * @param language country code
+   * @param language - country code
    */
   private static async reDownloadTextMap(
     language: keyof typeof TextMapLanguage,
@@ -693,9 +695,9 @@ export abstract class AssetCacheManager<
 
   /**
    * Fetch asset folder from gitlab
-   * @param folderPath folder path
-   * @param files file names
-   * @param isRetry is retry
+   * @param folderPath - folder path
+   * @param files - file names
+   * @param isRetry - is retry
    */
   private static async fetchAssetFolder(
     folderPath: string,
@@ -756,8 +758,8 @@ export abstract class AssetCacheManager<
 
   /**
    * Internal download process executed within file lock
-   * @param url URL
-   * @param downloadFilePath download file path
+   * @param url - URL
+   * @param downloadFilePath - download file path
    */
   private static async downloadJsonFileInternal(
     url: string,
@@ -897,7 +899,7 @@ export abstract class AssetCacheManager<
 
   /**
    * Type guard for GitLabAPIResponse
-   * @param value value to check
+   * @param value - value to check
    * @returns true if value is GitLabAPIResponse
    */
   private static isGitLabAPIResponse(
@@ -914,7 +916,7 @@ export abstract class AssetCacheManager<
 
   /**
    * Retry operation until it succeeds (returns false)
-   * @param operation async operation that returns true on error (requires retry)
+   * @param operation - async operation that returns true on error (requires retry)
    */
   private static async retryUntilSuccess(
     operation: () => Promise<boolean>,

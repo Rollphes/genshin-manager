@@ -10,7 +10,8 @@ import { convertToUTC } from '@/utils/parsers/convertToUTC'
 type CheerioAPI = ReturnType<typeof cheerio.load>
 
 /**
- * Check if a node is a tag element
+ * Check if a node is a tag element.
+ * @param node - DOM node to check.
  */
 function isCheerioElement(node: unknown): node is Element {
   return (
@@ -103,10 +104,10 @@ export class Notice {
 
   /**
    * Create a Notice
-   * @param annList annList
-   * @param annContent annContent
-   * @param enAnnContent annContent(lang=en)
-   * @param region region
+   * @param annList - annList
+   * @param annContent - annContent
+   * @param enAnnContent - annContent(lang=en)
+   * @param region - region
    * @example
    * ```ts
    * const notice = new Notice(annListData, annContentData, enAnnContentData, 'os_asia')
@@ -269,7 +270,7 @@ export class Notice {
   /**
    * Convert t tag to region time
    * @warning t tags work fine when inserted with text() content because the original is \&gt; or \&lt;.
-   * @param text text
+   * @param text - text
    * @returns converted text
    */
   private convertLocalDate(text: string): string {

@@ -2,9 +2,9 @@ import type { APIEnkaData } from '@/types/enkaNetwork/EnkaTypes'
 
 /**
  * Create mock EnkaData API response for testing
- * @param uid UID to use in the response
- * @param withCharacters Whether to include character data
- * @param ttl TTL value for cache testing
+ * @param uid - UID to use in the response
+ * @param withCharacters - Whether to include character data
+ * @param ttl - TTL value for cache testing
  * @returns Mock APIEnkaData response
  */
 export function createEnkaDataResponse(

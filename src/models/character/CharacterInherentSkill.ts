@@ -37,7 +37,7 @@ export class CharacterInherentSkill {
 
   /**
    * Create a Inherent Skill
-   * @param inherentSkillId inherent skill ID
+   * @param inherentSkillId - inherent skill ID
    */
   constructor(inherentSkillId: number) {
     this.id = inherentSkillId
@@ -88,8 +88,8 @@ export class CharacterInherentSkill {
 
   /**
    * Get inherent skill order by character ID
-   * @param characterId character ID
-   * @param skillDepotId skill depot ID
+   * @param characterId - character ID
+   * @param skillDepotId - skill depot ID
    * @returns inherent skill order
    */
   public static getInherentSkillOrderByCharacterId(

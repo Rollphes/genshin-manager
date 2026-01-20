@@ -2,7 +2,7 @@ import type { APIOwner } from '@/types/enkaNetwork/EnkaTypes'
 
 /**
  * Create mock EnkaAccount API response for testing
- * @param username Username to use in the response
+ * @param username - Username to use in the response
  * @returns Mock APIOwner response
  */
 export function createEnkaAccountResponse(username: string): APIOwner {
