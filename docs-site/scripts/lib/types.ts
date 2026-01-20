@@ -93,7 +93,7 @@ export interface ParsedProperty {
   defaultValue?: string
   warnings?: string[]
   remarks?: string
-  see?: string[]
+  see?: ParsedSee[]
   additionalDescription?: string
   mapDescription?: {
     key: string
@@ -117,8 +117,8 @@ export interface ParsedMethod {
   returns?: string
   warnings?: string[]
   remarks?: string
-  see?: string[]
-  throws?: string[]
+  see?: ParsedSee[]
+  throws?: ParsedThrow[]
   additionalDescription?: string
 }
 
@@ -129,6 +129,17 @@ export interface ParsedParameter {
   isOptional: boolean
   isRest: boolean
   defaultValue?: string
+}
+
+export interface ParsedThrow {
+  type: TypeReference
+  description?: string
+}
+
+export interface ParsedSee {
+  text: string
+  url?: string
+  typeRef?: TypeReference
 }
 
 export interface ParsedEnumMember {
@@ -157,7 +168,7 @@ export interface ParsedAccessor {
   isOverride: boolean
   warnings?: string[]
   remarks?: string
-  see?: string[]
+  see?: ParsedSee[]
 }
 
 /**
