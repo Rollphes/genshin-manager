@@ -4,8 +4,9 @@ import { AnnContentNotFoundError } from '@/errors/content/AnnContentNotFoundErro
 import { NetworkUnavailableError } from '@/errors/network/NetworkUnavailableError'
 import { Notice } from '@/models/Notice'
 import { createUpdateIntervalSchema } from '@/schemas/createUpdateIntervalSchema'
-import { NoticeLanguage, URLParams as URLParams } from '@/types/sg-hk4e-api'
+import { URLParams } from '@/types/sg-hk4e-api'
 import { APIGetAnnContent, APIGetAnnList } from '@/types/sg-hk4e-api/response'
+import type { Language } from '@/types/types'
 import { PromiseEventEmitter } from '@/utils/events/PromiseEventEmitter'
 import { validate } from '@/utils/validation/validate'
 
@@ -81,7 +82,7 @@ export class NoticeManager extends PromiseEventEmitter<
   /**
    * Language of notices
    */
-  public readonly language: keyof typeof NoticeLanguage
+  public readonly language: Language
 
   /**
    * Update interval(ms)
@@ -113,7 +114,7 @@ export class NoticeManager extends PromiseEventEmitter<
    * ```
    */
   constructor(
-    language: keyof typeof NoticeLanguage,
+    language: Language,
     updateInterval?: number,
     urlParams?: Partial<URLParams>,
   ) {
@@ -179,9 +180,7 @@ export class NoticeManager extends PromiseEventEmitter<
    * @param lang - language of notices
    * @returns annContent
    */
-  private async getAnnContent(
-    lang?: keyof typeof NoticeLanguage,
-  ): Promise<APIGetAnnContent> {
+  private async getAnnContent(lang?: Language): Promise<APIGetAnnContent> {
     return (await this._getAnn(
       NoticeManager.GIT_CONTENT_URL,
       lang,
@@ -204,7 +203,7 @@ export class NoticeManager extends PromiseEventEmitter<
    */
   private async _getAnn(
     urlText: string,
-    lang?: keyof typeof NoticeLanguage,
+    lang?: Language,
   ): Promise<APIGetAnnContent | APIGetAnnList> {
     const url = new URL(urlText)
     Object.keys(this.urlParams).forEach((key) => {

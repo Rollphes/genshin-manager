@@ -6,7 +6,7 @@ import { ConfigMissingError } from '@/errors/config/ConfigMissingError'
 import { ValidationError } from '@/errors/validation/ValidationError'
 import type { DecodedType } from '@/types/generated/MasterFileMap'
 import type { JsonObject, JsonValue } from '@/types/json'
-import { EncryptedKeyMasterFile, ExcelBinOutputs } from '@/types/types'
+import { EncryptedKeyMasterFile, ExcelBinOutputKey } from '@/types/types'
 import { masterFileFolderPath } from '@/utils/paths'
 
 /**
@@ -57,7 +57,7 @@ interface DecodingOptions {
  * Inspired by SimpleMasterFileGenerator patterns
  * @template T - ExcelBinOutput file name type
  */
-export class EncryptedKeyDecoder<T extends keyof typeof ExcelBinOutputs> {
+export class EncryptedKeyDecoder<T extends ExcelBinOutputKey> {
   private readonly masterFile: EncryptedKeyMasterFile
   private readonly patternCache = new Map<string, RecursivePattern>()
   private readonly matchResultCache = new Map<string, DecodingResult>()

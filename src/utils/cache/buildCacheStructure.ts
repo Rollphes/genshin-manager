@@ -2,13 +2,13 @@ import type {
   DecodedType,
   MasterFileMap,
 } from '@/types/generated/MasterFileMap'
-import type { CacheStructureType, ExcelBinOutputs } from '@/types/types'
+import type { CacheStructureType, ExcelBinOutputKey } from '@/types/types'
 
 /**
  * Cache builder function type
  * @template T - ExcelBinOutput file name type
  */
-type CacheBuilder<T extends keyof typeof ExcelBinOutputs> = (
+type CacheBuilder<T extends ExcelBinOutputKey> = (
   data: DecodedType<T>,
 ) => CacheStructureType<T>
 
@@ -45,7 +45,7 @@ function hasAddProps(
  */
 /* eslint-disable @typescript-eslint/naming-convention */
 const cacheBuilders: Partial<{
-  [K in keyof typeof ExcelBinOutputs]: CacheBuilder<K>
+  [K in ExcelBinOutputKey]: CacheBuilder<K>
 }> = {
   WeaponCurveExcelConfigData: (jsonObjectArray) => {
     const result: Record<string, Record<number, number>> = {}
@@ -351,7 +351,7 @@ const cacheBuilders: Partial<{
  * console.log(Object.keys(cache).length)
  * ```
  */
-export function buildCacheStructure<T extends keyof typeof ExcelBinOutputs>(
+export function buildCacheStructure<T extends ExcelBinOutputKey>(
   jsonObjectArray: DecodedType<T>,
   filename: T,
 ): CacheStructureType<T> {
