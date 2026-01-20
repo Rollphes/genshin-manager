@@ -1,13 +1,13 @@
 import { Transform } from 'stream'
 
 import { TextMapFormatError } from '@/errors/content/TextMapFormatError'
-import { TextMapLanguage } from '@/types/types'
+import type { Language } from '@/types/types'
 
 /**
  * TextMapTransform
  */
 export class TextMapTransform extends Transform {
-  private readonly language: keyof typeof TextMapLanguage
+  private readonly language: Language
   private readonly filterSet: Set<number>
   private buffer: Buffer = Buffer.from('')
   private firstFlag = true
@@ -17,7 +17,7 @@ export class TextMapTransform extends Transform {
    * @param language - language
    * @param filterSet - filter set
    */
-  constructor(language: keyof typeof TextMapLanguage, filterSet: Set<number>) {
+  constructor(language: Language, filterSet: Set<number>) {
     super()
     this.language = language
     this.filterSet = filterSet

@@ -474,7 +474,7 @@ export interface ClientOption {
    * ['en','ru','vi','th','pt','ko','ja','id','fr','es','de','zh-tw','zh-cn']
    * ```
    */
-  downloadLanguages: (keyof typeof TextMapLanguage)[]
+  downloadLanguages: Language[]
   /**
    * default image base URL
    * @default 'https://gi.yatta.top/assets/UI'
@@ -527,7 +527,7 @@ export interface ClientOption {
    * default language
    * @default 'en'
    */
-  defaultLanguage: keyof typeof TextMapLanguage
+  defaultLanguage: Language
   /**
    * log level for the application
    * @default LogLevel.NONE

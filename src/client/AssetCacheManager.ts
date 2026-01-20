@@ -14,6 +14,7 @@ import {
   CacheStructureMap,
   ClientOption,
   ExcelBinOutputs,
+  Language,
   TextMapLanguage,
 } from '@/types/types'
 import { buildCacheStructure } from '@/utils/cache/buildCacheStructure'
@@ -301,7 +302,7 @@ export abstract class AssetCacheManager<
    * @returns true if an error occurs
    */
   protected static async setTextMapToCache(
-    language: keyof typeof TextMapLanguage,
+    language: Language,
   ): Promise<boolean> {
     const results = await Promise.all(
       TextMapLanguage[language].map(async (fileName) => {
@@ -669,9 +670,7 @@ export abstract class AssetCacheManager<
    * Re download text map
    * @param language - country code
    */
-  private static async reDownloadTextMap(
-    language: keyof typeof TextMapLanguage,
-  ): Promise<void> {
+  private static async reDownloadTextMap(language: Language): Promise<void> {
     const textMapFileNames = TextMapLanguage[language]
     await this.setExcelBinOutputToCache(this.excelBinOutputAllKeys)
     this.createTextHashes()

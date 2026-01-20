@@ -5,7 +5,7 @@ import { merge } from 'ts-deepmerge'
 import { AssetCacheManager } from '@/client/AssetCacheManager'
 import { AudioAssets } from '@/models/assets/AudioAssets'
 import { ImageAssets } from '@/models/assets/ImageAssets'
-import { ClientOption, TextMapLanguage } from '@/types/types'
+import { ClientOption, Language } from '@/types/types'
 import { LogLevel } from '@/utils/logger/Logger'
 
 /**
@@ -179,9 +179,7 @@ export class Client extends AssetCacheManager<ClientEventMap, ClientEvents> {
    * await client.changeLanguage('ja')
    * ```
    */
-  public async changeLanguage(
-    language: keyof typeof TextMapLanguage,
-  ): Promise<void> {
+  public async changeLanguage(language: Language): Promise<void> {
     if (await Client.setTextMapToCache(language)) {
       this.option.autoFixTextMap = false
       await Client.setTextMapToCache(language)
