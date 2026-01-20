@@ -1951,6 +1951,11 @@ export const ExcelBinOutputs = {
   // WorldLevelExcelConfigData: 'WorldLevelExcelConfigData.json',
 } as const
 
+/**
+ * ExcelBin output file name type
+ */
+export type ExcelBinOutputKey = keyof typeof ExcelBinOutputs
+
 /* eslint-disable @typescript-eslint/naming-convention */
 /**
  * Cache structure type mapping for processed game data
