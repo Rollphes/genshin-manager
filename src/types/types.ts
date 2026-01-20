@@ -1952,7 +1952,8 @@ export const ExcelBinOutputs = {
 } as const
 
 /**
- * ExcelBin output file name type
+ * ExcelBin output file name type.
+ * @internal
  */
 export type ExcelBinOutputKey = keyof typeof ExcelBinOutputs
 
