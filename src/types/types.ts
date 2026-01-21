@@ -62,7 +62,7 @@ export enum ItemType {
 /**
  * Artifact equipment slot type
  */
-export enum EquipType {
+export enum ArtifactType {
   /** Flower of Life */
   EQUIP_BRACER = 'EQUIP_BRACER',
   /** Plume of Death */
@@ -74,9 +74,6 @@ export enum EquipType {
   /** Circlet of Logos */
   EQUIP_SHOES = 'EQUIP_SHOES',
 }
-
-/** Artifact type (alias for EquipType) */
-export type ArtifactType = EquipType
 
 /**
  * Profile picture unlock type
@@ -256,9 +253,15 @@ export enum MaterialType {
   MATERIAL_WOOD = 'MATERIAL_WOOD',
 }
 
-/** Master file map type */
+/**
+ * Master file map type.
+ * @internal
+ */
 export type MasterFileMap = _MasterFileMap
-/** Decoded master file type */
+/**
+ * Decoded master file type.
+ * @internal
+ */
 export type DecodedType<T extends keyof MasterFileMap> = _DecodedType<T>
 
 /**
@@ -392,7 +395,8 @@ export interface WeaponSummary {
 }
 
 /**
- * Validation error detail
+ * Validation error detail.
+ * @internal
  */
 export interface ValidationDetail {
   /**
@@ -414,7 +418,8 @@ export interface ValidationDetail {
 }
 
 /**
- * Key matching error detail
+ * Key matching error detail.
+ * @internal
  */
 export interface KeyMatchingDetail {
   /**
@@ -436,7 +441,8 @@ export interface KeyMatchingDetail {
 }
 
 /**
- * JSON parse error related files
+ * JSON parse error related files.
+ * @internal
  */
 export interface JsonParseRelatedFiles {
   /**

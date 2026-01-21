@@ -11,8 +11,8 @@ import {
 } from '@/types/generated/MaterialExcelConfigData'
 import { EquipType as GeneratedEquipType } from '@/types/generated/ReliquaryExcelConfigData'
 import {
+  ArtifactType,
   BodyType,
-  EquipType,
   ItemType,
   MaterialType,
   QualityType,
@@ -44,8 +44,8 @@ describe('types.ts enum values should match generated enum values', () => {
     expect(typesValues).toEqual(generatedValues)
   })
 
-  it('EquipType values should match', () => {
-    const typesValues = Object.values(EquipType).sort()
+  it('ArtifactType values should match', () => {
+    const typesValues = Object.values(ArtifactType).sort()
     const generatedValues = Object.values(GeneratedEquipType).sort()
     expect(typesValues).toEqual(generatedValues)
   })
