@@ -53,18 +53,14 @@ import {
   CostItem,
   CVType,
   Element,
-  EquipType,
   FightPropType,
   ItemType,
-  JsonParseRelatedFiles,
-  KeyMatchingDetail,
   Language,
   LevelRange,
   MaterialType,
   ProfilePictureType,
   QualityType,
   SkillLevelPlan,
-  ValidationDetail,
   WeaponSummary,
   WeaponType,
 } from '@/types/types'
@@ -127,11 +123,8 @@ export {
   EnkaData,
   EnkaManagerEventMap,
   EnkaManagerEvents,
-  EquipType,
   FightPropType,
   ItemType,
-  JsonParseRelatedFiles,
-  KeyMatchingDetail,
   Language,
   LevelRange,
   LogLevel,
@@ -141,12 +134,9 @@ export {
   ProfilePictureType,
   QualityType,
   SkillLevelPlan,
-  ValidationDetail,
   WeaponSummary,
   WeaponType,
 }
-// Export generated types
-export type { DecodedType, MasterFileMap } from '@/types/types'
 
 // Export EnkaNetwork types
 export * from '@/types/enkaNetwork/EnkaAccountTypes'
