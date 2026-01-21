@@ -12,7 +12,8 @@ export type Region =
   | 'os_cht'
 
 /**
- * Time difference per region (hour)
+ * Time difference per region (hour).
+ * @internal
  */
 export const TimeZonesPerRegion = {
   cn_gf01: 8,
@@ -109,7 +110,8 @@ export const NoticeLanguage = {
 } as const satisfies Record<Language, string>
 
 /**
- * Notice API language code (values of NoticeLanguage)
+ * Notice API language code (values of NoticeLanguage).
+ * @internal
  */
 export type NoticeLanguageCode =
   (typeof NoticeLanguage)[keyof typeof NoticeLanguage]
