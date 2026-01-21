@@ -11,6 +11,7 @@
     "types",
     "utilities",
     "notice",
+    "artifact",
     "monster",
     "world",
     "common"

@@ -22,11 +22,16 @@
     },
     {
       "domain": "notice",
-      "match": ["NoticeManager", "NoticeManagerEvents", "Notice", "URLParams", "NoticeLanguage", "TimeZonesPerRegion"]
+      "match": ["NoticeManager", "NoticeManagerEvents", "Notice", "URLParams", "NoticeLanguage"]
     },
     {
       "domain": "character",
-      "matchPattern": "^(Character|Artifact|SetBonus)"
+      "match": ["SkillLevelPlan", "CVType", "BodyType"],
+      "matchPattern": "^Character"
+    },
+    {
+      "domain": "artifact",
+      "matchPattern": "^(Artifact|SetBonus)"
     },
     {
       "domain": "weapon",
@@ -34,7 +39,7 @@
     },
     {
       "domain": "enka",
-      "matchPattern": "^(Enka|Genshin|PlayerDetail)"
+      "matchPattern": "^(Enka|Genshin|PlayerDetail|API)"
     },
     {
       "domain": "assets",
@@ -46,11 +51,11 @@
     },
     {
       "domain": "world",
-      "match": ["Material", "DailyFarming", "DomainData"]
+      "match": ["Material", "MaterialType", "DailyFarming", "DomainData"]
     },
     {
       "domain": "common",
-      "match": ["ProfilePicture", "StatProperty"]
+      "match": ["ProfilePicture", "ProfilePictureType", "StatProperty"]
     },
     {
       "domain": "errors",
@@ -59,14 +64,14 @@
     },
     {
       "domain": "types",
-      "match": ["Element", "EquipType", "FightPropType", "CVType", "ArtifactType", "BodyType", "LogLevel", "QualityType", "WeaponType", "ItemType", "MaterialType", "ProfilePictureType", "DecodedType", "MasterFileMap"]
+      "match": ["Element", "FightPropType", "Language", "LogLevel", "QualityType", "WeaponType", "ItemType", "LevelRange", "Region"]
     },
     {
       "domain": "utilities",
       "matchPattern": "^(convert|create)"
     }
   ],
-  "domainOrder": ["client", "notice", "character", "weapon", "enka", "assets", "monster", "world", "common", "errors", "types", "utilities"],
+  "domainOrder": ["client", "notice", "character", "artifact", "weapon", "enka", "assets", "monster", "world", "common", "errors", "types", "utilities"],
   "categoryOrder": ["classes", "interfaces", "types", "functions"],
   "defaultDomain": "types"
 }
