@@ -27,6 +27,7 @@ eslint.config.js
 .prettierrc
 .prettierignore
 tsconfig.json
+*.tsbuildinfo
 tsup.config.ts
 typedoc.json
 vitest.config.ts
