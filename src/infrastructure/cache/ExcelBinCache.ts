@@ -1,5 +1,9 @@
 import path from 'path'
 
+import {
+  asJsonObject,
+  asJsonObjectArray,
+} from '@/domain/typeGuards/asJsonObject'
 import type { JsonObject } from '@/domain/types/json'
 import { extractTextHashes } from '@/infrastructure/cache/TextHashExtractor'
 import { EncryptedKeyDecoder } from '@/infrastructure/crypto/EncryptedKeyDecoder'
@@ -109,7 +113,7 @@ export class ExcelBinCache {
     for (const [key, records] of this.data) {
       const indexed: Record<string, JsonObject> = {}
       for (let i = 0; i < records.length; i++)
-        indexed[String(i)] = records[i] as unknown as JsonObject
+        indexed[String(i)] = asJsonObject(records[i])
 
       allData[key] = indexed
     }
@@ -200,7 +204,7 @@ export class ExcelBinCache {
     const lowerText = text.toLowerCase()
 
     return records.filter((record) => {
-      const obj = record as unknown as JsonObject
+      const obj = asJsonObject(record)
       return Object.keys(obj).some((key) => {
         if (key.includes('TextMapHash')) {
           const hashValue = obj[key]
@@ -307,8 +311,6 @@ export class ExcelBinCache {
     data: readonly GeneratedMasterFileMap[K][],
   ): GeneratedMasterFileMap[K][] {
     const decoder = new EncryptedKeyDecoder(key)
-    return decoder.execute(
-      data as unknown as readonly JsonObject[],
-    ) as GeneratedMasterFileMap[K][]
+    return decoder.execute(asJsonObjectArray(data)) as GeneratedMasterFileMap[K][]
   }
 }

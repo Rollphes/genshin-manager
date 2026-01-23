@@ -30,6 +30,7 @@ function isJsonObjectArray(value: unknown): value is JsonObject[] {
   )
 }
 
+
 /**
  * Generate TypeScript types from master file using quicktype-core
  * @param masterFilePath - Master file path

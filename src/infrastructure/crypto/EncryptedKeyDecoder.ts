@@ -80,6 +80,7 @@ export class EncryptedKeyDecoder<T extends keyof typeof ExcelBinOutputs> {
     if (this.matchResultCache.has(cacheKey)) {
       const cachedResult = this.matchResultCache.get(cacheKey)
       if (cachedResult) {
+        // Cast is safe: applyDecoding transforms to match MasterFileMap structure
         return encryptedData.map((obj) =>
           applyDecoding(obj, cachedResult.keyMappings),
         ) as unknown as GeneratedDecodedType<T>
@@ -128,6 +129,7 @@ export class EncryptedKeyDecoder<T extends keyof typeof ExcelBinOutputs> {
       })
     }
 
+    // Cast is safe: applyDecoding transforms to match MasterFileMap structure
     return encryptedData.map((obj) =>
       applyDecoding(obj, bestResult.keyMappings),
     ) as unknown as GeneratedDecodedType<T>
