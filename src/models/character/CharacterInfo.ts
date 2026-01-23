@@ -1,9 +1,9 @@
 import { Client } from '@/client/Client'
+import { validate } from '@/domain/validation/validate'
 import { AssetNotFoundError } from '@/errors/assets/AssetNotFoundError'
 import { travelerIdSchema } from '@/schemas/commonSchemas'
 import { BodyType, CostElemType, QualityType, WeaponType } from '@/types/enums'
 import { Element } from '@/types/types'
-import { validate } from '@/utils/validation/validate'
 
 /**
  * Contains basic information about a character

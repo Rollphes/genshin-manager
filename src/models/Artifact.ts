@@ -1,11 +1,11 @@
 import { Client } from '@/client/Client'
+import { toEnum } from '@/domain/typeGuards/toEnum'
+import { validate } from '@/domain/validation/validate'
 import { AssetNotFoundError } from '@/errors/assets/AssetNotFoundError'
 import { ImageAssets } from '@/models/assets/ImageAssets'
 import { StatProperty } from '@/models/StatProperty'
 import { createArtifactLevelSchema } from '@/schemas/createArtifactLevelSchema'
 import { EquipType, FightProp } from '@/types/enums'
-import { toEnum } from '@/utils/typeGuards/toEnum'
-import { validate } from '@/utils/validation/validate'
 /**
  * Represents a sub-stat property of an artifact
  */

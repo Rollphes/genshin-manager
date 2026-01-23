@@ -1,10 +1,10 @@
 import { Client } from '@/client/Client'
+import { toEnum } from '@/domain/typeGuards/toEnum'
 import { AssetNotFoundError } from '@/errors/assets/AssetNotFoundError'
 import { ImageAssets } from '@/models/assets/ImageAssets'
 import { CharacterInfo } from '@/models/character/CharacterInfo'
 import { StatProperty } from '@/models/StatProperty'
 import { FightProp } from '@/types/enums'
-import { toEnum } from '@/utils/typeGuards/toEnum'
 
 /**
  * Represents a character's passive skill with unlocked bonuses and effects

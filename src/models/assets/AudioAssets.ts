@@ -6,8 +6,8 @@ import { pipeline } from 'stream/promises'
 import { RestClient } from '@/client/RestClient'
 import { AudioNotFoundError } from '@/errors/assets/AudioNotFoundError'
 import { NetworkUnavailableError } from '@/errors/network/NetworkUnavailableError'
+import { ReadableStreamWrapper } from '@/infrastructure/streams/ReadableStreamWrapper'
 import { ClientOption, CVType } from '@/types/types'
-import { ReadableStreamWrapper } from '@/utils/streams/ReadableStreamWrapper'
 
 /**
  * Class for compiling information about audio

@@ -1,7 +1,9 @@
 import { merge } from 'ts-deepmerge'
 
 import { RestClient } from '@/client/RestClient'
+import { validate } from '@/domain/validation/validate'
 import { AnnContentNotFoundError } from '@/errors/content/AnnContentNotFoundError'
+import { PromiseEventEmitter } from '@/infrastructure/events/PromiseEventEmitter'
 import { Notice } from '@/models/Notice'
 import { createUpdateIntervalSchema } from '@/schemas/createUpdateIntervalSchema'
 import type { AnnouncementQuery } from '@/types/api/sg-hk4e-api/queries'
@@ -14,8 +16,6 @@ import {
   NoticeManagerEvents,
 } from '@/types/events/notice'
 import { Language } from '@/types/types'
-import { PromiseEventEmitter } from '@/utils/events/PromiseEventEmitter'
-import { validate } from '@/utils/validation/validate'
 
 /**
  * Class for fetching notices from mihoyo

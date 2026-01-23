@@ -1,11 +1,11 @@
 import { Client } from '@/client/Client'
+import { calculatePromoteLevel } from '@/domain/parsers/calculatePromoteLevel'
+import { toEnum } from '@/domain/typeGuards/toEnum'
+import { validate } from '@/domain/validation/validate'
 import { CharacterAscension } from '@/models/character/CharacterAscension'
 import { StatProperty } from '@/models/StatProperty'
 import { characterLevelSchema } from '@/schemas/commonSchemas'
 import { FightProp, GrowCurve } from '@/types/enums'
-import { calculatePromoteLevel } from '@/utils/parsers/calculatePromoteLevel'
-import { toEnum } from '@/utils/typeGuards/toEnum'
-import { validate } from '@/utils/validation/validate'
 
 type Stats = Partial<Record<FightProp, number>>
 

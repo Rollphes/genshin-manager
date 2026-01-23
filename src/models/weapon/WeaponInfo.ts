@@ -1,4 +1,7 @@
 import { Client } from '@/client/Client'
+import { calculatePromoteLevel } from '@/domain/parsers/calculatePromoteLevel'
+import { toEnum } from '@/domain/typeGuards/toEnum'
+import { validate } from '@/domain/validation/validate'
 import { AssetNotFoundError } from '@/errors/assets/AssetNotFoundError'
 import { ImageAssets } from '@/models/assets/ImageAssets'
 import { StatProperty } from '@/models/StatProperty'
@@ -7,9 +10,6 @@ import { WeaponRefinement } from '@/models/weapon/WeaponRefinement'
 import { refinementLevelSchema } from '@/schemas/commonSchemas'
 import { createDynamicWeaponLevelSchema } from '@/schemas/createDynamicWeaponLevelSchema'
 import { FightProp, GrowCurve, WeaponType } from '@/types/enums'
-import { calculatePromoteLevel } from '@/utils/parsers/calculatePromoteLevel'
-import { toEnum } from '@/utils/typeGuards/toEnum'
-import { validate } from '@/utils/validation/validate'
 
 /**
  * Contains weapon information including stats, refinement, and enhancement data

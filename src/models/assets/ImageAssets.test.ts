@@ -17,10 +17,10 @@ import {
   validPngData,
 } from '@/__test__/__mocks__/assets/mockBinaryData'
 import { ImageNotFoundError } from '@/errors/assets/ImageNotFoundError'
+import { LogLevel } from '@/infrastructure/logger/Logger'
 import { ImageAssets } from '@/models/assets/ImageAssets'
 import { Language } from '@/types/types'
 import { ClientOption } from '@/types/types'
-import { LogLevel } from '@/utils/logger/Logger'
 
 /**
  * ImageAssets test suite

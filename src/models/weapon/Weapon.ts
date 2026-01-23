@@ -1,4 +1,5 @@
 import { Client } from '@/client/Client'
+import { calculatePromoteLevel } from '@/domain/parsers/calculatePromoteLevel'
 import { AssetNotFoundError } from '@/errors/assets/AssetNotFoundError'
 import { ImageAssets } from '@/models/assets/ImageAssets'
 import { StatProperty } from '@/models/StatProperty'
@@ -7,7 +8,6 @@ import { WeaponInfo } from '@/models/weapon/WeaponInfo'
 import { WeaponRefinement } from '@/models/weapon/WeaponRefinement'
 import { WeaponType } from '@/types/enums'
 import { AscensionMaterial, WeaponSummary } from '@/types/types'
-import { calculatePromoteLevel } from '@/utils/parsers/calculatePromoteLevel'
 
 /**
  * Unified weapon class providing comprehensive access to all weapon data

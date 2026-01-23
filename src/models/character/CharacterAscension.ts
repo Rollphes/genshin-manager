@@ -1,12 +1,12 @@
 import { z } from 'zod'
 
 import { Client } from '@/client/Client'
+import { toEnum } from '@/domain/typeGuards/toEnum'
+import { validate } from '@/domain/validation/validate'
 import { AssetNotFoundError } from '@/errors/assets/AssetNotFoundError'
 import { StatProperty } from '@/models/StatProperty'
 import { FightProp } from '@/types/enums'
 import { CostItem } from '@/types/types'
-import { toEnum } from '@/utils/typeGuards/toEnum'
-import { validate } from '@/utils/validation/validate'
 
 /**
  * Handles character ascension data including promote levels, costs, and stat bonuses

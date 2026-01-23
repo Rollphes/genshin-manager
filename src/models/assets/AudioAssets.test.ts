@@ -17,10 +17,10 @@ import {
   validOggData,
 } from '@/__test__/__mocks__/assets/mockBinaryData'
 import { AudioNotFoundError } from '@/errors/assets/AudioNotFoundError'
+import { LogLevel } from '@/infrastructure/logger/Logger'
 import { AudioAssets } from '@/models/assets/AudioAssets'
 import { Language } from '@/types/types'
 import { ClientOption, CVType } from '@/types/types'
-import { LogLevel } from '@/utils/logger/Logger'
 
 /**
  * AudioAssets test suite

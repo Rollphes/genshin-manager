@@ -3,11 +3,11 @@ import path from 'path'
 import { merge } from 'ts-deepmerge'
 
 import { AssetCacheManager } from '@/client/AssetCacheManager'
+import { LogLevel } from '@/infrastructure/logger/Logger'
 import { AudioAssets } from '@/models/assets/AudioAssets'
 import { ImageAssets } from '@/models/assets/ImageAssets'
 import { ClientEventMap, ClientEvents } from '@/types/events/client'
 import { ClientOption, Language } from '@/types/types'
-import { LogLevel } from '@/utils/logger/Logger'
 /**
  * Event listener entry for cleanup tracking
  */

@@ -6,11 +6,11 @@ import { beforeAll, beforeEach, describe, expect, it, vi } from 'vitest'
 import { setupGitLabMock } from '@/__test__/__mocks__/api/gitlab'
 import { AssetCacheManager } from '@/client/AssetCacheManager'
 import { Client } from '@/client/Client'
+import { LogLevel } from '@/infrastructure/logger/Logger'
 import { AudioAssets } from '@/models/assets/AudioAssets'
 import { ImageAssets } from '@/models/assets/ImageAssets'
 import { ClientEvents } from '@/types/events/client'
 import { Language, TextMapBaseName } from '@/types/types'
-import { LogLevel } from '@/utils/logger/Logger'
 
 // Increase max listeners to prevent memory leak warnings during tests
 EventEmitter.defaultMaxListeners = 50

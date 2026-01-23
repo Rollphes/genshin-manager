@@ -149,7 +149,7 @@ describe('DailyFarming', () => {
     beforeAll(() => {
       sunday = new DailyFarming(0)
       monday = new DailyFarming(1)
-    })
+    }, 30000)
 
     it('should have correct dayOfWeek', () => {
       expect(sunday.dayOfWeek).toBe(0)

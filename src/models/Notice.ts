@@ -1,12 +1,12 @@
 import * as cheerio from 'cheerio'
 import { Element } from 'domhandler'
 
+import { convertToUTC } from '@/domain/parsers/convertToUTC'
 import { ValidationError } from '@/errors/validation/ValidationError'
 import { ImageAssets } from '@/models/assets/ImageAssets'
 import type { ContentList, DataList } from '@/types/api/sg-hk4e-api/responses'
 import type { Region } from '@/types/api/sg-hk4e-api/types'
 import { Language } from '@/types/types'
-import { convertToUTC } from '@/utils/parsers/convertToUTC'
 
 type CheerioAPI = ReturnType<typeof cheerio.load>
 

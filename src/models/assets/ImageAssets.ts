@@ -6,9 +6,9 @@ import { pipeline } from 'stream/promises'
 import { RestClient } from '@/client/RestClient'
 import { ImageNotFoundError } from '@/errors/assets/ImageNotFoundError'
 import { NetworkUnavailableError } from '@/errors/network/NetworkUnavailableError'
+import { initImageFolderPath } from '@/infrastructure/paths'
+import { ReadableStreamWrapper } from '@/infrastructure/streams/ReadableStreamWrapper'
 import { ClientOption } from '@/types/types'
-import { initImageFolderPath } from '@/utils/paths'
-import { ReadableStreamWrapper } from '@/utils/streams/ReadableStreamWrapper'
 
 /**
  * Class for compiling information about image

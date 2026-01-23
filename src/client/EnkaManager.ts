@@ -2,6 +2,7 @@ import { LRUCache } from 'lru-cache'
 
 import { RestClient } from '@/client/RestClient'
 import { GeneralError } from '@/errors/general/GeneralError'
+import { PromiseEventEmitter } from '@/infrastructure/events/PromiseEventEmitter'
 import { CharacterDetail } from '@/models/enka/CharacterDetail'
 import { EnkaAccount } from '@/models/enka/EnkaAccount'
 import { GenshinAccount } from '@/models/enka/GenshinAccount'
@@ -12,7 +13,6 @@ import {
   EnkaStatusApiRoutes,
 } from '@/types/api/enkaNetwork/routes'
 import { EnkaManagerEventMap, EnkaManagerEvents } from '@/types/events/enka'
-import { PromiseEventEmitter } from '@/utils/events/PromiseEventEmitter'
 
 /**
  * Cached EnkaData type

@@ -3,21 +3,24 @@ import fs from 'fs'
 import * as path from 'path'
 
 import { RestClient } from '@/client/RestClient'
+import { hasValidConstructor } from '@/domain/typeGuards/hasValidConstructor'
 import { AssetCorruptedError } from '@/errors/assets/AssetCorruptedError'
 import { ConfigMissingError } from '@/errors/config/ConfigMissingError'
+import {
+  ExcelBinCache,
+  PrimitiveKeys,
+} from '@/infrastructure/cache/ExcelBinCache'
+import { TextMapCache } from '@/infrastructure/cache/TextMapCache'
+import { AssetDownloader } from '@/infrastructure/download/AssetDownloader'
+import { getTextMapFileNamesFromGitLab } from '@/infrastructure/download/textMapFileResolver'
+import { VersionChecker } from '@/infrastructure/download/VersionChecker'
+import { PromiseEventEmitter } from '@/infrastructure/events/PromiseEventEmitter'
+import { logger, LogLevel } from '@/infrastructure/logger/Logger'
 import { GitLabApiRoutes } from '@/types/api/gitlab/routes'
 import { ClientEventMap, ClientEvents } from '@/types/events/client'
 import { ExcelBinOutputs } from '@/types/excelBinOutputs'
 import { MasterFileMap } from '@/types/generated/MasterFileMap'
 import type { ClientOption, Language } from '@/types/types'
-import { ExcelBinCache, PrimitiveKeys } from '@/utils/cache/ExcelBinCache'
-import { TextMapCache } from '@/utils/cache/TextMapCache'
-import { AssetDownloader } from '@/utils/download/AssetDownloader'
-import { getTextMapFileNamesFromGitLab } from '@/utils/download/textMapFileResolver'
-import { VersionChecker } from '@/utils/download/VersionChecker'
-import { PromiseEventEmitter } from '@/utils/events/PromiseEventEmitter'
-import { logger, LogLevel } from '@/utils/logger/Logger'
-import { hasValidConstructor } from '@/utils/typeGuards/hasValidConstructor'
 
 /**
  * Class for managing cached assets

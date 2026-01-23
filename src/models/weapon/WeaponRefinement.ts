@@ -1,4 +1,6 @@
 import { Client } from '@/client/Client'
+import { toEnum } from '@/domain/typeGuards/toEnum'
+import { validate } from '@/domain/validation/validate'
 import { AssetNotFoundError } from '@/errors/assets/AssetNotFoundError'
 import { StatProperty } from '@/models/StatProperty'
 import {
@@ -6,8 +8,6 @@ import {
   refinementLevelSchema,
 } from '@/schemas/commonSchemas'
 import { FightProp } from '@/types/enums'
-import { toEnum } from '@/utils/typeGuards/toEnum'
-import { validate } from '@/utils/validation/validate'
 
 /**
  * Manages weapon refinement levels and passive ability improvements

@@ -1,4 +1,5 @@
 import { Client } from '@/client/Client'
+import { validate } from '@/domain/validation/validate'
 import { AssetNotFoundError } from '@/errors/assets/AssetNotFoundError'
 import { CharacterInfo } from '@/models/character/CharacterInfo'
 import { CharacterSkill } from '@/models/character/CharacterSkill'
@@ -6,7 +7,6 @@ import { CharacterSkillAscension } from '@/models/character/CharacterSkillAscens
 import { WeaponAscension } from '@/models/weapon/WeaponAscension'
 import { WeaponInfo } from '@/models/weapon/WeaponInfo'
 import { dayOfWeekSchema } from '@/schemas/commonSchemas'
-import { validate } from '@/utils/validation/validate'
 
 /**
  * Domain data

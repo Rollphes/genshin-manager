@@ -1,4 +1,5 @@
 import { Client } from '@/client/Client'
+import { calculatePromoteLevel } from '@/domain/parsers/calculatePromoteLevel'
 import { AssetNotFoundError } from '@/errors/assets/AssetNotFoundError'
 import { CharacterAscension } from '@/models/character/CharacterAscension'
 import { CharacterBaseStats } from '@/models/character/CharacterBaseStats'
@@ -20,7 +21,6 @@ import {
   Element,
   Language,
 } from '@/types/types'
-import { calculatePromoteLevel } from '@/utils/parsers/calculatePromoteLevel'
 
 /**
  * Character summary information

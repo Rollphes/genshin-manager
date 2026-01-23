@@ -1,10 +1,10 @@
 import { Client } from '@/client/Client'
+import { toEnum } from '@/domain/typeGuards/toEnum'
 import { AssetNotFoundError } from '@/errors/assets/AssetNotFoundError'
 import { ImageAssets } from '@/models/assets/ImageAssets'
 import { CharacterCostume } from '@/models/character/CharacterCostume'
 import { CharacterInfo } from '@/models/character/CharacterInfo'
 import { ProfilePictureUnlockType } from '@/types/enums'
-import { toEnum } from '@/utils/typeGuards/toEnum'
 
 /**
  * Manages character avatar images and profile picture assets
