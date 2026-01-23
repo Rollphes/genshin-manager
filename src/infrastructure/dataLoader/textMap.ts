@@ -123,7 +123,10 @@ export async function loadTextMapFiles(
       )
       return { success: false, redownloadLanguage: language }
     }
-    throw new AssetNotFoundError(language, 'TextMap', { source: 'TextMap', operation: 'load' })
+    throw new AssetNotFoundError(language, 'TextMap', {
+      source: 'TextMap',
+      operation: 'load',
+    })
   }
 
   const data = new Map<number, string>()

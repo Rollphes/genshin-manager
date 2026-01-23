@@ -311,6 +311,8 @@ export class ExcelBinCache {
     data: readonly GeneratedMasterFileMap[K][],
   ): GeneratedMasterFileMap[K][] {
     const decoder = new EncryptedKeyDecoder(key)
-    return decoder.execute(asJsonObjectArray(data)) as GeneratedMasterFileMap[K][]
+    return decoder.execute(
+      asJsonObjectArray(data),
+    ) as GeneratedMasterFileMap[K][]
   }
 }

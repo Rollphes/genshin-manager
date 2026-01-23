@@ -263,9 +263,7 @@ function fillEmptyArraysFromCandidates(
  * @param jsonData - JSON data array.
  * @returns Array of master objects ordered by quality.
  */
-function findOptimalMasterPatterns(
-  jsonData: JsonObject[],
-): JsonObject[] {
+function findOptimalMasterPatterns(jsonData: JsonObject[]): JsonObject[] {
   logger.info(`Number of objects to analyze: ${String(jsonData.length)}`)
 
   const candidates = jsonData

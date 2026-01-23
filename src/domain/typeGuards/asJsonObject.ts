@@ -15,7 +15,7 @@ import type { JsonObject } from '@/domain/types/json'
  * @param value - Any object to cast to JsonObject
  * @returns The same object typed as JsonObject
  */
-export function asJsonObject<T extends object>(value: T): JsonObject {
+export function asJsonObject(value: object): JsonObject {
   return value as unknown as JsonObject
 }
 
@@ -25,8 +25,8 @@ export function asJsonObject<T extends object>(value: T): JsonObject {
  * @param values - Array of objects to cast
  * @returns The same array typed as JsonObject[]
  */
-export function asJsonObjectArray<T extends object>(
-  values: readonly T[],
+export function asJsonObjectArray(
+  values: readonly object[],
 ): readonly JsonObject[] {
   return values as unknown as readonly JsonObject[]
 }

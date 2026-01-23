@@ -72,7 +72,10 @@ export async function loadExcelBinFile<T>(
       logger.info(`ExcelBinLoader: ${fileName} not found. Re downloading...`)
       return { success: false, redownloadRequired: true }
     }
-    throw new AssetNotFoundError(fileName, 'ExcelBinOutput', { source: 'ExcelBinOutput', operation: 'load' })
+    throw new AssetNotFoundError(fileName, 'ExcelBinOutput', {
+      source: 'ExcelBinOutput',
+      operation: 'load',
+    })
   }
 
   try {
