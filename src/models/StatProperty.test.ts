@@ -2,19 +2,21 @@ import { beforeAll, describe, expect, it } from 'vitest'
 
 import { Client } from '@/client/Client'
 import { StatProperty } from '@/models/StatProperty'
+import { FightProp } from '@/types/enums'
+import { Language } from '@/types/types'
 
 describe('StatProperty', () => {
   beforeAll(async () => {
     const client = new Client({
-      defaultLanguage: 'en',
-      downloadLanguages: ['en'],
+      defaultLanguage: Language.En,
+      downloadLanguages: [Language.En],
     })
     await client.deploy()
   }, 30000)
 
   describe('Constructor', () => {
     it('should create StatProperty with type and value', () => {
-      const stat = new StatProperty('FIGHT_PROP_HP', 15552)
+      const stat = new StatProperty(FightProp.FightPropHP, 15552)
       expect(stat).toBeDefined()
     })
   })
@@ -23,7 +25,7 @@ describe('StatProperty', () => {
     let stat: StatProperty
 
     beforeAll(() => {
-      stat = new StatProperty('FIGHT_PROP_HP', 15552)
+      stat = new StatProperty(FightProp.FightPropHP, 15552)
     })
 
     it('should have correct type', () => {
@@ -55,7 +57,7 @@ describe('StatProperty', () => {
     let stat: StatProperty
 
     beforeAll(() => {
-      stat = new StatProperty('FIGHT_PROP_HP_PERCENT', 0.466)
+      stat = new StatProperty(FightProp.FightPropHPPercent, 0.466)
     })
 
     it('should have correct type', () => {
@@ -87,7 +89,7 @@ describe('StatProperty', () => {
     let stat: StatProperty
 
     beforeAll(() => {
-      stat = new StatProperty('FIGHT_PROP_ATTACK', 311)
+      stat = new StatProperty(FightProp.FightPropAttack, 311)
     })
 
     it('should have correct type', () => {
@@ -107,7 +109,7 @@ describe('StatProperty', () => {
     let stat: StatProperty
 
     beforeAll(() => {
-      stat = new StatProperty('FIGHT_PROP_CRITICAL', 0.311)
+      stat = new StatProperty(FightProp.FightPropCritical, 0.311)
     })
 
     it('should have correct type', () => {
@@ -135,7 +137,7 @@ describe('StatProperty', () => {
     let stat: StatProperty
 
     beforeAll(() => {
-      stat = new StatProperty('FIGHT_PROP_ELEMENT_MASTERY', 187)
+      stat = new StatProperty(FightProp.FightPropElementMastery, 187)
     })
 
     it('should have correct type', () => {
@@ -153,14 +155,14 @@ describe('StatProperty', () => {
 
   describe('Zero Value', () => {
     it('should handle zero value for non-percent', () => {
-      const stat = new StatProperty('FIGHT_PROP_HP', 0)
+      const stat = new StatProperty(FightProp.FightPropHP, 0)
       expect(stat.value).toBe(0)
       expect(stat.valueText).toBe('0')
       expect(stat.multipliedValue).toBe(0)
     })
 
     it('should handle zero value for percent', () => {
-      const stat = new StatProperty('FIGHT_PROP_HP_PERCENT', 0)
+      const stat = new StatProperty(FightProp.FightPropHPPercent, 0)
       expect(stat.value).toBe(0)
       expect(stat.valueText).toBe('0.0%')
       expect(stat.multipliedValue).toBe(0)
@@ -169,39 +171,39 @@ describe('StatProperty', () => {
 
   describe('Various Percent Types', () => {
     it('should recognize ATK% as percent', () => {
-      const stat = new StatProperty('FIGHT_PROP_ATTACK_PERCENT', 0.5)
+      const stat = new StatProperty(FightProp.FightPropAttackPercent, 0.5)
       expect(stat.isPercent).toBe(true)
     })
 
     it('should recognize DEF% as percent', () => {
-      const stat = new StatProperty('FIGHT_PROP_DEFENSE_PERCENT', 0.5)
+      const stat = new StatProperty(FightProp.FightPropDefensePercent, 0.5)
       expect(stat.isPercent).toBe(true)
     })
 
     it('should recognize CRIT DMG as percent', () => {
-      const stat = new StatProperty('FIGHT_PROP_CRITICAL_HURT', 0.5)
+      const stat = new StatProperty(FightProp.FightPropCriticalHurt, 0.5)
       expect(stat.isPercent).toBe(true)
     })
 
     it('should recognize Energy Recharge as percent', () => {
-      const stat = new StatProperty('FIGHT_PROP_CHARGE_EFFICIENCY', 0.5)
+      const stat = new StatProperty(FightProp.FightPropChargeEfficiency, 0.5)
       expect(stat.isPercent).toBe(true)
     })
 
     it('should recognize Heal Bonus as percent', () => {
-      const stat = new StatProperty('FIGHT_PROP_HEAL_ADD', 0.5)
+      const stat = new StatProperty(FightProp.FightPropHealAdd, 0.5)
       expect(stat.isPercent).toBe(true)
     })
 
     it('should recognize Pyro DMG Bonus as percent', () => {
-      const stat = new StatProperty('FIGHT_PROP_FIRE_ADD_HURT', 0.5)
+      const stat = new StatProperty(FightProp.FightPropFireAddHurt, 0.5)
       expect(stat.isPercent).toBe(true)
     })
   })
 
   describe('IEEE 754 Rounding', () => {
     it('should handle floating point precision', () => {
-      const stat = new StatProperty('FIGHT_PROP_HP_PERCENT', 0.1 + 0.2)
+      const stat = new StatProperty(FightProp.FightPropHPPercent, 0.1 + 0.2)
       expect(stat.value).toBeCloseTo(0.3, 5)
     })
   })

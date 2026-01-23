@@ -1,16 +1,15 @@
-import type { NoticeLanguageCode } from '@/types/sg-hk4e-api'
-import type { APIGetAnnList } from '@/types/sg-hk4e-api/response'
+import type { GetAnnListResponse } from '@/types/api/sg-hk4e-api/responses'
 
 /**
  * Creates mock AnnList response for API testing
  * @param annIds - Array of announcement IDs to include
  * @param language - Language code for the responses
- * @returns Mock APIGetAnnList response
+ * @returns Mock GetAnnListResponse response
  */
 export function createAnnListResponse(
   annIds: number[],
-  language: NoticeLanguageCode = 'en-us',
-): APIGetAnnList {
+  language = 'en-us',
+): GetAnnListResponse {
   return {
     retcode: 0,
     message: 'OK',

@@ -12,13 +12,13 @@ import { CharacterSkillAscension } from '@/models/character/CharacterSkillAscens
 import { CharacterStory } from '@/models/character/CharacterStory'
 import { CharacterVoice } from '@/models/character/CharacterVoice'
 import { StatProperty } from '@/models/StatProperty'
-import { BodyType } from '@/types/generated/AvatarExcelConfigData'
-import { WeaponType } from '@/types/generated/WeaponExcelConfigData'
+import { BodyType, WeaponType } from '@/types/enums'
 import {
   AscensionMaterial,
   CharacterUpgradePlan,
   CVType,
   Element,
+  Language,
 } from '@/types/types'
 import { calculatePromoteLevel } from '@/utils/parsers/calculatePromoteLevel'
 
@@ -354,7 +354,7 @@ export class Character {
    * @param cv - CV language
    * @returns character voices
    */
-  public getVoices(cv: CVType = 'en'): CharacterVoice[] {
+  public getVoices(cv: CVType = Language.En): CharacterVoice[] {
     return CharacterVoice.getAllFetterIdsByCharacterId(this.id).map(
       (fetterId) => new CharacterVoice(fetterId, cv),
     )
@@ -519,6 +519,7 @@ export class Character {
    * @param currentLevel - current character level
    * @param targetLevel - target character level
    * @returns array of materials needed
+   * @throws Error - When the avatar data is not found
    */
   private calculateCharacterLevelMaterials(
     currentLevel: number,
@@ -526,12 +527,15 @@ export class Character {
   ): AscensionMaterial[] {
     const materialsMap = new Map<number, number>()
 
-    const avatarJson = Client._getJsonFromCachedExcelBinOutput(
-      'AvatarExcelConfigData',
-      this.id,
-    )
-    const avatarPromotesJson = Client._getJsonFromCachedExcelBinOutput(
+    const avatarJson = Client._findBy('AvatarExcelConfigData', 'id', this.id)
+    if (!avatarJson) {
+      throw new Error(
+        `AvatarExcelConfigData not found for id ${String(this.id)}`,
+      )
+    }
+    const avatarPromotesJson = Client._filterBy(
       'AvatarPromoteExcelConfigData',
+      'avatarPromoteId',
       avatarJson.avatarPromoteId,
     )
 

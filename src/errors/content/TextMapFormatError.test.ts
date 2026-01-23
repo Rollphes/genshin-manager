@@ -28,10 +28,10 @@ describe('TextMapFormatError', () => {
       )
     })
 
-    it('should set errorCode to GM_CONTENT_TEXT_MAP_FORMAT', () => {
+    it('should set errorCode to GmContentTextMapFormat', () => {
       const error = new TextMapFormatError('key123', 'string', 123)
       expect(error.errorCode).toBe(
-        GenshinManagerErrorCode.GM_CONTENT_TEXT_MAP_FORMAT,
+        GenshinManagerErrorCode.GmContentTextMapFormat,
       )
     })
 
@@ -107,7 +107,7 @@ describe('TextMapFormatError', () => {
       const json = error.toJSON()
       expect(json.name).toBe('TextMapFormatError')
       expect(json.errorCode).toBe(
-        GenshinManagerErrorCode.GM_CONTENT_TEXT_MAP_FORMAT,
+        GenshinManagerErrorCode.GmContentTextMapFormat,
       )
     })
   })

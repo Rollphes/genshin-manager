@@ -1,73 +1,70 @@
 import { merge } from 'ts-deepmerge'
 
+import { RestClient } from '@/client/RestClient'
 import { AnnContentNotFoundError } from '@/errors/content/AnnContentNotFoundError'
-import { NetworkUnavailableError } from '@/errors/network/NetworkUnavailableError'
 import { Notice } from '@/models/Notice'
 import { createUpdateIntervalSchema } from '@/schemas/createUpdateIntervalSchema'
-import { URLParams } from '@/types/sg-hk4e-api'
-import { APIGetAnnContent, APIGetAnnList } from '@/types/sg-hk4e-api/response'
-import type { Language } from '@/types/types'
+import type { AnnouncementQuery } from '@/types/api/sg-hk4e-api/queries'
+import type {
+  HoyoverseApiRoutes,
+  HoyoverseStaticApiRoutes,
+} from '@/types/api/sg-hk4e-api/routes'
+import {
+  NoticeManagerEventMap,
+  NoticeManagerEvents,
+} from '@/types/events/notice'
+import { Language } from '@/types/types'
 import { PromiseEventEmitter } from '@/utils/events/PromiseEventEmitter'
 import { validate } from '@/utils/validation/validate'
 
 /**
- * NoticeManager events
- * @see {@link NoticeManager}
- */
-export enum NoticeManagerEvents {
-  /** When a notice is added, fires */
-  ADD_NOTICE = 'ADD_NOTICE',
-  /** When a notice is removed, fires */
-  REMOVE_NOTICE = 'REMOVE_NOTICE',
-}
-
-/**
- * NoticeManager event map
- * @internal
- */
-export interface NoticeManagerEventMap {
-  /**
-   * When a notice is added, fires
-   * @param notice - Added Notice
-   */
-  ADD_NOTICE: [notice: Notice]
-  /**
-   * When a notice is removed, fires
-   * @param notice - Removed Notice
-   */
-  REMOVE_NOTICE: [notice: Notice]
-}
-
-/**
  * Class for fetching notices from mihoyo
  */
-export class NoticeManager extends PromiseEventEmitter<
-  NoticeManagerEventMap,
-  NoticeManagerEvents
-> {
+export class NoticeManager extends PromiseEventEmitter<NoticeManagerEventMap> {
   /**
    * Minimum update interval(ms)
    * @default 1 minute
    */
   private static readonly MIN_UPDATE_INTERVAL = 1000 * 60 * 1
 
+  private static noticeLanguage = {
+    en: 'en-us',
+    ru: 'ru-ru',
+    vi: 'vi-vn',
+    th: 'th-th',
+    pt: 'pt-br',
+    ko: 'ko-kr',
+    ja: 'ja-jp',
+    id: 'id-id',
+    fr: 'fr-fr',
+    es: 'es-es',
+    de: 'de-de',
+    'zh-tw': 'zh-tw',
+    'zh-cn': 'zh-cn',
+  } as const satisfies Record<Language, string>
+
   /**
-   * URL of getAnnContent
+   * Content API client
    */
-  private static readonly GIT_CONTENT_URL: string =
-    'https://sg-hk4e-api-static.hoyoverse.com/common/hk4e_global/announcement/api/getAnnContent'
+  private static readonly contentClient =
+    new RestClient<HoyoverseStaticApiRoutes>(
+      'https://sg-hk4e-api-static.hoyoverse.com',
+    )
+
   /**
-   * URL of getAnnList
+   * List API client
    */
-  private static readonly GIT_LIST_URL: string =
-    'https://sg-hk4e-api.hoyoverse.com/common/hk4e_global/announcement/api/getAnnList'
+  private static readonly listClient = new RestClient<HoyoverseApiRoutes>(
+    'https://sg-hk4e-api.hoyoverse.com',
+  )
+
   /**
-   * Default URL params
+   * Default query parameters
    */
-  private static readonly defaultURLParams: URLParams = {
+  private static readonly defaultQuery: AnnouncementQuery = {
     game: 'hk4e',
     game_biz: 'hk4e_global',
-    lang: 'en',
+    lang: Language.En,
     auth_appid: 'announcement',
     bundle_id: 'hk4e_global',
     channel_id: '1',
@@ -97,15 +94,15 @@ export class NoticeManager extends PromiseEventEmitter<
   public readonly notices = new Map<number, Notice>()
 
   /**
-   * URL params
+   * Query parameters
    */
-  private readonly urlParams: URLParams
+  private readonly query: AnnouncementQuery
 
   /**
    * Create a NoticeManager
    * @param language - language of notices
    * @param updateInterval - update interval(ms) Min: 1 minute
-   * @param urlParams - URL params
+   * @param query - query parameters
    * @example
    * ```ts
    * const noticeManager = new NoticeManager('en', 60000)
@@ -116,7 +113,7 @@ export class NoticeManager extends PromiseEventEmitter<
   constructor(
     language: Language,
     updateInterval?: number,
-    urlParams?: Partial<URLParams>,
+    query?: Partial<AnnouncementQuery>,
   ) {
     super()
     this.language = language
@@ -129,11 +126,11 @@ export class NoticeManager extends PromiseEventEmitter<
         propertyKey: 'updateInterval',
       })
     }
-    this.urlParams = merge.withOptions(
+    this.query = merge.withOptions(
       { mergeArrays: false },
-      NoticeManager.defaultURLParams,
-      urlParams ?? {},
-    ) as URLParams
+      NoticeManager.defaultQuery,
+      query ?? {},
+    ) as AnnouncementQuery
     if (this.updateInterval)
       void setInterval(() => void this.update(), this.updateInterval)
   }
@@ -142,14 +139,25 @@ export class NoticeManager extends PromiseEventEmitter<
    * Update notices
    */
   public async update(): Promise<void> {
-    const annContent = await this.getAnnContent()
-    const annEnContent = await this.getAnnContent('en')
-    const annList = await this.getAnnList()
+    const requestQuery = { ...this.query, lang: this.language }
+    const enQuery = { ...this.query, lang: Language.En }
+    const annContent = await NoticeManager.contentClient.fetch(
+      '/common/hk4e_global/announcement/api/getAnnContent',
+      { query: requestQuery },
+    )
+    const annEnContent = await NoticeManager.contentClient.fetch(
+      '/common/hk4e_global/announcement/api/getAnnContent',
+      { query: enQuery },
+    )
+    const annList = await NoticeManager.listClient.fetch(
+      '/common/hk4e_global/announcement/api/getAnnList',
+      { query: requestQuery },
+    )
     const annListDatas = annList.data.list.flatMap((tab) => tab.list)
     const annListIds = annListDatas.map((data) => data.ann_id)
     this.notices.forEach((notice, id) => {
       if (!annListIds.includes(id)) {
-        this.emit(NoticeManagerEvents.REMOVE_NOTICE, notice)
+        this.emit(NoticeManagerEvents.RemoveNotice, notice)
         this.notices.delete(id)
       }
     })
@@ -163,56 +171,10 @@ export class NoticeManager extends PromiseEventEmitter<
         )
         if (!content || !enContent)
           throw new AnnContentNotFoundError(String(data.ann_id))
-        const notice = new Notice(
-          data,
-          content,
-          enContent,
-          this.urlParams.region,
-        )
-        this.emit(NoticeManagerEvents.ADD_NOTICE, notice)
+        const notice = new Notice(data, content, enContent, this.query.region)
+        this.emit(NoticeManagerEvents.AddNotice, notice)
         this.notices.set(data.ann_id, notice)
       }
     })
-  }
-
-  /**
-   * Get AnnContent
-   * @param lang - language of notices
-   * @returns annContent
-   */
-  private async getAnnContent(lang?: Language): Promise<APIGetAnnContent> {
-    return (await this._getAnn(
-      NoticeManager.GIT_CONTENT_URL,
-      lang,
-    )) as APIGetAnnContent
-  }
-
-  /**
-   * Get AnnList
-   * @returns annList
-   */
-  private async getAnnList(): Promise<APIGetAnnList> {
-    return (await this._getAnn(NoticeManager.GIT_LIST_URL)) as APIGetAnnList
-  }
-
-  /**
-   * Get Ann
-   * @param urlText - URL
-   * @param lang - language of notices
-   * @returns ann
-   */
-  private async _getAnn(
-    urlText: string,
-    lang?: Language,
-  ): Promise<APIGetAnnContent | APIGetAnnList> {
-    const url = new URL(urlText)
-    Object.keys(this.urlParams).forEach((key) => {
-      if (key === 'lang') url.searchParams.append(key, lang ?? this.language)
-      else url.searchParams.append(key, this.urlParams[key as keyof URLParams])
-    })
-    const res = await fetch(url.toString())
-    if (!res.ok) throw new NetworkUnavailableError(res.url, 'GET')
-
-    return (await res.json()) as APIGetAnnContent | APIGetAnnList
   }
 }

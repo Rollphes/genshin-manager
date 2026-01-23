@@ -7,7 +7,7 @@ import { GenshinManagerError } from '@/errors/base/GenshinManagerError'
  * Announcement content not found error
  */
 export class AnnContentNotFoundError extends GenshinManagerError {
-  public readonly errorCode = GenshinManagerErrorCode.GM_CONTENT_ANN_NOT_FOUND
+  public readonly errorCode = GenshinManagerErrorCode.GmContentAnnNotFound
 
   /**
    * Announcement ID or identifier

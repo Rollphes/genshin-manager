@@ -4,12 +4,13 @@ import { Client } from '@/client/Client'
 import { ImageAssets } from '@/models/assets/ImageAssets'
 import { StatProperty } from '@/models/StatProperty'
 import { WeaponInfo } from '@/models/weapon/WeaponInfo'
+import { Language } from '@/types/types'
 
 describe('WeaponInfo', () => {
   beforeAll(async () => {
     const client = new Client({
-      defaultLanguage: 'en',
-      downloadLanguages: ['en'],
+      defaultLanguage: Language.En,
+      downloadLanguages: [Language.En],
     })
     await client.deploy()
   }, 30000)

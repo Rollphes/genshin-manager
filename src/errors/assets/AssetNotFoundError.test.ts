@@ -32,9 +32,9 @@ describe('AssetNotFoundError', () => {
       expect(error.message).toBe('Asset not found: /path/to/asset.png')
     })
 
-    it('should set errorCode to GM_ASSETS_NOT_FOUND', () => {
+    it('should set errorCode to GmAssetsNotFound', () => {
       const error = new AssetNotFoundError('/path/to/asset.png')
-      expect(error.errorCode).toBe(GenshinManagerErrorCode.GM_ASSETS_NOT_FOUND)
+      expect(error.errorCode).toBe(GenshinManagerErrorCode.GmAssetsNotFound)
     })
 
     it('should set name to AssetNotFoundError', () => {
@@ -62,25 +62,28 @@ describe('AssetNotFoundError', () => {
       expect(error.timestamp).toBeInstanceOf(Date)
     })
 
-    it('should accept context parameter', () => {
-      const context = { statusCode: 404 }
-      const error = new AssetNotFoundError(
-        '/path/to/asset.png',
-        'image',
-        context,
-      )
-      expect(error.context?.statusCode).toBe(404)
+    it('should accept context parameter with source info', () => {
+      const error = new AssetNotFoundError('/path/to/asset.png', 'image', {
+        source: 'ImageAssets',
+        recordId: 404,
+      })
+      expect(error.source).toBe('ImageAssets')
+      expect(error.recordId).toBe(404)
     })
 
-    it('should merge context with asset context', () => {
-      const error = new AssetNotFoundError('/path/to/asset.png', 'image')
-      expect(error.context?.filePath).toBe('/path/to/asset.png')
-      expect(error.context?.imageFile).toBe('/path/to/asset.png')
+    it('should include source in message when provided', () => {
+      const error = new AssetNotFoundError('/path/to/asset.png', 'image', {
+        source: 'ImageAssets',
+        recordId: 404,
+      })
+      expect(error.message).toContain('[ImageAssets#404]')
     })
 
     it('should set operation in context', () => {
-      const error = new AssetNotFoundError('/path/to/asset.png', 'image')
-      expect(error.context?.operation).toBe('load image')
+      const error = new AssetNotFoundError('/path/to/asset.png', 'image', {
+        operation: 'load',
+      })
+      expect(error.operation).toBe('load')
     })
 
     it('should accept cause parameter', () => {
@@ -107,7 +110,7 @@ describe('AssetNotFoundError', () => {
       const error = new AssetNotFoundError('/path/to/asset.png', 'image')
       const json = error.toJSON()
       expect(json.name).toBe('AssetNotFoundError')
-      expect(json.errorCode).toBe(GenshinManagerErrorCode.GM_ASSETS_NOT_FOUND)
+      expect(json.errorCode).toBe(GenshinManagerErrorCode.GmAssetsNotFound)
     })
   })
 })

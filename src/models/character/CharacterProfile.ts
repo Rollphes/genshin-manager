@@ -1,5 +1,4 @@
 import { Client } from '@/client/Client'
-import type { FetterInfoExcelConfigDataType } from '@/types/generated/FetterInfoExcelConfigData'
 import type { CVType } from '@/types/types'
 
 /**
@@ -41,7 +40,7 @@ export class CharacterProfile {
   /**
    * Association
    */
-  public readonly assocType: FetterInfoExcelConfigDataType['avatarAssocType']
+  public readonly assocType: string // TODO: なんでstringになってんだ？
   /**
    * Character Voice
    * @key Language code
@@ -59,10 +58,17 @@ export class CharacterProfile {
    */
   constructor(characterId: number) {
     this.characterId = characterId
-    const fetterInfoJson = Client._getJsonFromCachedExcelBinOutput(
+    const fetterInfoJson = Client._findBy(
       'FetterInfoExcelConfigData',
+      'avatarId',
       this.characterId,
     )
+    if (!fetterInfoJson) {
+      throw new Error(
+        `FetterInfoExcelConfigData not found for characterId ${String(this.characterId)}`,
+      )
+    }
+
     this.fetterId = fetterInfoJson.fetterId
     const birthMonth = fetterInfoJson.infoBirthMonth as number | undefined
     const birthDay = fetterInfoJson.infoBirthDay as number | undefined
@@ -92,7 +98,7 @@ export class CharacterProfile {
     const avatarDetailTextMapHash = fetterInfoJson.avatarDetailTextMapHash
     this.title = Client._cachedTextMap.get(avatarTitleTextMapHash) ?? ''
     this.detail = Client._cachedTextMap.get(avatarDetailTextMapHash) ?? ''
-    this.assocType = fetterInfoJson.avatarAssocType
+    this.assocType = fetterInfoJson.avatarAssocType // TODO: なんでstringになってんだ？
 
     const cvChineseTextMapHash = fetterInfoJson.cvChineseTextMapHash
     const cvJapaneseTextMapHash = fetterInfoJson.cvJapaneseTextMapHash
@@ -111,14 +117,7 @@ export class CharacterProfile {
    * @returns all character IDs
    */
   public static get allCharacterIds(): number[] {
-    const profileDatas = Object.values(
-      Client._getCachedExcelBinOutputByName('FetterInfoExcelConfigData'),
-    )
-    return profileDatas
-      .filter(
-        (data): data is NonNullable<typeof data> =>
-          data?.avatarId !== undefined,
-      )
-      .map((data) => data.avatarId)
+    const profileDatas = Client._getAll('FetterInfoExcelConfigData')
+    return profileDatas.map((data) => data.avatarId)
   }
 }

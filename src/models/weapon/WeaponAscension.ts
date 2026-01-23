@@ -2,7 +2,9 @@ import { Client } from '@/client/Client'
 import { AssetNotFoundError } from '@/errors/assets/AssetNotFoundError'
 import { StatProperty } from '@/models/StatProperty'
 import { createPromoteLevelSchema } from '@/schemas/createPromoteLevelSchema'
+import { FightProp } from '@/types/enums'
 import { CostItem } from '@/types/types'
+import { toEnum } from '@/utils/typeGuards/toEnum'
 import { validate } from '@/utils/validation/validate'
 
 /**
@@ -53,14 +55,18 @@ export class WeaponAscension {
     void validate(promoteLevelSchema, this.promoteLevel, {
       propertyKey: 'promoteLevel',
     })
-    const weaponJson = Client._getJsonFromCachedExcelBinOutput(
-      'WeaponExcelConfigData',
-      this.id,
-    )
-    const weaponPromoteJson = Client._getJsonFromCachedExcelBinOutput(
+    const weaponJson = Client._findBy('WeaponExcelConfigData', 'id', this.id)
+    if (!weaponJson)
+      throw new AssetNotFoundError(String(this.id), 'WeaponExcelConfigData')
+
+    const weaponPromotesJson = Client._filterBy(
       'WeaponPromoteExcelConfigData',
+      'weaponPromoteId',
       weaponJson.weaponPromoteId,
-    )[this.promoteLevel]
+    )
+    const weaponPromoteJson = weaponPromotesJson.find(
+      (p) => p.promoteLevel === this.promoteLevel,
+    )
     if (!weaponPromoteJson) {
       throw new AssetNotFoundError(
         `promoteLevel ${String(this.promoteLevel)}`,
@@ -75,7 +81,15 @@ export class WeaponAscension {
     })
     this.costMora = weaponPromoteJson.coinCost
     this.addProps = weaponPromoteJson.addProps.map(
-      (addProp) => new StatProperty(addProp.propType, addProp.value),
+      (addProp, index) =>
+        new StatProperty(
+          toEnum(FightProp, addProp.propType, 'FightProp', {
+            source: 'WeaponPromoteExcelConfigData',
+            recordId: `${String(weaponJson.weaponPromoteId)}[${String(this.promoteLevel)}]`,
+            path: `addProps[${String(index)}].propType`,
+          }),
+          addProp.value,
+        ),
     )
     this.unlockMaxLevel = weaponPromoteJson.unlockMaxLevel
   }
@@ -84,20 +98,18 @@ export class WeaponAscension {
    * Get max promote level by weapon ID
    * @param weaponId - weapon ID
    * @returns max promote level
+   * @throws {@link AssetNotFoundError} - When the weapon data is not found
    */
   public static getMaxPromoteLevelByWeaponId(weaponId: number): number {
-    const weaponJson = Client._getJsonFromCachedExcelBinOutput(
-      'WeaponExcelConfigData',
-      weaponId,
-    )
-    const weaponPromoteJson = Client._getJsonFromCachedExcelBinOutput(
+    const weaponJson = Client._findBy('WeaponExcelConfigData', 'id', weaponId)
+    if (!weaponJson)
+      throw new AssetNotFoundError(String(weaponId), 'WeaponExcelConfigData')
+
+    const weaponPromotesJson = Client._filterBy(
       'WeaponPromoteExcelConfigData',
+      'weaponPromoteId',
       weaponJson.weaponPromoteId,
     )
-    return Math.max(
-      ...Object.values(weaponPromoteJson).map((promote) =>
-        promote ? promote.promoteLevel : 0,
-      ),
-    )
+    return Math.max(...weaponPromotesJson.map((p) => p.promoteLevel))
   }
 }

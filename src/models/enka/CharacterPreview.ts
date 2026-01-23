@@ -1,17 +1,7 @@
 import { CharacterCostume } from '@/models/character/CharacterCostume'
 import { CharacterInfo } from '@/models/character/CharacterInfo'
-import { APIShowAvatarInfo } from '@/types/enkaNetwork/EnkaTypes'
+import type { ShowAvatarInfoResponse } from '@/types/api/enkaNetwork/responses'
 import { Element } from '@/types/types'
-
-const elementIdMap: Record<number, Element> = {
-  1: 'Pyro',
-  2: 'Hydro',
-  3: 'Dendro',
-  4: 'Electro',
-  5: 'Cryo',
-  7: 'Anemo',
-  8: 'Geo',
-} as const
 
 /**
  * Provides summary character information for display from EnkaNetwork data
@@ -35,17 +25,17 @@ export class CharacterPreview extends CharacterCostume {
   /**
    * Data from EnkaNetwork
    */
-  public readonly data: APIShowAvatarInfo
+  public readonly data: ShowAvatarInfoResponse
 
   /**
    * Create a character preview
    * @param data - data from EnkaNetwork
    */
-  constructor(data: APIShowAvatarInfo) {
+  constructor(data: ShowAvatarInfoResponse) {
     const characterData = new CharacterInfo(data.avatarId)
     super(data.costumeId ?? characterData.defaultCostumeId)
     this.level = data.level
-    this.element = data.energyType ? elementIdMap[data.energyType] : undefined
+    this.element = characterData.element
     this.collectionLevel = data.talentLevel ?? 0
     this.data = data
   }

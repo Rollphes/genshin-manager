@@ -34,15 +34,13 @@ describe('createValidator', () => {
   it('should merge context when provided', () => {
     const schema = z.string()
     const validator = createValidator(schema, 'field')
-    const context = { operation: 'custom context' }
+    const context = { source: 'Test' }
     try {
       validator(123, context)
       expect.fail('Should have thrown')
     } catch (error) {
       expect(error).toBeInstanceOf(ValidationError)
-      expect((error as ValidationError).context?.operation).toBe(
-        'custom context',
-      )
+      expect((error as ValidationError).source).toBe('Test')
     }
   })
 })

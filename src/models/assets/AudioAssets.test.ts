@@ -18,6 +18,7 @@ import {
 } from '@/__test__/__mocks__/assets/mockBinaryData'
 import { AudioNotFoundError } from '@/errors/assets/AudioNotFoundError'
 import { AudioAssets } from '@/models/assets/AudioAssets'
+import { Language } from '@/types/types'
 import { ClientOption, CVType } from '@/types/types'
 import { LogLevel } from '@/utils/logger/Logger'
 
@@ -27,8 +28,8 @@ import { LogLevel } from '@/utils/logger/Logger'
 describe('AudioAssets', () => {
   const testCacheDir = path.resolve(process.cwd(), 'test-cache', 'Audios')
   const testOption: ClientOption = {
-    defaultLanguage: 'en',
-    downloadLanguages: ['en'],
+    defaultLanguage: Language.En,
+    downloadLanguages: [Language.En],
     fetchOption: {},
     imageBaseURLByRegex: {},
     defaultImageBaseURL: 'https://image-cdn.example.com',
@@ -84,10 +85,10 @@ describe('AudioAssets', () => {
     })
 
     it('should create AudioAssets with CV type', () => {
-      const audio = new AudioAssets('TestAudio', 'ja')
+      const audio = new AudioAssets('TestAudio', Language.Ja)
 
       expect(audio.name).toBe('TestAudio')
-      expect(audio.cv).toBe('ja')
+      expect(audio.cv).toBe(Language.Ja)
       expect(audio.url).toBe(
         'https://default-audio-cdn.example.com/ja/TestAudio.ogg',
       )
@@ -97,10 +98,10 @@ describe('AudioAssets', () => {
     })
 
     it('should create AudioAssets with CV and character ID', () => {
-      const audio = new AudioAssets('TestAudio', 'en', 10000002)
+      const audio = new AudioAssets('TestAudio', Language.En, 10000002)
 
       expect(audio.name).toBe('TestAudio')
-      expect(audio.cv).toBe('en')
+      expect(audio.cv).toBe(Language.En)
       expect(audio.characterId).toBe(10000002)
       expect(audio.url).toBe(
         'https://default-audio-cdn.example.com/en/10000002/TestAudio.ogg',
@@ -139,7 +140,12 @@ describe('AudioAssets', () => {
     })
 
     it('should test all CV types', () => {
-      const cvTypes: CVType[] = ['en', 'ja', 'zh-cn', 'ko']
+      const cvTypes: CVType[] = [
+        Language.En,
+        Language.Ja,
+        Language.ZhCn,
+        Language.Ko,
+      ]
 
       cvTypes.forEach((cv) => {
         const audio = new AudioAssets('TestCV', cv)
@@ -204,7 +210,7 @@ describe('AudioAssets', () => {
     })
 
     it('should create nested directories for CV and character ID', async () => {
-      const audio = new AudioAssets('TestNestedCache', 'ja', 10000002)
+      const audio = new AudioAssets('TestNestedCache', Language.Ja, 10000002)
       const cachePath = path.resolve(
         testCacheDir,
         'ja',
@@ -266,7 +272,11 @@ describe('AudioAssets', () => {
     })
 
     it('should create cache directory for stream download', async () => {
-      const audio = new AudioAssets('TestStreamCreateDir', 'en', 10000003)
+      const audio = new AudioAssets(
+        'TestStreamCreateDir',
+        Language.En,
+        10000003,
+      )
 
       const stream = await audio.fetchStream()
 
@@ -381,8 +391,8 @@ describe('AudioAssets', () => {
   describe('Integration Tests', () => {
     it('should work end-to-end with character voice scenarios', async () => {
       // Test character voice with CV and ID
-      const voiceJp = new AudioAssets('VO_Albedo_Hello', 'ja', 10000002)
-      expect(voiceJp.cv).toBe('ja')
+      const voiceJp = new AudioAssets('VO_Albedo_Hello', Language.Ja, 10000002)
+      expect(voiceJp.cv).toBe(Language.Ja)
       expect(voiceJp.characterId).toBe(10000002)
       expect(voiceJp.url).toContain('/ja/10000002/')
       expect(voiceJp.mihoyoURL).toContain('/ja/10000002/')
@@ -394,9 +404,9 @@ describe('AudioAssets', () => {
 
     it('should handle multiple concurrent audio requests', async () => {
       const audios = [
-        new AudioAssets('ConcurrentAudio1', 'en'),
-        new AudioAssets('ConcurrentAudio2', 'ja'),
-        new AudioAssets('ConcurrentAudio3', 'zh-cn'),
+        new AudioAssets('ConcurrentAudio1', Language.En),
+        new AudioAssets('ConcurrentAudio2', Language.Ja),
+        new AudioAssets('ConcurrentAudio3', Language.ZhCn),
       ]
 
       const buffers = await Promise.all(
@@ -410,7 +420,7 @@ describe('AudioAssets', () => {
     })
 
     it('should handle different CV types correctly', async () => {
-      const cvTypes: CVType[] = ['en', 'ja', 'zh-cn']
+      const cvTypes: CVType[] = [Language.En, Language.Ja, Language.ZhCn]
       const characterId = 10000005
 
       for (const cv of cvTypes) {

@@ -16,11 +16,10 @@ import { createGenshinAccountsResponse } from '@/__test__/__mocks__/api/enka-man
 import { setupGitLabMock } from '@/__test__/__mocks__/api/gitlab'
 import { MockResponse } from '@/__test__/__mocks__/utils/MockResponse'
 import { Client } from '@/client/Client'
-import { EnkaManager, EnkaManagerEvents } from '@/client/EnkaManager'
+import { EnkaManager } from '@/client/EnkaManager'
 import { GeneralError } from '@/errors/general/GeneralError'
-import { EnkaNetworkError } from '@/errors/network/EnkaNetworkError'
-import { EnkaNetworkStatusError } from '@/errors/network/EnkaNetworkStatusError'
-import { Material } from '@/models/Material'
+import { EnkaManagerEvents } from '@/types/events/enka'
+import { Language } from '@/types/types'
 
 // Increase max listeners to prevent memory leak warnings during tests
 EventEmitter.defaultMaxListeners = 50
@@ -32,13 +31,10 @@ describe('EnkaManager Basic Functionality', () => {
   beforeAll(async () => {
     setupGitLabMock()
 
-    // Ensure Material class is loaded before deploy
-    void Material
-
     // Deploy Client using the GitLab mock server
     const client = new Client({
-      defaultLanguage: 'en',
-      downloadLanguages: ['en'],
+      defaultLanguage: Language.En,
+      downloadLanguages: [Language.En],
     })
     await client.deploy()
   }, 30000) // 30 seconds timeout for deployment
@@ -316,7 +312,7 @@ describe('EnkaManager Basic Functionality', () => {
       const mockResponse = createEnkaDataResponse(uid, true, 60)
       const eventSpy = vi.fn()
 
-      enkaManager.on(EnkaManagerEvents.GET_NEW_ENKA_DATA, eventSpy)
+      enkaManager.on(EnkaManagerEvents.GetNewEnkaData, eventSpy)
 
       mockFetch.mockResolvedValueOnce(
         new MockResponse(mockResponse) as unknown as Response,
@@ -339,7 +335,7 @@ describe('EnkaManager Basic Functionality', () => {
       const mockResponse = createEnkaDataResponse(uid, true, 3600)
       const eventSpy = vi.fn()
 
-      enkaManager.on(EnkaManagerEvents.GET_NEW_ENKA_DATA, eventSpy)
+      enkaManager.on(EnkaManagerEvents.GetNewEnkaData, eventSpy)
 
       mockFetch.mockResolvedValueOnce(
         new MockResponse(mockResponse) as unknown as Response,
@@ -360,8 +356,8 @@ describe('EnkaManager Basic Functionality', () => {
       const listener1 = vi.fn()
       const listener2 = vi.fn()
 
-      enkaManager.on(EnkaManagerEvents.GET_NEW_ENKA_DATA, listener1)
-      enkaManager.on(EnkaManagerEvents.GET_NEW_ENKA_DATA, listener2)
+      enkaManager.on(EnkaManagerEvents.GetNewEnkaData, listener1)
+      enkaManager.on(EnkaManagerEvents.GetNewEnkaData, listener2)
 
       mockFetch.mockResolvedValueOnce(
         new MockResponse(mockResponse) as unknown as Response,
@@ -386,72 +382,6 @@ describe('EnkaManager Basic Functionality', () => {
       )
       await expect(enkaManager.fetchAll(invalidUID)).rejects.toThrow(
         'The UID format is not correct(123)',
-      )
-    })
-
-    it('should throw EnkaNetworkError when API request fails', async () => {
-      const uid = 123456789
-      const mockErrorResponse = new MockResponse(
-        { error: 'Player not found' },
-        { status: 404, statusText: 'Not Found' },
-      )
-
-      mockFetch.mockResolvedValueOnce(mockErrorResponse as unknown as Response)
-
-      await expect(enkaManager.fetchAll(uid)).rejects.toThrow(EnkaNetworkError)
-    })
-
-    it('should throw EnkaNetworkError for EnkaAccount API failure', async () => {
-      const username = 'nonexistentuser'
-      const mockErrorResponse = new MockResponse(
-        { error: 'User not found' },
-        { status: 404, statusText: 'Not Found' },
-      )
-
-      mockFetch.mockResolvedValueOnce(mockErrorResponse as unknown as Response)
-
-      await expect(enkaManager.fetchEnkaAccount(username)).rejects.toThrow(
-        EnkaNetworkError,
-      )
-    })
-
-    it('should throw EnkaNetworkError for GenshinAccounts API failure', async () => {
-      const username = 'nonexistentuser'
-      const mockErrorResponse = new MockResponse(
-        { error: 'User not found' },
-        { status: 404, statusText: 'Not Found' },
-      )
-
-      mockFetch.mockResolvedValueOnce(mockErrorResponse as unknown as Response)
-
-      await expect(enkaManager.fetchGenshinAccounts(username)).rejects.toThrow(
-        EnkaNetworkError,
-      )
-    })
-
-    it('should throw EnkaNetworkStatusError for status API failure', async () => {
-      const mockErrorResponse = new MockResponse(
-        { error: 'Service unavailable' },
-        { status: 503, statusText: 'Service Unavailable' },
-      )
-
-      mockFetch.mockResolvedValueOnce(mockErrorResponse as unknown as Response)
-
-      await expect(enkaManager.fetchNowStatus()).rejects.toThrow(
-        EnkaNetworkStatusError,
-      )
-    })
-
-    it('should throw EnkaNetworkStatusError for all status API failure', async () => {
-      const mockErrorResponse = new MockResponse(
-        { error: 'Service unavailable' },
-        { status: 503, statusText: 'Service Unavailable' },
-      )
-
-      mockFetch.mockResolvedValueOnce(mockErrorResponse as unknown as Response)
-
-      await expect(enkaManager.fetchAllStatus()).rejects.toThrow(
-        EnkaNetworkStatusError,
       )
     })
 

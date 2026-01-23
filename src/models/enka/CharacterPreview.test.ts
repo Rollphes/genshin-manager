@@ -4,12 +4,13 @@ import { createEnkaDataResponse } from '@/__test__/__mocks__/api/enka-manager/cr
 import { Client } from '@/client/Client'
 import { CharacterCostume } from '@/models/character/CharacterCostume'
 import { CharacterPreview } from '@/models/enka/CharacterPreview'
+import { Language } from '@/types/types'
 
 describe('CharacterPreview', () => {
   beforeAll(async () => {
     const client = new Client({
-      defaultLanguage: 'en',
-      downloadLanguages: ['en'],
+      defaultLanguage: Language.En,
+      downloadLanguages: [Language.En],
     })
     await client.deploy()
   }, 30000)

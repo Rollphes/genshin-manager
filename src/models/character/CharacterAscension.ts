@@ -3,7 +3,9 @@ import { z } from 'zod'
 import { Client } from '@/client/Client'
 import { AssetNotFoundError } from '@/errors/assets/AssetNotFoundError'
 import { StatProperty } from '@/models/StatProperty'
+import { FightProp } from '@/types/enums'
 import { CostItem } from '@/types/types'
+import { toEnum } from '@/utils/typeGuards/toEnum'
 import { validate } from '@/utils/validation/validate'
 
 /**
@@ -59,14 +61,15 @@ export class CharacterAscension {
     void validate(promoteLevelSchema, this.promoteLevel, {
       propertyKey: 'promoteLevel',
     })
-    const avatarJson = Client._getJsonFromCachedExcelBinOutput(
-      'AvatarExcelConfigData',
-      this.id,
-    )
-    const avatarPromoteJson = Client._getJsonFromCachedExcelBinOutput(
+    const avatarJson = Client._findBy('AvatarExcelConfigData', 'id', this.id)
+    if (!avatarJson)
+      throw new AssetNotFoundError(String(this.id), 'AvatarExcelConfigData')
+
+    const avatarPromoteJson = Client._filterBy(
       'AvatarPromoteExcelConfigData',
+      'avatarPromoteId',
       avatarJson.avatarPromoteId,
-    )[this.promoteLevel]
+    ).find((p) => p.promoteLevel === this.promoteLevel)
     if (!avatarPromoteJson) {
       throw new AssetNotFoundError(
         `promoteLevel ${String(this.promoteLevel)}`,
@@ -83,7 +86,15 @@ export class CharacterAscension {
       })
     this.costMora = avatarPromoteJson.scoinCost
     this.addProps = avatarPromoteJson.addProps.map(
-      (addProp) => new StatProperty(addProp.propType, addProp.value),
+      (addProp, index) =>
+        new StatProperty(
+          toEnum(FightProp, addProp.propType, 'FightProp', {
+            source: 'AvatarPromoteExcelConfigData',
+            recordId: `${String(avatarJson.avatarPromoteId)}[${String(this.promoteLevel)}]`,
+            path: `addProps[${String(index)}].propType`,
+          }),
+          addProp.value,
+        ),
     )
     this.unlockMaxLevel = avatarPromoteJson.unlockMaxLevel
   }
@@ -92,20 +103,22 @@ export class CharacterAscension {
    * Get max promote level by character ID
    * @param characterId - character ID
    * @returns max promote level
+   * @throws {@link AssetNotFoundError} - When the avatar data is not found
    */
   public static getMaxPromoteLevelByCharacterId(characterId: number): number {
-    const avatarJson = Client._getJsonFromCachedExcelBinOutput(
+    const avatarJson = Client._findBy(
       'AvatarExcelConfigData',
+      'id',
       characterId,
     )
-    const avatarPromoteJson = Client._getJsonFromCachedExcelBinOutput(
+    if (!avatarJson)
+      throw new AssetNotFoundError(String(characterId), 'AvatarExcelConfigData')
+
+    const avatarPromoteJson = Client._filterBy(
       'AvatarPromoteExcelConfigData',
+      'avatarPromoteId',
       avatarJson.avatarPromoteId,
     )
-    return Math.max(
-      ...Object.values(avatarPromoteJson).map((promote) =>
-        promote ? promote.promoteLevel : 0,
-      ),
-    )
+    return Math.max(...avatarPromoteJson.map((promote) => promote.promoteLevel))
   }
 }

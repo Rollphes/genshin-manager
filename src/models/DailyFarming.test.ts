@@ -3,12 +3,13 @@ import { beforeAll, describe, expect, it } from 'vitest'
 import { Client } from '@/client/Client'
 import { CharacterInfo } from '@/models/character/CharacterInfo'
 import { DailyFarming } from '@/models/DailyFarming'
+import { Language } from '@/types/types'
 
 describe('DailyFarming', () => {
   beforeAll(async () => {
     const client = new Client({
-      defaultLanguage: 'en',
-      downloadLanguages: ['en'],
+      defaultLanguage: Language.En,
+      downloadLanguages: [Language.En],
     })
     await client.deploy()
   }, 30000)

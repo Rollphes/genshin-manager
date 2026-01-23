@@ -3,6 +3,7 @@ import { beforeAll, describe, expect, it } from 'vitest'
 import { Client } from '@/client/Client'
 import { Artifact } from '@/models/Artifact'
 import { SetBonus } from '@/models/SetBonus'
+import { Language } from '@/types/types'
 
 describe('SetBonus', () => {
   let setArtifacts: Record<number, number[]>
@@ -10,8 +11,8 @@ describe('SetBonus', () => {
 
   beforeAll(async () => {
     const client = new Client({
-      defaultLanguage: 'en',
-      downloadLanguages: ['en'],
+      defaultLanguage: Language.En,
+      downloadLanguages: [Language.En],
     })
     await client.deploy()
 

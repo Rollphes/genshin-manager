@@ -1,20 +1,20 @@
 import { z } from 'zod'
 
-import type { ErrorContext } from '@/errors/base/ErrorContext'
 import { ValidationError } from '@/errors/validation/ValidationError'
+import type { ValidationContext } from '@/types/errorContext'
 
 /**
  * Safely validate data and return result with success/error information.
  * @param schema - Zod schema to validate against.
  * @param data - Data to validate.
- * @param context - Additional error context.
+ * @param context - Structured validation context.
  * @returns Validation result.
  * @throws {@link Error} - When non-Zod validation error occurs.
  */
 export function safeValidate<T>(
   schema: z.ZodSchema<T>,
   data: unknown,
-  context?: ErrorContext,
+  context?: ValidationContext,
 ): { success: true; data: T } | { success: false; error: ValidationError } {
   try {
     const result = schema.parse(data)

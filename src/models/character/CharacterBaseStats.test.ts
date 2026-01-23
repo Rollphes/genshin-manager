@@ -3,12 +3,14 @@ import { beforeAll, describe, expect, it } from 'vitest'
 import { Client } from '@/client/Client'
 import { CharacterBaseStats } from '@/models/character/CharacterBaseStats'
 import { StatProperty } from '@/models/StatProperty'
+import { FightProp } from '@/types/enums'
+import { Language } from '@/types/types'
 
 describe('CharacterBaseStats', () => {
   beforeAll(async () => {
     const client = new Client({
-      defaultLanguage: 'en',
-      downloadLanguages: ['en'],
+      defaultLanguage: Language.En,
+      downloadLanguages: [Language.En],
     })
     await client.deploy()
   }, 30000)
@@ -64,36 +66,42 @@ describe('CharacterBaseStats', () => {
 
     it('should have correct stat types', () => {
       const statTypes = stats.stats.map((stat) => stat.type)
-      expect(statTypes).toContain('FIGHT_PROP_BASE_HP')
-      expect(statTypes).toContain('FIGHT_PROP_BASE_ATTACK')
-      expect(statTypes).toContain('FIGHT_PROP_BASE_DEFENSE')
-      expect(statTypes).toContain('FIGHT_PROP_CRITICAL')
-      expect(statTypes).toContain('FIGHT_PROP_CRITICAL_HURT')
+      expect(statTypes).toContain(FightProp.FightPropBaseHP)
+      expect(statTypes).toContain(FightProp.FightPropBaseAttack)
+      expect(statTypes).toContain(FightProp.FightPropBaseDefense)
+      expect(statTypes).toContain(FightProp.FightPropCritical)
+      expect(statTypes).toContain(FightProp.FightPropCriticalHurt)
     })
 
     it('should have correct base HP at level 1', () => {
-      const hp = stats.stats.find((s) => s.type === 'FIGHT_PROP_BASE_HP')
+      const hp = stats.stats.find((s) => s.type === FightProp.FightPropBaseHP)
       expect(hp?.value).toBeCloseTo(1000.986, 2)
     })
 
     it('should have correct base attack at level 1', () => {
-      const atk = stats.stats.find((s) => s.type === 'FIGHT_PROP_BASE_ATTACK')
+      const atk = stats.stats.find(
+        (s) => s.type === FightProp.FightPropBaseAttack,
+      )
       expect(atk?.value).toBeCloseTo(26.6266, 2)
     })
 
     it('should have correct base defense at level 1', () => {
-      const def = stats.stats.find((s) => s.type === 'FIGHT_PROP_BASE_DEFENSE')
+      const def = stats.stats.find(
+        (s) => s.type === FightProp.FightPropBaseDefense,
+      )
       expect(def?.value).toBeCloseTo(61.0266, 2)
     })
 
     it('should have correct critical rate', () => {
-      const crit = stats.stats.find((s) => s.type === 'FIGHT_PROP_CRITICAL')
+      const crit = stats.stats.find(
+        (s) => s.type === FightProp.FightPropCritical,
+      )
       expect(crit?.value).toBe(0.05)
     })
 
     it('should have correct critical damage at level 1', () => {
       const critDmg = stats.stats.find(
-        (s) => s.type === 'FIGHT_PROP_CRITICAL_HURT',
+        (s) => s.type === FightProp.FightPropCriticalHurt,
       )
       expect(critDmg?.value).toBe(0.5)
     })
@@ -138,28 +146,34 @@ describe('CharacterBaseStats', () => {
     })
 
     it('should have correct base HP at level 90', () => {
-      const hp = stats.stats.find((s) => s.type === 'FIGHT_PROP_BASE_HP')
+      const hp = stats.stats.find((s) => s.type === FightProp.FightPropBaseHP)
       expect(hp?.value).toBeCloseTo(12858.206, 1)
     })
 
     it('should have correct base attack at level 90', () => {
-      const atk = stats.stats.find((s) => s.type === 'FIGHT_PROP_BASE_ATTACK')
+      const atk = stats.stats.find(
+        (s) => s.type === FightProp.FightPropBaseAttack,
+      )
       expect(atk?.value).toBeCloseTo(342.025, 1)
     })
 
     it('should have correct base defense at level 90', () => {
-      const def = stats.stats.find((s) => s.type === 'FIGHT_PROP_BASE_DEFENSE')
+      const def = stats.stats.find(
+        (s) => s.type === FightProp.FightPropBaseDefense,
+      )
       expect(def?.value).toBeCloseTo(783.925, 1)
     })
 
     it('should have correct critical rate (unchanged)', () => {
-      const crit = stats.stats.find((s) => s.type === 'FIGHT_PROP_CRITICAL')
+      const crit = stats.stats.find(
+        (s) => s.type === FightProp.FightPropCritical,
+      )
       expect(crit?.value).toBe(0.05)
     })
 
     it('should have correct critical damage at level 90 (with ascension bonus)', () => {
       const critDmg = stats.stats.find(
-        (s) => s.type === 'FIGHT_PROP_CRITICAL_HURT',
+        (s) => s.type === FightProp.FightPropCriticalHurt,
       )
       expect(critDmg?.value).toBeCloseTo(0.884, 2)
     })

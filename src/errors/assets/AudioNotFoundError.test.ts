@@ -22,10 +22,10 @@ describe('AudioNotFoundError', () => {
       expect(error.message).toBe('Audio not found: /path/to/audio.mp3')
     })
 
-    it('should set errorCode to GM_ASSETS_AUDIO_NOT_FOUND', () => {
+    it('should set errorCode to GmAssetsAudioNotFound', () => {
       const error = new AudioNotFoundError('/path/to/audio.mp3')
       expect(error.errorCode).toBe(
-        GenshinManagerErrorCode.GM_ASSETS_AUDIO_NOT_FOUND,
+        GenshinManagerErrorCode.GmAssetsAudioNotFound,
       )
     })
 
@@ -54,25 +54,28 @@ describe('AudioNotFoundError', () => {
       expect(error.timestamp).toBeInstanceOf(Date)
     })
 
-    it('should set audioFile in context', () => {
-      const error = new AudioNotFoundError('/path/to/audio.mp3')
-      expect(error.context?.audioFile).toBe('/path/to/audio.mp3')
+    it('should accept context parameter with source info', () => {
+      const error = new AudioNotFoundError('/path/to/audio.mp3', {
+        source: 'AudioAssets',
+        recordId: 'voice_line',
+      })
+      expect(error.source).toBe('AudioAssets')
+      expect(error.recordId).toBe('voice_line')
     })
 
-    it('should set filePath in context', () => {
-      const error = new AudioNotFoundError('/path/to/audio.mp3')
-      expect(error.context?.filePath).toBe('/path/to/audio.mp3')
+    it('should include source in message when provided', () => {
+      const error = new AudioNotFoundError('/path/to/audio.mp3', {
+        source: 'AudioAssets',
+        recordId: 'voice_line',
+      })
+      expect(error.message).toContain('[AudioAssets#voice_line]')
     })
 
     it('should set operation in context', () => {
-      const error = new AudioNotFoundError('/path/to/audio.mp3')
-      expect(error.context?.operation).toBe('load audio')
-    })
-
-    it('should accept context parameter', () => {
-      const context = { statusCode: 404 }
-      const error = new AudioNotFoundError('/path/to/audio.mp3', context)
-      expect(error.context?.statusCode).toBe(404)
+      const error = new AudioNotFoundError('/path/to/audio.mp3', {
+        operation: 'fetch',
+      })
+      expect(error.operation).toBe('fetch')
     })
 
     it('should accept cause parameter', () => {
@@ -98,9 +101,7 @@ describe('AudioNotFoundError', () => {
       const error = new AudioNotFoundError('/path/to/audio.mp3')
       const json = error.toJSON()
       expect(json.name).toBe('AudioNotFoundError')
-      expect(json.errorCode).toBe(
-        GenshinManagerErrorCode.GM_ASSETS_AUDIO_NOT_FOUND,
-      )
+      expect(json.errorCode).toBe(GenshinManagerErrorCode.GmAssetsAudioNotFound)
     })
   })
 })

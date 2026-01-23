@@ -101,7 +101,7 @@ export default [
           },
           {
             selector: 'enumMember',
-            format: ['UPPER_CASE'],
+            format: ['PascalCase'],
           },
           {
             selector: 'typeProperty',

@@ -1,4 +1,5 @@
 import { Client } from '@/client/Client'
+import { AssetNotFoundError } from '@/errors/assets/AssetNotFoundError'
 import { Artifact } from '@/models/Artifact'
 
 /**
@@ -41,10 +42,17 @@ export class SetBonus {
       const setId = artifact.setId
       if (setId !== undefined) {
         countIds[setId] = (countIds[setId] || 0) + 1
-        const setJson = Client._getJsonFromCachedExcelBinOutput(
+        const setJson = Client._findBy(
           'ReliquarySetExcelConfigData',
+          'setId',
           setId,
         )
+        if (!setJson) {
+          throw new AssetNotFoundError(
+            `ReliquarySet ${String(setId)}`,
+            'ReliquarySetExcelConfigData',
+          )
+        }
         setBracers[setId] = new Artifact(setJson.containsList[0], 10001)
       }
     })

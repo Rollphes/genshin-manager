@@ -3,7 +3,9 @@ import * as fsPromises from 'fs/promises'
 import path from 'path'
 import { pipeline } from 'stream/promises'
 
+import { RestClient } from '@/client/RestClient'
 import { ImageNotFoundError } from '@/errors/assets/ImageNotFoundError'
+import { NetworkUnavailableError } from '@/errors/network/NetworkUnavailableError'
 import { ClientOption } from '@/types/types'
 import { initImageFolderPath } from '@/utils/paths'
 import { ReadableStreamWrapper } from '@/utils/streams/ReadableStreamWrapper'
@@ -27,13 +29,15 @@ export class ImageAssets {
   }
 
   /**
-   * Fetch option
+   * REST client for image fetching
    */
-  private static fetchOption: RequestInit
+  private static client: RestClient<Record<string, never>>
   /**
    * Image base URL by regex
    */
-  private static imageBaseURLByRegex: Record<string, RegExp[]>
+  private static imageBaseURLByRegex: Readonly<
+    Record<string, readonly RegExp[]>
+  >
   /**
    * Default image base URL
    */
@@ -107,7 +111,11 @@ export class ImageAssets {
    * @param option - client option
    */
   public static deploy(option: ClientOption): void {
-    this.fetchOption = option.fetchOption
+    this.client = new RestClient<Record<string, never>>('', {
+      headers: option.fetchOption.headers,
+      retry: 3,
+      retryDelay: 100,
+    })
     this.imageBaseURLByRegex = option.imageBaseURLByRegex
     this.defaultImageBaseURL = option.defaultImageBaseURL
     this.autoCacheImage = option.autoCacheImage
@@ -144,19 +152,22 @@ export class ImageAssets {
       ImageAssets.imageFolderPath,
       `${this.name}.png`,
     )
-    if (fs.existsSync(imageCachePath) && !this.isPNGCorrupted(imageCachePath)) {
+    if (fs.existsSync(imageCachePath) && !this.isPNGCorrupted(imageCachePath))
       return await fsPromises.readFile(imageCachePath)
-    } else {
-      const res = await fetch(this.url, ImageAssets.fetchOption)
-      if (!res.ok || !res.body)
-        throw new ImageNotFoundError(this.name, { url: this.url })
 
-      const arrayBuffer = await res.arrayBuffer()
-      const data = Buffer.from(arrayBuffer)
+    try {
+      const res = await ImageAssets.client.fetchRaw(this.url)
+      if (!res.body) throw new ImageNotFoundError(this.name, { url: this.url })
+      const data = Buffer.from(await res.arrayBuffer())
       if (ImageAssets.autoCacheImage)
         await fsPromises.writeFile(imageCachePath, data, { flag: 'w' })
 
       return data
+    } catch (error) {
+      if (error instanceof NetworkUnavailableError)
+        throw new ImageNotFoundError(this.name, { url: this.url })
+
+      throw error
     }
   }
 
@@ -176,10 +187,11 @@ export class ImageAssets {
       return fs.createReadStream(imageCachePath, {
         highWaterMark: highWaterMark,
       })
-    } else {
-      const res = await fetch(this.url, ImageAssets.fetchOption)
-      if (!res.ok || !res.body)
-        throw new ImageNotFoundError(this.name, { url: this.url })
+    }
+
+    try {
+      const res = await ImageAssets.client.fetchRaw(this.url)
+      if (!res.body) throw new ImageNotFoundError(this.name, { url: this.url })
 
       if (ImageAssets.autoCacheImage) {
         const fsWriteStream = fs.createWriteStream(imageCachePath, {
@@ -193,6 +205,11 @@ export class ImageAssets {
       return fs.createReadStream(imageCachePath, {
         highWaterMark: highWaterMark,
       })
+    } catch (error) {
+      if (error instanceof NetworkUnavailableError)
+        throw new ImageNotFoundError(this.name, { url: this.url })
+
+      throw error
     }
   }
 

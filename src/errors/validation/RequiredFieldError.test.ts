@@ -17,11 +17,9 @@ describe('RequiredFieldError', () => {
       expect(error.message).toBe("Required field 'username' is missing")
     })
 
-    it('should set errorCode to GM_VALIDATION_REQUIRED', () => {
+    it('should set errorCode to GmValidationRequired', () => {
       const error = new RequiredFieldError('username')
-      expect(error.errorCode).toBe(
-        GenshinManagerErrorCode.GM_VALIDATION_REQUIRED,
-      )
+      expect(error.errorCode).toBe(GenshinManagerErrorCode.GmValidationRequired)
     })
 
     it('should set name to RequiredFieldError', () => {
@@ -65,9 +63,9 @@ describe('RequiredFieldError', () => {
     })
 
     it('should accept context parameter', () => {
-      const context = { operation: 'validate' }
+      const context = { source: 'Test' }
       const error = new RequiredFieldError('username', context)
-      expect(error.context?.operation).toBe('validate')
+      expect(error.source).toBe('Test')
     })
 
     it('should accept cause parameter', () => {
@@ -89,9 +87,7 @@ describe('RequiredFieldError', () => {
       const error = new RequiredFieldError('username')
       const json = error.toJSON()
       expect(json.name).toBe('RequiredFieldError')
-      expect(json.errorCode).toBe(
-        GenshinManagerErrorCode.GM_VALIDATION_REQUIRED,
-      )
+      expect(json.errorCode).toBe(GenshinManagerErrorCode.GmValidationRequired)
     })
   })
 })

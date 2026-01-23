@@ -7,13 +7,12 @@ import { CharacterSkill } from '@/models/character/CharacterSkill'
 import { CharacterStatusManager } from '@/models/character/CharacterStatusManager'
 import { SetBonus } from '@/models/SetBonus'
 import { WeaponInfo } from '@/models/weapon/WeaponInfo'
-import {
-  APIAvatarInfo,
-  APIReliquaryEquip,
-  APIWeaponEquip,
-} from '@/types/enkaNetwork/EnkaTypes'
-import { BodyType } from '@/types/generated/AvatarExcelConfigData'
-import { WeaponType } from '@/types/generated/WeaponExcelConfigData'
+import type {
+  AvatarInfoResponse,
+  ReliquaryEquipResponse,
+  WeaponEquipResponse,
+} from '@/types/api/enkaNetwork/responses'
+import { BodyType, WeaponType } from '@/types/enums'
 import { Element } from '@/types/types'
 
 /**
@@ -106,13 +105,13 @@ export class CharacterDetail {
   /**
    * Data from EnkaNetwork
    */
-  public readonly data: APIAvatarInfo
+  public readonly data: AvatarInfoResponse
 
   /**
    * Create a CharacterDetail
    * @param data - data from EnkaNetwork
    */
-  constructor(data: APIAvatarInfo) {
+  constructor(data: AvatarInfoResponse) {
     const characterInfo = new CharacterInfo(data.avatarId, data.skillDepotId)
     this.id = characterInfo.id
     this.defaultCostumeId = characterInfo.defaultCostumeId
@@ -144,7 +143,7 @@ export class CharacterDetail {
 
     this.combatStatus = new CharacterStatusManager(data.fightPropMap)
     const weaponData = data.equipList.find(
-      (equip): equip is APIWeaponEquip => 'weapon' in equip,
+      (equip): equip is WeaponEquipResponse => 'weapon' in equip,
     )
     if (!weaponData) throw new GeneralError('Weapon not found.')
     const affixMap = weaponData.weapon.affixMap
@@ -156,7 +155,7 @@ export class CharacterDetail {
       (affixMap ? affixMap[weaponData.itemId + 100000] : 0) + 1,
     )
     const artifactDatas = data.equipList.filter(
-      (equip): equip is APIReliquaryEquip => 'reliquary' in equip,
+      (equip): equip is ReliquaryEquipResponse => 'reliquary' in equip,
     )
     this.artifacts = artifactDatas.map(
       (data) =>

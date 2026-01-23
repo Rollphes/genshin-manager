@@ -52,25 +52,37 @@ export class CharacterCostume {
    */
   constructor(costumeId: number) {
     this.id = costumeId
-    const costumeJson = Client._getJsonFromCachedExcelBinOutput(
+    const costumeJson = Client._findBy(
       'AvatarCostumeExcelConfigData',
+      'skinId',
       this.id,
     )
+    if (!costumeJson) {
+      throw new Error(
+        `AvatarCostumeExcelConfigData not found for costumeId ${String(this.id)}`,
+      )
+    }
+
     this.characterId = costumeJson.characterId
-    const avatarJson = Client._getJsonFromCachedExcelBinOutput(
+    const avatarJson = Client._findBy(
       'AvatarExcelConfigData',
+      'id',
       this.characterId,
     )
+    if (!avatarJson) {
+      throw new Error(
+        `AvatarExcelConfigData not found for characterId ${String(this.characterId)}`,
+      )
+    }
 
     const nameTextMapHash = costumeJson.nameTextMapHash
     const descTextMapHash = costumeJson.descTextMapHash
     this.name = Client._cachedTextMap.get(nameTextMapHash) ?? ''
     this.description = Client._cachedTextMap.get(descTextMapHash) ?? ''
     this.quality = costumeJson.quality
-    const sideIconName =
-      costumeJson.quality && typeof avatarJson != 'undefined'
-        ? costumeJson.sideIconName
-        : avatarJson.sideIconName
+    const sideIconName = costumeJson.quality
+      ? costumeJson.sideIconName
+      : avatarJson.sideIconName
     this.sideIcon = new ImageAssets(sideIconName)
     const nameParts = this.sideIcon.name.split('_')
     const avatarTag = nameParts[nameParts.length - 1]
@@ -88,11 +100,7 @@ export class CharacterCostume {
    * @returns all costume IDs
    */
   public static get allCostumeIds(): number[] {
-    const costumeDatas = Object.values(
-      Client._getCachedExcelBinOutputByName('AvatarCostumeExcelConfigData'),
-    )
-    return costumeDatas
-      .filter((k): k is NonNullable<typeof k> => k?.skinId !== undefined)
-      .map((k) => k.skinId)
+    const costumeDatas = Client._getAll('AvatarCostumeExcelConfigData')
+    return costumeDatas.map((k) => k.skinId)
   }
 }

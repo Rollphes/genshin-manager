@@ -4,12 +4,13 @@ import { createEnkaBuildResponse } from '@/__test__/__mocks__/api/enka-manager/c
 import { Client } from '@/client/Client'
 import { CharacterDetail } from '@/models/enka/CharacterDetail'
 import { EnkaBuild } from '@/models/enka/EnkaBuild'
+import { Language } from '@/types/types'
 
 describe('EnkaBuild', () => {
   beforeAll(async () => {
     const client = new Client({
-      defaultLanguage: 'en',
-      downloadLanguages: ['en'],
+      defaultLanguage: Language.En,
+      downloadLanguages: [Language.En],
     })
     await client.deploy()
   }, 30000)
@@ -139,8 +140,11 @@ describe('EnkaBuild', () => {
 
   describe('Settings Variations', () => {
     it('should handle build without caption', () => {
-      const mockData = createEnkaBuildResponse(1, 10000002)
-      mockData.settings.caption = undefined
+      const baseData = createEnkaBuildResponse(1, 10000002)
+      const mockData = {
+        ...baseData,
+        settings: { ...baseData.settings, caption: undefined },
+      }
       const enkaBuild = new EnkaBuild(
         mockData,
         'https://enka.network/u/testuser/hash123',
@@ -149,8 +153,11 @@ describe('EnkaBuild', () => {
     })
 
     it('should handle build with image', () => {
-      const mockData = createEnkaBuildResponse(1, 10000002)
-      mockData.image = 'https://example.com/custom-image.png'
+      const baseData = createEnkaBuildResponse(1, 10000002)
+      const mockData = {
+        ...baseData,
+        image: 'https://example.com/custom-image.png',
+      }
       const enkaBuild = new EnkaBuild(
         mockData,
         'https://enka.network/u/testuser/hash123',
@@ -161,9 +168,12 @@ describe('EnkaBuild', () => {
     })
 
     it('should handle build without artSource', () => {
-      const mockData = createEnkaBuildResponse(1, 10000002)
-      mockData.settings.artSource = undefined
-      mockData.image = null
+      const baseData = createEnkaBuildResponse(1, 10000002)
+      const mockData = {
+        ...baseData,
+        settings: { ...baseData.settings, artSource: undefined },
+        image: null,
+      }
       const enkaBuild = new EnkaBuild(
         mockData,
         'https://enka.network/u/testuser/hash123',
@@ -172,8 +182,11 @@ describe('EnkaBuild', () => {
     })
 
     it('should handle build without adaptiveColor', () => {
-      const mockData = createEnkaBuildResponse(1, 10000002)
-      mockData.settings.adaptiveColor = undefined
+      const baseData = createEnkaBuildResponse(1, 10000002)
+      const mockData = {
+        ...baseData,
+        settings: { ...baseData.settings, adaptiveColor: undefined },
+      }
       const enkaBuild = new EnkaBuild(
         mockData,
         'https://enka.network/u/testuser/hash123',
@@ -182,8 +195,11 @@ describe('EnkaBuild', () => {
     })
 
     it('should handle build without honkardWidth', () => {
-      const mockData = createEnkaBuildResponse(1, 10000002)
-      mockData.settings.honkardWidth = undefined
+      const baseData = createEnkaBuildResponse(1, 10000002)
+      const mockData = {
+        ...baseData,
+        settings: { ...baseData.settings, honkardWidth: undefined },
+      }
       const enkaBuild = new EnkaBuild(
         mockData,
         'https://enka.network/u/testuser/hash123',

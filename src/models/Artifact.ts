@@ -3,9 +3,8 @@ import { AssetNotFoundError } from '@/errors/assets/AssetNotFoundError'
 import { ImageAssets } from '@/models/assets/ImageAssets'
 import { StatProperty } from '@/models/StatProperty'
 import { createArtifactLevelSchema } from '@/schemas/createArtifactLevelSchema'
-import { EquipType } from '@/types/generated/ReliquaryExcelConfigData'
-import { FightPropType } from '@/types/types'
-import { toFightPropType } from '@/utils/typeGuards/toFightPropType'
+import { EquipType, FightProp } from '@/types/enums'
+import { toEnum } from '@/utils/typeGuards/toEnum'
 import { validate } from '@/utils/validation/validate'
 /**
  * Represents a sub-stat property of an artifact
@@ -18,7 +17,7 @@ export interface ArtifactAffixAppendProp {
   /**
    * Type of the stat property
    */
-  type: FightPropType
+  type: FightProp
   /**
    * Value of the stat property
    */
@@ -133,14 +132,21 @@ export class Artifact {
     artifactId: number,
     mainPropId = 10001,
     level = 0,
-    appendPropIds: number[] = [],
+    appendPropIds: readonly number[] = [],
   ) {
     this.id = artifactId
     this.level = level
-    const artifactJson = Client._getJsonFromCachedExcelBinOutput(
+    const artifactJson = Client._findBy(
       'ReliquaryExcelConfigData',
+      'id',
       this.id,
     )
+    if (!artifactJson) {
+      throw new AssetNotFoundError(
+        `Reliquary ${String(this.id)}`,
+        'ReliquaryExcelConfigData',
+      )
+    }
     this.type = artifactJson.equipType
     const nameTextMapHash = artifactJson.nameTextMapHash
     const descTextMapHash = artifactJson.descTextMapHash
@@ -154,15 +160,29 @@ export class Artifact {
       propertyKey: 'level',
     })
     if (this.setId) {
-      const setJson = Client._getJsonFromCachedExcelBinOutput(
+      const setJson = Client._findBy(
         'ReliquarySetExcelConfigData',
+        'setId',
         this.setId,
       )
+      if (!setJson) {
+        throw new AssetNotFoundError(
+          `ReliquarySet ${String(this.setId)}`,
+          'ReliquarySetExcelConfigData',
+        )
+      }
       const equipAffixId = setJson.equipAffixId * 10 + 0
-      const equipAffixJson = Client._getJsonFromCachedExcelBinOutput(
+      const equipAffixJson = Client._findBy(
         'EquipAffixExcelConfigData',
+        'affixId',
         equipAffixId,
       )
+      if (!equipAffixJson) {
+        throw new AssetNotFoundError(
+          `EquipAffix ${String(equipAffixId)}`,
+          'EquipAffixExcelConfigData',
+        )
+      }
 
       const nameTextMapHash = equipAffixJson.nameTextMapHash
       this.setName = Client._cachedTextMap.get(nameTextMapHash)
@@ -171,62 +191,103 @@ export class Artifact {
         const descTextMapHash = equipAffixJson.descTextMapHash
         this.setDescriptions[1] = Client._cachedTextMap.get(descTextMapHash)
       } else {
-        const equipAffixJsonBy2pc = Client._getJsonFromCachedExcelBinOutput(
+        const equipAffixJsonBy2pc = Client._findBy(
           'EquipAffixExcelConfigData',
+          'affixId',
           equipAffixId,
         )
+        if (!equipAffixJsonBy2pc) {
+          throw new AssetNotFoundError(
+            `EquipAffix ${String(equipAffixId)}`,
+            'EquipAffixExcelConfigData',
+          )
+        }
         const descTextMapHashFor2pc = equipAffixJsonBy2pc.descTextMapHash
         this.setDescriptions[2] = Client._cachedTextMap.get(
           descTextMapHashFor2pc,
         )
 
-        const equipAffixJsonBy4pc = Client._getJsonFromCachedExcelBinOutput(
+        const equipAffixJsonBy4pc = Client._findBy(
           'EquipAffixExcelConfigData',
+          'affixId',
           equipAffixId + 1,
         )
+        if (!equipAffixJsonBy4pc) {
+          throw new AssetNotFoundError(
+            `EquipAffix ${String(equipAffixId + 1)}`,
+            'EquipAffixExcelConfigData',
+          )
+        }
         const descTextMapHashFor4pc = equipAffixJsonBy4pc.descTextMapHash
         this.setDescriptions[4] = Client._cachedTextMap.get(
           descTextMapHashFor4pc,
         )
       }
     }
-    const artifactMainJson = Client._getJsonFromCachedExcelBinOutput(
+    const artifactMainJson = Client._findBy(
       'ReliquaryMainPropExcelConfigData',
+      'id',
       mainPropId,
     )
-    const reliquaryLevelJson = Client._getJsonFromCachedExcelBinOutput(
+    if (!artifactMainJson) {
+      throw new AssetNotFoundError(
+        `ReliquaryMainProp ${String(mainPropId)}`,
+        'ReliquaryMainPropExcelConfigData',
+      )
+    }
+    const reliquaryLevelRecords = Client._filterBy(
       'ReliquaryLevelExcelConfigData',
-      artifactMainJson.propType,
+      'rank',
+      this.rarity,
     )
-    const realityJson = reliquaryLevelJson[this.rarity] as
-      | Record<number, number>
-      | undefined
-    if (!realityJson) {
+    // Data level is 1-indexed, Artifact level is 0-indexed (0-20)
+    const levelRecord = reliquaryLevelRecords.find(
+      (r) => r.level === this.level + 1,
+    )
+    if (!levelRecord) {
       throw new AssetNotFoundError(
-        `rarity ${String(this.rarity)}`,
+        `ReliquaryLevel rank ${String(this.rarity)} level ${String(this.level)}`,
         'ReliquaryLevelExcelConfigData',
       )
     }
-    const mainValue = realityJson[this.level]
-    if (!mainValue) {
+    const mainProp = levelRecord.addProps.find(
+      (p) => (p.propType as string) === artifactMainJson.propType,
+    )
+    if (!mainProp) {
       throw new AssetNotFoundError(
-        `level ${String(this.level)}`,
+        `ReliquaryLevel propType ${artifactMainJson.propType}`,
         'ReliquaryLevelExcelConfigData',
       )
     }
+    const mainValue = mainProp.value
     this.mainStat = new StatProperty(
-      toFightPropType(artifactMainJson.propType, 'mainStat'),
+      toEnum(FightProp, artifactMainJson.propType, 'FightProp', {
+        source: 'ReliquaryMainPropExcelConfigData',
+        recordId: artifactMainJson.id,
+        path: 'propType',
+      }),
       mainValue,
     )
     this.subStats = this.getSubStatProperties(appendPropIds)
     this.appendProps = appendPropIds.map((propId) => {
-      const artifactAffixJson = Client._getJsonFromCachedExcelBinOutput(
+      const artifactAffixJson = Client._findBy(
         'ReliquaryAffixExcelConfigData',
+        'id',
         propId,
       )
+      if (!artifactAffixJson) {
+        throw new AssetNotFoundError(
+          `ReliquaryAffix ${String(propId)}`,
+          'ReliquaryAffixExcelConfigData',
+        )
+      }
       return {
         id: propId,
-        type: toFightPropType(artifactAffixJson.propType, 'appendProp'),
+        type: toEnum(FightProp, artifactAffixJson.propType, 'FightProp', {
+          source: 'ReliquaryAffixExcelConfigData',
+          recordId: propId,
+          path: 'propType',
+        }),
         value: artifactAffixJson.propValue,
       }
     })
@@ -243,13 +304,10 @@ export class Artifact {
    * ```
    */
   public static get allArtifactIds(): number[] {
-    const artifactDatas = Object.values(
-      Client._getCachedExcelBinOutputByName('ReliquaryExcelConfigData'),
-    )
+    const artifactDatas = Client._getAll('ReliquaryExcelConfigData')
     return artifactDatas
       .filter(
-        (data): data is NonNullable<typeof data> =>
-          data?.setId !== undefined &&
+        (data) =>
           !this.blackSetIds.includes(data.setId) &&
           !this.blackArtifactIds.includes(data.id),
       )
@@ -260,6 +318,7 @@ export class Artifact {
    * Get max level by artifact ID
    * @param artifactId - artifact ID
    * @returns max level
+   * @throws {@link AssetNotFoundError} - When the artifact data is not found
    * @example
    * ```ts
    * const maxLevel = Artifact.getMaxLevelByArtifactId(81101)
@@ -267,10 +326,17 @@ export class Artifact {
    * ```
    */
   public static getMaxLevelByArtifactId(artifactId: number): number {
-    const artifactJson = Client._getJsonFromCachedExcelBinOutput(
+    const artifactJson = Client._findBy(
       'ReliquaryExcelConfigData',
+      'id',
       artifactId,
     )
+    if (!artifactJson) {
+      throw new AssetNotFoundError(
+        `Reliquary ${String(artifactId)}`,
+        'ReliquaryExcelConfigData',
+      )
+    }
     return Artifact.maxLevelMap[artifactJson.rankLevel]
   }
 
@@ -279,20 +345,41 @@ export class Artifact {
    * @param appendPropIds - artifact sub stat IDs
    * @returns sub stat properties
    */
-  private getSubStatProperties(appendPropIds: number[]): StatProperty[] {
-    const result: Partial<Record<FightPropType, number>> = {}
+  private getSubStatProperties(
+    appendPropIds: readonly number[],
+  ): StatProperty[] {
+    const result: Partial<Record<FightProp, number>> = {}
     appendPropIds.forEach((propId) => {
-      const artifactAffixJson = Client._getJsonFromCachedExcelBinOutput(
+      const artifactAffixJson = Client._findBy(
         'ReliquaryAffixExcelConfigData',
+        'id',
         propId,
       )
-      const propType = toFightPropType(artifactAffixJson.propType, 'subStat')
+      if (!artifactAffixJson) {
+        throw new AssetNotFoundError(
+          `ReliquaryAffix ${String(propId)}`,
+          'ReliquaryAffixExcelConfigData',
+        )
+      }
+      const propType = toEnum(
+        FightProp,
+        artifactAffixJson.propType,
+        'FightProp',
+        {
+          source: 'ReliquaryAffixExcelConfigData',
+          recordId: propId,
+          path: 'propType',
+        },
+      )
       const propValue = result[propType]
       if (propValue) result[propType] = propValue + artifactAffixJson.propValue
       else result[propType] = artifactAffixJson.propValue
     })
     return Object.entries(result).map(([key, value]) => {
-      return new StatProperty(toFightPropType(key, 'subStatResult'), value)
+      return new StatProperty(
+        toEnum(FightProp, key, 'FightProp', { path: 'aggregatedSubStat' }),
+        value,
+      )
     })
   }
 }

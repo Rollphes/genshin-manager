@@ -22,10 +22,10 @@ describe('ImageNotFoundError', () => {
       expect(error.message).toBe('Image not found: /path/to/image.png')
     })
 
-    it('should set errorCode to GM_ASSETS_IMAGE_NOT_FOUND', () => {
+    it('should set errorCode to GmAssetsImageNotFound', () => {
       const error = new ImageNotFoundError('/path/to/image.png')
       expect(error.errorCode).toBe(
-        GenshinManagerErrorCode.GM_ASSETS_IMAGE_NOT_FOUND,
+        GenshinManagerErrorCode.GmAssetsImageNotFound,
       )
     })
 
@@ -54,25 +54,28 @@ describe('ImageNotFoundError', () => {
       expect(error.timestamp).toBeInstanceOf(Date)
     })
 
-    it('should set imageFile in context', () => {
-      const error = new ImageNotFoundError('/path/to/image.png')
-      expect(error.context?.imageFile).toBe('/path/to/image.png')
+    it('should accept context parameter with source info', () => {
+      const error = new ImageNotFoundError('/path/to/image.png', {
+        source: 'ImageAssets',
+        recordId: 'character_icon',
+      })
+      expect(error.source).toBe('ImageAssets')
+      expect(error.recordId).toBe('character_icon')
     })
 
-    it('should set filePath in context', () => {
-      const error = new ImageNotFoundError('/path/to/image.png')
-      expect(error.context?.filePath).toBe('/path/to/image.png')
+    it('should include source in message when provided', () => {
+      const error = new ImageNotFoundError('/path/to/image.png', {
+        source: 'ImageAssets',
+        recordId: 'character_icon',
+      })
+      expect(error.message).toContain('[ImageAssets#character_icon]')
     })
 
     it('should set operation in context', () => {
-      const error = new ImageNotFoundError('/path/to/image.png')
-      expect(error.context?.operation).toBe('load image')
-    })
-
-    it('should accept context parameter', () => {
-      const context = { statusCode: 404 }
-      const error = new ImageNotFoundError('/path/to/image.png', context)
-      expect(error.context?.statusCode).toBe(404)
+      const error = new ImageNotFoundError('/path/to/image.png', {
+        operation: 'fetch',
+      })
+      expect(error.operation).toBe('fetch')
     })
 
     it('should accept cause parameter', () => {
@@ -98,9 +101,7 @@ describe('ImageNotFoundError', () => {
       const error = new ImageNotFoundError('/path/to/image.png')
       const json = error.toJSON()
       expect(json.name).toBe('ImageNotFoundError')
-      expect(json.errorCode).toBe(
-        GenshinManagerErrorCode.GM_ASSETS_IMAGE_NOT_FOUND,
-      )
+      expect(json.errorCode).toBe(GenshinManagerErrorCode.GmAssetsImageNotFound)
     })
   })
 })

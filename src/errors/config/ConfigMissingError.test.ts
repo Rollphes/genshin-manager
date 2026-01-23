@@ -33,9 +33,9 @@ describe('ConfigMissingError', () => {
       expect(error.configFile).toBeUndefined()
     })
 
-    it('should set errorCode to GM_CONFIG_MISSING', () => {
+    it('should set errorCode to GmConfigMissing', () => {
       const error = new ConfigMissingError('apiKey')
-      expect(error.errorCode).toBe(GenshinManagerErrorCode.GM_CONFIG_MISSING)
+      expect(error.errorCode).toBe(GenshinManagerErrorCode.GmConfigMissing)
     })
 
     it('should set name to ConfigMissingError', () => {
@@ -108,7 +108,7 @@ describe('ConfigMissingError', () => {
       const error = new ConfigMissingError('apiKey', '/config.json')
       const json = error.toJSON()
       expect(json.name).toBe('ConfigMissingError')
-      expect(json.errorCode).toBe(GenshinManagerErrorCode.GM_CONFIG_MISSING)
+      expect(json.errorCode).toBe(GenshinManagerErrorCode.GmConfigMissing)
     })
   })
 })

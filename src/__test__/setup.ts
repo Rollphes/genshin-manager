@@ -2,6 +2,7 @@ import fs from 'fs'
 import path from 'path'
 
 import { Client } from '@/client/Client'
+import { Language } from '@/types/types'
 
 /**
  * Global setup for vitest
@@ -38,21 +39,21 @@ export async function setup(): Promise<void> {
    * Client instance with all supported languages for comprehensive test coverage.
    */
   const client = new Client({
-    defaultLanguage: 'en',
+    defaultLanguage: Language.En,
     downloadLanguages: [
-      'en',
-      'ja',
-      'zh-cn',
-      'zh-tw',
-      'de',
-      'es',
-      'fr',
-      'id',
-      'ko',
-      'pt',
-      'ru',
-      'th',
-      'vi',
+      Language.En,
+      Language.Ja,
+      Language.ZhCn,
+      Language.ZhTw,
+      Language.De,
+      Language.Es,
+      Language.Fr,
+      Language.Id,
+      Language.Ko,
+      Language.Pt,
+      Language.Ru,
+      Language.Th,
+      Language.Vi,
     ],
   })
 

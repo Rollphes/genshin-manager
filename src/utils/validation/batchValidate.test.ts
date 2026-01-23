@@ -59,7 +59,7 @@ describe('batchValidate', () => {
         schema: z.string(),
         data: 123,
         fieldName: 'testField',
-        context: { operation: 'batch test' },
+        context: { source: 'BatchTest' },
       },
     ] as const
     try {

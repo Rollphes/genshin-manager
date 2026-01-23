@@ -1,21 +1,22 @@
 import { AssetError } from '@/errors/assets/AssetError'
 import { GenshinManagerErrorCode } from '@/errors/base/ErrorCodes'
-import type { ErrorContext } from '@/errors/base/ErrorContext'
+import type { AssetContext } from '@/types/errorContext'
 
 /**
  * Audio not found error
  */
 export class AudioNotFoundError extends AssetError {
-  public readonly errorCode = GenshinManagerErrorCode.GM_ASSETS_AUDIO_NOT_FOUND
+  public readonly errorCode = GenshinManagerErrorCode.GmAssetsAudioNotFound
 
   /**
    * Constructor for AudioNotFoundError
    * @param audioPath - Audio file path or identifier
-   * @param context - Additional error context
+   * @param context - Structured asset context
    * @param cause - Original error
    */
-  constructor(audioPath: string, context?: ErrorContext, cause?: Error) {
-    const message = `Audio not found: ${audioPath}`
+  constructor(audioPath: string, context?: AssetContext, cause?: Error) {
+    const locationPrefix = AssetError.buildAssetLocationPrefix(context)
+    const message = `${locationPrefix}Audio not found: ${audioPath}`
 
     super(message, audioPath, 'audio', context, cause)
   }

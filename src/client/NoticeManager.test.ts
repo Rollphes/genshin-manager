@@ -15,28 +15,29 @@ import { createAnnListResponse } from '@/__test__/__mocks__/api/notice-manager/c
 import { createDetailedAnnContentResponse } from '@/__test__/__mocks__/api/notice-manager/createDetailedAnnContentResponse'
 import { MockResponse } from '@/__test__/__mocks__/utils/MockResponse'
 import { Client } from '@/client/Client'
-import { NoticeManager, NoticeManagerEvents } from '@/client/NoticeManager'
+import { NoticeManager } from '@/client/NoticeManager'
 import { AnnContentNotFoundError } from '@/errors/content/AnnContentNotFoundError'
 import { ValidationError } from '@/errors/validation/ValidationError'
+import { NoticeManagerEvents } from '@/types/events/notice'
+import { Language } from '@/types/types'
 
 // Increase max listeners to prevent memory leak warnings during tests
 EventEmitter.defaultMaxListeners = 50
 
-import { NoticeLanguage } from '@/types/sg-hk4e-api'
-const supportedLanguages: (keyof typeof NoticeLanguage)[] = [
-  'en',
-  'ru',
-  'vi',
-  'th',
-  'pt',
-  'ko',
-  'ja',
-  'id',
-  'fr',
-  'es',
-  'de',
-  'zh-tw',
-  'zh-cn',
+const supportedLanguages: Language[] = [
+  Language.En,
+  Language.Ru,
+  Language.Vi,
+  Language.Th,
+  Language.Pt,
+  Language.Ko,
+  Language.Ja,
+  Language.Id,
+  Language.Fr,
+  Language.Es,
+  Language.De,
+  Language.ZhTw,
+  Language.ZhCn,
 ]
 
 describe('NoticeManager Basic Functionality', () => {
@@ -48,8 +49,8 @@ describe('NoticeManager Basic Functionality', () => {
 
     // Deploy Client using the GitLab mock server
     const client = new Client({
-      defaultLanguage: 'en',
-      downloadLanguages: ['en'],
+      defaultLanguage: Language.En,
+      downloadLanguages: [Language.En],
     })
     await client.deploy()
   }, 30000) // 30 seconds timeout for deployment
@@ -59,21 +60,21 @@ describe('NoticeManager Basic Functionality', () => {
     // Mock fetch globally for NoticeManager tests
     global.fetch = vi.fn()
     mockFetch = fetch as MockedFunction<typeof fetch>
-    noticeManager = new NoticeManager('en')
+    noticeManager = new NoticeManager(Language.En)
   })
 
   describe('Initialization Tests', () => {
     it('should initialize with default parameters', () => {
-      noticeManager = new NoticeManager('en')
+      noticeManager = new NoticeManager(Language.En)
 
-      expect(noticeManager.language).toBe('en')
+      expect(noticeManager.language).toBe(Language.En)
       expect(noticeManager.updateInterval).toBeUndefined()
       expect(noticeManager.notices.size).toBe(0)
     })
 
     it('should initialize with custom update interval', () => {
       const customInterval = 120000 // 2 minutes
-      noticeManager = new NoticeManager('en', customInterval)
+      noticeManager = new NoticeManager(Language.En, customInterval)
 
       expect(noticeManager.updateInterval).toBe(customInterval)
     })
@@ -84,9 +85,9 @@ describe('NoticeManager Basic Functionality', () => {
         level: '90',
         uid: '123456789',
       }
-      noticeManager = new NoticeManager('en', undefined, customParams)
+      noticeManager = new NoticeManager(Language.En, undefined, customParams)
 
-      expect(noticeManager.language).toBe('en')
+      expect(noticeManager.language).toBe(Language.En)
       // URL params are private, so we can't directly test them
       // but we can verify the manager was created successfully
       expect(noticeManager).toBeInstanceOf(NoticeManager)
@@ -109,7 +110,7 @@ describe('NoticeManager Basic Functionality', () => {
 
   describe('Notice Retrieval Tests', () => {
     beforeEach(() => {
-      noticeManager = new NoticeManager('en')
+      noticeManager = new NoticeManager(Language.En)
     })
 
     it('should successfully execute update method', async () => {
@@ -197,19 +198,19 @@ describe('NoticeManager Basic Functionality', () => {
         expect(notice.typeLabel).toBe('Event')
         expect(notice.tag).toBe(1) // From mock data generator default
         expect(notice.version).toBe(1) // From mock data generator default
-        expect(notice.lang).toBe('en-us')
+        expect(notice.lang).toBe(Language.En)
       }
     })
   })
 
   describe('Event Functionality Tests', () => {
     beforeEach(() => {
-      noticeManager = new NoticeManager('en')
+      noticeManager = new NoticeManager(Language.En)
     })
 
     it('should emit ADD_NOTICE event when new notice is added', async () => {
       const eventSpy = vi.fn()
-      noticeManager.on(NoticeManagerEvents.ADD_NOTICE, eventSpy)
+      noticeManager.on(NoticeManagerEvents.AddNotice, eventSpy)
 
       // Use mock data generator for single notice
       const mockAnnContentResponse = createAnnContentResponse([1001])
@@ -251,8 +252,8 @@ describe('NoticeManager Basic Functionality', () => {
       const addEventSpy = vi.fn()
       const removeEventSpy = vi.fn()
 
-      noticeManager.on(NoticeManagerEvents.ADD_NOTICE, addEventSpy)
-      noticeManager.on(NoticeManagerEvents.REMOVE_NOTICE, removeEventSpy)
+      noticeManager.on(NoticeManagerEvents.AddNotice, addEventSpy)
+      noticeManager.on(NoticeManagerEvents.RemoveNotice, removeEventSpy)
 
       // First update: Add notices 1001 and 1002
       const mockAnnContentResponse1 = createAnnContentResponse([1001, 1002])
@@ -333,9 +334,9 @@ describe('NoticeManager Basic Functionality', () => {
       const listener3 = vi.fn()
 
       // Add multiple listeners for the same event
-      noticeManager.on(NoticeManagerEvents.ADD_NOTICE, listener1)
-      noticeManager.on(NoticeManagerEvents.ADD_NOTICE, listener2)
-      noticeManager.on(NoticeManagerEvents.REMOVE_NOTICE, listener3)
+      noticeManager.on(NoticeManagerEvents.AddNotice, listener1)
+      noticeManager.on(NoticeManagerEvents.AddNotice, listener2)
+      noticeManager.on(NoticeManagerEvents.RemoveNotice, listener3)
 
       // Use mock data generator for single notice
       const mockAnnContentResponse = createAnnContentResponse([1001])
@@ -380,8 +381,8 @@ describe('NoticeManager Basic Functionality', () => {
       const addEventSpy = vi.fn()
       const removeEventSpy = vi.fn()
 
-      noticeManager.on(NoticeManagerEvents.ADD_NOTICE, addEventSpy)
-      noticeManager.on(NoticeManagerEvents.REMOVE_NOTICE, removeEventSpy)
+      noticeManager.on(NoticeManagerEvents.AddNotice, addEventSpy)
+      noticeManager.on(NoticeManagerEvents.RemoveNotice, removeEventSpy)
 
       // First update: Add notice 1001
       const mockAnnContentResponse = createAnnContentResponse([1001])
@@ -606,7 +607,7 @@ describe('NoticeManager Basic Functionality', () => {
 
   describe('Cache Functionality Tests', () => {
     beforeEach(() => {
-      noticeManager = new NoticeManager('en')
+      noticeManager = new NoticeManager(Language.En)
     })
 
     it('should cache notice data correctly after update', async () => {
@@ -719,33 +720,39 @@ describe('NoticeManager Basic Functionality', () => {
       const minInterval = 60000 // 1 minute in milliseconds
 
       // Test valid interval (exactly minimum)
-      expect(() => new NoticeManager('en', minInterval)).not.toThrow()
+      expect(() => new NoticeManager(Language.En, minInterval)).not.toThrow()
 
       // Test valid interval (above minimum)
-      expect(() => new NoticeManager('en', minInterval * 2)).not.toThrow()
+      expect(
+        () => new NoticeManager(Language.En, minInterval * 2),
+      ).not.toThrow()
 
       // Test valid interval (undefined - should not throw)
-      expect(() => new NoticeManager('en', undefined)).not.toThrow()
+      expect(() => new NoticeManager(Language.En, undefined)).not.toThrow()
 
       // Test edge case: zero is actually valid due to falsy check in source
-      expect(() => new NoticeManager('en', 0)).not.toThrow()
+      expect(() => new NoticeManager(Language.En, 0)).not.toThrow()
 
       // Test invalid interval (below minimum but positive)
-      expect(() => new NoticeManager('en', minInterval - 1)).toThrow(
+      expect(() => new NoticeManager(Language.En, minInterval - 1)).toThrow(
         ValidationError,
       )
 
       // Test invalid interval (small positive value)
-      expect(() => new NoticeManager('en', 1)).toThrow(ValidationError)
+      expect(() => new NoticeManager(Language.En, 1)).toThrow(ValidationError)
 
       // Test invalid interval (negative)
-      expect(() => new NoticeManager('en', -1000)).toThrow(ValidationError)
+      expect(() => new NoticeManager(Language.En, -1000)).toThrow(
+        ValidationError,
+      )
 
       // Test maximum boundary (should not throw)
-      expect(() => new NoticeManager('en', 2147483647)).not.toThrow()
+      expect(() => new NoticeManager(Language.En, 2147483647)).not.toThrow()
 
       // Test over maximum boundary (should throw)
-      expect(() => new NoticeManager('en', 2147483648)).toThrow(ValidationError)
+      expect(() => new NoticeManager(Language.En, 2147483648)).toThrow(
+        ValidationError,
+      )
     })
 
     it('should handle expired cache updates properly', async () => {

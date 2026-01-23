@@ -1,15 +1,15 @@
-import type { APIBuild } from '@/types/enkaNetwork/EnkaAccountTypes'
+import type { BuildResponse } from '@/types/api/enkaNetwork/responses'
 
 /**
  * Create mock EnkaBuild API response for testing
  * @param buildId - Build ID
  * @param avatarId - Character avatar ID
- * @returns Mock APIBuild response
+ * @returns Mock BuildResponse response
  */
 export function createEnkaBuildResponse(
   buildId = 1,
   avatarId = 10000002,
-): APIBuild {
+): BuildResponse {
   return {
     id: buildId,
     name: `Build ${String(buildId)}`,

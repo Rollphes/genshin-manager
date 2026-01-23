@@ -2,33 +2,26 @@ import { characterLevelSchema } from '@/schemas/commonSchemas'
 import type { AvatarPromoteExcelConfigDataType } from '@/types/generated/AvatarPromoteExcelConfigData'
 import { validate } from '@/utils/validation/validate'
 
+type PromoteData = Pick<
+  AvatarPromoteExcelConfigDataType,
+  'promoteLevel' | 'unlockMaxLevel'
+>
+
 /**
- * Calculate promote level
- * @param promotesJson - promotes json
+ * Calculate promote level from array of promote data
+ * @param promotes - array of promote data
  * @param level - level (1-90)
  * @param isAscended - is ascended
  * @returns promote level (0-6)
  */
 export function calculatePromoteLevel(
-  promotesJson: Record<
-    string,
-    | Pick<AvatarPromoteExcelConfigDataType, 'promoteLevel' | 'unlockMaxLevel'>
-    | undefined
-  >,
+  promotes: PromoteData[],
   level: number,
   isAscended: boolean,
 ): number {
   void validate(characterLevelSchema, level, {
     propertyKey: 'level',
   })
-  const promotes = Object.values(promotesJson).filter(
-    (
-      p,
-    ): p is Pick<
-      AvatarPromoteExcelConfigDataType,
-      'promoteLevel' | 'unlockMaxLevel'
-    > => p !== undefined,
-  )
   const maxPromoteLevel = Math.max(
     ...promotes.map((promote) => promote.promoteLevel),
   )

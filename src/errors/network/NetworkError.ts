@@ -1,6 +1,6 @@
-import type { ErrorContext } from '@/errors/base/ErrorContext'
 import { ErrorContextFactory } from '@/errors/base/ErrorContext'
 import { GenshinManagerError } from '@/errors/base/GenshinManagerError'
+import type { NetworkContext } from '@/types/errorContext'
 
 /**
  * Abstract base class for network-related errors
@@ -27,39 +27,68 @@ export abstract class NetworkError extends GenshinManagerError {
   public readonly timeout?: number
 
   /**
+   * Service or API name being called
+   */
+  public readonly service?: string
+
+  /**
+   * Number of retry attempts made
+   */
+  public readonly retryCount?: number
+
+  /**
    * Constructor for NetworkError
    * @param message - Error message
    * @param url - Request URL
    * @param method - HTTP method
-   * @param statusCode - HTTP status code
-   * @param timeout - Request timeout
-   * @param context - Additional error context
+   * @param networkContext - Structured network context
    * @param cause - Original error
    */
   constructor(
     message: string,
     url?: string,
     method?: string,
-    statusCode?: number,
-    timeout?: number,
-    context?: ErrorContext,
+    networkContext?: NetworkContext,
     cause?: Error,
   ) {
-    const networkContext = url
+    const errorContext = url
       ? ErrorContextFactory.createNetworkContext(
           url,
           method ?? 'GET',
-          statusCode,
+          networkContext?.statusCode,
         )
       : undefined
 
-    const mergedContext = ErrorContextFactory.merge(context, networkContext)
+    // Add service info to metadata
+    const mergedContext = networkContext?.service
+      ? {
+          ...errorContext,
+          metadata: {
+            service: networkContext.service,
+            retryCount: networkContext.retryCount,
+          },
+        }
+      : errorContext
 
     super(message, mergedContext, cause)
 
     this.url = url
     this.method = method
-    this.statusCode = statusCode
-    this.timeout = timeout
+    this.statusCode = networkContext?.statusCode
+    this.timeout = networkContext?.timeout
+    this.service = networkContext?.service
+    this.retryCount = networkContext?.retryCount
+  }
+
+  /**
+   * Build location prefix from NetworkContext
+   * @param context - Network context
+   * @returns Location prefix string
+   */
+  protected static buildNetworkLocationPrefix(
+    context?: NetworkContext,
+  ): string {
+    if (!context?.service) return ''
+    return `[${context.service}] `
   }
 }

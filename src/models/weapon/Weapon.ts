@@ -1,10 +1,12 @@
 import { Client } from '@/client/Client'
+import { AssetNotFoundError } from '@/errors/assets/AssetNotFoundError'
 import { ImageAssets } from '@/models/assets/ImageAssets'
 import { StatProperty } from '@/models/StatProperty'
 import { WeaponAscension } from '@/models/weapon/WeaponAscension'
 import { WeaponInfo } from '@/models/weapon/WeaponInfo'
 import { WeaponRefinement } from '@/models/weapon/WeaponRefinement'
-import { AscensionMaterial, WeaponSummary, WeaponType } from '@/types/types'
+import { WeaponType } from '@/types/enums'
+import { AscensionMaterial, WeaponSummary } from '@/types/types'
 import { calculatePromoteLevel } from '@/utils/parsers/calculatePromoteLevel'
 
 /**
@@ -263,6 +265,7 @@ export class Weapon {
    * @param currentLevel - current weapon level
    * @param targetLevel - target weapon level
    * @returns array of materials needed
+   * @throws {@link AssetNotFoundError} - When the weapon data is not found
    */
   public calculateWeaponLevelMaterials(
     currentLevel: number,
@@ -270,12 +273,15 @@ export class Weapon {
   ): AscensionMaterial[] {
     const materialsMap = new Map<number, number>()
 
-    const weaponJson = Client._getJsonFromCachedExcelBinOutput(
-      'WeaponExcelConfigData',
-      this.id,
-    )
-    const weaponPromotesJson = Client._getJsonFromCachedExcelBinOutput(
+    const weaponJson = Client._findBy('WeaponExcelConfigData', 'id', this.id)
+    if (!weaponJson) {
+      throw new AssetNotFoundError(
+        `WeaponExcelConfigData ID:${String(this.id)}`,
+      )
+    }
+    const weaponPromotesJson = Client._filterBy(
       'WeaponPromoteExcelConfigData',
+      'weaponPromoteId',
       weaponJson.weaponPromoteId,
     )
 

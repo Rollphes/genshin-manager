@@ -3,12 +3,13 @@ import { beforeAll, describe, expect, it } from 'vitest'
 import { Client } from '@/client/Client'
 import { ImageAssets } from '@/models/assets/ImageAssets'
 import { Material } from '@/models/Material'
+import { Language } from '@/types/types'
 
 describe('Material', () => {
   beforeAll(async () => {
     const client = new Client({
-      defaultLanguage: 'en',
-      downloadLanguages: ['en'],
+      defaultLanguage: Language.En,
+      downloadLanguages: [Language.En],
     })
     await client.deploy()
   }, 30000)

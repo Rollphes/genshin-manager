@@ -6,13 +6,14 @@ import { Client } from '@/client/Client'
 import { EnkaBuild } from '@/models/enka/EnkaBuild'
 import { GenshinAccount } from '@/models/enka/GenshinAccount'
 import { PlayerDetail } from '@/models/enka/PlayerDetail'
-import type { APIBuild } from '@/types/enkaNetwork/EnkaAccountTypes'
+import type { BuildResponse } from '@/types/api/enkaNetwork/responses'
+import { Language } from '@/types/types'
 
 describe('GenshinAccount', () => {
   beforeAll(async () => {
     const client = new Client({
-      defaultLanguage: 'en',
-      downloadLanguages: ['en'],
+      defaultLanguage: Language.En,
+      downloadLanguages: [Language.En],
     })
     await client.deploy()
   }, 30000)
@@ -21,7 +22,7 @@ describe('GenshinAccount', () => {
     it('should create GenshinAccount from mock data', () => {
       const gameAccounts = createGenshinAccountsResponse()
       const gameAccount = gameAccounts.account1
-      const buildDatas: Record<string, APIBuild[]> = {}
+      const buildDatas: Record<string, BuildResponse[]> = {}
       const genshinAccount = new GenshinAccount(
         gameAccount,
         buildDatas,
@@ -38,7 +39,7 @@ describe('GenshinAccount', () => {
     beforeAll(() => {
       const gameAccounts = createGenshinAccountsResponse()
       const gameAccount = gameAccounts.account1
-      const buildDatas: Record<string, APIBuild[]> = {}
+      const buildDatas: Record<string, BuildResponse[]> = {}
       genshinAccount = new GenshinAccount(
         gameAccount,
         buildDatas,
@@ -96,7 +97,7 @@ describe('GenshinAccount', () => {
     beforeAll(() => {
       const gameAccounts = createGenshinAccountsResponse()
       const gameAccount = gameAccounts.account1
-      const buildDatas: Record<string, APIBuild[]> = {}
+      const buildDatas: Record<string, BuildResponse[]> = {}
       genshinAccount = new GenshinAccount(
         gameAccount,
         buildDatas,
@@ -118,7 +119,7 @@ describe('GenshinAccount', () => {
     it('should handle account with uidPublic false', () => {
       const gameAccounts = createGenshinAccountsResponse()
       const gameAccount = gameAccounts.account2
-      const buildDatas: Record<string, APIBuild[]> = {}
+      const buildDatas: Record<string, BuildResponse[]> = {}
       const genshinAccount = new GenshinAccount(
         gameAccount,
         buildDatas,
@@ -139,7 +140,7 @@ describe('GenshinAccount', () => {
         ...gameAccounts.account1,
         avatar_order: { '10000002': 0 },
       }
-      const buildDatas: Record<string, APIBuild[]> = {
+      const buildDatas: Record<string, BuildResponse[]> = {
         '10000002': [createEnkaBuildResponse(1, 10000002)],
       }
       const genshinAccount = new GenshinAccount(
@@ -161,7 +162,7 @@ describe('GenshinAccount', () => {
       }
       const build1 = createEnkaBuildResponse(1, 10000002)
       const build2 = createEnkaBuildResponse(2, 10000003)
-      const buildDatas: Record<string, APIBuild[]> = {
+      const buildDatas: Record<string, BuildResponse[]> = {
         '10000002': [build1],
         '10000003': [build2],
       }
@@ -184,7 +185,7 @@ describe('GenshinAccount', () => {
       }
       const build1 = { ...createEnkaBuildResponse(1, 10000002), order: 2 }
       const build2 = { ...createEnkaBuildResponse(2, 10000002), order: 1 }
-      const buildDatas: Record<string, APIBuild[]> = {
+      const buildDatas: Record<string, BuildResponse[]> = {
         '10000002': [build1, build2],
       }
       const genshinAccount = new GenshinAccount(
@@ -203,7 +204,7 @@ describe('GenshinAccount', () => {
     it('should handle different base URLs', () => {
       const gameAccounts = createGenshinAccountsResponse()
       const gameAccount = gameAccounts.account1
-      const buildDatas: Record<string, APIBuild[]> = {}
+      const buildDatas: Record<string, BuildResponse[]> = {}
       const genshinAccount = new GenshinAccount(
         gameAccount,
         buildDatas,
@@ -220,7 +221,7 @@ describe('GenshinAccount', () => {
     it('should handle different usernames', () => {
       const gameAccounts = createGenshinAccountsResponse()
       const gameAccount = gameAccounts.account1
-      const buildDatas: Record<string, APIBuild[]> = {}
+      const buildDatas: Record<string, BuildResponse[]> = {}
       const genshinAccount = new GenshinAccount(
         gameAccount,
         buildDatas,

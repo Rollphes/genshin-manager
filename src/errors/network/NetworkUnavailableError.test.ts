@@ -37,11 +37,9 @@ describe('NetworkUnavailableError', () => {
       expect(error.method).toBe('POST')
     })
 
-    it('should set errorCode to GM_NETWORK_UNAVAILABLE', () => {
+    it('should set errorCode to GmNetworkUnavailable', () => {
       const error = new NetworkUnavailableError()
-      expect(error.errorCode).toBe(
-        GenshinManagerErrorCode.GM_NETWORK_UNAVAILABLE,
-      )
+      expect(error.errorCode).toBe(GenshinManagerErrorCode.GmNetworkUnavailable)
     })
 
     it('should set name to NetworkUnavailableError', () => {
@@ -74,14 +72,32 @@ describe('NetworkUnavailableError', () => {
       expect(error.context?.url).toBe('https://example.com/api')
     })
 
-    it('should accept context parameter', () => {
-      const context = { metadata: { attempt: 3 } }
+    it('should accept context parameter with service info', () => {
       const error = new NetworkUnavailableError(
         'https://example.com/api',
         'GET',
-        context,
+        { service: 'GitLabAPI', retryCount: 3 },
       )
-      expect(error.context?.metadata?.attempt).toBe(3)
+      expect(error.service).toBe('GitLabAPI')
+      expect(error.retryCount).toBe(3)
+    })
+
+    it('should include service in message when provided', () => {
+      const error = new NetworkUnavailableError(
+        'https://example.com/api',
+        'GET',
+        { service: 'GitLabAPI' },
+      )
+      expect(error.message).toContain('[GitLabAPI]')
+    })
+
+    it('should set statusCode from context', () => {
+      const error = new NetworkUnavailableError(
+        'https://example.com/api',
+        'GET',
+        { statusCode: 503 },
+      )
+      expect(error.statusCode).toBe(503)
     })
 
     it('should accept cause parameter', () => {
@@ -108,9 +124,7 @@ describe('NetworkUnavailableError', () => {
       const error = new NetworkUnavailableError()
       const json = error.toJSON()
       expect(json.name).toBe('NetworkUnavailableError')
-      expect(json.errorCode).toBe(
-        GenshinManagerErrorCode.GM_NETWORK_UNAVAILABLE,
-      )
+      expect(json.errorCode).toBe(GenshinManagerErrorCode.GmNetworkUnavailable)
     })
   })
 })

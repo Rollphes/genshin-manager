@@ -7,7 +7,7 @@ import { GenshinManagerError } from '@/errors/base/GenshinManagerError'
  * Body content not found error
  */
 export class BodyNotFoundError extends GenshinManagerError {
-  public readonly errorCode = GenshinManagerErrorCode.GM_CONTENT_BODY_NOT_FOUND
+  public readonly errorCode = GenshinManagerErrorCode.GmContentBodyNotFound
 
   /**
    * Content type or identifier

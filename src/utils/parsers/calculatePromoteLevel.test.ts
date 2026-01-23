@@ -4,15 +4,15 @@ import { calculatePromoteLevel } from '@/utils/parsers/calculatePromoteLevel'
 
 describe('calculatePromoteLevel', () => {
   // Standard promote configuration (6 ascension levels)
-  const standardPromotes = {
-    '0': { promoteLevel: 0, unlockMaxLevel: 20 },
-    '1': { promoteLevel: 1, unlockMaxLevel: 40 },
-    '2': { promoteLevel: 2, unlockMaxLevel: 50 },
-    '3': { promoteLevel: 3, unlockMaxLevel: 60 },
-    '4': { promoteLevel: 4, unlockMaxLevel: 70 },
-    '5': { promoteLevel: 5, unlockMaxLevel: 80 },
-    '6': { promoteLevel: 6, unlockMaxLevel: 90 },
-  }
+  const standardPromotes = [
+    { promoteLevel: 0, unlockMaxLevel: 20 },
+    { promoteLevel: 1, unlockMaxLevel: 40 },
+    { promoteLevel: 2, unlockMaxLevel: 50 },
+    { promoteLevel: 3, unlockMaxLevel: 60 },
+    { promoteLevel: 4, unlockMaxLevel: 70 },
+    { promoteLevel: 5, unlockMaxLevel: 80 },
+    { promoteLevel: 6, unlockMaxLevel: 90 },
+  ]
 
   describe('not ascended', () => {
     it('should return 0 for level 1', () => {
@@ -86,17 +86,9 @@ describe('calculatePromoteLevel', () => {
 
   describe('edge cases', () => {
     it('should handle empty promotes', () => {
-      const emptyPromotes = {}
+      const emptyPromotes: { promoteLevel: number; unlockMaxLevel: number }[] =
+        []
       expect(calculatePromoteLevel(emptyPromotes, 50, false)).toBe(0)
-    })
-
-    it('should handle promotes with undefined values', () => {
-      const promotesWithUndefined = {
-        '0': { promoteLevel: 0, unlockMaxLevel: 20 },
-        '1': undefined,
-        '2': { promoteLevel: 2, unlockMaxLevel: 50 },
-      }
-      expect(calculatePromoteLevel(promotesWithUndefined, 25, false)).toBe(1)
     })
 
     it('should handle level at exact boundary (not ascended)', () => {

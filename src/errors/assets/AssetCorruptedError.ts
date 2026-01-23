@@ -1,12 +1,12 @@
 import { AssetError } from '@/errors/assets/AssetError'
 import { GenshinManagerErrorCode } from '@/errors/base/ErrorCodes'
-import type { ErrorContext } from '@/errors/base/ErrorContext'
+import type { AssetContext } from '@/types/errorContext'
 
 /**
  * Asset corrupted error
  */
 export class AssetCorruptedError extends AssetError {
-  public readonly errorCode = GenshinManagerErrorCode.GM_ASSETS_CORRUPTED
+  public readonly errorCode = GenshinManagerErrorCode.GmAssetsCorrupted
 
   /**
    * Details about the corruption
@@ -16,21 +16,21 @@ export class AssetCorruptedError extends AssetError {
   /**
    * Constructor for AssetCorruptedError
    * @param assetPath - Asset file path or identifier
-   * @param assetType - Type of asset
    * @param corruptionDetails - Details about the corruption
-   * @param context - Additional error context
+   * @param context - Structured asset context
    * @param cause - Original error
    */
   constructor(
     assetPath: string,
-    assetType: string,
     corruptionDetails?: string,
-    context?: ErrorContext,
+    context?: AssetContext,
     cause?: Error,
   ) {
-    const message = `${assetType.charAt(0).toUpperCase() + assetType.slice(1)} is corrupted: ${assetPath}${corruptionDetails ? ` (${corruptionDetails})` : ''}`
+    const locationPrefix = AssetError.buildAssetLocationPrefix(context)
+    const detailsSuffix = corruptionDetails ? ` (${corruptionDetails})` : ''
+    const message = `${locationPrefix}Asset is corrupted: ${assetPath}${detailsSuffix}`
 
-    super(message, assetPath, assetType, context, cause)
+    super(message, assetPath, 'corrupted', context, cause)
 
     this.corruptionDetails = corruptionDetails
   }

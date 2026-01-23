@@ -1,60 +1,26 @@
-import cron from 'node-cron'
+import cron, { ScheduledTask } from 'node-cron'
 import path from 'path'
 import { merge } from 'ts-deepmerge'
 
 import { AssetCacheManager } from '@/client/AssetCacheManager'
 import { AudioAssets } from '@/models/assets/AudioAssets'
 import { ImageAssets } from '@/models/assets/ImageAssets'
+import { ClientEventMap, ClientEvents } from '@/types/events/client'
 import { ClientOption, Language } from '@/types/types'
 import { LogLevel } from '@/utils/logger/Logger'
-
 /**
- * Client events
- * @see {@link Client}
+ * Event listener entry for cleanup tracking
  */
-export enum ClientEvents {
-  /** When the cache update starts, fires */
-  BEGIN_UPDATE_CACHE = 'BEGIN_UPDATE_CACHE',
-  /** When the cache update ends, fires */
-  END_UPDATE_CACHE = 'END_UPDATE_CACHE',
-  /** When the assets update starts, fires */
-  BEGIN_UPDATE_ASSETS = 'BEGIN_UPDATE_ASSETS',
-  /** When the assets update ends, fires */
-  END_UPDATE_ASSETS = 'END_UPDATE_ASSETS',
-}
-
-/**
- * Client event map
- * @internal
- */
-export interface ClientEventMap {
-  /**
-   * When the cache update starts, fires
-   * @param version - Game version of assets to cache
-   */
-  BEGIN_UPDATE_CACHE: [version: string]
-  /**
-   * When the cache update ends, fires
-   * @param version - Game version of assets to cache
-   */
-  END_UPDATE_CACHE: [version: string]
-  /**
-   * When the assets update starts, fires
-   * @param version - Game version of new assets
-   */
-  BEGIN_UPDATE_ASSETS: [version: string]
-  /**
-   * When the assets update ends, fires
-   * @param version - Game version of new assets
-   */
-  END_UPDATE_ASSETS: [version: string]
+interface EventListenerEntry {
+  readonly event: ClientEvents
+  readonly listener: (version: string) => void
 }
 
 /**
  * Main client for the Genshin Manager library
  * @description This is the main body of `Genshin-Manager` where cache information is stored
  */
-export class Client extends AssetCacheManager<ClientEventMap, ClientEvents> {
+export class Client extends AssetCacheManager<ClientEventMap> {
   /**
    * Default option
    */
@@ -65,19 +31,19 @@ export class Client extends AssetCacheManager<ClientEventMap, ClientEvents> {
       },
     },
     downloadLanguages: [
-      'en',
-      'ru',
-      'vi',
-      'th',
-      'pt',
-      'ko',
-      'ja',
-      'id',
-      'fr',
-      'es',
-      'de',
-      'zh-tw',
-      'zh-cn',
+      Language.En,
+      Language.Ru,
+      Language.Vi,
+      Language.Th,
+      Language.Pt,
+      Language.Ko,
+      Language.Ja,
+      Language.Id,
+      Language.Fr,
+      Language.Es,
+      Language.De,
+      Language.ZhTw,
+      Language.ZhCn,
     ],
     defaultImageBaseURL: 'https://gi.yatta.top/assets/UI',
     defaultAudioBaseURL: 'https://gi.yatta.top/assets/Audio',
@@ -101,7 +67,7 @@ export class Client extends AssetCacheManager<ClientEventMap, ClientEvents> {
       'https://gi.yatta.top/assets/UI/namecard': [/^UI_NameCard/],
     },
     audioBaseURLByRegex: {},
-    defaultLanguage: 'en',
+    defaultLanguage: Language.En,
     logLevel: LogLevel.NONE,
     autoFetchLatestAssetsByCron: '0 0 0 * * 3', //Every Wednesday 00:00:00
     autoCacheImage: true,
@@ -121,6 +87,21 @@ export class Client extends AssetCacheManager<ClientEventMap, ClientEvents> {
   public readonly option: ClientOption
 
   /**
+   * Registered event listeners for cleanup
+   */
+  private readonly eventListeners: EventListenerEntry[] = []
+
+  /**
+   * Cron task reference for cleanup
+   */
+  private cronTask: ScheduledTask | undefined
+
+  /**
+   * Flag indicating if the client has been destroyed
+   */
+  private isDestroyed = false
+
+  /**
    * Create a Client
    * @param option - client option
    * @example
@@ -133,31 +114,33 @@ export class Client extends AssetCacheManager<ClientEventMap, ClientEvents> {
    * ```
    */
   constructor(option?: Partial<ClientOption>) {
-    const mergeOption = merge.withOptions(
+    const baseOption = merge.withOptions(
       { mergeArrays: false },
       Client.defaultOption,
       option ?? {},
     ) as ClientOption
 
-    mergeOption.downloadLanguages = [
-      ...new Set([
-        mergeOption.defaultLanguage,
-        ...mergeOption.downloadLanguages,
-      ]),
+    const downloadLanguages = [
+      ...new Set([baseOption.defaultLanguage, ...baseOption.downloadLanguages]),
     ]
 
-    if (!mergeOption.autoFetchLatestAssetsByCron) {
-      mergeOption.autoFixTextMap = false
-      mergeOption.autoFixExcelBin = false
+    const autoFixTextMap = baseOption.autoFetchLatestAssetsByCron
+      ? baseOption.autoFixTextMap
+      : false
+    const autoFixExcelBin = baseOption.autoFetchLatestAssetsByCron
+      ? baseOption.autoFixExcelBin
+      : false
+
+    const mergeOption: ClientOption = {
+      ...baseOption,
+      downloadLanguages,
+      autoFixTextMap,
+      autoFixExcelBin,
     }
 
-    Object.values(ClientEvents).forEach((event) => {
-      Client._assetEventEmitter.on(event, (version) => {
-        this.emit(event, version)
-      })
-    })
     super(mergeOption)
     this.option = mergeOption
+    this.registerEventListeners()
   }
 
   /**
@@ -167,6 +150,36 @@ export class Client extends AssetCacheManager<ClientEventMap, ClientEvents> {
    */
   public get gameVersion(): string | undefined {
     return AssetCacheManager.gameVersion
+  }
+
+  /**
+   * Destroy the client and release all resources
+   * @description Stops cron jobs, removes event listeners, and cleans up resources
+   * @example
+   * ```ts
+   * const client = new Client()
+   * await client.deploy()
+   * // ... use the client ...
+   * client.destroy()
+   * ```
+   */
+  public destroy(): void {
+    if (this.isDestroyed) return
+
+    // Stop cron job
+    void this.cronTask?.stop()
+    this.cronTask = undefined
+
+    // Remove event listeners from static emitter
+    for (const { event, listener } of this.eventListeners)
+      Client._assetEventEmitter.off(event, listener)
+
+    this.eventListeners.length = 0
+
+    // Remove all listeners from this instance
+    this.removeAllListeners()
+
+    this.isDestroyed = true
   }
 
   /**
@@ -180,11 +193,7 @@ export class Client extends AssetCacheManager<ClientEventMap, ClientEvents> {
    * ```
    */
   public async changeLanguage(language: Language): Promise<void> {
-    if (await Client.setTextMapToCache(language)) {
-      this.option.autoFixTextMap = false
-      await Client.setTextMapToCache(language)
-      this.option.autoFixTextMap = true
-    }
+    await Client.setTextMapToCache(language)
   }
 
   /**
@@ -198,13 +207,29 @@ export class Client extends AssetCacheManager<ClientEventMap, ClientEvents> {
   public async deploy(): Promise<void> {
     await Client.updateCache()
     if (this.option.autoFetchLatestAssetsByCron) {
-      cron.schedule(this.option.autoFetchLatestAssetsByCron, () => {
-        void (async (): Promise<void> => {
-          await Client.updateCache()
-        })()
-      })
+      this.cronTask = cron.schedule(
+        this.option.autoFetchLatestAssetsByCron,
+        () => {
+          void (async (): Promise<void> => {
+            await Client.updateCache()
+          })()
+        },
+      )
     }
     ImageAssets.deploy(this.option)
     AudioAssets.deploy(this.option)
+  }
+
+  /**
+   * Register event listeners and store references for cleanup
+   */
+  private registerEventListeners(): void {
+    for (const event of Object.values(ClientEvents)) {
+      const listener = (version: string): void => {
+        this.emit(event, version)
+      }
+      Client._assetEventEmitter.on(event, listener)
+      this.eventListeners.push({ event, listener })
+    }
   }
 }

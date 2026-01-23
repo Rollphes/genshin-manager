@@ -35,10 +35,17 @@ export class CharacterStory {
    */
   constructor(fetterId: number) {
     this.fetterId = fetterId
-    const fetterStoryJson = Client._getJsonFromCachedExcelBinOutput(
+    const fetterStoryJson = Client._findBy(
       'FetterStoryExcelConfigData',
+      'fetterId',
       fetterId,
     )
+    if (!fetterStoryJson) {
+      throw new Error(
+        `FetterStoryExcelConfigData not found for fetterId ${String(fetterId)}`,
+      )
+    }
+
     this.characterId = fetterStoryJson.avatarId
     const storyTitleTextMapHash = fetterStoryJson.storyTitleTextMapHash
     const storyTitle2TextMapHash = fetterStoryJson.storyTitle2TextMapHash
@@ -62,15 +69,8 @@ export class CharacterStory {
    * @returns all Fetter IDs in the story
    */
   public static get allFetterIds(): number[] {
-    const fetterStoriesJson = Object.values(
-      Client._getCachedExcelBinOutputByName('FetterStoryExcelConfigData'),
-    )
-    return fetterStoriesJson
-      .filter(
-        (story): story is NonNullable<typeof story> =>
-          story?.fetterId !== undefined,
-      )
-      .map((story) => story.fetterId)
+    const fetterStoriesJson = Client._getAll('FetterStoryExcelConfigData')
+    return fetterStoriesJson.map((story) => story.fetterId)
   }
 
   /**
@@ -79,14 +79,9 @@ export class CharacterStory {
    * @returns all fetter IDs in the character's story
    */
   public static getAllFetterIdsByCharacterId(characterId: number): number[] {
-    const fetterStoriesJson = Object.values(
-      Client._getCachedExcelBinOutputByName('FetterStoryExcelConfigData'),
-    )
+    const fetterStoriesJson = Client._getAll('FetterStoryExcelConfigData')
     return fetterStoriesJson
-      .filter(
-        (story): story is NonNullable<typeof story> =>
-          story !== undefined && story.avatarId === characterId,
-      )
+      .filter((story) => story.avatarId === characterId)
       .map((story) => story.fetterId)
   }
 }

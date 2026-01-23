@@ -1,14 +1,14 @@
-import type { APIEnkaStatus } from '@/types/enkaNetwork/EnkaStatusTypes'
+import type { EnkaStatusResponse } from '@/types/api/enkaNetwork/responses'
 
 /**
  * Create mock EnkaStatus API response for testing
  * @param customData - Optional custom data to override defaults
- * @returns Mock APIEnkaStatus response based on real API structure
+ * @returns Mock EnkaStatusResponse response based on real API structure
  */
 export function createEnkaStatusResponse(
-  customData: Partial<APIEnkaStatus> = {},
-): APIEnkaStatus {
-  const defaultResponse: APIEnkaStatus = {
+  customData: Partial<EnkaStatusResponse> = {},
+): EnkaStatusResponse {
+  const defaultResponse: EnkaStatusResponse = {
     now: '2025-08-12T15:06',
     hsr: {
       time: {

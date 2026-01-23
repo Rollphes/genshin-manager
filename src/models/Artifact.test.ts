@@ -4,12 +4,13 @@ import { Client } from '@/client/Client'
 import { Artifact } from '@/models/Artifact'
 import { ImageAssets } from '@/models/assets/ImageAssets'
 import { StatProperty } from '@/models/StatProperty'
+import { Language } from '@/types/types'
 
 describe('Artifact', () => {
   beforeAll(async () => {
     const client = new Client({
-      defaultLanguage: 'en',
-      downloadLanguages: ['en'],
+      defaultLanguage: Language.En,
+      downloadLanguages: [Language.En],
     })
     await client.deploy()
   }, 30000)

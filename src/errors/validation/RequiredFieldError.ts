@@ -1,22 +1,33 @@
 import { GenshinManagerErrorCode } from '@/errors/base/ErrorCodes'
-import type { ErrorContext } from '@/errors/base/ErrorContext'
 import { ErrorContextFactory } from '@/errors/base/ErrorContext'
 import { ValidationError } from '@/errors/validation/ValidationError'
+import type { ValidationContext } from '@/types/errorContext'
+
+/**
+ * Context for RequiredFieldError (fieldName is provided separately)
+ */
+type RequiredFieldContext = Omit<ValidationContext, 'propertyKey'>
 
 /**
  * Required field validation error
  */
 export class RequiredFieldError extends ValidationError {
-  public readonly errorCode = GenshinManagerErrorCode.GM_VALIDATION_REQUIRED
+  public readonly errorCode = GenshinManagerErrorCode.GmValidationRequired
 
   /**
    * Constructor for RequiredFieldError
    * @param fieldName - Name of the required field
-   * @param context - Additional error context
+   * @param context - Structured validation context (without propertyKey)
    * @param cause - Original error
    */
-  constructor(fieldName: string, context?: ErrorContext, cause?: Error) {
-    const message = `Required field '${fieldName}' is missing`
+  constructor(
+    fieldName: string,
+    context?: RequiredFieldContext,
+    cause?: Error,
+  ) {
+    const locationPrefix =
+      RequiredFieldError.buildRequiredLocationPrefix(context)
+    const message = `${locationPrefix}Required field '${fieldName}' is missing`
 
     const fieldContext = ErrorContextFactory.createValidationContext(
       fieldName,
@@ -24,8 +35,40 @@ export class RequiredFieldError extends ValidationError {
       undefined,
     )
 
-    const mergedContext = ErrorContextFactory.merge(context, fieldContext)
+    // Add source information to context metadata
+    const mergedContext = context?.source
+      ? {
+          ...fieldContext,
+          metadata: {
+            source: context.source,
+            recordId: context.recordId,
+          },
+        }
+      : fieldContext
 
     super(message, mergedContext, undefined, cause)
+
+    // Store context info
+    Object.assign(this, {
+      propertyKey: fieldName,
+      source: context?.source,
+      recordId: context?.recordId,
+    })
+  }
+
+  /**
+   * Build location prefix from context
+   * @param context - Validation context
+   * @returns Location prefix string
+   */
+  private static buildRequiredLocationPrefix(
+    context?: RequiredFieldContext,
+  ): string {
+    if (!context?.source) return ''
+
+    let prefix = context.source
+    if (context.recordId !== undefined) prefix += `#${String(context.recordId)}`
+
+    return `[${prefix}] `
   }
 }

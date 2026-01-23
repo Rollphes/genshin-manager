@@ -4,6 +4,7 @@ import { GenshinManagerErrorCode } from '@/errors/base/ErrorCodes'
 import type { ErrorContext } from '@/errors/base/ErrorContext'
 import { ErrorContextFactory } from '@/errors/base/ErrorContext'
 import { GenshinManagerError } from '@/errors/base/GenshinManagerError'
+import type { ValidationContext } from '@/types/errorContext'
 import type { ValidationDetail } from '@/types/types'
 
 /**
@@ -11,12 +12,27 @@ import type { ValidationDetail } from '@/types/types'
  */
 export class ValidationError extends GenshinManagerError {
   public readonly errorCode: GenshinManagerErrorCode =
-    GenshinManagerErrorCode.GM_VALIDATION_TYPE
+    GenshinManagerErrorCode.GmValidationType
 
   /**
    * Zod validation issues for detailed error information
    */
   public readonly zodIssues?: z.ZodIssue[]
+
+  /**
+   * Property key being validated
+   */
+  public readonly propertyKey?: string
+
+  /**
+   * Data source where the validation occurs
+   */
+  public readonly source?: string
+
+  /**
+   * Record ID within the data source
+   */
+  public readonly recordId?: string | number
 
   /**
    * Constructor for ValidationError
@@ -33,31 +49,73 @@ export class ValidationError extends GenshinManagerError {
   ) {
     super(message, context, cause)
     this.zodIssues = zodIssues
+    this.propertyKey = context?.propertyKey
   }
 
   /**
    * Create ValidationError from Zod error.
    * @param zodError - Zod validation error.
-   * @param context - Additional error context.
+   * @param validationContext - Structured validation context.
    */
   public static fromZodError(
     zodError: z.ZodError,
-    context?: ErrorContext,
+    validationContext?: ValidationContext,
   ): ValidationError {
     const issues = zodError.issues
     const firstIssue = issues[0]
 
-    const message = `Validation failed at ${firstIssue.path.join('.')}: ${firstIssue.message}`
+    const locationPrefix =
+      ValidationError.buildLocationPrefix(validationContext)
+    const pathStr = firstIssue.path.join('.')
+    const path =
+      pathStr.length > 0
+        ? pathStr
+        : (validationContext?.propertyKey ?? 'unknown')
+    const message = `${locationPrefix}Validation failed at ${path}: ${firstIssue.message}`
 
-    const validationContext = ErrorContextFactory.createValidationContext(
-      firstIssue.path.join('.') || 'unknown',
+    const errorContext = ErrorContextFactory.createValidationContext(
+      path,
       'valid format',
       'received' in firstIssue ? firstIssue.received : undefined,
     )
 
-    const mergedContext = ErrorContextFactory.merge(context, validationContext)
+    // Add source information to context metadata
+    const mergedContext = validationContext?.source
+      ? {
+          ...errorContext,
+          metadata: {
+            source: validationContext.source,
+            recordId: validationContext.recordId,
+          },
+        }
+      : errorContext
 
-    return new ValidationError(message, mergedContext, issues, zodError)
+    const error = new ValidationError(message, mergedContext, issues, zodError)
+
+    // Store validation context info
+    Object.assign(error, {
+      propertyKey: validationContext?.propertyKey,
+      source: validationContext?.source,
+      recordId: validationContext?.recordId,
+    })
+
+    return error
+  }
+
+  /**
+   * Build location prefix from ValidationContext
+   * @param context - Validation context
+   * @returns Location prefix string
+   */
+  private static buildLocationPrefix(context?: ValidationContext): string {
+    if (!context?.source) return ''
+
+    const parts: string[] = [context.source]
+
+    if (context.recordId !== undefined)
+      parts[0] += `#${String(context.recordId)}`
+
+    return `[${parts.join('.')}] `
   }
 
   /**

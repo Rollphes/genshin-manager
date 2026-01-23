@@ -4,64 +4,32 @@ import path from 'path'
 import { AssetCorruptedError } from '@/errors/assets/AssetCorruptedError'
 import { ConfigMissingError } from '@/errors/config/ConfigMissingError'
 import { ValidationError } from '@/errors/validation/ValidationError'
-import type { DecodedType } from '@/types/generated/MasterFileMap'
-import type { JsonObject, JsonValue } from '@/types/json'
-import { EncryptedKeyMasterFile, ExcelBinOutputKey } from '@/types/types'
+import { EncryptedKeyMasterFile } from '@/types/crypto'
+import { ExcelBinOutputs } from '@/types/excelBinOutputs'
+import type { DecodedType as GeneratedDecodedType } from '@/types/generated/MasterFileMap'
+import type { JsonObject } from '@/types/json'
+import { applyDecoding, pathToString } from '@/utils/crypto/decodingApplier'
+import { PatternCompiler } from '@/utils/crypto/PatternCompiler'
+import { findBestKeyMapping } from '@/utils/crypto/PatternMatcher'
+import type {
+  DecodingOptions,
+  DecodingResult,
+  RecursivePattern,
+  RequiredDecodingOptions,
+} from '@/utils/crypto/types'
 import { masterFileFolderPath } from '@/utils/paths'
 
 /**
- * Key path type for tracking nested locations
- */
-type KeyPath = (string | number)[]
-
-/**
- * Enhanced pattern definition for recursive value matching
- */
-type RecursivePattern =
-  | {
-      type: 'primitive'
-      value: JsonValue
-    }
-  | {
-      type: 'array'
-      elements: RecursivePattern[]
-    }
-  | {
-      type: 'object'
-      properties: Map<string, RecursivePattern>
-      keyPaths: Map<string, KeyPath> // Track paths for encrypted keys
-    }
-
-/**
- * Decoding result with path information
- */
-interface DecodingResult {
-  success: boolean
-  keyMappings: Map<KeyPath, string> // Maps encrypted key paths to original keys
-  confidence: number // 0-1, higher is better
-  errors?: string[] // List of errors encountered during decoding
-  partialMatches?: KeyPath[] // Paths that had partial matches
-}
-
-/**
- * Decoding options
- */
-interface DecodingOptions {
-  matchStrategy?: 'exact' | 'subset' | 'fuzzy'
-  maxDepth?: number
-  enablePartialMatch?: boolean
-}
-
-/**
  * Enhanced encrypted key decoder with recursive support
- * Inspired by SimpleMasterFileGenerator patterns
+ * Orchestrates pattern compilation, matching, and decoding application
  * @template T - ExcelBinOutput file name type
  */
-export class EncryptedKeyDecoder<T extends ExcelBinOutputKey> {
+export class EncryptedKeyDecoder<T extends keyof typeof ExcelBinOutputs> {
   private readonly masterFile: EncryptedKeyMasterFile
-  private readonly patternCache = new Map<string, RecursivePattern>()
   private readonly matchResultCache = new Map<string, DecodingResult>()
   private readonly compiledPatterns = new Map<string, RecursivePattern>()
+
+  private readonly patternCompiler = new PatternCompiler()
 
   /**
    * Constructor.
@@ -97,10 +65,10 @@ export class EncryptedKeyDecoder<T extends ExcelBinOutputKey> {
    * @throws {@link AssetCorruptedError} - When primary pattern is not found.
    */
   public execute(
-    encryptedData: JsonObject[],
+    encryptedData: readonly JsonObject[],
     options: DecodingOptions = {},
-  ): DecodedType<T> {
-    const defaultOptions: Required<DecodingOptions> = {
+  ): GeneratedDecodedType<T> {
+    const defaultOptions: RequiredDecodingOptions = {
       matchStrategy: 'subset',
       maxDepth: 10,
       enablePartialMatch: true,
@@ -113,8 +81,8 @@ export class EncryptedKeyDecoder<T extends ExcelBinOutputKey> {
       const cachedResult = this.matchResultCache.get(cacheKey)
       if (cachedResult) {
         return encryptedData.map((obj) =>
-          this.applyRecursiveDecoding(obj, cachedResult.keyMappings),
-        ) as DecodedType<T>
+          applyDecoding(obj, cachedResult.keyMappings),
+        ) as GeneratedDecodedType<T>
       }
     }
 
@@ -126,7 +94,7 @@ export class EncryptedKeyDecoder<T extends ExcelBinOutputKey> {
       )
     }
 
-    let bestResult = this.findBestKeyMapping(
+    let bestResult = findBestKeyMapping(
       encryptedData,
       primaryPattern,
       defaultOptions,
@@ -139,7 +107,7 @@ export class EncryptedKeyDecoder<T extends ExcelBinOutputKey> {
       for (let i = 0; i < this.masterFile.alternativePatterns.length; i++) {
         const altPattern = this.compiledPatterns.get(`alternative_${String(i)}`)
         if (!altPattern) continue
-        const altResult = this.findBestKeyMapping(
+        const altResult = findBestKeyMapping(
           encryptedData,
           altPattern,
           defaultOptions,
@@ -161,443 +129,25 @@ export class EncryptedKeyDecoder<T extends ExcelBinOutputKey> {
     }
 
     return encryptedData.map((obj) =>
-      this.applyRecursiveDecoding(obj, bestResult.keyMappings),
-    ) as DecodedType<T>
+      applyDecoding(obj, bestResult.keyMappings),
+    ) as GeneratedDecodedType<T>
   }
 
   /**
    * Pre-compile patterns for performance optimization
    */
   private precompilePatterns(): void {
-    const primaryPattern = this.generateRecursivePattern(
+    const primaryPattern = this.patternCompiler.compile(
       this.masterFile.keyMappingTemplate,
-      [],
     )
     this.compiledPatterns.set('primary', primaryPattern)
 
     if (this.masterFile.alternativePatterns) {
       this.masterFile.alternativePatterns.forEach((altPattern, index) => {
-        const compiledAlt = this.generateRecursivePattern(altPattern, [])
+        const compiledAlt = this.patternCompiler.compile(altPattern)
         this.compiledPatterns.set(`alternative_${String(index)}`, compiledAlt)
       })
     }
-  }
-
-  /**
-   * Generate recursive pattern from master object
-   * @param masterObject - Master object to analyze
-   * @param currentPath - Current path in the object hierarchy
-   * @returns recursive pattern representation
-   */
-  private generateRecursivePattern(
-    masterObject: JsonValue,
-    currentPath: KeyPath,
-  ): RecursivePattern {
-    const cacheKey = JSON.stringify({ object: masterObject, path: currentPath })
-    const cached = this.patternCache.get(cacheKey)
-    if (cached) return cached
-
-    let pattern: RecursivePattern
-
-    if (masterObject === null || masterObject === undefined) {
-      pattern = { type: 'primitive', value: masterObject }
-    } else if (Array.isArray(masterObject)) {
-      pattern = {
-        type: 'array',
-        elements: masterObject.map((item, index) =>
-          this.generateRecursivePattern(item, [...currentPath, index]),
-        ),
-      }
-    } else if (typeof masterObject === 'object') {
-      const properties = new Map<string, RecursivePattern>()
-      const keyPaths = new Map<string, KeyPath>()
-
-      for (const [key, value] of Object.entries(masterObject)) {
-        const keyPath = [...currentPath, key]
-        properties.set(key, this.generateRecursivePattern(value, keyPath))
-        keyPaths.set(key, keyPath)
-      }
-
-      pattern = {
-        type: 'object',
-        properties,
-        keyPaths,
-      }
-    } else {
-      pattern = { type: 'primitive', value: masterObject }
-    }
-
-    this.patternCache.set(cacheKey, pattern)
-    return pattern
-  }
-
-  /**
-   * Find best key mapping from encrypted data using pattern matching
-   * @param encryptedData - Array of encrypted objects
-   * @param pattern - Pattern to match against
-   * @param options - Decoding options
-   * @returns best decoding result
-   */
-  private findBestKeyMapping(
-    encryptedData: JsonObject[],
-    pattern: RecursivePattern,
-    options: Required<DecodingOptions>,
-  ): DecodingResult {
-    let bestResult: DecodingResult = {
-      success: false,
-      keyMappings: new Map(),
-      confidence: 0,
-    }
-
-    for (const obj of encryptedData) {
-      const result = this.matchPatternRecursively(obj, pattern, [], options)
-      if (result.confidence > bestResult.confidence) bestResult = result
-
-      if (result.confidence >= 0.95) break
-    }
-
-    return bestResult
-  }
-
-  /**
-   * Recursively match pattern against encrypted object
-   * @param encryptedValue - Encrypted value to match
-   * @param pattern - Pattern to match against
-   * @param currentPath - Current path in the structure
-   * @param options - Decoding options
-   * @returns matching result with key mappings
-   */
-  private matchPatternRecursively(
-    encryptedValue: JsonValue,
-    pattern: RecursivePattern,
-    currentPath: KeyPath,
-    options: Required<DecodingOptions>,
-  ): DecodingResult {
-    if (currentPath.length > options.maxDepth)
-      return { success: false, keyMappings: new Map(), confidence: 0 }
-
-    switch (pattern.type) {
-      case 'primitive':
-        return this.matchPrimitivePattern(encryptedValue, pattern, options)
-      case 'array':
-        return this.matchArrayPattern(
-          encryptedValue,
-          pattern,
-          currentPath,
-          options,
-        )
-      case 'object':
-        return this.matchObjectPattern(
-          encryptedValue,
-          pattern,
-          currentPath,
-          options,
-        )
-      default:
-        return { success: false, keyMappings: new Map(), confidence: 0 }
-    }
-  }
-
-  /**
-   * Match primitive pattern.
-   * @param encryptedValue - Encrypted value to match.
-   * @param pattern - Pattern object.
-   * @param pattern.type - Pattern type identifier.
-   * @param pattern.value - Expected primitive value.
-   * @param options - Decoding options.
-   */
-  private matchPrimitivePattern(
-    encryptedValue: JsonValue,
-    pattern: { type: 'primitive'; value: JsonValue },
-    options: Required<DecodingOptions>,
-  ): DecodingResult {
-    const matches = this.valueMatches(
-      encryptedValue,
-      pattern.value,
-      options.matchStrategy,
-    )
-    return {
-      success: matches,
-      keyMappings: new Map(),
-      confidence: matches ? 1 : 0,
-    }
-  }
-
-  /**
-   * Match array pattern.
-   * @param encryptedValue - Encrypted value to match.
-   * @param pattern - Pattern object.
-   * @param pattern.type - Pattern type identifier.
-   * @param pattern.elements - Array element patterns.
-   * @param currentPath - Current key path in recursion.
-   * @param options - Decoding options.
-   */
-  private matchArrayPattern(
-    encryptedValue: JsonValue,
-    pattern: { type: 'array'; elements: RecursivePattern[] },
-    currentPath: KeyPath,
-    options: Required<DecodingOptions>,
-  ): DecodingResult {
-    if (!Array.isArray(encryptedValue))
-      return { success: false, keyMappings: new Map(), confidence: 0 }
-
-    const keyMappings = new Map<KeyPath, string>()
-    let totalConfidence = 0
-    let matchedElements = 0
-
-    const minLength = Math.min(encryptedValue.length, pattern.elements.length)
-
-    for (let i = 0; i < minLength; i++) {
-      const elementResult = this.matchPatternRecursively(
-        encryptedValue[i],
-        pattern.elements[i],
-        [...currentPath, i],
-        options,
-      )
-
-      if (elementResult.success) {
-        matchedElements++
-        totalConfidence += elementResult.confidence
-
-        for (const [path, key] of elementResult.keyMappings)
-          keyMappings.set(path, key)
-      }
-    }
-
-    const confidence = minLength > 0 ? totalConfidence / minLength : 0
-    const success =
-      options.matchStrategy === 'exact'
-        ? matchedElements === pattern.elements.length
-        : matchedElements > 0
-
-    return { success, keyMappings, confidence }
-  }
-
-  /**
-   * Match object pattern.
-   * @param encryptedValue - Encrypted value to match.
-   * @param pattern - Pattern object.
-   * @param pattern.type - Pattern type identifier.
-   * @param pattern.properties - Object property patterns.
-   * @param pattern.keyPaths - Key path mappings.
-   * @param currentPath - Current key path in recursion.
-   * @param options - Decoding options.
-   */
-  private matchObjectPattern(
-    encryptedValue: JsonValue,
-    pattern: {
-      type: 'object'
-      properties: Map<string, RecursivePattern>
-      keyPaths: Map<string, KeyPath>
-    },
-    currentPath: KeyPath,
-    options: Required<DecodingOptions>,
-  ): DecodingResult {
-    if (
-      typeof encryptedValue !== 'object' ||
-      encryptedValue === null ||
-      Array.isArray(encryptedValue)
-    )
-      return { success: false, keyMappings: new Map(), confidence: 0 }
-
-    const encryptedObj = encryptedValue
-    const keyMappings = new Map<KeyPath, string>()
-    let totalConfidence = 0
-    let matchedProperties = 0
-
-    const encryptedEntries = Object.entries(encryptedObj)
-    const usedEncryptedKeys = new Set<string>()
-
-    for (const [originalKey, originalPattern] of pattern.properties) {
-      const bestMatch = this.findBestKeyMatch(
-        originalPattern,
-        encryptedEntries,
-        usedEncryptedKeys,
-        currentPath,
-        options,
-      )
-
-      if (bestMatch) {
-        matchedProperties++
-        totalConfidence += bestMatch.confidence
-        usedEncryptedKeys.add(bestMatch.encryptedKey)
-
-        const originalKeyPath = pattern.keyPaths.get(originalKey)
-        if (originalKeyPath) {
-          const encryptedKeyPath = [...currentPath, bestMatch.encryptedKey]
-          keyMappings.set(encryptedKeyPath, originalKey)
-        }
-
-        const nestedResult = this.matchPatternRecursively(
-          encryptedObj[bestMatch.encryptedKey],
-          originalPattern,
-          [...currentPath, bestMatch.encryptedKey],
-          options,
-        )
-
-        for (const [path, key] of nestedResult.keyMappings)
-          keyMappings.set(path, key)
-      }
-    }
-
-    const confidence =
-      pattern.properties.size > 0
-        ? totalConfidence / pattern.properties.size
-        : 0
-    const success =
-      options.matchStrategy === 'exact'
-        ? matchedProperties === pattern.properties.size
-        : matchedProperties > 0
-
-    return { success, keyMappings, confidence }
-  }
-
-  /**
-   * Find best key match for a property.
-   * @param originalPattern - Original pattern to match against.
-   * @param encryptedEntries - Encrypted key-value entries.
-   * @param usedEncryptedKeys - Set of already used encrypted keys.
-   * @param currentPath - Current key path in recursion.
-   * @param options - Decoding options.
-   */
-  private findBestKeyMatch(
-    originalPattern: RecursivePattern,
-    encryptedEntries: [string, JsonValue][],
-    usedEncryptedKeys: Set<string>,
-    currentPath: KeyPath,
-    options: Required<DecodingOptions>,
-  ): { encryptedKey: string; confidence: number } | null {
-    let bestMatch: { encryptedKey: string; confidence: number } | null = null
-
-    for (const [encryptedKey, encryptedValue] of encryptedEntries) {
-      if (usedEncryptedKeys.has(encryptedKey)) continue
-
-      const matchResult = this.matchPatternRecursively(
-        encryptedValue,
-        originalPattern,
-        [...currentPath, encryptedKey],
-        options,
-      )
-
-      if (
-        matchResult.success &&
-        (!bestMatch || matchResult.confidence > bestMatch.confidence)
-      )
-        bestMatch = { encryptedKey, confidence: matchResult.confidence }
-    }
-
-    return bestMatch
-  }
-
-  /**
-   * Check if two values match according to strategy
-   * @param value1 - First value
-   * @param value2 - Second value
-   * @param strategy - Matching strategy
-   * @returns whether values match
-   */
-  private valueMatches(
-    value1: JsonValue,
-    value2: JsonValue,
-    strategy: 'exact' | 'subset' | 'fuzzy',
-  ): boolean {
-    if (strategy === 'exact') return value1 === value2
-
-    if (strategy === 'fuzzy') {
-      if (typeof value1 === typeof value2) {
-        if (typeof value1 === 'string' && typeof value2 === 'string')
-          return value1.toLowerCase() === value2.toLowerCase()
-
-        if (typeof value1 === 'number' && typeof value2 === 'number')
-          return Math.abs(value1 - value2) < 0.001
-      }
-    }
-
-    if (value1 === null || value1 === undefined)
-      return value2 === null || value2 === undefined
-
-    return value1 === value2
-  }
-
-  /**
-   * Apply recursive decoding to an object using key mappings
-   * @param obj - Object to decode
-   * @param keyMappings - Map of encrypted key paths to original keys
-   * @returns decoded object
-   */
-  private applyRecursiveDecoding(
-    obj: JsonValue,
-    keyMappings: Map<KeyPath, string>,
-  ): JsonValue {
-    const stringMappings = this.convertKeyMappingsToStringMap(keyMappings)
-    return this.applyDecodingAtPath(obj, [], stringMappings)
-  }
-
-  /**
-   * Convert KeyPath-based mappings to string-based mappings for faster lookup
-   * @param keyMappings - Original key mappings with KeyPath keys
-   * @returns string-based key mappings
-   */
-  private convertKeyMappingsToStringMap(
-    keyMappings: Map<KeyPath, string>,
-  ): Map<string, string> {
-    const result = new Map<string, string>()
-    for (const [path, key] of keyMappings)
-      result.set(this.pathToString(path), key)
-
-    return result
-  }
-
-  /**
-   * Apply decoding at specific path in object hierarchy
-   * @param value - Current value
-   * @param currentPath - Current path
-   * @param stringMappings - String-based key mappings for O(1) lookup
-   * @returns decoded value
-   */
-  private applyDecodingAtPath(
-    value: JsonValue,
-    currentPath: KeyPath,
-    stringMappings: Map<string, string>,
-  ): JsonValue {
-    if (value === null || value === undefined) return value
-
-    if (Array.isArray(value)) {
-      return value.map((item, index) =>
-        this.applyDecodingAtPath(item, [...currentPath, index], stringMappings),
-      )
-    }
-
-    if (typeof value === 'object') {
-      const obj = value
-      const decodedObj: JsonObject = {}
-
-      for (const [encryptedKey, nestedValue] of Object.entries(obj)) {
-        const keyPath = [...currentPath, encryptedKey]
-        const pathKey = this.pathToString(keyPath)
-
-        const originalKey = stringMappings.get(pathKey) ?? encryptedKey
-
-        decodedObj[originalKey] = this.applyDecodingAtPath(
-          nestedValue,
-          keyPath,
-          stringMappings,
-        )
-      }
-
-      return decodedObj
-    }
-
-    return value
-  }
-
-  /**
-   * Convert key path to string for comparison
-   * @param path - Key path
-   * @returns string representation
-   */
-  private pathToString(path: KeyPath): string {
-    return path.map((segment) => String(segment)).join('.')
   }
 
   /**
@@ -608,7 +158,7 @@ export class EncryptedKeyDecoder<T extends ExcelBinOutputKey> {
    */
   private generateDetailedError(
     result: DecodingResult,
-    encryptedData: JsonObject[],
+    encryptedData: readonly JsonObject[],
   ): string {
     const sourceFile = this.masterFile.metadata.sourceFile
     let message = `Could not determine key mapping for ${sourceFile}.\n`
@@ -618,8 +168,12 @@ export class EncryptedKeyDecoder<T extends ExcelBinOutputKey> {
     if (result.errors && result.errors.length > 0)
       message += `Errors encountered:\n${result.errors.map((e) => `  - ${e}`).join('\n')}\n`
 
-    if (result.partialMatches && result.partialMatches.length > 0)
-      message += `Partial matches found at paths:\n${result.partialMatches.map((p) => `  - ${this.pathToString(p)}`).join('\n')}\n`
+    if (result.partialMatches && result.partialMatches.length > 0) {
+      message += `Partial matches found at paths:\n${result.partialMatches
+        .map((p) => pathToString(p))
+        .map((s) => `  - ${s}`)
+        .join('\n')}\n`
+    }
 
     if (encryptedData.length > 0) {
       const sampleKeys = Object.keys(encryptedData[0]).slice(0, 5)
@@ -647,8 +201,8 @@ export class EncryptedKeyDecoder<T extends ExcelBinOutputKey> {
    * @returns cache key string
    */
   private generateCacheKey(
-    encryptedData: JsonObject[],
-    options: Required<DecodingOptions>,
+    encryptedData: readonly JsonObject[],
+    options: RequiredDecodingOptions,
   ): string {
     const keys = Object.keys(encryptedData[0]).sort()
     const dataSignature = keys.join(',')

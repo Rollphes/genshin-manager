@@ -60,10 +60,17 @@ export class CharacterVoice {
   constructor(fetterId: number, cv: CVType) {
     this.fetterId = fetterId
     this.cv = cv
-    const fetterVoiceJson = Client._getJsonFromCachedExcelBinOutput(
+    const fetterVoiceJson = Client._findBy(
       'FettersExcelConfigData',
+      'fetterId',
       fetterId,
     )
+    if (!fetterVoiceJson) {
+      throw new Error(
+        `FettersExcelConfigData not found for fetterId ${String(fetterId)}`,
+      )
+    }
+
     this.hideCostumeList = fetterVoiceJson.hideCostumeList
     this.showCostumeList = fetterVoiceJson.showCostumeList
     this.characterId = fetterVoiceJson.avatarId
@@ -88,15 +95,8 @@ export class CharacterVoice {
    * @returns all Fetter IDs in the voice
    */
   public static get allFetterIds(): number[] {
-    const fetterVoicesJson = Object.values(
-      Client._getCachedExcelBinOutputByName('FettersExcelConfigData'),
-    )
-    return fetterVoicesJson
-      .filter(
-        (voice): voice is NonNullable<typeof voice> =>
-          voice?.fetterId !== undefined,
-      )
-      .map((voice) => voice.fetterId)
+    const fetterVoicesJson = Client._getAll('FettersExcelConfigData')
+    return fetterVoicesJson.map((voice) => voice.fetterId)
   }
 
   /**
@@ -105,14 +105,9 @@ export class CharacterVoice {
    * @returns all Fetter IDs in the character's voice
    */
   public static getAllFetterIdsByCharacterId(characterId: number): number[] {
-    const fetterVoicesJson = Object.values(
-      Client._getCachedExcelBinOutputByName('FettersExcelConfigData'),
-    )
+    const fetterVoicesJson = Client._getAll('FettersExcelConfigData')
     return fetterVoicesJson
-      .filter(
-        (voice): voice is NonNullable<typeof voice> =>
-          voice !== undefined && voice.avatarId === characterId,
-      )
+      .filter((voice) => voice.avatarId === characterId)
       .map((voice) => voice.fetterId)
   }
 }

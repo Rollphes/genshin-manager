@@ -51,10 +51,17 @@ export class CharacterSkill {
    */
   constructor(skillId: number, level = 1, extraLevel = 0) {
     this.id = skillId
-    const skillJson = Client._getJsonFromCachedExcelBinOutput(
+    const skillJson = Client._findBy(
       'AvatarSkillExcelConfigData',
+      'id',
       this.id,
     )
+    if (!skillJson) {
+      throw new Error(
+        `AvatarSkillExcelConfigData not found for id ${String(this.id)}`,
+      )
+    }
+
     const nameTextMapHash = skillJson.nameTextMapHash
     const descTextMapHash = skillJson.descTextMapHash
     this.name = Client._cachedTextMap.get(nameTextMapHash) ?? ''
@@ -68,10 +75,11 @@ export class CharacterSkill {
 
     if (skillJson.proudSkillGroupId === 0) return
     const proudSkillGroupId = skillJson.proudSkillGroupId
-    const proudSkillJson = Client._getJsonFromCachedExcelBinOutput(
+    const proudSkillJson = Client._filterBy(
       'ProudSkillExcelConfigData',
+      'proudSkillGroupId',
       proudSkillGroupId,
-    )[this.level]
+    ).find((p) => p.level === this.level)
     if (!proudSkillJson) {
       throw new AssetNotFoundError(
         `level ${String(this.level)}`,
@@ -125,23 +133,38 @@ export class CharacterSkill {
    * @param characterId - character ID
    * @param skillDepotId - skill depot ID
    * @returns skill order
+   * @throws Error - When the avatar or skill depot data is not found
    */
   public static getSkillOrderByCharacterId(
     characterId: number,
     skillDepotId?: number,
   ): number[] {
-    const avatarJson = Client._getJsonFromCachedExcelBinOutput(
+    const avatarJson = Client._findBy(
       'AvatarExcelConfigData',
+      'id',
       characterId,
     )
+    if (!avatarJson) {
+      throw new Error(
+        `AvatarExcelConfigData not found for id ${String(characterId)}`,
+      )
+    }
+
     const depotId =
       skillDepotId && [10000005, 10000007].includes(characterId)
         ? skillDepotId
         : avatarJson.skillDepotId
-    const depotJson = Client._getJsonFromCachedExcelBinOutput(
+    const depotJson = Client._findBy(
       'AvatarSkillDepotExcelConfigData',
+      'id',
       depotId,
     )
+    if (!depotJson) {
+      throw new Error(
+        `AvatarSkillDepotExcelConfigData not found for id ${String(depotId)}`,
+      )
+    }
+
     return [501, 701].includes(depotId)
       ? depotJson.skills.slice(0, 1)
       : depotJson.skills.slice(0, 2).concat(depotJson.energySkill)

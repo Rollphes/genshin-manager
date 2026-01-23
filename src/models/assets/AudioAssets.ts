@@ -3,7 +3,9 @@ import * as fsPromises from 'fs/promises'
 import path from 'path'
 import { pipeline } from 'stream/promises'
 
+import { RestClient } from '@/client/RestClient'
 import { AudioNotFoundError } from '@/errors/assets/AudioNotFoundError'
+import { NetworkUnavailableError } from '@/errors/network/NetworkUnavailableError'
 import { ClientOption, CVType } from '@/types/types'
 import { ReadableStreamWrapper } from '@/utils/streams/ReadableStreamWrapper'
 
@@ -18,13 +20,15 @@ export class AudioAssets {
     'https://upload-os-bbs.mihoyo.com/game_record/genshin'
 
   /**
-   * Fetch option
+   * REST client for audio fetching
    */
-  private static fetchOption: RequestInit
+  private static client: RestClient<Record<string, never>>
   /**
    * Audio base URL by regex
    */
-  private static audioBaseURLByRegex: Record<string, RegExp[]>
+  private static audioBaseURLByRegex: Readonly<
+    Record<string, readonly RegExp[]>
+  >
   /**
    * Default audio base URL
    */
@@ -97,7 +101,11 @@ export class AudioAssets {
    * @param option - client option
    */
   public static deploy(option: ClientOption): void {
-    this.fetchOption = option.fetchOption
+    this.client = new RestClient<Record<string, never>>('', {
+      headers: option.fetchOption.headers,
+      retry: 3,
+      retryDelay: 100,
+    })
     this.audioBaseURLByRegex = option.audioBaseURLByRegex
     this.defaultAudioBaseURL = option.defaultAudioBaseURL
     this.autoCacheAudio = option.autoCacheAudio
@@ -120,21 +128,24 @@ export class AudioAssets {
       ...cvPaths,
       `${this.name}.ogg`,
     )
-    if (fs.existsSync(audioCachePath) && !this.isOGGCorrupted(audioCachePath)) {
+    if (fs.existsSync(audioCachePath) && !this.isOGGCorrupted(audioCachePath))
       return await fsPromises.readFile(audioCachePath)
-    } else {
-      const res = await fetch(this.url, AudioAssets.fetchOption)
-      if (!res.ok || !res.body)
-        throw new AudioNotFoundError(this.name, { url: this.url })
 
-      const arrayBuffer = await res.arrayBuffer()
-      const data = Buffer.from(arrayBuffer)
+    try {
+      const res = await AudioAssets.client.fetchRaw(this.url)
+      if (!res.body) throw new AudioNotFoundError(this.name, { url: this.url })
+      const data = Buffer.from(await res.arrayBuffer())
       if (AudioAssets.autoCacheAudio) {
         fs.mkdirSync(path.dirname(audioCachePath), { recursive: true })
         await fsPromises.writeFile(audioCachePath, data, { flag: 'w' })
       }
 
       return data
+    } catch (error) {
+      if (error instanceof NetworkUnavailableError)
+        throw new AudioNotFoundError(this.name, { url: this.url })
+
+      throw error
     }
   }
 
@@ -158,10 +169,11 @@ export class AudioAssets {
       return fs.createReadStream(audioCachePath, {
         highWaterMark: highWaterMark,
       })
-    } else {
-      const res = await fetch(this.url, AudioAssets.fetchOption)
-      if (!res.ok || !res.body)
-        throw new AudioNotFoundError(this.name, { url: this.url })
+    }
+
+    try {
+      const res = await AudioAssets.client.fetchRaw(this.url)
+      if (!res.body) throw new AudioNotFoundError(this.name, { url: this.url })
 
       if (AudioAssets.autoCacheAudio) {
         fs.mkdirSync(path.dirname(audioCachePath), { recursive: true })
@@ -176,6 +188,11 @@ export class AudioAssets {
       return fs.createReadStream(audioCachePath, {
         highWaterMark: highWaterMark,
       })
+    } catch (error) {
+      if (error instanceof NetworkUnavailableError)
+        throw new AudioNotFoundError(this.name, { url: this.url })
+
+      throw error
     }
   }
 

@@ -7,7 +7,8 @@ import { setupGitLabMock } from '@/__test__/__mocks__/api/gitlab'
 import { AssetCacheManager } from '@/client/AssetCacheManager'
 import { Client } from '@/client/Client'
 import { AssetNotFoundError } from '@/errors/assets/AssetNotFoundError'
-import { ExcelBinOutputs } from '@/types/types'
+import { ExcelBinOutputs } from '@/types/excelBinOutputs'
+import { Language } from '@/types/types'
 
 // Increase max listeners to prevent memory leak warnings during tests
 EventEmitter.defaultMaxListeners = 50
@@ -27,8 +28,8 @@ describe('AssetCacheManager Basic Functionality', () => {
 
     // Deploy Client using the GitLab mock server
     client = new Client({
-      defaultLanguage: 'en',
-      downloadLanguages: ['en'],
+      defaultLanguage: Language.En,
+      downloadLanguages: [Language.En],
     })
     await client.deploy()
 
@@ -43,12 +44,13 @@ describe('AssetCacheManager Basic Functionality', () => {
 
     // Add the keys through the internal method
     requiredKeys.forEach((key) => {
-      // Create a mock class prototype that references the key
-      const mockPrototype = {
-        constructor: {
-          toString: (): string => `function test() { return "${key}"; }`,
-        },
+      // Create a mock class prototype with a function constructor that references the key
+      const mockConstructor = function test(): void {
+        // empty
       }
+      mockConstructor.toString = (): string =>
+        `function test() { return "${key}"; }`
+      const mockPrototype = { constructor: mockConstructor }
       AssetCacheManager._addExcelBinOutputKeyFromClassPrototype(mockPrototype)
     })
 
@@ -71,44 +73,42 @@ describe('AssetCacheManager Basic Functionality', () => {
       expect(AssetCacheManager._cachedTextMap).toBeInstanceOf(Map)
     })
 
-    it('should have cachedExcelBinOutput static property accessible via _hasCachedExcelBinOutputByName', () => {
-      const hasAvatarData = AssetCacheManager._hasCachedExcelBinOutputByName(
-        'AvatarExcelConfigData',
-      )
+    it('should have cached data accessible via _hasTable', () => {
+      const hasAvatarData = AssetCacheManager._hasTable('AvatarExcelConfigData')
       expect(typeof hasAvatarData).toBe('boolean')
     })
   })
 
   describe('Static Methods Tests', () => {
-    describe('_getJsonFromCachedExcelBinOutput', () => {
+    describe('_findBy', () => {
       it('should successfully retrieve data for existing key and ID', () => {
-        expect(() => {
-          const result = AssetCacheManager._getJsonFromCachedExcelBinOutput(
-            'AvatarExcelConfigData',
-            '10000002',
-          )
-          expect(result).toBeDefined()
-          expect(typeof result).toBe('object')
-        }).not.toThrow()
+        const result = AssetCacheManager._findBy(
+          'AvatarExcelConfigData',
+          'id',
+          10000002,
+        )
+        expect(result).toBeDefined()
+        expect(typeof result).toBe('object')
       })
 
       it('should throw AssetNotFoundError for non-existent ExcelBinOutput key', () => {
         expect(() => {
           // Use a key that exists in the type but is not cached
-          AssetCacheManager._getJsonFromCachedExcelBinOutput(
+          AssetCacheManager._findBy(
             'AnimalCodexExcelConfigData' as keyof typeof ExcelBinOutputs,
-            '123',
+            'id' as never,
+            123 as never,
           )
         }).toThrow(AssetNotFoundError)
       })
 
-      it('should throw AssetNotFoundError for non-existent ID', () => {
-        expect(() => {
-          AssetCacheManager._getJsonFromCachedExcelBinOutput(
-            'AvatarExcelConfigData',
-            '99999999',
-          )
-        }).toThrow(AssetNotFoundError)
+      it('should return undefined for non-existent ID', () => {
+        const result = AssetCacheManager._findBy(
+          'AvatarExcelConfigData',
+          'id',
+          99999999,
+        )
+        expect(result).toBeUndefined()
       })
     })
 
@@ -117,77 +117,74 @@ describe('AssetCacheManager Basic Functionality', () => {
         function testClass(): void {
           // Empty test class constructor
         }
-
-        const prototype = testClass.prototype as Record<
-          string,
-          (...args: unknown[]) => unknown
-        >
-
+        testClass.prototype = {
+          testMethod: function (): string {
+            return 'AvatarExcelConfigData'
+          },
+        }
         expect(() => {
-          AssetCacheManager._addExcelBinOutputKeyFromClassPrototype(prototype)
+          AssetCacheManager._addExcelBinOutputKeyFromClassPrototype(
+            testClass.prototype,
+          )
         }).not.toThrow()
       })
 
-      it('should handle class prototype without ExcelBinOutput keys', () => {
+      it('should handle empty class prototype without errors', () => {
         const simpleClass = {
-          constructor: function simpleClass(): void {
-            // Empty constructor for testing
+          constructor: {
+            toString: (): string => 'function empty() {}',
           },
         }
-
         expect(() => {
           AssetCacheManager._addExcelBinOutputKeyFromClassPrototype(simpleClass)
         }).not.toThrow()
       })
     })
 
-    describe('_getCachedExcelBinOutputByName', () => {
-      it('should return cached excel bin output for existing key', () => {
-        const result = AssetCacheManager._getCachedExcelBinOutputByName(
-          'AvatarExcelConfigData',
-        )
+    describe('_getAll', () => {
+      it('should return cached excel bin output array for existing key', () => {
+        const result = AssetCacheManager._getAll('AvatarExcelConfigData')
         expect(result).toBeDefined()
-        expect(typeof result).toBe('object')
+        expect(Array.isArray(result)).toBe(true)
+        expect(result.length).toBeGreaterThan(0)
       })
     })
 
-    describe('_hasCachedExcelBinOutputByName', () => {
+    describe('_hasTable', () => {
       it('should return true for existing ExcelBinOutput key', () => {
-        const result = AssetCacheManager._hasCachedExcelBinOutputByName(
-          'AvatarExcelConfigData',
-        )
+        const result = AssetCacheManager._hasTable('AvatarExcelConfigData')
         expect(result).toBe(true)
       })
 
       it('should return boolean for any valid ExcelBinOutput key', () => {
-        const result = AssetCacheManager._hasCachedExcelBinOutputByName(
-          'WeaponExcelConfigData',
-        )
+        const result = AssetCacheManager._hasTable('WeaponExcelConfigData')
         expect(typeof result).toBe('boolean')
       })
     })
 
-    describe('_hasCachedExcelBinOutputById', () => {
-      it('should return true for existing key and ID', () => {
-        const result = AssetCacheManager._hasCachedExcelBinOutputById(
+    describe('_findBy for existence check', () => {
+      it('should return truthy for existing key and ID', () => {
+        const result = AssetCacheManager._findBy(
           'AvatarExcelConfigData',
-          '10000002',
+          'id',
+          10000002,
         )
-        expect(result).toBe(true)
+        expect(result).toBeDefined()
       })
 
-      it('should return false for non-existent ID', () => {
-        const result = AssetCacheManager._hasCachedExcelBinOutputById(
+      it('should return undefined for non-existent ID', () => {
+        const result = AssetCacheManager._findBy(
           'AvatarExcelConfigData',
-          '99999999',
+          'id',
+          99999999,
         )
-        expect(result).toBe(false)
+        expect(result).toBeUndefined()
       })
     })
 
-    describe('_searchIdInExcelBinOutByText', () => {
-      it('should find IDs by text in TextMapHash fields', () => {
-        const result = AssetCacheManager._searchIdInExcelBinOutByText(
+    describe('_searchByText', () => {
+      it('should find records by text in TextMapHash fields', () => {
+        const result = AssetCacheManager._searchByText(
           'AvatarExcelConfigData',
           'Amber',
         )
@@ -196,7 +193,7 @@ describe('AssetCacheManager Basic Functionality', () => {
       })
 
       it('should return empty array for non-existent text', () => {
-        const result = AssetCacheManager._searchIdInExcelBinOutByText(
+        const result = AssetCacheManager._searchByText(
           'AvatarExcelConfigData',
           'NonExistentCharacterName',
         )
@@ -220,8 +217,8 @@ describe('AssetCacheManager Basic Functionality', () => {
       const customPath = path.resolve(process.cwd(), 'custom-test-cache')
       const customClient = new Client({
         assetCacheFolderPath: customPath,
-        defaultLanguage: 'en',
-        downloadLanguages: ['en'],
+        defaultLanguage: Language.En,
+        downloadLanguages: [Language.En],
       })
 
       expect(customClient.option.assetCacheFolderPath).toBe(customPath)
@@ -232,110 +229,55 @@ describe('AssetCacheManager Basic Functionality', () => {
 
     it('should handle relative paths as provided', () => {
       const relativePath = 'relative-test-cache'
-      const client = new Client({
-        assetCacheFolderPath: relativePath,
-        defaultLanguage: 'en',
-        downloadLanguages: ['en'],
-      })
-
-      // Client preserves the path as provided
-      expect(client.option.assetCacheFolderPath).toBe(relativePath)
-      expect(path.isAbsolute(client.option.assetCacheFolderPath)).toBe(false)
-    })
-
-    it('should validate subdirectory paths are correctly constructed', () => {
-      const basePath = path.resolve(process.cwd(), 'path-test-cache')
-      const client = new Client({
-        assetCacheFolderPath: basePath,
-        defaultLanguage: 'en',
-        downloadLanguages: ['en'],
-      })
-
-      expect(client.option.assetCacheFolderPath).toBe(basePath)
-
-      // Test that subdirectory paths would be constructed correctly
-      const expectedExcelBinPath = path.resolve(basePath, 'ExcelBinOutput')
-      const expectedTextMapPath = path.resolve(basePath, 'TextMap')
-      const expectedImagesPath = path.resolve(basePath, 'Images')
-      const expectedAudiosPath = path.resolve(basePath, 'Audios')
-
-      expect(expectedExcelBinPath).toBe(path.join(basePath, 'ExcelBinOutput'))
-      expect(expectedTextMapPath).toBe(path.join(basePath, 'TextMap'))
-      expect(expectedImagesPath).toBe(path.join(basePath, 'Images'))
-      expect(expectedAudiosPath).toBe(path.join(basePath, 'Audios'))
-    })
-
-    it('should handle path with special characters correctly', () => {
-      const specialPath = path.resolve(
-        process.cwd(),
-        'test-cache with spaces & symbols!',
-      )
-      const client = new Client({
-        assetCacheFolderPath: specialPath,
-        defaultLanguage: 'en',
-        downloadLanguages: ['en'],
-      })
-
-      expect(client.option.assetCacheFolderPath).toBe(specialPath)
-      expect(path.isAbsolute(client.option.assetCacheFolderPath)).toBe(true)
-    })
-
-    it('should preserve mixed path separators as provided', () => {
-      const mixedPath = 'test\\mixed/separators\\path'
-      const client = new Client({
-        assetCacheFolderPath: mixedPath,
-        defaultLanguage: 'en',
-        downloadLanguages: ['en'],
-      })
-
-      // Client preserves the path as provided, no automatic normalization
-      expect(client.option.assetCacheFolderPath).toBe(mixedPath)
-      expect(path.sep).toBeTruthy() // Ensure we're using the correct separator for this OS
-    })
-
-    it('should validate that path configuration is properly set', () => {
-      const testPath = path.resolve(process.cwd(), 'cache-ops-test')
       const testClient = new Client({
-        assetCacheFolderPath: testPath,
-        defaultLanguage: 'en',
-        downloadLanguages: ['en'],
+        assetCacheFolderPath: relativePath,
+        defaultLanguage: Language.En,
+        downloadLanguages: [Language.En],
       })
 
-      // Verify AssetCacheManager is using the correct path
-      expect(testClient.option.assetCacheFolderPath).toBe(testPath)
-      expect(path.isAbsolute(testClient.option.assetCacheFolderPath)).toBe(true)
-      expect(typeof testClient.option.assetCacheFolderPath).toBe('string')
-      expect(testClient.option.assetCacheFolderPath.length).toBeGreaterThan(0)
-    })
-
-    it('should handle deeply nested path structures', () => {
-      const deepPath = path.resolve(
-        process.cwd(),
-        'deep',
-        'nested',
-        'cache',
-        'structure',
-        'test',
-      )
-      const client = new Client({
-        assetCacheFolderPath: deepPath,
-        defaultLanguage: 'en',
-        downloadLanguages: ['en'],
-      })
-
-      expect(client.option.assetCacheFolderPath).toBe(deepPath)
-      expect(path.isAbsolute(client.option.assetCacheFolderPath)).toBe(true)
-
-      // Verify path depth doesn't cause issues
-      const pathSegments = deepPath
-        .split(path.sep)
-        .filter((segment) => segment.length > 0)
-      expect(pathSegments.length).toBeGreaterThan(3)
+      expect(testClient.option.assetCacheFolderPath).toBe(relativePath)
     })
   })
 
-  describe('Cache Management Tests', () => {
-    it('should have game version available after deployment', () => {
+  describe('Language Configuration Tests', () => {
+    it('should handle multiple download languages', () => {
+      const multiLangClient = new Client({
+        defaultLanguage: Language.En,
+        downloadLanguages: [Language.En, Language.Ja],
+      })
+
+      expect(multiLangClient.option.downloadLanguages).toContain(Language.En)
+      expect(multiLangClient.option.downloadLanguages).toContain(Language.Ja)
+      expect(multiLangClient.option.downloadLanguages.length).toBe(2)
+    })
+
+    it('should handle single download language', () => {
+      const singleLangClient = new Client({
+        defaultLanguage: Language.En,
+        downloadLanguages: [Language.En],
+      })
+
+      expect(singleLangClient.option.downloadLanguages).toContain(Language.En)
+      expect(singleLangClient.option.downloadLanguages.length).toBe(1)
+    })
+
+    it('should use default language from client options', () => {
+      const enClient = new Client({
+        defaultLanguage: Language.En,
+        downloadLanguages: [Language.En],
+      })
+      expect(enClient.option.defaultLanguage).toBe(Language.En)
+
+      const jaClient = new Client({
+        defaultLanguage: Language.Ja,
+        downloadLanguages: [Language.Ja],
+      })
+      expect(jaClient.option.defaultLanguage).toBe(Language.Ja)
+    })
+  })
+
+  describe('Deployment State Tests', () => {
+    it('should have game version after deployment', () => {
       const version = client.gameVersion
       expect(version === undefined || typeof version === 'string').toBe(true)
       if (version) expect(version).toMatch(/^\d+\.\d+\.\d+$/)
@@ -350,7 +292,7 @@ describe('AssetCacheManager Basic Functionality', () => {
       ]
 
       for (const key of importantKeys) {
-        const hasCached = AssetCacheManager._hasCachedExcelBinOutputByName(key)
+        const hasCached = AssetCacheManager._hasTable(key)
         expect(hasCached).toBe(true)
       }
     })
@@ -419,36 +361,33 @@ describe('AssetCacheManager Basic Functionality', () => {
   describe('Error Handling Tests', () => {
     it('should handle missing ExcelBinOutput gracefully', () => {
       expect(() => {
-        AssetCacheManager._getJsonFromCachedExcelBinOutput(
+        AssetCacheManager._getAll(
           'AnimalCodexExcelConfigData' as keyof typeof ExcelBinOutputs,
-          '123',
         )
       }).toThrow(AssetNotFoundError)
     })
 
-    it('should handle missing ID in ExcelBinOutput gracefully', () => {
-      expect(() => {
-        AssetCacheManager._getJsonFromCachedExcelBinOutput(
-          'AvatarExcelConfigData',
-          '99999999',
-        )
-      }).toThrow(AssetNotFoundError)
+    it('should return undefined for missing ID in ExcelBinOutput', () => {
+      const result = AssetCacheManager._findBy(
+        'AvatarExcelConfigData',
+        'id',
+        99999999,
+      )
+      expect(result).toBeUndefined()
     })
 
     it('should validate AssetNotFoundError properties', () => {
       let caughtError: unknown
 
       expect(() => {
-        AssetCacheManager._getJsonFromCachedExcelBinOutput(
+        AssetCacheManager._getAll(
           'AnimalCodexExcelConfigData' as keyof typeof ExcelBinOutputs,
-          '123',
         )
       }).toThrow()
 
       try {
-        AssetCacheManager._getJsonFromCachedExcelBinOutput(
+        AssetCacheManager._getAll(
           'AnimalCodexExcelConfigData' as keyof typeof ExcelBinOutputs,
-          '123',
         )
       } catch (error) {
         caughtError = error
@@ -472,30 +411,18 @@ describe('AssetCacheManager Basic Functionality', () => {
       for (const key of keys) {
         expect(typeof ExcelBinOutputs[key]).toBe('string')
 
-        const hasCached = AssetCacheManager._hasCachedExcelBinOutputByName(key)
+        const hasCached = AssetCacheManager._hasTable(key)
         expect(typeof hasCached).toBe('boolean')
       }
     })
 
     it('should handle concurrent cache operations', async () => {
       const operations = [
-        (): boolean =>
-          AssetCacheManager._hasCachedExcelBinOutputByName(
-            'AvatarExcelConfigData',
-          ),
-        (): boolean =>
-          AssetCacheManager._hasCachedExcelBinOutputByName(
-            'WeaponExcelConfigData',
-          ),
-        (): boolean =>
-          AssetCacheManager._hasCachedExcelBinOutputByName(
-            'MaterialExcelConfigData',
-          ),
+        (): boolean => AssetCacheManager._hasTable('AvatarExcelConfigData'),
+        (): boolean => AssetCacheManager._hasTable('WeaponExcelConfigData'),
+        (): boolean => AssetCacheManager._hasTable('MaterialExcelConfigData'),
         (): number => AssetCacheManager._cachedTextMap.size,
-        (): Record<string, unknown> =>
-          AssetCacheManager._getCachedExcelBinOutputByName(
-            'AvatarExcelConfigData',
-          ),
+        (): unknown[] => AssetCacheManager._getAll('AvatarExcelConfigData'),
       ]
 
       const results = await Promise.all(
@@ -513,25 +440,16 @@ describe('AssetCacheManager Basic Functionality', () => {
       expect(results[1]).toBe(true)
       expect(results[2]).toBe(true)
       expect(typeof results[3]).toBe('number')
-      expect(typeof results[4]).toBe('object')
+      expect(Array.isArray(results[4])).toBe(true)
     })
 
     it('should maintain data consistency across multiple accesses', () => {
       const key = 'AvatarExcelConfigData'
-      const id = '10000002'
+      const id = 10000002
 
-      const firstAccess = AssetCacheManager._getJsonFromCachedExcelBinOutput(
-        key,
-        id,
-      )
-      const secondAccess = AssetCacheManager._getJsonFromCachedExcelBinOutput(
-        key,
-        id,
-      )
-      const thirdAccess = AssetCacheManager._getJsonFromCachedExcelBinOutput(
-        key,
-        id,
-      )
+      const firstAccess = AssetCacheManager._findBy(key, 'id', id)
+      const secondAccess = AssetCacheManager._findBy(key, 'id', id)
+      const thirdAccess = AssetCacheManager._findBy(key, 'id', id)
 
       expect(firstAccess).toEqual(secondAccess)
       expect(secondAccess).toEqual(thirdAccess)
@@ -544,25 +462,19 @@ describe('AssetCacheManager Basic Functionality', () => {
       const textMapSize = AssetCacheManager._cachedTextMap.size
       expect(textMapSize).toBeLessThan(1_000_000)
 
-      const avatarData = AssetCacheManager._getCachedExcelBinOutputByName(
-        'AvatarExcelConfigData',
-      )
-      const avatarKeys = Object.keys(avatarData)
-      expect(avatarKeys.length).toBeLessThan(10_000)
+      const avatarData = AssetCacheManager._getAll('AvatarExcelConfigData')
+      expect(avatarData.length).toBeLessThan(10_000)
     })
 
     it('should handle large data structures efficiently', () => {
       const startTime = Date.now()
 
-      const materialData = AssetCacheManager._getCachedExcelBinOutputByName(
-        'MaterialExcelConfigData',
-      )
-      const materialKeys = Object.keys(materialData)
+      const materialData = AssetCacheManager._getAll('MaterialExcelConfigData')
 
       const endTime = Date.now()
       const executionTime = endTime - startTime
 
-      expect(materialKeys.length).toBeGreaterThan(0)
+      expect(materialData.length).toBeGreaterThan(0)
       expect(executionTime).toBeLessThan(1000)
     })
   })

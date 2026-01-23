@@ -3,12 +3,13 @@ import { beforeAll, describe, expect, it } from 'vitest'
 import { Client } from '@/client/Client'
 import { AudioAssets } from '@/models/assets/AudioAssets'
 import { CharacterVoice } from '@/models/character/CharacterVoice'
+import { Language } from '@/types/types'
 
 describe('CharacterVoice', () => {
   beforeAll(async () => {
     const client = new Client({
-      defaultLanguage: 'en',
-      downloadLanguages: ['en'],
+      defaultLanguage: Language.En,
+      downloadLanguages: [Language.En],
     })
     await client.deploy()
   }, 30000)
@@ -35,7 +36,7 @@ describe('CharacterVoice', () => {
 
   describe('Constructor', () => {
     it('should create CharacterVoice', () => {
-      const voice = new CharacterVoice(3100, 'en')
+      const voice = new CharacterVoice(3100, Language.En)
       expect(voice).toBeDefined()
       expect(voice.fetterId).toBe(3100)
     })
@@ -45,7 +46,7 @@ describe('CharacterVoice', () => {
     let voice: CharacterVoice
 
     beforeAll(() => {
-      voice = new CharacterVoice(3100, 'en')
+      voice = new CharacterVoice(3100, Language.En)
     })
 
     it('should have correct fetterId', () => {
@@ -53,7 +54,7 @@ describe('CharacterVoice', () => {
     })
 
     it('should have correct cv', () => {
-      expect(voice.cv).toBe('en')
+      expect(voice.cv).toBe(Language.En)
     })
 
     it('should have hideCostumeList as array', () => {

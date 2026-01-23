@@ -38,15 +38,13 @@ describe('validateRequired', () => {
   })
 
   it('should pass context to error', () => {
-    const context = { operation: 'required field test' }
+    const context = { source: 'Test' }
     try {
       validateRequired(null, 'fieldName', context)
       expect.fail('Should have thrown')
     } catch (error) {
       expect(error).toBeInstanceOf(RequiredFieldError)
-      expect((error as RequiredFieldError).context?.operation).toBe(
-        'required field test',
-      )
+      expect((error as RequiredFieldError).source).toBe('Test')
     }
   })
 })

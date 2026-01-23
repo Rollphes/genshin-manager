@@ -6,12 +6,13 @@ import { CharacterPreview } from '@/models/enka/CharacterPreview'
 import { PlayerDetail } from '@/models/enka/PlayerDetail'
 import { Material } from '@/models/Material'
 import { ProfilePicture } from '@/models/ProfilePicture'
+import { Language } from '@/types/types'
 
 describe('PlayerDetail', () => {
   beforeAll(async () => {
     const client = new Client({
-      defaultLanguage: 'en',
-      downloadLanguages: ['en'],
+      defaultLanguage: Language.En,
+      downloadLanguages: [Language.En],
     })
     await client.deploy()
   }, 30000)

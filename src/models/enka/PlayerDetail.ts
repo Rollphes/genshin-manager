@@ -1,7 +1,7 @@
 import { CharacterPreview } from '@/models/enka/CharacterPreview'
 import { Material } from '@/models/Material'
 import { ProfilePicture } from '@/models/ProfilePicture'
-import { APIPlayerInfo } from '@/types/enkaNetwork/EnkaTypes'
+import type { PlayerInfoResponse } from '@/types/api/enkaNetwork/responses'
 /**
  * Contains player profile information and game progress from EnkaNetwork
  */
@@ -77,13 +77,13 @@ export class PlayerDetail {
   /**
    * Data from EnkaNetwork
    */
-  public readonly data: APIPlayerInfo
+  public readonly data: PlayerInfoResponse
 
   /**
    * Create a PlayerDetail
    * @param data - data from EnkaNetwork
    */
-  constructor(data: APIPlayerInfo) {
+  constructor(data: PlayerInfoResponse) {
     this.nickname = data.nickname ?? ''
     this.level = data.level
     this.signature = data.signature ?? ''
@@ -109,7 +109,9 @@ export class PlayerDetail {
    * @param data - API player info
    * @returns array of character previews
    */
-  private initializeCharacterPreviews(data: APIPlayerInfo): CharacterPreview[] {
+  private initializeCharacterPreviews(
+    data: PlayerInfoResponse,
+  ): CharacterPreview[] {
     return data.showAvatarInfoList
       ? data.showAvatarInfoList.map((v) => new CharacterPreview(v))
       : []
@@ -120,7 +122,7 @@ export class PlayerDetail {
    * @param data - API player info
    * @returns array of materials
    */
-  private initializeShowNameCards(data: APIPlayerInfo): Material[] {
+  private initializeShowNameCards(data: PlayerInfoResponse): Material[] {
     return data.showNameCardIdList
       ? data.showNameCardIdList.map((id) => new Material(id))
       : []
@@ -131,7 +133,7 @@ export class PlayerDetail {
    * @param data - API player info
    * @returns profile picture instance
    */
-  private createProfilePicture(data: APIPlayerInfo): ProfilePicture {
+  private createProfilePicture(data: PlayerInfoResponse): ProfilePicture {
     let profilePictureId
     if (data.profilePicture?.id) {
       profilePictureId = data.profilePicture.id

@@ -10,12 +10,13 @@ import { CharacterStatusManager } from '@/models/character/CharacterStatusManage
 import { CharacterDetail } from '@/models/enka/CharacterDetail'
 import { SetBonus } from '@/models/SetBonus'
 import { WeaponInfo } from '@/models/weapon/WeaponInfo'
+import { Language } from '@/types/types'
 
 describe('CharacterDetail', () => {
   beforeAll(async () => {
     const client = new Client({
-      defaultLanguage: 'en',
-      downloadLanguages: ['en'],
+      defaultLanguage: Language.En,
+      downloadLanguages: [Language.En],
     })
     await client.deploy()
   }, 30000)

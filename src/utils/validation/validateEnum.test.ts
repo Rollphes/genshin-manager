@@ -36,15 +36,15 @@ describe('validateEnum', () => {
 
   it('should pass context to error', () => {
     const allowedValues = ['a', 'b'] as const
-    const context = { operation: 'enum validation test' }
+    const context = { source: 'TestSource', recordId: 1, path: 'testPath' }
     try {
       validateEnum('c', allowedValues, 'field', context)
       expect.fail('Should have thrown')
     } catch (error) {
       expect(error).toBeInstanceOf(EnumValidationError)
-      expect((error as EnumValidationError).context?.operation).toBe(
-        'enum validation test',
-      )
+      expect((error as EnumValidationError).source).toBe('TestSource')
+      expect((error as EnumValidationError).recordId).toBe(1)
+      expect((error as EnumValidationError).path).toBe('testPath')
     }
   })
 })

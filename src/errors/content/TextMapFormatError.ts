@@ -7,7 +7,7 @@ import { GenshinManagerError } from '@/errors/base/GenshinManagerError'
  * Text map format error
  */
 export class TextMapFormatError extends GenshinManagerError {
-  public readonly errorCode = GenshinManagerErrorCode.GM_CONTENT_TEXT_MAP_FORMAT
+  public readonly errorCode = GenshinManagerErrorCode.GmContentTextMapFormat
 
   /**
    * Text map key or identifier

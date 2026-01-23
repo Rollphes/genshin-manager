@@ -1,16 +1,7 @@
 import { AssetCacheManager } from '@/client/AssetCacheManager'
-import { Client, type ClientEventMap, ClientEvents } from '@/client/Client'
-import {
-  type EnkaData,
-  EnkaManager,
-  type EnkaManagerEventMap,
-  EnkaManagerEvents,
-} from '@/client/EnkaManager'
-import {
-  NoticeManager,
-  type NoticeManagerEventMap,
-  NoticeManagerEvents,
-} from '@/client/NoticeManager'
+import { Client } from '@/client/Client'
+import { type EnkaData, EnkaManager } from '@/client/EnkaManager'
+import { NoticeManager } from '@/client/NoticeManager'
 import { Artifact, ArtifactAffixAppendProp } from '@/models/Artifact'
 import { AudioAssets } from '@/models/assets/AudioAssets'
 import { ImageAssets } from '@/models/assets/ImageAssets'
@@ -45,24 +36,35 @@ import { WeaponAscension } from '@/models/weapon/WeaponAscension'
 import { WeaponInfo } from '@/models/weapon/WeaponInfo'
 import { WeaponRefinement } from '@/models/weapon/WeaponRefinement'
 import {
-  ArtifactType,
-  AscensionMaterial,
   BodyType,
+  EquipType,
+  FightProp,
+  ItemType,
+  MaterialType,
+  ProfilePictureUnlockType,
+  QualityType,
+  WeaponType,
+} from '@/types/enums'
+import { type ClientEventMap, ClientEvents } from '@/types/events/client'
+import {
+  type EnkaManagerEventMap,
+  EnkaManagerEvents,
+} from '@/types/events/enka'
+import {
+  type NoticeManagerEventMap,
+  NoticeManagerEvents,
+} from '@/types/events/notice'
+import {
+  AscensionMaterial,
   CharacterUpgradePlan,
   ClientOption,
   CostItem,
   CVType,
   Element,
-  FightPropType,
-  ItemType,
   Language,
   LevelRange,
-  MaterialType,
-  ProfilePictureType,
-  QualityType,
   SkillLevelPlan,
   WeaponSummary,
-  WeaponType,
 } from '@/types/types'
 import { LogLevel } from '@/utils/logger/Logger'
 import { convertToUTC } from '@/utils/parsers/convertToUTC'
@@ -109,7 +111,6 @@ export {
 export { convertToUTC }
 export {
   ArtifactAffixAppendProp,
-  ArtifactType,
   AscensionMaterial,
   BodyType,
   CharacterUpgradePlan,
@@ -123,7 +124,8 @@ export {
   EnkaData,
   EnkaManagerEventMap,
   EnkaManagerEvents,
-  FightPropType,
+  EquipType,
+  FightProp,
   ItemType,
   Language,
   LevelRange,
@@ -131,7 +133,7 @@ export {
   MaterialType,
   NoticeManagerEventMap,
   NoticeManagerEvents,
-  ProfilePictureType,
+  ProfilePictureUnlockType,
   QualityType,
   SkillLevelPlan,
   WeaponSummary,
@@ -139,12 +141,10 @@ export {
 }
 
 // Export EnkaNetwork types
-export * from '@/types/enkaNetwork/EnkaAccountTypes'
-export * from '@/types/enkaNetwork/EnkaStatusTypes'
-export * from '@/types/enkaNetwork/EnkaTypes'
+export * from '@/types/api/enkaNetwork/responses'
 
 // Export SG-HK4E-API types
-export * from '@/types/sg-hk4e-api'
+export * from '@/types/api/sg-hk4e-api/types'
 
 // Export error system - base
 export {
@@ -157,34 +157,30 @@ export {
 export type { ErrorContext } from '@/errors/base/ErrorContext'
 export { GenshinManagerError } from '@/errors/base/GenshinManagerError'
 
+// Export error system - context types
+export type {
+  AssetContext,
+  EnumContext,
+  NetworkContext,
+  ValidationContext,
+} from '@/types/errorContext'
+
 // Export error system - validation errors
 export { EnumValidationError } from '@/errors/validation/EnumValidationError'
 export { FormatValidationError } from '@/errors/validation/FormatValidationError'
-export { RangeValidationError } from '@/errors/validation/RangeValidationError'
 export { RequiredFieldError } from '@/errors/validation/RequiredFieldError'
 export { ValidationError } from '@/errors/validation/ValidationError'
 
 // Export error system - asset errors
 export { AssetCorruptedError } from '@/errors/assets/AssetCorruptedError'
-export { AssetDownloadFailedError } from '@/errors/assets/AssetDownloadFailedError'
 export { AssetError } from '@/errors/assets/AssetError'
 export { AssetNotFoundError } from '@/errors/assets/AssetNotFoundError'
 export { AudioNotFoundError } from '@/errors/assets/AudioNotFoundError'
 export { ImageNotFoundError } from '@/errors/assets/ImageNotFoundError'
 
 // Export error system - network errors
-export { EnkaNetworkError } from '@/errors/network/EnkaNetworkError'
-export { EnkaNetworkStatusError } from '@/errors/network/EnkaNetworkStatusError'
 export { NetworkError } from '@/errors/network/NetworkError'
-export { NetworkTimeoutError } from '@/errors/network/NetworkTimeoutError'
 export { NetworkUnavailableError } from '@/errors/network/NetworkUnavailableError'
-
-// Export error system - decoding errors
-export { JsonParseError } from '@/errors/decoding/JsonParseError'
-export { KeyMatchingError } from '@/errors/decoding/KeyMatchingError'
-export { LowConfidenceError } from '@/errors/decoding/LowConfidenceError'
-export { MasterFileConfigurationError } from '@/errors/decoding/MasterFileConfigurationError'
-export { PatternMismatchError } from '@/errors/decoding/PatternMismatchError'
 
 // Export error system - content errors
 export { AnnContentNotFoundError } from '@/errors/content/AnnContentNotFoundError'
@@ -192,7 +188,6 @@ export { BodyNotFoundError } from '@/errors/content/BodyNotFoundError'
 export { TextMapFormatError } from '@/errors/content/TextMapFormatError'
 
 // Export error system - config errors
-export { ConfigInvalidError } from '@/errors/config/ConfigInvalidError'
 export { ConfigMissingError } from '@/errors/config/ConfigMissingError'
 
 // Export error system - general errors

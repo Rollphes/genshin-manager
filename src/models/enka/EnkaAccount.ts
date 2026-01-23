@@ -1,4 +1,4 @@
-import { APIOwner } from '@/types/enkaNetwork/EnkaTypes'
+import type { OwnerResponse } from '@/types/api/enkaNetwork/responses'
 
 /**
  * Represents an EnkaNetwork user account with access credentials
@@ -39,14 +39,14 @@ export class EnkaAccount {
   /**
    * Data from EnkaNetwork
    */
-  public readonly data: APIOwner
+  public readonly data: OwnerResponse
 
   /**
    * Create a EnkaAccount
    * @param ownerData - ownerData from EnkaNetwork
    * @param enkaBaseURL - URL of enka.network
    */
-  constructor(ownerData: APIOwner, enkaBaseURL: string) {
+  constructor(ownerData: OwnerResponse, enkaBaseURL: string) {
     this.id = ownerData.id
     this.username = ownerData.username
     this.bio = ownerData.profile.bio

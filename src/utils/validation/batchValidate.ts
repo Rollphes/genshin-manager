@@ -1,8 +1,13 @@
 import { z } from 'zod'
 
-import type { ErrorContext } from '@/errors/base/ErrorContext'
 import { ValidationError } from '@/errors/validation/ValidationError'
+import type { ValidationContext } from '@/types/errorContext'
 import { validate } from '@/utils/validation/validate'
+
+/**
+ * Context for batch validation (without propertyKey, which is derived per item)
+ */
+type BatchValidationContext = Omit<ValidationContext, 'propertyKey'>
 
 /**
  * Batch validate multiple values with different schemas
@@ -15,7 +20,7 @@ export function batchValidate<T extends readonly unknown[]>(validations: {
     schema: z.ZodSchema<T[K]>
     data: unknown
     fieldName: string
-    context?: ErrorContext
+    context?: BatchValidationContext
   }
 }): T {
   const results: unknown[] = []
@@ -24,9 +29,9 @@ export function batchValidate<T extends readonly unknown[]>(validations: {
     const validation = validations[i]
     try {
       const result = validate(validation.schema, validation.data, {
-        ...validation.context,
         propertyKey: validation.fieldName,
-        validationPath: `batch[${i.toString()}].${validation.fieldName}`,
+        source: validation.context?.source,
+        recordId: validation.context?.recordId,
       })
       results[i] = result
     } catch (error) {

@@ -3,12 +3,13 @@ import { beforeAll, describe, expect, it } from 'vitest'
 import { createEnkaAccountResponse } from '@/__test__/__mocks__/api/enka-manager/createEnkaAccountResponse'
 import { Client } from '@/client/Client'
 import { EnkaAccount } from '@/models/enka/EnkaAccount'
+import { Language } from '@/types/types'
 
 describe('EnkaAccount', () => {
   beforeAll(async () => {
     const client = new Client({
-      defaultLanguage: 'en',
-      downloadLanguages: ['en'],
+      defaultLanguage: Language.En,
+      downloadLanguages: [Language.En],
     })
     await client.deploy()
   }, 30000)

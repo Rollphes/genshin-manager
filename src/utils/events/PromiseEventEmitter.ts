@@ -1,52 +1,6 @@
 import { EventEmitter } from 'events'
 
 /**
- * Type for event map.
- */
-export type EventMap<T> = Record<keyof T, unknown[]> | DefaultEventMap
-/**
- * Default event map type
- */
-export type DefaultEventMap = [never]
-
-/**
- * Key type for event handling
- */
-export type Key<K, E, T> = T extends DefaultEventMap
-  ? string | symbol
-  : (K | E) | keyof T
-/**
- * Rest arguments type
- */
-export type AnyRest = [...args: unknown[]]
-/**
- * Arguments type for events
- */
-export type Args<K, T> = T extends DefaultEventMap
-  ? AnyRest
-  : K extends keyof T
-    ? T[K]
-    : never
-/**
- * Event listener type
- */
-export type Listener<K, T, R> = T extends DefaultEventMap
-  ? (...args: unknown[]) => R
-  : K extends keyof T
-    ? T[K] extends unknown[]
-      ? (...args: T[K]) => R
-      : never
-    : never
-/**
- * Type for event listener.
- */
-export type Listener1<K, T> = Listener<K, T, Awaitable<void>>
-/**
- * Synchronous event listener type
- */
-export type Listener2<K, T> = Listener<K, T, void>
-
-/**
  * Type for values that can be awaited
  */
 export type Awaitable<Value> = PromiseLike<Value> | Value
@@ -55,17 +9,14 @@ export type Awaitable<Value> = PromiseLike<Value> | Value
  * Class for supporting asynchronous event listeners.
  * @see EventEmitter
  */
-export abstract class PromiseEventEmitter<
-  T extends EventMap<T>,
-  E extends keyof T,
-> {
-  private readonly emitter: EventEmitter<T>
+export abstract class PromiseEventEmitter<T> {
+  private readonly emitter: EventEmitter
 
   /**
    * Create a PromiseEventEmitter.
    * @example
    * ```ts
-   * class MyEmitter extends PromiseEventEmitter<{test: [string]}, 'test'> {}
+   * class MyEmitter extends PromiseEventEmitter<{test: [string]}> {}
    * const emitter = new MyEmitter()
    * emitter.on('test', async (data) => console.log(data))
    * ```
@@ -80,8 +31,13 @@ export abstract class PromiseEventEmitter<
    * @param listener - the callback function. (supports async)
    * @see EventEmitter.once()
    */
-  public once<K>(eventName: Key<K, E, T>, listener: Listener1<K, T>): this {
-    this.emitter.once<K>(eventName, listener as Listener2<K, T>)
+  public once<K extends keyof T>(
+    eventName: K,
+    listener: T[K] extends unknown[]
+      ? (...args: T[K]) => Awaitable<void>
+      : never,
+  ): this {
+    this.emitter.once(eventName as string, listener as never)
     return this
   }
 
@@ -93,7 +49,12 @@ export abstract class PromiseEventEmitter<
    * @param listener - the callback function. (supports async)
    * @see EventEmitter.on()
    */
-  public on<K>(eventName: Key<K, E, T>, listener: Listener1<K, T>): this {
+  public on<K extends keyof T>(
+    eventName: K,
+    listener: T[K] extends unknown[]
+      ? (...args: T[K]) => Awaitable<void>
+      : never,
+  ): this {
     this.addListener(eventName, listener)
     return this
   }
@@ -104,11 +65,13 @@ export abstract class PromiseEventEmitter<
    * @param listener - the callback function. (supports async)
    * @see EventEmitter.addListener()
    */
-  public addListener<K>(
-    eventName: Key<K, E, T>,
-    listener: Listener1<K, T>,
+  public addListener<K extends keyof T>(
+    eventName: K,
+    listener: T[K] extends unknown[]
+      ? (...args: T[K]) => Awaitable<void>
+      : never,
   ): this {
-    this.emitter.addListener(eventName, listener as Listener2<K, T>)
+    this.emitter.addListener(eventName as string, listener as never)
     return this
   }
 
@@ -118,7 +81,12 @@ export abstract class PromiseEventEmitter<
    * @param listener - the callback function. (supports async)
    * @see EventEmitter.off()
    */
-  public off<K>(eventName: Key<K, E, T>, listener: Listener1<K, T>): this {
+  public off<K extends keyof T>(
+    eventName: K,
+    listener: T[K] extends unknown[]
+      ? (...args: T[K]) => Awaitable<void>
+      : never,
+  ): this {
     this.removeListener(eventName, listener)
     return this
   }
@@ -129,11 +97,13 @@ export abstract class PromiseEventEmitter<
    * @param listener - the callback function. (supports async)
    * @see EventEmitter.removeListener()
    */
-  public removeListener<K>(
-    eventName: Key<K, E, T>,
-    listener: Listener1<K, T>,
+  public removeListener<K extends keyof T>(
+    eventName: K,
+    listener: T[K] extends unknown[]
+      ? (...args: T[K]) => Awaitable<void>
+      : never,
   ): this {
-    this.emitter.removeListener(eventName, listener as Listener2<K, T>)
+    this.emitter.removeListener(eventName as string, listener as never)
     return this
   }
 
@@ -142,8 +112,8 @@ export abstract class PromiseEventEmitter<
    * @param event - the name of the event.
    * @see EventEmitter.removeAllListeners()
    */
-  public removeAllListeners<K>(event?: Key<K, E, T>): this {
-    this.emitter.removeAllListeners(event)
+  public removeAllListeners(event?: keyof T): this {
+    this.emitter.removeAllListeners(event as string)
     return this
   }
 
@@ -154,7 +124,10 @@ export abstract class PromiseEventEmitter<
    * @param args - arguments to pass to the listeners.
    * @see EventEmitter.emit()
    */
-  protected emit<K>(eventName: Key<K, E, T>, ...args: Args<K, T>): boolean {
-    return this.emitter.emit<K>(eventName, ...args)
+  protected emit<K extends keyof T>(
+    eventName: K,
+    ...args: T[K] extends unknown[] ? T[K] : never
+  ): boolean {
+    return this.emitter.emit(eventName as string, ...args)
   }
 }

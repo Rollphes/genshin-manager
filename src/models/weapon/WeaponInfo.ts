@@ -1,13 +1,14 @@
 import { Client } from '@/client/Client'
+import { AssetNotFoundError } from '@/errors/assets/AssetNotFoundError'
 import { ImageAssets } from '@/models/assets/ImageAssets'
 import { StatProperty } from '@/models/StatProperty'
 import { WeaponAscension } from '@/models/weapon/WeaponAscension'
 import { WeaponRefinement } from '@/models/weapon/WeaponRefinement'
 import { refinementLevelSchema } from '@/schemas/commonSchemas'
 import { createDynamicWeaponLevelSchema } from '@/schemas/createDynamicWeaponLevelSchema'
-import { type WeaponProp } from '@/types/generated/WeaponExcelConfigData'
-import { WeaponType } from '@/types/types'
+import { FightProp, GrowCurve, WeaponType } from '@/types/enums'
 import { calculatePromoteLevel } from '@/utils/parsers/calculatePromoteLevel'
+import { toEnum } from '@/utils/typeGuards/toEnum'
 import { validate } from '@/utils/validation/validate'
 
 /**
@@ -118,13 +119,13 @@ export class WeaponInfo {
       propertyKey: 'refinementRank',
     })
 
-    const weaponJson = Client._getJsonFromCachedExcelBinOutput(
-      'WeaponExcelConfigData',
-      this.id,
-    )
+    const weaponJson = Client._findBy('WeaponExcelConfigData', 'id', this.id)
+    if (!weaponJson)
+      throw new AssetNotFoundError(String(this.id), 'WeaponExcelConfigData')
 
-    const weaponPromotesJson = Client._getJsonFromCachedExcelBinOutput(
+    const weaponPromotesJson = Client._filterBy(
       'WeaponPromoteExcelConfigData',
+      'weaponPromoteId',
       weaponJson.weaponPromoteId,
     )
     this.promoteLevel = calculatePromoteLevel(
@@ -141,17 +142,35 @@ export class WeaponInfo {
     this.name = Client._cachedTextMap.get(weaponJson.nameTextMapHash) ?? ''
     this.description =
       Client._cachedTextMap.get(weaponJson.descTextMapHash) ?? ''
-    this.type = weaponJson.weaponType as unknown as WeaponType
+    this.type = weaponJson.weaponType
 
     this.rarity = weaponJson.rankLevel
 
+    const enumContext = {
+      source: 'WeaponExcelConfigData',
+      recordId: weaponJson.id,
+    } as const
+
     this.stats = weaponJson.weaponProp
-      .map((weaponPropJson) => {
+      .map((weaponPropJson, index) => {
         if (!weaponPropJson.initValue) return
-        return this.getStatPropertyByJson(
-          weaponPropJson,
+        return this.getStatPropertyByGrow(
+          toEnum(GrowCurve, weaponPropJson.type, 'GrowCurve', {
+            ...enumContext,
+            path: `weaponProp[${String(index)}].type`,
+          }),
+          toEnum(FightProp, weaponPropJson.propType, 'FightProp', {
+            ...enumContext,
+            path: `weaponProp[${String(index)}].propType`,
+          }),
+          weaponPropJson.initValue,
           ascension.addProps.find(
-            (prop) => prop.type === weaponPropJson.propType,
+            (prop) =>
+              prop.type ===
+              toEnum(FightProp, weaponPropJson.propType, 'FightProp', {
+                ...enumContext,
+                path: `weaponProp[${String(index)}].propType`,
+              }),
           )?.value ?? 0,
         )
       })
@@ -168,15 +187,9 @@ export class WeaponInfo {
    * @returns all weapon IDs
    */
   public static get allWeaponIds(): number[] {
-    const weaponDatas = Object.values(
-      Client._getCachedExcelBinOutputByName('WeaponExcelConfigData'),
-    )
+    const weaponDatas = Client._getAll('WeaponExcelConfigData')
     return weaponDatas
-      .filter(
-        (data): data is NonNullable<typeof data> =>
-          data?.id !== undefined &&
-          !WeaponInfo.blackWeaponIds.includes(data.id),
-      )
+      .filter((data) => !WeaponInfo.blackWeaponIds.includes(data.id))
       .map((data) => data.id)
   }
 
@@ -186,27 +199,30 @@ export class WeaponInfo {
    * @returns weapon ID
    */
   public static getWeaponIdByName(name: string): number[] {
-    return Client._searchIdInExcelBinOutByText(
-      'WeaponExcelConfigData',
-      name,
-    ).map((k) => +k)
+    return Client._searchByText('WeaponExcelConfigData', name).map((r) => r.id)
   }
 
-  /**
-   * Get stat value by json
-   * @param weaponPropJson - weapon property json
-   * @param addValue - add value
-   * @returns stat value
-   */
-  private getStatPropertyByJson(
-    weaponPropJson: WeaponProp,
+  private getStatPropertyByGrow(
+    type: GrowCurve,
+    propType: FightProp,
+    initValue: number,
     addValue = 0,
   ): StatProperty {
-    const curveValue = Client._getJsonFromCachedExcelBinOutput(
+    const curveData = Client._filterBy(
       'WeaponCurveExcelConfigData',
-      weaponPropJson.type,
-    )[this.level]
-    const statValue = weaponPropJson.initValue * curveValue + addValue
-    return new StatProperty(weaponPropJson.propType, statValue)
+      'level',
+      this.level,
+    ).find((c) =>
+      c.curveInfos.some((info) => (info.type as string) === (type as string)),
+    )
+    const curveInfo = curveData?.curveInfos.find(
+      (info) => (info.type as string) === (type as string),
+    )
+    const curveValue = curveInfo?.value ?? 1
+    const statValue = initValue * curveValue + addValue
+    return new StatProperty(
+      toEnum(FightProp, propType, 'FightProp', { path: 'computedStat' }),
+      statValue,
+    )
   }
 }

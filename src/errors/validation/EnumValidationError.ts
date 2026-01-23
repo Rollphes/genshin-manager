@@ -1,43 +1,96 @@
 import { GenshinManagerErrorCode } from '@/errors/base/ErrorCodes'
-import type { ErrorContext } from '@/errors/base/ErrorContext'
 import { ErrorContextFactory } from '@/errors/base/ErrorContext'
 import { ValidationError } from '@/errors/validation/ValidationError'
+import type { EnumContext } from '@/types/errorContext'
 
 /**
  * Enum validation error
  */
 export class EnumValidationError extends ValidationError {
-  public readonly errorCode = GenshinManagerErrorCode.GM_VALIDATION_ENUM
+  public readonly errorCode = GenshinManagerErrorCode.GmValidationEnum
+
+  /**
+   * Data source where the error occurred (e.g., 'MonsterExcelConfigData')
+   */
+  public readonly source?: string
+
+  /**
+   * Record ID within the data source
+   */
+  public readonly recordId?: string | number
+
+  /**
+   * JSON path to the property
+   */
+  public readonly path?: string
 
   /**
    * Constructor for EnumValidationError
    * @param value - The invalid value
    * @param allowedValues - Array of allowed values
-   * @param propertyName - Name of the property being validated
-   * @param context - Additional error context
+   * @param enumName - Name of the enum being validated
+   * @param enumContext - Structured context for locating the error
    * @param cause - Original error
    */
   constructor(
     value: unknown,
     allowedValues: unknown[],
-    propertyName = 'value',
-    context?: ErrorContext,
+    enumName = 'value',
+    enumContext?: EnumContext,
     cause?: Error,
   ) {
     const allowedStr = allowedValues.map(String).join(', ')
-    const contextPrefix = context?.propertyKey
-      ? `[${context.propertyKey}] `
-      : ''
-    const message = `${contextPrefix}${propertyName} must be one of: ${allowedStr}, got ${String(value)}`
+    const locationPrefix =
+      EnumValidationError.buildEnumLocationPrefix(enumContext)
+    const message = `${locationPrefix}${enumName} must be one of: ${allowedStr}, got ${String(value)}`
 
-    const enumContext = ErrorContextFactory.createValidationContext(
-      propertyName,
+    const baseContext = ErrorContextFactory.createValidationContext(
+      enumContext?.path ?? enumName,
       `one of: ${allowedStr}`,
       value,
     )
 
-    const mergedContext = ErrorContextFactory.merge(context, enumContext)
+    // Merge with source information if available
+    const errorContext = enumContext?.source
+      ? {
+          ...baseContext,
+          metadata: {
+            source: enumContext.source,
+            recordId: enumContext.recordId,
+          },
+        }
+      : baseContext
 
-    super(message, mergedContext, undefined, cause)
+    super(message, errorContext, undefined, cause)
+
+    this.source = enumContext?.source
+    this.recordId = enumContext?.recordId
+    this.path = enumContext?.path
+  }
+
+  /**
+   * Build location prefix from EnumContext
+   * Format: [Source#RecordId.Path] or [Source.Path] or [Path] or ''
+   * @param context - Enum context
+   * @returns Location prefix string
+   */
+  private static buildEnumLocationPrefix(context?: EnumContext): string {
+    if (!context) return ''
+
+    const parts: string[] = []
+
+    if (context.source) {
+      let sourcePart = context.source
+      if (context.recordId !== undefined)
+        sourcePart += `#${String(context.recordId)}`
+
+      parts.push(sourcePart)
+    }
+
+    if (context.path) parts.push(context.path)
+
+    if (parts.length === 0) return ''
+
+    return `[${parts.join('.')}] `
   }
 }

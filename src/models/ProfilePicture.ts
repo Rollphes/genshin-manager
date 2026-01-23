@@ -1,8 +1,10 @@
 import { Client } from '@/client/Client'
+import { AssetNotFoundError } from '@/errors/assets/AssetNotFoundError'
 import { ImageAssets } from '@/models/assets/ImageAssets'
 import { CharacterCostume } from '@/models/character/CharacterCostume'
 import { CharacterInfo } from '@/models/character/CharacterInfo'
-import { Type as ProfilePictureType } from '@/types/generated/ProfilePictureExcelConfigData'
+import { ProfilePictureUnlockType } from '@/types/enums'
+import { toEnum } from '@/utils/typeGuards/toEnum'
 
 /**
  * Manages character avatar images and profile picture assets
@@ -15,7 +17,7 @@ export class ProfilePicture {
   /**
    * Profile picture type
    */
-  public readonly type: ProfilePictureType
+  public readonly type: ProfilePictureUnlockType
   /**
    * Avatar ID
    * @description Exists only if type is `PROFILE_PICTURE_UNLOCK_BY_AVATAR`
@@ -51,32 +53,49 @@ export class ProfilePicture {
    */
   constructor(profilePictureId: number) {
     this.id = profilePictureId
-    const profilePictureJson = Client._getJsonFromCachedExcelBinOutput(
+    const profilePictureJson = Client._findBy(
       'ProfilePictureExcelConfigData',
+      'id',
       this.id,
     )
+    if (!profilePictureJson) {
+      throw new AssetNotFoundError(
+        `ProfilePicture ${String(this.id)}`,
+        'ProfilePictureExcelConfigData',
+      )
+    }
 
     const unlockParam = profilePictureJson.unlockParam
 
-    switch (profilePictureJson.type) {
-      case ProfilePictureType.ProfilePictureUnlockByAvatar:
+    this.type = toEnum(
+      ProfilePictureUnlockType,
+      profilePictureJson.type,
+      'ProfilePictureUnlockType',
+      {
+        source: 'ProfilePictureExcelConfigData',
+        recordId: this.id,
+        path: 'type',
+      },
+    )
+
+    switch (this.type) {
+      case ProfilePictureUnlockType.ProfilePictureUnlockByAvatar:
         this.characterId = unlockParam
         this.costumeId = new CharacterInfo(unlockParam).defaultCostumeId
         break
-      case ProfilePictureType.ProfilePictureUnlockByCostume:
+      case ProfilePictureUnlockType.ProfilePictureUnlockByCostume:
         this.costumeId = unlockParam
         this.characterId = new CharacterCostume(unlockParam).characterId
         break
-      case ProfilePictureType.ProfilePictureUnlockByItem:
+      case ProfilePictureUnlockType.ProfilePictureUnlockByItem:
         this.materialId = unlockParam
         break
-      case ProfilePictureType.ProfilePictureUnlockByParentQuest:
+      case ProfilePictureUnlockType.ProfilePictureUnlockByParentQuest:
         this.questId = unlockParam
         break
     }
 
     this.icon = new ImageAssets(profilePictureJson.iconPath)
-    this.type = profilePictureJson.type
   }
 
   /**
@@ -84,9 +103,9 @@ export class ProfilePicture {
    * @returns profile picture IDs
    */
   public static get allProfilePictureIds(): number[] {
-    return Object.keys(
-      Client._getCachedExcelBinOutputByName('ProfilePictureExcelConfigData'),
-    ).map((id) => Number(id))
+    return Client._getAll('ProfilePictureExcelConfigData').map(
+      (data) => data.id,
+    )
   }
 
   /**
@@ -97,11 +116,10 @@ export class ProfilePicture {
   public static findProfilePictureIdByUnlockParam(
     unlockParam: number,
   ): number | undefined {
-    const profilePictureDatas = Object.values(
-      Client._getCachedExcelBinOutputByName('ProfilePictureExcelConfigData'),
-    )
-    const profilePictureData = profilePictureDatas.find(
-      (data) => data !== undefined && data.unlockParam === unlockParam,
+    const profilePictureData = Client._findBy(
+      'ProfilePictureExcelConfigData',
+      'unlockParam',
+      unlockParam,
     )
     if (!profilePictureData) return
     return profilePictureData.id

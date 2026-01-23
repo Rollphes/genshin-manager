@@ -8,7 +8,7 @@ import type { Language } from '@/types/types'
  */
 export class TextMapTransform extends Transform {
   private readonly language: Language
-  private readonly filterSet: Set<number>
+  private readonly filterSet: ReadonlySet<number>
   private buffer: Buffer = Buffer.from('')
   private firstFlag = true
 
@@ -17,7 +17,7 @@ export class TextMapTransform extends Transform {
    * @param language - language
    * @param filterSet - filter set
    */
-  constructor(language: Language, filterSet: Set<number>) {
+  constructor(language: Language, filterSet: ReadonlySet<number>) {
     super()
     this.language = language
     this.filterSet = filterSet

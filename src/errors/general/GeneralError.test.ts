@@ -16,9 +16,9 @@ describe('GeneralError', () => {
       expect(error.name).toBe('GeneralError')
     })
 
-    it('should set errorCode to GM_GENERAL_UNKNOWN', () => {
+    it('should set errorCode to GmGeneralUnknown', () => {
       const error = new GeneralError('Test error')
-      expect(error.errorCode).toBe(GenshinManagerErrorCode.GM_GENERAL_UNKNOWN)
+      expect(error.errorCode).toBe(GenshinManagerErrorCode.GmGeneralUnknown)
     })
 
     it('should be instance of GenshinManagerError', () => {
@@ -79,7 +79,7 @@ describe('GeneralError', () => {
       const json = error.toJSON()
       expect(json.name).toBe('GeneralError')
       expect(json.message).toBe('Test error')
-      expect(json.errorCode).toBe(GenshinManagerErrorCode.GM_GENERAL_UNKNOWN)
+      expect(json.errorCode).toBe(GenshinManagerErrorCode.GmGeneralUnknown)
       expect(json.context).toEqual({ operation: 'test' })
     })
 

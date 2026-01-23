@@ -2,13 +2,14 @@ import { beforeAll, describe, expect, test } from 'vitest'
 
 import { Client } from '@/client/Client'
 import { EnkaManager } from '@/client/EnkaManager'
+import { Language } from '@/types/types'
 
 describe('EnkaNetwork Release Test', () => {
   beforeAll(async () => {
     // Client deployment is already handled in test/setup.ts
     const client = new Client({
-      defaultLanguage: 'en',
-      downloadLanguages: ['en'],
+      defaultLanguage: Language.En,
+      downloadLanguages: [Language.En],
     })
     await client.deploy()
   }, 30000) // 30 seconds timeout for deployment

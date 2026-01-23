@@ -2,30 +2,30 @@ import { describe, expect, it, vi } from 'vitest'
 
 import { PromiseEventEmitter } from '@/utils/events/PromiseEventEmitter'
 
+enum TestEvents {
+  TestEvent = 'testEvent',
+  NumEvent = 'numEvent',
+  MultiArgs = 'multiArgs',
+}
+
 // Test implementation of abstract class
 interface TestEventMap {
-  testEvent: [data: string]
-  numEvent: [value: number]
-  multiArgs: [a: string, b: number, c: boolean]
+  [TestEvents.TestEvent]: [data: string]
+  [TestEvents.NumEvent]: [value: number]
+  [TestEvents.MultiArgs]: [a: string, b: number, c: boolean]
 }
 
-enum TestEvents {
-  TEST_EVENT = 'testEvent',
-  NUM_EVENT = 'numEvent',
-  MULTI_ARGS = 'multiArgs',
-}
-
-class TestEmitter extends PromiseEventEmitter<TestEventMap, TestEvents> {
+class TestEmitter extends PromiseEventEmitter<TestEventMap> {
   public emitTestEvent(data: string): boolean {
-    return this.emit(TestEvents.TEST_EVENT, data)
+    return this.emit(TestEvents.TestEvent, data)
   }
 
   public emitNumEvent(value: number): boolean {
-    return this.emit(TestEvents.NUM_EVENT, value)
+    return this.emit(TestEvents.NumEvent, value)
   }
 
   public emitMultiArgs(a: string, b: number, c: boolean): boolean {
-    return this.emit(TestEvents.MULTI_ARGS, a, b, c)
+    return this.emit(TestEvents.MultiArgs, a, b, c)
   }
 }
 
@@ -34,7 +34,7 @@ describe('PromiseEventEmitter', () => {
     it('should register listener and receive events', () => {
       const emitter = new TestEmitter()
       const listener = vi.fn()
-      emitter.on(TestEvents.TEST_EVENT, listener)
+      emitter.on(TestEvents.TestEvent, listener)
       emitter.emitTestEvent('hello')
       expect(listener).toHaveBeenCalledWith('hello')
     })
@@ -42,7 +42,7 @@ describe('PromiseEventEmitter', () => {
     it('should call listener multiple times', () => {
       const emitter = new TestEmitter()
       const listener = vi.fn()
-      emitter.on(TestEvents.TEST_EVENT, listener)
+      emitter.on(TestEvents.TestEvent, listener)
       emitter.emitTestEvent('first')
       emitter.emitTestEvent('second')
       expect(listener).toHaveBeenCalledTimes(2)
@@ -50,7 +50,7 @@ describe('PromiseEventEmitter', () => {
 
     it('should return this for chaining', () => {
       const emitter = new TestEmitter()
-      const result = emitter.on(TestEvents.TEST_EVENT, vi.fn())
+      const result = emitter.on(TestEvents.TestEvent, vi.fn())
       expect(result).toBe(emitter)
     })
   })
@@ -59,7 +59,7 @@ describe('PromiseEventEmitter', () => {
     it('should call listener only once', () => {
       const emitter = new TestEmitter()
       const listener = vi.fn()
-      emitter.once(TestEvents.TEST_EVENT, listener)
+      emitter.once(TestEvents.TestEvent, listener)
       emitter.emitTestEvent('first')
       emitter.emitTestEvent('second')
       expect(listener).toHaveBeenCalledTimes(1)
@@ -68,7 +68,7 @@ describe('PromiseEventEmitter', () => {
 
     it('should return this for chaining', () => {
       const emitter = new TestEmitter()
-      const result = emitter.once(TestEvents.TEST_EVENT, vi.fn())
+      const result = emitter.once(TestEvents.TestEvent, vi.fn())
       expect(result).toBe(emitter)
     })
   })
@@ -77,14 +77,14 @@ describe('PromiseEventEmitter', () => {
     it('should work same as on', () => {
       const emitter = new TestEmitter()
       const listener = vi.fn()
-      emitter.addListener(TestEvents.TEST_EVENT, listener)
+      emitter.addListener(TestEvents.TestEvent, listener)
       emitter.emitTestEvent('test')
       expect(listener).toHaveBeenCalledWith('test')
     })
 
     it('should return this for chaining', () => {
       const emitter = new TestEmitter()
-      const result = emitter.addListener(TestEvents.TEST_EVENT, vi.fn())
+      const result = emitter.addListener(TestEvents.TestEvent, vi.fn())
       expect(result).toBe(emitter)
     })
   })
@@ -93,8 +93,8 @@ describe('PromiseEventEmitter', () => {
     it('should remove listener', () => {
       const emitter = new TestEmitter()
       const listener = vi.fn()
-      emitter.on(TestEvents.TEST_EVENT, listener)
-      emitter.off(TestEvents.TEST_EVENT, listener)
+      emitter.on(TestEvents.TestEvent, listener)
+      emitter.off(TestEvents.TestEvent, listener)
       emitter.emitTestEvent('test')
       expect(listener).not.toHaveBeenCalled()
     })
@@ -102,7 +102,7 @@ describe('PromiseEventEmitter', () => {
     it('should return this for chaining', () => {
       const emitter = new TestEmitter()
       const listener = vi.fn()
-      const result = emitter.off(TestEvents.TEST_EVENT, listener)
+      const result = emitter.off(TestEvents.TestEvent, listener)
       expect(result).toBe(emitter)
     })
   })
@@ -111,8 +111,8 @@ describe('PromiseEventEmitter', () => {
     it('should remove listener', () => {
       const emitter = new TestEmitter()
       const listener = vi.fn()
-      emitter.on(TestEvents.TEST_EVENT, listener)
-      emitter.removeListener(TestEvents.TEST_EVENT, listener)
+      emitter.on(TestEvents.TestEvent, listener)
+      emitter.removeListener(TestEvents.TestEvent, listener)
       emitter.emitTestEvent('test')
       expect(listener).not.toHaveBeenCalled()
     })
@@ -120,7 +120,7 @@ describe('PromiseEventEmitter', () => {
     it('should return this for chaining', () => {
       const emitter = new TestEmitter()
       const listener = vi.fn()
-      const result = emitter.removeListener(TestEvents.TEST_EVENT, listener)
+      const result = emitter.removeListener(TestEvents.TestEvent, listener)
       expect(result).toBe(emitter)
     })
   })
@@ -130,9 +130,9 @@ describe('PromiseEventEmitter', () => {
       const emitter = new TestEmitter()
       const listener1 = vi.fn()
       const listener2 = vi.fn()
-      emitter.on(TestEvents.TEST_EVENT, listener1)
-      emitter.on(TestEvents.TEST_EVENT, listener2)
-      emitter.removeAllListeners(TestEvents.TEST_EVENT)
+      emitter.on(TestEvents.TestEvent, listener1)
+      emitter.on(TestEvents.TestEvent, listener2)
+      emitter.removeAllListeners(TestEvents.TestEvent)
       emitter.emitTestEvent('test')
       expect(listener1).not.toHaveBeenCalled()
       expect(listener2).not.toHaveBeenCalled()
@@ -148,7 +148,7 @@ describe('PromiseEventEmitter', () => {
   describe('emit', () => {
     it('should return true when listeners exist', () => {
       const emitter = new TestEmitter()
-      emitter.on(TestEvents.TEST_EVENT, vi.fn())
+      emitter.on(TestEvents.TestEvent, vi.fn())
       const result = emitter.emitTestEvent('test')
       expect(result).toBe(true)
     })
@@ -162,7 +162,7 @@ describe('PromiseEventEmitter', () => {
     it('should pass multiple arguments to listener', () => {
       const emitter = new TestEmitter()
       const listener = vi.fn()
-      emitter.on(TestEvents.MULTI_ARGS, listener)
+      emitter.on(TestEvents.MultiArgs, listener)
       emitter.emitMultiArgs('str', 42, true)
       expect(listener).toHaveBeenCalledWith('str', 42, true)
     })
@@ -172,7 +172,7 @@ describe('PromiseEventEmitter', () => {
     it('should support async listeners', async () => {
       const emitter = new TestEmitter()
       let resolved = false
-      emitter.on(TestEvents.TEST_EVENT, async () => {
+      emitter.on(TestEvents.TestEvent, async () => {
         await new Promise((resolve) => setTimeout(resolve, 10))
         resolved = true
       })
@@ -186,13 +186,13 @@ describe('PromiseEventEmitter', () => {
     it('should call multiple listeners in order', () => {
       const emitter = new TestEmitter()
       const order: number[] = []
-      emitter.on(TestEvents.TEST_EVENT, () => {
+      emitter.on(TestEvents.TestEvent, () => {
         order.push(1)
       })
-      emitter.on(TestEvents.TEST_EVENT, () => {
+      emitter.on(TestEvents.TestEvent, () => {
         order.push(2)
       })
-      emitter.on(TestEvents.TEST_EVENT, () => {
+      emitter.on(TestEvents.TestEvent, () => {
         order.push(3)
       })
       emitter.emitTestEvent('test')

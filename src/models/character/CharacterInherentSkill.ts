@@ -3,8 +3,8 @@ import { AssetNotFoundError } from '@/errors/assets/AssetNotFoundError'
 import { ImageAssets } from '@/models/assets/ImageAssets'
 import { CharacterInfo } from '@/models/character/CharacterInfo'
 import { StatProperty } from '@/models/StatProperty'
-import { PropType } from '@/types/generated/ProudSkillExcelConfigData'
-import { toFightPropType } from '@/utils/typeGuards/toFightPropType'
+import { FightProp } from '@/types/enums'
+import { toEnum } from '@/utils/typeGuards/toEnum'
 
 /**
  * Represents a character's passive skill with unlocked bonuses and effects
@@ -42,10 +42,11 @@ export class CharacterInherentSkill {
   constructor(inherentSkillId: number) {
     this.id = inherentSkillId
     const proudSkillGroupId = inherentSkillId
-    const proudSkillJson = Client._getJsonFromCachedExcelBinOutput(
+    const proudSkillJson = Client._filterBy(
       'ProudSkillExcelConfigData',
+      'proudSkillGroupId',
       proudSkillGroupId,
-    )[1]
+    ).find((p) => p.level === 1)
     if (!proudSkillJson) {
       throw new AssetNotFoundError(
         `proudSkillGroupId ${String(proudSkillGroupId)} level 1`,
@@ -56,15 +57,23 @@ export class CharacterInherentSkill {
     this.description =
       Client._cachedTextMap.get(proudSkillJson.descTextMapHash) ?? ''
     this.icon = new ImageAssets(proudSkillJson.icon)
+    const enumContext = {
+      source: 'ProudSkillExcelConfigData',
+      recordId: `${String(proudSkillGroupId)}[1]`,
+    } as const
+
     this.addProps = proudSkillJson.addProps
-      .filter((addProp) => addProp.propType !== PropType.FightPropNone)
-      .map(
-        (addProp) =>
-          new StatProperty(
-            toFightPropType(addProp.propType, 'CharacterInherentSkill'),
-            addProp.value,
-          ),
-      )
+      .map((addProp, index) => {
+        return {
+          ...addProp,
+          propType: toEnum(FightProp, addProp.propType, 'FightProp', {
+            ...enumContext,
+            path: `addProps[${String(index)}].propType`,
+          }),
+        }
+      })
+      .filter((addProp) => addProp.propType !== FightProp.FightPropNone)
+      .map((addProp) => new StatProperty(addProp.propType, addProp.value))
   }
 
   /**
@@ -91,23 +100,38 @@ export class CharacterInherentSkill {
    * @param characterId - character ID
    * @param skillDepotId - skill depot ID
    * @returns inherent skill order
+   * @throws Error - When the avatar or skill depot data is not found
    */
   public static getInherentSkillOrderByCharacterId(
     characterId: number,
     skillDepotId?: number,
   ): number[] {
-    const avatarJson = Client._getJsonFromCachedExcelBinOutput(
+    const avatarJson = Client._findBy(
       'AvatarExcelConfigData',
+      'id',
       characterId,
     )
+    if (!avatarJson) {
+      throw new Error(
+        `AvatarExcelConfigData not found for id ${String(characterId)}`,
+      )
+    }
+
     const depotId =
       skillDepotId && [10000005, 10000007].includes(characterId)
         ? skillDepotId
         : avatarJson.skillDepotId
-    const depotJson = Client._getJsonFromCachedExcelBinOutput(
+    const depotJson = Client._findBy(
       'AvatarSkillDepotExcelConfigData',
+      'id',
       depotId,
     )
+    if (!depotJson) {
+      throw new Error(
+        `AvatarSkillDepotExcelConfigData not found for id ${String(depotId)}`,
+      )
+    }
+
     return depotJson.inherentProudSkillOpens.map((k) => k.proudSkillGroupId)
   }
 }

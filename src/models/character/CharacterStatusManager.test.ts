@@ -3,6 +3,7 @@ import { beforeAll, describe, expect, it } from 'vitest'
 import { Client } from '@/client/Client'
 import { CharacterStatusManager } from '@/models/character/CharacterStatusManager'
 import { StatProperty } from '@/models/StatProperty'
+import { Language } from '@/types/types'
 
 describe('CharacterStatusManager', () => {
   const mockFightPropData: Record<number, number | undefined> = {
@@ -64,8 +65,8 @@ describe('CharacterStatusManager', () => {
 
   beforeAll(async () => {
     const client = new Client({
-      defaultLanguage: 'en',
-      downloadLanguages: ['en'],
+      defaultLanguage: Language.En,
+      downloadLanguages: [Language.En],
     })
     await client.deploy()
   }, 30000)

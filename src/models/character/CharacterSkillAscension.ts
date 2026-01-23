@@ -2,9 +2,9 @@ import { Client } from '@/client/Client'
 import { AssetNotFoundError } from '@/errors/assets/AssetNotFoundError'
 import { StatProperty } from '@/models/StatProperty'
 import { skillLevelSchema } from '@/schemas/commonSchemas'
-import { PropType } from '@/types/generated/ProudSkillExcelConfigData'
+import { FightProp } from '@/types/enums'
 import { CostItem } from '@/types/types'
-import { toFightPropType } from '@/utils/typeGuards/toFightPropType'
+import { toEnum } from '@/utils/typeGuards/toEnum'
 import { validate } from '@/utils/validation/validate'
 
 /**
@@ -47,10 +47,17 @@ export class CharacterSkillAscension {
     void validate(skillLevelSchema, this.level, {
       propertyKey: 'level',
     })
-    const skillJson = Client._getJsonFromCachedExcelBinOutput(
+    const skillJson = Client._findBy(
       'AvatarSkillExcelConfigData',
+      'id',
       this.id,
     )
+    if (!skillJson) {
+      throw new Error(
+        `AvatarSkillExcelConfigData not found for id ${String(this.id)}`,
+      )
+    }
+
     const proudSkillGroupId = skillJson.proudSkillGroupId
     if (proudSkillGroupId === 0) {
       this.costItems = []
@@ -58,10 +65,11 @@ export class CharacterSkillAscension {
       this.addProps = []
       return
     }
-    const proudSkillJson = Client._getJsonFromCachedExcelBinOutput(
+    const proudSkillJson = Client._filterBy(
       'ProudSkillExcelConfigData',
+      'proudSkillGroupId',
       proudSkillGroupId,
-    )[this.level]
+    ).find((p) => p.level === this.level)
     if (!proudSkillJson) {
       throw new AssetNotFoundError(
         `level ${String(this.level)}`,
@@ -77,14 +85,22 @@ export class CharacterSkillAscension {
         }
       })
     this.costMora = proudSkillJson.coinCost
+    const enumContext = {
+      source: 'ProudSkillExcelConfigData',
+      recordId: `${String(proudSkillGroupId)}[${String(this.level)}]`,
+    } as const
+
     this.addProps = proudSkillJson.addProps
-      .filter((addProp) => addProp.propType !== PropType.FightPropNone)
-      .map(
-        (addProp) =>
-          new StatProperty(
-            toFightPropType(addProp.propType, 'CharacterSkillAscension'),
-            addProp.value,
-          ),
-      )
+      .map((addProp, index) => {
+        return {
+          ...addProp,
+          propType: toEnum(FightProp, addProp.propType, 'FightProp', {
+            ...enumContext,
+            path: `addProps[${String(index)}].propType`,
+          }),
+        }
+      })
+      .filter((addProp) => addProp.propType !== FightProp.FightPropNone)
+      .map((addProp) => new StatProperty(addProp.propType, addProp.value))
   }
 }

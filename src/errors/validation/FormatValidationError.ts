@@ -1,39 +1,78 @@
 import { GenshinManagerErrorCode } from '@/errors/base/ErrorCodes'
-import type { ErrorContext } from '@/errors/base/ErrorContext'
 import { ErrorContextFactory } from '@/errors/base/ErrorContext'
 import { ValidationError } from '@/errors/validation/ValidationError'
+import type { ValidationContext } from '@/types/errorContext'
+
+/**
+ * Context for FormatValidationError (fieldName is provided separately)
+ */
+type FormatValidationContext = Omit<ValidationContext, 'propertyKey'>
 
 /**
  * Format validation error
  */
 export class FormatValidationError extends ValidationError {
-  public readonly errorCode = GenshinManagerErrorCode.GM_VALIDATION_FORMAT
+  public readonly errorCode = GenshinManagerErrorCode.GmValidationFormat
 
   /**
    * Constructor for FormatValidationError
-   * @param value - The invalid value
+   * @param fieldName - Name of the field being validated
    * @param expectedFormat - Description of expected format
-   * @param propertyName - Name of the property being validated
-   * @param context - Additional error context
+   * @param actualValue - The invalid value
+   * @param context - Structured validation context (without propertyKey)
    * @param cause - Original error
    */
   constructor(
-    value: unknown,
+    fieldName: string,
     expectedFormat: string,
-    propertyName = 'value',
-    context?: ErrorContext,
+    actualValue: unknown,
+    context?: FormatValidationContext,
     cause?: Error,
   ) {
-    const message = `${propertyName} has invalid format: expected ${expectedFormat}, got ${String(value)}`
+    const locationPrefix =
+      FormatValidationError.buildFormatLocationPrefix(context)
+    const message = `${locationPrefix}${fieldName} has invalid format: expected ${expectedFormat}, got ${String(actualValue)}`
 
     const formatContext = ErrorContextFactory.createValidationContext(
-      propertyName,
+      fieldName,
       expectedFormat,
-      value,
+      actualValue,
     )
 
-    const mergedContext = ErrorContextFactory.merge(context, formatContext)
+    // Add source information to context metadata
+    const mergedContext = context?.source
+      ? {
+          ...formatContext,
+          metadata: {
+            source: context.source,
+            recordId: context.recordId,
+          },
+        }
+      : formatContext
 
     super(message, mergedContext, undefined, cause)
+
+    // Store context info
+    Object.assign(this, {
+      propertyKey: fieldName,
+      source: context?.source,
+      recordId: context?.recordId,
+    })
+  }
+
+  /**
+   * Build location prefix from context
+   * @param context - Validation context
+   * @returns Location prefix string
+   */
+  private static buildFormatLocationPrefix(
+    context?: FormatValidationContext,
+  ): string {
+    if (!context?.source) return ''
+
+    let prefix = context.source
+    if (context.recordId !== undefined) prefix += `#${String(context.recordId)}`
+
+    return `[${prefix}] `
   }
 }

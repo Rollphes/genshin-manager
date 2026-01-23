@@ -3,10 +3,12 @@ import path from 'path'
 
 import { ConfigMissingError } from '@/errors/config/ConfigMissingError'
 import { FormatValidationError } from '@/errors/validation/FormatValidationError'
+import type { EncryptedKeyMasterFile } from '@/types/crypto'
 import type { JsonObject, JsonValue } from '@/types/json'
-import type { EncryptedKeyMasterFile } from '@/types/types'
 import { logger, LogLevel } from '@/utils/logger/Logger'
 import { masterFileFolderPath } from '@/utils/paths'
+import { isJsonArray } from '@/utils/typeGuards/isJsonArray'
+import { isJsonObject } from '@/utils/typeGuards/isJsonObject'
 
 /**
  * Master candidate interface
@@ -15,11 +17,11 @@ export interface MasterCandidate {
   /**
    * The JSON object candidate
    */
-  object: JsonObject
+  readonly object: JsonObject
   /**
    * Data density score (0-1, higher is better)
    */
-  dataDensity: number
+  readonly dataDensity: number
 }
 
 /**
@@ -29,23 +31,23 @@ export interface DataDensityAnalysis {
   /**
    * Number of empty arrays
    */
-  emptyArrays: number
+  readonly emptyArrays: number
   /**
    * Number of empty strings
    */
-  emptyStrings: number
+  readonly emptyStrings: number
   /**
    * Number of null values
    */
-  nullValues: number
+  readonly nullValues: number
   /**
    * Total number of properties
    */
-  totalProperties: number
+  readonly totalProperties: number
   /**
    * Data density ratio (0-1, higher is better)
    */
-  density: number
+  readonly density: number
 }
 
 /**
@@ -186,12 +188,12 @@ export function createMasterStructure(
  * @returns true if contains empty arrays, false otherwise
  */
 export function hasDeepEmptyArrays(value: JsonValue): boolean {
-  if (Array.isArray(value)) {
+  if (isJsonArray(value)) {
     if (value.length === 0) return true
     return value.some((item) => hasDeepEmptyArrays(item))
   }
 
-  if (typeof value === 'object' && value !== null)
+  if (isJsonObject(value))
     return Object.values(value).some((item) => hasDeepEmptyArrays(item))
 
   return false
@@ -207,12 +209,12 @@ export function fillEmptyArraysFromCandidates(
   target: JsonValue,
   candidates: JsonObject[],
 ): JsonValue {
-  if (Array.isArray(target)) {
+  if (isJsonArray(target)) {
     if (target.length === 0) {
       for (const candidate of candidates) {
         const candidateValue = candidate
         if (
-          Array.isArray(candidateValue) &&
+          isJsonArray(candidateValue) &&
           candidateValue.length > 0 &&
           !hasDeepEmptyArrays(candidateValue)
         ) {
@@ -225,15 +227,15 @@ export function fillEmptyArraysFromCandidates(
     return target.map((item) => fillEmptyArraysFromCandidates(item, candidates))
   }
 
-  if (typeof target === 'object' && target !== null) {
-    const result: JsonObject = {}
+  if (isJsonObject(target)) {
+    const result: Record<string, JsonValue> = {}
     for (const [key, value] of Object.entries(target)) {
-      if (Array.isArray(value) && value.length === 0) {
+      if (isJsonArray(value) && value.length === 0) {
         let filled = false
         for (const candidate of candidates) {
           const candidateValue = candidate[key]
           if (
-            Array.isArray(candidateValue) &&
+            isJsonArray(candidateValue) &&
             candidateValue.length > 0 &&
             !hasDeepEmptyArrays(candidateValue)
           ) {
@@ -374,7 +376,7 @@ export function analyzeValue(
     counters.nullValues++
   } else if (typeof value === 'string' && value === '') {
     counters.emptyStrings++
-  } else if (Array.isArray(value)) {
+  } else if (isJsonArray(value)) {
     if (value.length === 0) {
       counters.emptyArrays++
     } else {
@@ -382,7 +384,7 @@ export function analyzeValue(
         analyzeValue(item, counters)
       })
     }
-  } else if (typeof value === 'object') {
+  } else if (isJsonObject(value)) {
     Object.values(value).forEach((item) => {
       analyzeValue(item, counters)
     })
@@ -439,10 +441,13 @@ export function findFirstNonEmptyDifferencePath(
 
   if (typeof existing !== typeof target) return parentPath
 
-  if (Array.isArray(existing) && Array.isArray(target)) {
+  if (isJsonArray(existing) && isJsonArray(target)) {
     const len = Math.max(existing.length, target.length)
     for (let i = 0; i < len; i++) {
-      const result = findFirstNonEmptyDifferencePath(existing[i], target[i], [
+      const existingItem = existing[i]
+      const targetItem = target[i]
+      if (existingItem === undefined && targetItem === undefined) continue
+      const result = findFirstNonEmptyDifferencePath(existingItem, targetItem, [
         ...parentPath,
         i,
       ])
@@ -451,22 +456,12 @@ export function findFirstNonEmptyDifferencePath(
     return []
   }
 
-  if (
-    typeof existing === 'object' &&
-    existing !== null &&
-    typeof target === 'object' &&
-    target !== null &&
-    !Array.isArray(existing) &&
-    !Array.isArray(target)
-  ) {
-    const keys = new Set([
-      ...Object.keys(existing as Record<string, JsonValue>),
-      ...Object.keys(target as Record<string, JsonValue>),
-    ])
+  if (isJsonObject(existing) && isJsonObject(target)) {
+    const keys = new Set([...Object.keys(existing), ...Object.keys(target)])
     for (const key of keys) {
       const result = findFirstNonEmptyDifferencePath(
-        (existing as Record<string, JsonValue>)[key],
-        (target as Record<string, JsonValue>)[key],
+        existing[key],
+        target[key],
         [...parentPath, key],
       )
       if (result.length > 0) return result

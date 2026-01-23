@@ -16,11 +16,9 @@ describe('AnnContentNotFoundError', () => {
       expect(error.message).toBe('Announcement content not found: 12345')
     })
 
-    it('should set errorCode to GM_CONTENT_ANN_NOT_FOUND', () => {
+    it('should set errorCode to GmContentAnnNotFound', () => {
       const error = new AnnContentNotFoundError('12345')
-      expect(error.errorCode).toBe(
-        GenshinManagerErrorCode.GM_CONTENT_ANN_NOT_FOUND,
-      )
+      expect(error.errorCode).toBe(GenshinManagerErrorCode.GmContentAnnNotFound)
     })
 
     it('should set name to AnnContentNotFoundError', () => {
@@ -83,9 +81,7 @@ describe('AnnContentNotFoundError', () => {
       const error = new AnnContentNotFoundError('12345')
       const json = error.toJSON()
       expect(json.name).toBe('AnnContentNotFoundError')
-      expect(json.errorCode).toBe(
-        GenshinManagerErrorCode.GM_CONTENT_ANN_NOT_FOUND,
-      )
+      expect(json.errorCode).toBe(GenshinManagerErrorCode.GmContentAnnNotFound)
     })
   })
 })

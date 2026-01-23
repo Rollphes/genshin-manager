@@ -40,7 +40,7 @@ describe('GenshinManagerError', () => {
 
     it('should have errorCode set', () => {
       const error = new GeneralError('Test error')
-      expect(error.errorCode).toBe(GenshinManagerErrorCode.GM_GENERAL_UNKNOWN)
+      expect(error.errorCode).toBe(GenshinManagerErrorCode.GmGeneralUnknown)
     })
   })
 
@@ -106,7 +106,7 @@ describe('GenshinManagerError', () => {
     it('should include error code and message', () => {
       const error = new GeneralError('Test error')
       const detailed = error.getDetailedMessage()
-      expect(detailed).toContain(GenshinManagerErrorCode.GM_GENERAL_UNKNOWN)
+      expect(detailed).toContain(GenshinManagerErrorCode.GmGeneralUnknown)
       expect(detailed).toContain('Test error')
     })
 
@@ -170,7 +170,7 @@ describe('GenshinManagerError', () => {
 
       expect(json.name).toBe('GeneralError')
       expect(json.message).toBe('Test error')
-      expect(json.errorCode).toBe(GenshinManagerErrorCode.GM_GENERAL_UNKNOWN)
+      expect(json.errorCode).toBe(GenshinManagerErrorCode.GmGeneralUnknown)
       expect(json.timestamp).toBeDefined()
       expect(json.context).toEqual({ operation: 'test' })
       expect(json.isGenshinManagerError).toBe(true)

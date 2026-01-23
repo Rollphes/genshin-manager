@@ -2,14 +2,12 @@ import { Client } from '@/client/Client'
 import { CharacterAscension } from '@/models/character/CharacterAscension'
 import { StatProperty } from '@/models/StatProperty'
 import { characterLevelSchema } from '@/schemas/commonSchemas'
-import type {
-  AvatarExcelConfigDataType,
-  PropGrowCurve,
-} from '@/types/generated/AvatarExcelConfigData'
-import { FightPropType } from '@/types/types'
+import { FightProp, GrowCurve } from '@/types/enums'
 import { calculatePromoteLevel } from '@/utils/parsers/calculatePromoteLevel'
-import { toFightPropType } from '@/utils/typeGuards/toFightPropType'
+import { toEnum } from '@/utils/typeGuards/toEnum'
 import { validate } from '@/utils/validation/validate'
+
+type Stats = Partial<Record<FightProp, number>>
 
 /**
  * Represents a character's base statistical properties and attributes
@@ -52,13 +50,16 @@ export class CharacterBaseStats {
       propertyKey: 'level',
     })
     this.isAscended = isAscended
-    const avatarJson = Client._getJsonFromCachedExcelBinOutput(
-      'AvatarExcelConfigData',
-      this.id,
-    )
+    const avatarJson = Client._findBy('AvatarExcelConfigData', 'id', this.id)
+    if (!avatarJson) {
+      throw new Error(
+        `AvatarExcelConfigData not found for id ${String(this.id)}`,
+      )
+    }
 
-    const avatarPromotesJson = Client._getJsonFromCachedExcelBinOutput(
+    const avatarPromotesJson = Client._filterBy(
       'AvatarPromoteExcelConfigData',
+      'avatarPromoteId',
       avatarJson.avatarPromoteId,
     )
     this.promoteLevel = calculatePromoteLevel(
@@ -69,36 +70,47 @@ export class CharacterBaseStats {
 
     const ascension = new CharacterAscension(this.id, this.promoteLevel)
 
-    this.stats = this.calculateStatus(
-      avatarJson,
-      avatarJson.propGrowCurves,
-      ascension,
-    )
-  }
-
-  /**
-   * Calculate character's status
-   * @param avatarJson - avatar json
-   * @param propGrowCurves - prop grow curves
-   * @param ascension - character ascension
-   * @returns character's status
-   */
-  private calculateStatus(
-    avatarJson: AvatarExcelConfigDataType,
-    propGrowCurves: PropGrowCurve[],
-    ascension: CharacterAscension,
-  ): StatProperty[] {
-    const initValueObj: Partial<Record<FightPropType, number>> = {
+    const initStats: Stats = {
       FIGHT_PROP_BASE_HP: avatarJson.hpBase,
       FIGHT_PROP_BASE_ATTACK: avatarJson.attackBase,
       FIGHT_PROP_BASE_DEFENSE: avatarJson.defenseBase,
       FIGHT_PROP_CRITICAL: avatarJson.critical,
       FIGHT_PROP_CRITICAL_HURT: avatarJson.criticalHurt,
     }
+    const enumContext = {
+      source: 'AvatarExcelConfigData',
+      recordId: avatarJson.id,
+    } as const
 
-    const status = Object.entries(initValueObj).map(([key, value]) => {
+    this.stats = this.calculateStats(
+      initStats,
+      avatarJson.propGrowCurves.map((propGrowCurve, index) => {
+        return {
+          growCurve: toEnum(GrowCurve, propGrowCurve.growCurve, 'GrowCurve', {
+            ...enumContext,
+            path: `propGrowCurves[${String(index)}].growCurve`,
+          }),
+          type: toEnum(FightProp, propGrowCurve.type, 'FightProp', {
+            ...enumContext,
+            path: `propGrowCurves[${String(index)}].type`,
+          }),
+        }
+      }),
+      ascension,
+    )
+  }
+
+  private calculateStats(
+    initStats: Stats,
+    propGrowCurves: {
+      growCurve: GrowCurve
+      type: FightProp
+    }[],
+    ascension: CharacterAscension,
+  ): StatProperty[] {
+    const status = Object.entries(initStats).map(([key, value]) => {
       const statProperty = new StatProperty(
-        toFightPropType(key, 'CharacterBaseStats'),
+        toEnum(FightProp, key, 'FightProp', { path: 'initStats' }),
         value,
       )
 
@@ -107,8 +119,9 @@ export class CharacterBaseStats {
       )
 
       if (propGrowCurve) {
-        return this.getStatPropertyByJson(
-          propGrowCurve,
+        return this.getStatPropertyByGrow(
+          propGrowCurve.growCurve,
+          statProperty.type,
           statProperty.value,
           ascension.addProps.find(
             (addProp) => addProp.type === statProperty.type,
@@ -116,8 +129,8 @@ export class CharacterBaseStats {
         )
       } else {
         if (
-          statProperty.type === 'FIGHT_PROP_CRITICAL_HURT' ||
-          statProperty.type === 'FIGHT_PROP_CRITICAL'
+          statProperty.type === FightProp.FightPropCriticalHurt ||
+          statProperty.type === FightProp.FightPropCritical
         ) {
           return new StatProperty(
             statProperty.type,
@@ -139,24 +152,24 @@ export class CharacterBaseStats {
     return status
   }
 
-  /**
-   * Get stat value by json
-   * @param propGrowCurve - json object
-   * @param initValue - initial value
-   * @param addValue - add value
-   * @returns stat value
-   */
-  private getStatPropertyByJson(
-    propGrowCurve: PropGrowCurve,
+  private getStatPropertyByGrow(
+    type: GrowCurve,
+    propType: FightProp,
     initValue: number,
     addValue = 0,
   ): StatProperty {
-    const curveValue = Client._getJsonFromCachedExcelBinOutput(
+    const curveData = Client._filterBy(
       'AvatarCurveExcelConfigData',
-      propGrowCurve.growCurve,
-    )[this.level]
-
+      'level',
+      this.level,
+    ).find((c) =>
+      c.curveInfos.some((info) => (info.type as string) === (type as string)),
+    )
+    const curveInfo = curveData?.curveInfos.find(
+      (info) => (info.type as string) === (type as string),
+    )
+    const curveValue = curveInfo?.value ?? 1
     const statValue = initValue * curveValue + addValue
-    return new StatProperty(propGrowCurve.type, statValue)
+    return new StatProperty(propType, statValue)
   }
 }

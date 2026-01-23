@@ -1,5 +1,4 @@
-import type { NoticeLanguageCode } from '@/types/sg-hk4e-api'
-import type { APIGetAnnContent } from '@/types/sg-hk4e-api/response'
+import type { GetAnnContentResponse } from '@/types/api/sg-hk4e-api/responses'
 
 /**
  * Creates detailed mock AnnContent response with custom content
@@ -8,15 +7,15 @@ import type { APIGetAnnContent } from '@/types/sg-hk4e-api/response'
  * @param subtitle - Custom subtitle
  * @param content - Custom HTML content
  * @param language - Language code
- * @returns Mock APIGetAnnContent response
+ * @returns Mock GetAnnContentResponse response
  */
 export function createDetailedAnnContentResponse(
   annId: number,
   title: string,
   subtitle: string,
   content: string,
-  language: NoticeLanguageCode = 'en-us',
-): APIGetAnnContent {
+  language = 'en-us',
+): GetAnnContentResponse {
   return {
     retcode: 0,
     message: 'OK',

@@ -3,24 +3,12 @@ import { Element } from 'domhandler'
 
 import { ValidationError } from '@/errors/validation/ValidationError'
 import { ImageAssets } from '@/models/assets/ImageAssets'
-import type { NoticeLanguageCode, Region } from '@/types/sg-hk4e-api'
-import type { ContentList, DataList } from '@/types/sg-hk4e-api/response'
+import type { ContentList, DataList } from '@/types/api/sg-hk4e-api/responses'
+import type { Region } from '@/types/api/sg-hk4e-api/types'
+import { Language } from '@/types/types'
 import { convertToUTC } from '@/utils/parsers/convertToUTC'
 
 type CheerioAPI = ReturnType<typeof cheerio.load>
-
-/**
- * Check if a node is a tag element.
- * @param node - DOM node to check.
- */
-function isCheerioElement(node: unknown): node is Element {
-  return (
-    node !== null &&
-    typeof node === 'object' &&
-    'type' in node &&
-    (node as { type: string }).type === 'tag'
-  )
-}
 
 /**
  * Class for compiling in-game announcement information
@@ -35,6 +23,22 @@ export class Notice {
     day: '2-digit',
     hour: '2-digit',
     minute: '2-digit',
+  }
+
+  private static languageMap: Record<string, Language> = {
+    'en-us': Language.En,
+    'ru-ru': Language.Ru,
+    'vi-vn': Language.Vi,
+    'th-th': Language.Th,
+    'pt-br': Language.Pt,
+    'ko-kr': Language.Ko,
+    'ja-jp': Language.Ja,
+    'id-id': Language.Id,
+    'fr-fr': Language.Fr,
+    'es-es': Language.Es,
+    'de-de': Language.De,
+    'zh-tw': Language.ZhTw,
+    'zh-cn': Language.ZhCn,
   }
 
   /**
@@ -95,7 +99,7 @@ export class Notice {
   /**
    * Notice language
    */
-  public readonly lang: NoticeLanguageCode
+  public readonly lang: Language
   /**
    * Notice region
    */
@@ -132,7 +136,7 @@ export class Notice {
       )
     }
     this.id = annList.ann_id
-    this.lang = annContent.lang
+    this.lang = Notice.languageMap[annContent.lang]
     this.type = annList.type
     this.typeLabel = annList.type_label
     this.tag = Number(annList.tag_label)
@@ -218,14 +222,11 @@ export class Notice {
 
     if (!this.$(this.durationTitleElement).next().is('p')) {
       const trFirst = this.$('tr').first()
-      const tdList = this.$('td')
-        .toArray()
-        .filter((el): el is Element => isCheerioElement(el))
+      const tdList = this.$('td').toArray()
 
       const colWidths = this.$(trFirst)
         .children()
         .toArray()
-        .filter((el): el is Element => isCheerioElement(el))
         .map((el) => el.attribs['data-colwidth'])
 
       if (colWidths.length > 2) {

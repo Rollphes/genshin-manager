@@ -32,15 +32,13 @@ describe('validate', () => {
 
   it('should include context in error', () => {
     const schema = z.string()
-    const context = { operation: 'test validation' }
+    const context = { propertyKey: 'test' }
     try {
       validate(schema, 123, context)
       expect.fail('Should have thrown')
     } catch (error) {
       expect(error).toBeInstanceOf(ValidationError)
-      expect((error as ValidationError).context?.operation).toBe(
-        'test validation',
-      )
+      expect((error as ValidationError).context?.propertyKey).toBe('test')
     }
   })
 

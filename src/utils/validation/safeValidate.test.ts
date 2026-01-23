@@ -21,11 +21,10 @@ describe('safeValidate', () => {
 
   it('should include context in error result', () => {
     const schema = z.string()
-    const context = { operation: 'safe validation test' }
+    const context = { propertyKey: 'test' }
     const result = safeValidate(schema, 123, context)
     expect(result.success).toBe(false)
-    if (!result.success)
-      expect(result.error.context?.operation).toBe('safe validation test')
+    if (!result.success) expect(result.error.context?.propertyKey).toBe('test')
   })
 
   it('should re-throw non-ZodError errors', () => {

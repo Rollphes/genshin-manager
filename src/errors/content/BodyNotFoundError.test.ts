@@ -16,10 +16,10 @@ describe('BodyNotFoundError', () => {
       expect(error.message).toBe('Body content not found for: announcement')
     })
 
-    it('should set errorCode to GM_CONTENT_BODY_NOT_FOUND', () => {
+    it('should set errorCode to GmContentBodyNotFound', () => {
       const error = new BodyNotFoundError('announcement')
       expect(error.errorCode).toBe(
-        GenshinManagerErrorCode.GM_CONTENT_BODY_NOT_FOUND,
+        GenshinManagerErrorCode.GmContentBodyNotFound,
       )
     })
 
@@ -83,9 +83,7 @@ describe('BodyNotFoundError', () => {
       const error = new BodyNotFoundError('announcement')
       const json = error.toJSON()
       expect(json.name).toBe('BodyNotFoundError')
-      expect(json.errorCode).toBe(
-        GenshinManagerErrorCode.GM_CONTENT_BODY_NOT_FOUND,
-      )
+      expect(json.errorCode).toBe(GenshinManagerErrorCode.GmContentBodyNotFound)
     })
   })
 })

@@ -1,15 +1,16 @@
+import { CacheStructureType } from '@/types/cache'
+import { ExcelBinOutputs } from '@/types/excelBinOutputs'
 import type {
-  DecodedType,
-  MasterFileMap,
+  DecodedType as GeneratedDecodedType,
+  MasterFileMap as GeneratedMasterFileMap,
 } from '@/types/generated/MasterFileMap'
-import type { CacheStructureType, ExcelBinOutputKey } from '@/types/types'
 
 /**
  * Cache builder function type
  * @template T - ExcelBinOutput file name type
  */
-type CacheBuilder<T extends ExcelBinOutputKey> = (
-  data: DecodedType<T>,
+type CacheBuilder<T extends keyof typeof ExcelBinOutputs> = (
+  data: GeneratedDecodedType<T>,
 ) => CacheStructureType<T>
 
 /**
@@ -45,12 +46,12 @@ function hasAddProps(
  */
 /* eslint-disable @typescript-eslint/naming-convention */
 const cacheBuilders: Partial<{
-  [K in ExcelBinOutputKey]: CacheBuilder<K>
+  [K in keyof typeof ExcelBinOutputs]: CacheBuilder<K>
 }> = {
   WeaponCurveExcelConfigData: (jsonObjectArray) => {
     const result: Record<string, Record<number, number>> = {}
     const data =
-      jsonObjectArray as MasterFileMap['WeaponCurveExcelConfigData'][]
+      jsonObjectArray as GeneratedMasterFileMap['WeaponCurveExcelConfigData'][]
     for (const item of data) {
       if (!hasCurveInfos(item)) continue
       for (const curve of item.curveInfos) {
@@ -67,10 +68,10 @@ const cacheBuilders: Partial<{
   WeaponPromoteExcelConfigData: (jsonObjectArray) => {
     const result: Record<
       string,
-      Record<string, MasterFileMap['WeaponPromoteExcelConfigData']>
+      Record<string, GeneratedMasterFileMap['WeaponPromoteExcelConfigData']>
     > = {}
     const data =
-      jsonObjectArray as MasterFileMap['WeaponPromoteExcelConfigData'][]
+      jsonObjectArray as GeneratedMasterFileMap['WeaponPromoteExcelConfigData'][]
     for (const item of data) {
       const weaponPromoteId = String(item.weaponPromoteId)
       const promoteLevel = String(item.promoteLevel)
@@ -83,7 +84,7 @@ const cacheBuilders: Partial<{
   ReliquaryLevelExcelConfigData: (jsonObjectArray) => {
     const result: Record<string, Record<number, Record<number, number>>> = {}
     const data =
-      jsonObjectArray as MasterFileMap['ReliquaryLevelExcelConfigData'][]
+      jsonObjectArray as GeneratedMasterFileMap['ReliquaryLevelExcelConfigData'][]
     for (const item of data) {
       if (!hasAddProps(item)) continue
       for (const prop of item.addProps) {
@@ -100,18 +101,24 @@ const cacheBuilders: Partial<{
   },
 
   ReliquarySetExcelConfigData: (jsonObjectArray) => {
-    const result: Record<string, MasterFileMap['ReliquarySetExcelConfigData']> =
-      {}
+    const result: Record<
+      string,
+      GeneratedMasterFileMap['ReliquarySetExcelConfigData']
+    > = {}
     const data =
-      jsonObjectArray as MasterFileMap['ReliquarySetExcelConfigData'][]
+      jsonObjectArray as GeneratedMasterFileMap['ReliquarySetExcelConfigData'][]
     for (const item of data) result[String(item.setId)] = item
 
     return result as CacheStructureType<'ReliquarySetExcelConfigData'>
   },
 
   AvatarExcelConfigData: (jsonObjectArray) => {
-    const result: Record<string, MasterFileMap['AvatarExcelConfigData']> = {}
-    const data = jsonObjectArray as MasterFileMap['AvatarExcelConfigData'][]
+    const result: Record<
+      string,
+      GeneratedMasterFileMap['AvatarExcelConfigData']
+    > = {}
+    const data =
+      jsonObjectArray as GeneratedMasterFileMap['AvatarExcelConfigData'][]
     for (const item of data) {
       if (item.id > 11000000 || item.id === 10000001) continue
       result[String(item.id)] = item
@@ -122,20 +129,22 @@ const cacheBuilders: Partial<{
   AvatarCostumeExcelConfigData: (jsonObjectArray) => {
     const result: Record<
       string,
-      MasterFileMap['AvatarCostumeExcelConfigData']
+      GeneratedMasterFileMap['AvatarCostumeExcelConfigData']
     > = {}
     const data =
-      jsonObjectArray as MasterFileMap['AvatarCostumeExcelConfigData'][]
+      jsonObjectArray as GeneratedMasterFileMap['AvatarCostumeExcelConfigData'][]
     for (const item of data) result[String(item.skinId)] = item
 
     return result as CacheStructureType<'AvatarCostumeExcelConfigData'>
   },
 
   AvatarTalentExcelConfigData: (jsonObjectArray) => {
-    const result: Record<string, MasterFileMap['AvatarTalentExcelConfigData']> =
-      {}
+    const result: Record<
+      string,
+      GeneratedMasterFileMap['AvatarTalentExcelConfigData']
+    > = {}
     const data =
-      jsonObjectArray as MasterFileMap['AvatarTalentExcelConfigData'][]
+      jsonObjectArray as GeneratedMasterFileMap['AvatarTalentExcelConfigData'][]
     for (const item of data) result[String(item.talentId)] = item
 
     return result as CacheStructureType<'AvatarTalentExcelConfigData'>
@@ -144,7 +153,7 @@ const cacheBuilders: Partial<{
   AvatarCurveExcelConfigData: (jsonObjectArray) => {
     const result: Record<string, Record<number, number>> = {}
     const data =
-      jsonObjectArray as MasterFileMap['AvatarCurveExcelConfigData'][]
+      jsonObjectArray as GeneratedMasterFileMap['AvatarCurveExcelConfigData'][]
     for (const item of data) {
       if (!hasCurveInfos(item)) continue
       for (const curve of item.curveInfos) {
@@ -161,10 +170,10 @@ const cacheBuilders: Partial<{
   AvatarPromoteExcelConfigData: (jsonObjectArray) => {
     const result: Record<
       string,
-      Record<string, MasterFileMap['AvatarPromoteExcelConfigData']>
+      Record<string, GeneratedMasterFileMap['AvatarPromoteExcelConfigData']>
     > = {}
     const data =
-      jsonObjectArray as MasterFileMap['AvatarPromoteExcelConfigData'][]
+      jsonObjectArray as GeneratedMasterFileMap['AvatarPromoteExcelConfigData'][]
     for (const item of data) {
       const avatarPromoteId = String(item.avatarPromoteId)
       const promoteLevel = String(item.promoteLevel)
@@ -177,9 +186,10 @@ const cacheBuilders: Partial<{
   ProudSkillExcelConfigData: (jsonObjectArray) => {
     const result: Record<
       string,
-      Record<number, MasterFileMap['ProudSkillExcelConfigData']>
+      Record<number, GeneratedMasterFileMap['ProudSkillExcelConfigData']>
     > = {}
-    const data = jsonObjectArray as MasterFileMap['ProudSkillExcelConfigData'][]
+    const data =
+      jsonObjectArray as GeneratedMasterFileMap['ProudSkillExcelConfigData'][]
     for (const item of data) {
       const groupId = String(item.proudSkillGroupId)
       const skillId = item.proudSkillId % 100
@@ -190,18 +200,24 @@ const cacheBuilders: Partial<{
   },
 
   FetterInfoExcelConfigData: (jsonObjectArray) => {
-    const result: Record<string, MasterFileMap['FetterInfoExcelConfigData']> =
-      {}
-    const data = jsonObjectArray as MasterFileMap['FetterInfoExcelConfigData'][]
+    const result: Record<
+      string,
+      GeneratedMasterFileMap['FetterInfoExcelConfigData']
+    > = {}
+    const data =
+      jsonObjectArray as GeneratedMasterFileMap['FetterInfoExcelConfigData'][]
     for (const item of data) result[String(item.avatarId)] = item
 
     return result as CacheStructureType<'FetterInfoExcelConfigData'>
   },
 
   EquipAffixExcelConfigData: (jsonObjectArray) => {
-    const result: Record<string, MasterFileMap['EquipAffixExcelConfigData']> =
-      {}
-    const data = jsonObjectArray as MasterFileMap['EquipAffixExcelConfigData'][]
+    const result: Record<
+      string,
+      GeneratedMasterFileMap['EquipAffixExcelConfigData']
+    > = {}
+    const data =
+      jsonObjectArray as GeneratedMasterFileMap['EquipAffixExcelConfigData'][]
     for (const item of data) result[String(item.affixId)] = item
 
     return result as CacheStructureType<'EquipAffixExcelConfigData'>
@@ -210,28 +226,34 @@ const cacheBuilders: Partial<{
   TowerScheduleExcelConfigData: (jsonObjectArray) => {
     const result: Record<
       string,
-      MasterFileMap['TowerScheduleExcelConfigData']
+      GeneratedMasterFileMap['TowerScheduleExcelConfigData']
     > = {}
     const data =
-      jsonObjectArray as MasterFileMap['TowerScheduleExcelConfigData'][]
+      jsonObjectArray as GeneratedMasterFileMap['TowerScheduleExcelConfigData'][]
     for (const item of data) result[String(item.scheduleId)] = item
 
     return result as CacheStructureType<'TowerScheduleExcelConfigData'>
   },
 
   TowerFloorExcelConfigData: (jsonObjectArray) => {
-    const result: Record<string, MasterFileMap['TowerFloorExcelConfigData']> =
-      {}
-    const data = jsonObjectArray as MasterFileMap['TowerFloorExcelConfigData'][]
+    const result: Record<
+      string,
+      GeneratedMasterFileMap['TowerFloorExcelConfigData']
+    > = {}
+    const data =
+      jsonObjectArray as GeneratedMasterFileMap['TowerFloorExcelConfigData'][]
     for (const item of data) result[String(item.floorId)] = item
 
     return result as CacheStructureType<'TowerFloorExcelConfigData'>
   },
 
   TowerLevelExcelConfigData: (jsonObjectArray) => {
-    const result: Record<string, MasterFileMap['TowerLevelExcelConfigData']> =
-      {}
-    const data = jsonObjectArray as MasterFileMap['TowerLevelExcelConfigData'][]
+    const result: Record<
+      string,
+      GeneratedMasterFileMap['TowerLevelExcelConfigData']
+    > = {}
+    const data =
+      jsonObjectArray as GeneratedMasterFileMap['TowerLevelExcelConfigData'][]
     for (const item of data) result[String(item.levelId)] = item
 
     return result as CacheStructureType<'TowerLevelExcelConfigData'>
@@ -240,10 +262,10 @@ const cacheBuilders: Partial<{
   DungeonLevelEntityConfigData: (jsonObjectArray) => {
     const result: Record<
       string,
-      MasterFileMap['DungeonLevelEntityConfigData']
+      GeneratedMasterFileMap['DungeonLevelEntityConfigData']
     > = {}
     const data =
-      jsonObjectArray as MasterFileMap['DungeonLevelEntityConfigData'][]
+      jsonObjectArray as GeneratedMasterFileMap['DungeonLevelEntityConfigData'][]
     for (const item of data) {
       if (!item.show) continue
       result[String(item.clientId)] = item
@@ -252,8 +274,12 @@ const cacheBuilders: Partial<{
   },
 
   MonsterExcelConfigData: (jsonObjectArray) => {
-    const result: Record<string, MasterFileMap['MonsterExcelConfigData']> = {}
-    const data = jsonObjectArray as MasterFileMap['MonsterExcelConfigData'][]
+    const result: Record<
+      string,
+      GeneratedMasterFileMap['MonsterExcelConfigData']
+    > = {}
+    const data =
+      jsonObjectArray as GeneratedMasterFileMap['MonsterExcelConfigData'][]
     for (const item of data) result[String(item.id)] = item
 
     return result as CacheStructureType<'MonsterExcelConfigData'>
@@ -262,20 +288,22 @@ const cacheBuilders: Partial<{
   MonsterDescribeExcelConfigData: (jsonObjectArray) => {
     const result: Record<
       string,
-      MasterFileMap['MonsterDescribeExcelConfigData']
+      GeneratedMasterFileMap['MonsterDescribeExcelConfigData']
     > = {}
     const data =
-      jsonObjectArray as MasterFileMap['MonsterDescribeExcelConfigData'][]
+      jsonObjectArray as GeneratedMasterFileMap['MonsterDescribeExcelConfigData'][]
     for (const item of data) result[String(item.id)] = item
 
     return result as CacheStructureType<'MonsterDescribeExcelConfigData'>
   },
 
   AnimalCodexExcelConfigData: (jsonObjectArray) => {
-    const result: Record<string, MasterFileMap['AnimalCodexExcelConfigData']> =
-      {}
+    const result: Record<
+      string,
+      GeneratedMasterFileMap['AnimalCodexExcelConfigData']
+    > = {}
     const data =
-      jsonObjectArray as MasterFileMap['AnimalCodexExcelConfigData'][]
+      jsonObjectArray as GeneratedMasterFileMap['AnimalCodexExcelConfigData'][]
     for (const item of data) result[String(item.describeId)] = item
 
     return result as CacheStructureType<'AnimalCodexExcelConfigData'>
@@ -284,7 +312,7 @@ const cacheBuilders: Partial<{
   MonsterCurveExcelConfigData: (jsonObjectArray) => {
     const result: Record<string, Record<number, number>> = {}
     const data =
-      jsonObjectArray as MasterFileMap['MonsterCurveExcelConfigData'][]
+      jsonObjectArray as GeneratedMasterFileMap['MonsterCurveExcelConfigData'][]
     for (const item of data) {
       if (!hasCurveInfos(item)) continue
       for (const curve of item.curveInfos) {
@@ -299,36 +327,48 @@ const cacheBuilders: Partial<{
   },
 
   FetterStoryExcelConfigData: (jsonObjectArray) => {
-    const result: Record<string, MasterFileMap['FetterStoryExcelConfigData']> =
-      {}
+    const result: Record<
+      string,
+      GeneratedMasterFileMap['FetterStoryExcelConfigData']
+    > = {}
     const data =
-      jsonObjectArray as MasterFileMap['FetterStoryExcelConfigData'][]
+      jsonObjectArray as GeneratedMasterFileMap['FetterStoryExcelConfigData'][]
     for (const item of data) result[String(item.fetterId)] = item
 
     return result as CacheStructureType<'FetterStoryExcelConfigData'>
   },
 
   DungeonEntryExcelConfigData: (jsonObjectArray) => {
-    const result: Record<string, MasterFileMap['DungeonEntryExcelConfigData']> =
-      {}
+    const result: Record<
+      string,
+      GeneratedMasterFileMap['DungeonEntryExcelConfigData']
+    > = {}
     const data =
-      jsonObjectArray as MasterFileMap['DungeonEntryExcelConfigData'][]
+      jsonObjectArray as GeneratedMasterFileMap['DungeonEntryExcelConfigData'][]
     for (const item of data) result[String(item.id)] = item
 
     return result as CacheStructureType<'DungeonEntryExcelConfigData'>
   },
 
   FettersExcelConfigData: (jsonObjectArray) => {
-    const result: Record<string, MasterFileMap['FettersExcelConfigData']> = {}
-    const data = jsonObjectArray as MasterFileMap['FettersExcelConfigData'][]
+    const result: Record<
+      string,
+      GeneratedMasterFileMap['FettersExcelConfigData']
+    > = {}
+    const data =
+      jsonObjectArray as GeneratedMasterFileMap['FettersExcelConfigData'][]
     for (const item of data) result[String(item.fetterId)] = item
 
     return result as CacheStructureType<'FettersExcelConfigData'>
   },
 
   ManualTextMapConfigData: (jsonObjectArray) => {
-    const result: Record<string, MasterFileMap['ManualTextMapConfigData']> = {}
-    const data = jsonObjectArray as MasterFileMap['ManualTextMapConfigData'][]
+    const result: Record<
+      string,
+      GeneratedMasterFileMap['ManualTextMapConfigData']
+    > = {}
+    const data =
+      jsonObjectArray as GeneratedMasterFileMap['ManualTextMapConfigData'][]
     for (const item of data) result[item.textMapId] = item
 
     return result as CacheStructureType<'ManualTextMapConfigData'>
@@ -351,8 +391,8 @@ const cacheBuilders: Partial<{
  * console.log(Object.keys(cache).length)
  * ```
  */
-export function buildCacheStructure<T extends ExcelBinOutputKey>(
-  jsonObjectArray: DecodedType<T>,
+export function buildCacheStructure<T extends keyof typeof ExcelBinOutputs>(
+  jsonObjectArray: GeneratedDecodedType<T>,
   filename: T,
 ): CacheStructureType<T> {
   const builder = cacheBuilders[filename]

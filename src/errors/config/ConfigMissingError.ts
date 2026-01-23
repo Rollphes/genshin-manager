@@ -7,7 +7,7 @@ import { GenshinManagerError } from '@/errors/base/GenshinManagerError'
  * Configuration missing error
  */
 export class ConfigMissingError extends GenshinManagerError {
-  public readonly errorCode = GenshinManagerErrorCode.GM_CONFIG_MISSING
+  public readonly errorCode = GenshinManagerErrorCode.GmConfigMissing
 
   /**
    * Missing configuration property

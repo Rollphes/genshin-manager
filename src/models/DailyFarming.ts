@@ -1,4 +1,5 @@
 import { Client } from '@/client/Client'
+import { AssetNotFoundError } from '@/errors/assets/AssetNotFoundError'
 import { CharacterInfo } from '@/models/character/CharacterInfo'
 import { CharacterSkill } from '@/models/character/CharacterSkill'
 import { CharacterSkillAscension } from '@/models/character/CharacterSkillAscension'
@@ -79,59 +80,58 @@ export class DailyFarming {
       propertyKey: 'dayOfWeek',
     })
     const rewardDateIndex = dayOfWeek === 0 ? 3 : (dayOfWeek - 1) % 3
-    const dungeons = Object.values(
-      Client._getCachedExcelBinOutputByName('DungeonEntryExcelConfigData'),
-    )
+    const dungeons = Client._getAll('DungeonEntryExcelConfigData')
     const skillDomains = dungeons.filter(
-      (d) => d?.type === 'DUNGEN_ENTRY_TYPE_AVATAR_TALENT',
+      (d) => d.type === 'DUNGEN_ENTRY_TYPE_AVATAR_TALENT',
     )
     const weaponDomains = dungeons.filter(
-      (d) => d?.type === 'DUNGEN_ENTRY_TYPE_WEAPON_PROMOTE',
+      (d) => d.type === 'DUNGEN_ENTRY_TYPE_WEAPON_PROMOTE',
     )
 
     for (let i = 0; i < (dayOfWeek === 0 ? 3 : 1); i++) {
-      ;[...weaponDomains, ...skillDomains]
-        .filter((domain) => domain !== undefined)
-        .forEach((domain) => {
-          const materialIds =
-            domain.descriptionCycleRewardList[
-              dayOfWeek === 0 ? i : rewardDateIndex
-            ]
-          const dungeonEntryId = domain.dungeonEntryId
+      ;[...weaponDomains, ...skillDomains].forEach((domain) => {
+        const materialIds =
+          domain.descriptionCycleRewardList[
+            dayOfWeek === 0 ? i : rewardDateIndex
+          ]
+        const dungeonEntryId = domain.dungeonEntryId
 
-          const nameTextId = Object.keys(
-            DailyFarming.replaceTextMapIdMap,
-          ).includes(String(dungeonEntryId))
-            ? DailyFarming.replaceTextMapIdMap[dungeonEntryId]
-            : `UI_DUNGEON_ENTRY_${String(dungeonEntryId)}`
+        const nameTextId = Object.keys(
+          DailyFarming.replaceTextMapIdMap,
+        ).includes(String(dungeonEntryId))
+          ? DailyFarming.replaceTextMapIdMap[dungeonEntryId]
+          : `UI_DUNGEON_ENTRY_${String(dungeonEntryId)}`
 
-          const manualTextJson = Client._getJsonFromCachedExcelBinOutput(
+        const manualTextJson = Client._findBy(
+          'ManualTextMapConfigData',
+          'textMapId',
+          nameTextId,
+        )
+        if (!manualTextJson) {
+          throw new AssetNotFoundError(
+            `ManualTextMap ${nameTextId}`,
             'ManualTextMapConfigData',
-            nameTextId,
           )
-          const textMapContentTextMapHash =
-            manualTextJson.textMapContentTextMapHash
+        }
+        const textMapContentTextMapHash =
+          manualTextJson.textMapContentTextMapHash
 
-          this.domains.push({
-            name: Client._cachedTextMap.get(textMapContentTextMapHash) ?? '',
-            description: '',
-            materialIds: materialIds,
-            characterInfos: this.getCharacterInfoByMaterialIds(materialIds),
-            weaponIds: this.getWeaponIdsByMaterialIds(materialIds),
-          })
+        this.domains.push({
+          name: Client._cachedTextMap.get(textMapContentTextMapHash) ?? '',
+          description: '',
+          materialIds: materialIds,
+          characterInfos: this.getCharacterInfoByMaterialIds(materialIds),
+          weaponIds: this.getWeaponIdsByMaterialIds(materialIds),
         })
+      })
     }
 
-    this.talentBookIds = skillDomains
-      .filter((d) => d !== undefined)
-      .flatMap((d) => {
-        return d.descriptionCycleRewardList[rewardDateIndex]
-      })
-    this.weaponMaterialIds = weaponDomains
-      .filter((d) => d !== undefined)
-      .flatMap((d) => {
-        return d.descriptionCycleRewardList[rewardDateIndex]
-      })
+    this.talentBookIds = skillDomains.flatMap((d) => {
+      return d.descriptionCycleRewardList[rewardDateIndex]
+    })
+    this.weaponMaterialIds = weaponDomains.flatMap((d) => {
+      return d.descriptionCycleRewardList[rewardDateIndex]
+    })
   }
 
   private getCharacterInfoByMaterialIds(

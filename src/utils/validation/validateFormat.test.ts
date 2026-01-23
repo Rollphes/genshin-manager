@@ -41,15 +41,13 @@ describe('validateFormat', () => {
 
   it('should pass context to error', () => {
     const pattern = /^\d+$/
-    const context = { operation: 'format validation test' }
+    const context = { source: 'Test' }
     try {
       validateFormat('abc', pattern, 'number', 'digits only', context)
       expect.fail('Should have thrown')
     } catch (error) {
       expect(error).toBeInstanceOf(FormatValidationError)
-      expect((error as FormatValidationError).context?.operation).toBe(
-        'format validation test',
-      )
+      expect((error as FormatValidationError).source).toBe('Test')
     }
   })
 })

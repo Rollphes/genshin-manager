@@ -1,18 +1,25 @@
 import { Client } from '@/client/Client'
 import { AssetNotFoundError } from '@/errors/assets/AssetNotFoundError'
 import { travelerIdSchema } from '@/schemas/commonSchemas'
-import {
-  BodyType,
-  QualityType,
-  WeaponType,
-} from '@/types/generated/AvatarExcelConfigData'
-import { Element, ElementKeys } from '@/types/types'
+import { BodyType, CostElemType, QualityType, WeaponType } from '@/types/enums'
+import { Element } from '@/types/types'
 import { validate } from '@/utils/validation/validate'
 
 /**
  * Contains basic information about a character
  */
 export class CharacterInfo {
+  private static elementMap: Record<CostElemType, Element | undefined> = {
+    [CostElemType.None]: undefined,
+    [CostElemType.Fire]: Element.Pyro,
+    [CostElemType.Electric]: Element.Electro,
+    [CostElemType.Ice]: Element.Cryo,
+    [CostElemType.Wind]: Element.Anemo,
+    [CostElemType.Water]: Element.Hydro,
+    [CostElemType.Rock]: Element.Geo,
+    [CostElemType.Grass]: Element.Dendro,
+  }
+
   /**
    * Character ID
    */
@@ -80,11 +87,9 @@ export class CharacterInfo {
    */
   constructor(characterId: number, skillDepotId?: number) {
     this.id = characterId
-    const costumeDatas = Object.values(
-      Client._getCachedExcelBinOutputByName('AvatarCostumeExcelConfigData'),
-    )
+    const costumeDatas = Client._getAll('AvatarCostumeExcelConfigData')
     const defaultCostumeData = costumeDatas.find(
-      (k) => k !== undefined && k.characterId === this.id && k.quality === 0,
+      (k) => k.characterId === this.id && k.quality === 0,
     )
     if (!defaultCostumeData) {
       throw new AssetNotFoundError(
@@ -94,23 +99,32 @@ export class CharacterInfo {
     }
     this.defaultCostumeId = defaultCostumeData.skinId
 
-    const avatarJson = Client._getJsonFromCachedExcelBinOutput(
-      'AvatarExcelConfigData',
-      this.id,
-    )
+    const avatarJson = Client._findBy('AvatarExcelConfigData', 'id', this.id)
+    if (!avatarJson) {
+      throw new Error(
+        `AvatarExcelConfigData not found for id ${String(this.id)}`,
+      )
+    }
 
     this.depotId =
       skillDepotId && [10000005, 10000007].includes(this.id)
         ? skillDepotId
         : avatarJson.skillDepotId
-    const depotJson = Client._getJsonFromCachedExcelBinOutput(
+    const depotJson = Client._findBy(
       'AvatarSkillDepotExcelConfigData',
+      'id',
       this.depotId,
     )
+    if (!depotJson) {
+      throw new Error(
+        `AvatarSkillDepotExcelConfigData not found for id ${String(this.depotId)}`,
+      )
+    }
 
     const skillJson = depotJson.energySkill
-      ? Client._getJsonFromCachedExcelBinOutput(
+      ? Client._findBy(
           'AvatarSkillExcelConfigData',
+          'id',
           depotJson.energySkill,
         )
       : undefined
@@ -119,8 +133,8 @@ export class CharacterInfo {
     this.name = Client._cachedTextMap.get(nameTextMapHash) ?? ''
 
     this.element =
-      skillJson && skillJson.costElemType in ElementKeys
-        ? ElementKeys[skillJson.costElemType as keyof typeof ElementKeys]
+      skillJson && skillJson.costElemType in CharacterInfo.elementMap
+        ? CharacterInfo.elementMap[skillJson.costElemType]
         : undefined
 
     this.skillOrder = (
@@ -130,10 +144,11 @@ export class CharacterInfo {
     ).filter((skillId): skillId is number => skillId !== 0)
     depotJson.inherentProudSkillOpens.forEach((k) => {
       if (k.proudSkillGroupId === 0) return
-      const proudSkillJson = Client._getJsonFromCachedExcelBinOutput(
+      const proudSkillJson = Client._filterBy(
         'ProudSkillExcelConfigData',
+        'proudSkillGroupId',
         k.proudSkillGroupId,
-      )[1]
+      ).find((p) => p.level === 1)
       if (!proudSkillJson) return
       if (proudSkillJson.isHideLifeProudSkill) return
       this.inherentSkillOrder.push(k.proudSkillGroupId)
@@ -142,10 +157,12 @@ export class CharacterInfo {
     this.constellationIds = depotJson.talents.filter((constId) => constId !== 0)
 
     this.skillOrder = this.skillOrder.filter((skillId) => {
-      const skillJson = Client._getJsonFromCachedExcelBinOutput(
+      const skillJson = Client._findBy(
         'AvatarSkillExcelConfigData',
+        'id',
         skillId,
       )
+      if (!skillJson) return false
       const proudId = skillJson.proudSkillGroupId
       if (proudId) this.proudMap.set(skillId, proudId)
       return Boolean(proudId)
@@ -166,13 +183,9 @@ export class CharacterInfo {
    * @returns all character IDs
    */
   public static get allCharacterIds(): number[] {
-    const avatarDatas = Object.values(
-      Client._getCachedExcelBinOutputByName('AvatarExcelConfigData'),
-    )
+    const avatarDatas = Client._getAll('AvatarExcelConfigData')
     return avatarDatas
-      .filter(
-        (k): k is NonNullable<typeof k> => k !== undefined && !('rarity' in k),
-      )
+      .filter((k) => k.id <= 11000000 && k.id !== 10000001)
       .map((k) => k.id)
   }
 
@@ -182,16 +195,14 @@ export class CharacterInfo {
    * @returns character ID
    */
   public static getCharacterIdByName(name: string): number[] {
-    return Client._searchIdInExcelBinOutByText(
-      'AvatarExcelConfigData',
-      name,
-    ).map((k) => +k)
+    return Client._searchByText('AvatarExcelConfigData', name).map((r) => r.id)
   }
 
   /**
    * Get traveler skill depot IDs
    * @param characterId - character ID
    * @returns skill depot IDs
+   * @throws Error - When the avatar data is not found
    */
   public static getTravelerSkillDepotIds(characterId: number): number[] {
     if (![10000005, 10000007].includes(characterId)) {
@@ -200,10 +211,17 @@ export class CharacterInfo {
       })
     }
 
-    const avatarData = Client._getJsonFromCachedExcelBinOutput(
+    const avatarData = Client._findBy(
       'AvatarExcelConfigData',
+      'id',
       characterId,
     )
+    if (!avatarData) {
+      throw new Error(
+        `AvatarExcelConfigData not found for id ${String(characterId)}`,
+      )
+    }
+
     return avatarData.candSkillDepotIds
   }
 }

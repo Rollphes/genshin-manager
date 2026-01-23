@@ -9,8 +9,8 @@ import {
 import { Client } from '@/client/Client'
 import { ConfigMissingError } from '@/errors/config/ConfigMissingError'
 import { FormatValidationError } from '@/errors/validation/FormatValidationError'
+import { ExcelBinOutputs } from '@/types/excelBinOutputs'
 import type { JsonObject } from '@/types/json'
-import { ExcelBinOutputs } from '@/types/types'
 import { EncryptedKeyDecoder } from '@/utils/crypto/EncryptedKeyDecoder'
 import { logger, LogLevel } from '@/utils/logger/Logger'
 import {

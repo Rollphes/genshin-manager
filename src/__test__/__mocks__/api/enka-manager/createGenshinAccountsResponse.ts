@@ -1,12 +1,12 @@
-import type { APIGameAccount } from '@/types/enkaNetwork/EnkaAccountTypes'
+import type { GameAccountResponse } from '@/types/api/enkaNetwork/responses'
 
 /**
  * Create mock GenshinAccounts API response for testing
- * @returns Mock APIGameAccount record response
+ * @returns Mock GameAccountResponse record response
  */
 export function createGenshinAccountsResponse(): Record<
   string,
-  APIGameAccount
+  GameAccountResponse
 > {
   return {
     account1: {

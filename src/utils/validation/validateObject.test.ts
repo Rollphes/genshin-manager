@@ -55,7 +55,7 @@ describe('validateObject', () => {
   it('should pass context to validation', () => {
     const validations = { value: z.number() }
     const obj = { value: 42 }
-    const context = { operation: 'test' }
+    const context = { source: 'Test' }
     const result = validateObject(obj, validations, context)
     expect(result).toEqual({ value: 42 })
   })

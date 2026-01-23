@@ -1,11 +1,12 @@
 import { Client } from '@/client/Client'
+import { AssetNotFoundError } from '@/errors/assets/AssetNotFoundError'
 import { StatProperty } from '@/models/StatProperty'
 import {
   fixedRefinementSchema,
   refinementLevelSchema,
 } from '@/schemas/commonSchemas'
-import { PropType } from '@/types/generated/EquipAffixExcelConfigData'
-import { toFightPropType } from '@/utils/typeGuards/toFightPropType'
+import { FightProp } from '@/types/enums'
+import { toEnum } from '@/utils/typeGuards/toEnum'
 import { validate } from '@/utils/validation/validate'
 
 /**
@@ -49,31 +50,44 @@ export class WeaponRefinement {
       propertyKey: 'refinementRank',
     })
 
-    const weaponJson = Client._getJsonFromCachedExcelBinOutput(
-      'WeaponExcelConfigData',
-      this.id,
-    )
+    const weaponJson = Client._findBy('WeaponExcelConfigData', 'id', this.id)
+    if (!weaponJson)
+      throw new AssetNotFoundError(String(this.id), 'WeaponExcelConfigData')
+
     const skillAffix = weaponJson.skillAffix[0] * 10 + this.refinementRank - 1
-    if (
-      Client._hasCachedExcelBinOutputById(
-        'EquipAffixExcelConfigData',
-        skillAffix,
-      )
-    ) {
-      const equipAffixJson = Client._getJsonFromCachedExcelBinOutput(
-        'EquipAffixExcelConfigData',
-        skillAffix,
-      )
+    const equipAffixJson = Client._findBy(
+      'EquipAffixExcelConfigData',
+      'affixId',
+      skillAffix,
+    )
+    if (equipAffixJson) {
       const nameTextMapHash = equipAffixJson.nameTextMapHash
       const descTextMapHash = equipAffixJson.descTextMapHash
       this.skillName = Client._cachedTextMap.get(nameTextMapHash) ?? ''
       this.skillDescription = Client._cachedTextMap.get(descTextMapHash) ?? ''
+      const affixContext = {
+        source: 'EquipAffixExcelConfigData',
+        recordId: skillAffix,
+      } as const
+
       this.addProps = equipAffixJson.addProps
-        .filter((addProp) => addProp.propType !== PropType.FightPropNone)
+        .map((addProp, index) => {
+          return {
+            ...addProp,
+            propType: toEnum(FightProp, addProp.propType, 'FightProp', {
+              ...affixContext,
+              path: `addProps[${String(index)}].propType`,
+            }),
+          }
+        })
+        .filter((addProp) => addProp.propType !== FightProp.FightPropNone)
         .map(
           (addProp) =>
             new StatProperty(
-              toFightPropType(addProp.propType, 'WeaponRefinement'),
+              toEnum(FightProp, addProp.propType, 'FightProp', {
+                ...affixContext,
+                path: 'addProps.propType',
+              }),
               addProp.value,
             ),
         )
@@ -93,21 +107,21 @@ export class WeaponRefinement {
    * Get max refinement rank by weapon ID
    * @param weaponId - weapon ID
    * @returns max refinement rank
+   * @throws {@link AssetNotFoundError} - When the weapon data is not found
    */
   public static getMaxRefinementRankByWeaponId(weaponId: number): number {
-    const weaponJson = Client._getJsonFromCachedExcelBinOutput(
-      'WeaponExcelConfigData',
-      weaponId,
-    )
+    const weaponJson = Client._findBy('WeaponExcelConfigData', 'id', weaponId)
+    if (!weaponJson)
+      throw new AssetNotFoundError(String(weaponId), 'WeaponExcelConfigData')
+
     for (let i = 1; i < 6; i++) {
       const skillAffix = weaponJson.skillAffix[0] * 10 + i - 1
-      if (
-        !Client._hasCachedExcelBinOutputById(
-          'EquipAffixExcelConfigData',
-          skillAffix,
-        )
+      const found = Client._findBy(
+        'EquipAffixExcelConfigData',
+        'affixId',
+        skillAffix,
       )
-        return i - 1 || 1
+      if (!found) return i - 1 || 1
     }
     return 5
   }

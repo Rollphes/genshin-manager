@@ -23,11 +23,13 @@ describe('EnumValidationError', () => {
       expect(error.message).toBe('type must be one of: a, b, got invalid')
     })
 
-    it('should include propertyKey prefix from context', () => {
+    it('should include source and path prefix from context', () => {
       const error = new EnumValidationError('invalid', ['a', 'b'], 'type', {
-        propertyKey: 'config',
+        source: 'TestConfig',
+        recordId: 123,
+        path: 'propType',
       })
-      expect(error.message).toContain('[config]')
+      expect(error.message).toContain('[TestConfig#123.propType]')
     })
 
     it('should handle numeric allowed values', () => {
@@ -36,9 +38,9 @@ describe('EnumValidationError', () => {
       expect(error.message).toContain('5')
     })
 
-    it('should set errorCode to GM_VALIDATION_ENUM', () => {
+    it('should set errorCode to GmValidationEnum', () => {
       const error = new EnumValidationError('invalid', ['a', 'b'])
-      expect(error.errorCode).toBe(GenshinManagerErrorCode.GM_VALIDATION_ENUM)
+      expect(error.errorCode).toBe(GenshinManagerErrorCode.GmValidationEnum)
     })
 
     it('should set name to EnumValidationError', () => {
@@ -81,15 +83,17 @@ describe('EnumValidationError', () => {
       expect(error.context?.actualValue).toBe('invalid')
     })
 
-    it('should accept context parameter', () => {
-      const context = { operation: 'validate' }
+    it('should accept context parameter with source info', () => {
+      const context = { source: 'TestSource', recordId: 456, path: 'field' }
       const error = new EnumValidationError(
         'invalid',
         ['a', 'b'],
         'value',
         context,
       )
-      expect(error.context?.operation).toBe('validate')
+      expect(error.source).toBe('TestSource')
+      expect(error.recordId).toBe(456)
+      expect(error.path).toBe('field')
     })
 
     it('should accept cause parameter', () => {
@@ -117,7 +121,7 @@ describe('EnumValidationError', () => {
       const error = new EnumValidationError('invalid', ['a', 'b'])
       const json = error.toJSON()
       expect(json.name).toBe('EnumValidationError')
-      expect(json.errorCode).toBe(GenshinManagerErrorCode.GM_VALIDATION_ENUM)
+      expect(json.errorCode).toBe(GenshinManagerErrorCode.GmValidationEnum)
     })
   })
 })

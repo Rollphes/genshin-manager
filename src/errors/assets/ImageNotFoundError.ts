@@ -1,21 +1,22 @@
 import { AssetError } from '@/errors/assets/AssetError'
 import { GenshinManagerErrorCode } from '@/errors/base/ErrorCodes'
-import type { ErrorContext } from '@/errors/base/ErrorContext'
+import type { AssetContext } from '@/types/errorContext'
 
 /**
  * Image not found error
  */
 export class ImageNotFoundError extends AssetError {
-  public readonly errorCode = GenshinManagerErrorCode.GM_ASSETS_IMAGE_NOT_FOUND
+  public readonly errorCode = GenshinManagerErrorCode.GmAssetsImageNotFound
 
   /**
    * Constructor for ImageNotFoundError
    * @param imagePath - Image file path or identifier
-   * @param context - Additional error context
+   * @param context - Structured asset context
    * @param cause - Original error
    */
-  constructor(imagePath: string, context?: ErrorContext, cause?: Error) {
-    const message = `Image not found: ${imagePath}`
+  constructor(imagePath: string, context?: AssetContext, cause?: Error) {
+    const locationPrefix = AssetError.buildAssetLocationPrefix(context)
+    const message = `${locationPrefix}Image not found: ${imagePath}`
 
     super(message, imagePath, 'image', context, cause)
   }

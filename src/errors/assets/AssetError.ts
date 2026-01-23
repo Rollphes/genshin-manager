@@ -1,6 +1,6 @@
-import type { ErrorContext } from '@/errors/base/ErrorContext'
 import { ErrorContextFactory } from '@/errors/base/ErrorContext'
 import { GenshinManagerError } from '@/errors/base/GenshinManagerError'
+import type { AssetContext } from '@/types/errorContext'
 
 /**
  * Base asset error class
@@ -17,32 +17,73 @@ export abstract class AssetError extends GenshinManagerError {
   public readonly assetType: string
 
   /**
+   * Data source name (e.g., 'MonsterExcelConfigData')
+   */
+  public readonly source?: string
+
+  /**
+   * Record ID within the data source
+   */
+  public readonly recordId?: string | number
+
+  /**
+   * Operation being performed
+   */
+  public readonly operation?: string
+
+  /**
    * Constructor for AssetError
    * @param message - Error message
    * @param assetPath - Asset file path or identifier
    * @param assetType - Type of asset
-   * @param context - Additional error context
+   * @param assetContext - Structured asset context
    * @param cause - Original error
    */
   constructor(
     message: string,
     assetPath: string,
     assetType: string,
-    context?: ErrorContext,
+    assetContext?: AssetContext,
     cause?: Error,
   ) {
-    const assetContext = ErrorContextFactory.createAssetContext(
+    const errorContext = ErrorContextFactory.createAssetContext(
       assetPath,
       assetType === 'image' ? assetPath : undefined,
       assetType === 'audio' ? assetPath : undefined,
-      `load ${assetType}`,
+      assetContext?.operation ?? `load ${assetType}`,
     )
 
-    const mergedContext = ErrorContextFactory.merge(context, assetContext)
+    // Add source info to metadata
+    const mergedContext = assetContext?.source
+      ? {
+          ...errorContext,
+          metadata: {
+            source: assetContext.source,
+            recordId: assetContext.recordId,
+          },
+        }
+      : errorContext
 
     super(message, mergedContext, cause)
 
     this.assetPath = assetPath
     this.assetType = assetType
+    this.source = assetContext?.source
+    this.recordId = assetContext?.recordId
+    this.operation = assetContext?.operation
+  }
+
+  /**
+   * Build location prefix from AssetContext
+   * @param context - Asset context
+   * @returns Location prefix string
+   */
+  protected static buildAssetLocationPrefix(context?: AssetContext): string {
+    if (!context?.source) return ''
+
+    let prefix = context.source
+    if (context.recordId !== undefined) prefix += `#${String(context.recordId)}`
+
+    return `[${prefix}] `
   }
 }

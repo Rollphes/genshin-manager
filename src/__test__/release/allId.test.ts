@@ -15,13 +15,14 @@ import { Material } from '@/models/Material'
 import { Monster } from '@/models/Monster'
 import { ProfilePicture } from '@/models/ProfilePicture'
 import { WeaponInfo } from '@/models/weapon/WeaponInfo'
+import { Language } from '@/types/types'
 
 describe('AllId Release Test', () => {
   beforeAll(async () => {
     // Client deployment is already handled in test/setup.ts
     const client = new Client({
-      defaultLanguage: 'en',
-      downloadLanguages: ['en'],
+      defaultLanguage: Language.En,
+      downloadLanguages: [Language.En],
     })
     await client.deploy()
   }, 30000) // 30 seconds timeout for deployment
@@ -107,10 +108,10 @@ describe('AllId Release Test', () => {
     expect(fetterIds.length).toBeGreaterThan(0)
 
     fetterIds.forEach((id) => {
-      const voice = new CharacterVoice(id, 'en')
+      const voice = new CharacterVoice(id, Language.En)
       expect(voice).toBeDefined()
       expect(voice.fetterId).toBe(id)
-      expect(voice.cv).toBe('en')
+      expect(voice.cv).toBe(Language.En)
     })
   })
 

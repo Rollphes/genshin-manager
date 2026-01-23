@@ -3,13 +3,14 @@ import { beforeAll, describe, expect, it } from 'vitest'
 import { Client } from '@/client/Client'
 import { ImageAssets } from '@/models/assets/ImageAssets'
 import { ProfilePicture } from '@/models/ProfilePicture'
-import { Type as ProfilePictureType } from '@/types/generated/ProfilePictureExcelConfigData'
+import { ProfilePictureUnlockType } from '@/types/enums'
+import { Language } from '@/types/types'
 
 describe('ProfilePicture', () => {
   beforeAll(async () => {
     const client = new Client({
-      defaultLanguage: 'en',
-      downloadLanguages: ['en'],
+      defaultLanguage: Language.En,
+      downloadLanguages: [Language.En],
     })
     await client.deploy()
   }, 30000)
@@ -59,7 +60,7 @@ describe('ProfilePicture', () => {
 
     it('should have correct type', () => {
       expect(profilePicture.type).toBe(
-        ProfilePictureType.ProfilePictureUnlockByAvatar,
+        ProfilePictureUnlockType.ProfilePictureUnlockByAvatar,
       )
     })
 
@@ -97,7 +98,7 @@ describe('ProfilePicture', () => {
 
     it('should have correct type', () => {
       expect(profilePicture.type).toBe(
-        ProfilePictureType.ProfilePictureUnlockByCostume,
+        ProfilePictureUnlockType.ProfilePictureUnlockByCostume,
       )
     })
 
@@ -127,7 +128,7 @@ describe('ProfilePicture', () => {
 
     it('should have correct type', () => {
       expect(profilePicture.type).toBe(
-        ProfilePictureType.ProfilePictureUnlockByItem,
+        ProfilePictureUnlockType.ProfilePictureUnlockByItem,
       )
     })
 
@@ -161,7 +162,7 @@ describe('ProfilePicture', () => {
 
     it('should have correct type', () => {
       expect(profilePicture.type).toBe(
-        ProfilePictureType.ProfilePictureUnlockByParentQuest,
+        ProfilePictureUnlockType.ProfilePictureUnlockByParentQuest,
       )
     })
 

@@ -37,10 +37,17 @@ export class CharacterConstellation {
   constructor(constellationId: number, locked = false) {
     this.id = constellationId
     this.locked = locked
-    const talentJson = Client._getJsonFromCachedExcelBinOutput(
+    const talentJson = Client._findBy(
       'AvatarTalentExcelConfigData',
+      'talentId',
       this.id,
     )
+    if (!talentJson) {
+      throw new Error(
+        `AvatarTalentExcelConfigData not found for talentId ${String(this.id)}`,
+      )
+    }
+
     const nameTextMapHash = talentJson.nameTextMapHash
     const descTextMapHash = talentJson.descTextMapHash
     this.name = Client._cachedTextMap.get(nameTextMapHash) ?? ''
@@ -53,15 +60,8 @@ export class CharacterConstellation {
    * @returns all constellation IDs
    */
   public static get allConstellationIds(): number[] {
-    const talentDatas = Object.values(
-      Client._getCachedExcelBinOutputByName('AvatarTalentExcelConfigData'),
-    )
-    return talentDatas
-      .filter(
-        (data): data is NonNullable<typeof data> =>
-          data?.talentId !== undefined,
-      )
-      .map((data) => data.talentId)
+    const talentDatas = Client._getAll('AvatarTalentExcelConfigData')
+    return talentDatas.map((data) => data.talentId)
   }
 
   /**
@@ -69,23 +69,38 @@ export class CharacterConstellation {
    * @param characterId - character ID
    * @param skillDepotId - skill depot ID
    * @returns constellation IDs
+   * @throws Error - When the avatar or skill depot data is not found
    */
   public static getConstellationIdsByCharacterId(
     characterId: number,
     skillDepotId?: number,
   ): number[] {
-    const avatarJson = Client._getJsonFromCachedExcelBinOutput(
+    const avatarJson = Client._findBy(
       'AvatarExcelConfigData',
+      'id',
       characterId,
     )
+    if (!avatarJson) {
+      throw new Error(
+        `AvatarExcelConfigData not found for id ${String(characterId)}`,
+      )
+    }
+
     const depotId =
       skillDepotId && [10000005, 10000007].includes(characterId)
         ? skillDepotId
         : avatarJson.skillDepotId
-    const depotJson = Client._getJsonFromCachedExcelBinOutput(
+    const depotJson = Client._findBy(
       'AvatarSkillDepotExcelConfigData',
+      'id',
       depotId,
     )
+    if (!depotJson) {
+      throw new Error(
+        `AvatarSkillDepotExcelConfigData not found for id ${String(depotId)}`,
+      )
+    }
+
     return depotJson.talents
   }
 }

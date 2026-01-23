@@ -4,12 +4,14 @@ import { Client } from '@/client/Client'
 import { ImageAssets } from '@/models/assets/ImageAssets'
 import { Monster } from '@/models/Monster'
 import { StatProperty } from '@/models/StatProperty'
+import { FightProp } from '@/types/enums'
+import { Language } from '@/types/types'
 
 describe('Monster', () => {
   beforeAll(async () => {
     const client = new Client({
-      defaultLanguage: 'en',
-      downloadLanguages: ['en'],
+      defaultLanguage: Language.En,
+      downloadLanguages: [Language.En],
     })
     await client.deploy()
   }, 30000)
@@ -145,7 +147,9 @@ describe('Monster', () => {
     })
 
     it('should have HP value close to expected', () => {
-      const hpStat = monster.stats.find((s) => s.type === 'FIGHT_PROP_BASE_HP')
+      const hpStat = monster.stats.find(
+        (s) => s.type === FightProp.FightPropBaseHP,
+      )
       expect(hpStat).toBeDefined()
       expect(hpStat?.value).toBeCloseTo(4996.48454, 2)
     })
@@ -162,47 +166,47 @@ describe('Monster', () => {
 
     it('should have higher HP with more players', () => {
       const singleHp = singlePlayerMonster.stats.find(
-        (s) => s.type === 'FIGHT_PROP_BASE_HP',
+        (s) => s.type === FightProp.FightPropBaseHP,
       )
       const coopHp = coopMonster.stats.find(
-        (s) => s.type === 'FIGHT_PROP_BASE_HP',
+        (s) => s.type === FightProp.FightPropBaseHP,
       )
       expect(coopHp?.value).toBeGreaterThan(singleHp?.value ?? 0)
     })
 
     it('should have HP scaled by 2.5x for 4 players', () => {
       const singleHp = singlePlayerMonster.stats.find(
-        (s) => s.type === 'FIGHT_PROP_BASE_HP',
+        (s) => s.type === FightProp.FightPropBaseHP,
       )
       const coopHp = coopMonster.stats.find(
-        (s) => s.type === 'FIGHT_PROP_BASE_HP',
+        (s) => s.type === FightProp.FightPropBaseHP,
       )
       expect(coopHp?.value).toBeCloseTo((singleHp?.value ?? 0) * 2.5, 2)
     })
 
     it('should have 4-player HP close to expected value', () => {
       const coopHp = coopMonster.stats.find(
-        (s) => s.type === 'FIGHT_PROP_BASE_HP',
+        (s) => s.type === FightProp.FightPropBaseHP,
       )
       expect(coopHp?.value).toBeCloseTo(12491.21135, 2)
     })
 
     it('should have higher ATK with more players', () => {
       const singleAtk = singlePlayerMonster.stats.find(
-        (s) => s.type === 'FIGHT_PROP_BASE_ATTACK',
+        (s) => s.type === FightProp.FightPropBaseAttack,
       )
       const coopAtk = coopMonster.stats.find(
-        (s) => s.type === 'FIGHT_PROP_BASE_ATTACK',
+        (s) => s.type === FightProp.FightPropBaseAttack,
       )
       expect(coopAtk?.value).toBeGreaterThan(singleAtk?.value ?? 0)
     })
 
     it('should have same DEF regardless of player count', () => {
       const singleDef = singlePlayerMonster.stats.find(
-        (s) => s.type === 'FIGHT_PROP_BASE_DEFENSE',
+        (s) => s.type === FightProp.FightPropBaseDefense,
       )
       const coopDef = coopMonster.stats.find(
-        (s) => s.type === 'FIGHT_PROP_BASE_DEFENSE',
+        (s) => s.type === FightProp.FightPropBaseDefense,
       )
       expect(coopDef?.value).toBe(singleDef?.value)
     })
@@ -213,10 +217,10 @@ describe('Monster', () => {
       const lv1Monster = new Monster(21010101, 1)
       const lv50Monster = new Monster(21010101, 50)
       const lv1Hp = lv1Monster.stats.find(
-        (s) => s.type === 'FIGHT_PROP_BASE_HP',
+        (s) => s.type === FightProp.FightPropBaseHP,
       )
       const lv50Hp = lv50Monster.stats.find(
-        (s) => s.type === 'FIGHT_PROP_BASE_HP',
+        (s) => s.type === FightProp.FightPropBaseHP,
       )
       expect(lv1Hp?.value).toBeLessThan(lv50Hp?.value ?? 0)
     })
@@ -225,10 +229,10 @@ describe('Monster', () => {
       const lv50Monster = new Monster(21010101, 50)
       const lv100Monster = new Monster(21010101, 100)
       const lv50Hp = lv50Monster.stats.find(
-        (s) => s.type === 'FIGHT_PROP_BASE_HP',
+        (s) => s.type === FightProp.FightPropBaseHP,
       )
       const lv100Hp = lv100Monster.stats.find(
-        (s) => s.type === 'FIGHT_PROP_BASE_HP',
+        (s) => s.type === FightProp.FightPropBaseHP,
       )
       expect(lv100Hp?.value).toBeGreaterThan(lv50Hp?.value ?? 0)
     })

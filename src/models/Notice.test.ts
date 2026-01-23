@@ -3,7 +3,8 @@ import { beforeAll, describe, expect, it } from 'vitest'
 import { Client } from '@/client/Client'
 import { ImageAssets } from '@/models/assets/ImageAssets'
 import { Notice } from '@/models/Notice'
-import { ContentList, DataList } from '@/types/sg-hk4e-api/response'
+import { ContentList, DataList } from '@/types/api/sg-hk4e-api/responses'
+import { Language } from '@/types/types'
 
 function createMockDataList(overrides: Partial<DataList> = {}): DataList {
   return {
@@ -66,8 +67,8 @@ function createMockEnContentList(
 describe('Notice', () => {
   beforeAll(async () => {
     const client = new Client({
-      defaultLanguage: 'en',
-      downloadLanguages: ['en'],
+      defaultLanguage: Language.En,
+      downloadLanguages: [Language.En],
     })
     await client.deploy()
   }, 30000)
@@ -145,7 +146,7 @@ describe('Notice', () => {
     })
 
     it('should have correct lang', () => {
-      expect(notice.lang).toBe('en-us')
+      expect(notice.lang).toBe(Language.En)
     })
 
     it('should have correct region', () => {

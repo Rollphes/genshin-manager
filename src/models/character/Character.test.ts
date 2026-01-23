@@ -3,12 +3,13 @@ import { beforeAll, describe, expect, it } from 'vitest'
 import { Client } from '@/client/Client'
 import { Character } from '@/models/character/Character'
 import { CharacterInfo } from '@/models/character/CharacterInfo'
+import { Language } from '@/types/types'
 
 describe('Character', () => {
   beforeAll(async () => {
     const client = new Client({
-      defaultLanguage: 'en',
-      downloadLanguages: ['en'],
+      defaultLanguage: Language.En,
+      downloadLanguages: [Language.En],
     })
     await client.deploy()
   }, 30000)
@@ -200,10 +201,10 @@ describe('Character', () => {
     })
 
     it('should return voices with specified language', () => {
-      const voices = character.getVoices('ja')
+      const voices = character.getVoices(Language.Ja)
       expect(voices).toBeDefined()
       expect(Array.isArray(voices)).toBe(true)
-      if (voices.length > 0) expect(voices[0].cv).toBe('ja')
+      if (voices.length > 0) expect(voices[0].cv).toBe(Language.Ja)
     })
 
     it('should return costumes', () => {

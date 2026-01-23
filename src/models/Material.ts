@@ -1,9 +1,7 @@
 import { Client } from '@/client/Client'
+import { AssetNotFoundError } from '@/errors/assets/AssetNotFoundError'
 import { ImageAssets } from '@/models/assets/ImageAssets'
-import {
-  ItemType,
-  MaterialType,
-} from '@/types/generated/MaterialExcelConfigData'
+import { ItemType, MaterialType } from '@/types/enums'
 
 /**
  * Represents a game material or resource used for character and weapon enhancement
@@ -54,10 +52,17 @@ export class Material {
    */
   constructor(materialId: number) {
     this.id = materialId
-    const materialJson = Client._getJsonFromCachedExcelBinOutput(
+    const materialJson = Client._findBy(
       'MaterialExcelConfigData',
+      'id',
       this.id,
     )
+    if (!materialJson) {
+      throw new AssetNotFoundError(
+        `Material ${String(this.id)}`,
+        'MaterialExcelConfigData',
+      )
+    }
     const nameTextMapHash = materialJson.nameTextMapHash
     const descTextMapHash = materialJson.descTextMapHash
     this.name = Client._cachedTextMap.get(nameTextMapHash) ?? ''
@@ -78,14 +83,8 @@ export class Material {
    * ```
    */
   public static get allMaterialIds(): number[] {
-    const materialDatas = Object.values(
-      Client._getCachedExcelBinOutputByName('MaterialExcelConfigData'),
-    )
-    return materialDatas
-      .filter(
-        (data): data is NonNullable<typeof data> => data?.id !== undefined,
-      )
-      .map((data) => data.id)
+    const materialDatas = Client._getAll('MaterialExcelConfigData')
+    return materialDatas.map((data) => data.id)
   }
 
   /**
@@ -99,9 +98,8 @@ export class Material {
    * ```
    */
   public static getMaterialIdByName(name: string): number[] {
-    return Client._searchIdInExcelBinOutByText(
-      'MaterialExcelConfigData',
-      name,
-    ).map((k) => +k)
+    return Client._searchByText('MaterialExcelConfigData', name).map(
+      (data) => data.id,
+    )
   }
 }

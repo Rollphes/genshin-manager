@@ -1,5 +1,5 @@
-import type { ErrorContext } from '@/errors/base/ErrorContext'
 import { FormatValidationError } from '@/errors/validation/FormatValidationError'
+import type { ValidationContext } from '@/types/errorContext'
 
 /**
  * Validate string format using regex
@@ -7,7 +7,7 @@ import { FormatValidationError } from '@/errors/validation/FormatValidationError
  * @param pattern - Regex pattern
  * @param fieldName - Name of the field being validated
  * @param expectedFormat - Description of expected format
- * @param context - Additional error context
+ * @param context - Structured validation context (without propertyKey)
  * @returns validated string
  * @throws FormatValidationError if validation fails
  */
@@ -16,7 +16,7 @@ export function validateFormat(
   pattern: RegExp,
   fieldName: string,
   expectedFormat: string,
-  context?: ErrorContext,
+  context?: Omit<ValidationContext, 'propertyKey'>,
 ): string {
   if (!pattern.test(value))
     throw new FormatValidationError(fieldName, expectedFormat, value, context)

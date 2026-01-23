@@ -12,9 +12,9 @@ describe('ValidationError', () => {
       expect(error.message).toBe('Validation failed')
     })
 
-    it('should set errorCode to GM_VALIDATION_TYPE', () => {
+    it('should set errorCode to GmValidationType', () => {
       const error = new ValidationError('Validation failed')
-      expect(error.errorCode).toBe(GenshinManagerErrorCode.GM_VALIDATION_TYPE)
+      expect(error.errorCode).toBe(GenshinManagerErrorCode.GmValidationType)
     })
 
     it('should set name to ValidationError', () => {
@@ -57,9 +57,9 @@ describe('ValidationError', () => {
     })
 
     it('should accept context parameter', () => {
-      const context = { operation: 'parse' }
+      const context = { propertyKey: 'parse' }
       const error = new ValidationError('Validation failed', context)
-      expect(error.context?.operation).toBe('parse')
+      expect(error.context?.propertyKey).toBe('parse')
     })
 
     it('should accept cause parameter', () => {
@@ -113,15 +113,21 @@ describe('ValidationError', () => {
       }
     })
 
-    it('should accept context parameter', () => {
+    it('should accept context parameter with source info', () => {
       const schema = z.object({ name: z.string() })
-      const context = { metadata: { schemaName: 'UserSchema' } }
+      const context = {
+        propertyKey: 'test',
+        source: 'TestSource',
+        recordId: 123,
+      }
       try {
         schema.parse({ name: 123 })
       } catch (err) {
         if (err instanceof z.ZodError) {
           const error = ValidationError.fromZodError(err, context)
-          expect(error.context?.metadata?.schemaName).toBe('UserSchema')
+          expect(error.propertyKey).toBe('test')
+          expect(error.source).toBe('TestSource')
+          expect(error.recordId).toBe(123)
         }
       }
     })
@@ -231,7 +237,7 @@ describe('ValidationError', () => {
       const error = new ValidationError('Validation failed')
       const json = error.toJSON()
       expect(json.name).toBe('ValidationError')
-      expect(json.errorCode).toBe(GenshinManagerErrorCode.GM_VALIDATION_TYPE)
+      expect(json.errorCode).toBe(GenshinManagerErrorCode.GmValidationType)
     })
   })
 })

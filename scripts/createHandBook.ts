@@ -1,6 +1,7 @@
 import fs from 'fs'
 
-import { Client, ClientEvents } from '@/client/Client'
+import { Client } from '@/client/Client'
+import { ClientEvents } from '@/types/events/client'
 import { Artifact } from '@/models/Artifact.js'
 import { CharacterConstellation } from '@/models/character/CharacterConstellation.js'
 import { CharacterCostume } from '@/models/character/CharacterCostume.js'
@@ -12,27 +13,28 @@ import { Monster } from '@/models/Monster.js'
 import { WeaponInfo } from '@/models/weapon/WeaponInfo.js'
 import path from 'path'
 import { handbookFolderPath } from '@/utils/paths'
+import { Language } from '@/types/types'
 
 async function main(): Promise<void> {
   const client = new Client({
     downloadLanguages: [
-      'en',
-      'ru',
-      'vi',
-      'th',
-      'pt',
-      'ko',
-      'ja',
-      'id',
-      'fr',
-      'es',
-      'de',
-      'zh-tw',
-      'zh-cn',
+      Language.En,
+      Language.Ru,
+      Language.Vi,
+      Language.Th,
+      Language.Pt,
+      Language.Ko,
+      Language.Ja,
+      Language.Id,
+      Language.Fr,
+      Language.Es,
+      Language.De,
+      Language.ZhTw,
+      Language.ZhCn,
     ],
-    defaultLanguage: 'en',
+    defaultLanguage: Language.En,
   })
-  client.on(ClientEvents.END_UPDATE_CACHE, async (version) => {
+  client.on(ClientEvents.EndUpdateCache, async (version) => {
     for (const lang of client.option.downloadLanguages) {
       await client.changeLanguage(lang)
       const filePath = path.join(handbookFolderPath, `handbook_${lang}.md`)

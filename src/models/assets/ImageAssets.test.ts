@@ -18,6 +18,7 @@ import {
 } from '@/__test__/__mocks__/assets/mockBinaryData'
 import { ImageNotFoundError } from '@/errors/assets/ImageNotFoundError'
 import { ImageAssets } from '@/models/assets/ImageAssets'
+import { Language } from '@/types/types'
 import { ClientOption } from '@/types/types'
 import { LogLevel } from '@/utils/logger/Logger'
 
@@ -27,8 +28,8 @@ import { LogLevel } from '@/utils/logger/Logger'
 describe('ImageAssets', () => {
   const testCacheDir = path.resolve(process.cwd(), 'test-cache', 'Images')
   const testOption: ClientOption = {
-    defaultLanguage: 'en',
-    downloadLanguages: ['en'],
+    defaultLanguage: Language.En,
+    downloadLanguages: [Language.En],
     fetchOption: {},
     imageBaseURLByRegex: {
       'https://test-cdn.example.com': [/^UI_AvatarIcon_(.+)$/],

@@ -3,12 +3,13 @@ import { beforeAll, describe, expect, it } from 'vitest'
 import { Client } from '@/client/Client'
 import { CharacterAscension } from '@/models/character/CharacterAscension'
 import { StatProperty } from '@/models/StatProperty'
+import { Language } from '@/types/types'
 
 describe('CharacterAscension', () => {
   beforeAll(async () => {
     const client = new Client({
-      defaultLanguage: 'en',
-      downloadLanguages: ['en'],
+      defaultLanguage: Language.En,
+      downloadLanguages: [Language.En],
     })
     await client.deploy()
   }, 30000)

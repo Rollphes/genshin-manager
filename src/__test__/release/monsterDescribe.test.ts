@@ -2,27 +2,26 @@ import { beforeAll, describe, expect, test } from 'vitest'
 
 import { Client } from '@/client/Client'
 import { Monster } from '@/models/Monster'
+import { Language } from '@/types/types'
 
 describe('MonsterDescribe Release Test', () => {
   beforeAll(async () => {
     // Client deployment is already handled in test/setup.ts
     const client = new Client({
-      defaultLanguage: 'en',
-      downloadLanguages: ['en'],
+      defaultLanguage: Language.En,
+      downloadLanguages: [Language.En],
     })
     await client.deploy()
   }, 30000) // 30 seconds timeout for deployment
   test('should find monster IDs by describe IDs and instantiate monsters', () => {
-    // Get all MonsterDescribeExcelConfigData keys
-    const describeIds = Object.keys(
-      Client._getCachedExcelBinOutputByName('MonsterDescribeExcelConfigData'),
-    )
+    // Get all MonsterDescribeExcelConfigData records
+    const describeRecords = Client._getAll('MonsterDescribeExcelConfigData')
+    const describeIds = describeRecords.map((r) => r.id)
 
     expect(describeIds.length).toBeGreaterThan(0)
 
     // Test each describe ID
-    describeIds.forEach((describeIdStr) => {
-      const describeId = Number(describeIdStr)
+    describeIds.forEach((describeId) => {
       expect(describeId).toBeGreaterThan(0)
 
       // Find monster ID by describe ID

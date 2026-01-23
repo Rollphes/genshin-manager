@@ -1,6 +1,9 @@
 import { EnkaBuild } from '@/models/enka/EnkaBuild'
 import { PlayerDetail } from '@/models/enka/PlayerDetail'
-import { APIBuild, APIGameAccount } from '@/types/enkaNetwork/EnkaAccountTypes'
+import type {
+  BuildResponse,
+  GameAccountResponse,
+} from '@/types/api/enkaNetwork/responses'
 
 /**
  * Represents a Genshin Impact account with associated game data and builds
@@ -45,7 +48,7 @@ export class GenshinAccount {
   /**
    * Data from EnkaNetwork
    */
-  public readonly data: APIGameAccount
+  public readonly data: GameAccountResponse
 
   /**
    * Create a GenshinAccount
@@ -55,8 +58,8 @@ export class GenshinAccount {
    * @param enkaBaseURL - URL of enka.network
    */
   constructor(
-    gameAccountData: APIGameAccount,
-    buildDatas: Record<string, APIBuild[]>,
+    gameAccountData: GameAccountResponse,
+    buildDatas: Readonly<Record<string, readonly BuildResponse[]>>,
     username: string,
     enkaBaseURL: string,
   ) {
@@ -73,7 +76,7 @@ export class GenshinAccount {
     )
     this.url = `${enkaBaseURL}/u/${username}/${this.hash}`
     this.builds = avatarIdOrder.map((avatarId) =>
-      buildDatas[avatarId]
+      [...buildDatas[avatarId]]
         .sort((a, b) => a.order - b.order)
         .map((data) => new EnkaBuild(data, this.url)),
     )
