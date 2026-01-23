@@ -1,7 +1,7 @@
 import fs from 'fs'
 
 import type { RestClient } from '@/application/client/RestClient'
-import { withFileLock } from '@/infrastructure/download/fileLockManager'
+import { FileLockManager } from '@/infrastructure/download/FileLockManager'
 import { AssetCorruptedError } from '@/infrastructure/errors/AssetCorruptedError'
 import { logger } from '@/infrastructure/logger/Logger'
 import type { CommitsResponse } from '@/infrastructure/types/api/gitlab/responses'
@@ -32,6 +32,7 @@ export class VersionChecker {
   private readonly commitFilePath: string
   private readonly projectId: number
   private readonly restClient: RestClient<GitLabApiRoutes>
+  private readonly fileLockManager: FileLockManager
   private currentCommitId = ''
 
   /**
@@ -42,6 +43,7 @@ export class VersionChecker {
     this.commitFilePath = options.commitFilePath
     this.projectId = options.projectId
     this.restClient = options.restClient
+    this.fileLockManager = new FileLockManager()
   }
 
   /**
@@ -155,7 +157,7 @@ export class VersionChecker {
   private async saveCommits(
     commits: readonly CommitsResponse[],
   ): Promise<void> {
-    await withFileLock(this.commitFilePath, async () => {
+    await this.fileLockManager.withLock(this.commitFilePath, async () => {
       fs.writeFileSync(this.commitFilePath, JSON.stringify(commits, null, 2), {
         encoding: 'utf8',
       })

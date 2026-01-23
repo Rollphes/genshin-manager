@@ -6,7 +6,7 @@ import { pipeline } from 'stream/promises'
 import { RestClient } from '@/application/client/RestClient'
 import { BodyNotFoundError } from '@/application/errors/BodyNotFoundError'
 import { type Language, TextMapBaseName } from '@/domain/types/types'
-import { withFileLock } from '@/infrastructure/download/fileLockManager'
+import { FileLockManager } from '@/infrastructure/download/FileLockManager'
 import { AssetCorruptedError } from '@/infrastructure/errors/AssetCorruptedError'
 import { AssetNotFoundError } from '@/infrastructure/errors/AssetNotFoundError'
 import { logger, LogLevel } from '@/infrastructure/logger/Logger'
@@ -44,6 +44,7 @@ export class AssetDownloader {
 
   private readonly restClient: RestClient<GitLabApiRoutes>
   private readonly projectId: number
+  private readonly fileLockManager: FileLockManager
 
   /**
    * Create an AssetDownloader instance
@@ -52,6 +53,7 @@ export class AssetDownloader {
   constructor(options: AssetDownloaderOptions) {
     this.restClient = options.restClient
     this.projectId = options.projectId
+    this.fileLockManager = new FileLockManager()
   }
 
   /**
@@ -104,7 +106,7 @@ export class AssetDownloader {
     isRetry: boolean,
   ): Promise<void> {
     if (!isRetry) {
-      await withFileLock(folderPath, async () => {
+      await this.fileLockManager.withLock(folderPath, async () => {
         if (fs.existsSync(folderPath))
           fs.rmdirSync(folderPath, { recursive: true })
         fs.mkdirSync(folderPath, { recursive: true })
@@ -184,7 +186,7 @@ export class AssetDownloader {
     localFilePath: string,
     remoteFilePath: string,
   ): Promise<void> {
-    return withFileLock(localFilePath, async () => {
+    return this.fileLockManager.withLock(localFilePath, async () => {
       const response = await this.restClient.fetchRaw(
         '/api/v4//projects/:id/repository/files/:file_path/raw',
         {
