@@ -1,16 +1,8 @@
+import { pathToString } from '@/domain/crypto/pathToString'
 import type { KeyPath } from '@/domain/crypto/types'
 import { isJsonArray } from '@/domain/typeGuards/isJsonArray'
 import { isJsonObject } from '@/domain/typeGuards/isJsonObject'
 import type { JsonValue } from '@/domain/types/json'
-
-/**
- * Convert key path to string for comparison
- * @param path - Key path
- * @returns string representation
- */
-export function pathToString(path: KeyPath): string {
-  return path.map((segment) => String(segment)).join('.')
-}
 
 /**
  * Apply recursive decoding to an object using key mappings
