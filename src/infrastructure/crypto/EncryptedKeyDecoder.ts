@@ -2,9 +2,9 @@ import fs from 'fs'
 import path from 'path'
 
 import { applyDecoding } from '@/domain/crypto/applyDecoding'
+import { findBestKeyMapping } from '@/domain/crypto/findBestKeyMapping'
 import { pathToString } from '@/domain/crypto/pathToString'
 import { PatternCompiler } from '@/domain/crypto/PatternCompiler'
-import { findBestKeyMapping } from '@/domain/crypto/findBestKeyMapping'
 import type {
   DecodingOptions,
   DecodingResult,

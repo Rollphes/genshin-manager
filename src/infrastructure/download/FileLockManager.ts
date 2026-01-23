@@ -30,17 +30,6 @@ export class FileLockManager {
   }
 
   /**
-   * Ensures the lock directory exists
-   * @param storageFilePath - path to the file to lock
-   * @returns lock directory path
-   */
-  private ensureLockDirectory(storageFilePath: string): string {
-    const lockDir = path.dirname(storageFilePath)
-    if (!fs.existsSync(lockDir)) fs.mkdirSync(lockDir, { recursive: true })
-    return lockDir
-  }
-
-  /**
    * Performs exclusive control on a file using filesystem-based locks
    * @param storageFilePath - path to the file to lock
    * @param operation - async operation to execute
@@ -88,5 +77,16 @@ export class FileLockManager {
       if (filePath.endsWith('.lock') && fs.existsSync(filePath))
         fs.unlinkSync(filePath)
     }
+  }
+
+  /**
+   * Ensures the lock directory exists
+   * @param storageFilePath - path to the file to lock
+   * @returns lock directory path
+   */
+  private ensureLockDirectory(storageFilePath: string): string {
+    const lockDir = path.dirname(storageFilePath)
+    if (!fs.existsSync(lockDir)) fs.mkdirSync(lockDir, { recursive: true })
+    return lockDir
   }
 }

@@ -1,3 +1,4 @@
+import { matchValues } from '@/domain/crypto/matchValues'
 import type {
   ArrayPattern,
   DecodingResult,
@@ -7,7 +8,6 @@ import type {
   RecursivePattern,
   RequiredDecodingOptions,
 } from '@/domain/crypto/types'
-import { matchValues } from '@/domain/crypto/matchValues'
 import { isJsonArray } from '@/domain/typeGuards/isJsonArray'
 import { isJsonObject } from '@/domain/typeGuards/isJsonObject'
 import type { JsonObject, JsonValue } from '@/domain/types/json'
