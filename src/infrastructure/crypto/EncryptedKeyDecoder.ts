@@ -4,7 +4,7 @@ import path from 'path'
 import { applyDecoding } from '@/domain/crypto/applyDecoding'
 import { pathToString } from '@/domain/crypto/pathToString'
 import { PatternCompiler } from '@/domain/crypto/PatternCompiler'
-import { findBestKeyMapping } from '@/domain/crypto/PatternMatcher'
+import { findBestKeyMapping } from '@/domain/crypto/findBestKeyMapping'
 import type {
   DecodingOptions,
   DecodingResult,

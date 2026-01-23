@@ -7,7 +7,7 @@ import type {
   RecursivePattern,
   RequiredDecodingOptions,
 } from '@/domain/crypto/types'
-import { matchValues } from '@/domain/crypto/valueMatcher'
+import { matchValues } from '@/domain/crypto/matchValues'
 import { isJsonArray } from '@/domain/typeGuards/isJsonArray'
 import { isJsonObject } from '@/domain/typeGuards/isJsonObject'
 import type { JsonObject, JsonValue } from '@/domain/types/json'
@@ -194,7 +194,7 @@ function matchObject(
  * @param options - Decoding options
  * @returns matching result with key mappings
  */
-export function matchRecursively(
+function matchRecursively(
   encryptedValue: JsonValue,
   pattern: RecursivePattern,
   currentPath: KeyPath,
