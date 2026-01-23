@@ -453,7 +453,7 @@ export abstract class AssetCacheManager<
     let retryCount = 0
     while (result.redownloadRequired) {
       if (retryCount >= this.MAX_RETRY_COUNT)
-        throw new AssetCorruptedError('ExcelBinOutput')
+        throw new AssetCorruptedError('ExcelBinOutput', `Max retry count (${String(this.MAX_RETRY_COUNT)}) exceeded`, { source: 'ExcelBinOutput', operation: 'load' })
 
       await this.reDownloadAllExcelBinOutput()
       result = await this.excelBinCache.load(keys)
@@ -474,7 +474,7 @@ export abstract class AssetCacheManager<
     let retryCount = 0
     while (result.redownloadLanguage) {
       if (retryCount >= this.MAX_RETRY_COUNT)
-        throw new AssetCorruptedError('TextMap')
+        throw new AssetCorruptedError('TextMap', `Max retry count (${String(this.MAX_RETRY_COUNT)}) exceeded`, { source: 'TextMap', operation: 'load' })
 
       await this.reDownloadTextMap(result.redownloadLanguage)
       result = await this.textMapCache.load(language, textHashes)

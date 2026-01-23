@@ -286,6 +286,7 @@ export class AssetDownloader {
       throw new AssetNotFoundError(
         filePath,
         'File does not exist after download completion',
+        { operation: 'download' },
       )
     }
 
@@ -297,6 +298,7 @@ export class AssetDownloader {
         throw new AssetNotFoundError(
           filePath,
           'File was removed by another process during concurrent access',
+          { operation: 'validate' },
         )
       }
       throw error
@@ -306,6 +308,7 @@ export class AssetDownloader {
       throw new AssetCorruptedError(
         path.basename(filePath),
         'File is empty after download',
+        { operation: 'validate' },
       )
     }
 
@@ -325,6 +328,7 @@ export class AssetDownloader {
       throw new AssetCorruptedError(
         path.basename(filePath),
         'File content is empty after download',
+        { operation: 'validate' },
       )
     }
 
@@ -332,6 +336,7 @@ export class AssetDownloader {
       throw new AssetCorruptedError(
         path.basename(filePath),
         'File content is suspiciously short, likely truncated',
+        { operation: 'validate' },
       )
     }
 
