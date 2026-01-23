@@ -1,8 +1,8 @@
 import { describe, expect, it } from 'vitest'
 import { z } from 'zod'
 
+import { ValidationError } from '@/domain/errors/validation/ValidationError'
 import { safeValidate } from '@/domain/validation/safeValidate'
-import { ValidationError } from '@/errors/validation/ValidationError'
 
 describe('safeValidate', () => {
   it('should return success result for valid data', () => {

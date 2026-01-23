@@ -1,6 +1,6 @@
+import { characterLevelSchema } from '@/domain/schemas/commonSchemas'
 import { validate } from '@/domain/validation/validate'
-import { characterLevelSchema } from '@/schemas/commonSchemas'
-import type { AvatarPromoteExcelConfigDataType } from '@/types/generated/AvatarPromoteExcelConfigData'
+import type { AvatarPromoteExcelConfigDataType } from '@/infrastructure/types/generated/AvatarPromoteExcelConfigData'
 
 type PromoteData = Pick<
   AvatarPromoteExcelConfigDataType,

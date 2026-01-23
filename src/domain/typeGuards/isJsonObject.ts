@@ -1,4 +1,4 @@
-import type { JsonObject, JsonValue } from '@/types/json'
+import type { JsonObject, JsonValue } from '@/domain/types/json'
 
 /**
  * Type guard for JsonObject (non-array object)

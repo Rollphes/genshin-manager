@@ -1,11 +1,11 @@
 import fs from 'fs'
 
-import type { RestClient } from '@/client/RestClient'
-import { AssetCorruptedError } from '@/errors/assets/AssetCorruptedError'
+import type { RestClient } from '@/application/client/RestClient'
 import { withFileLock } from '@/infrastructure/download/fileLockManager'
+import { AssetCorruptedError } from '@/infrastructure/errors/AssetCorruptedError'
 import { logger } from '@/infrastructure/logger/Logger'
-import type { CommitsResponse } from '@/types/api/gitlab/responses'
-import type { GitLabApiRoutes } from '@/types/api/gitlab/routes'
+import type { CommitsResponse } from '@/infrastructure/types/api/gitlab/responses'
+import type { GitLabApiRoutes } from '@/infrastructure/types/api/gitlab/routes'
 
 /**
  * Options for VersionChecker

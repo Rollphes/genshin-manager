@@ -1,8 +1,8 @@
 import { z } from 'zod'
 
+import { ValidationError } from '@/domain/errors/validation/ValidationError'
+import type { ValidationContext } from '@/domain/types/errorContext'
 import { validate } from '@/domain/validation/validate'
-import { ValidationError } from '@/errors/validation/ValidationError'
-import type { ValidationContext } from '@/types/errorContext'
 
 /**
  * Context for object validation (without propertyKey, which is derived per property)

@@ -1,8 +1,8 @@
 import { describe, expect, it } from 'vitest'
 import { z } from 'zod'
 
+import { ValidationError } from '@/domain/errors/validation/ValidationError'
 import { batchValidate } from '@/domain/validation/batchValidate'
-import { ValidationError } from '@/errors/validation/ValidationError'
 
 describe('batchValidate', () => {
   it('should validate multiple values successfully', () => {

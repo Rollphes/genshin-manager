@@ -1,5 +1,5 @@
-import { RequiredFieldError } from '@/errors/validation/RequiredFieldError'
-import type { ValidationContext } from '@/types/errorContext'
+import { RequiredFieldError } from '@/domain/errors/validation/RequiredFieldError'
+import type { ValidationContext } from '@/domain/types/errorContext'
 
 /**
  * Validate required field

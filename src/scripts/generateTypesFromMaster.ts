@@ -6,18 +6,18 @@ import {
   quicktype,
 } from 'quicktype-core'
 
-import { Client } from '@/client/Client'
-import { EncryptedKeyDecoder } from '@/domain/crypto/EncryptedKeyDecoder'
-import { ConfigMissingError } from '@/errors/config/ConfigMissingError'
-import { FormatValidationError } from '@/errors/validation/FormatValidationError'
+import { Client } from '@/application/client/Client'
+import { FormatValidationError } from '@/domain/errors/validation/FormatValidationError'
+import type { JsonObject } from '@/domain/types/json'
+import { EncryptedKeyDecoder } from '@/infrastructure/crypto/EncryptedKeyDecoder'
+import { ConfigMissingError } from '@/infrastructure/errors/ConfigMissingError'
 import { logger, LogLevel } from '@/infrastructure/logger/Logger'
 import {
   excelBinOutputFolderPathForDevelop,
   generatedTypesFolderPath,
   masterFileFolderPath,
 } from '@/infrastructure/paths'
-import { ExcelBinOutputs } from '@/types/excelBinOutputs'
-import type { JsonObject } from '@/types/json'
+import { ExcelBinOutputs } from '@/infrastructure/types/excelBinOutputs'
 
 /**
  * Type guard to check if value is JsonObject array.

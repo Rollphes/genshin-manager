@@ -1,8 +1,8 @@
 import fs from 'fs'
 import path from 'path'
 
-import { Client } from '@/client/Client'
-import { Language } from '@/types/types'
+import { Client } from '@/application/client/Client'
+import { Language } from '@/domain/types/types'
 
 /**
  * Global setup for vitest

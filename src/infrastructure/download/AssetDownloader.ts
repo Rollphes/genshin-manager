@@ -3,16 +3,16 @@ import fs from 'fs'
 import * as path from 'path'
 import { pipeline } from 'stream/promises'
 
-import { RestClient } from '@/client/RestClient'
-import { AssetCorruptedError } from '@/errors/assets/AssetCorruptedError'
-import { AssetNotFoundError } from '@/errors/assets/AssetNotFoundError'
-import { BodyNotFoundError } from '@/errors/content/BodyNotFoundError'
+import { RestClient } from '@/application/client/RestClient'
+import { BodyNotFoundError } from '@/application/errors/BodyNotFoundError'
+import { type Language, TextMapBaseName } from '@/domain/types/types'
 import { withFileLock } from '@/infrastructure/download/fileLockManager'
+import { AssetCorruptedError } from '@/infrastructure/errors/AssetCorruptedError'
+import { AssetNotFoundError } from '@/infrastructure/errors/AssetNotFoundError'
 import { logger, LogLevel } from '@/infrastructure/logger/Logger'
 import { ReadableStreamWrapper } from '@/infrastructure/streams/ReadableStreamWrapper'
 import { TextMapTransform } from '@/infrastructure/streams/TextMapTransform'
-import { GitLabApiRoutes } from '@/types/api/gitlab/routes'
-import { type Language, TextMapBaseName } from '@/types/types'
+import { GitLabApiRoutes } from '@/infrastructure/types/api/gitlab/routes'
 
 /**
  * Options for AssetDownloader

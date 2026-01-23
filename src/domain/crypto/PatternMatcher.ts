@@ -10,7 +10,7 @@ import type {
 import { matchValues } from '@/domain/crypto/valueMatcher'
 import { isJsonArray } from '@/domain/typeGuards/isJsonArray'
 import { isJsonObject } from '@/domain/typeGuards/isJsonObject'
-import type { JsonObject, JsonValue } from '@/types/json'
+import type { JsonObject, JsonValue } from '@/domain/types/json'
 
 /**
  * Match primitive pattern

@@ -1,42 +1,20 @@
-import { AssetCacheManager } from '@/client/AssetCacheManager'
-import { Client } from '@/client/Client'
-import { type EnkaData, EnkaManager } from '@/client/EnkaManager'
-import { NoticeManager } from '@/client/NoticeManager'
+import { AssetCacheManager } from '@/application/client/AssetCacheManager'
+import { Client } from '@/application/client/Client'
+import { type EnkaData, EnkaManager } from '@/application/enka/EnkaManager'
+import { NoticeManager } from '@/application/notice/NoticeManager'
+import {
+  type ClientEventMap,
+  ClientEvents,
+} from '@/application/types/events/client'
+import {
+  type EnkaManagerEventMap,
+  EnkaManagerEvents,
+} from '@/application/types/events/enka'
+import {
+  type NoticeManagerEventMap,
+  NoticeManagerEvents,
+} from '@/application/types/events/notice'
 import { convertToUTC } from '@/domain/parsers/convertToUTC'
-import { LogLevel } from '@/infrastructure/logger/Logger'
-import { Artifact, ArtifactAffixAppendProp } from '@/models/Artifact'
-import { AudioAssets } from '@/models/assets/AudioAssets'
-import { ImageAssets } from '@/models/assets/ImageAssets'
-import { Character, CharacterSummary } from '@/models/character/Character'
-import { CharacterAscension } from '@/models/character/CharacterAscension'
-import { CharacterBaseStats } from '@/models/character/CharacterBaseStats'
-import { CharacterConstellation } from '@/models/character/CharacterConstellation'
-import { CharacterCostume } from '@/models/character/CharacterCostume'
-import { CharacterInfo } from '@/models/character/CharacterInfo'
-import { CharacterInherentSkill } from '@/models/character/CharacterInherentSkill'
-import { CharacterProfile } from '@/models/character/CharacterProfile'
-import { CharacterSkill } from '@/models/character/CharacterSkill'
-import { CharacterSkillAscension } from '@/models/character/CharacterSkillAscension'
-import { CharacterStatusManager } from '@/models/character/CharacterStatusManager'
-import { CharacterStory } from '@/models/character/CharacterStory'
-import { CharacterVoice } from '@/models/character/CharacterVoice'
-import { DailyFarming, DomainData } from '@/models/DailyFarming'
-import { CharacterDetail } from '@/models/enka/CharacterDetail'
-import { CharacterPreview } from '@/models/enka/CharacterPreview'
-import { EnkaAccount } from '@/models/enka/EnkaAccount'
-import { EnkaBuild } from '@/models/enka/EnkaBuild'
-import { GenshinAccount } from '@/models/enka/GenshinAccount'
-import { PlayerDetail } from '@/models/enka/PlayerDetail'
-import { Material } from '@/models/Material'
-import { Monster } from '@/models/Monster'
-import { Notice } from '@/models/Notice'
-import { ProfilePicture } from '@/models/ProfilePicture'
-import { SetBonus } from '@/models/SetBonus'
-import { StatProperty } from '@/models/StatProperty'
-import { Weapon } from '@/models/weapon/Weapon'
-import { WeaponAscension } from '@/models/weapon/WeaponAscension'
-import { WeaponInfo } from '@/models/weapon/WeaponInfo'
-import { WeaponRefinement } from '@/models/weapon/WeaponRefinement'
 import {
   BodyType,
   EquipType,
@@ -46,16 +24,7 @@ import {
   ProfilePictureUnlockType,
   QualityType,
   WeaponType,
-} from '@/types/enums'
-import { type ClientEventMap, ClientEvents } from '@/types/events/client'
-import {
-  type EnkaManagerEventMap,
-  EnkaManagerEvents,
-} from '@/types/events/enka'
-import {
-  type NoticeManagerEventMap,
-  NoticeManagerEvents,
-} from '@/types/events/notice'
+} from '@/domain/types/enums'
 import {
   AscensionMaterial,
   CharacterUpgradePlan,
@@ -67,7 +36,41 @@ import {
   LevelRange,
   SkillLevelPlan,
   WeaponSummary,
-} from '@/types/types'
+} from '@/domain/types/types'
+import { LogLevel } from '@/infrastructure/logger/Logger'
+import { Artifact, ArtifactAffixAppendProp } from '@/interface/Artifact'
+import { AudioAssets } from '@/interface/assets/AudioAssets'
+import { ImageAssets } from '@/interface/assets/ImageAssets'
+import { Character, CharacterSummary } from '@/interface/character/Character'
+import { CharacterAscension } from '@/interface/character/CharacterAscension'
+import { CharacterBaseStats } from '@/interface/character/CharacterBaseStats'
+import { CharacterConstellation } from '@/interface/character/CharacterConstellation'
+import { CharacterCostume } from '@/interface/character/CharacterCostume'
+import { CharacterInfo } from '@/interface/character/CharacterInfo'
+import { CharacterInherentSkill } from '@/interface/character/CharacterInherentSkill'
+import { CharacterProfile } from '@/interface/character/CharacterProfile'
+import { CharacterSkill } from '@/interface/character/CharacterSkill'
+import { CharacterSkillAscension } from '@/interface/character/CharacterSkillAscension'
+import { CharacterStatusManager } from '@/interface/character/CharacterStatusManager'
+import { CharacterStory } from '@/interface/character/CharacterStory'
+import { CharacterVoice } from '@/interface/character/CharacterVoice'
+import { DailyFarming, DomainData } from '@/interface/DailyFarming'
+import { CharacterDetail } from '@/interface/enka/CharacterDetail'
+import { CharacterPreview } from '@/interface/enka/CharacterPreview'
+import { EnkaAccount } from '@/interface/enka/EnkaAccount'
+import { EnkaBuild } from '@/interface/enka/EnkaBuild'
+import { GenshinAccount } from '@/interface/enka/GenshinAccount'
+import { PlayerDetail } from '@/interface/enka/PlayerDetail'
+import { Material } from '@/interface/Material'
+import { Monster } from '@/interface/Monster'
+import { Notice } from '@/interface/Notice'
+import { ProfilePicture } from '@/interface/ProfilePicture'
+import { SetBonus } from '@/interface/SetBonus'
+import { StatProperty } from '@/interface/StatProperty'
+import { Weapon } from '@/interface/weapon/Weapon'
+import { WeaponAscension } from '@/interface/weapon/WeaponAscension'
+import { WeaponInfo } from '@/interface/weapon/WeaponInfo'
+import { WeaponRefinement } from '@/interface/weapon/WeaponRefinement'
 export {
   Artifact,
   AssetCacheManager,
@@ -141,10 +144,10 @@ export {
 }
 
 // Export EnkaNetwork types
-export * from '@/types/api/enkaNetwork/responses'
+export * from '@/infrastructure/types/api/enkaNetwork/responses'
 
 // Export SG-HK4E-API types
-export * from '@/types/api/sg-hk4e-api/types'
+export * from '@/infrastructure/types/api/sg-hk4e-api/types'
 
 // Export error system - base
 export {
@@ -153,9 +156,9 @@ export {
   GenshinManagerErrorCode,
   retryClassifications,
   type RetryConfiguration,
-} from '@/errors/base/ErrorCodes'
-export type { ErrorContext } from '@/errors/base/ErrorContext'
-export { GenshinManagerError } from '@/errors/base/GenshinManagerError'
+} from '@/domain/errors/base/ErrorCodes'
+export type { ErrorContext } from '@/domain/errors/base/ErrorContext'
+export { GenshinManagerError } from '@/domain/errors/base/GenshinManagerError'
 
 // Export error system - context types
 export type {
@@ -163,32 +166,32 @@ export type {
   EnumContext,
   NetworkContext,
   ValidationContext,
-} from '@/types/errorContext'
+} from '@/domain/types/errorContext'
 
 // Export error system - validation errors
-export { EnumValidationError } from '@/errors/validation/EnumValidationError'
-export { FormatValidationError } from '@/errors/validation/FormatValidationError'
-export { RequiredFieldError } from '@/errors/validation/RequiredFieldError'
-export { ValidationError } from '@/errors/validation/ValidationError'
+export { EnumValidationError } from '@/domain/errors/validation/EnumValidationError'
+export { FormatValidationError } from '@/domain/errors/validation/FormatValidationError'
+export { RequiredFieldError } from '@/domain/errors/validation/RequiredFieldError'
+export { ValidationError } from '@/domain/errors/validation/ValidationError'
 
 // Export error system - asset errors
-export { AssetCorruptedError } from '@/errors/assets/AssetCorruptedError'
-export { AssetError } from '@/errors/assets/AssetError'
-export { AssetNotFoundError } from '@/errors/assets/AssetNotFoundError'
-export { AudioNotFoundError } from '@/errors/assets/AudioNotFoundError'
-export { ImageNotFoundError } from '@/errors/assets/ImageNotFoundError'
+export { AssetCorruptedError } from '@/infrastructure/errors/AssetCorruptedError'
+export { AssetError } from '@/infrastructure/errors/AssetError'
+export { AssetNotFoundError } from '@/infrastructure/errors/AssetNotFoundError'
+export { AudioNotFoundError } from '@/infrastructure/errors/AudioNotFoundError'
+export { ImageNotFoundError } from '@/infrastructure/errors/ImageNotFoundError'
 
 // Export error system - network errors
-export { NetworkError } from '@/errors/network/NetworkError'
-export { NetworkUnavailableError } from '@/errors/network/NetworkUnavailableError'
+export { NetworkError } from '@/infrastructure/errors/NetworkError'
+export { NetworkUnavailableError } from '@/infrastructure/errors/NetworkUnavailableError'
 
 // Export error system - content errors
-export { AnnContentNotFoundError } from '@/errors/content/AnnContentNotFoundError'
-export { BodyNotFoundError } from '@/errors/content/BodyNotFoundError'
-export { TextMapFormatError } from '@/errors/content/TextMapFormatError'
+export { AnnContentNotFoundError } from '@/application/errors/AnnContentNotFoundError'
+export { BodyNotFoundError } from '@/application/errors/BodyNotFoundError'
+export { TextMapFormatError } from '@/application/errors/TextMapFormatError'
 
 // Export error system - config errors
-export { ConfigMissingError } from '@/errors/config/ConfigMissingError'
+export { ConfigMissingError } from '@/infrastructure/errors/ConfigMissingError'
 
 // Export error system - general errors
-export { GeneralError } from '@/errors/general/GeneralError'
+export { GeneralError } from '@/application/errors/GeneralError'

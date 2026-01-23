@@ -2,12 +2,12 @@ import fs from 'fs'
 import path from 'path'
 import { pipeline } from 'stream/promises'
 
-import { AssetNotFoundError } from '@/errors/assets/AssetNotFoundError'
-import { TextMapFormatError } from '@/errors/content/TextMapFormatError'
+import { TextMapFormatError } from '@/application/errors/TextMapFormatError'
+import { Language, TextMapBaseName } from '@/domain/types/types'
+import { AssetNotFoundError } from '@/infrastructure/errors/AssetNotFoundError'
 import { logger } from '@/infrastructure/logger/Logger'
 import { TextMapEmptyWritable } from '@/infrastructure/streams/TextMapEmptyWritable'
 import { TextMapTransform } from '@/infrastructure/streams/TextMapTransform'
-import { Language, TextMapBaseName } from '@/types/types'
 
 /**
  * Result of TextMap file load operation

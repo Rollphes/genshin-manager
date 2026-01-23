@@ -1,4 +1,4 @@
-import type { JsonValue } from '@/types/json'
+import type { JsonValue } from '@/domain/types/json'
 
 /**
  * Key path type for tracking nested locations

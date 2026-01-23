@@ -1,14 +1,14 @@
 import fs from 'fs'
 import path from 'path'
 
+import { FormatValidationError } from '@/domain/errors/validation/FormatValidationError'
 import { isJsonArray } from '@/domain/typeGuards/isJsonArray'
 import { isJsonObject } from '@/domain/typeGuards/isJsonObject'
-import { ConfigMissingError } from '@/errors/config/ConfigMissingError'
-import { FormatValidationError } from '@/errors/validation/FormatValidationError'
+import type { JsonObject, JsonValue } from '@/domain/types/json'
+import { ConfigMissingError } from '@/infrastructure/errors/ConfigMissingError'
 import { logger, LogLevel } from '@/infrastructure/logger/Logger'
 import { masterFileFolderPath } from '@/infrastructure/paths'
-import type { EncryptedKeyMasterFile } from '@/types/crypto'
-import type { JsonObject, JsonValue } from '@/types/json'
+import type { EncryptedKeyMasterFile } from '@/infrastructure/types/crypto'
 
 /**
  * Master candidate interface

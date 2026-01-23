@@ -1,13 +1,13 @@
 import path from 'path'
 
-import { EncryptedKeyDecoder } from '@/domain/crypto/EncryptedKeyDecoder'
-import { AssetNotFoundError } from '@/errors/assets/AssetNotFoundError'
+import type { JsonObject } from '@/domain/types/json'
 import { extractTextHashes } from '@/infrastructure/cache/TextHashExtractor'
+import { EncryptedKeyDecoder } from '@/infrastructure/crypto/EncryptedKeyDecoder'
 import { loadExcelBinFile } from '@/infrastructure/dataLoader/excelBin'
+import { AssetNotFoundError } from '@/infrastructure/errors/AssetNotFoundError'
 import { logger } from '@/infrastructure/logger/Logger'
-import { ExcelBinOutputs } from '@/types/excelBinOutputs'
-import { MasterFileMap as GeneratedMasterFileMap } from '@/types/generated/MasterFileMap'
-import type { JsonObject } from '@/types/json'
+import { ExcelBinOutputs } from '@/infrastructure/types/excelBinOutputs'
+import { MasterFileMap as GeneratedMasterFileMap } from '@/infrastructure/types/generated/MasterFileMap'
 
 /**
  * Extract keys with primitive values from object type
@@ -109,7 +109,7 @@ export class ExcelBinCache {
     for (const [key, records] of this.data) {
       const indexed: Record<string, JsonObject> = {}
       for (let i = 0; i < records.length; i++)
-        indexed[String(i)] = records[i] as JsonObject
+        indexed[String(i)] = records[i] as unknown as JsonObject
 
       allData[key] = indexed
     }
@@ -200,7 +200,7 @@ export class ExcelBinCache {
     const lowerText = text.toLowerCase()
 
     return records.filter((record) => {
-      const obj = record as JsonObject
+      const obj = record as unknown as JsonObject
       return Object.keys(obj).some((key) => {
         if (key.includes('TextMapHash')) {
           const hashValue = obj[key]
@@ -308,7 +308,7 @@ export class ExcelBinCache {
   ): GeneratedMasterFileMap[K][] {
     const decoder = new EncryptedKeyDecoder(key)
     return decoder.execute(
-      data as readonly JsonObject[],
+      data as unknown as readonly JsonObject[],
     ) as GeneratedMasterFileMap[K][]
   }
 }

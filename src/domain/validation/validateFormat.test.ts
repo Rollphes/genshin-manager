@@ -1,7 +1,7 @@
 import { describe, expect, it } from 'vitest'
 
+import { FormatValidationError } from '@/domain/errors/validation/FormatValidationError'
 import { validateFormat } from '@/domain/validation/validateFormat'
-import { FormatValidationError } from '@/errors/validation/FormatValidationError'
 
 describe('validateFormat', () => {
   it('should return value if matches pattern', () => {

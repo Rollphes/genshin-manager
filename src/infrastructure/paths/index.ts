@@ -48,6 +48,7 @@ export const excelBinOutputFolderPathForDevelop = path.join(
 export const generatedTypesFolderPath = path.join(
   PACKAGE_FOLDER_PATH_INTERNAL,
   'src',
+  'infrastructure',
   'types',
   'generated',
 )

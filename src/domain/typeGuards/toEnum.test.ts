@@ -1,7 +1,7 @@
 import { describe, expect, it } from 'vitest'
 
+import { EnumValidationError } from '@/domain/errors/validation/EnumValidationError'
 import { toEnum } from '@/domain/typeGuards/toEnum'
-import { EnumValidationError } from '@/errors/validation/EnumValidationError'
 
 enum TestEnum {
   ValueA = 'VALUE_A',

@@ -1,7 +1,7 @@
 import { describe, expect, it } from 'vitest'
 
+import { RequiredFieldError } from '@/domain/errors/validation/RequiredFieldError'
 import { validateRequired } from '@/domain/validation/validateRequired'
-import { RequiredFieldError } from '@/errors/validation/RequiredFieldError'
 
 describe('validateRequired', () => {
   it('should return value if present', () => {

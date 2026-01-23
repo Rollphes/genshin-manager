@@ -1,8 +1,8 @@
 import { describe, expect, it } from 'vitest'
 import { z } from 'zod'
 
+import { ValidationError } from '@/domain/errors/validation/ValidationError'
 import { createValidator } from '@/domain/validation/createValidator'
-import { ValidationError } from '@/errors/validation/ValidationError'
 
 describe('createValidator', () => {
   it('should create validator function from schema', () => {

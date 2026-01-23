@@ -1,4 +1,4 @@
-import type { JsonObject } from '@/types/json'
+import type { JsonObject } from '@/domain/types/json'
 
 /**
  * Check if key is a TextMapHash key

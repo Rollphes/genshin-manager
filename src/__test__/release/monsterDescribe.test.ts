@@ -1,8 +1,8 @@
 import { beforeAll, describe, expect, test } from 'vitest'
 
-import { Client } from '@/client/Client'
-import { Monster } from '@/models/Monster'
-import { Language } from '@/types/types'
+import { Client } from '@/application/client/Client'
+import { Language } from '@/domain/types/types'
+import { Monster } from '@/interface/Monster'
 
 describe('MonsterDescribe Release Test', () => {
   beforeAll(async () => {

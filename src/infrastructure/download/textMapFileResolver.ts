@@ -1,6 +1,6 @@
-import type { RestClient } from '@/client/RestClient'
-import type { GitLabApiRoutes } from '@/types/api/gitlab/routes'
-import { Language, TextMapBaseName } from '@/types/types'
+import type { RestClient } from '@/application/client/RestClient'
+import { Language, TextMapBaseName } from '@/domain/types/types'
+import type { GitLabApiRoutes } from '@/infrastructure/types/api/gitlab/routes'
 
 /**
  * Options for fetching TextMap file names from GitLab

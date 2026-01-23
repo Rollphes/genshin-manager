@@ -1,4 +1,4 @@
-import type { JsonValue } from '@/types/json'
+import type { JsonValue } from '@/domain/types/json'
 
 /**
  * Check if two values match according to strategy

@@ -1,8 +1,8 @@
 import { describe, expect, it } from 'vitest'
 import { z } from 'zod'
 
+import { ValidationError } from '@/domain/errors/validation/ValidationError'
 import { validateObject } from '@/domain/validation/validateObject'
-import { ValidationError } from '@/errors/validation/ValidationError'
 
 describe('validateObject', () => {
   it('should validate object with multiple properties', () => {

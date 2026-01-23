@@ -1,5 +1,5 @@
+import type { Language } from '@/domain/types/types'
 import { loadTextMapFiles } from '@/infrastructure/dataLoader/textMap'
-import type { Language } from '@/types/types'
 
 /**
  * Options for TextMapCache

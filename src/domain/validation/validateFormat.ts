@@ -1,5 +1,5 @@
-import { FormatValidationError } from '@/errors/validation/FormatValidationError'
-import type { ValidationContext } from '@/types/errorContext'
+import { FormatValidationError } from '@/domain/errors/validation/FormatValidationError'
+import type { ValidationContext } from '@/domain/types/errorContext'
 
 /**
  * Validate string format using regex

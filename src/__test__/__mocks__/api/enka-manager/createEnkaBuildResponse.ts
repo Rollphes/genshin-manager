@@ -1,4 +1,4 @@
-import type { BuildResponse } from '@/types/api/enkaNetwork/responses'
+import type { BuildResponse } from '@/infrastructure/types/api/enkaNetwork/responses'
 
 /**
  * Create mock EnkaBuild API response for testing

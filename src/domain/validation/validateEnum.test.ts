@@ -1,7 +1,7 @@
 import { describe, expect, it } from 'vitest'
 
+import { EnumValidationError } from '@/domain/errors/validation/EnumValidationError'
 import { validateEnum } from '@/domain/validation/validateEnum'
-import { EnumValidationError } from '@/errors/validation/EnumValidationError'
 
 describe('validateEnum', () => {
   it('should return value if in allowed values', () => {

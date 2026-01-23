@@ -1,7 +1,7 @@
 import fs from 'fs'
 
-import { AssetCorruptedError } from '@/errors/assets/AssetCorruptedError'
-import { AssetNotFoundError } from '@/errors/assets/AssetNotFoundError'
+import { AssetCorruptedError } from '@/infrastructure/errors/AssetCorruptedError'
+import { AssetNotFoundError } from '@/infrastructure/errors/AssetNotFoundError'
 import { logger } from '@/infrastructure/logger/Logger'
 
 /**

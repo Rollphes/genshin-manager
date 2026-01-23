@@ -1,5 +1,5 @@
-import { EnumValidationError } from '@/errors/validation/EnumValidationError'
-import type { EnumContext } from '@/types/errorContext'
+import { EnumValidationError } from '@/domain/errors/validation/EnumValidationError'
+import type { EnumContext } from '@/domain/types/errorContext'
 
 /**
  * Validate enum value

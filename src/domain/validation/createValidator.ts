@@ -1,7 +1,7 @@
 import { z } from 'zod'
 
+import type { ValidationContext } from '@/domain/types/errorContext'
 import { validate } from '@/domain/validation/validate'
-import type { ValidationContext } from '@/types/errorContext'
 
 /**
  * Context for created validators (without propertyKey, which is pre-defined)

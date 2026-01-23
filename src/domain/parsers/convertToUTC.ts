@@ -1,4 +1,7 @@
-import { Region, TimeZonesPerRegion } from '@/types/api/sg-hk4e-api/types'
+import {
+  Region,
+  TimeZonesPerRegion,
+} from '@/infrastructure/types/api/sg-hk4e-api/types'
 
 /**
  * Convert the date string to UTC

@@ -1,7 +1,7 @@
 import { z } from 'zod'
 
-import { ValidationError } from '@/errors/validation/ValidationError'
-import type { ValidationContext } from '@/types/errorContext'
+import { ValidationError } from '@/domain/errors/validation/ValidationError'
+import type { ValidationContext } from '@/domain/types/errorContext'
 
 /**
  * Safely validate data and return result with success/error information.

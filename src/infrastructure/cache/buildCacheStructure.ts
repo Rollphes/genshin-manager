@@ -1,9 +1,9 @@
-import { CacheStructureType } from '@/types/cache'
-import { ExcelBinOutputs } from '@/types/excelBinOutputs'
+import { CacheStructureType } from '@/infrastructure/types/cache'
+import { ExcelBinOutputs } from '@/infrastructure/types/excelBinOutputs'
 import type {
   DecodedType as GeneratedDecodedType,
   MasterFileMap as GeneratedMasterFileMap,
-} from '@/types/generated/MasterFileMap'
+} from '@/infrastructure/types/generated/MasterFileMap'
 
 /**
  * Cache builder function type

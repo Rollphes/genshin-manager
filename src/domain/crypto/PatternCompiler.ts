@@ -1,7 +1,7 @@
 import type { KeyPath, RecursivePattern } from '@/domain/crypto/types'
 import { isJsonArray } from '@/domain/typeGuards/isJsonArray'
 import { isJsonObject } from '@/domain/typeGuards/isJsonObject'
-import type { JsonValue } from '@/types/json'
+import type { JsonValue } from '@/domain/types/json'
 
 /**
  * Compiles JSON values into recursive patterns for matching
