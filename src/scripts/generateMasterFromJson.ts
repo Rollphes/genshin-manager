@@ -13,7 +13,7 @@ import type { EncryptedKeyMasterFile } from '@/infrastructure/types/crypto'
 /**
  * Master candidate interface
  */
-export interface MasterCandidate {
+interface MasterCandidate {
   /**
    * The JSON object candidate
    */
@@ -27,7 +27,7 @@ export interface MasterCandidate {
 /**
  * Data density analysis result
  */
-export interface DataDensityAnalysis {
+interface DataDensityAnalysis {
   /**
    * Number of empty arrays
    */
@@ -152,7 +152,7 @@ export function generateMasterFromJson(
  * @returns Master file.
  * @throws {@link FormatValidationError} - When JSON data is empty.
  */
-export function createMasterStructure(
+function createMasterStructure(
   sourceFilePath: string,
   jsonData: JsonObject[],
 ): EncryptedKeyMasterFile {
@@ -187,7 +187,7 @@ export function createMasterStructure(
  * @param value - Value to check
  * @returns true if contains empty arrays, false otherwise
  */
-export function hasDeepEmptyArrays(value: JsonValue): boolean {
+function hasDeepEmptyArrays(value: JsonValue): boolean {
   if (isJsonArray(value)) {
     if (value.length === 0) return true
     return value.some((item) => hasDeepEmptyArrays(item))
@@ -205,7 +205,7 @@ export function hasDeepEmptyArrays(value: JsonValue): boolean {
  * @param candidates - Candidate objects to use for filling
  * @returns filled object
  */
-export function fillEmptyArraysFromCandidates(
+function fillEmptyArraysFromCandidates(
   target: JsonValue,
   candidates: JsonObject[],
 ): JsonValue {
@@ -263,7 +263,7 @@ export function fillEmptyArraysFromCandidates(
  * @param jsonData - JSON data array.
  * @returns Array of master objects ordered by quality.
  */
-export function findOptimalMasterPatterns(
+function findOptimalMasterPatterns(
   jsonData: JsonObject[],
 ): JsonObject[] {
   logger.info(`Number of objects to analyze: ${String(jsonData.length)}`)
@@ -361,7 +361,7 @@ export function findOptimalMasterPatterns(
  * @param counters.nullValues - Count of null values.
  * @param counters.totalProperties - Total property count.
  */
-export function analyzeValue(
+function analyzeValue(
   value: JsonValue,
   counters: {
     emptyArrays: number
@@ -396,7 +396,7 @@ export function analyzeValue(
  * @param obj - Object to analyze
  * @returns data density analysis
  */
-export function calculateDataDensity(obj: JsonObject): DataDensityAnalysis {
+function calculateDataDensity(obj: JsonObject): DataDensityAnalysis {
   const counters = {
     emptyArrays: 0,
     emptyStrings: 0,
@@ -432,7 +432,7 @@ export function calculateDataDensity(obj: JsonObject): DataDensityAnalysis {
  * @param parentPath - (internal) current path (for recursion)
  * @returns if a non-empty difference is found, returns the path array; otherwise, returns an empty array
  */
-export function findFirstNonEmptyDifferencePath(
+function findFirstNonEmptyDifferencePath(
   existing: JsonValue,
   target: JsonValue,
   parentPath: (string | number)[] = [],
@@ -477,7 +477,7 @@ export function findFirstNonEmptyDifferencePath(
  * @param value - The JSON value to check
  * @returns true if the value is empty, false otherwise
  */
-export function isEmptyJsonValue(value: JsonValue): boolean {
+function isEmptyJsonValue(value: JsonValue): boolean {
   return (
     value === null ||
     value === undefined ||
