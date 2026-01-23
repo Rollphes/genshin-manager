@@ -12,7 +12,7 @@ import {
 } from '@/infrastructure/cache/ExcelBinCache'
 import { TextMapCache } from '@/infrastructure/cache/TextMapCache'
 import { AssetDownloader } from '@/infrastructure/download/AssetDownloader'
-import { getTextMapFileNamesFromGitLab } from '@/infrastructure/download/textMapFileResolver'
+import { getTextMapFileNamesFromGitLab } from '@/infrastructure/download/getTextMapFileNamesFromGitLab'
 import { VersionChecker } from '@/infrastructure/download/VersionChecker'
 import { AssetCorruptedError } from '@/infrastructure/errors/AssetCorruptedError'
 import { ConfigMissingError } from '@/infrastructure/errors/ConfigMissingError'

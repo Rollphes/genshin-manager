@@ -51,7 +51,7 @@ export interface TextMapLoadFileOptions {
  * @param language - Target language
  * @returns Array of matching file names
  */
-export function getTextMapFileNamesFromLocal(
+function getTextMapFileNamesFromLocal(
   folderPath: string,
   language: Language,
 ): string[] {
