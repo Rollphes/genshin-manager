@@ -1,9 +1,7 @@
 import path from 'path'
 
-import {
-  asJsonObject,
-  asJsonObjectArray,
-} from '@/domain/typeGuards/asJsonObject'
+import { asJsonObject } from '@/domain/typeGuards/asJsonObject'
+import { asJsonObjectArray } from '@/domain/typeGuards/asJsonObjectArray'
 import type { JsonObject } from '@/domain/types/json'
 import { extractTextHashes } from '@/infrastructure/cache/TextHashExtractor'
 import { EncryptedKeyDecoder } from '@/infrastructure/crypto/EncryptedKeyDecoder'
