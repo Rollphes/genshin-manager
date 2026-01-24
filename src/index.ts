@@ -147,7 +147,7 @@ export {
 export * from '@/infrastructure/types/api/enkaNetwork/responses'
 
 // Export SG-HK4E-API types
-export * from '@/infrastructure/types/api/sg-hk4e-api/types'
+export { Region, TimeZonesPerRegion } from '@/domain/types/Region'
 
 // Export error system - base
 export {

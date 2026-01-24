@@ -1,5 +1,5 @@
+import type { Region } from '@/domain/types/Region'
 import type { Language } from '@/domain/types/types'
-import type { Region } from '@/infrastructure/types/api/sg-hk4e-api/types'
 
 /**
  * Query parameters for announcement API
