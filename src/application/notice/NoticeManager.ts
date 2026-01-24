@@ -1,5 +1,11 @@
 import { merge } from 'ts-deepmerge'
 
+import { PromiseEventEmitter } from '@/adapter/input/events/PromiseEventEmitter'
+import type { AnnouncementQuery } from '@/adapter/input/types/api/sg-hk4e-api/queries'
+import type {
+  HoyoverseApiRoutes,
+  HoyoverseStaticApiRoutes,
+} from '@/adapter/input/types/api/sg-hk4e-api/routes'
 import { Notice } from '@/adapter/output/Notice'
 import { RestClient } from '@/application/client/RestClient'
 import { AnnContentNotFoundError } from '@/application/errors/AnnContentNotFoundError'
@@ -10,12 +16,6 @@ import {
 import { createUpdateIntervalSchema } from '@/domain/schemas/createUpdateIntervalSchema'
 import { Language } from '@/domain/types/types'
 import { validate } from '@/domain/validation/validate'
-import { PromiseEventEmitter } from '@/infrastructure/events/PromiseEventEmitter'
-import type { AnnouncementQuery } from '@/infrastructure/types/api/sg-hk4e-api/queries'
-import type {
-  HoyoverseApiRoutes,
-  HoyoverseStaticApiRoutes,
-} from '@/infrastructure/types/api/sg-hk4e-api/routes'
 
 /**
  * Class for fetching notices from mihoyo

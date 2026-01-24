@@ -1,5 +1,11 @@
 import { LRUCache } from 'lru-cache'
 
+import { PromiseEventEmitter } from '@/adapter/input/events/PromiseEventEmitter'
+import type { EnkaStatusResponse } from '@/adapter/input/types/api/enkaNetwork/responses'
+import {
+  EnkaApiRoutes,
+  EnkaStatusApiRoutes,
+} from '@/adapter/input/types/api/enkaNetwork/routes'
 import { CharacterDetail } from '@/adapter/output/enka/CharacterDetail'
 import { EnkaAccount } from '@/adapter/output/enka/EnkaAccount'
 import { GenshinAccount } from '@/adapter/output/enka/GenshinAccount'
@@ -10,12 +16,6 @@ import {
   EnkaManagerEventMap,
   EnkaManagerEvents,
 } from '@/application/types/events/enka'
-import { PromiseEventEmitter } from '@/infrastructure/events/PromiseEventEmitter'
-import type { EnkaStatusResponse } from '@/infrastructure/types/api/enkaNetwork/responses'
-import {
-  EnkaApiRoutes,
-  EnkaStatusApiRoutes,
-} from '@/infrastructure/types/api/enkaNetwork/routes'
 
 /**
  * Cached EnkaData type

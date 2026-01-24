@@ -1,4 +1,4 @@
-import type { EnkaDataResponse } from '@/infrastructure/types/api/enkaNetwork/responses'
+import type { EnkaDataResponse } from '@/adapter/input/types/api/enkaNetwork/responses'
 
 /**
  * Create mock EnkaData API response for testing

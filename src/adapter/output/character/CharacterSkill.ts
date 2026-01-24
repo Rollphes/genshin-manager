@@ -1,9 +1,9 @@
+import { AssetNotFoundError } from '@/adapter/input/errors/AssetNotFoundError'
 import { ImageAssets } from '@/adapter/output/assets/ImageAssets'
 import { CharacterInfo } from '@/adapter/output/character/CharacterInfo'
 import { Client } from '@/application/client/Client'
 import { skillLevelSchema } from '@/domain/schemas/commonSchemas'
 import { validate } from '@/domain/validation/validate'
-import { AssetNotFoundError } from '@/infrastructure/errors/AssetNotFoundError'
 
 /**
  * Contains character skill information including attacks, burst, and elemental abilities

@@ -1,15 +1,15 @@
 import fs from 'fs'
 import path from 'path'
 
+import { ConfigMissingError } from '@/adapter/input/errors/ConfigMissingError'
+import { logger } from '@/adapter/input/logger/Logger'
+import { masterFileFolderPath } from '@/adapter/input/paths'
+import type { EncryptedKeyMasterFile } from '@/adapter/input/types/crypto'
 import { FormatValidationError } from '@/domain/errors/validation/FormatValidationError'
 import { isJsonArray } from '@/domain/typeGuards/isJsonArray'
 import { isJsonObject } from '@/domain/typeGuards/isJsonObject'
 import type { JsonObject, JsonValue } from '@/domain/types/json'
 import { LogLevel } from '@/domain/types/LogLevel'
-import { ConfigMissingError } from '@/infrastructure/errors/ConfigMissingError'
-import { logger } from '@/infrastructure/logger/Logger'
-import { masterFileFolderPath } from '@/infrastructure/paths'
-import type { EncryptedKeyMasterFile } from '@/infrastructure/types/crypto'
 
 /**
  * Master candidate interface

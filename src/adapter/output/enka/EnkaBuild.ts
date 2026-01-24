@@ -1,5 +1,5 @@
+import type { BuildResponse } from '@/adapter/input/types/api/enkaNetwork/responses'
 import { CharacterDetail } from '@/adapter/output/enka/CharacterDetail'
-import type { BuildResponse } from '@/infrastructure/types/api/enkaNetwork/responses'
 
 /**
  * Represents a character build configuration from EnkaNetwork showcases

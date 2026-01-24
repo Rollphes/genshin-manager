@@ -1,7 +1,7 @@
+import type { PlayerInfoResponse } from '@/adapter/input/types/api/enkaNetwork/responses'
 import { CharacterPreview } from '@/adapter/output/enka/CharacterPreview'
 import { Material } from '@/adapter/output/Material'
 import { ProfilePicture } from '@/adapter/output/ProfilePicture'
-import type { PlayerInfoResponse } from '@/infrastructure/types/api/enkaNetwork/responses'
 /**
  * Contains player profile information and game progress from EnkaNetwork
  */

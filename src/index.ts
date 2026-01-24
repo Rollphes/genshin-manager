@@ -147,7 +147,7 @@ export {
 }
 
 // Export EnkaNetwork types
-export * from '@/infrastructure/types/api/enkaNetwork/responses'
+export * from '@/adapter/input/types/api/enkaNetwork/responses'
 
 // Export SG-HK4E-API types
 export { Region, TimeZonesPerRegion } from '@/domain/types/Region'
@@ -178,15 +178,15 @@ export { RequiredFieldError } from '@/domain/errors/validation/RequiredFieldErro
 export { ValidationError } from '@/domain/errors/validation/ValidationError'
 
 // Export error system - asset errors
-export { AssetCorruptedError } from '@/infrastructure/errors/AssetCorruptedError'
-export { AssetError } from '@/infrastructure/errors/AssetError'
-export { AssetNotFoundError } from '@/infrastructure/errors/AssetNotFoundError'
-export { AudioNotFoundError } from '@/infrastructure/errors/AudioNotFoundError'
-export { ImageNotFoundError } from '@/infrastructure/errors/ImageNotFoundError'
+export { AssetCorruptedError } from '@/adapter/input/errors/AssetCorruptedError'
+export { AssetError } from '@/adapter/input/errors/AssetError'
+export { AssetNotFoundError } from '@/adapter/input/errors/AssetNotFoundError'
+export { AudioNotFoundError } from '@/adapter/input/errors/AudioNotFoundError'
+export { ImageNotFoundError } from '@/adapter/input/errors/ImageNotFoundError'
 
 // Export error system - network errors
-export { NetworkError } from '@/infrastructure/errors/NetworkError'
-export { NetworkUnavailableError } from '@/infrastructure/errors/NetworkUnavailableError'
+export { NetworkError } from '@/adapter/input/errors/NetworkError'
+export { NetworkUnavailableError } from '@/adapter/input/errors/NetworkUnavailableError'
 
 // Export error system - content errors
 export { AnnContentNotFoundError } from '@/application/errors/AnnContentNotFoundError'
@@ -194,7 +194,7 @@ export { BodyNotFoundError } from '@/application/errors/BodyNotFoundError'
 export { TextMapFormatError } from '@/application/errors/TextMapFormatError'
 
 // Export error system - config errors
-export { ConfigMissingError } from '@/infrastructure/errors/ConfigMissingError'
+export { ConfigMissingError } from '@/adapter/input/errors/ConfigMissingError'
 
 // Export error system - general errors
 export { GeneralError } from '@/application/errors/GeneralError'

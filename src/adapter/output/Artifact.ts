@@ -1,3 +1,4 @@
+import { AssetNotFoundError } from '@/adapter/input/errors/AssetNotFoundError'
 import { ImageAssets } from '@/adapter/output/assets/ImageAssets'
 import { StatProperty } from '@/adapter/output/StatProperty'
 import { Client } from '@/application/client/Client'
@@ -5,7 +6,6 @@ import { createArtifactLevelSchema } from '@/domain/schemas/createArtifactLevelS
 import { toEnum } from '@/domain/typeGuards/toEnum'
 import { EquipType, FightProp } from '@/domain/types/enums'
 import { validate } from '@/domain/validation/validate'
-import { AssetNotFoundError } from '@/infrastructure/errors/AssetNotFoundError'
 /**
  * Represents a sub-stat property of an artifact
  */

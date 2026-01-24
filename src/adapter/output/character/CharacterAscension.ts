@@ -1,12 +1,12 @@
 import { z } from 'zod'
 
+import { AssetNotFoundError } from '@/adapter/input/errors/AssetNotFoundError'
 import { StatProperty } from '@/adapter/output/StatProperty'
 import { Client } from '@/application/client/Client'
 import { toEnum } from '@/domain/typeGuards/toEnum'
 import { FightProp } from '@/domain/types/enums'
 import { CostItem } from '@/domain/types/types'
 import { validate } from '@/domain/validation/validate'
-import { AssetNotFoundError } from '@/infrastructure/errors/AssetNotFoundError'
 
 /**
  * Handles character ascension data including promote levels, costs, and stat bonuses

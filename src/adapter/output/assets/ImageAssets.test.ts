@@ -16,11 +16,11 @@ import {
   invalidPngSignature,
   validPngData,
 } from '@/__test__/__mocks__/assets/mockBinaryData'
+import { ImageNotFoundError } from '@/adapter/input/errors/ImageNotFoundError'
 import { ImageAssets } from '@/adapter/output/assets/ImageAssets'
 import { LogLevel } from '@/domain/types/LogLevel'
 import { Language } from '@/domain/types/types'
 import { ClientOption } from '@/domain/types/types'
-import { ImageNotFoundError } from '@/infrastructure/errors/ImageNotFoundError'
 
 /**
  * ImageAssets test suite

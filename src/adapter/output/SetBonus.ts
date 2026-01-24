@@ -1,6 +1,6 @@
+import { AssetNotFoundError } from '@/adapter/input/errors/AssetNotFoundError'
 import { Artifact } from '@/adapter/output/Artifact'
 import { Client } from '@/application/client/Client'
-import { AssetNotFoundError } from '@/infrastructure/errors/AssetNotFoundError'
 
 /**
  * Manages artifact set effects and bonuses that activate when wearing multiple pieces

@@ -1,15 +1,15 @@
 import * as cheerio from 'cheerio'
 import { Element } from 'domhandler'
 
+import type {
+  ContentList,
+  DataList,
+} from '@/adapter/input/types/api/sg-hk4e-api/responses'
 import { ImageAssets } from '@/adapter/output/assets/ImageAssets'
 import { ValidationError } from '@/domain/errors/validation/ValidationError'
 import { convertToUTC } from '@/domain/parsers/convertToUTC'
 import type { Region } from '@/domain/types/Region'
 import { Language } from '@/domain/types/types'
-import type {
-  ContentList,
-  DataList,
-} from '@/infrastructure/types/api/sg-hk4e-api/responses'
 
 type CheerioAPI = ReturnType<typeof cheerio.load>
 

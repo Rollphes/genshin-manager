@@ -1,3 +1,8 @@
+import type {
+  AvatarInfoResponse,
+  ReliquaryEquipResponse,
+  WeaponEquipResponse,
+} from '@/adapter/input/types/api/enkaNetwork/responses'
 import { Artifact } from '@/adapter/output/Artifact'
 import { CharacterConstellation } from '@/adapter/output/character/CharacterConstellation'
 import { CharacterCostume } from '@/adapter/output/character/CharacterCostume'
@@ -9,11 +14,6 @@ import { WeaponInfo } from '@/adapter/output/weapon/WeaponInfo'
 import { GeneralError } from '@/application/errors/GeneralError'
 import { BodyType, WeaponType } from '@/domain/types/enums'
 import { Element } from '@/domain/types/types'
-import type {
-  AvatarInfoResponse,
-  ReliquaryEquipResponse,
-  WeaponEquipResponse,
-} from '@/infrastructure/types/api/enkaNetwork/responses'
 
 /**
  * Represents detailed character data retrieved from the EnkaNetwork API

@@ -1,3 +1,4 @@
+import { AssetNotFoundError } from '@/adapter/input/errors/AssetNotFoundError'
 import { CharacterAscension } from '@/adapter/output/character/CharacterAscension'
 import { CharacterBaseStats } from '@/adapter/output/character/CharacterBaseStats'
 import { CharacterConstellation } from '@/adapter/output/character/CharacterConstellation'
@@ -20,7 +21,6 @@ import {
   Element,
   Language,
 } from '@/domain/types/types'
-import { AssetNotFoundError } from '@/infrastructure/errors/AssetNotFoundError'
 
 /**
  * Character summary information

@@ -1,10 +1,10 @@
+import { AssetNotFoundError } from '@/adapter/input/errors/AssetNotFoundError'
 import { ImageAssets } from '@/adapter/output/assets/ImageAssets'
 import { CharacterCostume } from '@/adapter/output/character/CharacterCostume'
 import { CharacterInfo } from '@/adapter/output/character/CharacterInfo'
 import { Client } from '@/application/client/Client'
 import { toEnum } from '@/domain/typeGuards/toEnum'
 import { ProfilePictureUnlockType } from '@/domain/types/enums'
-import { AssetNotFoundError } from '@/infrastructure/errors/AssetNotFoundError'
 
 /**
  * Manages character avatar images and profile picture assets

@@ -1,3 +1,4 @@
+import { AssetNotFoundError } from '@/adapter/input/errors/AssetNotFoundError'
 import { CharacterInfo } from '@/adapter/output/character/CharacterInfo'
 import { CharacterSkill } from '@/adapter/output/character/CharacterSkill'
 import { CharacterSkillAscension } from '@/adapter/output/character/CharacterSkillAscension'
@@ -6,7 +7,6 @@ import { WeaponInfo } from '@/adapter/output/weapon/WeaponInfo'
 import { Client } from '@/application/client/Client'
 import { dayOfWeekSchema } from '@/domain/schemas/commonSchemas'
 import { validate } from '@/domain/validation/validate'
-import { AssetNotFoundError } from '@/infrastructure/errors/AssetNotFoundError'
 
 /**
  * Domain data

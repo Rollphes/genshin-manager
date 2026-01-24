@@ -1,9 +1,9 @@
-import { EnkaBuild } from '@/adapter/output/enka/EnkaBuild'
-import { PlayerDetail } from '@/adapter/output/enka/PlayerDetail'
 import type {
   BuildResponse,
   GameAccountResponse,
-} from '@/infrastructure/types/api/enkaNetwork/responses'
+} from '@/adapter/input/types/api/enkaNetwork/responses'
+import { EnkaBuild } from '@/adapter/output/enka/EnkaBuild'
+import { PlayerDetail } from '@/adapter/output/enka/PlayerDetail'
 
 /**
  * Represents a Genshin Impact account with associated game data and builds

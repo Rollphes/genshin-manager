@@ -1,3 +1,4 @@
+import { AssetNotFoundError } from '@/adapter/input/errors/AssetNotFoundError'
 import { StatProperty } from '@/adapter/output/StatProperty'
 import { Client } from '@/application/client/Client'
 import {
@@ -7,7 +8,6 @@ import {
 import { toEnum } from '@/domain/typeGuards/toEnum'
 import { FightProp } from '@/domain/types/enums'
 import { validate } from '@/domain/validation/validate'
-import { AssetNotFoundError } from '@/infrastructure/errors/AssetNotFoundError'
 
 /**
  * Manages weapon refinement levels and passive ability improvements

@@ -1,3 +1,4 @@
+import { AssetNotFoundError } from '@/adapter/input/errors/AssetNotFoundError'
 import { ImageAssets } from '@/adapter/output/assets/ImageAssets'
 import { StatProperty } from '@/adapter/output/StatProperty'
 import { Client } from '@/application/client/Client'
@@ -8,7 +9,6 @@ import {
 import { toEnum } from '@/domain/typeGuards/toEnum'
 import { FightProp, GrowCurve, SubType } from '@/domain/types/enums'
 import { validate } from '@/domain/validation/validate'
-import { AssetNotFoundError } from '@/infrastructure/errors/AssetNotFoundError'
 
 const statusBonusMonsterAtMultiPlay: Partial<
   Record<FightProp, readonly [number, number, number, number]>

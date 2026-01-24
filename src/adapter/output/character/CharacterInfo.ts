@@ -1,3 +1,4 @@
+import { AssetNotFoundError } from '@/adapter/input/errors/AssetNotFoundError'
 import { Client } from '@/application/client/Client'
 import { travelerIdSchema } from '@/domain/schemas/commonSchemas'
 import {
@@ -8,7 +9,6 @@ import {
 } from '@/domain/types/enums'
 import { Element } from '@/domain/types/types'
 import { validate } from '@/domain/validation/validate'
-import { AssetNotFoundError } from '@/infrastructure/errors/AssetNotFoundError'
 
 /**
  * Contains basic information about a character

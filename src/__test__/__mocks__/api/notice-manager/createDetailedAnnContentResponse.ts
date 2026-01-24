@@ -1,4 +1,4 @@
-import type { GetAnnContentResponse } from '@/infrastructure/types/api/sg-hk4e-api/responses'
+import type { GetAnnContentResponse } from '@/adapter/input/types/api/sg-hk4e-api/responses'
 
 /**
  * Creates detailed mock AnnContent response with custom content

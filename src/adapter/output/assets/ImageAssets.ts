@@ -3,12 +3,12 @@ import * as fsPromises from 'fs/promises'
 import path from 'path'
 import { pipeline } from 'stream/promises'
 
+import { ImageNotFoundError } from '@/adapter/input/errors/ImageNotFoundError'
+import { NetworkUnavailableError } from '@/adapter/input/errors/NetworkUnavailableError'
+import { initImageFolderPath } from '@/adapter/input/paths'
+import { ReadableStreamWrapper } from '@/adapter/input/streams/ReadableStreamWrapper'
 import { RestClient } from '@/application/client/RestClient'
 import { ClientOption } from '@/domain/types/types'
-import { ImageNotFoundError } from '@/infrastructure/errors/ImageNotFoundError'
-import { NetworkUnavailableError } from '@/infrastructure/errors/NetworkUnavailableError'
-import { initImageFolderPath } from '@/infrastructure/paths'
-import { ReadableStreamWrapper } from '@/infrastructure/streams/ReadableStreamWrapper'
 
 /**
  * Class for compiling information about image

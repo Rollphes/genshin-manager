@@ -4,11 +4,11 @@ import path from 'path'
 import { beforeAll, beforeEach, describe, expect, it, vi } from 'vitest'
 
 import { setupGitLabMock } from '@/__test__/__mocks__/api/gitlab'
+import { AssetNotFoundError } from '@/adapter/input/errors/AssetNotFoundError'
+import { ExcelBinOutputs } from '@/adapter/input/types/excelBinOutputs'
 import { AssetCacheManager } from '@/application/client/AssetCacheManager'
 import { Client } from '@/application/client/Client'
 import { Language } from '@/domain/types/types'
-import { AssetNotFoundError } from '@/infrastructure/errors/AssetNotFoundError'
-import { ExcelBinOutputs } from '@/infrastructure/types/excelBinOutputs'
 
 // Increase max listeners to prevent memory leak warnings during tests
 EventEmitter.defaultMaxListeners = 50

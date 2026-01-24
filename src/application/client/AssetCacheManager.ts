@@ -2,26 +2,26 @@ import EventEmitter from 'events'
 import fs from 'fs'
 import * as path from 'path'
 
+import {
+  ExcelBinCache,
+  PrimitiveKeys,
+} from '@/adapter/input/cache/ExcelBinCache'
+import { TextMapCache } from '@/adapter/input/cache/TextMapCache'
+import { AssetDownloader } from '@/adapter/input/download/AssetDownloader'
+import { getTextMapFileNamesFromGitLab } from '@/adapter/input/download/getTextMapFileNamesFromGitLab'
+import { VersionChecker } from '@/adapter/input/download/VersionChecker'
+import { AssetCorruptedError } from '@/adapter/input/errors/AssetCorruptedError'
+import { ConfigMissingError } from '@/adapter/input/errors/ConfigMissingError'
+import { PromiseEventEmitter } from '@/adapter/input/events/PromiseEventEmitter'
+import { logger } from '@/adapter/input/logger/Logger'
+import { GitLabApiRoutes } from '@/adapter/input/types/api/gitlab/routes'
+import { ExcelBinOutputs } from '@/adapter/input/types/excelBinOutputs'
+import { MasterFileMap } from '@/adapter/input/types/generated/MasterFileMap'
 import { RestClient } from '@/application/client/RestClient'
 import { ClientEventMap, ClientEvents } from '@/application/types/events/client'
 import { hasValidConstructor } from '@/domain/typeGuards/hasValidConstructor'
 import { LogLevel } from '@/domain/types/LogLevel'
 import type { ClientOption, Language } from '@/domain/types/types'
-import {
-  ExcelBinCache,
-  PrimitiveKeys,
-} from '@/infrastructure/cache/ExcelBinCache'
-import { TextMapCache } from '@/infrastructure/cache/TextMapCache'
-import { AssetDownloader } from '@/infrastructure/download/AssetDownloader'
-import { getTextMapFileNamesFromGitLab } from '@/infrastructure/download/getTextMapFileNamesFromGitLab'
-import { VersionChecker } from '@/infrastructure/download/VersionChecker'
-import { AssetCorruptedError } from '@/infrastructure/errors/AssetCorruptedError'
-import { ConfigMissingError } from '@/infrastructure/errors/ConfigMissingError'
-import { PromiseEventEmitter } from '@/infrastructure/events/PromiseEventEmitter'
-import { logger } from '@/infrastructure/logger/Logger'
-import { GitLabApiRoutes } from '@/infrastructure/types/api/gitlab/routes'
-import { ExcelBinOutputs } from '@/infrastructure/types/excelBinOutputs'
-import { MasterFileMap } from '@/infrastructure/types/generated/MasterFileMap'
 
 /**
  * Class for managing cached assets

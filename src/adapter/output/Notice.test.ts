@@ -1,13 +1,13 @@
 import { beforeAll, describe, expect, it } from 'vitest'
 
+import {
+  ContentList,
+  DataList,
+} from '@/adapter/input/types/api/sg-hk4e-api/responses'
 import { ImageAssets } from '@/adapter/output/assets/ImageAssets'
 import { Notice } from '@/adapter/output/Notice'
 import { Client } from '@/application/client/Client'
 import { Language } from '@/domain/types/types'
-import {
-  ContentList,
-  DataList,
-} from '@/infrastructure/types/api/sg-hk4e-api/responses'
 
 function createMockDataList(overrides: Partial<DataList> = {}): DataList {
   return {

@@ -2,12 +2,12 @@ import { beforeAll, describe, expect, it } from 'vitest'
 
 import { createEnkaBuildResponse } from '@/__test__/__mocks__/api/enka-manager/createEnkaBuildResponse'
 import { createGenshinAccountsResponse } from '@/__test__/__mocks__/api/enka-manager/createGenshinAccountsResponse'
+import type { BuildResponse } from '@/adapter/input/types/api/enkaNetwork/responses'
 import { EnkaBuild } from '@/adapter/output/enka/EnkaBuild'
 import { GenshinAccount } from '@/adapter/output/enka/GenshinAccount'
 import { PlayerDetail } from '@/adapter/output/enka/PlayerDetail'
 import { Client } from '@/application/client/Client'
 import { Language } from '@/domain/types/types'
-import type { BuildResponse } from '@/infrastructure/types/api/enkaNetwork/responses'
 
 describe('GenshinAccount', () => {
   beforeAll(async () => {

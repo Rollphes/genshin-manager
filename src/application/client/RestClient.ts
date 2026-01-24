@@ -1,4 +1,4 @@
-import { NetworkUnavailableError } from '@/infrastructure/errors/NetworkUnavailableError'
+import { NetworkUnavailableError } from '@/adapter/input/errors/NetworkUnavailableError'
 
 /**
  * Client configuration options

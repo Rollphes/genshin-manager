@@ -1,4 +1,4 @@
-import type { OwnerResponse } from '@/infrastructure/types/api/enkaNetwork/responses'
+import type { OwnerResponse } from '@/adapter/input/types/api/enkaNetwork/responses'
 
 /**
  * Represents an EnkaNetwork user account with access credentials

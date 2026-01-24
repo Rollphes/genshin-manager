@@ -1,4 +1,4 @@
-import type { OwnerResponse } from '@/infrastructure/types/api/enkaNetwork/responses'
+import type { OwnerResponse } from '@/adapter/input/types/api/enkaNetwork/responses'
 
 /**
  * Create mock EnkaAccount API response for testing

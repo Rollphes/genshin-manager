@@ -1,3 +1,4 @@
+import { AssetNotFoundError } from '@/adapter/input/errors/AssetNotFoundError'
 import { ImageAssets } from '@/adapter/output/assets/ImageAssets'
 import { StatProperty } from '@/adapter/output/StatProperty'
 import { WeaponAscension } from '@/adapter/output/weapon/WeaponAscension'
@@ -9,7 +10,6 @@ import { createDynamicWeaponLevelSchema } from '@/domain/schemas/createDynamicWe
 import { toEnum } from '@/domain/typeGuards/toEnum'
 import { FightProp, GrowCurve, WeaponType } from '@/domain/types/enums'
 import { validate } from '@/domain/validation/validate'
-import { AssetNotFoundError } from '@/infrastructure/errors/AssetNotFoundError'
 
 /**
  * Contains weapon information including stats, refinement, and enhancement data

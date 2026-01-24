@@ -1,7 +1,7 @@
+import type { ShowAvatarInfoResponse } from '@/adapter/input/types/api/enkaNetwork/responses'
 import { CharacterCostume } from '@/adapter/output/character/CharacterCostume'
 import { CharacterInfo } from '@/adapter/output/character/CharacterInfo'
 import { Element } from '@/domain/types/types'
-import type { ShowAvatarInfoResponse } from '@/infrastructure/types/api/enkaNetwork/responses'
 
 /**
  * Provides summary character information for display from EnkaNetwork data

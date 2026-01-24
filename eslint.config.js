@@ -244,7 +244,7 @@ export default [
       '.claude/',
       'cache/',
       'coverage/',
-      'src/infrastructure/types/generated/',
+      'src/adapter/input/types/generated/',
       'dist/',
       'docs-site/',
       'examples/',

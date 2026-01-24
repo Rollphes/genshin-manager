@@ -1,10 +1,10 @@
+import { AssetNotFoundError } from '@/adapter/input/errors/AssetNotFoundError'
 import { ImageAssets } from '@/adapter/output/assets/ImageAssets'
 import { CharacterInfo } from '@/adapter/output/character/CharacterInfo'
 import { StatProperty } from '@/adapter/output/StatProperty'
 import { Client } from '@/application/client/Client'
 import { toEnum } from '@/domain/typeGuards/toEnum'
 import { FightProp } from '@/domain/types/enums'
-import { AssetNotFoundError } from '@/infrastructure/errors/AssetNotFoundError'
 
 /**
  * Represents a character's passive skill with unlocked bonuses and effects

@@ -1,4 +1,4 @@
-import type { GetAnnListResponse } from '@/infrastructure/types/api/sg-hk4e-api/responses'
+import type { GetAnnListResponse } from '@/adapter/input/types/api/sg-hk4e-api/responses'
 
 /**
  * Creates mock AnnList response for API testing
