@@ -4,7 +4,6 @@ import path from 'path'
 import { AssetCorruptedError } from '@/adapter/input/errors/AssetCorruptedError'
 import { ConfigMissingError } from '@/adapter/input/errors/ConfigMissingError'
 import { masterFileFolderPath } from '@/adapter/input/paths'
-import { EncryptedKeyMasterFile } from '@/adapter/input/types/crypto'
 import { ExcelBinOutputs } from '@/adapter/input/types/excelBinOutputs'
 import type { DecodedType as GeneratedDecodedType } from '@/adapter/input/types/generated/MasterFileMap'
 import { applyDecoding } from '@/domain/crypto/applyDecoding'
@@ -18,6 +17,7 @@ import type {
   RequiredDecodingOptions,
 } from '@/domain/crypto/types'
 import { ValidationError } from '@/domain/errors/validation/ValidationError'
+import { EncryptedKeyMasterFile } from '@/domain/types/crypto'
 import type { JsonObject } from '@/domain/types/json'
 
 /**
