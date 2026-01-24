@@ -5,9 +5,9 @@ import { pipeline } from 'stream/promises'
 
 import { ImageNotFoundError } from '@/adapter/input/errors/ImageNotFoundError'
 import { NetworkUnavailableError } from '@/adapter/input/errors/NetworkUnavailableError'
-import { initImageFolderPath } from '@/adapter/input/paths'
 import { ReadableStreamWrapper } from '@/adapter/input/streams/ReadableStreamWrapper'
 import { RestClient } from '@/application/client/RestClient'
+import { initImageFolderPath } from '@/domain/config/paths'
 import { ClientOption } from '@/domain/types/types'
 
 /**

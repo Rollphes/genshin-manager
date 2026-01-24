@@ -3,7 +3,7 @@ import path from 'path'
 
 import { ConfigMissingError } from '@/adapter/input/errors/ConfigMissingError'
 import { logger } from '@/adapter/input/logger/Logger'
-import { masterFileFolderPath } from '@/adapter/input/paths'
+import { masterFileFolderPath } from '@/domain/config/paths'
 import { FormatValidationError } from '@/domain/errors/validation/FormatValidationError'
 import { isJsonArray } from '@/domain/typeGuards/isJsonArray'
 import { isJsonObject } from '@/domain/typeGuards/isJsonObject'

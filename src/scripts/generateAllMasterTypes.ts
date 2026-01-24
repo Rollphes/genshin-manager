@@ -9,13 +9,13 @@ import {
 import { EncryptedKeyDecoder } from '@/adapter/input/crypto/EncryptedKeyDecoder'
 import { ConfigMissingError } from '@/adapter/input/errors/ConfigMissingError'
 import { logger } from '@/adapter/input/logger/Logger'
+import { ExcelBinOutputs } from '@/adapter/input/types/excelBinOutputs'
+import { Client } from '@/application/client/Client'
 import {
   excelBinOutputFolderPathForDevelop,
   generatedTypesFolderPath,
   masterFileFolderPath,
-} from '@/adapter/input/paths'
-import { ExcelBinOutputs } from '@/adapter/input/types/excelBinOutputs'
-import { Client } from '@/application/client/Client'
+} from '@/domain/config/paths'
 import { FormatValidationError } from '@/domain/errors/validation/FormatValidationError'
 import type { JsonObject } from '@/domain/types/json'
 import { LogLevel } from '@/domain/types/LogLevel'

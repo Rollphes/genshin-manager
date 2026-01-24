@@ -1,7 +1,6 @@
 import fs from 'fs'
 import path from 'path'
 
-import { handbookFolderPath } from '@/adapter/input/paths'
 import { Artifact } from '@/adapter/output/Artifact.js'
 import { CharacterConstellation } from '@/adapter/output/character/CharacterConstellation.js'
 import { CharacterCostume } from '@/adapter/output/character/CharacterCostume.js'
@@ -13,6 +12,7 @@ import { Monster } from '@/adapter/output/Monster.js'
 import { WeaponInfo } from '@/adapter/output/weapon/WeaponInfo.js'
 import { Client } from '@/application/client/Client'
 import { ClientEvents } from '@/application/types/events/client'
+import { handbookFolderPath } from '@/domain/config/paths'
 import { Language } from '@/domain/types/types'
 
 async function main(): Promise<void> {

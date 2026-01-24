@@ -7,7 +7,7 @@ import {
   initImageFolderPath,
   masterFileFolderPath,
   packageFolderPath,
-} from '@/adapter/input/paths'
+} from '@/domain/config/paths'
 
 describe('paths/index', () => {
   describe('exported paths', () => {
