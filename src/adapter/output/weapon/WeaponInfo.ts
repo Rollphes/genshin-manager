@@ -8,7 +8,8 @@ import { calculatePromoteLevel } from '@/domain/parsers/calculatePromoteLevel'
 import { refinementLevelSchema } from '@/domain/schemas/commonSchemas'
 import { createDynamicWeaponLevelSchema } from '@/domain/schemas/createDynamicWeaponLevelSchema'
 import { toEnum } from '@/domain/typeGuards/toEnum'
-import { FightProp, GrowCurve, WeaponType } from '@/domain/types/enums'
+import type { WeaponType } from '@/domain/types/enums'
+import { FightProp, GrowCurve } from '@/domain/types/enums'
 import { validate } from '@/domain/validation/validate'
 
 /**

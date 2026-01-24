@@ -1,4 +1,4 @@
-import { z } from 'zod'
+import type { z } from 'zod'
 
 import { GenshinManagerErrorCode } from '@/domain/errors/base/ErrorCodes'
 import type { ErrorContext } from '@/domain/errors/base/ErrorContext'

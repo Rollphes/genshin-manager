@@ -1,5 +1,5 @@
 import * as cheerio from 'cheerio'
-import { Element } from 'domhandler'
+import type { Element } from 'domhandler'
 
 import type {
   ContentList,

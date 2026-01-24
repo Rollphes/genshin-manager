@@ -1,6 +1,6 @@
 import { AudioAssets } from '@/adapter/output/assets/AudioAssets'
 import { Client } from '@/application/client/Client'
-import { CVType } from '@/domain/types/types'
+import type { CVType } from '@/domain/types/types'
 
 /**
  * Handles character voice lines and audio assets in different languages

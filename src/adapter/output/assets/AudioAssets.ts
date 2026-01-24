@@ -7,7 +7,7 @@ import { AudioNotFoundError } from '@/adapter/input/errors/AudioNotFoundError'
 import { NetworkUnavailableError } from '@/adapter/input/errors/NetworkUnavailableError'
 import { ReadableStreamWrapper } from '@/adapter/input/streams/ReadableStreamWrapper'
 import { RestClient } from '@/application/client/RestClient'
-import { ClientOption, CVType } from '@/domain/types/types'
+import type { ClientOption, CVType } from '@/domain/types/types'
 
 /**
  * Class for compiling information about audio

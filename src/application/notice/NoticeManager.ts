@@ -9,10 +9,8 @@ import type {
 import { Notice } from '@/adapter/output/Notice'
 import { RestClient } from '@/application/client/RestClient'
 import { AnnContentNotFoundError } from '@/application/errors/AnnContentNotFoundError'
-import {
-  NoticeManagerEventMap,
-  NoticeManagerEvents,
-} from '@/application/types/events/notice'
+import type { NoticeManagerEventMap } from '@/application/types/events/notice'
+import { NoticeManagerEvents } from '@/application/types/events/notice'
 import { createUpdateIntervalSchema } from '@/domain/schemas/createUpdateIntervalSchema'
 import { Language } from '@/domain/types/types'
 import { validate } from '@/domain/validation/validate'

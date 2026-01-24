@@ -1,6 +1,6 @@
 import { beforeAll, describe, expect, it } from 'vitest'
 
-import {
+import type {
   ContentList,
   DataList,
 } from '@/adapter/input/types/api/sg-hk4e-api/responses'

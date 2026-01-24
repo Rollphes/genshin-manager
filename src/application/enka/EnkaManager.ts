@@ -2,7 +2,7 @@ import { LRUCache } from 'lru-cache'
 
 import { PromiseEventEmitter } from '@/adapter/input/events/PromiseEventEmitter'
 import type { EnkaStatusResponse } from '@/adapter/input/types/api/enkaNetwork/responses'
-import {
+import type {
   EnkaApiRoutes,
   EnkaStatusApiRoutes,
 } from '@/adapter/input/types/api/enkaNetwork/routes'
@@ -12,10 +12,8 @@ import { GenshinAccount } from '@/adapter/output/enka/GenshinAccount'
 import { PlayerDetail } from '@/adapter/output/enka/PlayerDetail'
 import { RestClient } from '@/application/client/RestClient'
 import { GeneralError } from '@/application/errors/GeneralError'
-import {
-  EnkaManagerEventMap,
-  EnkaManagerEvents,
-} from '@/application/types/events/enka'
+import type { EnkaManagerEventMap } from '@/application/types/events/enka'
+import { EnkaManagerEvents } from '@/application/types/events/enka'
 
 /**
  * Cached EnkaData type

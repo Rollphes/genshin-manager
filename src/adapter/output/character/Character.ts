@@ -10,17 +10,17 @@ import { CharacterSkill } from '@/adapter/output/character/CharacterSkill'
 import { CharacterSkillAscension } from '@/adapter/output/character/CharacterSkillAscension'
 import { CharacterStory } from '@/adapter/output/character/CharacterStory'
 import { CharacterVoice } from '@/adapter/output/character/CharacterVoice'
-import { StatProperty } from '@/adapter/output/StatProperty'
+import type { StatProperty } from '@/adapter/output/StatProperty'
 import { Client } from '@/application/client/Client'
 import { calculatePromoteLevel } from '@/domain/parsers/calculatePromoteLevel'
-import { BodyType, WeaponType } from '@/domain/types/enums'
-import {
+import type { BodyType, WeaponType } from '@/domain/types/enums'
+import type {
   AscensionMaterial,
   CharacterUpgradePlan,
   CVType,
   Element,
-  Language,
 } from '@/domain/types/types'
+import { Language } from '@/domain/types/types'
 
 /**
  * Character summary information

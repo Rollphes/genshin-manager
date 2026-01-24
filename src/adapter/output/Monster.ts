@@ -7,7 +7,8 @@ import {
   playerCountSchema,
 } from '@/domain/schemas/commonSchemas'
 import { toEnum } from '@/domain/typeGuards/toEnum'
-import { FightProp, GrowCurve, SubType } from '@/domain/types/enums'
+import type { SubType } from '@/domain/types/enums'
+import { FightProp, GrowCurve } from '@/domain/types/enums'
 import { validate } from '@/domain/validation/validate'
 
 const statusBonusMonsterAtMultiPlay: Partial<

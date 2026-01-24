@@ -7,7 +7,8 @@ import { TextMapEmptyWritable } from '@/adapter/input/streams/TextMapEmptyWritab
 import { TextMapTransform } from '@/adapter/input/streams/TextMapTransform'
 import { TextMapFormatError } from '@/application/errors/TextMapFormatError'
 import { logger } from '@/domain/logger/Logger'
-import { Language, TextMapBaseName } from '@/domain/types/types'
+import type { Language } from '@/domain/types/types'
+import { TextMapBaseName } from '@/domain/types/types'
 
 /**
  * Result of TextMap file load operation

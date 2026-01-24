@@ -1,4 +1,4 @@
-import { JsonObject } from '@/domain/types/json'
+import type { JsonObject } from '@/domain/types/json'
 
 /**
  * Enhanced master file structure with recursive support

@@ -28,6 +28,13 @@ export default [
         },
       },
       rules: {
+        '@typescript-eslint/consistent-type-imports': [
+          'error',
+          {
+            prefer: 'type-imports',
+            fixStyle: 'separate-type-imports',
+          },
+        ],
         '@typescript-eslint/no-unused-vars': 'error',
         '@typescript-eslint/member-ordering': 'warn',
         '@typescript-eslint/no-deprecated': 'off', // Disabled: internal deprecated methods are not user-facing

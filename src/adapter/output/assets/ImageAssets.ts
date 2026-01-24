@@ -8,7 +8,7 @@ import { NetworkUnavailableError } from '@/adapter/input/errors/NetworkUnavailab
 import { ReadableStreamWrapper } from '@/adapter/input/streams/ReadableStreamWrapper'
 import { RestClient } from '@/application/client/RestClient'
 import { initImageFolderPath } from '@/domain/config/paths'
-import { ClientOption } from '@/domain/types/types'
+import type { ClientOption } from '@/domain/types/types'
 
 /**
  * Class for compiling information about image

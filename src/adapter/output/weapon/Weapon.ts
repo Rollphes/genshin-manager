@@ -1,13 +1,13 @@
 import { AssetNotFoundError } from '@/adapter/input/errors/AssetNotFoundError'
-import { ImageAssets } from '@/adapter/output/assets/ImageAssets'
-import { StatProperty } from '@/adapter/output/StatProperty'
+import type { ImageAssets } from '@/adapter/output/assets/ImageAssets'
+import type { StatProperty } from '@/adapter/output/StatProperty'
 import { WeaponAscension } from '@/adapter/output/weapon/WeaponAscension'
 import { WeaponInfo } from '@/adapter/output/weapon/WeaponInfo'
 import { WeaponRefinement } from '@/adapter/output/weapon/WeaponRefinement'
 import { Client } from '@/application/client/Client'
 import { calculatePromoteLevel } from '@/domain/parsers/calculatePromoteLevel'
-import { WeaponType } from '@/domain/types/enums'
-import { AscensionMaterial, WeaponSummary } from '@/domain/types/types'
+import type { WeaponType } from '@/domain/types/enums'
+import type { AscensionMaterial, WeaponSummary } from '@/domain/types/types'
 
 /**
  * Unified weapon class providing comprehensive access to all weapon data

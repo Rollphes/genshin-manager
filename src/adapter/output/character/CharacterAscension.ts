@@ -5,7 +5,7 @@ import { StatProperty } from '@/adapter/output/StatProperty'
 import { Client } from '@/application/client/Client'
 import { toEnum } from '@/domain/typeGuards/toEnum'
 import { FightProp } from '@/domain/types/enums'
-import { CostItem } from '@/domain/types/types'
+import type { CostItem } from '@/domain/types/types'
 import { validate } from '@/domain/validation/validate'
 
 /**

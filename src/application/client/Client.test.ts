@@ -10,7 +10,8 @@ import { AssetCacheManager } from '@/application/client/AssetCacheManager'
 import { Client } from '@/application/client/Client'
 import { ClientEvents } from '@/application/types/events/client'
 import { LogLevel } from '@/domain/types/LogLevel'
-import { Language, TextMapBaseName } from '@/domain/types/types'
+import type { TextMapBaseName } from '@/domain/types/types'
+import { Language } from '@/domain/types/types'
 
 // Increase max listeners to prevent memory leak warnings during tests
 EventEmitter.defaultMaxListeners = 50

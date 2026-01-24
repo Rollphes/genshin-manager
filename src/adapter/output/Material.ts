@@ -1,7 +1,7 @@
 import { AssetNotFoundError } from '@/adapter/input/errors/AssetNotFoundError'
 import { ImageAssets } from '@/adapter/output/assets/ImageAssets'
 import { Client } from '@/application/client/Client'
-import { ItemType, MaterialType } from '@/domain/types/enums'
+import type { ItemType, MaterialType } from '@/domain/types/enums'
 
 /**
  * Represents a game material or resource used for character and weapon enhancement

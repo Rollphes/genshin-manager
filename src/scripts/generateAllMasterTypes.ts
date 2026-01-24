@@ -8,7 +8,7 @@ import {
 
 import { EncryptedKeyDecoder } from '@/adapter/input/crypto/EncryptedKeyDecoder'
 import { ConfigMissingError } from '@/adapter/input/errors/ConfigMissingError'
-import { ExcelBinOutputs } from '@/adapter/input/types/excelBinOutputs'
+import type { ExcelBinOutputs } from '@/adapter/input/types/excelBinOutputs'
 import { Client } from '@/application/client/Client'
 import {
   excelBinOutputFolderPathForDevelop,

@@ -12,8 +12,8 @@ import { CharacterStatusManager } from '@/adapter/output/character/CharacterStat
 import { SetBonus } from '@/adapter/output/SetBonus'
 import { WeaponInfo } from '@/adapter/output/weapon/WeaponInfo'
 import { GeneralError } from '@/application/errors/GeneralError'
-import { BodyType, WeaponType } from '@/domain/types/enums'
-import { Element } from '@/domain/types/types'
+import type { BodyType, WeaponType } from '@/domain/types/enums'
+import type { Element } from '@/domain/types/types'
 
 /**
  * Represents detailed character data retrieved from the EnkaNetwork API

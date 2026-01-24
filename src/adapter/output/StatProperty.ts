@@ -1,6 +1,6 @@
 import { AssetNotFoundError } from '@/adapter/input/errors/AssetNotFoundError'
 import { Client } from '@/application/client/Client'
-import { FightProp } from '@/domain/types/enums'
+import type { FightProp } from '@/domain/types/enums'
 
 /**
  * Represents a statistical property with type, name, and value information

@@ -19,8 +19,8 @@ import {
 import { AudioNotFoundError } from '@/adapter/input/errors/AudioNotFoundError'
 import { AudioAssets } from '@/adapter/output/assets/AudioAssets'
 import { LogLevel } from '@/domain/types/LogLevel'
+import type { ClientOption, CVType } from '@/domain/types/types'
 import { Language } from '@/domain/types/types'
-import { ClientOption, CVType } from '@/domain/types/types'
 
 /**
  * AudioAssets test suite

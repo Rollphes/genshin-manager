@@ -4,7 +4,8 @@ import { StatProperty } from '@/adapter/output/StatProperty'
 import { Client } from '@/application/client/Client'
 import { createArtifactLevelSchema } from '@/domain/schemas/createArtifactLevelSchema'
 import { toEnum } from '@/domain/typeGuards/toEnum'
-import { EquipType, FightProp } from '@/domain/types/enums'
+import type { EquipType } from '@/domain/types/enums'
+import { FightProp } from '@/domain/types/enums'
 import { validate } from '@/domain/validation/validate'
 /**
  * Represents a sub-stat property of an artifact

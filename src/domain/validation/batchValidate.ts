@@ -1,4 +1,4 @@
-import { z } from 'zod'
+import type { z } from 'zod'
 
 import { ValidationError } from '@/domain/errors/validation/ValidationError'
 import type { ValidationContext } from '@/domain/types/errorContext'

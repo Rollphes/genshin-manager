@@ -1,4 +1,5 @@
-import { Region, TimeZonesPerRegion } from '@/domain/types/Region'
+import type { Region } from '@/domain/types/Region'
+import { TimeZonesPerRegion } from '@/domain/types/Region'
 
 /**
  * Convert the date string to UTC

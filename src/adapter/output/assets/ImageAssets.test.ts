@@ -19,8 +19,8 @@ import {
 import { ImageNotFoundError } from '@/adapter/input/errors/ImageNotFoundError'
 import { ImageAssets } from '@/adapter/output/assets/ImageAssets'
 import { LogLevel } from '@/domain/types/LogLevel'
+import type { ClientOption } from '@/domain/types/types'
 import { Language } from '@/domain/types/types'
-import { ClientOption } from '@/domain/types/types'
 
 /**
  * ImageAssets test suite
