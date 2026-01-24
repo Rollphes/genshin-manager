@@ -3,7 +3,7 @@ import { NetworkUnavailableError } from '@/infrastructure/errors/NetworkUnavaila
 /**
  * Client configuration options
  */
-export interface ClientOptions {
+interface ClientOptions {
   /**
    * HTTP headers
    */

@@ -7,7 +7,7 @@ import { logger } from '@/infrastructure/logger/Logger'
 /**
  * Result of ExcelBin file load operation
  */
-export interface ExcelBinLoadFileResult<T> {
+interface ExcelBinLoadFileResult<T> {
   /**
    * Whether the load was successful
    */
@@ -25,7 +25,7 @@ export interface ExcelBinLoadFileResult<T> {
 /**
  * Options for loading ExcelBin file
  */
-export interface ExcelBinLoadFileOptions {
+interface ExcelBinLoadFileOptions {
   /**
    * Whether to auto-fix corrupted files by re-downloading
    */

@@ -10,7 +10,7 @@ import type { GitLabApiRoutes } from '@/infrastructure/types/api/gitlab/routes'
 /**
  * Options for VersionChecker
  */
-export interface VersionCheckerOptions {
+interface VersionCheckerOptions {
   /**
    * Path to commits.json file
    */

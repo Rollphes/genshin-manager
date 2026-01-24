@@ -3,7 +3,7 @@ import { EventEmitter } from 'events'
 /**
  * Type for values that can be awaited
  */
-export type Awaitable<Value> = PromiseLike<Value> | Value
+type Awaitable<Value> = PromiseLike<Value> | Value
 
 /**
  * Class for supporting asynchronous event listeners.

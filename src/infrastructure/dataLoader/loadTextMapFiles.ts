@@ -12,7 +12,7 @@ import { TextMapTransform } from '@/infrastructure/streams/TextMapTransform'
 /**
  * Result of TextMap file load operation
  */
-export interface TextMapLoadFileResult {
+interface TextMapLoadFileResult {
   /**
    * Whether the load was successful
    */
@@ -30,7 +30,7 @@ export interface TextMapLoadFileResult {
 /**
  * Options for loading TextMap file
  */
-export interface TextMapLoadFileOptions {
+interface TextMapLoadFileOptions {
   /**
    * Whether to auto-fix corrupted files by re-downloading
    */

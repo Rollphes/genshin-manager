@@ -35,7 +35,7 @@ function isPrimitiveKey(value: unknown): value is IndexKey {
 /**
  * Options for ExcelBinCache
  */
-export interface ExcelBinCacheOptions {
+interface ExcelBinCacheOptions {
   /**
    * Path to ExcelBinOutput folder
    */
@@ -49,7 +49,7 @@ export interface ExcelBinCacheOptions {
 /**
  * Result of ExcelBinCache load operation
  */
-export interface ExcelBinLoadResult {
+interface ExcelBinLoadResult {
   /**
    * Whether the load was successful
    */

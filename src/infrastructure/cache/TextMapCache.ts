@@ -4,7 +4,7 @@ import { loadTextMapFiles } from '@/infrastructure/dataLoader/loadTextMapFiles'
 /**
  * Options for TextMapCache
  */
-export interface TextMapCacheOptions {
+interface TextMapCacheOptions {
   /**
    * Path to TextMap folder
    */
@@ -18,7 +18,7 @@ export interface TextMapCacheOptions {
 /**
  * Result of TextMapCache load operation
  */
-export interface TextMapLoadResult {
+interface TextMapLoadResult {
   /**
    * Whether the load was successful
    */

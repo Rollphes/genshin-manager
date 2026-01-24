@@ -5,7 +5,7 @@ import type { GitLabApiRoutes } from '@/infrastructure/types/api/gitlab/routes'
 /**
  * Options for fetching TextMap file names from GitLab
  */
-export interface TextMapFileResolverOptions {
+interface TextMapFileResolverOptions {
   /**
    * REST client for GitLab API
    */

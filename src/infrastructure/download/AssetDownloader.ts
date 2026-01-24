@@ -18,7 +18,7 @@ import { GitLabApiRoutes } from '@/infrastructure/types/api/gitlab/routes'
 /**
  * Options for AssetDownloader
  */
-export interface AssetDownloaderOptions {
+interface AssetDownloaderOptions {
   /**
    * REST client for GitLab API
    */

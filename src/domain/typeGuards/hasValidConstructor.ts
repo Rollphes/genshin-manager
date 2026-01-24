@@ -1,7 +1,7 @@
 /**
  * Type definition for class prototype with constructor
  */
-export interface ClassPrototypeWithConstructor {
+interface ClassPrototypeWithConstructor {
   /** Constructor function with toString method */
   constructor: { toString: () => string }
 }
