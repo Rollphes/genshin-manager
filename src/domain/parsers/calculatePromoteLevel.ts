@@ -1,11 +1,15 @@
 import { characterLevelSchema } from '@/domain/schemas/commonSchemas'
 import { validate } from '@/domain/validation/validate'
-import type { AvatarPromoteExcelConfigDataType } from '@/infrastructure/types/generated/AvatarPromoteExcelConfigData'
 
-type PromoteData = Pick<
-  AvatarPromoteExcelConfigDataType,
-  'promoteLevel' | 'unlockMaxLevel'
->
+/**
+ * Promote data required for level calculation
+ */
+interface PromoteData {
+  /** Promote level (0-6) */
+  readonly promoteLevel: number
+  /** Max level unlocked at this promote level */
+  readonly unlockMaxLevel: number
+}
 
 /**
  * Calculate promote level from array of promote data
