@@ -1,12 +1,12 @@
 import path from 'path'
 
-import { extractTextHashes } from '@/adapter/input/cache/extractTextHashes'
 import { EncryptedKeyDecoder } from '@/adapter/input/crypto/EncryptedKeyDecoder'
 import { loadExcelBinFile } from '@/adapter/input/dataLoader/loadExcelBinFile'
 import { AssetNotFoundError } from '@/adapter/input/errors/AssetNotFoundError'
 import { logger } from '@/adapter/input/logger/Logger'
 import { ExcelBinOutputs } from '@/adapter/input/types/excelBinOutputs'
 import { MasterFileMap as GeneratedMasterFileMap } from '@/adapter/input/types/generated/MasterFileMap'
+import { extractTextHashes } from '@/domain/parsers/extractTextHashes'
 import { asJsonObject } from '@/domain/typeGuards/asJsonObject'
 import { asJsonObjectArray } from '@/domain/typeGuards/asJsonObjectArray'
 import type { JsonObject } from '@/domain/types/json'

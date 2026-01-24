@@ -2,11 +2,6 @@ import EventEmitter from 'events'
 import fs from 'fs'
 import * as path from 'path'
 
-import {
-  ExcelBinCache,
-  PrimitiveKeys,
-} from '@/adapter/input/cache/ExcelBinCache'
-import { TextMapCache } from '@/adapter/input/cache/TextMapCache'
 import { AssetDownloader } from '@/adapter/input/download/AssetDownloader'
 import { getTextMapFileNamesFromGitLab } from '@/adapter/input/download/getTextMapFileNamesFromGitLab'
 import { VersionChecker } from '@/adapter/input/download/VersionChecker'
@@ -17,6 +12,8 @@ import { logger } from '@/adapter/input/logger/Logger'
 import { GitLabApiRoutes } from '@/adapter/input/types/api/gitlab/routes'
 import { ExcelBinOutputs } from '@/adapter/input/types/excelBinOutputs'
 import { MasterFileMap } from '@/adapter/input/types/generated/MasterFileMap'
+import { ExcelBinCache, PrimitiveKeys } from '@/application/cache/ExcelBinCache'
+import { TextMapCache } from '@/application/cache/TextMapCache'
 import { RestClient } from '@/application/client/RestClient'
 import { ClientEventMap, ClientEvents } from '@/application/types/events/client'
 import { hasValidConstructor } from '@/domain/typeGuards/hasValidConstructor'
