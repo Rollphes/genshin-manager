@@ -1,5 +1,9 @@
 import { LRUCache } from 'lru-cache'
 
+import { CharacterDetail } from '@/adapter/output/enka/CharacterDetail'
+import { EnkaAccount } from '@/adapter/output/enka/EnkaAccount'
+import { GenshinAccount } from '@/adapter/output/enka/GenshinAccount'
+import { PlayerDetail } from '@/adapter/output/enka/PlayerDetail'
 import { RestClient } from '@/application/client/RestClient'
 import { GeneralError } from '@/application/errors/GeneralError'
 import {
@@ -12,10 +16,6 @@ import {
   EnkaApiRoutes,
   EnkaStatusApiRoutes,
 } from '@/infrastructure/types/api/enkaNetwork/routes'
-import { CharacterDetail } from '@/interface/enka/CharacterDetail'
-import { EnkaAccount } from '@/interface/enka/EnkaAccount'
-import { GenshinAccount } from '@/interface/enka/GenshinAccount'
-import { PlayerDetail } from '@/interface/enka/PlayerDetail'
 
 /**
  * Cached EnkaData type

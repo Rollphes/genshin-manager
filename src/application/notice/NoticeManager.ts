@@ -1,5 +1,6 @@
 import { merge } from 'ts-deepmerge'
 
+import { Notice } from '@/adapter/output/Notice'
 import { RestClient } from '@/application/client/RestClient'
 import { AnnContentNotFoundError } from '@/application/errors/AnnContentNotFoundError'
 import {
@@ -15,7 +16,6 @@ import type {
   HoyoverseApiRoutes,
   HoyoverseStaticApiRoutes,
 } from '@/infrastructure/types/api/sg-hk4e-api/routes'
-import { Notice } from '@/interface/Notice'
 
 /**
  * Class for fetching notices from mihoyo

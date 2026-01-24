@@ -1,4 +1,4 @@
-import type { Notice } from '@/interface/Notice'
+import type { Notice } from '@/adapter/output/Notice'
 
 /**
  * NoticeManager events

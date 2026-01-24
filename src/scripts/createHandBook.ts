@@ -1,19 +1,19 @@
 import fs from 'fs'
 import path from 'path'
 
+import { Artifact } from '@/adapter/output/Artifact.js'
+import { CharacterConstellation } from '@/adapter/output/character/CharacterConstellation.js'
+import { CharacterCostume } from '@/adapter/output/character/CharacterCostume.js'
+import { CharacterInfo } from '@/adapter/output/character/CharacterInfo.js'
+import { CharacterInherentSkill } from '@/adapter/output/character/CharacterInherentSkill.js'
+import { CharacterSkill } from '@/adapter/output/character/CharacterSkill.js'
+import { Material } from '@/adapter/output/Material.js'
+import { Monster } from '@/adapter/output/Monster.js'
+import { WeaponInfo } from '@/adapter/output/weapon/WeaponInfo.js'
 import { Client } from '@/application/client/Client'
 import { ClientEvents } from '@/application/types/events/client'
 import { Language } from '@/domain/types/types'
 import { handbookFolderPath } from '@/infrastructure/paths'
-import { Artifact } from '@/interface/Artifact.js'
-import { CharacterConstellation } from '@/interface/character/CharacterConstellation.js'
-import { CharacterCostume } from '@/interface/character/CharacterCostume.js'
-import { CharacterInfo } from '@/interface/character/CharacterInfo.js'
-import { CharacterInherentSkill } from '@/interface/character/CharacterInherentSkill.js'
-import { CharacterSkill } from '@/interface/character/CharacterSkill.js'
-import { Material } from '@/interface/Material.js'
-import { Monster } from '@/interface/Monster.js'
-import { WeaponInfo } from '@/interface/weapon/WeaponInfo.js'
 
 async function main(): Promise<void> {
   const client = new Client({

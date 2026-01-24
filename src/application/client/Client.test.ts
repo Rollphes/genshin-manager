@@ -4,13 +4,13 @@ import path from 'path'
 import { beforeAll, beforeEach, describe, expect, it, vi } from 'vitest'
 
 import { setupGitLabMock } from '@/__test__/__mocks__/api/gitlab'
+import { AudioAssets } from '@/adapter/output/assets/AudioAssets'
+import { ImageAssets } from '@/adapter/output/assets/ImageAssets'
 import { AssetCacheManager } from '@/application/client/AssetCacheManager'
 import { Client } from '@/application/client/Client'
 import { ClientEvents } from '@/application/types/events/client'
 import { LogLevel } from '@/domain/types/LogLevel'
 import { Language, TextMapBaseName } from '@/domain/types/types'
-import { AudioAssets } from '@/interface/assets/AudioAssets'
-import { ImageAssets } from '@/interface/assets/ImageAssets'
 
 // Increase max listeners to prevent memory leak warnings during tests
 EventEmitter.defaultMaxListeners = 50

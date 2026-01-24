@@ -2,12 +2,12 @@ import cron, { ScheduledTask } from 'node-cron'
 import path from 'path'
 import { merge } from 'ts-deepmerge'
 
+import { AudioAssets } from '@/adapter/output/assets/AudioAssets'
+import { ImageAssets } from '@/adapter/output/assets/ImageAssets'
 import { AssetCacheManager } from '@/application/client/AssetCacheManager'
 import { ClientEventMap, ClientEvents } from '@/application/types/events/client'
 import { LogLevel } from '@/domain/types/LogLevel'
 import { ClientOption, Language } from '@/domain/types/types'
-import { AudioAssets } from '@/interface/assets/AudioAssets'
-import { ImageAssets } from '@/interface/assets/ImageAssets'
 /**
  * Event listener entry for cleanup tracking
  */

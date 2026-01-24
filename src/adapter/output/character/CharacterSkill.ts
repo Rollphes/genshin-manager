@@ -1,0 +1,172 @@
+import { ImageAssets } from '@/adapter/output/assets/ImageAssets'
+import { CharacterInfo } from '@/adapter/output/character/CharacterInfo'
+import { Client } from '@/application/client/Client'
+import { skillLevelSchema } from '@/domain/schemas/commonSchemas'
+import { validate } from '@/domain/validation/validate'
+import { AssetNotFoundError } from '@/infrastructure/errors/AssetNotFoundError'
+
+/**
+ * Contains character skill information including attacks, burst, and elemental abilities
+ */
+export class CharacterSkill {
+  /**
+   * Skill ID
+   */
+  public readonly id: number
+  /**
+   * Skill name
+   */
+  public readonly name: string
+  /**
+   * Skill description
+   */
+  public readonly description: string
+  /**
+   * Skill icon
+   */
+  public readonly icon: ImageAssets
+  /**
+   * level + extraLevel
+   */
+  public readonly level: number
+  /**
+   * Levels increased by constellation
+   */
+  public readonly extraLevel: number
+  /**
+   * Skill param descriptions
+   * @returns (`${description}|${param}`)[]
+   */
+  public readonly paramDescriptions: string[] = []
+
+  static {
+    Client._addExcelBinOutputKeyFromClassPrototype(this.prototype)
+  }
+
+  /**
+   * Create a Skill
+   * @param skillId - skill ID
+   * @param level - skill level (1-15)
+   * @param extraLevel - levels increased by constellation (0 or 3)
+   */
+  constructor(skillId: number, level = 1, extraLevel = 0) {
+    this.id = skillId
+    const skillJson = Client._findBy(
+      'AvatarSkillExcelConfigData',
+      'id',
+      this.id,
+    )
+    if (!skillJson) {
+      throw new Error(
+        `AvatarSkillExcelConfigData not found for id ${String(this.id)}`,
+      )
+    }
+
+    const nameTextMapHash = skillJson.nameTextMapHash
+    const descTextMapHash = skillJson.descTextMapHash
+    this.name = Client._cachedTextMap.get(nameTextMapHash) ?? ''
+    this.description = Client._cachedTextMap.get(descTextMapHash) ?? ''
+    this.icon = new ImageAssets(skillJson.skillIcon)
+    this.extraLevel = extraLevel
+    this.level = level + this.extraLevel
+    void validate(skillLevelSchema, this.level, {
+      propertyKey: 'level + extraLevel',
+    })
+
+    if (skillJson.proudSkillGroupId === 0) return
+    const proudSkillGroupId = skillJson.proudSkillGroupId
+    const proudSkillJson = Client._filterBy(
+      'ProudSkillExcelConfigData',
+      'proudSkillGroupId',
+      proudSkillGroupId,
+    ).find((p) => p.level === this.level)
+    if (!proudSkillJson) {
+      throw new AssetNotFoundError(
+        `level ${String(this.level)}`,
+        'ProudSkillExcelConfigData',
+      )
+    }
+    const params = proudSkillJson.paramList
+    proudSkillJson.paramDescList.forEach((paramDescHash) => {
+      const paramDesc = (
+        Client._cachedTextMap.get(paramDescHash) ?? ''
+      ).replace(/|/g, '')
+      if (paramDesc === '') return
+      this.paramDescriptions.push(
+        paramDesc.replace(/\{param.*?\}/g, (paramTag) => {
+          const paramId = paramTag.match(/(?<=param).*?(?=:)/g)?.[0]
+          const replaceTag = paramTag.match(/(?<=:).*?(?=})/g)?.[0]
+          if (paramId === undefined || replaceTag === undefined) return ''
+          const fixedIndex = +(replaceTag.match(/(?<=F)./g)?.[0] ?? '0')
+          const isInt = replaceTag.includes('I')
+          const isPercent = replaceTag.includes('P')
+          const paramValue = params[+paramId - 1]
+
+          if (isInt) return String(Math.floor(paramValue))
+          if (isPercent) return `${(paramValue * 100).toFixed(fixedIndex)}%`
+          return paramValue.toFixed(fixedIndex)
+        }),
+      )
+    })
+  }
+
+  /**
+   * Get all skill IDs
+   * @returns all skill IDs
+   */
+  public static get allSkillIds(): number[] {
+    const characterIds = CharacterInfo.allCharacterIds
+    return characterIds.flatMap((characterId) => {
+      if ([10000005, 10000007].includes(characterId)) {
+        return CharacterInfo.getTravelerSkillDepotIds(characterId).flatMap(
+          (skillDepotId) => {
+            return new CharacterInfo(characterId, skillDepotId).skillOrder
+          },
+        )
+      }
+      return new CharacterInfo(characterId).skillOrder
+    })
+  }
+
+  /**
+   * Get skill order by character ID
+   * @param characterId - character ID
+   * @param skillDepotId - skill depot ID
+   * @returns skill order
+   * @throws Error - When the avatar or skill depot data is not found
+   */
+  public static getSkillOrderByCharacterId(
+    characterId: number,
+    skillDepotId?: number,
+  ): number[] {
+    const avatarJson = Client._findBy(
+      'AvatarExcelConfigData',
+      'id',
+      characterId,
+    )
+    if (!avatarJson) {
+      throw new Error(
+        `AvatarExcelConfigData not found for id ${String(characterId)}`,
+      )
+    }
+
+    const depotId =
+      skillDepotId && [10000005, 10000007].includes(characterId)
+        ? skillDepotId
+        : avatarJson.skillDepotId
+    const depotJson = Client._findBy(
+      'AvatarSkillDepotExcelConfigData',
+      'id',
+      depotId,
+    )
+    if (!depotJson) {
+      throw new Error(
+        `AvatarSkillDepotExcelConfigData not found for id ${String(depotId)}`,
+      )
+    }
+
+    return [501, 701].includes(depotId)
+      ? depotJson.skills.slice(0, 1)
+      : depotJson.skills.slice(0, 2).concat(depotJson.energySkill)
+  }
+}
