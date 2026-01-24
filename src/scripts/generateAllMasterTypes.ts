@@ -9,9 +9,10 @@ import {
 import { Client } from '@/application/client/Client'
 import { FormatValidationError } from '@/domain/errors/validation/FormatValidationError'
 import type { JsonObject } from '@/domain/types/json'
+import { LogLevel } from '@/domain/types/LogLevel'
 import { EncryptedKeyDecoder } from '@/infrastructure/crypto/EncryptedKeyDecoder'
 import { ConfigMissingError } from '@/infrastructure/errors/ConfigMissingError'
-import { logger, LogLevel } from '@/infrastructure/logger/Logger'
+import { logger } from '@/infrastructure/logger/Logger'
 import {
   excelBinOutputFolderPathForDevelop,
   generatedTypesFolderPath,

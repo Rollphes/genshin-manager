@@ -1,18 +1,9 @@
-/**
- * Log level enumeration for the unified logging system
- */
-export enum LogLevel {
-  NONE = 0,
-  ERROR = 1,
-  WARN = 2,
-  INFO = 3,
-  DEBUG = 4,
-}
+import { LogLevel } from '@/domain/types/LogLevel'
 
 /**
  * Log level configuration options
  */
-export interface LoggerOptions {
+interface LoggerOptions {
   /**
    * Current log level threshold
    * @default LogLevel.NONE

@@ -25,6 +25,7 @@ import {
   QualityType,
   WeaponType,
 } from '@/domain/types/enums'
+import { LogLevel } from '@/domain/types/LogLevel'
 import {
   AscensionMaterial,
   CharacterUpgradePlan,
@@ -37,7 +38,6 @@ import {
   SkillLevelPlan,
   WeaponSummary,
 } from '@/domain/types/types'
-import { LogLevel } from '@/infrastructure/logger/Logger'
 import { Artifact, ArtifactAffixAppendProp } from '@/interface/Artifact'
 import { AudioAssets } from '@/interface/assets/AudioAssets'
 import { ImageAssets } from '@/interface/assets/ImageAssets'

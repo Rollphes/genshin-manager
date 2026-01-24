@@ -16,10 +16,10 @@ import {
   invalidPngSignature,
   validPngData,
 } from '@/__test__/__mocks__/assets/mockBinaryData'
+import { LogLevel } from '@/domain/types/LogLevel'
 import { Language } from '@/domain/types/types'
 import { ClientOption } from '@/domain/types/types'
 import { ImageNotFoundError } from '@/infrastructure/errors/ImageNotFoundError'
-import { LogLevel } from '@/infrastructure/logger/Logger'
 import { ImageAssets } from '@/interface/assets/ImageAssets'
 
 /**

@@ -5,8 +5,9 @@ import { FormatValidationError } from '@/domain/errors/validation/FormatValidati
 import { isJsonArray } from '@/domain/typeGuards/isJsonArray'
 import { isJsonObject } from '@/domain/typeGuards/isJsonObject'
 import type { JsonObject, JsonValue } from '@/domain/types/json'
+import { LogLevel } from '@/domain/types/LogLevel'
 import { ConfigMissingError } from '@/infrastructure/errors/ConfigMissingError'
-import { logger, LogLevel } from '@/infrastructure/logger/Logger'
+import { logger } from '@/infrastructure/logger/Logger'
 import { masterFileFolderPath } from '@/infrastructure/paths'
 import type { EncryptedKeyMasterFile } from '@/infrastructure/types/crypto'
 

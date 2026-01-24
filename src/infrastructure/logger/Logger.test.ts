@@ -1,6 +1,7 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 
-import { Logger, logger, LogLevel } from '@/infrastructure/logger/Logger'
+import { LogLevel } from '@/domain/types/LogLevel'
+import { Logger, logger } from '@/infrastructure/logger/Logger'
 
 describe('Logger', () => {
   const consoleSpy = vi.spyOn(console, 'log').mockImplementation(vi.fn())

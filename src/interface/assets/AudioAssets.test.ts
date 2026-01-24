@@ -16,10 +16,10 @@ import {
   invalidOggSignature,
   validOggData,
 } from '@/__test__/__mocks__/assets/mockBinaryData'
+import { LogLevel } from '@/domain/types/LogLevel'
 import { Language } from '@/domain/types/types'
 import { ClientOption, CVType } from '@/domain/types/types'
 import { AudioNotFoundError } from '@/infrastructure/errors/AudioNotFoundError'
-import { LogLevel } from '@/infrastructure/logger/Logger'
 import { AudioAssets } from '@/interface/assets/AudioAssets'
 
 /**

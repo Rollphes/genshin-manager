@@ -1,5 +1,5 @@
 import { WeaponType } from '@/domain/types/enums'
-import { LogLevel } from '@/infrastructure/logger/Logger'
+import { LogLevel } from '@/domain/types/LogLevel'
 
 /**
  * Supported language codes (ISO 639-1 with region)
