@@ -2,10 +2,10 @@ import fs from 'fs'
 
 import { FileLockManager } from '@/adapter/input/download/FileLockManager'
 import { AssetCorruptedError } from '@/adapter/input/errors/AssetCorruptedError'
-import { logger } from '@/adapter/input/logger/Logger'
 import type { CommitsResponse } from '@/adapter/input/types/api/gitlab/responses'
 import type { GitLabApiRoutes } from '@/adapter/input/types/api/gitlab/routes'
 import type { RestClient } from '@/application/client/RestClient'
+import { logger } from '@/domain/logger/Logger'
 
 /**
  * Options for VersionChecker

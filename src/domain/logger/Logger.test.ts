@@ -1,6 +1,6 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 
-import { Logger, logger } from '@/adapter/input/logger/Logger'
+import { Logger, logger } from '@/domain/logger/Logger'
 import { LogLevel } from '@/domain/types/LogLevel'
 
 describe('Logger', () => {

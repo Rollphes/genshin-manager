@@ -3,10 +3,10 @@ import path from 'path'
 import { pipeline } from 'stream/promises'
 
 import { AssetNotFoundError } from '@/adapter/input/errors/AssetNotFoundError'
-import { logger } from '@/adapter/input/logger/Logger'
 import { TextMapEmptyWritable } from '@/adapter/input/streams/TextMapEmptyWritable'
 import { TextMapTransform } from '@/adapter/input/streams/TextMapTransform'
 import { TextMapFormatError } from '@/application/errors/TextMapFormatError'
+import { logger } from '@/domain/logger/Logger'
 import { Language, TextMapBaseName } from '@/domain/types/types'
 
 /**

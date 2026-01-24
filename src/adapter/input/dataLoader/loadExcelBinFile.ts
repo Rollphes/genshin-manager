@@ -2,7 +2,7 @@ import fs from 'fs'
 
 import { AssetCorruptedError } from '@/adapter/input/errors/AssetCorruptedError'
 import { AssetNotFoundError } from '@/adapter/input/errors/AssetNotFoundError'
-import { logger } from '@/adapter/input/logger/Logger'
+import { logger } from '@/domain/logger/Logger'
 
 /**
  * Result of ExcelBin file load operation
