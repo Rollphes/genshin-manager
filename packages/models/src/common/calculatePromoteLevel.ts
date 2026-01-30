@@ -1,5 +1,4 @@
-import { characterLevelSchema } from '@/schemas/commonSchemas'
-import { validate } from '@/schemas/validate'
+import { characterLevelSchema, validate } from '@genshin-manager/core'
 
 /**
  * Promote data required for level calculation

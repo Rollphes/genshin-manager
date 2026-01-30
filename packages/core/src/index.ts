@@ -50,9 +50,6 @@ export { createRangeSchema } from '@/schemas/createRangeSchema'
 export { createUpdateIntervalSchema } from '@/schemas/createUpdateIntervalSchema'
 export { validate } from '@/schemas/validate'
 
-// parsers
-export { calculatePromoteLevel } from '@/parsers/calculatePromoteLevel'
-
 // types
 export { LogLevel } from '@/logger/Logger'
 export { Language, TextMapBaseName } from '@/types'

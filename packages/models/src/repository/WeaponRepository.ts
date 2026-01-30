@@ -1,13 +1,11 @@
-import {
-  calculatePromoteLevel,
-  ExcelBinPropertyNotFoundError,
-} from '@genshin-manager/core'
+import { ExcelBinPropertyNotFoundError } from '@genshin-manager/core'
 import type { ExcelBinCache, TextMapIndex } from '@genshin-manager/data'
 
 import { ImageAssets } from '@/assets/ImageAssets'
 import type { CostItem } from '@/character/CharacterAscension'
+import { calculatePromoteLevel } from '@/common/calculatePromoteLevel'
 import { StatProperty } from '@/common/StatProperty'
-import { FightProp } from '@/types/enums'
+import { FightProp, WeaponType } from '@/types/enums'
 import type { RepositoryDependencies } from '@/types/RepositoryDependencies'
 import { Weapon } from '@/weapon/Weapon'
 import { WeaponAscension } from '@/weapon/WeaponAscension'
@@ -178,7 +176,7 @@ export class WeaponRepository {
       id: weaponId,
       name,
       description,
-      type: weaponResult.weaponType.value as never,
+      type: weaponResult.weaponType.toEnum(WeaponType),
       skillName: refinement.skillName,
       skillDescription: refinement.skillDescription,
       level,
@@ -285,7 +283,7 @@ export class WeaponRepository {
     if (!weaponResult)
       throw new ExcelBinPropertyNotFoundError('WeaponExcelConfigData', weaponId)
 
-    const skillAffixArr = weaponResult.skillAffix.value as number[]
+    const skillAffixArr = weaponResult.skillAffix.map((lc) => lc.value)
     const skillAffix = skillAffixArr[0]
 
     if (skillAffix === 0) {

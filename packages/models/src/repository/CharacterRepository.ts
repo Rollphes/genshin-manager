@@ -1,7 +1,4 @@
-import {
-  calculatePromoteLevel,
-  ExcelBinPropertyNotFoundError,
-} from '@genshin-manager/core'
+import { ExcelBinPropertyNotFoundError } from '@genshin-manager/core'
 import type { ExcelBinCache, TextMapIndex } from '@genshin-manager/data'
 
 import { ImageAssets } from '@/assets/ImageAssets'
@@ -15,6 +12,7 @@ import { CharacterInfo } from '@/character/CharacterInfo'
 import { CharacterInherentSkill } from '@/character/CharacterInherentSkill'
 import { CharacterProfile } from '@/character/CharacterProfile'
 import { CharacterStory } from '@/character/CharacterStory'
+import { calculatePromoteLevel } from '@/common/calculatePromoteLevel'
 import { StatProperty } from '@/common/StatProperty'
 import { BodyType, CostElemType, FightProp, WeaponType } from '@/types/enums'
 import type { RepositoryDependencies } from '@/types/RepositoryDependencies'

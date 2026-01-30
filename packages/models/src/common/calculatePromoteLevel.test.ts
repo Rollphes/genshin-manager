@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest'
 
-import { calculatePromoteLevel } from '@/parsers/calculatePromoteLevel'
+import { calculatePromoteLevel } from '@/common/calculatePromoteLevel'
 
 describe('calculatePromoteLevel', () => {
   // Standard promote configuration (6 ascension levels)

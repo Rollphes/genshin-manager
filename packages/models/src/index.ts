@@ -59,6 +59,7 @@ export type { ProfilePictureData } from '@/profile/ProfilePicture'
 export { ProfilePicture } from '@/profile/ProfilePicture'
 
 // common
+export { calculatePromoteLevel } from '@/common/calculatePromoteLevel'
 export type { DailyFarmingData, DomainData } from '@/common/DailyFarming'
 export { DailyFarming } from '@/common/DailyFarming'
 export type { MaterialData } from '@/common/Material'
