@@ -5,9 +5,9 @@ import { characterLevelSchema, validate } from '@genshin-manager/core'
  */
 interface PromoteData {
   /** Promote level (0-6) */
-  readonly promoteLevel: number
+  promoteLevel: number
   /** Max level unlocked at this promote level */
-  readonly unlockMaxLevel: number
+  unlockMaxLevel: number
 }
 
 /**

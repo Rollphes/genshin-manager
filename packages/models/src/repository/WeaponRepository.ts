@@ -133,7 +133,7 @@ export class WeaponRepository {
       promotesJson.map((r) => ({
         promoteLevel: r.promoteLevel.value,
         unlockMaxLevel: r.unlockMaxLevel.value,
-      })) as never,
+      })),
       level,
       isAscended,
     )
