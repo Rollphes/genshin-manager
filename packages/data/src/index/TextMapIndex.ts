@@ -1,15 +1,13 @@
 import {
   Language,
   logger,
-  TextMapBaseName,
   TextMapHashNotFoundError,
 } from '@genshin-manager/core'
 import type { TextMapProvider } from '@genshin-manager/query'
-import fs from 'fs'
 import { LRUCache } from 'lru-cache'
-import path from 'path'
 
-// pipeline removed — using for-await instead
+import type { FindTextMapFilesResult } from '@/loader/findTextMapFiles'
+import { findTextMapFiles } from '@/loader/findTextMapFiles'
 import { ConcatenatedFileReader } from '@/streams/ConcatenatedFileReader'
 
 /**
@@ -37,14 +35,21 @@ interface IndexEntry {
 /**
  * Options for TextMapIndex
  */
-interface TextMapIndexOptions {
+export interface TextMapIndexOptions {
   /** Path to TextMap folder */
   readonly folderPath: string
-  /** Whether to auto-fix corrupted files */
+  /** Whether to auto-fix corrupted files (return redownload flag) */
   readonly autoFix: boolean
-  /** Maximum number of text entries in LRU cache (default: 10000) */
+  /** Maximum number of text entries in LRU cache (default: 100000) */
   readonly textCacheSize?: number
 }
+
+/**
+ * Result type for buildIndex
+ */
+export type BuildIndexResult =
+  | { readonly success: true }
+  | { readonly redownloadLanguage: Language }
 
 /**
  * Hash pattern for extracting hash from a TextMap JSON line
@@ -55,9 +60,11 @@ const hashPattern = /^"(\d+)"\s*:/
 /**
  * TypedArray-based TextMap index with binary search and LRU text cache
  *
- * Instead of loading all text into memory, builds Uint32Array indexes
- * (hashes + byte offsets) per language. Text is retrieved via fd seek
- * on cache miss. Supports multiple languages simultaneously.
+ * Responsibilities:
+ * - Build TypedArray index (hashes + offsets) from TextMap files
+ * - Binary search for O(log N) hash lookup
+ * - LRU cache for frequently accessed text
+ * - On-demand file reading via ConcatenatedFileReader
  *
  * Implements TextMapProvider for use with LocatedValue.toText()
  */
@@ -97,10 +104,11 @@ export class TextMapIndex implements TextMapProvider {
   }
 
   /**
-   * Build index for a language by streaming through TextMap files
+   * Build index for a language by scanning TextMap files
    * @param language - Language to index
+   * @returns Build result (success or redownload required)
    */
-  public async buildIndex(language: Language): Promise<void> {
+  public async buildIndex(language: Language): Promise<BuildIndexResult> {
     // Close existing index for this language
     const existing = this.languageIndexes.get(language)
     if (existing) {
@@ -108,13 +116,22 @@ export class TextMapIndex implements TextMapProvider {
       this.languageIndexes.delete(language)
     }
 
-    const filePaths = this.findTextMapFiles(language)
+    // Find TextMap files using loader
+    const findResult: FindTextMapFilesResult = findTextMapFiles(
+      this.folderPath,
+      { language, autoFix: this.autoFix },
+    )
+
+    if (!findResult.success)
+      return { redownloadLanguage: findResult.redownloadLanguage }
+
+    const filePaths = findResult.filePaths
     if (filePaths.length === 0) {
       logger.warn(`TextMapIndex: No files found for ${language}`)
-      return
+      return { success: true }
     }
 
-    const reader = new ConcatenatedFileReader(filePaths)
+    const reader = new ConcatenatedFileReader([...filePaths])
     const entries = this.scanForEntries(reader)
 
     // Sort by hash for binary search
@@ -130,12 +147,13 @@ export class TextMapIndex implements TextMapProvider {
     }
 
     this.languageIndexes.set(language, { hashes, offsets, reader, language })
-
     this.defaultLanguage = language
 
     logger.debug(
       `TextMapIndex: Built index for ${language} (${String(entries.length)} entries)`,
     )
+
+    return { success: true }
   }
 
   /**
@@ -148,6 +166,7 @@ export class TextMapIndex implements TextMapProvider {
    */
   public getTextSync(hash: number, language?: Language): string {
     const lang = language ?? this.defaultLanguage
+
     if (!lang) {
       throw new TextMapHashNotFoundError(
         Language.En,
@@ -165,12 +184,12 @@ export class TextMapIndex implements TextMapProvider {
   }
 
   /**
-   * Get text by hash, returning undefined if not found
+   * Fetch text by hash, returning undefined if not found
    * @param hash - TextMap hash
    * @param language - Language (defaults to current language)
    * @returns Text string or undefined
    */
-  public async getText(
+  public async fetchText(
     hash: number,
     language?: Language,
   ): Promise<string | undefined> {
@@ -199,17 +218,17 @@ export class TextMapIndex implements TextMapProvider {
   }
 
   /**
-   * Get text by hash, throwing if not found
+   * Fetch text by hash, throwing if not found
    * @param hash - TextMap hash
    * @param language - Language (defaults to current language)
    * @returns Text string
    * @throws {@link TextMapHashNotFoundError} - If hash not found
    */
-  public async getTextRequired(
+  public async fetchTextRequired(
     hash: number,
     language?: Language,
   ): Promise<string> {
-    const text = await this.getText(hash, language)
+    const text = await this.fetchText(hash, language)
     if (text === undefined) {
       throw new TextMapHashNotFoundError(
         language ?? this.defaultLanguage ?? Language.En,
@@ -297,24 +316,7 @@ export class TextMapIndex implements TextMapProvider {
   }
 
   /**
-   * Find TextMap files for a language
-   * @param language - Language to find files for
-   */
-  private findTextMapFiles(language: Language): string[] {
-    const baseName = TextMapBaseName[language]
-
-    if (!fs.existsSync(this.folderPath)) return []
-
-    const entries = fs.readdirSync(this.folderPath)
-    const pattern = new RegExp(`^${baseName}(_\\d+)?\\.json$`)
-
-    const matchingFiles = entries.filter((name) => pattern.test(name)).sort() // Ensure consistent ordering
-
-    return matchingFiles.map((name) => path.join(this.folderPath, name))
-  }
-
-  /**
-   * Stream through files to build hash → offset entries
+   * Scan files to build hash → offset entries
    * @param reader - File reader to scan
    */
   private scanForEntries(reader: ConcatenatedFileReader): IndexEntry[] {

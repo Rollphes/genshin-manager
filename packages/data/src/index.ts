@@ -1,13 +1,23 @@
 // cache
 export { ExcelBinCache } from '@/cache/ExcelBinCache'
-export { TextMapIndex } from '@/cache/TextMapIndex'
 
 // decoder
 export { EncryptedKeyDecoder } from '@/decoder/EncryptedKeyDecoder'
 
+// index
+export type {
+  BuildIndexResult,
+  TextMapIndexOptions,
+} from '@/index/TextMapIndex'
+export { TextMapIndex } from '@/index/TextMapIndex'
+
 // loader
+export type {
+  FindTextMapFilesOptions,
+  FindTextMapFilesResult,
+} from '@/loader/findTextMapFiles'
+export { findTextMapFiles } from '@/loader/findTextMapFiles'
 export { loadExcelBinFile } from '@/loader/loadExcelBinFile'
-export { loadTextMapFiles } from '@/loader/loadTextMapFiles'
 
 // query
 export { ExcelBinJoinQuery } from '@/query/ExcelBinJoinQuery'
@@ -38,8 +48,6 @@ export type {
 export { ConcatenatedFileReader } from '@/streams/ConcatenatedFileReader'
 export { ReadableStreamWrapper } from '@/streams/ReadableStreamWrapper'
 export { splitBuffer } from '@/streams/splitBuffer'
-export type { TextMapEntry } from '@/streams/TextMapEmptyWritable'
-export { TextMapEmptyWritable } from '@/streams/TextMapEmptyWritable'
 export { TextMapTransform } from '@/streams/TextMapTransform'
 
 // types

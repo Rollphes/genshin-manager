@@ -4,13 +4,13 @@ import os from 'os'
 import path from 'path'
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 
-import { TextMapIndex } from '@/cache/TextMapIndex'
+import { TextMapIndex } from '@/index/TextMapIndex'
 
 vi.mock('@genshin-manager/core', async () => {
   const actual = await vi.importActual('@genshin-manager/core')
   return {
     ...(actual as Record<string, unknown>),
-    logger: { debug: vi.fn(), warn: vi.fn() },
+    logger: { debug: vi.fn(), warn: vi.fn(), info: vi.fn() },
   }
 })
 
@@ -55,19 +55,30 @@ describe('TextMapIndex', () => {
         autoFix: false,
       })
 
-      await index.buildIndex(Language.En)
+      const result = await index.buildIndex(Language.En)
+      expect(result).toEqual({ success: true })
       expect(index.languageCount).toBe(1)
       expect(index.currentLanguage).toBe(Language.En)
     })
 
-    it('should handle missing files gracefully', async () => {
+    it('should return redownloadLanguage when autoFix is true and files not found', async () => {
+      const index = new TextMapIndex({
+        folderPath: textMapDir,
+        autoFix: true,
+      })
+
+      const result = await index.buildIndex(Language.En)
+      expect(result).toEqual({ redownloadLanguage: Language.En })
+      expect(index.languageCount).toBe(0)
+    })
+
+    it('should throw when autoFix is false and files not found', async () => {
       const index = new TextMapIndex({
         folderPath: textMapDir,
         autoFix: false,
       })
 
-      await index.buildIndex(Language.En)
-      expect(index.languageCount).toBe(0)
+      await expect(index.buildIndex(Language.En)).rejects.toThrow()
     })
 
     it('should build indexes for multiple languages', async () => {
@@ -99,7 +110,7 @@ describe('TextMapIndex', () => {
     })
   })
 
-  describe('getText', () => {
+  describe('fetchText', () => {
     it('should retrieve text by hash', async () => {
       writeTextMapFile('TextMapEN.json', {
         '100': 'Hello',
@@ -112,7 +123,7 @@ describe('TextMapIndex', () => {
       })
 
       await index.buildIndex(Language.En)
-      const text = await index.getText(100)
+      const text = await index.fetchText(100)
       expect(text).toBe('Hello')
     })
 
@@ -125,7 +136,7 @@ describe('TextMapIndex', () => {
       })
 
       await index.buildIndex(Language.En)
-      const text = await index.getText(999)
+      const text = await index.fetchText(999)
       expect(text).toBeUndefined()
       await index.close()
     })
@@ -140,14 +151,14 @@ describe('TextMapIndex', () => {
 
       await index.buildIndex(Language.En)
 
-      const text1 = await index.getText(100)
-      const text2 = await index.getText(100) // Should hit cache
+      const text1 = await index.fetchText(100)
+      const text2 = await index.fetchText(100) // Should hit cache
       expect(text1).toBe('Hello')
       expect(text2).toBe('Hello')
       await index.close()
     })
 
-    it('should get text in specific language', async () => {
+    it('should fetch text in specific language', async () => {
       writeTextMapFile('TextMapEN.json', { '100': 'Hello' })
       writeTextMapFile('TextMapJP.json', { '100': 'Konnichiwa' })
 
@@ -159,8 +170,8 @@ describe('TextMapIndex', () => {
       await index.buildIndex(Language.En)
       await index.buildIndex(Language.Ja)
 
-      const en = await index.getText(100, Language.En)
-      const ja = await index.getText(100, Language.Ja)
+      const en = await index.fetchText(100, Language.En)
+      const ja = await index.fetchText(100, Language.Ja)
       expect(en).toBe('Hello')
       expect(ja).toBe('Konnichiwa')
       await index.close()
@@ -169,15 +180,15 @@ describe('TextMapIndex', () => {
     it('should return undefined when no language loaded', async () => {
       const index = new TextMapIndex({
         folderPath: textMapDir,
-        autoFix: false,
+        autoFix: true,
       })
 
-      const text = await index.getText(100)
+      const text = await index.fetchText(100)
       expect(text).toBeUndefined()
     })
   })
 
-  describe('getTextRequired', () => {
+  describe('fetchTextRequired', () => {
     it('should return text when found', async () => {
       writeTextMapFile('TextMapEN.json', { '100': 'Hello' })
 
@@ -187,7 +198,7 @@ describe('TextMapIndex', () => {
       })
 
       await index.buildIndex(Language.En)
-      const text = await index.getTextRequired(100)
+      const text = await index.fetchTextRequired(100)
       expect(text).toBe('Hello')
     })
 
@@ -200,7 +211,7 @@ describe('TextMapIndex', () => {
       })
 
       await index.buildIndex(Language.En)
-      await expect(index.getTextRequired(999)).rejects.toThrow()
+      await expect(index.fetchTextRequired(999)).rejects.toThrow()
     })
   })
 
@@ -232,7 +243,7 @@ describe('TextMapIndex', () => {
     it('should return false when no language loaded', () => {
       const index = new TextMapIndex({
         folderPath: textMapDir,
-        autoFix: false,
+        autoFix: true,
       })
 
       expect(index.has(100)).toBe(false)
@@ -256,9 +267,9 @@ describe('TextMapIndex', () => {
       await index.batchLoad(new Set([100, 200, 300]))
 
       // All should be in LRU cache now
-      const t1 = await index.getText(100)
-      const t2 = await index.getText(200)
-      const t3 = await index.getText(300)
+      const t1 = await index.fetchText(100)
+      const t2 = await index.fetchText(200)
+      const t3 = await index.fetchText(300)
       expect(t1).toBe('Hello')
       expect(t2).toBe('World')
       expect(t3).toBe('Test')
@@ -275,11 +286,11 @@ describe('TextMapIndex', () => {
       await index.buildIndex(Language.En)
 
       // Pre-load into cache
-      await index.getText(100)
+      await index.fetchText(100)
 
       // Should not re-read from file
       await index.batchLoad(new Set([100]))
-      expect(await index.getText(100)).toBe('Hello')
+      expect(await index.fetchText(100)).toBe('Hello')
     })
 
     it('should handle empty hash set', async () => {
@@ -350,14 +361,14 @@ describe('TextMapIndex', () => {
       })
 
       await index.buildIndex(Language.En)
-      await index.getText(100) // Cache it
+      await index.fetchText(100) // Cache it
       index.clearTextCache()
 
       // Index should still work
       expect(index.has(100)).toBe(true)
 
       // But text needs re-reading
-      const text = await index.getText(100)
+      const text = await index.fetchText(100)
       expect(text).toBe('Hello')
 
       await index.close()
@@ -376,7 +387,7 @@ describe('TextMapIndex', () => {
       })
 
       await index.buildIndex(Language.En)
-      const text = await index.getText(100)
+      const text = await index.fetchText(100)
       expect(text).toBe('Hello\nWorld')
 
       await index.close()
