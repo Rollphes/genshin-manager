@@ -167,7 +167,11 @@ export default [
       "jsdoc/require-returns-check": 'error',
       "jsdoc/no-undefined-types": 'error',
       'jsdoc/check-types': 'error',
-      'jsdoc/require-hyphen-before-param-description': 'error',
+      'jsdoc/require-hyphen-before-param-description': [
+        'error',
+        'always',
+        { tags: { throws: 'always', returns: 'never' } },
+      ],
       'jsdoc/require-throws': 'error',
       'jsdoc/require-description': [
         'error',
@@ -207,16 +211,14 @@ export default [
       'no-barrel-files/no-barrel-files': 'error',
     },
   },
-  // Allow barrel file for public API entry point
   {
-    files: ['src/index.ts'],
+    files: ['**/index.ts'],
     rules: {
       'no-barrel-files/no-barrel-files': 'off',
     },
   },
-  // Temporarily allow barrel files in test directory (to be addressed in Plan 03)
   {
-    files: ['test/**/*', 'src/test/**/*'],
+    files: ['**/*.test.ts', '**/test/**/*'],
     rules: {
       'no-barrel-files/no-barrel-files': 'off',
     },
@@ -228,7 +230,7 @@ export default [
       curly: ['error', 'multi-or-nest', 'consistent'],
       'dot-notation': 'error',
       eqeqeq: ['error', 'smart'],
-      'no-new': 'error',
+      'new': 'error',
       'no-new-wrappers': 'error',
       'no-param-reassign': 'error',
       'no-throw-literal': 'error',
@@ -251,12 +253,13 @@ export default [
       '.claude/',
       'cache/',
       'coverage/',
-      'src/adapter/input/types/generated/',
-      'dist/',
+      '**/types/generated/',
+      '**/dist/',
       'docs-site/',
-      'examples/',
       'node_modules/',
       '*.config.js',
+      'debug.ts',
+      'sample.ts',
     ],
   },
 ]

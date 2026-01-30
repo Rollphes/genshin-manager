@@ -151,8 +151,11 @@ vite.config.ts.timestamp-*
 /cache
 /test-cache
 
-## test
-src/test
+## debug
+scripts/debug.ts
+
+# turbo
+.turbo/
 
 # claude
 .claude/
