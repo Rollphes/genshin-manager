@@ -1,5 +1,3 @@
-import { AssetFormatError } from '@genshin-manager/core'
-import { AssetNotFoundError } from '@genshin-manager/core'
 import type {
   DecodingOptions,
   DecodingResult,
@@ -15,6 +13,8 @@ import {
 } from '@genshin-manager/crypto'
 import fs from 'fs'
 
+import { AssetFormatError } from '@/errors/AssetFormatError'
+import { AssetNotFoundError } from '@/errors/AssetNotFoundError'
 import { Location } from '@/paths/Location'
 import type { ExcelBinOutputs } from '@/types/excelBinOutputs'
 import type { DecodedType as GeneratedDecodedType } from '@/types/generated/MasterFileMap'
@@ -38,10 +38,11 @@ export class EncryptedKeyDecoder<T extends keyof typeof ExcelBinOutputs> {
    */
   constructor(fileName: T) {
     const masterFileName = `${fileName}.master.json`
+    const masterLocation = Location.masterFile(masterFileName)
     try {
-      const masterFilePath = Location.masterFile(masterFileName).resolve()
+      const masterFilePath = masterLocation.resolve()
       if (!fs.existsSync(masterFilePath))
-        throw new AssetNotFoundError(masterFilePath)
+        throw new AssetNotFoundError(masterLocation)
 
       const masterContent = fs.readFileSync(masterFilePath, 'utf-8')
       this.masterFile = JSON.parse(masterContent) as EncryptedKeyMasterFile
@@ -50,17 +51,14 @@ export class EncryptedKeyDecoder<T extends keyof typeof ExcelBinOutputs> {
       if (error instanceof AssetNotFoundError) throw error
       if (error instanceof SyntaxError) {
         throw new AssetFormatError(
-          Location.masterFile(masterFileName).resolve(),
+          masterLocation,
           `Failed to parse JSON: ${error.message}`,
           { cause: error },
         )
       }
-      if (error instanceof Error && 'code' in error) {
-        throw new AssetNotFoundError(
-          Location.masterFile(masterFileName).resolve(),
-          { cause: error },
-        )
-      }
+      if (error instanceof Error && 'code' in error)
+        throw new AssetNotFoundError(masterLocation, { cause: error })
+
       throw error
     }
   }
@@ -78,7 +76,7 @@ export class EncryptedKeyDecoder<T extends keyof typeof ExcelBinOutputs> {
   ): GeneratedDecodedType<T> {
     if (encryptedData.length === 0) {
       throw new AssetFormatError(
-        Location.masterFile(this.masterFile.metadata.sourceFile).resolve(),
+        Location.masterFile(this.masterFile.metadata.sourceFile),
         'Encrypted data array is empty',
       )
     }
@@ -102,7 +100,7 @@ export class EncryptedKeyDecoder<T extends keyof typeof ExcelBinOutputs> {
     const primaryPattern = this.compiledPatterns.get('primary')
     if (!primaryPattern) {
       throw new AssetFormatError(
-        Location.masterFile(this.masterFile.metadata.sourceFile).resolve(),
+        Location.masterFile(this.masterFile.metadata.sourceFile),
         'Primary pattern not found in compiled patterns',
       )
     }
@@ -136,7 +134,7 @@ export class EncryptedKeyDecoder<T extends keyof typeof ExcelBinOutputs> {
     if (!bestResult.success && !defaultOptions.enablePartialMatch) {
       const errorMessage = this.generateDetailedError(bestResult, encryptedData)
       throw new AssetFormatError(
-        Location.masterFile(this.masterFile.metadata.sourceFile).resolve(),
+        Location.masterFile(this.masterFile.metadata.sourceFile),
         errorMessage,
       )
     }

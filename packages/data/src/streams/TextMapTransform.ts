@@ -1,7 +1,8 @@
 import type { Language } from '@genshin-manager/core'
-import { TextMapFormatError } from '@genshin-manager/core'
 import { Transform } from 'stream'
 
+import { TextMapFormatError } from '@/errors/TextMapFormatError'
+import { Location } from '@/paths/Location'
 import { splitBuffer } from '@/streams/splitBuffer'
 
 /**
@@ -10,7 +11,7 @@ import { splitBuffer } from '@/streams/splitBuffer'
 export class TextMapTransform extends Transform {
   private readonly language: Language
   private readonly filterSet: ReadonlySet<number>
-  private readonly filePath: string | undefined
+  private readonly location: Location
   private buffer: Buffer = Buffer.from('')
   private firstFlag = true
 
@@ -18,17 +19,17 @@ export class TextMapTransform extends Transform {
    * Constructor for TextMapTransform
    * @param language - Target language for error reporting
    * @param filterSet - Set of text hashes to include in output
-   * @param filePath - Optional file path for error reporting
+   * @param fileName - Optional file name for error reporting
    */
   constructor(
     language: Language,
     filterSet: ReadonlySet<number>,
-    filePath?: string,
+    fileName?: string,
   ) {
     super()
     this.language = language
     this.filterSet = filterSet
-    this.filePath = filePath
+    this.location = Location.textMap(language, fileName)
   }
 
   /**
@@ -94,7 +95,7 @@ export class TextMapTransform extends Transform {
       callback(
         new TextMapFormatError(
           this.language,
-          this.filePath ?? 'TextMapTransform._final',
+          this.location,
           `JSON does not end with closing brace: "${this.buffer.toString().slice(-50)}"`,
         ),
       )

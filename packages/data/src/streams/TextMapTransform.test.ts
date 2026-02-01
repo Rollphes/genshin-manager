@@ -1,8 +1,8 @@
-import { TextMapFormatError } from '@genshin-manager/core'
 import { Language } from '@genshin-manager/core'
 import { Readable } from 'stream'
 import { describe, expect, it } from 'vitest'
 
+import { TextMapFormatError } from '@/errors/TextMapFormatError'
 import { TextMapTransform } from '@/streams/TextMapTransform'
 
 describe('TextMapTransform', () => {

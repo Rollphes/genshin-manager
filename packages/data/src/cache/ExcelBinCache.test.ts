@@ -1,7 +1,7 @@
-import { ExcelBinNotLoadedError } from '@genshin-manager/core'
 import { describe, expect, it, vi } from 'vitest'
 
 import { ExcelBinCache } from '@/cache/ExcelBinCache'
+import { ExcelBinNotLoadedError } from '@/errors/ExcelBinNotLoadedError'
 
 vi.mock('@/loader/loadExcelBinFile', () => ({
   loadExcelBinFile: vi.fn().mockResolvedValue({
@@ -19,7 +19,6 @@ vi.mock('@/decoder/EncryptedKeyDecoder', () => ({
 describe('@/cache/ExcelBinCache', () => {
   function createCache(): ExcelBinCache {
     return new ExcelBinCache({
-      folderPath: '/mock/path',
       autoFix: false,
     })
   }

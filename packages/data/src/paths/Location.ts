@@ -152,14 +152,9 @@ export class Location<
   /**
    * Get ExcelBin file path by name
    * @param excelBinName - ExcelBin name
-   * @param folderPath - Optional folder path override
    */
-  public static excelBinFilePath(
-    excelBinName: string,
-    folderPath?: string,
-  ): string {
-    const folder = folderPath ?? this.excelBinFolderPath
-    return path.resolve(folder, `${excelBinName}.json`)
+  public static excelBinFilePath(excelBinName: keyof MasterFileMap): string {
+    return path.resolve(this.excelBinFolderPath, `${excelBinName}.json`)
   }
 
   /**
@@ -284,6 +279,15 @@ export class Location<
    */
   public static generatedTypes(fileName: string): Location {
     return new Location<null, unknown>({ type: 'generatedTypes', fileName }, [])
+  }
+
+  /**
+   * Create a Location from raw absolute path
+   * @internal For testing only
+   * @param absolutePath - Absolute file path
+   */
+  public static raw(absolutePath: string): Location {
+    return new Location<null, unknown>({ type: 'raw', absolutePath }, [])
   }
 
   // ========== Public Instance Methods ==========
@@ -415,6 +419,8 @@ export class Location<
           'generated',
           this.source.fileName,
         )
+      case 'raw':
+        return this.source.absolutePath
     }
   }
 
@@ -438,6 +444,8 @@ export class Location<
         return `Handbook:${this.source.fileName}`
       case 'generatedTypes':
         return `GeneratedTypes:${this.source.fileName}`
+      case 'raw':
+        return `Raw:${this.source.absolutePath}`
     }
   }
 }

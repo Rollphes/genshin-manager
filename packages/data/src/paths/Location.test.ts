@@ -4,7 +4,7 @@ import { Location } from '@/paths/Location'
 
 describe('Location', () => {
   beforeAll(() => {
-    Location.deploy({ assetCacheFolderPath: '/cache' })
+    Location.deploy({ assetCacheFolderPath: '/test-cache' })
   })
 
   describe('excelBin', () => {
@@ -121,7 +121,7 @@ describe('Location', () => {
       const result = location.resolve()
 
       expect(result).toMatch(
-        /[/\\]cache[/\\]ExcelBinOutput[/\\]AvatarExcelConfigData\.json$/,
+        /[/\\]test-cache[/\\]ExcelBinOutput[/\\]AvatarExcelConfigData\.json$/,
       )
     })
 
@@ -132,7 +132,7 @@ describe('Location', () => {
       const result = location.resolve()
 
       expect(result).toMatch(
-        /[/\\]cache[/\\]ExcelBinOutput[/\\]AvatarExcelConfigData\.json#\[id=10000002\]\.nameTextMapHash$/,
+        /[/\\]test-cache[/\\]ExcelBinOutput[/\\]AvatarExcelConfigData\.json#\[id=10000002\]\.nameTextMapHash$/,
       )
     })
   })

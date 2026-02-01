@@ -1,10 +1,11 @@
-import { AssetFormatError } from '@genshin-manager/core'
-import { AssetNotFoundError } from '@genshin-manager/core'
 import fs from 'fs'
 import { Readable } from 'stream'
-import { afterEach, describe, expect, it, vi } from 'vitest'
+import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 
+import { AssetFormatError } from '@/errors/AssetFormatError'
+import { AssetNotFoundError } from '@/errors/AssetNotFoundError'
 import { loadExcelBinFile } from '@/loader/loadExcelBinFile'
+import { Location } from '@/paths/Location'
 
 vi.mock('fs')
 vi.mock('@genshin-manager/core', async () => {
@@ -32,6 +33,10 @@ describe('loadExcelBinFile', () => {
     return readable as unknown as fs.ReadStream
   }
 
+  beforeEach(() => {
+    Location.deploy({ assetCacheFolderPath: '/test-cache' })
+  })
+
   afterEach(() => {
     vi.resetAllMocks()
   })
@@ -40,9 +45,9 @@ describe('loadExcelBinFile', () => {
     it('should return redownloadRequired when autoFix is true', async () => {
       vi.mocked(fs.existsSync).mockReturnValue(false)
 
-      const result = await loadExcelBinFile('/test/file.json', {
+      const result = await loadExcelBinFile({
         autoFix: true,
-        fileName: 'TestFile.json',
+        excelBinName: 'AvatarExcelConfigData',
       })
 
       expect(result).toEqual({ success: false, redownloadRequired: true })
@@ -52,9 +57,9 @@ describe('loadExcelBinFile', () => {
       vi.mocked(fs.existsSync).mockReturnValue(false)
 
       await expect(
-        loadExcelBinFile('/test/file.json', {
+        loadExcelBinFile({
           autoFix: false,
-          fileName: 'TestFile.json',
+          excelBinName: 'AvatarExcelConfigData',
         }),
       ).rejects.toThrow(AssetNotFoundError)
     })
@@ -67,9 +72,12 @@ describe('loadExcelBinFile', () => {
         createMockReadStream('[{"id": 1}, {"id": 2}]'),
       )
 
-      const result = await loadExcelBinFile<{ id: number }>('/test/file.json', {
+      const result = await loadExcelBinFile<
+        { id: number },
+        'AvatarExcelConfigData'
+      >({
         autoFix: false,
-        fileName: 'TestFile.json',
+        excelBinName: 'AvatarExcelConfigData',
       })
 
       expect(result.success).toBe(true)
@@ -80,9 +88,9 @@ describe('loadExcelBinFile', () => {
       vi.mocked(fs.existsSync).mockReturnValue(true)
       vi.mocked(fs.createReadStream).mockReturnValue(createMockReadStream('[]'))
 
-      const result = await loadExcelBinFile('/test/file.json', {
+      const result = await loadExcelBinFile({
         autoFix: false,
-        fileName: 'TestFile.json',
+        excelBinName: 'AvatarExcelConfigData',
       })
 
       expect(result.success).toBe(true)
@@ -97,9 +105,9 @@ describe('loadExcelBinFile', () => {
         createMockReadStream('invalid json {{{'),
       )
 
-      const result = await loadExcelBinFile('/test/file.json', {
+      const result = await loadExcelBinFile({
         autoFix: true,
-        fileName: 'TestFile.json',
+        excelBinName: 'AvatarExcelConfigData',
       })
 
       expect(result).toEqual({ success: false, redownloadRequired: true })
@@ -112,9 +120,9 @@ describe('loadExcelBinFile', () => {
       )
 
       await expect(
-        loadExcelBinFile('/test/file.json', {
+        loadExcelBinFile({
           autoFix: false,
-          fileName: 'TestFile.json',
+          excelBinName: 'AvatarExcelConfigData',
         }),
       ).rejects.toThrow(SyntaxError)
     })
@@ -127,9 +135,9 @@ describe('loadExcelBinFile', () => {
         createMockReadStream('{"not": "array"}'),
       )
 
-      const result = await loadExcelBinFile('/test/file.json', {
+      const result = await loadExcelBinFile({
         autoFix: true,
-        fileName: 'TestFile.json',
+        excelBinName: 'AvatarExcelConfigData',
       })
 
       expect(result).toEqual({ success: false, redownloadRequired: true })
@@ -142,9 +150,9 @@ describe('loadExcelBinFile', () => {
       )
 
       await expect(
-        loadExcelBinFile('/test/file.json', {
+        loadExcelBinFile({
           autoFix: false,
-          fileName: 'TestFile.json',
+          excelBinName: 'AvatarExcelConfigData',
         }),
       ).rejects.toThrow(AssetFormatError)
     })
@@ -156,9 +164,9 @@ describe('loadExcelBinFile', () => {
       )
 
       await expect(
-        loadExcelBinFile('/test/file.json', {
+        loadExcelBinFile({
           autoFix: false,
-          fileName: 'TestFile.json',
+          excelBinName: 'AvatarExcelConfigData',
         }),
       ).rejects.toThrow(AssetFormatError)
     })
@@ -170,9 +178,9 @@ describe('loadExcelBinFile', () => {
       )
 
       await expect(
-        loadExcelBinFile('/test/file.json', {
+        loadExcelBinFile({
           autoFix: false,
-          fileName: 'TestFile.json',
+          excelBinName: 'AvatarExcelConfigData',
         }),
       ).rejects.toThrow(AssetFormatError)
     })
@@ -186,9 +194,9 @@ describe('loadExcelBinFile', () => {
       )
 
       await expect(
-        loadExcelBinFile('/test/file.json', {
+        loadExcelBinFile({
           autoFix: false,
-          fileName: 'TestFile.json',
+          excelBinName: 'AvatarExcelConfigData',
         }),
       ).rejects.toThrow('Stream read error')
     })
@@ -200,9 +208,9 @@ describe('loadExcelBinFile', () => {
       )
 
       await expect(
-        loadExcelBinFile('/test/file.json', {
+        loadExcelBinFile({
           autoFix: true,
-          fileName: 'TestFile.json',
+          excelBinName: 'AvatarExcelConfigData',
         }),
       ).rejects.toThrow('IO Error')
     })

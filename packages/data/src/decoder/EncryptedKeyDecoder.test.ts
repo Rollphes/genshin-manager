@@ -1,10 +1,10 @@
-import { AssetFormatError } from '@genshin-manager/core'
-import { AssetNotFoundError } from '@genshin-manager/core'
 import fs from 'fs'
 import path from 'path'
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 
 import { EncryptedKeyDecoder } from '@/decoder/EncryptedKeyDecoder'
+import { AssetFormatError } from '@/errors/AssetFormatError'
+import { AssetNotFoundError } from '@/errors/AssetNotFoundError'
 
 const DATA_PACKAGE_ROOT = path.resolve(__dirname, '..', '..')
 const MASTER_FILE_FULL_FOLDER_PATH = path.join(DATA_PACKAGE_ROOT, 'masterFiles')

@@ -1,13 +1,17 @@
-import { AssetNotFoundError } from '@genshin-manager/core'
+import { GeneralError } from '@genshin-manager/core'
 import fs from 'fs'
 import { Readable } from 'stream'
+
+import type { Location } from '@/paths/Location'
 
 /**
  * File segment metadata for concatenated reading
  */
 interface FileSegment {
-  /** Absolute file path */
-  readonly filePath: string
+  /** Location for this segment */
+  readonly location: Location
+  /** Resolved absolute file path */
+  readonly resolvedPath: string
   /** Size of this segment in bytes */
   readonly size: number
   /** Cumulative start offset in the logical file */
@@ -27,19 +31,22 @@ export class ConcatenatedFileReader {
 
   /**
    * Create a ConcatenatedFileReader
-   * @param filePaths - Ordered array of file paths to concatenate
-   * @throws {@link AssetNotFoundError} - If any file does not exist
+   * @param locations - Ordered array of Locations to concatenate
+   * @throws {@link GeneralError} - If any file does not exist
    */
-  constructor(filePaths: readonly string[]) {
+  constructor(locations: readonly Location[]) {
     let offset = 0
     const segments: FileSegment[] = []
 
-    for (const filePath of filePaths) {
-      if (!fs.existsSync(filePath)) throw new AssetNotFoundError(filePath)
+    for (const location of locations) {
+      const resolvedPath = location.resolve()
+      if (!fs.existsSync(resolvedPath))
+        throw new GeneralError(`File not found: ${resolvedPath}`)
 
-      const stats = fs.statSync(filePath)
+      const stats = fs.statSync(resolvedPath)
       segments.push({
-        filePath,
+        location,
+        resolvedPath,
         size: stats.size,
         baseOffset: offset,
       })
@@ -86,7 +93,7 @@ export class ConcatenatedFileReader {
       const localOffset = currentOffset - segment.baseOffset
       const readLength = Math.min(remaining, segment.size - localOffset)
 
-      const handle = this.fileHandles?.get(segment.filePath)
+      const handle = this.fileHandles?.get(segment.resolvedPath)
       if (!handle) continue
 
       const { bytesRead: n } = await handle.read(
@@ -144,7 +151,7 @@ export class ConcatenatedFileReader {
   public readAllSync(): string {
     const buffers: Buffer[] = []
     for (const segment of this.segments)
-      buffers.push(fs.readFileSync(segment.filePath))
+      buffers.push(fs.readFileSync(segment.resolvedPath))
 
     return Buffer.concat(buffers).toString('utf8')
   }
@@ -170,7 +177,7 @@ export class ConcatenatedFileReader {
         return
       }
 
-      currentStream = fs.createReadStream(segments[segmentIdx].filePath)
+      currentStream = fs.createReadStream(segments[segmentIdx].resolvedPath)
       segmentIdx++
 
       currentStream.on('data', (chunk: Buffer | string) => {
@@ -212,8 +219,8 @@ export class ConcatenatedFileReader {
 
     this.fileHandles = new Map()
     for (const segment of this.segments) {
-      const handle = await fs.promises.open(segment.filePath, 'r')
-      this.fileHandles.set(segment.filePath, handle)
+      const handle = await fs.promises.open(segment.resolvedPath, 'r')
+      this.fileHandles.set(segment.resolvedPath, handle)
     }
   }
 }

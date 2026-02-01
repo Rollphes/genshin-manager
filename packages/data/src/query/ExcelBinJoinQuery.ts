@@ -1,4 +1,3 @@
-import { ExcelBinPropertyNotFoundError } from '@genshin-manager/core'
 import type { IndexKey, TextMapProvider } from '@genshin-manager/query'
 import {
   JoinQueryBuilder,
@@ -6,6 +5,7 @@ import {
 } from '@genshin-manager/query'
 
 import type { ExcelBinCache } from '@/cache/ExcelBinCache'
+import { ExcelBinPropertyNotFoundError } from '@/errors/ExcelBinPropertyNotFoundError'
 import type { ExcelBinQuery } from '@/query/ExcelBinQuery'
 import type { MasterFileMap } from '@/types/generated/MasterFileMap'
 
@@ -29,7 +29,7 @@ export class ExcelBinJoinQuery<
   TSelected extends keyof MasterRecord<K> | keyof MasterRecord<J> =
     | keyof MasterRecord<K>
     | keyof MasterRecord<J>,
-> extends JoinQueryBuilder<MasterRecord<K>, MasterRecord<J>, TSelected> {
+> extends JoinQueryBuilder<MasterRecord<K>, MasterRecord<J>, TSelected, J> {
   private readonly baseQuery: ExcelBinQuery<K, keyof MasterRecord<K>>
   private readonly excelBinCache: ExcelBinCache
   private readonly textMapProvider?: TextMapProvider
@@ -83,7 +83,7 @@ export class ExcelBinJoinQuery<
     joinKey: IndexKey,
   ): Promise<MasterRecord<J> | undefined> {
     const joinRecords = this.excelBinCache.getRecords(
-      this.joinTableName as J,
+      this.joinTableName,
     ) as MasterRecord<J>[]
 
     // Find record where toKey matches joinKey
@@ -98,7 +98,7 @@ export class ExcelBinJoinQuery<
    */
   protected createNotFoundError(): Error {
     return new ExcelBinPropertyNotFoundError(
-      this.getBaseLocation().toString(),
+      this.getBaseLocation(),
       `JOIN ${this.joinTableName} ON ${this.fromKey} = ${this.toKey}`,
     )
   }
@@ -114,7 +114,7 @@ export class ExcelBinJoinQuery<
       this.baseQuery,
       this.excelBinCache,
       this.baseTableName,
-      this.joinTableName as J,
+      this.joinTableName,
       this.fromKey,
       this.toKey,
       this.joinType,
@@ -124,7 +124,8 @@ export class ExcelBinJoinQuery<
       cloned as unknown as JoinQueryBuilder<
         MasterRecord<K>,
         MasterRecord<J>,
-        TSelected
+        TSelected,
+        J
       >,
     )
     return cloned
@@ -134,7 +135,7 @@ export class ExcelBinJoinQuery<
    * Gets the Location for the base record
    * @returns A QueryLocation instance
    */
-  protected getBaseLocation(): QueryLocation {
+  protected getBaseLocation(): QueryLocation<'ExcelBin', K> {
     return QueryLocation.create('ExcelBin', this.baseTableName)
   }
 
@@ -142,7 +143,7 @@ export class ExcelBinJoinQuery<
    * Gets the Location for the join record
    * @returns A QueryLocation instance
    */
-  protected getJoinLocation(): QueryLocation {
+  protected getJoinLocation(): QueryLocation<'ExcelBin', J> {
     return QueryLocation.create('ExcelBin', this.joinTableName)
   }
 

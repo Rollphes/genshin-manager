@@ -1,8 +1,8 @@
-import { ExcelBinPropertyNotFoundError } from '@genshin-manager/core'
 import type { TextMapProvider } from '@genshin-manager/query'
 import { Location as QueryLocation, QueryBuilder } from '@genshin-manager/query'
 
 import type { ExcelBinCache } from '@/cache/ExcelBinCache'
+import { ExcelBinPropertyNotFoundError } from '@/errors/ExcelBinPropertyNotFoundError'
 import { ExcelBinJoinQuery } from '@/query/ExcelBinJoinQuery'
 import type { MasterFileMap } from '@/types/generated/MasterFileMap'
 
@@ -24,7 +24,7 @@ type MasterRecord<K extends keyof MasterFileMap> = MasterFileMap[K]
 export class ExcelBinQuery<
   K extends keyof MasterFileMap,
   TSelected extends keyof MasterRecord<K> = keyof MasterRecord<K>,
-> extends QueryBuilder<MasterRecord<K>, TSelected> {
+> extends QueryBuilder<MasterRecord<K>, TSelected, K> {
   private readonly excelBinCache: ExcelBinCache
   private readonly textMapProvider?: TextMapProvider
 
@@ -63,7 +63,7 @@ export class ExcelBinQuery<
     return new ExcelBinJoinQuery(
       baseQuery,
       this.excelBinCache,
-      this.tableName as K,
+      this.tableName,
       joinTableName,
       fromKey,
       toKey,
@@ -91,7 +91,7 @@ export class ExcelBinQuery<
     return new ExcelBinJoinQuery(
       baseQuery,
       this.excelBinCache,
-      this.tableName as K,
+      this.tableName,
       joinTableName,
       fromKey,
       toKey,
@@ -107,7 +107,7 @@ export class ExcelBinQuery<
   protected executeQuery(): Promise<MasterRecord<K>[]> {
     // Get all records from cache
     const allRecords = this.excelBinCache.getRecords(
-      this.tableName as K,
+      this.tableName,
     ) as MasterRecord<K>[]
 
     // No WHERE conditions: return all records
@@ -146,17 +146,14 @@ export class ExcelBinQuery<
       })
       .join(', ')
 
-    return new ExcelBinPropertyNotFoundError(
-      this.getLocation().toString(),
-      conditionStr,
-    )
+    return new ExcelBinPropertyNotFoundError(this.getLocation(), conditionStr)
   }
 
   /**
    * Gets the Location for the current query
    * @returns A QueryLocation instance with filter conditions
    */
-  protected getLocation(): QueryLocation {
+  protected getLocation(): QueryLocation<'ExcelBin', K> {
     let location = QueryLocation.create('ExcelBin', this.tableName)
 
     for (const condition of this.whereConditions) {
@@ -184,12 +181,12 @@ export class ExcelBinQuery<
     NewSelected
   > {
     const cloned = new ExcelBinQuery<K, NewSelected>(
-      this.tableName as K,
+      this.tableName,
       this.excelBinCache,
       this.textMapProvider,
     )
     this.copyStateTo(
-      cloned as unknown as QueryBuilder<MasterRecord<K>, TSelected>,
+      cloned as unknown as QueryBuilder<MasterRecord<K>, TSelected, K>,
     )
     return cloned
   }

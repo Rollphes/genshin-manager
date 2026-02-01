@@ -1,19 +1,15 @@
 import type { Language } from '@genshin-manager/core'
-import {
-  AssetNotFoundError,
-  logger,
-  TextMapBaseName,
-} from '@genshin-manager/core'
+import { logger, TextMapBaseName } from '@genshin-manager/core'
 import fs from 'fs'
-import path from 'path'
 
+import { AssetNotFoundError } from '@/errors/AssetNotFoundError'
 import { Location } from '@/paths/Location'
 
 /**
  * Result type for findTextMapFiles
  */
 export type FindTextMapFilesResult =
-  | { readonly success: true; readonly filePaths: readonly string[] }
+  | { readonly success: true; readonly locations: readonly Location[] }
   | { readonly success: false; readonly redownloadLanguage: Language }
 
 /**
@@ -27,27 +23,25 @@ export interface FindTextMapFilesOptions {
 }
 
 /**
- * Find TextMap file paths for specified language
+ * Find TextMap file Locations for specified language
  *
  * Responsibilities:
  * - Detect TextMap files in folder (supports split files like TextMapEN_0.json)
- * - Return file paths array on success
+ * - Return Location array on success
  * - Return redownload flag when autoFix=true and files not found
  * - Throw AssetNotFoundError when autoFix=false and files not found
  *
- * @param folderPath - Path to TextMap folder
  * @param options - Find options
- * @returns Find result with file paths or redownload flag
+ * @returns Find result with Locations or redownload flag
  * @throws {@link AssetNotFoundError} - When files not found and autoFix is false
  */
 export function findTextMapFiles(
-  folderPath: string,
   options: FindTextMapFilesOptions,
 ): FindTextMapFilesResult {
   const { language, autoFix } = options
-  const filePaths = getMatchingFilePaths(folderPath, language)
+  const locations = getMatchingLocations(language)
 
-  if (filePaths.length === 0) {
+  if (locations.length === 0) {
     if (autoFix) {
       logger.info(
         `findTextMapFiles: TextMap files for ${language} not found. Re downloading...`,
@@ -55,23 +49,20 @@ export function findTextMapFiles(
       return { success: false, redownloadLanguage: language }
     }
     throw new AssetNotFoundError(
-      Location.textMap(language, `${TextMapBaseName[language]}.json`).resolve(),
+      Location.textMap(language, `${TextMapBaseName[language]}.json`),
     )
   }
 
-  return { success: true, filePaths }
+  return { success: true, locations }
 }
 
 /**
- * Get matching TextMap file paths for a language
- * @param folderPath - Path to TextMap folder
+ * Get matching TextMap Locations for a language
  * @param language - Target language
- * @returns Array of absolute file paths, sorted
+ * @returns Array of Locations, sorted by file name
  */
-function getMatchingFilePaths(
-  folderPath: string,
-  language: Language,
-): string[] {
+function getMatchingLocations(language: Language): Location[] {
+  const folderPath = Location.textMapFolderPath
   if (!fs.existsSync(folderPath)) return []
 
   const baseName = TextMapBaseName[language]
@@ -80,5 +71,5 @@ function getMatchingFilePaths(
   const entries = fs.readdirSync(folderPath)
   const matchingFiles = entries.filter((name) => pattern.test(name)).sort()
 
-  return matchingFiles.map((name) => path.join(folderPath, name))
+  return matchingFiles.map((fileName) => Location.textMap(language, fileName))
 }

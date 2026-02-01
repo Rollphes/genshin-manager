@@ -5,6 +5,7 @@ import path from 'path'
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 
 import { TextMapIndex } from '@/index/TextMapIndex'
+import { Location } from '@/paths/Location'
 
 vi.mock('@genshin-manager/core', async () => {
   const actual = await vi.importActual('@genshin-manager/core')
@@ -22,6 +23,7 @@ describe('TextMapIndex', () => {
     tmpDir = fs.mkdtempSync(path.join(os.tmpdir(), 'textmap-test-'))
     textMapDir = path.join(tmpDir, 'TextMap')
     fs.mkdirSync(textMapDir)
+    Location.deploy({ assetCacheFolderPath: tmpDir })
   })
 
   afterEach(() => {
@@ -51,7 +53,6 @@ describe('TextMapIndex', () => {
       })
 
       const index = new TextMapIndex({
-        folderPath: textMapDir,
         autoFix: false,
       })
 
@@ -63,7 +64,6 @@ describe('TextMapIndex', () => {
 
     it('should return redownloadLanguage when autoFix is true and files not found', async () => {
       const index = new TextMapIndex({
-        folderPath: textMapDir,
         autoFix: true,
       })
 
@@ -74,7 +74,6 @@ describe('TextMapIndex', () => {
 
     it('should throw when autoFix is false and files not found', async () => {
       const index = new TextMapIndex({
-        folderPath: textMapDir,
         autoFix: false,
       })
 
@@ -86,7 +85,6 @@ describe('TextMapIndex', () => {
       writeTextMapFile('TextMapJP.json', { '100': 'Konnichiwa' })
 
       const index = new TextMapIndex({
-        folderPath: textMapDir,
         autoFix: false,
       })
 
@@ -99,7 +97,6 @@ describe('TextMapIndex', () => {
       writeTextMapFile('TextMapEN.json', { '100': 'Hello' })
 
       const index = new TextMapIndex({
-        folderPath: textMapDir,
         autoFix: false,
       })
 
@@ -118,7 +115,6 @@ describe('TextMapIndex', () => {
       })
 
       const index = new TextMapIndex({
-        folderPath: textMapDir,
         autoFix: false,
       })
 
@@ -131,7 +127,6 @@ describe('TextMapIndex', () => {
       writeTextMapFile('TextMapEN.json', { '100': 'Hello' })
 
       const index = new TextMapIndex({
-        folderPath: textMapDir,
         autoFix: false,
       })
 
@@ -145,7 +140,6 @@ describe('TextMapIndex', () => {
       writeTextMapFile('TextMapEN.json', { '100': 'Hello' })
 
       const index = new TextMapIndex({
-        folderPath: textMapDir,
         autoFix: false,
       })
 
@@ -163,7 +157,6 @@ describe('TextMapIndex', () => {
       writeTextMapFile('TextMapJP.json', { '100': 'Konnichiwa' })
 
       const index = new TextMapIndex({
-        folderPath: textMapDir,
         autoFix: false,
       })
 
@@ -179,7 +172,6 @@ describe('TextMapIndex', () => {
 
     it('should return undefined when no language loaded', async () => {
       const index = new TextMapIndex({
-        folderPath: textMapDir,
         autoFix: true,
       })
 
@@ -193,7 +185,6 @@ describe('TextMapIndex', () => {
       writeTextMapFile('TextMapEN.json', { '100': 'Hello' })
 
       const index = new TextMapIndex({
-        folderPath: textMapDir,
         autoFix: false,
       })
 
@@ -206,7 +197,6 @@ describe('TextMapIndex', () => {
       writeTextMapFile('TextMapEN.json', { '100': 'Hello' })
 
       const index = new TextMapIndex({
-        folderPath: textMapDir,
         autoFix: false,
       })
 
@@ -220,7 +210,6 @@ describe('TextMapIndex', () => {
       writeTextMapFile('TextMapEN.json', { '100': 'Hello' })
 
       const index = new TextMapIndex({
-        folderPath: textMapDir,
         autoFix: false,
       })
 
@@ -232,7 +221,6 @@ describe('TextMapIndex', () => {
       writeTextMapFile('TextMapEN.json', { '100': 'Hello' })
 
       const index = new TextMapIndex({
-        folderPath: textMapDir,
         autoFix: false,
       })
 
@@ -242,7 +230,6 @@ describe('TextMapIndex', () => {
 
     it('should return false when no language loaded', () => {
       const index = new TextMapIndex({
-        folderPath: textMapDir,
         autoFix: true,
       })
 
@@ -259,7 +246,6 @@ describe('TextMapIndex', () => {
       })
 
       const index = new TextMapIndex({
-        folderPath: textMapDir,
         autoFix: false,
       })
 
@@ -279,7 +265,6 @@ describe('TextMapIndex', () => {
       writeTextMapFile('TextMapEN.json', { '100': 'Hello' })
 
       const index = new TextMapIndex({
-        folderPath: textMapDir,
         autoFix: false,
       })
 
@@ -297,7 +282,6 @@ describe('TextMapIndex', () => {
       writeTextMapFile('TextMapEN.json', { '100': 'Hello' })
 
       const index = new TextMapIndex({
-        folderPath: textMapDir,
         autoFix: false,
       })
 
@@ -324,7 +308,6 @@ describe('TextMapIndex', () => {
       )
 
       const index = new TextMapIndex({
-        folderPath: textMapDir,
         autoFix: false,
       })
 
@@ -339,7 +322,6 @@ describe('TextMapIndex', () => {
       writeTextMapFile('TextMapEN.json', { '100': 'Hello' })
 
       const index = new TextMapIndex({
-        folderPath: textMapDir,
         autoFix: false,
       })
 
@@ -356,7 +338,6 @@ describe('TextMapIndex', () => {
       writeTextMapFile('TextMapEN.json', { '100': 'Hello' })
 
       const index = new TextMapIndex({
-        folderPath: textMapDir,
         autoFix: false,
       })
 
@@ -382,7 +363,6 @@ describe('TextMapIndex', () => {
       fs.writeFileSync(path.join(textMapDir, 'TextMapEN.json'), content, 'utf8')
 
       const index = new TextMapIndex({
-        folderPath: textMapDir,
         autoFix: false,
       })
 

@@ -3,6 +3,8 @@ import os from 'os'
 import path from 'path'
 import { afterEach, beforeEach, describe, expect, it } from 'vitest'
 
+import type { Location } from '@/paths/Location'
+import { Location as LocationClass } from '@/paths/Location'
 import { ConcatenatedFileReader } from '@/streams/ConcatenatedFileReader'
 
 describe('ConcatenatedFileReader', () => {
@@ -16,10 +18,10 @@ describe('ConcatenatedFileReader', () => {
     fs.rmSync(tmpDir, { recursive: true, force: true })
   })
 
-  function writeFile(name: string, content: string): string {
+  function writeFile(name: string, content: string): Location {
     const filePath = path.join(tmpDir, name)
     fs.writeFileSync(filePath, content, 'utf8')
-    return filePath
+    return LocationClass.raw(filePath)
   }
 
   describe('constructor', () => {
@@ -41,7 +43,10 @@ describe('ConcatenatedFileReader', () => {
 
     it('should throw for non-existent file', () => {
       expect(
-        () => new ConcatenatedFileReader(['/nonexistent/file.json']),
+        () =>
+          new ConcatenatedFileReader([
+            LocationClass.raw('/nonexistent/file.json'),
+          ]),
       ).toThrow()
     })
   })

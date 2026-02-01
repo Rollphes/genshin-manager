@@ -1,10 +1,10 @@
-import { ExcelBinNotLoadedError, logger } from '@genshin-manager/core'
+import { logger } from '@genshin-manager/core'
 import type { TextMapProvider } from '@genshin-manager/query'
 import { Location as QueryLocation, TableCache } from '@genshin-manager/query'
 
 import { EncryptedKeyDecoder } from '@/decoder/EncryptedKeyDecoder'
+import { ExcelBinNotLoadedError } from '@/errors/ExcelBinNotLoadedError'
 import { loadExcelBinFile } from '@/loader/loadExcelBinFile'
-import { Location } from '@/paths/Location'
 import { ExcelBinQuery } from '@/query/ExcelBinQuery'
 import { ExcelBinOutputs } from '@/types/excelBinOutputs'
 import type { MasterFileMap as GeneratedMasterFileMap } from '@/types/generated/MasterFileMap'
@@ -13,8 +13,6 @@ import type { MasterFileMap as GeneratedMasterFileMap } from '@/types/generated/
  * Options for ExcelBinCache
  */
 interface ExcelBinCacheOptions {
-  /** Path to ExcelBinOutput folder */
-  readonly folderPath: string
   /** Whether to auto-fix corrupted files */
   readonly autoFix: boolean
 }
@@ -51,7 +49,7 @@ export class ExcelBinCache extends TableCache<
    * @param options - Cache options
    */
   constructor(options: ExcelBinCacheOptions) {
-    super(options.folderPath, 0) // 0 = unlimited tables
+    super(0) // 0 = unlimited tables
     this.autoFix = options.autoFix
     this.registerKnownIndexPatterns()
   }
@@ -155,7 +153,7 @@ export class ExcelBinCache extends TableCache<
     const table = this.tables.get(tableName)
     if (!table) {
       throw new ExcelBinNotLoadedError(
-        Location.excelBinFilePath(tableName, this.cachePath),
+        QueryLocation.create('ExcelBin', tableName),
       )
     }
     return table.getAll() as GeneratedMasterFileMap[K][]
@@ -169,14 +167,16 @@ export class ExcelBinCache extends TableCache<
   protected async loadTableData(
     tableName: keyof GeneratedMasterFileMap,
   ): Promise<GeneratedMasterFileMap[keyof GeneratedMasterFileMap][]> {
-    const filePath = Location.excelBinFilePath(tableName, this.cachePath)
-    const filename = ExcelBinOutputs[tableName as keyof typeof ExcelBinOutputs]
-
     const result = await loadExcelBinFile<
-      GeneratedMasterFileMap[typeof tableName]
-    >(filePath, { autoFix: this.autoFix, fileName: filename })
+      GeneratedMasterFileMap[typeof tableName],
+      typeof tableName
+    >({ autoFix: this.autoFix, excelBinName: tableName })
 
-    if (!result.success) throw new ExcelBinNotLoadedError(filePath)
+    if (!result.success) {
+      throw new ExcelBinNotLoadedError(
+        QueryLocation.create('ExcelBin', tableName),
+      )
+    }
 
     const decoder = new EncryptedKeyDecoder(
       tableName as keyof typeof ExcelBinOutputs,

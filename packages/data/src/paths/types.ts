@@ -145,6 +145,17 @@ export interface CommitFileSource {
 }
 
 /**
+ * Source type for raw path locations (testing only)
+ * @internal
+ */
+export interface RawSource {
+  /** Source type identifier */
+  readonly type: 'raw'
+  /** Absolute path */
+  readonly absolutePath: string
+}
+
+/**
  * Union type of all location source types
  */
 export type LocationSource =
@@ -157,3 +168,4 @@ export type LocationSource =
   | HandbookSource
   | GeneratedTypesSource
   | CommitFileSource
+  | RawSource

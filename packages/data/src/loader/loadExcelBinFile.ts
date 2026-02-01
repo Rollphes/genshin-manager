@@ -1,46 +1,51 @@
-import { AssetFormatError } from '@genshin-manager/core'
-import { AssetNotFoundError } from '@genshin-manager/core'
 import { logger } from '@genshin-manager/core'
 import fs from 'fs'
+
+import { AssetFormatError } from '@/errors/AssetFormatError'
+import { AssetNotFoundError } from '@/errors/AssetNotFoundError'
+import { Location } from '@/paths/Location'
+import type { MasterFileMap } from '@/types/generated/MasterFileMap'
 
 type ExcelBinLoadFileResult<T> =
   | { readonly success: true; readonly data: readonly T[] }
   | { readonly success: false; readonly redownloadRequired: true }
 
-interface ExcelBinLoadFileOptions {
+interface ExcelBinLoadFileOptions<K extends keyof MasterFileMap> {
   readonly autoFix: boolean
-  readonly fileName: string
+  readonly excelBinName: K
 }
 
 /**
  * Load a single ExcelBinOutput JSON file
- * @param filePath - Path to the JSON file
  * @param options - Load options
  * @returns Load result with data or redownload flag
  * @throws {@link AssetNotFoundError} - When file not found and autoFix is false
  * @throws {@link AssetFormatError} - When file format is invalid and autoFix is false
  */
-export async function loadExcelBinFile<T>(
-  filePath: string,
-  options: ExcelBinLoadFileOptions,
+export async function loadExcelBinFile<T, K extends keyof MasterFileMap>(
+  options: ExcelBinLoadFileOptions<K>,
 ): Promise<ExcelBinLoadFileResult<T>> {
-  const { autoFix, fileName } = options
+  const { autoFix, excelBinName } = options
+  const location = Location.excelBin(excelBinName)
+  const resolvedPath = location.resolve()
 
-  if (!fs.existsSync(filePath)) {
+  if (!fs.existsSync(resolvedPath)) {
     if (autoFix) {
-      logger.info(`ExcelBinLoader: ${fileName} not found. Re downloading...`)
+      logger.info(
+        `ExcelBinLoader: ${excelBinName} not found. Re downloading...`,
+      )
       return { success: false, redownloadRequired: true }
     }
-    throw new AssetNotFoundError(filePath)
+    throw new AssetNotFoundError(location)
   }
 
   try {
-    const text = await readFileAsString(filePath)
+    const text = await readFileAsString(location)
     const parsedData = JSON.parse(text) as T[]
 
     if (!Array.isArray(parsedData)) {
       throw new AssetFormatError(
-        filePath,
+        location,
         `expected array, got ${typeof parsedData}`,
       )
     }
@@ -50,7 +55,7 @@ export async function loadExcelBinFile<T>(
     if (error instanceof SyntaxError || error instanceof AssetFormatError) {
       if (autoFix) {
         logger.info(
-          `ExcelBinLoader: ${fileName} format error. Re downloading...`,
+          `ExcelBinLoader: ${excelBinName} format error. Re downloading...`,
         )
         return { success: false, redownloadRequired: true }
       }
@@ -59,10 +64,11 @@ export async function loadExcelBinFile<T>(
   }
 }
 
-function readFileAsString(filePath: string): Promise<string> {
+function readFileAsString(location: Location): Promise<string> {
+  const resolvedPath = location.resolve()
   return new Promise((resolve, reject) => {
     let text = ''
-    const stream = fs.createReadStream(filePath, {
+    const stream = fs.createReadStream(resolvedPath, {
       encoding: 'utf-8',
       highWaterMark: 1 * 1024 * 1024,
     })

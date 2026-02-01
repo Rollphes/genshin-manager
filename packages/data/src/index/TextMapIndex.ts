@@ -1,11 +1,9 @@
-import {
-  Language,
-  logger,
-  TextMapHashNotFoundError,
-} from '@genshin-manager/core'
+import { Language, logger } from '@genshin-manager/core'
 import type { TextMapProvider } from '@genshin-manager/query'
+import { Location as QueryLocation } from '@genshin-manager/query'
 import { LRUCache } from 'lru-cache'
 
+import { TextMapHashNotFoundError } from '@/errors/TextMapHashNotFoundError'
 import type { FindTextMapFilesResult } from '@/loader/findTextMapFiles'
 import { findTextMapFiles } from '@/loader/findTextMapFiles'
 import { ConcatenatedFileReader } from '@/streams/ConcatenatedFileReader'
@@ -36,8 +34,6 @@ interface IndexEntry {
  * Options for TextMapIndex
  */
 export interface TextMapIndexOptions {
-  /** Path to TextMap folder */
-  readonly folderPath: string
   /** Whether to auto-fix corrupted files (return redownload flag) */
   readonly autoFix: boolean
   /** Maximum number of text entries in LRU cache (default: 100000) */
@@ -71,7 +67,6 @@ const hashPattern = /^"(\d+)"\s*:/
 export class TextMapIndex implements TextMapProvider {
   private static readonly DEFAULT_CACHE_SIZE = 100000
 
-  private readonly folderPath: string
   private readonly autoFix: boolean
   private readonly languageIndexes = new Map<Language, LanguageIndex>()
   private readonly textCache: LRUCache<string, string>
@@ -82,7 +77,6 @@ export class TextMapIndex implements TextMapProvider {
    * @param options - Index options
    */
   constructor(options: TextMapIndexOptions) {
-    this.folderPath = options.folderPath
     this.autoFix = options.autoFix
     this.textCache = new LRUCache<string, string>({
       max: options.textCacheSize ?? TextMapIndex.DEFAULT_CACHE_SIZE,
@@ -117,21 +111,21 @@ export class TextMapIndex implements TextMapProvider {
     }
 
     // Find TextMap files using loader
-    const findResult: FindTextMapFilesResult = findTextMapFiles(
-      this.folderPath,
-      { language, autoFix: this.autoFix },
-    )
+    const findResult: FindTextMapFilesResult = findTextMapFiles({
+      language,
+      autoFix: this.autoFix,
+    })
 
     if (!findResult.success)
       return { redownloadLanguage: findResult.redownloadLanguage }
 
-    const filePaths = findResult.filePaths
-    if (filePaths.length === 0) {
+    const locations = findResult.locations
+    if (locations.length === 0) {
       logger.warn(`TextMapIndex: No files found for ${language}`)
       return { success: true }
     }
 
-    const reader = new ConcatenatedFileReader([...filePaths])
+    const reader = new ConcatenatedFileReader([...locations])
     const entries = this.scanForEntries(reader)
 
     // Sort by hash for binary search
@@ -170,8 +164,8 @@ export class TextMapIndex implements TextMapProvider {
     if (!lang) {
       throw new TextMapHashNotFoundError(
         Language.En,
-        this.folderPath,
-        '',
+        QueryLocation.create('TextMap', Language.En),
+        QueryLocation.create('unknown', ''),
         String(hash),
       )
     }
@@ -180,7 +174,12 @@ export class TextMapIndex implements TextMapProvider {
     const cached = this.textCache.get(cacheKey)
     if (cached !== undefined) return cached
 
-    throw new TextMapHashNotFoundError(lang, this.folderPath, '', String(hash))
+    throw new TextMapHashNotFoundError(
+      lang,
+      QueryLocation.create('TextMap', lang),
+      QueryLocation.create('unknown', ''),
+      String(hash),
+    )
   }
 
   /**
@@ -229,11 +228,12 @@ export class TextMapIndex implements TextMapProvider {
     language?: Language,
   ): Promise<string> {
     const text = await this.fetchText(hash, language)
+    const lang = language ?? this.defaultLanguage ?? Language.En
     if (text === undefined) {
       throw new TextMapHashNotFoundError(
-        language ?? this.defaultLanguage ?? Language.En,
-        this.folderPath,
-        '',
+        lang,
+        QueryLocation.create('TextMap', lang),
+        QueryLocation.create('unknown', ''),
         String(hash),
       )
     }
