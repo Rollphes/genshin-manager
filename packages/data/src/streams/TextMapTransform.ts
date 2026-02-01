@@ -2,7 +2,7 @@ import type { Language } from '@genshin-manager/core'
 import { Transform } from 'stream'
 
 import { TextMapFormatError } from '@/errors/TextMapFormatError'
-import { FileLocation } from '@/paths/FileLocation'
+import type { FileLocation } from '@/paths/FileLocation'
 import { splitBuffer } from '@/streams/splitBuffer'
 
 /**
@@ -19,17 +19,17 @@ export class TextMapTransform extends Transform {
    * Constructor for TextMapTransform
    * @param language - Target language for error reporting
    * @param filterSet - Set of text hashes to include in output
-   * @param fileName - Optional file name for error reporting
+   * @param location - FileLocation for error reporting
    */
   constructor(
     language: Language,
     filterSet: ReadonlySet<number>,
-    fileName?: string,
+    location: FileLocation,
   ) {
     super()
     this.language = language
     this.filterSet = filterSet
-    this.location = FileLocation.textMap(language, fileName)
+    this.location = location
   }
 
   /**

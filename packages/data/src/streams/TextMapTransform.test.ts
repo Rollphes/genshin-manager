@@ -7,9 +7,13 @@ import { FileLocation } from '@/paths/FileLocation'
 import { TextMapTransform } from '@/streams/TextMapTransform'
 
 describe('TextMapTransform', () => {
+  let testLocation: FileLocation
+
   beforeEach(() => {
     FileLocation.deploy({ assetCacheFolderPath: '/test-cache' })
+    testLocation = FileLocation.textMapFolder()
   })
+
   async function collectOutput(transform: TextMapTransform): Promise<string> {
     const chunks: Buffer[] = []
     return new Promise((resolve, reject) => {
@@ -21,15 +25,15 @@ describe('TextMapTransform', () => {
     })
   }
 
-  it('should create instance with language and filter set', () => {
+  it('should create instance with language, filter set and location', () => {
     const filterSet = new Set([123, 456])
-    const transform = new TextMapTransform(Language.En, filterSet)
+    const transform = new TextMapTransform(Language.En, filterSet, testLocation)
     expect(transform).toBeInstanceOf(TextMapTransform)
   })
 
   it('should filter lines by hash key', async () => {
     const filterSet = new Set([123])
-    const transform = new TextMapTransform(Language.En, filterSet)
+    const transform = new TextMapTransform(Language.En, filterSet, testLocation)
 
     const input = '{\n"123": "Hello"\n"456": "World"\n}'
     const readable = Readable.from([input])
@@ -42,7 +46,7 @@ describe('TextMapTransform', () => {
 
   it('should output valid JSON structure', async () => {
     const filterSet = new Set([123, 789])
-    const transform = new TextMapTransform(Language.En, filterSet)
+    const transform = new TextMapTransform(Language.En, filterSet, testLocation)
 
     const input = '{\n"123": "Hello"\n"789": "Test"\n}'
     const readable = Readable.from([input])
@@ -55,7 +59,7 @@ describe('TextMapTransform', () => {
 
   it('should handle multiple matching entries', async () => {
     const filterSet = new Set([123, 456])
-    const transform = new TextMapTransform(Language.En, filterSet)
+    const transform = new TextMapTransform(Language.En, filterSet, testLocation)
 
     const input = '{\n"123": "First"\n"456": "Second"\n}'
     const readable = Readable.from([input])
@@ -69,7 +73,7 @@ describe('TextMapTransform', () => {
 
   it('should handle chunked input', async () => {
     const filterSet = new Set([123])
-    const transform = new TextMapTransform(Language.En, filterSet)
+    const transform = new TextMapTransform(Language.En, filterSet, testLocation)
 
     // Simulate chunked delivery
     const chunks = ['{\n"12', '3": "Hello"\n}']
@@ -82,7 +86,7 @@ describe('TextMapTransform', () => {
 
   it('should replace escaped newlines in values', async () => {
     const filterSet = new Set([123])
-    const transform = new TextMapTransform(Language.En, filterSet)
+    const transform = new TextMapTransform(Language.En, filterSet, testLocation)
 
     const input = '{\n"123": "Line1\\\\nLine2"\n}'
     const readable = Readable.from([input])
@@ -94,7 +98,7 @@ describe('TextMapTransform', () => {
 
   it('should skip malformed lines', async () => {
     const filterSet = new Set([123])
-    const transform = new TextMapTransform(Language.En, filterSet)
+    const transform = new TextMapTransform(Language.En, filterSet, testLocation)
 
     const input = '{\nmalformed line\n"123": "Valid"\n}'
     const readable = Readable.from([input])
@@ -107,7 +111,7 @@ describe('TextMapTransform', () => {
 
   it('should throw TextMapFormatError when JSON does not end with closing brace', async () => {
     const filterSet = new Set([123])
-    const transform = new TextMapTransform(Language.En, filterSet)
+    const transform = new TextMapTransform(Language.En, filterSet, testLocation)
 
     const input = '{\n"123": "Hello"\n'
     const readable = Readable.from([input])
@@ -118,7 +122,7 @@ describe('TextMapTransform', () => {
 
   it('should return empty filtered output for no matches', async () => {
     const filterSet = new Set([999])
-    const transform = new TextMapTransform(Language.En, filterSet)
+    const transform = new TextMapTransform(Language.En, filterSet, testLocation)
 
     const input = '{\n"123": "Hello"\n}'
     const readable = Readable.from([input])
