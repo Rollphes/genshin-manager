@@ -6,18 +6,15 @@ import { GenshinManagerError } from '@/errors/GenshinManagerError'
 import { ValidationError } from '@/errors/ValidationError'
 
 describe('ValidationError', () => {
-  const testLocationPath = 'TestClass.testMethod.testParam'
-
-  it('should create error with ZodError and location', () => {
+  it('should create error with ZodError', () => {
     const schema = z.string()
     const result = schema.safeParse(123)
     if (!result.success) {
-      const error = new ValidationError(result.error, testLocationPath)
+      const error = new ValidationError(result.error)
 
       expect(error).toBeInstanceOf(GenshinManagerError)
       expect(error.errorCode).toBe(ErrorCode.GmValidation)
       expect(error.zodError).toBe(result.error)
-      expect(error.locationPath).toBe(testLocationPath)
     }
   })
 
@@ -26,7 +23,7 @@ describe('ValidationError', () => {
     const schema = z.number()
     const result = schema.safeParse('not a number')
     if (!result.success) {
-      const error = new ValidationError(result.error, testLocationPath, {
+      const error = new ValidationError(result.error, {
         cause: originalError,
       })
 
@@ -38,7 +35,7 @@ describe('ValidationError', () => {
     const schema = z.number()
     const result = schema.safeParse('invalid')
     if (!result.success) {
-      const error = new ValidationError(result.error, testLocationPath)
+      const error = new ValidationError(result.error)
       expect(error.cause).toBeUndefined()
     }
   })
@@ -47,17 +44,17 @@ describe('ValidationError', () => {
     const schema = z.number()
     const result = schema.safeParse('invalid')
     if (!result.success) {
-      const error = new ValidationError(result.error, testLocationPath)
+      const error = new ValidationError(result.error)
       expect(error.name).toBe('ValidationError')
     }
   })
 
-  it('should include location in message', () => {
+  it('should use zodError message', () => {
     const schema = z.number()
     const result = schema.safeParse('invalid')
     if (!result.success) {
-      const error = new ValidationError(result.error, testLocationPath)
-      expect(error.message).toContain('TestClass')
+      const error = new ValidationError(result.error)
+      expect(error.message).toBe(result.error.message)
     }
   })
 })
