@@ -225,12 +225,11 @@ export class AssetDownloader {
 
     const fileName = location.basename()
     const language = this.getLanguageFromFileName(fileName)
-    const isTextMapFile = location.sourceType === 'textMap'
 
-    if (isTextMapFile && language) {
+    if (language) {
       await pipeline(
         new ReadableStreamWrapper(response.body.getReader()),
-        new TextMapTransform(language, this.textHashes, resolvedPath),
+        new TextMapTransform(language, this.textHashes, location),
         writeStream,
       )
     } else {
@@ -367,22 +366,19 @@ export class AssetDownloader {
   }
 
   /**
-   * Create a Location for a file based on folder type and file name
+   * Create a FileLocation for a file based on folder type and file name
    * @param gitFolderName - Folder type ('ExcelBinOutput' or 'TextMap')
    * @param fileName - File name
-   * @returns Appropriate Location
+   * @returns FileLocation using child() from appropriate folder
    */
   private createLocationForFile(
     gitFolderName: 'ExcelBinOutput' | 'TextMap',
     fileName: string,
   ): FileLocation {
-    if (gitFolderName === 'TextMap') {
-      const language = this.getLanguageFromFileName(fileName)
-      if (language) return FileLocation.textMap(language, fileName)
-    }
-
-    // For ExcelBinOutput and other files, use image as a generic location
-    // since it accepts arbitrary file names
-    return FileLocation.image(fileName)
+    const folderLocation =
+      gitFolderName === 'ExcelBinOutput'
+        ? FileLocation.excelBinFolder()
+        : FileLocation.textMapFolder()
+    return folderLocation.child(fileName)
   }
 }
