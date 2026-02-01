@@ -1,7 +1,4 @@
-import {
-  ExcelBinPropertyNotFoundError,
-  GeneralError,
-} from '@genshin-manager/core'
+import { GeneralError } from '@genshin-manager/core'
 import type { ExcelBinCache, TextMapIndex } from '@genshin-manager/data'
 
 import { ImageAssets } from '@/assets/ImageAssets'
@@ -74,14 +71,7 @@ export class MonsterRepository {
         'propGrowCurves',
       ])
       .where('id', monsterId)
-      .executeTakeFirst()
-
-    if (!result) {
-      throw new ExcelBinPropertyNotFoundError(
-        'MonsterExcelConfigData',
-        monsterId,
-      )
-    }
+      .executeTakeFirstOrThrow()
 
     const name = result.nameTextMapHash.toText()
 
@@ -325,18 +315,11 @@ export class MonsterRepository {
     )
       return initValue * bonusValue
 
-    const curveResults = await this.excelBinCache
+    const curveResult = await this.excelBinCache
       .from('MonsterCurveExcelConfigData')
       .select(['level', 'curveInfos'])
-      .execute()
-
-    const curveResult = curveResults.find((r) => r.level.value === level)
-    if (!curveResult) {
-      throw new ExcelBinPropertyNotFoundError(
-        'MonsterCurveExcelConfigData',
-        level,
-      )
-    }
+      .where('level', level)
+      .executeTakeFirstOrThrow()
 
     const curveInfos: { type: string; value: number }[] =
       curveResult.curveInfos.map((info) => ({
@@ -344,14 +327,8 @@ export class MonsterRepository {
         value: info.value.value,
       }))
     const curveInfo = curveInfos.find((info) => info.type === growCurveStr)
-    if (!curveInfo) {
-      throw new ExcelBinPropertyNotFoundError(
-        'MonsterCurveExcelConfigData.curveInfos',
-        growCurveStr,
-      )
-    }
 
-    return initValue * curveInfo.value * bonusValue
+    return initValue * (curveInfo?.value ?? 1) * bonusValue
   }
 
   /**

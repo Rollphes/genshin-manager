@@ -1,4 +1,3 @@
-import { ExcelBinPropertyNotFoundError } from '@genshin-manager/core'
 import type { ExcelBinCache, TextMapIndex } from '@genshin-manager/data'
 
 import { ImageAssets } from '@/assets/ImageAssets'
@@ -44,14 +43,7 @@ export class MaterialRepository {
         'materialType',
       ])
       .where('id', materialId)
-      .executeTakeFirst()
-
-    if (!result) {
-      throw new ExcelBinPropertyNotFoundError(
-        'MaterialExcelConfigData',
-        materialId,
-      )
-    }
+      .executeTakeFirstOrThrow()
 
     const name = result.nameTextMapHash.toText()
     const description = result.descTextMapHash.toText()

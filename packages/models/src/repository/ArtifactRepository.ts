@@ -1,4 +1,3 @@
-import { ExcelBinPropertyNotFoundError } from '@genshin-manager/core'
 import type { ExcelBinCache, TextMapIndex } from '@genshin-manager/data'
 
 import type { ArtifactAppendProp } from '@/artifact/Artifact'
@@ -79,14 +78,7 @@ export class ArtifactRepository {
         'icon',
       ])
       .where('id', artifactId)
-      .executeTakeFirst()
-
-    if (!result) {
-      throw new ExcelBinPropertyNotFoundError(
-        'ReliquaryExcelConfigData',
-        artifactId,
-      )
-    }
+      .executeTakeFirstOrThrow()
 
     const name = result.nameTextMapHash.toText()
     const description = result.descTextMapHash.toText()
@@ -207,28 +199,14 @@ export class ArtifactRepository {
       .from('ReliquarySetExcelConfigData')
       .select(['setId', 'equipAffixId'])
       .where('setId', setId)
-      .executeTakeFirst()
-
-    if (!setResult) {
-      throw new ExcelBinPropertyNotFoundError(
-        'ReliquarySetExcelConfigData',
-        setId,
-      )
-    }
+      .executeTakeFirstOrThrow()
 
     const equipAffixId = setResult.equipAffixId.value * 10
     const affixResult = await this.excelBinCache
       .fromWithTextMap('EquipAffixExcelConfigData', this.textMap)
       .select(['affixId', 'nameTextMapHash', 'descTextMapHash'])
       .where('affixId', equipAffixId)
-      .executeTakeFirst()
-
-    if (!affixResult) {
-      throw new ExcelBinPropertyNotFoundError(
-        'EquipAffixExcelConfigData',
-        equipAffixId,
-      )
-    }
+      .executeTakeFirstOrThrow()
 
     const setName = affixResult.nameTextMapHash.toText()
 
@@ -268,50 +246,26 @@ export class ArtifactRepository {
       .from('ReliquaryMainPropExcelConfigData')
       .select(['id', 'propType'])
       .where('id', mainPropId)
-      .executeTakeFirst()
+      .executeTakeFirstOrThrow()
 
-    if (!mainPropResult) {
-      throw new ExcelBinPropertyNotFoundError(
-        'ReliquaryMainPropExcelConfigData',
-        mainPropId,
-      )
-    }
-
-    const levelResults = await this.excelBinCache
+    const levelResult = await this.excelBinCache
       .from('ReliquaryLevelExcelConfigData')
       .select(['rank', 'level', 'addProps'])
-      .execute()
-
-    const levelResult = levelResults.find(
-      (r) => r.rank.value === rarity && r.level.value === level + 1,
-    )
-    if (!levelResult) {
-      throw new ExcelBinPropertyNotFoundError(
-        'ReliquaryLevelExcelConfigData',
-        level + 1,
-      )
-    }
+      .where('rank', rarity)
+      .where('level', level + 1)
+      .executeTakeFirstOrThrow()
 
     const addProps = levelResult.addProps.map((ap) => ({
       propType: ap.propType.toEnum(FightProp),
       value: ap.value.value,
     }))
-    const mainProp = addProps.find(
-      (p) => p.propType === mainPropResult.propType.toEnum(FightProp),
-    )
-    if (!mainProp) {
-      throw new ExcelBinPropertyNotFoundError(
-        'ReliquaryLevelExcelConfigData.addProps',
-        mainPropResult.propType.value,
-      )
-    }
-
     const propType = mainPropResult.propType.toEnum(FightProp)
+    const mainProp = addProps.find((p) => p.propType === propType)
 
     return new StatProperty({
       type: propType,
       name: propType,
-      value: mainProp.value,
+      value: mainProp?.value ?? 0,
     })
   }
 
@@ -332,14 +286,7 @@ export class ArtifactRepository {
         .from('ReliquaryAffixExcelConfigData')
         .select(['id', 'propType', 'propValue'])
         .where('id', propId)
-        .executeTakeFirst()
-
-      if (!affixResult) {
-        throw new ExcelBinPropertyNotFoundError(
-          'ReliquaryAffixExcelConfigData',
-          propId,
-        )
-      }
+        .executeTakeFirstOrThrow()
 
       const propType = affixResult.propType.toEnum(FightProp)
 

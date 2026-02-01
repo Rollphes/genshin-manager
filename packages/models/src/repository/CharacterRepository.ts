@@ -1,4 +1,3 @@
-import { ExcelBinPropertyNotFoundError } from '@genshin-manager/core'
 import type { ExcelBinCache, TextMapIndex } from '@genshin-manager/data'
 
 import { ImageAssets } from '@/assets/ImageAssets'
@@ -147,29 +146,14 @@ export class CharacterRepository {
         'sideIconName',
       ])
       .where('id', characterId)
-      .executeTakeFirst()
+      .executeTakeFirstOrThrow()
 
-    if (!avatarResult) {
-      throw new ExcelBinPropertyNotFoundError(
-        'AvatarExcelConfigData',
-        characterId,
-      )
-    }
-
-    const costumeResults = await this.excelBinCache
+    const defaultCostumeData = await this.excelBinCache
       .from('AvatarCostumeExcelConfigData')
       .select(['characterId', 'quality', 'skinId'])
-      .execute()
-
-    const defaultCostumeData = costumeResults.find(
-      (r) => r.characterId.value === characterId && r.quality.value === 0,
-    )
-    if (!defaultCostumeData) {
-      throw new ExcelBinPropertyNotFoundError(
-        'AvatarCostumeExcelConfigData',
-        characterId,
-      )
-    }
+      .where('characterId', characterId)
+      .where('quality', 0)
+      .executeTakeFirstOrThrow()
 
     const isTraveler = [10000005, 10000007].includes(characterId)
     const depotId =
@@ -187,14 +171,7 @@ export class CharacterRepository {
         'inherentProudSkillOpens',
       ])
       .where('id', depotId)
-      .executeTakeFirst()
-
-    if (!depotResult) {
-      throw new ExcelBinPropertyNotFoundError(
-        'AvatarSkillDepotExcelConfigData',
-        depotId,
-      )
-    }
+      .executeTakeFirstOrThrow()
 
     const energySkill = depotResult.energySkill.value
 
@@ -276,14 +253,7 @@ export class CharacterRepository {
         'propGrowCurves',
       ])
       .where('id', characterId)
-      .executeTakeFirst()
-
-    if (!avatarResult) {
-      throw new ExcelBinPropertyNotFoundError(
-        'AvatarExcelConfigData',
-        characterId,
-      )
-    }
+      .executeTakeFirstOrThrow()
 
     const promoteResults = await this.excelBinCache
       .from('AvatarPromoteExcelConfigData')
@@ -404,16 +374,9 @@ export class CharacterRepository {
       .from('AvatarExcelConfigData')
       .select(['id', 'avatarPromoteId'])
       .where('id', characterId)
-      .executeTakeFirst()
+      .executeTakeFirstOrThrow()
 
-    if (!avatarResult) {
-      throw new ExcelBinPropertyNotFoundError(
-        'AvatarExcelConfigData',
-        characterId,
-      )
-    }
-
-    const promoteResults = await this.excelBinCache
+    const promoteResult = await this.excelBinCache
       .from('AvatarPromoteExcelConfigData')
       .select([
         'avatarPromoteId',
@@ -423,20 +386,9 @@ export class CharacterRepository {
         'addProps',
         'unlockMaxLevel',
       ])
-      .execute()
-
-    const promoteResult = promoteResults.find(
-      (r) =>
-        r.avatarPromoteId.value === avatarResult.avatarPromoteId.value &&
-        r.promoteLevel.value === promoteLevel,
-    )
-
-    if (!promoteResult) {
-      throw new ExcelBinPropertyNotFoundError(
-        'AvatarPromoteExcelConfigData',
-        promoteLevel,
-      )
-    }
+      .where('avatarPromoteId', avatarResult.avatarPromoteId.value)
+      .where('promoteLevel', promoteLevel)
+      .executeTakeFirstOrThrow()
 
     const costItems = promoteResult.costItems
       .filter((item) => item.id.value !== 0 && item.count.value !== 0)

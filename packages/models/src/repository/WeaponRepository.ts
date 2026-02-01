@@ -1,4 +1,3 @@
-import { ExcelBinPropertyNotFoundError } from '@genshin-manager/core'
 import type { ExcelBinCache, TextMapIndex } from '@genshin-manager/data'
 
 import { ImageAssets } from '@/assets/ImageAssets'
@@ -116,10 +115,7 @@ export class WeaponRepository {
         'awakenIcon',
       ])
       .where('id', weaponId)
-      .executeTakeFirst()
-
-    if (!weaponResult)
-      throw new ExcelBinPropertyNotFoundError('WeaponExcelConfigData', weaponId)
+      .executeTakeFirstOrThrow()
 
     const promoteResults = await this.excelBinCache
       .from('WeaponPromoteExcelConfigData')
@@ -206,12 +202,9 @@ export class WeaponRepository {
       .from('WeaponExcelConfigData')
       .select(['id', 'weaponPromoteId'])
       .where('id', weaponId)
-      .executeTakeFirst()
+      .executeTakeFirstOrThrow()
 
-    if (!weaponResult)
-      throw new ExcelBinPropertyNotFoundError('WeaponExcelConfigData', weaponId)
-
-    const promoteResults = await this.excelBinCache
+    const promoteResult = await this.excelBinCache
       .from('WeaponPromoteExcelConfigData')
       .select([
         'weaponPromoteId',
@@ -221,20 +214,9 @@ export class WeaponRepository {
         'addProps',
         'unlockMaxLevel',
       ])
-      .execute()
-
-    const promoteResult = promoteResults.find(
-      (r) =>
-        r.weaponPromoteId.value === weaponResult.weaponPromoteId.value &&
-        r.promoteLevel.value === promoteLevel,
-    )
-
-    if (!promoteResult) {
-      throw new ExcelBinPropertyNotFoundError(
-        'WeaponPromoteExcelConfigData',
-        promoteLevel,
-      )
-    }
+      .where('weaponPromoteId', weaponResult.weaponPromoteId.value)
+      .where('promoteLevel', promoteLevel)
+      .executeTakeFirstOrThrow()
 
     const costItems = promoteResult.costItems
       .filter((item) => item.id.value !== 0 && item.count.value !== 0)
@@ -278,10 +260,7 @@ export class WeaponRepository {
       .from('WeaponExcelConfigData')
       .select(['id', 'skillAffix'])
       .where('id', weaponId)
-      .executeTakeFirst()
-
-    if (!weaponResult)
-      throw new ExcelBinPropertyNotFoundError('WeaponExcelConfigData', weaponId)
+      .executeTakeFirstOrThrow()
 
     const skillAffixArr = weaponResult.skillAffix.map((lc) => lc.value)
     const skillAffix = skillAffixArr[0]

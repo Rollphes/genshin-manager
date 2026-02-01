@@ -1,4 +1,3 @@
-import { ExcelBinPropertyNotFoundError } from '@genshin-manager/core'
 import type { ExcelBinCache, TextMapIndex } from '@genshin-manager/data'
 
 import { ImageAssets } from '@/assets/ImageAssets'
@@ -38,14 +37,7 @@ export class ProfilePictureRepository {
       .from('ProfilePictureExcelConfigData')
       .select(['id', 'type', 'unlockParam', 'iconPath'])
       .where('id', profilePictureId)
-      .executeTakeFirst()
-
-    if (!result) {
-      throw new ExcelBinPropertyNotFoundError(
-        'ProfilePictureExcelConfigData',
-        profilePictureId,
-      )
-    }
+      .executeTakeFirstOrThrow()
 
     const unlockParam = result.unlockParam.value
     const unlockType = result.type.toEnum(ProfilePictureUnlockType)

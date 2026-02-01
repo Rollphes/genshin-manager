@@ -1,4 +1,3 @@
-import { ExcelBinPropertyNotFoundError } from '@genshin-manager/core'
 import type { ExcelBinCache, TextMapIndex } from '@genshin-manager/data'
 
 import type { DomainData } from '@/common/DailyFarming'
@@ -75,14 +74,7 @@ export class DailyFarmingRepository {
           .fromWithTextMap('ManualTextMapConfigData', this.textMap)
           .select(['textMapId', 'textMapContentTextMapHash'])
           .where('textMapId', nameTextId)
-          .executeTakeFirst()
-
-        if (!manualResult) {
-          throw new ExcelBinPropertyNotFoundError(
-            'ManualTextMapConfigData',
-            nameTextId,
-          )
-        }
+          .executeTakeFirstOrThrow()
 
         const domainName = manualResult.textMapContentTextMapHash.toText()
 

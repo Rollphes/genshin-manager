@@ -22,11 +22,7 @@ export function calculatePromoteLevel(
   level: number,
   isAscended: boolean,
 ): number {
-  void validate(
-    characterLevelSchema,
-    level,
-    'calculatePromoteLevel.function.level',
-  )
+  void validate(characterLevelSchema, level)
   const maxPromoteLevel = Math.max(
     ...promotes.map((promote) => promote.promoteLevel),
   )
