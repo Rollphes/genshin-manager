@@ -232,8 +232,56 @@ export default [
         'error',
         {
           patterns: ['./', '../', '~/'],
+          paths: [
+            {
+              name: 'path',
+              message: 'Use FileLocation static methods instead of path library.',
+            },
+            {
+              name: 'node:path',
+              message: 'Use FileLocation static methods instead of path library.',
+            },
+          ],
         },
       ],
+      'no-restricted-syntax': [
+        'error',
+        {
+          selector:
+            "CallExpression[callee.object.name='fs'][callee.property.name=/^(existsSync|readFileSync|writeFileSync|mkdirSync|rmSync|statSync|unlinkSync|readdirSync|createWriteStream|createReadStream)$/] > Literal:first-child",
+          message:
+            'Do not pass string literals directly to fs methods. Use FileLocation.resolve() instead.',
+        },
+        {
+          selector:
+            "CallExpression[callee.object.name='fs'][callee.property.name=/^(existsSync|readFileSync|writeFileSync|mkdirSync|rmSync|statSync|unlinkSync|readdirSync|createWriteStream|createReadStream)$/] > TemplateLiteral:first-child",
+          message:
+            'Do not pass template literals directly to fs methods. Use FileLocation.resolve() instead.',
+        },
+      ],
+    },
+  },
+  {
+    files: ['src/paths/FileLocation.ts'],
+    rules: {
+      'no-restricted-imports': [
+        'error',
+        {
+          patterns: ['./', '../', '~/'],
+        },
+      ],
+    },
+  },
+  {
+    files: ['**/*.test.ts'],
+    rules: {
+      'no-restricted-imports': [
+        'error',
+        {
+          patterns: ['./', '../', '~/'],
+        },
+      ],
+      'no-restricted-syntax': 'off',
     },
   },
   {
@@ -242,6 +290,7 @@ export default [
       'node_modules/',
       '*.config.js',
       '*.config.ts',
+      '*.config.mjs',
       'src/types/generated/',
     ],
   },
