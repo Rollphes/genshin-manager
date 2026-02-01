@@ -1,3 +1,4 @@
+import { type Location, Location as LocationClass } from '@genshin-manager/data'
 import * as fs from 'fs'
 import * as os from 'os'
 import * as path from 'path'
@@ -7,7 +8,8 @@ import { FileLockManager } from '@/download/FileLockManager'
 
 describe('FileLockManager', () => {
   let testDir: string
-  let testFilePath: string
+  let testDirLocation: Location
+  let testFileLocation: Location
   let fileLockManager: FileLockManager
 
   beforeEach(() => {
@@ -16,63 +18,64 @@ describe('FileLockManager', () => {
       `fileLockManagerTest-${String(Date.now())}`,
     )
     fs.mkdirSync(testDir, { recursive: true })
-    testFilePath = path.join(testDir, 'test-file.txt')
+    testDirLocation = LocationClass.raw(testDir)
+    testFileLocation = LocationClass.raw(path.join(testDir, 'test-file.txt'))
     fileLockManager = new FileLockManager()
   })
 
   afterEach(() => {
-    fileLockManager.clearAllLocks(testDir)
+    fileLockManager.clearAllLocks(testDirLocation)
     if (fs.existsSync(testDir)) fs.rmSync(testDir, { recursive: true })
   })
 
   describe('withLock', () => {
     it('should execute operation and return result', async () => {
-      const result = await fileLockManager.withLock(testFilePath, () => {
+      const result = await fileLockManager.withLock(testFileLocation, () => {
         return Promise.resolve('success')
       })
       expect(result).toBe('success')
     })
 
     it('should create lock file', async () => {
-      await fileLockManager.withLock(testFilePath, () => {
-        const lockFilePath = `${testFilePath}.lock`
+      await fileLockManager.withLock(testFileLocation, () => {
+        const lockFilePath = `${testFileLocation.resolve()}.lock`
         expect(fs.existsSync(lockFilePath)).toBe(true)
         return Promise.resolve()
       })
     })
 
     it('should release lock after operation completes', async () => {
-      await fileLockManager.withLock(testFilePath, () => {
+      await fileLockManager.withLock(testFileLocation, () => {
         return Promise.resolve('done')
       })
-      const locked = await fileLockManager.isLocked(testFilePath)
+      const locked = await fileLockManager.isLocked(testFileLocation)
       expect(locked).toBe(false)
     })
 
     it('should release lock even if operation throws', async () => {
       try {
-        await fileLockManager.withLock(testFilePath, () => {
+        await fileLockManager.withLock(testFileLocation, () => {
           return Promise.reject(new Error('Operation failed'))
         })
       } catch {
         // Expected error
       }
-      const locked = await fileLockManager.isLocked(testFilePath)
+      const locked = await fileLockManager.isLocked(testFileLocation)
       expect(locked).toBe(false)
     })
   })
 
   describe('isLocked', () => {
     it('should return false when lock file does not exist', async () => {
-      const result = await fileLockManager.isLocked(testFilePath)
+      const result = await fileLockManager.isLocked(testFileLocation)
       expect(result).toBe(false)
     })
 
     it('should return false when file is not locked', async () => {
       // Create empty lock file without actually locking
-      const lockFilePath = `${testFilePath}.lock`
+      const lockFilePath = `${testFileLocation.resolve()}.lock`
       fs.writeFileSync(lockFilePath, '')
-      const result = await fileLockManager.isLocked(testFilePath)
+      const result = await fileLockManager.isLocked(testFileLocation)
       expect(result).toBe(false)
     })
   })
@@ -84,7 +87,7 @@ describe('FileLockManager', () => {
       fs.writeFileSync(lockFile1, '')
       fs.writeFileSync(lockFile2, '')
 
-      fileLockManager.clearAllLocks(testDir)
+      fileLockManager.clearAllLocks(testDirLocation)
 
       expect(fs.existsSync(lockFile1)).toBe(false)
       expect(fs.existsSync(lockFile2)).toBe(false)
@@ -96,16 +99,18 @@ describe('FileLockManager', () => {
       fs.writeFileSync(normalFile, 'content')
       fs.writeFileSync(lockFile, '')
 
-      fileLockManager.clearAllLocks(testDir)
+      fileLockManager.clearAllLocks(testDirLocation)
 
       expect(fs.existsSync(normalFile)).toBe(true)
       expect(fs.existsSync(lockFile)).toBe(false)
     })
 
     it('should handle non-existent directory', () => {
-      const nonExistentDir = path.join(testDir, 'non-existent')
+      const nonExistentLocation = LocationClass.raw(
+        path.join(testDir, 'non-existent'),
+      )
       expect(() => {
-        fileLockManager.clearAllLocks(nonExistentDir)
+        fileLockManager.clearAllLocks(nonExistentLocation)
       }).not.toThrow()
     })
 
@@ -115,7 +120,7 @@ describe('FileLockManager', () => {
       const lockFile = path.join(subDir, 'file.lock')
       fs.writeFileSync(lockFile, '')
 
-      fileLockManager.clearAllLocks(testDir)
+      fileLockManager.clearAllLocks(testDirLocation)
 
       expect(fs.existsSync(lockFile)).toBe(false)
     })

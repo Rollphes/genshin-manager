@@ -1,7 +1,7 @@
 import type { RestClient } from '@genshin-manager/core'
-import { AssetFormatError } from '@genshin-manager/core'
+import { AssetFormatError, Location } from '@genshin-manager/data'
 import fs from 'fs'
-import { afterEach, describe, expect, it, vi } from 'vitest'
+import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 
 import { VersionChecker } from '@/download/VersionChecker'
 import type { CommitsResponse } from '@/types/api/gitlab/responses'
@@ -12,7 +12,7 @@ vi.mock('@/download/FileLockManager', () => {
   return {
     FileLockManager: class {
       public async withLock<T>(
-        _path: string,
+        _location: Location,
         fn: () => Promise<T>,
       ): Promise<T> {
         return fn()
@@ -32,6 +32,9 @@ vi.mock('@genshin-manager/core', async (importOriginal) => {
 })
 
 describe('VersionChecker', () => {
+  beforeEach(() => {
+    Location.deploy({ assetCacheFolderPath: '/test-cache' })
+  })
   let mockFetch: ReturnType<typeof vi.fn>
 
   function createMockRestClient(): RestClient<GitLabApiRoutes> {
@@ -63,7 +66,6 @@ describe('VersionChecker', () => {
     it('should create instance with options', () => {
       const restClient = createMockRestClient()
       const checker = new VersionChecker({
-        commitFilePath: '/test/commits.json',
         projectId: 12345,
         restClient,
       })
@@ -78,7 +80,6 @@ describe('VersionChecker', () => {
       vi.mocked(fs.existsSync).mockReturnValue(false)
 
       const checker = new VersionChecker({
-        commitFilePath: '/test/commits.json',
         projectId: 12345,
         restClient: createMockRestClient(),
       })
@@ -91,7 +92,6 @@ describe('VersionChecker', () => {
       vi.mocked(fs.readFileSync).mockReturnValue('   ')
 
       const checker = new VersionChecker({
-        commitFilePath: '/test/commits.json',
         projectId: 12345,
         restClient: createMockRestClient(),
       })
@@ -104,7 +104,6 @@ describe('VersionChecker', () => {
       vi.mocked(fs.readFileSync).mockReturnValue('invalid json')
 
       const checker = new VersionChecker({
-        commitFilePath: '/test/commits.json',
         projectId: 12345,
         restClient: createMockRestClient(),
       })
@@ -117,7 +116,6 @@ describe('VersionChecker', () => {
       vi.mocked(fs.readFileSync).mockReturnValue('[]')
 
       const checker = new VersionChecker({
-        commitFilePath: '/test/commits.json',
         projectId: 12345,
         restClient: createMockRestClient(),
       })
@@ -130,7 +128,6 @@ describe('VersionChecker', () => {
       vi.mocked(fs.readFileSync).mockReturnValue('{"not": "array"}')
 
       const checker = new VersionChecker({
-        commitFilePath: '/test/commits.json',
         projectId: 12345,
         restClient: createMockRestClient(),
       })
@@ -143,7 +140,6 @@ describe('VersionChecker', () => {
       vi.mocked(fs.readFileSync).mockReturnValue('[{"invalid": "commit"}]')
 
       const checker = new VersionChecker({
-        commitFilePath: '/test/commits.json',
         projectId: 12345,
         restClient: createMockRestClient(),
       })
@@ -160,7 +156,6 @@ describe('VersionChecker', () => {
       vi.mocked(fs.readFileSync).mockReturnValue(JSON.stringify([commit]))
 
       const checker = new VersionChecker({
-        commitFilePath: '/test/commits.json',
         projectId: 12345,
         restClient: createMockRestClient(),
       })
@@ -174,7 +169,6 @@ describe('VersionChecker', () => {
       vi.mocked(fs.readFileSync).mockReturnValue(JSON.stringify([commit]))
 
       const checker = new VersionChecker({
-        commitFilePath: '/test/commits.json',
         projectId: 12345,
         restClient: createMockRestClient(),
       })
@@ -202,7 +196,6 @@ describe('VersionChecker', () => {
       mockFetch.mockResolvedValue([newCommit])
 
       const checker = new VersionChecker({
-        commitFilePath: '/test/commits.json',
         projectId: 12345,
         restClient,
       })
@@ -224,7 +217,6 @@ describe('VersionChecker', () => {
       mockFetch.mockResolvedValue([commit])
 
       const checker = new VersionChecker({
-        commitFilePath: '/test/commits.json',
         projectId: 12345,
         restClient,
       })
@@ -248,7 +240,6 @@ describe('VersionChecker', () => {
       mockFetch.mockResolvedValue([newCommit])
 
       const checker = new VersionChecker({
-        commitFilePath: '/test/commits.json',
         projectId: 12345,
         restClient,
       })
@@ -266,7 +257,6 @@ describe('VersionChecker', () => {
       mockFetch.mockResolvedValue([])
 
       const checker = new VersionChecker({
-        commitFilePath: '/test/commits.json',
         projectId: 12345,
         restClient,
       })
@@ -284,7 +274,6 @@ describe('VersionChecker', () => {
       ])
 
       const checker = new VersionChecker({
-        commitFilePath: '/test/commits.json',
         projectId: 12345,
         restClient,
       })
@@ -306,7 +295,6 @@ describe('VersionChecker', () => {
       mockFetch.mockResolvedValue([newCommit])
 
       const checker = new VersionChecker({
-        commitFilePath: '/test/commits.json',
         projectId: 12345,
         restClient,
       })
@@ -320,7 +308,6 @@ describe('VersionChecker', () => {
   describe('commitId getter', () => {
     it('should return empty string initially', () => {
       const checker = new VersionChecker({
-        commitFilePath: '/test/commits.json',
         projectId: 12345,
         restClient: createMockRestClient(),
       })
@@ -338,7 +325,6 @@ describe('VersionChecker', () => {
       mockFetch.mockResolvedValue([commit])
 
       const checker = new VersionChecker({
-        commitFilePath: '/test/commits.json',
         projectId: 12345,
         restClient,
       })
@@ -355,7 +341,6 @@ describe('VersionChecker', () => {
       vi.mocked(fs.readFileSync).mockReturnValue('[null]')
 
       const checker = new VersionChecker({
-        commitFilePath: '/test/commits.json',
         projectId: 12345,
         restClient: createMockRestClient(),
       })
@@ -368,7 +353,6 @@ describe('VersionChecker', () => {
       vi.mocked(fs.readFileSync).mockReturnValue('["string"]')
 
       const checker = new VersionChecker({
-        commitFilePath: '/test/commits.json',
         projectId: 12345,
         restClient: createMockRestClient(),
       })
@@ -383,7 +367,6 @@ describe('VersionChecker', () => {
       )
 
       const checker = new VersionChecker({
-        commitFilePath: '/test/commits.json',
         projectId: 12345,
         restClient: createMockRestClient(),
       })
@@ -398,7 +381,6 @@ describe('VersionChecker', () => {
       )
 
       const checker = new VersionChecker({
-        commitFilePath: '/test/commits.json',
         projectId: 12345,
         restClient: createMockRestClient(),
       })
@@ -413,7 +395,6 @@ describe('VersionChecker', () => {
       )
 
       const checker = new VersionChecker({
-        commitFilePath: '/test/commits.json',
         projectId: 12345,
         restClient: createMockRestClient(),
       })

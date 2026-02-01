@@ -1,14 +1,16 @@
 import type { RestClient } from '@genshin-manager/core'
-import { AssetFormatError } from '@genshin-manager/core'
-import { AssetNotFoundError } from '@genshin-manager/core'
-import { BodyNotFoundError } from '@genshin-manager/core'
-import { GeneralError } from '@genshin-manager/core'
+import { BodyNotFoundError, GeneralError } from '@genshin-manager/core'
 import { logger } from '@genshin-manager/core'
 import { LogLevel } from '@genshin-manager/core'
 import { type Language, TextMapBaseName } from '@genshin-manager/core'
-import { Location } from '@genshin-manager/data'
-import { ReadableStreamWrapper } from '@genshin-manager/data'
-import { TextMapTransform } from '@genshin-manager/data'
+import {
+  AssetFormatError,
+  AssetNotFoundError,
+  type Location,
+  Location as LocationClass,
+  ReadableStreamWrapper,
+  TextMapTransform,
+} from '@genshin-manager/data'
 import * as cliProgress from 'cli-progress'
 import fs from 'fs'
 import path from 'path'
@@ -52,18 +54,16 @@ export class AssetDownloader {
 
   /**
    * Download multiple files to a local folder
-   * @param folderPath - Local folder path to download to
-   * @param gitFolderName - Remote folder name in repository (e.g., 'ExcelBinOutput', 'TextMap')
+   * @param gitFolderName - Remote folder name in repository ('ExcelBinOutput' or 'TextMap')
    * @param files - Array of file names to download
    * @param isRetry - Whether this is a retry attempt (skips folder cleanup)
    */
   public async downloadFolder(
-    folderPath: string,
-    gitFolderName: string,
+    gitFolderName: 'ExcelBinOutput' | 'TextMap',
     files: string[],
     isRetry = false,
   ): Promise<void> {
-    await this.prepareFolder(folderPath, isRetry)
+    await this.prepareFolder(gitFolderName, isRetry)
 
     const progressBar = this.createProgressBar(gitFolderName, files.length)
     if (progressBar) progressBar.start(files.length, 0)
@@ -74,10 +74,13 @@ export class AssetDownloader {
     for (const chunk of chunks) {
       await Promise.all(
         chunk.map(async (fileName) => {
-          const localFilePath = Location.joinPath(folderPath, fileName)
+          const localLocation = this.createLocationForFile(
+            gitFolderName,
+            fileName,
+          )
           const remoteFilePath = `${gitFolderName}/${fileName}`
 
-          await this.downloadFileWithRetry(localFilePath, remoteFilePath)
+          await this.downloadFileWithRetry(localLocation, remoteFilePath)
 
           if (progressBar) progressBar.increment()
         }),
@@ -92,15 +95,21 @@ export class AssetDownloader {
 
   /**
    * Prepare folder for download
-   * @param folderPath - Folder path to prepare
+   * @param gitFolderName - Folder type to prepare
    * @param isRetry - Whether this is a retry (skip cleanup)
    */
   private async prepareFolder(
-    folderPath: string,
+    gitFolderName: 'ExcelBinOutput' | 'TextMap',
     isRetry: boolean,
   ): Promise<void> {
+    const folderPath =
+      gitFolderName === 'ExcelBinOutput'
+        ? LocationClass.excelBinFolderPath
+        : LocationClass.textMapFolderPath
+    const folderLocation = LocationClass.raw(folderPath)
+
     if (!isRetry) {
-      await this.fileLockManager.withLock(folderPath, () => {
+      await this.fileLockManager.withLock(folderLocation, () => {
         if (fs.existsSync(folderPath))
           fs.rmSync(folderPath, { recursive: true })
         fs.mkdirSync(folderPath, { recursive: true })
@@ -146,11 +155,11 @@ export class AssetDownloader {
 
   /**
    * Download a single file with retry logic
-   * @param localFilePath - Local file path to write to
-   * @param remoteFilePath - Remote file path in repository
+   * @param localLocation - Location of local file to write to
+   * @param remoteFilePath - Remote file path in repository (HTTP path)
    */
   private async downloadFileWithRetry(
-    localFilePath: string,
+    localLocation: Location,
     remoteFilePath: string,
   ): Promise<void> {
     const maxRetries = 3
@@ -158,7 +167,7 @@ export class AssetDownloader {
 
     for (let attempt = 1; attempt <= maxRetries; attempt++) {
       try {
-        await this.downloadFile(localFilePath, remoteFilePath)
+        await this.downloadFile(localLocation, remoteFilePath)
         return
       } catch (error) {
         if (attempt === maxRetries) throw error
@@ -166,21 +175,21 @@ export class AssetDownloader {
         const delay = baseDelay * Math.pow(2, attempt - 1)
         await new Promise((resolve) => setTimeout(resolve, delay))
 
-        this.cleanupFailedDownload(localFilePath)
+        this.cleanupFailedDownload(localLocation)
       }
     }
   }
 
   /**
    * Download a single file from GitLab
-   * @param localFilePath - Local file path to write to
-   * @param remoteFilePath - Remote file path in repository
+   * @param localLocation - Location of local file to write to
+   * @param remoteFilePath - Remote file path in repository (HTTP path)
    */
   private async downloadFile(
-    localFilePath: string,
+    localLocation: Location,
     remoteFilePath: string,
   ): Promise<void> {
-    return this.fileLockManager.withLock(localFilePath, async () => {
+    return this.fileLockManager.withLock(localLocation, async () => {
       const response = await this.restClient.fetchRaw(
         '/api/v4//projects/:id/repository/files/:file_path/raw',
         {
@@ -194,36 +203,41 @@ export class AssetDownloader {
         },
       )
 
-      await this.writeResponseToFile(response, localFilePath)
-      this.validateDownloadedFile(localFilePath)
+      await this.writeResponseToFile(response, localLocation)
+      this.validateDownloadedFile(localLocation)
     })
   }
 
   /**
    * Write response body to file
    * @param response - Fetch Response object
-   * @param filePath - Local file path to write to
+   * @param location - Location of local file to write to
    */
   private async writeResponseToFile(
     response: Response,
-    filePath: string,
+    location: Location,
   ): Promise<void> {
     if (!response.body)
       throw new BodyNotFoundError(new Request(response.url), response)
 
-    const writeStream = fs.createWriteStream(filePath, {
+    const resolvedPath = location.resolve()
+    const writeStream = fs.createWriteStream(resolvedPath, {
       highWaterMark: 1 * 1024 * 1024,
     })
 
-    const fileName = Location.getFileName(filePath)
+    const fileName = LocationClass.getFileName(resolvedPath)
     const language = this.getLanguageFromFileName(fileName)
-    const parentDirName = Location.getFileName(path.dirname(filePath))
+    const parentDirName = LocationClass.getFileName(path.dirname(resolvedPath))
     const isTextMapFile = parentDirName === 'TextMap'
 
     if (isTextMapFile && language) {
       await pipeline(
         new ReadableStreamWrapper(response.body.getReader()),
-        new TextMapTransform(language, this.textHashes, path.resolve(filePath)),
+        new TextMapTransform(
+          language,
+          this.textHashes,
+          path.resolve(resolvedPath),
+        ),
         writeStream,
       )
     } else {
@@ -279,62 +293,52 @@ export class AssetDownloader {
 
   /**
    * Validate downloaded file exists and has valid content
-   * @param filePath - Path to the downloaded file
+   * @param location - Location of the downloaded file
    * @throws {@link AssetNotFoundError} - When file does not exist or was removed
    * @throws {@link AssetFormatError} - When file is empty or corrupted
    */
-  private validateDownloadedFile(filePath: string): void {
-    if (!fs.existsSync(filePath))
-      throw new AssetNotFoundError(path.resolve(filePath))
+  private validateDownloadedFile(location: Location): void {
+    const resolvedPath = location.resolve()
+
+    if (!fs.existsSync(resolvedPath)) throw new AssetNotFoundError(location)
 
     let fileStats: fs.Stats
     try {
-      fileStats = fs.statSync(filePath)
+      fileStats = fs.statSync(resolvedPath)
     } catch (error) {
       if ((error as NodeJS.ErrnoException).code === 'ENOENT')
-        throw new AssetNotFoundError(path.resolve(filePath))
+        throw new AssetNotFoundError(location)
 
       throw error
     }
 
-    if (fileStats.size === 0) {
-      throw new AssetFormatError(
-        path.resolve(filePath),
-        'File is empty after download',
-      )
-    }
+    if (fileStats.size === 0)
+      throw new AssetFormatError(location, 'File is empty after download')
 
-    if (filePath.endsWith('.json') || filePath.includes('commits'))
-      this.validateJsonContent(filePath)
+    if (resolvedPath.endsWith('.json') || resolvedPath.includes('commits'))
+      this.validateJsonContent(location)
   }
 
   /**
    * Validate JSON file content
-   * @param filePath - Path to the JSON file
+   * @param location - Location of the JSON file
    * @throws {@link AssetFormatError} - When file content is empty, too short, or invalid JSON
    */
-  private validateJsonContent(filePath: string): void {
-    const testContent = fs.readFileSync(filePath, { encoding: 'utf8' })
+  private validateJsonContent(location: Location): void {
+    const resolvedPath = location.resolve()
+    const testContent = fs.readFileSync(resolvedPath, { encoding: 'utf8' })
 
-    if (testContent.trim() === '') {
-      throw new AssetFormatError(
-        path.resolve(filePath),
-        'File content is empty',
-      )
-    }
+    if (testContent.trim() === '')
+      throw new AssetFormatError(location, 'File content is empty')
 
-    if (testContent.length < 10) {
-      throw new AssetFormatError(
-        path.resolve(filePath),
-        'File content is suspiciously short',
-      )
-    }
+    if (testContent.length < 10)
+      throw new AssetFormatError(location, 'File content is suspiciously short')
 
     try {
       JSON.parse(testContent)
     } catch (error) {
       throw new AssetFormatError(
-        path.resolve(filePath),
+        location,
         'Invalid JSON format',
         error instanceof Error ? { cause: error } : undefined,
       )
@@ -343,11 +347,12 @@ export class AssetDownloader {
 
   /**
    * Cleanup failed download file
-   * @param filePath - Path to the file to cleanup
+   * @param location - Location of the file to cleanup
    */
-  private cleanupFailedDownload(filePath: string): void {
+  private cleanupFailedDownload(location: Location): void {
     try {
-      if (fs.existsSync(filePath)) fs.unlinkSync(filePath)
+      const resolvedPath = location.resolve()
+      if (fs.existsSync(resolvedPath)) fs.unlinkSync(resolvedPath)
     } catch {
       // Silent cleanup failure
     }
@@ -366,5 +371,25 @@ export class AssetDownloader {
       ([, value]) => value === baseName,
     )
     return entry?.[0] as Language | undefined
+  }
+
+  /**
+   * Create a Location for a file based on folder type and file name
+   * @param gitFolderName - Folder type ('ExcelBinOutput' or 'TextMap')
+   * @param fileName - File name
+   * @returns Appropriate Location
+   */
+  private createLocationForFile(
+    gitFolderName: 'ExcelBinOutput' | 'TextMap',
+    fileName: string,
+  ): Location {
+    if (gitFolderName === 'TextMap') {
+      const language = this.getLanguageFromFileName(fileName)
+      if (language) return LocationClass.textMap(language, fileName)
+    }
+
+    // For ExcelBinOutput and other files, use image as a generic location
+    // since it accepts arbitrary file names
+    return LocationClass.image(fileName)
   }
 }

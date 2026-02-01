@@ -1,8 +1,10 @@
 import type { RestClient } from '@genshin-manager/core'
-import { AssetFormatError } from '@genshin-manager/core'
-import { AssetNotFoundError } from '@genshin-manager/core'
-import { BodyNotFoundError } from '@genshin-manager/core'
-import { LogLevel } from '@genshin-manager/core'
+import { BodyNotFoundError, LogLevel } from '@genshin-manager/core'
+import {
+  AssetFormatError,
+  AssetNotFoundError,
+  Location,
+} from '@genshin-manager/data'
 import fs from 'fs'
 import { Writable } from 'stream'
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
@@ -15,7 +17,7 @@ vi.mock('@/download/FileLockManager', () => {
   return {
     FileLockManager: class {
       public async withLock<T>(
-        _path: string,
+        _location: Location,
         fn: () => Promise<T>,
       ): Promise<T> {
         return fn()
@@ -35,6 +37,9 @@ vi.mock('@genshin-manager/core', async (importOriginal) => {
 })
 
 describe('AssetDownloader', () => {
+  beforeEach(() => {
+    Location.deploy({ assetCacheFolderPath: '/test-cache' })
+  })
   let mockFetchRaw: ReturnType<typeof vi.fn>
 
   function createMockRestClient(): RestClient<GitLabApiRoutes> {
@@ -128,12 +133,7 @@ describe('AssetDownloader', () => {
       })
       downloader.commitId = 'abc123'
 
-      await downloader.downloadFolder(
-        '/test/folder',
-        'ExcelBinOutput',
-        ['file1.json'],
-        false,
-      )
+      await downloader.downloadFolder('ExcelBinOutput', ['file1.json'], false)
 
       expect(fs.mkdirSync).toHaveBeenCalled()
       expect(mockFetchRaw).toHaveBeenCalled()
@@ -150,7 +150,7 @@ describe('AssetDownloader', () => {
       vi.mocked(fs.existsSync).mockImplementation((path: fs.PathLike) => {
         const pathStr = String(path)
         // Return false for folder check (to trigger mkdirSync), true for file check
-        if (pathStr.endsWith('folder')) return false
+        if (pathStr.endsWith('ExcelBinOutput')) return false
         return true
       })
 
@@ -160,12 +160,7 @@ describe('AssetDownloader', () => {
       })
       downloader.commitId = 'abc123'
 
-      await downloader.downloadFolder(
-        '/test/folder',
-        'ExcelBinOutput',
-        ['file1.json'],
-        true,
-      )
+      await downloader.downloadFolder('ExcelBinOutput', ['file1.json'], true)
 
       expect(fs.mkdirSync).toHaveBeenCalled()
     })
@@ -185,12 +180,7 @@ describe('AssetDownloader', () => {
       })
       downloader.commitId = 'abc123'
 
-      await downloader.downloadFolder(
-        '/test/folder',
-        'ExcelBinOutputFolder',
-        ['file1.json'],
-        false,
-      )
+      await downloader.downloadFolder('ExcelBinOutput', ['file1.json'], false)
 
       expect(mockShouldLog).toHaveBeenCalledWith(LogLevel.INFO)
     })
@@ -210,12 +200,7 @@ describe('AssetDownloader', () => {
       downloader.commitId = 'abc123'
 
       const files = ['file1.json', 'file2.json', 'file3.json', 'file4.json']
-      await downloader.downloadFolder(
-        '/test/folder',
-        'ExcelBinOutput',
-        files,
-        false,
-      )
+      await downloader.downloadFolder('ExcelBinOutput', files, false)
 
       expect(mockFetchRaw).toHaveBeenCalledTimes(4)
     })
@@ -238,12 +223,7 @@ describe('AssetDownloader', () => {
       })
       downloader.commitId = 'abc123'
 
-      await downloader.downloadFolder(
-        '/test/folder',
-        'ExcelBinOutput',
-        ['file1.json'],
-        false,
-      )
+      await downloader.downloadFolder('ExcelBinOutput', ['file1.json'], false)
 
       expect(mockFetchRaw).toHaveBeenCalledTimes(2)
     })
@@ -259,12 +239,7 @@ describe('AssetDownloader', () => {
       downloader.commitId = 'abc123'
 
       await expect(
-        downloader.downloadFolder(
-          '/test/folder',
-          'ExcelBinOutput',
-          ['file1.json'],
-          false,
-        ),
+        downloader.downloadFolder('ExcelBinOutput', ['file1.json'], false),
       ).rejects.toThrow('Network error')
 
       expect(mockFetchRaw).toHaveBeenCalledTimes(3)
@@ -283,12 +258,7 @@ describe('AssetDownloader', () => {
       downloader.commitId = 'abc123'
 
       await expect(
-        downloader.downloadFolder(
-          '/test/folder',
-          'ExcelBinOutput',
-          ['file1.json'],
-          false,
-        ),
+        downloader.downloadFolder('ExcelBinOutput', ['file1.json'], false),
       ).rejects.toThrow(BodyNotFoundError)
     })
 
@@ -311,12 +281,7 @@ describe('AssetDownloader', () => {
       downloader.commitId = 'abc123'
 
       await expect(
-        downloader.downloadFolder(
-          '/test/folder',
-          'ExcelBinOutput',
-          ['file1.json'],
-          false,
-        ),
+        downloader.downloadFolder('ExcelBinOutput', ['file1.json'], false),
       ).rejects.toThrow(AssetNotFoundError)
     })
 
@@ -336,12 +301,7 @@ describe('AssetDownloader', () => {
       downloader.commitId = 'abc123'
 
       await expect(
-        downloader.downloadFolder(
-          '/test/folder',
-          'ExcelBinOutput',
-          ['file1.json'],
-          false,
-        ),
+        downloader.downloadFolder('ExcelBinOutput', ['file1.json'], false),
       ).rejects.toThrow(AssetFormatError)
     })
 
@@ -361,12 +321,7 @@ describe('AssetDownloader', () => {
       downloader.commitId = 'abc123'
 
       await expect(
-        downloader.downloadFolder(
-          '/test/folder',
-          'ExcelBinOutput',
-          ['file1.json'],
-          false,
-        ),
+        downloader.downloadFolder('ExcelBinOutput', ['file1.json'], false),
       ).rejects.toThrow(AssetFormatError)
     })
 
@@ -386,12 +341,7 @@ describe('AssetDownloader', () => {
       downloader.commitId = 'abc123'
 
       await expect(
-        downloader.downloadFolder(
-          '/test/folder',
-          'ExcelBinOutput',
-          ['file1.json'],
-          false,
-        ),
+        downloader.downloadFolder('ExcelBinOutput', ['file1.json'], false),
       ).rejects.toThrow(AssetFormatError)
     })
 
@@ -411,12 +361,7 @@ describe('AssetDownloader', () => {
       downloader.commitId = 'abc123'
 
       await expect(
-        downloader.downloadFolder(
-          '/test/folder',
-          'ExcelBinOutput',
-          ['file1.json'],
-          false,
-        ),
+        downloader.downloadFolder('ExcelBinOutput', ['file1.json'], false),
       ).rejects.toThrow(AssetFormatError)
     })
 
@@ -441,12 +386,7 @@ describe('AssetDownloader', () => {
       downloader.commitId = 'abc123'
 
       await expect(
-        downloader.downloadFolder(
-          '/test/folder',
-          'ExcelBinOutput',
-          ['file1.json'],
-          false,
-        ),
+        downloader.downloadFolder('ExcelBinOutput', ['file1.json'], false),
       ).rejects.toThrow(AssetNotFoundError)
     })
 
@@ -471,12 +411,7 @@ describe('AssetDownloader', () => {
       downloader.commitId = 'abc123'
 
       await expect(
-        downloader.downloadFolder(
-          '/test/folder',
-          'ExcelBinOutput',
-          ['file1.json'],
-          false,
-        ),
+        downloader.downloadFolder('ExcelBinOutput', ['file1.json'], false),
       ).rejects.toThrow('Permission denied')
     })
   })
@@ -498,12 +433,7 @@ describe('AssetDownloader', () => {
       downloader.commitId = 'abc123'
       downloader.textHashes = new Set([123])
 
-      await downloader.downloadFolder(
-        '/test/TextMap',
-        'TextMap',
-        ['TextMapEN.json'],
-        false,
-      )
+      await downloader.downloadFolder('TextMap', ['TextMapEN.json'], false)
 
       expect(mockFetchRaw).toHaveBeenCalled()
     })
@@ -524,12 +454,7 @@ describe('AssetDownloader', () => {
       downloader.commitId = 'abc123'
       downloader.textHashes = new Set([456])
 
-      await downloader.downloadFolder(
-        '/test/TextMap',
-        'TextMap',
-        ['TextMapJP_0.json'],
-        false,
-      )
+      await downloader.downloadFolder('TextMap', ['TextMapJP_0.json'], false)
 
       expect(mockFetchRaw).toHaveBeenCalled()
     })
@@ -552,7 +477,6 @@ describe('AssetDownloader', () => {
       downloader.commitId = 'abc123'
 
       await downloader.downloadFolder(
-        '/test/folder',
         'ExcelBinOutput',
         ['AvatarExcelConfigData.json'],
         false,
@@ -577,12 +501,7 @@ describe('AssetDownloader', () => {
       downloader.commitId = 'abc123'
 
       await expect(
-        downloader.downloadFolder(
-          '/test/folder',
-          'ExcelBinOutput',
-          ['file1.json'],
-          false,
-        ),
+        downloader.downloadFolder('ExcelBinOutput', ['file1.json'], false),
       ).rejects.toThrow('Network error')
 
       // Should not throw cleanup error
@@ -607,12 +526,7 @@ describe('AssetDownloader', () => {
       })
       downloader.commitId = 'abc123'
 
-      await downloader.downloadFolder(
-        '/test/folder',
-        'ExcelBinOutput',
-        ['file1.json'],
-        false,
-      )
+      await downloader.downloadFolder('ExcelBinOutput', ['file1.json'], false)
 
       expect(fs.unlinkSync).toHaveBeenCalled()
     })
@@ -646,12 +560,7 @@ describe('AssetDownloader', () => {
       })
       downloader.commitId = 'abc123'
 
-      await downloader.downloadFolder(
-        '/test/folder',
-        'ExcelBinOutput',
-        ['file1.json'],
-        false,
-      )
+      await downloader.downloadFolder('ExcelBinOutput', ['file1.json'], false)
 
       expect(mockFetchRaw).toHaveBeenCalled()
     })
@@ -675,12 +584,7 @@ describe('AssetDownloader', () => {
       downloader.textHashes = new Set([789])
 
       // Test various language codes
-      await downloader.downloadFolder(
-        '/test/TextMap',
-        'TextMap',
-        ['TextMapCHS.json'],
-        false,
-      )
+      await downloader.downloadFolder('TextMap', ['TextMapCHS.json'], false)
 
       expect(mockFetchRaw).toHaveBeenCalled()
     })
@@ -700,10 +604,9 @@ describe('AssetDownloader', () => {
       })
       downloader.commitId = 'abc123'
 
-      // Non-TextMap directory, so language extraction won't be used
+      // ExcelBinOutput directory, so language extraction won't be used
       await downloader.downloadFolder(
-        '/test/folder',
-        'Other',
+        'ExcelBinOutput',
         ['SomeFile.json'],
         false,
       )

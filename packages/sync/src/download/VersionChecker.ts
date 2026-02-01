@@ -1,6 +1,6 @@
 import type { RestClient } from '@genshin-manager/core'
-import { AssetFormatError } from '@genshin-manager/core'
 import { logger } from '@genshin-manager/core'
+import { AssetFormatError, Location } from '@genshin-manager/data'
 import fs from 'fs'
 
 import { FileLockManager } from '@/download/FileLockManager'
@@ -8,7 +8,6 @@ import type { CommitsResponse } from '@/types/api/gitlab/responses'
 import type { GitLabApiRoutes } from '@/types/api/gitlab/routes'
 
 interface VersionCheckerOptions {
-  readonly commitFilePath: string
   readonly projectId: number
   readonly restClient: RestClient<GitLabApiRoutes>
 }
@@ -17,7 +16,6 @@ interface VersionCheckerOptions {
  * Manages version checking and commit tracking for GitLab repository
  */
 export class VersionChecker {
-  private readonly commitFilePath: string
   private readonly projectId: number
   private readonly restClient: RestClient<GitLabApiRoutes>
   private readonly fileLockManager: FileLockManager
@@ -28,7 +26,6 @@ export class VersionChecker {
    * @param options - Version checker options
    */
   constructor(options: VersionCheckerOptions) {
-    this.commitFilePath = options.commitFilePath
     this.projectId = options.projectId
     this.restClient = options.restClient
     this.fileLockManager = new FileLockManager()
@@ -46,10 +43,11 @@ export class VersionChecker {
    * @returns Game version string or undefined if not available
    */
   public getGameVersion(): string | undefined {
-    if (!fs.existsSync(this.commitFilePath)) return undefined
+    const commitFilePath = Location.commitFile().resolve()
+    if (!fs.existsSync(commitFilePath)) return undefined
 
     try {
-      const fileContent = fs.readFileSync(this.commitFilePath, {
+      const fileContent = fs.readFileSync(commitFilePath, {
         encoding: 'utf8',
       })
 
@@ -99,7 +97,7 @@ export class VersionChecker {
         'VersionChecker: Downloaded commits.json contains invalid data structure!',
       )
       throw new AssetFormatError(
-        this.commitFilePath,
+        Location.commitFile(),
         'Invalid data structure (expected non-empty array)',
       )
     }
@@ -115,10 +113,11 @@ export class VersionChecker {
    * Load cached commits from file
    */
   private loadCachedCommits(): CommitsResponse[] | null {
-    if (!fs.existsSync(this.commitFilePath)) return null
+    const commitFilePath = Location.commitFile().resolve()
+    if (!fs.existsSync(commitFilePath)) return null
 
     try {
-      const fileContent = fs.readFileSync(this.commitFilePath, {
+      const fileContent = fs.readFileSync(commitFilePath, {
         encoding: 'utf8',
       })
 
@@ -149,8 +148,10 @@ export class VersionChecker {
   private async saveCommits(
     commits: readonly CommitsResponse[],
   ): Promise<void> {
-    await this.fileLockManager.withLock(this.commitFilePath, () => {
-      fs.writeFileSync(this.commitFilePath, JSON.stringify(commits, null, 2), {
+    const commitFileLocation = Location.commitFile()
+    const commitFilePath = commitFileLocation.resolve()
+    await this.fileLockManager.withLock(commitFileLocation, () => {
+      fs.writeFileSync(commitFilePath, JSON.stringify(commits, null, 2), {
         encoding: 'utf8',
       })
       return Promise.resolve()
