@@ -1,7 +1,7 @@
 import { describe, expect, it } from 'vitest'
 
 import { TableCache } from '@/cache/TableCache'
-import { Location } from '@/location/Location'
+import { QueryLocation } from '@/location/QueryLocation'
 
 interface TestRecord {
   id: number
@@ -26,8 +26,8 @@ class TestTableCache extends TableCache<TestTableName, TestRecord> {
     return Promise.resolve(this.mockData.get(tableName) ?? [])
   }
 
-  protected createLocation(tableName: TestTableName): Location {
-    return Location.create('Test', tableName)
+  protected createLocation(tableName: TestTableName): QueryLocation {
+    return QueryLocation.create('Test', tableName)
   }
 }
 

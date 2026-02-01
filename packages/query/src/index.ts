@@ -18,7 +18,7 @@ export { TableCache } from '@/cache/TableCache'
 export type { IndexKey as CacheIndexKey } from '@/cache/types'
 
 // location
-export { Location } from '@/location/Location'
+export { QueryLocation } from '@/location/QueryLocation'
 export type {
   FilterSegment,
   IndexSegment,

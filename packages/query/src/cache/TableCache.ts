@@ -2,7 +2,7 @@ import { LRUCache } from 'lru-cache'
 
 import { IndexRegistry } from '@/cache/IndexRegistry'
 import { Table } from '@/cache/Table'
-import type { Location } from '@/location/Location'
+import type { QueryLocation } from '@/location/QueryLocation'
 
 /**
  * Abstract base class for table caching with LRU eviction and index management
@@ -108,10 +108,10 @@ export abstract class TableCache<TTableName extends string, TRecord> {
   protected abstract loadTableData(tableName: TTableName): Promise<TRecord[]>
 
   /**
-   * Creates a Location for the specified table
+   * Creates a QueryLocation for the specified table
    * Subclasses must implement this to provide location tracking
    * @param tableName - The table name
-   * @returns A Location instance
+   * @returns A QueryLocation instance
    */
-  protected abstract createLocation(tableName: TTableName): Location
+  protected abstract createLocation(tableName: TTableName): QueryLocation
 }

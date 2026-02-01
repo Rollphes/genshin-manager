@@ -1,12 +1,12 @@
 import { describe, expect, it, vi } from 'vitest'
 
-import { Location } from '@/location/Location'
+import { QueryLocation } from '@/location/QueryLocation'
 import { LocatedArray } from '@/value/LocatedArray'
 import { LocatedValue } from '@/value/LocatedValue'
 import type { TextMapProvider } from '@/value/types'
 
 describe('LocatedArray', () => {
-  const testLocation = Location.create('Test', 'Data').prop('items')
+  const testLocation = QueryLocation.create('Test', 'Data').prop('items')
 
   describe('constructor', () => {
     it('should store value and location', () => {

@@ -1,12 +1,12 @@
 import { GeneralError } from '@genshin-manager/core'
 import { describe, expect, it, vi } from 'vitest'
 
-import { Location } from '@/location/Location'
+import { QueryLocation } from '@/location/QueryLocation'
 import { LocatedValue } from '@/value/LocatedValue'
 import type { TextMapProvider } from '@/value/types'
 
 describe('LocatedValue', () => {
-  const testLocation = Location.create('Test', 'Data').prop('field')
+  const testLocation = QueryLocation.create('Test', 'Data').prop('field')
 
   describe('constructor', () => {
     it('should store value and location', () => {

@@ -1,4 +1,4 @@
-import type { Location } from '@/location/Location'
+import type { QueryLocation } from '@/location/QueryLocation'
 import { LocatedValue } from '@/value/LocatedValue'
 import type { TextMapProvider } from '@/value/types'
 
@@ -33,7 +33,7 @@ export class LocatedArray<T> {
   public readonly value: readonly T[]
 
   /** Location path for error messages */
-  public readonly location: Location
+  public readonly location: QueryLocation
 
   private readonly textMapProvider?: TextMapProvider
 
@@ -45,7 +45,7 @@ export class LocatedArray<T> {
    */
   constructor(
     value: readonly T[],
-    location: Location,
+    location: QueryLocation,
     textMapProvider?: TextMapProvider,
   ) {
     this.value = value
@@ -166,7 +166,7 @@ export class LocatedArray<T> {
    * @param itemLocation - The item's location
    * @returns A located element
    */
-  private wrapElement(item: T, itemLocation: Location): LocatedElement<T> {
+  private wrapElement(item: T, itemLocation: QueryLocation): LocatedElement<T> {
     if (typeof item === 'object' && item !== null && !Array.isArray(item)) {
       // Object: wrap each property with LocatedValue/LocatedArray
       const wrapped: Record<string, unknown> = {}

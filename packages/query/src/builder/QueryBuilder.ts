@@ -4,7 +4,7 @@ import type {
   SelectedRecord,
   WhereCondition,
 } from '@/builder/types'
-import type { Location } from '@/location/Location'
+import type { QueryLocation } from '@/location/QueryLocation'
 import { LocatedArray } from '@/value/LocatedArray'
 import { LocatedValue } from '@/value/LocatedValue'
 import type { TextMapProvider } from '@/value/types'
@@ -319,11 +319,11 @@ export abstract class QueryBuilder<
   protected abstract createNotFoundError(): Error
 
   /**
-   * Gets the Location for the current query
+   * Gets the QueryLocation for the current query
    * Subclasses must implement this to provide location tracking
-   * @returns A Location instance
+   * @returns A QueryLocation instance
    */
-  protected abstract getLocation(): Location
+  protected abstract getLocation(): QueryLocation
 
   /**
    * Creates a clone of this QueryBuilder with new type parameters

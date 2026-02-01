@@ -3,7 +3,7 @@ import { describe, expect, it } from 'vitest'
 
 import { JoinQueryBuilder } from '@/builder/JoinQueryBuilder'
 import type { IndexKey } from '@/builder/types'
-import { Location } from '@/location/Location'
+import { QueryLocation } from '@/location/QueryLocation'
 
 interface UserRecord {
   id: number
@@ -69,12 +69,12 @@ class TestJoinQueryBuilder extends JoinQueryBuilder<
     return cloned
   }
 
-  protected getBaseLocation(): Location {
-    return Location.create('Test', 'UserTable')
+  protected getBaseLocation(): QueryLocation {
+    return QueryLocation.create('Test', 'UserTable')
   }
 
-  protected getJoinLocation(): Location {
-    return Location.create('Test', 'DepartmentTable')
+  protected getJoinLocation(): QueryLocation {
+    return QueryLocation.create('Test', 'DepartmentTable')
   }
 }
 

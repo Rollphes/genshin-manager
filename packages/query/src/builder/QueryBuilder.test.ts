@@ -3,7 +3,7 @@ import { describe, expect, it, vi } from 'vitest'
 
 import { QueryBuilder } from '@/builder/QueryBuilder'
 import type { WhereCondition } from '@/builder/types'
-import { Location } from '@/location/Location'
+import { QueryLocation } from '@/location/QueryLocation'
 import type { TextMapProvider } from '@/value/types'
 
 interface TestRecord {
@@ -56,8 +56,8 @@ class TestQueryBuilder extends QueryBuilder<TestRecord> {
     return new GeneralError(`Record not found in ${this.tableName}`)
   }
 
-  protected getLocation(): Location {
-    let location = Location.create('Test', this.tableName)
+  protected getLocation(): QueryLocation {
+    let location = QueryLocation.create('Test', this.tableName)
     for (const condition of this.whereConditions) {
       if (condition.type === 'eq')
         location = location.filter(condition.key, condition.value)

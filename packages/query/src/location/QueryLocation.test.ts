@@ -1,18 +1,18 @@
 import { describe, expect, it } from 'vitest'
 
-import { Location } from '@/location/Location'
+import { QueryLocation } from '@/location/QueryLocation'
 
-describe('Location', () => {
+describe('QueryLocation', () => {
   describe('create', () => {
     it('should create a root location', () => {
-      const location = Location.create('ExcelBin', 'AvatarExcelConfigData')
+      const location = QueryLocation.create('ExcelBin', 'AvatarExcelConfigData')
       expect(location.toString()).toBe('ExcelBin:AvatarExcelConfigData')
     })
   })
 
   describe('prop', () => {
     it('should append property access', () => {
-      const location = Location.create(
+      const location = QueryLocation.create(
         'ExcelBin',
         'AvatarExcelConfigData',
       ).prop('nameTextMapHash')
@@ -22,7 +22,7 @@ describe('Location', () => {
     })
 
     it('should chain multiple property accesses', () => {
-      const location = Location.create('ExcelBin', 'AvatarExcelConfigData')
+      const location = QueryLocation.create('ExcelBin', 'AvatarExcelConfigData')
         .prop('skillDepot')
         .prop('skills')
       expect(location.toString()).toBe(
@@ -33,7 +33,7 @@ describe('Location', () => {
 
   describe('index', () => {
     it('should append array index access', () => {
-      const location = Location.create('ExcelBin', 'AvatarExcelConfigData')
+      const location = QueryLocation.create('ExcelBin', 'AvatarExcelConfigData')
         .prop('addProps')
         .index(0)
       expect(location.toString()).toBe(
@@ -44,7 +44,7 @@ describe('Location', () => {
 
   describe('filter', () => {
     it('should append filter condition with string value', () => {
-      const location = Location.create(
+      const location = QueryLocation.create(
         'ExcelBin',
         'AvatarExcelConfigData',
       ).filter('id', 10000046)
@@ -54,7 +54,7 @@ describe('Location', () => {
     })
 
     it('should append filter condition with number value', () => {
-      const location = Location.create(
+      const location = QueryLocation.create(
         'ExcelBin',
         'AvatarExcelConfigData',
       ).filter('name', 'Hutao')
@@ -66,7 +66,7 @@ describe('Location', () => {
 
   describe('complex paths', () => {
     it('should handle complex nested paths', () => {
-      const location = Location.create(
+      const location = QueryLocation.create(
         'ExcelBin',
         'AvatarPromoteExcelConfigData',
       )
@@ -82,7 +82,7 @@ describe('Location', () => {
 
   describe('getSegments', () => {
     it('should return immutable segments array', () => {
-      const location = Location.create('ExcelBin', 'Test')
+      const location = QueryLocation.create('ExcelBin', 'Test')
         .prop('field')
         .index(0)
       const segments = location.getSegments()
@@ -96,7 +96,7 @@ describe('Location', () => {
 
   describe('immutability', () => {
     it('should not modify original location', () => {
-      const original = Location.create('ExcelBin', 'Test')
+      const original = QueryLocation.create('ExcelBin', 'Test')
       const withProp = original.prop('field')
       const withIndex = original.index(0)
 

@@ -1,6 +1,6 @@
 import { GeneralError } from '@genshin-manager/core'
 
-import type { Location } from '@/location/Location'
+import type { QueryLocation } from '@/location/QueryLocation'
 import type { TextMapProvider } from '@/value/types'
 
 /**
@@ -13,7 +13,7 @@ export class LocatedValue<T> {
   public readonly value: T
 
   /** Location path for error messages */
-  public readonly location: Location
+  public readonly location: QueryLocation
 
   private readonly textMapProvider?: TextMapProvider
 
@@ -23,7 +23,11 @@ export class LocatedValue<T> {
    * @param location - The location path
    * @param textMapProvider - Optional TextMap provider for text lookups
    */
-  constructor(value: T, location: Location, textMapProvider?: TextMapProvider) {
+  constructor(
+    value: T,
+    location: QueryLocation,
+    textMapProvider?: TextMapProvider,
+  ) {
     this.value = value
     this.location = location
     this.textMapProvider = textMapProvider

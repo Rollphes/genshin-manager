@@ -1,5 +1,5 @@
 import type { IndexKey } from '@/builder/types'
-import type { Location } from '@/location/Location'
+import type { QueryLocation } from '@/location/QueryLocation'
 import { LocatedArray } from '@/value/LocatedArray'
 import { LocatedValue } from '@/value/LocatedValue'
 import type { TextMapProvider } from '@/value/types'
@@ -280,16 +280,16 @@ export abstract class JoinQueryBuilder<
   >(): JoinQueryBuilder<TBase, TJoin, NewSelected, TJoinTableName>
 
   /**
-   * Gets the Location for the base record
+   * Gets the QueryLocation for the base record
    * Subclasses must implement this to provide location tracking
-   * @returns A Location instance
+   * @returns A QueryLocation instance
    */
-  protected abstract getBaseLocation(): Location
+  protected abstract getBaseLocation(): QueryLocation
 
   /**
-   * Gets the Location for the join record
+   * Gets the QueryLocation for the join record
    * Subclasses must implement this to provide location tracking
-   * @returns A Location instance
+   * @returns A QueryLocation instance
    */
-  protected abstract getJoinLocation(): Location
+  protected abstract getJoinLocation(): QueryLocation
 }
