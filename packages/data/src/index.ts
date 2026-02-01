@@ -1,3 +1,11 @@
+// errors
+export { AssetFormatError } from '@/errors/AssetFormatError'
+export { AssetNotFoundError } from '@/errors/AssetNotFoundError'
+export { ExcelBinNotLoadedError } from '@/errors/ExcelBinNotLoadedError'
+export { ExcelBinPropertyNotFoundError } from '@/errors/ExcelBinPropertyNotFoundError'
+export { TextMapFormatError } from '@/errors/TextMapFormatError'
+export { TextMapHashNotFoundError } from '@/errors/TextMapHashNotFoundError'
+
 // cache
 export { ExcelBinCache } from '@/cache/ExcelBinCache'
 

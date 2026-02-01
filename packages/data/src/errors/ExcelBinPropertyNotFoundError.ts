@@ -1,7 +1,5 @@
-import { ErrorCode } from '@/errors/ErrorCodes'
-import { GenshinManagerError } from '@/errors/GenshinManagerError'
-import type { LocationPath } from '@/types/LocationLike'
-import { locationToString } from '@/types/LocationLike'
+import { ErrorCode, GenshinManagerError } from '@genshin-manager/core'
+import type { Location } from '@genshin-manager/query'
 
 /**
  * Error thrown when a property value is not found in ExcelBinOutput
@@ -9,21 +7,21 @@ import { locationToString } from '@/types/LocationLike'
 export class ExcelBinPropertyNotFoundError extends GenshinManagerError {
   public readonly errorCode = ErrorCode.GmExcelBinPropertyNotFound
 
-  /** Location path string (converted from LocationPath) */
+  /** Location path string */
   public readonly locationPath: string
 
   /**
    * Constructor for ExcelBinPropertyNotFoundError
-   * @param location - Location or path string within the ExcelBinOutput file
+   * @param location - Query Location indicating the search path
    * @param searchValue - The value that was searched for
    * @param options - Error options
    */
   constructor(
-    location: LocationPath,
+    location: Location,
     public readonly searchValue: string | number | boolean,
     options?: ErrorOptions,
   ) {
-    const locationStr = locationToString(location)
+    const locationStr = location.toString()
     const message = `Property not found: ${locationStr} (searched: '${String(searchValue)}')`
     super(message, options)
     this.locationPath = locationStr

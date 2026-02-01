@@ -1,8 +1,6 @@
-import { ErrorCode } from '@/errors/ErrorCodes'
-import { GenshinManagerError } from '@/errors/GenshinManagerError'
-import type { Language } from '@/types'
-import type { LocationPath } from '@/types/LocationLike'
-import { locationToString } from '@/types/LocationLike'
+import type { Language } from '@genshin-manager/core'
+import { ErrorCode, GenshinManagerError } from '@genshin-manager/core'
+import type { Location } from '@genshin-manager/query'
 
 /**
  * Text map hash not found error
@@ -10,29 +8,29 @@ import { locationToString } from '@/types/LocationLike'
 export class TextMapHashNotFoundError extends GenshinManagerError {
   public readonly errorCode = ErrorCode.GmTextMapHashNotFound
 
-  /** Text map path string (converted from LocationPath) */
+  /** Text map path string */
   public readonly textMapPath: string
 
-  /** ExcelBin path string (converted from LocationPath) */
+  /** ExcelBin path string */
   public readonly excelBinPath: string
 
   /**
    * Constructor for TextMapHashNotFoundError
    * @param language - Language code
-   * @param textMapLocation - Location or path string of the text map file
-   * @param excelBinLocation - Location or path string of the ExcelBinOutput file that references this hash
+   * @param textMapLocation - Query Location of the text map file
+   * @param excelBinLocation - Query Location of the ExcelBinOutput file that references this hash
    * @param hash - Missing hash value
    * @param options - Error options
    */
   constructor(
     public readonly language: Language,
-    textMapLocation: LocationPath,
-    excelBinLocation: LocationPath,
+    textMapLocation: Location,
+    excelBinLocation: Location,
     public readonly hash: string,
     options?: ErrorOptions,
   ) {
-    const textMapPathStr = locationToString(textMapLocation)
-    const excelBinPathStr = locationToString(excelBinLocation)
+    const textMapPathStr = textMapLocation.toString()
+    const excelBinPathStr = excelBinLocation.toString()
     const message = `Text map hash '${hash}' not found in '${textMapPathStr}' for language '${language}'. Referenced from: ${excelBinPathStr}`
 
     super(message, options)
