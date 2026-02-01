@@ -1,6 +1,6 @@
 import type { Language } from '@genshin-manager/core'
 import {
-  AssetFormatError,
+  GeneralError,
   logger,
   LogLevel,
   PromiseEventEmitter,
@@ -126,8 +126,6 @@ export class GenshinManager extends PromiseEventEmitter<GenshinManagerEventMap> 
   private readonly monsterRepository: MonsterRepository
   private readonly profilePictureRepository: ProfilePictureRepository
   private readonly dailyFarmingRepository: DailyFarmingRepository
-  private readonly excelBinOutputFolderPath: string
-  private readonly textMapFolderPath: string
   private textHashes = new Set<number>()
   private cronTask: ScheduledTask | undefined
   private isDestroyed = false
@@ -167,10 +165,6 @@ export class GenshinManager extends PromiseEventEmitter<GenshinManagerEventMap> 
 
     Location.deploy({ assetCacheFolderPath: this.option.assetCacheFolderPath })
 
-    const commitFilePath = Location.commitFile().resolve()
-    this.excelBinOutputFolderPath = Location.excelBinFolderPath
-    this.textMapFolderPath = Location.textMapFolderPath
-
     this.gitlabApiClient = new RestClient<GitLabApiRoutes>(
       'https://gitlab.com',
       {
@@ -186,18 +180,15 @@ export class GenshinManager extends PromiseEventEmitter<GenshinManagerEventMap> 
     })
 
     this.versionChecker = new VersionChecker({
-      commitFilePath,
       projectId: GenshinManager.GITLAB_PROJECT_ID,
       restClient: this.gitlabApiClient,
     })
 
     this.excelBinCache = new ExcelBinCache({
-      folderPath: this.excelBinOutputFolderPath,
       autoFix: this.option.autoFixExcelBin,
     })
 
     this.textMapIndex = new TextMapIndex({
-      folderPath: this.textMapFolderPath,
       autoFix: this.option.autoFixTextMap,
     })
 
@@ -382,7 +373,7 @@ export class GenshinManager extends PromiseEventEmitter<GenshinManagerEventMap> 
     )
 
     await this.fetchAssetFolder(
-      this.excelBinOutputFolderPath,
+      'ExcelBinOutput',
       Object.values(ExcelBinOutputs),
     )
 
@@ -399,7 +390,7 @@ export class GenshinManager extends PromiseEventEmitter<GenshinManagerEventMap> 
     )
     const textMapFileNames = [...textMapFileNamesMap.values()].flat()
 
-    await this.fetchAssetFolder(this.textMapFolderPath, textMapFileNames)
+    await this.fetchAssetFolder('TextMap', textMapFileNames)
 
     this.emit(GenshinManagerEvents.EndUpdateAssets, versionText)
     logger.info('GenshinManager: Set cache.')
@@ -425,8 +416,8 @@ export class GenshinManager extends PromiseEventEmitter<GenshinManagerEventMap> 
   private ensureFolders(): void {
     const folders = [
       this.option.assetCacheFolderPath,
-      this.excelBinOutputFolderPath,
-      this.textMapFolderPath,
+      Location.excelBinFolderPath,
+      Location.textMapFolderPath,
     ]
     for (const folder of folders)
       if (!fs.existsSync(folder)) fs.mkdirSync(folder, { recursive: true })
@@ -434,32 +425,25 @@ export class GenshinManager extends PromiseEventEmitter<GenshinManagerEventMap> 
 
   /**
    * Fetch asset folder from GitLab
-   * @param downloadFolderPath - Path to download folder
+   * @param gitFolderName - Git folder name ('ExcelBinOutput' or 'TextMap')
    * @param files - Files to download
    * @param isRetry - Whether this is a retry
    */
   private async fetchAssetFolder(
-    downloadFolderPath: string,
+    gitFolderName: 'ExcelBinOutput' | 'TextMap',
     files: string[],
     isRetry = false,
   ): Promise<void> {
-    const gitFolderName = Location.getRelativePath(downloadFolderPath)
-
     this.assetDownloader.commitId = this.versionChecker.commitId
     this.assetDownloader.textHashes = this.textHashes
 
-    await this.assetDownloader.downloadFolder(
-      downloadFolderPath,
-      gitFolderName,
-      files,
-      isRetry,
-    )
+    await this.assetDownloader.downloadFolder(gitFolderName, files, isRetry)
   }
 
   /**
    * Load ExcelBin cache with automatic re-download on failure
    * @param keys - Keys to load
-   * @throws {@link AssetFormatError} - If max retry count exceeded
+   * @throws {@link GeneralError} - If max retry count exceeded
    */
   private async loadExcelBinCacheWithRetry(
     keys: Set<keyof typeof ExcelBinOutputs>,
@@ -468,14 +452,13 @@ export class GenshinManager extends PromiseEventEmitter<GenshinManagerEventMap> 
     let retryCount = 0
     while (result.redownloadRequired) {
       if (retryCount >= GenshinManager.MAX_RETRY_COUNT) {
-        throw new AssetFormatError(
-          this.excelBinOutputFolderPath,
-          `Max retry count (${String(GenshinManager.MAX_RETRY_COUNT)}) exceeded`,
+        throw new GeneralError(
+          `ExcelBin load max retry count (${String(GenshinManager.MAX_RETRY_COUNT)}) exceeded`,
         )
       }
 
       await this.fetchAssetFolder(
-        this.excelBinOutputFolderPath,
+        'ExcelBinOutput',
         Object.values(ExcelBinOutputs),
         true,
       )
@@ -487,7 +470,7 @@ export class GenshinManager extends PromiseEventEmitter<GenshinManagerEventMap> 
   /**
    * Load TextMap with index build and preload
    * @param language - Target language
-   * @throws {@link AssetFormatError} - If max retry count exceeded
+   * @throws {@link GeneralError} - If max retry count exceeded
    */
   private async loadTextMapWithRetry(language: Language): Promise<void> {
     let retryCount = 0
@@ -507,9 +490,8 @@ export class GenshinManager extends PromiseEventEmitter<GenshinManagerEventMap> 
       } catch {
         retryCount++
         if (retryCount >= GenshinManager.MAX_RETRY_COUNT) {
-          throw new AssetFormatError(
-            this.textMapFolderPath,
-            `Max retry count (${String(GenshinManager.MAX_RETRY_COUNT)}) exceeded`,
+          throw new GeneralError(
+            `TextMap load max retry count (${String(GenshinManager.MAX_RETRY_COUNT)}) exceeded`,
           )
         }
 
@@ -524,11 +506,7 @@ export class GenshinManager extends PromiseEventEmitter<GenshinManagerEventMap> 
         )
         const textMapFileNames = textMapFileNamesMap.get(language) ?? []
 
-        await this.fetchAssetFolder(
-          this.textMapFolderPath,
-          textMapFileNames,
-          true,
-        )
+        await this.fetchAssetFolder('TextMap', textMapFileNames, true)
       }
     }
   }

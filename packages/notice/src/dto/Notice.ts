@@ -204,6 +204,16 @@ export class Notice {
     return this.convertLocalDate(durationResult.trim())
   }
 
+  private get durationTitleElement(): Element | undefined {
+    const durationTitleElementIndex = this.en$('p')
+      .toArray()
+      .findIndex((el) =>
+        /〓.*?(Time|Duration|Wish).*?〓/g.test(this.en$(el).text()),
+      )
+    if (durationTitleElementIndex === -1) return undefined
+    return this.$('p').toArray()[durationTitleElementIndex]
+  }
+
   /**
    * Build a Notice from API responses
    * @param annList - Announcement list data
@@ -285,16 +295,6 @@ export class Notice {
       eventEnd,
       rewardImageURL: rewardImgURL ?? undefined,
     })
-  }
-
-  private get durationTitleElement(): Element | undefined {
-    const durationTitleElementIndex = this.en$('p')
-      .toArray()
-      .findIndex((el) =>
-        /〓.*?(Time|Duration|Wish).*?〓/g.test(this.en$(el).text()),
-      )
-    if (durationTitleElementIndex === -1) return undefined
-    return this.$('p').toArray()[durationTitleElementIndex]
   }
 
   /**

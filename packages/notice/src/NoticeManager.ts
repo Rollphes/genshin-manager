@@ -103,11 +103,7 @@ export class NoticeManager extends PromiseEventEmitter<NoticeManagerEventMap> {
       const schema = createUpdateIntervalSchema(
         NoticeManager.MIN_UPDATE_INTERVAL,
       )
-      this.updateInterval = validate(
-        schema,
-        this.updateInterval,
-        'NoticeManager.constructor.updateInterval',
-      )
+      this.updateInterval = validate(schema, this.updateInterval)
     }
     this.query = merge.withOptions(
       { mergeArrays: false },

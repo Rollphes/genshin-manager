@@ -156,7 +156,7 @@ export class EnkaManager extends PromiseEventEmitter<EnkaManagerEventMap> {
     fetchOptions?: RequestInit,
   ): Promise<EnkaData> {
     this.clearCacheOverNextShowCaseDate()
-    validate(enkaUidSchema, uid, 'EnkaManager.fetchUID.uid')
+    validate(enkaUidSchema, uid)
 
     const cachedData = this.cache.get(uid)
     if (
