@@ -119,13 +119,13 @@ export class TextMapIndex implements TextMapProvider {
     if (!findResult.success)
       return { redownloadLanguage: findResult.redownloadLanguage }
 
-    const paths = findResult.paths
-    if (paths.length === 0) {
+    const locations = findResult.locations
+    if (locations.length === 0) {
       logger.warn(`TextMapIndex: No files found for ${language}`)
       return { success: true }
     }
 
-    const reader = new ConcatenatedFileReader([...paths])
+    const reader = new ConcatenatedFileReader(locations)
     const entries = this.scanForEntries(reader)
 
     // Sort by hash for binary search
