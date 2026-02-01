@@ -60,8 +60,8 @@ export interface TextMapSource {
   readonly type: 'textMap'
   /** Language code */
   readonly language: Language
-  /** Optional specific file name */
-  readonly fileName?: string
+  /** TextMap file name */
+  readonly fileName: string
 }
 
 /**
