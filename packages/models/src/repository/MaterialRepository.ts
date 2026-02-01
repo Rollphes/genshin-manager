@@ -42,7 +42,7 @@ export class MaterialRepository {
         'itemType',
         'materialType',
       ])
-      .where('id', materialId)
+      .where('id', '=', materialId)
       .executeTakeFirstOrThrow()
 
     const name = result.nameTextMapHash.toText()

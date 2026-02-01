@@ -114,7 +114,7 @@ export class WeaponRepository {
         'icon',
         'awakenIcon',
       ])
-      .where('id', weaponId)
+      .where('id', '=', weaponId)
       .executeTakeFirstOrThrow()
 
     const promoteResults = await this.excelBinCache
@@ -201,7 +201,7 @@ export class WeaponRepository {
     const weaponResult = await this.excelBinCache
       .from('WeaponExcelConfigData')
       .select(['id', 'weaponPromoteId'])
-      .where('id', weaponId)
+      .where('id', '=', weaponId)
       .executeTakeFirstOrThrow()
 
     const promoteResult = await this.excelBinCache
@@ -214,8 +214,8 @@ export class WeaponRepository {
         'addProps',
         'unlockMaxLevel',
       ])
-      .where('weaponPromoteId', weaponResult.weaponPromoteId.value)
-      .where('promoteLevel', promoteLevel)
+      .where('weaponPromoteId', '=', weaponResult.weaponPromoteId.value)
+      .where('promoteLevel', '=', promoteLevel)
       .executeTakeFirstOrThrow()
 
     const costItems = promoteResult.costItems
@@ -259,7 +259,7 @@ export class WeaponRepository {
     const weaponResult = await this.excelBinCache
       .from('WeaponExcelConfigData')
       .select(['id', 'skillAffix'])
-      .where('id', weaponId)
+      .where('id', '=', weaponId)
       .executeTakeFirstOrThrow()
 
     const skillAffixArr = weaponResult.skillAffix.map((lc) => lc.value)
@@ -332,7 +332,7 @@ export class WeaponRepository {
     const weaponResult = await this.excelBinCache
       .from('WeaponExcelConfigData')
       .select(['id', 'weaponPromoteId'])
-      .where('id', weaponId)
+      .where('id', '=', weaponId)
       .executeTakeFirst()
 
     if (!weaponResult) return []

@@ -35,19 +35,8 @@ class TestQueryBuilder extends QueryBuilder<TestRecord> {
   protected executeQuery(): Promise<TestRecord[]> {
     let results = [...this.data]
 
-    for (const condition of this.whereConditions) {
-      if (condition.type === 'eq') {
-        results = results.filter(
-          (r) => r[condition.key as keyof TestRecord] === condition.value,
-        )
-      } else {
-        results = results.filter((r) =>
-          condition.values.includes(
-            r[condition.key as keyof TestRecord] as string | number,
-          ),
-        )
-      }
-    }
+    for (const condition of this.whereConditions)
+      results = results.filter((r) => this.evaluateCondition(r, condition))
 
     return Promise.resolve(results)
   }
@@ -59,8 +48,12 @@ class TestQueryBuilder extends QueryBuilder<TestRecord> {
   protected getLocation(): QueryLocation {
     let location = QueryLocation.create('Test', this.tableName)
     for (const condition of this.whereConditions) {
-      if (condition.type === 'eq')
-        location = location.filter(condition.key, condition.value)
+      if (condition.type === 'comparison' && condition.operator === '=') {
+        location = location.filter(
+          condition.key,
+          condition.value as string | number,
+        )
+      }
     }
     return location
   }
@@ -81,6 +74,53 @@ class TestQueryBuilder extends QueryBuilder<TestRecord> {
       cloned as unknown as QueryBuilder<TestRecord, keyof TestRecord>,
     )
     return cloned
+  }
+
+  private evaluateCondition(
+    record: TestRecord,
+    condition: WhereCondition,
+  ): boolean {
+    switch (condition.type) {
+      case 'comparison': {
+        const value = record[condition.key as keyof TestRecord]
+        switch (condition.operator) {
+          case '=':
+            return value === condition.value
+          case '!=':
+            return value !== condition.value
+          case '>':
+            return (value as number) > (condition.value as number)
+          case '<':
+            return (value as number) < (condition.value as number)
+          case '>=':
+            return (value as number) >= (condition.value as number)
+          case '<=':
+            return (value as number) <= (condition.value as number)
+          case 'in':
+            return (condition.value as readonly (string | number)[]).includes(
+              value as string | number,
+            )
+          case 'like': {
+            const pattern = (condition.value as string)
+              .replace(/%/g, '.*')
+              .replace(/_/g, '.')
+            return new RegExp(`^${pattern}$`, 'i').test(value as string)
+          }
+          default:
+            return false
+        }
+      }
+      case 'or':
+        return condition.conditions.some((c) =>
+          this.evaluateCondition(record, c),
+        )
+      case 'and':
+        return condition.conditions.every((c) =>
+          this.evaluateCondition(record, c),
+        )
+      case 'not':
+        return !this.evaluateCondition(record, condition.condition)
+    }
   }
 }
 
@@ -126,20 +166,77 @@ describe('QueryBuilder', () => {
   })
 
   describe('where', () => {
-    it('should filter by equality', async () => {
+    it('should filter by equality with operator', async () => {
       const builder = new TestQueryBuilder('TestTable', testData)
-      const result = await builder.where('type', 'admin').execute()
+      const result = await builder.where('type', '=', 'admin').execute()
 
       expect(result).toHaveLength(2)
       expect(result[0].name.value).toBe('Alice')
       expect(result[1].name.value).toBe('Diana')
     })
 
+    it('should filter by not-equal operator', async () => {
+      const builder = new TestQueryBuilder('TestTable', testData)
+      const result = await builder.where('type', '!=', 'admin').execute()
+
+      expect(result).toHaveLength(2)
+      expect(result[0].name.value).toBe('Bob')
+      expect(result[1].name.value).toBe('Charlie')
+    })
+
+    it('should filter by greater-than operator', async () => {
+      const builder = new TestQueryBuilder('TestTable', testData)
+      const result = await builder.where('value', '>', 75).execute()
+
+      expect(result).toHaveLength(2)
+      expect(result[0].name.value).toBe('Alice')
+      expect(result[1].name.value).toBe('Diana')
+    })
+
+    it('should filter by less-than operator', async () => {
+      const builder = new TestQueryBuilder('TestTable', testData)
+      const result = await builder.where('value', '<', 75).execute()
+
+      expect(result).toHaveLength(1)
+      expect(result[0].name.value).toBe('Bob')
+    })
+
+    it('should filter by greater-or-equal operator', async () => {
+      const builder = new TestQueryBuilder('TestTable', testData)
+      const result = await builder.where('value', '>=', 75).execute()
+
+      expect(result).toHaveLength(3)
+    })
+
+    it('should filter by less-or-equal operator', async () => {
+      const builder = new TestQueryBuilder('TestTable', testData)
+      const result = await builder.where('value', '<=', 75).execute()
+
+      expect(result).toHaveLength(2)
+    })
+
+    it('should filter by in operator', async () => {
+      const builder = new TestQueryBuilder('TestTable', testData)
+      const result = await builder.where('id', 'in', [1, 3]).execute()
+
+      expect(result).toHaveLength(2)
+      expect(result[0].id.value).toBe(1)
+      expect(result[1].id.value).toBe(3)
+    })
+
+    it('should filter by like operator', async () => {
+      const builder = new TestQueryBuilder('TestTable', testData)
+      const result = await builder.where('name', 'like', 'A%').execute()
+
+      expect(result).toHaveLength(1)
+      expect(result[0].name.value).toBe('Alice')
+    })
+
     it('should chain multiple where conditions', async () => {
       const builder = new TestQueryBuilder('TestTable', testData)
       const result = await builder
-        .where('type', 'admin')
-        .where('value', 100)
+        .where('type', '=', 'admin')
+        .where('value', '=', 100)
         .execute()
 
       expect(result).toHaveLength(1)
@@ -147,14 +244,57 @@ describe('QueryBuilder', () => {
     })
   })
 
-  describe('whereIn', () => {
-    it('should filter by IN condition', async () => {
+  describe('where (ExpressionBuilder callback form)', () => {
+    it('should filter with OR condition', async () => {
       const builder = new TestQueryBuilder('TestTable', testData)
-      const result = await builder.whereIn('id', [1, 3]).execute()
+      const result = await builder
+        .where(({ eb, or }) =>
+          or([eb('name', '=', 'Alice'), eb('name', '=', 'Bob')]),
+        )
+        .execute()
 
       expect(result).toHaveLength(2)
-      expect(result[0].id.value).toBe(1)
-      expect(result[1].id.value).toBe(3)
+      expect(result[0].name.value).toBe('Alice')
+      expect(result[1].name.value).toBe('Bob')
+    })
+
+    it('should filter with AND condition', async () => {
+      const builder = new TestQueryBuilder('TestTable', testData)
+      const result = await builder
+        .where(({ eb, and }) =>
+          and([eb('type', '=', 'admin'), eb('value', '>', 150)]),
+        )
+        .execute()
+
+      expect(result).toHaveLength(1)
+      expect(result[0].name.value).toBe('Diana')
+    })
+
+    it('should filter with NOT condition', async () => {
+      const builder = new TestQueryBuilder('TestTable', testData)
+      const result = await builder
+        .where(({ eb, not }) => not(eb('type', '=', 'admin')))
+        .execute()
+
+      expect(result).toHaveLength(2)
+      expect(result[0].name.value).toBe('Bob')
+      expect(result[1].name.value).toBe('Charlie')
+    })
+
+    it('should filter with complex nested conditions', async () => {
+      const builder = new TestQueryBuilder('TestTable', testData)
+      const result = await builder
+        .where(({ eb, and, or }) =>
+          and([
+            or([eb('name', '=', 'Alice'), eb('name', '=', 'Diana')]),
+            eb('value', '>=', 100),
+          ]),
+        )
+        .execute()
+
+      expect(result).toHaveLength(2)
+      expect(result[0].name.value).toBe('Alice')
+      expect(result[1].name.value).toBe('Diana')
     })
   })
 
@@ -247,7 +387,7 @@ describe('QueryBuilder', () => {
 
     it('should return undefined when no matches', async () => {
       const builder = new TestQueryBuilder('TestTable', testData)
-      const result = await builder.where('id', 999).executeTakeFirst()
+      const result = await builder.where('id', '=', 999).executeTakeFirst()
 
       expect(result).toBeUndefined()
     })
@@ -265,7 +405,7 @@ describe('QueryBuilder', () => {
       const builder = new TestQueryBuilder('TestTable', testData)
 
       await expect(
-        builder.where('id', 999).executeTakeFirstOrThrow(),
+        builder.where('id', '=', 999).executeTakeFirstOrThrow(),
       ).rejects.toThrow(GeneralError)
     })
   })
@@ -273,7 +413,7 @@ describe('QueryBuilder', () => {
   describe('location tracking', () => {
     it('should include location in LocatedValue', async () => {
       const builder = new TestQueryBuilder('TestTable', testData)
-      const result = await builder.where('id', 1).executeTakeFirst()
+      const result = await builder.where('id', '=', 1).executeTakeFirst()
 
       expect(result?.name.location.toString()).toBe('Test:TestTable[id=1].name')
     })
@@ -299,7 +439,7 @@ describe('QueryBuilder', () => {
   describe('immutability', () => {
     it('should not modify original builder', async () => {
       const original = new TestQueryBuilder('TestTable', testData)
-      const withWhere = original.where('type', 'admin')
+      const withWhere = original.where('type', '=', 'admin')
       const withLimit = original.limit(1)
 
       expect(original.getWhereConditions()).toHaveLength(0)

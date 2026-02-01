@@ -77,7 +77,7 @@ export class ArtifactRepository {
         'equipType',
         'icon',
       ])
-      .where('id', artifactId)
+      .where('id', '=', artifactId)
       .executeTakeFirstOrThrow()
 
     const name = result.nameTextMapHash.toText()
@@ -198,14 +198,14 @@ export class ArtifactRepository {
     const setResult = await this.excelBinCache
       .from('ReliquarySetExcelConfigData')
       .select(['setId', 'equipAffixId'])
-      .where('setId', setId)
+      .where('setId', '=', setId)
       .executeTakeFirstOrThrow()
 
     const equipAffixId = setResult.equipAffixId.value * 10
     const affixResult = await this.excelBinCache
       .fromWithTextMap('EquipAffixExcelConfigData', this.textMap)
       .select(['affixId', 'nameTextMapHash', 'descTextMapHash'])
-      .where('affixId', equipAffixId)
+      .where('affixId', '=', equipAffixId)
       .executeTakeFirstOrThrow()
 
     const setName = affixResult.nameTextMapHash.toText()
@@ -220,7 +220,7 @@ export class ArtifactRepository {
       const affix4Result = await this.excelBinCache
         .fromWithTextMap('EquipAffixExcelConfigData', this.textMap)
         .select(['affixId', 'descTextMapHash'])
-        .where('affixId', equipAffixId + 1)
+        .where('affixId', '=', equipAffixId + 1)
         .executeTakeFirst()
 
       if (affix4Result)
@@ -245,14 +245,14 @@ export class ArtifactRepository {
     const mainPropResult = await this.excelBinCache
       .from('ReliquaryMainPropExcelConfigData')
       .select(['id', 'propType'])
-      .where('id', mainPropId)
+      .where('id', '=', mainPropId)
       .executeTakeFirstOrThrow()
 
     const levelResult = await this.excelBinCache
       .from('ReliquaryLevelExcelConfigData')
       .select(['rank', 'level', 'addProps'])
-      .where('rank', rarity)
-      .where('level', level + 1)
+      .where('rank', '=', rarity)
+      .where('level', '=', level + 1)
       .executeTakeFirstOrThrow()
 
     const addProps = levelResult.addProps.map((ap) => ({
@@ -285,7 +285,7 @@ export class ArtifactRepository {
       const affixResult = await this.excelBinCache
         .from('ReliquaryAffixExcelConfigData')
         .select(['id', 'propType', 'propValue'])
-        .where('id', propId)
+        .where('id', '=', propId)
         .executeTakeFirstOrThrow()
 
       const propType = affixResult.propType.toEnum(FightProp)

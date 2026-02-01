@@ -145,14 +145,14 @@ export class CharacterRepository {
         'bodyType',
         'sideIconName',
       ])
-      .where('id', characterId)
+      .where('id', '=', characterId)
       .executeTakeFirstOrThrow()
 
     const defaultCostumeData = await this.excelBinCache
       .from('AvatarCostumeExcelConfigData')
       .select(['characterId', 'quality', 'skinId'])
-      .where('characterId', characterId)
-      .where('quality', 0)
+      .where('characterId', '=', characterId)
+      .where('quality', '=', 0)
       .executeTakeFirstOrThrow()
 
     const isTraveler = [10000005, 10000007].includes(characterId)
@@ -170,7 +170,7 @@ export class CharacterRepository {
         'talents',
         'inherentProudSkillOpens',
       ])
-      .where('id', depotId)
+      .where('id', '=', depotId)
       .executeTakeFirstOrThrow()
 
     const energySkill = depotResult.energySkill.value
@@ -180,7 +180,7 @@ export class CharacterRepository {
       const skillResult = await this.excelBinCache
         .from('AvatarSkillExcelConfigData')
         .select(['id', 'costElemType'])
-        .where('id', energySkill)
+        .where('id', '=', energySkill)
         .executeTakeFirst()
 
       if (skillResult) {
@@ -252,7 +252,7 @@ export class CharacterRepository {
         'criticalHurt',
         'propGrowCurves',
       ])
-      .where('id', characterId)
+      .where('id', '=', characterId)
       .executeTakeFirstOrThrow()
 
     const promoteResults = await this.excelBinCache
@@ -373,7 +373,7 @@ export class CharacterRepository {
     const avatarResult = await this.excelBinCache
       .from('AvatarExcelConfigData')
       .select(['id', 'avatarPromoteId'])
-      .where('id', characterId)
+      .where('id', '=', characterId)
       .executeTakeFirstOrThrow()
 
     const promoteResult = await this.excelBinCache
@@ -386,8 +386,8 @@ export class CharacterRepository {
         'addProps',
         'unlockMaxLevel',
       ])
-      .where('avatarPromoteId', avatarResult.avatarPromoteId.value)
-      .where('promoteLevel', promoteLevel)
+      .where('avatarPromoteId', '=', avatarResult.avatarPromoteId.value)
+      .where('promoteLevel', '=', promoteLevel)
       .executeTakeFirstOrThrow()
 
     const costItems = promoteResult.costItems
@@ -690,7 +690,7 @@ export class CharacterRepository {
     const avatarResult = await this.excelBinCache
       .from('AvatarExcelConfigData')
       .select(['id', 'sideIconName'])
-      .where('id', characterId)
+      .where('id', '=', characterId)
       .executeTakeFirst()
 
     if (!avatarResult) return []
@@ -742,7 +742,7 @@ export class CharacterRepository {
     const avatarResult = await this.excelBinCache
       .from('AvatarExcelConfigData')
       .select(['id', 'avatarPromoteId'])
-      .where('id', characterId)
+      .where('id', '=', characterId)
       .executeTakeFirst()
 
     if (!avatarResult) return []

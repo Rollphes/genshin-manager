@@ -1,7 +1,11 @@
 import type {
+  ComparisonOperator,
+  ExpressionBuilder,
+  ExpressionBuilderArg,
   IndexKey,
   OrderByConfig,
   SelectedRecord,
+  WhereComparisonCondition,
   WhereCondition,
 } from '@/builder/types'
 import type { QueryLocation } from '@/location/QueryLocation'
@@ -72,37 +76,64 @@ export abstract class QueryBuilder<
   }
 
   /**
-   * Adds a WHERE equality condition
+   * Adds a WHERE condition with comparison operator (Kysely-style)
    * @param property - The property to filter on
-   * @param value - The value to match
+   * @param operator - The comparison operator
+   * @param value - The value(s) to compare
    * @returns A new QueryBuilder with the condition added
    */
   public where<P extends keyof TRecord & string>(
     property: P,
-    value: TRecord[P] & IndexKey,
-  ): QueryBuilder<TRecord, TSelected, TTableName> {
-    const cloned = this.clone<TSelected>()
-    cloned.whereConditions = [
-      ...this.whereConditions,
-      { type: 'eq', key: property, value },
-    ]
-    return cloned
-  }
+    operator: ComparisonOperator,
+    value: (TRecord[P] & IndexKey) | readonly (TRecord[P] & IndexKey)[],
+  ): QueryBuilder<TRecord, TSelected, TTableName>
 
   /**
-   * Adds a WHERE IN condition
-   * @param property - The property to filter on
-   * @param values - The values to match
+   * Adds a WHERE condition using ExpressionBuilder callback
+   * @param callback - Callback receiving ExpressionBuilder for complex conditions
    * @returns A new QueryBuilder with the condition added
    */
-  public whereIn<P extends keyof TRecord & string>(
-    property: P,
-    values: readonly (TRecord[P] & IndexKey)[],
+  public where(
+    callback: (arg: ExpressionBuilderArg<TRecord>) => WhereCondition,
+  ): QueryBuilder<TRecord, TSelected, TTableName>
+
+  /**
+   * Implementation for where method overloads
+   * @param propertyOrCallback - Property name or callback function
+   * @param operator - Comparison operator
+   * @param value - Value to compare
+   * @returns A new QueryBuilder with the condition added
+   * @internal
+   */
+  public where<P extends keyof TRecord & string>(
+    propertyOrCallback:
+      | P
+      | ((arg: ExpressionBuilderArg<TRecord>) => WhereCondition),
+    operator?: ComparisonOperator,
+    value?: (TRecord[P] & IndexKey) | readonly (TRecord[P] & IndexKey)[],
   ): QueryBuilder<TRecord, TSelected, TTableName> {
     const cloned = this.clone<TSelected>()
+
+    // Callback form: where((eb) => ...)
+    if (typeof propertyOrCallback === 'function') {
+      const condition = propertyOrCallback(this.createExpressionBuilderArg())
+      cloned.whereConditions = [...this.whereConditions, condition]
+      return cloned
+    }
+
+    // 3-argument form: where(property, operator, value)
+    // operator and value are guaranteed to exist when reaching here (callback case returns early)
+    const property = propertyOrCallback
+    const safeOperator = operator ?? '='
+    const safeValue = value ?? ('' as TRecord[P] & IndexKey)
     cloned.whereConditions = [
       ...this.whereConditions,
-      { type: 'in', key: property, values },
+      {
+        type: 'comparison',
+        key: property,
+        operator: safeOperator,
+        value: safeValue,
+      },
     ]
     return cloned
   }
@@ -269,6 +300,53 @@ export abstract class QueryBuilder<
     }
 
     return Object.fromEntries(selected) as SelectedRecord<TRecord, TSelected>
+  }
+
+  /**
+   * Creates an ExpressionBuilderArg for the where callback
+   * @returns ExpressionBuilderArg instance
+   */
+  private createExpressionBuilderArg(): ExpressionBuilderArg<TRecord> {
+    function createCondition<P extends keyof TRecord & string>(
+      property: P,
+      operator: ComparisonOperator,
+      value: (TRecord[P] & IndexKey) | readonly (TRecord[P] & IndexKey)[],
+    ): WhereComparisonCondition {
+      return {
+        type: 'comparison',
+        key: property,
+        operator,
+        value,
+      }
+    }
+
+    function or(conditions: readonly WhereCondition[]): {
+      readonly type: 'or'
+      readonly conditions: readonly WhereCondition[]
+    } {
+      return { type: 'or', conditions }
+    }
+
+    function and(conditions: readonly WhereCondition[]): {
+      readonly type: 'and'
+      readonly conditions: readonly WhereCondition[]
+    } {
+      return { type: 'and', conditions }
+    }
+
+    function not(condition: WhereCondition): {
+      readonly type: 'not'
+      readonly condition: WhereCondition
+    } {
+      return { type: 'not', condition }
+    }
+
+    const eb = createCondition as ExpressionBuilder<TRecord>
+    eb.or = or
+    eb.and = and
+    eb.not = not
+
+    return { eb, or, and, not }
   }
 
   /**

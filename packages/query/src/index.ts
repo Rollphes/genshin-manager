@@ -3,12 +3,17 @@ export type { JoinedRecord } from '@/builder/JoinQueryBuilder'
 export { JoinQueryBuilder } from '@/builder/JoinQueryBuilder'
 export { QueryBuilder } from '@/builder/QueryBuilder'
 export type {
+  ComparisonOperator,
+  ExpressionBuilder,
+  ExpressionBuilderArg,
   IndexKey,
   OrderByConfig,
   SelectedRecord,
+  WhereAndCondition,
+  WhereComparisonCondition,
   WhereCondition,
-  WhereEqCondition,
-  WhereInCondition,
+  WhereNotCondition,
+  WhereOrCondition,
 } from '@/builder/types'
 
 // cache

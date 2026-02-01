@@ -73,7 +73,7 @@ export class DailyFarmingRepository {
         const manualResult = await this.excelBinCache
           .fromWithTextMap('ManualTextMapConfigData', this.textMap)
           .select(['textMapId', 'textMapContentTextMapHash'])
-          .where('textMapId', nameTextId)
+          .where('textMapId', '=', nameTextId)
           .executeTakeFirstOrThrow()
 
         const domainName = manualResult.textMapContentTextMapHash.toText()

@@ -70,7 +70,7 @@ export class MonsterRepository {
         'iceSubHurt',
         'propGrowCurves',
       ])
-      .where('id', monsterId)
+      .where('id', '=', monsterId)
       .executeTakeFirstOrThrow()
 
     const name = result.nameTextMapHash.toText()
@@ -80,7 +80,7 @@ export class MonsterRepository {
     const describeResult = await this.excelBinCache
       .fromWithTextMap('MonsterDescribeExcelConfigData', this.textMap)
       .select(['id', 'nameTextMapHash', 'icon'])
-      .where('id', describeId)
+      .where('id', '=', describeId)
       .executeTakeFirst()
 
     let describeName = ''
@@ -318,7 +318,7 @@ export class MonsterRepository {
     const curveResult = await this.excelBinCache
       .from('MonsterCurveExcelConfigData')
       .select(['level', 'curveInfos'])
-      .where('level', level)
+      .where('level', '=', level)
       .executeTakeFirstOrThrow()
 
     const curveInfos: { type: string; value: number }[] =

@@ -36,7 +36,7 @@ export class ProfilePictureRepository {
     const result = await this.excelBinCache
       .from('ProfilePictureExcelConfigData')
       .select(['id', 'type', 'unlockParam', 'iconPath'])
-      .where('id', profilePictureId)
+      .where('id', '=', profilePictureId)
       .executeTakeFirstOrThrow()
 
     const unlockParam = result.unlockParam.value
@@ -102,7 +102,7 @@ export class ProfilePictureRepository {
     const result = await this.excelBinCache
       .from('ProfilePictureExcelConfigData')
       .select(['id'])
-      .where('unlockParam', unlockParam)
+      .where('unlockParam', '=', unlockParam)
       .executeTakeFirst()
 
     return result?.id.value
@@ -138,7 +138,7 @@ export class ProfilePictureRepository {
     const result = await this.excelBinCache
       .from('AvatarCostumeExcelConfigData')
       .select(['characterId'])
-      .where('skinId', costumeId)
+      .where('skinId', '=', costumeId)
       .executeTakeFirst()
 
     return result?.characterId.value
