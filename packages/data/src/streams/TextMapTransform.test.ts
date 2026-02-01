@@ -1,11 +1,15 @@
 import { Language } from '@genshin-manager/core'
 import { Readable } from 'stream'
-import { describe, expect, it } from 'vitest'
+import { beforeEach, describe, expect, it } from 'vitest'
 
 import { TextMapFormatError } from '@/errors/TextMapFormatError'
+import { FileLocation } from '@/paths/FileLocation'
 import { TextMapTransform } from '@/streams/TextMapTransform'
 
 describe('TextMapTransform', () => {
+  beforeEach(() => {
+    FileLocation.deploy({ assetCacheFolderPath: '/test-cache' })
+  })
   async function collectOutput(transform: TextMapTransform): Promise<string> {
     const chunks: Buffer[] = []
     return new Promise((resolve, reject) => {

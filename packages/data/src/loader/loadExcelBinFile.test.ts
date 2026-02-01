@@ -5,7 +5,7 @@ import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 import { AssetFormatError } from '@/errors/AssetFormatError'
 import { AssetNotFoundError } from '@/errors/AssetNotFoundError'
 import { loadExcelBinFile } from '@/loader/loadExcelBinFile'
-import { Location } from '@/paths/Location'
+import { FileLocation } from '@/paths/FileLocation'
 
 vi.mock('fs')
 vi.mock('@genshin-manager/core', async () => {
@@ -34,7 +34,7 @@ describe('loadExcelBinFile', () => {
   }
 
   beforeEach(() => {
-    Location.deploy({ assetCacheFolderPath: '/test-cache' })
+    FileLocation.deploy({ assetCacheFolderPath: '/test-cache' })
   })
 
   afterEach(() => {

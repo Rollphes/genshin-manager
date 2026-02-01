@@ -3,7 +3,7 @@ import fs from 'fs'
 
 import { AssetFormatError } from '@/errors/AssetFormatError'
 import { AssetNotFoundError } from '@/errors/AssetNotFoundError'
-import { Location } from '@/paths/Location'
+import { FileLocation } from '@/paths/FileLocation'
 import type { MasterFileMap } from '@/types/generated/MasterFileMap'
 
 type ExcelBinLoadFileResult<T> =
@@ -26,7 +26,7 @@ export async function loadExcelBinFile<T, K extends keyof MasterFileMap>(
   options: ExcelBinLoadFileOptions<K>,
 ): Promise<ExcelBinLoadFileResult<T>> {
   const { autoFix, excelBinName } = options
-  const location = Location.excelBin(excelBinName)
+  const location = FileLocation.excelBin(excelBinName)
   const resolvedPath = location.resolve()
 
   if (!fs.existsSync(resolvedPath)) {
@@ -64,7 +64,7 @@ export async function loadExcelBinFile<T, K extends keyof MasterFileMap>(
   }
 }
 
-function readFileAsString(location: Location): Promise<string> {
+function readFileAsString(location: FileLocation): Promise<string> {
   const resolvedPath = location.resolve()
   return new Promise((resolve, reject) => {
     let text = ''

@@ -1,6 +1,6 @@
 import { ErrorCode, GenshinManagerError } from '@genshin-manager/core'
 
-import type { Location } from '@/paths/Location'
+import type { FileLocation } from '@/paths/FileLocation'
 
 /**
  * Asset not found error
@@ -13,11 +13,11 @@ export class AssetNotFoundError extends GenshinManagerError {
 
   /**
    * Constructor for AssetNotFoundError
-   * @param location - File path Location of the asset
+   * @param location - File path FileLocation of the asset
    * @param options - Error options
    */
-  constructor(location: Location, options?: ErrorOptions) {
+  constructor(location: FileLocation, options?: ErrorOptions) {
     super('Asset not found', options)
-    this.locationPath = location.toString()
+    this.locationPath = location.resolve()
   }
 }

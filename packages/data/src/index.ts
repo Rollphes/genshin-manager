@@ -32,23 +32,16 @@ export { ExcelBinJoinQuery } from '@/query/ExcelBinJoinQuery'
 export { ExcelBinQuery } from '@/query/ExcelBinQuery'
 
 // paths
-export { Location } from '@/paths/Location'
+export { FileLocation } from '@/paths/FileLocation'
 export type {
   AudioSource,
   CommitFileSource,
   ExcelBinSource,
-  FilterCondition,
-  FilterSegment,
   GeneratedTypesSource,
-  HandbookSource,
   ImageSource,
-  IndexKey,
-  IndexSegment,
   InitImageSource,
   LocationSource,
   MasterFileSource,
-  PathSegment,
-  PropSegment,
   TextMapSource,
 } from '@/paths/types'
 

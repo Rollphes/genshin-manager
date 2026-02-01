@@ -1,6 +1,6 @@
 import type { Language } from '@genshin-manager/core'
 import { ErrorCode, GenshinManagerError } from '@genshin-manager/core'
-import type { Location } from '@genshin-manager/query'
+import type { QueryLocation } from '@genshin-manager/query'
 
 /**
  * Text map hash not found error
@@ -17,15 +17,15 @@ export class TextMapHashNotFoundError extends GenshinManagerError {
   /**
    * Constructor for TextMapHashNotFoundError
    * @param language - Language code
-   * @param textMapLocation - Query Location of the text map file
-   * @param excelBinLocation - Query Location of the ExcelBinOutput file that references this hash
+   * @param textMapLocation - QueryLocation of the text map file
+   * @param excelBinLocation - QueryLocation of the ExcelBinOutput file that references this hash
    * @param hash - Missing hash value
    * @param options - Error options
    */
   constructor(
     public readonly language: Language,
-    textMapLocation: Location,
-    excelBinLocation: Location,
+    textMapLocation: QueryLocation,
+    excelBinLocation: QueryLocation,
     public readonly hash: string,
     options?: ErrorOptions,
   ) {

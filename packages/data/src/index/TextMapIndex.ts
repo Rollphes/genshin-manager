@@ -1,6 +1,6 @@
 import { Language, logger } from '@genshin-manager/core'
 import type { TextMapProvider } from '@genshin-manager/query'
-import { Location as QueryLocation } from '@genshin-manager/query'
+import { QueryLocation } from '@genshin-manager/query'
 import { LRUCache } from 'lru-cache'
 
 import { TextMapHashNotFoundError } from '@/errors/TextMapHashNotFoundError'
@@ -48,12 +48,6 @@ export type BuildIndexResult =
   | { readonly redownloadLanguage: Language }
 
 /**
- * Hash pattern for extracting hash from a TextMap JSON line
- * Matches: "12345678":"text value"
- */
-const hashPattern = /^"(\d+)"\s*:/
-
-/**
  * TypedArray-based TextMap index with binary search and LRU text cache
  *
  * Responsibilities:
@@ -66,6 +60,12 @@ const hashPattern = /^"(\d+)"\s*:/
  */
 export class TextMapIndex implements TextMapProvider {
   private static readonly DEFAULT_CACHE_SIZE = 100000
+
+  /**
+   * Hash pattern for extracting hash from a TextMap JSON line
+   * Matches: "12345678":"text value"
+   */
+  private static readonly hashPattern = /^"(\d+)"\s*:/
 
   private readonly autoFix: boolean
   private readonly languageIndexes = new Map<Language, LanguageIndex>()
@@ -119,13 +119,13 @@ export class TextMapIndex implements TextMapProvider {
     if (!findResult.success)
       return { redownloadLanguage: findResult.redownloadLanguage }
 
-    const locations = findResult.locations
-    if (locations.length === 0) {
+    const paths = findResult.paths
+    if (paths.length === 0) {
       logger.warn(`TextMapIndex: No files found for ${language}`)
       return { success: true }
     }
 
-    const reader = new ConcatenatedFileReader([...locations])
+    const reader = new ConcatenatedFileReader([...paths])
     const entries = this.scanForEntries(reader)
 
     // Sort by hash for binary search
@@ -165,7 +165,7 @@ export class TextMapIndex implements TextMapProvider {
       throw new TextMapHashNotFoundError(
         Language.En,
         QueryLocation.create('TextMap', Language.En),
-        QueryLocation.create('unknown', ''),
+        QueryLocation.create('TextMapHash', String(hash)),
         String(hash),
       )
     }
@@ -177,7 +177,7 @@ export class TextMapIndex implements TextMapProvider {
     throw new TextMapHashNotFoundError(
       lang,
       QueryLocation.create('TextMap', lang),
-      QueryLocation.create('unknown', ''),
+      QueryLocation.create('TextMapHash', String(hash)),
       String(hash),
     )
   }
@@ -233,7 +233,7 @@ export class TextMapIndex implements TextMapProvider {
       throw new TextMapHashNotFoundError(
         lang,
         QueryLocation.create('TextMap', lang),
-        QueryLocation.create('unknown', ''),
+        QueryLocation.create('TextMapHash', String(hash)),
         String(hash),
       )
     }
@@ -327,7 +327,7 @@ export class TextMapIndex implements TextMapProvider {
 
     for (const line of lines) {
       const trimmed = line.trim()
-      const match = hashPattern.exec(trimmed)
+      const match = TextMapIndex.hashPattern.exec(trimmed)
 
       if (match) {
         const hash = Number(match[1])

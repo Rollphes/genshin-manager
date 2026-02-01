@@ -15,7 +15,7 @@ import fs from 'fs'
 
 import { AssetFormatError } from '@/errors/AssetFormatError'
 import { AssetNotFoundError } from '@/errors/AssetNotFoundError'
-import { Location } from '@/paths/Location'
+import { FileLocation } from '@/paths/FileLocation'
 import type { ExcelBinOutputs } from '@/types/excelBinOutputs'
 import type { DecodedType as GeneratedDecodedType } from '@/types/generated/MasterFileMap'
 
@@ -38,7 +38,7 @@ export class EncryptedKeyDecoder<T extends keyof typeof ExcelBinOutputs> {
    */
   constructor(fileName: T) {
     const masterFileName = `${fileName}.master.json`
-    const masterLocation = Location.masterFile(masterFileName)
+    const masterLocation = FileLocation.masterFile(masterFileName)
     try {
       const masterFilePath = masterLocation.resolve()
       if (!fs.existsSync(masterFilePath))
@@ -76,7 +76,7 @@ export class EncryptedKeyDecoder<T extends keyof typeof ExcelBinOutputs> {
   ): GeneratedDecodedType<T> {
     if (encryptedData.length === 0) {
       throw new AssetFormatError(
-        Location.masterFile(this.masterFile.metadata.sourceFile),
+        FileLocation.masterFile(this.masterFile.metadata.sourceFile),
         'Encrypted data array is empty',
       )
     }
@@ -100,7 +100,7 @@ export class EncryptedKeyDecoder<T extends keyof typeof ExcelBinOutputs> {
     const primaryPattern = this.compiledPatterns.get('primary')
     if (!primaryPattern) {
       throw new AssetFormatError(
-        Location.masterFile(this.masterFile.metadata.sourceFile),
+        FileLocation.masterFile(this.masterFile.metadata.sourceFile),
         'Primary pattern not found in compiled patterns',
       )
     }
@@ -134,7 +134,7 @@ export class EncryptedKeyDecoder<T extends keyof typeof ExcelBinOutputs> {
     if (!bestResult.success && !defaultOptions.enablePartialMatch) {
       const errorMessage = this.generateDetailedError(bestResult, encryptedData)
       throw new AssetFormatError(
-        Location.masterFile(this.masterFile.metadata.sourceFile),
+        FileLocation.masterFile(this.masterFile.metadata.sourceFile),
         errorMessage,
       )
     }

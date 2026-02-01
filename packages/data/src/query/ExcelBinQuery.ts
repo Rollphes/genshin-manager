@@ -1,5 +1,5 @@
 import type { TextMapProvider } from '@genshin-manager/query'
-import { Location as QueryLocation, QueryBuilder } from '@genshin-manager/query'
+import { QueryBuilder, QueryLocation } from '@genshin-manager/query'
 
 import type { ExcelBinCache } from '@/cache/ExcelBinCache'
 import { ExcelBinPropertyNotFoundError } from '@/errors/ExcelBinPropertyNotFoundError'
@@ -57,8 +57,8 @@ export class ExcelBinQuery<
     fromKey: keyof MasterRecord<K> & string,
     toKey: keyof MasterRecord<J> & string,
   ): ExcelBinJoinQuery<K, J> {
-    // Type assertion via unknown: innerJoin is called before select(), so TSelected equals the default.
-    // TypeScript cannot verify generic type parameter compatibility, requiring unknown intermediate cast.
+    // Cast via unknown: innerJoin is called before select(), so TSelected equals the default (keyof MasterRecord<K>).
+    // TypeScript cannot verify TSelected equals the default, requiring unknown intermediate cast.
     const baseQuery = this as unknown as ExcelBinQuery<K>
     return new ExcelBinJoinQuery(
       baseQuery,
@@ -85,8 +85,8 @@ export class ExcelBinQuery<
     fromKey: keyof MasterRecord<K> & string,
     toKey: keyof MasterRecord<J> & string,
   ): ExcelBinJoinQuery<K, J> {
-    // Type assertion via unknown: leftJoin is called before select(), so TSelected equals the default.
-    // TypeScript cannot verify generic type parameter compatibility, requiring unknown intermediate cast.
+    // Cast via unknown: leftJoin is called before select(), so TSelected equals the default (keyof MasterRecord<K>).
+    // TypeScript cannot verify TSelected equals the default, requiring unknown intermediate cast.
     const baseQuery = this as unknown as ExcelBinQuery<K>
     return new ExcelBinJoinQuery(
       baseQuery,
@@ -106,6 +106,7 @@ export class ExcelBinQuery<
    */
   protected executeQuery(): Promise<MasterRecord<K>[]> {
     // Get all records from cache
+    // Cast required: getRecords returns GeneratedMasterFileMap[K][] which equals MasterRecord<K>[]
     const allRecords = this.excelBinCache.getRecords(
       this.tableName,
     ) as MasterRecord<K>[]
@@ -114,10 +115,10 @@ export class ExcelBinQuery<
     if (this.whereConditions.length === 0) return Promise.resolve(allRecords)
 
     // Filter records based on WHERE conditions
-    // Dynamic property access: condition.key is validated at query build time via type constraints
     const filtered = allRecords.filter((record) => {
       for (const condition of this.whereConditions) {
-        // Cast key to keyof MasterRecord<K>: validated at query build time via where() method signature
+        // Cast required: condition.key is string but we need keyof MasterRecord<K>
+        // Validated at query build time via where() method signature
         const key = condition.key as keyof MasterRecord<K>
         const recordValue = record[key]
 
@@ -125,6 +126,7 @@ export class ExcelBinQuery<
           if (recordValue !== condition.value) return false
         } else {
           // condition.type === 'in'
+          // Cast required: recordValue type is unknown, but whereIn validates it's IndexKey compatible
           if (!condition.values.includes(recordValue as string | number))
             return false
         }
@@ -185,6 +187,8 @@ export class ExcelBinQuery<
       this.excelBinCache,
       this.textMapProvider,
     )
+    // Cast via unknown: copyStateTo expects QueryBuilder<MasterRecord<K>, TSelected, K>
+    // but cloned is ExcelBinQuery<K, NewSelected>. Both share the same base structure.
     this.copyStateTo(
       cloned as unknown as QueryBuilder<MasterRecord<K>, TSelected, K>,
     )

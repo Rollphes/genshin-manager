@@ -1,6 +1,6 @@
 import { logger } from '@genshin-manager/core'
 import type { TextMapProvider } from '@genshin-manager/query'
-import { Location as QueryLocation, TableCache } from '@genshin-manager/query'
+import { QueryLocation, TableCache } from '@genshin-manager/query'
 
 import { EncryptedKeyDecoder } from '@/decoder/EncryptedKeyDecoder'
 import { ExcelBinNotLoadedError } from '@/errors/ExcelBinNotLoadedError'

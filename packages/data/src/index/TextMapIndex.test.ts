@@ -5,7 +5,7 @@ import path from 'path'
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 
 import { TextMapIndex } from '@/index/TextMapIndex'
-import { Location } from '@/paths/Location'
+import { FileLocation } from '@/paths/FileLocation'
 
 vi.mock('@genshin-manager/core', async () => {
   const actual = await vi.importActual('@genshin-manager/core')
@@ -23,7 +23,7 @@ describe('TextMapIndex', () => {
     tmpDir = fs.mkdtempSync(path.join(os.tmpdir(), 'textmap-test-'))
     textMapDir = path.join(tmpDir, 'TextMap')
     fs.mkdirSync(textMapDir)
-    Location.deploy({ assetCacheFolderPath: tmpDir })
+    FileLocation.deploy({ assetCacheFolderPath: tmpDir })
   })
 
   afterEach(() => {

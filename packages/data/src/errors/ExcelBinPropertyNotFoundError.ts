@@ -1,5 +1,5 @@
 import { ErrorCode, GenshinManagerError } from '@genshin-manager/core'
-import type { Location } from '@genshin-manager/query'
+import type { QueryLocation } from '@genshin-manager/query'
 
 /**
  * Error thrown when a property value is not found in ExcelBinOutput
@@ -12,12 +12,12 @@ export class ExcelBinPropertyNotFoundError extends GenshinManagerError {
 
   /**
    * Constructor for ExcelBinPropertyNotFoundError
-   * @param location - Query Location indicating the search path
+   * @param location - QueryLocation indicating the search path
    * @param searchValue - The value that was searched for
    * @param options - Error options
    */
   constructor(
-    location: Location,
+    location: QueryLocation,
     public readonly searchValue: string | number | boolean,
     options?: ErrorOptions,
   ) {

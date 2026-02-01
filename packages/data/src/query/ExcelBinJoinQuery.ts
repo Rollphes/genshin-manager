@@ -1,8 +1,5 @@
 import type { IndexKey, TextMapProvider } from '@genshin-manager/query'
-import {
-  JoinQueryBuilder,
-  Location as QueryLocation,
-} from '@genshin-manager/query'
+import { JoinQueryBuilder, QueryLocation } from '@genshin-manager/query'
 
 import type { ExcelBinCache } from '@/cache/ExcelBinCache'
 import { ExcelBinPropertyNotFoundError } from '@/errors/ExcelBinPropertyNotFoundError'
@@ -68,8 +65,8 @@ export class ExcelBinJoinQuery<
    * @returns Array of base records
    */
   protected executeBaseQuery(): Promise<MasterRecord<K>[]> {
-    // Use internal execute that returns raw records without LocatedValue wrapping
-    // Since baseQuery.execute() returns SelectedRecord, we need to get raw data
+    // Get raw records without LocatedValue wrapping
+    // Cast required: getRecords returns GeneratedMasterFileMap[K][] which equals MasterRecord<K>[]
     const allRecords = this.excelBinCache.getRecords(this.baseTableName)
     return Promise.resolve(allRecords as MasterRecord<K>[])
   }
@@ -82,6 +79,7 @@ export class ExcelBinJoinQuery<
   protected getJoinRecord(
     joinKey: IndexKey,
   ): Promise<MasterRecord<J> | undefined> {
+    // Cast required: getRecords returns GeneratedMasterFileMap[J][] which equals MasterRecord<J>[]
     const joinRecords = this.excelBinCache.getRecords(
       this.joinTableName,
     ) as MasterRecord<J>[]
@@ -120,6 +118,8 @@ export class ExcelBinJoinQuery<
       this.joinType,
       this.textMapProvider,
     )
+    // Cast via unknown: copyStateTo expects JoinQueryBuilder with TSelected,
+    // but cloned has NewSelected. Both share the same base structure.
     this.copyStateTo(
       cloned as unknown as JoinQueryBuilder<
         MasterRecord<K>,

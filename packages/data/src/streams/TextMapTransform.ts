@@ -2,7 +2,7 @@ import type { Language } from '@genshin-manager/core'
 import { Transform } from 'stream'
 
 import { TextMapFormatError } from '@/errors/TextMapFormatError'
-import { Location } from '@/paths/Location'
+import { FileLocation } from '@/paths/FileLocation'
 import { splitBuffer } from '@/streams/splitBuffer'
 
 /**
@@ -11,7 +11,7 @@ import { splitBuffer } from '@/streams/splitBuffer'
 export class TextMapTransform extends Transform {
   private readonly language: Language
   private readonly filterSet: ReadonlySet<number>
-  private readonly location: Location
+  private readonly location: FileLocation
   private buffer: Buffer = Buffer.from('')
   private firstFlag = true
 
@@ -29,7 +29,7 @@ export class TextMapTransform extends Transform {
     super()
     this.language = language
     this.filterSet = filterSet
-    this.location = Location.textMap(language, fileName)
+    this.location = FileLocation.textMap(language, fileName)
   }
 
   /**

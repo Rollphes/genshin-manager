@@ -3,56 +3,44 @@ import type { Language } from '@genshin-manager/core'
 import type { MasterFileMap } from '@/types/generated/MasterFileMap'
 
 /**
- * Property access segment for JSON path
+ * Source type for default cache folder
  */
-export interface PropSegment {
-  /** Segment type identifier */
-  readonly type: 'prop'
-  /** Property name */
-  readonly propertyName: string
+export interface DefaultCacheFolderSource {
+  /** Source type identifier */
+  readonly type: 'defaultCacheFolder'
 }
 
 /**
- * Array index access segment for JSON path
+ * Source type for ExcelBin folder
  */
-export interface IndexSegment {
-  /** Segment type identifier */
-  readonly type: 'index'
-  /** Array index */
-  readonly idx: number
+export interface ExcelBinFolderSource {
+  /** Source type identifier */
+  readonly type: 'excelBinFolder'
 }
 
 /**
- * Filter condition segment for JSON path
+ * Source type for TextMap folder
  */
-export interface FilterSegment {
-  /** Segment type identifier */
-  readonly type: 'filter'
-  /** Property name to filter by */
-  readonly propertyName: string
-  /** Value to match */
-  readonly value: string | number | boolean
+export interface TextMapFolderSource {
+  /** Source type identifier */
+  readonly type: 'textMapFolder'
 }
 
 /**
- * Union type of all path segment types
+ * Source type for master file folder
  */
-export type PathSegment = PropSegment | IndexSegment | FilterSegment
-
-/**
- * Filter condition for ExcelBinCache lookups
- */
-export interface FilterCondition {
-  /** Property name to filter by */
-  readonly propertyName: string
-  /** Property value to match */
-  readonly value: string | number | boolean
+export interface MasterFileFolderSource {
+  /** Source type identifier */
+  readonly type: 'masterFileFolder'
 }
 
 /**
- * Index key type for ExcelBinCache
+ * Source type for generated types folder
  */
-export type IndexKey = string | number | boolean
+export interface GeneratedTypesFolderSource {
+  /** Source type identifier */
+  readonly type: 'generatedTypesFolder'
+}
 
 /**
  * Source type for ExcelBin locations
@@ -117,16 +105,6 @@ export interface InitImageSource {
 }
 
 /**
- * Source type for handbook locations
- */
-export interface HandbookSource {
-  /** Source type identifier */
-  readonly type: 'handbook'
-  /** Handbook file name */
-  readonly fileName: string
-}
-
-/**
  * Source type for generated types locations
  */
 export interface GeneratedTypesSource {
@@ -145,27 +123,30 @@ export interface CommitFileSource {
 }
 
 /**
- * Source type for raw path locations (testing only)
- * @internal
+ * Source type for resolved path locations (used by parent/child)
  */
-export interface RawSource {
+export interface ResolvedSource {
   /** Source type identifier */
-  readonly type: 'raw'
-  /** Absolute path */
-  readonly absolutePath: string
+  readonly type: 'resolved'
+  /** Resolved path string */
+  readonly resolvedPath: string
 }
 
 /**
  * Union type of all location source types
  */
 export type LocationSource =
+  | DefaultCacheFolderSource
+  | ExcelBinFolderSource
+  | TextMapFolderSource
+  | MasterFileFolderSource
+  | GeneratedTypesFolderSource
   | ExcelBinSource
   | TextMapSource
   | ImageSource
   | AudioSource
   | MasterFileSource
   | InitImageSource
-  | HandbookSource
   | GeneratedTypesSource
   | CommitFileSource
-  | RawSource
+  | ResolvedSource

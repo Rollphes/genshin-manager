@@ -1,7 +1,7 @@
 import type { Language } from '@genshin-manager/core'
 import { ErrorCode, GenshinManagerError } from '@genshin-manager/core'
 
-import type { Location } from '@/paths/Location'
+import type { FileLocation } from '@/paths/FileLocation'
 
 /**
  * Text map format error
@@ -15,13 +15,13 @@ export class TextMapFormatError extends GenshinManagerError {
   /**
    * Constructor for TextMapFormatError
    * @param language - Language code
-   * @param location - File path Location of the text map file
+   * @param location - File path FileLocation of the text map file
    * @param reason - Description of the format error
    * @param options - Error options
    */
   constructor(
     public readonly language: Language,
-    location: Location,
+    location: FileLocation,
     public readonly reason: string,
     options?: ErrorOptions,
   ) {
@@ -29,6 +29,6 @@ export class TextMapFormatError extends GenshinManagerError {
       `Invalid text map format for language '${language}': ${reason}`,
       options,
     )
-    this.locationPath = location.toString()
+    this.locationPath = location.resolve()
   }
 }

@@ -1,6 +1,6 @@
 import { ErrorCode, GenshinManagerError } from '@genshin-manager/core'
 
-import type { Location } from '@/paths/Location'
+import type { FileLocation } from '@/paths/FileLocation'
 
 /**
  * Asset format error
@@ -13,16 +13,16 @@ export class AssetFormatError extends GenshinManagerError {
 
   /**
    * Constructor for AssetFormatError
-   * @param location - File path Location of the asset
+   * @param location - File path FileLocation of the asset
    * @param reason - Description of the format error
    * @param options - Error options
    */
   constructor(
-    location: Location,
+    location: FileLocation,
     public readonly reason: string,
     options?: ErrorOptions,
   ) {
     super(`Invalid asset format: ${reason}`, options)
-    this.locationPath = location.toString()
+    this.locationPath = location.resolve()
   }
 }
