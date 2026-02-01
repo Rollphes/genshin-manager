@@ -1,4 +1,4 @@
-import { type Location, Location as LocationClass } from '@genshin-manager/data'
+import { FileLocation } from '@genshin-manager/data'
 import * as fs from 'fs'
 import * as os from 'os'
 import * as path from 'path'
@@ -8,8 +8,8 @@ import { FileLockManager } from '@/download/FileLockManager'
 
 describe('FileLockManager', () => {
   let testDir: string
-  let testDirLocation: Location
-  let testFileLocation: Location
+  let testDirLocation: FileLocation
+  let testFileLocation: FileLocation
   let fileLockManager: FileLockManager
 
   beforeEach(() => {
@@ -18,8 +18,10 @@ describe('FileLockManager', () => {
       `fileLockManagerTest-${String(Date.now())}`,
     )
     fs.mkdirSync(testDir, { recursive: true })
-    testDirLocation = LocationClass.raw(testDir)
-    testFileLocation = LocationClass.raw(path.join(testDir, 'test-file.txt'))
+    testDirLocation = FileLocation.fromPath(testDir)
+    testFileLocation = FileLocation.fromPath(
+      path.join(testDir, 'test-file.txt'),
+    )
     fileLockManager = new FileLockManager()
   })
 
@@ -106,7 +108,7 @@ describe('FileLockManager', () => {
     })
 
     it('should handle non-existent directory', () => {
-      const nonExistentLocation = LocationClass.raw(
+      const nonExistentLocation = FileLocation.fromPath(
         path.join(testDir, 'non-existent'),
       )
       expect(() => {

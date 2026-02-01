@@ -3,7 +3,7 @@ import { BodyNotFoundError, LogLevel } from '@genshin-manager/core'
 import {
   AssetFormatError,
   AssetNotFoundError,
-  Location,
+  FileLocation,
 } from '@genshin-manager/data'
 import fs from 'fs'
 import { Writable } from 'stream'
@@ -17,7 +17,7 @@ vi.mock('@/download/FileLockManager', () => {
   return {
     FileLockManager: class {
       public async withLock<T>(
-        _location: Location,
+        _location: FileLocation,
         fn: () => Promise<T>,
       ): Promise<T> {
         return fn()
@@ -38,7 +38,7 @@ vi.mock('@genshin-manager/core', async (importOriginal) => {
 
 describe('AssetDownloader', () => {
   beforeEach(() => {
-    Location.deploy({ assetCacheFolderPath: '/test-cache' })
+    FileLocation.deploy({ assetCacheFolderPath: '/test-cache' })
   })
   let mockFetchRaw: ReturnType<typeof vi.fn>
 

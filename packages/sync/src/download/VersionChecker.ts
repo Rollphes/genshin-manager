@@ -1,6 +1,6 @@
 import type { RestClient } from '@genshin-manager/core'
 import { logger } from '@genshin-manager/core'
-import { AssetFormatError, Location } from '@genshin-manager/data'
+import { AssetFormatError, FileLocation } from '@genshin-manager/data'
 import fs from 'fs'
 
 import { FileLockManager } from '@/download/FileLockManager'
@@ -43,7 +43,7 @@ export class VersionChecker {
    * @returns Game version string or undefined if not available
    */
   public getGameVersion(): string | undefined {
-    const commitFilePath = Location.commitFile().resolve()
+    const commitFilePath = FileLocation.commitFile().resolve()
     if (!fs.existsSync(commitFilePath)) return undefined
 
     try {
@@ -97,7 +97,7 @@ export class VersionChecker {
         'VersionChecker: Downloaded commits.json contains invalid data structure!',
       )
       throw new AssetFormatError(
-        Location.commitFile(),
+        FileLocation.commitFile(),
         'Invalid data structure (expected non-empty array)',
       )
     }
@@ -113,7 +113,7 @@ export class VersionChecker {
    * Load cached commits from file
    */
   private loadCachedCommits(): CommitsResponse[] | null {
-    const commitFilePath = Location.commitFile().resolve()
+    const commitFilePath = FileLocation.commitFile().resolve()
     if (!fs.existsSync(commitFilePath)) return null
 
     try {
@@ -148,12 +148,13 @@ export class VersionChecker {
   private async saveCommits(
     commits: readonly CommitsResponse[],
   ): Promise<void> {
-    const commitFileLocation = Location.commitFile()
-    const commitFilePath = commitFileLocation.resolve()
+    const commitFileLocation = FileLocation.commitFile()
     await this.fileLockManager.withLock(commitFileLocation, () => {
-      fs.writeFileSync(commitFilePath, JSON.stringify(commits, null, 2), {
-        encoding: 'utf8',
-      })
+      fs.writeFileSync(
+        commitFileLocation.resolve(),
+        JSON.stringify(commits, null, 2),
+        { encoding: 'utf8' },
+      )
       return Promise.resolve()
     })
   }

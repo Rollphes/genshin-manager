@@ -1,6 +1,5 @@
-import { type Location } from '@genshin-manager/data'
+import type { FileLocation } from '@genshin-manager/data'
 import fs from 'fs'
-import path from 'path'
 import { check, lock, type LockOptions } from 'proper-lockfile'
 
 /**
@@ -28,18 +27,18 @@ export class FileLockManager {
 
   /**
    * Performs exclusive control on a file using filesystem-based locks
-   * @param location - Location of the file to lock
+   * @param location - FileLocation of the file to lock
    * @param operation - async operation to execute
    * @returns result of the operation
    */
   public async withLock<T>(
-    location: Location,
+    location: FileLocation,
     operation: () => Promise<T>,
   ): Promise<T> {
-    const resolvedPath = location.resolve()
-    this.ensureLockDirectory(resolvedPath)
+    const filePath = location.resolve()
+    this.ensureLockDirectory(location)
 
-    const release = await lock(resolvedPath, this.lockOptions)
+    const release = await lock(filePath, this.lockOptions)
 
     try {
       const result = await operation()
@@ -51,29 +50,30 @@ export class FileLockManager {
 
   /**
    * Checks if the specified file is locked
-   * @param location - Location of the file to check
+   * @param location - FileLocation of the file to check
    * @returns true if the file is locked
    */
-  public async isLocked(location: Location): Promise<boolean> {
-    const resolvedPath = location.resolve()
-    this.ensureLockDirectory(resolvedPath)
+  public async isLocked(location: FileLocation): Promise<boolean> {
+    const filePath = location.resolve()
+    this.ensureLockDirectory(location)
 
-    if (!fs.existsSync(resolvedPath)) return false
+    if (!fs.existsSync(filePath)) return false
 
-    return await check(resolvedPath, this.lockOptions)
+    return await check(filePath, this.lockOptions)
   }
 
   /**
    * Clears all locks in a directory (for testing)
-   * @param location - Location of directory to clear locks from
+   * @param location - FileLocation of directory to clear locks from
    */
-  public clearAllLocks(location: Location): void {
-    const resolvedPath = location.resolve()
-    if (!fs.existsSync(resolvedPath)) return
+  public clearAllLocks(location: FileLocation): void {
+    const dirPath = location.resolve()
+    if (!fs.existsSync(dirPath)) return
 
-    const files = fs.readdirSync(resolvedPath, { recursive: true })
+    const files = fs.readdirSync(dirPath, { recursive: true })
     for (const file of files) {
-      const lockFilePath = path.join(resolvedPath, String(file))
+      const lockFileLocation = location.child(String(file))
+      const lockFilePath = lockFileLocation.resolve()
       if (lockFilePath.endsWith('.lock') && fs.existsSync(lockFilePath))
         fs.unlinkSync(lockFilePath)
     }
@@ -81,12 +81,10 @@ export class FileLockManager {
 
   /**
    * Ensures the lock directory exists
-   * @param resolvedPath - resolved path to the file to lock
-   * @returns lock directory path
+   * @param location - FileLocation of the file to lock
    */
-  private ensureLockDirectory(resolvedPath: string): string {
-    const lockDir = path.dirname(resolvedPath)
+  private ensureLockDirectory(location: FileLocation): void {
+    const lockDir = location.parent().resolve()
     if (!fs.existsSync(lockDir)) fs.mkdirSync(lockDir, { recursive: true })
-    return lockDir
   }
 }

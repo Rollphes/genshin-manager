@@ -1,5 +1,5 @@
 import type { RestClient } from '@genshin-manager/core'
-import { AssetFormatError, Location } from '@genshin-manager/data'
+import { AssetFormatError, FileLocation } from '@genshin-manager/data'
 import fs from 'fs'
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 
@@ -12,7 +12,7 @@ vi.mock('@/download/FileLockManager', () => {
   return {
     FileLockManager: class {
       public async withLock<T>(
-        _location: Location,
+        _location: FileLocation,
         fn: () => Promise<T>,
       ): Promise<T> {
         return fn()
@@ -33,7 +33,7 @@ vi.mock('@genshin-manager/core', async (importOriginal) => {
 
 describe('VersionChecker', () => {
   beforeEach(() => {
-    Location.deploy({ assetCacheFolderPath: '/test-cache' })
+    FileLocation.deploy({ assetCacheFolderPath: '/test-cache' })
   })
   let mockFetch: ReturnType<typeof vi.fn>
 

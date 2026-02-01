@@ -6,14 +6,12 @@ import { type Language, TextMapBaseName } from '@genshin-manager/core'
 import {
   AssetFormatError,
   AssetNotFoundError,
-  type Location,
-  Location as LocationClass,
+  FileLocation,
   ReadableStreamWrapper,
   TextMapTransform,
 } from '@genshin-manager/data'
 import * as cliProgress from 'cli-progress'
 import fs from 'fs'
-import path from 'path'
 import { pipeline } from 'stream/promises'
 
 import { FileLockManager } from '@/download/FileLockManager'
@@ -102,11 +100,11 @@ export class AssetDownloader {
     gitFolderName: 'ExcelBinOutput' | 'TextMap',
     isRetry: boolean,
   ): Promise<void> {
-    const folderPath =
+    const folderLocation =
       gitFolderName === 'ExcelBinOutput'
-        ? LocationClass.excelBinFolderPath
-        : LocationClass.textMapFolderPath
-    const folderLocation = LocationClass.raw(folderPath)
+        ? FileLocation.excelBinFolder()
+        : FileLocation.textMapFolder()
+    const folderPath = folderLocation.resolve()
 
     if (!isRetry) {
       await this.fileLockManager.withLock(folderLocation, () => {
@@ -159,7 +157,7 @@ export class AssetDownloader {
    * @param remoteFilePath - Remote file path in repository (HTTP path)
    */
   private async downloadFileWithRetry(
-    localLocation: Location,
+    localLocation: FileLocation,
     remoteFilePath: string,
   ): Promise<void> {
     const maxRetries = 3
@@ -186,7 +184,7 @@ export class AssetDownloader {
    * @param remoteFilePath - Remote file path in repository (HTTP path)
    */
   private async downloadFile(
-    localLocation: Location,
+    localLocation: FileLocation,
     remoteFilePath: string,
   ): Promise<void> {
     return this.fileLockManager.withLock(localLocation, async () => {
@@ -215,7 +213,7 @@ export class AssetDownloader {
    */
   private async writeResponseToFile(
     response: Response,
-    location: Location,
+    location: FileLocation,
   ): Promise<void> {
     if (!response.body)
       throw new BodyNotFoundError(new Request(response.url), response)
@@ -225,19 +223,14 @@ export class AssetDownloader {
       highWaterMark: 1 * 1024 * 1024,
     })
 
-    const fileName = LocationClass.getFileName(resolvedPath)
+    const fileName = location.basename()
     const language = this.getLanguageFromFileName(fileName)
-    const parentDirName = LocationClass.getFileName(path.dirname(resolvedPath))
-    const isTextMapFile = parentDirName === 'TextMap'
+    const isTextMapFile = location.sourceType === 'textMap'
 
     if (isTextMapFile && language) {
       await pipeline(
         new ReadableStreamWrapper(response.body.getReader()),
-        new TextMapTransform(
-          language,
-          this.textHashes,
-          path.resolve(resolvedPath),
-        ),
+        new TextMapTransform(language, this.textHashes, resolvedPath),
         writeStream,
       )
     } else {
@@ -297,7 +290,7 @@ export class AssetDownloader {
    * @throws {@link AssetNotFoundError} - When file does not exist or was removed
    * @throws {@link AssetFormatError} - When file is empty or corrupted
    */
-  private validateDownloadedFile(location: Location): void {
+  private validateDownloadedFile(location: FileLocation): void {
     const resolvedPath = location.resolve()
 
     if (!fs.existsSync(resolvedPath)) throw new AssetNotFoundError(location)
@@ -324,7 +317,7 @@ export class AssetDownloader {
    * @param location - Location of the JSON file
    * @throws {@link AssetFormatError} - When file content is empty, too short, or invalid JSON
    */
-  private validateJsonContent(location: Location): void {
+  private validateJsonContent(location: FileLocation): void {
     const resolvedPath = location.resolve()
     const testContent = fs.readFileSync(resolvedPath, { encoding: 'utf8' })
 
@@ -349,7 +342,7 @@ export class AssetDownloader {
    * Cleanup failed download file
    * @param location - Location of the file to cleanup
    */
-  private cleanupFailedDownload(location: Location): void {
+  private cleanupFailedDownload(location: FileLocation): void {
     try {
       const resolvedPath = location.resolve()
       if (fs.existsSync(resolvedPath)) fs.unlinkSync(resolvedPath)
@@ -382,14 +375,14 @@ export class AssetDownloader {
   private createLocationForFile(
     gitFolderName: 'ExcelBinOutput' | 'TextMap',
     fileName: string,
-  ): Location {
+  ): FileLocation {
     if (gitFolderName === 'TextMap') {
       const language = this.getLanguageFromFileName(fileName)
-      if (language) return LocationClass.textMap(language, fileName)
+      if (language) return FileLocation.textMap(language, fileName)
     }
 
     // For ExcelBinOutput and other files, use image as a generic location
     // since it accepts arbitrary file names
-    return LocationClass.image(fileName)
+    return FileLocation.image(fileName)
   }
 }
