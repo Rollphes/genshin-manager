@@ -1,6 +1,8 @@
-import { GeneralError } from '@genshin-manager/core'
 import fs from 'fs'
 import { Readable } from 'stream'
+
+import { AssetNotFoundError } from '@/errors/AssetNotFoundError'
+import type { FileLocation } from '@/paths/FileLocation'
 
 /**
  * File segment metadata for concatenated reading
@@ -27,16 +29,16 @@ export class ConcatenatedFileReader {
 
   /**
    * Create a ConcatenatedFileReader
-   * @param paths - Ordered array of file paths to concatenate
-   * @throws {@link GeneralError} - If any file does not exist
+   * @param locations - Ordered array of FileLocations to concatenate
+   * @throws {@link AssetNotFoundError} - If any file does not exist
    */
-  constructor(paths: readonly string[]) {
+  constructor(locations: readonly FileLocation[]) {
     let offset = 0
     const segments: FileSegment[] = []
 
-    for (const filePath of paths) {
-      if (!fs.existsSync(filePath))
-        throw new GeneralError(`File not found: ${filePath}`)
+    for (const location of locations) {
+      const filePath = location.resolve()
+      if (!fs.existsSync(filePath)) throw new AssetNotFoundError(location)
 
       const stats = fs.statSync(filePath)
       segments.push({

@@ -3,6 +3,7 @@ import os from 'os'
 import path from 'path'
 import { afterEach, beforeEach, describe, expect, it } from 'vitest'
 
+import { FileLocation } from '@/paths/FileLocation'
 import { ConcatenatedFileReader } from '@/streams/ConcatenatedFileReader'
 
 describe('ConcatenatedFileReader', () => {
@@ -16,10 +17,10 @@ describe('ConcatenatedFileReader', () => {
     fs.rmSync(tmpDir, { recursive: true, force: true })
   })
 
-  function writeFile(name: string, content: string): string {
+  function writeFile(name: string, content: string): FileLocation {
     const filePath = path.join(tmpDir, name)
     fs.writeFileSync(filePath, content, 'utf8')
-    return filePath
+    return FileLocation.fromPath(filePath)
   }
 
   describe('constructor', () => {
