@@ -4,21 +4,21 @@ import { generateMasterStructure } from '@genshin-manager/crypto'
 import {
   AssetFormatError,
   AssetNotFoundError,
-  Location,
+  FileLocation,
 } from '@genshin-manager/data'
 import type { MasterFileMap } from '@genshin-manager/data'
 import fs from 'fs'
 
 /**
  * Generic ExcelBinOutput file processing function.
- * @param location - Input file Location.
+ * @param location - Input file FileLocation.
  * @param force - Force overwrite flag.
  * @returns Processing result summary.
  * @throws {@link AssetNotFoundError} - When file is not found.
  * @throws {@link AssetFormatError} - When file format is invalid.
  */
 function generateMasterFromJson(
-  location: Location,
+  location: FileLocation,
   force = false,
 ): {
   success: boolean
@@ -33,12 +33,12 @@ function generateMasterFromJson(
 
   if (!fileName) throw new AssetNotFoundError(location)
 
-  const outputLocation = Location.masterFile(`${fileName}.master.json`)
+  const outputLocation = FileLocation.masterFile(`${fileName}.master.json`)
   const outputPath = outputLocation.resolve()
 
   if (!fs.existsSync(inputPath)) throw new AssetNotFoundError(location)
 
-  const outputDir = Location.masterFileFolderPath
+  const outputDir = FileLocation.masterFileFolder().resolve()
   if (!fs.existsSync(outputDir)) fs.mkdirSync(outputDir, { recursive: true })
 
   if (fs.existsSync(outputPath) && !force) {
@@ -156,10 +156,11 @@ function processAllAvailableFiles(
   skipped?: boolean
   error?: string
 }[] {
-  const excelBinOutputFolderPath = Location.excelBinFolderPath
+  const excelBinOutputFolder = FileLocation.excelBinFolder()
+  const excelBinOutputFolderPath = excelBinOutputFolder.resolve()
 
   if (!fs.existsSync(excelBinOutputFolderPath)) {
-    throw new AssetNotFoundError(Location.excelBin('AvatarExcelConfigData'))
+    throw new AssetNotFoundError(FileLocation.excelBin('AvatarExcelConfigData'))
   }
 
   const files = fs
@@ -172,7 +173,7 @@ function processAllAvailableFiles(
   for (const fileName of files) {
     try {
       console.log(`\nProcessing: ${fileName}...`)
-      const location = Location.excelBin(fileName as keyof MasterFileMap)
+      const location = FileLocation.excelBin(fileName as keyof MasterFileMap)
       const result = generateMasterFromJson(location, force)
       results.push({
         fileName,
@@ -218,12 +219,16 @@ if (options.help) {
   process.exit(0)
 }
 
-Location.deploy({ assetCacheFolderPath: Location.defaultCacheFolderPath })
+FileLocation.deploy({
+  assetCacheFolderPath: FileLocation.defaultCacheFolder().resolve(),
+})
 
 try {
   if (options.target) {
     console.log(`Starting processing for ${options.target}...`)
-    const location = Location.excelBin(options.target as keyof MasterFileMap)
+    const location = FileLocation.excelBin(
+      options.target as keyof MasterFileMap,
+    )
     const result = generateMasterFromJson(location, options.force)
     if (result.success) {
       if (result.skipped)

@@ -6,7 +6,7 @@ import {
   LogLevel,
 } from '@genshin-manager/core'
 import type { ExcelBinOutputs } from '@genshin-manager/data'
-import { EncryptedKeyDecoder, Location } from '@genshin-manager/data'
+import { EncryptedKeyDecoder, FileLocation } from '@genshin-manager/data'
 import fs from 'fs'
 import {
   InputData,
@@ -28,39 +28,37 @@ function isJsonObjectArray(value: unknown): value is JsonObject[] {
 
 /**
  * Generate TypeScript types from master file using quicktype-core
- * @param masterFilePath - Master file path
+ * @param masterFileLocation - Master file FileLocation
  * @param typeName - Type name to generate
  * @returns Generated TypeScript code
  * @throws {@link AssetNotFoundError} - When file is not found
  * @throws {@link AssetFormatError} - When file format is invalid
  */
 async function generateTypeFromMaster(
-  masterFilePath: string,
+  masterFileLocation: FileLocation,
   typeName: string,
 ): Promise<string> {
+  const masterFilePath = masterFileLocation.resolve()
   if (!fs.existsSync(masterFilePath))
-    throw new AssetNotFoundError(masterFilePath)
+    throw new AssetNotFoundError(masterFileLocation)
 
-  const fileName = masterFilePath
-    .replace(/\\/g, '/')
-    .split('/')
-    .pop()
-    ?.replace('.master.json', '')
+  const fileName = masterFileLocation.basename().replace('.master.json', '')
 
-  if (!fileName) throw new AssetNotFoundError(masterFilePath)
+  if (!fileName) throw new AssetNotFoundError(masterFileLocation)
 
-  const encryptedFilePath = Location.excelBin(
+  const encryptedFileLocation = FileLocation.excelBin(
     fileName as keyof typeof ExcelBinOutputs,
-  ).resolve()
+  )
+  const encryptedFilePath = encryptedFileLocation.resolve()
 
   if (!fs.existsSync(encryptedFilePath))
-    throw new AssetNotFoundError(encryptedFilePath)
+    throw new AssetNotFoundError(encryptedFileLocation)
 
   const encryptedContent = fs.readFileSync(encryptedFilePath, 'utf-8')
   const encryptedDataRaw: unknown = JSON.parse(encryptedContent)
   if (!isJsonObjectArray(encryptedDataRaw)) {
     throw new AssetFormatError(
-      encryptedFilePath,
+      encryptedFileLocation,
       `Expected JsonObject[], got ${typeof encryptedDataRaw}`,
     )
   }
@@ -135,16 +133,19 @@ export type DecodedType<T extends keyof MasterFileMap> = MasterFileMap[T][]
  * @returns Array of generated file paths
  */
 async function generateAllMasterTypes(): Promise<string[]> {
-  const outputDir = Location.generatedTypesFolderPath
+  const outputFolder = FileLocation.generatedTypesFolder()
+  const outputDir = outputFolder.resolve()
+  const masterFileFolder = FileLocation.masterFileFolder()
+  const masterFileFolderPath = masterFileFolder.resolve()
 
   logger.info('=== Generating types from all master files ===')
-  if (!fs.existsSync(Location.masterFileFolderPath))
-    throw new AssetNotFoundError(Location.masterFileFolderPath)
+  if (!fs.existsSync(masterFileFolderPath))
+    throw new AssetNotFoundError(masterFileFolder)
 
   if (!fs.existsSync(outputDir)) fs.mkdirSync(outputDir, { recursive: true })
 
   const masterFiles = fs
-    .readdirSync(Location.masterFileFolderPath)
+    .readdirSync(masterFileFolderPath)
     .filter((file) => file.endsWith('.master.json'))
 
   const generatedFiles: string[] = []
@@ -152,14 +153,18 @@ async function generateAllMasterTypes(): Promise<string[]> {
 
   for (const masterFile of masterFiles) {
     const fileName = masterFile.replace('.master.json', '')
-    const masterFilePath = Location.masterFile(masterFile).resolve()
+    const masterFileLocation = FileLocation.masterFile(masterFile)
     const typeName = `${fileName}Type`
 
     try {
       logger.info(`Generating type for ${fileName}...`)
-      const typeCode = await generateTypeFromMaster(masterFilePath, typeName)
+      const typeCode = await generateTypeFromMaster(
+        masterFileLocation,
+        typeName,
+      )
 
-      const outputPath = Location.generatedTypes(`${fileName}.ts`).resolve()
+      const outputLocation = FileLocation.generatedTypes(`${fileName}.ts`)
+      const outputPath = outputLocation.resolve()
       fs.writeFileSync(outputPath, typeCode)
 
       generatedFiles.push(outputPath)
@@ -175,7 +180,8 @@ async function generateAllMasterTypes(): Promise<string[]> {
   }
 
   const mapTypeCode = generateMasterFileMapType(typeMapping)
-  const mapOutputPath = Location.generatedTypes('MasterFileMap.ts').resolve()
+  const mapOutputLocation = FileLocation.generatedTypes('MasterFileMap.ts')
+  const mapOutputPath = mapOutputLocation.resolve()
   fs.writeFileSync(mapOutputPath, mapTypeCode)
   generatedFiles.push(mapOutputPath)
 
@@ -193,7 +199,9 @@ async function generateAllMasterTypes(): Promise<string[]> {
 
 logger.configure({ level: LogLevel.DEBUG })
 
-Location.deploy({ assetCacheFolderPath: Location.defaultCacheFolderPath })
+FileLocation.deploy({
+  assetCacheFolderPath: FileLocation.defaultCacheFolder().resolve(),
+})
 
 void (async (): Promise<void> => {
   try {
@@ -202,7 +210,9 @@ void (async (): Promise<void> => {
     const generatedFiles = await generateAllMasterTypes()
 
     console.log('\n✅ Type generation completed successfully!')
-    console.log(`📁 Output directory: ${Location.generatedTypesFolderPath}`)
+    console.log(
+      `📁 Output directory: ${FileLocation.generatedTypesFolder().resolve()}`,
+    )
     console.log(`📄 Generated ${String(generatedFiles.length)} files`)
     process.exit(0)
   } catch (error) {
