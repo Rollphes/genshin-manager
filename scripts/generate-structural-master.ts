@@ -1,38 +1,24 @@
 import type { JsonObject, JsonValue } from '@genshin-manager/core'
+import { logger, LogLevel } from '@genshin-manager/core'
+import { generateMasterStructure } from '@genshin-manager/crypto'
 import {
   AssetFormatError,
   AssetNotFoundError,
-  logger,
-  LogLevel,
-} from '@genshin-manager/core'
-import type { EncryptedKeyMasterFile } from '@genshin-manager/crypto'
+  Location,
+} from '@genshin-manager/data'
 import type { MasterFileMap } from '@genshin-manager/data'
-import { Location } from '@genshin-manager/data'
 import fs from 'fs'
-
-interface MasterCandidate {
-  readonly object: JsonObject
-  readonly dataDensity: number
-}
-
-interface DataDensityAnalysis {
-  readonly emptyArrays: number
-  readonly emptyStrings: number
-  readonly nullValues: number
-  readonly totalProperties: number
-  readonly density: number
-}
 
 /**
  * Generic ExcelBinOutput file processing function.
- * @param inputPath - Input file path.
+ * @param location - Input file Location.
  * @param force - Force overwrite flag.
  * @returns Processing result summary.
  * @throws {@link AssetNotFoundError} - When file is not found.
  * @throws {@link AssetFormatError} - When file format is invalid.
  */
 function generateMasterFromJson(
-  inputPath: string,
+  location: Location,
   force = false,
 ): {
   success: boolean
@@ -42,23 +28,21 @@ function generateMasterFromJson(
   uniqueObjects: number
   skipped?: boolean
 } {
-  const fileName = inputPath
-    .replace(/\\/g, '/')
-    .split('/')
-    .pop()
-    ?.replace('.json', '')
+  const inputPath = location.resolve()
+  const fileName = location.excelBinName
 
-  if (!fileName) throw new AssetNotFoundError(inputPath)
+  if (!fileName) throw new AssetNotFoundError(location)
 
-  const outputPath = Location.masterFile(`${fileName}.master.json`).resolve()
+  const outputLocation = Location.masterFile(`${fileName}.master.json`)
+  const outputPath = outputLocation.resolve()
 
-  if (!fs.existsSync(inputPath)) throw new AssetNotFoundError(inputPath)
+  if (!fs.existsSync(inputPath)) throw new AssetNotFoundError(location)
 
   const outputDir = Location.masterFileFolderPath
   if (!fs.existsSync(outputDir)) fs.mkdirSync(outputDir, { recursive: true })
 
   if (fs.existsSync(outputPath) && !force) {
-    logger.warn(`⚠️  Existing master file found: ${outputPath}`)
+    logger.warn(`Existing master file found: ${outputPath}`)
     logger.warn('Generation skipped to protect manually adjusted files.')
     logger.warn('To overwrite, specify the --force (-f) option.')
     logger.warn(
@@ -76,7 +60,7 @@ function generateMasterFromJson(
 
   if (force && fs.existsSync(outputPath)) {
     logger.info(
-      `🔄 --force option specified. Overwriting existing file: ${outputPath}`,
+      `--force option specified. Overwriting existing file: ${outputPath}`,
     )
   }
 
@@ -86,7 +70,7 @@ function generateMasterFromJson(
 
     if (!Array.isArray(jsonData)) {
       throw new AssetFormatError(
-        inputPath,
+        location,
         `Expected array of objects, got ${typeof jsonData}`,
       )
     }
@@ -94,18 +78,19 @@ function generateMasterFromJson(
       !jsonData.every((item): item is JsonObject => typeof item === 'object')
     ) {
       throw new AssetFormatError(
-        inputPath,
+        location,
         'Expected array of objects only, got array with non-object items',
       )
     }
 
     logger.info(`=== ${fileName} Simple Master Generation ===`)
+    logger.info(`Number of objects to analyze: ${String(jsonData.length)}`)
 
-    const masterFile = createMasterStructure(inputPath, jsonData)
+    const masterFile = generateMasterStructure(`${fileName}.json`, jsonData)
 
     fs.writeFileSync(outputPath, JSON.stringify(masterFile, null, 2))
 
-    logger.info(`✅ Master file generated: ${outputPath}`)
+    logger.info(`Master file generated: ${outputPath}`)
     logger.info(`   Total objects: ${String(jsonData.length)}`)
 
     return {
@@ -122,267 +107,6 @@ function generateMasterFromJson(
     )
     throw error
   }
-}
-
-function createMasterStructure(
-  sourceFilePath: string,
-  jsonData: JsonObject[],
-): EncryptedKeyMasterFile {
-  const sourceFileName =
-    sourceFilePath.replace(/\\/g, '/').split('/').pop() ?? ''
-
-  if (jsonData.length === 0) {
-    throw new AssetFormatError(
-      sourceFilePath,
-      'Expected non-empty array of objects, got empty array',
-    )
-  }
-
-  const patterns = findOptimalMasterPatterns(jsonData)
-  const keyMappingTemplate = patterns[0]
-  const alternativePatterns =
-    patterns.length > 1 ? patterns.slice(1) : undefined
-
-  return {
-    metadata: {
-      sourceFile: sourceFileName,
-      generatedAt: new Date().toISOString(),
-    },
-    keyMappingTemplate,
-    alternativePatterns,
-  }
-}
-
-function hasDeepEmptyArrays(value: JsonValue): boolean {
-  if (Array.isArray(value)) {
-    if (value.length === 0) return true
-    return (value as JsonValue[]).some((item) => hasDeepEmptyArrays(item))
-  }
-  if (typeof value === 'object' && value !== null) {
-    return Object.values(value as JsonObject).some((item) =>
-      hasDeepEmptyArrays(item),
-    )
-  }
-  return false
-}
-
-function fillEmptyArraysFromCandidates(
-  target: JsonValue,
-  candidates: JsonObject[],
-): JsonValue {
-  if (Array.isArray(target)) {
-    const targetArray = target as JsonValue[]
-    if (targetArray.length === 0) {
-      for (const candidate of candidates) {
-        const candidateValue = candidate as JsonValue
-        if (
-          Array.isArray(candidateValue) &&
-          candidateValue.length > 0 &&
-          !hasDeepEmptyArrays(candidateValue)
-        )
-          return candidateValue as JsonValue[]
-      }
-      return targetArray
-    }
-    return targetArray.map((item) =>
-      fillEmptyArraysFromCandidates(item, candidates),
-    )
-  }
-
-  if (typeof target === 'object' && target !== null) {
-    const result: Record<string, JsonValue> = {}
-    for (const [key, value] of Object.entries(target)) {
-      if (Array.isArray(value) && value.length === 0) {
-        let filled = false
-        for (const candidate of candidates) {
-          const candidateValue = candidate[key]
-          if (
-            Array.isArray(candidateValue) &&
-            candidateValue.length > 0 &&
-            !hasDeepEmptyArrays(candidateValue)
-          ) {
-            result[key] = candidateValue
-            filled = true
-            break
-          }
-        }
-        if (!filled) result[key] = value
-      } else {
-        result[key] = fillEmptyArraysFromCandidates(value, candidates)
-      }
-    }
-    return result
-  }
-
-  return target
-}
-
-function findOptimalMasterPatterns(jsonData: JsonObject[]): JsonObject[] {
-  logger.info(`Number of objects to analyze: ${String(jsonData.length)}`)
-
-  const masterCandidates: MasterCandidate[] = jsonData.map((candidate) => ({
-    object: candidate,
-    dataDensity: calculateDataDensity(candidate).density,
-  }))
-
-  masterCandidates.sort((a, b) => {
-    const aHasEmpty = hasDeepEmptyArrays(a.object)
-    const bHasEmpty = hasDeepEmptyArrays(b.object)
-    if (aHasEmpty !== bHasEmpty) return aHasEmpty ? 1 : -1
-    return b.dataDensity - a.dataDensity
-  })
-
-  const selectedPatterns: JsonObject[] = []
-  const discoveredPaths = new Set<string>()
-
-  for (const candidate of masterCandidates) {
-    if (selectedPatterns.length === 0) {
-      let primaryPattern = candidate.object
-      if (hasDeepEmptyArrays(primaryPattern)) {
-        const filledPattern = fillEmptyArraysFromCandidates(
-          primaryPattern,
-          jsonData,
-        )
-        if (typeof filledPattern === 'object' && filledPattern !== null)
-          primaryPattern = filledPattern as JsonObject
-      }
-      selectedPatterns.push(primaryPattern)
-      continue
-    }
-
-    let hasNewDiversePattern = false
-    for (const existing of selectedPatterns) {
-      const firstNonEmptyPath = findFirstNonEmptyDifferencePath(
-        existing,
-        candidate.object,
-      )
-      if (firstNonEmptyPath.length > 0) {
-        const pathKey = firstNonEmptyPath.join(' -> ')
-        if (!discoveredPaths.has(pathKey)) {
-          discoveredPaths.add(pathKey)
-          hasNewDiversePattern = true
-        }
-      }
-    }
-
-    if (hasNewDiversePattern) {
-      let pattern = candidate.object
-      if (hasDeepEmptyArrays(pattern)) {
-        const filledPattern = fillEmptyArraysFromCandidates(pattern, jsonData)
-        if (typeof filledPattern === 'object' && filledPattern !== null)
-          pattern = filledPattern as JsonObject
-      }
-      selectedPatterns.push(pattern)
-    }
-  }
-
-  logger.info(`Total selected patterns: ${String(selectedPatterns.length)}`)
-  return selectedPatterns
-}
-
-function analyzeValue(
-  value: JsonValue,
-  counters: {
-    emptyArrays: number
-    emptyStrings: number
-    nullValues: number
-    totalProperties: number
-  },
-): void {
-  counters.totalProperties++
-  if (value === null || value === undefined) {
-    counters.nullValues++
-  } else if (typeof value === 'string' && value === '') {
-    counters.emptyStrings++
-  } else if (Array.isArray(value)) {
-    if (value.length === 0) {
-      counters.emptyArrays++
-    } else {
-      ;(value as JsonValue[]).forEach((item) => {
-        analyzeValue(item, counters)
-      })
-    }
-  } else if (typeof value === 'object') {
-    Object.values(value as JsonObject).forEach((item) => {
-      analyzeValue(item, counters)
-    })
-  }
-}
-
-function calculateDataDensity(obj: JsonObject): DataDensityAnalysis {
-  const counters = {
-    emptyArrays: 0,
-    emptyStrings: 0,
-    nullValues: 0,
-    totalProperties: 0,
-  }
-  Object.values(obj).forEach((value) => {
-    analyzeValue(value, counters)
-  })
-  const emptyCount =
-    counters.emptyArrays + counters.emptyStrings + counters.nullValues
-  const density =
-    counters.totalProperties > 0 ? 1 - emptyCount / counters.totalProperties : 0
-  return { ...counters, density }
-}
-
-function findFirstNonEmptyDifferencePath(
-  existing: JsonValue,
-  target: JsonValue,
-  parentPath: (string | number)[] = [],
-): (string | number)[] {
-  if (isEmptyJsonValue(existing) && !isEmptyJsonValue(target)) return parentPath
-  if (typeof existing !== typeof target) return parentPath
-
-  if (Array.isArray(existing) && Array.isArray(target)) {
-    const existingArray = existing as JsonValue[]
-    const targetArray = target as JsonValue[]
-    const len = Math.max(existingArray.length, targetArray.length)
-    for (let i = 0; i < len; i++) {
-      const result = findFirstNonEmptyDifferencePath(
-        existingArray[i],
-        targetArray[i],
-        [...parentPath, i],
-      )
-      if (result.length > 0) return result
-    }
-    return []
-  }
-
-  if (
-    typeof existing === 'object' &&
-    existing !== null &&
-    typeof target === 'object' &&
-    target !== null
-  ) {
-    const existingObj = existing as JsonObject
-    const targetObj = target as JsonObject
-    const keys = new Set([
-      ...Object.keys(existingObj),
-      ...Object.keys(targetObj),
-    ])
-    for (const key of keys) {
-      const result = findFirstNonEmptyDifferencePath(
-        existingObj[key],
-        targetObj[key],
-        [...parentPath, key],
-      )
-      if (result.length > 0) return result
-    }
-    return []
-  }
-
-  return []
-}
-
-function isEmptyJsonValue(value: JsonValue): boolean {
-  return (
-    value === null ||
-    value === undefined ||
-    value === 0 ||
-    value === '' ||
-    (Array.isArray(value) && value.length === 0)
-  )
 }
 
 // ============================================================
@@ -423,7 +147,6 @@ function parseArgs(): CommandOptions {
 }
 
 function processAllAvailableFiles(
-  excelBinOutputFolderPath: string,
   force = false,
 ): {
   fileName: string
@@ -433,8 +156,11 @@ function processAllAvailableFiles(
   skipped?: boolean
   error?: string
 }[] {
-  if (!fs.existsSync(excelBinOutputFolderPath))
-    throw new AssetNotFoundError(excelBinOutputFolderPath)
+  const excelBinOutputFolderPath = Location.excelBinFolderPath
+
+  if (!fs.existsSync(excelBinOutputFolderPath)) {
+    throw new AssetNotFoundError(Location.excelBin('AvatarExcelConfigData'))
+  }
 
   const files = fs
     .readdirSync(excelBinOutputFolderPath)
@@ -446,10 +172,8 @@ function processAllAvailableFiles(
   for (const fileName of files) {
     try {
       console.log(`\nProcessing: ${fileName}...`)
-      const inputPath = Location.excelBin(
-        fileName as keyof MasterFileMap,
-      ).resolve()
-      const result = generateMasterFromJson(inputPath, force)
+      const location = Location.excelBin(fileName as keyof MasterFileMap)
+      const result = generateMasterFromJson(location, force)
       results.push({
         fileName,
         success: result.success,
@@ -458,7 +182,7 @@ function processAllAvailableFiles(
         skipped: result.skipped,
       })
     } catch (error) {
-      console.error(`❌ ${fileName}: ${String(error)}`)
+      console.error(`${fileName}: ${String(error)}`)
       results.push({
         fileName,
         success: false,
@@ -496,39 +220,32 @@ if (options.help) {
 
 Location.deploy({ assetCacheFolderPath: Location.defaultCacheFolderPath })
 
-const excelBinOutputFolderPath = Location.excelBinFolderPath
-
 try {
   if (options.target) {
-    console.log(`🎯 Starting processing for ${options.target}...`)
-    const inputPath = Location.excelBin(
-      options.target as keyof MasterFileMap,
-    ).resolve()
-    const result = generateMasterFromJson(inputPath, options.force)
+    console.log(`Starting processing for ${options.target}...`)
+    const location = Location.excelBin(options.target as keyof MasterFileMap)
+    const result = generateMasterFromJson(location, options.force)
     if (result.success) {
       if (result.skipped)
-        console.log('\n⏭️  Existing file is protected, skipped.')
-      else console.log('\n✅ Processing completed')
+        console.log('\nExisting file is protected, skipped.')
+      else console.log('\nProcessing completed')
     }
   } else {
-    console.log('🚀 Starting auto-processing of all ExcelBinOutput files...\n')
-    const results = processAllAvailableFiles(
-      excelBinOutputFolderPath,
-      options.force,
-    )
+    console.log('Starting auto-processing of all ExcelBinOutput files...\n')
+    const results = processAllAvailableFiles(options.force)
 
     console.log('\n=== Processing Results Summary ===')
     const successful = results.filter((r) => r.success && !r.skipped)
     const skipped = results.filter((r) => r.skipped)
     const failed = results.filter((r) => !r.success)
 
-    console.log(`✅ Successful: ${String(successful.length)} files`)
+    console.log(`Successful: ${String(successful.length)} files`)
     if (skipped.length > 0)
-      console.log(`⏭️  Skipped: ${String(skipped.length)} files`)
+      console.log(`Skipped: ${String(skipped.length)} files`)
     if (failed.length > 0)
-      console.log(`❌ Failed: ${String(failed.length)} files`)
+      console.log(`Failed: ${String(failed.length)} files`)
   }
 } catch (error) {
-  console.error('❌ Error:', error)
+  console.error('Error:', error)
   process.exit(1)
 }

@@ -1,3 +1,5 @@
+import { GeneralError } from '@genshin-manager/core'
+
 import type { EncryptedKeyMasterFile, JsonObject, JsonValue } from '@/types'
 
 /**
@@ -25,14 +27,14 @@ interface DataDensityAnalysis {
  * @param sourceFileName - Source file name for metadata
  * @param jsonData - Array of JSON objects from ExcelBin
  * @returns EncryptedKeyMasterFile with optimal patterns
- * @throws {@link Error} - When jsonData is empty
+ * @throws {@link GeneralError} - When jsonData is empty
  */
 export function generateMasterStructure(
   sourceFileName: string,
   jsonData: readonly JsonObject[],
 ): EncryptedKeyMasterFile {
   if (jsonData.length === 0) {
-    throw new Error(
+    throw new GeneralError(
       `Expected non-empty array of objects, got empty array for ${sourceFileName}`,
     )
   }
