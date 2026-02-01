@@ -15,13 +15,15 @@ import type { TextMapProvider } from '@/value/types'
  * Subclasses implement actual data fetching
  * @template TRecord - The record type (preserves exact property types)
  * @template TSelected - Currently selected property keys
+ * @template TTableName - The table name type for type safety
  */
 export abstract class QueryBuilder<
   TRecord,
   TSelected extends keyof TRecord = keyof TRecord,
+  TTableName extends string = string,
 > {
   /** Table name for this query */
-  protected readonly tableName: string
+  protected readonly tableName: TTableName
 
   /** WHERE conditions */
   protected whereConditions: readonly WhereCondition[] = []
@@ -42,7 +44,7 @@ export abstract class QueryBuilder<
    * Creates a new QueryBuilder
    * @param tableName - The table name
    */
-  constructor(tableName: string) {
+  constructor(tableName: TTableName) {
     this.tableName = tableName
   }
 
@@ -53,7 +55,7 @@ export abstract class QueryBuilder<
    */
   public select<P extends (keyof TRecord & string)[]>(
     props: P,
-  ): QueryBuilder<TRecord, P[number]> {
+  ): QueryBuilder<TRecord, P[number], TTableName> {
     const cloned = this.clone<P[number]>()
     cloned.selectedProps = props
     return cloned
@@ -63,7 +65,7 @@ export abstract class QueryBuilder<
    * Selects all properties from the record
    * @returns A new QueryBuilder with all properties selected
    */
-  public selectAll(): QueryBuilder<TRecord> {
+  public selectAll(): QueryBuilder<TRecord, keyof TRecord, TTableName> {
     const cloned = this.clone<keyof TRecord>()
     cloned.selectedProps = undefined
     return cloned
@@ -78,7 +80,7 @@ export abstract class QueryBuilder<
   public where<P extends keyof TRecord & string>(
     property: P,
     value: TRecord[P] & IndexKey,
-  ): QueryBuilder<TRecord, TSelected> {
+  ): QueryBuilder<TRecord, TSelected, TTableName> {
     const cloned = this.clone<TSelected>()
     cloned.whereConditions = [
       ...this.whereConditions,
@@ -96,7 +98,7 @@ export abstract class QueryBuilder<
   public whereIn<P extends keyof TRecord & string>(
     property: P,
     values: readonly (TRecord[P] & IndexKey)[],
-  ): QueryBuilder<TRecord, TSelected> {
+  ): QueryBuilder<TRecord, TSelected, TTableName> {
     const cloned = this.clone<TSelected>()
     cloned.whereConditions = [
       ...this.whereConditions,
@@ -114,7 +116,7 @@ export abstract class QueryBuilder<
   public orderBy(
     property: keyof TRecord & string,
     direction: 'asc' | 'desc',
-  ): QueryBuilder<TRecord, TSelected> {
+  ): QueryBuilder<TRecord, TSelected, TTableName> {
     const cloned = this.clone<TSelected>()
     cloned.orderByConfig = { key: property, direction }
     return cloned
@@ -125,7 +127,7 @@ export abstract class QueryBuilder<
    * @param count - Maximum number of records to return
    * @returns A new QueryBuilder with limit configured
    */
-  public limit(count: number): QueryBuilder<TRecord, TSelected> {
+  public limit(count: number): QueryBuilder<TRecord, TSelected, TTableName> {
     const cloned = this.clone<TSelected>()
     cloned.limitCount = count
     return cloned
@@ -136,7 +138,7 @@ export abstract class QueryBuilder<
    * @param count - Number of records to skip
    * @returns A new QueryBuilder with offset configured
    */
-  public offset(count: number): QueryBuilder<TRecord, TSelected> {
+  public offset(count: number): QueryBuilder<TRecord, TSelected, TTableName> {
     const cloned = this.clone<TSelected>()
     cloned.offsetCount = count
     return cloned
@@ -215,7 +217,9 @@ export abstract class QueryBuilder<
    * Copies state from this builder to a clone
    * @param cloned - The cloned builder to copy state to
    */
-  protected copyStateTo(cloned: QueryBuilder<TRecord, TSelected>): void {
+  protected copyStateTo(
+    cloned: QueryBuilder<TRecord, TSelected, TTableName>,
+  ): void {
     cloned.whereConditions = [...this.whereConditions]
     cloned.selectedProps = this.selectedProps
       ? [...this.selectedProps]
@@ -328,6 +332,7 @@ export abstract class QueryBuilder<
    */
   protected abstract clone<NewSelected extends keyof TRecord>(): QueryBuilder<
     TRecord,
-    NewSelected
+    NewSelected,
+    TTableName
   >
 }

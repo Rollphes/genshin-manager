@@ -33,14 +33,16 @@ export type JoinedRecord<
  * @template TBase - Base record type (preserves exact property types)
  * @template TJoin - Join record type (preserves exact property types)
  * @template TSelected - Currently selected property keys
+ * @template TJoinTableName - The join table name type for type safety
  */
 export abstract class JoinQueryBuilder<
   TBase,
   TJoin,
   TSelected extends keyof TBase | keyof TJoin = keyof TBase | keyof TJoin,
+  TJoinTableName extends string = string,
 > {
   /** Name of the join table */
-  protected readonly joinTableName: string
+  protected readonly joinTableName: TJoinTableName
 
   /** Key in base record to join on */
   protected readonly fromKey: keyof TBase & string
@@ -65,7 +67,7 @@ export abstract class JoinQueryBuilder<
    * @param joinType - Type of join (inner or left)
    */
   constructor(
-    joinTableName: string,
+    joinTableName: TJoinTableName,
     fromKey: keyof TBase & string,
     toKey: keyof TJoin & string,
     joinType: 'inner' | 'left',
@@ -88,7 +90,7 @@ export abstract class JoinQueryBuilder<
   >(
     baseProps: BP,
     joinProps: JP,
-  ): JoinQueryBuilder<TBase, TJoin, BP[number] | JP[number]> {
+  ): JoinQueryBuilder<TBase, TJoin, BP[number] | JP[number], TJoinTableName> {
     const cloned = this.clone<BP[number] | JP[number]>()
     cloned.selectedBaseProps = baseProps
     cloned.selectedJoinProps = joinProps
@@ -168,7 +170,7 @@ export abstract class JoinQueryBuilder<
    * @param cloned - The cloned builder to copy state to
    */
   protected copyStateTo(
-    cloned: JoinQueryBuilder<TBase, TJoin, TSelected>,
+    cloned: JoinQueryBuilder<TBase, TJoin, TSelected, TJoinTableName>,
   ): void {
     cloned.selectedBaseProps = this.selectedBaseProps
       ? [...this.selectedBaseProps]
@@ -275,7 +277,7 @@ export abstract class JoinQueryBuilder<
    */
   protected abstract clone<
     NewSelected extends keyof TBase | keyof TJoin,
-  >(): JoinQueryBuilder<TBase, TJoin, NewSelected>
+  >(): JoinQueryBuilder<TBase, TJoin, NewSelected, TJoinTableName>
 
   /**
    * Gets the Location for the base record

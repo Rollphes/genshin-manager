@@ -17,16 +17,11 @@ export abstract class TableCache<TTableName extends string, TRecord> {
   /** LRU cache for loaded tables */
   protected readonly tables: LRUCache<TTableName, Table<TRecord>>
 
-  /** Base path for data files */
-  protected readonly cachePath: string
-
   /**
    * Creates a new TableCache
-   * @param cachePath - The base path for data files
    * @param maxTables - Maximum number of tables to keep in cache (0 = unlimited)
    */
-  constructor(cachePath: string, maxTables = 0) {
-    this.cachePath = cachePath
+  constructor(maxTables = 0) {
     this.indexRegistry = new IndexRegistry()
 
     const options: LRUCache.Options<

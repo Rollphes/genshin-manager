@@ -3,11 +3,28 @@ import type { LocationSegment } from '@/location/types'
 /**
  * Represents a location path within a data source
  * Used for error messages and debugging to show exactly where in the data structure a problem occurred
+ * @template TType - The type of data source (e.g., "ExcelBin", "TextMap")
+ * @template TName - The name of the specific data source (e.g., "AvatarExcelConfigData")
  */
-export class Location {
+export class Location<
+  TType extends string = string,
+  TName extends string = string,
+> {
+  /** The data source type */
+  public readonly sourceType: TType
+
+  /** The data source name */
+  public readonly sourceName: TName
+
   private readonly segments: readonly LocationSegment[]
 
-  private constructor(segments: readonly LocationSegment[]) {
+  private constructor(
+    sourceType: TType,
+    sourceName: TName,
+    segments: readonly LocationSegment[],
+  ) {
+    this.sourceType = sourceType
+    this.sourceName = sourceName
     this.segments = segments
   }
 
@@ -17,8 +34,13 @@ export class Location {
    * @param name - The name of the specific data source (e.g., "AvatarExcelConfigData")
    * @returns A new Location instance
    */
-  public static create(type: string, name: string): Location {
-    return new Location([{ type: 'root', value: `${type}:${name}` }])
+  public static create<T extends string, N extends string>(
+    type: T,
+    name: N,
+  ): Location<T, N> {
+    return new Location<T, N>(type, name, [
+      { type: 'root', value: `${type}:${name}` },
+    ])
   }
 
   /**
@@ -26,8 +48,11 @@ export class Location {
    * @param name - The property name
    * @returns A new Location instance with the property segment appended
    */
-  public prop(name: string): Location {
-    return new Location([...this.segments, { type: 'prop', value: name }])
+  public prop(name: string): Location<TType, TName> {
+    return new Location<TType, TName>(this.sourceType, this.sourceName, [
+      ...this.segments,
+      { type: 'prop', value: name },
+    ])
   }
 
   /**
@@ -35,8 +60,11 @@ export class Location {
    * @param idx - The array index
    * @returns A new Location instance with the index segment appended
    */
-  public index(idx: number): Location {
-    return new Location([...this.segments, { type: 'index', value: idx }])
+  public index(idx: number): Location<TType, TName> {
+    return new Location<TType, TName>(this.sourceType, this.sourceName, [
+      ...this.segments,
+      { type: 'index', value: idx },
+    ])
   }
 
   /**
@@ -45,8 +73,11 @@ export class Location {
    * @param value - The filter value
    * @returns A new Location instance with the filter segment appended
    */
-  public filter(key: string, value: string | number): Location {
-    return new Location([...this.segments, { type: 'filter', key, value }])
+  public filter(key: string, value: string | number): Location<TType, TName> {
+    return new Location<TType, TName>(this.sourceType, this.sourceName, [
+      ...this.segments,
+      { type: 'filter', key, value },
+    ])
   }
 
   /**
