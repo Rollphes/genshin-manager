@@ -9,7 +9,7 @@ import {
 import {
   ExcelBinCache,
   ExcelBinOutputs,
-  Location,
+  FileLocation,
   TextMapIndex,
 } from '@genshin-manager/data'
 import { EnkaManager } from '@genshin-manager/enka'
@@ -96,7 +96,7 @@ export class GenshinManager extends PromiseEventEmitter<GenshinManagerEventMap> 
     autoCacheAudio: true,
     autoFixTextMap: true,
     autoFixExcelBin: true,
-    assetCacheFolderPath: Location.defaultCacheFolderPath,
+    assetCacheFolderPath: FileLocation.defaultCacheFolder().resolve(),
   }
 
   /**
@@ -163,7 +163,9 @@ export class GenshinManager extends PromiseEventEmitter<GenshinManagerEventMap> 
     const logLevel = this.option.logLevel ?? LogLevel.NONE
     logger.configure({ level: logLevel })
 
-    Location.deploy({ assetCacheFolderPath: this.option.assetCacheFolderPath })
+    FileLocation.deploy({
+      assetCacheFolderPath: this.option.assetCacheFolderPath,
+    })
 
     this.gitlabApiClient = new RestClient<GitLabApiRoutes>(
       'https://gitlab.com',
@@ -416,8 +418,8 @@ export class GenshinManager extends PromiseEventEmitter<GenshinManagerEventMap> 
   private ensureFolders(): void {
     const folders = [
       this.option.assetCacheFolderPath,
-      Location.excelBinFolderPath,
-      Location.textMapFolderPath,
+      FileLocation.excelBinFolder().resolve(),
+      FileLocation.textMapFolder().resolve(),
     ]
     for (const folder of folders)
       if (!fs.existsSync(folder)) fs.mkdirSync(folder, { recursive: true })
