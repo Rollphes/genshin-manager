@@ -1,12 +1,10 @@
 import type { ExcelBinCache, TextMapIndex } from '@genshin-manager/data'
 
 import { ImageAssets } from '@/assets/ImageAssets'
-import type { CostItem } from '@/character/CharacterAscension'
 import { calculatePromoteLevel } from '@/common/calculatePromoteLevel'
 import { StatProperty } from '@/common/StatProperty'
 import { FightProp, WeaponType } from '@/types/enums'
 import type { RepositoryDependencies } from '@/types/RepositoryDependencies'
-import { Weapon } from '@/weapon/Weapon'
 import { WeaponAscension } from '@/weapon/WeaponAscension'
 import { WeaponInfo } from '@/weapon/WeaponInfo'
 import { WeaponRefinement } from '@/weapon/WeaponRefinement'
@@ -35,39 +33,6 @@ export class WeaponRepository {
     this.excelBinCache = deps.excelBinCache
     this.textMap = deps.textMap
     this.imageBaseURL = imageBaseURL
-  }
-
-  /**
-   * Build a full Weapon aggregate DTO
-   * @param weaponId - Weapon ID
-   * @param level - Weapon level (1-90)
-   * @param isAscended - Whether weapon is ascended
-   * @param refinementRank - Refinement rank (1-5)
-   * @returns Weapon aggregate DTO
-   * @throws {@link ExcelBinPropertyNotFoundError} - When data is not found
-   */
-  public async getWeapon(
-    weaponId: number,
-    level = 1,
-    isAscended = true,
-    refinementRank = 1,
-  ): Promise<Weapon> {
-    const info = await this.getWeaponInfo(
-      weaponId,
-      level,
-      isAscended,
-      refinementRank,
-    )
-    const ascension = await this.getWeaponAscension(weaponId, info.promoteLevel)
-    const refinement = await this.getWeaponRefinement(weaponId, refinementRank)
-    const allAscensionMaterials = await this.getAllAscensionMaterials(weaponId)
-
-    return new Weapon({
-      info,
-      ascension,
-      refinement,
-      allAscensionMaterials,
-    })
   }
 
   /**
@@ -319,49 +284,6 @@ export class WeaponRepository {
       skillDescription,
       addProps,
     })
-  }
-
-  /**
-   * Collect all ascension materials across all promote levels
-   * @param weaponId - Weapon ID
-   * @returns Aggregated cost items
-   */
-  private async getAllAscensionMaterials(
-    weaponId: number,
-  ): Promise<CostItem[]> {
-    const weaponResult = await this.excelBinCache
-      .from('WeaponExcelConfigData')
-      .select(['id', 'weaponPromoteId'])
-      .where('id', '=', weaponId)
-      .executeTakeFirst()
-
-    if (!weaponResult) return []
-
-    const promoteResults = await this.excelBinCache
-      .from('WeaponPromoteExcelConfigData')
-      .select(['weaponPromoteId', 'promoteLevel'])
-      .execute()
-
-    const promotes = promoteResults.filter(
-      (r) => r.weaponPromoteId.value === weaponResult.weaponPromoteId.value,
-    )
-    const maxPromoteLevel = Math.max(
-      ...promotes.map((p) => p.promoteLevel.value),
-    )
-
-    const materialsMap = new Map<number, number>()
-    for (let i = 1; i <= maxPromoteLevel; i++) {
-      const ascension = await this.getWeaponAscension(weaponId, i)
-      for (const item of ascension.costItems) {
-        const current = materialsMap.get(item.id) ?? 0
-        materialsMap.set(item.id, current + item.count)
-      }
-    }
-
-    return Array.from(materialsMap.entries()).map(([id, count]) => ({
-      id,
-      count,
-    }))
   }
 
   /**

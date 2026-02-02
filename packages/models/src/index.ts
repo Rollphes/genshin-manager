@@ -5,8 +5,6 @@ export type { ImageAssetsData } from '@/assets/ImageAssets'
 export { ImageAssets } from '@/assets/ImageAssets'
 
 // character
-export type { AscensionMaterial, CharacterData } from '@/character/Character'
-export { Character } from '@/character/Character'
 export type {
   CharacterAscensionData,
   CostItem,
@@ -35,8 +33,6 @@ export type { CharacterVoiceData } from '@/character/CharacterVoice'
 export { CharacterVoice } from '@/character/CharacterVoice'
 
 // weapon
-export type { WeaponData } from '@/weapon/Weapon'
-export { Weapon } from '@/weapon/Weapon'
 export type { WeaponAscensionData } from '@/weapon/WeaponAscension'
 export { WeaponAscension } from '@/weapon/WeaponAscension'
 export type { WeaponInfoData } from '@/weapon/WeaponInfo'
@@ -67,7 +63,7 @@ export { Material } from '@/common/Material'
 export type { StatPropertyData } from '@/common/StatProperty'
 export { StatProperty } from '@/common/StatProperty'
 
-// repository
+// repository (internal - used by GenshinManager)
 export { ArtifactRepository } from '@/repository/ArtifactRepository'
 export { CharacterRepository } from '@/repository/CharacterRepository'
 export { DailyFarmingRepository } from '@/repository/DailyFarmingRepository'
@@ -133,6 +129,5 @@ export {
   WeaponMaterialType,
   WeaponType,
 } from '@/types/enums'
-export type { RepositoryDependencies } from '@/types/RepositoryDependencies'
 export type { CVType } from '@/types/types'
 export { Element } from '@/types/types'

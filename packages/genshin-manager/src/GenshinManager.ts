@@ -13,6 +13,29 @@ import {
   TextMapIndex,
 } from '@genshin-manager/data'
 import { EnkaManager } from '@genshin-manager/enka'
+import type {
+  Artifact,
+  CharacterAscension,
+  CharacterBaseStats,
+  CharacterConstellation,
+  CharacterCostume,
+  CharacterInfo,
+  CharacterInherentSkill,
+  CharacterProfile,
+  CharacterSkill,
+  CharacterSkillAscension,
+  CharacterStory,
+  CharacterVoice,
+  CVType,
+  DailyFarming,
+  Material,
+  Monster,
+  ProfilePicture,
+  SetBonus,
+  WeaponAscension,
+  WeaponInfo,
+  WeaponRefinement,
+} from '@genshin-manager/models'
 import {
   ArtifactRepository,
   CharacterRepository,
@@ -231,77 +254,419 @@ export class GenshinManager extends PromiseEventEmitter<GenshinManagerEventMap> 
     return this.textMapIndex.currentLanguage ?? this.option.defaultLanguage
   }
 
+  // ============================================================
+  // Character API
+  // ============================================================
+
   /**
-   * Get ExcelBin cache for direct access
-   * @returns ExcelBinCache instance
+   * Fetch CharacterInfo DTO
+   * @param characterId - Character ID
+   * @param skillDepotId - Skill depot ID (for travelers)
+   * @returns CharacterInfo DTO
+   * @throws {@link ExcelBinPropertyNotFoundError} - When data is not found
    */
-  public get excelBin(): ExcelBinCache {
-    return this.excelBinCache
+  public async fetchCharacterInfo(
+    characterId: number,
+    skillDepotId?: number,
+  ): Promise<CharacterInfo> {
+    return this.characterRepository.getCharacterInfo(characterId, skillDepotId)
   }
 
   /**
-   * Get TextMap index for direct access
-   * @returns TextMapIndex instance
+   * Fetch CharacterBaseStats DTO
+   * @param characterId - Character ID
+   * @param level - Character level (1-90)
+   * @param isAscended - Whether character is ascended
+   * @returns CharacterBaseStats DTO
+   * @throws {@link ExcelBinPropertyNotFoundError} - When data is not found
    */
-  public get textMap(): TextMapIndex {
-    return this.textMapIndex
+  public async fetchCharacterBaseStats(
+    characterId: number,
+    level: number,
+    isAscended: boolean,
+  ): Promise<CharacterBaseStats> {
+    return this.characterRepository.getCharacterBaseStats(
+      characterId,
+      level,
+      isAscended,
+    )
   }
 
   /**
-   * Character repository
-   * @returns CharacterRepository instance
+   * Fetch CharacterAscension DTO
+   * @param characterId - Character ID
+   * @param promoteLevel - Promote level (0-6)
+   * @returns CharacterAscension DTO
+   * @throws {@link ExcelBinPropertyNotFoundError} - When data is not found
    */
-  public get characters(): CharacterRepository {
-    return this.characterRepository
+  public async fetchCharacterAscension(
+    characterId: number,
+    promoteLevel: number,
+  ): Promise<CharacterAscension> {
+    return this.characterRepository.getCharacterAscension(
+      characterId,
+      promoteLevel,
+    )
   }
 
   /**
-   * Weapon repository
-   * @returns WeaponRepository instance
+   * Fetch all character IDs
+   * @returns Array of character IDs
    */
-  public get weapons(): WeaponRepository {
-    return this.weaponRepository
+  public async fetchAllCharacterIds(): Promise<number[]> {
+    return this.characterRepository.getAllCharacterIds()
   }
 
   /**
-   * Artifact repository
-   * @returns ArtifactRepository instance
+   * Fetch CharacterConstellation DTOs for a character
+   * @param characterId - Character ID
+   * @param constellationLevel - Unlocked constellation level (0-6)
+   * @param skillDepotId - Skill depot ID (for travelers)
+   * @returns Array of CharacterConstellation DTOs
+   * @throws {@link ExcelBinPropertyNotFoundError} - When data is not found
    */
-  public get artifacts(): ArtifactRepository {
-    return this.artifactRepository
+  public async fetchCharacterConstellations(
+    characterId: number,
+    constellationLevel = 0,
+    skillDepotId?: number,
+  ): Promise<readonly CharacterConstellation[]> {
+    const info = await this.characterRepository.getCharacterInfo(
+      characterId,
+      skillDepotId,
+    )
+    return this.characterRepository.getConstellations(
+      info.constellationIds,
+      constellationLevel,
+    )
   }
 
   /**
-   * Material repository
-   * @returns MaterialRepository instance
+   * Fetch CharacterInherentSkill DTOs for a character
+   * @param characterId - Character ID
+   * @param skillDepotId - Skill depot ID (for travelers)
+   * @returns Array of CharacterInherentSkill DTOs
+   * @throws {@link ExcelBinPropertyNotFoundError} - When data is not found
    */
-  public get materials(): MaterialRepository {
-    return this.materialRepository
+  public async fetchCharacterInherentSkills(
+    characterId: number,
+    skillDepotId?: number,
+  ): Promise<readonly CharacterInherentSkill[]> {
+    const info = await this.characterRepository.getCharacterInfo(
+      characterId,
+      skillDepotId,
+    )
+    return this.characterRepository.getInherentSkills(info.inherentSkillOrder)
   }
 
   /**
-   * Monster repository
-   * @returns MonsterRepository instance
+   * Fetch CharacterProfile DTO for a character
+   * @param characterId - Character ID
+   * @returns CharacterProfile DTO or undefined
    */
-  public get monsters(): MonsterRepository {
-    return this.monsterRepository
+  public async fetchCharacterProfile(
+    characterId: number,
+  ): Promise<CharacterProfile | undefined> {
+    return this.characterRepository.getCharacterProfile(characterId)
   }
 
   /**
-   * Profile picture repository
-   * @returns ProfilePictureRepository instance
+   * Fetch CharacterStory DTOs for a character
+   * @param characterId - Character ID
+   * @returns Array of CharacterStory DTOs
    */
-  public get profilePictures(): ProfilePictureRepository {
-    return this.profilePictureRepository
+  public async fetchCharacterStories(
+    characterId: number,
+  ): Promise<readonly CharacterStory[]> {
+    return this.characterRepository.getCharacterStories(characterId)
   }
 
   /**
-   * Daily farming repository
-   * @returns DailyFarmingRepository instance
+   * Fetch CharacterCostume DTOs for a character
+   * @param characterId - Character ID
+   * @returns Array of CharacterCostume DTOs
    */
-  public get dailyFarming(): DailyFarmingRepository {
-    return this.dailyFarmingRepository
+  public async fetchCharacterCostumes(
+    characterId: number,
+  ): Promise<readonly CharacterCostume[]> {
+    return this.characterRepository.getCharacterCostumes(characterId)
   }
+
+  /**
+   * Fetch CharacterSkill DTO
+   * @param skillId - Skill ID
+   * @param level - Skill level (default: 1)
+   * @param extraLevel - Extra levels from constellations (default: 0)
+   * @returns CharacterSkill DTO
+   * @throws {@link ExcelBinPropertyNotFoundError} - When data is not found
+   */
+  public async fetchCharacterSkill(
+    skillId: number,
+    level = 1,
+    extraLevel = 0,
+  ): Promise<CharacterSkill> {
+    return this.characterRepository.getCharacterSkill(
+      skillId,
+      level,
+      extraLevel,
+    )
+  }
+
+  /**
+   * Fetch CharacterSkillAscension DTO (skill level-up costs)
+   * @param proudSkillGroupId - Proud skill group ID (from CharacterInfo.proudMap)
+   * @param level - Target skill level
+   * @returns CharacterSkillAscension DTO
+   * @throws {@link ExcelBinPropertyNotFoundError} - When data is not found
+   */
+  public async fetchCharacterSkillAscension(
+    proudSkillGroupId: number,
+    level: number,
+  ): Promise<CharacterSkillAscension> {
+    return this.characterRepository.getCharacterSkillAscension(
+      proudSkillGroupId,
+      level,
+    )
+  }
+
+  /**
+   * Fetch CharacterVoice DTOs for a character
+   * @param characterId - Character ID
+   * @param cv - CV language type (e.g., 'ja', 'en', 'zh-cn', 'ko')
+   * @returns Array of CharacterVoice DTOs
+   */
+  public async fetchCharacterVoices(
+    characterId: number,
+    cv: CVType,
+  ): Promise<readonly CharacterVoice[]> {
+    return this.characterRepository.getCharacterVoices(characterId, cv)
+  }
+
+  /**
+   * Fetch character IDs by name (partial match)
+   * @param name - Character name to search
+   * @returns Array of matching character IDs
+   */
+  public async fetchCharacterIdsByName(name: string): Promise<number[]> {
+    return this.characterRepository.getCharacterIdsByName(name)
+  }
+
+  /**
+   * Fetch available skill depot IDs for a traveler
+   * @param characterId - Traveler character ID (10000005 or 10000007)
+   * @returns Array of skill depot IDs
+   */
+  public async fetchTravelerSkillDepotIds(
+    characterId: number,
+  ): Promise<number[]> {
+    return this.characterRepository.getTravelerSkillDepotIds(characterId)
+  }
+
+  // ============================================================
+  // Weapon API
+  // ============================================================
+
+  /**
+   * Fetch WeaponInfo DTO
+   * @param weaponId - Weapon ID
+   * @param level - Weapon level (1-90)
+   * @param isAscended - Whether weapon is ascended
+   * @param refinementRank - Refinement rank (1-5)
+   * @returns WeaponInfo DTO
+   * @throws {@link ExcelBinPropertyNotFoundError} - When data is not found
+   */
+  public async fetchWeaponInfo(
+    weaponId: number,
+    level = 1,
+    isAscended = false,
+    refinementRank = 1,
+  ): Promise<WeaponInfo> {
+    return this.weaponRepository.getWeaponInfo(
+      weaponId,
+      level,
+      isAscended,
+      refinementRank,
+    )
+  }
+
+  /**
+   * Fetch WeaponAscension DTO
+   * @param weaponId - Weapon ID
+   * @param promoteLevel - Promote level (0-6)
+   * @returns WeaponAscension DTO
+   * @throws {@link ExcelBinPropertyNotFoundError} - When data is not found
+   */
+  public async fetchWeaponAscension(
+    weaponId: number,
+    promoteLevel: number,
+  ): Promise<WeaponAscension> {
+    return this.weaponRepository.getWeaponAscension(weaponId, promoteLevel)
+  }
+
+  /**
+   * Fetch WeaponRefinement DTO
+   * @param weaponId - Weapon ID
+   * @param refinementRank - Refinement rank (1-5)
+   * @returns WeaponRefinement DTO
+   * @throws {@link ExcelBinPropertyNotFoundError} - When data is not found
+   */
+  public async fetchWeaponRefinement(
+    weaponId: number,
+    refinementRank: number,
+  ): Promise<WeaponRefinement> {
+    return this.weaponRepository.getWeaponRefinement(weaponId, refinementRank)
+  }
+
+  /**
+   * Fetch all weapon IDs
+   * @returns Array of weapon IDs
+   */
+  public async fetchAllWeaponIds(): Promise<number[]> {
+    return this.weaponRepository.getAllWeaponIds()
+  }
+
+  // ============================================================
+  // Artifact API
+  // ============================================================
+
+  /**
+   * Fetch Artifact DTO
+   * @param artifactId - Artifact ID
+   * @param mainPropId - Main stat ID from ReliquaryMainPropExcelConfigData
+   * @param level - Artifact level (0-20)
+   * @param appendPropIds - Sub-stat append prop IDs
+   * @returns Artifact DTO
+   * @throws {@link ExcelBinPropertyNotFoundError} - When data is not found
+   */
+  public async fetchArtifact(
+    artifactId: number,
+    mainPropId = 10001,
+    level = 0,
+    appendPropIds: readonly number[] = [],
+  ): Promise<Artifact> {
+    return this.artifactRepository.getArtifact(
+      artifactId,
+      mainPropId,
+      level,
+      appendPropIds,
+    )
+  }
+
+  /**
+   * Fetch all obtainable artifact IDs
+   * @returns Array of artifact IDs
+   */
+  public async fetchAllArtifactIds(): Promise<number[]> {
+    return this.artifactRepository.getAllArtifactIds()
+  }
+
+  /**
+   * Build SetBonus from equipped artifacts
+   * @param artifacts - Array of equipped Artifact DTOs
+   * @returns SetBonus DTO
+   */
+  public buildSetBonus(artifacts: readonly Artifact[]): SetBonus {
+    return this.artifactRepository.buildSetBonus(artifacts)
+  }
+
+  /**
+   * Get max level for an artifact by rarity
+   * @param rarity - Artifact rarity (1-5)
+   * @returns Max level
+   */
+  public getArtifactMaxLevel(rarity: number): number {
+    return this.artifactRepository.getMaxLevel(rarity)
+  }
+
+  // ============================================================
+  // Material API
+  // ============================================================
+
+  /**
+   * Fetch Material DTO
+   * @param materialId - Material ID
+   * @returns Material DTO
+   * @throws {@link ExcelBinPropertyNotFoundError} - When data is not found
+   */
+  public async fetchMaterial(materialId: number): Promise<Material> {
+    return this.materialRepository.getMaterial(materialId)
+  }
+
+  /**
+   * Fetch all material IDs
+   * @returns Array of material IDs
+   */
+  public async fetchAllMaterialIds(): Promise<number[]> {
+    return this.materialRepository.getAllMaterialIds()
+  }
+
+  // ============================================================
+  // Monster API
+  // ============================================================
+
+  /**
+   * Fetch Monster DTO
+   * @param monsterId - Monster ID
+   * @param level - Monster level
+   * @param playerCount - Player count (1-4)
+   * @returns Monster DTO
+   * @throws {@link ExcelBinPropertyNotFoundError} - When data is not found
+   */
+  public async fetchMonster(
+    monsterId: number,
+    level = 1,
+    playerCount = 1,
+  ): Promise<Monster> {
+    return this.monsterRepository.getMonster(monsterId, level, playerCount)
+  }
+
+  /**
+   * Fetch all monster IDs
+   * @returns Array of monster IDs
+   */
+  public async fetchAllMonsterIds(): Promise<number[]> {
+    return this.monsterRepository.getAllMonsterIds()
+  }
+
+  // ============================================================
+  // ProfilePicture API
+  // ============================================================
+
+  /**
+   * Fetch ProfilePicture DTO
+   * @param profilePictureId - Profile picture ID
+   * @returns ProfilePicture DTO
+   * @throws {@link ExcelBinPropertyNotFoundError} - When data is not found
+   */
+  public async fetchProfilePicture(
+    profilePictureId: number,
+  ): Promise<ProfilePicture> {
+    return this.profilePictureRepository.getProfilePicture(profilePictureId)
+  }
+
+  /**
+   * Fetch all profile picture IDs
+   * @returns Array of profile picture IDs
+   */
+  public async fetchAllProfilePictureIds(): Promise<number[]> {
+    return this.profilePictureRepository.getAllProfilePictureIds()
+  }
+
+  // ============================================================
+  // DailyFarming API
+  // ============================================================
+
+  /**
+   * Fetch DailyFarming DTO
+   * @param dayOfWeek - Day of week (0=Sunday, 1=Monday, ..., 6=Saturday)
+   * @returns DailyFarming DTO
+   */
+  public async fetchDailyFarming(dayOfWeek: number): Promise<DailyFarming> {
+    return this.dailyFarmingRepository.getDailyFarming(dayOfWeek)
+  }
+
+  // ============================================================
+  // Lifecycle
+  // ============================================================
 
   /**
    * Deploy assets to cache and update

@@ -1,8 +1,6 @@
 import type { ExcelBinCache, TextMapIndex } from '@genshin-manager/data'
 
 import { ImageAssets } from '@/assets/ImageAssets'
-import { Character } from '@/character/Character'
-import type { CostItem } from '@/character/CharacterAscension'
 import { CharacterAscension } from '@/character/CharacterAscension'
 import { CharacterBaseStats } from '@/character/CharacterBaseStats'
 import { CharacterConstellation } from '@/character/CharacterConstellation'
@@ -10,11 +8,15 @@ import { CharacterCostume } from '@/character/CharacterCostume'
 import { CharacterInfo } from '@/character/CharacterInfo'
 import { CharacterInherentSkill } from '@/character/CharacterInherentSkill'
 import { CharacterProfile } from '@/character/CharacterProfile'
+import { CharacterSkill } from '@/character/CharacterSkill'
+import { CharacterSkillAscension } from '@/character/CharacterSkillAscension'
 import { CharacterStory } from '@/character/CharacterStory'
+import { CharacterVoice } from '@/character/CharacterVoice'
 import { calculatePromoteLevel } from '@/common/calculatePromoteLevel'
 import { StatProperty } from '@/common/StatProperty'
 import { BodyType, CostElemType, FightProp, WeaponType } from '@/types/enums'
 import type { RepositoryDependencies } from '@/types/RepositoryDependencies'
+import type { CVType } from '@/types/types'
 import { Element } from '@/types/types'
 
 /**
@@ -54,58 +56,6 @@ export class CharacterRepository {
     this.excelBinCache = deps.excelBinCache
     this.textMap = deps.textMap
     this.imageBaseURL = imageBaseURL
-  }
-
-  /**
-   * Build a full Character aggregate DTO
-   * @param characterId - Character ID
-   * @param level - Character level (1-90)
-   * @param isAscended - Whether character is ascended
-   * @param constellationLevel - Constellation level (0-6)
-   * @param skillDepotId - Skill depot ID (for travelers)
-   * @returns Character aggregate DTO
-   * @throws {@link ExcelBinPropertyNotFoundError} - When data is not found
-   */
-  public async getCharacter(
-    characterId: number,
-    level = 1,
-    isAscended = false,
-    constellationLevel = 0,
-    skillDepotId?: number,
-  ): Promise<Character> {
-    const info = await this.getCharacterInfo(characterId, skillDepotId)
-    const baseStats = await this.getCharacterBaseStats(
-      characterId,
-      level,
-      isAscended,
-    )
-    const ascension = await this.getCharacterAscension(
-      characterId,
-      baseStats.promoteLevel,
-    )
-    const constellations = await this.getConstellations(
-      info.constellationIds,
-      constellationLevel,
-    )
-    const inherentSkills = await this.getInherentSkills(info.inherentSkillOrder)
-    const profile = await this.getCharacterProfile(characterId)
-    const stories = await this.getCharacterStories(characterId)
-    const costumes = await this.getCharacterCostumes(characterId)
-    const allAscensionMaterials =
-      await this.getAllAscensionMaterials(characterId)
-
-    return new Character({
-      info,
-      baseStats,
-      ascension,
-      constellations,
-      inherentSkills,
-      profile,
-      stories,
-      costumes,
-      constellationLevel,
-      allAscensionMaterials,
-    })
   }
 
   /**
@@ -423,7 +373,7 @@ export class CharacterRepository {
    * @param constellationLevel - Unlocked constellation level (0-6)
    * @returns Array of CharacterConstellation DTOs
    */
-  private async getConstellations(
+  public async getConstellations(
     constellationIds: readonly number[],
     constellationLevel: number,
   ): Promise<CharacterConstellation[]> {
@@ -463,7 +413,7 @@ export class CharacterRepository {
    * @param inherentSkillOrder - Inherent skill group IDs
    * @returns Array of CharacterInherentSkill DTOs
    */
-  private async getInherentSkills(
+  public async getInherentSkills(
     inherentSkillOrder: readonly number[],
   ): Promise<CharacterInherentSkill[]> {
     const proudSkillResults = await this.excelBinCache
@@ -523,7 +473,7 @@ export class CharacterRepository {
    * @param characterId - Character ID
    * @returns CharacterProfile DTO or undefined
    */
-  private async getCharacterProfile(
+  public async getCharacterProfile(
     characterId: number,
   ): Promise<CharacterProfile | undefined> {
     const fetterResults = await this.excelBinCache
@@ -605,7 +555,7 @@ export class CharacterRepository {
    * @param characterId - Character ID
    * @returns Array of CharacterStory DTOs
    */
-  private async getCharacterStories(
+  public async getCharacterStories(
     characterId: number,
   ): Promise<CharacterStory[]> {
     const storyResults = await this.excelBinCache
@@ -668,7 +618,7 @@ export class CharacterRepository {
    * @param characterId - Character ID
    * @returns Array of CharacterCostume DTOs
    */
-  private async getCharacterCostumes(
+  public async getCharacterCostumes(
     characterId: number,
   ): Promise<CharacterCostume[]> {
     const costumeResults = await this.excelBinCache
@@ -732,46 +682,228 @@ export class CharacterRepository {
   }
 
   /**
-   * Collect all ascension materials across all promote levels
-   * @param characterId - Character ID
-   * @returns Aggregated cost items
+   * Build CharacterSkill DTO
+   * @param skillId - Skill ID
+   * @param level - Skill level (default: 1)
+   * @param extraLevel - Extra levels from constellations (default: 0)
+   * @returns CharacterSkill DTO
+   * @throws {@link ExcelBinPropertyNotFoundError} - When data is not found
    */
-  private async getAllAscensionMaterials(
+  public async getCharacterSkill(
+    skillId: number,
+    level = 1,
+    extraLevel = 0,
+  ): Promise<CharacterSkill> {
+    const skillResult = await this.excelBinCache
+      .fromWithTextMap('AvatarSkillExcelConfigData', this.textMap)
+      .select([
+        'id',
+        'nameTextMapHash',
+        'descTextMapHash',
+        'skillIcon',
+        'proudSkillGroupId',
+      ])
+      .where('id', '=', skillId)
+      .executeTakeFirstOrThrow()
+
+    const proudSkillGroupId = skillResult.proudSkillGroupId.value
+    const effectiveLevel = level + extraLevel
+
+    const proudSkillResult = proudSkillGroupId
+      ? await this.excelBinCache
+          .fromWithTextMap('ProudSkillExcelConfigData', this.textMap)
+          .select(['proudSkillGroupId', 'level', 'paramDescList'])
+          .where('proudSkillGroupId', '=', proudSkillGroupId)
+          .where('level', '=', effectiveLevel)
+          .executeTakeFirst()
+      : undefined
+
+    const paramDescriptions = proudSkillResult
+      ? proudSkillResult.paramDescList
+          .map((hash) => (hash.value ? hash.toText() : undefined))
+          .filter((desc): desc is string => desc !== undefined)
+      : []
+
+    return new CharacterSkill({
+      id: skillId,
+      name: skillResult.nameTextMapHash.toText(),
+      description: skillResult.descTextMapHash.toText(),
+      icon: this.createImageAssets(skillResult.skillIcon.value),
+      level: effectiveLevel,
+      extraLevel,
+      paramDescriptions,
+    })
+  }
+
+  /**
+   * Build CharacterSkillAscension DTO (skill level-up costs)
+   * @param proudSkillGroupId - Proud skill group ID (from CharacterInfo.proudMap)
+   * @param level - Target skill level
+   * @returns CharacterSkillAscension DTO
+   * @throws {@link ExcelBinPropertyNotFoundError} - When data is not found
+   */
+  public async getCharacterSkillAscension(
+    proudSkillGroupId: number,
+    level: number,
+  ): Promise<CharacterSkillAscension> {
+    const proudSkillResult = await this.excelBinCache
+      .from('ProudSkillExcelConfigData')
+      .select([
+        'proudSkillGroupId',
+        'level',
+        'costItems',
+        'coinCost',
+        'addProps',
+      ])
+      .where('proudSkillGroupId', '=', proudSkillGroupId)
+      .where('level', '=', level)
+      .executeTakeFirstOrThrow()
+
+    const costItems = proudSkillResult.costItems
+      .filter((item) => item.id.value !== 0 && item.count.value !== 0)
+      .map((item) => ({
+        id: item.id.value,
+        count: item.count.value,
+      }))
+
+    const addProps = proudSkillResult.addProps
+      .map((addProp) => ({
+        propType: addProp.propType.toEnum(FightProp),
+        value: addProp.value.value,
+      }))
+      .filter((item) => item.propType !== FightProp.FightPropNone)
+      .map(
+        (item) =>
+          new StatProperty({
+            type: item.propType,
+            name: this.resolveStatName(item.propType),
+            value: item.value,
+          }),
+      )
+
+    return new CharacterSkillAscension({
+      id: proudSkillGroupId,
+      level,
+      costItems,
+      costMora: proudSkillResult.coinCost.value,
+      addProps,
+    })
+  }
+
+  /**
+   * Build CharacterVoice DTOs for a character
+   * @param characterId - Character ID
+   * @param cv - CV language type
+   * @returns Array of CharacterVoice DTOs
+   */
+  public async getCharacterVoices(
     characterId: number,
-  ): Promise<CostItem[]> {
-    const avatarResult = await this.excelBinCache
-      .from('AvatarExcelConfigData')
-      .select(['id', 'avatarPromoteId'])
-      .where('id', '=', characterId)
-      .executeTakeFirst()
-
-    if (!avatarResult) return []
-
-    const promoteResults = await this.excelBinCache
-      .from('AvatarPromoteExcelConfigData')
-      .select(['avatarPromoteId', 'promoteLevel'])
+    cv: CVType,
+  ): Promise<CharacterVoice[]> {
+    const fetterResults = await this.excelBinCache
+      .fromWithTextMap('FettersExcelConfigData', this.textMap)
+      .select([
+        'avatarId',
+        'fetterId',
+        'type',
+        'voiceTitleTextMapHash',
+        'voiceFileTextTextMapHash',
+        'voiceFile',
+        'voiceTitleLockedTextMapHash',
+        'tips',
+        'hideCostumeList',
+        'showCostumeList',
+      ])
       .execute()
 
-    const promotes = promoteResults.filter(
-      (r) => r.avatarPromoteId.value === avatarResult.avatarPromoteId.value,
-    )
-    const maxPromoteLevel = Math.max(
-      ...promotes.map((p) => p.promoteLevel.value),
-    )
+    const voices = fetterResults.filter((r) => r.avatarId.value === characterId)
 
-    const materialsMap = new Map<number, number>()
-    for (let i = 1; i <= maxPromoteLevel; i++) {
-      const ascension = await this.getCharacterAscension(characterId, i)
-      for (const item of ascension.costItems) {
-        const current = materialsMap.get(item.id) ?? 0
-        materialsMap.set(item.id, current + item.count)
-      }
+    const results: CharacterVoice[] = []
+
+    for (const voice of voices) {
+      const title = voice.voiceTitleTextMapHash.value
+        ? voice.voiceTitleTextMapHash.toText()
+        : voice.voiceTitleLockedTextMapHash.value
+          ? voice.voiceTitleLockedTextMapHash.toText()
+          : ''
+
+      const content = voice.voiceFileTextTextMapHash.value
+        ? voice.voiceFileTextTextMapHash.toText()
+        : ''
+
+      const tips = voice.tips.value
+        .map((tipHash) => {
+          if (!tipHash) return undefined
+          return this.textMap.getTextSync(tipHash)
+        })
+        .filter((t): t is string => t !== undefined)
+
+      const voiceFile = voice.voiceFile.value
+      const audioFileName = voiceFile ? `${voiceFile}_${cv}` : ''
+
+      results.push(
+        new CharacterVoice({
+          fetterId: voice.fetterId.value,
+          cv,
+          hideCostumeList: voice.hideCostumeList.map((lv) => lv.value),
+          showCostumeList: voice.showCostumeList.map((lv) => lv.value),
+          characterId,
+          type: voice.type.value,
+          title,
+          content,
+          tips,
+          audioFileName,
+        }),
+      )
     }
 
-    return Array.from(materialsMap.entries()).map(([id, count]) => ({
-      id,
-      count,
-    }))
+    return results
+  }
+
+  /**
+   * Get character IDs by name (partial match)
+   * @param name - Character name to search
+   * @returns Array of matching character IDs
+   */
+  public async getCharacterIdsByName(name: string): Promise<number[]> {
+    const results = await this.excelBinCache
+      .fromWithTextMap('AvatarExcelConfigData', this.textMap)
+      .select(['id', 'nameTextMapHash'])
+      .execute()
+
+    const lowerName = name.toLowerCase()
+    return results
+      .filter((r) => {
+        if (r.id.value > 11000000 || r.id.value === 10000001) return false
+        const charName = r.nameTextMapHash.toText().toLowerCase()
+        return charName.includes(lowerName)
+      })
+      .map((r) => r.id.value)
+  }
+
+  /**
+   * Get available skill depot IDs for a traveler
+   * @param characterId - Traveler character ID (10000005 or 10000007)
+   * @returns Array of skill depot IDs
+   */
+  public async getTravelerSkillDepotIds(
+    characterId: number,
+  ): Promise<number[]> {
+    if (characterId !== 10000005 && characterId !== 10000007) return []
+
+    const depotResults = await this.excelBinCache
+      .from('AvatarSkillDepotExcelConfigData')
+      .select(['id', 'energySkill'])
+      .execute()
+
+    // Traveler depot IDs: 501-507 for male (10000005), 701-707 for female (10000007)
+    const baseId = characterId === 10000005 ? 500 : 700
+    return depotResults
+      .filter((r) => {
+        const id = r.id.value
+        return id > baseId && id <= baseId + 7 && r.energySkill.value !== 0
+      })
+      .map((r) => r.id.value)
   }
 
   /**
