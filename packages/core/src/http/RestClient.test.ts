@@ -152,8 +152,9 @@ describe('RestClient', () => {
 
   describe('retry logic', () => {
     it('should retry on failure', async () => {
+      // TypeError is what fetch throws for network failures (e.g., DNS, connection refused)
       mockFetch
-        .mockRejectedValueOnce(new Error('Network error'))
+        .mockRejectedValueOnce(new TypeError('Network error'))
         .mockResolvedValueOnce({
           ok: true,
           json: () => Promise.resolve({ success: true }),
@@ -170,7 +171,8 @@ describe('RestClient', () => {
     })
 
     it('should throw after all retries exhausted', async () => {
-      mockFetch.mockRejectedValue(new Error('Network error'))
+      // TypeError is what fetch throws for network failures
+      mockFetch.mockRejectedValue(new TypeError('Network error'))
 
       const client = new RestClient<TestApiRoutes>('https://api.example.com', {
         retry: 2,
@@ -179,6 +181,22 @@ describe('RestClient', () => {
 
       await expect(client.fetch('/api/simple')).rejects.toThrow()
       expect(mockFetch).toHaveBeenCalledTimes(3) // initial + 2 retries
+    })
+
+    it('should not retry on JSON parse errors', async () => {
+      // JSON parse errors should NOT be retried (they are not transient)
+      mockFetch.mockResolvedValue({
+        ok: true,
+        json: () => Promise.reject(new SyntaxError('Invalid JSON')),
+      })
+
+      const client = new RestClient<TestApiRoutes>('https://api.example.com', {
+        retry: 2,
+        retryDelay: 10,
+      })
+
+      await expect(client.fetch('/api/simple')).rejects.toThrow(SyntaxError)
+      expect(mockFetch).toHaveBeenCalledTimes(1) // no retries
     })
   })
 

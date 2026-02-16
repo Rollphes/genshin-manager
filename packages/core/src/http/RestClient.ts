@@ -321,12 +321,39 @@ export class RestClient<
           signal: options.signal,
         })
 
+        // Handle 429 Too Many Requests with Retry-After header
+        if (response.status === 429) {
+          const retryAfter = this.parseRetryAfter(response)
+          if (attempt < maxRetries && retryAfter > 0) {
+            await this.delay(retryAfter)
+            continue
+          }
+        }
+
         if (!response.ok) throw new NetworkError(new Request(url), response)
 
+        // Handler errors (e.g., JSON parse) should NOT be retried
+        // as they are not transient network issues
         return await handler(response)
       } catch (error) {
+        // Only retry network errors, not handler errors
+        const isNetworkError =
+          error instanceof NetworkError ||
+          error instanceof TypeError || // fetch network failures
+          (error instanceof Error && error.name === 'AbortError')
+
+        if (!isNetworkError) {
+          // Non-retryable error (e.g., JSON parse error) - throw immediately
+          throw error instanceof Error
+            ? error
+            : new GeneralError(String(error), { cause: error })
+        }
+
+        // Preserve cause chain for network errors
         lastError =
-          error instanceof Error ? error : new GeneralError(String(error))
+          error instanceof Error
+            ? error
+            : new GeneralError(String(error), { cause: error })
 
         if (attempt < maxRetries)
           await this.delay(retryDelay * Math.pow(2, attempt))
@@ -334,6 +361,29 @@ export class RestClient<
     }
 
     throw lastError ?? new GeneralError(`Network request failed: ${url}`)
+  }
+
+  /**
+   * Parse Retry-After header value
+   * @param response - HTTP response
+   * @returns Delay in milliseconds, or 0 if not present/invalid
+   */
+  private parseRetryAfter(response: Response): number {
+    const retryAfter = response.headers.get('Retry-After')
+    if (!retryAfter) return 0
+
+    // Retry-After can be a number (seconds) or an HTTP-date
+    const seconds = parseInt(retryAfter, 10)
+    if (!isNaN(seconds)) return seconds * 1000
+
+    // Try parsing as HTTP-date
+    const date = new Date(retryAfter)
+    if (!isNaN(date.getTime())) {
+      const delayMs = date.getTime() - Date.now()
+      return delayMs > 0 ? delayMs : 0
+    }
+
+    return 0
   }
 
   /**

@@ -102,19 +102,37 @@ export class ExcelBinQuery<
 
   /**
    * Executes the query and returns raw records from ExcelBinCache
+   * Uses index lookup for simple equality conditions when available
    * @returns Array of matching records
    */
   protected executeQuery(): Promise<MasterRecord<K>[]> {
-    // Get all records from cache
-    // Cast required: getRecords returns GeneratedMasterFileMap[K][] which equals MasterRecord<K>[]
+    // No WHERE conditions: return all records
+    if (this.whereConditions.length === 0) {
+      return Promise.resolve(
+        this.excelBinCache.getRecords(this.tableName) as MasterRecord<K>[],
+      )
+    }
+
+    // Try to use index for the first simple equality condition
+    const indexResult = this.tryIndexLookup()
+    if (indexResult !== undefined) {
+      // Found indexed result, filter with remaining conditions
+      const remainingConditions = this.whereConditions.slice(1)
+      if (remainingConditions.length === 0) return Promise.resolve(indexResult)
+
+      const filtered = indexResult.filter((record) => {
+        for (const condition of remainingConditions)
+          if (!this.evaluateCondition(record, condition)) return false
+        return true
+      })
+      return Promise.resolve(filtered)
+    }
+
+    // Fallback: full table scan with all conditions
     const allRecords = this.excelBinCache.getRecords(
       this.tableName,
     ) as MasterRecord<K>[]
 
-    // No WHERE conditions: return all records
-    if (this.whereConditions.length === 0) return Promise.resolve(allRecords)
-
-    // Filter records based on WHERE conditions (all conditions are ANDed)
     const filtered = allRecords.filter((record) => {
       for (const condition of this.whereConditions)
         if (!this.evaluateCondition(record, condition)) return false
@@ -122,6 +140,36 @@ export class ExcelBinQuery<
       return true
     })
     return Promise.resolve(filtered)
+  }
+
+  /**
+   * Attempts to use index lookup for the first equality condition
+   * @remarks Called only when whereConditions.length > 0 (checked in executeQuery)
+   * @returns Array with single record if found, empty array if not found, undefined if no index
+   */
+  private tryIndexLookup(): MasterRecord<K>[] | undefined {
+    // Safe: executeQuery checks whereConditions.length > 0 before calling
+    const firstCondition = this.whereConditions[0]
+
+    // Only optimize simple top-level equality conditions
+    if (firstCondition.type !== 'comparison' || firstCondition.operator !== '=')
+      return undefined
+
+    const key = firstCondition.key
+    const value = firstCondition.value
+
+    // Only string/number values can be indexed
+    if (typeof value !== 'string' && typeof value !== 'number') return undefined
+
+    // Check if index exists for this key
+    if (!this.excelBinCache.hasIndex(this.tableName, key)) return undefined
+
+    // Use O(1) index lookup
+    const record = this.excelBinCache.getByIndex(this.tableName, key, value) as
+      | MasterRecord<K>
+      | undefined
+
+    return record ? [record] : []
   }
 
   /**

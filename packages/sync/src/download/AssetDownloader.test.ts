@@ -1,10 +1,6 @@
 import type { RestClient } from '@genshin-manager/core'
-import { BodyNotFoundError, GeneralError, LogLevel } from '@genshin-manager/core'
-import {
-  AssetFormatError,
-  AssetNotFoundError,
-  FileLocation,
-} from '@genshin-manager/data'
+import { GeneralError, LogLevel } from '@genshin-manager/core'
+import { FileLocation } from '@genshin-manager/data'
 import fs from 'fs'
 import { Writable } from 'stream'
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'

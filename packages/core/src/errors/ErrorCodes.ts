@@ -27,4 +27,5 @@ export enum ErrorCode {
 
   // General errors (9xxx)
   GmGeneral = 'GM9001',
+  GmManagerDestroyed = 'GM9002',
 }

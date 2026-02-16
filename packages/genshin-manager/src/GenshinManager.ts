@@ -57,6 +57,7 @@ import type { ScheduledTask } from 'node-cron'
 import cron from 'node-cron'
 import { merge } from 'ts-deepmerge'
 
+import { ManagerDestroyedError } from '@/errors/ManagerDestroyedError'
 import type { ClientOption } from '@/types'
 import type { GenshinManagerEventMap } from '@/types'
 import { GenshinManagerEvents } from '@/types'
@@ -247,6 +248,14 @@ export class GenshinManager extends PromiseEventEmitter<GenshinManagerEventMap> 
   }
 
   /**
+   * Ensures the manager has not been destroyed
+   * @throws {@link ManagerDestroyedError} - If the manager has been destroyed
+   */
+  private ensureNotDestroyed(): void {
+    if (this.isDestroyed) throw new ManagerDestroyedError()
+  }
+
+  /**
    * Get current language
    * @returns Current language
    */
@@ -269,6 +278,7 @@ export class GenshinManager extends PromiseEventEmitter<GenshinManagerEventMap> 
     characterId: number,
     skillDepotId?: number,
   ): Promise<CharacterInfo> {
+    this.ensureNotDestroyed()
     return this.characterRepository.getCharacterInfo(characterId, skillDepotId)
   }
 
@@ -285,6 +295,7 @@ export class GenshinManager extends PromiseEventEmitter<GenshinManagerEventMap> 
     level: number,
     isAscended: boolean,
   ): Promise<CharacterBaseStats> {
+    this.ensureNotDestroyed()
     return this.characterRepository.getCharacterBaseStats(
       characterId,
       level,
@@ -303,6 +314,7 @@ export class GenshinManager extends PromiseEventEmitter<GenshinManagerEventMap> 
     characterId: number,
     promoteLevel: number,
   ): Promise<CharacterAscension> {
+    this.ensureNotDestroyed()
     return this.characterRepository.getCharacterAscension(
       characterId,
       promoteLevel,
@@ -314,6 +326,7 @@ export class GenshinManager extends PromiseEventEmitter<GenshinManagerEventMap> 
    * @returns Array of character IDs
    */
   public async fetchAllCharacterIds(): Promise<number[]> {
+    this.ensureNotDestroyed()
     return this.characterRepository.getAllCharacterIds()
   }
 
@@ -330,6 +343,7 @@ export class GenshinManager extends PromiseEventEmitter<GenshinManagerEventMap> 
     constellationLevel = 0,
     skillDepotId?: number,
   ): Promise<readonly CharacterConstellation[]> {
+    this.ensureNotDestroyed()
     const info = await this.characterRepository.getCharacterInfo(
       characterId,
       skillDepotId,
@@ -351,6 +365,7 @@ export class GenshinManager extends PromiseEventEmitter<GenshinManagerEventMap> 
     characterId: number,
     skillDepotId?: number,
   ): Promise<readonly CharacterInherentSkill[]> {
+    this.ensureNotDestroyed()
     const info = await this.characterRepository.getCharacterInfo(
       characterId,
       skillDepotId,
@@ -366,6 +381,7 @@ export class GenshinManager extends PromiseEventEmitter<GenshinManagerEventMap> 
   public async fetchCharacterProfile(
     characterId: number,
   ): Promise<CharacterProfile | undefined> {
+    this.ensureNotDestroyed()
     return this.characterRepository.getCharacterProfile(characterId)
   }
 
@@ -377,6 +393,7 @@ export class GenshinManager extends PromiseEventEmitter<GenshinManagerEventMap> 
   public async fetchCharacterStories(
     characterId: number,
   ): Promise<readonly CharacterStory[]> {
+    this.ensureNotDestroyed()
     return this.characterRepository.getCharacterStories(characterId)
   }
 
@@ -388,6 +405,7 @@ export class GenshinManager extends PromiseEventEmitter<GenshinManagerEventMap> 
   public async fetchCharacterCostumes(
     characterId: number,
   ): Promise<readonly CharacterCostume[]> {
+    this.ensureNotDestroyed()
     return this.characterRepository.getCharacterCostumes(characterId)
   }
 
@@ -404,6 +422,7 @@ export class GenshinManager extends PromiseEventEmitter<GenshinManagerEventMap> 
     level = 1,
     extraLevel = 0,
   ): Promise<CharacterSkill> {
+    this.ensureNotDestroyed()
     return this.characterRepository.getCharacterSkill(
       skillId,
       level,
@@ -422,6 +441,7 @@ export class GenshinManager extends PromiseEventEmitter<GenshinManagerEventMap> 
     proudSkillGroupId: number,
     level: number,
   ): Promise<CharacterSkillAscension> {
+    this.ensureNotDestroyed()
     return this.characterRepository.getCharacterSkillAscension(
       proudSkillGroupId,
       level,
@@ -438,6 +458,7 @@ export class GenshinManager extends PromiseEventEmitter<GenshinManagerEventMap> 
     characterId: number,
     cv: CVType,
   ): Promise<readonly CharacterVoice[]> {
+    this.ensureNotDestroyed()
     return this.characterRepository.getCharacterVoices(characterId, cv)
   }
 
@@ -447,6 +468,7 @@ export class GenshinManager extends PromiseEventEmitter<GenshinManagerEventMap> 
    * @returns Array of matching character IDs
    */
   public async fetchCharacterIdsByName(name: string): Promise<number[]> {
+    this.ensureNotDestroyed()
     return this.characterRepository.getCharacterIdsByName(name)
   }
 
@@ -458,6 +480,7 @@ export class GenshinManager extends PromiseEventEmitter<GenshinManagerEventMap> 
   public async fetchTravelerSkillDepotIds(
     characterId: number,
   ): Promise<number[]> {
+    this.ensureNotDestroyed()
     return this.characterRepository.getTravelerSkillDepotIds(characterId)
   }
 
@@ -480,6 +503,7 @@ export class GenshinManager extends PromiseEventEmitter<GenshinManagerEventMap> 
     isAscended = false,
     refinementRank = 1,
   ): Promise<WeaponInfo> {
+    this.ensureNotDestroyed()
     return this.weaponRepository.getWeaponInfo(
       weaponId,
       level,
@@ -499,6 +523,7 @@ export class GenshinManager extends PromiseEventEmitter<GenshinManagerEventMap> 
     weaponId: number,
     promoteLevel: number,
   ): Promise<WeaponAscension> {
+    this.ensureNotDestroyed()
     return this.weaponRepository.getWeaponAscension(weaponId, promoteLevel)
   }
 
@@ -513,6 +538,7 @@ export class GenshinManager extends PromiseEventEmitter<GenshinManagerEventMap> 
     weaponId: number,
     refinementRank: number,
   ): Promise<WeaponRefinement> {
+    this.ensureNotDestroyed()
     return this.weaponRepository.getWeaponRefinement(weaponId, refinementRank)
   }
 
@@ -521,6 +547,7 @@ export class GenshinManager extends PromiseEventEmitter<GenshinManagerEventMap> 
    * @returns Array of weapon IDs
    */
   public async fetchAllWeaponIds(): Promise<number[]> {
+    this.ensureNotDestroyed()
     return this.weaponRepository.getAllWeaponIds()
   }
 
@@ -543,6 +570,7 @@ export class GenshinManager extends PromiseEventEmitter<GenshinManagerEventMap> 
     level = 0,
     appendPropIds: readonly number[] = [],
   ): Promise<Artifact> {
+    this.ensureNotDestroyed()
     return this.artifactRepository.getArtifact(
       artifactId,
       mainPropId,
@@ -556,6 +584,7 @@ export class GenshinManager extends PromiseEventEmitter<GenshinManagerEventMap> 
    * @returns Array of artifact IDs
    */
   public async fetchAllArtifactIds(): Promise<number[]> {
+    this.ensureNotDestroyed()
     return this.artifactRepository.getAllArtifactIds()
   }
 
@@ -565,6 +594,7 @@ export class GenshinManager extends PromiseEventEmitter<GenshinManagerEventMap> 
    * @returns SetBonus DTO
    */
   public buildSetBonus(artifacts: readonly Artifact[]): SetBonus {
+    this.ensureNotDestroyed()
     return this.artifactRepository.buildSetBonus(artifacts)
   }
 
@@ -574,6 +604,7 @@ export class GenshinManager extends PromiseEventEmitter<GenshinManagerEventMap> 
    * @returns Max level
    */
   public getArtifactMaxLevel(rarity: number): number {
+    this.ensureNotDestroyed()
     return this.artifactRepository.getMaxLevel(rarity)
   }
 
@@ -588,6 +619,7 @@ export class GenshinManager extends PromiseEventEmitter<GenshinManagerEventMap> 
    * @throws {@link ExcelBinPropertyNotFoundError} - When data is not found
    */
   public async fetchMaterial(materialId: number): Promise<Material> {
+    this.ensureNotDestroyed()
     return this.materialRepository.getMaterial(materialId)
   }
 
@@ -596,6 +628,7 @@ export class GenshinManager extends PromiseEventEmitter<GenshinManagerEventMap> 
    * @returns Array of material IDs
    */
   public async fetchAllMaterialIds(): Promise<number[]> {
+    this.ensureNotDestroyed()
     return this.materialRepository.getAllMaterialIds()
   }
 
@@ -616,6 +649,7 @@ export class GenshinManager extends PromiseEventEmitter<GenshinManagerEventMap> 
     level = 1,
     playerCount = 1,
   ): Promise<Monster> {
+    this.ensureNotDestroyed()
     return this.monsterRepository.getMonster(monsterId, level, playerCount)
   }
 
@@ -624,6 +658,7 @@ export class GenshinManager extends PromiseEventEmitter<GenshinManagerEventMap> 
    * @returns Array of monster IDs
    */
   public async fetchAllMonsterIds(): Promise<number[]> {
+    this.ensureNotDestroyed()
     return this.monsterRepository.getAllMonsterIds()
   }
 
@@ -640,6 +675,7 @@ export class GenshinManager extends PromiseEventEmitter<GenshinManagerEventMap> 
   public async fetchProfilePicture(
     profilePictureId: number,
   ): Promise<ProfilePicture> {
+    this.ensureNotDestroyed()
     return this.profilePictureRepository.getProfilePicture(profilePictureId)
   }
 
@@ -648,6 +684,7 @@ export class GenshinManager extends PromiseEventEmitter<GenshinManagerEventMap> 
    * @returns Array of profile picture IDs
    */
   public async fetchAllProfilePictureIds(): Promise<number[]> {
+    this.ensureNotDestroyed()
     return this.profilePictureRepository.getAllProfilePictureIds()
   }
 
@@ -661,6 +698,7 @@ export class GenshinManager extends PromiseEventEmitter<GenshinManagerEventMap> 
    * @returns DailyFarming DTO
    */
   public async fetchDailyFarming(dayOfWeek: number): Promise<DailyFarming> {
+    this.ensureNotDestroyed()
     return this.dailyFarmingRepository.getDailyFarming(dayOfWeek)
   }
 
@@ -672,6 +710,7 @@ export class GenshinManager extends PromiseEventEmitter<GenshinManagerEventMap> 
    * Deploy assets to cache and update
    */
   public async deploy(): Promise<void> {
+    this.ensureNotDestroyed()
     await this.updateCache()
     if (this.option.autoFetchLatestAssetsByCron) {
       this.cronTask = cron.schedule(
@@ -710,6 +749,7 @@ export class GenshinManager extends PromiseEventEmitter<GenshinManagerEventMap> 
    * @param language - Target language
    */
   public async changeLanguage(language: Language): Promise<void> {
+    this.ensureNotDestroyed()
     await this.loadTextMapWithRetry(language)
   }
 
