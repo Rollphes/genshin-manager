@@ -306,44 +306,98 @@ function findFirstNonEmptyDifferencePath(
   if (typeof existing !== typeof target) return parentPath
 
   if (Array.isArray(existing) && Array.isArray(target)) {
-    const existingArray = existing as JsonValue[]
-    const targetArray = target as JsonValue[]
-    const len = Math.max(existingArray.length, targetArray.length)
-    for (let i = 0; i < len; i++) {
-      const existingItem = existingArray[i]
-      const targetItem = targetArray[i]
-      if (existingItem === undefined && targetItem === undefined) continue
-      const result = findFirstNonEmptyDifferencePath(existingItem, targetItem, [
-        ...parentPath,
-        i,
-      ])
-      if (result.length > 0) return result
-    }
-    return []
+    const existingArr = existing as JsonValue[]
+    const targetArr = target as JsonValue[]
+    return findArrayDifference(existingArr, targetArr, parentPath)
   }
 
-  if (
-    typeof existing === 'object' &&
-    existing !== null &&
-    typeof target === 'object' &&
-    target !== null
-  ) {
-    const existingObj = existing as JsonObject
-    const targetObj = target as JsonObject
-    const keys = new Set([
-      ...Object.keys(existingObj),
-      ...Object.keys(targetObj),
-    ])
-    for (const key of keys) {
-      const result = findFirstNonEmptyDifferencePath(
-        existingObj[key],
-        targetObj[key],
-        [...parentPath, key],
-      )
-      if (result.length > 0) return result
-    }
-    return []
-  }
+  if (isNonNullObject(existing) && isNonNullObject(target))
+    return findObjectDifference(existing, target, parentPath)
 
+  return []
+}
+
+/**
+ * Check if value is a non-null object
+ * @param value - The value to check
+ */
+function isNonNullObject(value: JsonValue): value is JsonObject {
+  return typeof value === 'object' && value !== null && !Array.isArray(value)
+}
+
+/**
+ * Find difference in arrays
+ * @param existingArray - The existing array
+ * @param targetArray - The target array
+ * @param parentPath - Current path for error reporting
+ */
+function findArrayDifference(
+  existingArray: JsonValue[],
+  targetArray: JsonValue[],
+  parentPath: (string | number)[],
+): (string | number)[] {
+  const len = Math.max(existingArray.length, targetArray.length)
+  for (let i = 0; i < len; i++) {
+    const result = compareArrayElements(
+      existingArray,
+      targetArray,
+      i,
+      parentPath,
+    )
+    if (result) return result
+  }
+  return []
+}
+
+/**
+ * Compare array elements at index
+ * @param existingArray - The existing array
+ * @param targetArray - The target array
+ * @param index - Array index to compare
+ * @param parentPath - Current path for error reporting
+ */
+function compareArrayElements(
+  existingArray: JsonValue[],
+  targetArray: JsonValue[],
+  index: number,
+  parentPath: (string | number)[],
+): (string | number)[] | null {
+  const existingItem: JsonValue =
+    index < existingArray.length ? existingArray[index] : undefined
+  const targetItem: JsonValue =
+    index < targetArray.length ? targetArray[index] : undefined
+
+  if (existingItem === undefined && targetItem === undefined) return null
+  if (existingItem === undefined && !isEmptyJsonValue(targetItem))
+    return [...parentPath, index]
+  if (targetItem === undefined) return null
+
+  const result = findFirstNonEmptyDifferencePath(existingItem, targetItem, [
+    ...parentPath,
+    index,
+  ])
+  return result.length > 0 ? result : null
+}
+
+/**
+ * Find difference in objects
+ * @param existingObj - The existing object
+ * @param targetObj - The target object
+ * @param parentPath - Current path for error reporting
+ */
+function findObjectDifference(
+  existingObj: JsonObject,
+  targetObj: JsonObject,
+  parentPath: (string | number)[],
+): (string | number)[] {
+  const keys = new Set([...Object.keys(existingObj), ...Object.keys(targetObj)])
+  for (const key of keys) {
+    const result = findFirstNonEmptyDifferencePath(
+      existingObj[key],
+      targetObj[key],
+      [...parentPath, key],
+    )
+    if (result.length > 0) return result
+  }
   return []
 }

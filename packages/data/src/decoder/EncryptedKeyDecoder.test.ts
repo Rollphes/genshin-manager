@@ -15,7 +15,7 @@ describe('EncryptedKeyDecoder', () => {
   const mockMasterFile = {
     metadata: {
       sourceFile: 'TestExcelConfigData.json',
-      version: '1.0.0',
+      generatedAt: '2026-01-01T00:00:00Z',
     },
     keyMappingTemplate: {
       id: 0,

@@ -204,10 +204,10 @@ export class ExcelBinCache extends TableCache<
   protected async loadTableData(
     tableName: keyof GeneratedMasterFileMap,
   ): Promise<GeneratedMasterFileMap[keyof GeneratedMasterFileMap][]> {
-    const result = await loadExcelBinFile<
-      GeneratedMasterFileMap[typeof tableName],
-      typeof tableName
-    >({ autoFix: this.autoFix, excelBinName: tableName })
+    const result = await loadExcelBinFile({
+      autoFix: this.autoFix,
+      excelBinName: tableName,
+    })
 
     if (!result.success) {
       throw new ExcelBinNotLoadedError(
@@ -218,7 +218,11 @@ export class ExcelBinCache extends TableCache<
     const decoder = new EncryptedKeyDecoder(
       tableName as keyof typeof ExcelBinOutputs,
     )
-    return decoder.execute(result.data as never) as never
+    // decoder.execute returns GeneratedDecodedType<T> which maps to MasterFileMap values
+    // Safe cast: EncryptedKeyDecoder's generic T ensures type correspondence
+    return decoder.execute(
+      result.data,
+    ) as GeneratedMasterFileMap[keyof GeneratedMasterFileMap][]
   }
 
   /**

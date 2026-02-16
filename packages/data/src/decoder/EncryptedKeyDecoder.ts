@@ -45,10 +45,12 @@ export class EncryptedKeyDecoder<T extends keyof typeof ExcelBinOutputs> {
         throw new AssetNotFoundError(masterLocation)
 
       const masterContent = fs.readFileSync(masterFilePath, 'utf-8')
-      this.masterFile = JSON.parse(masterContent) as EncryptedKeyMasterFile
+      const parsed: unknown = JSON.parse(masterContent)
+      this.masterFile = this.validateMasterFile(parsed, masterLocation)
       this.precompilePatterns()
     } catch (error) {
       if (error instanceof AssetNotFoundError) throw error
+      if (error instanceof AssetFormatError) throw error
       if (error instanceof SyntaxError) {
         throw new AssetFormatError(
           masterLocation,
@@ -61,6 +63,58 @@ export class EncryptedKeyDecoder<T extends keyof typeof ExcelBinOutputs> {
 
       throw error
     }
+  }
+
+  /**
+   * Validate parsed JSON is a valid EncryptedKeyMasterFile
+   * @param parsed - Parsed JSON value
+   * @param location - File location for error reporting
+   * @returns Validated EncryptedKeyMasterFile
+   * @throws {@link AssetFormatError} - When structure is invalid
+   */
+  private validateMasterFile(
+    parsed: unknown,
+    location: FileLocation,
+  ): EncryptedKeyMasterFile {
+    if (typeof parsed !== 'object' || parsed === null)
+      throw new AssetFormatError(location, 'Master file must be an object')
+
+    const obj = parsed as Record<string, unknown>
+
+    // Validate metadata
+    if (typeof obj.metadata !== 'object' || obj.metadata === null)
+      throw new AssetFormatError(location, 'Missing or invalid metadata field')
+
+    const metadata = obj.metadata as Record<string, unknown>
+    if (typeof metadata.sourceFile !== 'string')
+      throw new AssetFormatError(location, 'Missing metadata.sourceFile')
+
+    if (typeof metadata.generatedAt !== 'string')
+      throw new AssetFormatError(location, 'Missing metadata.generatedAt')
+
+    // Validate keyMappingTemplate
+    if (
+      typeof obj.keyMappingTemplate !== 'object' ||
+      obj.keyMappingTemplate === null
+    ) {
+      throw new AssetFormatError(
+        location,
+        'Missing or invalid keyMappingTemplate field',
+      )
+    }
+
+    // alternativePatterns is optional but must be array if present
+    if (
+      obj.alternativePatterns !== undefined &&
+      !Array.isArray(obj.alternativePatterns)
+    ) {
+      throw new AssetFormatError(
+        location,
+        'alternativePatterns must be an array if present',
+      )
+    }
+
+    return parsed as EncryptedKeyMasterFile
   }
 
   /**

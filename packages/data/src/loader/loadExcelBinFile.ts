@@ -1,4 +1,5 @@
 import { logger } from '@genshin-manager/core'
+import type { JsonObject } from '@genshin-manager/crypto'
 import fs from 'fs'
 
 import { AssetFormatError } from '@/errors/AssetFormatError'
@@ -6,8 +7,12 @@ import { AssetNotFoundError } from '@/errors/AssetNotFoundError'
 import { FileLocation } from '@/paths/FileLocation'
 import type { MasterFileMap } from '@/types/generated/MasterFileMap'
 
-type ExcelBinLoadFileResult<T> =
-  | { readonly success: true; readonly data: readonly T[] }
+/**
+ * Result of loading an ExcelBin file
+ * Returns raw JSON objects (encrypted) on success, or redownload flag on failure
+ */
+type ExcelBinLoadFileResult =
+  | { readonly success: true; readonly data: readonly JsonObject[] }
   | { readonly success: false; readonly redownloadRequired: true }
 
 interface ExcelBinLoadFileOptions<K extends keyof MasterFileMap> {
@@ -17,14 +22,15 @@ interface ExcelBinLoadFileOptions<K extends keyof MasterFileMap> {
 
 /**
  * Load a single ExcelBinOutput JSON file
+ * Returns raw encrypted JSON objects that need to be decoded by EncryptedKeyDecoder
  * @param options - Load options
- * @returns Load result with data or redownload flag
+ * @returns Load result with raw data or redownload flag
  * @throws {@link AssetNotFoundError} - When file not found and autoFix is false
  * @throws {@link AssetFormatError} - When file format is invalid and autoFix is false
  */
-export async function loadExcelBinFile<T, K extends keyof MasterFileMap>(
+export async function loadExcelBinFile<K extends keyof MasterFileMap>(
   options: ExcelBinLoadFileOptions<K>,
-): Promise<ExcelBinLoadFileResult<T>> {
+): Promise<ExcelBinLoadFileResult> {
   const { autoFix, excelBinName } = options
   const location = FileLocation.excelBin(excelBinName)
   const resolvedPath = location.resolve()
@@ -41,7 +47,7 @@ export async function loadExcelBinFile<T, K extends keyof MasterFileMap>(
 
   try {
     const text = await readFileAsString(location)
-    const parsedData = JSON.parse(text) as T[]
+    const parsedData: unknown = JSON.parse(text)
 
     if (!Array.isArray(parsedData)) {
       throw new AssetFormatError(
@@ -50,7 +56,17 @@ export async function loadExcelBinFile<T, K extends keyof MasterFileMap>(
       )
     }
 
-    return { success: true, data: parsedData }
+    // Validate each element is an object
+    for (const item of parsedData) {
+      if (typeof item !== 'object' || item === null || Array.isArray(item)) {
+        throw new AssetFormatError(
+          location,
+          'expected array of objects, found non-object element',
+        )
+      }
+    }
+
+    return { success: true, data: parsedData as JsonObject[] }
   } catch (error) {
     if (error instanceof SyntaxError || error instanceof AssetFormatError) {
       if (autoFix) {
