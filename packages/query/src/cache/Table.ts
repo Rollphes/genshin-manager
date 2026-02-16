@@ -72,7 +72,9 @@ export class Table<TRecord> {
     const index = this.compositeIndexes.get(indexKey)
     if (!index) return []
 
-    const compositeValue = values.map((v) => String(v)).join(':')
+    // Use JSON.stringify to avoid separator collision
+    // e.g., ['a:b', 'c'] and ['a', 'b:c'] become different keys
+    const compositeValue = JSON.stringify(values)
     const recordIndexes = index.get(compositeValue)
     if (!recordIndexes) return []
 
@@ -132,7 +134,9 @@ export class Table<TRecord> {
       const values = pattern.map((key) => recordObj[key])
 
       if (values.every((v) => this.isValidIndexKey(v))) {
-        const compositeValue = values.map((v) => String(v)).join(':')
+        // Use JSON.stringify to avoid separator collision
+        // e.g., ['a:b', 'c'] and ['a', 'b:c'] become different keys
+        const compositeValue = JSON.stringify(values)
 
         const existing = index.get(compositeValue)
         if (existing) existing.push(i)

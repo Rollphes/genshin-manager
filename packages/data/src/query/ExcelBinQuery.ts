@@ -348,7 +348,11 @@ export class ExcelBinQuery<
   ): boolean {
     if (typeof recordValue !== 'string' || typeof conditionValue !== 'string')
       return false
-    const pattern = conditionValue.replace(/%/g, '.*').replace(/_/g, '.')
+
+    // Escape regex special characters first, then convert SQL LIKE wildcards
+    // This prevents ReDoS attacks and unintended regex matching
+    const escaped = conditionValue.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')
+    const pattern = escaped.replace(/%/g, '.*').replace(/_/g, '.')
     return new RegExp(`^${pattern}$`, 'i').test(recordValue)
   }
 

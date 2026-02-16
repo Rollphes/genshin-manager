@@ -1,3 +1,4 @@
+import { GeneralError } from '@genshin-manager/core'
 import fs from 'fs'
 import { Readable } from 'stream'
 
@@ -72,6 +73,7 @@ export class ConcatenatedFileReader {
    * @param offset - Byte offset in the logical concatenated file
    * @param length - Number of bytes to read
    * @returns Buffer with read data
+   * @throws {@link GeneralError} - If file handle is not found (indicates internal state corruption)
    */
   public async read(offset: number, length: number): Promise<Buffer> {
     await this.ensureOpen()
@@ -90,7 +92,12 @@ export class ConcatenatedFileReader {
       const readLength = Math.min(remaining, segment.size - localOffset)
 
       const handle = this.fileHandles?.get(segment.path)
-      if (!handle) continue
+      if (!handle) {
+        throw new GeneralError(
+          `File handle not found for segment: ${segment.path}. ` +
+            'This indicates internal state corruption - file handles should exist after ensureOpen().',
+        )
+      }
 
       const { bytesRead: n } = await handle.read(
         result,

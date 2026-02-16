@@ -160,6 +160,43 @@ export class ExcelBinCache extends TableCache<
   }
 
   /**
+   * Gets a single record by index key (O(1) lookup)
+   * @param tableName - The table name
+   * @param key - The index key name
+   * @param value - The value to look up
+   * @returns The record or undefined
+   * @throws {@link ExcelBinNotLoadedError} - If table not loaded
+   */
+  public getByIndex<K extends keyof GeneratedMasterFileMap>(
+    tableName: K,
+    key: string,
+    value: string | number,
+  ): GeneratedMasterFileMap[K] | undefined {
+    const table = this.tables.get(tableName)
+    if (!table) {
+      throw new ExcelBinNotLoadedError(
+        QueryLocation.create('ExcelBin', tableName),
+      )
+    }
+    return table.getByIndex(key, value) as GeneratedMasterFileMap[K] | undefined
+  }
+
+  /**
+   * Checks if a table has an index for the given key
+   * @param tableName - The table name
+   * @param key - The index key name
+   * @returns True if index exists
+   */
+  public hasIndex(
+    tableName: keyof GeneratedMasterFileMap,
+    key: string,
+  ): boolean {
+    const table = this.tables.get(tableName)
+    if (!table) return false
+    return table.hasIndex(key)
+  }
+
+  /**
    * Loads table data from file with decryption
    * @param tableName - The table to load
    * @returns Array of decoded records

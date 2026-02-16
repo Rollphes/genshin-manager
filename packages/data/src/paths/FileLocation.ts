@@ -10,6 +10,10 @@ import type { MasterFileMap } from '@/types/generated/MasterFileMap'
 /**
  * Unified file location class for all path management
  *
+ * Note: __dirname is used here and works in both CJS and ESM contexts because:
+ * - CJS: __dirname is natively available
+ * - ESM: tsup injects a __dirname shim during build
+ *
  * @example
  * ```typescript
  * FileLocation.deploy({ assetCacheFolderPath: 'C:/cache' })

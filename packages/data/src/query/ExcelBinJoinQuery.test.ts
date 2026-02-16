@@ -52,6 +52,8 @@ function createMockCache(): ExcelBinCache {
         return skillDepotMockRecords
       return []
     }),
+    // Mock returns false - no index available in test mock, falls back to linear scan
+    hasIndex: vi.fn(() => false),
   } as unknown as ExcelBinCache
 }
 
@@ -180,6 +182,7 @@ describe('ExcelBinJoinQuery', () => {
       // Create cache with no matching records
       const emptyCache = {
         getRecords: vi.fn(() => []),
+        hasIndex: vi.fn(() => false),
       } as unknown as ExcelBinCache
 
       const baseQuery = new ExcelBinQuery('AvatarExcelConfigData', emptyCache)
@@ -210,6 +213,7 @@ describe('ExcelBinJoinQuery', () => {
     it('should throw when no records match', async () => {
       const emptyCache = {
         getRecords: vi.fn(() => []),
+        hasIndex: vi.fn(() => false),
       } as unknown as ExcelBinCache
 
       const baseQuery = new ExcelBinQuery('AvatarExcelConfigData', emptyCache)

@@ -72,19 +72,29 @@ export class ExcelBinJoinQuery<
   }
 
   /**
-   * Gets a join record by key
+   * Gets a join record by key using index lookup (O(1)) with fallback to linear scan
    * @param joinKey - The key to look up
    * @returns The join record or undefined
    */
   protected getJoinRecord(
     joinKey: IndexKey,
   ): Promise<MasterRecord<J> | undefined> {
+    // Try O(1) index lookup first
+    if (this.excelBinCache.hasIndex(this.joinTableName, this.toKey)) {
+      const record = this.excelBinCache.getByIndex(
+        this.joinTableName,
+        this.toKey,
+        joinKey,
+      )
+      return Promise.resolve(record as MasterRecord<J> | undefined)
+    }
+
+    // Fallback to linear scan if no index exists
     // Cast required: getRecords returns GeneratedMasterFileMap[J][] which equals MasterRecord<J>[]
     const joinRecords = this.excelBinCache.getRecords(
       this.joinTableName,
     ) as MasterRecord<J>[]
 
-    // Find record where toKey matches joinKey
     return Promise.resolve(
       joinRecords.find((record) => record[this.toKey] === joinKey),
     )

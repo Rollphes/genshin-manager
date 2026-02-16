@@ -104,10 +104,11 @@ export class TextMapIndex implements TextMapProvider {
    */
   public async buildIndex(language: Language): Promise<BuildIndexResult> {
     // Close existing index for this language
+    // Delete from map BEFORE closing to prevent concurrent access to closing reader
     const existing = this.languageIndexes.get(language)
     if (existing) {
-      await existing.reader.close()
       this.languageIndexes.delete(language)
+      await existing.reader.close()
     }
 
     // Find TextMap files using loader
