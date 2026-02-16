@@ -1,16 +1,27 @@
 import { EventEmitter } from 'events'
 
+import { logger } from '@/logger/Logger'
+
 /**
  * Type for values that can be awaited
  */
 type Awaitable<Value> = PromiseLike<Value> | Value
 
 /**
+ * Listener function type for internal storage
+ */
+type ListenerFn = (...args: unknown[]) => Awaitable<void>
+
+/**
  * Class for supporting asynchronous event listeners.
+ * Properly handles errors from async listeners by logging them.
  * @see {@link EventEmitter}
  */
 export abstract class PromiseEventEmitter<T> {
   private readonly emitter: EventEmitter
+
+  /** Map of original listeners to wrapped listeners for proper removal */
+  private readonly listenerWrapperMap = new WeakMap<ListenerFn, ListenerFn>()
 
   /**
    * Create a PromiseEventEmitter.
@@ -31,7 +42,12 @@ export abstract class PromiseEventEmitter<T> {
       ? (...args: T[K]) => Awaitable<void>
       : never,
   ): this {
-    this.emitter.once(eventName as string, listener as never)
+    // Cast through unknown required due to generic constraint complexity
+    const wrapped = this.wrapListener(
+      eventName as string,
+      listener as unknown as ListenerFn,
+    )
+    this.emitter.once(eventName as string, wrapped as never)
     return this
   }
 
@@ -63,7 +79,11 @@ export abstract class PromiseEventEmitter<T> {
       ? (...args: T[K]) => Awaitable<void>
       : never,
   ): this {
-    this.emitter.addListener(eventName as string, listener as never)
+    // Cast through unknown required due to generic constraint complexity
+    const listenerFn = listener as unknown as ListenerFn
+    const wrapped = this.wrapListener(eventName as string, listenerFn)
+    this.listenerWrapperMap.set(listenerFn, wrapped)
+    this.emitter.addListener(eventName as string, wrapped as never)
     return this
   }
 
@@ -95,7 +115,15 @@ export abstract class PromiseEventEmitter<T> {
       ? (...args: T[K]) => Awaitable<void>
       : never,
   ): this {
-    this.emitter.removeListener(eventName as string, listener as never)
+    // Cast through unknown required due to generic constraint complexity
+    const listenerFn = listener as unknown as ListenerFn
+    const wrapped = this.listenerWrapperMap.get(listenerFn)
+    if (wrapped) {
+      this.emitter.removeListener(eventName as string, wrapped as never)
+      this.listenerWrapperMap.delete(listenerFn)
+    } else {
+      this.emitter.removeListener(eventName as string, listener as never)
+    }
     return this
   }
 
@@ -120,5 +148,34 @@ export abstract class PromiseEventEmitter<T> {
     ...args: T[K] extends unknown[] ? T[K] : never
   ): boolean {
     return this.emitter.emit(eventName as string, ...args)
+  }
+
+  /**
+   * Wrap a listener to catch and log errors from async listeners
+   * @param eventName - Event name for error logging
+   * @param listener - Original listener function
+   * @returns Wrapped listener that catches async errors
+   */
+  private wrapListener(eventName: string, listener: ListenerFn): ListenerFn {
+    return (...args: unknown[]): void => {
+      try {
+        const result = listener(...args)
+        // Handle async listeners - catch rejected promises
+        if (result && typeof result === 'object' && 'then' in result) {
+          ;(result as Promise<void>).catch((error: unknown) => {
+            logger.error(
+              `Unhandled error in async event listener for "${eventName}"`,
+              error instanceof Error ? error : new Error(String(error)),
+            )
+          })
+        }
+      } catch (error) {
+        // Handle sync errors
+        logger.error(
+          `Unhandled error in event listener for "${eventName}"`,
+          error instanceof Error ? error : new Error(String(error)),
+        )
+      }
+    }
   }
 }

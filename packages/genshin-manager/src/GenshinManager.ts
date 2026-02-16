@@ -678,7 +678,14 @@ export class GenshinManager extends PromiseEventEmitter<GenshinManagerEventMap> 
         this.option.autoFetchLatestAssetsByCron,
         () => {
           void (async (): Promise<void> => {
-            await this.updateCache()
+            try {
+              await this.updateCache()
+            } catch (error) {
+              logger.error(
+                'GenshinManager: Cron task failed',
+                error instanceof Error ? error : new Error(String(error)),
+              )
+            }
           })()
         },
       )

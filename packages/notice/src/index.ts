@@ -5,6 +5,9 @@ export { NoticeManager } from '@/NoticeManager'
 export type { NoticeData } from '@/dto/Notice'
 export { Notice } from '@/dto/Notice'
 
+// Errors
+export { HoyoverseApiError } from '@/errors/HoyoverseApiError'
+
 // Events
 export type { NoticeManagerEventMap } from '@/types/events'
 export { NoticeManagerEvents } from '@/types/events'

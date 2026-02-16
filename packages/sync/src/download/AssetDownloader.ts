@@ -1,7 +1,10 @@
 import type { RestClient } from '@genshin-manager/core'
-import { BodyNotFoundError, GeneralError } from '@genshin-manager/core'
-import { logger } from '@genshin-manager/core'
-import { LogLevel } from '@genshin-manager/core'
+import {
+  BodyNotFoundError,
+  GeneralError,
+  logger,
+  LogLevel,
+} from '@genshin-manager/core'
 import { type Language, TextMapBaseName } from '@genshin-manager/core'
 import {
   AssetFormatError,
@@ -55,6 +58,7 @@ export class AssetDownloader {
    * @param gitFolderName - Remote folder name in repository ('ExcelBinOutput' or 'TextMap')
    * @param files - Array of file names to download
    * @param isRetry - Whether this is a retry attempt (skips folder cleanup)
+   * @throws {@link GeneralError} - If any files fail to download
    */
   public async downloadFolder(
     gitFolderName: 'ExcelBinOutput' | 'TextMap',
@@ -68,9 +72,10 @@ export class AssetDownloader {
 
     const concurrentLimit = 3
     const chunks = this.chunkArray(files, concurrentLimit)
+    const failedFiles: { fileName: string; error: Error }[] = []
 
     for (const chunk of chunks) {
-      await Promise.all(
+      const results = await Promise.allSettled(
         chunk.map(async (fileName) => {
           const localLocation = this.createLocationForFile(
             gitFolderName,
@@ -81,14 +86,39 @@ export class AssetDownloader {
           await this.downloadFileWithRetry(localLocation, remoteFilePath)
 
           if (progressBar) progressBar.increment()
+          return fileName
         }),
       )
+
+      // Collect failed downloads
+      for (let i = 0; i < results.length; i++) {
+        const result = results[i]
+        if (result.status === 'rejected') {
+          const fileName = chunk[i]
+          const error =
+            result.reason instanceof Error
+              ? result.reason
+              : new Error(String(result.reason))
+          failedFiles.push({ fileName, error })
+          logger.warn(`AssetDownloader: Failed to download ${fileName}`, error)
+          if (progressBar) progressBar.increment()
+        }
+      }
 
       if (chunks.indexOf(chunk) < chunks.length - 1)
         await new Promise((resolve) => setTimeout(resolve, 100))
     }
 
     if (progressBar) progressBar.stop()
+
+    // Report all failures after download completes
+    if (failedFiles.length > 0) {
+      const fileNames = failedFiles.map((f) => f.fileName).join(', ')
+      throw new GeneralError(
+        `Failed to download ${String(failedFiles.length)} file(s): ${fileNames}`,
+        { cause: failedFiles[0].error },
+      )
+    }
   }
 
   /**

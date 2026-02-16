@@ -1,5 +1,5 @@
 import type { RestClient } from '@genshin-manager/core'
-import { BodyNotFoundError, LogLevel } from '@genshin-manager/core'
+import { BodyNotFoundError, GeneralError, LogLevel } from '@genshin-manager/core'
 import {
   AssetFormatError,
   AssetNotFoundError,
@@ -26,12 +26,14 @@ vi.mock('@/download/FileLockManager', () => {
   }
 })
 const mockShouldLog = vi.hoisted(() => vi.fn().mockReturnValue(false))
+const mockLoggerWarn = vi.hoisted(() => vi.fn())
 vi.mock('@genshin-manager/core', async (importOriginal) => {
   const actual = await importOriginal<Record<string, unknown>>()
   return {
     ...actual,
     logger: {
       shouldLog: mockShouldLog,
+      warn: mockLoggerWarn,
     },
   }
 })
@@ -240,14 +242,15 @@ describe('AssetDownloader', () => {
 
       await expect(
         downloader.downloadFolder('ExcelBinOutput', ['file1.json'], false),
-      ).rejects.toThrow('Network error')
+      ).rejects.toThrow(GeneralError)
 
+      // Each file gets 3 retries, and allSettled collects the final error
       expect(mockFetchRaw).toHaveBeenCalledTimes(3)
     })
   })
 
   describe('error handling', () => {
-    it('should throw BodyNotFoundError when response has no body', async () => {
+    it('should throw GeneralError when response has no body', async () => {
       const restClient = createMockRestClient()
       mockFetchRaw.mockResolvedValue(createMockResponse(null))
 
@@ -257,12 +260,13 @@ describe('AssetDownloader', () => {
       })
       downloader.commitId = 'abc123'
 
+      // allSettled collects errors, then throws GeneralError with the original as cause
       await expect(
         downloader.downloadFolder('ExcelBinOutput', ['file1.json'], false),
-      ).rejects.toThrow(BodyNotFoundError)
+      ).rejects.toThrow(GeneralError)
     })
 
-    it('should throw AssetNotFoundError when file does not exist after download', async () => {
+    it('should throw GeneralError when file does not exist after download', async () => {
       const restClient = createMockRestClient()
       mockFetchRaw.mockImplementation(() =>
         Promise.resolve(
@@ -282,10 +286,10 @@ describe('AssetDownloader', () => {
 
       await expect(
         downloader.downloadFolder('ExcelBinOutput', ['file1.json'], false),
-      ).rejects.toThrow(AssetNotFoundError)
+      ).rejects.toThrow(GeneralError)
     })
 
-    it('should throw AssetFormatError when file is empty', async () => {
+    it('should throw GeneralError when file is empty', async () => {
       const restClient = createMockRestClient()
       mockFetchRaw.mockImplementation(() =>
         Promise.resolve(
@@ -302,10 +306,10 @@ describe('AssetDownloader', () => {
 
       await expect(
         downloader.downloadFolder('ExcelBinOutput', ['file1.json'], false),
-      ).rejects.toThrow(AssetFormatError)
+      ).rejects.toThrow(GeneralError)
     })
 
-    it('should throw AssetFormatError when JSON is invalid', async () => {
+    it('should throw GeneralError when JSON is invalid', async () => {
       const restClient = createMockRestClient()
       mockFetchRaw.mockImplementation(() =>
         Promise.resolve(
@@ -322,10 +326,10 @@ describe('AssetDownloader', () => {
 
       await expect(
         downloader.downloadFolder('ExcelBinOutput', ['file1.json'], false),
-      ).rejects.toThrow(AssetFormatError)
+      ).rejects.toThrow(GeneralError)
     })
 
-    it('should throw AssetFormatError when content is too short', async () => {
+    it('should throw GeneralError when content is too short', async () => {
       const restClient = createMockRestClient()
       mockFetchRaw.mockImplementation(() =>
         Promise.resolve(
@@ -342,10 +346,10 @@ describe('AssetDownloader', () => {
 
       await expect(
         downloader.downloadFolder('ExcelBinOutput', ['file1.json'], false),
-      ).rejects.toThrow(AssetFormatError)
+      ).rejects.toThrow(GeneralError)
     })
 
-    it('should throw AssetFormatError when content is empty string', async () => {
+    it('should throw GeneralError when content is empty string', async () => {
       const restClient = createMockRestClient()
       mockFetchRaw.mockImplementation(() =>
         Promise.resolve(
@@ -362,7 +366,7 @@ describe('AssetDownloader', () => {
 
       await expect(
         downloader.downloadFolder('ExcelBinOutput', ['file1.json'], false),
-      ).rejects.toThrow(AssetFormatError)
+      ).rejects.toThrow(GeneralError)
     })
 
     it('should handle statSync ENOENT error', async () => {
@@ -387,10 +391,10 @@ describe('AssetDownloader', () => {
 
       await expect(
         downloader.downloadFolder('ExcelBinOutput', ['file1.json'], false),
-      ).rejects.toThrow(AssetNotFoundError)
+      ).rejects.toThrow(GeneralError)
     })
 
-    it('should rethrow non-ENOENT statSync errors', async () => {
+    it('should rethrow non-ENOENT statSync errors as GeneralError', async () => {
       const restClient = createMockRestClient()
       mockFetchRaw.mockImplementation(() =>
         Promise.resolve(
@@ -412,7 +416,7 @@ describe('AssetDownloader', () => {
 
       await expect(
         downloader.downloadFolder('ExcelBinOutput', ['file1.json'], false),
-      ).rejects.toThrow('Permission denied')
+      ).rejects.toThrow(GeneralError)
     })
   })
 
@@ -500,9 +504,10 @@ describe('AssetDownloader', () => {
       })
       downloader.commitId = 'abc123'
 
+      // With allSettled, errors are collected and thrown as GeneralError
       await expect(
         downloader.downloadFolder('ExcelBinOutput', ['file1.json'], false),
-      ).rejects.toThrow('Network error')
+      ).rejects.toThrow(GeneralError)
 
       // Should not throw cleanup error
     })

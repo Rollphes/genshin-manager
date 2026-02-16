@@ -1,3 +1,5 @@
+import { logger } from '@genshin-manager/core'
+
 import type { IndexKey } from '@/cache/types'
 
 /**
@@ -111,7 +113,15 @@ export class Table<TRecord> {
       const record = this.data[i]
       // Safe runtime access: key validity is checked at registration time
       const value = (record as Record<string, unknown>)[key]
-      if (this.isValidIndexKey(value)) index.set(value, i)
+      if (this.isValidIndexKey(value)) {
+        if (index.has(value)) {
+          logger.warn(
+            `Table: Duplicate key detected for index "${key}": ${String(value)} ` +
+              `(existing: record[${String(index.get(value))}], new: record[${String(i)}])`,
+          )
+        }
+        index.set(value, i)
+      }
     }
 
     this.primaryIndexes.set(key, index)

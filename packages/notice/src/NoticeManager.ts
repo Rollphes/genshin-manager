@@ -9,7 +9,12 @@ import {
 import { merge } from 'ts-deepmerge'
 
 import { Notice } from '@/dto/Notice'
+import { HoyoverseApiError } from '@/errors/HoyoverseApiError'
 import type { AnnouncementQuery } from '@/types/api/queries'
+import type {
+  GetAnnContentResponse,
+  GetAnnListResponse,
+} from '@/types/api/responses'
 import type {
   HoyoverseApiRoutes,
   HoyoverseStaticApiRoutes,
@@ -122,6 +127,7 @@ export class NoticeManager extends PromiseEventEmitter<NoticeManagerEventMap> {
   /**
    * Update notices
    * @throws {@link AnnContentNotFoundError} - If announcement content is not found
+   * @throws {@link HoyoverseApiError} - If HoYoverse API returns an error
    */
   public async update(): Promise<void> {
     const requestQuery = { ...this.query, lang: this.language }
@@ -133,14 +139,20 @@ export class NoticeManager extends PromiseEventEmitter<NoticeManagerEventMap> {
       '/common/hk4e_global/announcement/api/getAnnContent',
       { query: requestQuery },
     )
+    this.validateApiResponse(annContent, 'getAnnContent')
+
     const annEnContent = await this.contentClient.fetch(
       '/common/hk4e_global/announcement/api/getAnnContent',
       { query: enQuery },
     )
+    this.validateApiResponse(annEnContent, 'getAnnContent (en)')
+
     const annList = await this.listClient.fetch(
       '/common/hk4e_global/announcement/api/getAnnList',
       { query: requestQuery },
     )
+    this.validateApiResponse(annList, 'getAnnList')
+
     const annListDatas = annList.data.list.flatMap((tab) => tab.list)
     const annListIds = annListDatas.map((data) => data.ann_id)
     this.notices.forEach((notice, id) => {
@@ -169,5 +181,19 @@ export class NoticeManager extends PromiseEventEmitter<NoticeManagerEventMap> {
         this.notices.set(data.ann_id, notice)
       }
     })
+  }
+
+  /**
+   * Validate API response retcode
+   * @param response - API response to validate
+   * @param endpoint - Endpoint name for error reporting
+   * @throws {@link HoyoverseApiError} - If retcode is not 0
+   */
+  private validateApiResponse(
+    response: GetAnnContentResponse | GetAnnListResponse,
+    endpoint: string,
+  ): void {
+    if (response.retcode !== 0)
+      throw new HoyoverseApiError(response.retcode, response.message, endpoint)
   }
 }
