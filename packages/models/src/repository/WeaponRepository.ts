@@ -5,6 +5,7 @@ import { calculatePromoteLevel } from '@/common/calculatePromoteLevel'
 import { StatProperty } from '@/common/StatProperty'
 import { FightProp, WeaponType } from '@/types/enums'
 import type { RepositoryDependencies } from '@/types/RepositoryDependencies'
+import { toFightProp } from '@/utils/toFightProp'
 import { WeaponAscension } from '@/weapon/WeaponAscension'
 import { WeaponInfo } from '@/weapon/WeaponInfo'
 import { WeaponRefinement } from '@/weapon/WeaponRefinement'
@@ -316,7 +317,7 @@ export class WeaponRepository {
     for (const weaponProp of weaponProps) {
       if (!weaponProp.initValue) continue
 
-      const propType = this.toFightProp(weaponProp.propType)
+      const propType = toFightProp(weaponProp.propType)
       const curveType = weaponProp.type
 
       let curveValue = 1
@@ -339,23 +340,6 @@ export class WeaponRepository {
     }
 
     return stats
-  }
-
-  /**
-   * Convert string to FightProp enum
-   * @param value - String value
-   * @returns FightProp enum value
-   */
-  private toFightProp(value: string): FightProp {
-    const entries = Object.entries(FightProp)
-    const found = entries.find(([, v]) => {
-      const vStr: string = v
-      return vStr === value
-    })
-    if (found) return found[1]
-
-    // Fallback to FightPropNone for empty/undefined values
-    return FightProp.FightPropNone
   }
 
   /**

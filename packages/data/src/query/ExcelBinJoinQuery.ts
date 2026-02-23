@@ -4,6 +4,7 @@ import { JoinQueryBuilder, QueryLocation } from '@genshin-manager/query'
 import type { ExcelBinCache } from '@/cache/ExcelBinCache'
 import { ExcelBinPropertyNotFoundError } from '@/errors/ExcelBinPropertyNotFoundError'
 import type { ExcelBinQuery } from '@/query/ExcelBinQuery'
+import { WhereConditionEvaluator } from '@/query/WhereConditionEvaluator'
 import type { MasterFileMap } from '@/types/generated/MasterFileMap'
 
 /**
@@ -31,6 +32,9 @@ export class ExcelBinJoinQuery<
   private readonly excelBinCache: ExcelBinCache
   private readonly textMapProvider?: TextMapProvider
   private readonly baseTableName: K
+  private readonly conditionEvaluator: WhereConditionEvaluator<
+    Record<string, unknown>
+  >
 
   /**
    * Creates a new ExcelBinJoinQuery
@@ -58,17 +62,32 @@ export class ExcelBinJoinQuery<
     this.excelBinCache = excelBinCache
     this.baseTableName = baseTableName
     this.textMapProvider = textMapProvider
+    this.conditionEvaluator = new WhereConditionEvaluator()
   }
 
   /**
-   * Executes the base query and returns raw records
-   * @returns Array of base records
+   * Executes the base query and returns raw records with WHERE conditions applied
+   * @returns Array of base records filtered by WHERE conditions
    */
   protected executeBaseQuery(): Promise<MasterRecord<K>[]> {
-    // Get raw records without LocatedValue wrapping
-    // Cast required: getRecords returns GeneratedMasterFileMap[K][] which equals MasterRecord<K>[]
-    const allRecords = this.excelBinCache.getRecords(this.baseTableName)
-    return Promise.resolve(allRecords as MasterRecord<K>[])
+    // Get all records from cache
+    const allRecords = this.excelBinCache.getRecords(
+      this.baseTableName,
+    ) as MasterRecord<K>[]
+
+    // Apply baseQuery's WHERE conditions
+    const whereConditions = this.baseQuery.getWhereConditions()
+    if (whereConditions.length === 0) return Promise.resolve(allRecords)
+
+    // Filter records using shared WhereConditionEvaluator
+    // Cast via unknown: MasterRecord<K> is generated type without index signature
+    const filtered = allRecords.filter((record) =>
+      this.conditionEvaluator.evaluateAll(
+        record as unknown as Record<string, unknown>,
+        whereConditions,
+      ),
+    )
+    return Promise.resolve(filtered)
   }
 
   /**

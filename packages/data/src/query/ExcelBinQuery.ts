@@ -4,6 +4,7 @@ import { QueryBuilder, QueryLocation } from '@genshin-manager/query'
 import type { ExcelBinCache } from '@/cache/ExcelBinCache'
 import { ExcelBinPropertyNotFoundError } from '@/errors/ExcelBinPropertyNotFoundError'
 import { ExcelBinJoinQuery } from '@/query/ExcelBinJoinQuery'
+import { WhereConditionEvaluator } from '@/query/WhereConditionEvaluator'
 import type { MasterFileMap } from '@/types/generated/MasterFileMap'
 
 /**
@@ -27,6 +28,9 @@ export class ExcelBinQuery<
 > extends QueryBuilder<MasterRecord<K>, TSelected, K> {
   private readonly excelBinCache: ExcelBinCache
   private readonly textMapProvider?: TextMapProvider
+  private readonly conditionEvaluator: WhereConditionEvaluator<
+    Record<string, unknown>
+  >
 
   /**
    * Creates a new ExcelBinQuery
@@ -42,6 +46,15 @@ export class ExcelBinQuery<
     super(excelBinName)
     this.excelBinCache = excelBinCache
     this.textMapProvider = textMapProvider
+    this.conditionEvaluator = new WhereConditionEvaluator()
+  }
+
+  /**
+   * Gets the WHERE conditions for this query
+   * @returns readonly array of WHERE conditions
+   */
+  public getWhereConditions(): readonly WhereCondition[] {
+    return this.whereConditions
   }
 
   /**
@@ -120,11 +133,13 @@ export class ExcelBinQuery<
       const remainingConditions = this.whereConditions.slice(1)
       if (remainingConditions.length === 0) return Promise.resolve(indexResult)
 
-      const filtered = indexResult.filter((record) => {
-        for (const condition of remainingConditions)
-          if (!this.evaluateCondition(record, condition)) return false
-        return true
-      })
+      // Cast via unknown: MasterRecord<K> is generated type without index signature
+      const filtered = indexResult.filter((record) =>
+        this.conditionEvaluator.evaluateAll(
+          record as unknown as Record<string, unknown>,
+          remainingConditions,
+        ),
+      )
       return Promise.resolve(filtered)
     }
 
@@ -133,12 +148,13 @@ export class ExcelBinQuery<
       this.tableName,
     ) as MasterRecord<K>[]
 
-    const filtered = allRecords.filter((record) => {
-      for (const condition of this.whereConditions)
-        if (!this.evaluateCondition(record, condition)) return false
-
-      return true
-    })
+    // Cast via unknown: MasterRecord<K> is generated type without index signature
+    const filtered = allRecords.filter((record) =>
+      this.conditionEvaluator.evaluateAll(
+        record as unknown as Record<string, unknown>,
+        this.whereConditions,
+      ),
+    )
     return Promise.resolve(filtered)
   }
 
@@ -230,178 +246,6 @@ export class ExcelBinQuery<
       cloned as unknown as QueryBuilder<MasterRecord<K>, TSelected, K>,
     )
     return cloned
-  }
-
-  /**
-   * Evaluates a WHERE condition against a record
-   * @param record - The record to evaluate
-   * @param condition - The condition to evaluate
-   * @returns true if condition matches
-   */
-  private evaluateCondition(
-    record: MasterRecord<K>,
-    condition: WhereCondition,
-  ): boolean {
-    switch (condition.type) {
-      case 'comparison': {
-        const key = condition.key as keyof MasterRecord<K>
-        const recordValue = record[key]
-        return this.evaluateComparison(
-          recordValue,
-          condition.operator,
-          condition.value,
-        )
-      }
-
-      case 'or':
-        return condition.conditions.some((c) =>
-          this.evaluateCondition(record, c),
-        )
-
-      case 'and':
-        return condition.conditions.every((c) =>
-          this.evaluateCondition(record, c),
-        )
-
-      case 'not':
-        return !this.evaluateCondition(record, condition.condition)
-    }
-  }
-
-  /**
-   * Evaluates a comparison operation
-   * @param recordValue - The record field value
-   * @param operator - The comparison operator
-   * @param conditionValue - The condition value(s)
-   * @returns true if comparison matches
-   */
-  private evaluateComparison(
-    recordValue: MasterRecord<K>[keyof MasterRecord<K>],
-    operator: string,
-    conditionValue: string | number | readonly (string | number)[],
-  ): boolean {
-    switch (operator) {
-      case '=':
-        return recordValue === conditionValue
-      case '!=':
-        return recordValue !== conditionValue
-      case '>':
-        return this.compareGreaterThan(recordValue, conditionValue)
-      case '<':
-        return this.compareLessThan(recordValue, conditionValue)
-      case '>=':
-        return this.compareGreaterOrEqual(recordValue, conditionValue)
-      case '<=':
-        return this.compareLessOrEqual(recordValue, conditionValue)
-      case 'in':
-        return this.evaluateIn(recordValue, conditionValue)
-      case 'like':
-        return this.evaluateLike(recordValue, conditionValue)
-      default:
-        return false
-    }
-  }
-
-  /**
-   * Compares two ordered values for greater-than
-   * @param recordValue - The record field value
-   * @param conditionValue - The condition value
-   * @returns true if recordValue > conditionValue
-   */
-  private compareGreaterThan(
-    recordValue: MasterRecord<K>[keyof MasterRecord<K>],
-    conditionValue: string | number | readonly (string | number)[],
-  ): boolean {
-    if (typeof recordValue === 'number' && typeof conditionValue === 'number')
-      return recordValue > conditionValue
-    if (typeof recordValue === 'string' && typeof conditionValue === 'string')
-      return recordValue > conditionValue
-    return false
-  }
-
-  /**
-   * Compares two ordered values for less-than
-   * @param recordValue - The record field value
-   * @param conditionValue - The condition value
-   * @returns true if recordValue < conditionValue
-   */
-  private compareLessThan(
-    recordValue: MasterRecord<K>[keyof MasterRecord<K>],
-    conditionValue: string | number | readonly (string | number)[],
-  ): boolean {
-    if (typeof recordValue === 'number' && typeof conditionValue === 'number')
-      return recordValue < conditionValue
-    if (typeof recordValue === 'string' && typeof conditionValue === 'string')
-      return recordValue < conditionValue
-    return false
-  }
-
-  /**
-   * Compares two ordered values for greater-than-or-equal
-   * @param recordValue - The record field value
-   * @param conditionValue - The condition value
-   * @returns true if recordValue >= conditionValue
-   */
-  private compareGreaterOrEqual(
-    recordValue: MasterRecord<K>[keyof MasterRecord<K>],
-    conditionValue: string | number | readonly (string | number)[],
-  ): boolean {
-    if (typeof recordValue === 'number' && typeof conditionValue === 'number')
-      return recordValue >= conditionValue
-    if (typeof recordValue === 'string' && typeof conditionValue === 'string')
-      return recordValue >= conditionValue
-    return false
-  }
-
-  /**
-   * Compares two ordered values for less-than-or-equal
-   * @param recordValue - The record field value
-   * @param conditionValue - The condition value
-   * @returns true if recordValue <= conditionValue
-   */
-  private compareLessOrEqual(
-    recordValue: MasterRecord<K>[keyof MasterRecord<K>],
-    conditionValue: string | number | readonly (string | number)[],
-  ): boolean {
-    if (typeof recordValue === 'number' && typeof conditionValue === 'number')
-      return recordValue <= conditionValue
-    if (typeof recordValue === 'string' && typeof conditionValue === 'string')
-      return recordValue <= conditionValue
-    return false
-  }
-
-  /**
-   * Evaluates IN condition
-   * @param recordValue - The record field value
-   * @param conditionValue - The condition values array
-   * @returns true if value is in array
-   */
-  private evaluateIn(
-    recordValue: MasterRecord<K>[keyof MasterRecord<K>],
-    conditionValue: string | number | readonly (string | number)[],
-  ): boolean {
-    if (!Array.isArray(conditionValue)) return false
-    return conditionValue.includes(recordValue as string | number)
-  }
-
-  /**
-   * Evaluates LIKE condition
-   * @param recordValue - The record field value
-   * @param conditionValue - The LIKE pattern
-   * @returns true if pattern matches
-   */
-  private evaluateLike(
-    recordValue: MasterRecord<K>[keyof MasterRecord<K>],
-    conditionValue: string | number | readonly (string | number)[],
-  ): boolean {
-    if (typeof recordValue !== 'string' || typeof conditionValue !== 'string')
-      return false
-
-    // Escape regex special characters first, then convert SQL LIKE wildcards
-    // This prevents ReDoS attacks and unintended regex matching
-    const escaped = conditionValue.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')
-    const pattern = escaped.replace(/%/g, '.*').replace(/_/g, '.')
-    return new RegExp(`^${pattern}$`, 'i').test(recordValue)
   }
 
   /**

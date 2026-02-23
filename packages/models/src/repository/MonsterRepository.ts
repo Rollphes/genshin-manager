@@ -6,6 +6,7 @@ import { StatProperty } from '@/common/StatProperty'
 import { Monster } from '@/monster/Monster'
 import { FightProp, GrowCurve, SubType } from '@/types/enums'
 import type { RepositoryDependencies } from '@/types/RepositoryDependencies'
+import { toFightProp } from '@/utils/toFightProp'
 
 /**
  * Co-op stat scaling multipliers per player count
@@ -212,21 +213,21 @@ export class MonsterRepository {
     const curve2 = propGrowCurves[2]
 
     const hpBase = await this.getStatValueByGrow(
-      this.toFightProp(curve0.type),
+      toFightProp(curve0.type),
       curve0.growCurve,
       monsterData.hpBase,
       level,
       playerCount,
     )
     const attackBase = await this.getStatValueByGrow(
-      this.toFightProp(curve1.type),
+      toFightProp(curve1.type),
       curve1.growCurve,
       monsterData.attackBase,
       level,
       playerCount,
     )
     const defenseBase = await this.getStatValueByGrow(
-      this.toFightProp(curve2.type),
+      toFightProp(curve2.type),
       curve2.growCurve,
       monsterData.defenseBase,
       level,
@@ -329,23 +330,6 @@ export class MonsterRepository {
     const curveInfo = curveInfos.find((info) => info.type === growCurveStr)
 
     return initValue * (curveInfo?.value ?? 1) * bonusValue
-  }
-
-  /**
-   * Convert string to FightProp enum
-   * @param value - String value
-   * @returns FightProp enum value
-   * @throws {@link GeneralError} - If value is not a valid FightProp
-   */
-  private toFightProp(value: string): FightProp {
-    const entries = Object.entries(FightProp)
-    const found = entries.find(([, v]) => {
-      const vStr: string = v
-      return vStr === value
-    })
-    if (!found) throw new GeneralError(`Invalid FightProp value: ${value}`)
-
-    return found[1]
   }
 
   /**
