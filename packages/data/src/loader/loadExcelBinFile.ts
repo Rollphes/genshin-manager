@@ -89,7 +89,10 @@ function readFileAsString(location: FileLocation): Promise<string> {
       highWaterMark: 1 * 1024 * 1024,
     })
     stream.on('data', (chunk) => (text += String(chunk)))
-    stream.on('error', reject)
+    stream.on('error', (err) => {
+      stream.destroy()
+      reject(err)
+    })
     stream.on('end', () => {
       resolve(text)
     })
