@@ -1,5 +1,3 @@
-import { EventEmitter } from 'events'
-
 import { logger } from '@/logger/Logger'
 
 /**
@@ -8,27 +6,28 @@ import { logger } from '@/logger/Logger'
 type Awaitable<Value> = PromiseLike<Value> | Value
 
 /**
- * Listener function type for internal storage
+ * Extract listener type from event map
  */
-type ListenerFn = (...args: unknown[]) => Awaitable<void>
+type ListenerOf<T, K extends keyof T> = T[K] extends unknown[]
+  ? (...args: T[K]) => Awaitable<void>
+  : never
+
+/**
+ * Internal listener entry with once flag
+ */
+interface ListenerEntry<T, K extends keyof T> {
+  readonly listener: ListenerOf<T, K>
+  readonly once: boolean
+}
 
 /**
  * Class for supporting asynchronous event listeners.
  * Properly handles errors from async listeners by logging them.
- * @see {@link EventEmitter}
+ * Type-safe implementation without Node.js EventEmitter dependency.
  */
-export abstract class PromiseEventEmitter<T> {
-  private readonly emitter: EventEmitter
-
-  /** Map of original listeners to wrapped listeners for proper removal */
-  private readonly listenerWrapperMap = new WeakMap<ListenerFn, ListenerFn>()
-
-  /**
-   * Create a PromiseEventEmitter.
-   */
-  constructor() {
-    this.emitter = new EventEmitter()
-  }
+export abstract class PromiseEventEmitter<T extends { [K in keyof T]: unknown[] }> {
+  /** Map of event names to listener entries */
+  private readonly listeners = new Map<keyof T, ListenerEntry<T, keyof T>[]>()
 
   /**
    * Adds a one-time listener function for the event named eventName.
@@ -38,17 +37,9 @@ export abstract class PromiseEventEmitter<T> {
    */
   public once<K extends keyof T>(
     eventName: K,
-    listener: T[K] extends unknown[]
-      ? (...args: T[K]) => Awaitable<void>
-      : never,
+    listener: ListenerOf<T, K>,
   ): this {
-    // Cast through unknown required due to generic constraint complexity
-    const wrapped = this.wrapListener(
-      eventName as string,
-      listener as unknown as ListenerFn,
-    )
-    this.emitter.once(eventName as string, wrapped as never)
-    return this
+    return this.addListenerInternal(eventName, listener, true)
   }
 
   /**
@@ -57,14 +48,8 @@ export abstract class PromiseEventEmitter<T> {
    * @param listener - The callback function (supports async)
    * @returns this
    */
-  public on<K extends keyof T>(
-    eventName: K,
-    listener: T[K] extends unknown[]
-      ? (...args: T[K]) => Awaitable<void>
-      : never,
-  ): this {
-    this.addListener(eventName, listener)
-    return this
+  public on<K extends keyof T>(eventName: K, listener: ListenerOf<T, K>): this {
+    return this.addListener(eventName, listener)
   }
 
   /**
@@ -75,16 +60,9 @@ export abstract class PromiseEventEmitter<T> {
    */
   public addListener<K extends keyof T>(
     eventName: K,
-    listener: T[K] extends unknown[]
-      ? (...args: T[K]) => Awaitable<void>
-      : never,
+    listener: ListenerOf<T, K>,
   ): this {
-    // Cast through unknown required due to generic constraint complexity
-    const listenerFn = listener as unknown as ListenerFn
-    const wrapped = this.wrapListener(eventName as string, listenerFn)
-    this.listenerWrapperMap.set(listenerFn, wrapped)
-    this.emitter.addListener(eventName as string, wrapped as never)
-    return this
+    return this.addListenerInternal(eventName, listener, false)
   }
 
   /**
@@ -95,12 +73,9 @@ export abstract class PromiseEventEmitter<T> {
    */
   public off<K extends keyof T>(
     eventName: K,
-    listener: T[K] extends unknown[]
-      ? (...args: T[K]) => Awaitable<void>
-      : never,
+    listener: ListenerOf<T, K>,
   ): this {
-    this.removeListener(eventName, listener)
-    return this
+    return this.removeListener(eventName, listener)
   }
 
   /**
@@ -111,18 +86,15 @@ export abstract class PromiseEventEmitter<T> {
    */
   public removeListener<K extends keyof T>(
     eventName: K,
-    listener: T[K] extends unknown[]
-      ? (...args: T[K]) => Awaitable<void>
-      : never,
+    listener: ListenerOf<T, K>,
   ): this {
-    // Cast through unknown required due to generic constraint complexity
-    const listenerFn = listener as unknown as ListenerFn
-    const wrapped = this.listenerWrapperMap.get(listenerFn)
-    if (wrapped) {
-      this.emitter.removeListener(eventName as string, wrapped as never)
-      this.listenerWrapperMap.delete(listenerFn)
-    } else {
-      this.emitter.removeListener(eventName as string, listener as never)
+    const entries = this.listeners.get(eventName)
+    if (!entries) return this
+
+    const index = entries.findIndex((entry) => entry.listener === listener)
+    if (index !== -1) {
+      entries.splice(index, 1)
+      if (entries.length === 0) this.listeners.delete(eventName)
     }
     return this
   }
@@ -133,7 +105,9 @@ export abstract class PromiseEventEmitter<T> {
    * @returns this
    */
   public removeAllListeners(event?: keyof T): this {
-    this.emitter.removeAllListeners(event as string)
+    if (event !== undefined) this.listeners.delete(event)
+    else this.listeners.clear()
+
     return this
   }
 
@@ -143,39 +117,80 @@ export abstract class PromiseEventEmitter<T> {
    * @param args - Arguments to pass to the listeners
    * @returns True if the event had listeners, false otherwise
    */
-  protected emit<K extends keyof T>(
-    eventName: K,
-    ...args: T[K] extends unknown[] ? T[K] : never
-  ): boolean {
-    return this.emitter.emit(eventName as string, ...args)
+  protected emit<K extends keyof T>(eventName: K, ...args: T[K]): boolean {
+    const entries = this.listeners.get(eventName)
+    if (!entries || entries.length === 0) return false
+
+    // Copy to avoid mutation during iteration
+    const toCall = [...entries]
+
+    // Remove once listeners before calling
+    const onceIndices: number[] = []
+    toCall.forEach((entry, i) => {
+      if (entry.once) onceIndices.push(i)
+    })
+    // Remove in reverse order to preserve indices
+    for (let i = onceIndices.length - 1; i >= 0; i--)
+      entries.splice(onceIndices[i], 1)
+
+    if (entries.length === 0) this.listeners.delete(eventName)
+
+    // Call listeners
+    for (const entry of toCall)
+      this.invokeListener(eventName, entry.listener, args)
+
+    return true
   }
 
   /**
-   * Wrap a listener to catch and log errors from async listeners
-   * @param eventName - Event name for error logging
-   * @param listener - Original listener function
-   * @returns Wrapped listener that catches async errors
+   * Internal method to add a listener
+   * @param eventName - The name of the event
+   * @param listener - The callback function
+   * @param once - Whether to remove after first call
+   * @returns this
    */
-  private wrapListener(eventName: string, listener: ListenerFn): ListenerFn {
-    return (...args: unknown[]): void => {
-      try {
-        const result = listener(...args)
-        // Handle async listeners - catch rejected promises
-        if (result && typeof result === 'object' && 'then' in result) {
-          ;(result as Promise<void>).catch((error: unknown) => {
-            logger.error(
-              `Unhandled error in async event listener for "${eventName}"`,
-              error instanceof Error ? error : new Error(String(error)),
-            )
-          })
-        }
-      } catch (error) {
-        // Handle sync errors
-        logger.error(
-          `Unhandled error in event listener for "${eventName}"`,
-          error instanceof Error ? error : new Error(String(error)),
-        )
+  private addListenerInternal<K extends keyof T>(
+    eventName: K,
+    listener: ListenerOf<T, K>,
+    once: boolean,
+  ): this {
+    let entries = this.listeners.get(eventName)
+    if (!entries) {
+      entries = []
+      this.listeners.set(eventName, entries)
+    }
+    entries.push({ listener, once } as ListenerEntry<T, keyof T>)
+    return this
+  }
+
+  /**
+   * Invoke a listener with error handling for async listeners
+   * @param eventName - Event name for error logging
+   * @param listener - Listener function to invoke
+   * @param args - Arguments to pass
+   */
+  private invokeListener<K extends keyof T>(
+    eventName: K,
+    listener: ListenerOf<T, K>,
+    args: T[K],
+  ): void {
+    try {
+      const result = listener(...args)
+      // Handle async listeners - catch rejected promises
+      if (result && typeof result === 'object' && 'then' in result) {
+        result.then(undefined, (error: unknown) => {
+          logger.error(
+            `Unhandled error in async event listener for "${String(eventName)}"`,
+            error instanceof Error ? error : new Error(String(error)),
+          )
+        })
       }
+    } catch (error) {
+      // Handle sync errors
+      logger.error(
+        `Unhandled error in event listener for "${String(eventName)}"`,
+        error instanceof Error ? error : new Error(String(error)),
+      )
     }
   }
 }
