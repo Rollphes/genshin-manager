@@ -116,7 +116,8 @@ function matchArray(
   const confidence = minLength > 0 ? totalConfidence / minLength : 0
   const success =
     options.matchStrategy === 'exact'
-      ? matchedElements === pattern.elements.length
+      ? matchedElements === pattern.elements.length &&
+        arrayValue.length === pattern.elements.length
       : matchedElements > 0
 
   return { success, keyMappings: pathToOriginalNameMap, confidence }
