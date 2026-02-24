@@ -27,7 +27,7 @@ function createStringKeyedMap(
     jsonPropertyPath,
     originalPropertyName,
   ] of pathToOriginalNameMap) {
-    const pathAsString = jsonPropertyPath.map((s) => String(s)).join('.')
+    const pathAsString = JSON.stringify(jsonPropertyPath)
     stringKeyedMap.set(pathAsString, originalPropertyName)
   }
 
@@ -60,7 +60,7 @@ function decodeRecursively(
 
     for (const [encryptedKey, childValue] of Object.entries(currentValue)) {
       const currentKeyPath = [...currentPath, encryptedKey]
-      const pathAsString = currentKeyPath.map((s) => String(s)).join('.')
+      const pathAsString = JSON.stringify(currentKeyPath)
       const originalPropertyName =
         stringKeyedMap.get(pathAsString) ?? encryptedKey
 
