@@ -97,7 +97,7 @@ export class Logger {
 
     if (data !== undefined) {
       const dataString =
-        typeof data === 'string' ? data : (data.stack ?? data.message)
+        typeof data === 'string' ? data : (data.stack ?? data.toString())
       console.log(formattedMessage, dataString)
     } else {
       console.log(formattedMessage)
