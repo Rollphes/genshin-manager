@@ -38,7 +38,8 @@ export function findBestKeyMapping(
     )
     if (matchResult.confidence > bestResult.confidence) bestResult = matchResult
 
-    if (matchResult.confidence >= 0.95) break
+    // Early exit only on perfect match (100%) - can't improve further
+    if (matchResult.confidence === 1) break
   }
 
   return bestResult
