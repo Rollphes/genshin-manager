@@ -61,10 +61,9 @@ describe('RestClient', () => {
       const result = await client.fetch('/api/users/:id', { params: { id: 1 } })
 
       expect(result).toEqual(responseData)
-      expect(mockFetch).toHaveBeenCalledWith(
-        'https://api.example.com/api/users/1',
-        expect.any(Object),
-      )
+      expect(mockFetch).toHaveBeenCalledWith(expect.any(Request))
+      const request = mockFetch.mock.calls[0][0] as Request
+      expect(request.url).toBe('https://api.example.com/api/users/1')
     })
 
     it('should fetch JSON data with query params', async () => {
@@ -80,10 +79,9 @@ describe('RestClient', () => {
       })
 
       expect(result).toEqual(responseData)
-      expect(mockFetch).toHaveBeenCalledWith(
-        expect.stringContaining('page=1'),
-        expect.any(Object),
-      )
+      expect(mockFetch).toHaveBeenCalledWith(expect.any(Request))
+      const request = mockFetch.mock.calls[0][0] as Request
+      expect(request.url).toContain('page=1')
     })
 
     it('should fetch without options when not required', async () => {
@@ -122,9 +120,8 @@ describe('RestClient', () => {
       })
       await client.fetch('/api/simple')
 
-      const calledWith = mockFetch.mock.calls[0] as [string, RequestInit]
-      const headers = calledWith[1].headers as Record<string, string>
-      expect(headers.authorization).toBe('Bearer token')
+      const request = mockFetch.mock.calls[0][0] as Request
+      expect(request.headers.get('authorization')).toBe('Bearer token')
     })
   })
 
@@ -210,10 +207,9 @@ describe('RestClient', () => {
       const client = new RestClient<TestApiRoutes>('https://api.example.com')
       await client.fetch('/api/users/:id', { params: { id: 123 } })
 
-      expect(mockFetch).toHaveBeenCalledWith(
-        'https://api.example.com/api/users/123',
-        expect.any(Object),
-      )
+      expect(mockFetch).toHaveBeenCalledWith(expect.any(Request))
+      const request = mockFetch.mock.calls[0][0] as Request
+      expect(request.url).toBe('https://api.example.com/api/users/123')
     })
   })
 })

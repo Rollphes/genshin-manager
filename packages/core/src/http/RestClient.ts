@@ -313,13 +313,17 @@ export class RestClient<
 
     let lastError: Error | undefined
 
+    // Create Request object to reuse for fetch and error reporting
+    // Note: GET requests without body can be reused across retries
+    const request = new Request(url, {
+      method: 'GET',
+      headers: options.headers,
+      signal: options.signal,
+    })
+
     for (let attempt = 0; attempt <= maxRetries; attempt++) {
       try {
-        const response = await fetch(url, {
-          method: 'GET',
-          headers: options.headers,
-          signal: options.signal,
-        })
+        const response = await fetch(request)
 
         // Handle 429 Too Many Requests with Retry-After header
         if (response.status === 429) {
@@ -330,7 +334,7 @@ export class RestClient<
           }
         }
 
-        if (!response.ok) throw new NetworkError(new Request(url), response)
+        if (!response.ok) throw new NetworkError(request, response)
 
         // Handler errors (e.g., JSON parse) should NOT be retried
         // as they are not transient network issues
