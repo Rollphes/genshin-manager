@@ -87,8 +87,7 @@ export class VersionChecker {
       },
     )
 
-    await this.saveCommits(newCommitsRaw)
-
+    // Validate before saving to preserve old data on failure
     if (
       newCommitsRaw.length === 0 ||
       !this.isCommitsResponse(newCommitsRaw[0])
@@ -101,6 +100,8 @@ export class VersionChecker {
         'Invalid data structure (expected non-empty array)',
       )
     }
+
+    await this.saveCommits(newCommitsRaw)
 
     this.currentCommitId = newCommitsRaw[0].id
 
