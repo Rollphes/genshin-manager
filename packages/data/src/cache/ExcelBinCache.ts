@@ -95,7 +95,9 @@ export class ExcelBinCache extends TableCache<
       if (!table) continue
 
       for (const entry of table.getAll()) {
-        // Cast via unknown: MasterFileMap types don't have index signature
+        // Cast via unknown required: TypeScript interfaces lack implicit index signatures,
+        // making them incompatible with Record<string, unknown>. Runtime safety is ensured
+        // by extractHashesFromEntry's defensive property access via Object.entries().
         this.extractHashesFromEntry(
           entry as unknown as Record<string, unknown>,
           hashes,
@@ -335,6 +337,7 @@ export class ExcelBinCache extends TableCache<
         continue
       }
 
+      // Cast is safe: runtime checks above ensure value is a non-null, non-array object
       if (
         typeof value === 'object' &&
         value !== null &&
