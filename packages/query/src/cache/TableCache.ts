@@ -19,7 +19,7 @@ export abstract class TableCache<TTableName extends string, TRecord> {
 
   /**
    * Creates a new TableCache
-   * @param maxTables - Maximum number of tables to keep in cache (0 = unlimited)
+   * @param maxTables - Maximum number of tables to keep in cache (0 = default 1000)
    */
   constructor(maxTables = 0) {
     this.indexRegistry = new IndexRegistry()
