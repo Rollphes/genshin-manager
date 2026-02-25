@@ -1,4 +1,3 @@
-//TODO: 移動検討
 /**
  * Supported language codes (ISO 639-1 with region)
  */

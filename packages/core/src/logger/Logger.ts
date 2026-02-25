@@ -46,7 +46,8 @@ export class Logger {
    * @param data - Additional data to log
    */
   public debug(message: string, data?: LogData): void {
-    if (this.shouldLog(LogLevel.DEBUG)) this.log('DEBUG', message, data)
+    if (this.shouldLog(LogLevel.DEBUG))
+      this.log(LogLevel.DEBUG, 'DEBUG', message, data)
   }
 
   /**
@@ -55,7 +56,8 @@ export class Logger {
    * @param data - Additional data to log
    */
   public info(message: string, data?: LogData): void {
-    if (this.shouldLog(LogLevel.INFO)) this.log('INFO', message, data)
+    if (this.shouldLog(LogLevel.INFO))
+      this.log(LogLevel.INFO, 'INFO', message, data)
   }
 
   /**
@@ -64,7 +66,8 @@ export class Logger {
    * @param data - Additional data to log
    */
   public warn(message: string, data?: LogData): void {
-    if (this.shouldLog(LogLevel.WARN)) this.log('WARN', message, data)
+    if (this.shouldLog(LogLevel.WARN))
+      this.log(LogLevel.WARN, 'WARN', message, data)
   }
 
   /**
@@ -73,7 +76,8 @@ export class Logger {
    * @param data - Additional data to log
    */
   public error(message: string, data?: LogData): void {
-    if (this.shouldLog(LogLevel.ERROR)) this.log('ERROR', message, data)
+    if (this.shouldLog(LogLevel.ERROR))
+      this.log(LogLevel.ERROR, 'ERROR', message, data)
   }
 
   /**
@@ -87,20 +91,27 @@ export class Logger {
 
   /**
    * Internal logging method
+   * @param level - Log level
    * @param levelName - Log level name
    * @param message - Log message
    * @param data - Additional data to log
    */
-  private log(levelName: string, message: string, data?: LogData): void {
+  private log(
+    level: LogLevel,
+    levelName: string,
+    message: string,
+    data?: LogData,
+  ): void {
     const timestamp = new Date().toISOString()
     const formattedMessage = `[${timestamp}] [${levelName}] ${message}`
+    const logFn = level <= LogLevel.WARN ? console.error : console.log
 
     if (data !== undefined) {
       const dataString =
         typeof data === 'string' ? data : (data.stack ?? data.toString())
-      console.log(formattedMessage, dataString)
+      logFn(formattedMessage, dataString)
     } else {
-      console.log(formattedMessage)
+      logFn(formattedMessage)
     }
   }
 }

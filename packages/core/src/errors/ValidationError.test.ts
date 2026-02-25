@@ -6,7 +6,7 @@ import { GenshinManagerError } from '@/errors/GenshinManagerError'
 import { ValidationError } from '@/errors/ValidationError'
 
 describe('ValidationError', () => {
-  it('should create error with ZodError', () => {
+  it('should create error with validation issues', () => {
     const schema = z.string()
     const result = schema.safeParse(123)
     if (!result.success) {
@@ -14,7 +14,9 @@ describe('ValidationError', () => {
 
       expect(error).toBeInstanceOf(GenshinManagerError)
       expect(error.errorCode).toBe(ErrorCode.GmValidation)
-      expect(error.zodError).toBe(result.error)
+      expect(error.issues).toHaveLength(1)
+      expect(error.issues[0].path).toEqual([])
+      expect(error.issues[0].message).toContain('string')
     }
   })
 

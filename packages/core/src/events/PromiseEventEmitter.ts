@@ -25,7 +25,9 @@ interface ListenerEntry<T, K extends keyof T> {
  * Properly handles errors from async listeners by logging them.
  * Type-safe implementation without Node.js EventEmitter dependency.
  */
-export abstract class PromiseEventEmitter<T extends { [K in keyof T]: unknown[] }> {
+export abstract class PromiseEventEmitter<
+  T extends { [K in keyof T]: unknown[] },
+> {
   /** Map of event names to listener entries */
   private readonly listeners = new Map<keyof T, ListenerEntry<T, keyof T>[]>()
 

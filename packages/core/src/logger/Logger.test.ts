@@ -3,10 +3,12 @@ import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 import { Logger, logger, LogLevel } from '@/logger/Logger'
 
 describe('Logger', () => {
-  const consoleSpy = vi.spyOn(console, 'log').mockImplementation(vi.fn())
+  const consoleLogSpy = vi.spyOn(console, 'log').mockImplementation(vi.fn())
+  const consoleErrorSpy = vi.spyOn(console, 'error').mockImplementation(vi.fn())
 
   beforeEach(() => {
-    consoleSpy.mockClear()
+    consoleLogSpy.mockClear()
+    consoleErrorSpy.mockClear()
     logger.configure({ level: LogLevel.NONE })
   })
 
@@ -83,19 +85,19 @@ describe('Logger', () => {
     it('should not log when level is below DEBUG', () => {
       logger.configure({ level: LogLevel.INFO })
       logger.debug('test message')
-      expect(consoleSpy).not.toHaveBeenCalled()
+      expect(consoleLogSpy).not.toHaveBeenCalled()
     })
 
     it('should log when level is DEBUG', () => {
       logger.configure({ level: LogLevel.DEBUG })
       logger.debug('test message')
-      expect(consoleSpy).toHaveBeenCalled()
+      expect(consoleLogSpy).toHaveBeenCalled()
     })
 
     it('should include data when provided', () => {
       logger.configure({ level: LogLevel.DEBUG })
       logger.debug('test message', 'additional data')
-      expect(consoleSpy).toHaveBeenCalledWith(
+      expect(consoleLogSpy).toHaveBeenCalledWith(
         expect.stringContaining('[DEBUG]'),
         'additional data',
       )
@@ -106,13 +108,13 @@ describe('Logger', () => {
     it('should not log when level is below INFO', () => {
       logger.configure({ level: LogLevel.WARN })
       logger.info('test message')
-      expect(consoleSpy).not.toHaveBeenCalled()
+      expect(consoleLogSpy).not.toHaveBeenCalled()
     })
 
     it('should log when level is INFO', () => {
       logger.configure({ level: LogLevel.INFO })
       logger.info('test message')
-      expect(consoleSpy).toHaveBeenCalled()
+      expect(consoleLogSpy).toHaveBeenCalled()
     })
   })
 
@@ -120,13 +122,13 @@ describe('Logger', () => {
     it('should not log when level is below WARN', () => {
       logger.configure({ level: LogLevel.ERROR })
       logger.warn('test message')
-      expect(consoleSpy).not.toHaveBeenCalled()
+      expect(consoleLogSpy).not.toHaveBeenCalled()
     })
 
     it('should log when level is WARN', () => {
       logger.configure({ level: LogLevel.WARN })
       logger.warn('test message')
-      expect(consoleSpy).toHaveBeenCalled()
+      expect(consoleErrorSpy).toHaveBeenCalled()
     })
   })
 
@@ -134,19 +136,19 @@ describe('Logger', () => {
     it('should not log when level is NONE', () => {
       logger.configure({ level: LogLevel.NONE })
       logger.error('test message')
-      expect(consoleSpy).not.toHaveBeenCalled()
+      expect(consoleErrorSpy).not.toHaveBeenCalled()
     })
 
     it('should log when level is ERROR', () => {
       logger.configure({ level: LogLevel.ERROR })
       logger.error('test message')
-      expect(consoleSpy).toHaveBeenCalled()
+      expect(consoleErrorSpy).toHaveBeenCalled()
     })
 
     it('should handle unknown data type', () => {
       logger.configure({ level: LogLevel.ERROR })
       logger.error('test message', new Error('error'))
-      expect(consoleSpy).toHaveBeenCalled()
+      expect(consoleErrorSpy).toHaveBeenCalled()
     })
   })
 
