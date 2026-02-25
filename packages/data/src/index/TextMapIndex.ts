@@ -326,7 +326,8 @@ export class TextMapIndex implements TextMapProvider {
     const lines = content.split('\n')
     let currentOffset = 0
 
-    for (const line of lines) {
+    for (let i = 0; i < lines.length; i++) {
+      const line = lines[i]
       const trimmed = line.trim()
       const match = TextMapIndex.hashPattern.exec(trimmed)
 
@@ -336,8 +337,9 @@ export class TextMapIndex implements TextMapProvider {
           entries.push({ hash, offset: currentOffset })
       }
 
-      // +1 for the newline separator
-      currentOffset += Buffer.byteLength(line, 'utf8') + 1
+      // +1 for newline separator (except last line which may not have one)
+      const newlineLength = i < lines.length - 1 ? 1 : 0
+      currentOffset += Buffer.byteLength(line, 'utf8') + newlineLength
     }
 
     return entries
