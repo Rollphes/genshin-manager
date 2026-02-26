@@ -27,6 +27,48 @@ function isJsonObjectArray(value: unknown): value is JsonObject[] {
 }
 
 /**
+ * Check if property name is encrypted (all uppercase letters only)
+ * @param name - Property name to check
+ * @returns True if property name is encrypted
+ */
+function isEncryptedPropertyName(name: string): boolean {
+  return /^[A-Z]+$/.test(name)
+}
+
+/**
+ * Recursively filter out encrypted properties from object
+ * @param obj - Object to filter
+ * @returns Filtered object without encrypted properties
+ */
+function filterEncryptedProperties(obj: JsonObject): JsonObject {
+  const result: JsonObject = {}
+
+  for (const [key, value] of Object.entries(obj)) {
+    // Skip encrypted property names (all uppercase)
+    if (isEncryptedPropertyName(key)) {
+      continue
+    }
+
+    if (Array.isArray(value)) {
+      // Process array elements
+      result[key] = value.map((item) => {
+        if (typeof item === 'object' && item !== null) {
+          return filterEncryptedProperties(item as JsonObject)
+        }
+        return item
+      })
+    } else if (typeof value === 'object' && value !== null) {
+      // Process nested object
+      result[key] = filterEncryptedProperties(value as JsonObject)
+    } else {
+      result[key] = value
+    }
+  }
+
+  return result
+}
+
+/**
  * Generate TypeScript types from master file using quicktype-core
  * @param masterFileLocation - Master file FileLocation
  * @param typeName - Type name to generate
@@ -68,10 +110,13 @@ async function generateTypeFromMaster(
   )
   const decodedData = decoder.execute(encryptedDataRaw)
 
+  // Filter out encrypted properties (all uppercase) before type generation
+  const filteredData = decodedData.map((item) => filterEncryptedProperties(item))
+
   const jsonInput = jsonInputForTargetLanguage('typescript')
   await jsonInput.addSource({
     name: typeName,
-    samples: [JSON.stringify(decodedData)],
+    samples: [JSON.stringify(filteredData)],
   })
 
   const inputData = new InputData()

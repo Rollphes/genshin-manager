@@ -29,8 +29,13 @@ export class ValidationError extends GenshinManagerError {
    */
   constructor(zodError: ZodError, options?: ErrorOptions) {
     super(zodError.message, options)
+    // ZodIssue.path is (string | number)[] but TypeScript infers PropertyKey[]
+    // Filter to ensure only string | number values
     this.issues = zodError.issues.map((issue) => ({
-      path: issue.path,
+      path: issue.path.filter(
+        (segment): segment is string | number =>
+          typeof segment === 'string' || typeof segment === 'number',
+      ),
       message: issue.message,
     }))
   }

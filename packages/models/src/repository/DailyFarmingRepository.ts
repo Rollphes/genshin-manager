@@ -62,7 +62,9 @@ export class DailyFarmingRepository {
       const allDomainEntries = [...weaponDomains, ...skillDomains]
       for (const domain of allDomainEntries) {
         const rewardList = domain.descriptionCycleRewardList.value
-        const materialIds = rewardList[dayOfWeek === 0 ? i : rewardDateIndex]
+        const rewardEntry = rewardList[dayOfWeek === 0 ? i : rewardDateIndex]
+        // descriptionCycleRewardList is { [key: string]: number }[] - convert to number[]
+        const materialIds = Object.values(rewardEntry)
         const dungeonEntryId = domain.dungeonEntryId.value
 
         const nameTextId =
@@ -94,12 +96,12 @@ export class DailyFarmingRepository {
 
     const talentBookIds = skillDomains.flatMap((d) => {
       const rewardList = d.descriptionCycleRewardList.value
-      return rewardList[rewardDateIndex]
+      return Object.values(rewardList[rewardDateIndex])
     })
 
     const weaponMaterialIds = weaponDomains.flatMap((d) => {
       const rewardList = d.descriptionCycleRewardList.value
-      return rewardList[rewardDateIndex]
+      return Object.values(rewardList[rewardDateIndex])
     })
 
     return new DailyFarming({

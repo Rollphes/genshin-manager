@@ -159,36 +159,6 @@ export class ExcelBinQuery<
   }
 
   /**
-   * Attempts to use index lookup for the first equality condition
-   * @remarks Called only when whereConditions.length > 0 (checked in executeQuery)
-   * @returns Array with single record if found, empty array if not found, undefined if no index
-   */
-  private tryIndexLookup(): MasterRecord<K>[] | undefined {
-    // Safe: executeQuery checks whereConditions.length > 0 before calling
-    const firstCondition = this.whereConditions[0]
-
-    // Only optimize simple top-level equality conditions
-    if (firstCondition.type !== 'comparison' || firstCondition.operator !== '=')
-      return undefined
-
-    const key = firstCondition.key
-    const value = firstCondition.value
-
-    // Only string/number values can be indexed
-    if (typeof value !== 'string' && typeof value !== 'number') return undefined
-
-    // Check if index exists for this key
-    if (!this.excelBinCache.hasIndex(this.tableName, key)) return undefined
-
-    // Use O(1) index lookup
-    const record = this.excelBinCache.getByIndex(this.tableName, key, value) as
-      | MasterRecord<K>
-      | undefined
-
-    return record ? [record] : []
-  }
-
-  /**
    * Creates an error for when no record is found
    * @returns ExcelBinPropertyNotFoundError
    */
@@ -246,6 +216,36 @@ export class ExcelBinQuery<
       cloned as unknown as QueryBuilder<MasterRecord<K>, TSelected, K>,
     )
     return cloned
+  }
+
+  /**
+   * Attempts to use index lookup for the first equality condition
+   * @remarks Called only when whereConditions.length > 0 (checked in executeQuery)
+   * @returns Array with single record if found, empty array if not found, undefined if no index
+   */
+  private tryIndexLookup(): MasterRecord<K>[] | undefined {
+    // Safe: executeQuery checks whereConditions.length > 0 before calling
+    const firstCondition = this.whereConditions[0]
+
+    // Only optimize simple top-level equality conditions
+    if (firstCondition.type !== 'comparison' || firstCondition.operator !== '=')
+      return undefined
+
+    const key = firstCondition.key
+    const value = firstCondition.value
+
+    // Only string/number values can be indexed
+    if (typeof value !== 'string' && typeof value !== 'number') return undefined
+
+    // Check if index exists for this key
+    if (!this.excelBinCache.hasIndex(this.tableName, key)) return undefined
+
+    // Use O(1) index lookup
+    const record = this.excelBinCache.getByIndex(this.tableName, key, value) as
+      | MasterRecord<K>
+      | undefined
+
+    return record ? [record] : []
   }
 
   /**
