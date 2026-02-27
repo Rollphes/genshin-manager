@@ -1,7 +1,7 @@
 {
   "metadata": {
     "sourceFile": "WeaponExcelConfigData.json",
-    "generatedAt": "2025-10-20T15:45:01.835Z"
+    "generatedAt": "2026-02-27T12:22:14.952Z"
   },
   "keyMappingTemplate": {
     "awakenCosts": [
@@ -14,6 +14,7 @@
     "awakenLightMapTexture": "ART/Equip/AvatarEquip/Equip_Sword_Steel/Equip_Sword_Steel_OverrideTexture/Equip_Sword_Steel_02_Tex_Lightmap",
     "awakenMaterial": 0,
     "awakenTexture": "ART/Equip/AvatarEquip/Equip_Sword_Steel/Equip_Sword_Steel_OverrideTexture/Equip_Sword_Steel_02_Tex_Diffuse",
+    "DDKMEOABLMD": "None",
     "descTextMapHash": 1214777829,
     "destroyReturnMaterial": [
       104011
@@ -22,19 +23,18 @@
       3
     ],
     "destroyRule": "DESTROY_RETURN_MATERIAL",
-    "DLIALKLHDED": 0,
     "dropable": false,
     "gachaCardNameHash": 7434030286633341000,
     "gadgetId": 50011301,
     "globalItemLimit": 0,
+    "HMMIIADPCNP": 0,
     "icon": "UI_EquipIcon_Sword_Steel",
     "id": 11301,
+    "IEIEFIGAPHD": false,
     "initialLockState": 0,
     "itemType": "ITEM_WEAPON",
-    "KCCFDAFPBCI": false,
     "materialType": "WEAPON_MATERIAL_NONE",
     "nameTextMapHash": 479076483,
-    "PDAEIKHKCBP": "None",
     "rank": 10,
     "rankLevel": 3,
     "skillAffix": [
@@ -73,6 +73,7 @@
       "awakenLightMapTexture": "ART/Equip/AvatarEquip/Equip_Sword_Zephyrus/Equip_Sword_Zephyrus_OverrideTexture/Equip_Sword_Zephyrus_02_Tex_Lightmap",
       "awakenMaterial": 0,
       "awakenTexture": "ART/Equip/AvatarEquip/Equip_Sword_Zephyrus/Equip_Sword_Zephyrus_OverrideTexture/Equip_Sword_Zephyrus_02_Tex_Diffuse",
+      "DDKMEOABLMD": "None",
       "descTextMapHash": 1169620325,
       "destroyReturnMaterial": [
         0
@@ -81,19 +82,18 @@
         0
       ],
       "destroyRule": "DESTROY_NONE",
-      "DLIALKLHDED": 0,
       "dropable": false,
       "gachaCardNameHash": 2826103670021865000,
       "gadgetId": 50011401,
       "globalItemLimit": 0,
+      "HMMIIADPCNP": 0,
       "icon": "UI_EquipIcon_Sword_Zephyrus",
       "id": 11401,
+      "IEIEFIGAPHD": false,
       "initialLockState": 2,
       "itemType": "ITEM_WEAPON",
-      "KCCFDAFPBCI": false,
       "materialType": "WEAPON_MATERIAL_NONE",
       "nameTextMapHash": 2474354867,
-      "PDAEIKHKCBP": "None",
       "rank": 10,
       "rankLevel": 4,
       "skillAffix": [
@@ -131,6 +131,7 @@
       "awakenLightMapTexture": "ART/Equip/AvatarEquip/Equip_Sword_Magnum/Equip_Sword_Magnum_OverrideTexture/Equip_Sword_Magnum_02_Tex_Lightmap",
       "awakenMaterial": 200103,
       "awakenTexture": "ART/Equip/AvatarEquip/Equip_Sword_Magnum/Equip_Sword_Magnum_OverrideTexture/Equip_Sword_Magnum_02_Tex_Diffuse",
+      "DDKMEOABLMD": "None",
       "descTextMapHash": 279012485,
       "destroyReturnMaterial": [
         0
@@ -139,19 +140,18 @@
         0
       ],
       "destroyRule": "DESTROY_NONE",
-      "DLIALKLHDED": 1,
       "dropable": false,
       "gachaCardNameHash": 17944186735592581000,
       "gadgetId": 50011413,
       "globalItemLimit": 0,
+      "HMMIIADPCNP": 1,
       "icon": "UI_EquipIcon_Sword_Magnum",
       "id": 11413,
+      "IEIEFIGAPHD": false,
       "initialLockState": 2,
       "itemType": "ITEM_WEAPON",
-      "KCCFDAFPBCI": false,
       "materialType": "WEAPON_MATERIAL_NONE",
       "nameTextMapHash": 2749853923,
-      "PDAEIKHKCBP": "None",
       "rank": 10,
       "rankLevel": 4,
       "skillAffix": [
@@ -189,6 +189,7 @@
       "awakenLightMapTexture": "ART/Equip/AvatarEquip/Equip_Claymore_Glaive/Equip_Claymore_Glaive_OverrideTexture/Equip_Claymore_Glaive_02_Tex_Lightmap",
       "awakenMaterial": 0,
       "awakenTexture": "ART/Equip/AvatarEquip/Equip_Claymore_Glaive/Equip_Claymore_Glaive_OverrideTexture/Equip_Claymore_Glaive_02_Tex_Diffuse",
+      "DDKMEOABLMD": "None",
       "descTextMapHash": 1887050717,
       "destroyReturnMaterial": [
         104011
@@ -197,19 +198,18 @@
         3
       ],
       "destroyRule": "DESTROY_RETURN_MATERIAL",
-      "DLIALKLHDED": 0,
       "dropable": false,
       "gachaCardNameHash": 18902074258675024,
       "gadgetId": 50012301,
       "globalItemLimit": 0,
+      "HMMIIADPCNP": 0,
       "icon": "UI_EquipIcon_Claymore_Glaive",
       "id": 12301,
+      "IEIEFIGAPHD": false,
       "initialLockState": 0,
       "itemType": "ITEM_WEAPON",
-      "KCCFDAFPBCI": false,
       "materialType": "WEAPON_MATERIAL_NONE",
       "nameTextMapHash": 1479961579,
-      "PDAEIKHKCBP": "None",
       "rank": 10,
       "rankLevel": 3,
       "skillAffix": [
@@ -247,6 +247,7 @@
       "awakenLightMapTexture": "ART/Equip/AvatarEquip/Equip_Sword_Blunt/Equip_Sword_Blunt_OverrideTexture/Equip_Sword_Blunt_02_Tex_Lightmap",
       "awakenMaterial": 0,
       "awakenTexture": "ART/Equip/AvatarEquip/Equip_Sword_Blunt/Equip_Sword_Blunt_OverrideTexture/Equip_Sword_Blunt_02_Tex_Diffuse",
+      "DDKMEOABLMD": "None",
       "descTextMapHash": 3807468957,
       "destroyReturnMaterial": [
         104011
@@ -255,19 +256,18 @@
         1
       ],
       "destroyRule": "DESTROY_RETURN_MATERIAL",
-      "DLIALKLHDED": 0,
       "dropable": false,
       "gachaCardNameHash": 5206550965894458000,
       "gadgetId": 50011101,
       "globalItemLimit": 0,
+      "HMMIIADPCNP": 0,
       "icon": "UI_EquipIcon_Sword_Blunt",
       "id": 11101,
+      "IEIEFIGAPHD": false,
       "initialLockState": 0,
       "itemType": "ITEM_WEAPON",
-      "KCCFDAFPBCI": false,
       "materialType": "WEAPON_MATERIAL_NONE",
       "nameTextMapHash": 2410593283,
-      "PDAEIKHKCBP": "None",
       "rank": 10,
       "rankLevel": 1,
       "skillAffix": [
