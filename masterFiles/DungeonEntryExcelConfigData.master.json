@@ -1,10 +1,10 @@
 {
   "metadata": {
     "sourceFile": "DungeonEntryExcelConfigData.json",
-    "generatedAt": "2025-10-20T15:44:55.641Z"
+    "generatedAt": "2026-02-27T12:22:07.997Z"
   },
   "keyMappingTemplate": {
-    "BMEAFBKODMJ": [
+    "CFOKILJJLAJ": [
       2025
     ],
     "condComb": "LOGIC_OR",
@@ -52,12 +52,12 @@
     ],
     "descTextMapHash": 3914992809,
     "dungeonEntryId": 50,
-    "EMCEEGJKLMK": 0,
-    "GAAIKDHGIAI": true,
-    "GMPKHIHBPAD": 0,
+    "FADFPALPEOI": 0,
     "id": 2,
     "isDefaultOpen": false,
     "isShowInAdvHandbook": true,
+    "MHEKEPBNCIO": true,
+    "OICJFKECFFF": 0,
     "picPath": "UI_DungeonPic_Water",
     "rewardDataId": 220402,
     "satisfiedCond": [
@@ -78,7 +78,7 @@
   },
   "alternativePatterns": [
     {
-      "BMEAFBKODMJ": [
+      "CFOKILJJLAJ": [
         2025
       ],
       "condComb": "LOGIC_OR",
@@ -126,12 +126,12 @@
       ],
       "descTextMapHash": 1293176289,
       "dungeonEntryId": 135,
-      "EMCEEGJKLMK": 0,
-      "GAAIKDHGIAI": true,
-      "GMPKHIHBPAD": 0,
+      "FADFPALPEOI": 0,
       "id": 3,
       "isDefaultOpen": false,
       "isShowInAdvHandbook": true,
+      "MHEKEPBNCIO": true,
+      "OICJFKECFFF": 0,
       "picPath": "UI_DungeonPic_Thunder",
       "rewardDataId": 220407,
       "satisfiedCond": [
@@ -151,7 +151,7 @@
       "type": "DUNGEN_ENTRY_TYPE_WEAPON_PROMOTE"
     },
     {
-      "BMEAFBKODMJ": [
+      "CFOKILJJLAJ": [
         113,
         117,
         121,
@@ -184,12 +184,12 @@
       ],
       "descTextMapHash": 3790866161,
       "dungeonEntryId": 271,
-      "EMCEEGJKLMK": 40,
-      "GAAIKDHGIAI": false,
-      "GMPKHIHBPAD": 456003,
+      "FADFPALPEOI": 456003,
       "id": 1023,
       "isDefaultOpen": true,
       "isShowInAdvHandbook": true,
+      "MHEKEPBNCIO": false,
+      "OICJFKECFFF": 40,
       "picPath": "UI_DungeonPic_DahakaBoss_1",
       "rewardDataId": 0,
       "satisfiedCond": [
@@ -209,7 +209,7 @@
       "type": "DUNGEON_ENTRY_TYPE_TRIAL"
     },
     {
-      "BMEAFBKODMJ": [
+      "CFOKILJJLAJ": [
         2025
       ],
       "condComb": "LOGIC_NONE",
@@ -229,12 +229,12 @@
       ],
       "descTextMapHash": 792448241,
       "dungeonEntryId": 38,
-      "EMCEEGJKLMK": 0,
-      "GAAIKDHGIAI": false,
-      "GMPKHIHBPAD": 456001,
+      "FADFPALPEOI": 456001,
       "id": 1006,
       "isDefaultOpen": true,
       "isShowInAdvHandbook": true,
+      "MHEKEPBNCIO": false,
+      "OICJFKECFFF": 0,
       "picPath": "UI_DungeonPic_Stormterror",
       "rewardDataId": 0,
       "satisfiedCond": [
@@ -254,7 +254,7 @@
       "type": "DUNGEON_ENTRY_TYPE_TRIAL"
     },
     {
-      "BMEAFBKODMJ": [
+      "CFOKILJJLAJ": [
         106
       ],
       "condComb": "LOGIC_NONE",
@@ -272,12 +272,12 @@
       ],
       "descTextMapHash": 1047671777,
       "dungeonEntryId": 218,
-      "EMCEEGJKLMK": 40,
-      "GAAIKDHGIAI": false,
-      "GMPKHIHBPAD": 456002,
+      "FADFPALPEOI": 456002,
       "id": 1016,
       "isDefaultOpen": true,
       "isShowInAdvHandbook": true,
+      "MHEKEPBNCIO": false,
+      "OICJFKECFFF": 40,
       "picPath": "UI_DungeonPic_Goldenhouse",
       "rewardDataId": 0,
       "satisfiedCond": [

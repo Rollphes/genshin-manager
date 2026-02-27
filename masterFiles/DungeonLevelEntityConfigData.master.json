@@ -1,15 +1,15 @@
 {
   "metadata": {
     "sourceFile": "DungeonLevelEntityConfigData.json",
-    "generatedAt": "2025-10-20T15:44:55.728Z"
+    "generatedAt": "2026-02-27T12:22:08.089Z"
   },
   "keyMappingTemplate": {
     "abilityGroupName": "",
     "clientId": 10000,
     "descTextMapHash": 3109256178,
+    "FFBABJFLKKJ": "",
     "id": 1,
     "levelConfigName": "Level_Avatar_DefenseDown",
-    "OHICBGIFKGF": "",
     "show": true,
     "switchTitleTextMapHash": 797221129
   },
@@ -18,9 +18,9 @@
       "abilityGroupName": "",
       "clientId": 11156,
       "descTextMapHash": 2355963490,
+      "FFBABJFLKKJ": "LevelBuff_TowerBuff_TestFor53_3",
       "id": 2036,
       "levelConfigName": "",
-      "OHICBGIFKGF": "LevelBuff_TowerBuff_TestFor53_3",
       "show": true,
       "switchTitleTextMapHash": 667274945
     },
@@ -28,9 +28,9 @@
       "abilityGroupName": "",
       "clientId": 11158,
       "descTextMapHash": 93317682,
+      "FFBABJFLKKJ": "",
       "id": 2038,
       "levelConfigName": "LevelEntity_Monster_HpUp_Lv3",
-      "OHICBGIFKGF": "",
       "show": false,
       "switchTitleTextMapHash": 4199001217
     }

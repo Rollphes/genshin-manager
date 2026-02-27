@@ -1,7 +1,7 @@
 {
   "metadata": {
     "sourceFile": "ReliquarySetExcelConfigData.json",
-    "generatedAt": "2025-10-20T15:45:01.737Z"
+    "generatedAt": "2026-02-27T12:22:14.790Z"
   },
   "keyMappingTemplate": {
     "bagSortValue": 30,
@@ -13,12 +13,12 @@
       71330
     ],
     "disableFilter": 0,
-    "DKBIAAFLNOB": 5,
     "dungeonGroup": [
       5122,
       5123
     ],
     "equipAffixId": 214001,
+    "FHEGKGFDCLE": 5,
     "setIcon": "UI_RelicIcon_14001_4",
     "setId": 14001,
     "setNeedNum": [
@@ -41,12 +41,12 @@
         51130
       ],
       "disableFilter": 0,
-      "DKBIAAFLNOB": 4,
       "dungeonGroup": [
         5122,
         5123
       ],
       "equipAffixId": 210001,
+      "FHEGKGFDCLE": 4,
       "setIcon": "UI_RelicIcon_10001_4",
       "setId": 10001,
       "setNeedNum": [
@@ -68,12 +68,12 @@
         78330
       ],
       "disableFilter": 1,
-      "DKBIAAFLNOB": 5,
       "dungeonGroup": [
         5122,
         5123
       ],
       "equipAffixId": 215004,
+      "FHEGKGFDCLE": 5,
       "setIcon": "UI_RelicIcon_15004_4",
       "setId": 15004,
       "setNeedNum": [
@@ -91,12 +91,12 @@
         83330
       ],
       "disableFilter": 0,
-      "DKBIAAFLNOB": 4,
       "dungeonGroup": [
         5122,
         5123
       ],
       "equipAffixId": 215009,
+      "FHEGKGFDCLE": 4,
       "setIcon": "UI_RelicIcon_15009_3",
       "setId": 15009,
       "setNeedNum": [

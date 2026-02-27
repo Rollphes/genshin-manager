@@ -1,10 +1,10 @@
 {
   "metadata": {
     "sourceFile": "TowerLevelExcelConfigData.json",
-    "generatedAt": "2025-10-20T15:45:01.788Z"
+    "generatedAt": "2026-02-27T12:22:14.864Z"
   },
   "keyMappingTemplate": {
-    "AGEAANNELOI": 0,
+    "ANEFGPAAIJL": 0,
     "conds": [
       {
         "argumentList": [
@@ -47,6 +47,7 @@
       }
     ],
     "dungeonId": 3395,
+    "EBOCMFAKFKH": 0,
     "firstMonsterList": [
       10203,
       10306,
@@ -61,12 +62,11 @@
       10105
     ],
     "firstPassRewardId": 621031,
-    "ILCLLJANFMK": 0,
-    "JKMIPCBDBPM": 0,
-    "KLNFCGKDKGE": "",
+    "JIOKOCBEAGL": 0,
     "levelGroupId": 32,
     "levelId": 94,
     "levelIndex": 1,
+    "MBCNOGGBEGC": "",
     "monsterLevel": 87,
     "secondMonsterList": [
       50801,
@@ -89,7 +89,7 @@
   },
   "alternativePatterns": [
     {
-      "AGEAANNELOI": 0,
+      "ANEFGPAAIJL": 0,
       "conds": [
         {
           "argumentList": [
@@ -132,6 +132,7 @@
         }
       ],
       "dungeonId": 3401,
+      "EBOCMFAKFKH": 0,
       "firstMonsterList": [
         10202,
         10207,
@@ -145,12 +146,11 @@
         10110
       ],
       "firstPassRewardId": 621031,
-      "ILCLLJANFMK": 0,
-      "JKMIPCBDBPM": 0,
-      "KLNFCGKDKGE": "",
+      "JIOKOCBEAGL": 0,
       "levelGroupId": 38,
       "levelId": 112,
       "levelIndex": 1,
+      "MBCNOGGBEGC": "",
       "monsterLevel": 87,
       "secondMonsterList": [
         50303,
@@ -170,7 +170,7 @@
       ]
     },
     {
-      "AGEAANNELOI": 0,
+      "ANEFGPAAIJL": 0,
       "conds": [
         {
           "argumentList": [
@@ -213,6 +213,7 @@
         }
       ],
       "dungeonId": 3409,
+      "EBOCMFAKFKH": 0,
       "firstMonsterList": [
         53103,
         52101,
@@ -226,12 +227,11 @@
         50106
       ],
       "firstPassRewardId": 621031,
-      "ILCLLJANFMK": 0,
-      "JKMIPCBDBPM": 0,
-      "KLNFCGKDKGE": "",
+      "JIOKOCBEAGL": 0,
       "levelGroupId": 46,
       "levelId": 136,
       "levelIndex": 1,
+      "MBCNOGGBEGC": "",
       "monsterLevel": 87,
       "secondMonsterList": [
         10208,
@@ -246,7 +246,7 @@
       ]
     },
     {
-      "AGEAANNELOI": 0,
+      "ANEFGPAAIJL": 0,
       "conds": [
         {
           "argumentList": [
@@ -283,6 +283,7 @@
         }
       ],
       "dungeonId": 3442,
+      "EBOCMFAKFKH": 0,
       "firstMonsterList": [
         20102,
         10203,
@@ -298,12 +299,11 @@
         10103
       ],
       "firstPassRewardId": 621017,
-      "ILCLLJANFMK": 0,
-      "JKMIPCBDBPM": 0,
-      "KLNFCGKDKGE": "",
+      "JIOKOCBEAGL": 0,
       "levelGroupId": 6,
       "levelId": 17,
       "levelIndex": 2,
+      "MBCNOGGBEGC": "",
       "monsterLevel": 59,
       "secondMonsterList": [
         10302,
@@ -321,7 +321,7 @@
       ]
     },
     {
-      "AGEAANNELOI": 0,
+      "ANEFGPAAIJL": 0,
       "conds": [
         {
           "argumentList": [
@@ -364,6 +364,7 @@
         }
       ],
       "dungeonId": 3479,
+      "EBOCMFAKFKH": 0,
       "firstMonsterList": [
         10201,
         10202,
@@ -373,12 +374,11 @@
         10105
       ],
       "firstPassRewardId": 621032,
-      "ILCLLJANFMK": 0,
-      "JKMIPCBDBPM": 0,
-      "KLNFCGKDKGE": "",
+      "JIOKOCBEAGL": 0,
       "levelGroupId": 15,
       "levelId": 44,
       "levelIndex": 2,
+      "MBCNOGGBEGC": "",
       "monsterLevel": 89,
       "secondMonsterList": [
         30301,
@@ -396,7 +396,7 @@
       ]
     },
     {
-      "AGEAANNELOI": 0,
+      "ANEFGPAAIJL": 0,
       "conds": [
         {
           "argumentList": [
@@ -439,18 +439,18 @@
         }
       ],
       "dungeonId": 3403,
+      "EBOCMFAKFKH": 0,
       "firstMonsterList": [
         10205,
         10203,
         10112
       ],
       "firstPassRewardId": 621031,
-      "ILCLLJANFMK": 0,
-      "JKMIPCBDBPM": 0,
-      "KLNFCGKDKGE": "",
+      "JIOKOCBEAGL": 0,
       "levelGroupId": 40,
       "levelId": 118,
       "levelIndex": 1,
+      "MBCNOGGBEGC": "",
       "monsterLevel": 87,
       "secondMonsterList": [
         51001,
@@ -471,7 +471,7 @@
       ]
     },
     {
-      "AGEAANNELOI": 0,
+      "ANEFGPAAIJL": 0,
       "conds": [
         {
           "argumentList": [
@@ -514,6 +514,7 @@
         }
       ],
       "dungeonId": 3405,
+      "EBOCMFAKFKH": 0,
       "firstMonsterList": [
         10206,
         604,
@@ -522,12 +523,11 @@
         108
       ],
       "firstPassRewardId": 621031,
-      "ILCLLJANFMK": 0,
-      "JKMIPCBDBPM": 0,
-      "KLNFCGKDKGE": "",
+      "JIOKOCBEAGL": 0,
       "levelGroupId": 42,
       "levelId": 124,
       "levelIndex": 1,
+      "MBCNOGGBEGC": "",
       "monsterLevel": 87,
       "secondMonsterList": [
         50302,
@@ -546,7 +546,7 @@
       ]
     },
     {
-      "AGEAANNELOI": 0,
+      "ANEFGPAAIJL": 0,
       "conds": [
         {
           "argumentList": [
@@ -589,6 +589,7 @@
         }
       ],
       "dungeonId": 3113,
+      "EBOCMFAKFKH": 0,
       "firstMonsterList": [
         10204,
         10202,
@@ -600,12 +601,11 @@
         603
       ],
       "firstPassRewardId": 621031,
-      "ILCLLJANFMK": 0,
-      "JKMIPCBDBPM": 0,
-      "KLNFCGKDKGE": "",
+      "JIOKOCBEAGL": 0,
       "levelGroupId": 60,
       "levelId": 178,
       "levelIndex": 1,
+      "MBCNOGGBEGC": "",
       "monsterLevel": 87,
       "secondMonsterList": [
         54103,
@@ -621,7 +621,7 @@
       ]
     },
     {
-      "AGEAANNELOI": 0,
+      "ANEFGPAAIJL": 0,
       "conds": [
         {
           "argumentList": [
@@ -658,6 +658,7 @@
         }
       ],
       "dungeonId": 3507,
+      "EBOCMFAKFKH": 0,
       "firstMonsterList": [
         10201,
         10202,
@@ -675,12 +676,11 @@
         10116
       ],
       "firstPassRewardId": 621026,
-      "ILCLLJANFMK": 0,
-      "JKMIPCBDBPM": 0,
-      "KLNFCGKDKGE": "",
+      "JIOKOCBEAGL": 0,
       "levelGroupId": 44,
       "levelId": 131,
       "levelIndex": 2,
+      "MBCNOGGBEGC": "",
       "monsterLevel": 73,
       "secondMonsterList": [
         20103,
@@ -695,7 +695,7 @@
       ]
     },
     {
-      "AGEAANNELOI": 0,
+      "ANEFGPAAIJL": 0,
       "conds": [
         {
           "argumentList": [
@@ -738,6 +738,7 @@
         }
       ],
       "dungeonId": 3101,
+      "EBOCMFAKFKH": 0,
       "firstMonsterList": [
         61204,
         61203,
@@ -750,12 +751,11 @@
         60908
       ],
       "firstPassRewardId": 621031,
-      "ILCLLJANFMK": 0,
-      "JKMIPCBDBPM": 0,
-      "KLNFCGKDKGE": "",
+      "JIOKOCBEAGL": 0,
       "levelGroupId": 48,
       "levelId": 142,
       "levelIndex": 1,
+      "MBCNOGGBEGC": "",
       "monsterLevel": 87,
       "secondMonsterList": [
         54101,
@@ -769,7 +769,7 @@
       ]
     },
     {
-      "AGEAANNELOI": 0,
+      "ANEFGPAAIJL": 0,
       "conds": [
         {
           "argumentList": [
@@ -812,6 +812,7 @@
         }
       ],
       "dungeonId": 3385,
+      "EBOCMFAKFKH": 0,
       "firstMonsterList": [
         10202,
         10201,
@@ -822,12 +823,11 @@
         10110
       ],
       "firstPassRewardId": 621031,
-      "ILCLLJANFMK": 0,
-      "JKMIPCBDBPM": 0,
-      "KLNFCGKDKGE": "",
+      "JIOKOCBEAGL": 0,
       "levelGroupId": 22,
       "levelId": 64,
       "levelIndex": 1,
+      "MBCNOGGBEGC": "",
       "monsterLevel": 87,
       "secondMonsterList": [
         10205,
@@ -842,7 +842,7 @@
       ]
     },
     {
-      "AGEAANNELOI": 0,
+      "ANEFGPAAIJL": 0,
       "conds": [
         {
           "argumentList": [
@@ -885,6 +885,7 @@
         }
       ],
       "dungeonId": 3473,
+      "EBOCMFAKFKH": 0,
       "firstMonsterList": [
         10202,
         10203,
@@ -892,12 +893,11 @@
         10112
       ],
       "firstPassRewardId": 621032,
-      "ILCLLJANFMK": 0,
-      "JKMIPCBDBPM": 0,
-      "KLNFCGKDKGE": "",
+      "JIOKOCBEAGL": 0,
       "levelGroupId": 11,
       "levelId": 32,
       "levelIndex": 2,
+      "MBCNOGGBEGC": "",
       "monsterLevel": 89,
       "secondMonsterList": [
         10202,
@@ -914,7 +914,7 @@
       ]
     },
     {
-      "AGEAANNELOI": 0,
+      "ANEFGPAAIJL": 0,
       "conds": [
         {
           "argumentList": [
@@ -957,18 +957,18 @@
         }
       ],
       "dungeonId": 3381,
+      "EBOCMFAKFKH": 0,
       "firstMonsterList": [
         50701,
         50601,
         50202
       ],
       "firstPassRewardId": 621034,
-      "ILCLLJANFMK": 0,
-      "JKMIPCBDBPM": 0,
-      "KLNFCGKDKGE": "",
+      "JIOKOCBEAGL": 0,
       "levelGroupId": 18,
       "levelId": 52,
       "levelIndex": 1,
+      "MBCNOGGBEGC": "",
       "monsterLevel": 87,
       "secondMonsterList": [
         50302,
@@ -986,7 +986,7 @@
       ]
     },
     {
-      "AGEAANNELOI": 0,
+      "ANEFGPAAIJL": 0,
       "conds": [
         {
           "argumentList": [
@@ -1029,6 +1029,7 @@
         }
       ],
       "dungeonId": 3125,
+      "EBOCMFAKFKH": 0,
       "firstMonsterList": [
         106,
         107,
@@ -1037,12 +1038,11 @@
         113
       ],
       "firstPassRewardId": 621031,
-      "ILCLLJANFMK": 0,
-      "JKMIPCBDBPM": 0,
-      "KLNFCGKDKGE": "",
+      "JIOKOCBEAGL": 0,
       "levelGroupId": 72,
       "levelId": 214,
       "levelIndex": 1,
+      "MBCNOGGBEGC": "",
       "monsterLevel": 87,
       "secondMonsterList": [
         607,
@@ -1058,7 +1058,7 @@
       ]
     },
     {
-      "AGEAANNELOI": 0,
+      "ANEFGPAAIJL": 0,
       "conds": [
         {
           "argumentList": [
@@ -1101,18 +1101,18 @@
         }
       ],
       "dungeonId": 3474,
+      "EBOCMFAKFKH": 0,
       "firstMonsterList": [
         60101,
         10105,
         10109
       ],
       "firstPassRewardId": 621035,
-      "ILCLLJANFMK": 0,
-      "JKMIPCBDBPM": 0,
-      "KLNFCGKDKGE": "",
+      "JIOKOCBEAGL": 0,
       "levelGroupId": 12,
       "levelId": 35,
       "levelIndex": 2,
+      "MBCNOGGBEGC": "",
       "monsterLevel": 97,
       "secondMonsterList": [
         20102,
@@ -1129,7 +1129,7 @@
       ]
     },
     {
-      "AGEAANNELOI": 0,
+      "ANEFGPAAIJL": 0,
       "conds": [
         {
           "argumentList": [
@@ -1172,17 +1172,17 @@
         }
       ],
       "dungeonId": 3397,
+      "EBOCMFAKFKH": 0,
       "firstMonsterList": [
         40201,
         40202
       ],
       "firstPassRewardId": 621031,
-      "ILCLLJANFMK": 0,
-      "JKMIPCBDBPM": 0,
-      "KLNFCGKDKGE": "",
+      "JIOKOCBEAGL": 0,
       "levelGroupId": 34,
       "levelId": 100,
       "levelIndex": 1,
+      "MBCNOGGBEGC": "",
       "monsterLevel": 87,
       "secondMonsterList": [
         20104,
@@ -1198,7 +1198,7 @@
       ]
     },
     {
-      "AGEAANNELOI": 0,
+      "ANEFGPAAIJL": 0,
       "conds": [
         {
           "argumentList": [
@@ -1241,6 +1241,7 @@
         }
       ],
       "dungeonId": 3121,
+      "EBOCMFAKFKH": 0,
       "firstMonsterList": [
         52102,
         52103,
@@ -1249,12 +1250,11 @@
         53101
       ],
       "firstPassRewardId": 621031,
-      "ILCLLJANFMK": 0,
-      "JKMIPCBDBPM": 0,
-      "KLNFCGKDKGE": "",
+      "JIOKOCBEAGL": 0,
       "levelGroupId": 68,
       "levelId": 202,
       "levelIndex": 1,
+      "MBCNOGGBEGC": "",
       "monsterLevel": 87,
       "secondMonsterList": [
         10205,
@@ -1267,7 +1267,7 @@
       ]
     },
     {
-      "AGEAANNELOI": 0,
+      "ANEFGPAAIJL": 0,
       "conds": [
         {
           "argumentList": [
@@ -1310,18 +1310,18 @@
         }
       ],
       "dungeonId": 3119,
+      "EBOCMFAKFKH": 0,
       "firstMonsterList": [
         113,
         606,
         60102
       ],
       "firstPassRewardId": 621031,
-      "ILCLLJANFMK": 0,
-      "JKMIPCBDBPM": 0,
-      "KLNFCGKDKGE": "",
+      "JIOKOCBEAGL": 0,
       "levelGroupId": 66,
       "levelId": 196,
       "levelIndex": 1,
+      "MBCNOGGBEGC": "",
       "monsterLevel": 87,
       "secondMonsterList": [
         109,
@@ -1335,7 +1335,7 @@
       ]
     },
     {
-      "AGEAANNELOI": 0,
+      "ANEFGPAAIJL": 0,
       "conds": [
         {
           "argumentList": [
@@ -1372,16 +1372,16 @@
         }
       ],
       "dungeonId": 3203,
+      "EBOCMFAKFKH": 0,
       "firstMonsterList": [
         40301
       ],
       "firstPassRewardId": 621032,
-      "ILCLLJANFMK": 0,
-      "JKMIPCBDBPM": 0,
-      "KLNFCGKDKGE": "",
+      "JIOKOCBEAGL": 0,
       "levelGroupId": 50,
       "levelId": 149,
       "levelIndex": 2,
+      "MBCNOGGBEGC": "",
       "monsterLevel": 89,
       "secondMonsterList": [
         30501,
@@ -1399,7 +1399,7 @@
       ]
     },
     {
-      "AGEAANNELOI": 0,
+      "ANEFGPAAIJL": 0,
       "conds": [
         {
           "argumentList": [
@@ -1436,16 +1436,16 @@
         }
       ],
       "dungeonId": 3544,
+      "EBOCMFAKFKH": 0,
       "firstMonsterList": [
         60201
       ],
       "firstPassRewardId": 621024,
-      "ILCLLJANFMK": 0,
-      "JKMIPCBDBPM": 0,
-      "KLNFCGKDKGE": "",
+      "JIOKOCBEAGL": 0,
       "levelGroupId": 8,
       "levelId": 24,
       "levelIndex": 3,
+      "MBCNOGGBEGC": "",
       "monsterLevel": 69,
       "secondMonsterList": [
         60202
@@ -1457,7 +1457,7 @@
       ]
     },
     {
-      "AGEAANNELOI": 0,
+      "ANEFGPAAIJL": 0,
       "conds": [
         {
           "argumentList": [
@@ -1500,6 +1500,7 @@
         }
       ],
       "dungeonId": 3413,
+      "EBOCMFAKFKH": 0,
       "firstMonsterList": [
         110,
         10102,
@@ -1509,12 +1510,11 @@
         20103
       ],
       "firstPassRewardId": 621011,
-      "ILCLLJANFMK": 0,
-      "JKMIPCBDBPM": 0,
-      "KLNFCGKDKGE": "",
+      "JIOKOCBEAGL": 0,
       "levelGroupId": 4,
       "levelId": 11,
       "levelIndex": 2,
+      "MBCNOGGBEGC": "",
       "monsterLevel": 49,
       "secondMonsterList": [
         20101
@@ -1526,7 +1526,7 @@
       ]
     },
     {
-      "AGEAANNELOI": 2,
+      "ANEFGPAAIJL": 1,
       "conds": [
         {
           "argumentList": [
@@ -1569,18 +1569,18 @@
         }
       ],
       "dungeonId": 3127,
+      "EBOCMFAKFKH": 0,
       "firstMonsterList": [
         105,
         106,
         107
       ],
       "firstPassRewardId": 621031,
-      "ILCLLJANFMK": 1,
-      "JKMIPCBDBPM": 0,
-      "KLNFCGKDKGE": "Tower4_4",
+      "JIOKOCBEAGL": 2,
       "levelGroupId": 74,
       "levelId": 220,
       "levelIndex": 1,
+      "MBCNOGGBEGC": "Tower4_4",
       "monsterLevel": 87,
       "secondMonsterList": [
         20101
@@ -1592,7 +1592,7 @@
       ]
     },
     {
-      "AGEAANNELOI": 2,
+      "ANEFGPAAIJL": 1,
       "conds": [
         {
           "argumentList": [
@@ -1635,18 +1635,18 @@
         }
       ],
       "dungeonId": 3131,
+      "EBOCMFAKFKH": 0,
       "firstMonsterList": [
         105,
         106,
         107
       ],
       "firstPassRewardId": 621031,
-      "ILCLLJANFMK": 1,
-      "JKMIPCBDBPM": 0,
-      "KLNFCGKDKGE": "Tower4_6",
+      "JIOKOCBEAGL": 2,
       "levelGroupId": 78,
       "levelId": 232,
       "levelIndex": 1,
+      "MBCNOGGBEGC": "Tower4_6",
       "monsterLevel": 87,
       "secondMonsterList": [
         20101

@@ -1,7 +1,7 @@
 {
   "metadata": {
     "sourceFile": "FetterInfoExcelConfigData.json",
-    "generatedAt": "2025-10-20T15:44:55.845Z"
+    "generatedAt": "2026-02-27T12:22:08.222Z"
   },
   "keyMappingTemplate": {
     "avatarAssocType": "ASSOC_TYPE_MONDSTADT",
@@ -13,6 +13,7 @@
     "avatarTitleTextMapHash": 1225242490,
     "avatarVisionAfterTextMapHash": 898621369,
     "avatarVisionBeforTextMapHash": 2075460644,
+    "CIMBFNOOHOC": 3963077898,
     "cvChineseTextMapHash": 1085193806,
     "cvEnglishTextMapHash": 1300502628,
     "cvJapaneseTextMapHash": 2801197800,
@@ -29,9 +30,9 @@
     "infoBirthDay": 16,
     "infoBirthMonth": 6,
     "isHiden": false,
-    "openConds": [],
-    "PKJJAOCGOPO": 3963077898,
-    "PMDBPIJHHPC": 4209150520
+    "LJPACKFKGGJ": 160417645,
+    "MAMODOFMMJJ": 4209150520,
+    "openConds": []
   },
   "alternativePatterns": [
     {
@@ -44,6 +45,7 @@
       "avatarTitleTextMapHash": 3614785250,
       "avatarVisionAfterTextMapHash": 4288637793,
       "avatarVisionBeforTextMapHash": 3057990932,
+      "CIMBFNOOHOC": 1706132810,
       "cvChineseTextMapHash": 727576102,
       "cvEnglishTextMapHash": 431619300,
       "cvJapaneseTextMapHash": 3995062768,
@@ -58,9 +60,9 @@
       "infoBirthDay": 28,
       "infoBirthMonth": 9,
       "isHiden": false,
-      "openConds": [],
-      "PKJJAOCGOPO": 1706132810,
-      "PMDBPIJHHPC": 3690673200
+      "LJPACKFKGGJ": 3489173093,
+      "MAMODOFMMJJ": 3690673200,
+      "openConds": []
     }
   ]
 }
