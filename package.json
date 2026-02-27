@@ -20,22 +20,15 @@
   },
   "scripts": {
     "prepare": "husky",
-    "updateDoc": "npm run docs && git add docs && git commit -m \"[docs]update docs\" && git push",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
     "lint:unix": "eslint . --format unix",
     "lint:stats": "npm run lint:unix | awk -F'[][]' '/\\[.*\\]$/ {print $(NF-1)}' | sort | uniq -c | sort -nr",
     "prepublishOnly": "tsup",
-    "docs": "typedoc",
     "build": "tsup",
-    "prebuild": "npm run generate:types",
-    "generate:types": "tsx scripts/generate-types-from-master.ts",
-    "generate:master": "tsx scripts/generate-structural-master.ts",
-    "my-test": "tsx ./src/test/index.ts",
     "test": "vitest",
     "test:watch": "vitest --watch",
-    "coverage": "vitest run --coverage",
-    "createHandBook": "tsx scripts/createHandBook.ts"
+    "coverage": "vitest run --coverage"
   },
   "engines": {
     "node": ">=18.0.0"
@@ -101,7 +94,6 @@
     "prettier": "^3.3.3",
     "tsup": "^8.5.0",
     "tsx": "^4.20.3",
-    "typedoc": "^0.28.10",
     "typescript": "^5.6.2",
     "typescript-eslint": "^8.39.0",
     "vitest": "^3.2.4"
