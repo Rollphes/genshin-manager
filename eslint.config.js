@@ -244,7 +244,6 @@ export default [
       'coverage/',
       'src/types/generated/',
       'dist/',
-      'docs/',
       'examples/',
       'scripts/',
       'node_modules/',
