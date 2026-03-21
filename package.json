@@ -1,6 +1,7 @@
 {
   "name": "genshin-manager",
   "version": "2.0.9",
+  "packageManager": "pnpm@9.15.2",
   "homepage": "https://rollphes.github.io/genshin-manager/",
   "bugs": "https://github.com/Rollphes/genshin-manager/issues",
   "main": "dist/index.js",
@@ -20,15 +21,11 @@
   },
   "scripts": {
     "prepare": "husky",
-    "lint": "eslint .",
-    "lint:fix": "eslint . --fix",
-    "lint:unix": "eslint . --format unix",
-    "lint:stats": "npm run lint:unix | awk -F'[][]' '/\\[.*\\]$/ {print $(NF-1)}' | sort | uniq -c | sort -nr",
-    "prepublishOnly": "tsup",
-    "build": "tsup",
-    "test": "vitest",
-    "test:watch": "vitest --watch",
-    "coverage": "vitest run --coverage"
+    "lint": "turbo run lint",
+    "lint:fix": "turbo run lint:fix",
+    "prepublishOnly": "turbo run build",
+    "build": "turbo run build",
+    "test": "turbo run test"
   },
   "engines": {
     "node": ">=18.0.0"

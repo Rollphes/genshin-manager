@@ -234,9 +234,25 @@ export default [
           patterns: ['./', '../', '~/'],
         },
       ],
+      'no-restricted-syntax': [
+        'error',
+        {
+          selector:
+            'ImportDeclaration[source.value=/^node:/] > ImportSpecifier',
+          message:
+            'Use "import * as name from \'node:...\'" instead of named imports for Node.js built-in modules.',
+        },
+      ],
     },
   },
   {
-    ignores: ['dist/', 'node_modules/', '*.config.js', '*.config.ts', '*.config.mjs'],
+    ignores: [
+      'dist/',
+      'node_modules/',
+      'anchors/',
+      '*.config.js',
+      '*.config.ts',
+      '*.config.mjs',
+    ],
   },
 ]

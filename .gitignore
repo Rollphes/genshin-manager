@@ -142,6 +142,9 @@ vite.config.js.timestamp-*
 vite.config.ts.timestamp-*
 
 
+# Turbo
+.turbo
+
 # Original
 
 # vscode

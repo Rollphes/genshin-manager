@@ -42,7 +42,6 @@ export default [
           'error',
           {
             accessibility: 'explicit',
-
             overrides: {
               accessors: 'explicit',
               constructors: 'no-public',
@@ -195,7 +194,16 @@ export default [
       'jsdoc/check-tag-names': [
         'error',
         {
-          definedTags: ['warning', 'key', 'value', 'remarks', 'link'],
+          definedTags: [
+            'warning',
+            'key',
+            'value',
+            'remarks',
+            'link',
+            'generated',
+            'source',
+            'date',
+          ],
         },
       ],
     },
@@ -209,6 +217,19 @@ export default [
       'simple-import-sort/imports': 'error',
       'simple-import-sort/exports': 'error',
       'no-barrel-files/no-barrel-files': 'error',
+    },
+  },
+  {
+    files: ['src/index.ts'],
+    rules: {
+      'no-barrel-files/no-barrel-files': 'off',
+    },
+  },
+  {
+    files: ['src/enum/**/*.ts', 'src/schema/**/*.ts'],
+    rules: {
+      'jsdoc/require-jsdoc': 'off',
+      'jsdoc/require-description': 'off',
     },
   },
   {
@@ -242,21 +263,11 @@ export default [
   },
   {
     ignores: [
-      '.git/',
-      '.vscode/',
-      '.github/',
-      '.husky/',
-      '.idea/',
-      '.claude/',
-      '.serena/',
-      'cache/',
-      'coverage/',
-      'src/types/generated/',
       'dist/',
-      'examples/',
-      'scripts/',
       'node_modules/',
       '*.config.js',
+      '*.config.ts',
+      '*.config.mjs',
     ],
   },
 ]

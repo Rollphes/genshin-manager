@@ -42,7 +42,6 @@ export default [
           'error',
           {
             accessibility: 'explicit',
-
             overrides: {
               accessors: 'explicit',
               constructors: 'no-public',
@@ -212,6 +211,12 @@ export default [
     },
   },
   {
+    files: ['src/index.ts'],
+    rules: {
+      'no-barrel-files/no-barrel-files': 'off',
+    },
+  },
+  {
     rules: {
       'no-unused-vars': 'off',
       complexity: ['error'],
@@ -242,21 +247,11 @@ export default [
   },
   {
     ignores: [
-      '.git/',
-      '.vscode/',
-      '.github/',
-      '.husky/',
-      '.idea/',
-      '.claude/',
-      '.serena/',
-      'cache/',
-      'coverage/',
-      'src/types/generated/',
       'dist/',
-      'examples/',
-      'scripts/',
       'node_modules/',
       '*.config.js',
+      '*.config.ts',
+      '*.config.mjs',
     ],
   },
 ]

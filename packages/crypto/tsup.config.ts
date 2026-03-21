@@ -8,7 +8,6 @@ export default defineConfig({
   splitting: false,
   sourcemap: false,
   minify: false,
-  target: 'es2018',
+  target: 'es2022',
   outDir: 'dist',
-  external: [],
 })
