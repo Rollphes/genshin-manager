@@ -259,6 +259,7 @@ export default [
             'Use "import * as name from \'node:...\'" instead of named imports for Node.js built-in modules.',
         },
       ],
+      'max-classes-per-file': ['error', 1],
     },
   },
   {
