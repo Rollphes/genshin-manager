@@ -20,10 +20,31 @@ export class EnumCollector {
   private readonly nameMapping = new Map<string, Map<string, string[]>>()
 
   /**
+   * Get all derived enum names
+   * @returns readonly array of enum names
+   */
+  public get enumNames(): readonly string[] {
+    return [...this.enums.keys()]
+  }
+
+  /**
+   * Get a defensive copy of the internal enum map
+   * @returns readonly map of enumName to readonly set of values
+   */
+  public get enumsSnapshot(): ReadonlyMap<string, ReadonlySet<string>> {
+    const copy = new Map<string, ReadonlySet<string>>()
+    for (const [key, value] of this.enums.entries())
+      copy.set(key, new Set(value))
+
+    return copy
+  }
+
+  /**
    * Collect enum values from a schema string.
    * Values are grouped by their common prefix, not by quicktype's enum name.
    * @param schemaName - name of the schema being processed
    * @param schema - generated Zod schema string
+   * @throws - Never throws
    */
   public collect(schemaName: string, schema: string): void {
     const pattern = new RegExp(EnumCollector.enumPattern.source, 'g')
@@ -70,37 +91,21 @@ export class EnumCollector {
   }
 
   /**
-   * Get all derived enum names
-   * @returns array of enum names
-   */
-  public getEnumNames(): string[] {
-    return [...this.enums.keys()]
-  }
-
-  /**
-   * Get values for a specific enum
-   * @param enumName - name of the enum
-   * @returns array of values, or empty array if not found
-   */
-  public getValues(enumName: string): string[] {
-    return [...(this.enums.get(enumName) ?? [])]
-  }
-
-  /**
-   * Get the internal map (for EnumFileWriter)
-   * @returns Map of enumName to Set of values
-   */
-  public toMap(): Map<string, Set<string>> {
-    return this.enums
-  }
-
-  /**
-   * Get name mapping for a specific schema
+   * Get name mapping for a specific schema (defensive copy)
    * @param schemaName - name of the schema
-   * @returns Map<quicktypeName, derivedNames[]>
+   * @returns readonly map of quicktypeName to readonly array of derivedNames
+   * @throws - Never throws
    */
-  public getNameMapping(schemaName: string): Map<string, string[]> {
-    return this.nameMapping.get(schemaName) ?? new Map<string, string[]>()
+  public getNameMapping(
+    schemaName: string,
+  ): ReadonlyMap<string, readonly string[]> {
+    const original = this.nameMapping.get(schemaName)
+    if (!original) return new Map<string, string[]>()
+
+    const copy = new Map<string, readonly string[]>()
+    for (const [key, value] of original.entries()) copy.set(key, [...value])
+
+    return copy
   }
 
   /**

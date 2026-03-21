@@ -5,6 +5,7 @@ import { BaseCLI } from '@genshin-manager/cli'
 import { type AnchorName, AnchorNames } from '@genshin-manager/crypto'
 import type { Commit } from '@genshin-manager/rest'
 import type { QuicktypeWarning } from '@scripts/lib/QuicktypeRunner'
+import type { ZodError } from 'zod'
 
 /**
  * Schema operation mode
@@ -16,7 +17,7 @@ export type SchemaMode = 'generate' | 'validate'
  */
 export interface SchemaResultOk {
   /** Schema name */
-  name: string
+  name: AnchorName
   /** Status */
   status: 'ok'
   /** Optional warnings from type inference */
@@ -28,7 +29,7 @@ export interface SchemaResultOk {
  */
 export interface SchemaResultSkip {
   /** Schema name */
-  name: string
+  name: AnchorName
   /** Status */
   status: 'skip'
   /** Skip reason */
@@ -40,7 +41,7 @@ export interface SchemaResultSkip {
  */
 export interface SchemaResultError {
   /** Schema name */
-  name: string
+  name: AnchorName
   /** Status */
   status: 'error'
   /** Error */
@@ -251,17 +252,28 @@ export class SchemaCLI extends BaseCLI {
   }
 
   /**
+   * Check if error is a ZodError
+   * @param error - error to check
+   * @returns true if error is a ZodError
+   */
+  private isZodError(error: Error): error is ZodError {
+    return (
+      'issues' in error && Array.isArray((error as { issues?: unknown }).issues)
+    )
+  }
+
+  /**
    * Format error for display
    * @param error - Error (may be ZodError)
    * @returns formatted error string
    */
   private formatError(error: Error): string {
-    if ('issues' in error) {
-      const zodError = error as { issues: { path: (string | number)[] }[] }
+    if (this.isZodError(error)) {
       return JSON.stringify(
-        zodError.issues.map((issue) => ({
-          ...issue,
+        error.issues.map((issue) => ({
           path: this.formatPath(issue.path),
+          code: issue.code,
+          message: issue.message,
         })),
         null,
         2,
