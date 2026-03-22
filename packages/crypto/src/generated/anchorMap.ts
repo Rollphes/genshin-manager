@@ -36,7 +36,7 @@ import type { AnchorFile, AnchorName } from '@/types'
  * Map of anchor names to anchor files.
  * Auto-generated - do not edit manually.
  */
-export const anchorMap = {
+export const anchorMap: Record<AnchorName, AnchorFile | undefined> = {
   AnimalCodexExcelConfigData,
   AvatarCostumeExcelConfigData,
   AvatarCurveExcelConfigData,
@@ -69,4 +69,4 @@ export const anchorMap = {
   WeaponCurveExcelConfigData,
   WeaponExcelConfigData,
   WeaponPromoteExcelConfigData,
-} satisfies Record<AnchorName, AnchorFile | undefined>
+}

@@ -1,4 +1,9 @@
-import type { AnchorChange, AnchorCLI } from '@scripts/cli/AnchorCLI'
+import { buildErrorResult, buildOkResult } from '@genshin-manager/cli'
+import type {
+  AnchorChange,
+  AnchorCLI,
+  AnchorResult,
+} from '@scripts/cli/AnchorCLI'
 import type { AnalysisEntry } from '@scripts/processor/AnchorProcessor'
 import type { AnchorFileWriter } from '@scripts/writer/AnchorFileWriter'
 import type { AnchorMapWriter } from '@scripts/writer/AnchorMapWriter'
@@ -74,59 +79,75 @@ export class GenerateMode {
     anchorFiles: AnchorFile[]
     changes: AnchorChange[]
   }> {
-    const results = await this.cli.runTasks(
+    const results = await this.cli.runTasks<
+      [AnchorName, AnalysisEntry],
+      AnchorResult
+    >(
       taskTitle,
       [...analysisMap.entries()],
-      ([name, entry]): [AnchorFile, AnchorChange | null] => {
-        const { data, anchorSet, crossFileAnchors } = entry
+      ([name, entry]): AnchorResult => {
+        try {
+          const { data, anchorSet, crossFileAnchors } = entry
 
-        const resolvedKeys = new Set(crossFileAnchors.map((a) => a.correctKey))
-        const excludedKeys = anchorSet.excludedKeys.filter(
-          (key) => !resolvedKeys.has(key),
-        )
-
-        let anchors = anchorSet.anchors
-        let finalCrossFileAnchors = crossFileAnchors
-        let change: AnchorChange | null = null
-
-        if (!this.isOverwrite) {
-          const mergeResult = this.mergeWithExisting(
-            name,
-            anchorSet.anchors,
-            crossFileAnchors,
+          const resolvedKeys = new Set(
+            crossFileAnchors.map((a) => a.correctKey),
           )
-          if (mergeResult) {
-            anchors = mergeResult.anchors
-            finalCrossFileAnchors = mergeResult.crossFileAnchors
-            change = {
-              anchorName: name,
-              preserved: [...mergeResult.preserved],
-              lost: [...mergeResult.lost],
+          const excludedKeys = anchorSet.excludedKeys.filter(
+            (key) => !resolvedKeys.has(key),
+          )
+
+          let anchors = anchorSet.anchors
+          let finalCrossFileAnchors = crossFileAnchors
+          let change: AnchorChange | null = null
+
+          if (!this.isOverwrite) {
+            const mergeResult = this.mergeWithExisting(
+              name,
+              anchorSet.anchors,
+              crossFileAnchors,
+            )
+            if (mergeResult) {
+              anchors = mergeResult.anchors
+              finalCrossFileAnchors = mergeResult.crossFileAnchors
+              change = {
+                anchorName: name,
+                preserved: [...mergeResult.preserved],
+                lost: [...mergeResult.lost],
+              }
             }
           }
-        }
 
-        const anchorFile: AnchorFile = {
-          metadata: {
-            sourceFile: name,
-            commitId: this.commitId,
-            generatedAt: new Date().toISOString(),
-            totalElements: data.length,
-          },
-          anchors,
-          crossFileAnchors: finalCrossFileAnchors,
-          derivedAncestorKeys: anchorSet.derivedAncestorKeys,
-          excludedKeys,
-        }
+          const anchorFile: AnchorFile = {
+            metadata: {
+              sourceFile: name,
+              commitId: this.commitId,
+              generatedAt: new Date().toISOString(),
+              totalElements: data.length,
+            },
+            anchors,
+            crossFileAnchors: finalCrossFileAnchors,
+            derivedAncestorKeys: anchorSet.derivedAncestorKeys,
+            excludedKeys,
+          }
 
-        return [anchorFile, change]
+          return buildOkResult({
+            anchorFile,
+            change,
+          })
+        } catch (error) {
+          return buildErrorResult(error)
+        }
       },
       ([name]) => name,
     )
 
-    const anchorFiles = results.map(([file]) => file)
-    const changes = results
-      .map(([, change]) => change)
+    const okResults = results.filter(
+      (r): r is Extract<AnchorResult, { status: 'ok' }> => r.status === 'ok',
+    )
+
+    const anchorFiles = okResults.map((r) => r.data.anchorFile)
+    const changes = okResults
+      .map((r) => r.data.change)
       .filter((c): c is AnchorChange => c !== null)
 
     return { anchorFiles, changes }

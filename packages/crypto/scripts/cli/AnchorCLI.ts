@@ -1,6 +1,6 @@
 import * as path from 'node:path'
 
-import type { FormatItem } from '@genshin-manager/cli'
+import type { FormatItem, OperationResult } from '@genshin-manager/cli'
 import { BaseCLI } from '@genshin-manager/cli'
 import type { Commit } from '@genshin-manager/rest'
 
@@ -23,6 +23,21 @@ export interface AnchorChange {
   /** Lost keys (corrections that could not be preserved) */
   lost: string[]
 }
+
+/**
+ * Anchor generation result data
+ */
+export interface AnchorData {
+  /** Generated anchor file */
+  anchorFile: AnchorFile
+  /** Changes from existing file (preserve mode only) */
+  change: AnchorChange | null
+}
+
+/**
+ * Anchor generation result
+ */
+export type AnchorResult = OperationResult<AnchorData>
 
 /**
  * Selected options from anchor CLI

@@ -53,9 +53,9 @@ export class AnchorMapWriter {
       ' * Map of anchor names to anchor files.',
       ' * Auto-generated - do not edit manually.',
       ' */',
-      'export const anchorMap = {',
+      'export const anchorMap: Record<AnchorName, AnchorFile | undefined> = {',
       ...mapEntries,
-      '} satisfies Record<AnchorName, AnchorFile | undefined>',
+      '}',
     ].join('\n')
   }
 

@@ -41,6 +41,8 @@ export class KeyRestorer {
    * @param encryptedJson - JSON string with encrypted key names
    * @param options - restore options
    * @returns restoration result with restored objects and key info
+   * @throws {Error} - If encryptedJson is not valid JSON
+   * @throws {Error} - If parsed JSON is not an array of objects
    */
   public static restore(
     name: AnchorName,
@@ -49,7 +51,20 @@ export class KeyRestorer {
   ): RestorationResult {
     const anchorFile = loadAnchor(name)
     const restorer = new KeyRestorer(anchorFile)
-    const objects = JSON.parse(encryptedJson) as JsonObject[]
+
+    let objects: JsonObject[]
+    try {
+      const parsed: unknown = JSON.parse(encryptedJson)
+
+      if (!Array.isArray(parsed)) throw new Error('Parsed JSON is not an array')
+
+      objects = parsed as JsonObject[]
+    } catch (error) {
+      throw new Error(
+        `Failed to parse encryptedJson: ${error instanceof Error ? error.message : String(error)}`,
+      )
+    }
+
     return restorer.restoreAll(
       objects,
       options?.excludeEncryptedKeysFromData ?? false,
