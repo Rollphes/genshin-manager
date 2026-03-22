@@ -40,8 +40,35 @@ export class SchemaProcessor {
   constructor(
     private readonly quicktype: QuicktypeRunner,
     private readonly transformer: SchemaTransformer,
-    public readonly enumCollector: EnumCollector,
+    private readonly enumCollector: EnumCollector,
   ) {}
+
+  /**
+   * Get enum names collected during schema processing
+   * @returns readonly array of enum names
+   */
+  public get enumNames(): readonly string[] {
+    return this.enumCollector.enumNames
+  }
+
+  /**
+   * Get snapshot of collected enums
+   * @returns readonly map of enum name to set of values
+   */
+  public get enumsSnapshot(): ReadonlyMap<string, ReadonlySet<string>> {
+    return this.enumCollector.enumsSnapshot
+  }
+
+  /**
+   * Get enum name mapping for a specific schema
+   * @param schemaName - schema name to query
+   * @returns readonly map of quicktype enum name to generated enum names
+   */
+  public getNameMapping(
+    schemaName: string,
+  ): ReadonlyMap<string, readonly string[]> {
+    return this.enumCollector.getNameMapping(schemaName)
+  }
 
   /**
    * Generate Zod schema from encrypted JSON data

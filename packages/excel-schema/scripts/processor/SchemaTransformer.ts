@@ -1,3 +1,5 @@
+import { buildMetadataHeader } from '@scripts/generator/buildMetadataHeader'
+
 /**
  * Transforms generated Zod schemas (naming normalization, enum replacement)
  */
@@ -44,7 +46,7 @@ export class SchemaTransformer {
    * @param enumNames - list of enum names that have common files
    * @param nameMapping - Map<quicktypeName, derivedNames[]> for this schema
    * @param commitId - source commit ID
-   * @param generatedAt - generation timestamp
+   * @param generatedDate - generation timestamp
    * @returns schema with enum imports and metadata header
    */
   public replaceEnumsWithImports(
@@ -52,7 +54,7 @@ export class SchemaTransformer {
     enumNames: string[],
     nameMapping: ReadonlyMap<string, readonly string[]>,
     commitId: string,
-    generatedAt: string,
+    generatedDate: Date,
   ): string {
     let processed = schema
     const enumImports = new Set<string>()
@@ -95,7 +97,7 @@ export class SchemaTransformer {
     processed = this.updateImports(processed, enumImports)
 
     // Add metadata header
-    processed = this.addMetadataHeader(processed, commitId, generatedAt)
+    processed = this.addMetadataHeader(processed, commitId, generatedDate)
 
     // Clean up multiple blank lines
     processed = processed.replace(SchemaTransformer.multiNewlinePattern, '\n\n')
@@ -160,22 +162,15 @@ export class SchemaTransformer {
    * Add metadata header to schema
    * @param schema - schema string
    * @param commitId - source commit ID
-   * @param generatedAt - generation timestamp
+   * @param generatedDate - generation timestamp
    * @returns schema with metadata header
    */
   private addMetadataHeader(
     schema: string,
     commitId: string,
-    generatedAt: string,
+    generatedDate: Date,
   ): string {
-    const header = [
-      '/**',
-      ' * @generated',
-      ` * @source ${commitId}`,
-      ` * @date ${generatedAt}`,
-      ' */',
-    ].join('\n')
-
+    const header = buildMetadataHeader(commitId, generatedDate)
     return `${header}\n${schema}`
   }
 }

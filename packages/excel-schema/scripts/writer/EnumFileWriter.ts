@@ -1,6 +1,7 @@
 import * as fs from 'node:fs'
 import * as path from 'node:path'
 
+import { buildMetadataHeader } from '@scripts/generator/buildMetadataHeader'
 import * as prettier from 'prettier'
 
 /**
@@ -30,12 +31,12 @@ export class EnumFileWriter {
    * Write enum files from collected enums
    * @param enums - map of enumName to Set of values
    * @param commitId - source commit ID
-   * @param generatedAt - generation timestamp
+   * @param generatedDate - generation timestamp
    */
   public async write(
     enums: ReadonlyMap<string, ReadonlySet<string>>,
     commitId: string,
-    generatedAt: string,
+    generatedDate: Date,
   ): Promise<void> {
     for (const [enumName, values] of enums.entries()) {
       const sortedValues = this.prepareValues(values)
@@ -46,7 +47,7 @@ export class EnumFileWriter {
         enumName,
         sortedValues,
         commitId,
-        generatedAt,
+        generatedDate,
       )
       fs.writeFileSync(path.resolve(this.outputPath, `${enumName}.ts`), content)
     }
@@ -75,16 +76,16 @@ export class EnumFileWriter {
    * @param enumName - name of the enum
    * @param values - sorted and escaped values
    * @param commitId - source commit ID
-   * @param generatedAt - generation timestamp
+   * @param generatedDate - generation timestamp
    * @returns formatted file content string
    */
   private async generateContent(
     enumName: string,
     values: string[],
     commitId: string,
-    generatedAt: string,
+    generatedDate: Date,
   ): Promise<string> {
-    const header = this.buildMetadataHeader(commitId, generatedAt)
+    const header = buildMetadataHeader(commitId, generatedDate)
     const importLine = `import { z } from 'zod'`
     const schemaDoc = `/** Zod enum schema for ${enumName}. */`
     const enumValues = values.map((v) => `'${v}'`).join(', ')
@@ -106,21 +107,5 @@ export class EnumFileWriter {
       singleQuote: true,
       semi: false,
     })
-  }
-
-  /**
-   * Build metadata header comment
-   * @param commitId - source commit ID
-   * @param generatedAt - generation timestamp
-   * @returns formatted header comment
-   */
-  private buildMetadataHeader(commitId: string, generatedAt: string): string {
-    return [
-      '/**',
-      ' * @generated',
-      ` * @source ${commitId}`,
-      ` * @date ${generatedAt}`,
-      ' */',
-    ].join('\n')
   }
 }

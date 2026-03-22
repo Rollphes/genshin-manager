@@ -1,6 +1,7 @@
 import * as fs from 'node:fs'
 import * as path from 'node:path'
 
+import { buildMetadataHeader } from '@scripts/generator/buildMetadataHeader'
 import * as prettier from 'prettier'
 
 /**
@@ -18,19 +19,19 @@ export class IndexFileWriter {
    * @param schemaNames - sorted list of schema type names
    * @param enumNames - sorted list of enum names
    * @param commitId - source commit ID
-   * @param generatedAt - generation timestamp
+   * @param generatedDate - generation timestamp
    */
   public async write(
     schemaNames: string[],
     enumNames: string[],
     commitId: string,
-    generatedAt: string,
+    generatedDate: Date,
   ): Promise<void> {
     const content = await this.generateContent(
       schemaNames,
       enumNames,
       commitId,
-      generatedAt,
+      generatedDate,
     )
     fs.writeFileSync(path.resolve(this.outputPath, 'index.ts'), content)
   }
@@ -40,16 +41,16 @@ export class IndexFileWriter {
    * @param schemaNames - list of schema type names
    * @param enumNames - list of enum names
    * @param commitId - source commit ID
-   * @param generatedAt - generation timestamp
+   * @param generatedDate - generation timestamp
    * @returns formatted file content string
    */
   private async generateContent(
     schemaNames: string[],
     enumNames: string[],
     commitId: string,
-    generatedAt: string,
+    generatedDate: Date,
   ): Promise<string> {
-    const header = this.buildMetadataHeader(commitId, generatedAt)
+    const header = buildMetadataHeader(commitId, generatedDate)
 
     // Sort by path (schema path includes 'Schema' suffix)
     const sortedSchemaNames = [...schemaNames].sort((a, b) =>
@@ -81,21 +82,5 @@ export class IndexFileWriter {
       singleQuote: true,
       semi: false,
     })
-  }
-
-  /**
-   * Build metadata header comment
-   * @param commitId - source commit ID
-   * @param generatedAt - generation timestamp
-   * @returns formatted header comment
-   */
-  private buildMetadataHeader(commitId: string, generatedAt: string): string {
-    return [
-      '/**',
-      ' * @generated',
-      ` * @source ${commitId}`,
-      ` * @date ${generatedAt}`,
-      ' */',
-    ].join('\n')
   }
 }

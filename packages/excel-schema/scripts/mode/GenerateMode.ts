@@ -58,11 +58,11 @@ export class GenerateMode {
     const { results, generatedSchemas } = await this.generateSchemas(dataMap)
 
     const commitId = options.commit
-    const generatedAt = new Date().toISOString()
+    const generatedDate = new Date()
 
-    await this.writeEnumFiles(commitId, generatedAt)
-    await this.writeSchemaFiles(generatedSchemas, commitId, generatedAt)
-    await this.writeIndexFile(generatedSchemas, commitId, generatedAt)
+    await this.writeEnumFiles(commitId, generatedDate)
+    await this.writeSchemaFiles(generatedSchemas, commitId, generatedDate)
+    await this.writeIndexFile(generatedSchemas, commitId, generatedDate)
 
     this.showResultsAndExit(results, commitId)
   }
@@ -105,17 +105,17 @@ export class GenerateMode {
   /**
    * Write enum files
    * @param commitId - source commit ID
-   * @param generatedAt - generation timestamp
+   * @param generatedDate - generation timestamp
    */
   private async writeEnumFiles(
     commitId: string,
-    generatedAt: string,
+    generatedDate: Date,
   ): Promise<void> {
     this.enumFileWriter.clean()
     await this.enumFileWriter.write(
-      this.schemaProcessor.enumCollector.enumsSnapshot,
+      this.schemaProcessor.enumsSnapshot,
       commitId,
-      generatedAt,
+      generatedDate,
     )
   }
 
@@ -123,33 +123,33 @@ export class GenerateMode {
    * Write schema files
    * @param generatedSchemas - map of type name to schema
    * @param commitId - source commit ID
-   * @param generatedAt - generation timestamp
+   * @param generatedDate - generation timestamp
    */
   private async writeSchemaFiles(
     generatedSchemas: Map<AnchorName, string>,
     commitId: string,
-    generatedAt: string,
+    generatedDate: Date,
   ): Promise<void> {
     this.schemaFileWriter.clean()
-    await this.schemaFileWriter.write(generatedSchemas, commitId, generatedAt)
+    await this.schemaFileWriter.write(generatedSchemas, commitId, generatedDate)
   }
 
   /**
    * Write index file
    * @param generatedSchemas - map of type name to schema
    * @param commitId - source commit ID
-   * @param generatedAt - generation timestamp
+   * @param generatedDate - generation timestamp
    */
   private async writeIndexFile(
     generatedSchemas: Map<AnchorName, string>,
     commitId: string,
-    generatedAt: string,
+    generatedDate: Date,
   ): Promise<void> {
     await this.indexFileWriter.write(
       [...generatedSchemas.keys()].map(String).sort(),
-      [...this.schemaProcessor.enumCollector.enumNames].sort(),
+      [...this.schemaProcessor.enumNames].sort(),
       commitId,
-      generatedAt,
+      generatedDate,
     )
   }
 

@@ -33,15 +33,15 @@ export class SchemaFileWriter {
    * Write schema files from generated schemas
    * @param generatedSchemas - map of type name to schema
    * @param commitId - source commit ID
-   * @param generatedAt - generation timestamp
+   * @param generatedDate - generation timestamp
    */
   public async write(
     generatedSchemas: Map<AnchorName, string>,
     commitId: string,
-    generatedAt: string,
+    generatedDate: Date,
   ): Promise<void> {
     for (const [typeName, schema] of generatedSchemas.entries())
-      await this.writeSchemaFile(typeName, schema, commitId, generatedAt)
+      await this.writeSchemaFile(typeName, schema, commitId, generatedDate)
   }
 
   /**
@@ -49,13 +49,13 @@ export class SchemaFileWriter {
    * @param typeName - name of the type
    * @param schema - generated schema string
    * @param commitId - source commit ID
-   * @param generatedAt - generation timestamp
+   * @param generatedDate - generation timestamp
    */
   private async writeSchemaFile(
     typeName: AnchorName,
     schema: string,
     commitId: string,
-    generatedAt: string,
+    generatedDate: Date,
   ): Promise<void> {
     const nameMapping = this.enumCollector.getNameMapping(typeName)
     const enumNames = [...this.enumCollector.enumNames]
@@ -64,7 +64,7 @@ export class SchemaFileWriter {
       enumNames,
       nameMapping,
       commitId,
-      generatedAt,
+      generatedDate,
     )
     const formattedSchema = await this.formatSchema(finalSchema)
     fs.writeFileSync(
