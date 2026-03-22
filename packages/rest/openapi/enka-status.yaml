@@ -1,0 +1,131 @@
+openapi: 3.1.0
+info:
+  title: Enka Status API
+  description: API for monitoring Enka.Network server status
+  version: 1.0.0
+servers:
+  - url: http://status.enka.network
+paths:
+  /api/status:
+    get:
+      operationId: getStatus
+      summary: Get status from the last hour
+      responses:
+        '200':
+          description: Status data from the last hour
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EnkaStatus'
+        default:
+          description: Error response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /api/now:
+    get:
+      operationId: getCurrentStatus
+      summary: Get current status
+      responses:
+        '200':
+          description: Current status data
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EnkaStatus'
+        default:
+          description: Error response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+components:
+  schemas:
+    EnkaStatus:
+      type: object
+      required:
+        - now
+        - hsr
+        - gi
+        - gg
+        - pingu
+      properties:
+        now:
+          type: string
+          description: Current datetime string
+        hsr:
+          $ref: '#/components/schemas/EnkaStat'
+          description: Honkai Star Rail stats
+        gi:
+          $ref: '#/components/schemas/EnkaStat'
+          description: Genshin Impact stats
+        gg:
+          $ref: '#/components/schemas/EnkaStat'
+          description: Genshin Guide stats
+        pingu:
+          $ref: '#/components/schemas/EnkaPingu'
+          description: Ping status for various endpoints
+    EnkaStat:
+      type: object
+      required:
+        - time
+        - ping
+        - nodes
+        - underruns
+      properties:
+        time:
+          type: object
+          description: Response time (ms) by region
+          additionalProperties:
+            type: number
+        ping:
+          type: object
+          description: Ping (ms) by region
+          additionalProperties:
+            type: number
+        nodes:
+          type: object
+          description: Request capacity (req/min) by region
+          additionalProperties:
+            type: number
+        underruns:
+          type: object
+          description: Failure counts by region
+          additionalProperties:
+            type: string
+    EnkaPingu:
+      type: object
+      required:
+        - cdn
+        - main
+        - api
+        - fox
+      properties:
+        cdn:
+          $ref: '#/components/schemas/EnkaPing'
+        main:
+          $ref: '#/components/schemas/EnkaPing'
+        api:
+          $ref: '#/components/schemas/EnkaPing'
+        fox:
+          $ref: '#/components/schemas/EnkaPing'
+    EnkaPing:
+      type: object
+      required:
+        - ms
+        - status
+      properties:
+        ms:
+          type: number
+          description: Response time in milliseconds
+        status:
+          type: integer
+          description: HTTP status code
+    ErrorResponse:
+      type: object
+      properties:
+        message:
+          type: string
+        error:
+          type: string

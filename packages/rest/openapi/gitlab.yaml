@@ -1,0 +1,611 @@
+openapi: 3.1.0
+info:
+  title: GitLab API v4 (Subset)
+  description: Subset of GitLab API v4 for genshin-manager
+  version: 1.0.0
+servers:
+  - url: https://gitlab.com/api/v4
+
+paths:
+  /projects/{id}:
+    get:
+      operationId: getProject
+      summary: Get a single project
+      tags:
+        - Projects
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: The ID or URL-encoded path of the project
+          schema:
+            oneOf:
+              - type: string
+              - type: integer
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Project'
+        '404':
+          description: Not found
+
+  /projects/{id}/repository/commits:
+    get:
+      operationId: getRepositoryCommits
+      summary: Get a project repository commits
+      tags:
+        - Commits
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: The ID or URL-encoded path of the project
+          schema:
+            oneOf:
+              - type: string
+              - type: integer
+        - name: ref_name
+          in: query
+          required: false
+          description: The name of a repository branch or tag
+          schema:
+            type: string
+        - name: per_page
+          in: query
+          required: false
+          description: Number of items per page
+          schema:
+            type: integer
+            default: 20
+        - name: page
+          in: query
+          required: false
+          description: Current page number
+          schema:
+            type: integer
+            default: 1
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Commit'
+        '404':
+          description: Not found
+
+  /projects/{id}/repository/tree:
+    get:
+      operationId: getRepositoryTree
+      summary: Get a project repository tree
+      tags:
+        - Repositories
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: The ID or URL-encoded path of the project
+          schema:
+            oneOf:
+              - type: string
+              - type: integer
+        - name: ref
+          in: query
+          required: false
+          description: The name of a repository branch or tag, if not given the default branch is used
+          schema:
+            type: string
+        - name: path
+          in: query
+          required: false
+          description: The path of the tree
+          schema:
+            type: string
+        - name: recursive
+          in: query
+          required: false
+          description: Used to get a recursive tree
+          schema:
+            type: boolean
+        - name: per_page
+          in: query
+          required: false
+          description: Number of items per page
+          schema:
+            type: integer
+            default: 20
+        - name: page
+          in: query
+          required: false
+          description: Current page number
+          schema:
+            type: integer
+            default: 1
+        - name: pagination
+          in: query
+          required: false
+          description: Specify the pagination method
+          schema:
+            type: string
+            enum:
+              - legacy
+              - keyset
+              - none
+            default: legacy
+        - name: page_token
+          in: query
+          required: false
+          description: Record from which to start the keyset pagination
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/TreeObject'
+        '404':
+          description: Not found
+
+  /projects/{id}/repository/files/{file_path}:
+    get:
+      operationId: getRepositoryFile
+      summary: Get file from repository
+      tags:
+        - Files
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: The ID or URL-encoded path of the project
+          schema:
+            oneOf:
+              - type: string
+              - type: integer
+        - name: file_path
+          in: path
+          required: true
+          description: The URL-encoded path to the file
+          schema:
+            type: string
+        - name: ref
+          in: query
+          required: true
+          description: The name of branch, tag or commit
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FileMetadata'
+        '404':
+          description: Not found
+
+  /projects/{id}/repository/files/{file_path}/raw:
+    get:
+      operationId: getRepositoryFileRaw
+      summary: Get raw file contents from the repository
+      tags:
+        - Files
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: The ID or URL-encoded path of the project
+          schema:
+            oneOf:
+              - type: string
+              - type: integer
+        - name: file_path
+          in: path
+          required: true
+          description: The URL-encoded path to the file
+          schema:
+            type: string
+        - name: ref
+          in: query
+          required: false
+          description: The name of branch, tag or commit
+          schema:
+            type: string
+        - name: lfs
+          in: query
+          required: false
+          description: Retrieve binary data for a file that is an lfs pointer
+          schema:
+            type: boolean
+      responses:
+        '200':
+          description: OK
+          content:
+            text/plain:
+              schema:
+                type: string
+        '404':
+          description: Not found
+
+  /projects/{id}/repository/branches:
+    get:
+      operationId: getRepositoryBranches
+      summary: Get a project repository branches
+      tags:
+        - Branches
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: The ID or URL-encoded path of the project
+          schema:
+            oneOf:
+              - type: string
+              - type: integer
+        - name: search
+          in: query
+          required: false
+          description: Return list of branches matching the search criteria
+          schema:
+            type: string
+        - name: per_page
+          in: query
+          required: false
+          description: Number of items per page
+          schema:
+            type: integer
+            default: 20
+        - name: page
+          in: query
+          required: false
+          description: Current page number
+          schema:
+            type: integer
+            default: 1
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Branch'
+        '404':
+          description: Not found
+
+  /projects/{id}/repository/tags:
+    get:
+      operationId: getRepositoryTags
+      summary: Get a project repository tags
+      tags:
+        - Tags
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: The ID or URL-encoded path of the project
+          schema:
+            oneOf:
+              - type: string
+              - type: integer
+        - name: sort
+          in: query
+          required: false
+          description: Return tags sorted in asc or desc order
+          schema:
+            type: string
+            enum:
+              - asc
+              - desc
+            default: desc
+        - name: order_by
+          in: query
+          required: false
+          description: Return tags ordered by name, updated, or version
+          schema:
+            type: string
+            enum:
+              - name
+              - updated
+              - version
+            default: updated
+        - name: search
+          in: query
+          required: false
+          description: Return list of tags matching the search criteria
+          schema:
+            type: string
+        - name: per_page
+          in: query
+          required: false
+          description: Number of items per page
+          schema:
+            type: integer
+            default: 20
+        - name: page
+          in: query
+          required: false
+          description: Current page number
+          schema:
+            type: integer
+            default: 1
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Tag'
+        '404':
+          description: Not found
+
+  /projects/{id}/repository/compare:
+    get:
+      operationId: getRepositoryCompare
+      summary: Compare two branches, tags, or commits
+      tags:
+        - Repositories
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: The ID or URL-encoded path of the project
+          schema:
+            oneOf:
+              - type: string
+              - type: integer
+        - name: from
+          in: query
+          required: true
+          description: The commit, branch name, or tag name to start comparison
+          schema:
+            type: string
+        - name: to
+          in: query
+          required: true
+          description: The commit, branch name, or tag name to stop comparison
+          schema:
+            type: string
+        - name: straight
+          in: query
+          required: false
+          description: Comparison method
+          schema:
+            type: boolean
+        - name: unidiff
+          in: query
+          required: false
+          description: A diff in a Unified diff format
+          schema:
+            type: boolean
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Compare'
+        '404':
+          description: Not found
+
+components:
+  schemas:
+    Project:
+      type: object
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+        description:
+          type: string
+        name_with_namespace:
+          type: string
+        path:
+          type: string
+        path_with_namespace:
+          type: string
+        created_at:
+          type: string
+          format: date-time
+        default_branch:
+          type: string
+        ssh_url_to_repo:
+          type: string
+        http_url_to_repo:
+          type: string
+        web_url:
+          type: string
+        forks_count:
+          type: integer
+        star_count:
+          type: integer
+        last_activity_at:
+          type: string
+          format: date-time
+        visibility:
+          type: string
+        archived:
+          type: boolean
+
+    Commit:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Full commit SHA
+        short_id:
+          type: string
+          description: Short commit SHA
+        created_at:
+          type: string
+          format: date-time
+        parent_ids:
+          type: array
+          items:
+            type: string
+        title:
+          type: string
+          description: Commit title (first line of message)
+        message:
+          type: string
+          description: Full commit message
+        author_name:
+          type: string
+        author_email:
+          type: string
+        authored_date:
+          type: string
+          format: date-time
+        committer_name:
+          type: string
+        committer_email:
+          type: string
+        committed_date:
+          type: string
+          format: date-time
+        web_url:
+          type: string
+          format: uri
+
+    TreeObject:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        type:
+          type: string
+          enum:
+            - tree
+            - blob
+        path:
+          type: string
+        mode:
+          type: string
+
+    FileMetadata:
+      type: object
+      properties:
+        file_name:
+          type: string
+        file_path:
+          type: string
+        size:
+          type: integer
+        encoding:
+          type: string
+        content_sha256:
+          type: string
+        ref:
+          type: string
+        blob_id:
+          type: string
+        commit_id:
+          type: string
+        last_commit_id:
+          type: string
+
+    Branch:
+      type: object
+      properties:
+        name:
+          type: string
+        commit:
+          $ref: '#/components/schemas/Commit'
+        merged:
+          type: boolean
+        protected:
+          type: boolean
+        developers_can_push:
+          type: boolean
+        developers_can_merge:
+          type: boolean
+        can_push:
+          type: boolean
+        default:
+          type: boolean
+        web_url:
+          type: string
+
+    Tag:
+      type: object
+      properties:
+        name:
+          type: string
+        message:
+          type: string
+        target:
+          type: string
+          description: Commit SHA
+        commit:
+          $ref: '#/components/schemas/Commit'
+        release:
+          $ref: '#/components/schemas/TagRelease'
+        protected:
+          type: boolean
+        created_at:
+          type: string
+          format: date-time
+
+    TagRelease:
+      type: object
+      properties:
+        tag_name:
+          type: string
+        description:
+          type: string
+
+    Compare:
+      type: object
+      properties:
+        commit:
+          $ref: '#/components/schemas/Commit'
+        commits:
+          type: array
+          items:
+            $ref: '#/components/schemas/Commit'
+        diffs:
+          type: array
+          items:
+            $ref: '#/components/schemas/Diff'
+        compare_timeout:
+          type: boolean
+        compare_same_ref:
+          type: boolean
+        web_url:
+          type: string
+
+    Diff:
+      type: object
+      properties:
+        diff:
+          type: string
+        new_path:
+          type: string
+        old_path:
+          type: string
+        a_mode:
+          type: string
+        b_mode:
+          type: string
+        new_file:
+          type: boolean
+        renamed_file:
+          type: boolean
+        deleted_file:
+          type: boolean
+        generated_file:
+          type: boolean

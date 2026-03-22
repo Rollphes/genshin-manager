@@ -1,0 +1,454 @@
+openapi: 3.1.0
+info:
+  title: Enka Network API
+  description: API for fetching Genshin Impact player data from Enka.Network
+  version: 1.0.0
+servers:
+  - url: https://enka.network
+paths:
+  /api/uid/{uid}:
+    get:
+      operationId: getPlayerData
+      summary: Get player data by UID
+      parameters:
+        - name: uid
+          in: path
+          required: true
+          schema:
+            type: string
+          description: Genshin Impact UID
+        - name: info
+          in: query
+          required: false
+          schema:
+            type: boolean
+          description: If true, returns only player info without character details
+      responses:
+        '200':
+          description: Player data
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EnkaData'
+        '400':
+          description: Invalid UID
+        '404':
+          description: Player not found
+        '424':
+          description: Game maintenance
+        '429':
+          description: Rate limit exceeded
+        '500':
+          description: Server error
+        '503':
+          description: Service unavailable
+        default:
+          description: Error response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /api/profile/{username}:
+    get:
+      operationId: getProfile
+      summary: Get Enka account profile
+      parameters:
+        - name: username
+          in: path
+          required: true
+          schema:
+            type: string
+          description: Enka account username
+      responses:
+        '200':
+          description: Account profile
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Owner'
+        '404':
+          description: User not found
+        default:
+          description: Error response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /api/profile/{username}/hoyos:
+    get:
+      operationId: getHoyos
+      summary: Get linked Genshin accounts
+      parameters:
+        - name: username
+          in: path
+          required: true
+          schema:
+            type: string
+          description: Enka account username
+      responses:
+        '200':
+          description: Linked game accounts
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties:
+                  $ref: '#/components/schemas/GameAccount'
+        '404':
+          description: User not found
+        default:
+          description: Error response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /api/profile/{username}/hoyos/{hash}/builds:
+    get:
+      operationId: getBuilds
+      summary: Get saved character builds
+      parameters:
+        - name: username
+          in: path
+          required: true
+          schema:
+            type: string
+          description: Enka account username
+        - name: hash
+          in: path
+          required: true
+          schema:
+            type: string
+          description: Game account hash
+      responses:
+        '200':
+          description: Character builds
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Build'
+        '404':
+          description: Account not found
+        default:
+          description: Error response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+components:
+  schemas:
+    EnkaData:
+      type: object
+      required:
+        - playerInfo
+        - uid
+      properties:
+        playerInfo:
+          $ref: '#/components/schemas/PlayerInfo'
+        avatarInfoList:
+          type: array
+          items:
+            $ref: '#/components/schemas/AvatarInfo'
+        owner:
+          $ref: '#/components/schemas/Owner'
+        ttl:
+          type: integer
+        uid:
+          type: integer
+    PlayerInfo:
+      type: object
+      required:
+        - level
+        - nameCardId
+      properties:
+        nickname:
+          type: string
+        level:
+          type: integer
+        signature:
+          type: string
+        worldLevel:
+          type: integer
+        nameCardId:
+          type: integer
+        finishAchievementNum:
+          type: integer
+        towerFloorIndex:
+          type: integer
+        towerLevelIndex:
+          type: integer
+        towerStarIndex:
+          type: integer
+        showAvatarInfoList:
+          type: array
+          items:
+            $ref: '#/components/schemas/ShowAvatarInfo'
+        showNameCardIdList:
+          type: array
+          items:
+            type: integer
+        profilePicture:
+          $ref: '#/components/schemas/ProfilePicture'
+        isShowAvatarTalent:
+          type: boolean
+        fetterCount:
+          type: integer
+        theaterActIndex:
+          type: integer
+        theaterModeIndex:
+          type: integer
+        theaterStarIndex:
+          type: integer
+    ShowAvatarInfo:
+      type: object
+      required:
+        - avatarId
+        - level
+      properties:
+        avatarId:
+          type: integer
+        level:
+          type: integer
+        costumeId:
+          type: integer
+        energyType:
+          type: integer
+        talentLevel:
+          type: integer
+    ProfilePicture:
+      type: object
+      properties:
+        avatarId:
+          type: integer
+        id:
+          type: integer
+        costumeId:
+          type: integer
+    AvatarInfo:
+      type: object
+      required:
+        - avatarId
+        - propMap
+        - fightPropMap
+        - skillDepotId
+        - skillLevelMap
+        - equipList
+        - fetterInfo
+      properties:
+        avatarId:
+          type: integer
+        costumeId:
+          type: integer
+        propMap:
+          type: object
+          additionalProperties:
+            $ref: '#/components/schemas/PropMap'
+        talentIdList:
+          type: array
+          items:
+            type: integer
+        fightPropMap:
+          type: object
+          additionalProperties:
+            type: number
+        skillDepotId:
+          type: integer
+        skillLevelMap:
+          type: object
+          additionalProperties:
+            type: integer
+        proudSkillExtraLevelMap:
+          type: object
+          additionalProperties:
+            type: integer
+        equipList:
+          type: array
+          items:
+            oneOf:
+              - $ref: '#/components/schemas/ReliquaryEquip'
+              - $ref: '#/components/schemas/WeaponEquip'
+        fetterInfo:
+          type: object
+          required:
+            - expLevel
+          properties:
+            expLevel:
+              type: integer
+    PropMap:
+      type: object
+      properties:
+        val:
+          type: string
+    ReliquaryEquip:
+      type: object
+      required:
+        - itemId
+        - reliquary
+      properties:
+        itemId:
+          type: integer
+        reliquary:
+          $ref: '#/components/schemas/Reliquary'
+    WeaponEquip:
+      type: object
+      required:
+        - itemId
+        - weapon
+      properties:
+        itemId:
+          type: integer
+        weapon:
+          $ref: '#/components/schemas/Weapon'
+    Reliquary:
+      type: object
+      required:
+        - level
+        - mainPropId
+      properties:
+        level:
+          type: integer
+        mainPropId:
+          type: integer
+        appendPropIdList:
+          type: array
+          items:
+            type: integer
+    Weapon:
+      type: object
+      required:
+        - level
+      properties:
+        level:
+          type: integer
+        promoteLevel:
+          type: integer
+        affixMap:
+          type: object
+          additionalProperties:
+            type: integer
+    Owner:
+      type: object
+      required:
+        - username
+        - profile
+        - id
+      properties:
+        hash:
+          type: string
+        username:
+          type: string
+        profile:
+          $ref: '#/components/schemas/Profile'
+        id:
+          type: integer
+    Profile:
+      type: object
+      required:
+        - bio
+        - level
+        - signup_state
+        - image_url
+      properties:
+        bio:
+          type: string
+        level:
+          type: integer
+        signup_state:
+          type: integer
+        avatar:
+          type: string
+          nullable: true
+        image_url:
+          type: string
+    GameAccount:
+      type: object
+      required:
+        - uid
+        - uid_public
+        - public
+        - live_public
+        - verified
+        - player_info
+        - hash
+        - region
+        - order
+        - avatar_order
+        - hoyo_type
+      properties:
+        uid:
+          type: integer
+        uid_public:
+          type: boolean
+        public:
+          type: boolean
+        live_public:
+          type: boolean
+        verified:
+          type: boolean
+        player_info:
+          $ref: '#/components/schemas/PlayerInfo'
+        hash:
+          type: string
+        region:
+          type: string
+        order:
+          type: integer
+        avatar_order:
+          type: object
+          additionalProperties:
+            type: integer
+        hoyo_type:
+          type: integer
+    Build:
+      type: object
+      required:
+        - id
+        - name
+        - avatar_id
+        - avatar_data
+        - order
+        - live
+        - settings
+        - public
+        - hoyo_type
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+        avatar_id:
+          type: string
+        avatar_data:
+          $ref: '#/components/schemas/AvatarInfo'
+        order:
+          type: integer
+        live:
+          type: boolean
+        settings:
+          $ref: '#/components/schemas/BuildSettings'
+        public:
+          type: boolean
+        image:
+          type: string
+          nullable: true
+        hoyo_type:
+          type: integer
+    BuildSettings:
+      type: object
+      properties:
+        caption:
+          type: string
+        artSource:
+          type: string
+        honkardWidth:
+          type: number
+        adaptiveColor:
+          type: boolean
+    ErrorResponse:
+      type: object
+      properties:
+        message:
+          type: string
+        error:
+          type: string

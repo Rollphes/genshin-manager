@@ -1,0 +1,445 @@
+openapi: 3.1.0
+info:
+  title: HoYoverse Announcement API
+  description: API for fetching Genshin Impact game announcements
+  version: 1.0.0
+servers:
+  - url: https://sg-hk4e-api-static.hoyoverse.com
+    description: Static content server
+  - url: https://sg-hk4e-api.hoyoverse.com
+    description: Dynamic API server
+paths:
+  /common/hk4e_global/announcement/api/getAnnContent:
+    get:
+      operationId: getAnnContent
+      summary: Get announcement content
+      parameters:
+        - name: game
+          in: query
+          required: true
+          schema:
+            type: string
+            default: hk4e
+        - name: game_biz
+          in: query
+          required: true
+          schema:
+            type: string
+            default: hk4e_global
+        - name: lang
+          in: query
+          required: true
+          schema:
+            type: string
+            enum:
+              - en
+              - ru
+              - vi
+              - th
+              - pt
+              - ko
+              - ja
+              - id
+              - fr
+              - es
+              - de
+              - zh-tw
+              - zh-cn
+        - name: auth_appid
+          in: query
+          required: true
+          schema:
+            type: string
+            default: announcement
+        - name: bundle_id
+          in: query
+          required: true
+          schema:
+            type: string
+            default: hk4e_global
+        - name: channel_id
+          in: query
+          required: true
+          schema:
+            type: string
+            default: '1'
+        - name: level
+          in: query
+          required: true
+          schema:
+            type: string
+            default: '60'
+        - name: platform
+          in: query
+          required: true
+          schema:
+            type: string
+            default: pc
+        - name: region
+          in: query
+          required: true
+          schema:
+            type: string
+            enum:
+              - os_asia
+              - os_euro
+              - os_usa
+              - os_cht
+        - name: sdk_presentation_style
+          in: query
+          required: true
+          schema:
+            type: string
+            default: fullscreen
+        - name: sdk_screen_transparent
+          in: query
+          required: true
+          schema:
+            type: string
+            default: 'true'
+        - name: uid
+          in: query
+          required: true
+          schema:
+            type: string
+            default: '888888888'
+      responses:
+        '200':
+          description: Announcement content
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetAnnContentResponse'
+        default:
+          description: Error response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /common/hk4e_global/announcement/api/getAnnList:
+    get:
+      operationId: getAnnList
+      summary: Get announcement list
+      parameters:
+        - name: game
+          in: query
+          required: true
+          schema:
+            type: string
+            default: hk4e
+        - name: game_biz
+          in: query
+          required: true
+          schema:
+            type: string
+            default: hk4e_global
+        - name: lang
+          in: query
+          required: true
+          schema:
+            type: string
+            enum:
+              - en
+              - ru
+              - vi
+              - th
+              - pt
+              - ko
+              - ja
+              - id
+              - fr
+              - es
+              - de
+              - zh-tw
+              - zh-cn
+        - name: auth_appid
+          in: query
+          required: true
+          schema:
+            type: string
+            default: announcement
+        - name: bundle_id
+          in: query
+          required: true
+          schema:
+            type: string
+            default: hk4e_global
+        - name: channel_id
+          in: query
+          required: true
+          schema:
+            type: string
+            default: '1'
+        - name: level
+          in: query
+          required: true
+          schema:
+            type: string
+            default: '60'
+        - name: platform
+          in: query
+          required: true
+          schema:
+            type: string
+            default: pc
+        - name: region
+          in: query
+          required: true
+          schema:
+            type: string
+            enum:
+              - os_asia
+              - os_euro
+              - os_usa
+              - os_cht
+        - name: sdk_presentation_style
+          in: query
+          required: true
+          schema:
+            type: string
+            default: fullscreen
+        - name: sdk_screen_transparent
+          in: query
+          required: true
+          schema:
+            type: string
+            default: 'true'
+        - name: uid
+          in: query
+          required: true
+          schema:
+            type: string
+            default: '888888888'
+      responses:
+        '200':
+          description: Announcement list
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetAnnListResponse'
+        default:
+          description: Error response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+components:
+  schemas:
+    GetAnnContentResponse:
+      type: object
+      required:
+        - retcode
+        - message
+        - data
+      properties:
+        retcode:
+          type: integer
+        message:
+          type: string
+        data:
+          $ref: '#/components/schemas/ContentData'
+    ContentData:
+      type: object
+      required:
+        - list
+        - total
+        - pic_list
+        - pic_total
+      properties:
+        list:
+          type: array
+          items:
+            $ref: '#/components/schemas/ContentItem'
+        total:
+          type: integer
+        pic_list:
+          type: array
+          items:
+            type: string
+        pic_total:
+          type: integer
+    ContentItem:
+      type: object
+      required:
+        - ann_id
+        - title
+        - subtitle
+        - banner
+        - content
+        - lang
+      properties:
+        ann_id:
+          type: integer
+        title:
+          type: string
+        subtitle:
+          type: string
+        banner:
+          type: string
+        content:
+          type: string
+        lang:
+          type: string
+    GetAnnListResponse:
+      type: object
+      required:
+        - retcode
+        - message
+        - data
+      properties:
+        retcode:
+          type: integer
+        message:
+          type: string
+        data:
+          $ref: '#/components/schemas/ListData'
+    ListData:
+      type: object
+      required:
+        - list
+        - total
+        - type_list
+        - alert
+        - alert_id
+        - timezone
+        - t
+        - pic_list
+        - pic_total
+        - pic_type_list
+        - pic_alert
+        - pic_alert_id
+        - static_sign
+      properties:
+        list:
+          type: array
+          items:
+            $ref: '#/components/schemas/TabList'
+        total:
+          type: integer
+        type_list:
+          type: array
+          items:
+            $ref: '#/components/schemas/TypeList'
+        alert:
+          type: boolean
+        alert_id:
+          type: integer
+        timezone:
+          type: integer
+        t:
+          type: string
+        pic_list:
+          type: array
+          items:
+            type: string
+        pic_total:
+          type: integer
+        pic_type_list:
+          type: array
+          items:
+            type: string
+        pic_alert:
+          type: boolean
+        pic_alert_id:
+          type: integer
+        static_sign:
+          type: string
+    TabList:
+      type: object
+      required:
+        - list
+        - type_id
+        - type_label
+      properties:
+        list:
+          type: array
+          items:
+            $ref: '#/components/schemas/DataItem'
+        type_id:
+          type: integer
+        type_label:
+          type: string
+    DataItem:
+      type: object
+      required:
+        - ann_id
+        - title
+        - subtitle
+        - banner
+        - content
+        - type_label
+        - tag_label
+        - tag_icon
+        - login_alert
+        - lang
+        - start_time
+        - end_time
+        - type
+        - remind
+        - alert
+        - tag_start_time
+        - tag_end_time
+        - remind_ver
+        - has_content
+        - extra_remind
+      properties:
+        ann_id:
+          type: integer
+        title:
+          type: string
+        subtitle:
+          type: string
+        banner:
+          type: string
+        content:
+          type: string
+        type_label:
+          type: string
+        tag_label:
+          type: string
+        tag_icon:
+          type: string
+        login_alert:
+          type: integer
+        lang:
+          type: string
+        start_time:
+          type: string
+        end_time:
+          type: string
+        type:
+          type: integer
+        remind:
+          type: integer
+        alert:
+          type: integer
+        tag_start_time:
+          type: string
+        tag_end_time:
+          type: string
+        remind_ver:
+          type: integer
+        has_content:
+          type: boolean
+        extra_remind:
+          type: integer
+    TypeList:
+      type: object
+      required:
+        - id
+        - name
+        - mi18n_name
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+        mi18n_name:
+          type: string
+    ErrorResponse:
+      type: object
+      properties:
+        message:
+          type: string
+        error:
+          type: string
