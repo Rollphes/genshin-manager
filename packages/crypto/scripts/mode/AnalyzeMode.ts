@@ -1,9 +1,8 @@
 import type { AnchorChange, AnchorCLI } from '@scripts/cli/AnchorCLI'
 import type { AnalysisEntry } from '@scripts/processor/AnchorProcessor'
+import type { AnchorMergeService } from '@scripts/service/AnchorMergeService'
 
-import { AnchorMerge } from '@/anchor/AnchorMerge'
-import { loadAnchor } from '@/io/loadAnchor'
-import type { Anchor, AnchorFile, AnchorName } from '@/types'
+import type { AnchorFile, AnchorName } from '@/types'
 
 /**
  * Analyze mode - analyzes potential changes without saving
@@ -12,10 +11,12 @@ export class AnalyzeMode {
   /**
    * Create a new AnalyzeMode
    * @param cli - Anchor CLI for UI control
+   * @param anchorMergeService - Service for merging anchors
    * @param commitId - source commit ID
    */
   constructor(
     private readonly cli: AnchorCLI,
+    private readonly anchorMergeService: AnchorMergeService,
     private readonly commitId: string,
   ) {}
 
@@ -44,6 +45,8 @@ export class AnalyzeMode {
     anchorFiles: AnchorFile[]
     changes: AnchorChange[]
   }> {
+    const generatedDate = new Date()
+
     const results = await this.cli.runTasks(
       'Analyzing',
       [...analysisMap.entries()],
@@ -59,7 +62,7 @@ export class AnalyzeMode {
         let finalCrossFileAnchors = crossFileAnchors
         let change: AnchorChange | null = null
 
-        const mergeResult = this.mergeWithExisting(
+        const mergeResult = this.anchorMergeService.mergeWithExisting(
           name,
           anchorSet.anchors,
           crossFileAnchors,
@@ -78,7 +81,7 @@ export class AnalyzeMode {
           metadata: {
             sourceFile: name,
             commitId: this.commitId,
-            generatedAt: new Date().toISOString(),
+            generatedAt: generatedDate.toISOString(),
             totalElements: data.length,
           },
           anchors,
@@ -98,46 +101,5 @@ export class AnalyzeMode {
       .filter((c): c is AnchorChange => c !== null)
 
     return { anchorFiles, changes }
-  }
-
-  /**
-   * Merge new anchors with existing file
-   * @param name - anchor name
-   * @param newAnchors - newly generated anchors
-   * @param newCrossFileAnchors - newly generated cross-file anchors
-   * @returns merged result or null if no existing file
-   */
-  private mergeWithExisting(
-    name: AnchorName,
-    newAnchors: Anchor[],
-    newCrossFileAnchors: Anchor[],
-  ): {
-    anchors: Anchor[]
-    crossFileAnchors: Anchor[]
-    preserved: Set<string>
-    lost: Set<string>
-  } | null {
-    let existingFile: AnchorFile
-    try {
-      existingFile = loadAnchor(name)
-    } catch {
-      // File not found - no comparison possible
-      return null
-    }
-
-    const merge = new AnchorMerge(
-      { anchors: newAnchors, crossFileAnchors: newCrossFileAnchors },
-      {
-        anchors: existingFile.anchors,
-        crossFileAnchors: existingFile.crossFileAnchors,
-      },
-    )
-
-    return {
-      anchors: merge.anchors,
-      crossFileAnchors: merge.crossFileAnchors,
-      preserved: merge.preserved,
-      lost: merge.lost,
-    }
   }
 }

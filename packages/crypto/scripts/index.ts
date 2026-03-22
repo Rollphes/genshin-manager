@@ -7,6 +7,7 @@ import { AnalyzeMode } from '@scripts/mode/AnalyzeMode'
 import { GenerateMode } from '@scripts/mode/GenerateMode'
 import { AnchorProcessor } from '@scripts/processor/AnchorProcessor'
 import { FeatureExtractor } from '@scripts/processor/FeatureExtractor'
+import { AnchorMergeService } from '@scripts/service/AnchorMergeService'
 import { AnchorFileWriter } from '@scripts/writer/AnchorFileWriter'
 import { AnchorMapWriter } from '@scripts/writer/AnchorMapWriter'
 
@@ -37,6 +38,7 @@ async function main(): Promise<void> {
   const processor = new AnchorProcessor(cli)
   const analysisMap = await processor.buildAnalysis(dataMap, featuresMap)
 
+  const anchorMergeService = new AnchorMergeService()
   const anchorFileWriter = new AnchorFileWriter(GENERATED_OUTPUT_PATH)
   const anchorMapWriter = new AnchorMapWriter(GENERATED_OUTPUT_PATH)
 
@@ -44,6 +46,7 @@ async function main(): Promise<void> {
     case 'full': {
       const mode = new GenerateMode(
         cli,
+        anchorMergeService,
         anchorFileWriter,
         anchorMapWriter,
         options.commit,
@@ -55,6 +58,7 @@ async function main(): Promise<void> {
     case 'preserve': {
       const mode = new GenerateMode(
         cli,
+        anchorMergeService,
         anchorFileWriter,
         anchorMapWriter,
         options.commit,
@@ -64,7 +68,7 @@ async function main(): Promise<void> {
       break
     }
     case 'analyze': {
-      const mode = new AnalyzeMode(cli, options.commit)
+      const mode = new AnalyzeMode(cli, anchorMergeService, options.commit)
       await mode.run(analysisMap)
       break
     }

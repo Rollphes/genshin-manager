@@ -2,15 +2,15 @@ import { buildErrorResult, buildOkResult } from '@genshin-manager/cli'
 import type {
   AnchorChange,
   AnchorCLI,
+  AnchorData,
   AnchorResult,
 } from '@scripts/cli/AnchorCLI'
 import type { AnalysisEntry } from '@scripts/processor/AnchorProcessor'
+import type { AnchorMergeService } from '@scripts/service/AnchorMergeService'
 import type { AnchorFileWriter } from '@scripts/writer/AnchorFileWriter'
 import type { AnchorMapWriter } from '@scripts/writer/AnchorMapWriter'
 
-import { AnchorMerge } from '@/anchor/AnchorMerge'
-import { loadAnchor } from '@/io/loadAnchor'
-import type { Anchor, AnchorFile, AnchorName } from '@/types'
+import type { AnchorFile, AnchorName } from '@/types'
 
 /**
  * Generate mode - generates anchor files with optional preservation
@@ -19,6 +19,7 @@ export class GenerateMode {
   /**
    * Create a new GenerateMode
    * @param cli - Anchor CLI for UI control
+   * @param anchorMergeService - Service for merging anchors
    * @param anchorFileWriter - Anchor file writer
    * @param anchorMapWriter - Anchor map writer
    * @param commitId - source commit ID
@@ -26,6 +27,7 @@ export class GenerateMode {
    */
   constructor(
     private readonly cli: AnchorCLI,
+    private readonly anchorMergeService: AnchorMergeService,
     private readonly anchorFileWriter: AnchorFileWriter,
     private readonly anchorMapWriter: AnchorMapWriter,
     private readonly commitId: string,
@@ -79,6 +81,8 @@ export class GenerateMode {
     anchorFiles: AnchorFile[]
     changes: AnchorChange[]
   }> {
+    const generatedDate = new Date()
+
     const results = await this.cli.runTasks<
       [AnchorName, AnalysisEntry],
       AnchorResult
@@ -101,7 +105,7 @@ export class GenerateMode {
           let change: AnchorChange | null = null
 
           if (!this.isOverwrite) {
-            const mergeResult = this.mergeWithExisting(
+            const mergeResult = this.anchorMergeService.mergeWithExisting(
               name,
               anchorSet.anchors,
               crossFileAnchors,
@@ -121,7 +125,7 @@ export class GenerateMode {
             metadata: {
               sourceFile: name,
               commitId: this.commitId,
-              generatedAt: new Date().toISOString(),
+              generatedAt: generatedDate.toISOString(),
               totalElements: data.length,
             },
             anchors,
@@ -141,9 +145,14 @@ export class GenerateMode {
       ([name]) => name,
     )
 
-    const okResults = results.filter(
-      (r): r is Extract<AnchorResult, { status: 'ok' }> => r.status === 'ok',
-    )
+    interface OkResult {
+      status: 'ok'
+      data: AnchorData
+    }
+
+    const okResults = results.filter((r): r is OkResult => {
+      return r.status === 'ok' && r.data !== undefined
+    })
 
     const anchorFiles = okResults.map((r) => r.data.anchorFile)
     const changes = okResults
@@ -151,47 +160,6 @@ export class GenerateMode {
       .filter((c): c is AnchorChange => c !== null)
 
     return { anchorFiles, changes }
-  }
-
-  /**
-   * Merge new anchors with existing file
-   * @param name - anchor name
-   * @param newAnchors - newly generated anchors
-   * @param newCrossFileAnchors - newly generated cross-file anchors
-   * @returns merged result or null if no existing file
-   */
-  private mergeWithExisting(
-    name: AnchorName,
-    newAnchors: Anchor[],
-    newCrossFileAnchors: Anchor[],
-  ): {
-    anchors: Anchor[]
-    crossFileAnchors: Anchor[]
-    preserved: Set<string>
-    lost: Set<string>
-  } | null {
-    let existingFile: AnchorFile
-    try {
-      existingFile = loadAnchor(name)
-    } catch {
-      // File not found - will generate new
-      return null
-    }
-
-    const merge = new AnchorMerge(
-      { anchors: newAnchors, crossFileAnchors: newCrossFileAnchors },
-      {
-        anchors: existingFile.anchors,
-        crossFileAnchors: existingFile.crossFileAnchors,
-      },
-    )
-
-    return {
-      anchors: merge.anchors,
-      crossFileAnchors: merge.crossFileAnchors,
-      preserved: merge.preserved,
-      lost: merge.lost,
-    }
   }
 
   /**

@@ -154,9 +154,9 @@ export interface AnchorFile {
   /** Anchors resolved from cross-file analysis */
   crossFileAnchors: Anchor[]
   /** Ancestor keys derivable from child anchors */
-  derivedAncestorKeys: PathSegment[]
+  derivedAncestorKeys: readonly PathSegment[]
   /** Keys excluded due to non-uniqueness */
-  excludedKeys: PathSegment[]
+  excludedKeys: readonly PathSegment[]
 }
 
 /**

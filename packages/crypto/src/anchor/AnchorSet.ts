@@ -67,7 +67,7 @@ export class AnchorSet {
   /**
    * Keys excluded due to non-uniqueness
    */
-  public get excludedKeys(): PathSegment[] {
+  public get excludedKeys(): readonly PathSegment[] {
     const anchorKeys = new Set(this.anchors.map((a) => a.correctKey))
     return [
       ...new Set(
@@ -83,7 +83,7 @@ export class AnchorSet {
   /**
    * Ancestor keys derivable from child anchors
    */
-  public get derivedAncestorKeys(): PathSegment[] {
+  public get derivedAncestorKeys(): readonly PathSegment[] {
     return [...new Set(this.anchors.flatMap((a) => a.ancestorKeys))].sort()
   }
 

@@ -98,7 +98,9 @@ export class CrossFileAnalysis {
    * @param targetKeys - keys to find anchors for
    * @returns cross-file anchors for keys that can be resolved
    */
-  public getCrossFileAnchors(targetKeys: PathSegment[]): CrossFileAnchor[] {
+  public getCrossFileAnchors(
+    targetKeys: readonly PathSegment[],
+  ): CrossFileAnchor[] {
     return targetKeys
       .map((key) => this.findAnchorForKey(key))
       .filter((a): a is CrossFileAnchor => a !== undefined)
