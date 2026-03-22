@@ -14,13 +14,7 @@ export class ReportFormatter {
    * @returns formatted lines
    */
   public format(item: FormatItem): string[] {
-    const maxDepth = this.calculateMaxDepth([item])
-
-    // Pre-calculate pad widths for all depths
-    const padWidths = new Map<number, number>()
-    for (let depth = 0; depth <= maxDepth; depth++)
-      padWidths.set(depth, this.calculatePadWidth([item], depth))
-
+    const padWidths = this.calculatePadWidths([item])
     return this.formatItemsWithPadWidths([item], 0, padWidths)
   }
 
@@ -30,14 +24,22 @@ export class ReportFormatter {
    * @returns formatted lines
    */
   public formatItems(items: FormatItem[]): string[] {
-    const maxDepth = this.calculateMaxDepth(items)
+    const padWidths = this.calculatePadWidths(items)
+    return this.formatItemsWithPadWidths(items, 0, padWidths)
+  }
 
-    // Pre-calculate pad widths for all depths
+  /**
+   * Pre-calculate pad widths for all depth levels
+   * @param items - items to analyze
+   * @returns map of depth to pad width
+   */
+  private calculatePadWidths(items: FormatItem[]): Map<number, number> {
+    const maxDepth = this.calculateMaxDepth(items)
     const padWidths = new Map<number, number>()
     for (let depth = 0; depth <= maxDepth; depth++)
       padWidths.set(depth, this.calculatePadWidth(items, depth))
 
-    return this.formatItemsWithPadWidths(items, 0, padWidths)
+    return padWidths
   }
 
   /**
