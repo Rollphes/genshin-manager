@@ -18,6 +18,7 @@
     "lint": "eslint .",
     "lint:fix": "eslint . --fix"
   },
+  "browser": false,
   "engines": {
     "node": ">=18.0.0"
   },
