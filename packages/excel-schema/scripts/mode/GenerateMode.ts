@@ -7,11 +7,24 @@ import type {
 import type {
   SchemaGenerationResult,
   SchemaProcessor,
-} from '@scripts/lib/processor/SchemaProcessor'
-import type { GenerationMetadata } from '@scripts/lib/types'
-import type { EnumFileWriter } from '@scripts/lib/writer/EnumFileWriter'
-import type { IndexFileWriter } from '@scripts/lib/writer/IndexFileWriter'
-import type { SchemaFileWriter } from '@scripts/lib/writer/SchemaFileWriter'
+} from '@scripts/processor/SchemaProcessor'
+import type { EnumFileWriter } from '@scripts/writer/EnumFileWriter'
+import type { IndexFileWriter } from '@scripts/writer/IndexFileWriter'
+import type { SchemaFileWriter } from '@scripts/writer/SchemaFileWriter'
+
+/**
+ * Metadata for generated schema files
+ */
+export interface GenerationMetadata {
+  /** Source file name */
+  sourceFile: string
+  /** Source commit ID */
+  commitId: string
+  /** Generation timestamp */
+  generatedAt: string
+  /** Total number of elements processed */
+  totalElements: number
+}
 
 /**
  * Generate mode - generates Zod schemas from encrypted JSON data
@@ -44,16 +57,14 @@ export class GenerateMode {
   ): Promise<void> {
     const { results, generatedSchemas } = await this.generateSchemas(dataMap)
 
-    const metadata: GenerationMetadata = {
-      commitId: options.commit,
-      generatedAt: new Date().toISOString(),
-    }
+    const commitId = options.commit
+    const generatedAt = new Date().toISOString()
 
-    await this.writeEnumFiles(metadata)
-    await this.writeSchemaFiles(generatedSchemas, metadata)
-    await this.writeIndexFile(generatedSchemas, metadata)
+    await this.writeEnumFiles(commitId, generatedAt)
+    await this.writeSchemaFiles(generatedSchemas, commitId, generatedAt)
+    await this.writeIndexFile(generatedSchemas, commitId, generatedAt)
 
-    this.showResultsAndExit(results, options.commit)
+    this.showResultsAndExit(results, commitId)
   }
 
   /**
@@ -81,14 +92,11 @@ export class GenerateMode {
     const results = outputs.map((output) => output.result)
     const generatedSchemas = new Map<AnchorName, string>(
       outputs
-        .filter(
-          (output): output is SchemaGenerationResult & { schema: string } =>
-            output.schema !== null,
-        )
-        .map((output): [AnchorName, string] => [
-          output.result.name,
+        .map((output, index): [AnchorName, string | null] => [
+          [...dataMap.keys()][index],
           output.schema,
-        ]),
+        ])
+        .filter((entry): entry is [AnchorName, string] => entry[1] !== null),
     )
 
     return { results, generatedSchemas }
@@ -96,42 +104,52 @@ export class GenerateMode {
 
   /**
    * Write enum files
-   * @param metadata - generation metadata
+   * @param commitId - source commit ID
+   * @param generatedAt - generation timestamp
    */
-  private async writeEnumFiles(metadata: GenerationMetadata): Promise<void> {
+  private async writeEnumFiles(
+    commitId: string,
+    generatedAt: string,
+  ): Promise<void> {
     this.enumFileWriter.clean()
     await this.enumFileWriter.write(
       this.schemaProcessor.enumCollector.enumsSnapshot,
-      metadata,
+      commitId,
+      generatedAt,
     )
   }
 
   /**
    * Write schema files
    * @param generatedSchemas - map of type name to schema
-   * @param metadata - generation metadata
+   * @param commitId - source commit ID
+   * @param generatedAt - generation timestamp
    */
   private async writeSchemaFiles(
     generatedSchemas: Map<AnchorName, string>,
-    metadata: GenerationMetadata,
+    commitId: string,
+    generatedAt: string,
   ): Promise<void> {
     this.schemaFileWriter.clean()
-    await this.schemaFileWriter.write(generatedSchemas, metadata)
+    await this.schemaFileWriter.write(generatedSchemas, commitId, generatedAt)
   }
 
   /**
    * Write index file
    * @param generatedSchemas - map of type name to schema
-   * @param metadata - generation metadata
+   * @param commitId - source commit ID
+   * @param generatedAt - generation timestamp
    */
   private async writeIndexFile(
     generatedSchemas: Map<AnchorName, string>,
-    metadata: GenerationMetadata,
+    commitId: string,
+    generatedAt: string,
   ): Promise<void> {
     await this.indexFileWriter.write(
       [...generatedSchemas.keys()].map(String).sort(),
       [...this.schemaProcessor.enumCollector.enumNames].sort(),
-      metadata,
+      commitId,
+      generatedAt,
     )
   }
 

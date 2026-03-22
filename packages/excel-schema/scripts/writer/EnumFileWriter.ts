@@ -1,7 +1,6 @@
 import * as fs from 'node:fs'
 import * as path from 'node:path'
 
-import type { GenerationMetadata } from '@scripts/lib/types'
 import * as prettier from 'prettier'
 
 /**
@@ -30,11 +29,13 @@ export class EnumFileWriter {
   /**
    * Write enum files from collected enums
    * @param enums - map of enumName to Set of values
-   * @param metadata - generation metadata for header
+   * @param commitId - source commit ID
+   * @param generatedAt - generation timestamp
    */
   public async write(
-    enums: Map<string, Set<string>>,
-    metadata: GenerationMetadata,
+    enums: ReadonlyMap<string, ReadonlySet<string>>,
+    commitId: string,
+    generatedAt: string,
   ): Promise<void> {
     for (const [enumName, values] of enums.entries()) {
       const sortedValues = this.prepareValues(values)
@@ -44,7 +45,8 @@ export class EnumFileWriter {
       const content = await this.generateContent(
         enumName,
         sortedValues,
-        metadata,
+        commitId,
+        generatedAt,
       )
       fs.writeFileSync(path.resolve(this.outputPath, `${enumName}.ts`), content)
     }
@@ -55,7 +57,7 @@ export class EnumFileWriter {
    * @param values - raw set of values
    * @returns sorted and escaped array of values
    */
-  private prepareValues(values: Set<string>): string[] {
+  private prepareValues(values: ReadonlySet<string>): string[] {
     return [...values]
       .filter((v) => v === '' || !EnumFileWriter.artifactPattern.test(v))
       .sort()
@@ -72,15 +74,17 @@ export class EnumFileWriter {
    * Generate enum file content
    * @param enumName - name of the enum
    * @param values - sorted and escaped values
-   * @param metadata - generation metadata for header
+   * @param commitId - source commit ID
+   * @param generatedAt - generation timestamp
    * @returns formatted file content string
    */
   private async generateContent(
     enumName: string,
     values: string[],
-    metadata: GenerationMetadata,
+    commitId: string,
+    generatedAt: string,
   ): Promise<string> {
-    const header = this.buildMetadataHeader(metadata)
+    const header = this.buildMetadataHeader(commitId, generatedAt)
     const importLine = `import { z } from 'zod'`
     const schemaDoc = `/** Zod enum schema for ${enumName}. */`
     const enumValues = values.map((v) => `'${v}'`).join(', ')
@@ -106,15 +110,16 @@ export class EnumFileWriter {
 
   /**
    * Build metadata header comment
-   * @param metadata - generation metadata
+   * @param commitId - source commit ID
+   * @param generatedAt - generation timestamp
    * @returns formatted header comment
    */
-  private buildMetadataHeader(metadata: GenerationMetadata): string {
+  private buildMetadataHeader(commitId: string, generatedAt: string): string {
     return [
       '/**',
       ' * @generated',
-      ` * @source ${metadata.commitId}`,
-      ` * @date ${metadata.generatedAt}`,
+      ` * @source ${commitId}`,
+      ` * @date ${generatedAt}`,
       ' */',
     ].join('\n')
   }

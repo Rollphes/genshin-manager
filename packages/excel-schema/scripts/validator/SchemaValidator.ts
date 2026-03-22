@@ -1,5 +1,6 @@
+import { buildErrorResult, buildOkResult } from '@genshin-manager/cli'
 import { type AnchorName, KeyRestorer } from '@genshin-manager/crypto'
-import type { SchemaResult, SchemaResultError } from '@scripts/cli/SchemaCLI'
+import type { SchemaResult } from '@scripts/cli/SchemaCLI'
 import type { ZodTypeAny } from 'zod'
 
 /**
@@ -21,12 +22,12 @@ export class SchemaValidator {
       const data = this.restoreData(anchorName, raw)
       const schema = await this.loadSchemaModule(anchorName)
 
-      const validationError = this.validateItems(schema, data, anchorName)
+      const validationError = this.validateItems(schema, data)
       if (validationError) return validationError
 
-      return { name: anchorName, status: 'ok' }
+      return buildOkResult()
     } catch (error) {
-      return this.buildErrorResult(anchorName, error)
+      return buildErrorResult(error)
     }
   }
 
@@ -64,43 +65,18 @@ export class SchemaValidator {
    * Validate all items against schema
    * @param schema - Zod schema
    * @param items - data items to validate
-   * @param anchorName - name of the anchor
    * @returns error result if validation fails, null if success
    */
   private validateItems(
     schema: ZodTypeAny,
     items: unknown[],
-    anchorName: AnchorName,
   ): SchemaResult | null {
     for (const item of items) {
       const result = schema.safeParse(item)
 
-      if (!result.success) {
-        return {
-          name: anchorName,
-          status: 'error',
-          error: result.error,
-        }
-      }
+      if (!result.success) return buildErrorResult(result.error)
     }
 
     return null
-  }
-
-  /**
-   * Build error result
-   * @param anchorName - name of the anchor
-   * @param error - caught error
-   * @returns schema result error
-   */
-  private buildErrorResult(
-    anchorName: AnchorName,
-    error: unknown,
-  ): SchemaResultError {
-    return {
-      name: anchorName,
-      status: 'error',
-      error: error instanceof Error ? error : new Error(String(error)),
-    }
   }
 }

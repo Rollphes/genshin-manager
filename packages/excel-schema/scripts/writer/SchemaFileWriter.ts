@@ -2,9 +2,8 @@ import * as fs from 'node:fs'
 import * as path from 'node:path'
 
 import type { AnchorName } from '@genshin-manager/crypto'
-import type { EnumCollector } from '@scripts/lib/processor/EnumCollector'
-import type { SchemaTransformer } from '@scripts/lib/SchemaTransformer'
-import type { GenerationMetadata } from '@scripts/lib/types'
+import type { EnumCollector } from '@scripts/processor/EnumCollector'
+import type { SchemaTransformer } from '@scripts/processor/SchemaTransformer'
 import * as prettier from 'prettier'
 
 /**
@@ -33,33 +32,39 @@ export class SchemaFileWriter {
   /**
    * Write schema files from generated schemas
    * @param generatedSchemas - map of type name to schema
-   * @param metadata - generation metadata for header
+   * @param commitId - source commit ID
+   * @param generatedAt - generation timestamp
    */
   public async write(
     generatedSchemas: Map<AnchorName, string>,
-    metadata: GenerationMetadata,
+    commitId: string,
+    generatedAt: string,
   ): Promise<void> {
     for (const [typeName, schema] of generatedSchemas.entries())
-      await this.writeSchemaFile(typeName, schema, metadata)
+      await this.writeSchemaFile(typeName, schema, commitId, generatedAt)
   }
 
   /**
    * Write a single schema file
    * @param typeName - name of the type
    * @param schema - generated schema string
-   * @param metadata - generation metadata
+   * @param commitId - source commit ID
+   * @param generatedAt - generation timestamp
    */
   private async writeSchemaFile(
     typeName: AnchorName,
     schema: string,
-    metadata: GenerationMetadata,
+    commitId: string,
+    generatedAt: string,
   ): Promise<void> {
     const nameMapping = this.enumCollector.getNameMapping(typeName)
+    const enumNames = [...this.enumCollector.enumNames]
     const finalSchema = this.transformer.replaceEnumsWithImports(
       schema,
-      this.enumCollector.enumNames,
+      enumNames,
       nameMapping,
-      metadata,
+      commitId,
+      generatedAt,
     )
     const formattedSchema = await this.formatSchema(finalSchema)
     fs.writeFileSync(

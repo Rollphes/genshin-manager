@@ -1,7 +1,6 @@
 import * as fs from 'node:fs'
 import * as path from 'node:path'
 
-import type { GenerationMetadata } from '@scripts/lib/types'
 import * as prettier from 'prettier'
 
 /**
@@ -18,14 +17,21 @@ export class IndexFileWriter {
    * Write index.ts with all exports
    * @param schemaNames - sorted list of schema type names
    * @param enumNames - sorted list of enum names
-   * @param metadata - generation metadata for header
+   * @param commitId - source commit ID
+   * @param generatedAt - generation timestamp
    */
   public async write(
     schemaNames: string[],
     enumNames: string[],
-    metadata: GenerationMetadata,
+    commitId: string,
+    generatedAt: string,
   ): Promise<void> {
-    const content = await this.generateContent(schemaNames, enumNames, metadata)
+    const content = await this.generateContent(
+      schemaNames,
+      enumNames,
+      commitId,
+      generatedAt,
+    )
     fs.writeFileSync(path.resolve(this.outputPath, 'index.ts'), content)
   }
 
@@ -33,15 +39,17 @@ export class IndexFileWriter {
    * Generate index.ts content
    * @param schemaNames - list of schema type names
    * @param enumNames - list of enum names
-   * @param metadata - generation metadata for header
+   * @param commitId - source commit ID
+   * @param generatedAt - generation timestamp
    * @returns formatted file content string
    */
   private async generateContent(
     schemaNames: string[],
     enumNames: string[],
-    metadata: GenerationMetadata,
+    commitId: string,
+    generatedAt: string,
   ): Promise<string> {
-    const header = this.buildMetadataHeader(metadata)
+    const header = this.buildMetadataHeader(commitId, generatedAt)
 
     // Sort by path (schema path includes 'Schema' suffix)
     const sortedSchemaNames = [...schemaNames].sort((a, b) =>
@@ -77,15 +85,16 @@ export class IndexFileWriter {
 
   /**
    * Build metadata header comment
-   * @param metadata - generation metadata
+   * @param commitId - source commit ID
+   * @param generatedAt - generation timestamp
    * @returns formatted header comment
    */
-  private buildMetadataHeader(metadata: GenerationMetadata): string {
+  private buildMetadataHeader(commitId: string, generatedAt: string): string {
     return [
       '/**',
       ' * @generated',
-      ` * @source ${metadata.commitId}`,
-      ` * @date ${metadata.generatedAt}`,
+      ` * @source ${commitId}`,
+      ` * @date ${generatedAt}`,
       ' */',
     ].join('\n')
   }

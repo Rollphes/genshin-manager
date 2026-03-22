@@ -1,10 +1,8 @@
 import {
   type Annotation,
-  anyTypeIssueAnnotation,
   InputData,
   IssueAnnotationData,
   jsonInputForTargetLanguage,
-  nullTypeIssueAnnotation,
   quicktype,
 } from 'quicktype-core'
 
@@ -95,8 +93,10 @@ export class QuicktypeRunner {
    * @returns warning type
    */
   private getWarningType(annotation: unknown): 'any' | 'null' {
-    if (annotation === anyTypeIssueAnnotation) return 'any'
-    if (annotation === nullTypeIssueAnnotation) return 'null'
-    return 'any' // default fallback
+    if (!(annotation instanceof IssueAnnotationData)) return 'any'
+
+    const message = annotation.message.toLowerCase()
+    if (message.includes('null')) return 'null'
+    return 'any'
   }
 }

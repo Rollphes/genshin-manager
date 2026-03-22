@@ -4,7 +4,7 @@ import type {
   SchemaOptions,
   SchemaResult,
 } from '@scripts/cli/SchemaCLI'
-import type { SchemaValidator } from '@scripts/lib/SchemaValidator'
+import type { SchemaValidator } from '@scripts/validator/SchemaValidator'
 
 /**
  * Validate mode - validates data against existing Zod schemas

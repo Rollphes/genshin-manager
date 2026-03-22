@@ -1,10 +1,16 @@
 import * as path from 'node:path'
 
-import type { FormatItem } from '@genshin-manager/cli'
-import { BaseCLI } from '@genshin-manager/cli'
+import type {
+  FormatItem,
+  OperationResult,
+  OperationResultError,
+  OperationResultOk,
+  OperationResultSkip,
+} from '@genshin-manager/cli'
+import { BaseCLI, categorizeResults } from '@genshin-manager/cli'
 import { type AnchorName, AnchorNames } from '@genshin-manager/crypto'
 import type { Commit } from '@genshin-manager/rest'
-import type { QuicktypeWarning } from '@scripts/lib/QuicktypeRunner'
+import type { QuicktypeWarning } from '@scripts/processor/QuicktypeRunner'
 import type { ZodError } from 'zod'
 
 /**
@@ -13,45 +19,32 @@ import type { ZodError } from 'zod'
 export type SchemaMode = 'generate' | 'validate'
 
 /**
- * OK result for a schema operation
+ * Schema data for successful operations
  */
-export interface SchemaResultOk {
-  /** Schema name */
-  name: AnchorName
-  /** Status */
-  status: 'ok'
+export interface SchemaData {
   /** Optional warnings from type inference */
   warnings?: QuicktypeWarning[]
 }
 
 /**
+ * OK result for a schema operation
+ */
+export type SchemaResultOk = OperationResultOk<SchemaData>
+
+/**
  * Skip result for a schema operation
  */
-export interface SchemaResultSkip {
-  /** Schema name */
-  name: AnchorName
-  /** Status */
-  status: 'skip'
-  /** Skip reason */
-  message: string
-}
+export type SchemaResultSkip = OperationResultSkip
 
 /**
  * Error result for a schema operation
  */
-export interface SchemaResultError {
-  /** Schema name */
-  name: AnchorName
-  /** Status */
-  status: 'error'
-  /** Error */
-  error: Error
-}
+export type SchemaResultError = OperationResultError
 
 /**
  * Result for a single schema operation
  */
-export type SchemaResult = SchemaResultOk | SchemaResultSkip | SchemaResultError
+export type SchemaResult = OperationResult<SchemaData>
 
 /**
  * Selected options from schema CLI
@@ -155,7 +148,7 @@ export class SchemaCLI extends BaseCLI {
    */
   public saveReport(results: SchemaResult[], commitId: string): void {
     const { okResults, errorResults, skipResults, warningResults } =
-      this.categorizeResults(results)
+      this.categorizeSchemaResults(results)
 
     this.saveReportToFile({
       label: `=== ${this.operationName} Report ===`,
@@ -166,31 +159,32 @@ export class SchemaCLI extends BaseCLI {
         },
         {
           label: 'OK',
-          children: okResults.map((r) => ({ label: r.name })),
+          children: okResults.map(() => ({ label: 'OK' })),
         },
         {
           label: 'Warnings',
           children: warningResults.map((r) => ({
-            label: `${r.name}:`,
-            value: r.warnings
-              .map(
-                (w) =>
-                  `[${w.type}] ${w.message} (line ${String(w.line)}, col ${String(w.column)})`,
-              )
-              .join('\n'),
+            label: 'Warning:',
+            value:
+              r.data?.warnings
+                ?.map(
+                  (w) =>
+                    `[${w.type}] ${w.message} (line ${String(w.line)}, col ${String(w.column)})`,
+                )
+                .join('\n') ?? '',
           })),
         },
         {
           label: 'Skipped',
           children: skipResults.map((r) => ({
-            label: `${r.name}:`,
-            value: r.message,
+            label: 'Skipped:',
+            value: r.reason,
           })),
         },
         {
           label: 'Errors',
           children: errorResults.map((r) => ({
-            label: `${r.name}:`,
+            label: 'Error:',
             value: this.formatError(r.error),
           })),
         },
@@ -199,31 +193,28 @@ export class SchemaCLI extends BaseCLI {
   }
 
   /**
-   * Categorize results by status
+   * Categorize results by status (extends shared categorizeResults with warnings)
    * @param results - schema results
    * @returns categorized results
    */
-  protected categorizeResults(results: SchemaResult[]): {
-    okResults: SchemaResultOk[]
-    errorResults: SchemaResultError[]
-    skipResults: SchemaResultSkip[]
-    warningResults: Required<SchemaResultOk>[]
+  protected categorizeSchemaResults(results: SchemaResult[]): {
+    okResults: readonly SchemaResultOk[]
+    errorResults: readonly SchemaResultError[]
+    skipResults: readonly SchemaResultSkip[]
+    warningResults: readonly SchemaResultOk[]
   } {
-    const okResults = results.filter(
-      (r): r is SchemaResultOk => r.status === 'ok',
+    const { okResults, errorResults, skipResults } = categorizeResults(results)
+
+    const warningResults = okResults.filter(
+      (r): r is SchemaResultOk =>
+        r.data?.warnings !== undefined && r.data.warnings.length > 0,
     )
+
     return {
       okResults,
-      errorResults: results.filter(
-        (r): r is SchemaResultError => r.status === 'error',
-      ),
-      skipResults: results.filter(
-        (r): r is SchemaResultSkip => r.status === 'skip',
-      ),
-      warningResults: okResults.filter(
-        (r): r is Required<SchemaResultOk> =>
-          r.warnings !== undefined && r.warnings.length > 0,
-      ),
+      errorResults,
+      skipResults,
+      warningResults,
     }
   }
 
@@ -238,7 +229,7 @@ export class SchemaCLI extends BaseCLI {
     commitId: string,
   ): FormatItem[] {
     const { okResults, errorResults, skipResults, warningResults } =
-      this.categorizeResults(results)
+      this.categorizeSchemaResults(results)
 
     return [
       { label: 'Date:', value: new Date().toISOString() },

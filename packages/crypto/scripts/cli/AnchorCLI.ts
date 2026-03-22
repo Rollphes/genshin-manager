@@ -40,7 +40,7 @@ export interface AnchorOptions {
  * CLI for anchor generation.
  * Handles all user interaction and display via @clack/prompts.
  */
-export class AnchorGeneratorCLI extends BaseCLI {
+export class AnchorCLI extends BaseCLI {
   protected readonly logsDir = path.resolve(__dirname, '../logs')
   protected readonly operationName = 'Anchor Operation'
 

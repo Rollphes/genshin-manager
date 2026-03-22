@@ -1,5 +1,3 @@
-import type { GenerationMetadata } from '@scripts/lib/types'
-
 /**
  * Transforms generated Zod schemas (naming normalization, enum replacement)
  */
@@ -45,14 +43,16 @@ export class SchemaTransformer {
    * @param schema - schema string with local enum definitions
    * @param enumNames - list of enum names that have common files
    * @param nameMapping - Map<quicktypeName, derivedNames[]> for this schema
-   * @param metadata - generation metadata for header
+   * @param commitId - source commit ID
+   * @param generatedAt - generation timestamp
    * @returns schema with enum imports and metadata header
    */
   public replaceEnumsWithImports(
     schema: string,
     enumNames: string[],
-    nameMapping: Map<string, string[]>,
-    metadata: GenerationMetadata,
+    nameMapping: ReadonlyMap<string, readonly string[]>,
+    commitId: string,
+    generatedAt: string,
   ): string {
     let processed = schema
     const enumImports = new Set<string>()
@@ -95,7 +95,7 @@ export class SchemaTransformer {
     processed = this.updateImports(processed, enumImports)
 
     // Add metadata header
-    processed = this.addMetadataHeader(processed, metadata)
+    processed = this.addMetadataHeader(processed, commitId, generatedAt)
 
     // Clean up multiple blank lines
     processed = processed.replace(SchemaTransformer.multiNewlinePattern, '\n\n')
@@ -159,18 +159,20 @@ export class SchemaTransformer {
   /**
    * Add metadata header to schema
    * @param schema - schema string
-   * @param metadata - generation metadata
+   * @param commitId - source commit ID
+   * @param generatedAt - generation timestamp
    * @returns schema with metadata header
    */
   private addMetadataHeader(
     schema: string,
-    metadata: GenerationMetadata,
+    commitId: string,
+    generatedAt: string,
   ): string {
     const header = [
       '/**',
       ' * @generated',
-      ` * @source ${metadata.commitId}`,
-      ` * @date ${metadata.generatedAt}`,
+      ` * @source ${commitId}`,
+      ` * @date ${generatedAt}`,
       ' */',
     ].join('\n')
 

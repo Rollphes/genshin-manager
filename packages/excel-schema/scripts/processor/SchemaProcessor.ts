@@ -1,12 +1,13 @@
+import {
+  buildErrorResult,
+  buildOkResult,
+  buildSkipResult,
+} from '@genshin-manager/cli'
 import { type AnchorName, KeyRestorer } from '@genshin-manager/crypto'
-import type {
-  SchemaResult,
-  SchemaResultError,
-  SchemaResultOk,
-} from '@scripts/cli/SchemaCLI'
-import type { EnumCollector } from '@scripts/lib/processor/EnumCollector'
-import type { QuicktypeRunner } from '@scripts/lib/QuicktypeRunner'
-import type { SchemaTransformer } from '@scripts/lib/SchemaTransformer'
+import type { SchemaData, SchemaResult } from '@scripts/cli/SchemaCLI'
+import type { EnumCollector } from '@scripts/processor/EnumCollector'
+import type { QuicktypeRunner } from '@scripts/processor/QuicktypeRunner'
+import type { SchemaTransformer } from '@scripts/processor/SchemaTransformer'
 
 /**
  * Result from schema generation
@@ -58,11 +59,7 @@ export class SchemaProcessor {
 
       if (data.length === 0) {
         return {
-          result: {
-            name: anchorName,
-            status: 'skip',
-            message: 'Empty restored data',
-          },
+          result: buildSkipResult('Empty restored data'),
           schema: null,
         }
       }
@@ -72,7 +69,7 @@ export class SchemaProcessor {
         data,
       )
       const normalizedSchema = this.normalizeAndCollect(anchorName, schema)
-      const result = this.buildResult(anchorName, warnings)
+      const result = this.buildResult(warnings)
 
       return {
         result,
@@ -80,7 +77,7 @@ export class SchemaProcessor {
       }
     } catch (error) {
       return {
-        result: this.buildErrorResult(anchorName, error),
+        result: this.buildErrorResult(error),
         schema: null,
       }
     }
@@ -131,41 +128,20 @@ export class SchemaProcessor {
 
   /**
    * Build result metadata
-   * @param anchorName - name of the anchor
    * @param warnings - warnings from quicktype
    * @returns schema result
    */
-  private buildResult(
-    anchorName: AnchorName,
-    warnings: QuicktypeWarning[],
-  ): SchemaResultOk {
-    if (warnings.length > 0) {
-      return {
-        name: anchorName,
-        status: 'ok',
-        warnings,
-      }
-    }
-    return {
-      name: anchorName,
-      status: 'ok',
-    }
+  private buildResult(warnings: QuicktypeWarning[]): SchemaResult {
+    const data: SchemaData = warnings.length > 0 ? { warnings } : {}
+    return buildOkResult(data)
   }
 
   /**
    * Build error result
-   * @param anchorName - name of the anchor
    * @param error - caught error
    * @returns schema result error
    */
-  private buildErrorResult(
-    anchorName: AnchorName,
-    error: unknown,
-  ): SchemaResultError {
-    return {
-      name: anchorName,
-      status: 'error',
-      error: error instanceof Error ? error : new Error(String(error)),
-    }
+  private buildErrorResult(error: unknown): SchemaResult {
+    return buildErrorResult(error)
   }
 }
